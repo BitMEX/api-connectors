@@ -1,0 +1,15 @@
+{
+  "name": "apiConnectors",
+  "version": "0.0.1",
+  "description": "Connectors and examples for the BitMEX API.",
+  "main": "swaggerClient.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Samuel Reed <sam@tixelated.com> (http://strml.net/)",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "swagger-client": "^2.0.29"
+  }
+}
