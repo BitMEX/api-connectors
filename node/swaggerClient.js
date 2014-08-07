@@ -3,7 +3,7 @@ var client = require("swagger-client");
 var _ = require('lodash');
 
 var swagger = new client.SwaggerApi({
-  url: 'https://www.bitmex.com/explorer/resources',
+  url: 'https://www.bitmex.com/api/explorer/resources',
   success: function() {
     if(swagger.ready === true) {
       isReady(swagger.apis);
