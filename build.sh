@@ -50,13 +50,15 @@ echo "Generating sample servers..."
 
 echo "Moving client libraries into apiConnectors..."
 mv -f generated-code/scala/* $CLIENTS/scala
-mv -f generated-code/java/* $CLIENTS/java/jersey
 # objc directory is wrong
 mv -f generated-code/src/* $CLIENTS/objc/src
 mv -f generated-code/php/* $CLIENTS/php
 mv -f generated-code/python/* $CLIENTS/python
 mv -f generated-code/python3/* $CLIENTS/python3
 mv -f generated-code/ruby/* $CLIENTS/ruby
+mkdir -p $CLIENTS/java/jersey
+mkdir -p $CLIENTS/java/android
+mv -f generated-code/java/* $CLIENTS/java/jersey
 mv -f generated-code/android-java/* $CLIENTS/java/android
 mv -f generated-code/csharp/* $CLIENTS/csharp
 mv -f generated-code/flash/* $CLIENTS/flash
