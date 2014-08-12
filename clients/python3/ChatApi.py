@@ -108,7 +108,7 @@ class ChatApi(object):
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'Array[chat]')
+        responseObject = self.apiClient.deserialize(response, 'list')
         return responseObject
         
 
