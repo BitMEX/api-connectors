@@ -1,0 +1,17 @@
+{
+  "name": "MarketMaker-Node-Example",
+  "version": "0.0.1",
+  "description": "Example code for a NodeJS market maker",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Samuel Reed <sam@tixelated.com> (http://strml.net/)",
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^2.0.0",
+    "mux-demux": "^3.7.9",
+    "reconnect-core": "^0.2.0",
+    "sockjs-stream": "^1.0.2"
+  }
+}
