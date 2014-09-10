@@ -24,9 +24,11 @@ module.exports = {
     debug('Connecting to websockets at %s...', baseURL);
 
     var reconnect = reconnectCore(sockJS);
+    var connected = false;
 
     return reconnect()
     .on('connect', function(stream){
+      connected = true;
       var mx = muxDemux();
       // Pipe through muxdemux.
       stream.pipe(mx).pipe(stream);
@@ -36,15 +38,15 @@ module.exports = {
       debug('Main Websocket Connected');
     })
     .on('reconnect', function() {
-      debug('Lost connection to %s, reconnecting...', baseURL);
+      if (connected) debug('Lost connection to %s, reconnecting...', baseURL);
     })
     .on('disconnect', function(err) {
-      console.error(err);
+      if (err) console.error(err);
       if (me.socketStream) me.socketStream.closed = true;
       if (me.mxStream) me.mxStream.closed = true;
     })
-    .on('close', function(e) {
-      console.error(e);
+    .on('close', function(err) {
+      if(err) console.error(err);
     })
     .connect(baseURL + '/realtimemd');
   },
