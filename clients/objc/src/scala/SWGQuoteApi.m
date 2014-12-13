@@ -1,6 +1,7 @@
 #import "SWGQuoteApi.h"
 #import "SWGFile.h"
 #import "SWGApiClient.h"
+#import "SWGError.h"
 #import "SWGQuote.h"
 
 
@@ -51,14 +52,14 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 }
 
 
--(NSNumber*) quote_getBucketedWithCompletionBlock:(NSString*) symbol
+-(NSNumber*) getBucketedWithCompletionBlock:(NSString*) symbol
         startTime:(SWGDate*) startTime
         endTime:(SWGDate*) endTime
         count:(NSNumber*) count
         binSize:(NSString*) binSize
         completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
 
-    NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/quote/getBucketed", basePath];
+    NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/quote/bucketed", basePath];
 
     // remove format in URL if needed
     if ([requestUrl rangeOfString:@".{format}"].location != NSNotFound)

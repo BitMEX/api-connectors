@@ -15,23 +15,23 @@ function writeResponse (response, data) {
 
 exports.models = models = require("../models.js");
 
-exports.quote_getBucketed = {
+exports.getBucketed = {
   'spec': {
     "description" : "Operations about pets",
-    "path" : "/quote/getBucketed",
+    "path" : "/quote/bucketed",
     "notes" : "",
     "summary" : "Get previous quotes bucketed by seconds.",
     "method": "GET",
-    "params" : [params.query("symbol", "Instrument name.", "string", true, false, ""),params.query("binSize", "Time interval to bucket by. Available options: ['30s', '5m', '1h', '1d'].", "string", false, false, "", "30s"),params.query("startTime", "Start date.", "Date", false, false, ""),params.query("endTime", "End Date.", "Date", false, false, ""),params.query("count", "Number of buckets to fetch", "double", false, false, "")].concat([]).concat([]).concat([]),
-    "type" : "List[quote]",
-    "responseMessages" : [errors.invalid('id'), errors.notFound('List[quote]')],
-    "nickname" : "quote_getBucketed"
+    "params" : [params.query("symbol", "Instrument name.", "string", true, false, ""),params.query("binSize", "Time interval to bucket by. Available options: ['1m', '5m', '1h', '1d'].", "string", false, false, "", "1m"),params.query("startTime", "Start date. Expects ISO formatted date strings.", "Date", false, false, ""),params.query("endTime", "End Date. Expects ISO formatted date strings.", "Date", false, false, ""),params.query("count", "Number of buckets to fetch.", "double", false, false, "")].concat([]).concat([]).concat([]),
+    "type" : "List[Quote]",
+    "responseMessages" : [errors.invalid('id'), errors.notFound('List[Quote]')],
+    "nickname" : "getBucketed"
   },
   'action': function (req,res) {
     if (!req.params.symbol) {
       throw errors.invalid('symbol');
     }
-    writeResponse(res, {message: "how about implementing quote_getBucketed as a GET method?"});    
+    writeResponse(res, {message: "how about implementing getBucketed as a GET method?"});    
   }
 };
 

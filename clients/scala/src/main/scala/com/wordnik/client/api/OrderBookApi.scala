@@ -1,5 +1,6 @@
 package com.wordnik.client.api
 
+import com.wordnik.client.model.Error
 import com.wordnik.client.model.OrderBook
 import com.wordnik.client.common.ApiInvoker
 import com.wordnik.client.common.ApiException
@@ -15,7 +16,7 @@ class OrderBookApi {
   
   def addHeader(key: String, value: String) = apiInvoker.defaultHeaders += key -> value 
 
-  def orderBook_getOrderBook (symbol: symbol) : Option[List[orderBook]]= {
+  def getOrderBook (symbol: String, depth: Double= 25) : Option[List[OrderBook]]= {
     // create path and map variables
     val path = "/orderBook".replaceAll("\\{format\\}","json")
 
@@ -32,10 +33,11 @@ class OrderBookApi {
        case _ => throw new Exception("missing required params")
     }
     if(String.valueOf(symbol) != "null") queryParams += "symbol" -> symbol.toString
+    if(String.valueOf(depth) != "null") queryParams += "depth" -> depth.toString
     try {
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
         case s: String =>
-          Some(ApiInvoker.deserialize(s, "Array", classOf[orderBook]).asInstanceOf[List[orderBook]])
+          Some(ApiInvoker.deserialize(s, "Array", classOf[OrderBook]).asInstanceOf[List[OrderBook]])
         case _ => None
       }
     } catch {

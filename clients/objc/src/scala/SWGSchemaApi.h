@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "SWGError.h"
 #import "Object.h"
 
 
@@ -16,7 +17,14 @@
  
  @param model Optional model filter. If omitted, will return all models.
  */
--(NSNumber*) schema_findWithCompletionBlock :(NSString*) model 
+-(NSNumber*) findWithCompletionBlock :(NSString*) model 
         completionHandler: (void (^)(NSObject* output, NSError* error))completionBlock;
+
+/**
+
+ Returns help text & subject list for websocket usage.
+ 
+ */
+-(NSNumber*) websocketHelpWithCompletionBlock :(void (^)(NSObject* output, NSError* error))completionBlock;
 
 @end

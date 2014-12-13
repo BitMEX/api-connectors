@@ -1,21 +1,21 @@
 class User
-  attr_accessor :firstname, :lastname, :username, :email, :email_verified, :phone, :phone_verified, :status, :created, :last_updated, :preferences, :is_employee, :id
+  attr_accessor :firstname, :lastname, :status, :username, :email, :phone, :country_code, :created, :last_updated, :preferences, :role, :_t_f_a_enabled, :id
 
   # :internal => :external
   def self.attribute_map
     {
       :firstname => :firstname,
       :lastname => :lastname,
+      :status => :status,
       :username => :username,
       :email => :email,
-      :email_verified => :emailVerified,
       :phone => :phone,
-      :phone_verified => :phoneVerified,
-      :status => :status,
+      :country_code => :countryCode,
       :created => :created,
       :last_updated => :lastUpdated,
       :preferences => :preferences,
-      :is_employee => :isEmployee,
+      :role => :role,
+      :_t_f_a_enabled => :TFAEnabled,
       :id => :id
 
     }
@@ -30,23 +30,20 @@ class User
     if self.class.attribute_map[:"lastname"]
       @lastname = attributes["lastname"]
     end
+    if self.class.attribute_map[:"status"]
+      @status = attributes["status"]
+    end
     if self.class.attribute_map[:"username"]
       @username = attributes["username"]
     end
     if self.class.attribute_map[:"email"]
       @email = attributes["email"]
     end
-    if self.class.attribute_map[:"email_verified"]
-      @email_verified = attributes["emailVerified"]
-    end
     if self.class.attribute_map[:"phone"]
       @phone = attributes["phone"]
     end
-    if self.class.attribute_map[:"phone_verified"]
-      @phone_verified = attributes["phoneVerified"]
-    end
-    if self.class.attribute_map[:"status"]
-      @status = attributes["status"]
+    if self.class.attribute_map[:"country_code"]
+      @country_code = attributes["countryCode"]
     end
     if self.class.attribute_map[:"created"]
       @created = attributes["created"]
@@ -57,8 +54,11 @@ class User
     if self.class.attribute_map[:"preferences"]
       @preferences = attributes["preferences"]
     end
-    if self.class.attribute_map[:"is_employee"]
-      @is_employee = attributes["isEmployee"]
+    if self.class.attribute_map[:"role"]
+      @role = attributes["role"]
+    end
+    if self.class.attribute_map[:"_t_f_a_enabled"]
+      @_t_f_a_enabled = attributes["TFAEnabled"]
     end
     if self.class.attribute_map[:"id"]
       @id = attributes["id"]

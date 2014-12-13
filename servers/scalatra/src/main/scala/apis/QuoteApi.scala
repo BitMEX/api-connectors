@@ -1,5 +1,6 @@
 package apis
 
+import com.wordnik.client.model.Error
 import com.wordnik.client.model.Quote
 import java.io.File
 
@@ -28,13 +29,13 @@ class QuoteApi (implicit val swagger: Swagger) extends ScalatraServlet
 
 
 
-  val quote_getBucketedOperation = (apiOperation[List[quote]]("quote_getBucketed")
+  val getBucketedOperation = (apiOperation[List[Quote]]("getBucketed")
       summary "Get previous quotes bucketed by seconds."
       parameters(
-        queryParam[String]("symbol").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""),queryParam[Double]("count").description(""),queryParam[String]("binSize").description("").defaultValue("30s"))
+        queryParam[String]("symbol").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""),queryParam[Double]("count").description(""),queryParam[String]("binSize").description("").defaultValue("1m"))
   )
 
-  get("/getBucketed",operation(quote_getBucketedOperation)) {
+  get("/bucketed",operation(getBucketedOperation)) {
     val symbol = params.getAs[String]("symbol")
     println("symbol: " + symbol)
   val startTime = params.getAs[Date]("startTime")

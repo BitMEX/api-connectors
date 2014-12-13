@@ -8,7 +8,30 @@ class Chat_api
     URI.encode(string.to_s)
   end
 
-  def self.chat_create (message,opts={})
+  def self.get (count= 100,opts={})
+    query_param_keys = [:count]
+
+    # set default values and merge with input
+    options = {
+    :count => count}.merge(opts)
+
+    #resource path
+    path = "/chat".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    response.map {|response|Chat.new(response)}
+
+  end
+
+def self.send (message,opts={})
     query_param_keys = []
 
     # verify existence of params
@@ -29,30 +52,7 @@ class Chat_api
     headers = nil
     post_body = nil
     response = Swagger::Request.new(:POST, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
-    chat.new(response)
-
-  end
-
-def self.chat_find (count= 100,opts={})
-    query_param_keys = [:count]
-
-    # set default values and merge with input
-    options = {
-    :count => count}.merge(opts)
-
-    #resource path
-    path = "/chat".sub('{format}','json')
-
-    
-    # pull querystring keys from options
-    queryopts = options.select do |key,value|
-      query_param_keys.include? key
-    end
-    
-    headers = nil
-    post_body = nil
-    response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
-    response.map {|response|chat.new(response)}
+    Chat.new(response)
 
   end
 

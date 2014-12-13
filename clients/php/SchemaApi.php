@@ -26,14 +26,14 @@ class SchemaApi {
 	}
 
   /**
-	 * schema_find
+	 * find
 	 * Get model schemata for data objects returned by this API.
    * model, string: Optional model filter. If omitted, will return all models. (optional)
 
    * @return object
 	 */
 
-   public function schema_find($model=null) {
+   public function find($model=null) {
 
   		//parse inputs
   		$resourcePath = "/schema";
@@ -48,6 +48,41 @@ class SchemaApi {
   		  $queryParams['model'] = $this->apiClient->toQueryValue($model);
   		}
   		//make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'object');
+  		return $responseObject;
+
+      }
+  /**
+	 * websocketHelp
+	 * Returns help text &amp; subject list for websocket usage.
+   * @return object
+	 */
+
+   public function websocketHelp() {
+
+  		//parse inputs
+  		$resourcePath = "/schema/websocketHelp";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "GET";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      //make the API Call
       if (! isset($body)) {
         $body = null;
       }

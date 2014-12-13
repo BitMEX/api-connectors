@@ -1,6 +1,7 @@
 #import "SWGPositionApi.h"
 #import "SWGFile.h"
 #import "SWGApiClient.h"
+#import "SWGError.h"
 #import "SWGPosition.h"
 
 
@@ -51,7 +52,10 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 }
 
 
--(NSNumber*) position_findWithCompletionBlock: (void (^)(NSArray* output, NSError* error))completionBlock{
+-(NSNumber*) findWithCompletionBlock:(NSObject*) filter
+        columns:(NSArray*) columns
+        count:(NSNumber*) count
+        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/position", basePath];
 
@@ -63,6 +67,12 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
     NSString* responseContentType = @"application/json";
 
         NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if(filter != nil)
+        queryParams[@"filter"] = filter;
+    if(columns != nil)
+        queryParams[@"columns"] = columns;
+    if(count != nil)
+        queryParams[@"count"] = count;
     NSMutableDictionary* headerParams = [[NSMutableDictionary alloc] init];
     id bodyDictionary = nil;
         SWGApiClient* client = [SWGApiClient sharedClientFromPool:basePath];

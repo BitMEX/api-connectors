@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "SWGError.h"
 #import "SWGPosition.h"
 
 
@@ -14,7 +15,13 @@
 
  Get your positions.
  
+ @param filter Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}.
+ @param columns Which columns to fetch. For example, send [&quot;columnName&quot;].
+ @param count Number of rows to fetch.
  */
--(NSNumber*) position_findWithCompletionBlock :(void (^)(NSArray* output, NSError* error))completionBlock;
+-(NSNumber*) findWithCompletionBlock :(NSObject*) filter 
+        columns:(NSArray*) columns 
+        count:(NSNumber*) count 
+        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
 
 @end

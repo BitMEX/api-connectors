@@ -1,5 +1,6 @@
 package apis
 
+import com.wordnik.client.model.Error
 import com.wordnik.client.model.OrderBook
 import java.io.File
 
@@ -28,15 +29,17 @@ class OrderBookApi (implicit val swagger: Swagger) extends ScalatraServlet
 
 
 
-  val orderBook_getOrderBookOperation = (apiOperation[List[orderBook]]("orderBook_getOrderBook")
+  val getOrderBookOperation = (apiOperation[List[OrderBook]]("getOrderBook")
       summary "Get current orderbook."
       parameters(
-        queryParam[symbol]("symbol").description(""))
+        queryParam[String]("symbol").description(""),queryParam[Double]("depth").description("").defaultValue(25))
   )
 
-  get("/",operation(orderBook_getOrderBookOperation)) {
-    val symbol = params.getAs[symbol]("symbol")
+  get("/",operation(getOrderBookOperation)) {
+    val symbol = params.getAs[String]("symbol")
     println("symbol: " + symbol)
+  val depth = params.getAs[Double]("depth")
+    println("depth: " + depth)
   }
 
 }

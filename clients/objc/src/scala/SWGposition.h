@@ -11,19 +11,19 @@
 
 @property(nonatomic) NSString* currency;  
 
-@property(nonatomic) NSNumber* prevPnl;  
+@property(nonatomic) NSNumber* commission;  
+
+@property(nonatomic) NSNumber* prevRealisedPnl;  
+
+@property(nonatomic) NSNumber* prevUnrealisedPnl;  
 
 @property(nonatomic) NSNumber* prevClosePrice;  
 
+@property(nonatomic) NSNumber* realisedCost;  
+
+@property(nonatomic) NSNumber* realisedPnl;  
+
 @property(nonatomic) SWGDate* openingTimestamp;  
-
-@property(nonatomic) NSNumber* openingBuyQty;  
-
-@property(nonatomic) NSNumber* openingBuyCost;  
-
-@property(nonatomic) NSNumber* openingSellQty;  
-
-@property(nonatomic) NSNumber* openingSellCost;  
 
 @property(nonatomic) NSNumber* openingQty;  
 
@@ -55,19 +55,13 @@
 
 @property(nonatomic) SWGDate* currentTimestamp;  
 
-@property(nonatomic) NSNumber* currentBuyQty;  
-
-@property(nonatomic) NSNumber* currentBuyCost;  
-
-@property(nonatomic) NSNumber* currentSellQty;  
-
-@property(nonatomic) NSNumber* currentSellCost;  
-
 @property(nonatomic) NSNumber* currentQty;  
 
 @property(nonatomic) NSNumber* currentCost;  
 
 @property(nonatomic) NSNumber* currentComm;  
+
+@property(nonatomic) NSNumber* unrealisedCost;  
 
 @property(nonatomic) NSNumber* grossOpenCost;  
 
@@ -76,6 +70,14 @@
 @property(nonatomic) NSNumber* lastPrice;  
 
 @property(nonatomic) NSNumber* lastValue;  
+
+@property(nonatomic) NSString* notionalCurrency1;  
+
+@property(nonatomic) NSNumber* notionalValue1;  
+
+@property(nonatomic) NSString* notionalCurrency2;  
+
+@property(nonatomic) NSNumber* notionalValue2;  
 
 @property(nonatomic) NSNumber* initMargin;  
 
@@ -87,13 +89,9 @@
 
 @property(nonatomic) NSNumber* varMargin;  
 
-@property(nonatomic) NSNumber* pnl;  
+@property(nonatomic) NSNumber* unrealisedPnl;  
 
-@property(nonatomic) NSNumber* pnlPcnt;  
-
-@property(nonatomic) NSNumber* avgBuyPrice;  
-
-@property(nonatomic) NSNumber* avgSellPrice;  
+@property(nonatomic) NSNumber* unrealisedPnlPcnt;  
 
 @property(nonatomic) NSNumber* avgEntryPrice;  
 
@@ -110,13 +108,13 @@
 - (id) account: (NSNumber*) account
      symbol: (NSString*) symbol
      currency: (NSString*) currency
-     prevPnl: (NSNumber*) prevPnl
+     commission: (NSNumber*) commission
+     prevRealisedPnl: (NSNumber*) prevRealisedPnl
+     prevUnrealisedPnl: (NSNumber*) prevUnrealisedPnl
      prevClosePrice: (NSNumber*) prevClosePrice
+     realisedCost: (NSNumber*) realisedCost
+     realisedPnl: (NSNumber*) realisedPnl
      openingTimestamp: (SWGDate*) openingTimestamp
-     openingBuyQty: (NSNumber*) openingBuyQty
-     openingBuyCost: (NSNumber*) openingBuyCost
-     openingSellQty: (NSNumber*) openingSellQty
-     openingSellCost: (NSNumber*) openingSellCost
      openingQty: (NSNumber*) openingQty
      openingCost: (NSNumber*) openingCost
      openingComm: (NSNumber*) openingComm
@@ -132,26 +130,25 @@
      execCost: (NSNumber*) execCost
      execComm: (NSNumber*) execComm
      currentTimestamp: (SWGDate*) currentTimestamp
-     currentBuyQty: (NSNumber*) currentBuyQty
-     currentBuyCost: (NSNumber*) currentBuyCost
-     currentSellQty: (NSNumber*) currentSellQty
-     currentSellCost: (NSNumber*) currentSellCost
      currentQty: (NSNumber*) currentQty
      currentCost: (NSNumber*) currentCost
      currentComm: (NSNumber*) currentComm
+     unrealisedCost: (NSNumber*) unrealisedCost
      grossOpenCost: (NSNumber*) grossOpenCost
      grossExecCost: (NSNumber*) grossExecCost
      lastPrice: (NSNumber*) lastPrice
      lastValue: (NSNumber*) lastValue
+     notionalCurrency1: (NSString*) notionalCurrency1
+     notionalValue1: (NSNumber*) notionalValue1
+     notionalCurrency2: (NSString*) notionalCurrency2
+     notionalValue2: (NSNumber*) notionalValue2
      initMargin: (NSNumber*) initMargin
      maintMargin: (NSNumber*) maintMargin
      sessionMargin: (NSNumber*) sessionMargin
      targetExcessMargin: (NSNumber*) targetExcessMargin
      varMargin: (NSNumber*) varMargin
-     pnl: (NSNumber*) pnl
-     pnlPcnt: (NSNumber*) pnlPcnt
-     avgBuyPrice: (NSNumber*) avgBuyPrice
-     avgSellPrice: (NSNumber*) avgSellPrice
+     unrealisedPnl: (NSNumber*) unrealisedPnl
+     unrealisedPnlPcnt: (NSNumber*) unrealisedPnlPcnt
      avgEntryPrice: (NSNumber*) avgEntryPrice
      breakEvenPrice: (NSNumber*) breakEvenPrice
      marginCallPrice: (NSNumber*) marginCallPrice

@@ -26,25 +26,28 @@ class UserApi {
 	}
 
   /**
-	 * user_login
-	 * Log in to BitMEX.
-   * body, object:  (required)
+	 * getDepositAddress
+	 * Get a deposit address.
+   * currency, string:  (optional)
 
-   * @return object
+   * @return string
 	 */
 
-   public function user_login($body) {
+   public function getDepositAddress($currency=null) {
 
   		//parse inputs
-  		$resourcePath = "/user/login";
+  		$resourcePath = "/user/depositAddress";
   		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "POST";
+  		$method = "GET";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
-      //make the API Call
+      if($currency != null) {
+  		  $queryParams['currency'] = $this->apiClient->toQueryValue($currency);
+  		}
+  		//make the API Call
       if (! isset($body)) {
         $body = null;
       }
@@ -58,84 +61,20 @@ class UserApi {
         }
 
   		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'object');
+  		                                                'string');
   		return $responseObject;
 
       }
   /**
-	 * user_logout
-	 * Log out of BitMEX.
-   * @return 
+	 * getWalletHistory
+	 * Get a history of all of your wallet transactions (deposits and withdrawals).
+   * @return Array[Transaction]
 	 */
 
-   public function user_logout() {
+   public function getWalletHistory() {
 
   		//parse inputs
-  		$resourcePath = "/user/logout";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "POST";
-      $queryParams = array();
-      $headerParams = array();
-      $headerParams['Accept'] = 'application/json';
-      $headerParams['Content-Type'] = 'application/json';
-
-      //make the API Call
-      if (! isset($body)) {
-        $body = null;
-      }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
-
-
-      }
-  /**
-	 * user_create
-	 * Register a new user.
-   * body, user: Model instance data (optional)
-
-   * @return user
-	 */
-
-   public function user_create($body=null) {
-
-  		//parse inputs
-  		$resourcePath = "/user";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "POST";
-      $queryParams = array();
-      $headerParams = array();
-      $headerParams['Accept'] = 'application/json';
-      $headerParams['Content-Type'] = 'application/json';
-
-      //make the API Call
-      if (! isset($body)) {
-        $body = null;
-      }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
-
-
-      if(! $response){
-          return null;
-        }
-
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'user');
-  		return $responseObject;
-
-      }
-  /**
-	 * user_getMe
-	 * Get your user model.
-   * @return user
-	 */
-
-   public function user_getMe() {
-
-  		//parse inputs
-  		$resourcePath = "/user";
+  		$resourcePath = "/user/walletHistory";
   		$resourcePath = str_replace("{format}", "json", $resourcePath);
   		$method = "GET";
       $queryParams = array();
@@ -157,69 +96,26 @@ class UserApi {
         }
 
   		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'user');
+  		                                                'Array[Transaction]');
   		return $responseObject;
 
       }
   /**
-	 * user_updateMe
-	 * Update your password, name, and other attributes.
-   * firstname, string:  (optional)
+	 * requestWithdrawal
+	 * Request a withdrawal to an external wallet.
+   * amount, float: Amount of withdrawal currency. Note that for Bitcoin withdrawals, a standard 0.0001 XBT fee is charged by the Bitcoin network. (required)
 
-   * lastname, string:  (optional)
+   * address, string: Destination Address. (required)
 
-   * phone, string:  (optional)
+   * currency, string: Currency you're withdrawing. (optional)
 
-   * oldPassword, string:  (optional)
-
-   * newPassword, string:  (optional)
-
-   * newPasswordConfirm, string:  (optional)
-
-   * @return user
+   * @return Transaction
 	 */
 
-   public function user_updateMe($firstname=null, $lastname=null, $phone=null, $oldPassword=null, $newPassword=null, $newPasswordConfirm=null) {
+   public function requestWithdrawal($amount, $address, $currency=null) {
 
   		//parse inputs
-  		$resourcePath = "/user";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "PUT";
-      $queryParams = array();
-      $headerParams = array();
-      $headerParams['Accept'] = 'application/json';
-      $headerParams['Content-Type'] = 'application/json';
-
-      //make the API Call
-      if (! isset($body)) {
-        $body = null;
-      }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
-
-
-      if(! $response){
-          return null;
-        }
-
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'user');
-  		return $responseObject;
-
-      }
-  /**
-	 * user_savePreferences
-	 * Save application preferences.
-   * prefs, object:  (required)
-
-   * @return user
-	 */
-
-   public function user_savePreferences($prefs) {
-
-  		//parse inputs
-  		$resourcePath = "/user/savePrefs";
+  		$resourcePath = "/user/requestWithdrawal";
   		$resourcePath = str_replace("{format}", "json", $resourcePath);
   		$method = "POST";
       $queryParams = array();
@@ -241,20 +137,96 @@ class UserApi {
         }
 
   		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'user');
+  		                                                'Transaction');
   		return $responseObject;
 
       }
   /**
-	 * user_verifyPhone
-	 * Request an SMS verification token.
+	 * cancelWithdrawal
+	 * Cancel a withdrawal.
+   * token, string:  (required)
+
+   * @return Transaction
+	 */
+
+   public function cancelWithdrawal($token) {
+
+  		//parse inputs
+  		$resourcePath = "/user/cancelWithdrawal";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "POST";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      //make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'Transaction');
+  		return $responseObject;
+
+      }
+  /**
+	 * confirmWithdrawal
+	 * Confirm a withdrawal.
+   * token, string:  (required)
+
+   * @return Transaction
+	 */
+
+   public function confirmWithdrawal($token) {
+
+  		//parse inputs
+  		$resourcePath = "/user/confirmWithdrawal";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "POST";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      //make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'Transaction');
+  		return $responseObject;
+
+      }
+  /**
+	 * requestEnableTFA
+	 * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled.
+   * type, string: Two-factor auth type. Supported types: 'GA' (Google Authenticator) (optional)
+
    * @return bool
 	 */
 
-   public function user_verifyPhone() {
+   public function requestEnableTFA($type=null) {
 
   		//parse inputs
-  		$resourcePath = "/user/requestSMS";
+  		$resourcePath = "/user/requestEnableTFA";
   		$resourcePath = str_replace("{format}", "json", $resourcePath);
   		$method = "POST";
       $queryParams = array();
@@ -281,17 +253,19 @@ class UserApi {
 
       }
   /**
-	 * user_confirmPhone
-	 * Confirm your phone number by entering your SMS verification token.
-   * token, string:  (required)
+	 * confirmEnableTFA
+	 * Confirm two-factor auth for this account.
+   * token, string: Token from your selected TFA type. (required)
 
-   * @return user
+   * type, string: Two-factor auth type. Supported types: 'GA' (Google Authenticator) (optional)
+
+   * @return bool
 	 */
 
-   public function user_confirmPhone($token) {
+   public function confirmEnableTFA($token, $type=null) {
 
   		//parse inputs
-  		$resourcePath = "/user/confirmPhone";
+  		$resourcePath = "/user/confirmEnableTFA";
   		$resourcePath = str_replace("{format}", "json", $resourcePath);
   		$method = "POST";
       $queryParams = array();
@@ -313,7 +287,433 @@ class UserApi {
         }
 
   		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'user');
+  		                                                'bool');
+  		return $responseObject;
+
+      }
+  /**
+	 * sendVerificationEmail
+	 * Re-send verification email.
+   * email, string:  (required)
+
+   * @return bool
+	 */
+
+   public function sendVerificationEmail($email) {
+
+  		//parse inputs
+  		$resourcePath = "/user/resendVerificationEmail";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "GET";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      if($email != null) {
+  		  $queryParams['email'] = $this->apiClient->toQueryValue($email);
+  		}
+  		//make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'bool');
+  		return $responseObject;
+
+      }
+  /**
+	 * confirmEmail
+	 * Confirm your email address with a token.
+   * token, string:  (required)
+
+   * @return bool
+	 */
+
+   public function confirmEmail($token) {
+
+  		//parse inputs
+  		$resourcePath = "/user/confirmEmail";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "POST";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      //make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'bool');
+  		return $responseObject;
+
+      }
+  /**
+	 * requestPasswordReset
+	 * Request a password reset.
+   * email, string:  (required)
+
+   * @return bool
+	 */
+
+   public function requestPasswordReset($email) {
+
+  		//parse inputs
+  		$resourcePath = "/user/requestPasswordReset";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "POST";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      //make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'bool');
+  		return $responseObject;
+
+      }
+  /**
+	 * confirmPasswordReset
+	 * Confirm a password reset.
+   * email, string:  (required)
+
+   * token, string:  (required)
+
+   * newPassword, string:  (required)
+
+   * @return bool
+	 */
+
+   public function confirmPasswordReset($email, $token, $newPassword) {
+
+  		//parse inputs
+  		$resourcePath = "/user/confirmPasswordReset";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "POST";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      //make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'bool');
+  		return $responseObject;
+
+      }
+  /**
+	 * newUser
+	 * Register a new user.
+   * email, string: Your email address. (required)
+
+   * password, string: Your password. (required)
+
+   * username, string: Desired username. (required)
+
+   * firstname, string: First name. (optional)
+
+   * lastname, string: Last name. (optional)
+
+   * acceptsTOS, string: Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms). (optional)
+
+   * accountType, string: Account type. Options: ['Trader', 'Hedger']. See the &lt;a href=&quot;/app/fees&quot;&gt;fees page&lt;/a&gt; for more details. (optional)
+
+   * @return User
+	 */
+
+   public function newUser($email, $password, $username, $firstname=null, $lastname=null, $acceptsTOS=null, $accountType=null) {
+
+  		//parse inputs
+  		$resourcePath = "/user";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "POST";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      //make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'User');
+  		return $responseObject;
+
+      }
+  /**
+	 * getMe
+	 * Get your user model.
+   * @return User
+	 */
+
+   public function getMe() {
+
+  		//parse inputs
+  		$resourcePath = "/user";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "GET";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      //make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'User');
+  		return $responseObject;
+
+      }
+  /**
+	 * updateMe
+	 * Update your password, name, and other attributes.
+   * firstname, string:  (optional)
+
+   * lastname, string:  (optional)
+
+   * oldPassword, string:  (optional)
+
+   * newPassword, string:  (optional)
+
+   * newPasswordConfirm, string:  (optional)
+
+   * accountType, string: Account fee schedule. Options: ['Trader', 'Hedger']. See the &lt;a href=&quot;/app/fees&quot;&gt;fees page&lt;/a&gt; for more details. (optional)
+
+   * @return User
+	 */
+
+   public function updateMe($firstname=null, $lastname=null, $oldPassword=null, $newPassword=null, $newPasswordConfirm=null, $accountType=null) {
+
+  		//parse inputs
+  		$resourcePath = "/user";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "PUT";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      //make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'User');
+  		return $responseObject;
+
+      }
+  /**
+	 * login
+	 * Log in to BitMEX.
+   * email, string: Your email address. (required)
+
+   * password, string: Your password. (required)
+
+   * token, string: OTP Token (YubiKey, Google Authenticator) (optional)
+
+   * @return AccessToken
+	 */
+
+   public function login($email, $password, $token=null) {
+
+  		//parse inputs
+  		$resourcePath = "/user/login";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "POST";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      //make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'AccessToken');
+  		return $responseObject;
+
+      }
+  /**
+	 * logout
+	 * Log out of BitMEX.
+   * @return 
+	 */
+
+   public function logout() {
+
+  		//parse inputs
+  		$resourcePath = "/user/logout";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "POST";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      //make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      }
+  /**
+	 * savePreferences
+	 * Save application preferences.
+   * prefs, object:  (required)
+
+   * @return User
+	 */
+
+   public function savePreferences($prefs) {
+
+  		//parse inputs
+  		$resourcePath = "/user/preferences";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "POST";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      //make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'User');
+  		return $responseObject;
+
+      }
+  /**
+	 * getCommission
+	 * Get your account's commission status.
+   * @return Array[any]
+	 */
+
+   public function getCommission() {
+
+  		//parse inputs
+  		$resourcePath = "/user/commission";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "GET";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      //make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'Array[any]');
   		return $responseObject;
 
       }

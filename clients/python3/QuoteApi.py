@@ -30,23 +30,23 @@ class QuoteApi(object):
 
     
 
-    def quote_getBucketed(self, symbol, **kwargs):
+    def getBucketed(self, symbol, **kwargs):
         """Get previous quotes bucketed by seconds.
 
         Args:
             symbol, str: Instrument name. (required)
 
-            startTime, datetime: Start date. (optional)
+            startTime, datetime: Start date. Expects ISO formatted date strings. (optional)
 
-            endTime, datetime: End Date. (optional)
+            endTime, datetime: End Date. Expects ISO formatted date strings. (optional)
 
-            count, float: Number of buckets to fetch (optional)
+            count, float: Number of buckets to fetch. (optional)
 
-            binSize, str: Time interval to bucket by. Available options: ['30s', '5m', '1h', '1d']. (optional)
+            binSize, str: Time interval to bucket by. Available options: ['1m', '5m', '1h', '1d']. (optional)
 
             
 
-        Returns: Array[quote]
+        Returns: Array[Quote]
         """
 
         allParams = ['symbol', 'startTime', 'endTime', 'count', 'binSize']
@@ -54,11 +54,11 @@ class QuoteApi(object):
         params = locals()
         for (key, val) in params['kwargs'].items():
             if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method quote_getBucketed" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method getBucketed" % key)
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/quote/getBucketed'
+        resourcePath = '/quote/bucketed'
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
@@ -83,7 +83,7 @@ class QuoteApi(object):
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'Array[quote]')
+        responseObject = self.apiClient.deserialize(response, 'Array[Quote]')
         return responseObject
         
 

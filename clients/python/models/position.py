@@ -24,13 +24,13 @@ class Position:
             'account': 'float',
             'symbol': 'str',
             'currency': 'str',
-            'prevPnl': 'float',
+            'commission': 'float',
+            'prevRealisedPnl': 'float',
+            'prevUnrealisedPnl': 'float',
             'prevClosePrice': 'float',
+            'realisedCost': 'float',
+            'realisedPnl': 'float',
             'openingTimestamp': 'datetime',
-            'openingBuyQty': 'float',
-            'openingBuyCost': 'float',
-            'openingSellQty': 'float',
-            'openingSellCost': 'float',
             'openingQty': 'float',
             'openingCost': 'float',
             'openingComm': 'float',
@@ -46,26 +46,25 @@ class Position:
             'execCost': 'float',
             'execComm': 'float',
             'currentTimestamp': 'datetime',
-            'currentBuyQty': 'float',
-            'currentBuyCost': 'float',
-            'currentSellQty': 'float',
-            'currentSellCost': 'float',
             'currentQty': 'float',
             'currentCost': 'float',
             'currentComm': 'float',
+            'unrealisedCost': 'float',
             'grossOpenCost': 'float',
             'grossExecCost': 'float',
             'lastPrice': 'float',
             'lastValue': 'float',
+            'notionalCurrency1': 'str',
+            'notionalValue1': 'float',
+            'notionalCurrency2': 'str',
+            'notionalValue2': 'float',
             'initMargin': 'float',
             'maintMargin': 'float',
             'sessionMargin': 'float',
             'targetExcessMargin': 'float',
             'varMargin': 'float',
-            'pnl': 'float',
-            'pnlPcnt': 'float',
-            'avgBuyPrice': 'float',
-            'avgSellPrice': 'float',
+            'unrealisedPnl': 'float',
+            'unrealisedPnlPcnt': 'float',
             'avgEntryPrice': 'float',
             'breakEvenPrice': 'float',
             'marginCallPrice': 'float',
@@ -79,13 +78,13 @@ class Position:
         self.account = None # float
         self.symbol = None # str
         self.currency = None # str
-        self.prevPnl = None # float
+        self.commission = None # float
+        self.prevRealisedPnl = None # float
+        self.prevUnrealisedPnl = None # float
         self.prevClosePrice = None # float
+        self.realisedCost = None # float
+        self.realisedPnl = None # float
         self.openingTimestamp = None # datetime
-        self.openingBuyQty = None # float
-        self.openingBuyCost = None # float
-        self.openingSellQty = None # float
-        self.openingSellCost = None # float
         self.openingQty = None # float
         self.openingCost = None # float
         self.openingComm = None # float
@@ -101,26 +100,25 @@ class Position:
         self.execCost = None # float
         self.execComm = None # float
         self.currentTimestamp = None # datetime
-        self.currentBuyQty = None # float
-        self.currentBuyCost = None # float
-        self.currentSellQty = None # float
-        self.currentSellCost = None # float
         self.currentQty = None # float
         self.currentCost = None # float
         self.currentComm = None # float
+        self.unrealisedCost = None # float
         self.grossOpenCost = None # float
         self.grossExecCost = None # float
         self.lastPrice = None # float
         self.lastValue = None # float
+        self.notionalCurrency1 = None # str
+        self.notionalValue1 = None # float
+        self.notionalCurrency2 = None # str
+        self.notionalValue2 = None # float
         self.initMargin = None # float
         self.maintMargin = None # float
         self.sessionMargin = None # float
         self.targetExcessMargin = None # float
         self.varMargin = None # float
-        self.pnl = None # float
-        self.pnlPcnt = None # float
-        self.avgBuyPrice = None # float
-        self.avgSellPrice = None # float
+        self.unrealisedPnl = None # float
+        self.unrealisedPnlPcnt = None # float
         self.avgEntryPrice = None # float
         self.breakEvenPrice = None # float
         self.marginCallPrice = None # float

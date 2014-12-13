@@ -27,13 +27,13 @@ class Position {
       'account' => 'float',
       'symbol' => 'string',
       'currency' => 'string',
-      'prevPnl' => 'float',
+      'commission' => 'float',
+      'prevRealisedPnl' => 'float',
+      'prevUnrealisedPnl' => 'float',
       'prevClosePrice' => 'float',
+      'realisedCost' => 'float',
+      'realisedPnl' => 'float',
       'openingTimestamp' => 'DateTime',
-      'openingBuyQty' => 'float',
-      'openingBuyCost' => 'float',
-      'openingSellQty' => 'float',
-      'openingSellCost' => 'float',
       'openingQty' => 'float',
       'openingCost' => 'float',
       'openingComm' => 'float',
@@ -49,26 +49,25 @@ class Position {
       'execCost' => 'float',
       'execComm' => 'float',
       'currentTimestamp' => 'DateTime',
-      'currentBuyQty' => 'float',
-      'currentBuyCost' => 'float',
-      'currentSellQty' => 'float',
-      'currentSellCost' => 'float',
       'currentQty' => 'float',
       'currentCost' => 'float',
       'currentComm' => 'float',
+      'unrealisedCost' => 'float',
       'grossOpenCost' => 'float',
       'grossExecCost' => 'float',
       'lastPrice' => 'float',
       'lastValue' => 'float',
+      'notionalCurrency1' => 'string',
+      'notionalValue1' => 'float',
+      'notionalCurrency2' => 'string',
+      'notionalValue2' => 'float',
       'initMargin' => 'float',
       'maintMargin' => 'float',
       'sessionMargin' => 'float',
       'targetExcessMargin' => 'float',
       'varMargin' => 'float',
-      'pnl' => 'float',
-      'pnlPcnt' => 'float',
-      'avgBuyPrice' => 'float',
-      'avgSellPrice' => 'float',
+      'unrealisedPnl' => 'float',
+      'unrealisedPnlPcnt' => 'float',
       'avgEntryPrice' => 'float',
       'breakEvenPrice' => 'float',
       'marginCallPrice' => 'float',
@@ -81,13 +80,13 @@ class Position {
   public $account; // float
   public $symbol; // string
   public $currency; // string
-  public $prevPnl; // float
+  public $commission; // float
+  public $prevRealisedPnl; // float
+  public $prevUnrealisedPnl; // float
   public $prevClosePrice; // float
+  public $realisedCost; // float
+  public $realisedPnl; // float
   public $openingTimestamp; // DateTime
-  public $openingBuyQty; // float
-  public $openingBuyCost; // float
-  public $openingSellQty; // float
-  public $openingSellCost; // float
   public $openingQty; // float
   public $openingCost; // float
   public $openingComm; // float
@@ -103,26 +102,25 @@ class Position {
   public $execCost; // float
   public $execComm; // float
   public $currentTimestamp; // DateTime
-  public $currentBuyQty; // float
-  public $currentBuyCost; // float
-  public $currentSellQty; // float
-  public $currentSellCost; // float
   public $currentQty; // float
   public $currentCost; // float
   public $currentComm; // float
+  public $unrealisedCost; // float
   public $grossOpenCost; // float
   public $grossExecCost; // float
   public $lastPrice; // float
   public $lastValue; // float
+  public $notionalCurrency1; // string
+  public $notionalValue1; // float
+  public $notionalCurrency2; // string
+  public $notionalValue2; // float
   public $initMargin; // float
   public $maintMargin; // float
   public $sessionMargin; // float
   public $targetExcessMargin; // float
   public $varMargin; // float
-  public $pnl; // float
-  public $pnlPcnt; // float
-  public $avgBuyPrice; // float
-  public $avgSellPrice; // float
+  public $unrealisedPnl; // float
+  public $unrealisedPnlPcnt; // float
   public $avgEntryPrice; // float
   public $breakEvenPrice; // float
   public $marginCallPrice; // float

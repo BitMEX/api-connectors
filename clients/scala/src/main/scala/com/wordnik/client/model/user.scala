@@ -1,19 +1,19 @@
 package com.wordnik.client.model
 
 import java.util.Date
-import com.wordnik.client.model.AnonymousModel_6
+import com.wordnik.client.model.Object
 case class User (
   firstname: String,
   lastname: String,
+  status: String,
   username: String,
   email: String,
-  emailVerified: Boolean,
   phone: String,
-  phoneVerified: Boolean,
-  status: String,
+  countryCode: Double,
   created: Date,
   lastUpdated: Date,
-  preferences: AnonymousModel_6,
-  isEmployee: Boolean,
+  preferences: Any,
+  role: String,
+  TFAEnabled: String,
   id: Double)
 

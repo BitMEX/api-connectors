@@ -2,6 +2,7 @@ package com.wordnik.api;
 
 import com.wordnik.swagger.annotations.*;
 
+import com.wordnik.client.model.Error;
 import com.wordnik.client.model.OrderBook;
 import java.util.List;
 import com.wordnik.api.NotFoundException;
@@ -15,14 +16,19 @@ import javax.ws.rs.*;
 public class OrderBookApi {
   @GET
   @Path("/")
-  @ApiOperation(value = "Get current orderbook.", notes = "", responseClass = "List<orderBook>")
-  @ApiErrors(value = { })
+  @ApiOperation(value = "Get current orderbook.", notes = "", responseClass = "List<OrderBook>")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful"),@ApiError(code = 400, reason = "Parameter Error"),@ApiError(code = 401, reason = "Unauthorized"),@ApiError(code = 404, reason = "Not Found")})
      
-  public Response orderBook_getOrderBook(
+  public Response getOrderBook(
     @ApiParam(value = ""
     ,required=true
 )@QueryParam("symbol")
- symbol symbol
+ String symbol
+    ,@ApiParam(value = ""
+    ,required=true
+, defaultValue="25"
+)@QueryParam("depth")
+ Double depth
     )
       throws NotFoundException {
       // do some magic!

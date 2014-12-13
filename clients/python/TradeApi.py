@@ -30,25 +30,25 @@ class TradeApi(object):
 
     
 
-    def trade_getBucketed(self, symbol, **kwargs):
+    def getBucketed(self, symbol, **kwargs):
         """Get previous trades bucketed by seconds.
 
         Args:
             symbol, str: Instrument name. (required)
 
-            startTime, datetime: Start date. (optional)
+            startTime, datetime: Start date. Expects ISO formatted date strings. (optional)
 
-            endTime, datetime: End Date. (optional)
+            endTime, datetime: End Date. Expects ISO formatted date strings. (optional)
 
-            count, float: Number of buckets to fetch (optional)
+            count, float: Number of buckets to fetch. (optional)
 
             useMillisecondTime, bool: Return dates in milliseconds (GMT). Useful for charting. (optional)
 
-            binSize, str: Time interval to bucket by. Available options: ['30s', '5m', '1h', '1d']. (optional)
+            binSize, str: Time interval to bucket by. Available options: ['30s', '1m', '5m', '1h', '1d']. (optional)
 
             
 
-        Returns: Array[tradeBin]
+        Returns: Array[TradeBin]
         """
 
         allParams = ['symbol', 'startTime', 'endTime', 'count', 'useMillisecondTime', 'binSize']
@@ -56,11 +56,11 @@ class TradeApi(object):
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
             if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method trade_getBucketed" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method getBucketed" % key)
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/trade/getBucketed'
+        resourcePath = '/trade/bucketed'
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
@@ -87,37 +87,37 @@ class TradeApi(object):
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'Array[tradeBin]')
+        responseObject = self.apiClient.deserialize(response, 'Array[TradeBin]')
         return responseObject
         
 
         
 
-    def trade_getByDate(self, symbol, starttime, **kwargs):
-        """Get trades within two dates.
+    def getByDate(self, startTime, **kwargs):
+        """Get trades between two dates.
 
         Args:
-            symbol, str: Instrument name. (required)
+            symbol, str: Instrument name. (optional)
 
-            starttime, datetime: Start date. (required)
+            startTime, datetime: Start date. (required)
 
-            endtime, datetime: End Date. (optional)
+            endTime, datetime: End Date. (optional)
 
             
 
-        Returns: Array[trade]
+        Returns: Array[Trade]
         """
 
-        allParams = ['symbol', 'starttime', 'endtime']
+        allParams = ['symbol', 'startTime', 'endTime']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
             if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method trade_getByDate" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method getByDate" % key)
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/trade/getByDate'
+        resourcePath = '/trade/byDate'
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
@@ -126,10 +126,10 @@ class TradeApi(object):
 
         if ('symbol' in params):
             queryParams['symbol'] = self.apiClient.toPathValue(params['symbol'])
-        if ('starttime' in params):
-            queryParams['starttime'] = self.apiClient.toPathValue(params['starttime'])
-        if ('endtime' in params):
-            queryParams['endtime'] = self.apiClient.toPathValue(params['endtime'])
+        if ('startTime' in params):
+            queryParams['startTime'] = self.apiClient.toPathValue(params['startTime'])
+        if ('endTime' in params):
+            queryParams['endTime'] = self.apiClient.toPathValue(params['endTime'])
         postData = (params['body'] if 'body' in params else None)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
@@ -138,23 +138,23 @@ class TradeApi(object):
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'Array[trade]')
+        responseObject = self.apiClient.deserialize(response, 'Array[Trade]')
         return responseObject
         
 
         
 
-    def trade_getRecent(self, symbol, count, **kwargs):
+    def getRecent(self, count= None, **kwargs):
         """Get recent trades.
 
         Args:
-            symbol, str: Instrument name. (required)
+            symbol, str: Instrument name. (optional)
 
             count, float: Number of trades to fetch (required)
 
             
 
-        Returns: Array[any]
+        Returns: Array[Trade]
         """
 
         allParams = ['symbol', 'count']
@@ -162,11 +162,11 @@ class TradeApi(object):
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
             if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method trade_getRecent" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method getRecent" % key)
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/trade/getRecent'
+        resourcePath = '/trade/recent'
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
@@ -185,7 +185,7 @@ class TradeApi(object):
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'Array[any]')
+        responseObject = self.apiClient.deserialize(response, 'Array[Trade]')
         return responseObject
         
 

@@ -4,27 +4,40 @@
 @implementation SWGInstrument
 
 -(id)symbol: (NSString*) symbol
+    rootSymbol: (NSString*) rootSymbol
     state: (NSString*) state
     typ: (NSString*) typ
     listing: (SWGDate*) listing
+    front: (SWGDate*) front
     expiry: (SWGDate*) expiry
-    underlying: (NSString*) underlying
-    buyLeg: (NSString*) buyLeg
+    inverseLeg: (NSString*) inverseLeg
     sellLeg: (NSString*) sellLeg
+    buyLeg: (NSString*) buyLeg
+    underlying: (NSString*) underlying
     quoteCurrency: (NSString*) quoteCurrency
+    underlyingSymbol: (NSString*) underlyingSymbol
     reference: (NSString*) reference
     referenceSymbol: (NSString*) referenceSymbol
     tickSize: (NSNumber*) tickSize
     multiplier: (NSNumber*) multiplier
     settlCurrency: (NSString*) settlCurrency
+    underlyingToSettleMultiplier: (NSNumber*) underlyingToSettleMultiplier
+    quoteToSettleMultiplier: (NSNumber*) quoteToSettleMultiplier
+    isQuanto: (NSNumber*) isQuanto
+    isInverse: (NSNumber*) isInverse
     initMargin: (NSNumber*) initMargin
     maintMargin: (NSNumber*) maintMargin
     limit: (NSNumber*) limit
+    makerFee: (NSNumber*) makerFee
+    takerFee: (NSNumber*) takerFee
+    insuranceFee: (NSNumber*) insuranceFee
     openingTimestamp: (SWGDate*) openingTimestamp
     closingTimestamp: (SWGDate*) closingTimestamp
     prevClosePrice: (NSNumber*) prevClosePrice
     limitDownPrice: (NSNumber*) limitDownPrice
     limitUpPrice: (NSNumber*) limitUpPrice
+    prevTotalVolume: (NSNumber*) prevTotalVolume
+    totalVolume: (NSNumber*) totalVolume
     volume: (NSNumber*) volume
     vwap: (NSNumber*) vwap
     highPrice: (NSNumber*) highPrice
@@ -40,27 +53,40 @@
     timestamp: (SWGDate*) timestamp
 {
   _symbol = symbol;
+  _rootSymbol = rootSymbol;
   _state = state;
   _typ = typ;
   _listing = listing;
+  _front = front;
   _expiry = expiry;
-  _underlying = underlying;
-  _buyLeg = buyLeg;
+  _inverseLeg = inverseLeg;
   _sellLeg = sellLeg;
+  _buyLeg = buyLeg;
+  _underlying = underlying;
   _quoteCurrency = quoteCurrency;
+  _underlyingSymbol = underlyingSymbol;
   _reference = reference;
   _referenceSymbol = referenceSymbol;
   _tickSize = tickSize;
   _multiplier = multiplier;
   _settlCurrency = settlCurrency;
+  _underlyingToSettleMultiplier = underlyingToSettleMultiplier;
+  _quoteToSettleMultiplier = quoteToSettleMultiplier;
+  _isQuanto = isQuanto;
+  _isInverse = isInverse;
   _initMargin = initMargin;
   _maintMargin = maintMargin;
   _limit = limit;
+  _makerFee = makerFee;
+  _takerFee = takerFee;
+  _insuranceFee = insuranceFee;
   _openingTimestamp = openingTimestamp;
   _closingTimestamp = closingTimestamp;
   _prevClosePrice = prevClosePrice;
   _limitDownPrice = limitDownPrice;
   _limitUpPrice = limitUpPrice;
+  _prevTotalVolume = prevTotalVolume;
+  _totalVolume = totalVolume;
   _volume = volume;
   _vwap = vwap;
   _highPrice = highPrice;
@@ -82,26 +108,39 @@
     self = [super init];
     if(self) {
         _symbol = dict[@"symbol"]; 
+        _rootSymbol = dict[@"rootSymbol"]; 
         _state = dict[@"state"]; 
         _typ = dict[@"typ"]; 
         id listing_dict = dict[@"listing"];
         if(listing_dict != nil)
             _listing = [[SWGDate alloc]initWithValues:listing_dict];
+        id front_dict = dict[@"front"];
+        if(front_dict != nil)
+            _front = [[SWGDate alloc]initWithValues:front_dict];
         id expiry_dict = dict[@"expiry"];
         if(expiry_dict != nil)
             _expiry = [[SWGDate alloc]initWithValues:expiry_dict];
-        _underlying = dict[@"underlying"]; 
-        _buyLeg = dict[@"buyLeg"]; 
+        _inverseLeg = dict[@"inverseLeg"]; 
         _sellLeg = dict[@"sellLeg"]; 
+        _buyLeg = dict[@"buyLeg"]; 
+        _underlying = dict[@"underlying"]; 
         _quoteCurrency = dict[@"quoteCurrency"]; 
+        _underlyingSymbol = dict[@"underlyingSymbol"]; 
         _reference = dict[@"reference"]; 
         _referenceSymbol = dict[@"referenceSymbol"]; 
         _tickSize = dict[@"tickSize"]; 
         _multiplier = dict[@"multiplier"]; 
         _settlCurrency = dict[@"settlCurrency"]; 
+        _underlyingToSettleMultiplier = dict[@"underlyingToSettleMultiplier"]; 
+        _quoteToSettleMultiplier = dict[@"quoteToSettleMultiplier"]; 
+        _isQuanto = dict[@"isQuanto"]; 
+        _isInverse = dict[@"isInverse"]; 
         _initMargin = dict[@"initMargin"]; 
         _maintMargin = dict[@"maintMargin"]; 
         _limit = dict[@"limit"]; 
+        _makerFee = dict[@"makerFee"]; 
+        _takerFee = dict[@"takerFee"]; 
+        _insuranceFee = dict[@"insuranceFee"]; 
         id openingTimestamp_dict = dict[@"openingTimestamp"];
         if(openingTimestamp_dict != nil)
             _openingTimestamp = [[SWGDate alloc]initWithValues:openingTimestamp_dict];
@@ -111,6 +150,8 @@
         _prevClosePrice = dict[@"prevClosePrice"]; 
         _limitDownPrice = dict[@"limitDownPrice"]; 
         _limitUpPrice = dict[@"limitUpPrice"]; 
+        _prevTotalVolume = dict[@"prevTotalVolume"]; 
+        _totalVolume = dict[@"totalVolume"]; 
         _volume = dict[@"volume"]; 
         _vwap = dict[@"vwap"]; 
         _highPrice = dict[@"highPrice"]; 
@@ -135,6 +176,7 @@
 -(NSDictionary*) asDictionary {
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(_symbol != nil) dict[@"symbol"] = _symbol ;
+        if(_rootSymbol != nil) dict[@"rootSymbol"] = _rootSymbol ;
         if(_state != nil) dict[@"state"] = _state ;
         if(_typ != nil) dict[@"typ"] = _typ ;
         if(_listing != nil){
@@ -155,6 +197,24 @@
         if(_listing != nil) dict[@"listing"] = [(SWGObject*)_listing asDictionary];
         }
     }
+    if(_front != nil){
+        if([_front isKindOfClass:[NSArray class]]){
+            NSMutableArray * array = [[NSMutableArray alloc] init];
+            for( SWGDate *front in (NSArray*)_front) {
+                [array addObject:[(SWGObject*)front asDictionary]];
+            }
+            dict[@"front"] = array;
+        }
+        else if(_front && [_front isKindOfClass:[SWGDate class]]) {
+            NSString * dateString = [(SWGDate*)_front toString];
+            if(dateString){
+                dict[@"front"] = dateString;
+            }
+        }
+        else {
+        if(_front != nil) dict[@"front"] = [(SWGObject*)_front asDictionary];
+        }
+    }
     if(_expiry != nil){
         if([_expiry isKindOfClass:[NSArray class]]){
             NSMutableArray * array = [[NSMutableArray alloc] init];
@@ -173,18 +233,27 @@
         if(_expiry != nil) dict[@"expiry"] = [(SWGObject*)_expiry asDictionary];
         }
     }
-    if(_underlying != nil) dict[@"underlying"] = _underlying ;
-        if(_buyLeg != nil) dict[@"buyLeg"] = _buyLeg ;
+    if(_inverseLeg != nil) dict[@"inverseLeg"] = _inverseLeg ;
         if(_sellLeg != nil) dict[@"sellLeg"] = _sellLeg ;
+        if(_buyLeg != nil) dict[@"buyLeg"] = _buyLeg ;
+        if(_underlying != nil) dict[@"underlying"] = _underlying ;
         if(_quoteCurrency != nil) dict[@"quoteCurrency"] = _quoteCurrency ;
+        if(_underlyingSymbol != nil) dict[@"underlyingSymbol"] = _underlyingSymbol ;
         if(_reference != nil) dict[@"reference"] = _reference ;
         if(_referenceSymbol != nil) dict[@"referenceSymbol"] = _referenceSymbol ;
         if(_tickSize != nil) dict[@"tickSize"] = _tickSize ;
         if(_multiplier != nil) dict[@"multiplier"] = _multiplier ;
         if(_settlCurrency != nil) dict[@"settlCurrency"] = _settlCurrency ;
+        if(_underlyingToSettleMultiplier != nil) dict[@"underlyingToSettleMultiplier"] = _underlyingToSettleMultiplier ;
+        if(_quoteToSettleMultiplier != nil) dict[@"quoteToSettleMultiplier"] = _quoteToSettleMultiplier ;
+        if(_isQuanto != nil) dict[@"isQuanto"] = _isQuanto ;
+        if(_isInverse != nil) dict[@"isInverse"] = _isInverse ;
         if(_initMargin != nil) dict[@"initMargin"] = _initMargin ;
         if(_maintMargin != nil) dict[@"maintMargin"] = _maintMargin ;
         if(_limit != nil) dict[@"limit"] = _limit ;
+        if(_makerFee != nil) dict[@"makerFee"] = _makerFee ;
+        if(_takerFee != nil) dict[@"takerFee"] = _takerFee ;
+        if(_insuranceFee != nil) dict[@"insuranceFee"] = _insuranceFee ;
         if(_openingTimestamp != nil){
         if([_openingTimestamp isKindOfClass:[NSArray class]]){
             NSMutableArray * array = [[NSMutableArray alloc] init];
@@ -224,6 +293,8 @@
     if(_prevClosePrice != nil) dict[@"prevClosePrice"] = _prevClosePrice ;
         if(_limitDownPrice != nil) dict[@"limitDownPrice"] = _limitDownPrice ;
         if(_limitUpPrice != nil) dict[@"limitUpPrice"] = _limitUpPrice ;
+        if(_prevTotalVolume != nil) dict[@"prevTotalVolume"] = _prevTotalVolume ;
+        if(_totalVolume != nil) dict[@"totalVolume"] = _totalVolume ;
         if(_volume != nil) dict[@"volume"] = _volume ;
         if(_vwap != nil) dict[@"vwap"] = _vwap ;
         if(_highPrice != nil) dict[@"highPrice"] = _highPrice ;

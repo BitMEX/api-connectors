@@ -15,20 +15,36 @@ function writeResponse (response, data) {
 
 exports.models = models = require("../models.js");
 
-exports.instrument_find = {
+exports.get = {
   'spec': {
     "description" : "Operations about pets",
     "path" : "/instrument",
     "notes" : "",
-    "summary" : "Get all listed instruments.",
+    "summary" : "Get instruments.",
     "method": "GET",
-    "params" : [params.query("filter", "Filter defining fields, where, orderBy, offset, and limit", "object", false, false, "")].concat([]).concat([]).concat([]),
-    "type" : "List[instrument]",
-    "responseMessages" : [errors.invalid('id'), errors.notFound('List[instrument]')],
-    "nickname" : "instrument_find"
+    "params" : [params.query("filter", "Table filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;}.", "object", false, false, "")].concat([]).concat([]).concat([]),
+    "type" : "List[Instrument]",
+    "responseMessages" : [errors.invalid('id'), errors.notFound('List[Instrument]')],
+    "nickname" : "get"
   },
   'action': function (req,res) {
-    writeResponse(res, {message: "how about implementing instrument_find as a GET method?"});    
+    writeResponse(res, {message: "how about implementing get as a GET method?"});    
+  }
+};
+exports.getActive = {
+  'spec': {
+    "description" : "Operations about pets",
+    "path" : "/instrument/active",
+    "notes" : "",
+    "summary" : "Get all active instruments and instruments that have expired in <24hrs.",
+    "method": "GET",
+    "params" : [].concat([]).concat([]).concat([]),
+    "type" : "List[Instrument]",
+    "responseMessages" : [errors.invalid('id'), errors.notFound('List[Instrument]')],
+    "nickname" : "getActive"
+  },
+  'action': function (req,res) {
+    writeResponse(res, {message: "how about implementing getActive as a GET method?"});    
   }
 };
 

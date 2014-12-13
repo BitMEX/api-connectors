@@ -1,11 +1,11 @@
 require 'json'
 
-MyApp.add_route('get', '/getBucketed', {
+MyApp.add_route('get', '/bucketed', {
   "resourcePath" => "/trade",
   "summary" => "Get previous trades bucketed by seconds.",
-  "nickname" => "trade_getBucketed", 
-  "responseClass" => "Array[tradeBin]", 
-  "endpoint" => "/getBucketed", 
+  "nickname" => "getBucketed", 
+  "responseClass" => "Array[TradeBin]", 
+  "endpoint" => "/bucketed", 
   "notes" => "",
   "parameters" => [
     {
@@ -18,15 +18,15 @@ MyApp.add_route('get', '/getBucketed', {
       },
     {
       "name" => "binSize",
-      "description" => "Time interval to bucket by. Available options: ['30s', '5m', '1h', '1d'].",
+      "description" => "Time interval to bucket by. Available options: ['30s', '1m', '5m', '1h', '1d'].",
       "dataType" => "string",
       "paramType" => "query",
       "allowMultiple" => false,
       "allowableValues" => "",
-      "defaultValue" => "30s"},
+      "defaultValue" => "1m"},
     {
       "name" => "startTime",
-      "description" => "Start date.",
+      "description" => "Start date. Expects ISO formatted date strings.",
       "dataType" => "Date",
       "paramType" => "query",
       "allowMultiple" => false,
@@ -34,7 +34,7 @@ MyApp.add_route('get', '/getBucketed', {
       },
     {
       "name" => "endTime",
-      "description" => "End Date.",
+      "description" => "End Date. Expects ISO formatted date strings.",
       "dataType" => "Date",
       "paramType" => "query",
       "allowMultiple" => false,
@@ -42,7 +42,7 @@ MyApp.add_route('get', '/getBucketed', {
       },
     {
       "name" => "count",
-      "description" => "Number of buckets to fetch",
+      "description" => "Number of buckets to fetch.",
       "dataType" => "double",
       "paramType" => "query",
       "allowMultiple" => false,
@@ -63,12 +63,12 @@ MyApp.add_route('get', '/getBucketed', {
   {"message" => "yes, it worked"}.to_json
 end
 
-MyApp.add_route('get', '/getByDate', {
+MyApp.add_route('get', '/byDate', {
   "resourcePath" => "/trade",
-  "summary" => "Get trades within two dates.",
-  "nickname" => "trade_getByDate", 
-  "responseClass" => "Array[trade]", 
-  "endpoint" => "/getByDate", 
+  "summary" => "Get trades between two dates.",
+  "nickname" => "getByDate", 
+  "responseClass" => "Array[Trade]", 
+  "endpoint" => "/byDate", 
   "notes" => "",
   "parameters" => [
     {
@@ -80,7 +80,7 @@ MyApp.add_route('get', '/getByDate', {
       "allowableValues" => "",
       },
     {
-      "name" => "starttime",
+      "name" => "startTime",
       "description" => "Start date.",
       "dataType" => "Date",
       "paramType" => "query",
@@ -88,7 +88,7 @@ MyApp.add_route('get', '/getByDate', {
       "allowableValues" => "",
       },
     {
-      "name" => "endtime",
+      "name" => "endTime",
       "description" => "End Date.",
       "dataType" => "Date",
       "paramType" => "query",
@@ -102,12 +102,12 @@ MyApp.add_route('get', '/getByDate', {
   {"message" => "yes, it worked"}.to_json
 end
 
-MyApp.add_route('get', '/getRecent', {
+MyApp.add_route('get', '/recent', {
   "resourcePath" => "/trade",
   "summary" => "Get recent trades.",
-  "nickname" => "trade_getRecent", 
-  "responseClass" => "Array[any]", 
-  "endpoint" => "/getRecent", 
+  "nickname" => "getRecent", 
+  "responseClass" => "Array[Trade]", 
+  "endpoint" => "/recent", 
   "notes" => "",
   "parameters" => [
     {
@@ -125,7 +125,7 @@ MyApp.add_route('get', '/getRecent', {
       "paramType" => "query",
       "allowMultiple" => false,
       "allowableValues" => "",
-      },
+      "defaultValue" => 100},
     ]}) do
   cross_origin
   # the guts live here

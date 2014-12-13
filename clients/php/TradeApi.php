@@ -26,27 +26,27 @@ class TradeApi {
 	}
 
   /**
-	 * trade_getBucketed
+	 * getBucketed
 	 * Get previous trades bucketed by seconds.
    * symbol, string: Instrument name. (required)
 
-   * startTime, DateTime: Start date. (optional)
+   * startTime, DateTime: Start date. Expects ISO formatted date strings. (optional)
 
-   * endTime, DateTime: End Date. (optional)
+   * endTime, DateTime: End Date. Expects ISO formatted date strings. (optional)
 
-   * count, float: Number of buckets to fetch (optional)
+   * count, float: Number of buckets to fetch. (optional)
 
    * useMillisecondTime, bool: Return dates in milliseconds (GMT). Useful for charting. (optional)
 
-   * binSize, string: Time interval to bucket by. Available options: ['30s', '5m', '1h', '1d']. (optional)
+   * binSize, string: Time interval to bucket by. Available options: ['30s', '1m', '5m', '1h', '1d']. (optional)
 
-   * @return Array[tradeBin]
+   * @return Array[TradeBin]
 	 */
 
-   public function trade_getBucketed($symbol, $startTime=null, $endTime=null, $count=null, $useMillisecondTime=null, $binSize=null) {
+   public function getBucketed($symbol, $startTime=null, $endTime=null, $count=null, $useMillisecondTime=null, $binSize=null) {
 
   		//parse inputs
-  		$resourcePath = "/trade/getBucketed";
+  		$resourcePath = "/trade/bucketed";
   		$resourcePath = str_replace("{format}", "json", $resourcePath);
   		$method = "GET";
       $queryParams = array();
@@ -86,26 +86,26 @@ class TradeApi {
         }
 
   		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[tradeBin]');
+  		                                                'Array[TradeBin]');
   		return $responseObject;
 
       }
   /**
-	 * trade_getByDate
-	 * Get trades within two dates.
-   * symbol, string: Instrument name. (required)
+	 * getByDate
+	 * Get trades between two dates.
+   * symbol, string: Instrument name. (optional)
 
-   * starttime, DateTime: Start date. (required)
+   * startTime, DateTime: Start date. (required)
 
-   * endtime, DateTime: End Date. (optional)
+   * endTime, DateTime: End Date. (optional)
 
-   * @return Array[trade]
+   * @return Array[Trade]
 	 */
 
-   public function trade_getByDate($symbol, $starttime, $endtime=null) {
+   public function getByDate($symbol=null, $startTime, $endTime=null) {
 
   		//parse inputs
-  		$resourcePath = "/trade/getByDate";
+  		$resourcePath = "/trade/byDate";
   		$resourcePath = str_replace("{format}", "json", $resourcePath);
   		$method = "GET";
       $queryParams = array();
@@ -116,11 +116,11 @@ class TradeApi {
       if($symbol != null) {
   		  $queryParams['symbol'] = $this->apiClient->toQueryValue($symbol);
   		}
-  		if($starttime != null) {
-  		  $queryParams['starttime'] = $this->apiClient->toQueryValue($starttime);
+  		if($startTime != null) {
+  		  $queryParams['startTime'] = $this->apiClient->toQueryValue($startTime);
   		}
-  		if($endtime != null) {
-  		  $queryParams['endtime'] = $this->apiClient->toQueryValue($endtime);
+  		if($endTime != null) {
+  		  $queryParams['endTime'] = $this->apiClient->toQueryValue($endTime);
   		}
   		//make the API Call
       if (! isset($body)) {
@@ -136,24 +136,24 @@ class TradeApi {
         }
 
   		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[trade]');
+  		                                                'Array[Trade]');
   		return $responseObject;
 
       }
   /**
-	 * trade_getRecent
+	 * getRecent
 	 * Get recent trades.
-   * symbol, string: Instrument name. (required)
+   * symbol, string: Instrument name. (optional)
 
    * count, float: Number of trades to fetch (required)
 
-   * @return Array[any]
+   * @return Array[Trade]
 	 */
 
-   public function trade_getRecent($symbol, $count) {
+   public function getRecent($symbol=null, $count) {
 
   		//parse inputs
-  		$resourcePath = "/trade/getRecent";
+  		$resourcePath = "/trade/recent";
   		$resourcePath = str_replace("{format}", "json", $resourcePath);
   		$method = "GET";
       $queryParams = array();
@@ -181,7 +181,7 @@ class TradeApi {
         }
 
   		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[any]');
+  		                                                'Array[Trade]');
   		return $responseObject;
 
       }

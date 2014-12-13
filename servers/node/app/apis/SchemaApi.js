@@ -15,7 +15,7 @@ function writeResponse (response, data) {
 
 exports.models = models = require("../models.js");
 
-exports.schema_find = {
+exports.find = {
   'spec': {
     "description" : "Operations about pets",
     "path" : "/schema",
@@ -25,10 +25,26 @@ exports.schema_find = {
     "params" : [params.query("model", "Optional model filter. If omitted, will return all models.", "string", false, false, "")].concat([]).concat([]).concat([]),
     "type" : "Any",
     "responseMessages" : [errors.invalid('id'), errors.notFound('Any')],
-    "nickname" : "schema_find"
+    "nickname" : "find"
   },
   'action': function (req,res) {
-    writeResponse(res, {message: "how about implementing schema_find as a GET method?"});    
+    writeResponse(res, {message: "how about implementing find as a GET method?"});    
+  }
+};
+exports.websocketHelp = {
+  'spec': {
+    "description" : "Operations about pets",
+    "path" : "/schema/websocketHelp",
+    "notes" : "",
+    "summary" : "Returns help text & subject list for websocket usage.",
+    "method": "GET",
+    "params" : [].concat([]).concat([]).concat([]),
+    "type" : "Any",
+    "responseMessages" : [errors.invalid('id'), errors.notFound('Any')],
+    "nickname" : "websocketHelp"
+  },
+  'action': function (req,res) {
+    writeResponse(res, {message: "how about implementing websocketHelp as a GET method?"});    
   }
 };
 

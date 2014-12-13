@@ -1,31 +1,44 @@
 class Instrument
-  attr_accessor :symbol, :state, :typ, :listing, :expiry, :underlying, :buy_leg, :sell_leg, :quote_currency, :reference, :reference_symbol, :tick_size, :multiplier, :settl_currency, :init_margin, :maint_margin, :limit, :opening_timestamp, :closing_timestamp, :prev_close_price, :limit_down_price, :limit_up_price, :volume, :vwap, :high_price, :low_price, :last_price, :last_tick_direction, :last_change_pcnt, :bid_price, :mid_price, :ask_price, :open_interest, :settled_price, :timestamp
+  attr_accessor :symbol, :root_symbol, :state, :typ, :listing, :front, :expiry, :inverse_leg, :sell_leg, :buy_leg, :underlying, :quote_currency, :underlying_symbol, :reference, :reference_symbol, :tick_size, :multiplier, :settl_currency, :underlying_to_settle_multiplier, :quote_to_settle_multiplier, :is_quanto, :is_inverse, :init_margin, :maint_margin, :limit, :maker_fee, :taker_fee, :insurance_fee, :opening_timestamp, :closing_timestamp, :prev_close_price, :limit_down_price, :limit_up_price, :prev_total_volume, :total_volume, :volume, :vwap, :high_price, :low_price, :last_price, :last_tick_direction, :last_change_pcnt, :bid_price, :mid_price, :ask_price, :open_interest, :settled_price, :timestamp
 
   # :internal => :external
   def self.attribute_map
     {
       :symbol => :symbol,
+      :root_symbol => :rootSymbol,
       :state => :state,
       :typ => :typ,
       :listing => :listing,
+      :front => :front,
       :expiry => :expiry,
-      :underlying => :underlying,
-      :buy_leg => :buyLeg,
+      :inverse_leg => :inverseLeg,
       :sell_leg => :sellLeg,
+      :buy_leg => :buyLeg,
+      :underlying => :underlying,
       :quote_currency => :quoteCurrency,
+      :underlying_symbol => :underlyingSymbol,
       :reference => :reference,
       :reference_symbol => :referenceSymbol,
       :tick_size => :tickSize,
       :multiplier => :multiplier,
       :settl_currency => :settlCurrency,
+      :underlying_to_settle_multiplier => :underlyingToSettleMultiplier,
+      :quote_to_settle_multiplier => :quoteToSettleMultiplier,
+      :is_quanto => :isQuanto,
+      :is_inverse => :isInverse,
       :init_margin => :initMargin,
       :maint_margin => :maintMargin,
       :limit => :limit,
+      :maker_fee => :makerFee,
+      :taker_fee => :takerFee,
+      :insurance_fee => :insuranceFee,
       :opening_timestamp => :openingTimestamp,
       :closing_timestamp => :closingTimestamp,
       :prev_close_price => :prevClosePrice,
       :limit_down_price => :limitDownPrice,
       :limit_up_price => :limitUpPrice,
+      :prev_total_volume => :prevTotalVolume,
+      :total_volume => :totalVolume,
       :volume => :volume,
       :vwap => :vwap,
       :high_price => :highPrice,
@@ -49,6 +62,9 @@ class Instrument
     if self.class.attribute_map[:"symbol"]
       @symbol = attributes["symbol"]
     end
+    if self.class.attribute_map[:"root_symbol"]
+      @root_symbol = attributes["rootSymbol"]
+    end
     if self.class.attribute_map[:"state"]
       @state = attributes["state"]
     end
@@ -58,20 +74,29 @@ class Instrument
     if self.class.attribute_map[:"listing"]
       @listing = attributes["listing"]
     end
+    if self.class.attribute_map[:"front"]
+      @front = attributes["front"]
+    end
     if self.class.attribute_map[:"expiry"]
       @expiry = attributes["expiry"]
     end
-    if self.class.attribute_map[:"underlying"]
-      @underlying = attributes["underlying"]
-    end
-    if self.class.attribute_map[:"buy_leg"]
-      @buy_leg = attributes["buyLeg"]
+    if self.class.attribute_map[:"inverse_leg"]
+      @inverse_leg = attributes["inverseLeg"]
     end
     if self.class.attribute_map[:"sell_leg"]
       @sell_leg = attributes["sellLeg"]
     end
+    if self.class.attribute_map[:"buy_leg"]
+      @buy_leg = attributes["buyLeg"]
+    end
+    if self.class.attribute_map[:"underlying"]
+      @underlying = attributes["underlying"]
+    end
     if self.class.attribute_map[:"quote_currency"]
       @quote_currency = attributes["quoteCurrency"]
+    end
+    if self.class.attribute_map[:"underlying_symbol"]
+      @underlying_symbol = attributes["underlyingSymbol"]
     end
     if self.class.attribute_map[:"reference"]
       @reference = attributes["reference"]
@@ -88,6 +113,18 @@ class Instrument
     if self.class.attribute_map[:"settl_currency"]
       @settl_currency = attributes["settlCurrency"]
     end
+    if self.class.attribute_map[:"underlying_to_settle_multiplier"]
+      @underlying_to_settle_multiplier = attributes["underlyingToSettleMultiplier"]
+    end
+    if self.class.attribute_map[:"quote_to_settle_multiplier"]
+      @quote_to_settle_multiplier = attributes["quoteToSettleMultiplier"]
+    end
+    if self.class.attribute_map[:"is_quanto"]
+      @is_quanto = attributes["isQuanto"]
+    end
+    if self.class.attribute_map[:"is_inverse"]
+      @is_inverse = attributes["isInverse"]
+    end
     if self.class.attribute_map[:"init_margin"]
       @init_margin = attributes["initMargin"]
     end
@@ -96,6 +133,15 @@ class Instrument
     end
     if self.class.attribute_map[:"limit"]
       @limit = attributes["limit"]
+    end
+    if self.class.attribute_map[:"maker_fee"]
+      @maker_fee = attributes["makerFee"]
+    end
+    if self.class.attribute_map[:"taker_fee"]
+      @taker_fee = attributes["takerFee"]
+    end
+    if self.class.attribute_map[:"insurance_fee"]
+      @insurance_fee = attributes["insuranceFee"]
     end
     if self.class.attribute_map[:"opening_timestamp"]
       @opening_timestamp = attributes["openingTimestamp"]
@@ -111,6 +157,12 @@ class Instrument
     end
     if self.class.attribute_map[:"limit_up_price"]
       @limit_up_price = attributes["limitUpPrice"]
+    end
+    if self.class.attribute_map[:"prev_total_volume"]
+      @prev_total_volume = attributes["prevTotalVolume"]
+    end
+    if self.class.attribute_map[:"total_volume"]
+      @total_volume = attributes["totalVolume"]
     end
     if self.class.attribute_map[:"volume"]
       @volume = attributes["volume"]

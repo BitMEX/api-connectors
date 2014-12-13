@@ -30,7 +30,7 @@ class SchemaApi(object):
 
     
 
-    def schema_find(self, **kwargs):
+    def find(self, **kwargs):
         """Get model schemata for data objects returned by this API.
 
         Args:
@@ -46,7 +46,7 @@ class SchemaApi(object):
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
             if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method schema_find" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method find" % key)
             params[key] = val
         del params['kwargs']
 
@@ -59,6 +59,45 @@ class SchemaApi(object):
 
         if ('model' in params):
             queryParams['model'] = self.apiClient.toPathValue(params['model'])
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'object')
+        return responseObject
+        
+
+        
+
+    def websocketHelp(self, **kwargs):
+        """Returns help text &amp; subject list for websocket usage.
+
+        Args:
+            
+
+        Returns: object
+        """
+
+        allParams = []
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method websocketHelp" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/schema/websocketHelp'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
         postData = (params['body'] if 'body' in params else None)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,

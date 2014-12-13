@@ -8,19 +8,19 @@ case class Position (
 
   currency: Option[String],
 
-  prevPnl: Option[Double],
+  commission: Option[Double],
+
+  prevRealisedPnl: Option[Double],
+
+  prevUnrealisedPnl: Option[Double],
 
   prevClosePrice: Option[Double],
 
+  realisedCost: Option[Double],
+
+  realisedPnl: Option[Double],
+
   openingTimestamp: Option[Date],
-
-  openingBuyQty: Option[Double],
-
-  openingBuyCost: Option[Double],
-
-  openingSellQty: Option[Double],
-
-  openingSellCost: Option[Double],
 
   openingQty: Option[Double],
 
@@ -52,19 +52,13 @@ case class Position (
 
   currentTimestamp: Option[Date],
 
-  currentBuyQty: Option[Double],
-
-  currentBuyCost: Option[Double],
-
-  currentSellQty: Option[Double],
-
-  currentSellCost: Option[Double],
-
   currentQty: Option[Double],
 
   currentCost: Option[Double],
 
   currentComm: Option[Double],
+
+  unrealisedCost: Option[Double],
 
   grossOpenCost: Option[Double],
 
@@ -73,6 +67,14 @@ case class Position (
   lastPrice: Option[Double],
 
   lastValue: Option[Double],
+
+  notionalCurrency1: Option[String],
+
+  notionalValue1: Option[Double],
+
+  notionalCurrency2: Option[String],
+
+  notionalValue2: Option[Double],
 
   initMargin: Option[Double],
 
@@ -84,13 +86,9 @@ case class Position (
 
   varMargin: Option[Double],
 
-  pnl: Option[Double],
+  unrealisedPnl: Option[Double],
 
-  pnlPcnt: Option[Double],
-
-  avgBuyPrice: Option[Double],
-
-  avgSellPrice: Option[Double],
+  unrealisedPnlPcnt: Option[Double],
 
   avgEntryPrice: Option[Double],
 

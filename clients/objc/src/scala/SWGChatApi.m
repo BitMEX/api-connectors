@@ -1,6 +1,7 @@
 #import "SWGChatApi.h"
 #import "SWGFile.h"
 #import "SWGApiClient.h"
+#import "SWGError.h"
 #import "SWGChat.h"
 
 
@@ -51,47 +52,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 }
 
 
--(NSNumber*) chat_createWithCompletionBlock:(NSString*) message
-        completionHandler: (void (^)(SWGChat* output, NSError* error))completionBlock{
-
-    NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/chat", basePath];
-
-    // remove format in URL if needed
-    if ([requestUrl rangeOfString:@".{format}"].location != NSNotFound)
-        [requestUrl replaceCharactersInRange: [requestUrl rangeOfString:@".{format}"] withString:@".json"];
-
-    NSString* requestContentType = @"application/json";
-    NSString* responseContentType = @"application/json";
-
-        NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* headerParams = [[NSMutableDictionary alloc] init];
-    id bodyDictionary = nil;
-        if(message == nil) {
-        // error
-    }
-    SWGApiClient* client = [SWGApiClient sharedClientFromPool:basePath];
-
-    return [client dictionary:requestUrl 
-                              method:@"POST" 
-                         queryParams:queryParams 
-                                body:bodyDictionary 
-                        headerParams:headerParams
-                  requestContentType:requestContentType
-                 responseContentType:responseContentType
-                     completionBlock:^(NSDictionary *data, NSError *error) {
-                        if (error) {
-                            completionBlock(nil, error);return;
-                        }
-                        SWGChat *result = nil;
-                        if (data) {
-                            result = [[SWGChat alloc]initWithValues: data];
-                        }
-                        completionBlock(result , nil);}];
-    
-
-}
-
--(NSNumber*) chat_findWithCompletionBlock:(NSNumber*) count
+-(NSNumber*) getWithCompletionBlock:(NSNumber*) count
         completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/chat", basePath];
@@ -131,6 +92,46 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
                              completionBlock(objs, nil);
                          }
                         }];
+    
+
+}
+
+-(NSNumber*) sendWithCompletionBlock:(NSString*) message
+        completionHandler: (void (^)(SWGChat* output, NSError* error))completionBlock{
+
+    NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/chat", basePath];
+
+    // remove format in URL if needed
+    if ([requestUrl rangeOfString:@".{format}"].location != NSNotFound)
+        [requestUrl replaceCharactersInRange: [requestUrl rangeOfString:@".{format}"] withString:@".json"];
+
+    NSString* requestContentType = @"application/json";
+    NSString* responseContentType = @"application/json";
+
+        NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [[NSMutableDictionary alloc] init];
+    id bodyDictionary = nil;
+        if(message == nil) {
+        // error
+    }
+    SWGApiClient* client = [SWGApiClient sharedClientFromPool:basePath];
+
+    return [client dictionary:requestUrl 
+                              method:@"POST" 
+                         queryParams:queryParams 
+                                body:bodyDictionary 
+                        headerParams:headerParams
+                  requestContentType:requestContentType
+                 responseContentType:responseContentType
+                     completionBlock:^(NSDictionary *data, NSError *error) {
+                        if (error) {
+                            completionBlock(nil, error);return;
+                        }
+                        SWGChat *result = nil;
+                        if (data) {
+                            result = [[SWGChat alloc]initWithValues: data];
+                        }
+                        completionBlock(result , nil);}];
     
 
 }

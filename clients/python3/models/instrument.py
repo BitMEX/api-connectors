@@ -22,27 +22,40 @@ class Instrument:
     def __init__(self):
         self.swaggerTypes = {
             'symbol': 'str',
+            'rootSymbol': 'str',
             'state': 'str',
             'typ': 'str',
             'listing': 'datetime',
+            'front': 'datetime',
             'expiry': 'datetime',
-            'underlying': 'str',
-            'buyLeg': 'str',
+            'inverseLeg': 'str',
             'sellLeg': 'str',
+            'buyLeg': 'str',
+            'underlying': 'str',
             'quoteCurrency': 'str',
+            'underlyingSymbol': 'str',
             'reference': 'str',
             'referenceSymbol': 'str',
             'tickSize': 'float',
             'multiplier': 'float',
             'settlCurrency': 'str',
+            'underlyingToSettleMultiplier': 'float',
+            'quoteToSettleMultiplier': 'float',
+            'isQuanto': 'bool',
+            'isInverse': 'bool',
             'initMargin': 'float',
             'maintMargin': 'float',
             'limit': 'float',
+            'makerFee': 'float',
+            'takerFee': 'float',
+            'insuranceFee': 'float',
             'openingTimestamp': 'datetime',
             'closingTimestamp': 'datetime',
             'prevClosePrice': 'float',
             'limitDownPrice': 'float',
             'limitUpPrice': 'float',
+            'prevTotalVolume': 'float',
+            'totalVolume': 'float',
             'volume': 'float',
             'vwap': 'float',
             'highPrice': 'float',
@@ -61,27 +74,40 @@ class Instrument:
 
 
         self.symbol = None # str
+        self.rootSymbol = None # str
         self.state = None # str
         self.typ = None # str
         self.listing = None # datetime
+        self.front = None # datetime
         self.expiry = None # datetime
-        self.underlying = None # str
-        self.buyLeg = None # str
+        self.inverseLeg = None # str
         self.sellLeg = None # str
+        self.buyLeg = None # str
+        self.underlying = None # str
         self.quoteCurrency = None # str
+        self.underlyingSymbol = None # str
         self.reference = None # str
         self.referenceSymbol = None # str
         self.tickSize = None # float
         self.multiplier = None # float
         self.settlCurrency = None # str
+        self.underlyingToSettleMultiplier = None # float
+        self.quoteToSettleMultiplier = None # float
+        self.isQuanto = None # bool
+        self.isInverse = None # bool
         self.initMargin = None # float
         self.maintMargin = None # float
         self.limit = None # float
+        self.makerFee = None # float
+        self.takerFee = None # float
+        self.insuranceFee = None # float
         self.openingTimestamp = None # datetime
         self.closingTimestamp = None # datetime
         self.prevClosePrice = None # float
         self.limitDownPrice = None # float
         self.limitUpPrice = None # float
+        self.prevTotalVolume = None # float
+        self.totalVolume = None # float
         self.volume = None # float
         self.vwap = None # float
         self.highPrice = None # float

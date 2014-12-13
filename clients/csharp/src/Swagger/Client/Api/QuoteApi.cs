@@ -30,14 +30,14 @@
       /// Get previous quotes bucketed by seconds. 
       /// </summary>
       /// <param name="symbol">Instrument name.</param>
-      /// <param name="startTime">Start date.</param>
-      /// <param name="endTime">End Date.</param>
-      /// <param name="count">Number of buckets to fetch</param>
-      /// <param name="binSize">Time interval to bucket by. Available options: ['30s', '5m', '1h', '1d'].</param>
+      /// <param name="startTime">Start date. Expects ISO formatted date strings.</param>
+      /// <param name="endTime">End Date. Expects ISO formatted date strings.</param>
+      /// <param name="count">Number of buckets to fetch.</param>
+      /// <param name="binSize">Time interval to bucket by. Available options: ['1m', '5m', '1h', '1d'].</param>
       /// <returns></returns>
-      public List<quote> quote_getBucketed (string symbol, DateTime? startTime, DateTime? endTime, double? count, string binSize) {
+      public List<Quote> getBucketed (string symbol, DateTime? startTime, DateTime? endTime, double? count, string binSize) {
         // create path and map variables
-        var path = "/quote/getBucketed".Replace("{format}","json");
+        var path = "/quote/bucketed".Replace("{format}","json");
 
         // query params
         var queryParams = new Dictionary<String, String>();
@@ -69,13 +69,13 @@
           queryParams.Add("count", paramStr);
 		}
         try {
-          if (typeof(List<quote>) == typeof(byte[])) {
+          if (typeof(List<Quote>) == typeof(byte[])) {
             var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
-            return ((object)response) as List<quote>;
+            return ((object)response) as List<Quote>;
           } else {
             var response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
             if(response != null){
-               return (List<quote>) ApiInvoker.deserialize(response, typeof(List<quote>));
+               return (List<Quote>) ApiInvoker.deserialize(response, typeof(List<Quote>));
             }
             else {
               return null;

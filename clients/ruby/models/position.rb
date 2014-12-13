@@ -1,5 +1,5 @@
 class Position
-  attr_accessor :account, :symbol, :currency, :prev_pnl, :prev_close_price, :opening_timestamp, :opening_buy_qty, :opening_buy_cost, :opening_sell_qty, :opening_sell_cost, :opening_qty, :opening_cost, :opening_comm, :open_order_buy_qty, :open_order_buy_cost, :open_order_sell_qty, :open_order_sell_cost, :exec_buy_qty, :exec_buy_cost, :exec_sell_qty, :exec_sell_cost, :exec_qty, :exec_cost, :exec_comm, :current_timestamp, :current_buy_qty, :current_buy_cost, :current_sell_qty, :current_sell_cost, :current_qty, :current_cost, :current_comm, :gross_open_cost, :gross_exec_cost, :last_price, :last_value, :init_margin, :maint_margin, :session_margin, :target_excess_margin, :var_margin, :pnl, :pnl_pcnt, :avg_buy_price, :avg_sell_price, :avg_entry_price, :break_even_price, :margin_call_price, :liquidation_price, :bankrupt_price, :timestamp
+  attr_accessor :account, :symbol, :currency, :commission, :prev_realised_pnl, :prev_unrealised_pnl, :prev_close_price, :realised_cost, :realised_pnl, :opening_timestamp, :opening_qty, :opening_cost, :opening_comm, :open_order_buy_qty, :open_order_buy_cost, :open_order_sell_qty, :open_order_sell_cost, :exec_buy_qty, :exec_buy_cost, :exec_sell_qty, :exec_sell_cost, :exec_qty, :exec_cost, :exec_comm, :current_timestamp, :current_qty, :current_cost, :current_comm, :unrealised_cost, :gross_open_cost, :gross_exec_cost, :last_price, :last_value, :notional_currency1, :notional_value1, :notional_currency2, :notional_value2, :init_margin, :maint_margin, :session_margin, :target_excess_margin, :var_margin, :unrealised_pnl, :unrealised_pnl_pcnt, :avg_entry_price, :break_even_price, :margin_call_price, :liquidation_price, :bankrupt_price, :timestamp
 
   # :internal => :external
   def self.attribute_map
@@ -7,13 +7,13 @@ class Position
       :account => :account,
       :symbol => :symbol,
       :currency => :currency,
-      :prev_pnl => :prevPnl,
+      :commission => :commission,
+      :prev_realised_pnl => :prevRealisedPnl,
+      :prev_unrealised_pnl => :prevUnrealisedPnl,
       :prev_close_price => :prevClosePrice,
+      :realised_cost => :realisedCost,
+      :realised_pnl => :realisedPnl,
       :opening_timestamp => :openingTimestamp,
-      :opening_buy_qty => :openingBuyQty,
-      :opening_buy_cost => :openingBuyCost,
-      :opening_sell_qty => :openingSellQty,
-      :opening_sell_cost => :openingSellCost,
       :opening_qty => :openingQty,
       :opening_cost => :openingCost,
       :opening_comm => :openingComm,
@@ -29,26 +29,25 @@ class Position
       :exec_cost => :execCost,
       :exec_comm => :execComm,
       :current_timestamp => :currentTimestamp,
-      :current_buy_qty => :currentBuyQty,
-      :current_buy_cost => :currentBuyCost,
-      :current_sell_qty => :currentSellQty,
-      :current_sell_cost => :currentSellCost,
       :current_qty => :currentQty,
       :current_cost => :currentCost,
       :current_comm => :currentComm,
+      :unrealised_cost => :unrealisedCost,
       :gross_open_cost => :grossOpenCost,
       :gross_exec_cost => :grossExecCost,
       :last_price => :lastPrice,
       :last_value => :lastValue,
+      :notional_currency1 => :notionalCurrency1,
+      :notional_value1 => :notionalValue1,
+      :notional_currency2 => :notionalCurrency2,
+      :notional_value2 => :notionalValue2,
       :init_margin => :initMargin,
       :maint_margin => :maintMargin,
       :session_margin => :sessionMargin,
       :target_excess_margin => :targetExcessMargin,
       :var_margin => :varMargin,
-      :pnl => :pnl,
-      :pnl_pcnt => :pnlPcnt,
-      :avg_buy_price => :avgBuyPrice,
-      :avg_sell_price => :avgSellPrice,
+      :unrealised_pnl => :unrealisedPnl,
+      :unrealised_pnl_pcnt => :unrealisedPnlPcnt,
       :avg_entry_price => :avgEntryPrice,
       :break_even_price => :breakEvenPrice,
       :margin_call_price => :marginCallPrice,
@@ -71,26 +70,26 @@ class Position
     if self.class.attribute_map[:"currency"]
       @currency = attributes["currency"]
     end
-    if self.class.attribute_map[:"prev_pnl"]
-      @prev_pnl = attributes["prevPnl"]
+    if self.class.attribute_map[:"commission"]
+      @commission = attributes["commission"]
+    end
+    if self.class.attribute_map[:"prev_realised_pnl"]
+      @prev_realised_pnl = attributes["prevRealisedPnl"]
+    end
+    if self.class.attribute_map[:"prev_unrealised_pnl"]
+      @prev_unrealised_pnl = attributes["prevUnrealisedPnl"]
     end
     if self.class.attribute_map[:"prev_close_price"]
       @prev_close_price = attributes["prevClosePrice"]
     end
+    if self.class.attribute_map[:"realised_cost"]
+      @realised_cost = attributes["realisedCost"]
+    end
+    if self.class.attribute_map[:"realised_pnl"]
+      @realised_pnl = attributes["realisedPnl"]
+    end
     if self.class.attribute_map[:"opening_timestamp"]
       @opening_timestamp = attributes["openingTimestamp"]
-    end
-    if self.class.attribute_map[:"opening_buy_qty"]
-      @opening_buy_qty = attributes["openingBuyQty"]
-    end
-    if self.class.attribute_map[:"opening_buy_cost"]
-      @opening_buy_cost = attributes["openingBuyCost"]
-    end
-    if self.class.attribute_map[:"opening_sell_qty"]
-      @opening_sell_qty = attributes["openingSellQty"]
-    end
-    if self.class.attribute_map[:"opening_sell_cost"]
-      @opening_sell_cost = attributes["openingSellCost"]
     end
     if self.class.attribute_map[:"opening_qty"]
       @opening_qty = attributes["openingQty"]
@@ -137,18 +136,6 @@ class Position
     if self.class.attribute_map[:"current_timestamp"]
       @current_timestamp = attributes["currentTimestamp"]
     end
-    if self.class.attribute_map[:"current_buy_qty"]
-      @current_buy_qty = attributes["currentBuyQty"]
-    end
-    if self.class.attribute_map[:"current_buy_cost"]
-      @current_buy_cost = attributes["currentBuyCost"]
-    end
-    if self.class.attribute_map[:"current_sell_qty"]
-      @current_sell_qty = attributes["currentSellQty"]
-    end
-    if self.class.attribute_map[:"current_sell_cost"]
-      @current_sell_cost = attributes["currentSellCost"]
-    end
     if self.class.attribute_map[:"current_qty"]
       @current_qty = attributes["currentQty"]
     end
@@ -157,6 +144,9 @@ class Position
     end
     if self.class.attribute_map[:"current_comm"]
       @current_comm = attributes["currentComm"]
+    end
+    if self.class.attribute_map[:"unrealised_cost"]
+      @unrealised_cost = attributes["unrealisedCost"]
     end
     if self.class.attribute_map[:"gross_open_cost"]
       @gross_open_cost = attributes["grossOpenCost"]
@@ -169,6 +159,18 @@ class Position
     end
     if self.class.attribute_map[:"last_value"]
       @last_value = attributes["lastValue"]
+    end
+    if self.class.attribute_map[:"notional_currency1"]
+      @notional_currency1 = attributes["notionalCurrency1"]
+    end
+    if self.class.attribute_map[:"notional_value1"]
+      @notional_value1 = attributes["notionalValue1"]
+    end
+    if self.class.attribute_map[:"notional_currency2"]
+      @notional_currency2 = attributes["notionalCurrency2"]
+    end
+    if self.class.attribute_map[:"notional_value2"]
+      @notional_value2 = attributes["notionalValue2"]
     end
     if self.class.attribute_map[:"init_margin"]
       @init_margin = attributes["initMargin"]
@@ -185,17 +187,11 @@ class Position
     if self.class.attribute_map[:"var_margin"]
       @var_margin = attributes["varMargin"]
     end
-    if self.class.attribute_map[:"pnl"]
-      @pnl = attributes["pnl"]
+    if self.class.attribute_map[:"unrealised_pnl"]
+      @unrealised_pnl = attributes["unrealisedPnl"]
     end
-    if self.class.attribute_map[:"pnl_pcnt"]
-      @pnl_pcnt = attributes["pnlPcnt"]
-    end
-    if self.class.attribute_map[:"avg_buy_price"]
-      @avg_buy_price = attributes["avgBuyPrice"]
-    end
-    if self.class.attribute_map[:"avg_sell_price"]
-      @avg_sell_price = attributes["avgSellPrice"]
+    if self.class.attribute_map[:"unrealised_pnl_pcnt"]
+      @unrealised_pnl_pcnt = attributes["unrealisedPnlPcnt"]
     end
     if self.class.attribute_map[:"avg_entry_price"]
       @avg_entry_price = attributes["avgEntryPrice"]

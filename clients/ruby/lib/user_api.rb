@@ -8,14 +8,378 @@ class User_api
     URI.encode(string.to_s)
   end
 
-  def self.user_login (body,opts={})
+  def self.get_deposit_address (currency= "XBt",opts={})
+    query_param_keys = [:currency]
+
+    # set default values and merge with input
+    options = {
+    :currency => currency}.merge(opts)
+
+    #resource path
+    path = "/user/depositAddress".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    string.new(response)
+
+  end
+
+def self.get_wallet_history (opts={})
+    query_param_keys = []
+
+    # set default values and merge with input
+    options = {
+    }.merge(opts)
+
+    #resource path
+    path = "/user/walletHistory".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    response.map {|response|Transaction.new(response)}
+
+  end
+
+def self.request_withdrawal (amount,address,currency= "XBt",opts={})
     query_param_keys = []
 
     # verify existence of params
-    raise "body is required" if body.nil?
+    raise "amount is required" if amount.nil?
+    raise "address is required" if address.nil?
     # set default values and merge with input
     options = {
-    :body => body}.merge(opts)
+    :amount => amount,
+      :address => address,
+      :currency => currency}.merge(opts)
+
+    #resource path
+    path = "/user/requestWithdrawal".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:POST, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    Transaction.new(response)
+
+  end
+
+def self.cancel_withdrawal (token,opts={})
+    query_param_keys = []
+
+    # verify existence of params
+    raise "token is required" if token.nil?
+    # set default values and merge with input
+    options = {
+    :token => token}.merge(opts)
+
+    #resource path
+    path = "/user/cancelWithdrawal".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:POST, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    Transaction.new(response)
+
+  end
+
+def self.confirm_withdrawal (token,opts={})
+    query_param_keys = []
+
+    # verify existence of params
+    raise "token is required" if token.nil?
+    # set default values and merge with input
+    options = {
+    :token => token}.merge(opts)
+
+    #resource path
+    path = "/user/confirmWithdrawal".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:POST, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    Transaction.new(response)
+
+  end
+
+def self.request_enable_t_f_a (type= "GA",opts={})
+    query_param_keys = []
+
+    # set default values and merge with input
+    options = {
+    :type => type}.merge(opts)
+
+    #resource path
+    path = "/user/requestEnableTFA".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:POST, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    boolean.new(response)
+
+  end
+
+def self.confirm_enable_t_f_a (token,type= "GA",opts={})
+    query_param_keys = []
+
+    # verify existence of params
+    raise "token is required" if token.nil?
+    # set default values and merge with input
+    options = {
+    :token => token,
+      :type => type}.merge(opts)
+
+    #resource path
+    path = "/user/confirmEnableTFA".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:POST, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    boolean.new(response)
+
+  end
+
+def self.send_verification_email (email,opts={})
+    query_param_keys = [:email]
+
+    # verify existence of params
+    raise "email is required" if email.nil?
+    # set default values and merge with input
+    options = {
+    :email => email}.merge(opts)
+
+    #resource path
+    path = "/user/resendVerificationEmail".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    boolean.new(response)
+
+  end
+
+def self.confirm_email (token,opts={})
+    query_param_keys = []
+
+    # verify existence of params
+    raise "token is required" if token.nil?
+    # set default values and merge with input
+    options = {
+    :token => token}.merge(opts)
+
+    #resource path
+    path = "/user/confirmEmail".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:POST, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    boolean.new(response)
+
+  end
+
+def self.request_password_reset (email,opts={})
+    query_param_keys = []
+
+    # verify existence of params
+    raise "email is required" if email.nil?
+    # set default values and merge with input
+    options = {
+    :email => email}.merge(opts)
+
+    #resource path
+    path = "/user/requestPasswordReset".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:POST, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    boolean.new(response)
+
+  end
+
+def self.confirm_password_reset (email,token,new_password,opts={})
+    query_param_keys = []
+
+    # verify existence of params
+    raise "email is required" if email.nil?
+    raise "token is required" if token.nil?
+    raise "new_password is required" if new_password.nil?
+    # set default values and merge with input
+    options = {
+    :email => email,
+      :token => token,
+      :new_password => new_password}.merge(opts)
+
+    #resource path
+    path = "/user/confirmPasswordReset".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:POST, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    boolean.new(response)
+
+  end
+
+def self.new_user (email,password,username,firstname,lastname,accepts_t_o_s,account_type= "Trader",opts={})
+    query_param_keys = []
+
+    # verify existence of params
+    raise "email is required" if email.nil?
+    raise "password is required" if password.nil?
+    raise "username is required" if username.nil?
+    # set default values and merge with input
+    options = {
+    :email => email,
+      :password => password,
+      :username => username,
+      :firstname => firstname,
+      :lastname => lastname,
+      :accepts_t_o_s => accepts_t_o_s,
+      :account_type => account_type}.merge(opts)
+
+    #resource path
+    path = "/user".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:POST, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    User.new(response)
+
+  end
+
+def self.get_me (opts={})
+    query_param_keys = []
+
+    # set default values and merge with input
+    options = {
+    }.merge(opts)
+
+    #resource path
+    path = "/user".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    User.new(response)
+
+  end
+
+def self.update_me (firstname,lastname,old_password,new_password,new_password_confirm,account_type,opts={})
+    query_param_keys = []
+
+    # set default values and merge with input
+    options = {
+    :firstname => firstname,
+      :lastname => lastname,
+      :old_password => old_password,
+      :new_password => new_password,
+      :new_password_confirm => new_password_confirm,
+      :account_type => account_type}.merge(opts)
+
+    #resource path
+    path = "/user".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:PUT, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    User.new(response)
+
+  end
+
+def self.login (email,password,token,opts={})
+    query_param_keys = []
+
+    # verify existence of params
+    raise "email is required" if email.nil?
+    raise "password is required" if password.nil?
+    # set default values and merge with input
+    options = {
+    :email => email,
+      :password => password,
+      :token => token}.merge(opts)
 
     #resource path
     path = "/user/login".sub('{format}','json')
@@ -28,32 +392,12 @@ class User_api
     
     headers = nil
     post_body = nil
-    if body != nil
-      if body.is_a?(Array)
-        array = Array.new
-        body.each do |item|
-          if item.respond_to?("to_body".to_sym)
-            array.push item.to_body
-          else
-            array.push item
-          end
-        end
-        post_body = array
-
-      else 
-        if body.respond_to?("to_body".to_sym)
-	        post_body = body.to_body
-	      else
-	        post_body = body
-	      end
-      end
-    end
     response = Swagger::Request.new(:POST, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
-    object.new(response)
+    AccessToken.new(response)
 
   end
 
-def self.user_logout (opts={})
+def self.logout (opts={})
     query_param_keys = []
 
     # set default values and merge with input
@@ -76,15 +420,17 @@ def self.user_logout (opts={})
 
   end
 
-def self.user_create (body,opts={})
+def self.save_preferences (prefs,opts={})
     query_param_keys = []
 
+    # verify existence of params
+    raise "prefs is required" if prefs.nil?
     # set default values and merge with input
     options = {
-    :body => body}.merge(opts)
+    :prefs => prefs}.merge(opts)
 
     #resource path
-    path = "/user".sub('{format}','json')
+    path = "/user/preferences".sub('{format}','json')
 
     
     # pull querystring keys from options
@@ -94,32 +440,12 @@ def self.user_create (body,opts={})
     
     headers = nil
     post_body = nil
-    if body != nil
-      if body.is_a?(Array)
-        array = Array.new
-        body.each do |item|
-          if item.respond_to?("to_body".to_sym)
-            array.push item.to_body
-          else
-            array.push item
-          end
-        end
-        post_body = array
-
-      else 
-        if body.respond_to?("to_body".to_sym)
-	        post_body = body.to_body
-	      else
-	        post_body = body
-	      end
-      end
-    end
     response = Swagger::Request.new(:POST, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
-    user.new(response)
+    User.new(response)
 
   end
 
-def self.user_get_me (opts={})
+def self.get_commission (opts={})
     query_param_keys = []
 
     # set default values and merge with input
@@ -127,7 +453,7 @@ def self.user_get_me (opts={})
     }.merge(opts)
 
     #resource path
-    path = "/user".sub('{format}','json')
+    path = "/user/commission".sub('{format}','json')
 
     
     # pull querystring keys from options
@@ -138,108 +464,7 @@ def self.user_get_me (opts={})
     headers = nil
     post_body = nil
     response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
-    user.new(response)
-
-  end
-
-def self.user_update_me (firstname,lastname,phone,old_password,new_password,new_password_confirm,opts={})
-    query_param_keys = []
-
-    # set default values and merge with input
-    options = {
-    :firstname => firstname,
-      :lastname => lastname,
-      :phone => phone,
-      :old_password => old_password,
-      :new_password => new_password,
-      :new_password_confirm => new_password_confirm}.merge(opts)
-
-    #resource path
-    path = "/user".sub('{format}','json')
-
-    
-    # pull querystring keys from options
-    queryopts = options.select do |key,value|
-      query_param_keys.include? key
-    end
-    
-    headers = nil
-    post_body = nil
-    response = Swagger::Request.new(:PUT, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
-    user.new(response)
-
-  end
-
-def self.user_save_preferences (prefs,opts={})
-    query_param_keys = []
-
-    # verify existence of params
-    raise "prefs is required" if prefs.nil?
-    # set default values and merge with input
-    options = {
-    :prefs => prefs}.merge(opts)
-
-    #resource path
-    path = "/user/savePrefs".sub('{format}','json')
-
-    
-    # pull querystring keys from options
-    queryopts = options.select do |key,value|
-      query_param_keys.include? key
-    end
-    
-    headers = nil
-    post_body = nil
-    response = Swagger::Request.new(:POST, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
-    user.new(response)
-
-  end
-
-def self.user_verify_phone (opts={})
-    query_param_keys = []
-
-    # set default values and merge with input
-    options = {
-    }.merge(opts)
-
-    #resource path
-    path = "/user/requestSMS".sub('{format}','json')
-
-    
-    # pull querystring keys from options
-    queryopts = options.select do |key,value|
-      query_param_keys.include? key
-    end
-    
-    headers = nil
-    post_body = nil
-    response = Swagger::Request.new(:POST, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
-    boolean.new(response)
-
-  end
-
-def self.user_confirm_phone (token,opts={})
-    query_param_keys = []
-
-    # verify existence of params
-    raise "token is required" if token.nil?
-    # set default values and merge with input
-    options = {
-    :token => token}.merge(opts)
-
-    #resource path
-    path = "/user/confirmPhone".sub('{format}','json')
-
-    
-    # pull querystring keys from options
-    queryopts = options.select do |key,value|
-      query_param_keys.include? key
-    end
-    
-    headers = nil
-    post_body = nil
-    response = Swagger::Request.new(:POST, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
-    user.new(response)
+    response.map {|response|any.new(response)}
 
   end
 

@@ -1,9 +1,115 @@
 exports.models = {
-  "chat": {
-  "id" : "chat",
+  "Quote": {
+  "id" : "Quote",
   "name" : "",
-  "required" : [ "id", "date", "user", "message" ],
   "properties" : {
+    "askSize" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "askPrice" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "timestamp" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "bidPrice" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "symbol" : {
+      "type" : "string"
+    },
+    "id" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "bidSize" : {
+      "type" : "number",
+      "format" : "double"
+    }
+  }
+},
+
+  "Transaction": {
+  "id" : "Transaction",
+  "name" : "",
+  "required" : [ "transactID" ],
+  "properties" : {
+    "timestamp" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "text" : {
+      "type" : "string"
+    },
+    "amount" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "transactID" : {
+      "type" : "string"
+    },
+    "transactType" : {
+      "type" : "string"
+    },
+    "currency" : {
+      "type" : "string"
+    },
+    "address" : {
+      "type" : "string"
+    },
+    "transactStatus" : {
+      "type" : "string"
+    },
+    "account" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "transactTime" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "tx" : {
+      "type" : "string"
+    }
+  }
+},
+
+  "AccessToken": {
+  "id" : "AccessToken",
+  "name" : "",
+  "required" : [ "id" ],
+  "properties" : {
+    "id" : {
+      "type" : "string"
+    },
+    "ttl" : {
+      "type" : "number",
+      "format" : "double",
+      "description" : "time to live in seconds (2 weeks by default)"
+    },
+    "created" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "userId" : {
+      "type" : "number",
+      "format" : "double"
+    }
+  }
+},
+
+  "Chat": {
+  "id" : "Chat",
+  "name" : "",
+  "required" : [ "date", "user", "message", "html" ],
+  "properties" : {
+    "fromBot" : {
+      "type" : "boolean"
+    },
     "id" : {
       "type" : "number",
       "format" : "double"
@@ -12,17 +118,467 @@ exports.models = {
       "type" : "string",
       "format" : "date-time"
     },
-    "user" : {
+    "message" : {
       "type" : "string"
     },
-    "message" : {
+    "html" : {
+      "type" : "string"
+    },
+    "user" : {
       "type" : "string"
     }
   }
 },
 
-  "orderBook": {
-  "id" : "orderBook",
+  "ApiKey": {
+  "id" : "ApiKey",
+  "name" : "",
+  "required" : [ "id", "secret", "name", "nonce", "userId" ],
+  "properties" : {
+    "secret" : {
+      "type" : "string"
+    },
+    "name" : {
+      "type" : "string"
+    },
+    "nonce" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "cidr" : {
+      "type" : "string"
+    },
+    "enabled" : {
+      "type" : "boolean"
+    },
+    "id" : {
+      "type" : "string"
+    },
+    "userId" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "constriants" : {
+      "type" : "object"
+    }
+  }
+},
+
+  "Instrument": {
+  "id" : "Instrument",
+  "name" : "",
+  "required" : [ "symbol" ],
+  "properties" : {
+    "reference" : {
+      "type" : "string"
+    },
+    "quoteToSettleMultiplier" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "sellLeg" : {
+      "type" : "string"
+    },
+    "midPrice" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "askPrice" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "timestamp" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "lowPrice" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "quoteCurrency" : {
+      "type" : "string"
+    },
+    "state" : {
+      "type" : "string"
+    },
+    "settlCurrency" : {
+      "type" : "string"
+    },
+    "settledPrice" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "front" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "buyLeg" : {
+      "type" : "string"
+    },
+    "underlyingSymbol" : {
+      "type" : "string"
+    },
+    "insuranceFee" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "listing" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "openingTimestamp" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "isQuanto" : {
+      "type" : "boolean"
+    },
+    "bidPrice" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "lastPrice" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "initMargin" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "inverseLeg" : {
+      "type" : "string"
+    },
+    "symbol" : {
+      "type" : "string"
+    },
+    "isInverse" : {
+      "type" : "boolean"
+    },
+    "maintMargin" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "takerFee" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "prevTotalVolume" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "openInterest" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "multiplier" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "typ" : {
+      "type" : "string"
+    },
+    "vwap" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "highPrice" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "lastTickDirection" : {
+      "type" : "string"
+    },
+    "closingTimestamp" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "limitUpPrice" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "underlying" : {
+      "type" : "string"
+    },
+    "makerFee" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "limitDownPrice" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "expiry" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "lastChangePcnt" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "limit" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "underlyingToSettleMultiplier" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "volume" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "tickSize" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "referenceSymbol" : {
+      "type" : "string"
+    },
+    "totalVolume" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "rootSymbol" : {
+      "type" : "string"
+    },
+    "prevClosePrice" : {
+      "type" : "number",
+      "format" : "double"
+    }
+  }
+},
+
+  "TradeBin": {
+  "id" : "TradeBin",
+  "name" : "",
+  "properties" : {
+    "lastSize" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "timestamp" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "open" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "symbol" : {
+      "type" : "string"
+    },
+    "low" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "id" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "trades" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "vwap" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "close" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "volume" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "high" : {
+      "type" : "number",
+      "format" : "double"
+    }
+  }
+},
+
+  "Execution": {
+  "id" : "Execution",
+  "name" : "",
+  "required" : [ "execID" ],
+  "properties" : {
+    "side" : {
+      "type" : "string"
+    },
+    "workingIndicator" : {
+      "type" : "boolean"
+    },
+    "lastMkt" : {
+      "type" : "string"
+    },
+    "execID" : {
+      "type" : "string"
+    },
+    "lastPx" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "orderID" : {
+      "type" : "string"
+    },
+    "timestamp" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "commission" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "lastQty" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "settlCurrency" : {
+      "type" : "string"
+    },
+    "multiLegReportingType" : {
+      "type" : "string"
+    },
+    "timeInForce" : {
+      "type" : "string"
+    },
+    "price" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "ordStatus" : {
+      "type" : "string"
+    },
+    "execCost" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "text" : {
+      "type" : "string"
+    },
+    "leavesQty" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "orderQty" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "symbol" : {
+      "type" : "string"
+    },
+    "ordRejReason" : {
+      "type" : "string"
+    },
+    "minQty" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "trdMatchID" : {
+      "type" : "string"
+    },
+    "execComm" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "lastLiquidityInd" : {
+      "type" : "string"
+    },
+    "currency" : {
+      "type" : "string"
+    },
+    "avgPx" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "account" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "commType" : {
+      "type" : "string"
+    },
+    "stopPx" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "transactTime" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "ordType" : {
+      "type" : "string"
+    },
+    "execType" : {
+      "type" : "string"
+    },
+    "exDestination" : {
+      "type" : "string"
+    },
+    "clOrdID" : {
+      "type" : "string"
+    },
+    "cumQty" : {
+      "type" : "number",
+      "format" : "double"
+    }
+  }
+},
+
+  "User": {
+  "id" : "User",
+  "name" : "",
+  "required" : [ "username", "email" ],
+  "properties" : {
+    "email" : {
+      "type" : "string"
+    },
+    "role" : {
+      "type" : "string"
+    },
+    "username" : {
+      "type" : "string"
+    },
+    "lastUpdated" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "firstname" : {
+      "type" : "string"
+    },
+    "lastname" : {
+      "type" : "string"
+    },
+    "id" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "TFAEnabled" : {
+      "type" : "string"
+    },
+    "countryCode" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "status" : {
+      "type" : "string"
+    },
+    "preferences" : {
+      "type" : "object"
+    },
+    "phone" : {
+      "type" : "string"
+    },
+    "created" : {
+      "type" : "string",
+      "format" : "date-time"
+    }
+  }
+},
+
+  "OrderBook": {
+  "id" : "OrderBook",
   "name" : "",
   "required" : [ "symbol", "level" ],
   "properties" : {
@@ -56,8 +612,8 @@ exports.models = {
   }
 },
 
-  "position": {
-  "id" : "position",
+  "Position": {
+  "id" : "Position",
   "name" : "",
   "required" : [ "account", "symbol" ],
   "properties" : {
@@ -69,17 +625,24 @@ exports.models = {
       "type" : "string",
       "format" : "date-time"
     },
-    "pnl" : {
+    "liquidationPrice" : {
       "type" : "number",
       "format" : "double"
     },
-    "liquidationPrice" : {
+    "realisedPnl" : {
       "type" : "number",
       "format" : "double"
     },
     "timestamp" : {
       "type" : "string",
       "format" : "date-time"
+    },
+    "commission" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "notionalCurrency2" : {
+      "type" : "string"
     },
     "varMargin" : {
       "type" : "number",
@@ -101,6 +664,10 @@ exports.models = {
       "type" : "number",
       "format" : "double"
     },
+    "unrealisedPnlPcnt" : {
+      "type" : "number",
+      "format" : "double"
+    },
     "grossOpenCost" : {
       "type" : "number",
       "format" : "double"
@@ -117,23 +684,19 @@ exports.models = {
       "type" : "number",
       "format" : "double"
     },
-    "prevPnl" : {
-      "type" : "number",
-      "format" : "double"
-    },
     "openingTimestamp" : {
       "type" : "string",
       "format" : "date-time"
+    },
+    "notionalValue1" : {
+      "type" : "number",
+      "format" : "double"
     },
     "lastPrice" : {
       "type" : "number",
       "format" : "double"
     },
     "initMargin" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "currentBuyCost" : {
       "type" : "number",
       "format" : "double"
     },
@@ -149,10 +712,6 @@ exports.models = {
       "type" : "number",
       "format" : "double"
     },
-    "avgBuyPrice" : {
-      "type" : "number",
-      "format" : "double"
-    },
     "openingComm" : {
       "type" : "number",
       "format" : "double"
@@ -160,9 +719,8 @@ exports.models = {
     "symbol" : {
       "type" : "string"
     },
-    "currentSellCost" : {
-      "type" : "number",
-      "format" : "double"
+    "notionalCurrency1" : {
+      "type" : "string"
     },
     "maintMargin" : {
       "type" : "number",
@@ -188,15 +746,7 @@ exports.models = {
       "type" : "number",
       "format" : "double"
     },
-    "openingSellCost" : {
-      "type" : "number",
-      "format" : "double"
-    },
     "lastValue" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "openingBuyQty" : {
       "type" : "number",
       "format" : "double"
     },
@@ -215,14 +765,6 @@ exports.models = {
       "type" : "number",
       "format" : "double"
     },
-    "pnlPcnt" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "openingBuyCost" : {
-      "type" : "number",
-      "format" : "double"
-    },
     "sessionMargin" : {
       "type" : "number",
       "format" : "double"
@@ -231,7 +773,15 @@ exports.models = {
       "type" : "number",
       "format" : "double"
     },
-    "currentSellQty" : {
+    "prevRealisedPnl" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "notionalValue2" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "prevUnrealisedPnl" : {
       "type" : "number",
       "format" : "double"
     },
@@ -239,11 +789,7 @@ exports.models = {
       "type" : "number",
       "format" : "double"
     },
-    "currentBuyQty" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "avgSellPrice" : {
+    "unrealisedCost" : {
       "type" : "number",
       "format" : "double"
     },
@@ -251,7 +797,11 @@ exports.models = {
       "type" : "number",
       "format" : "double"
     },
-    "openingSellQty" : {
+    "realisedCost" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "unrealisedPnl" : {
       "type" : "number",
       "format" : "double"
     },
@@ -266,8 +816,58 @@ exports.models = {
   }
 },
 
-  "order": {
-  "id" : "order",
+  "Error": {
+  "id" : "Error",
+  "name" : "",
+  "required" : [ "message", "code" ],
+  "properties" : {
+    "message" : {
+      "type" : "string"
+    },
+    "code" : {
+      "type" : "number",
+      "format" : "double"
+    }
+  }
+},
+
+  "Trade": {
+  "id" : "Trade",
+  "name" : "",
+  "properties" : {
+    "side" : {
+      "type" : "string"
+    },
+    "timestamp" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "size" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "price" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "symbol" : {
+      "type" : "string"
+    },
+    "id" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "tickDirection" : {
+      "type" : "string"
+    },
+    "trdMatchID" : {
+      "type" : "string"
+    }
+  }
+},
+
+  "Order": {
+  "id" : "Order",
   "name" : "",
   "required" : [ "orderID" ],
   "properties" : {
@@ -350,277 +950,6 @@ exports.models = {
       "type" : "string"
     },
     "cumQty" : {
-      "type" : "number",
-      "format" : "double"
-    }
-  }
-},
-
-  "instrument": {
-  "id" : "instrument",
-  "name" : "",
-  "required" : [ "symbol" ],
-  "properties" : {
-    "reference" : {
-      "type" : "string"
-    },
-    "sellLeg" : {
-      "type" : "string"
-    },
-    "midPrice" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "askPrice" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "timestamp" : {
-      "type" : "string",
-      "format" : "date-time"
-    },
-    "lowPrice" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "quoteCurrency" : {
-      "type" : "string"
-    },
-    "state" : {
-      "type" : "string"
-    },
-    "settlCurrency" : {
-      "type" : "string"
-    },
-    "settledPrice" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "buyLeg" : {
-      "type" : "string"
-    },
-    "listing" : {
-      "type" : "string",
-      "format" : "date-time"
-    },
-    "openingTimestamp" : {
-      "type" : "string",
-      "format" : "date-time"
-    },
-    "bidPrice" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "lastPrice" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "initMargin" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "symbol" : {
-      "type" : "string"
-    },
-    "maintMargin" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "openInterest" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "multiplier" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "typ" : {
-      "type" : "string"
-    },
-    "vwap" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "highPrice" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "lastTickDirection" : {
-      "type" : "string"
-    },
-    "closingTimestamp" : {
-      "type" : "string",
-      "format" : "date-time"
-    },
-    "limitUpPrice" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "underlying" : {
-      "type" : "string"
-    },
-    "limitDownPrice" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "expiry" : {
-      "type" : "string",
-      "format" : "date-time"
-    },
-    "lastChangePcnt" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "limit" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "volume" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "tickSize" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "referenceSymbol" : {
-      "type" : "string"
-    },
-    "prevClosePrice" : {
-      "type" : "number",
-      "format" : "double"
-    }
-  }
-},
-
-  "trade": {
-  "id" : "trade",
-  "name" : "",
-  "properties" : {
-    "side" : {
-      "type" : "string"
-    },
-    "timestamp" : {
-      "type" : "string",
-      "format" : "date-time"
-    },
-    "size" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "price" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "symbol" : {
-      "type" : "string"
-    },
-    "id" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "tickDirection" : {
-      "type" : "string"
-    },
-    "trdMatchID" : {
-      "type" : "string"
-    }
-  }
-},
-
-  "leaderboard": {
-  "id" : "leaderboard",
-  "name" : "",
-  "required" : [ "username", "marginBalance" ],
-  "properties" : {
-    "username" : {
-      "type" : "string"
-    },
-    "marginBalance" : {
-      "type" : "number",
-      "format" : "double"
-    }
-  }
-},
-
-  "user": {
-  "id" : "user",
-  "name" : "",
-  "required" : [ "email", "phone" ],
-  "properties" : {
-    "emailVerified" : {
-      "type" : "boolean"
-    },
-    "email" : {
-      "type" : "string"
-    },
-    "username" : {
-      "type" : "string"
-    },
-    "lastUpdated" : {
-      "type" : "string",
-      "format" : "date-time"
-    },
-    "firstname" : {
-      "type" : "string"
-    },
-    "lastname" : {
-      "type" : "string"
-    },
-    "id" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "phoneVerified" : {
-      "type" : "boolean"
-    },
-    "status" : {
-      "type" : "string"
-    },
-    "preferences" : {
-      "type" : "AnonymousModel_6"
-    },
-    "isEmployee" : {
-      "type" : "boolean"
-    },
-    "phone" : {
-      "type" : "string"
-    },
-    "created" : {
-      "type" : "string",
-      "format" : "date-time"
-    }
-  }
-},
-
-  "quote": {
-  "id" : "quote",
-  "name" : "",
-  "properties" : {
-    "askSize" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "askPrice" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "timestamp" : {
-      "type" : "string",
-      "format" : "date-time"
-    },
-    "bidPrice" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "symbol" : {
-      "type" : "string"
-    },
-    "id" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "bidSize" : {
       "type" : "number",
       "format" : "double"
     }

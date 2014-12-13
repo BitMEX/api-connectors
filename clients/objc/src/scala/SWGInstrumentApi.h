@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "SWGError.h"
 #import "SWGInstrument.h"
 
 
@@ -12,11 +13,18 @@
 +(NSString*) getBasePath;
 /**
 
- Get all listed instruments.
+ Get instruments.
  
- @param filter Filter defining fields, where, orderBy, offset, and limit
+ @param filter Table filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;}.
  */
--(NSNumber*) instrument_findWithCompletionBlock :(NSObject*) filter 
+-(NSNumber*) getWithCompletionBlock :(NSObject*) filter 
         completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
+
+/**
+
+ Get all active instruments and instruments that have expired in <24hrs.
+ 
+ */
+-(NSNumber*) getActiveWithCompletionBlock :(void (^)(NSArray* output, NSError* error))completionBlock;
 
 @end

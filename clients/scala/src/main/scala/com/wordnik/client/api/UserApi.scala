@@ -1,7 +1,9 @@
 package com.wordnik.client.api
 
-import com.wordnik.client.model.Object
 import com.wordnik.client.model.User
+import com.wordnik.client.model.Transaction
+import com.wordnik.client.model.AccessToken
+import com.wordnik.client.model.Any
 import com.wordnik.client.common.ApiInvoker
 import com.wordnik.client.common.ApiException
 
@@ -16,29 +18,22 @@ class UserApi {
   
   def addHeader(key: String, value: String) = apiInvoker.defaultHeaders += key -> value 
 
-  def user_login (body: Any) : Option[Any]= {
+  def getDepositAddress (currency: String= "XBt") : Option[String]= {
     // create path and map variables
-    val path = "/user/login".replaceAll("\\{format\\}","json")
+    val path = "/user/depositAddress".replaceAll("\\{format\\}","json")
 
     val contentType = {
-      if(body != null && body.isInstanceOf[File] )
-        "multipart/form-data"
-      else "application/json"
-      }
+      "application/json"}
 
     // query params
     val queryParams = new HashMap[String, String]
     val headerParams = new HashMap[String, String]
 
-    // verify required params are set
-    (List(body).filter(_ != null)).size match {
-       case 1 => // all required values set
-       case _ => throw new Exception("missing required params")
-    }
+    if(String.valueOf(currency) != "null") queryParams += "currency" -> currency.toString
     try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, body, headerParams.toMap, contentType) match {
+      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
         case s: String =>
-          Some(ApiInvoker.deserialize(s, "", classOf[Any]).asInstanceOf[Any])
+          Some(ApiInvoker.deserialize(s, "", classOf[String]).asInstanceOf[String])
         case _ => None
       }
     } catch {
@@ -46,7 +41,366 @@ class UserApi {
       case ex: ApiException => throw ex
     }
   }
-  def user_logout () = {
+  def getWalletHistory () : Option[List[Transaction]]= {
+    // create path and map variables
+    val path = "/user/walletHistory".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    try {
+      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          Some(ApiInvoker.deserialize(s, "Array", classOf[Transaction]).asInstanceOf[List[Transaction]])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+  def requestWithdrawal (amount: Double, address: String, currency: String= "XBt") : Option[Transaction]= {
+    // create path and map variables
+    val path = "/user/requestWithdrawal".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    // verify required params are set
+    (List(amount, address).filter(_ != null)).size match {
+       case 2 => // all required values set
+       case _ => throw new Exception("missing required params")
+    }
+    try {
+      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          Some(ApiInvoker.deserialize(s, "", classOf[Transaction]).asInstanceOf[Transaction])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+  def cancelWithdrawal (token: String) : Option[Transaction]= {
+    // create path and map variables
+    val path = "/user/cancelWithdrawal".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    // verify required params are set
+    (List(token).filter(_ != null)).size match {
+       case 1 => // all required values set
+       case _ => throw new Exception("missing required params")
+    }
+    try {
+      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          Some(ApiInvoker.deserialize(s, "", classOf[Transaction]).asInstanceOf[Transaction])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+  def confirmWithdrawal (token: String) : Option[Transaction]= {
+    // create path and map variables
+    val path = "/user/confirmWithdrawal".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    // verify required params are set
+    (List(token).filter(_ != null)).size match {
+       case 1 => // all required values set
+       case _ => throw new Exception("missing required params")
+    }
+    try {
+      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          Some(ApiInvoker.deserialize(s, "", classOf[Transaction]).asInstanceOf[Transaction])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+  def requestEnableTFA (`type`: String= "GA") : Option[Boolean]= {
+    // create path and map variables
+    val path = "/user/requestEnableTFA".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    try {
+      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          Some(ApiInvoker.deserialize(s, "", classOf[Boolean]).asInstanceOf[Boolean])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+  def confirmEnableTFA (token: String, `type`: String= "GA") : Option[Boolean]= {
+    // create path and map variables
+    val path = "/user/confirmEnableTFA".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    // verify required params are set
+    (List(token).filter(_ != null)).size match {
+       case 1 => // all required values set
+       case _ => throw new Exception("missing required params")
+    }
+    try {
+      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          Some(ApiInvoker.deserialize(s, "", classOf[Boolean]).asInstanceOf[Boolean])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+  def sendVerificationEmail (email: String) : Option[Boolean]= {
+    // create path and map variables
+    val path = "/user/resendVerificationEmail".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    // verify required params are set
+    (List(email).filter(_ != null)).size match {
+       case 1 => // all required values set
+       case _ => throw new Exception("missing required params")
+    }
+    if(String.valueOf(email) != "null") queryParams += "email" -> email.toString
+    try {
+      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          Some(ApiInvoker.deserialize(s, "", classOf[Boolean]).asInstanceOf[Boolean])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+  def confirmEmail (token: String) : Option[Boolean]= {
+    // create path and map variables
+    val path = "/user/confirmEmail".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    // verify required params are set
+    (List(token).filter(_ != null)).size match {
+       case 1 => // all required values set
+       case _ => throw new Exception("missing required params")
+    }
+    try {
+      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          Some(ApiInvoker.deserialize(s, "", classOf[Boolean]).asInstanceOf[Boolean])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+  def requestPasswordReset (email: String) : Option[Boolean]= {
+    // create path and map variables
+    val path = "/user/requestPasswordReset".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    // verify required params are set
+    (List(email).filter(_ != null)).size match {
+       case 1 => // all required values set
+       case _ => throw new Exception("missing required params")
+    }
+    try {
+      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          Some(ApiInvoker.deserialize(s, "", classOf[Boolean]).asInstanceOf[Boolean])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+  def confirmPasswordReset (email: String, token: String, newPassword: String) : Option[Boolean]= {
+    // create path and map variables
+    val path = "/user/confirmPasswordReset".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    // verify required params are set
+    (List(email, token, newPassword).filter(_ != null)).size match {
+       case 3 => // all required values set
+       case _ => throw new Exception("missing required params")
+    }
+    try {
+      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          Some(ApiInvoker.deserialize(s, "", classOf[Boolean]).asInstanceOf[Boolean])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+  def newUser (email: String, password: String, username: String, firstname: String, lastname: String, acceptsTOS: String, accountType: String= "Trader") : Option[User]= {
+    // create path and map variables
+    val path = "/user".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    // verify required params are set
+    (List(email, password, username).filter(_ != null)).size match {
+       case 3 => // all required values set
+       case _ => throw new Exception("missing required params")
+    }
+    try {
+      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          Some(ApiInvoker.deserialize(s, "", classOf[User]).asInstanceOf[User])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+  def getMe () : Option[User]= {
+    // create path and map variables
+    val path = "/user".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    try {
+      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          Some(ApiInvoker.deserialize(s, "", classOf[User]).asInstanceOf[User])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+  def updateMe (firstname: String, lastname: String, oldPassword: String, newPassword: String, newPasswordConfirm: String, accountType: String) : Option[User]= {
+    // create path and map variables
+    val path = "/user".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    try {
+      apiInvoker.invokeApi(basePath, path, "PUT", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          Some(ApiInvoker.deserialize(s, "", classOf[User]).asInstanceOf[User])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+  def login (email: String, password: String, token: String) : Option[AccessToken]= {
+    // create path and map variables
+    val path = "/user/login".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    // verify required params are set
+    (List(email, password).filter(_ != null)).size match {
+       case 2 => // all required values set
+       case _ => throw new Exception("missing required params")
+    }
+    try {
+      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          Some(ApiInvoker.deserialize(s, "", classOf[AccessToken]).asInstanceOf[AccessToken])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+  def logout () = {
     // create path and map variables
     val path = "/user/logout".replaceAll("\\{format\\}","json")
 
@@ -67,78 +421,9 @@ class UserApi {
       case ex: ApiException => throw ex
     }
   }
-  def user_create (body: user) : Option[user]= {
+  def savePreferences (prefs: Any) : Option[User]= {
     // create path and map variables
-    val path = "/user".replaceAll("\\{format\\}","json")
-
-    val contentType = {
-      if(body != null && body.isInstanceOf[File] )
-        "multipart/form-data"
-      else "application/json"
-      }
-
-    // query params
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, body, headerParams.toMap, contentType) match {
-        case s: String =>
-          Some(ApiInvoker.deserialize(s, "", classOf[user]).asInstanceOf[user])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-  def user_getMe () : Option[user]= {
-    // create path and map variables
-    val path = "/user".replaceAll("\\{format\\}","json")
-
-    val contentType = {
-      "application/json"}
-
-    // query params
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
-        case s: String =>
-          Some(ApiInvoker.deserialize(s, "", classOf[user]).asInstanceOf[user])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-  def user_updateMe (firstname: String, lastname: String, phone: String, oldPassword: String, newPassword: String, newPasswordConfirm: String) : Option[user]= {
-    // create path and map variables
-    val path = "/user".replaceAll("\\{format\\}","json")
-
-    val contentType = {
-      "application/json"}
-
-    // query params
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "PUT", queryParams.toMap, None, headerParams.toMap, contentType) match {
-        case s: String =>
-          Some(ApiInvoker.deserialize(s, "", classOf[user]).asInstanceOf[user])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-  def user_savePreferences (prefs: Any) : Option[user]= {
-    // create path and map variables
-    val path = "/user/savePrefs".replaceAll("\\{format\\}","json")
+    val path = "/user/preferences".replaceAll("\\{format\\}","json")
 
     val contentType = {
       "application/json"}
@@ -155,7 +440,7 @@ class UserApi {
     try {
       apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, None, headerParams.toMap, contentType) match {
         case s: String =>
-          Some(ApiInvoker.deserialize(s, "", classOf[user]).asInstanceOf[user])
+          Some(ApiInvoker.deserialize(s, "", classOf[User]).asInstanceOf[User])
         case _ => None
       }
     } catch {
@@ -163,9 +448,9 @@ class UserApi {
       case ex: ApiException => throw ex
     }
   }
-  def user_verifyPhone () : Option[Boolean]= {
+  def getCommission () : Option[List[any]]= {
     // create path and map variables
-    val path = "/user/requestSMS".replaceAll("\\{format\\}","json")
+    val path = "/user/commission".replaceAll("\\{format\\}","json")
 
     val contentType = {
       "application/json"}
@@ -175,36 +460,9 @@ class UserApi {
     val headerParams = new HashMap[String, String]
 
     try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, None, headerParams.toMap, contentType) match {
+      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
         case s: String =>
-          Some(ApiInvoker.deserialize(s, "", classOf[Boolean]).asInstanceOf[Boolean])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-  def user_confirmPhone (token: String) : Option[user]= {
-    // create path and map variables
-    val path = "/user/confirmPhone".replaceAll("\\{format\\}","json")
-
-    val contentType = {
-      "application/json"}
-
-    // query params
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-
-    // verify required params are set
-    (List(token).filter(_ != null)).size match {
-       case 1 => // all required values set
-       case _ => throw new Exception("missing required params")
-    }
-    try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, None, headerParams.toMap, contentType) match {
-        case s: String =>
-          Some(ApiInvoker.deserialize(s, "", classOf[user]).asInstanceOf[user])
+          Some(ApiInvoker.deserialize(s, "Array", classOf[any]).asInstanceOf[List[any]])
         case _ => None
       }
     } catch {

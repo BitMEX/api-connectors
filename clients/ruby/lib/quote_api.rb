@@ -8,7 +8,7 @@ class Quote_api
     URI.encode(string.to_s)
   end
 
-  def self.quote_get_bucketed (symbol,start_time,end_time,count,bin_size= "30s",opts={})
+  def self.get_bucketed (symbol,start_time,end_time,count,bin_size= "1m",opts={})
     query_param_keys = [:symbol,:bin_size,:start_time,:end_time,:count]
 
     # verify existence of params
@@ -22,7 +22,7 @@ class Quote_api
       :bin_size => bin_size}.merge(opts)
 
     #resource path
-    path = "/quote/getBucketed".sub('{format}','json')
+    path = "/quote/bucketed".sub('{format}','json')
 
     
     # pull querystring keys from options
@@ -33,7 +33,7 @@ class Quote_api
     headers = nil
     post_body = nil
     response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
-    response.map {|response|quote.new(response)}
+    response.map {|response|Quote.new(response)}
 
   end
 

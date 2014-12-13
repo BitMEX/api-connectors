@@ -11,19 +11,19 @@ namespace Swagger.Client.Model {
 
     public string currency { get; set; }
 
-    public double? prevPnl { get; set; }
+    public double? commission { get; set; }
+
+    public double? prevRealisedPnl { get; set; }
+
+    public double? prevUnrealisedPnl { get; set; }
 
     public double? prevClosePrice { get; set; }
 
+    public double? realisedCost { get; set; }
+
+    public double? realisedPnl { get; set; }
+
     public DateTime? openingTimestamp { get; set; }
-
-    public double? openingBuyQty { get; set; }
-
-    public double? openingBuyCost { get; set; }
-
-    public double? openingSellQty { get; set; }
-
-    public double? openingSellCost { get; set; }
 
     public double? openingQty { get; set; }
 
@@ -55,19 +55,13 @@ namespace Swagger.Client.Model {
 
     public DateTime? currentTimestamp { get; set; }
 
-    public double? currentBuyQty { get; set; }
-
-    public double? currentBuyCost { get; set; }
-
-    public double? currentSellQty { get; set; }
-
-    public double? currentSellCost { get; set; }
-
     public double? currentQty { get; set; }
 
     public double? currentCost { get; set; }
 
     public double? currentComm { get; set; }
+
+    public double? unrealisedCost { get; set; }
 
     public double? grossOpenCost { get; set; }
 
@@ -76,6 +70,14 @@ namespace Swagger.Client.Model {
     public double? lastPrice { get; set; }
 
     public double? lastValue { get; set; }
+
+    public string notionalCurrency1 { get; set; }
+
+    public double? notionalValue1 { get; set; }
+
+    public string notionalCurrency2 { get; set; }
+
+    public double? notionalValue2 { get; set; }
 
     public double? initMargin { get; set; }
 
@@ -87,13 +89,9 @@ namespace Swagger.Client.Model {
 
     public double? varMargin { get; set; }
 
-    public double? pnl { get; set; }
+    public double? unrealisedPnl { get; set; }
 
-    public double? pnlPcnt { get; set; }
-
-    public double? avgBuyPrice { get; set; }
-
-    public double? avgSellPrice { get; set; }
+    public double? unrealisedPnlPcnt { get; set; }
 
     public double? avgEntryPrice { get; set; }
 
@@ -113,13 +111,13 @@ namespace Swagger.Client.Model {
       sb.Append("  account: ").Append(account).Append("\n");
       sb.Append("  symbol: ").Append(symbol).Append("\n");
       sb.Append("  currency: ").Append(currency).Append("\n");
-      sb.Append("  prevPnl: ").Append(prevPnl).Append("\n");
+      sb.Append("  commission: ").Append(commission).Append("\n");
+      sb.Append("  prevRealisedPnl: ").Append(prevRealisedPnl).Append("\n");
+      sb.Append("  prevUnrealisedPnl: ").Append(prevUnrealisedPnl).Append("\n");
       sb.Append("  prevClosePrice: ").Append(prevClosePrice).Append("\n");
+      sb.Append("  realisedCost: ").Append(realisedCost).Append("\n");
+      sb.Append("  realisedPnl: ").Append(realisedPnl).Append("\n");
       sb.Append("  openingTimestamp: ").Append(openingTimestamp).Append("\n");
-      sb.Append("  openingBuyQty: ").Append(openingBuyQty).Append("\n");
-      sb.Append("  openingBuyCost: ").Append(openingBuyCost).Append("\n");
-      sb.Append("  openingSellQty: ").Append(openingSellQty).Append("\n");
-      sb.Append("  openingSellCost: ").Append(openingSellCost).Append("\n");
       sb.Append("  openingQty: ").Append(openingQty).Append("\n");
       sb.Append("  openingCost: ").Append(openingCost).Append("\n");
       sb.Append("  openingComm: ").Append(openingComm).Append("\n");
@@ -135,26 +133,25 @@ namespace Swagger.Client.Model {
       sb.Append("  execCost: ").Append(execCost).Append("\n");
       sb.Append("  execComm: ").Append(execComm).Append("\n");
       sb.Append("  currentTimestamp: ").Append(currentTimestamp).Append("\n");
-      sb.Append("  currentBuyQty: ").Append(currentBuyQty).Append("\n");
-      sb.Append("  currentBuyCost: ").Append(currentBuyCost).Append("\n");
-      sb.Append("  currentSellQty: ").Append(currentSellQty).Append("\n");
-      sb.Append("  currentSellCost: ").Append(currentSellCost).Append("\n");
       sb.Append("  currentQty: ").Append(currentQty).Append("\n");
       sb.Append("  currentCost: ").Append(currentCost).Append("\n");
       sb.Append("  currentComm: ").Append(currentComm).Append("\n");
+      sb.Append("  unrealisedCost: ").Append(unrealisedCost).Append("\n");
       sb.Append("  grossOpenCost: ").Append(grossOpenCost).Append("\n");
       sb.Append("  grossExecCost: ").Append(grossExecCost).Append("\n");
       sb.Append("  lastPrice: ").Append(lastPrice).Append("\n");
       sb.Append("  lastValue: ").Append(lastValue).Append("\n");
+      sb.Append("  notionalCurrency1: ").Append(notionalCurrency1).Append("\n");
+      sb.Append("  notionalValue1: ").Append(notionalValue1).Append("\n");
+      sb.Append("  notionalCurrency2: ").Append(notionalCurrency2).Append("\n");
+      sb.Append("  notionalValue2: ").Append(notionalValue2).Append("\n");
       sb.Append("  initMargin: ").Append(initMargin).Append("\n");
       sb.Append("  maintMargin: ").Append(maintMargin).Append("\n");
       sb.Append("  sessionMargin: ").Append(sessionMargin).Append("\n");
       sb.Append("  targetExcessMargin: ").Append(targetExcessMargin).Append("\n");
       sb.Append("  varMargin: ").Append(varMargin).Append("\n");
-      sb.Append("  pnl: ").Append(pnl).Append("\n");
-      sb.Append("  pnlPcnt: ").Append(pnlPcnt).Append("\n");
-      sb.Append("  avgBuyPrice: ").Append(avgBuyPrice).Append("\n");
-      sb.Append("  avgSellPrice: ").Append(avgSellPrice).Append("\n");
+      sb.Append("  unrealisedPnl: ").Append(unrealisedPnl).Append("\n");
+      sb.Append("  unrealisedPnlPcnt: ").Append(unrealisedPnlPcnt).Append("\n");
       sb.Append("  avgEntryPrice: ").Append(avgEntryPrice).Append("\n");
       sb.Append("  breakEvenPrice: ").Append(breakEvenPrice).Append("\n");
       sb.Append("  marginCallPrice: ").Append(marginCallPrice).Append("\n");

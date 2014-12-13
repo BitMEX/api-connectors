@@ -7,21 +7,29 @@ namespace Swagger.Client.Model {
   public class Instrument {
     public string symbol { get; set; }
 
+    public string rootSymbol { get; set; }
+
     public string state { get; set; }
 
     public string typ { get; set; }
 
     public DateTime? listing { get; set; }
 
+    public DateTime? front { get; set; }
+
     public DateTime? expiry { get; set; }
 
-    public string underlying { get; set; }
-
-    public string buyLeg { get; set; }
+    public string inverseLeg { get; set; }
 
     public string sellLeg { get; set; }
 
+    public string buyLeg { get; set; }
+
+    public string underlying { get; set; }
+
     public string quoteCurrency { get; set; }
+
+    public string underlyingSymbol { get; set; }
 
     public string reference { get; set; }
 
@@ -33,11 +41,25 @@ namespace Swagger.Client.Model {
 
     public string settlCurrency { get; set; }
 
+    public double? underlyingToSettleMultiplier { get; set; }
+
+    public double? quoteToSettleMultiplier { get; set; }
+
+    public bool? isQuanto { get; set; }
+
+    public bool? isInverse { get; set; }
+
     public double? initMargin { get; set; }
 
     public double? maintMargin { get; set; }
 
     public double? limit { get; set; }
+
+    public double? makerFee { get; set; }
+
+    public double? takerFee { get; set; }
+
+    public double? insuranceFee { get; set; }
 
     public DateTime? openingTimestamp { get; set; }
 
@@ -48,6 +70,10 @@ namespace Swagger.Client.Model {
     public double? limitDownPrice { get; set; }
 
     public double? limitUpPrice { get; set; }
+
+    public double? prevTotalVolume { get; set; }
+
+    public double? totalVolume { get; set; }
 
     public double? volume { get; set; }
 
@@ -79,27 +105,40 @@ namespace Swagger.Client.Model {
       var sb = new StringBuilder();
       sb.Append("class Instrument {\n");
       sb.Append("  symbol: ").Append(symbol).Append("\n");
+      sb.Append("  rootSymbol: ").Append(rootSymbol).Append("\n");
       sb.Append("  state: ").Append(state).Append("\n");
       sb.Append("  typ: ").Append(typ).Append("\n");
       sb.Append("  listing: ").Append(listing).Append("\n");
+      sb.Append("  front: ").Append(front).Append("\n");
       sb.Append("  expiry: ").Append(expiry).Append("\n");
-      sb.Append("  underlying: ").Append(underlying).Append("\n");
-      sb.Append("  buyLeg: ").Append(buyLeg).Append("\n");
+      sb.Append("  inverseLeg: ").Append(inverseLeg).Append("\n");
       sb.Append("  sellLeg: ").Append(sellLeg).Append("\n");
+      sb.Append("  buyLeg: ").Append(buyLeg).Append("\n");
+      sb.Append("  underlying: ").Append(underlying).Append("\n");
       sb.Append("  quoteCurrency: ").Append(quoteCurrency).Append("\n");
+      sb.Append("  underlyingSymbol: ").Append(underlyingSymbol).Append("\n");
       sb.Append("  reference: ").Append(reference).Append("\n");
       sb.Append("  referenceSymbol: ").Append(referenceSymbol).Append("\n");
       sb.Append("  tickSize: ").Append(tickSize).Append("\n");
       sb.Append("  multiplier: ").Append(multiplier).Append("\n");
       sb.Append("  settlCurrency: ").Append(settlCurrency).Append("\n");
+      sb.Append("  underlyingToSettleMultiplier: ").Append(underlyingToSettleMultiplier).Append("\n");
+      sb.Append("  quoteToSettleMultiplier: ").Append(quoteToSettleMultiplier).Append("\n");
+      sb.Append("  isQuanto: ").Append(isQuanto).Append("\n");
+      sb.Append("  isInverse: ").Append(isInverse).Append("\n");
       sb.Append("  initMargin: ").Append(initMargin).Append("\n");
       sb.Append("  maintMargin: ").Append(maintMargin).Append("\n");
       sb.Append("  limit: ").Append(limit).Append("\n");
+      sb.Append("  makerFee: ").Append(makerFee).Append("\n");
+      sb.Append("  takerFee: ").Append(takerFee).Append("\n");
+      sb.Append("  insuranceFee: ").Append(insuranceFee).Append("\n");
       sb.Append("  openingTimestamp: ").Append(openingTimestamp).Append("\n");
       sb.Append("  closingTimestamp: ").Append(closingTimestamp).Append("\n");
       sb.Append("  prevClosePrice: ").Append(prevClosePrice).Append("\n");
       sb.Append("  limitDownPrice: ").Append(limitDownPrice).Append("\n");
       sb.Append("  limitUpPrice: ").Append(limitUpPrice).Append("\n");
+      sb.Append("  prevTotalVolume: ").Append(prevTotalVolume).Append("\n");
+      sb.Append("  totalVolume: ").Append(totalVolume).Append("\n");
       sb.Append("  volume: ").Append(volume).Append("\n");
       sb.Append("  vwap: ").Append(vwap).Append("\n");
       sb.Append("  highPrice: ").Append(highPrice).Append("\n");

@@ -5,13 +5,13 @@ public class Position {
   private Double account = null;
   private String symbol = null;
   private String currency = null;
-  private Double prevPnl = null;
+  private Double commission = null;
+  private Double prevRealisedPnl = null;
+  private Double prevUnrealisedPnl = null;
   private Double prevClosePrice = null;
+  private Double realisedCost = null;
+  private Double realisedPnl = null;
   private Date openingTimestamp = null;
-  private Double openingBuyQty = null;
-  private Double openingBuyCost = null;
-  private Double openingSellQty = null;
-  private Double openingSellCost = null;
   private Double openingQty = null;
   private Double openingCost = null;
   private Double openingComm = null;
@@ -27,26 +27,25 @@ public class Position {
   private Double execCost = null;
   private Double execComm = null;
   private Date currentTimestamp = null;
-  private Double currentBuyQty = null;
-  private Double currentBuyCost = null;
-  private Double currentSellQty = null;
-  private Double currentSellCost = null;
   private Double currentQty = null;
   private Double currentCost = null;
   private Double currentComm = null;
+  private Double unrealisedCost = null;
   private Double grossOpenCost = null;
   private Double grossExecCost = null;
   private Double lastPrice = null;
   private Double lastValue = null;
+  private String notionalCurrency1 = null;
+  private Double notionalValue1 = null;
+  private String notionalCurrency2 = null;
+  private Double notionalValue2 = null;
   private Double initMargin = null;
   private Double maintMargin = null;
   private Double sessionMargin = null;
   private Double targetExcessMargin = null;
   private Double varMargin = null;
-  private Double pnl = null;
-  private Double pnlPcnt = null;
-  private Double avgBuyPrice = null;
-  private Double avgSellPrice = null;
+  private Double unrealisedPnl = null;
+  private Double unrealisedPnlPcnt = null;
   private Double avgEntryPrice = null;
   private Double breakEvenPrice = null;
   private Double marginCallPrice = null;
@@ -74,11 +73,25 @@ public class Position {
     this.currency = currency;
   }
 
-  public Double getPrevPnl() {
-    return prevPnl;
+  public Double getCommission() {
+    return commission;
   }
-  public void setPrevPnl(Double prevPnl) {
-    this.prevPnl = prevPnl;
+  public void setCommission(Double commission) {
+    this.commission = commission;
+  }
+
+  public Double getPrevRealisedPnl() {
+    return prevRealisedPnl;
+  }
+  public void setPrevRealisedPnl(Double prevRealisedPnl) {
+    this.prevRealisedPnl = prevRealisedPnl;
+  }
+
+  public Double getPrevUnrealisedPnl() {
+    return prevUnrealisedPnl;
+  }
+  public void setPrevUnrealisedPnl(Double prevUnrealisedPnl) {
+    this.prevUnrealisedPnl = prevUnrealisedPnl;
   }
 
   public Double getPrevClosePrice() {
@@ -88,39 +101,25 @@ public class Position {
     this.prevClosePrice = prevClosePrice;
   }
 
+  public Double getRealisedCost() {
+    return realisedCost;
+  }
+  public void setRealisedCost(Double realisedCost) {
+    this.realisedCost = realisedCost;
+  }
+
+  public Double getRealisedPnl() {
+    return realisedPnl;
+  }
+  public void setRealisedPnl(Double realisedPnl) {
+    this.realisedPnl = realisedPnl;
+  }
+
   public Date getOpeningTimestamp() {
     return openingTimestamp;
   }
   public void setOpeningTimestamp(Date openingTimestamp) {
     this.openingTimestamp = openingTimestamp;
-  }
-
-  public Double getOpeningBuyQty() {
-    return openingBuyQty;
-  }
-  public void setOpeningBuyQty(Double openingBuyQty) {
-    this.openingBuyQty = openingBuyQty;
-  }
-
-  public Double getOpeningBuyCost() {
-    return openingBuyCost;
-  }
-  public void setOpeningBuyCost(Double openingBuyCost) {
-    this.openingBuyCost = openingBuyCost;
-  }
-
-  public Double getOpeningSellQty() {
-    return openingSellQty;
-  }
-  public void setOpeningSellQty(Double openingSellQty) {
-    this.openingSellQty = openingSellQty;
-  }
-
-  public Double getOpeningSellCost() {
-    return openingSellCost;
-  }
-  public void setOpeningSellCost(Double openingSellCost) {
-    this.openingSellCost = openingSellCost;
   }
 
   public Double getOpeningQty() {
@@ -228,34 +227,6 @@ public class Position {
     this.currentTimestamp = currentTimestamp;
   }
 
-  public Double getCurrentBuyQty() {
-    return currentBuyQty;
-  }
-  public void setCurrentBuyQty(Double currentBuyQty) {
-    this.currentBuyQty = currentBuyQty;
-  }
-
-  public Double getCurrentBuyCost() {
-    return currentBuyCost;
-  }
-  public void setCurrentBuyCost(Double currentBuyCost) {
-    this.currentBuyCost = currentBuyCost;
-  }
-
-  public Double getCurrentSellQty() {
-    return currentSellQty;
-  }
-  public void setCurrentSellQty(Double currentSellQty) {
-    this.currentSellQty = currentSellQty;
-  }
-
-  public Double getCurrentSellCost() {
-    return currentSellCost;
-  }
-  public void setCurrentSellCost(Double currentSellCost) {
-    this.currentSellCost = currentSellCost;
-  }
-
   public Double getCurrentQty() {
     return currentQty;
   }
@@ -275,6 +246,13 @@ public class Position {
   }
   public void setCurrentComm(Double currentComm) {
     this.currentComm = currentComm;
+  }
+
+  public Double getUnrealisedCost() {
+    return unrealisedCost;
+  }
+  public void setUnrealisedCost(Double unrealisedCost) {
+    this.unrealisedCost = unrealisedCost;
   }
 
   public Double getGrossOpenCost() {
@@ -303,6 +281,34 @@ public class Position {
   }
   public void setLastValue(Double lastValue) {
     this.lastValue = lastValue;
+  }
+
+  public String getNotionalCurrency1() {
+    return notionalCurrency1;
+  }
+  public void setNotionalCurrency1(String notionalCurrency1) {
+    this.notionalCurrency1 = notionalCurrency1;
+  }
+
+  public Double getNotionalValue1() {
+    return notionalValue1;
+  }
+  public void setNotionalValue1(Double notionalValue1) {
+    this.notionalValue1 = notionalValue1;
+  }
+
+  public String getNotionalCurrency2() {
+    return notionalCurrency2;
+  }
+  public void setNotionalCurrency2(String notionalCurrency2) {
+    this.notionalCurrency2 = notionalCurrency2;
+  }
+
+  public Double getNotionalValue2() {
+    return notionalValue2;
+  }
+  public void setNotionalValue2(Double notionalValue2) {
+    this.notionalValue2 = notionalValue2;
   }
 
   public Double getInitMargin() {
@@ -340,32 +346,18 @@ public class Position {
     this.varMargin = varMargin;
   }
 
-  public Double getPnl() {
-    return pnl;
+  public Double getUnrealisedPnl() {
+    return unrealisedPnl;
   }
-  public void setPnl(Double pnl) {
-    this.pnl = pnl;
-  }
-
-  public Double getPnlPcnt() {
-    return pnlPcnt;
-  }
-  public void setPnlPcnt(Double pnlPcnt) {
-    this.pnlPcnt = pnlPcnt;
+  public void setUnrealisedPnl(Double unrealisedPnl) {
+    this.unrealisedPnl = unrealisedPnl;
   }
 
-  public Double getAvgBuyPrice() {
-    return avgBuyPrice;
+  public Double getUnrealisedPnlPcnt() {
+    return unrealisedPnlPcnt;
   }
-  public void setAvgBuyPrice(Double avgBuyPrice) {
-    this.avgBuyPrice = avgBuyPrice;
-  }
-
-  public Double getAvgSellPrice() {
-    return avgSellPrice;
-  }
-  public void setAvgSellPrice(Double avgSellPrice) {
-    this.avgSellPrice = avgSellPrice;
+  public void setUnrealisedPnlPcnt(Double unrealisedPnlPcnt) {
+    this.unrealisedPnlPcnt = unrealisedPnlPcnt;
   }
 
   public Double getAvgEntryPrice() {
@@ -417,13 +409,13 @@ public class Position {
     sb.append("  account: ").append(account).append("\n");
     sb.append("  symbol: ").append(symbol).append("\n");
     sb.append("  currency: ").append(currency).append("\n");
-    sb.append("  prevPnl: ").append(prevPnl).append("\n");
+    sb.append("  commission: ").append(commission).append("\n");
+    sb.append("  prevRealisedPnl: ").append(prevRealisedPnl).append("\n");
+    sb.append("  prevUnrealisedPnl: ").append(prevUnrealisedPnl).append("\n");
     sb.append("  prevClosePrice: ").append(prevClosePrice).append("\n");
+    sb.append("  realisedCost: ").append(realisedCost).append("\n");
+    sb.append("  realisedPnl: ").append(realisedPnl).append("\n");
     sb.append("  openingTimestamp: ").append(openingTimestamp).append("\n");
-    sb.append("  openingBuyQty: ").append(openingBuyQty).append("\n");
-    sb.append("  openingBuyCost: ").append(openingBuyCost).append("\n");
-    sb.append("  openingSellQty: ").append(openingSellQty).append("\n");
-    sb.append("  openingSellCost: ").append(openingSellCost).append("\n");
     sb.append("  openingQty: ").append(openingQty).append("\n");
     sb.append("  openingCost: ").append(openingCost).append("\n");
     sb.append("  openingComm: ").append(openingComm).append("\n");
@@ -439,26 +431,25 @@ public class Position {
     sb.append("  execCost: ").append(execCost).append("\n");
     sb.append("  execComm: ").append(execComm).append("\n");
     sb.append("  currentTimestamp: ").append(currentTimestamp).append("\n");
-    sb.append("  currentBuyQty: ").append(currentBuyQty).append("\n");
-    sb.append("  currentBuyCost: ").append(currentBuyCost).append("\n");
-    sb.append("  currentSellQty: ").append(currentSellQty).append("\n");
-    sb.append("  currentSellCost: ").append(currentSellCost).append("\n");
     sb.append("  currentQty: ").append(currentQty).append("\n");
     sb.append("  currentCost: ").append(currentCost).append("\n");
     sb.append("  currentComm: ").append(currentComm).append("\n");
+    sb.append("  unrealisedCost: ").append(unrealisedCost).append("\n");
     sb.append("  grossOpenCost: ").append(grossOpenCost).append("\n");
     sb.append("  grossExecCost: ").append(grossExecCost).append("\n");
     sb.append("  lastPrice: ").append(lastPrice).append("\n");
     sb.append("  lastValue: ").append(lastValue).append("\n");
+    sb.append("  notionalCurrency1: ").append(notionalCurrency1).append("\n");
+    sb.append("  notionalValue1: ").append(notionalValue1).append("\n");
+    sb.append("  notionalCurrency2: ").append(notionalCurrency2).append("\n");
+    sb.append("  notionalValue2: ").append(notionalValue2).append("\n");
     sb.append("  initMargin: ").append(initMargin).append("\n");
     sb.append("  maintMargin: ").append(maintMargin).append("\n");
     sb.append("  sessionMargin: ").append(sessionMargin).append("\n");
     sb.append("  targetExcessMargin: ").append(targetExcessMargin).append("\n");
     sb.append("  varMargin: ").append(varMargin).append("\n");
-    sb.append("  pnl: ").append(pnl).append("\n");
-    sb.append("  pnlPcnt: ").append(pnlPcnt).append("\n");
-    sb.append("  avgBuyPrice: ").append(avgBuyPrice).append("\n");
-    sb.append("  avgSellPrice: ").append(avgSellPrice).append("\n");
+    sb.append("  unrealisedPnl: ").append(unrealisedPnl).append("\n");
+    sb.append("  unrealisedPnlPcnt: ").append(unrealisedPnlPcnt).append("\n");
     sb.append("  avgEntryPrice: ").append(avgEntryPrice).append("\n");
     sb.append("  breakEvenPrice: ").append(breakEvenPrice).append("\n");
     sb.append("  marginCallPrice: ").append(marginCallPrice).append("\n");

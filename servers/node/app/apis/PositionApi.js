@@ -15,20 +15,20 @@ function writeResponse (response, data) {
 
 exports.models = models = require("../models.js");
 
-exports.position_find = {
+exports.find = {
   'spec': {
     "description" : "Operations about pets",
     "path" : "/position",
     "notes" : "",
     "summary" : "Get your positions.",
     "method": "GET",
-    "params" : [].concat([]).concat([]).concat([]),
-    "type" : "List[position]",
-    "responseMessages" : [errors.invalid('id'), errors.notFound('List[position]')],
-    "nickname" : "position_find"
+    "params" : [params.query("filter", "Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}.", "object", false, false, ""),params.query("columns", "Which columns to fetch. For example, send [&quot;columnName&quot;].", "Array[any]", false, false, ""),params.query("count", "Number of rows to fetch.", "double", false, false, "")].concat([]).concat([]).concat([]),
+    "type" : "List[Position]",
+    "responseMessages" : [errors.invalid('id'), errors.notFound('List[Position]')],
+    "nickname" : "find"
   },
   'action': function (req,res) {
-    writeResponse(res, {message: "how about implementing position_find as a GET method?"});    
+    writeResponse(res, {message: "how about implementing find as a GET method?"});    
   }
 };
 

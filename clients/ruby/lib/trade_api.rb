@@ -8,7 +8,7 @@ class Trade_api
     URI.encode(string.to_s)
   end
 
-  def self.trade_get_bucketed (symbol,start_time,end_time,count,use_millisecond_time,bin_size= "30s",opts={})
+  def self.get_bucketed (symbol,start_time,end_time,count,use_millisecond_time,bin_size= "1m",opts={})
     query_param_keys = [:symbol,:bin_size,:start_time,:end_time,:count,:use_millisecond_time]
 
     # verify existence of params
@@ -23,7 +23,7 @@ class Trade_api
       :bin_size => bin_size}.merge(opts)
 
     #resource path
-    path = "/trade/getBucketed".sub('{format}','json')
+    path = "/trade/bucketed".sub('{format}','json')
 
     
     # pull querystring keys from options
@@ -34,24 +34,23 @@ class Trade_api
     headers = nil
     post_body = nil
     response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
-    response.map {|response|tradeBin.new(response)}
+    response.map {|response|TradeBin.new(response)}
 
   end
 
-def self.trade_get_by_date (symbol,starttime,endtime,opts={})
-    query_param_keys = [:symbol,:starttime,:endtime]
+def self.get_by_date (symbol,start_time,end_time,opts={})
+    query_param_keys = [:symbol,:start_time,:end_time]
 
     # verify existence of params
-    raise "symbol is required" if symbol.nil?
-    raise "starttime is required" if starttime.nil?
+    raise "start_time is required" if start_time.nil?
     # set default values and merge with input
     options = {
     :symbol => symbol,
-      :starttime => starttime,
-      :endtime => endtime}.merge(opts)
+      :start_time => start_time,
+      :end_time => end_time}.merge(opts)
 
     #resource path
-    path = "/trade/getByDate".sub('{format}','json')
+    path = "/trade/byDate".sub('{format}','json')
 
     
     # pull querystring keys from options
@@ -62,15 +61,14 @@ def self.trade_get_by_date (symbol,starttime,endtime,opts={})
     headers = nil
     post_body = nil
     response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
-    response.map {|response|trade.new(response)}
+    response.map {|response|Trade.new(response)}
 
   end
 
-def self.trade_get_recent (symbol,count,opts={})
+def self.get_recent (symbol,count= 100,opts={})
     query_param_keys = [:symbol,:count]
 
     # verify existence of params
-    raise "symbol is required" if symbol.nil?
     raise "count is required" if count.nil?
     # set default values and merge with input
     options = {
@@ -78,7 +76,7 @@ def self.trade_get_recent (symbol,count,opts={})
       :count => count}.merge(opts)
 
     #resource path
-    path = "/trade/getRecent".sub('{format}','json')
+    path = "/trade/recent".sub('{format}','json')
 
     
     # pull querystring keys from options
@@ -89,7 +87,7 @@ def self.trade_get_recent (symbol,count,opts={})
     headers = nil
     post_body = nil
     response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
-    response.map {|response|any.new(response)}
+    response.map {|response|Trade.new(response)}
 
   end
 

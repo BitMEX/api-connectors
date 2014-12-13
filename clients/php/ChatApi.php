@@ -26,51 +26,14 @@ class ChatApi {
 	}
 
   /**
-	 * chat_create
-	 * Send a chat message.
-   * message, string:  (required)
-
-   * @return chat
-	 */
-
-   public function chat_create($message) {
-
-  		//parse inputs
-  		$resourcePath = "/chat";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "POST";
-      $queryParams = array();
-      $headerParams = array();
-      $headerParams['Accept'] = 'application/json';
-      $headerParams['Content-Type'] = 'application/json';
-
-      //make the API Call
-      if (! isset($body)) {
-        $body = null;
-      }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
-
-
-      if(! $response){
-          return null;
-        }
-
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'chat');
-  		return $responseObject;
-
-      }
-  /**
-	 * chat_find
+	 * get
 	 * Get chat messages.
    * count, float:  (optional)
 
-   * @return Array[chat]
+   * @return Array[Chat]
 	 */
 
-   public function chat_find($count=null) {
+   public function get($count=null) {
 
   		//parse inputs
   		$resourcePath = "/chat";
@@ -98,7 +61,44 @@ class ChatApi {
         }
 
   		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[chat]');
+  		                                                'Array[Chat]');
+  		return $responseObject;
+
+      }
+  /**
+	 * send
+	 * Send a chat message.
+   * message, string:  (required)
+
+   * @return Chat
+	 */
+
+   public function send($message) {
+
+  		//parse inputs
+  		$resourcePath = "/chat";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "POST";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      //make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'Chat');
   		return $responseObject;
 
       }

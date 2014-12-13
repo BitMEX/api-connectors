@@ -1,11 +1,11 @@
 require 'json'
 
-MyApp.add_route('get', '/getBucketed', {
+MyApp.add_route('get', '/bucketed', {
   "resourcePath" => "/quote",
   "summary" => "Get previous quotes bucketed by seconds.",
-  "nickname" => "quote_getBucketed", 
-  "responseClass" => "Array[quote]", 
-  "endpoint" => "/getBucketed", 
+  "nickname" => "getBucketed", 
+  "responseClass" => "Array[Quote]", 
+  "endpoint" => "/bucketed", 
   "notes" => "",
   "parameters" => [
     {
@@ -18,15 +18,15 @@ MyApp.add_route('get', '/getBucketed', {
       },
     {
       "name" => "binSize",
-      "description" => "Time interval to bucket by. Available options: ['30s', '5m', '1h', '1d'].",
+      "description" => "Time interval to bucket by. Available options: ['1m', '5m', '1h', '1d'].",
       "dataType" => "string",
       "paramType" => "query",
       "allowMultiple" => false,
       "allowableValues" => "",
-      "defaultValue" => "30s"},
+      "defaultValue" => "1m"},
     {
       "name" => "startTime",
-      "description" => "Start date.",
+      "description" => "Start date. Expects ISO formatted date strings.",
       "dataType" => "Date",
       "paramType" => "query",
       "allowMultiple" => false,
@@ -34,7 +34,7 @@ MyApp.add_route('get', '/getBucketed', {
       },
     {
       "name" => "endTime",
-      "description" => "End Date.",
+      "description" => "End Date. Expects ISO formatted date strings.",
       "dataType" => "Date",
       "paramType" => "query",
       "allowMultiple" => false,
@@ -42,7 +42,7 @@ MyApp.add_route('get', '/getBucketed', {
       },
     {
       "name" => "count",
-      "description" => "Number of buckets to fetch",
+      "description" => "Number of buckets to fetch.",
       "dataType" => "double",
       "paramType" => "query",
       "allowMultiple" => false,

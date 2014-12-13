@@ -26,32 +26,32 @@ class User {
   static $swaggerTypes = array(
       'firstname' => 'string',
       'lastname' => 'string',
+      'status' => 'string',
       'username' => 'string',
       'email' => 'string',
-      'emailVerified' => 'bool',
       'phone' => 'string',
-      'phoneVerified' => 'bool',
-      'status' => 'string',
+      'countryCode' => 'float',
       'created' => 'DateTime',
       'lastUpdated' => 'DateTime',
-      'preferences' => 'AnonymousModel_6',
-      'isEmployee' => 'bool',
+      'preferences' => 'object',
+      'role' => 'string',
+      'TFAEnabled' => 'string',
       'id' => 'float'
 
     );
 
   public $firstname; // string
   public $lastname; // string
+  public $status; // string
   public $username; // string
   public $email; // string
-  public $emailVerified; // bool
   public $phone; // string
-  public $phoneVerified; // bool
-  public $status; // string
+  public $countryCode; // float
   public $created; // DateTime
   public $lastUpdated; // DateTime
-  public $preferences; // AnonymousModel_6
-  public $isEmployee; // bool
+  public $preferences; // object
+  public $role; // string
+  public $TFAEnabled; // string
   public $id; // float
   }
 

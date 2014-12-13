@@ -30,8 +30,9 @@
       /// Get current orderbook. 
       /// </summary>
       /// <param name="symbol"></param>
+      /// <param name="depth"></param>
       /// <returns></returns>
-      public List<orderBook> orderBook_getOrderBook (symbol symbol) {
+      public List<OrderBook> getOrderBook (string symbol, double? depth) {
         // create path and map variables
         var path = "/orderBook".Replace("{format}","json");
 
@@ -48,14 +49,18 @@
           string paramStr = (symbol is DateTime) ? ((DateTime)(object)symbol).ToString("u") : Convert.ToString(symbol);
           queryParams.Add("symbol", paramStr);
 		}
+        if (depth != null){
+          string paramStr = (depth is DateTime) ? ((DateTime)(object)depth).ToString("u") : Convert.ToString(depth);
+          queryParams.Add("depth", paramStr);
+		}
         try {
-          if (typeof(List<orderBook>) == typeof(byte[])) {
+          if (typeof(List<OrderBook>) == typeof(byte[])) {
             var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
-            return ((object)response) as List<orderBook>;
+            return ((object)response) as List<OrderBook>;
           } else {
             var response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
             if(response != null){
-               return (List<orderBook>) ApiInvoker.deserialize(response, typeof(List<orderBook>));
+               return (List<OrderBook>) ApiInvoker.deserialize(response, typeof(List<OrderBook>));
             }
             else {
               return null;

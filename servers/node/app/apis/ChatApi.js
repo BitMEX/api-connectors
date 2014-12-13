@@ -15,26 +15,7 @@ function writeResponse (response, data) {
 
 exports.models = models = require("../models.js");
 
-exports.chat_create = {
-  'spec': {
-    "description" : "Operations about pets",
-    "path" : "/chat",
-    "notes" : "",
-    "summary" : "Send a chat message.",
-    "method": "POST",
-    "params" : [].concat([]).concat([]).concat([]),
-    "type" : "chat",
-    "responseMessages" : [errors.invalid('id'), errors.notFound('chat')],
-    "nickname" : "chat_create"
-  },
-  'action': function (req,res) {
-    if (!req.params.message) {
-      throw errors.invalid('message');
-    }
-    writeResponse(res, {message: "how about implementing chat_create as a POST method?"});    
-  }
-};
-exports.chat_find = {
+exports.get = {
   'spec': {
     "description" : "Operations about pets",
     "path" : "/chat",
@@ -42,12 +23,31 @@ exports.chat_find = {
     "summary" : "Get chat messages.",
     "method": "GET",
     "params" : [params.query("count", "", "double", false, false, "", 100)].concat([]).concat([]).concat([]),
-    "type" : "List[chat]",
-    "responseMessages" : [errors.invalid('id'), errors.notFound('List[chat]')],
-    "nickname" : "chat_find"
+    "type" : "List[Chat]",
+    "responseMessages" : [errors.invalid('id'), errors.notFound('List[Chat]')],
+    "nickname" : "get"
   },
   'action': function (req,res) {
-    writeResponse(res, {message: "how about implementing chat_find as a GET method?"});    
+    writeResponse(res, {message: "how about implementing get as a GET method?"});    
+  }
+};
+exports.send = {
+  'spec': {
+    "description" : "Operations about pets",
+    "path" : "/chat",
+    "notes" : "",
+    "summary" : "Send a chat message.",
+    "method": "POST",
+    "params" : [].concat([]).concat([]).concat([]),
+    "type" : "Chat",
+    "responseMessages" : [errors.invalid('id'), errors.notFound('Chat')],
+    "nickname" : "send"
+  },
+  'action': function (req,res) {
+    if (!req.params.message) {
+      throw errors.invalid('message');
+    }
+    writeResponse(res, {message: "how about implementing send as a POST method?"});    
   }
 };
 

@@ -15,23 +15,23 @@ function writeResponse (response, data) {
 
 exports.models = models = require("../models.js");
 
-exports.orderBook_getOrderBook = {
+exports.getOrderBook = {
   'spec': {
     "description" : "Operations about pets",
     "path" : "/orderBook",
     "notes" : "",
     "summary" : "Get current orderbook.",
     "method": "GET",
-    "params" : [params.query("symbol", "", "symbol", true, false, "")].concat([]).concat([]).concat([]),
-    "type" : "List[orderBook]",
-    "responseMessages" : [errors.invalid('id'), errors.notFound('List[orderBook]')],
-    "nickname" : "orderBook_getOrderBook"
+    "params" : [params.query("symbol", "", "string", true, false, ""),params.query("depth", "", "double", false, false, "", 25)].concat([]).concat([]).concat([]),
+    "type" : "List[OrderBook]",
+    "responseMessages" : [errors.invalid('id'), errors.notFound('List[OrderBook]')],
+    "nickname" : "getOrderBook"
   },
   'action': function (req,res) {
     if (!req.params.symbol) {
       throw errors.invalid('symbol');
     }
-    writeResponse(res, {message: "how about implementing orderBook_getOrderBook as a GET method?"});    
+    writeResponse(res, {message: "how about implementing getOrderBook as a GET method?"});    
   }
 };
 

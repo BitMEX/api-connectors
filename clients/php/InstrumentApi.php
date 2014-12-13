@@ -26,14 +26,14 @@ class InstrumentApi {
 	}
 
   /**
-	 * instrument_find
-	 * Get all listed instruments.
-   * filter, object: Filter defining fields, where, orderBy, offset, and limit (optional)
+	 * get
+	 * Get instruments.
+   * filter, object: Table filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;}. (optional)
 
-   * @return Array[instrument]
+   * @return Array[Instrument]
 	 */
 
-   public function instrument_find($filter=null) {
+   public function get($filter=null) {
 
   		//parse inputs
   		$resourcePath = "/instrument";
@@ -61,7 +61,42 @@ class InstrumentApi {
         }
 
   		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[instrument]');
+  		                                                'Array[Instrument]');
+  		return $responseObject;
+
+      }
+  /**
+	 * getActive
+	 * Get all active instruments and instruments that have expired in &lt;24hrs.
+   * @return Array[Instrument]
+	 */
+
+   public function getActive() {
+
+  		//parse inputs
+  		$resourcePath = "/instrument/active";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "GET";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      //make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'Array[Instrument]');
   		return $responseObject;
 
       }

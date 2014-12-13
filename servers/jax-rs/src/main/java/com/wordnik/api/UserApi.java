@@ -2,8 +2,10 @@ package com.wordnik.api;
 
 import com.wordnik.swagger.annotations.*;
 
-import com.wordnik.client.model.Object;
 import com.wordnik.client.model.User;
+import com.wordnik.client.model.Transaction;
+import com.wordnik.client.model.AccessToken;
+import com.wordnik.client.model.Any;
 import java.util.List;
 import com.wordnik.api.NotFoundException;
 
@@ -14,41 +16,17 @@ import javax.ws.rs.*;
 @Api(value = "/user", description = "the user API")
 @Produces({"application/json"})
 public class UserApi {
-  @POST
-  @Path("/login")
-  @ApiOperation(value = "Log in to BitMEX.", notes = "", responseClass = "Object")
-  @ApiErrors(value = { })
+  @GET
+  @Path("/depositAddress")
+  @ApiOperation(value = "Get a deposit address.", notes = "", responseClass = "String")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
      
-  public Response user_login(
+  public Response getDepositAddress(
     @ApiParam(value = ""
     ,required=true
-) Object body
-    )
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
-  }
-
-  @POST
-  @Path("/logout")
-  @ApiOperation(value = "Log out of BitMEX.", notes = "", responseClass = "void")
-  @ApiErrors(value = { })
-     
-  public Response user_logout(
-    )
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
-  }
-
-  @POST
-  @Path("/")
-  @ApiOperation(value = "Register a new user.", notes = "", responseClass = "user")
-  @ApiErrors(value = { })
-     
-  public Response user_create(
-    @ApiParam(value = "Model instance data"
-    ) user body
+, defaultValue="XBt"
+)@QueryParam("currency")
+ String currency
     )
       throws NotFoundException {
       // do some magic!
@@ -56,11 +34,147 @@ public class UserApi {
   }
 
   @GET
-  @Path("/")
-  @ApiOperation(value = "Get your user model.", notes = "", responseClass = "user")
-  @ApiErrors(value = { })
+  @Path("/walletHistory")
+  @ApiOperation(value = "Get a history of all of your wallet transactions (deposits and withdrawals).", notes = "", responseClass = "List<Transaction>")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
      
-  public Response user_getMe(
+  public Response getWalletHistory(
+    )
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
+  }
+
+  @POST
+  @Path("/requestWithdrawal")
+  @ApiOperation(value = "Request a withdrawal to an external wallet.", notes = "", responseClass = "Transaction")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
+     
+  public Response requestWithdrawal(
+    ,,)
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
+  }
+
+  @POST
+  @Path("/cancelWithdrawal")
+  @ApiOperation(value = "Cancel a withdrawal.", notes = "", responseClass = "Transaction")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
+     
+  public Response cancelWithdrawal(
+    )
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
+  }
+
+  @POST
+  @Path("/confirmWithdrawal")
+  @ApiOperation(value = "Confirm a withdrawal.", notes = "", responseClass = "Transaction")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
+     
+  public Response confirmWithdrawal(
+    )
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
+  }
+
+  @POST
+  @Path("/requestEnableTFA")
+  @ApiOperation(value = "Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled.", notes = "", responseClass = "Boolean")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
+     
+  public Response requestEnableTFA(
+    )
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
+  }
+
+  @POST
+  @Path("/confirmEnableTFA")
+  @ApiOperation(value = "Confirm two-factor auth for this account.", notes = "", responseClass = "Boolean")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
+     
+  public Response confirmEnableTFA(
+    ,)
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
+  }
+
+  @GET
+  @Path("/resendVerificationEmail")
+  @ApiOperation(value = "Re-send verification email.", notes = "", responseClass = "Boolean")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
+     
+  public Response sendVerificationEmail(
+    @ApiParam(value = ""
+    ,required=true
+)@QueryParam("email")
+ String email
+    )
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
+  }
+
+  @POST
+  @Path("/confirmEmail")
+  @ApiOperation(value = "Confirm your email address with a token.", notes = "", responseClass = "Boolean")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
+     
+  public Response confirmEmail(
+    )
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
+  }
+
+  @POST
+  @Path("/requestPasswordReset")
+  @ApiOperation(value = "Request a password reset.", notes = "", responseClass = "Boolean")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
+     
+  public Response requestPasswordReset(
+    )
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
+  }
+
+  @POST
+  @Path("/confirmPasswordReset")
+  @ApiOperation(value = "Confirm a password reset.", notes = "", responseClass = "Boolean")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
+     
+  public Response confirmPasswordReset(
+    ,,)
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
+  }
+
+  @POST
+  @Path("/")
+  @ApiOperation(value = "Register a new user.", notes = "", responseClass = "User")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
+     
+  public Response newUser(
+    ,,,,,,)
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
+  }
+
+  @GET
+  @Path("/")
+  @ApiOperation(value = "Get your user model.", notes = "", responseClass = "User")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
+     
+  public Response getMe(
     )
       throws NotFoundException {
       // do some magic!
@@ -69,10 +183,10 @@ public class UserApi {
 
   @PUT
   @Path("/")
-  @ApiOperation(value = "Update your password, name, and other attributes.", notes = "", responseClass = "user")
-  @ApiErrors(value = { })
+  @ApiOperation(value = "Update your password, name, and other attributes.", notes = "", responseClass = "User")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
      
-  public Response user_updateMe(
+  public Response updateMe(
     ,,,,,)
       throws NotFoundException {
       // do some magic!
@@ -80,11 +194,23 @@ public class UserApi {
   }
 
   @POST
-  @Path("/savePrefs")
-  @ApiOperation(value = "Save application preferences.", notes = "", responseClass = "user")
-  @ApiErrors(value = { })
+  @Path("/login")
+  @ApiOperation(value = "Log in to BitMEX.", notes = "", responseClass = "AccessToken")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
      
-  public Response user_savePreferences(
+  public Response login(
+    ,,)
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
+  }
+
+  @POST
+  @Path("/logout")
+  @ApiOperation(value = "Log out of BitMEX.", notes = "", responseClass = "void")
+  @ApiErrors(value = { @ApiError(code = 204, reason = "Request was successful")})
+     
+  public Response logout(
     )
       throws NotFoundException {
       // do some magic!
@@ -92,23 +218,23 @@ public class UserApi {
   }
 
   @POST
-  @Path("/requestSMS")
-  @ApiOperation(value = "Request an SMS verification token.", notes = "", responseClass = "Boolean")
-  @ApiErrors(value = { })
+  @Path("/preferences")
+  @ApiOperation(value = "Save application preferences.", notes = "", responseClass = "User")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
      
-  public Response user_verifyPhone(
+  public Response savePreferences(
     )
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
   }
 
-  @POST
-  @Path("/confirmPhone")
-  @ApiOperation(value = "Confirm your phone number by entering your SMS verification token.", notes = "", responseClass = "user")
-  @ApiErrors(value = { })
+  @GET
+  @Path("/commission")
+  @ApiOperation(value = "Get your account's commission status.", notes = "", responseClass = "List<any>")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
      
-  public Response user_confirmPhone(
+  public Response getCommission(
     )
       throws NotFoundException {
       // do some magic!

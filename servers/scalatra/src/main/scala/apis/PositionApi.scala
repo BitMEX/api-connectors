@@ -1,5 +1,6 @@
 package apis
 
+import com.wordnik.client.model.Error
 import com.wordnik.client.model.Position
 import java.io.File
 
@@ -28,13 +29,19 @@ class PositionApi (implicit val swagger: Swagger) extends ScalatraServlet
 
 
 
-  val position_findOperation = (apiOperation[List[position]]("position_find")
+  val findOperation = (apiOperation[List[Position]]("find")
       summary "Get your positions."
       parameters(
-        )
+        queryParam[Any]("filter").description(""),queryParam[List[any]]("columns").description(""),queryParam[Double]("count").description(""))
   )
 
-  get("/",operation(position_findOperation)) {
-    }
+  get("/",operation(findOperation)) {
+    val filter = params.getAs[Any]("filter")
+    println("filter: " + filter)
+  val columns = params.getAs[List[any]]("columns")
+    println("columns: " + columns)
+  val count = params.getAs[Double]("count")
+    println("count: " + count)
+  }
 
 }

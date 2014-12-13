@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "SWGError.h"
 #import "SWGOrderBook.h"
 
 
@@ -15,8 +16,10 @@
  Get current orderbook.
  
  @param symbol 
+ @param depth 
  */
--(NSNumber*) orderBook_getOrderBookWithCompletionBlock :(SWGSymbol*) symbol 
+-(NSNumber*) getOrderBookWithCompletionBlock :(NSString*) symbol 
+        depth:(NSNumber*) depth 
         completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
 
 @end

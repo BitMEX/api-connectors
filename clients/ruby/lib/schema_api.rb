@@ -8,7 +8,7 @@ class Schema_api
     URI.encode(string.to_s)
   end
 
-  def self.schema_find (model,opts={})
+  def self.find (model,opts={})
     query_param_keys = [:model]
 
     # set default values and merge with input
@@ -17,6 +17,29 @@ class Schema_api
 
     #resource path
     path = "/schema".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    object.new(response)
+
+  end
+
+def self.websocket_help (opts={})
+    query_param_keys = []
+
+    # set default values and merge with input
+    options = {
+    }.merge(opts)
+
+    #resource path
+    path = "/schema/websocketHelp".sub('{format}','json')
 
     
     # pull querystring keys from options

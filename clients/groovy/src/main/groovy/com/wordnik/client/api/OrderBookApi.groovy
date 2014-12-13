@@ -10,6 +10,7 @@ import static groovyx.net.http.Method.*
 import com.wordnik.client.common.ApiUtils
 //-------------
 
+import com.wordnik.client.model.Error
 import com.wordnik.client.model.OrderBook
 import java.util.*;
 
@@ -19,7 +20,7 @@ class OrderBookApi {
     String versionPath = "/api/v1"
 
 
-  def orderBook_getOrderBook (symbol symbol,Closure onSuccess, Closure onFailure)  {
+  def getOrderBook (String symbol,Double depth,Closure onSuccess, Closure onFailure)  {
     // create path and map variables
     String resourcePath = "/orderBook"
 
@@ -34,9 +35,11 @@ class OrderBookApi {
     }
     if(!"null".equals(String.valueOf(symbol)))
       queryParams.put("symbol", String.valueOf(symbol))
+    if(!"null".equals(String.valueOf(depth)))
+      queryParams.put("depth", String.valueOf(depth))
     invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "List",
-                    orderBook.class )
+                    OrderBook.class )
 
   }
   }

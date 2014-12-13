@@ -1,5 +1,6 @@
 package apis
 
+import com.wordnik.client.model.Error
 import com.wordnik.client.model.Instrument
 import java.io.File
 
@@ -28,15 +29,27 @@ class InstrumentApi (implicit val swagger: Swagger) extends ScalatraServlet
 
 
 
-  val instrument_findOperation = (apiOperation[List[instrument]]("instrument_find")
-      summary "Get all listed instruments."
+  val getOperation = (apiOperation[List[Instrument]]("get")
+      summary "Get instruments."
       parameters(
         queryParam[Any]("filter").description(""))
   )
 
-  get("/",operation(instrument_findOperation)) {
+  get("/",operation(getOperation)) {
     val filter = params.getAs[Any]("filter")
     println("filter: " + filter)
   }
+
+
+
+
+  val getActiveOperation = (apiOperation[List[Instrument]]("getActive")
+      summary "Get all active instruments and instruments that have expired in <24hrs."
+      parameters(
+        )
+  )
+
+  get("/active",operation(getActiveOperation)) {
+    }
 
 }

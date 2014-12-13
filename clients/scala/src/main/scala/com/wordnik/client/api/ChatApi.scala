@@ -1,5 +1,6 @@
 package com.wordnik.client.api
 
+import com.wordnik.client.model.Error
 import com.wordnik.client.model.Chat
 import com.wordnik.client.common.ApiInvoker
 import com.wordnik.client.common.ApiException
@@ -15,7 +16,30 @@ class ChatApi {
   
   def addHeader(key: String, value: String) = apiInvoker.defaultHeaders += key -> value 
 
-  def chat_create (message: String) : Option[chat]= {
+  def get (count: Double= 100) : Option[List[Chat]]= {
+    // create path and map variables
+    val path = "/chat".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    if(String.valueOf(count) != "null") queryParams += "count" -> count.toString
+    try {
+      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          Some(ApiInvoker.deserialize(s, "Array", classOf[Chat]).asInstanceOf[List[Chat]])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+  def send (message: String) : Option[Chat]= {
     // create path and map variables
     val path = "/chat".replaceAll("\\{format\\}","json")
 
@@ -34,30 +58,7 @@ class ChatApi {
     try {
       apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, None, headerParams.toMap, contentType) match {
         case s: String =>
-          Some(ApiInvoker.deserialize(s, "", classOf[chat]).asInstanceOf[chat])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-  def chat_find (count: Double= 100) : Option[List[chat]]= {
-    // create path and map variables
-    val path = "/chat".replaceAll("\\{format\\}","json")
-
-    val contentType = {
-      "application/json"}
-
-    // query params
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-
-    if(String.valueOf(count) != "null") queryParams += "count" -> count.toString
-    try {
-      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
-        case s: String =>
-          Some(ApiInvoker.deserialize(s, "Array", classOf[chat]).asInstanceOf[List[chat]])
+          Some(ApiInvoker.deserialize(s, "", classOf[Chat]).asInstanceOf[Chat])
         case _ => None
       }
     } catch {

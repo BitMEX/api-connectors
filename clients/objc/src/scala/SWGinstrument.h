@@ -7,21 +7,29 @@
 
 @property(nonatomic) NSString* symbol;  
 
+@property(nonatomic) NSString* rootSymbol;  
+
 @property(nonatomic) NSString* state;  
 
 @property(nonatomic) NSString* typ;  
 
 @property(nonatomic) SWGDate* listing;  
 
+@property(nonatomic) SWGDate* front;  
+
 @property(nonatomic) SWGDate* expiry;  
 
-@property(nonatomic) NSString* underlying;  
-
-@property(nonatomic) NSString* buyLeg;  
+@property(nonatomic) NSString* inverseLeg;  
 
 @property(nonatomic) NSString* sellLeg;  
 
+@property(nonatomic) NSString* buyLeg;  
+
+@property(nonatomic) NSString* underlying;  
+
 @property(nonatomic) NSString* quoteCurrency;  
+
+@property(nonatomic) NSString* underlyingSymbol;  
 
 @property(nonatomic) NSString* reference;  
 
@@ -33,11 +41,25 @@
 
 @property(nonatomic) NSString* settlCurrency;  
 
+@property(nonatomic) NSNumber* underlyingToSettleMultiplier;  
+
+@property(nonatomic) NSNumber* quoteToSettleMultiplier;  
+
+@property(nonatomic) NSNumber* isQuanto;  
+
+@property(nonatomic) NSNumber* isInverse;  
+
 @property(nonatomic) NSNumber* initMargin;  
 
 @property(nonatomic) NSNumber* maintMargin;  
 
 @property(nonatomic) NSNumber* limit;  
+
+@property(nonatomic) NSNumber* makerFee;  
+
+@property(nonatomic) NSNumber* takerFee;  
+
+@property(nonatomic) NSNumber* insuranceFee;  
 
 @property(nonatomic) SWGDate* openingTimestamp;  
 
@@ -48,6 +70,10 @@
 @property(nonatomic) NSNumber* limitDownPrice;  
 
 @property(nonatomic) NSNumber* limitUpPrice;  
+
+@property(nonatomic) NSNumber* prevTotalVolume;  
+
+@property(nonatomic) NSNumber* totalVolume;  
 
 @property(nonatomic) NSNumber* volume;  
 
@@ -76,27 +102,40 @@
 @property(nonatomic) SWGDate* timestamp;  
 
 - (id) symbol: (NSString*) symbol
+     rootSymbol: (NSString*) rootSymbol
      state: (NSString*) state
      typ: (NSString*) typ
      listing: (SWGDate*) listing
+     front: (SWGDate*) front
      expiry: (SWGDate*) expiry
-     underlying: (NSString*) underlying
-     buyLeg: (NSString*) buyLeg
+     inverseLeg: (NSString*) inverseLeg
      sellLeg: (NSString*) sellLeg
+     buyLeg: (NSString*) buyLeg
+     underlying: (NSString*) underlying
      quoteCurrency: (NSString*) quoteCurrency
+     underlyingSymbol: (NSString*) underlyingSymbol
      reference: (NSString*) reference
      referenceSymbol: (NSString*) referenceSymbol
      tickSize: (NSNumber*) tickSize
      multiplier: (NSNumber*) multiplier
      settlCurrency: (NSString*) settlCurrency
+     underlyingToSettleMultiplier: (NSNumber*) underlyingToSettleMultiplier
+     quoteToSettleMultiplier: (NSNumber*) quoteToSettleMultiplier
+     isQuanto: (NSNumber*) isQuanto
+     isInverse: (NSNumber*) isInverse
      initMargin: (NSNumber*) initMargin
      maintMargin: (NSNumber*) maintMargin
      limit: (NSNumber*) limit
+     makerFee: (NSNumber*) makerFee
+     takerFee: (NSNumber*) takerFee
+     insuranceFee: (NSNumber*) insuranceFee
      openingTimestamp: (SWGDate*) openingTimestamp
      closingTimestamp: (SWGDate*) closingTimestamp
      prevClosePrice: (NSNumber*) prevClosePrice
      limitDownPrice: (NSNumber*) limitDownPrice
      limitUpPrice: (NSNumber*) limitUpPrice
+     prevTotalVolume: (NSNumber*) prevTotalVolume
+     totalVolume: (NSNumber*) totalVolume
      volume: (NSNumber*) volume
      vwap: (NSNumber*) vwap
      highPrice: (NSNumber*) highPrice

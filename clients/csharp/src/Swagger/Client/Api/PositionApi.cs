@@ -29,8 +29,11 @@
       /// <summary>
       /// Get your positions. 
       /// </summary>
+      /// <param name="filter">Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}.</param>
+      /// <param name="columns">Which columns to fetch. For example, send [&quot;columnName&quot;].</param>
+      /// <param name="count">Number of rows to fetch.</param>
       /// <returns></returns>
-      public List<position> position_find () {
+      public List<Position> find (object filter, List<any> columns, double? count) {
         // create path and map variables
         var path = "/position".Replace("{format}","json");
 
@@ -39,14 +42,26 @@
         var headerParams = new Dictionary<String, String>();
         var formParams = new Dictionary<String, object>();
 
+        if (filter != null){
+          string paramStr = (filter is DateTime) ? ((DateTime)(object)filter).ToString("u") : Convert.ToString(filter);
+          queryParams.Add("filter", paramStr);
+		}
+        if (columns != null){
+          string paramStr = (columns is DateTime) ? ((DateTime)(object)columns).ToString("u") : Convert.ToString(columns);
+          queryParams.Add("columns", paramStr);
+		}
+        if (count != null){
+          string paramStr = (count is DateTime) ? ((DateTime)(object)count).ToString("u") : Convert.ToString(count);
+          queryParams.Add("count", paramStr);
+		}
         try {
-          if (typeof(List<position>) == typeof(byte[])) {
+          if (typeof(List<Position>) == typeof(byte[])) {
             var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
-            return ((object)response) as List<position>;
+            return ((object)response) as List<Position>;
           } else {
             var response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
             if(response != null){
-               return (List<position>) ApiInvoker.deserialize(response, typeof(List<position>));
+               return (List<Position>) ApiInvoker.deserialize(response, typeof(List<Position>));
             }
             else {
               return null;

@@ -21,16 +21,20 @@ class Chat:
 
     def __init__(self):
         self.swaggerTypes = {
-            'id': 'float',
             'date': 'datetime',
             'user': 'str',
-            'message': 'str'
+            'message': 'str',
+            'html': 'str',
+            'fromBot': 'bool',
+            'id': 'float'
 
         }
 
 
-        self.id = None # float
         self.date = None # datetime
         self.user = None # str
         self.message = None # str
+        self.html = None # str
+        self.fromBot = None # bool
+        self.id = None # float
         

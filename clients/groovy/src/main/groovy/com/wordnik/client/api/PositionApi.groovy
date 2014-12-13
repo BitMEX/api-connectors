@@ -10,6 +10,7 @@ import static groovyx.net.http.Method.*
 import com.wordnik.client.common.ApiUtils
 //-------------
 
+import com.wordnik.client.model.Error
 import com.wordnik.client.model.Position
 import java.util.*;
 
@@ -19,7 +20,7 @@ class PositionApi {
     String versionPath = "/api/v1"
 
 
-  def position_find (Closure onSuccess, Closure onFailure)  {
+  def find (Object filter,List<any> columns,Double count,Closure onSuccess, Closure onFailure)  {
     // create path and map variables
     String resourcePath = "/position"
 
@@ -28,9 +29,15 @@ class PositionApi {
     def queryParams = [:]
     def headerParams = [:]
 
+    if(!"null".equals(String.valueOf(filter)))
+      queryParams.put("filter", String.valueOf(filter))
+    if(!"null".equals(String.valueOf(columns)))
+      queryParams.put("columns", String.valueOf(columns))
+    if(!"null".equals(String.valueOf(count)))
+      queryParams.put("count", String.valueOf(count))
     invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "List",
-                    position.class )
+                    Position.class )
 
   }
   }

@@ -30,33 +30,35 @@ class UserApi(object):
 
     
 
-    def user_login(self, body, **kwargs):
-        """Log in to BitMEX.
+    def getDepositAddress(self, **kwargs):
+        """Get a deposit address.
 
         Args:
-            body, object:  (required)
+            currency, str:  (optional)
 
             
 
-        Returns: object
+        Returns: str
         """
 
-        allParams = ['body']
+        allParams = ['currency']
 
         params = locals()
         for (key, val) in params['kwargs'].items():
             if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method user_login" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method getDepositAddress" % key)
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/user/login'
+        resourcePath = '/user/depositAddress'
         resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'POST'
+        method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('currency' in params):
+            queryParams['currency'] = self.apiClient.toPathValue(params['currency'])
         postData = (params['body'] if 'body' in params else None)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
@@ -65,19 +67,19 @@ class UserApi(object):
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'object')
+        responseObject = self.apiClient.deserialize(response, 'str')
         return responseObject
         
 
         
 
-    def user_logout(self, **kwargs):
-        """Log out of BitMEX.
+    def getWalletHistory(self, **kwargs):
+        """Get a history of all of your wallet transactions (deposits and withdrawals).
 
         Args:
             
 
-        Returns: 
+        Returns: Array[Transaction]
         """
 
         allParams = []
@@ -85,86 +87,11 @@ class UserApi(object):
         params = locals()
         for (key, val) in params['kwargs'].items():
             if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method user_logout" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method getWalletHistory" % key)
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/user/logout'
-        resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'POST'
-
-        queryParams = {}
-        headerParams = {}
-
-        postData = (params['body'] if 'body' in params else None)
-
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        
-
-        
-
-    def user_create(self, **kwargs):
-        """Register a new user.
-
-        Args:
-            body, user: Model instance data (optional)
-
-            
-
-        Returns: user
-        """
-
-        allParams = ['body']
-
-        params = locals()
-        for (key, val) in params['kwargs'].items():
-            if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method user_create" % key)
-            params[key] = val
-        del params['kwargs']
-
-        resourcePath = '/user'
-        resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'POST'
-
-        queryParams = {}
-        headerParams = {}
-
-        postData = (params['body'] if 'body' in params else None)
-
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'user')
-        return responseObject
-        
-
-        
-
-    def user_getMe(self, **kwargs):
-        """Get your user model.
-
-        Args:
-            
-
-        Returns: user
-        """
-
-        allParams = []
-
-        params = locals()
-        for (key, val) in params['kwargs'].items():
-            if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method user_getMe" % key)
-            params[key] = val
-        del params['kwargs']
-
-        resourcePath = '/user'
+        resourcePath = '/user/walletHistory'
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
@@ -179,84 +106,37 @@ class UserApi(object):
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'user')
+        responseObject = self.apiClient.deserialize(response, 'Array[Transaction]')
         return responseObject
         
 
         
 
-    def user_updateMe(self, **kwargs):
-        """Update your password, name, and other attributes.
+    def requestWithdrawal(self, amount, address, **kwargs):
+        """Request a withdrawal to an external wallet.
 
         Args:
-            firstname, str:  (optional)
+            amount, float: Amount of withdrawal currency. Note that for Bitcoin withdrawals, a standard 0.0001 XBT fee is charged by the Bitcoin network. (required)
 
-            lastname, str:  (optional)
+            address, str: Destination Address. (required)
 
-            phone, str:  (optional)
-
-            oldPassword, str:  (optional)
-
-            newPassword, str:  (optional)
-
-            newPasswordConfirm, str:  (optional)
+            currency, str: Currency you're withdrawing. (optional)
 
             
 
-        Returns: user
+        Returns: Transaction
         """
 
-        allParams = ['firstname', 'lastname', 'phone', 'oldPassword', 'newPassword', 'newPasswordConfirm']
+        allParams = ['amount', 'address', 'currency']
 
         params = locals()
         for (key, val) in params['kwargs'].items():
             if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method user_updateMe" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method requestWithdrawal" % key)
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/user'
-        resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'PUT'
-
-        queryParams = {}
-        headerParams = {}
-
-        postData = (params['body'] if 'body' in params else None)
-
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'user')
-        return responseObject
-        
-
-        
-
-    def user_savePreferences(self, prefs, **kwargs):
-        """Save application preferences.
-
-        Args:
-            prefs, object:  (required)
-
-            
-
-        Returns: user
-        """
-
-        allParams = ['prefs']
-
-        params = locals()
-        for (key, val) in params['kwargs'].items():
-            if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method user_savePreferences" % key)
-            params[key] = val
-        del params['kwargs']
-
-        resourcePath = '/user/savePrefs'
+        resourcePath = '/user/requestWithdrawal'
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'POST'
 
@@ -271,31 +151,115 @@ class UserApi(object):
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'user')
+        responseObject = self.apiClient.deserialize(response, 'Transaction')
         return responseObject
         
 
         
 
-    def user_verifyPhone(self, **kwargs):
-        """Request an SMS verification token.
+    def cancelWithdrawal(self, token, **kwargs):
+        """Cancel a withdrawal.
 
         Args:
+            token, str:  (required)
+
+            
+
+        Returns: Transaction
+        """
+
+        allParams = ['token']
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method cancelWithdrawal" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/user/cancelWithdrawal'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'Transaction')
+        return responseObject
+        
+
+        
+
+    def confirmWithdrawal(self, token, **kwargs):
+        """Confirm a withdrawal.
+
+        Args:
+            token, str:  (required)
+
+            
+
+        Returns: Transaction
+        """
+
+        allParams = ['token']
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method confirmWithdrawal" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/user/confirmWithdrawal'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'Transaction')
+        return responseObject
+        
+
+        
+
+    def requestEnableTFA(self, **kwargs):
+        """Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled.
+
+        Args:
+            type, str: Two-factor auth type. Supported types: 'GA' (Google Authenticator) (optional)
+
             
 
         Returns: bool
         """
 
-        allParams = []
+        allParams = ['type']
 
         params = locals()
         for (key, val) in params['kwargs'].items():
             if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method user_verifyPhone" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method requestEnableTFA" % key)
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/user/requestSMS'
+        resourcePath = '/user/requestEnableTFA'
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'POST'
 
@@ -316,27 +280,29 @@ class UserApi(object):
 
         
 
-    def user_confirmPhone(self, token, **kwargs):
-        """Confirm your phone number by entering your SMS verification token.
+    def confirmEnableTFA(self, token, **kwargs):
+        """Confirm two-factor auth for this account.
 
         Args:
-            token, str:  (required)
+            token, str: Token from your selected TFA type. (required)
+
+            type, str: Two-factor auth type. Supported types: 'GA' (Google Authenticator) (optional)
 
             
 
-        Returns: user
+        Returns: bool
         """
 
-        allParams = ['token']
+        allParams = ['token', 'type']
 
         params = locals()
         for (key, val) in params['kwargs'].items():
             if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method user_confirmPhone" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method confirmEnableTFA" % key)
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/user/confirmPhone'
+        resourcePath = '/user/confirmEnableTFA'
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'POST'
 
@@ -351,7 +317,479 @@ class UserApi(object):
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'user')
+        responseObject = self.apiClient.deserialize(response, 'bool')
+        return responseObject
+        
+
+        
+
+    def sendVerificationEmail(self, email, **kwargs):
+        """Re-send verification email.
+
+        Args:
+            email, str:  (required)
+
+            
+
+        Returns: bool
+        """
+
+        allParams = ['email']
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method sendVerificationEmail" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/user/resendVerificationEmail'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('email' in params):
+            queryParams['email'] = self.apiClient.toPathValue(params['email'])
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'bool')
+        return responseObject
+        
+
+        
+
+    def confirmEmail(self, token, **kwargs):
+        """Confirm your email address with a token.
+
+        Args:
+            token, str:  (required)
+
+            
+
+        Returns: bool
+        """
+
+        allParams = ['token']
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method confirmEmail" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/user/confirmEmail'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'bool')
+        return responseObject
+        
+
+        
+
+    def requestPasswordReset(self, email, **kwargs):
+        """Request a password reset.
+
+        Args:
+            email, str:  (required)
+
+            
+
+        Returns: bool
+        """
+
+        allParams = ['email']
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method requestPasswordReset" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/user/requestPasswordReset'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'bool')
+        return responseObject
+        
+
+        
+
+    def confirmPasswordReset(self, email, token, newPassword, **kwargs):
+        """Confirm a password reset.
+
+        Args:
+            email, str:  (required)
+
+            token, str:  (required)
+
+            newPassword, str:  (required)
+
+            
+
+        Returns: bool
+        """
+
+        allParams = ['email', 'token', 'newPassword']
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method confirmPasswordReset" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/user/confirmPasswordReset'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'bool')
+        return responseObject
+        
+
+        
+
+    def newUser(self, email, password, username, **kwargs):
+        """Register a new user.
+
+        Args:
+            email, str: Your email address. (required)
+
+            password, str: Your password. (required)
+
+            username, str: Desired username. (required)
+
+            firstname, str: First name. (optional)
+
+            lastname, str: Last name. (optional)
+
+            acceptsTOS, str: Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms). (optional)
+
+            accountType, str: Account type. Options: ['Trader', 'Hedger']. See the &lt;a href=&quot;/app/fees&quot;&gt;fees page&lt;/a&gt; for more details. (optional)
+
+            
+
+        Returns: User
+        """
+
+        allParams = ['email', 'password', 'username', 'firstname', 'lastname', 'acceptsTOS', 'accountType']
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method newUser" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/user'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'User')
+        return responseObject
+        
+
+        
+
+    def getMe(self, **kwargs):
+        """Get your user model.
+
+        Args:
+            
+
+        Returns: User
+        """
+
+        allParams = []
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method getMe" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/user'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'User')
+        return responseObject
+        
+
+        
+
+    def updateMe(self, **kwargs):
+        """Update your password, name, and other attributes.
+
+        Args:
+            firstname, str:  (optional)
+
+            lastname, str:  (optional)
+
+            oldPassword, str:  (optional)
+
+            newPassword, str:  (optional)
+
+            newPasswordConfirm, str:  (optional)
+
+            accountType, str: Account fee schedule. Options: ['Trader', 'Hedger']. See the &lt;a href=&quot;/app/fees&quot;&gt;fees page&lt;/a&gt; for more details. (optional)
+
+            
+
+        Returns: User
+        """
+
+        allParams = ['firstname', 'lastname', 'oldPassword', 'newPassword', 'newPasswordConfirm', 'accountType']
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method updateMe" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/user'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'User')
+        return responseObject
+        
+
+        
+
+    def login(self, email, password, **kwargs):
+        """Log in to BitMEX.
+
+        Args:
+            email, str: Your email address. (required)
+
+            password, str: Your password. (required)
+
+            token, str: OTP Token (YubiKey, Google Authenticator) (optional)
+
+            
+
+        Returns: AccessToken
+        """
+
+        allParams = ['email', 'password', 'token']
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method login" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/user/login'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'AccessToken')
+        return responseObject
+        
+
+        
+
+    def logout(self, **kwargs):
+        """Log out of BitMEX.
+
+        Args:
+            
+
+        Returns: 
+        """
+
+        allParams = []
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method logout" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/user/logout'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        
+
+        
+
+    def savePreferences(self, prefs, **kwargs):
+        """Save application preferences.
+
+        Args:
+            prefs, object:  (required)
+
+            
+
+        Returns: User
+        """
+
+        allParams = ['prefs']
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method savePreferences" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/user/preferences'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'User')
+        return responseObject
+        
+
+        
+
+    def getCommission(self, **kwargs):
+        """Get your account's commission status.
+
+        Args:
+            
+
+        Returns: Array[any]
+        """
+
+        allParams = []
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method getCommission" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/user/commission'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'Array[any]')
         return responseObject
         
 

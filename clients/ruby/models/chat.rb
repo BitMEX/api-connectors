@@ -1,13 +1,15 @@
 class Chat
-  attr_accessor :id, :date, :user, :message
+  attr_accessor :date, :user, :message, :html, :from_bot, :id
 
   # :internal => :external
   def self.attribute_map
     {
-      :id => :id,
       :date => :date,
       :user => :user,
-      :message => :message
+      :message => :message,
+      :html => :html,
+      :from_bot => :fromBot,
+      :id => :id
 
     }
   end
@@ -15,9 +17,6 @@ class Chat
   def initialize(attributes = {})
     return if attributes.empty?
     # Morph attribute keys into undescored rubyish style
-    if self.class.attribute_map[:"id"]
-      @id = attributes["id"]
-    end
     if self.class.attribute_map[:"date"]
       @date = attributes["date"]
     end
@@ -26,6 +25,15 @@ class Chat
     end
     if self.class.attribute_map[:"message"]
       @message = attributes["message"]
+    end
+    if self.class.attribute_map[:"html"]
+      @html = attributes["html"]
+    end
+    if self.class.attribute_map[:"from_bot"]
+      @from_bot = attributes["fromBot"]
+    end
+    if self.class.attribute_map[:"id"]
+      @id = attributes["id"]
     end
     
 

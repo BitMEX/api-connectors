@@ -1,6 +1,8 @@
 #import <Foundation/Foundation.h>
-#import "Object.h"
 #import "SWGUser.h"
+#import "SWGTransaction.h"
+#import "SWGAccessToken.h"
+#import "SWGAny.h"
 
 
 
@@ -13,27 +15,130 @@
 +(NSString*) getBasePath;
 /**
 
- Log in to BitMEX.
+ Get a deposit address.
  
- @param body 
+ @param currency 
  */
--(NSNumber*) user_loginWithCompletionBlock :(NSObject*) body 
-        completionHandler: (void (^)(NSObject* output, NSError* error))completionBlock;
+-(NSNumber*) getDepositAddressWithCompletionBlock :(NSString*) currency 
+        completionHandler: (void (^)(NSString* output, NSError* error))completionBlock;
 
 /**
 
- Log out of BitMEX.
+ Get a history of all of your wallet transactions (deposits and withdrawals).
  
  */
--(NSNumber*) user_logoutWithCompletionBlock :(void (^)(NSError* error))completionBlock;
+-(NSNumber*) getWalletHistoryWithCompletionBlock :(void (^)(NSArray* output, NSError* error))completionBlock;
+
+/**
+
+ Request a withdrawal to an external wallet.
+ 
+ @param amount Amount of withdrawal currency. Note that for Bitcoin withdrawals, a standard 0.0001 XBT fee is charged by the Bitcoin network.
+ @param address Destination Address.
+ @param currency Currency you're withdrawing.
+ */
+-(NSNumber*) requestWithdrawalWithCompletionBlock :(NSNumber*) amount 
+        address:(NSString*) address 
+        currency:(NSString*) currency 
+        completionHandler: (void (^)(SWGTransaction* output, NSError* error))completionBlock;
+
+/**
+
+ Cancel a withdrawal.
+ 
+ @param token 
+ */
+-(NSNumber*) cancelWithdrawalWithCompletionBlock :(NSString*) token 
+        completionHandler: (void (^)(SWGTransaction* output, NSError* error))completionBlock;
+
+/**
+
+ Confirm a withdrawal.
+ 
+ @param token 
+ */
+-(NSNumber*) confirmWithdrawalWithCompletionBlock :(NSString*) token 
+        completionHandler: (void (^)(SWGTransaction* output, NSError* error))completionBlock;
+
+/**
+
+ Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled.
+ 
+ @param type Two-factor auth type. Supported types: 'GA' (Google Authenticator)
+ */
+-(NSNumber*) requestEnableTFAWithCompletionBlock :(NSString*) type 
+        completionHandler: (void (^)(NSNumber* output, NSError* error))completionBlock;
+
+/**
+
+ Confirm two-factor auth for this account.
+ 
+ @param token Token from your selected TFA type.
+ @param type Two-factor auth type. Supported types: 'GA' (Google Authenticator)
+ */
+-(NSNumber*) confirmEnableTFAWithCompletionBlock :(NSString*) token 
+        type:(NSString*) type 
+        completionHandler: (void (^)(NSNumber* output, NSError* error))completionBlock;
+
+/**
+
+ Re-send verification email.
+ 
+ @param email 
+ */
+-(NSNumber*) sendVerificationEmailWithCompletionBlock :(NSString*) email 
+        completionHandler: (void (^)(NSNumber* output, NSError* error))completionBlock;
+
+/**
+
+ Confirm your email address with a token.
+ 
+ @param token 
+ */
+-(NSNumber*) confirmEmailWithCompletionBlock :(NSString*) token 
+        completionHandler: (void (^)(NSNumber* output, NSError* error))completionBlock;
+
+/**
+
+ Request a password reset.
+ 
+ @param email 
+ */
+-(NSNumber*) requestPasswordResetWithCompletionBlock :(NSString*) email 
+        completionHandler: (void (^)(NSNumber* output, NSError* error))completionBlock;
+
+/**
+
+ Confirm a password reset.
+ 
+ @param email 
+ @param token 
+ @param _newPassword 
+ */
+-(NSNumber*) confirmPasswordResetWithCompletionBlock :(NSString*) email 
+        token:(NSString*) token 
+        _newPassword:(NSString*) _newPassword 
+        completionHandler: (void (^)(NSNumber* output, NSError* error))completionBlock;
 
 /**
 
  Register a new user.
  
- @param body Model instance data
+ @param email Your email address.
+ @param password Your password.
+ @param username Desired username.
+ @param firstname First name.
+ @param lastname Last name.
+ @param acceptsTOS Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms).
+ @param accountType Account type. Options: ['Trader', 'Hedger']. See the &lt;a href=&quot;/app/fees&quot;&gt;fees page&lt;/a&gt; for more details.
  */
--(NSNumber*) user_createWithCompletionBlock :(SWGUser*) body 
+-(NSNumber*) newUserWithCompletionBlock :(NSString*) email 
+        password:(NSString*) password 
+        username:(NSString*) username 
+        firstname:(NSString*) firstname 
+        lastname:(NSString*) lastname 
+        acceptsTOS:(NSString*) acceptsTOS 
+        accountType:(NSString*) accountType 
         completionHandler: (void (^)(SWGUser* output, NSError* error))completionBlock;
 
 /**
@@ -41,7 +146,7 @@
  Get your user model.
  
  */
--(NSNumber*) user_getMeWithCompletionBlock :(void (^)(SWGUser* output, NSError* error))completionBlock;
+-(NSNumber*) getMeWithCompletionBlock :(void (^)(SWGUser* output, NSError* error))completionBlock;
 
 /**
 
@@ -49,18 +154,38 @@
  
  @param firstname 
  @param lastname 
- @param phone 
  @param oldPassword 
  @param _newPassword 
  @param _newPasswordConfirm 
+ @param accountType Account fee schedule. Options: ['Trader', 'Hedger']. See the &lt;a href=&quot;/app/fees&quot;&gt;fees page&lt;/a&gt; for more details.
  */
--(NSNumber*) user_updateMeWithCompletionBlock :(NSString*) firstname 
+-(NSNumber*) updateMeWithCompletionBlock :(NSString*) firstname 
         lastname:(NSString*) lastname 
-        phone:(NSString*) phone 
         oldPassword:(NSString*) oldPassword 
         _newPassword:(NSString*) _newPassword 
         _newPasswordConfirm:(NSString*) _newPasswordConfirm 
+        accountType:(NSString*) accountType 
         completionHandler: (void (^)(SWGUser* output, NSError* error))completionBlock;
+
+/**
+
+ Log in to BitMEX.
+ 
+ @param email Your email address.
+ @param password Your password.
+ @param token OTP Token (YubiKey, Google Authenticator)
+ */
+-(NSNumber*) loginWithCompletionBlock :(NSString*) email 
+        password:(NSString*) password 
+        token:(NSString*) token 
+        completionHandler: (void (^)(SWGAccessToken* output, NSError* error))completionBlock;
+
+/**
+
+ Log out of BitMEX.
+ 
+ */
+-(NSNumber*) logoutWithCompletionBlock :(void (^)(NSError* error))completionBlock;
 
 /**
 
@@ -68,23 +193,14 @@
  
  @param prefs 
  */
--(NSNumber*) user_savePreferencesWithCompletionBlock :(NSObject*) prefs 
+-(NSNumber*) savePreferencesWithCompletionBlock :(NSObject*) prefs 
         completionHandler: (void (^)(SWGUser* output, NSError* error))completionBlock;
 
 /**
 
- Request an SMS verification token.
+ Get your account's commission status.
  
  */
--(NSNumber*) user_verifyPhoneWithCompletionBlock :(void (^)(NSNumber* output, NSError* error))completionBlock;
-
-/**
-
- Confirm your phone number by entering your SMS verification token.
- 
- @param token 
- */
--(NSNumber*) user_confirmPhoneWithCompletionBlock :(NSString*) token 
-        completionHandler: (void (^)(SWGUser* output, NSError* error))completionBlock;
+-(NSNumber*) getCommissionWithCompletionBlock :(void (^)(NSArray* output, NSError* error))completionBlock;
 
 @end

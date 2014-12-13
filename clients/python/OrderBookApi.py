@@ -30,23 +30,25 @@ class OrderBookApi(object):
 
     
 
-    def orderBook_getOrderBook(self, symbol, **kwargs):
+    def getOrderBook(self, symbol, **kwargs):
         """Get current orderbook.
 
         Args:
-            symbol, symbol:  (required)
+            symbol, str:  (required)
+
+            depth, float:  (optional)
 
             
 
-        Returns: Array[orderBook]
+        Returns: Array[OrderBook]
         """
 
-        allParams = ['symbol']
+        allParams = ['symbol', 'depth']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
             if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method orderBook_getOrderBook" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method getOrderBook" % key)
             params[key] = val
         del params['kwargs']
 
@@ -59,6 +61,8 @@ class OrderBookApi(object):
 
         if ('symbol' in params):
             queryParams['symbol'] = self.apiClient.toPathValue(params['symbol'])
+        if ('depth' in params):
+            queryParams['depth'] = self.apiClient.toPathValue(params['depth'])
         postData = (params['body'] if 'body' in params else None)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
@@ -67,7 +71,7 @@ class OrderBookApi(object):
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'Array[orderBook]')
+        responseObject = self.apiClient.deserialize(response, 'Array[OrderBook]')
         return responseObject
         
 

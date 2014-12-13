@@ -2,6 +2,7 @@ package com.wordnik.api;
 
 import com.wordnik.swagger.annotations.*;
 
+import com.wordnik.client.model.Error;
 import com.wordnik.client.model.Chat;
 import java.util.List;
 import com.wordnik.api.NotFoundException;
@@ -13,29 +14,29 @@ import javax.ws.rs.*;
 @Api(value = "/chat", description = "the chat API")
 @Produces({"application/json"})
 public class ChatApi {
-  @POST
+  @GET
   @Path("/")
-  @ApiOperation(value = "Send a chat message.", notes = "", responseClass = "chat")
-  @ApiErrors(value = { })
+  @ApiOperation(value = "Get chat messages.", notes = "", responseClass = "List<Chat>")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful"),@ApiError(code = 400, reason = "Parameter Error"),@ApiError(code = 401, reason = "Unauthorized"),@ApiError(code = 404, reason = "Not Found")})
      
-  public Response chat_create(
+  public Response get(
+    @ApiParam(value = ""
+    ,required=true
+, defaultValue="100"
+)@QueryParam("count")
+ Double count
     )
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
   }
 
-  @GET
+  @POST
   @Path("/")
-  @ApiOperation(value = "Get chat messages.", notes = "", responseClass = "List<chat>")
-  @ApiErrors(value = { })
+  @ApiOperation(value = "Send a chat message.", notes = "", responseClass = "Chat")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful"),@ApiError(code = 400, reason = "Parameter Error"),@ApiError(code = 401, reason = "Unauthorized"),@ApiError(code = 404, reason = "Not Found")})
      
-  public Response chat_find(
-    @ApiParam(value = ""
-    ,required=true
-, defaultValue="100"
-)@QueryParam("count")
- Double count
+  public Response send(
     )
       throws NotFoundException {
       // do some magic!

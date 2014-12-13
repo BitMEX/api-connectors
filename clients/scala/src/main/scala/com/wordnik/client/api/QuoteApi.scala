@@ -1,5 +1,6 @@
 package com.wordnik.client.api
 
+import com.wordnik.client.model.Error
 import com.wordnik.client.model.Quote
 import com.wordnik.client.common.ApiInvoker
 import com.wordnik.client.common.ApiException
@@ -15,9 +16,9 @@ class QuoteApi {
   
   def addHeader(key: String, value: String) = apiInvoker.defaultHeaders += key -> value 
 
-  def quote_getBucketed (symbol: String, startTime: Date, endTime: Date, count: Double, binSize: String= "30s") : Option[List[quote]]= {
+  def getBucketed (symbol: String, startTime: Date, endTime: Date, count: Double, binSize: String= "1m") : Option[List[Quote]]= {
     // create path and map variables
-    val path = "/quote/getBucketed".replaceAll("\\{format\\}","json")
+    val path = "/quote/bucketed".replaceAll("\\{format\\}","json")
 
     val contentType = {
       "application/json"}
@@ -39,7 +40,7 @@ class QuoteApi {
     try {
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
         case s: String =>
-          Some(ApiInvoker.deserialize(s, "Array", classOf[quote]).asInstanceOf[List[quote]])
+          Some(ApiInvoker.deserialize(s, "Array", classOf[Quote]).asInstanceOf[List[Quote]])
         case _ => None
       }
     } catch {

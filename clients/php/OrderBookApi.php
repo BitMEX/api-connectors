@@ -26,14 +26,16 @@ class OrderBookApi {
 	}
 
   /**
-	 * orderBook_getOrderBook
+	 * getOrderBook
 	 * Get current orderbook.
-   * symbol, symbol:  (required)
+   * symbol, string:  (required)
 
-   * @return Array[orderBook]
+   * depth, float:  (optional)
+
+   * @return Array[OrderBook]
 	 */
 
-   public function orderBook_getOrderBook($symbol) {
+   public function getOrderBook($symbol, $depth=null) {
 
   		//parse inputs
   		$resourcePath = "/orderBook";
@@ -46,6 +48,9 @@ class OrderBookApi {
 
       if($symbol != null) {
   		  $queryParams['symbol'] = $this->apiClient->toQueryValue($symbol);
+  		}
+  		if($depth != null) {
+  		  $queryParams['depth'] = $this->apiClient->toQueryValue($depth);
   		}
   		//make the API Call
       if (! isset($body)) {
@@ -61,7 +66,7 @@ class OrderBookApi {
         }
 
   		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[orderBook]');
+  		                                                'Array[OrderBook]');
   		return $responseObject;
 
       }

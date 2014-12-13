@@ -10,6 +10,7 @@ import static groovyx.net.http.Method.*
 import com.wordnik.client.common.ApiUtils
 //-------------
 
+import com.wordnik.client.model.Error
 import com.wordnik.client.model.Instrument
 import java.util.*;
 
@@ -19,7 +20,7 @@ class InstrumentApi {
     String versionPath = "/api/v1"
 
 
-  def instrument_find (Object filter,Closure onSuccess, Closure onFailure)  {
+  def get (Object filter,Closure onSuccess, Closure onFailure)  {
     // create path and map variables
     String resourcePath = "/instrument"
 
@@ -32,7 +33,21 @@ class InstrumentApi {
       queryParams.put("filter", String.valueOf(filter))
     invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "List",
-                    instrument.class )
+                    Instrument.class )
+
+  }
+  def getActive (Closure onSuccess, Closure onFailure)  {
+    // create path and map variables
+    String resourcePath = "/instrument/active"
+
+
+    // query params
+    def queryParams = [:]
+    def headerParams = [:]
+
+    invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "GET", "List",
+                    Instrument.class )
 
   }
   }

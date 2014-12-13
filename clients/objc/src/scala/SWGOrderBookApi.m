@@ -1,6 +1,7 @@
 #import "SWGOrderBookApi.h"
 #import "SWGFile.h"
 #import "SWGApiClient.h"
+#import "SWGError.h"
 #import "SWGOrderBook.h"
 
 
@@ -51,7 +52,8 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 }
 
 
--(NSNumber*) orderBook_getOrderBookWithCompletionBlock:(SWGSymbol*) symbol
+-(NSNumber*) getOrderBookWithCompletionBlock:(NSString*) symbol
+        depth:(NSNumber*) depth
         completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/orderBook", basePath];
@@ -66,6 +68,8 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
         NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
     if(symbol != nil)
         queryParams[@"symbol"] = symbol;
+    if(depth != nil)
+        queryParams[@"depth"] = depth;
     NSMutableDictionary* headerParams = [[NSMutableDictionary alloc] init];
     id bodyDictionary = nil;
         if(symbol == nil) {

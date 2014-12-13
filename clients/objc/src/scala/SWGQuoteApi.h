@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "SWGError.h"
 #import "SWGQuote.h"
 
 
@@ -15,12 +16,12 @@
  Get previous quotes bucketed by seconds.
  
  @param symbol Instrument name.
- @param startTime Start date.
- @param endTime End Date.
- @param count Number of buckets to fetch
- @param binSize Time interval to bucket by. Available options: ['30s', '5m', '1h', '1d'].
+ @param startTime Start date. Expects ISO formatted date strings.
+ @param endTime End Date. Expects ISO formatted date strings.
+ @param count Number of buckets to fetch.
+ @param binSize Time interval to bucket by. Available options: ['1m', '5m', '1h', '1d'].
  */
--(NSNumber*) quote_getBucketedWithCompletionBlock :(NSString*) symbol 
+-(NSNumber*) getBucketedWithCompletionBlock :(NSString*) symbol 
         startTime:(SWGDate*) startTime 
         endTime:(SWGDate*) endTime 
         count:(NSNumber*) count 

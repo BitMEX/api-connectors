@@ -1,5 +1,6 @@
 package apis
 
+import com.wordnik.client.model.Error
 import com.wordnik.client.model.Object
 import java.io.File
 
@@ -28,15 +29,27 @@ class SchemaApi (implicit val swagger: Swagger) extends ScalatraServlet
 
 
 
-  val schema_findOperation = (apiOperation[Any]("schema_find")
+  val findOperation = (apiOperation[Any]("find")
       summary "Get model schemata for data objects returned by this API."
       parameters(
         queryParam[String]("model").description(""))
   )
 
-  get("/",operation(schema_findOperation)) {
+  get("/",operation(findOperation)) {
     val model = params.getAs[String]("model")
     println("model: " + model)
   }
+
+
+
+
+  val websocketHelpOperation = (apiOperation[Any]("websocketHelp")
+      summary "Returns help text & subject list for websocket usage."
+      parameters(
+        )
+  )
+
+  get("/websocketHelp",operation(websocketHelpOperation)) {
+    }
 
 }

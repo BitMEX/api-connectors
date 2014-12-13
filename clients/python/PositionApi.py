@@ -30,21 +30,27 @@ class PositionApi(object):
 
     
 
-    def position_find(self, **kwargs):
+    def find(self, **kwargs):
         """Get your positions.
 
         Args:
+            filter, object: Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}. (optional)
+
+            columns, list[any]: Which columns to fetch. For example, send [&quot;columnName&quot;]. (optional)
+
+            count, float: Number of rows to fetch. (optional)
+
             
 
-        Returns: Array[position]
+        Returns: Array[Position]
         """
 
-        allParams = []
+        allParams = ['filter', 'columns', 'count']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
             if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method position_find" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method find" % key)
             params[key] = val
         del params['kwargs']
 
@@ -55,6 +61,12 @@ class PositionApi(object):
         queryParams = {}
         headerParams = {}
 
+        if ('filter' in params):
+            queryParams['filter'] = self.apiClient.toPathValue(params['filter'])
+        if ('columns' in params):
+            queryParams['columns'] = self.apiClient.toPathValue(params['columns'])
+        if ('count' in params):
+            queryParams['count'] = self.apiClient.toPathValue(params['count'])
         postData = (params['body'] if 'body' in params else None)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
@@ -63,7 +75,7 @@ class PositionApi(object):
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'Array[position]')
+        responseObject = self.apiClient.deserialize(response, 'Array[Position]')
         return responseObject
         
 

@@ -8,14 +8,15 @@ class OrderBook_api
     URI.encode(string.to_s)
   end
 
-  def self.order_book_get_order_book (symbol,opts={})
-    query_param_keys = [:symbol]
+  def self.get_order_book (symbol,depth= 25,opts={})
+    query_param_keys = [:symbol,:depth]
 
     # verify existence of params
     raise "symbol is required" if symbol.nil?
     # set default values and merge with input
     options = {
-    :symbol => symbol}.merge(opts)
+    :symbol => symbol,
+      :depth => depth}.merge(opts)
 
     #resource path
     path = "/orderBook".sub('{format}','json')
@@ -29,7 +30,7 @@ class OrderBook_api
     headers = nil
     post_body = nil
     response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
-    response.map {|response|orderBook.new(response)}
+    response.map {|response|OrderBook.new(response)}
 
   end
 

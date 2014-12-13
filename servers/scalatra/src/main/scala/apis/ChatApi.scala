@@ -1,5 +1,6 @@
 package apis
 
+import com.wordnik.client.model.Error
 import com.wordnik.client.model.Chat
 import java.io.File
 
@@ -28,29 +29,29 @@ class ChatApi (implicit val swagger: Swagger) extends ScalatraServlet
 
 
 
-  val chat_createOperation = (apiOperation[chat]("chat_create")
-      summary "Send a chat message."
-      parameters(
-        formParam[String]("message").description(""))
-  )
-
-  post("/",operation(chat_createOperation)) {
-    val message = params.getAs[String]("message")
-    println("message: " + message)
-  }
-
-
-
-
-  val chat_findOperation = (apiOperation[List[chat]]("chat_find")
+  val getOperation = (apiOperation[List[Chat]]("get")
       summary "Get chat messages."
       parameters(
         queryParam[Double]("count").description("").defaultValue(100))
   )
 
-  get("/",operation(chat_findOperation)) {
+  get("/",operation(getOperation)) {
     val count = params.getAs[Double]("count")
     println("count: " + count)
+  }
+
+
+
+
+  val sendOperation = (apiOperation[Chat]("send")
+      summary "Send a chat message."
+      parameters(
+        formParam[String]("message").description(""))
+  )
+
+  post("/",operation(sendOperation)) {
+    val message = params.getAs[String]("message")
+    println("message: " + message)
   }
 
 }

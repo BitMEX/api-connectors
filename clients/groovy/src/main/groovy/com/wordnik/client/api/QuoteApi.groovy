@@ -10,6 +10,7 @@ import static groovyx.net.http.Method.*
 import com.wordnik.client.common.ApiUtils
 //-------------
 
+import com.wordnik.client.model.Error
 import com.wordnik.client.model.Quote
 import java.util.*;
 
@@ -19,9 +20,9 @@ class QuoteApi {
     String versionPath = "/api/v1"
 
 
-  def quote_getBucketed (String symbol,Date startTime,Date endTime,Double count,String binSize,Closure onSuccess, Closure onFailure)  {
+  def getBucketed (String symbol,Date startTime,Date endTime,Double count,String binSize,Closure onSuccess, Closure onFailure)  {
     // create path and map variables
-    String resourcePath = "/quote/getBucketed"
+    String resourcePath = "/quote/bucketed"
 
 
     // query params
@@ -44,7 +45,7 @@ class QuoteApi {
       queryParams.put("count", String.valueOf(count))
     invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "List",
-                    quote.class )
+                    Quote.class )
 
   }
   }

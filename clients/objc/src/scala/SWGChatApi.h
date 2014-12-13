@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "SWGError.h"
 #import "SWGChat.h"
 
 
@@ -12,20 +13,20 @@
 +(NSString*) getBasePath;
 /**
 
- Send a chat message.
- 
- @param message 
- */
--(NSNumber*) chat_createWithCompletionBlock :(NSString*) message 
-        completionHandler: (void (^)(SWGChat* output, NSError* error))completionBlock;
-
-/**
-
  Get chat messages.
  
  @param count 
  */
--(NSNumber*) chat_findWithCompletionBlock :(NSNumber*) count 
+-(NSNumber*) getWithCompletionBlock :(NSNumber*) count 
         completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
+
+/**
+
+ Send a chat message.
+ 
+ @param message 
+ */
+-(NSNumber*) sendWithCompletionBlock :(NSString*) message 
+        completionHandler: (void (^)(SWGChat* output, NSError* error))completionBlock;
 
 @end

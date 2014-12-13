@@ -3,27 +3,40 @@ package com.wordnik.client.model;
 import java.util.Date;
 public class Instrument {
   private String symbol = null;
+  private String rootSymbol = null;
   private String state = null;
   private String typ = null;
   private Date listing = null;
+  private Date front = null;
   private Date expiry = null;
-  private String underlying = null;
-  private String buyLeg = null;
+  private String inverseLeg = null;
   private String sellLeg = null;
+  private String buyLeg = null;
+  private String underlying = null;
   private String quoteCurrency = null;
+  private String underlyingSymbol = null;
   private String reference = null;
   private String referenceSymbol = null;
   private Double tickSize = null;
   private Double multiplier = null;
   private String settlCurrency = null;
+  private Double underlyingToSettleMultiplier = null;
+  private Double quoteToSettleMultiplier = null;
+  private Boolean isQuanto = null;
+  private Boolean isInverse = null;
   private Double initMargin = null;
   private Double maintMargin = null;
   private Double limit = null;
+  private Double makerFee = null;
+  private Double takerFee = null;
+  private Double insuranceFee = null;
   private Date openingTimestamp = null;
   private Date closingTimestamp = null;
   private Double prevClosePrice = null;
   private Double limitDownPrice = null;
   private Double limitUpPrice = null;
+  private Double prevTotalVolume = null;
+  private Double totalVolume = null;
   private Double volume = null;
   private Double vwap = null;
   private Double highPrice = null;
@@ -42,6 +55,13 @@ public class Instrument {
   }
   public void setSymbol(String symbol) {
     this.symbol = symbol;
+  }
+
+  public String getRootSymbol() {
+    return rootSymbol;
+  }
+  public void setRootSymbol(String rootSymbol) {
+    this.rootSymbol = rootSymbol;
   }
 
   public String getState() {
@@ -65,6 +85,13 @@ public class Instrument {
     this.listing = listing;
   }
 
+  public Date getFront() {
+    return front;
+  }
+  public void setFront(Date front) {
+    this.front = front;
+  }
+
   public Date getExpiry() {
     return expiry;
   }
@@ -72,18 +99,11 @@ public class Instrument {
     this.expiry = expiry;
   }
 
-  public String getUnderlying() {
-    return underlying;
+  public String getInverseLeg() {
+    return inverseLeg;
   }
-  public void setUnderlying(String underlying) {
-    this.underlying = underlying;
-  }
-
-  public String getBuyLeg() {
-    return buyLeg;
-  }
-  public void setBuyLeg(String buyLeg) {
-    this.buyLeg = buyLeg;
+  public void setInverseLeg(String inverseLeg) {
+    this.inverseLeg = inverseLeg;
   }
 
   public String getSellLeg() {
@@ -93,11 +113,32 @@ public class Instrument {
     this.sellLeg = sellLeg;
   }
 
+  public String getBuyLeg() {
+    return buyLeg;
+  }
+  public void setBuyLeg(String buyLeg) {
+    this.buyLeg = buyLeg;
+  }
+
+  public String getUnderlying() {
+    return underlying;
+  }
+  public void setUnderlying(String underlying) {
+    this.underlying = underlying;
+  }
+
   public String getQuoteCurrency() {
     return quoteCurrency;
   }
   public void setQuoteCurrency(String quoteCurrency) {
     this.quoteCurrency = quoteCurrency;
+  }
+
+  public String getUnderlyingSymbol() {
+    return underlyingSymbol;
+  }
+  public void setUnderlyingSymbol(String underlyingSymbol) {
+    this.underlyingSymbol = underlyingSymbol;
   }
 
   public String getReference() {
@@ -135,6 +176,34 @@ public class Instrument {
     this.settlCurrency = settlCurrency;
   }
 
+  public Double getUnderlyingToSettleMultiplier() {
+    return underlyingToSettleMultiplier;
+  }
+  public void setUnderlyingToSettleMultiplier(Double underlyingToSettleMultiplier) {
+    this.underlyingToSettleMultiplier = underlyingToSettleMultiplier;
+  }
+
+  public Double getQuoteToSettleMultiplier() {
+    return quoteToSettleMultiplier;
+  }
+  public void setQuoteToSettleMultiplier(Double quoteToSettleMultiplier) {
+    this.quoteToSettleMultiplier = quoteToSettleMultiplier;
+  }
+
+  public Boolean getIsQuanto() {
+    return isQuanto;
+  }
+  public void setIsQuanto(Boolean isQuanto) {
+    this.isQuanto = isQuanto;
+  }
+
+  public Boolean getIsInverse() {
+    return isInverse;
+  }
+  public void setIsInverse(Boolean isInverse) {
+    this.isInverse = isInverse;
+  }
+
   public Double getInitMargin() {
     return initMargin;
   }
@@ -154,6 +223,27 @@ public class Instrument {
   }
   public void setLimit(Double limit) {
     this.limit = limit;
+  }
+
+  public Double getMakerFee() {
+    return makerFee;
+  }
+  public void setMakerFee(Double makerFee) {
+    this.makerFee = makerFee;
+  }
+
+  public Double getTakerFee() {
+    return takerFee;
+  }
+  public void setTakerFee(Double takerFee) {
+    this.takerFee = takerFee;
+  }
+
+  public Double getInsuranceFee() {
+    return insuranceFee;
+  }
+  public void setInsuranceFee(Double insuranceFee) {
+    this.insuranceFee = insuranceFee;
   }
 
   public Date getOpeningTimestamp() {
@@ -189,6 +279,20 @@ public class Instrument {
   }
   public void setLimitUpPrice(Double limitUpPrice) {
     this.limitUpPrice = limitUpPrice;
+  }
+
+  public Double getPrevTotalVolume() {
+    return prevTotalVolume;
+  }
+  public void setPrevTotalVolume(Double prevTotalVolume) {
+    this.prevTotalVolume = prevTotalVolume;
+  }
+
+  public Double getTotalVolume() {
+    return totalVolume;
+  }
+  public void setTotalVolume(Double totalVolume) {
+    this.totalVolume = totalVolume;
   }
 
   public Double getVolume() {
@@ -287,27 +391,40 @@ public class Instrument {
     StringBuilder sb = new StringBuilder();
     sb.append("class Instrument {\n");
     sb.append("  symbol: ").append(symbol).append("\n");
+    sb.append("  rootSymbol: ").append(rootSymbol).append("\n");
     sb.append("  state: ").append(state).append("\n");
     sb.append("  typ: ").append(typ).append("\n");
     sb.append("  listing: ").append(listing).append("\n");
+    sb.append("  front: ").append(front).append("\n");
     sb.append("  expiry: ").append(expiry).append("\n");
-    sb.append("  underlying: ").append(underlying).append("\n");
-    sb.append("  buyLeg: ").append(buyLeg).append("\n");
+    sb.append("  inverseLeg: ").append(inverseLeg).append("\n");
     sb.append("  sellLeg: ").append(sellLeg).append("\n");
+    sb.append("  buyLeg: ").append(buyLeg).append("\n");
+    sb.append("  underlying: ").append(underlying).append("\n");
     sb.append("  quoteCurrency: ").append(quoteCurrency).append("\n");
+    sb.append("  underlyingSymbol: ").append(underlyingSymbol).append("\n");
     sb.append("  reference: ").append(reference).append("\n");
     sb.append("  referenceSymbol: ").append(referenceSymbol).append("\n");
     sb.append("  tickSize: ").append(tickSize).append("\n");
     sb.append("  multiplier: ").append(multiplier).append("\n");
     sb.append("  settlCurrency: ").append(settlCurrency).append("\n");
+    sb.append("  underlyingToSettleMultiplier: ").append(underlyingToSettleMultiplier).append("\n");
+    sb.append("  quoteToSettleMultiplier: ").append(quoteToSettleMultiplier).append("\n");
+    sb.append("  isQuanto: ").append(isQuanto).append("\n");
+    sb.append("  isInverse: ").append(isInverse).append("\n");
     sb.append("  initMargin: ").append(initMargin).append("\n");
     sb.append("  maintMargin: ").append(maintMargin).append("\n");
     sb.append("  limit: ").append(limit).append("\n");
+    sb.append("  makerFee: ").append(makerFee).append("\n");
+    sb.append("  takerFee: ").append(takerFee).append("\n");
+    sb.append("  insuranceFee: ").append(insuranceFee).append("\n");
     sb.append("  openingTimestamp: ").append(openingTimestamp).append("\n");
     sb.append("  closingTimestamp: ").append(closingTimestamp).append("\n");
     sb.append("  prevClosePrice: ").append(prevClosePrice).append("\n");
     sb.append("  limitDownPrice: ").append(limitDownPrice).append("\n");
     sb.append("  limitUpPrice: ").append(limitUpPrice).append("\n");
+    sb.append("  prevTotalVolume: ").append(prevTotalVolume).append("\n");
+    sb.append("  totalVolume: ").append(totalVolume).append("\n");
     sb.append("  volume: ").append(volume).append("\n");
     sb.append("  vwap: ").append(vwap).append("\n");
     sb.append("  highPrice: ").append(highPrice).append("\n");

@@ -23,16 +23,16 @@ class User:
         self.swaggerTypes = {
             'firstname': 'str',
             'lastname': 'str',
+            'status': 'str',
             'username': 'str',
             'email': 'str',
-            'emailVerified': 'bool',
             'phone': 'str',
-            'phoneVerified': 'bool',
-            'status': 'str',
+            'countryCode': 'float',
             'created': 'datetime',
             'lastUpdated': 'datetime',
-            'preferences': 'AnonymousModel_6',
-            'isEmployee': 'bool',
+            'preferences': 'object',
+            'role': 'str',
+            'TFAEnabled': 'str',
             'id': 'float'
 
         }
@@ -40,15 +40,15 @@ class User:
 
         self.firstname = None # str
         self.lastname = None # str
+        self.status = None # str
         self.username = None # str
         self.email = None # str
-        self.emailVerified = None # bool
         self.phone = None # str
-        self.phoneVerified = None # bool
-        self.status = None # str
+        self.countryCode = None # float
         self.created = None # datetime
         self.lastUpdated = None # datetime
-        self.preferences = None # AnonymousModel_6
-        self.isEmployee = None # bool
+        self.preferences = None # object
+        self.role = None # str
+        self.TFAEnabled = None # str
         self.id = None # float
         

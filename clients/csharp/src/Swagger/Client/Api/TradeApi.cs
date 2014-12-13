@@ -30,15 +30,15 @@
       /// Get previous trades bucketed by seconds. 
       /// </summary>
       /// <param name="symbol">Instrument name.</param>
-      /// <param name="startTime">Start date.</param>
-      /// <param name="endTime">End Date.</param>
-      /// <param name="count">Number of buckets to fetch</param>
+      /// <param name="startTime">Start date. Expects ISO formatted date strings.</param>
+      /// <param name="endTime">End Date. Expects ISO formatted date strings.</param>
+      /// <param name="count">Number of buckets to fetch.</param>
       /// <param name="useMillisecondTime">Return dates in milliseconds (GMT). Useful for charting.</param>
-      /// <param name="binSize">Time interval to bucket by. Available options: ['30s', '5m', '1h', '1d'].</param>
+      /// <param name="binSize">Time interval to bucket by. Available options: ['30s', '1m', '5m', '1h', '1d'].</param>
       /// <returns></returns>
-      public List<tradeBin> trade_getBucketed (string symbol, DateTime? startTime, DateTime? endTime, double? count, bool? useMillisecondTime, string binSize) {
+      public List<TradeBin> getBucketed (string symbol, DateTime? startTime, DateTime? endTime, double? count, bool? useMillisecondTime, string binSize) {
         // create path and map variables
-        var path = "/trade/getBucketed".Replace("{format}","json");
+        var path = "/trade/bucketed".Replace("{format}","json");
 
         // query params
         var queryParams = new Dictionary<String, String>();
@@ -74,13 +74,13 @@
           queryParams.Add("useMillisecondTime", paramStr);
 		}
         try {
-          if (typeof(List<tradeBin>) == typeof(byte[])) {
+          if (typeof(List<TradeBin>) == typeof(byte[])) {
             var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
-            return ((object)response) as List<tradeBin>;
+            return ((object)response) as List<TradeBin>;
           } else {
             var response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
             if(response != null){
-               return (List<tradeBin>) ApiInvoker.deserialize(response, typeof(List<tradeBin>));
+               return (List<TradeBin>) ApiInvoker.deserialize(response, typeof(List<TradeBin>));
             }
             else {
               return null;
@@ -96,15 +96,15 @@
         }
       }
       /// <summary>
-      /// Get trades within two dates. 
+      /// Get trades between two dates. 
       /// </summary>
       /// <param name="symbol">Instrument name.</param>
-      /// <param name="starttime">Start date.</param>
-      /// <param name="endtime">End Date.</param>
+      /// <param name="startTime">Start date.</param>
+      /// <param name="endTime">End Date.</param>
       /// <returns></returns>
-      public List<trade> trade_getByDate (string symbol, DateTime? starttime, DateTime? endtime) {
+      public List<Trade> getByDate (string symbol, DateTime? startTime, DateTime? endTime) {
         // create path and map variables
-        var path = "/trade/getByDate".Replace("{format}","json");
+        var path = "/trade/byDate".Replace("{format}","json");
 
         // query params
         var queryParams = new Dictionary<String, String>();
@@ -112,29 +112,29 @@
         var formParams = new Dictionary<String, object>();
 
         // verify required params are set
-        if (symbol == null || starttime == null ) {
+        if (startTime == null ) {
            throw new ApiException(400, "missing required params");
         }
         if (symbol != null){
           string paramStr = (symbol is DateTime) ? ((DateTime)(object)symbol).ToString("u") : Convert.ToString(symbol);
           queryParams.Add("symbol", paramStr);
 		}
-        if (starttime != null){
-          string paramStr = (starttime is DateTime) ? ((DateTime)(object)starttime).ToString("u") : Convert.ToString(starttime);
-          queryParams.Add("starttime", paramStr);
+        if (startTime != null){
+          string paramStr = (startTime is DateTime) ? ((DateTime)(object)startTime).ToString("u") : Convert.ToString(startTime);
+          queryParams.Add("startTime", paramStr);
 		}
-        if (endtime != null){
-          string paramStr = (endtime is DateTime) ? ((DateTime)(object)endtime).ToString("u") : Convert.ToString(endtime);
-          queryParams.Add("endtime", paramStr);
+        if (endTime != null){
+          string paramStr = (endTime is DateTime) ? ((DateTime)(object)endTime).ToString("u") : Convert.ToString(endTime);
+          queryParams.Add("endTime", paramStr);
 		}
         try {
-          if (typeof(List<trade>) == typeof(byte[])) {
+          if (typeof(List<Trade>) == typeof(byte[])) {
             var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
-            return ((object)response) as List<trade>;
+            return ((object)response) as List<Trade>;
           } else {
             var response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
             if(response != null){
-               return (List<trade>) ApiInvoker.deserialize(response, typeof(List<trade>));
+               return (List<Trade>) ApiInvoker.deserialize(response, typeof(List<Trade>));
             }
             else {
               return null;
@@ -155,9 +155,9 @@
       /// <param name="symbol">Instrument name.</param>
       /// <param name="count">Number of trades to fetch</param>
       /// <returns></returns>
-      public List<any> trade_getRecent (string symbol, double? count) {
+      public List<Trade> getRecent (string symbol, double? count) {
         // create path and map variables
-        var path = "/trade/getRecent".Replace("{format}","json");
+        var path = "/trade/recent".Replace("{format}","json");
 
         // query params
         var queryParams = new Dictionary<String, String>();
@@ -165,7 +165,7 @@
         var formParams = new Dictionary<String, object>();
 
         // verify required params are set
-        if (symbol == null || count == null ) {
+        if (count == null ) {
            throw new ApiException(400, "missing required params");
         }
         if (symbol != null){
@@ -177,13 +177,13 @@
           queryParams.Add("count", paramStr);
 		}
         try {
-          if (typeof(List<any>) == typeof(byte[])) {
+          if (typeof(List<Trade>) == typeof(byte[])) {
             var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
-            return ((object)response) as List<any>;
+            return ((object)response) as List<Trade>;
           } else {
             var response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
             if(response != null){
-               return (List<any>) ApiInvoker.deserialize(response, typeof(List<any>));
+               return (List<Trade>) ApiInvoker.deserialize(response, typeof(List<Trade>));
             }
             else {
               return null;

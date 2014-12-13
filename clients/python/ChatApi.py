@@ -30,48 +30,7 @@ class ChatApi(object):
 
     
 
-    def chat_create(self, message, **kwargs):
-        """Send a chat message.
-
-        Args:
-            message, str:  (required)
-
-            
-
-        Returns: chat
-        """
-
-        allParams = ['message']
-
-        params = locals()
-        for (key, val) in params['kwargs'].iteritems():
-            if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method chat_create" % key)
-            params[key] = val
-        del params['kwargs']
-
-        resourcePath = '/chat'
-        resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'POST'
-
-        queryParams = {}
-        headerParams = {}
-
-        postData = (params['body'] if 'body' in params else None)
-
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'chat')
-        return responseObject
-        
-
-        
-
-    def chat_find(self, **kwargs):
+    def get(self, **kwargs):
         """Get chat messages.
 
         Args:
@@ -79,7 +38,7 @@ class ChatApi(object):
 
             
 
-        Returns: Array[chat]
+        Returns: Array[Chat]
         """
 
         allParams = ['count']
@@ -87,7 +46,7 @@ class ChatApi(object):
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
             if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method chat_find" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method get" % key)
             params[key] = val
         del params['kwargs']
 
@@ -108,7 +67,48 @@ class ChatApi(object):
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'Array[chat]')
+        responseObject = self.apiClient.deserialize(response, 'Array[Chat]')
+        return responseObject
+        
+
+        
+
+    def send(self, message, **kwargs):
+        """Send a chat message.
+
+        Args:
+            message, str:  (required)
+
+            
+
+        Returns: Chat
+        """
+
+        allParams = ['message']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method send" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/chat'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'Chat')
         return responseObject
         
 

@@ -34,7 +34,8 @@
             <a href="#!/SchemaApi">SchemaApi</a>
           </div>
           <ul>
-			      <li><a href="#!/SchemaApi#schema_find">schema_find</a></li>
+			      <li><a href="#!/SchemaApi#find">find</a></li>
+            <li><a href="#!/SchemaApi#websocketHelp">websocketHelp</a></li>
             </ul>
         </div>
         <div class="section-box">
@@ -42,7 +43,15 @@
             <a href="#!/OrderBookApi">OrderBookApi</a>
           </div>
           <ul>
-			      <li><a href="#!/OrderBookApi#orderBook_getOrderBook">orderBook_getOrderBook</a></li>
+			      <li><a href="#!/OrderBookApi#getOrderBook">getOrderBook</a></li>
+            </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/ExecutionApi">ExecutionApi</a>
+          </div>
+          <ul>
+			      <li><a href="#!/ExecutionApi#getMyExecutions">getMyExecutions</a></li>
             </ul>
         </div>
         <div class="section-box">
@@ -50,7 +59,7 @@
             <a href="#!/PositionApi">PositionApi</a>
           </div>
           <ul>
-			      <li><a href="#!/PositionApi#position_find">position_find</a></li>
+			      <li><a href="#!/PositionApi#find">find</a></li>
             </ul>
         </div>
         <div class="section-box">
@@ -58,7 +67,8 @@
             <a href="#!/InstrumentApi">InstrumentApi</a>
           </div>
           <ul>
-			      <li><a href="#!/InstrumentApi#instrument_find">instrument_find</a></li>
+			      <li><a href="#!/InstrumentApi#get">get</a></li>
+            <li><a href="#!/InstrumentApi#getActive">getActive</a></li>
             </ul>
         </div>
         <div class="section-box">
@@ -66,8 +76,20 @@
             <a href="#!/ChatApi">ChatApi</a>
           </div>
           <ul>
-			      <li><a href="#!/ChatApi#chat_create">chat_create</a></li>
-            <li><a href="#!/ChatApi#chat_find">chat_find</a></li>
+			      <li><a href="#!/ChatApi#get">get</a></li>
+            <li><a href="#!/ChatApi#send">send</a></li>
+            </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/ApiKeyApi">ApiKeyApi</a>
+          </div>
+          <ul>
+			      <li><a href="#!/ApiKeyApi#createKey">createKey</a></li>
+            <li><a href="#!/ApiKeyApi#getKeys">getKeys</a></li>
+            <li><a href="#!/ApiKeyApi#remove">remove</a></li>
+            <li><a href="#!/ApiKeyApi#disable">disable</a></li>
+            <li><a href="#!/ApiKeyApi#enable">enable</a></li>
             </ul>
         </div>
         <div class="section-box">
@@ -75,9 +97,9 @@
             <a href="#!/TradeApi">TradeApi</a>
           </div>
           <ul>
-			      <li><a href="#!/TradeApi#trade_getBucketed">trade_getBucketed</a></li>
-            <li><a href="#!/TradeApi#trade_getByDate">trade_getByDate</a></li>
-            <li><a href="#!/TradeApi#trade_getRecent">trade_getRecent</a></li>
+			      <li><a href="#!/TradeApi#getBucketed">getBucketed</a></li>
+            <li><a href="#!/TradeApi#getByDate">getByDate</a></li>
+            <li><a href="#!/TradeApi#getRecent">getRecent</a></li>
             </ul>
         </div>
         <div class="section-box">
@@ -85,15 +107,7 @@
             <a href="#!/QuoteApi">QuoteApi</a>
           </div>
           <ul>
-			      <li><a href="#!/QuoteApi#quote_getBucketed">quote_getBucketed</a></li>
-            </ul>
-        </div>
-        <div class="section-box">
-          <div class="section-header">
-            <a href="#!/LeaderboardApi">LeaderboardApi</a>
-          </div>
-          <ul>
-			      <li><a href="#!/LeaderboardApi#leaderboard_getOrderBook">leaderboard_getOrderBook</a></li>
+			      <li><a href="#!/QuoteApi#getBucketed">getBucketed</a></li>
             </ul>
         </div>
         <div class="section-box">
@@ -101,10 +115,14 @@
             <a href="#!/OrderApi">OrderApi</a>
           </div>
           <ul>
-			      <li><a href="#!/OrderApi#order_newOrder">order_newOrder</a></li>
-            <li><a href="#!/OrderApi#order_cancelOrder">order_cancelOrder</a></li>
-            <li><a href="#!/OrderApi#order_myOrders">order_myOrders</a></li>
-            <li><a href="#!/OrderApi#order_myOpenOrders">order_myOpenOrders</a></li>
+			      <li><a href="#!/OrderApi#newOrder">newOrder</a></li>
+            <li><a href="#!/OrderApi#newOrder_OrderApi_0">newOrder_OrderApi_0</a></li>
+            <li><a href="#!/OrderApi#cancelOrder">cancelOrder</a></li>
+            <li><a href="#!/OrderApi#getOrders">getOrders</a></li>
+            <li><a href="#!/OrderApi#cancelOrder_OrderApi_0">cancelOrder_OrderApi_0</a></li>
+            <li><a href="#!/OrderApi#getOrders_OrderApi_0">getOrders_OrderApi_0</a></li>
+            <li><a href="#!/OrderApi#getOrders_OrderApi_1">getOrders_OrderApi_1</a></li>
+            <li><a href="#!/OrderApi#cancelAllAfter">cancelAllAfter</a></li>
             </ul>
         </div>
         <div class="section-box">
@@ -112,14 +130,24 @@
             <a href="#!/UserApi">UserApi</a>
           </div>
           <ul>
-			      <li><a href="#!/UserApi#user_login">user_login</a></li>
-            <li><a href="#!/UserApi#user_logout">user_logout</a></li>
-            <li><a href="#!/UserApi#user_create">user_create</a></li>
-            <li><a href="#!/UserApi#user_getMe">user_getMe</a></li>
-            <li><a href="#!/UserApi#user_updateMe">user_updateMe</a></li>
-            <li><a href="#!/UserApi#user_savePreferences">user_savePreferences</a></li>
-            <li><a href="#!/UserApi#user_verifyPhone">user_verifyPhone</a></li>
-            <li><a href="#!/UserApi#user_confirmPhone">user_confirmPhone</a></li>
+			      <li><a href="#!/UserApi#getDepositAddress">getDepositAddress</a></li>
+            <li><a href="#!/UserApi#getWalletHistory">getWalletHistory</a></li>
+            <li><a href="#!/UserApi#requestWithdrawal">requestWithdrawal</a></li>
+            <li><a href="#!/UserApi#cancelWithdrawal">cancelWithdrawal</a></li>
+            <li><a href="#!/UserApi#confirmWithdrawal">confirmWithdrawal</a></li>
+            <li><a href="#!/UserApi#requestEnableTFA">requestEnableTFA</a></li>
+            <li><a href="#!/UserApi#confirmEnableTFA">confirmEnableTFA</a></li>
+            <li><a href="#!/UserApi#sendVerificationEmail">sendVerificationEmail</a></li>
+            <li><a href="#!/UserApi#confirmEmail">confirmEmail</a></li>
+            <li><a href="#!/UserApi#requestPasswordReset">requestPasswordReset</a></li>
+            <li><a href="#!/UserApi#confirmPasswordReset">confirmPasswordReset</a></li>
+            <li><a href="#!/UserApi#newUser">newUser</a></li>
+            <li><a href="#!/UserApi#getMe">getMe</a></li>
+            <li><a href="#!/UserApi#updateMe">updateMe</a></li>
+            <li><a href="#!/UserApi#login">login</a></li>
+            <li><a href="#!/UserApi#logout">logout</a></li>
+            <li><a href="#!/UserApi#savePreferences">savePreferences</a></li>
+            <li><a href="#!/UserApi#getCommission">getCommission</a></li>
             </ul>
         </div>
         </div>

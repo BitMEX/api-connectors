@@ -1,6 +1,7 @@
 #import "SWGInstrumentApi.h"
 #import "SWGFile.h"
 #import "SWGApiClient.h"
+#import "SWGError.h"
 #import "SWGInstrument.h"
 
 
@@ -51,7 +52,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 }
 
 
--(NSNumber*) instrument_findWithCompletionBlock:(NSObject*) filter
+-(NSNumber*) getWithCompletionBlock:(NSObject*) filter
         completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/instrument", basePath];
@@ -66,6 +67,47 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
         NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
     if(filter != nil)
         queryParams[@"filter"] = filter;
+    NSMutableDictionary* headerParams = [[NSMutableDictionary alloc] init];
+    id bodyDictionary = nil;
+        SWGApiClient* client = [SWGApiClient sharedClientFromPool:basePath];
+
+    return [client dictionary: requestUrl 
+                               method: @"GET" 
+                          queryParams: queryParams 
+                                 body: bodyDictionary 
+                         headerParams: headerParams
+                   requestContentType: requestContentType
+                  responseContentType: responseContentType
+                      completionBlock: ^(NSDictionary *data, NSError *error) {
+                         if (error) {
+                             completionBlock(nil, error);return;
+                         }
+                         
+                         if([data isKindOfClass:[NSArray class]]){
+                             NSMutableArray * objs = [[NSMutableArray alloc] initWithCapacity:[data count]];
+                             for (NSDictionary* dict in (NSArray*)data) {
+                                SWGInstrument* d = [[SWGInstrument alloc]initWithValues: dict];
+                                [objs addObject:d];
+                             }
+                             completionBlock(objs, nil);
+                         }
+                        }];
+    
+
+}
+
+-(NSNumber*) getActiveWithCompletionBlock: (void (^)(NSArray* output, NSError* error))completionBlock{
+
+    NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/instrument/active", basePath];
+
+    // remove format in URL if needed
+    if ([requestUrl rangeOfString:@".{format}"].location != NSNotFound)
+        [requestUrl replaceCharactersInRange: [requestUrl rangeOfString:@".{format}"] withString:@".json"];
+
+    NSString* requestContentType = @"application/json";
+    NSString* responseContentType = @"application/json";
+
+        NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
     NSMutableDictionary* headerParams = [[NSMutableDictionary alloc] init];
     id bodyDictionary = nil;
         SWGApiClient* client = [SWGApiClient sharedClientFromPool:basePath];

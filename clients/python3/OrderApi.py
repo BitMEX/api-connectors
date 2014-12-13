@@ -30,8 +30,8 @@ class OrderApi(object):
 
     
 
-    def order_newOrder(self, symbol, quantity, price, **kwargs):
-        """Create a new order.
+    def newOrder(self, symbol, quantity, price, **kwargs):
+        """Create a new order. [Deprecated]
 
         Args:
             symbol, str: Instrument name. (required)
@@ -42,17 +42,19 @@ class OrderApi(object):
 
             ioc, bool: Set to true to place an immediateOrCancel order. (optional)
 
+            clOrdID, str: Optional Client Order ID to give this order. This ID will come back on any execution messages tied to this order. (optional)
+
             
 
-        Returns: order
+        Returns: Order
         """
 
-        allParams = ['symbol', 'quantity', 'price', 'ioc']
+        allParams = ['symbol', 'quantity', 'price', 'ioc', 'clOrdID']
 
         params = locals()
         for (key, val) in params['kwargs'].items():
             if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method order_newOrder" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method newOrder" % key)
             params[key] = val
         del params['kwargs']
 
@@ -71,29 +73,178 @@ class OrderApi(object):
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'order')
+        responseObject = self.apiClient.deserialize(response, 'Order')
         return responseObject
         
 
         
 
-    def order_cancelOrder(self, orderID, **kwargs):
-        """Cancel an order.
+    def newOrder_OrderApi_0(self, symbol, quantity, price, **kwargs):
+        """Create a new order.
 
         Args:
-            orderID, str: Order ID. (required)
+            symbol, str: Instrument name. (required)
+
+            quantity, float: Quantity. Use positive numbers to buy, negative to sell. (required)
+
+            price, float: Price to buy. (required)
+
+            ioc, bool: Set to true to place an immediateOrCancel order. (optional)
+
+            clOrdID, str: Optional Client Order ID to give this order. This ID will come back on any execution messages tied to this order. (optional)
 
             
 
-        Returns: order
+        Returns: Order
         """
 
-        allParams = ['orderID']
+        allParams = ['symbol', 'quantity', 'price', 'ioc', 'clOrdID']
 
         params = locals()
         for (key, val) in params['kwargs'].items():
             if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method order_cancelOrder" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method newOrder_OrderApi_0" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/order'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'Order')
+        return responseObject
+        
+
+        
+
+    def cancelOrder(self, **kwargs):
+        """Cancel order(s). Send multiple order IDs to cancel in bulk.
+
+        Args:
+            orderID, str: Order ID(s). (optional)
+
+            clOrdID, str: Client Order ID(s). See POST /order. (optional)
+
+            text, str: Optional cancellation annotation. e.g. 'Spread Exceeded' (optional)
+
+            
+
+        Returns: Array[Order]
+        """
+
+        allParams = ['orderID', 'clOrdID', 'text']
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method cancelOrder" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/order'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'DELETE'
+
+        queryParams = {}
+        headerParams = {}
+
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'Array[Order]')
+        return responseObject
+        
+
+        
+
+    def getOrders(self, **kwargs):
+        """Get your orders.
+
+        Args:
+            filter, object: Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}. (optional)
+
+            columns, list[any]: Which columns to fetch. For example, send [&quot;columnName&quot;]. (optional)
+
+            count, float: Number of rows to fetch. (optional)
+
+            
+
+        Returns: Array[Order]
+        """
+
+        allParams = ['filter', 'columns', 'count']
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method getOrders" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/order'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('filter' in params):
+            queryParams['filter'] = self.apiClient.toPathValue(params['filter'])
+        if ('columns' in params):
+            queryParams['columns'] = self.apiClient.toPathValue(params['columns'])
+        if ('count' in params):
+            queryParams['count'] = self.apiClient.toPathValue(params['count'])
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'Array[Order]')
+        return responseObject
+        
+
+        
+
+    def cancelOrder_OrderApi_0(self, orderID, **kwargs):
+        """Cancel order(s). Send multiple order IDs to cancel in bulk. [Deprecated]
+
+        Args:
+            orderID, str: Order ID(s). (required)
+
+            clOrdID, str: Client Order ID(s). See POST /order. (optional)
+
+            text, str: Optional cancellation annotation. e.g. 'Spread Exceeded' (optional)
+
+            
+
+        Returns: Array[Order]
+        """
+
+        allParams = ['orderID', 'clOrdID', 'text']
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method cancelOrder_OrderApi_0" % key)
             params[key] = val
         del params['kwargs']
 
@@ -112,25 +263,25 @@ class OrderApi(object):
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'order')
+        responseObject = self.apiClient.deserialize(response, 'Array[Order]')
         return responseObject
         
 
         
 
-    def order_myOrders(self, **kwargs):
-        """Get your recent orders.
+    def getOrders_OrderApi_0(self, **kwargs):
+        """Get your orders. [Deprecated, use GET /order]
 
         Args:
-            filter, object: Table filter. Filter e.g. by symbol. (optional)
+            filter, object: Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}. (optional)
 
-            columns, array[str]: Which columns to fetch. (optional)
+            columns, list[any]: Which columns to fetch. For example, send [&quot;columnName&quot;]. (optional)
 
-            count, float: Number of rows to fetch (optional)
+            count, float: Number of rows to fetch. (optional)
 
             
 
-        Returns: Array[order]
+        Returns: Array[Order]
         """
 
         allParams = ['filter', 'columns', 'count']
@@ -138,7 +289,7 @@ class OrderApi(object):
         params = locals()
         for (key, val) in params['kwargs'].items():
             if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method order_myOrders" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method getOrders_OrderApi_0" % key)
             params[key] = val
         del params['kwargs']
 
@@ -163,33 +314,86 @@ class OrderApi(object):
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'Array[order]')
+        responseObject = self.apiClient.deserialize(response, 'Array[Order]')
         return responseObject
         
 
         
 
-    def order_myOpenOrders(self, **kwargs):
+    def getOrders_OrderApi_1(self, **kwargs):
         """Get your open orders.
 
         Args:
+            filter, object: Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}. (optional)
+
+            columns, list[any]: Which columns to fetch. For example, send [&quot;columnName&quot;]. (optional)
+
+            count, float: Number of rows to fetch. (optional)
+
             
 
-        Returns: Array[order]
+        Returns: Array[Order]
         """
 
-        allParams = []
+        allParams = ['filter', 'columns', 'count']
 
         params = locals()
         for (key, val) in params['kwargs'].items():
             if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method order_myOpenOrders" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method getOrders_OrderApi_1" % key)
             params[key] = val
         del params['kwargs']
 
         resourcePath = '/order/myOpenOrders'
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('filter' in params):
+            queryParams['filter'] = self.apiClient.toPathValue(params['filter'])
+        if ('columns' in params):
+            queryParams['columns'] = self.apiClient.toPathValue(params['columns'])
+        if ('count' in params):
+            queryParams['count'] = self.apiClient.toPathValue(params['count'])
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'Array[Order]')
+        return responseObject
+        
+
+        
+
+    def cancelAllAfter(self, timeout, **kwargs):
+        """Automatically cancel all your orders after a specified timeout.
+
+        Args:
+            timeout, float: Timeout in ms. Set to 0 to cancel this timer.  (required)
+
+            
+
+        Returns: object
+        """
+
+        allParams = ['timeout']
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method cancelAllAfter" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/order/cancelAllAfter'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
 
         queryParams = {}
         headerParams = {}
@@ -202,7 +406,7 @@ class OrderApi(object):
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'Array[order]')
+        responseObject = self.apiClient.deserialize(response, 'object')
         return responseObject
         
 

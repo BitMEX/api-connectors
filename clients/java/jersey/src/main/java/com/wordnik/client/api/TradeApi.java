@@ -3,9 +3,9 @@ package com.wordnik.client.api;
 import com.wordnik.client.common.ApiException;
 import com.wordnik.client.common.ApiInvoker;
 
-import com.wordnik.client.model.TradeBin;
+import com.wordnik.client.model.Error;
 import com.wordnik.client.model.Trade;
-import com.wordnik.client.model.Any;
+import com.wordnik.client.model.TradeBin;
 import com.sun.jersey.multipart.FormDataMultiPart;
 
 import javax.ws.rs.core.MediaType;
@@ -29,14 +29,18 @@ public class TradeApi {
     return basePath;
   }
 
-  public List<tradeBin> trade_getBucketed (String symbol, Date startTime, Date endTime, Double count, Boolean useMillisecondTime, String binSize) throws ApiException {
+  //error info- code: 200 reason: "Request was successful" model: <none>
+  //error info- code: 400 reason: "Parameter Error" model: Error
+  //error info- code: 401 reason: "Unauthorized" model: Error
+  //error info- code: 404 reason: "Not Found" model: Error
+  public List<TradeBin> getBucketed (String symbol, Date startTime, Date endTime, Double count, Boolean useMillisecondTime, String binSize) throws ApiException {
     Object postBody = null;
     // verify required params are set
     if(symbol == null ) {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/trade/getBucketed".replaceAll("\\{format\\}","json");
+    String path = "/trade/bucketed".replaceAll("\\{format\\}","json");
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -72,7 +76,7 @@ public class TradeApi {
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return (List<tradeBin>) ApiInvoker.deserialize(response, "List", tradeBin.class);
+        return (List<TradeBin>) ApiInvoker.deserialize(response, "List", TradeBin.class);
       }
       else {
         return null;
@@ -86,14 +90,18 @@ public class TradeApi {
       }
     }
   }
-  public List<trade> trade_getByDate (String symbol, Date starttime, Date endtime) throws ApiException {
+  //error info- code: 200 reason: "Request was successful" model: <none>
+  //error info- code: 400 reason: "Parameter Error" model: Error
+  //error info- code: 401 reason: "Unauthorized" model: Error
+  //error info- code: 404 reason: "Not Found" model: Error
+  public List<Trade> getByDate (String symbol, Date startTime, Date endTime) throws ApiException {
     Object postBody = null;
     // verify required params are set
-    if(symbol == null || starttime == null ) {
+    if(startTime == null ) {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/trade/getByDate".replaceAll("\\{format\\}","json");
+    String path = "/trade/byDate".replaceAll("\\{format\\}","json");
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -102,10 +110,10 @@ public class TradeApi {
 
     if(!"null".equals(String.valueOf(symbol)))
       queryParams.put("symbol", String.valueOf(symbol));
-    if(!"null".equals(String.valueOf(starttime)))
-      queryParams.put("starttime", String.valueOf(starttime));
-    if(!"null".equals(String.valueOf(endtime)))
-      queryParams.put("endtime", String.valueOf(endtime));
+    if(!"null".equals(String.valueOf(startTime)))
+      queryParams.put("startTime", String.valueOf(startTime));
+    if(!"null".equals(String.valueOf(endTime)))
+      queryParams.put("endTime", String.valueOf(endTime));
     String[] contentTypes = {
       "application/json"};
 
@@ -123,7 +131,7 @@ public class TradeApi {
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return (List<trade>) ApiInvoker.deserialize(response, "List", trade.class);
+        return (List<Trade>) ApiInvoker.deserialize(response, "List", Trade.class);
       }
       else {
         return null;
@@ -137,14 +145,18 @@ public class TradeApi {
       }
     }
   }
-  public List<any> trade_getRecent (String symbol, Double count) throws ApiException {
+  //error info- code: 200 reason: "Request was successful" model: <none>
+  //error info- code: 400 reason: "Parameter Error" model: Error
+  //error info- code: 401 reason: "Unauthorized" model: Error
+  //error info- code: 404 reason: "Not Found" model: Error
+  public List<Trade> getRecent (String symbol, Double count) throws ApiException {
     Object postBody = null;
     // verify required params are set
-    if(symbol == null || count == null ) {
+    if(count == null ) {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/trade/getRecent".replaceAll("\\{format\\}","json");
+    String path = "/trade/recent".replaceAll("\\{format\\}","json");
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -172,7 +184,7 @@ public class TradeApi {
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return (List<any>) ApiInvoker.deserialize(response, "List", any.class);
+        return (List<Trade>) ApiInvoker.deserialize(response, "List", Trade.class);
       }
       else {
         return null;

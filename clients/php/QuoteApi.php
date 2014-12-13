@@ -26,25 +26,25 @@ class QuoteApi {
 	}
 
   /**
-	 * quote_getBucketed
+	 * getBucketed
 	 * Get previous quotes bucketed by seconds.
    * symbol, string: Instrument name. (required)
 
-   * startTime, DateTime: Start date. (optional)
+   * startTime, DateTime: Start date. Expects ISO formatted date strings. (optional)
 
-   * endTime, DateTime: End Date. (optional)
+   * endTime, DateTime: End Date. Expects ISO formatted date strings. (optional)
 
-   * count, float: Number of buckets to fetch (optional)
+   * count, float: Number of buckets to fetch. (optional)
 
-   * binSize, string: Time interval to bucket by. Available options: ['30s', '5m', '1h', '1d']. (optional)
+   * binSize, string: Time interval to bucket by. Available options: ['1m', '5m', '1h', '1d']. (optional)
 
-   * @return Array[quote]
+   * @return Array[Quote]
 	 */
 
-   public function quote_getBucketed($symbol, $startTime=null, $endTime=null, $count=null, $binSize=null) {
+   public function getBucketed($symbol, $startTime=null, $endTime=null, $count=null, $binSize=null) {
 
   		//parse inputs
-  		$resourcePath = "/quote/getBucketed";
+  		$resourcePath = "/quote/bucketed";
   		$resourcePath = str_replace("{format}", "json", $resourcePath);
   		$method = "GET";
       $queryParams = array();
@@ -81,7 +81,7 @@ class QuoteApi {
         }
 
   		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[quote]');
+  		                                                'Array[Quote]');
   		return $responseObject;
 
       }

@@ -1,9 +1,9 @@
 #import "SWGTradeApi.h"
 #import "SWGFile.h"
 #import "SWGApiClient.h"
-#import "SWGTradeBin.h"
+#import "SWGError.h"
 #import "SWGTrade.h"
-#import "SWGAny.h"
+#import "SWGTradeBin.h"
 
 
 
@@ -53,7 +53,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 }
 
 
--(NSNumber*) trade_getBucketedWithCompletionBlock:(NSString*) symbol
+-(NSNumber*) getBucketedWithCompletionBlock:(NSString*) symbol
         startTime:(SWGDate*) startTime
         endTime:(SWGDate*) endTime
         count:(NSNumber*) count
@@ -61,7 +61,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
         binSize:(NSString*) binSize
         completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
 
-    NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/trade/getBucketed", basePath];
+    NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/trade/bucketed", basePath];
 
     // remove format in URL if needed
     if ([requestUrl rangeOfString:@".{format}"].location != NSNotFound)
@@ -115,12 +115,12 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 
 }
 
--(NSNumber*) trade_getByDateWithCompletionBlock:(NSString*) symbol
-        starttime:(SWGDate*) starttime
-        endtime:(SWGDate*) endtime
+-(NSNumber*) getByDateWithCompletionBlock:(NSString*) symbol
+        startTime:(SWGDate*) startTime
+        endTime:(SWGDate*) endTime
         completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
 
-    NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/trade/getByDate", basePath];
+    NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/trade/byDate", basePath];
 
     // remove format in URL if needed
     if ([requestUrl rangeOfString:@".{format}"].location != NSNotFound)
@@ -132,16 +132,13 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
         NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
     if(symbol != nil)
         queryParams[@"symbol"] = symbol;
-    if(starttime != nil)
-        queryParams[@"starttime"] = starttime;
-    if(endtime != nil)
-        queryParams[@"endtime"] = endtime;
+    if(startTime != nil)
+        queryParams[@"startTime"] = startTime;
+    if(endTime != nil)
+        queryParams[@"endTime"] = endTime;
     NSMutableDictionary* headerParams = [[NSMutableDictionary alloc] init];
     id bodyDictionary = nil;
-        if(symbol == nil) {
-        // error
-    }
-    if(starttime == nil) {
+        if(startTime == nil) {
         // error
     }
     SWGApiClient* client = [SWGApiClient sharedClientFromPool:basePath];
@@ -171,11 +168,11 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 
 }
 
--(NSNumber*) trade_getRecentWithCompletionBlock:(NSString*) symbol
+-(NSNumber*) getRecentWithCompletionBlock:(NSString*) symbol
         count:(NSNumber*) count
         completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
 
-    NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/trade/getRecent", basePath];
+    NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/trade/recent", basePath];
 
     // remove format in URL if needed
     if ([requestUrl rangeOfString:@".{format}"].location != NSNotFound)
@@ -191,10 +188,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
         queryParams[@"count"] = count;
     NSMutableDictionary* headerParams = [[NSMutableDictionary alloc] init];
     id bodyDictionary = nil;
-        if(symbol == nil) {
-        // error
-    }
-    if(count == nil) {
+        if(count == nil) {
         // error
     }
     SWGApiClient* client = [SWGApiClient sharedClientFromPool:basePath];
@@ -214,7 +208,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
                          if([data isKindOfClass:[NSArray class]]){
                              NSMutableArray * objs = [[NSMutableArray alloc] initWithCapacity:[data count]];
                              for (NSDictionary* dict in (NSArray*)data) {
-                                SWGAny* d = [[SWGAny alloc]initWithValues: dict];
+                                SWGTrade* d = [[SWGTrade alloc]initWithValues: dict];
                                 [objs addObject:d];
                              }
                              completionBlock(objs, nil);

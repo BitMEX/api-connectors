@@ -10,9 +10,9 @@ import static groovyx.net.http.Method.*
 import com.wordnik.client.common.ApiUtils
 //-------------
 
-import com.wordnik.client.model.TradeBin
+import com.wordnik.client.model.Error
 import com.wordnik.client.model.Trade
-import com.wordnik.client.model.Any
+import com.wordnik.client.model.TradeBin
 import java.util.*;
 
 @Mixin(ApiUtils)
@@ -21,9 +21,9 @@ class TradeApi {
     String versionPath = "/api/v1"
 
 
-  def trade_getBucketed (String symbol,Date startTime,Date endTime,Double count,Boolean useMillisecondTime,String binSize,Closure onSuccess, Closure onFailure)  {
+  def getBucketed (String symbol,Date startTime,Date endTime,Double count,Boolean useMillisecondTime,String binSize,Closure onSuccess, Closure onFailure)  {
     // create path and map variables
-    String resourcePath = "/trade/getBucketed"
+    String resourcePath = "/trade/bucketed"
 
 
     // query params
@@ -48,12 +48,12 @@ class TradeApi {
       queryParams.put("useMillisecondTime", String.valueOf(useMillisecondTime))
     invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "List",
-                    tradeBin.class )
+                    TradeBin.class )
 
   }
-  def trade_getByDate (String symbol,Date starttime,Date endtime,Closure onSuccess, Closure onFailure)  {
+  def getByDate (String symbol,Date startTime,Date endTime,Closure onSuccess, Closure onFailure)  {
     // create path and map variables
-    String resourcePath = "/trade/getByDate"
+    String resourcePath = "/trade/byDate"
 
 
     // query params
@@ -61,23 +61,23 @@ class TradeApi {
     def headerParams = [:]
 
     // verify required params are set
-    if(symbol == null || starttime == null ) {
+    if(startTime == null ) {
        throw new RuntimeException("missing required params")
     }
     if(!"null".equals(String.valueOf(symbol)))
       queryParams.put("symbol", String.valueOf(symbol))
-    if(!"null".equals(String.valueOf(starttime)))
-      queryParams.put("starttime", String.valueOf(starttime))
-    if(!"null".equals(String.valueOf(endtime)))
-      queryParams.put("endtime", String.valueOf(endtime))
+    if(!"null".equals(String.valueOf(startTime)))
+      queryParams.put("startTime", String.valueOf(startTime))
+    if(!"null".equals(String.valueOf(endTime)))
+      queryParams.put("endTime", String.valueOf(endTime))
     invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "List",
-                    trade.class )
+                    Trade.class )
 
   }
-  def trade_getRecent (String symbol,Double count,Closure onSuccess, Closure onFailure)  {
+  def getRecent (String symbol,Double count,Closure onSuccess, Closure onFailure)  {
     // create path and map variables
-    String resourcePath = "/trade/getRecent"
+    String resourcePath = "/trade/recent"
 
 
     // query params
@@ -85,7 +85,7 @@ class TradeApi {
     def headerParams = [:]
 
     // verify required params are set
-    if(symbol == null || count == null ) {
+    if(count == null ) {
        throw new RuntimeException("missing required params")
     }
     if(!"null".equals(String.valueOf(symbol)))
@@ -94,7 +94,7 @@ class TradeApi {
       queryParams.put("count", String.valueOf(count))
     invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "List",
-                    any.class )
+                    Trade.class )
 
   }
   }

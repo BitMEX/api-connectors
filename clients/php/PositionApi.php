@@ -26,12 +26,18 @@ class PositionApi {
 	}
 
   /**
-	 * position_find
+	 * find
 	 * Get your positions.
-   * @return Array[position]
+   * filter, object: Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}. (optional)
+
+   * columns, array[any]: Which columns to fetch. For example, send [&quot;columnName&quot;]. (optional)
+
+   * count, float: Number of rows to fetch. (optional)
+
+   * @return Array[Position]
 	 */
 
-   public function position_find() {
+   public function find($filter=null, $columns=null, $count=null) {
 
   		//parse inputs
   		$resourcePath = "/position";
@@ -42,7 +48,16 @@ class PositionApi {
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
-      //make the API Call
+      if($filter != null) {
+  		  $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
+  		}
+  		if($columns != null) {
+  		  $queryParams['columns'] = $this->apiClient->toQueryValue($columns);
+  		}
+  		if($count != null) {
+  		  $queryParams['count'] = $this->apiClient->toQueryValue($count);
+  		}
+  		//make the API Call
       if (! isset($body)) {
         $body = null;
       }
@@ -56,7 +71,7 @@ class PositionApi {
         }
 
   		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[position]');
+  		                                                'Array[Position]');
   		return $responseObject;
 
       }

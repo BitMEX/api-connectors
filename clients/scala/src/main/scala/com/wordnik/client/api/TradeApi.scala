@@ -1,8 +1,8 @@
 package com.wordnik.client.api
 
-import com.wordnik.client.model.TradeBin
+import com.wordnik.client.model.Error
 import com.wordnik.client.model.Trade
-import com.wordnik.client.model.Any
+import com.wordnik.client.model.TradeBin
 import com.wordnik.client.common.ApiInvoker
 import com.wordnik.client.common.ApiException
 
@@ -17,9 +17,9 @@ class TradeApi {
   
   def addHeader(key: String, value: String) = apiInvoker.defaultHeaders += key -> value 
 
-  def trade_getBucketed (symbol: String, startTime: Date, endTime: Date, count: Double, useMillisecondTime: Boolean, binSize: String= "30s") : Option[List[tradeBin]]= {
+  def getBucketed (symbol: String, startTime: Date, endTime: Date, count: Double, useMillisecondTime: Boolean, binSize: String= "1m") : Option[List[TradeBin]]= {
     // create path and map variables
-    val path = "/trade/getBucketed".replaceAll("\\{format\\}","json")
+    val path = "/trade/bucketed".replaceAll("\\{format\\}","json")
 
     val contentType = {
       "application/json"}
@@ -42,7 +42,7 @@ class TradeApi {
     try {
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
         case s: String =>
-          Some(ApiInvoker.deserialize(s, "Array", classOf[tradeBin]).asInstanceOf[List[tradeBin]])
+          Some(ApiInvoker.deserialize(s, "Array", classOf[TradeBin]).asInstanceOf[List[TradeBin]])
         case _ => None
       }
     } catch {
@@ -50,9 +50,9 @@ class TradeApi {
       case ex: ApiException => throw ex
     }
   }
-  def trade_getByDate (symbol: String, starttime: Date, endtime: Date) : Option[List[trade]]= {
+  def getByDate (symbol: String, startTime: Date, endTime: Date) : Option[List[Trade]]= {
     // create path and map variables
-    val path = "/trade/getByDate".replaceAll("\\{format\\}","json")
+    val path = "/trade/byDate".replaceAll("\\{format\\}","json")
 
     val contentType = {
       "application/json"}
@@ -62,17 +62,17 @@ class TradeApi {
     val headerParams = new HashMap[String, String]
 
     // verify required params are set
-    (List(symbol, starttime).filter(_ != null)).size match {
-       case 2 => // all required values set
+    (List(startTime).filter(_ != null)).size match {
+       case 1 => // all required values set
        case _ => throw new Exception("missing required params")
     }
     if(String.valueOf(symbol) != "null") queryParams += "symbol" -> symbol.toString
-    if(String.valueOf(starttime) != "null") queryParams += "starttime" -> starttime.toString
-    if(String.valueOf(endtime) != "null") queryParams += "endtime" -> endtime.toString
+    if(String.valueOf(startTime) != "null") queryParams += "startTime" -> startTime.toString
+    if(String.valueOf(endTime) != "null") queryParams += "endTime" -> endTime.toString
     try {
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
         case s: String =>
-          Some(ApiInvoker.deserialize(s, "Array", classOf[trade]).asInstanceOf[List[trade]])
+          Some(ApiInvoker.deserialize(s, "Array", classOf[Trade]).asInstanceOf[List[Trade]])
         case _ => None
       }
     } catch {
@@ -80,9 +80,9 @@ class TradeApi {
       case ex: ApiException => throw ex
     }
   }
-  def trade_getRecent (symbol: String, count: Double) : Option[List[any]]= {
+  def getRecent (symbol: String, count: Double= 100) : Option[List[Trade]]= {
     // create path and map variables
-    val path = "/trade/getRecent".replaceAll("\\{format\\}","json")
+    val path = "/trade/recent".replaceAll("\\{format\\}","json")
 
     val contentType = {
       "application/json"}
@@ -92,8 +92,8 @@ class TradeApi {
     val headerParams = new HashMap[String, String]
 
     // verify required params are set
-    (List(symbol, count).filter(_ != null)).size match {
-       case 2 => // all required values set
+    (List(count).filter(_ != null)).size match {
+       case 1 => // all required values set
        case _ => throw new Exception("missing required params")
     }
     if(String.valueOf(symbol) != "null") queryParams += "symbol" -> symbol.toString
@@ -101,7 +101,7 @@ class TradeApi {
     try {
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
         case s: String =>
-          Some(ApiInvoker.deserialize(s, "Array", classOf[any]).asInstanceOf[List[any]])
+          Some(ApiInvoker.deserialize(s, "Array", classOf[Trade]).asInstanceOf[List[Trade]])
         case _ => None
       }
     } catch {

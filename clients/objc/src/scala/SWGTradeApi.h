@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
-#import "SWGTradeBin.h"
+#import "SWGError.h"
 #import "SWGTrade.h"
-#import "SWGAny.h"
+#import "SWGTradeBin.h"
 
 
 
@@ -17,13 +17,13 @@
  Get previous trades bucketed by seconds.
  
  @param symbol Instrument name.
- @param startTime Start date.
- @param endTime End Date.
- @param count Number of buckets to fetch
+ @param startTime Start date. Expects ISO formatted date strings.
+ @param endTime End Date. Expects ISO formatted date strings.
+ @param count Number of buckets to fetch.
  @param useMillisecondTime Return dates in milliseconds (GMT). Useful for charting.
- @param binSize Time interval to bucket by. Available options: ['30s', '5m', '1h', '1d'].
+ @param binSize Time interval to bucket by. Available options: ['30s', '1m', '5m', '1h', '1d'].
  */
--(NSNumber*) trade_getBucketedWithCompletionBlock :(NSString*) symbol 
+-(NSNumber*) getBucketedWithCompletionBlock :(NSString*) symbol 
         startTime:(SWGDate*) startTime 
         endTime:(SWGDate*) endTime 
         count:(NSNumber*) count 
@@ -33,15 +33,15 @@
 
 /**
 
- Get trades within two dates.
+ Get trades between two dates.
  
  @param symbol Instrument name.
- @param starttime Start date.
- @param endtime End Date.
+ @param startTime Start date.
+ @param endTime End Date.
  */
--(NSNumber*) trade_getByDateWithCompletionBlock :(NSString*) symbol 
-        starttime:(SWGDate*) starttime 
-        endtime:(SWGDate*) endtime 
+-(NSNumber*) getByDateWithCompletionBlock :(NSString*) symbol 
+        startTime:(SWGDate*) startTime 
+        endTime:(SWGDate*) endTime 
         completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
 
 /**
@@ -51,7 +51,7 @@
  @param symbol Instrument name.
  @param count Number of trades to fetch
  */
--(NSNumber*) trade_getRecentWithCompletionBlock :(NSString*) symbol 
+-(NSNumber*) getRecentWithCompletionBlock :(NSString*) symbol 
         count:(NSNumber*) count 
         completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
 

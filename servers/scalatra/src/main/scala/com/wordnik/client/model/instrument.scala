@@ -4,21 +4,29 @@ import java.util.Date
 case class Instrument (
   symbol: String,
 
+  rootSymbol: Option[String],
+
   state: Option[String],
 
   typ: Option[String],
 
   listing: Option[Date],
 
+  front: Option[Date],
+
   expiry: Option[Date],
 
-  underlying: Option[String],
-
-  buyLeg: Option[String],
+  inverseLeg: Option[String],
 
   sellLeg: Option[String],
 
+  buyLeg: Option[String],
+
+  underlying: Option[String],
+
   quoteCurrency: Option[String],
+
+  underlyingSymbol: Option[String],
 
   reference: Option[String],
 
@@ -30,11 +38,25 @@ case class Instrument (
 
   settlCurrency: Option[String],
 
+  underlyingToSettleMultiplier: Option[Double],
+
+  quoteToSettleMultiplier: Option[Double],
+
+  isQuanto: Option[Boolean],
+
+  isInverse: Option[Boolean],
+
   initMargin: Option[Double],
 
   maintMargin: Option[Double],
 
   limit: Option[Double],
+
+  makerFee: Option[Double],
+
+  takerFee: Option[Double],
+
+  insuranceFee: Option[Double],
 
   openingTimestamp: Option[Date],
 
@@ -45,6 +67,10 @@ case class Instrument (
   limitDownPrice: Option[Double],
 
   limitUpPrice: Option[Double],
+
+  prevTotalVolume: Option[Double],
+
+  totalVolume: Option[Double],
 
   volume: Option[Double],
 

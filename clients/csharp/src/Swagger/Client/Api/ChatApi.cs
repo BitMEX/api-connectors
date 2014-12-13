@@ -27,11 +27,51 @@
       }
 
       /// <summary>
+      /// Get chat messages. 
+      /// </summary>
+      /// <param name="count"></param>
+      /// <returns></returns>
+      public List<Chat> get (double? count) {
+        // create path and map variables
+        var path = "/chat".Replace("{format}","json");
+
+        // query params
+        var queryParams = new Dictionary<String, String>();
+        var headerParams = new Dictionary<String, String>();
+        var formParams = new Dictionary<String, object>();
+
+        if (count != null){
+          string paramStr = (count is DateTime) ? ((DateTime)(object)count).ToString("u") : Convert.ToString(count);
+          queryParams.Add("count", paramStr);
+		}
+        try {
+          if (typeof(List<Chat>) == typeof(byte[])) {
+            var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
+            return ((object)response) as List<Chat>;
+          } else {
+            var response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
+            if(response != null){
+               return (List<Chat>) ApiInvoker.deserialize(response, typeof(List<Chat>));
+            }
+            else {
+              return null;
+            }
+          }
+        } catch (ApiException ex) {
+          if(ex.ErrorCode == 404) {
+          	return null;
+          }
+          else {
+            throw ex;
+          }
+        }
+      }
+      /// <summary>
       /// Send a chat message. 
       /// </summary>
       /// <param name="message"></param>
       /// <returns></returns>
-      public chat chat_create (string message) {
+      public Chat send (string message) {
         // create path and map variables
         var path = "/chat".Replace("{format}","json");
 
@@ -53,53 +93,13 @@
           }
 		}
         try {
-          if (typeof(chat) == typeof(byte[])) {
+          if (typeof(Chat) == typeof(byte[])) {
             var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
-            return ((object)response) as chat;
+            return ((object)response) as Chat;
           } else {
             var response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, null, headerParams, formParams);
             if(response != null){
-               return (chat) ApiInvoker.deserialize(response, typeof(chat));
-            }
-            else {
-              return null;
-            }
-          }
-        } catch (ApiException ex) {
-          if(ex.ErrorCode == 404) {
-          	return null;
-          }
-          else {
-            throw ex;
-          }
-        }
-      }
-      /// <summary>
-      /// Get chat messages. 
-      /// </summary>
-      /// <param name="count"></param>
-      /// <returns></returns>
-      public List<chat> chat_find (double? count) {
-        // create path and map variables
-        var path = "/chat".Replace("{format}","json");
-
-        // query params
-        var queryParams = new Dictionary<String, String>();
-        var headerParams = new Dictionary<String, String>();
-        var formParams = new Dictionary<String, object>();
-
-        if (count != null){
-          string paramStr = (count is DateTime) ? ((DateTime)(object)count).ToString("u") : Convert.ToString(count);
-          queryParams.Add("count", paramStr);
-		}
-        try {
-          if (typeof(List<chat>) == typeof(byte[])) {
-            var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
-            return ((object)response) as List<chat>;
-          } else {
-            var response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
-            if(response != null){
-               return (List<chat>) ApiInvoker.deserialize(response, typeof(List<chat>));
+               return (Chat) ApiInvoker.deserialize(response, typeof(Chat));
             }
             else {
               return null;

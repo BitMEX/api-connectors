@@ -1,8 +1,8 @@
 package apis
 
-import com.wordnik.client.model.TradeBin
+import com.wordnik.client.model.Error
 import com.wordnik.client.model.Trade
-import com.wordnik.client.model.Any
+import com.wordnik.client.model.TradeBin
 import java.io.File
 
 import org.scalatra.{ TypedParamSupport, ScalatraServlet }
@@ -30,13 +30,13 @@ class TradeApi (implicit val swagger: Swagger) extends ScalatraServlet
 
 
 
-  val trade_getBucketedOperation = (apiOperation[List[tradeBin]]("trade_getBucketed")
+  val getBucketedOperation = (apiOperation[List[TradeBin]]("getBucketed")
       summary "Get previous trades bucketed by seconds."
       parameters(
-        queryParam[String]("symbol").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""),queryParam[Double]("count").description(""),queryParam[Boolean]("useMillisecondTime").description(""),queryParam[String]("binSize").description("").defaultValue("30s"))
+        queryParam[String]("symbol").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""),queryParam[Double]("count").description(""),queryParam[Boolean]("useMillisecondTime").description(""),queryParam[String]("binSize").description("").defaultValue("1m"))
   )
 
-  get("/getBucketed",operation(trade_getBucketedOperation)) {
+  get("/bucketed",operation(getBucketedOperation)) {
     val symbol = params.getAs[String]("symbol")
     println("symbol: " + symbol)
   val startTime = params.getAs[Date]("startTime")
@@ -54,31 +54,31 @@ class TradeApi (implicit val swagger: Swagger) extends ScalatraServlet
 
 
 
-  val trade_getByDateOperation = (apiOperation[List[trade]]("trade_getByDate")
-      summary "Get trades within two dates."
+  val getByDateOperation = (apiOperation[List[Trade]]("getByDate")
+      summary "Get trades between two dates."
       parameters(
-        queryParam[String]("symbol").description(""),queryParam[Date]("starttime").description(""),queryParam[Date]("endtime").description(""))
+        queryParam[String]("symbol").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""))
   )
 
-  get("/getByDate",operation(trade_getByDateOperation)) {
+  get("/byDate",operation(getByDateOperation)) {
     val symbol = params.getAs[String]("symbol")
     println("symbol: " + symbol)
-  val starttime = params.getAs[Date]("starttime")
-    println("starttime: " + starttime)
-  val endtime = params.getAs[Date]("endtime")
-    println("endtime: " + endtime)
+  val startTime = params.getAs[Date]("startTime")
+    println("startTime: " + startTime)
+  val endTime = params.getAs[Date]("endTime")
+    println("endTime: " + endTime)
   }
 
 
 
 
-  val trade_getRecentOperation = (apiOperation[List[any]]("trade_getRecent")
+  val getRecentOperation = (apiOperation[List[Trade]]("getRecent")
       summary "Get recent trades."
       parameters(
-        queryParam[String]("symbol").description(""),queryParam[Double]("count").description(""))
+        queryParam[String]("symbol").description(""),queryParam[Double]("count").description("").defaultValue(100))
   )
 
-  get("/getRecent",operation(trade_getRecentOperation)) {
+  get("/recent",operation(getRecentOperation)) {
     val symbol = params.getAs[String]("symbol")
     println("symbol: " + symbol)
   val count = params.getAs[Double]("count")

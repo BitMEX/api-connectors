@@ -3,6 +3,7 @@ package com.wordnik.client.api;
 import com.wordnik.client.common.ApiException;
 import com.wordnik.client.common.ApiInvoker;
 
+import com.wordnik.client.model.Error;
 import com.wordnik.client.model.OrderBook;
 import com.sun.jersey.multipart.FormDataMultiPart;
 
@@ -27,7 +28,11 @@ public class OrderBookApi {
     return basePath;
   }
 
-  public List<orderBook> orderBook_getOrderBook (symbol symbol) throws ApiException {
+  //error info- code: 200 reason: "Request was successful" model: <none>
+  //error info- code: 400 reason: "Parameter Error" model: Error
+  //error info- code: 401 reason: "Unauthorized" model: Error
+  //error info- code: 404 reason: "Not Found" model: Error
+  public List<OrderBook> getOrderBook (String symbol, Double depth) throws ApiException {
     Object postBody = null;
     // verify required params are set
     if(symbol == null ) {
@@ -43,6 +48,8 @@ public class OrderBookApi {
 
     if(!"null".equals(String.valueOf(symbol)))
       queryParams.put("symbol", String.valueOf(symbol));
+    if(!"null".equals(String.valueOf(depth)))
+      queryParams.put("depth", String.valueOf(depth));
     String[] contentTypes = {
       "application/json"};
 
@@ -60,7 +67,7 @@ public class OrderBookApi {
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return (List<orderBook>) ApiInvoker.deserialize(response, "List", orderBook.class);
+        return (List<OrderBook>) ApiInvoker.deserialize(response, "List", OrderBook.class);
       }
       else {
         return null;

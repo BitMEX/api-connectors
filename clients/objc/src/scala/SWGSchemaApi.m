@@ -1,6 +1,7 @@
 #import "SWGSchemaApi.h"
 #import "SWGFile.h"
 #import "SWGApiClient.h"
+#import "SWGError.h"
 #import "Object.h"
 
 
@@ -51,7 +52,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 }
 
 
--(NSNumber*) schema_findWithCompletionBlock:(NSString*) model
+-(NSNumber*) findWithCompletionBlock:(NSString*) model
         completionHandler: (void (^)(NSObject* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/schema", basePath];
@@ -66,6 +67,42 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
         NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
     if(model != nil)
         queryParams[@"model"] = model;
+    NSMutableDictionary* headerParams = [[NSMutableDictionary alloc] init];
+    id bodyDictionary = nil;
+        SWGApiClient* client = [SWGApiClient sharedClientFromPool:basePath];
+
+    return [client dictionary:requestUrl 
+                              method:@"GET" 
+                         queryParams:queryParams 
+                                body:bodyDictionary 
+                        headerParams:headerParams
+                  requestContentType:requestContentType
+                 responseContentType:responseContentType
+                     completionBlock:^(NSDictionary *data, NSError *error) {
+                        if (error) {
+                            completionBlock(nil, error);return;
+                        }
+                        NSObject *result = nil;
+                        if (data) {
+                            result = [[NSObject alloc]initWithValues: data];
+                        }
+                        completionBlock(result , nil);}];
+    
+
+}
+
+-(NSNumber*) websocketHelpWithCompletionBlock: (void (^)(NSObject* output, NSError* error))completionBlock{
+
+    NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/schema/websocketHelp", basePath];
+
+    // remove format in URL if needed
+    if ([requestUrl rangeOfString:@".{format}"].location != NSNotFound)
+        [requestUrl replaceCharactersInRange: [requestUrl rangeOfString:@".{format}"] withString:@".json"];
+
+    NSString* requestContentType = @"application/json";
+    NSString* responseContentType = @"application/json";
+
+        NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
     NSMutableDictionary* headerParams = [[NSMutableDictionary alloc] init];
     id bodyDictionary = nil;
         SWGApiClient* client = [SWGApiClient sharedClientFromPool:basePath];

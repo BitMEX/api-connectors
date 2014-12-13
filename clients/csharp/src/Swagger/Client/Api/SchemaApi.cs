@@ -31,7 +31,7 @@
       /// </summary>
       /// <param name="model">Optional model filter. If omitted, will return all models.</param>
       /// <returns></returns>
-      public object schema_find (string model) {
+      public object find (string model) {
         // create path and map variables
         var path = "/schema".Replace("{format}","json");
 
@@ -44,6 +44,41 @@
           string paramStr = (model is DateTime) ? ((DateTime)(object)model).ToString("u") : Convert.ToString(model);
           queryParams.Add("model", paramStr);
 		}
+        try {
+          if (typeof(object) == typeof(byte[])) {
+            var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
+            return ((object)response) as object;
+          } else {
+            var response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
+            if(response != null){
+               return (object) ApiInvoker.deserialize(response, typeof(object));
+            }
+            else {
+              return null;
+            }
+          }
+        } catch (ApiException ex) {
+          if(ex.ErrorCode == 404) {
+          	return null;
+          }
+          else {
+            throw ex;
+          }
+        }
+      }
+      /// <summary>
+      /// Returns help text &amp; subject list for websocket usage. 
+      /// </summary>
+      /// <returns></returns>
+      public object websocketHelp () {
+        // create path and map variables
+        var path = "/schema/websocketHelp".Replace("{format}","json");
+
+        // query params
+        var queryParams = new Dictionary<String, String>();
+        var headerParams = new Dictionary<String, String>();
+        var formParams = new Dictionary<String, object>();
+
         try {
           if (typeof(object) == typeof(byte[])) {
             var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);

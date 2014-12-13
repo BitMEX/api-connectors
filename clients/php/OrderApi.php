@@ -26,8 +26,8 @@ class OrderApi {
 	}
 
   /**
-	 * order_newOrder
-	 * Create a new order.
+	 * newOrder
+	 * Create a new order. [Deprecated]
    * symbol, string: Instrument name. (required)
 
    * quantity, float: Quantity. Use positive numbers to buy, negative to sell. (required)
@@ -36,10 +36,12 @@ class OrderApi {
 
    * ioc, bool: Set to true to place an immediateOrCancel order. (optional)
 
-   * @return order
+   * clOrdID, string: Optional Client Order ID to give this order. This ID will come back on any execution messages tied to this order. (optional)
+
+   * @return Order
 	 */
 
-   public function order_newOrder($symbol, $quantity, $price, $ioc=null) {
+   public function newOrder($symbol, $quantity, $price, $ioc=null, $clOrdID=null) {
 
   		//parse inputs
   		$resourcePath = "/order/new";
@@ -64,19 +66,159 @@ class OrderApi {
         }
 
   		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'order');
+  		                                                'Order');
   		return $responseObject;
 
       }
   /**
-	 * order_cancelOrder
-	 * Cancel an order.
-   * orderID, string: Order ID. (required)
+	 * newOrder_OrderApi_0
+	 * Create a new order.
+   * symbol, string: Instrument name. (required)
 
-   * @return order
+   * quantity, float: Quantity. Use positive numbers to buy, negative to sell. (required)
+
+   * price, float: Price to buy. (required)
+
+   * ioc, bool: Set to true to place an immediateOrCancel order. (optional)
+
+   * clOrdID, string: Optional Client Order ID to give this order. This ID will come back on any execution messages tied to this order. (optional)
+
+   * @return Order
 	 */
 
-   public function order_cancelOrder($orderID) {
+   public function newOrder_OrderApi_0($symbol, $quantity, $price, $ioc=null, $clOrdID=null) {
+
+  		//parse inputs
+  		$resourcePath = "/order";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "POST";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      //make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'Order');
+  		return $responseObject;
+
+      }
+  /**
+	 * cancelOrder
+	 * Cancel order(s). Send multiple order IDs to cancel in bulk.
+   * orderID, string: Order ID(s). (optional)
+
+   * clOrdID, string: Client Order ID(s). See POST /order. (optional)
+
+   * text, string: Optional cancellation annotation. e.g. 'Spread Exceeded' (optional)
+
+   * @return Array[Order]
+	 */
+
+   public function cancelOrder($orderID=null, $clOrdID=null, $text=null) {
+
+  		//parse inputs
+  		$resourcePath = "/order";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "DELETE";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      //make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'Array[Order]');
+  		return $responseObject;
+
+      }
+  /**
+	 * getOrders
+	 * Get your orders.
+   * filter, object: Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}. (optional)
+
+   * columns, array[any]: Which columns to fetch. For example, send [&quot;columnName&quot;]. (optional)
+
+   * count, float: Number of rows to fetch. (optional)
+
+   * @return Array[Order]
+	 */
+
+   public function getOrders($filter=null, $columns=null, $count=null) {
+
+  		//parse inputs
+  		$resourcePath = "/order";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "GET";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      if($filter != null) {
+  		  $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
+  		}
+  		if($columns != null) {
+  		  $queryParams['columns'] = $this->apiClient->toQueryValue($columns);
+  		}
+  		if($count != null) {
+  		  $queryParams['count'] = $this->apiClient->toQueryValue($count);
+  		}
+  		//make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'Array[Order]');
+  		return $responseObject;
+
+      }
+  /**
+	 * cancelOrder_OrderApi_0
+	 * Cancel order(s). Send multiple order IDs to cancel in bulk. [Deprecated]
+   * orderID, string: Order ID(s). (required)
+
+   * clOrdID, string: Client Order ID(s). See POST /order. (optional)
+
+   * text, string: Optional cancellation annotation. e.g. 'Spread Exceeded' (optional)
+
+   * @return Array[Order]
+	 */
+
+   public function cancelOrder_OrderApi_0($orderID, $clOrdID=null, $text=null) {
 
   		//parse inputs
   		$resourcePath = "/order/cancel";
@@ -101,23 +243,23 @@ class OrderApi {
         }
 
   		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'order');
+  		                                                'Array[Order]');
   		return $responseObject;
 
       }
   /**
-	 * order_myOrders
-	 * Get your recent orders.
-   * filter, object: Table filter. Filter e.g. by symbol. (optional)
+	 * getOrders_OrderApi_0
+	 * Get your orders. [Deprecated, use GET /order]
+   * filter, object: Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}. (optional)
 
-   * columns, array[string]: Which columns to fetch. (optional)
+   * columns, array[any]: Which columns to fetch. For example, send [&quot;columnName&quot;]. (optional)
 
-   * count, float: Number of rows to fetch (optional)
+   * count, float: Number of rows to fetch. (optional)
 
-   * @return Array[order]
+   * @return Array[Order]
 	 */
 
-   public function order_myOrders($filter=null, $columns=null, $count=null) {
+   public function getOrders_OrderApi_0($filter=null, $columns=null, $count=null) {
 
   		//parse inputs
   		$resourcePath = "/order/myOrders";
@@ -151,22 +293,74 @@ class OrderApi {
         }
 
   		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[order]');
+  		                                                'Array[Order]');
   		return $responseObject;
 
       }
   /**
-	 * order_myOpenOrders
+	 * getOrders_OrderApi_1
 	 * Get your open orders.
-   * @return Array[order]
+   * filter, object: Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}. (optional)
+
+   * columns, array[any]: Which columns to fetch. For example, send [&quot;columnName&quot;]. (optional)
+
+   * count, float: Number of rows to fetch. (optional)
+
+   * @return Array[Order]
 	 */
 
-   public function order_myOpenOrders() {
+   public function getOrders_OrderApi_1($filter=null, $columns=null, $count=null) {
 
   		//parse inputs
   		$resourcePath = "/order/myOpenOrders";
   		$resourcePath = str_replace("{format}", "json", $resourcePath);
   		$method = "GET";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      if($filter != null) {
+  		  $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
+  		}
+  		if($columns != null) {
+  		  $queryParams['columns'] = $this->apiClient->toQueryValue($columns);
+  		}
+  		if($count != null) {
+  		  $queryParams['count'] = $this->apiClient->toQueryValue($count);
+  		}
+  		//make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'Array[Order]');
+  		return $responseObject;
+
+      }
+  /**
+	 * cancelAllAfter
+	 * Automatically cancel all your orders after a specified timeout.
+   * timeout, float: Timeout in ms. Set to 0 to cancel this timer.  (required)
+
+   * @return object
+	 */
+
+   public function cancelAllAfter($timeout) {
+
+  		//parse inputs
+  		$resourcePath = "/order/cancelAllAfter";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "POST";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
@@ -186,7 +380,7 @@ class OrderApi {
         }
 
   		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[order]');
+  		                                                'object');
   		return $responseObject;
 
       }

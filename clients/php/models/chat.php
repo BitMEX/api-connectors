@@ -24,16 +24,20 @@
 class Chat {
 
   static $swaggerTypes = array(
-      'id' => 'float',
       'date' => 'DateTime',
       'user' => 'string',
-      'message' => 'string'
+      'message' => 'string',
+      'html' => 'string',
+      'fromBot' => 'bool',
+      'id' => 'float'
 
     );
 
-  public $id; // float
   public $date; // DateTime
   public $user; // string
   public $message; // string
+  public $html; // string
+  public $fromBot; // bool
+  public $id; // float
   }
 

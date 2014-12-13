@@ -10,6 +10,7 @@ import static groovyx.net.http.Method.*
 import com.wordnik.client.common.ApiUtils
 //-------------
 
+import com.wordnik.client.model.Error
 import com.wordnik.client.model.Object
 import java.util.*;
 
@@ -19,7 +20,7 @@ class SchemaApi {
     String versionPath = "/api/v1"
 
 
-  def schema_find (String model,Closure onSuccess, Closure onFailure)  {
+  def find (String model,Closure onSuccess, Closure onFailure)  {
     // create path and map variables
     String resourcePath = "/schema"
 
@@ -30,6 +31,20 @@ class SchemaApi {
 
     if(!"null".equals(String.valueOf(model)))
       queryParams.put("model", String.valueOf(model))
+    invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "GET", "",
+                    Object.class )
+
+  }
+  def websocketHelp (Closure onSuccess, Closure onFailure)  {
+    // create path and map variables
+    String resourcePath = "/schema/websocketHelp"
+
+
+    // query params
+    def queryParams = [:]
+    def headerParams = [:]
+
     invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "",
                     Object.class )

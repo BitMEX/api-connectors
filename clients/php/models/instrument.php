@@ -25,27 +25,40 @@ class Instrument {
 
   static $swaggerTypes = array(
       'symbol' => 'string',
+      'rootSymbol' => 'string',
       'state' => 'string',
       'typ' => 'string',
       'listing' => 'DateTime',
+      'front' => 'DateTime',
       'expiry' => 'DateTime',
-      'underlying' => 'string',
-      'buyLeg' => 'string',
+      'inverseLeg' => 'string',
       'sellLeg' => 'string',
+      'buyLeg' => 'string',
+      'underlying' => 'string',
       'quoteCurrency' => 'string',
+      'underlyingSymbol' => 'string',
       'reference' => 'string',
       'referenceSymbol' => 'string',
       'tickSize' => 'float',
       'multiplier' => 'float',
       'settlCurrency' => 'string',
+      'underlyingToSettleMultiplier' => 'float',
+      'quoteToSettleMultiplier' => 'float',
+      'isQuanto' => 'bool',
+      'isInverse' => 'bool',
       'initMargin' => 'float',
       'maintMargin' => 'float',
       'limit' => 'float',
+      'makerFee' => 'float',
+      'takerFee' => 'float',
+      'insuranceFee' => 'float',
       'openingTimestamp' => 'DateTime',
       'closingTimestamp' => 'DateTime',
       'prevClosePrice' => 'float',
       'limitDownPrice' => 'float',
       'limitUpPrice' => 'float',
+      'prevTotalVolume' => 'float',
+      'totalVolume' => 'float',
       'volume' => 'float',
       'vwap' => 'float',
       'highPrice' => 'float',
@@ -63,27 +76,40 @@ class Instrument {
     );
 
   public $symbol; // string
+  public $rootSymbol; // string
   public $state; // string
   public $typ; // string
   public $listing; // DateTime
+  public $front; // DateTime
   public $expiry; // DateTime
-  public $underlying; // string
-  public $buyLeg; // string
+  public $inverseLeg; // string
   public $sellLeg; // string
+  public $buyLeg; // string
+  public $underlying; // string
   public $quoteCurrency; // string
+  public $underlyingSymbol; // string
   public $reference; // string
   public $referenceSymbol; // string
   public $tickSize; // float
   public $multiplier; // float
   public $settlCurrency; // string
+  public $underlyingToSettleMultiplier; // float
+  public $quoteToSettleMultiplier; // float
+  public $isQuanto; // bool
+  public $isInverse; // bool
   public $initMargin; // float
   public $maintMargin; // float
   public $limit; // float
+  public $makerFee; // float
+  public $takerFee; // float
+  public $insuranceFee; // float
   public $openingTimestamp; // DateTime
   public $closingTimestamp; // DateTime
   public $prevClosePrice; // float
   public $limitDownPrice; // float
   public $limitUpPrice; // float
+  public $prevTotalVolume; // float
+  public $totalVolume; // float
   public $volume; // float
   public $vwap; // float
   public $highPrice; // float

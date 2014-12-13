@@ -30,15 +30,15 @@ class InstrumentApi(object):
 
     
 
-    def instrument_find(self, **kwargs):
-        """Get all listed instruments.
+    def get(self, **kwargs):
+        """Get instruments.
 
         Args:
-            filter, object: Filter defining fields, where, orderBy, offset, and limit (optional)
+            filter, object: Table filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;}. (optional)
 
             
 
-        Returns: Array[instrument]
+        Returns: Array[Instrument]
         """
 
         allParams = ['filter']
@@ -46,7 +46,7 @@ class InstrumentApi(object):
         params = locals()
         for (key, val) in params['kwargs'].items():
             if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method instrument_find" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method get" % key)
             params[key] = val
         del params['kwargs']
 
@@ -67,7 +67,46 @@ class InstrumentApi(object):
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'Array[instrument]')
+        responseObject = self.apiClient.deserialize(response, 'Array[Instrument]')
+        return responseObject
+        
+
+        
+
+    def getActive(self, **kwargs):
+        """Get all active instruments and instruments that have expired in &lt;24hrs.
+
+        Args:
+            
+
+        Returns: Array[Instrument]
+        """
+
+        allParams = []
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method getActive" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/instrument/active'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'Array[Instrument]')
         return responseObject
         
 
