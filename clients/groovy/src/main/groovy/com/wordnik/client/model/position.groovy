@@ -6,6 +6,8 @@ import java.util.Date;
 class Position {
   Double account = null
   String symbol = null
+  String underlying = null
+  String quoteCurrency = null
   String currency = null
   Double commission = null
   Double prevRealisedPnl = null
@@ -37,6 +39,8 @@ class Position {
   Double grossExecCost = null
   Double lastPrice = null
   Double lastValue = null
+  Double homeNotional = null
+  Double foreignNotional = null
   String notionalCurrency1 = null
   Double notionalValue1 = null
   String notionalCurrency2 = null

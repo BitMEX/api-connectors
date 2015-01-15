@@ -76,6 +76,12 @@ public class Instrument {
   private Double totalVolume = null;
   @JsonProperty("volume")
   private Double volume = null;
+  @JsonProperty("prevTotalTurnover")
+  private Double prevTotalTurnover = null;
+  @JsonProperty("totalTurnover")
+  private Double totalTurnover = null;
+  @JsonProperty("turnover")
+  private Double turnover = null;
   @JsonProperty("vwap")
   private Double vwap = null;
   @JsonProperty("highPrice")
@@ -96,6 +102,8 @@ public class Instrument {
   private Double askPrice = null;
   @JsonProperty("openInterest")
   private Double openInterest = null;
+  @JsonProperty("openValue")
+  private Double openValue = null;
   @JsonProperty("settledPrice")
   private Double settledPrice = null;
   @JsonProperty("timestamp")
@@ -352,6 +360,27 @@ public class Instrument {
     this.volume = volume;
   }
 
+  public Double getPrevTotalTurnover() {
+    return prevTotalTurnover;
+  }
+  public void setPrevTotalTurnover(Double prevTotalTurnover) {
+    this.prevTotalTurnover = prevTotalTurnover;
+  }
+
+  public Double getTotalTurnover() {
+    return totalTurnover;
+  }
+  public void setTotalTurnover(Double totalTurnover) {
+    this.totalTurnover = totalTurnover;
+  }
+
+  public Double getTurnover() {
+    return turnover;
+  }
+  public void setTurnover(Double turnover) {
+    this.turnover = turnover;
+  }
+
   public Double getVwap() {
     return vwap;
   }
@@ -422,6 +451,13 @@ public class Instrument {
     this.openInterest = openInterest;
   }
 
+  public Double getOpenValue() {
+    return openValue;
+  }
+  public void setOpenValue(Double openValue) {
+    this.openValue = openValue;
+  }
+
   public Double getSettledPrice() {
     return settledPrice;
   }
@@ -476,6 +512,9 @@ public class Instrument {
     sb.append("  prevTotalVolume: ").append(prevTotalVolume).append("\n");
     sb.append("  totalVolume: ").append(totalVolume).append("\n");
     sb.append("  volume: ").append(volume).append("\n");
+    sb.append("  prevTotalTurnover: ").append(prevTotalTurnover).append("\n");
+    sb.append("  totalTurnover: ").append(totalTurnover).append("\n");
+    sb.append("  turnover: ").append(turnover).append("\n");
     sb.append("  vwap: ").append(vwap).append("\n");
     sb.append("  highPrice: ").append(highPrice).append("\n");
     sb.append("  lowPrice: ").append(lowPrice).append("\n");
@@ -486,6 +525,7 @@ public class Instrument {
     sb.append("  midPrice: ").append(midPrice).append("\n");
     sb.append("  askPrice: ").append(askPrice).append("\n");
     sb.append("  openInterest: ").append(openInterest).append("\n");
+    sb.append("  openValue: ").append(openValue).append("\n");
     sb.append("  settledPrice: ").append(settledPrice).append("\n");
     sb.append("  timestamp: ").append(timestamp).append("\n");
     sb.append("}\n");

@@ -10,7 +10,6 @@ import static groovyx.net.http.Method.*
 import com.wordnik.client.common.ApiUtils
 //-------------
 
-import com.wordnik.client.model.Error
 import com.wordnik.client.model.Position
 import java.util.*;
 

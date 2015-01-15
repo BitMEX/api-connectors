@@ -38,6 +38,9 @@ public class Instrument {
   private Double prevTotalVolume = null;
   private Double totalVolume = null;
   private Double volume = null;
+  private Double prevTotalTurnover = null;
+  private Double totalTurnover = null;
+  private Double turnover = null;
   private Double vwap = null;
   private Double highPrice = null;
   private Double lowPrice = null;
@@ -48,6 +51,7 @@ public class Instrument {
   private Double midPrice = null;
   private Double askPrice = null;
   private Double openInterest = null;
+  private Double openValue = null;
   private Double settledPrice = null;
   private Date timestamp = null;
   public String getSymbol() {
@@ -302,6 +306,27 @@ public class Instrument {
     this.volume = volume;
   }
 
+  public Double getPrevTotalTurnover() {
+    return prevTotalTurnover;
+  }
+  public void setPrevTotalTurnover(Double prevTotalTurnover) {
+    this.prevTotalTurnover = prevTotalTurnover;
+  }
+
+  public Double getTotalTurnover() {
+    return totalTurnover;
+  }
+  public void setTotalTurnover(Double totalTurnover) {
+    this.totalTurnover = totalTurnover;
+  }
+
+  public Double getTurnover() {
+    return turnover;
+  }
+  public void setTurnover(Double turnover) {
+    this.turnover = turnover;
+  }
+
   public Double getVwap() {
     return vwap;
   }
@@ -372,6 +397,13 @@ public class Instrument {
     this.openInterest = openInterest;
   }
 
+  public Double getOpenValue() {
+    return openValue;
+  }
+  public void setOpenValue(Double openValue) {
+    this.openValue = openValue;
+  }
+
   public Double getSettledPrice() {
     return settledPrice;
   }
@@ -426,6 +458,9 @@ public class Instrument {
     sb.append("  prevTotalVolume: ").append(prevTotalVolume).append("\n");
     sb.append("  totalVolume: ").append(totalVolume).append("\n");
     sb.append("  volume: ").append(volume).append("\n");
+    sb.append("  prevTotalTurnover: ").append(prevTotalTurnover).append("\n");
+    sb.append("  totalTurnover: ").append(totalTurnover).append("\n");
+    sb.append("  turnover: ").append(turnover).append("\n");
     sb.append("  vwap: ").append(vwap).append("\n");
     sb.append("  highPrice: ").append(highPrice).append("\n");
     sb.append("  lowPrice: ").append(lowPrice).append("\n");
@@ -436,6 +471,7 @@ public class Instrument {
     sb.append("  midPrice: ").append(midPrice).append("\n");
     sb.append("  askPrice: ").append(askPrice).append("\n");
     sb.append("  openInterest: ").append(openInterest).append("\n");
+    sb.append("  openValue: ").append(openValue).append("\n");
     sb.append("  settledPrice: ").append(settledPrice).append("\n");
     sb.append("  timestamp: ").append(timestamp).append("\n");
     sb.append("}\n");

@@ -30,28 +30,105 @@ class TradeApi(object):
 
     
 
-    def getBucketed(self, symbol, **kwargs):
-        """Get previous trades bucketed by seconds.
+    def get(self, **kwargs):
+        """Get Trades.
 
         Args:
-            symbol, str: Instrument name. (required)
+            symbol, str: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
 
-            startTime, datetime: Start date. Expects ISO formatted date strings. (optional)
+            filter, object: Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}. (optional)
 
-            endTime, datetime: End Date. Expects ISO formatted date strings. (optional)
+            columns, list[str]: Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
 
-            count, float: Number of buckets to fetch. (optional)
+            start, float: Starting point for results. (optional)
 
-            useMillisecondTime, bool: Return dates in milliseconds (GMT). Useful for charting. (optional)
+            reverse, bool: If true, will sort results newest first. (optional)
+
+            startTime, datetime: Starting date filter for results. (optional)
+
+            endTime, datetime: Ending date filter for results. (optional)
+
+            count, float: Number of results to fetch. (optional)
+
+            
+
+        Returns: Array[Trade]
+        """
+
+        allParams = ['symbol', 'filter', 'columns', 'start', 'reverse', 'startTime', 'endTime', 'count']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method get" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/trade'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('symbol' in params):
+            queryParams['symbol'] = self.apiClient.toPathValue(params['symbol'])
+        if ('filter' in params):
+            queryParams['filter'] = self.apiClient.toPathValue(params['filter'])
+        if ('columns' in params):
+            queryParams['columns'] = self.apiClient.toPathValue(params['columns'])
+        if ('count' in params):
+            queryParams['count'] = self.apiClient.toPathValue(params['count'])
+        if ('start' in params):
+            queryParams['start'] = self.apiClient.toPathValue(params['start'])
+        if ('reverse' in params):
+            queryParams['reverse'] = self.apiClient.toPathValue(params['reverse'])
+        if ('startTime' in params):
+            queryParams['startTime'] = self.apiClient.toPathValue(params['startTime'])
+        if ('endTime' in params):
+            queryParams['endTime'] = self.apiClient.toPathValue(params['endTime'])
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'Array[Trade]')
+        return responseObject
+        
+
+        
+
+    def getBucketed(self, **kwargs):
+        """Get previous trades in time buckets.
+
+        Args:
+            symbol, str: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
+
+            filter, object: Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}. (optional)
+
+            columns, list[str]: Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
+
+            start, float: Starting point for results. (optional)
+
+            reverse, bool: If true, will sort results newest first. (optional)
+
+            startTime, datetime: Starting date filter for results. (optional)
+
+            endTime, datetime: Ending date filter for results. (optional)
 
             binSize, str: Time interval to bucket by. Available options: ['30s', '1m', '5m', '1h', '1d']. (optional)
+
+            count, float: Number of results to fetch. (optional)
 
             
 
         Returns: Array[TradeBin]
         """
 
-        allParams = ['symbol', 'startTime', 'endTime', 'count', 'useMillisecondTime', 'binSize']
+        allParams = ['symbol', 'filter', 'columns', 'start', 'reverse', 'startTime', 'endTime', 'binSize', 'count']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -67,18 +144,24 @@ class TradeApi(object):
         queryParams = {}
         headerParams = {}
 
-        if ('symbol' in params):
-            queryParams['symbol'] = self.apiClient.toPathValue(params['symbol'])
         if ('binSize' in params):
             queryParams['binSize'] = self.apiClient.toPathValue(params['binSize'])
+        if ('symbol' in params):
+            queryParams['symbol'] = self.apiClient.toPathValue(params['symbol'])
+        if ('filter' in params):
+            queryParams['filter'] = self.apiClient.toPathValue(params['filter'])
+        if ('columns' in params):
+            queryParams['columns'] = self.apiClient.toPathValue(params['columns'])
+        if ('count' in params):
+            queryParams['count'] = self.apiClient.toPathValue(params['count'])
+        if ('start' in params):
+            queryParams['start'] = self.apiClient.toPathValue(params['start'])
+        if ('reverse' in params):
+            queryParams['reverse'] = self.apiClient.toPathValue(params['reverse'])
         if ('startTime' in params):
             queryParams['startTime'] = self.apiClient.toPathValue(params['startTime'])
         if ('endTime' in params):
             queryParams['endTime'] = self.apiClient.toPathValue(params['endTime'])
-        if ('count' in params):
-            queryParams['count'] = self.apiClient.toPathValue(params['count'])
-        if ('useMillisecondTime' in params):
-            queryParams['useMillisecondTime'] = self.apiClient.toPathValue(params['useMillisecondTime'])
         postData = (params['body'] if 'body' in params else None)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
@@ -94,10 +177,10 @@ class TradeApi(object):
         
 
     def getByDate(self, startTime, **kwargs):
-        """Get trades between two dates.
+        """Get trades between two dates. [Deprecated, use GET /trades]
 
         Args:
-            symbol, str: Instrument name. (optional)
+            symbol, str: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
 
             startTime, datetime: Start date. (required)
 
@@ -145,12 +228,12 @@ class TradeApi(object):
         
 
     def getRecent(self, count= None, **kwargs):
-        """Get recent trades.
+        """Get recent trades. [Deprecated, use GET /trades]
 
         Args:
-            symbol, str: Instrument name. (optional)
+            symbol, str: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
 
-            count, float: Number of trades to fetch (required)
+            count, float: Number of trades to fetch. (required)
 
             
 

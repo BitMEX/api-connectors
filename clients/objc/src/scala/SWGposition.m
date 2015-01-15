@@ -5,6 +5,8 @@
 
 -(id)account: (NSNumber*) account
     symbol: (NSString*) symbol
+    underlying: (NSString*) underlying
+    quoteCurrency: (NSString*) quoteCurrency
     currency: (NSString*) currency
     commission: (NSNumber*) commission
     prevRealisedPnl: (NSNumber*) prevRealisedPnl
@@ -36,6 +38,8 @@
     grossExecCost: (NSNumber*) grossExecCost
     lastPrice: (NSNumber*) lastPrice
     lastValue: (NSNumber*) lastValue
+    homeNotional: (NSNumber*) homeNotional
+    foreignNotional: (NSNumber*) foreignNotional
     notionalCurrency1: (NSString*) notionalCurrency1
     notionalValue1: (NSNumber*) notionalValue1
     notionalCurrency2: (NSString*) notionalCurrency2
@@ -56,6 +60,8 @@
 {
   _account = account;
   _symbol = symbol;
+  _underlying = underlying;
+  _quoteCurrency = quoteCurrency;
   _currency = currency;
   _commission = commission;
   _prevRealisedPnl = prevRealisedPnl;
@@ -87,6 +93,8 @@
   _grossExecCost = grossExecCost;
   _lastPrice = lastPrice;
   _lastValue = lastValue;
+  _homeNotional = homeNotional;
+  _foreignNotional = foreignNotional;
   _notionalCurrency1 = notionalCurrency1;
   _notionalValue1 = notionalValue1;
   _notionalCurrency2 = notionalCurrency2;
@@ -113,6 +121,8 @@
     if(self) {
         _account = dict[@"account"]; 
         _symbol = dict[@"symbol"]; 
+        _underlying = dict[@"underlying"]; 
+        _quoteCurrency = dict[@"quoteCurrency"]; 
         _currency = dict[@"currency"]; 
         _commission = dict[@"commission"]; 
         _prevRealisedPnl = dict[@"prevRealisedPnl"]; 
@@ -148,6 +158,8 @@
         _grossExecCost = dict[@"grossExecCost"]; 
         _lastPrice = dict[@"lastPrice"]; 
         _lastValue = dict[@"lastValue"]; 
+        _homeNotional = dict[@"homeNotional"]; 
+        _foreignNotional = dict[@"foreignNotional"]; 
         _notionalCurrency1 = dict[@"notionalCurrency1"]; 
         _notionalValue1 = dict[@"notionalValue1"]; 
         _notionalCurrency2 = dict[@"notionalCurrency2"]; 
@@ -177,6 +189,8 @@
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     if(_account != nil) dict[@"account"] = _account ;
         if(_symbol != nil) dict[@"symbol"] = _symbol ;
+        if(_underlying != nil) dict[@"underlying"] = _underlying ;
+        if(_quoteCurrency != nil) dict[@"quoteCurrency"] = _quoteCurrency ;
         if(_currency != nil) dict[@"currency"] = _currency ;
         if(_commission != nil) dict[@"commission"] = _commission ;
         if(_prevRealisedPnl != nil) dict[@"prevRealisedPnl"] = _prevRealisedPnl ;
@@ -242,6 +256,8 @@
         if(_grossExecCost != nil) dict[@"grossExecCost"] = _grossExecCost ;
         if(_lastPrice != nil) dict[@"lastPrice"] = _lastPrice ;
         if(_lastValue != nil) dict[@"lastValue"] = _lastValue ;
+        if(_homeNotional != nil) dict[@"homeNotional"] = _homeNotional ;
+        if(_foreignNotional != nil) dict[@"foreignNotional"] = _foreignNotional ;
         if(_notionalCurrency1 != nil) dict[@"notionalCurrency1"] = _notionalCurrency1 ;
         if(_notionalValue1 != nil) dict[@"notionalValue1"] = _notionalValue1 ;
         if(_notionalCurrency2 != nil) dict[@"notionalCurrency2"] = _notionalCurrency2 ;

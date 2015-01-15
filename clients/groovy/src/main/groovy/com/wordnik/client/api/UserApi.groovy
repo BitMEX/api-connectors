@@ -12,6 +12,7 @@ import com.wordnik.client.common.ApiUtils
 
 import com.wordnik.client.model.User
 import com.wordnik.client.model.Transaction
+import com.wordnik.client.model.Affiliate
 import com.wordnik.client.model.AccessToken
 import com.wordnik.client.model.Any
 import java.util.*;
@@ -52,7 +53,7 @@ class UserApi {
                     Transaction.class )
 
   }
-  def requestWithdrawal (Double amount,String address,String currency,Closure onSuccess, Closure onFailure)  {
+  def requestWithdrawal (String otpToken,Double amount,String address,String currency,Closure onSuccess, Closure onFailure)  {
     // create path and map variables
     String resourcePath = "/user/requestWithdrawal"
 
@@ -62,7 +63,7 @@ class UserApi {
     def headerParams = [:]
 
     // verify required params are set
-    if(amount == null || address == null ) {
+    if(currency == null || amount == null || address == null ) {
        throw new RuntimeException("missing required params")
     }
     invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
@@ -212,7 +213,21 @@ class UserApi {
                     Boolean.class )
 
   }
-  def newUser (String email,String password,String username,String firstname,String lastname,String acceptsTOS,String accountType,Closure onSuccess, Closure onFailure)  {
+  def getAffiliateStatus (Closure onSuccess, Closure onFailure)  {
+    // create path and map variables
+    String resourcePath = "/user/affiliateStatus"
+
+
+    // query params
+    def queryParams = [:]
+    def headerParams = [:]
+
+    invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "POST", "List",
+                    Affiliate.class )
+
+  }
+  def newUser (String email,String password,String username,String firstname,String lastname,String acceptsTOS,String referrerID,String accountType,Closure onSuccess, Closure onFailure)  {
     // create path and map variables
     String resourcePath = "/user"
 
@@ -279,6 +294,20 @@ class UserApi {
   def logout (Closure onSuccess, Closure onFailure)  {
     // create path and map variables
     String resourcePath = "/user/logout"
+
+
+    // query params
+    def queryParams = [:]
+    def headerParams = [:]
+
+    invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "POST", "",
+                    null )
+
+  }
+  def logoutAll (Closure onSuccess, Closure onFailure)  {
+    // create path and map variables
+    String resourcePath = "/user/logoutAll"
 
 
     // query params

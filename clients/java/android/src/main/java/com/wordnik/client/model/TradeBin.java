@@ -24,6 +24,12 @@ public class TradeBin {
   private Double vwap = null;
   @JsonProperty("lastSize")
   private Double lastSize = null;
+  @JsonProperty("turnover")
+  private Double turnover = null;
+  @JsonProperty("homeNotional")
+  private Double homeNotional = null;
+  @JsonProperty("foreignNotional")
+  private Double foreignNotional = null;
   @JsonProperty("id")
   private Double id = null;
   public Date getTimestamp() {
@@ -96,6 +102,27 @@ public class TradeBin {
     this.lastSize = lastSize;
   }
 
+  public Double getTurnover() {
+    return turnover;
+  }
+  public void setTurnover(Double turnover) {
+    this.turnover = turnover;
+  }
+
+  public Double getHomeNotional() {
+    return homeNotional;
+  }
+  public void setHomeNotional(Double homeNotional) {
+    this.homeNotional = homeNotional;
+  }
+
+  public Double getForeignNotional() {
+    return foreignNotional;
+  }
+  public void setForeignNotional(Double foreignNotional) {
+    this.foreignNotional = foreignNotional;
+  }
+
   public Double getId() {
     return id;
   }
@@ -117,6 +144,9 @@ public class TradeBin {
     sb.append("  volume: ").append(volume).append("\n");
     sb.append("  vwap: ").append(vwap).append("\n");
     sb.append("  lastSize: ").append(lastSize).append("\n");
+    sb.append("  turnover: ").append(turnover).append("\n");
+    sb.append("  homeNotional: ").append(homeNotional).append("\n");
+    sb.append("  foreignNotional: ").append(foreignNotional).append("\n");
     sb.append("  id: ").append(id).append("\n");
     sb.append("}\n");
     return sb.toString();

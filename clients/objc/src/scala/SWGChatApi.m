@@ -1,7 +1,6 @@
 #import "SWGChatApi.h"
 #import "SWGFile.h"
 #import "SWGApiClient.h"
-#import "SWGError.h"
 #import "SWGChat.h"
 
 
@@ -52,7 +51,8 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 }
 
 
--(NSNumber*) getWithCompletionBlock:(NSNumber*) count
+-(NSNumber*) getWithCompletionBlock:(NSNumber*) start
+        count:(NSNumber*) count
         completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/chat", basePath];
@@ -67,6 +67,8 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
         NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
     if(count != nil)
         queryParams[@"count"] = count;
+    if(start != nil)
+        queryParams[@"start"] = start;
     NSMutableDictionary* headerParams = [[NSMutableDictionary alloc] init];
     id bodyDictionary = nil;
         SWGApiClient* client = [SWGApiClient sharedClientFromPool:basePath];

@@ -19,6 +19,12 @@
 
 @property(nonatomic) NSString* trdMatchID;  
 
+@property(nonatomic) NSNumber* grossValue;  
+
+@property(nonatomic) NSNumber* homeNotional;  
+
+@property(nonatomic) NSNumber* foreignNotional;  
+
 @property(nonatomic) NSNumber* _id;  
 
 - (id) timestamp: (SWGDate*) timestamp
@@ -28,6 +34,9 @@
      price: (NSNumber*) price
      tickDirection: (NSString*) tickDirection
      trdMatchID: (NSString*) trdMatchID
+     grossValue: (NSNumber*) grossValue
+     homeNotional: (NSNumber*) homeNotional
+     foreignNotional: (NSNumber*) foreignNotional
      _id: (NSNumber*) _id;
 
 - (id) initWithValues: (NSDictionary*)dict;

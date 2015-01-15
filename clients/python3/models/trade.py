@@ -28,6 +28,9 @@ class Trade:
             'price': 'float',
             'tickDirection': 'str',
             'trdMatchID': 'str',
+            'grossValue': 'float',
+            'homeNotional': 'float',
+            'foreignNotional': 'float',
             'id': 'float'
 
         }
@@ -40,5 +43,8 @@ class Trade:
         self.price = None # float
         self.tickDirection = None # str
         self.trdMatchID = None # str
+        self.grossValue = None # float
+        self.homeNotional = None # float
+        self.foreignNotional = None # float
         self.id = None # float
         

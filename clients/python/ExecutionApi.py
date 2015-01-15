@@ -30,25 +30,37 @@ class ExecutionApi(object):
 
     
 
-    def getMyExecutions(self, **kwargs):
-        """Get your executions. This includes each trade and insurance charge.
+    def get(self, **kwargs):
+        """Get all raw executions for your account.
 
         Args:
-            filter, object: Table filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;}. (optional)
+            symbol, str: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
 
-            count, float: Number of executions to fetch (optional)
+            filter, object: Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}. (optional)
+
+            columns, list[str]: Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
+
+            start, float: Starting point for results. (optional)
+
+            reverse, bool: If true, will sort results newest first. (optional)
+
+            startTime, datetime: Starting date filter for results. (optional)
+
+            endTime, datetime: Ending date filter for results. (optional)
+
+            count, float: Number of results to fetch. (optional)
 
             
 
         Returns: Array[Execution]
         """
 
-        allParams = ['filter', 'count']
+        allParams = ['symbol', 'filter', 'columns', 'start', 'reverse', 'startTime', 'endTime', 'count']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
             if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method getMyExecutions" % key)
+                raise TypeError("Got an unexpected keyword argument '%s' to method get" % key)
             params[key] = val
         del params['kwargs']
 
@@ -59,10 +71,93 @@ class ExecutionApi(object):
         queryParams = {}
         headerParams = {}
 
+        if ('symbol' in params):
+            queryParams['symbol'] = self.apiClient.toPathValue(params['symbol'])
         if ('filter' in params):
             queryParams['filter'] = self.apiClient.toPathValue(params['filter'])
+        if ('columns' in params):
+            queryParams['columns'] = self.apiClient.toPathValue(params['columns'])
         if ('count' in params):
             queryParams['count'] = self.apiClient.toPathValue(params['count'])
+        if ('start' in params):
+            queryParams['start'] = self.apiClient.toPathValue(params['start'])
+        if ('reverse' in params):
+            queryParams['reverse'] = self.apiClient.toPathValue(params['reverse'])
+        if ('startTime' in params):
+            queryParams['startTime'] = self.apiClient.toPathValue(params['startTime'])
+        if ('endTime' in params):
+            queryParams['endTime'] = self.apiClient.toPathValue(params['endTime'])
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'Array[Execution]')
+        return responseObject
+        
+
+        
+
+    def getTradeHistory(self, **kwargs):
+        """Get all balance-affecting executions. This includes each trade, insurance charge, and settlement.
+
+        Args:
+            symbol, str: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
+
+            filter, object: Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}. (optional)
+
+            columns, list[str]: Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
+
+            start, float: Starting point for results. (optional)
+
+            reverse, bool: If true, will sort results newest first. (optional)
+
+            startTime, datetime: Starting date filter for results. (optional)
+
+            endTime, datetime: Ending date filter for results. (optional)
+
+            count, float: Number of results to fetch. (optional)
+
+            
+
+        Returns: Array[Execution]
+        """
+
+        allParams = ['symbol', 'filter', 'columns', 'start', 'reverse', 'startTime', 'endTime', 'count']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method getTradeHistory" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/execution/tradeHistory'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('symbol' in params):
+            queryParams['symbol'] = self.apiClient.toPathValue(params['symbol'])
+        if ('filter' in params):
+            queryParams['filter'] = self.apiClient.toPathValue(params['filter'])
+        if ('columns' in params):
+            queryParams['columns'] = self.apiClient.toPathValue(params['columns'])
+        if ('count' in params):
+            queryParams['count'] = self.apiClient.toPathValue(params['count'])
+        if ('start' in params):
+            queryParams['start'] = self.apiClient.toPathValue(params['start'])
+        if ('reverse' in params):
+            queryParams['reverse'] = self.apiClient.toPathValue(params['reverse'])
+        if ('startTime' in params):
+            queryParams['startTime'] = self.apiClient.toPathValue(params['startTime'])
+        if ('endTime' in params):
+            queryParams['endTime'] = self.apiClient.toPathValue(params['endTime'])
         postData = (params['body'] if 'body' in params else None)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,

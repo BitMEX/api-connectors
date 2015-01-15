@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 namespace Swagger.Client.Model {
   public class User {
+    public double? id { get; set; }
+
     public string firstname { get; set; }
 
     public string lastname { get; set; }
@@ -29,11 +31,12 @@ namespace Swagger.Client.Model {
 
     public string TFAEnabled { get; set; }
 
-    public double? id { get; set; }
+    public string affiliateID { get; set; }
 
     public override string ToString()  {
       var sb = new StringBuilder();
       sb.Append("class User {\n");
+      sb.Append("  id: ").Append(id).Append("\n");
       sb.Append("  firstname: ").Append(firstname).Append("\n");
       sb.Append("  lastname: ").Append(lastname).Append("\n");
       sb.Append("  status: ").Append(status).Append("\n");
@@ -46,7 +49,7 @@ namespace Swagger.Client.Model {
       sb.Append("  preferences: ").Append(preferences).Append("\n");
       sb.Append("  role: ").Append(role).Append("\n");
       sb.Append("  TFAEnabled: ").Append(TFAEnabled).Append("\n");
-      sb.Append("  id: ").Append(id).Append("\n");
+      sb.Append("  affiliateID: ").Append(affiliateID).Append("\n");
       sb.Append("}\n");
       return sb.ToString();
     }

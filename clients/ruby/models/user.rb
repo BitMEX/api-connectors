@@ -1,9 +1,10 @@
 class User
-  attr_accessor :firstname, :lastname, :status, :username, :email, :phone, :country_code, :created, :last_updated, :preferences, :role, :_t_f_a_enabled, :id
+  attr_accessor :id, :firstname, :lastname, :status, :username, :email, :phone, :country_code, :created, :last_updated, :preferences, :role, :_t_f_a_enabled, :affiliate_i_d
 
   # :internal => :external
   def self.attribute_map
     {
+      :id => :id,
       :firstname => :firstname,
       :lastname => :lastname,
       :status => :status,
@@ -16,7 +17,7 @@ class User
       :preferences => :preferences,
       :role => :role,
       :_t_f_a_enabled => :TFAEnabled,
-      :id => :id
+      :affiliate_i_d => :affiliateID
 
     }
   end
@@ -24,6 +25,9 @@ class User
   def initialize(attributes = {})
     return if attributes.empty?
     # Morph attribute keys into undescored rubyish style
+    if self.class.attribute_map[:"id"]
+      @id = attributes["id"]
+    end
     if self.class.attribute_map[:"firstname"]
       @firstname = attributes["firstname"]
     end
@@ -60,8 +64,8 @@ class User
     if self.class.attribute_map[:"_t_f_a_enabled"]
       @_t_f_a_enabled = attributes["TFAEnabled"]
     end
-    if self.class.attribute_map[:"id"]
-      @id = attributes["id"]
+    if self.class.attribute_map[:"affiliate_i_d"]
+      @affiliate_i_d = attributes["affiliateID"]
     end
     
 

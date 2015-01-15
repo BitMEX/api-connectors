@@ -57,6 +57,9 @@ class Instrument:
             'prevTotalVolume': 'float',
             'totalVolume': 'float',
             'volume': 'float',
+            'prevTotalTurnover': 'float',
+            'totalTurnover': 'float',
+            'turnover': 'float',
             'vwap': 'float',
             'highPrice': 'float',
             'lowPrice': 'float',
@@ -67,6 +70,7 @@ class Instrument:
             'midPrice': 'float',
             'askPrice': 'float',
             'openInterest': 'float',
+            'openValue': 'float',
             'settledPrice': 'float',
             'timestamp': 'datetime'
 
@@ -109,6 +113,9 @@ class Instrument:
         self.prevTotalVolume = None # float
         self.totalVolume = None # float
         self.volume = None # float
+        self.prevTotalTurnover = None # float
+        self.totalTurnover = None # float
+        self.turnover = None # float
         self.vwap = None # float
         self.highPrice = None # float
         self.lowPrice = None # float
@@ -119,6 +126,7 @@ class Instrument:
         self.midPrice = None # float
         self.askPrice = None # float
         self.openInterest = None # float
+        self.openValue = None # float
         self.settledPrice = None # float
         self.timestamp = None # datetime
         

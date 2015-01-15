@@ -3,7 +3,6 @@ package com.wordnik.client.api;
 import com.wordnik.client.common.ApiException;
 import com.wordnik.client.common.ApiInvoker;
 
-import com.wordnik.client.model.Error;
 import com.wordnik.client.model.ApiKey;
 import com.sun.jersey.multipart.FormDataMultiPart;
 
@@ -29,9 +28,9 @@ public class ApiKeyApi {
   }
 
   //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: Error
-  //error info- code: 401 reason: "Unauthorized" model: Error
-  //error info- code: 404 reason: "Not Found" model: Error
+  //error info- code: 400 reason: "Parameter Error" model: <none>
+  //error info- code: 401 reason: "Unauthorized" model: <none>
+  //error info- code: 404 reason: "Not Found" model: <none>
   public ApiKey createKey (String name, String cidr, Boolean enabled) throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -80,9 +79,9 @@ public class ApiKeyApi {
     }
   }
   //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: Error
-  //error info- code: 401 reason: "Unauthorized" model: Error
-  //error info- code: 404 reason: "Not Found" model: Error
+  //error info- code: 400 reason: "Parameter Error" model: <none>
+  //error info- code: 401 reason: "Unauthorized" model: <none>
+  //error info- code: 404 reason: "Not Found" model: <none>
   public List<ApiKey> getKeys () throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -125,9 +124,9 @@ public class ApiKeyApi {
     }
   }
   //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: Error
-  //error info- code: 401 reason: "Unauthorized" model: Error
-  //error info- code: 404 reason: "Not Found" model: Error
+  //error info- code: 400 reason: "Parameter Error" model: <none>
+  //error info- code: 401 reason: "Unauthorized" model: <none>
+  //error info- code: 404 reason: "Not Found" model: <none>
   public Boolean remove (String accessKey) throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -172,9 +171,9 @@ public class ApiKeyApi {
     }
   }
   //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: Error
-  //error info- code: 401 reason: "Unauthorized" model: Error
-  //error info- code: 404 reason: "Not Found" model: Error
+  //error info- code: 400 reason: "Parameter Error" model: <none>
+  //error info- code: 401 reason: "Unauthorized" model: <none>
+  //error info- code: 404 reason: "Not Found" model: <none>
   public ApiKey disable (String accessKey) throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -219,9 +218,9 @@ public class ApiKeyApi {
     }
   }
   //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: Error
-  //error info- code: 401 reason: "Unauthorized" model: Error
-  //error info- code: 404 reason: "Not Found" model: Error
+  //error info- code: 400 reason: "Parameter Error" model: <none>
+  //error info- code: 401 reason: "Unauthorized" model: <none>
+  //error info- code: 404 reason: "Not Found" model: <none>
   public ApiKey enable (String accessKey) throws ApiException {
     Object postBody = null;
     // create path and map variables

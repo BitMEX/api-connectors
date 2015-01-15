@@ -2,7 +2,6 @@ package com.wordnik.client.api;
 
 import com.wordnik.client.ApiException;
 import com.wordnik.client.ApiInvoker;
-import com.wordnik.client.model.Error;
 import com.wordnik.client.model.Instrument;
 import java.util.*;
 import java.io.File;
@@ -28,9 +27,9 @@ public class InstrumentApi {
   }
 
   //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: Error
-  //error info- code: 401 reason: "Unauthorized" model: Error
-  //error info- code: 404 reason: "Not Found" model: Error
+  //error info- code: 400 reason: "Parameter Error" model: <none>
+  //error info- code: 401 reason: "Unauthorized" model: <none>
+  //error info- code: 404 reason: "Not Found" model: <none>
   public List<Instrument> get (Object filter) throws ApiException {
     // create path and map variables
     String path = "/instrument".replaceAll("\\{format\\}","json");
@@ -61,9 +60,9 @@ public class InstrumentApi {
     }
   }
   //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: Error
-  //error info- code: 401 reason: "Unauthorized" model: Error
-  //error info- code: 404 reason: "Not Found" model: Error
+  //error info- code: 400 reason: "Parameter Error" model: <none>
+  //error info- code: 401 reason: "Unauthorized" model: <none>
+  //error info- code: 404 reason: "Not Found" model: <none>
   public List<Instrument> getActive () throws ApiException {
     // create path and map variables
     String path = "/instrument/active".replaceAll("\\{format\\}","json");

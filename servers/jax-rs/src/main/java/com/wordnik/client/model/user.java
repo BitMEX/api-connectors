@@ -3,6 +3,7 @@ package com.wordnik.client.model;
 import java.util.Date;
 import com.wordnik.client.model.Object;
 public class User {
+  private Double id = null;
   private String firstname = null;
   private String lastname = null;
   private String status = null;
@@ -15,7 +16,14 @@ public class User {
   private Object preferences = null;
   private String role = null;
   private String TFAEnabled = null;
-  private Double id = null;
+  private String affiliateID = null;
+  public Double getId() {
+    return id;
+  }
+  public void setId(Double id) {
+    this.id = id;
+  }
+
   public String getFirstname() {
     return firstname;
   }
@@ -100,17 +108,18 @@ public class User {
     this.TFAEnabled = TFAEnabled;
   }
 
-  public Double getId() {
-    return id;
+  public String getAffiliateID() {
+    return affiliateID;
   }
-  public void setId(Double id) {
-    this.id = id;
+  public void setAffiliateID(String affiliateID) {
+    this.affiliateID = affiliateID;
   }
 
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
     sb.append("class User {\n");
+    sb.append("  id: ").append(id).append("\n");
     sb.append("  firstname: ").append(firstname).append("\n");
     sb.append("  lastname: ").append(lastname).append("\n");
     sb.append("  status: ").append(status).append("\n");
@@ -123,7 +132,7 @@ public class User {
     sb.append("  preferences: ").append(preferences).append("\n");
     sb.append("  role: ").append(role).append("\n");
     sb.append("  TFAEnabled: ").append(TFAEnabled).append("\n");
-    sb.append("  id: ").append(id).append("\n");
+    sb.append("  affiliateID: ").append(affiliateID).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

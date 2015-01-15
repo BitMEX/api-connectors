@@ -1,5 +1,5 @@
 class Trade
-  attr_accessor :timestamp, :symbol, :side, :size, :price, :tick_direction, :trd_match_i_d, :id
+  attr_accessor :timestamp, :symbol, :side, :size, :price, :tick_direction, :trd_match_i_d, :gross_value, :home_notional, :foreign_notional, :id
 
   # :internal => :external
   def self.attribute_map
@@ -11,6 +11,9 @@ class Trade
       :price => :price,
       :tick_direction => :tickDirection,
       :trd_match_i_d => :trdMatchID,
+      :gross_value => :grossValue,
+      :home_notional => :homeNotional,
+      :foreign_notional => :foreignNotional,
       :id => :id
 
     }
@@ -39,6 +42,15 @@ class Trade
     end
     if self.class.attribute_map[:"trd_match_i_d"]
       @trd_match_i_d = attributes["trdMatchID"]
+    end
+    if self.class.attribute_map[:"gross_value"]
+      @gross_value = attributes["grossValue"]
+    end
+    if self.class.attribute_map[:"home_notional"]
+      @home_notional = attributes["homeNotional"]
+    end
+    if self.class.attribute_map[:"foreign_notional"]
+      @foreign_notional = attributes["foreignNotional"]
     end
     if self.class.attribute_map[:"id"]
       @id = attributes["id"]

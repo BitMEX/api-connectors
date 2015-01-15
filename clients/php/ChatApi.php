@@ -28,12 +28,14 @@ class ChatApi {
   /**
 	 * get
 	 * Get chat messages.
-   * count, float:  (optional)
+   * start, float: Starting point for results. (optional)
+
+   * count, float: Number of results to fetch. (optional)
 
    * @return Array[Chat]
 	 */
 
-   public function get($count=null) {
+   public function get($start=null, $count=null) {
 
   		//parse inputs
   		$resourcePath = "/chat";
@@ -46,6 +48,9 @@ class ChatApi {
 
       if($count != null) {
   		  $queryParams['count'] = $this->apiClient->toQueryValue($count);
+  		}
+  		if($start != null) {
+  		  $queryParams['start'] = $this->apiClient->toQueryValue($start);
   		}
   		//make the API Call
       if (! isset($body)) {

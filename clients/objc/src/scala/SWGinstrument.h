@@ -77,6 +77,12 @@
 
 @property(nonatomic) NSNumber* volume;  
 
+@property(nonatomic) NSNumber* prevTotalTurnover;  
+
+@property(nonatomic) NSNumber* totalTurnover;  
+
+@property(nonatomic) NSNumber* turnover;  
+
 @property(nonatomic) NSNumber* vwap;  
 
 @property(nonatomic) NSNumber* highPrice;  
@@ -96,6 +102,8 @@
 @property(nonatomic) NSNumber* askPrice;  
 
 @property(nonatomic) NSNumber* openInterest;  
+
+@property(nonatomic) NSNumber* openValue;  
 
 @property(nonatomic) NSNumber* settledPrice;  
 
@@ -137,6 +145,9 @@
      prevTotalVolume: (NSNumber*) prevTotalVolume
      totalVolume: (NSNumber*) totalVolume
      volume: (NSNumber*) volume
+     prevTotalTurnover: (NSNumber*) prevTotalTurnover
+     totalTurnover: (NSNumber*) totalTurnover
+     turnover: (NSNumber*) turnover
      vwap: (NSNumber*) vwap
      highPrice: (NSNumber*) highPrice
      lowPrice: (NSNumber*) lowPrice
@@ -147,6 +158,7 @@
      midPrice: (NSNumber*) midPrice
      askPrice: (NSNumber*) askPrice
      openInterest: (NSNumber*) openInterest
+     openValue: (NSNumber*) openValue
      settledPrice: (NSNumber*) settledPrice
      timestamp: (SWGDate*) timestamp;
 

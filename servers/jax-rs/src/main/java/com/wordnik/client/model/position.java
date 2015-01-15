@@ -4,6 +4,8 @@ import java.util.Date;
 public class Position {
   private Double account = null;
   private String symbol = null;
+  private String underlying = null;
+  private String quoteCurrency = null;
   private String currency = null;
   private Double commission = null;
   private Double prevRealisedPnl = null;
@@ -35,6 +37,8 @@ public class Position {
   private Double grossExecCost = null;
   private Double lastPrice = null;
   private Double lastValue = null;
+  private Double homeNotional = null;
+  private Double foreignNotional = null;
   private String notionalCurrency1 = null;
   private Double notionalValue1 = null;
   private String notionalCurrency2 = null;
@@ -64,6 +68,20 @@ public class Position {
   }
   public void setSymbol(String symbol) {
     this.symbol = symbol;
+  }
+
+  public String getUnderlying() {
+    return underlying;
+  }
+  public void setUnderlying(String underlying) {
+    this.underlying = underlying;
+  }
+
+  public String getQuoteCurrency() {
+    return quoteCurrency;
+  }
+  public void setQuoteCurrency(String quoteCurrency) {
+    this.quoteCurrency = quoteCurrency;
   }
 
   public String getCurrency() {
@@ -283,6 +301,20 @@ public class Position {
     this.lastValue = lastValue;
   }
 
+  public Double getHomeNotional() {
+    return homeNotional;
+  }
+  public void setHomeNotional(Double homeNotional) {
+    this.homeNotional = homeNotional;
+  }
+
+  public Double getForeignNotional() {
+    return foreignNotional;
+  }
+  public void setForeignNotional(Double foreignNotional) {
+    this.foreignNotional = foreignNotional;
+  }
+
   public String getNotionalCurrency1() {
     return notionalCurrency1;
   }
@@ -408,6 +440,8 @@ public class Position {
     sb.append("class Position {\n");
     sb.append("  account: ").append(account).append("\n");
     sb.append("  symbol: ").append(symbol).append("\n");
+    sb.append("  underlying: ").append(underlying).append("\n");
+    sb.append("  quoteCurrency: ").append(quoteCurrency).append("\n");
     sb.append("  currency: ").append(currency).append("\n");
     sb.append("  commission: ").append(commission).append("\n");
     sb.append("  prevRealisedPnl: ").append(prevRealisedPnl).append("\n");
@@ -439,6 +473,8 @@ public class Position {
     sb.append("  grossExecCost: ").append(grossExecCost).append("\n");
     sb.append("  lastPrice: ").append(lastPrice).append("\n");
     sb.append("  lastValue: ").append(lastValue).append("\n");
+    sb.append("  homeNotional: ").append(homeNotional).append("\n");
+    sb.append("  foreignNotional: ").append(foreignNotional).append("\n");
     sb.append("  notionalCurrency1: ").append(notionalCurrency1).append("\n");
     sb.append("  notionalValue1: ").append(notionalValue1).append("\n");
     sb.append("  notionalCurrency2: ").append(notionalCurrency2).append("\n");

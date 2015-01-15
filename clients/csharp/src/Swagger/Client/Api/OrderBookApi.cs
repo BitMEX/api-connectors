@@ -29,8 +29,8 @@
       /// <summary>
       /// Get current orderbook. 
       /// </summary>
-      /// <param name="symbol"></param>
-      /// <param name="depth"></param>
+      /// <param name="symbol">Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</param>
+      /// <param name="depth">Orderbook depth.</param>
       /// <returns></returns>
       public List<OrderBook> getOrderBook (string symbol, double? depth) {
         // create path and map variables

@@ -1,6 +1,5 @@
 package com.wordnik.client.api
 
-import com.wordnik.client.model.Error
 import com.wordnik.client.model.Instrument
 import com.wordnik.client.common.ApiInvoker
 import com.wordnik.client.common.ApiException

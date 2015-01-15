@@ -10,7 +10,6 @@ import static groovyx.net.http.Method.*
 import com.wordnik.client.common.ApiUtils
 //-------------
 
-import com.wordnik.client.model.Error
 import com.wordnik.client.model.Chat
 import java.util.*;
 
@@ -20,7 +19,7 @@ class ChatApi {
     String versionPath = "/api/v1"
 
 
-  def get (Double count,Closure onSuccess, Closure onFailure)  {
+  def get (Double start,Double count,Closure onSuccess, Closure onFailure)  {
     // create path and map variables
     String resourcePath = "/chat"
 
@@ -31,6 +30,8 @@ class ChatApi {
 
     if(!"null".equals(String.valueOf(count)))
       queryParams.put("count", String.valueOf(count))
+    if(!"null".equals(String.valueOf(start)))
+      queryParams.put("start", String.valueOf(start))
     invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "List",
                     Chat.class )

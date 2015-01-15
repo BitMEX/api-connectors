@@ -6,6 +6,10 @@ case class Position (
 
   symbol: String,
 
+  underlying: Option[String],
+
+  quoteCurrency: Option[String],
+
   currency: Option[String],
 
   commission: Option[Double],
@@ -67,6 +71,10 @@ case class Position (
   lastPrice: Option[Double],
 
   lastValue: Option[Double],
+
+  homeNotional: Option[Double],
+
+  foreignNotional: Option[Double],
 
   notionalCurrency1: Option[String],
 

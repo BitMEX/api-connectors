@@ -1,13 +1,77 @@
 require 'json'
 
-MyApp.add_route('post', '/new', {
+MyApp.add_route('get', '/', {
   "resourcePath" => "/order",
-  "summary" => "Create a new order. [Deprecated]",
-  "nickname" => "newOrder", 
-  "responseClass" => "Order", 
-  "endpoint" => "/new", 
-  "notes" => "",
+  "summary" => "Get your orders.",
+  "nickname" => "getOrders", 
+  "responseClass" => "Array[Order]", 
+  "endpoint" => "/", 
+  "notes" => "To get open orders only, send {"open": true} in the filter param.",
   "parameters" => [
+    {
+      "name" => "symbol",
+      "description" => "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.",
+      "dataType" => "string",
+      "paramType" => "query",
+      "allowMultiple" => false,
+      "allowableValues" => "",
+      },
+    {
+      "name" => "filter",
+      "description" => "Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}.",
+      "dataType" => "object",
+      "paramType" => "query",
+      "allowMultiple" => false,
+      "allowableValues" => "",
+      },
+    {
+      "name" => "columns",
+      "description" => "Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.",
+      "dataType" => "Array[string]",
+      "paramType" => "query",
+      "allowMultiple" => false,
+      "allowableValues" => "",
+      },
+    {
+      "name" => "count",
+      "description" => "Number of results to fetch.",
+      "dataType" => "double",
+      "paramType" => "query",
+      "allowMultiple" => false,
+      "allowableValues" => "",
+      "defaultValue" => 100},
+    {
+      "name" => "start",
+      "description" => "Starting point for results.",
+      "dataType" => "double",
+      "paramType" => "query",
+      "allowMultiple" => false,
+      "allowableValues" => "",
+      },
+    {
+      "name" => "reverse",
+      "description" => "If true, will sort results newest first.",
+      "dataType" => "boolean",
+      "paramType" => "query",
+      "allowMultiple" => false,
+      "allowableValues" => "",
+      },
+    {
+      "name" => "startTime",
+      "description" => "Starting date filter for results.",
+      "dataType" => "Date",
+      "paramType" => "query",
+      "allowMultiple" => false,
+      "allowableValues" => "",
+      },
+    {
+      "name" => "endTime",
+      "description" => "Ending date filter for results.",
+      "dataType" => "Date",
+      "paramType" => "query",
+      "allowMultiple" => false,
+      "allowableValues" => "",
+      },
     ]}) do
   cross_origin
   # the guts live here
@@ -18,7 +82,7 @@ end
 MyApp.add_route('post', '/', {
   "resourcePath" => "/order",
   "summary" => "Create a new order.",
-  "nickname" => "newOrder_order_api_0", 
+  "nickname" => "newOrder", 
   "responseClass" => "Order", 
   "endpoint" => "/", 
   "notes" => "If you want to keep track of order IDs yourself, set a unique clOrdID per order. This ID will come back as a property on the order and any related executions executions (including on the WebSocket), and can be used to cancel the order.",
@@ -38,138 +102,6 @@ MyApp.add_route('delete', '/', {
   "endpoint" => "/", 
   "notes" => "Either an orderID or a clOrdID must be provided.",
   "parameters" => [
-    ]}) do
-  cross_origin
-  # the guts live here
-
-  {"message" => "yes, it worked"}.to_json
-end
-
-MyApp.add_route('get', '/', {
-  "resourcePath" => "/order",
-  "summary" => "Get your orders.",
-  "nickname" => "getOrders", 
-  "responseClass" => "Array[Order]", 
-  "endpoint" => "/", 
-  "notes" => "",
-  "parameters" => [
-    {
-      "name" => "filter",
-      "description" => "Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}.",
-      "dataType" => "object",
-      "paramType" => "query",
-      "allowMultiple" => false,
-      "allowableValues" => "",
-      },
-    {
-      "name" => "columns",
-      "description" => "Which columns to fetch. For example, send [&quot;columnName&quot;].",
-      "dataType" => "Array[any]",
-      "paramType" => "query",
-      "allowMultiple" => false,
-      "allowableValues" => "",
-      },
-    {
-      "name" => "count",
-      "description" => "Number of rows to fetch.",
-      "dataType" => "double",
-      "paramType" => "query",
-      "allowMultiple" => false,
-      "allowableValues" => "",
-      },
-    ]}) do
-  cross_origin
-  # the guts live here
-
-  {"message" => "yes, it worked"}.to_json
-end
-
-MyApp.add_route('post', '/cancel', {
-  "resourcePath" => "/order",
-  "summary" => "Cancel order(s). Send multiple order IDs to cancel in bulk. [Deprecated]",
-  "nickname" => "cancelOrder_order_api_0", 
-  "responseClass" => "Array[Order]", 
-  "endpoint" => "/cancel", 
-  "notes" => "",
-  "parameters" => [
-    ]}) do
-  cross_origin
-  # the guts live here
-
-  {"message" => "yes, it worked"}.to_json
-end
-
-MyApp.add_route('get', '/myOrders', {
-  "resourcePath" => "/order",
-  "summary" => "Get your orders. [Deprecated, use GET /order]",
-  "nickname" => "getOrders_order_api_0", 
-  "responseClass" => "Array[Order]", 
-  "endpoint" => "/myOrders", 
-  "notes" => "",
-  "parameters" => [
-    {
-      "name" => "filter",
-      "description" => "Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}.",
-      "dataType" => "object",
-      "paramType" => "query",
-      "allowMultiple" => false,
-      "allowableValues" => "",
-      },
-    {
-      "name" => "columns",
-      "description" => "Which columns to fetch. For example, send [&quot;columnName&quot;].",
-      "dataType" => "Array[any]",
-      "paramType" => "query",
-      "allowMultiple" => false,
-      "allowableValues" => "",
-      },
-    {
-      "name" => "count",
-      "description" => "Number of rows to fetch.",
-      "dataType" => "double",
-      "paramType" => "query",
-      "allowMultiple" => false,
-      "allowableValues" => "",
-      },
-    ]}) do
-  cross_origin
-  # the guts live here
-
-  {"message" => "yes, it worked"}.to_json
-end
-
-MyApp.add_route('get', '/myOpenOrders', {
-  "resourcePath" => "/order",
-  "summary" => "Get your open orders.",
-  "nickname" => "getOrders_order_api_1", 
-  "responseClass" => "Array[Order]", 
-  "endpoint" => "/myOpenOrders", 
-  "notes" => "",
-  "parameters" => [
-    {
-      "name" => "filter",
-      "description" => "Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}.",
-      "dataType" => "object",
-      "paramType" => "query",
-      "allowMultiple" => false,
-      "allowableValues" => "",
-      },
-    {
-      "name" => "columns",
-      "description" => "Which columns to fetch. For example, send [&quot;columnName&quot;].",
-      "dataType" => "Array[any]",
-      "paramType" => "query",
-      "allowMultiple" => false,
-      "allowableValues" => "",
-      },
-    {
-      "name" => "count",
-      "description" => "Number of rows to fetch.",
-      "dataType" => "double",
-      "paramType" => "query",
-      "allowMultiple" => false,
-      "allowableValues" => "",
-      },
     ]}) do
   cross_origin
   # the guts live here

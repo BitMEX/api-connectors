@@ -10,7 +10,7 @@ MyApp.add_route('get', '/', {
   "parameters" => [
     {
       "name" => "symbol",
-      "description" => "",
+      "description" => "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.",
       "dataType" => "string",
       "paramType" => "query",
       "allowMultiple" => false,
@@ -18,7 +18,7 @@ MyApp.add_route('get', '/', {
       },
     {
       "name" => "depth",
-      "description" => "",
+      "description" => "Orderbook depth.",
       "dataType" => "double",
       "paramType" => "query",
       "allowMultiple" => false,

@@ -10,6 +10,7 @@ public class Execution {
   private String side = null;
   private Double lastQty = null;
   private Double lastPx = null;
+  private Double underlyingLastPx = null;
   private String lastMkt = null;
   private String lastLiquidityInd = null;
   private Double orderQty = null;
@@ -30,11 +31,14 @@ public class Execution {
   private Double avgPx = null;
   private Double commission = null;
   private String commType = null;
+  private String tradePublishIndicator = null;
   private String multiLegReportingType = null;
   private String text = null;
   private String trdMatchID = null;
   private Double execCost = null;
   private Double execComm = null;
+  private Double homeNotional = null;
+  private Double foreignNotional = null;
   private Date transactTime = null;
   private Date timestamp = null;
   public String getExecID() {
@@ -91,6 +95,13 @@ public class Execution {
   }
   public void setLastPx(Double lastPx) {
     this.lastPx = lastPx;
+  }
+
+  public Double getUnderlyingLastPx() {
+    return underlyingLastPx;
+  }
+  public void setUnderlyingLastPx(Double underlyingLastPx) {
+    this.underlyingLastPx = underlyingLastPx;
   }
 
   public String getLastMkt() {
@@ -233,6 +244,13 @@ public class Execution {
     this.commType = commType;
   }
 
+  public String getTradePublishIndicator() {
+    return tradePublishIndicator;
+  }
+  public void setTradePublishIndicator(String tradePublishIndicator) {
+    this.tradePublishIndicator = tradePublishIndicator;
+  }
+
   public String getMultiLegReportingType() {
     return multiLegReportingType;
   }
@@ -268,6 +286,20 @@ public class Execution {
     this.execComm = execComm;
   }
 
+  public Double getHomeNotional() {
+    return homeNotional;
+  }
+  public void setHomeNotional(Double homeNotional) {
+    this.homeNotional = homeNotional;
+  }
+
+  public Double getForeignNotional() {
+    return foreignNotional;
+  }
+  public void setForeignNotional(Double foreignNotional) {
+    this.foreignNotional = foreignNotional;
+  }
+
   public Date getTransactTime() {
     return transactTime;
   }
@@ -294,6 +326,7 @@ public class Execution {
     sb.append("  side: ").append(side).append("\n");
     sb.append("  lastQty: ").append(lastQty).append("\n");
     sb.append("  lastPx: ").append(lastPx).append("\n");
+    sb.append("  underlyingLastPx: ").append(underlyingLastPx).append("\n");
     sb.append("  lastMkt: ").append(lastMkt).append("\n");
     sb.append("  lastLiquidityInd: ").append(lastLiquidityInd).append("\n");
     sb.append("  orderQty: ").append(orderQty).append("\n");
@@ -314,11 +347,14 @@ public class Execution {
     sb.append("  avgPx: ").append(avgPx).append("\n");
     sb.append("  commission: ").append(commission).append("\n");
     sb.append("  commType: ").append(commType).append("\n");
+    sb.append("  tradePublishIndicator: ").append(tradePublishIndicator).append("\n");
     sb.append("  multiLegReportingType: ").append(multiLegReportingType).append("\n");
     sb.append("  text: ").append(text).append("\n");
     sb.append("  trdMatchID: ").append(trdMatchID).append("\n");
     sb.append("  execCost: ").append(execCost).append("\n");
     sb.append("  execComm: ").append(execComm).append("\n");
+    sb.append("  homeNotional: ").append(homeNotional).append("\n");
+    sb.append("  foreignNotional: ").append(foreignNotional).append("\n");
     sb.append("  transactTime: ").append(transactTime).append("\n");
     sb.append("  timestamp: ").append(timestamp).append("\n");
     sb.append("}\n");

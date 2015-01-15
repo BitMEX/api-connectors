@@ -1,5 +1,4 @@
 #import <Foundation/Foundation.h>
-#import "SWGError.h"
 #import "SWGTrade.h"
 #import "SWGTradeBin.h"
 
@@ -14,28 +13,57 @@
 +(NSString*) getBasePath;
 /**
 
- Get previous trades bucketed by seconds.
+ Get Trades.
  
- @param symbol Instrument name.
- @param startTime Start date. Expects ISO formatted date strings.
- @param endTime End Date. Expects ISO formatted date strings.
- @param count Number of buckets to fetch.
- @param useMillisecondTime Return dates in milliseconds (GMT). Useful for charting.
- @param binSize Time interval to bucket by. Available options: ['30s', '1m', '5m', '1h', '1d'].
+ @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
+ @param filter Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}.
+ @param columns Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
+ @param start Starting point for results.
+ @param reverse If true, will sort results newest first.
+ @param startTime Starting date filter for results.
+ @param endTime Ending date filter for results.
+ @param count Number of results to fetch.
  */
--(NSNumber*) getBucketedWithCompletionBlock :(NSString*) symbol 
+-(NSNumber*) getWithCompletionBlock :(NSString*) symbol 
+        filter:(NSObject*) filter 
+        columns:(NSArray*) columns 
+        start:(NSNumber*) start 
+        reverse:(NSNumber*) reverse 
         startTime:(SWGDate*) startTime 
         endTime:(SWGDate*) endTime 
         count:(NSNumber*) count 
-        useMillisecondTime:(NSNumber*) useMillisecondTime 
-        binSize:(NSString*) binSize 
         completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
 
 /**
 
- Get trades between two dates.
+ Get previous trades in time buckets.
  
- @param symbol Instrument name.
+ @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
+ @param filter Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}.
+ @param columns Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
+ @param start Starting point for results.
+ @param reverse If true, will sort results newest first.
+ @param startTime Starting date filter for results.
+ @param endTime Ending date filter for results.
+ @param binSize Time interval to bucket by. Available options: ['30s', '1m', '5m', '1h', '1d'].
+ @param count Number of results to fetch.
+ */
+-(NSNumber*) getBucketedWithCompletionBlock :(NSString*) symbol 
+        filter:(NSObject*) filter 
+        columns:(NSArray*) columns 
+        start:(NSNumber*) start 
+        reverse:(NSNumber*) reverse 
+        startTime:(SWGDate*) startTime 
+        endTime:(SWGDate*) endTime 
+        binSize:(NSString*) binSize 
+        count:(NSNumber*) count 
+        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
+
+/**
+
+ Get trades between two dates. [Deprecated, use GET /trades]
+ 
+ @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
  @param startTime Start date.
  @param endTime End Date.
  */
@@ -46,10 +74,10 @@
 
 /**
 
- Get recent trades.
+ Get recent trades. [Deprecated, use GET /trades]
  
- @param symbol Instrument name.
- @param count Number of trades to fetch
+ @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
+ @param count Number of trades to fetch.
  */
 -(NSNumber*) getRecentWithCompletionBlock :(NSString*) symbol 
         count:(NSNumber*) count 

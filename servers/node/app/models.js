@@ -130,6 +130,69 @@ exports.models = {
   }
 },
 
+  "Affiliate": {
+  "id" : "Affiliate",
+  "name" : "",
+  "required" : [ "account", "currency" ],
+  "properties" : {
+    "timestamp" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "totalReferrals" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "payoutPcnt" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "execTurnover" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "totalComm" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "prevPayout" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "prevTurnover" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "execComm" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "currency" : {
+      "type" : "string"
+    },
+    "pendingPayout" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "account" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "totalTurnover" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "prevComm" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "prevTimestamp" : {
+      "type" : "string",
+      "format" : "date-time"
+    }
+  }
+},
+
   "ApiKey": {
   "id" : "ApiKey",
   "name" : "",
@@ -169,6 +232,10 @@ exports.models = {
   "name" : "",
   "required" : [ "symbol" ],
   "properties" : {
+    "openValue" : {
+      "type" : "number",
+      "format" : "double"
+    },
     "reference" : {
       "type" : "string"
     },
@@ -296,6 +363,10 @@ exports.models = {
       "type" : "number",
       "format" : "double"
     },
+    "prevTotalTurnover" : {
+      "type" : "number",
+      "format" : "double"
+    },
     "underlying" : {
       "type" : "string"
     },
@@ -319,6 +390,10 @@ exports.models = {
       "type" : "number",
       "format" : "double"
     },
+    "totalTurnover" : {
+      "type" : "number",
+      "format" : "double"
+    },
     "underlyingToSettleMultiplier" : {
       "type" : "number",
       "format" : "double"
@@ -338,6 +413,10 @@ exports.models = {
       "type" : "number",
       "format" : "double"
     },
+    "turnover" : {
+      "type" : "number",
+      "format" : "double"
+    },
     "rootSymbol" : {
       "type" : "string"
     },
@@ -352,6 +431,10 @@ exports.models = {
   "id" : "TradeBin",
   "name" : "",
   "properties" : {
+    "foreignNotional" : {
+      "type" : "number",
+      "format" : "double"
+    },
     "lastSize" : {
       "type" : "number",
       "format" : "double"
@@ -359,6 +442,10 @@ exports.models = {
     "timestamp" : {
       "type" : "string",
       "format" : "date-time"
+    },
+    "homeNotional" : {
+      "type" : "number",
+      "format" : "double"
     },
     "open" : {
       "type" : "number",
@@ -394,6 +481,10 @@ exports.models = {
     "high" : {
       "type" : "number",
       "format" : "double"
+    },
+    "turnover" : {
+      "type" : "number",
+      "format" : "double"
     }
   }
 },
@@ -409,8 +500,15 @@ exports.models = {
     "workingIndicator" : {
       "type" : "boolean"
     },
+    "tradePublishIndicator" : {
+      "type" : "string"
+    },
     "lastMkt" : {
       "type" : "string"
+    },
+    "foreignNotional" : {
+      "type" : "number",
+      "format" : "double"
     },
     "execID" : {
       "type" : "string"
@@ -427,6 +525,10 @@ exports.models = {
       "format" : "date-time"
     },
     "commission" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "homeNotional" : {
       "type" : "number",
       "format" : "double"
     },
@@ -467,6 +569,10 @@ exports.models = {
     },
     "symbol" : {
       "type" : "string"
+    },
+    "underlyingLastPx" : {
+      "type" : "number",
+      "format" : "double"
     },
     "ordRejReason" : {
       "type" : "string"
@@ -531,6 +637,9 @@ exports.models = {
   "name" : "",
   "required" : [ "username", "email" ],
   "properties" : {
+    "affiliateID" : {
+      "type" : "string"
+    },
     "email" : {
       "type" : "string"
     },
@@ -629,6 +738,10 @@ exports.models = {
       "type" : "number",
       "format" : "double"
     },
+    "foreignNotional" : {
+      "type" : "number",
+      "format" : "double"
+    },
     "realisedPnl" : {
       "type" : "number",
       "format" : "double"
@@ -640,6 +753,13 @@ exports.models = {
     "commission" : {
       "type" : "number",
       "format" : "double"
+    },
+    "homeNotional" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "quoteCurrency" : {
+      "type" : "string"
     },
     "notionalCurrency2" : {
       "type" : "string"
@@ -765,6 +885,9 @@ exports.models = {
       "type" : "number",
       "format" : "double"
     },
+    "underlying" : {
+      "type" : "string"
+    },
     "sessionMargin" : {
       "type" : "number",
       "format" : "double"
@@ -816,27 +939,16 @@ exports.models = {
   }
 },
 
-  "Error": {
-  "id" : "Error",
-  "name" : "",
-  "required" : [ "message", "code" ],
-  "properties" : {
-    "message" : {
-      "type" : "string"
-    },
-    "code" : {
-      "type" : "number",
-      "format" : "double"
-    }
-  }
-},
-
   "Trade": {
   "id" : "Trade",
   "name" : "",
   "properties" : {
     "side" : {
       "type" : "string"
+    },
+    "foreignNotional" : {
+      "type" : "number",
+      "format" : "double"
     },
     "timestamp" : {
       "type" : "string",
@@ -846,7 +958,15 @@ exports.models = {
       "type" : "number",
       "format" : "double"
     },
+    "homeNotional" : {
+      "type" : "number",
+      "format" : "double"
+    },
     "price" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "grossValue" : {
       "type" : "number",
       "format" : "double"
     },

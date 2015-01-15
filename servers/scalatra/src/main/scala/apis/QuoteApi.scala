@@ -1,6 +1,5 @@
 package apis
 
-import com.wordnik.client.model.Error
 import com.wordnik.client.model.Quote
 import java.io.File
 
@@ -30,22 +29,30 @@ class QuoteApi (implicit val swagger: Swagger) extends ScalatraServlet
 
 
   val getBucketedOperation = (apiOperation[List[Quote]]("getBucketed")
-      summary "Get previous quotes bucketed by seconds."
+      summary "Get previous quotes in time buckets."
       parameters(
-        queryParam[String]("symbol").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""),queryParam[Double]("count").description(""),queryParam[String]("binSize").description("").defaultValue("1m"))
+        queryParam[String]("symbol").description(""),queryParam[Any]("filter").description(""),queryParam[List[String]]("columns").description(""),queryParam[Double]("start").description(""),queryParam[Boolean]("reverse").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""),queryParam[String]("binSize").description("").defaultValue("1m"),queryParam[Double]("count").description("").defaultValue(100))
   )
 
   get("/bucketed",operation(getBucketedOperation)) {
     val symbol = params.getAs[String]("symbol")
     println("symbol: " + symbol)
+  val filter = params.getAs[Any]("filter")
+    println("filter: " + filter)
+  val columns = params.getAs[List[String]]("columns")
+    println("columns: " + columns)
+  val start = params.getAs[Double]("start")
+    println("start: " + start)
+  val reverse = params.getAs[Boolean]("reverse")
+    println("reverse: " + reverse)
   val startTime = params.getAs[Date]("startTime")
     println("startTime: " + startTime)
   val endTime = params.getAs[Date]("endTime")
     println("endTime: " + endTime)
-  val count = params.getAs[Double]("count")
-    println("count: " + count)
   val binSize = params.getAs[String]("binSize")
     println("binSize: " + binSize)
+  val count = params.getAs[Double]("count")
+    println("count: " + count)
   }
 
 }

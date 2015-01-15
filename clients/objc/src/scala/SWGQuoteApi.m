@@ -1,7 +1,6 @@
 #import "SWGQuoteApi.h"
 #import "SWGFile.h"
 #import "SWGApiClient.h"
-#import "SWGError.h"
 #import "SWGQuote.h"
 
 
@@ -53,10 +52,14 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 
 
 -(NSNumber*) getBucketedWithCompletionBlock:(NSString*) symbol
+        filter:(NSObject*) filter
+        columns:(NSArray*) columns
+        start:(NSNumber*) start
+        reverse:(NSNumber*) reverse
         startTime:(SWGDate*) startTime
         endTime:(SWGDate*) endTime
-        count:(NSNumber*) count
         binSize:(NSString*) binSize
+        count:(NSNumber*) count
         completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/quote/bucketed", basePath];
@@ -69,22 +72,27 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
     NSString* responseContentType = @"application/json";
 
         NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if(symbol != nil)
-        queryParams[@"symbol"] = symbol;
     if(binSize != nil)
         queryParams[@"binSize"] = binSize;
+    if(symbol != nil)
+        queryParams[@"symbol"] = symbol;
+    if(filter != nil)
+        queryParams[@"filter"] = filter;
+    if(columns != nil)
+        queryParams[@"columns"] = columns;
+    if(count != nil)
+        queryParams[@"count"] = count;
+    if(start != nil)
+        queryParams[@"start"] = start;
+    if(reverse != nil)
+        queryParams[@"reverse"] = reverse;
     if(startTime != nil)
         queryParams[@"startTime"] = startTime;
     if(endTime != nil)
         queryParams[@"endTime"] = endTime;
-    if(count != nil)
-        queryParams[@"count"] = count;
     NSMutableDictionary* headerParams = [[NSMutableDictionary alloc] init];
     id bodyDictionary = nil;
-        if(symbol == nil) {
-        // error
-    }
-    SWGApiClient* client = [SWGApiClient sharedClientFromPool:basePath];
+        SWGApiClient* client = [SWGApiClient sharedClientFromPool:basePath];
 
     return [client dictionary: requestUrl 
                                method: @"GET" 

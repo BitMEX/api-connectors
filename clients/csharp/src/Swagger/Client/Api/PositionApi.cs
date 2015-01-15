@@ -29,7 +29,7 @@
       /// <summary>
       /// Get your positions. 
       /// </summary>
-      /// <param name="filter">Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}.</param>
+      /// <param name="filter">Table filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;}.</param>
       /// <param name="columns">Which columns to fetch. For example, send [&quot;columnName&quot;].</param>
       /// <param name="count">Number of rows to fetch.</param>
       /// <returns></returns>

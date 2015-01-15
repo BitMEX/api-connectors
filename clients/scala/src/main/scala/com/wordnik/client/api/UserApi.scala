@@ -2,6 +2,7 @@ package com.wordnik.client.api
 
 import com.wordnik.client.model.User
 import com.wordnik.client.model.Transaction
+import com.wordnik.client.model.Affiliate
 import com.wordnik.client.model.AccessToken
 import com.wordnik.client.model.Any
 import com.wordnik.client.common.ApiInvoker
@@ -63,7 +64,7 @@ class UserApi {
       case ex: ApiException => throw ex
     }
   }
-  def requestWithdrawal (amount: Double, address: String, currency: String= "XBt") : Option[Transaction]= {
+  def requestWithdrawal (otpToken: String, amount: Double, address: String, currency: String= "XBt") : Option[Transaction]= {
     // create path and map variables
     val path = "/user/requestWithdrawal".replaceAll("\\{format\\}","json")
 
@@ -75,8 +76,8 @@ class UserApi {
     val headerParams = new HashMap[String, String]
 
     // verify required params are set
-    (List(amount, address).filter(_ != null)).size match {
-       case 2 => // all required values set
+    (List(currency, amount, address).filter(_ != null)).size match {
+       case 3 => // all required values set
        case _ => throw new Exception("missing required params")
     }
     try {
@@ -302,7 +303,29 @@ class UserApi {
       case ex: ApiException => throw ex
     }
   }
-  def newUser (email: String, password: String, username: String, firstname: String, lastname: String, acceptsTOS: String, accountType: String= "Trader") : Option[User]= {
+  def getAffiliateStatus () : Option[List[Affiliate]]= {
+    // create path and map variables
+    val path = "/user/affiliateStatus".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    try {
+      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          Some(ApiInvoker.deserialize(s, "Array", classOf[Affiliate]).asInstanceOf[List[Affiliate]])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+  def newUser (email: String, password: String, username: String, firstname: String, lastname: String, acceptsTOS: String, referrerID: String, accountType: String= "Trader") : Option[User]= {
     // create path and map variables
     val path = "/user".replaceAll("\\{format\\}","json")
 
@@ -403,6 +426,27 @@ class UserApi {
   def logout () = {
     // create path and map variables
     val path = "/user/logout".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    try {
+      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+  def logoutAll () = {
+    // create path and map variables
+    val path = "/user/logoutAll".replaceAll("\\{format\\}","json")
 
     val contentType = {
       "application/json"}

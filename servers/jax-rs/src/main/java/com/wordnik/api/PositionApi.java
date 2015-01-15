@@ -2,7 +2,6 @@ package com.wordnik.api;
 
 import com.wordnik.swagger.annotations.*;
 
-import com.wordnik.client.model.Error;
 import com.wordnik.client.model.Position;
 import java.util.List;
 import com.wordnik.api.NotFoundException;
@@ -20,7 +19,7 @@ public class PositionApi {
   @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful"),@ApiError(code = 400, reason = "Parameter Error"),@ApiError(code = 401, reason = "Unauthorized"),@ApiError(code = 404, reason = "Not Found")})
      
   public Response find(
-    @ApiParam(value = "Filter. For example, send {"symbol": "XBTF15", "open": true}."
+    @ApiParam(value = "Table filter. For example, send {"symbol": "XBTF15"}."
     ,required=true
 )@QueryParam("filter")
  Object filter

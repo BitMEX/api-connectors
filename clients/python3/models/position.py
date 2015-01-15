@@ -23,6 +23,8 @@ class Position:
         self.swaggerTypes = {
             'account': 'float',
             'symbol': 'str',
+            'underlying': 'str',
+            'quoteCurrency': 'str',
             'currency': 'str',
             'commission': 'float',
             'prevRealisedPnl': 'float',
@@ -54,6 +56,8 @@ class Position:
             'grossExecCost': 'float',
             'lastPrice': 'float',
             'lastValue': 'float',
+            'homeNotional': 'float',
+            'foreignNotional': 'float',
             'notionalCurrency1': 'str',
             'notionalValue1': 'float',
             'notionalCurrency2': 'str',
@@ -77,6 +81,8 @@ class Position:
 
         self.account = None # float
         self.symbol = None # str
+        self.underlying = None # str
+        self.quoteCurrency = None # str
         self.currency = None # str
         self.commission = None # float
         self.prevRealisedPnl = None # float
@@ -108,6 +114,8 @@ class Position:
         self.grossExecCost = None # float
         self.lastPrice = None # float
         self.lastValue = None # float
+        self.homeNotional = None # float
+        self.foreignNotional = None # float
         self.notionalCurrency1 = None # str
         self.notionalValue1 = None # float
         self.notionalCurrency2 = None # str

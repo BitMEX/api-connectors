@@ -22,7 +22,7 @@ exports.getOrderBook = {
     "notes" : "",
     "summary" : "Get current orderbook.",
     "method": "GET",
-    "params" : [params.query("symbol", "", "string", true, false, ""),params.query("depth", "", "double", false, false, "", 25)].concat([]).concat([]).concat([]),
+    "params" : [params.query("symbol", "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.", "string", true, false, ""),params.query("depth", "Orderbook depth.", "double", false, false, "", 25)].concat([]).concat([]).concat([]),
     "type" : "List[OrderBook]",
     "responseMessages" : [errors.invalid('id'), errors.notFound('List[OrderBook]')],
     "nickname" : "getOrderBook"

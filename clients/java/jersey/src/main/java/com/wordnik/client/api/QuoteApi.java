@@ -3,7 +3,6 @@ package com.wordnik.client.api;
 import com.wordnik.client.common.ApiException;
 import com.wordnik.client.common.ApiInvoker;
 
-import com.wordnik.client.model.Error;
 import com.wordnik.client.model.Quote;
 import com.sun.jersey.multipart.FormDataMultiPart;
 
@@ -29,15 +28,11 @@ public class QuoteApi {
   }
 
   //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: Error
-  //error info- code: 401 reason: "Unauthorized" model: Error
-  //error info- code: 404 reason: "Not Found" model: Error
-  public List<Quote> getBucketed (String symbol, Date startTime, Date endTime, Double count, String binSize) throws ApiException {
+  //error info- code: 400 reason: "Parameter Error" model: <none>
+  //error info- code: 401 reason: "Unauthorized" model: <none>
+  //error info- code: 404 reason: "Not Found" model: <none>
+  public List<Quote> getBucketed (String symbol, Object filter, List<String> columns, Double start, Boolean reverse, Date startTime, Date endTime, String binSize, Double count) throws ApiException {
     Object postBody = null;
-    // verify required params are set
-    if(symbol == null ) {
-       throw new ApiException(400, "missing required params");
-    }
     // create path and map variables
     String path = "/quote/bucketed".replaceAll("\\{format\\}","json");
 
@@ -46,16 +41,24 @@ public class QuoteApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
-    if(!"null".equals(String.valueOf(symbol)))
-      queryParams.put("symbol", String.valueOf(symbol));
     if(!"null".equals(String.valueOf(binSize)))
       queryParams.put("binSize", String.valueOf(binSize));
+    if(!"null".equals(String.valueOf(symbol)))
+      queryParams.put("symbol", String.valueOf(symbol));
+    if(!"null".equals(String.valueOf(filter)))
+      queryParams.put("filter", String.valueOf(filter));
+    if(!"null".equals(String.valueOf(columns)))
+      queryParams.put("columns", String.valueOf(columns));
+    if(!"null".equals(String.valueOf(count)))
+      queryParams.put("count", String.valueOf(count));
+    if(!"null".equals(String.valueOf(start)))
+      queryParams.put("start", String.valueOf(start));
+    if(!"null".equals(String.valueOf(reverse)))
+      queryParams.put("reverse", String.valueOf(reverse));
     if(!"null".equals(String.valueOf(startTime)))
       queryParams.put("startTime", String.valueOf(startTime));
     if(!"null".equals(String.valueOf(endTime)))
       queryParams.put("endTime", String.valueOf(endTime));
-    if(!"null".equals(String.valueOf(count)))
-      queryParams.put("count", String.valueOf(count));
     String[] contentTypes = {
       "application/json"};
 

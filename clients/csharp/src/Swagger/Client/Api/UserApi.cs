@@ -104,11 +104,12 @@
       /// <summary>
       /// Request a withdrawal to an external wallet. 
       /// </summary>
+      /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account.</param>
       /// <param name="amount">Amount of withdrawal currency. Note that for Bitcoin withdrawals, a standard 0.0001 XBT fee is charged by the Bitcoin network.</param>
       /// <param name="address">Destination Address.</param>
-      /// <param name="currency">Currency you're withdrawing.</param>
+      /// <param name="currency">Currency you're withdrawing. Options: [&quot;XBt&quot;]</param>
       /// <returns></returns>
-      public Transaction requestWithdrawal (double? amount, string address, string currency) {
+      public Transaction requestWithdrawal (string otpToken, double? amount, string address, string currency) {
         // create path and map variables
         var path = "/user/requestWithdrawal".Replace("{format}","json");
 
@@ -118,9 +119,17 @@
         var formParams = new Dictionary<String, object>();
 
         // verify required params are set
-        if (amount == null || address == null ) {
+        if (currency == null || amount == null || address == null ) {
            throw new ApiException(400, "missing required params");
         }
+        if (otpToken != null){
+          if(otpToken is byte[]) {
+            formParams.Add("otpToken", otpToken);
+          } else {
+            string paramStr = (otpToken is DateTime) ? ((DateTime)(object)otpToken).ToString("u") : Convert.ToString(otpToken);
+            formParams.Add("otpToken", paramStr);
+          }
+		}
         if (currency != null){
           if(currency is byte[]) {
             formParams.Add("currency", currency);
@@ -571,6 +580,41 @@
         }
       }
       /// <summary>
+      /// Get your current affiliate/referral status. 
+      /// </summary>
+      /// <returns></returns>
+      public List<Affiliate> getAffiliateStatus () {
+        // create path and map variables
+        var path = "/user/affiliateStatus".Replace("{format}","json");
+
+        // query params
+        var queryParams = new Dictionary<String, String>();
+        var headerParams = new Dictionary<String, String>();
+        var formParams = new Dictionary<String, object>();
+
+        try {
+          if (typeof(List<Affiliate>) == typeof(byte[])) {
+            var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
+            return ((object)response) as List<Affiliate>;
+          } else {
+            var response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, null, headerParams, formParams);
+            if(response != null){
+               return (List<Affiliate>) ApiInvoker.deserialize(response, typeof(List<Affiliate>));
+            }
+            else {
+              return null;
+            }
+          }
+        } catch (ApiException ex) {
+          if(ex.ErrorCode == 404) {
+          	return null;
+          }
+          else {
+            throw ex;
+          }
+        }
+      }
+      /// <summary>
       /// Register a new user. 
       /// </summary>
       /// <param name="email">Your email address.</param>
@@ -579,9 +623,10 @@
       /// <param name="firstname">First name.</param>
       /// <param name="lastname">Last name.</param>
       /// <param name="acceptsTOS">Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms).</param>
+      /// <param name="referrerID">Optional Referrer ID.</param>
       /// <param name="accountType">Account type. Options: ['Trader', 'Hedger']. See the &lt;a href=&quot;/app/fees&quot;&gt;fees page&lt;/a&gt; for more details.</param>
       /// <returns></returns>
-      public User newUser (string email, string password, string username, string firstname, string lastname, string acceptsTOS, string accountType) {
+      public User newUser (string email, string password, string username, string firstname, string lastname, string acceptsTOS, string referrerID, string accountType) {
         // create path and map variables
         var path = "/user".Replace("{format}","json");
 
@@ -648,6 +693,14 @@
           } else {
             string paramStr = (acceptsTOS is DateTime) ? ((DateTime)(object)acceptsTOS).ToString("u") : Convert.ToString(acceptsTOS);
             formParams.Add("acceptsTOS", paramStr);
+          }
+		}
+        if (referrerID != null){
+          if(referrerID is byte[]) {
+            formParams.Add("referrerID", referrerID);
+          } else {
+            string paramStr = (referrerID is DateTime) ? ((DateTime)(object)referrerID).ToString("u") : Convert.ToString(referrerID);
+            formParams.Add("referrerID", paramStr);
           }
 		}
         try {
@@ -869,6 +922,41 @@
       public void logout () {
         // create path and map variables
         var path = "/user/logout".Replace("{format}","json");
+
+        // query params
+        var queryParams = new Dictionary<String, String>();
+        var headerParams = new Dictionary<String, String>();
+        var formParams = new Dictionary<String, object>();
+
+        try {
+          if (typeof(void) == typeof(byte[])) {
+            var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
+            return ;
+          } else {
+            var response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, null, headerParams, formParams);
+            if(response != null){
+               return ;
+            }
+            else {
+              return ;
+            }
+          }
+        } catch (ApiException ex) {
+          if(ex.ErrorCode == 404) {
+          	return ;
+          }
+          else {
+            throw ex;
+          }
+        }
+      }
+      /// <summary>
+      /// Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices. 
+      /// </summary>
+      /// <returns></returns>
+      public void logoutAll () {
+        // create path and map variables
+        var path = "/user/logoutAll".Replace("{format}","json");
 
         // query params
         var queryParams = new Dictionary<String, String>();

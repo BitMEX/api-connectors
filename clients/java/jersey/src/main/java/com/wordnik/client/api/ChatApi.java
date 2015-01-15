@@ -3,7 +3,6 @@ package com.wordnik.client.api;
 import com.wordnik.client.common.ApiException;
 import com.wordnik.client.common.ApiInvoker;
 
-import com.wordnik.client.model.Error;
 import com.wordnik.client.model.Chat;
 import com.sun.jersey.multipart.FormDataMultiPart;
 
@@ -29,10 +28,10 @@ public class ChatApi {
   }
 
   //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: Error
-  //error info- code: 401 reason: "Unauthorized" model: Error
-  //error info- code: 404 reason: "Not Found" model: Error
-  public List<Chat> get (Double count) throws ApiException {
+  //error info- code: 400 reason: "Parameter Error" model: <none>
+  //error info- code: 401 reason: "Unauthorized" model: <none>
+  //error info- code: 404 reason: "Not Found" model: <none>
+  public List<Chat> get (Double start, Double count) throws ApiException {
     Object postBody = null;
     // create path and map variables
     String path = "/chat".replaceAll("\\{format\\}","json");
@@ -44,6 +43,8 @@ public class ChatApi {
 
     if(!"null".equals(String.valueOf(count)))
       queryParams.put("count", String.valueOf(count));
+    if(!"null".equals(String.valueOf(start)))
+      queryParams.put("start", String.valueOf(start));
     String[] contentTypes = {
       "application/json"};
 
@@ -76,9 +77,9 @@ public class ChatApi {
     }
   }
   //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: Error
-  //error info- code: 401 reason: "Unauthorized" model: Error
-  //error info- code: 404 reason: "Not Found" model: Error
+  //error info- code: 400 reason: "Parameter Error" model: <none>
+  //error info- code: 401 reason: "Unauthorized" model: <none>
+  //error info- code: 404 reason: "Not Found" model: <none>
   public Chat send (String message) throws ApiException {
     Object postBody = null;
     // verify required params are set

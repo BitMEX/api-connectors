@@ -22,6 +22,12 @@ case class TradeBin (
 
   lastSize: Option[Double],
 
+  turnover: Option[Double],
+
+  homeNotional: Option[Double],
+
+  foreignNotional: Option[Double],
+
   id: Option[Double]
 
   )

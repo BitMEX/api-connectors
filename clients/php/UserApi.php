@@ -103,16 +103,18 @@ class UserApi {
   /**
 	 * requestWithdrawal
 	 * Request a withdrawal to an external wallet.
+   * otpToken, string: 2FA token. Required if 2FA is enabled on your account. (optional)
+
    * amount, float: Amount of withdrawal currency. Note that for Bitcoin withdrawals, a standard 0.0001 XBT fee is charged by the Bitcoin network. (required)
 
    * address, string: Destination Address. (required)
 
-   * currency, string: Currency you're withdrawing. (optional)
+   * currency, string: Currency you're withdrawing. Options: [&quot;XBt&quot;] (required)
 
    * @return Transaction
 	 */
 
-   public function requestWithdrawal($amount, $address, $currency=null) {
+   public function requestWithdrawal($otpToken=null, $amount, $address, $currency) {
 
   		//parse inputs
   		$resourcePath = "/user/requestWithdrawal";
@@ -447,6 +449,41 @@ class UserApi {
 
       }
   /**
+	 * getAffiliateStatus
+	 * Get your current affiliate/referral status.
+   * @return Array[Affiliate]
+	 */
+
+   public function getAffiliateStatus() {
+
+  		//parse inputs
+  		$resourcePath = "/user/affiliateStatus";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "POST";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      //make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'Array[Affiliate]');
+  		return $responseObject;
+
+      }
+  /**
 	 * newUser
 	 * Register a new user.
    * email, string: Your email address. (required)
@@ -461,12 +498,14 @@ class UserApi {
 
    * acceptsTOS, string: Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms). (optional)
 
+   * referrerID, string: Optional Referrer ID. (optional)
+
    * accountType, string: Account type. Options: ['Trader', 'Hedger']. See the &lt;a href=&quot;/app/fees&quot;&gt;fees page&lt;/a&gt; for more details. (optional)
 
    * @return User
 	 */
 
-   public function newUser($email, $password, $username, $firstname=null, $lastname=null, $acceptsTOS=null, $accountType=null) {
+   public function newUser($email, $password, $username, $firstname=null, $lastname=null, $acceptsTOS=null, $referrerID=null, $accountType=null) {
 
   		//parse inputs
   		$resourcePath = "/user";
@@ -628,6 +667,33 @@ class UserApi {
 
   		//parse inputs
   		$resourcePath = "/user/logout";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "POST";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      //make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      }
+  /**
+	 * logoutAll
+	 * Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.
+   * @return 
+	 */
+
+   public function logoutAll() {
+
+  		//parse inputs
+  		$resourcePath = "/user/logoutAll";
   		$resourcePath = str_replace("{format}", "json", $resourcePath);
   		$method = "POST";
       $queryParams = array();

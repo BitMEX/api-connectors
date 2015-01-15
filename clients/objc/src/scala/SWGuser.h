@@ -6,6 +6,8 @@
 
 @interface SWGUser : SWGObject
 
+@property(nonatomic) NSNumber* _id;  
+
 @property(nonatomic) NSString* firstname;  
 
 @property(nonatomic) NSString* lastname;  
@@ -30,9 +32,10 @@
 
 @property(nonatomic) NSString* TFAEnabled;  
 
-@property(nonatomic) NSNumber* _id;  
+@property(nonatomic) NSString* affiliateID;  
 
-- (id) firstname: (NSString*) firstname
+- (id) _id: (NSNumber*) _id
+     firstname: (NSString*) firstname
      lastname: (NSString*) lastname
      status: (NSString*) status
      username: (NSString*) username
@@ -44,7 +47,7 @@
      preferences: (NSObject*) preferences
      role: (NSString*) role
      TFAEnabled: (NSString*) TFAEnabled
-     _id: (NSNumber*) _id;
+     affiliateID: (NSString*) affiliateID;
 
 - (id) initWithValues: (NSDictionary*)dict;
 - (NSDictionary*) asDictionary;

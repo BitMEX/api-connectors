@@ -1,6 +1,5 @@
 package apis
 
-import com.wordnik.client.model.Error
 import com.wordnik.client.model.Execution
 import java.io.File
 
@@ -29,15 +28,55 @@ class ExecutionApi (implicit val swagger: Swagger) extends ScalatraServlet
 
 
 
-  val getMyExecutionsOperation = (apiOperation[List[Execution]]("getMyExecutions")
-      summary "Get your executions. This includes each trade and insurance charge."
+  val getOperation = (apiOperation[List[Execution]]("get")
+      summary "Get all raw executions for your account."
       parameters(
-        queryParam[Any]("filter").description(""),queryParam[Double]("count").description("").defaultValue(100))
+        queryParam[String]("symbol").description(""),queryParam[Any]("filter").description(""),queryParam[List[String]]("columns").description(""),queryParam[Double]("start").description(""),queryParam[Boolean]("reverse").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""),queryParam[Double]("count").description("").defaultValue(100))
   )
 
-  get("/",operation(getMyExecutionsOperation)) {
-    val filter = params.getAs[Any]("filter")
+  get("/",operation(getOperation)) {
+    val symbol = params.getAs[String]("symbol")
+    println("symbol: " + symbol)
+  val filter = params.getAs[Any]("filter")
     println("filter: " + filter)
+  val columns = params.getAs[List[String]]("columns")
+    println("columns: " + columns)
+  val start = params.getAs[Double]("start")
+    println("start: " + start)
+  val reverse = params.getAs[Boolean]("reverse")
+    println("reverse: " + reverse)
+  val startTime = params.getAs[Date]("startTime")
+    println("startTime: " + startTime)
+  val endTime = params.getAs[Date]("endTime")
+    println("endTime: " + endTime)
+  val count = params.getAs[Double]("count")
+    println("count: " + count)
+  }
+
+
+
+
+  val getTradeHistoryOperation = (apiOperation[List[Execution]]("getTradeHistory")
+      summary "Get all balance-affecting executions. This includes each trade, insurance charge, and settlement."
+      parameters(
+        queryParam[String]("symbol").description(""),queryParam[Any]("filter").description(""),queryParam[List[String]]("columns").description(""),queryParam[Double]("start").description(""),queryParam[Boolean]("reverse").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""),queryParam[Double]("count").description("").defaultValue(100))
+  )
+
+  get("/tradeHistory",operation(getTradeHistoryOperation)) {
+    val symbol = params.getAs[String]("symbol")
+    println("symbol: " + symbol)
+  val filter = params.getAs[Any]("filter")
+    println("filter: " + filter)
+  val columns = params.getAs[List[String]]("columns")
+    println("columns: " + columns)
+  val start = params.getAs[Double]("start")
+    println("start: " + start)
+  val reverse = params.getAs[Boolean]("reverse")
+    println("reverse: " + reverse)
+  val startTime = params.getAs[Date]("startTime")
+    println("startTime: " + startTime)
+  val endTime = params.getAs[Date]("endTime")
+    println("endTime: " + endTime)
   val count = params.getAs[Double]("count")
     println("count: " + count)
   }

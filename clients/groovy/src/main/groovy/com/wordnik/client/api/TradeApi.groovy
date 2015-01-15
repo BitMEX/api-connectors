@@ -10,7 +10,6 @@ import static groovyx.net.http.Method.*
 import com.wordnik.client.common.ApiUtils
 //-------------
 
-import com.wordnik.client.model.Error
 import com.wordnik.client.model.Trade
 import com.wordnik.client.model.TradeBin
 import java.util.*;
@@ -21,7 +20,37 @@ class TradeApi {
     String versionPath = "/api/v1"
 
 
-  def getBucketed (String symbol,Date startTime,Date endTime,Double count,Boolean useMillisecondTime,String binSize,Closure onSuccess, Closure onFailure)  {
+  def get (String symbol,Object filter,List<String> columns,Double start,Boolean reverse,Date startTime,Date endTime,Double count,Closure onSuccess, Closure onFailure)  {
+    // create path and map variables
+    String resourcePath = "/trade"
+
+
+    // query params
+    def queryParams = [:]
+    def headerParams = [:]
+
+    if(!"null".equals(String.valueOf(symbol)))
+      queryParams.put("symbol", String.valueOf(symbol))
+    if(!"null".equals(String.valueOf(filter)))
+      queryParams.put("filter", String.valueOf(filter))
+    if(!"null".equals(String.valueOf(columns)))
+      queryParams.put("columns", String.valueOf(columns))
+    if(!"null".equals(String.valueOf(count)))
+      queryParams.put("count", String.valueOf(count))
+    if(!"null".equals(String.valueOf(start)))
+      queryParams.put("start", String.valueOf(start))
+    if(!"null".equals(String.valueOf(reverse)))
+      queryParams.put("reverse", String.valueOf(reverse))
+    if(!"null".equals(String.valueOf(startTime)))
+      queryParams.put("startTime", String.valueOf(startTime))
+    if(!"null".equals(String.valueOf(endTime)))
+      queryParams.put("endTime", String.valueOf(endTime))
+    invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "GET", "List",
+                    Trade.class )
+
+  }
+  def getBucketed (String symbol,Object filter,List<String> columns,Double start,Boolean reverse,Date startTime,Date endTime,String binSize,Double count,Closure onSuccess, Closure onFailure)  {
     // create path and map variables
     String resourcePath = "/trade/bucketed"
 
@@ -30,22 +59,24 @@ class TradeApi {
     def queryParams = [:]
     def headerParams = [:]
 
-    // verify required params are set
-    if(symbol == null ) {
-       throw new RuntimeException("missing required params")
-    }
-    if(!"null".equals(String.valueOf(symbol)))
-      queryParams.put("symbol", String.valueOf(symbol))
     if(!"null".equals(String.valueOf(binSize)))
       queryParams.put("binSize", String.valueOf(binSize))
+    if(!"null".equals(String.valueOf(symbol)))
+      queryParams.put("symbol", String.valueOf(symbol))
+    if(!"null".equals(String.valueOf(filter)))
+      queryParams.put("filter", String.valueOf(filter))
+    if(!"null".equals(String.valueOf(columns)))
+      queryParams.put("columns", String.valueOf(columns))
+    if(!"null".equals(String.valueOf(count)))
+      queryParams.put("count", String.valueOf(count))
+    if(!"null".equals(String.valueOf(start)))
+      queryParams.put("start", String.valueOf(start))
+    if(!"null".equals(String.valueOf(reverse)))
+      queryParams.put("reverse", String.valueOf(reverse))
     if(!"null".equals(String.valueOf(startTime)))
       queryParams.put("startTime", String.valueOf(startTime))
     if(!"null".equals(String.valueOf(endTime)))
       queryParams.put("endTime", String.valueOf(endTime))
-    if(!"null".equals(String.valueOf(count)))
-      queryParams.put("count", String.valueOf(count))
-    if(!"null".equals(String.valueOf(useMillisecondTime)))
-      queryParams.put("useMillisecondTime", String.valueOf(useMillisecondTime))
     invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "List",
                     TradeBin.class )

@@ -4,6 +4,8 @@ import java.util.Date
 case class Position (
   account: Double,
   symbol: String,
+  underlying: String,
+  quoteCurrency: String,
   currency: String,
   commission: Double,
   prevRealisedPnl: Double,
@@ -35,6 +37,8 @@ case class Position (
   grossExecCost: Double,
   lastPrice: Double,
   lastValue: Double,
+  homeNotional: Double,
+  foreignNotional: Double,
   notionalCurrency1: String,
   notionalValue1: Double,
   notionalCurrency2: String,

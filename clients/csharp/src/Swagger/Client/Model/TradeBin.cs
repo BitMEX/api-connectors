@@ -25,6 +25,12 @@ namespace Swagger.Client.Model {
 
     public double? lastSize { get; set; }
 
+    public double? turnover { get; set; }
+
+    public double? homeNotional { get; set; }
+
+    public double? foreignNotional { get; set; }
+
     public double? id { get; set; }
 
     public override string ToString()  {
@@ -40,6 +46,9 @@ namespace Swagger.Client.Model {
       sb.Append("  volume: ").Append(volume).Append("\n");
       sb.Append("  vwap: ").Append(vwap).Append("\n");
       sb.Append("  lastSize: ").Append(lastSize).Append("\n");
+      sb.Append("  turnover: ").Append(turnover).Append("\n");
+      sb.Append("  homeNotional: ").Append(homeNotional).Append("\n");
+      sb.Append("  foreignNotional: ").Append(foreignNotional).Append("\n");
       sb.Append("  id: ").Append(id).Append("\n");
       sb.Append("}\n");
       return sb.ToString();

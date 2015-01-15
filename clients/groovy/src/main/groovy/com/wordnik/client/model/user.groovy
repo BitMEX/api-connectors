@@ -5,6 +5,7 @@ import java.util.Date;
 import com.wordnik.client.model.Object;
 @Canonical
 class User {
+  Double id = null
   String firstname = null
   String lastname = null
   String status = null
@@ -17,7 +18,7 @@ class User {
   Object preferences = null
   String role = null
   String TFAEnabled = null
-  Double id = null
+  String affiliateID = null
   }
 
 

@@ -19,6 +19,12 @@ namespace Swagger.Client.Model {
 
     public string trdMatchID { get; set; }
 
+    public double? grossValue { get; set; }
+
+    public double? homeNotional { get; set; }
+
+    public double? foreignNotional { get; set; }
+
     public double? id { get; set; }
 
     public override string ToString()  {
@@ -31,6 +37,9 @@ namespace Swagger.Client.Model {
       sb.Append("  price: ").Append(price).Append("\n");
       sb.Append("  tickDirection: ").Append(tickDirection).Append("\n");
       sb.Append("  trdMatchID: ").Append(trdMatchID).Append("\n");
+      sb.Append("  grossValue: ").Append(grossValue).Append("\n");
+      sb.Append("  homeNotional: ").Append(homeNotional).Append("\n");
+      sb.Append("  foreignNotional: ").Append(foreignNotional).Append("\n");
       sb.Append("  id: ").Append(id).Append("\n");
       sb.Append("}\n");
       return sb.ToString();

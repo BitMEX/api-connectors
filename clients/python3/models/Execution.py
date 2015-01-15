@@ -29,6 +29,7 @@ class Execution:
             'side': 'str',
             'lastQty': 'float',
             'lastPx': 'float',
+            'underlyingLastPx': 'float',
             'lastMkt': 'str',
             'lastLiquidityInd': 'str',
             'orderQty': 'float',
@@ -49,11 +50,14 @@ class Execution:
             'avgPx': 'float',
             'commission': 'float',
             'commType': 'str',
+            'tradePublishIndicator': 'str',
             'multiLegReportingType': 'str',
             'text': 'str',
             'trdMatchID': 'str',
             'execCost': 'float',
             'execComm': 'float',
+            'homeNotional': 'float',
+            'foreignNotional': 'float',
             'transactTime': 'datetime',
             'timestamp': 'datetime'
 
@@ -68,6 +72,7 @@ class Execution:
         self.side = None # str
         self.lastQty = None # float
         self.lastPx = None # float
+        self.underlyingLastPx = None # float
         self.lastMkt = None # str
         self.lastLiquidityInd = None # str
         self.orderQty = None # float
@@ -88,11 +93,14 @@ class Execution:
         self.avgPx = None # float
         self.commission = None # float
         self.commType = None # str
+        self.tradePublishIndicator = None # str
         self.multiLegReportingType = None # str
         self.text = None # str
         self.trdMatchID = None # str
         self.execCost = None # float
         self.execComm = None # float
+        self.homeNotional = None # float
+        self.foreignNotional = None # float
         self.transactTime = None # datetime
         self.timestamp = None # datetime
         

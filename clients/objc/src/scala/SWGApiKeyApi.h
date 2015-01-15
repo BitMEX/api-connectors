@@ -1,5 +1,4 @@
 #import <Foundation/Foundation.h>
-#import "SWGError.h"
 #import "SWGApiKey.h"
 
 

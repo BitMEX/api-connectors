@@ -34,6 +34,9 @@ class TradeBin {
       'volume' => 'float',
       'vwap' => 'float',
       'lastSize' => 'float',
+      'turnover' => 'float',
+      'homeNotional' => 'float',
+      'foreignNotional' => 'float',
       'id' => 'float'
 
     );
@@ -48,6 +51,9 @@ class TradeBin {
   public $volume; // float
   public $vwap; // float
   public $lastSize; // float
+  public $turnover; // float
+  public $homeNotional; // float
+  public $foreignNotional; // float
   public $id; // float
   }
 

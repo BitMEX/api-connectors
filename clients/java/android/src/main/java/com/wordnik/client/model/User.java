@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import com.wordnik.client.model.Object;
 public class User {
+  @JsonProperty("id")
+  private Double id = null;
   @JsonProperty("firstname")
   private String firstname = null;
   @JsonProperty("lastname")
@@ -29,8 +31,15 @@ public class User {
   private String role = null;
   @JsonProperty("TFAEnabled")
   private String TFAEnabled = null;
-  @JsonProperty("id")
-  private Double id = null;
+  @JsonProperty("affiliateID")
+  private String affiliateID = null;
+  public Double getId() {
+    return id;
+  }
+  public void setId(Double id) {
+    this.id = id;
+  }
+
   public String getFirstname() {
     return firstname;
   }
@@ -115,17 +124,18 @@ public class User {
     this.TFAEnabled = TFAEnabled;
   }
 
-  public Double getId() {
-    return id;
+  public String getAffiliateID() {
+    return affiliateID;
   }
-  public void setId(Double id) {
-    this.id = id;
+  public void setAffiliateID(String affiliateID) {
+    this.affiliateID = affiliateID;
   }
 
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
     sb.append("class User {\n");
+    sb.append("  id: ").append(id).append("\n");
     sb.append("  firstname: ").append(firstname).append("\n");
     sb.append("  lastname: ").append(lastname).append("\n");
     sb.append("  status: ").append(status).append("\n");
@@ -138,7 +148,7 @@ public class User {
     sb.append("  preferences: ").append(preferences).append("\n");
     sb.append("  role: ").append(role).append("\n");
     sb.append("  TFAEnabled: ").append(TFAEnabled).append("\n");
-    sb.append("  id: ").append(id).append("\n");
+    sb.append("  affiliateID: ").append(affiliateID).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

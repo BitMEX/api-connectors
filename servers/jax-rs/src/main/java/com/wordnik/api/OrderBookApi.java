@@ -2,7 +2,6 @@ package com.wordnik.api;
 
 import com.wordnik.swagger.annotations.*;
 
-import com.wordnik.client.model.Error;
 import com.wordnik.client.model.OrderBook;
 import java.util.List;
 import com.wordnik.api.NotFoundException;
@@ -20,11 +19,11 @@ public class OrderBookApi {
   @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful"),@ApiError(code = 400, reason = "Parameter Error"),@ApiError(code = 401, reason = "Unauthorized"),@ApiError(code = 404, reason = "Not Found")})
      
   public Response getOrderBook(
-    @ApiParam(value = ""
+    @ApiParam(value = "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series."
     ,required=true
 )@QueryParam("symbol")
  String symbol
-    ,@ApiParam(value = ""
+    ,@ApiParam(value = "Orderbook depth."
     ,required=true
 , defaultValue="25"
 )@QueryParam("depth")

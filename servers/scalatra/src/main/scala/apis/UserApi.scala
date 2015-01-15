@@ -2,6 +2,7 @@ package apis
 
 import com.wordnik.client.model.User
 import com.wordnik.client.model.Transaction
+import com.wordnik.client.model.Affiliate
 import com.wordnik.client.model.AccessToken
 import com.wordnik.client.model.Any
 import java.io.File
@@ -60,11 +61,13 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
   val requestWithdrawalOperation = (apiOperation[Transaction]("requestWithdrawal")
       summary "Request a withdrawal to an external wallet."
       parameters(
-        formParam[Double]("amount").description(""),formParam[String]("address").description(""),formParam[String]("currency").description("").defaultValue("XBt"))
+        formParam[String]("otpToken").description(""),formParam[Double]("amount").description(""),formParam[String]("address").description(""),formParam[String]("currency").description("").defaultValue("XBt"))
   )
 
   post("/requestWithdrawal",operation(requestWithdrawalOperation)) {
-    val amount = params.getAs[Double]("amount")
+    val otpToken = params.getAs[String]("otpToken")
+    println("otpToken: " + otpToken)
+  val amount = params.getAs[Double]("amount")
     println("amount: " + amount)
   val address = params.getAs[String]("address")
     println("address: " + address)
@@ -193,10 +196,22 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
 
 
 
+  val getAffiliateStatusOperation = (apiOperation[List[Affiliate]]("getAffiliateStatus")
+      summary "Get your current affiliate/referral status."
+      parameters(
+        )
+  )
+
+  post("/affiliateStatus",operation(getAffiliateStatusOperation)) {
+    }
+
+
+
+
   val newUserOperation = (apiOperation[User]("newUser")
       summary "Register a new user."
       parameters(
-        formParam[String]("email").description(""),formParam[String]("password").description(""),formParam[String]("username").description(""),formParam[String]("firstname").description(""),formParam[String]("lastname").description(""),formParam[String]("acceptsTOS").description(""),formParam[String]("accountType").description("").defaultValue("Trader"))
+        formParam[String]("email").description(""),formParam[String]("password").description(""),formParam[String]("username").description(""),formParam[String]("firstname").description(""),formParam[String]("lastname").description(""),formParam[String]("acceptsTOS").description(""),formParam[String]("referrerID").description(""),formParam[String]("accountType").description("").defaultValue("Trader"))
   )
 
   post("/",operation(newUserOperation)) {
@@ -212,6 +227,8 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
     println("lastname: " + lastname)
   val acceptsTOS = params.getAs[String]("acceptsTOS")
     println("acceptsTOS: " + acceptsTOS)
+  val referrerID = params.getAs[String]("referrerID")
+    println("referrerID: " + referrerID)
   val accountType = params.getAs[String]("accountType")
     println("accountType: " + accountType)
   }
@@ -280,6 +297,18 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
   )
 
   post("/logout",operation(logoutOperation)) {
+    }
+
+
+
+
+  val logoutAllOperation = (apiOperation[Unit]("logoutAll")
+      summary "Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices."
+      parameters(
+        )
+  )
+
+  post("/logoutAll",operation(logoutAllOperation)) {
     }
 
 

@@ -39,6 +39,9 @@
     prevTotalVolume: (NSNumber*) prevTotalVolume
     totalVolume: (NSNumber*) totalVolume
     volume: (NSNumber*) volume
+    prevTotalTurnover: (NSNumber*) prevTotalTurnover
+    totalTurnover: (NSNumber*) totalTurnover
+    turnover: (NSNumber*) turnover
     vwap: (NSNumber*) vwap
     highPrice: (NSNumber*) highPrice
     lowPrice: (NSNumber*) lowPrice
@@ -49,6 +52,7 @@
     midPrice: (NSNumber*) midPrice
     askPrice: (NSNumber*) askPrice
     openInterest: (NSNumber*) openInterest
+    openValue: (NSNumber*) openValue
     settledPrice: (NSNumber*) settledPrice
     timestamp: (SWGDate*) timestamp
 {
@@ -88,6 +92,9 @@
   _prevTotalVolume = prevTotalVolume;
   _totalVolume = totalVolume;
   _volume = volume;
+  _prevTotalTurnover = prevTotalTurnover;
+  _totalTurnover = totalTurnover;
+  _turnover = turnover;
   _vwap = vwap;
   _highPrice = highPrice;
   _lowPrice = lowPrice;
@@ -98,6 +105,7 @@
   _midPrice = midPrice;
   _askPrice = askPrice;
   _openInterest = openInterest;
+  _openValue = openValue;
   _settledPrice = settledPrice;
   _timestamp = timestamp;
   return self;
@@ -153,6 +161,9 @@
         _prevTotalVolume = dict[@"prevTotalVolume"]; 
         _totalVolume = dict[@"totalVolume"]; 
         _volume = dict[@"volume"]; 
+        _prevTotalTurnover = dict[@"prevTotalTurnover"]; 
+        _totalTurnover = dict[@"totalTurnover"]; 
+        _turnover = dict[@"turnover"]; 
         _vwap = dict[@"vwap"]; 
         _highPrice = dict[@"highPrice"]; 
         _lowPrice = dict[@"lowPrice"]; 
@@ -163,6 +174,7 @@
         _midPrice = dict[@"midPrice"]; 
         _askPrice = dict[@"askPrice"]; 
         _openInterest = dict[@"openInterest"]; 
+        _openValue = dict[@"openValue"]; 
         _settledPrice = dict[@"settledPrice"]; 
         id timestamp_dict = dict[@"timestamp"];
         if(timestamp_dict != nil)
@@ -296,6 +308,9 @@
         if(_prevTotalVolume != nil) dict[@"prevTotalVolume"] = _prevTotalVolume ;
         if(_totalVolume != nil) dict[@"totalVolume"] = _totalVolume ;
         if(_volume != nil) dict[@"volume"] = _volume ;
+        if(_prevTotalTurnover != nil) dict[@"prevTotalTurnover"] = _prevTotalTurnover ;
+        if(_totalTurnover != nil) dict[@"totalTurnover"] = _totalTurnover ;
+        if(_turnover != nil) dict[@"turnover"] = _turnover ;
         if(_vwap != nil) dict[@"vwap"] = _vwap ;
         if(_highPrice != nil) dict[@"highPrice"] = _highPrice ;
         if(_lowPrice != nil) dict[@"lowPrice"] = _lowPrice ;
@@ -306,6 +321,7 @@
         if(_midPrice != nil) dict[@"midPrice"] = _midPrice ;
         if(_askPrice != nil) dict[@"askPrice"] = _askPrice ;
         if(_openInterest != nil) dict[@"openInterest"] = _openInterest ;
+        if(_openValue != nil) dict[@"openValue"] = _openValue ;
         if(_settledPrice != nil) dict[@"settledPrice"] = _settledPrice ;
         if(_timestamp != nil){
         if([_timestamp isKindOfClass:[NSArray class]]){

@@ -10,6 +10,9 @@
     price: (NSNumber*) price
     tickDirection: (NSString*) tickDirection
     trdMatchID: (NSString*) trdMatchID
+    grossValue: (NSNumber*) grossValue
+    homeNotional: (NSNumber*) homeNotional
+    foreignNotional: (NSNumber*) foreignNotional
     _id: (NSNumber*) _id
 {
   _timestamp = timestamp;
@@ -19,6 +22,9 @@
   _price = price;
   _tickDirection = tickDirection;
   _trdMatchID = trdMatchID;
+  _grossValue = grossValue;
+  _homeNotional = homeNotional;
+  _foreignNotional = foreignNotional;
   __id = _id;
   return self;
 }
@@ -36,6 +42,9 @@
         _price = dict[@"price"]; 
         _tickDirection = dict[@"tickDirection"]; 
         _trdMatchID = dict[@"trdMatchID"]; 
+        _grossValue = dict[@"grossValue"]; 
+        _homeNotional = dict[@"homeNotional"]; 
+        _foreignNotional = dict[@"foreignNotional"]; 
         __id = dict[@"id"]; 
         
 
@@ -69,6 +78,9 @@
         if(_price != nil) dict[@"price"] = _price ;
         if(_tickDirection != nil) dict[@"tickDirection"] = _tickDirection ;
         if(_trdMatchID != nil) dict[@"trdMatchID"] = _trdMatchID ;
+        if(_grossValue != nil) dict[@"grossValue"] = _grossValue ;
+        if(_homeNotional != nil) dict[@"homeNotional"] = _homeNotional ;
+        if(_foreignNotional != nil) dict[@"foreignNotional"] = _foreignNotional ;
         if(__id != nil) dict[@"id"] = __id ;
         NSDictionary* output = [dict copy];
     return output;

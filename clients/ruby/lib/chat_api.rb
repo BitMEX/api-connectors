@@ -8,12 +8,13 @@ class Chat_api
     URI.encode(string.to_s)
   end
 
-  def self.get (count= 100,opts={})
-    query_param_keys = [:count]
+  def self.get (start,count= 100,opts={})
+    query_param_keys = [:count,:start]
 
     # set default values and merge with input
     options = {
-    :count => count}.merge(opts)
+    :start => start,
+      :count => count}.merge(opts)
 
     #resource path
     path = "/chat".sub('{format}','json')

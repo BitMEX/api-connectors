@@ -74,6 +74,12 @@ case class Instrument (
 
   volume: Option[Double],
 
+  prevTotalTurnover: Option[Double],
+
+  totalTurnover: Option[Double],
+
+  turnover: Option[Double],
+
   vwap: Option[Double],
 
   highPrice: Option[Double],
@@ -93,6 +99,8 @@ case class Instrument (
   askPrice: Option[Double],
 
   openInterest: Option[Double],
+
+  openValue: Option[Double],
 
   settledPrice: Option[Double],
 

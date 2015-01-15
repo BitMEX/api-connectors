@@ -1,6 +1,5 @@
 package apis
 
-import com.wordnik.client.model.Error
 import com.wordnik.client.model.Instrument
 import java.io.File
 

@@ -3,6 +3,8 @@ package com.wordnik.client.model
 import java.util.Date
 import com.wordnik.client.model.Object
 case class User (
+  id: Option[Double],
+
   firstname: Option[String],
 
   lastname: Option[String],
@@ -27,7 +29,7 @@ case class User (
 
   TFAEnabled: Option[String],
 
-  id: Option[Double]
+  affiliateID: Option[String]
 
   )
 

@@ -1,5 +1,5 @@
 class Execution
-  attr_accessor :exec_i_d, :order_i_d, :cl_ord_i_d, :account, :symbol, :side, :last_qty, :last_px, :last_mkt, :last_liquidity_ind, :order_qty, :price, :min_qty, :stop_px, :currency, :settl_currency, :exec_type, :ord_type, :time_in_force, :ex_destination, :ord_status, :working_indicator, :ord_rej_reason, :leaves_qty, :cum_qty, :avg_px, :commission, :comm_type, :multi_leg_reporting_type, :text, :trd_match_i_d, :exec_cost, :exec_comm, :transact_time, :timestamp
+  attr_accessor :exec_i_d, :order_i_d, :cl_ord_i_d, :account, :symbol, :side, :last_qty, :last_px, :underlying_last_px, :last_mkt, :last_liquidity_ind, :order_qty, :price, :min_qty, :stop_px, :currency, :settl_currency, :exec_type, :ord_type, :time_in_force, :ex_destination, :ord_status, :working_indicator, :ord_rej_reason, :leaves_qty, :cum_qty, :avg_px, :commission, :comm_type, :trade_publish_indicator, :multi_leg_reporting_type, :text, :trd_match_i_d, :exec_cost, :exec_comm, :home_notional, :foreign_notional, :transact_time, :timestamp
 
   # :internal => :external
   def self.attribute_map
@@ -12,6 +12,7 @@ class Execution
       :side => :side,
       :last_qty => :lastQty,
       :last_px => :lastPx,
+      :underlying_last_px => :underlyingLastPx,
       :last_mkt => :lastMkt,
       :last_liquidity_ind => :lastLiquidityInd,
       :order_qty => :orderQty,
@@ -32,11 +33,14 @@ class Execution
       :avg_px => :avgPx,
       :commission => :commission,
       :comm_type => :commType,
+      :trade_publish_indicator => :tradePublishIndicator,
       :multi_leg_reporting_type => :multiLegReportingType,
       :text => :text,
       :trd_match_i_d => :trdMatchID,
       :exec_cost => :execCost,
       :exec_comm => :execComm,
+      :home_notional => :homeNotional,
+      :foreign_notional => :foreignNotional,
       :transact_time => :transactTime,
       :timestamp => :timestamp
 
@@ -69,6 +73,9 @@ class Execution
     end
     if self.class.attribute_map[:"last_px"]
       @last_px = attributes["lastPx"]
+    end
+    if self.class.attribute_map[:"underlying_last_px"]
+      @underlying_last_px = attributes["underlyingLastPx"]
     end
     if self.class.attribute_map[:"last_mkt"]
       @last_mkt = attributes["lastMkt"]
@@ -130,6 +137,9 @@ class Execution
     if self.class.attribute_map[:"comm_type"]
       @comm_type = attributes["commType"]
     end
+    if self.class.attribute_map[:"trade_publish_indicator"]
+      @trade_publish_indicator = attributes["tradePublishIndicator"]
+    end
     if self.class.attribute_map[:"multi_leg_reporting_type"]
       @multi_leg_reporting_type = attributes["multiLegReportingType"]
     end
@@ -144,6 +154,12 @@ class Execution
     end
     if self.class.attribute_map[:"exec_comm"]
       @exec_comm = attributes["execComm"]
+    end
+    if self.class.attribute_map[:"home_notional"]
+      @home_notional = attributes["homeNotional"]
+    end
+    if self.class.attribute_map[:"foreign_notional"]
+      @foreign_notional = attributes["foreignNotional"]
     end
     if self.class.attribute_map[:"transact_time"]
       @transact_time = attributes["transactTime"]

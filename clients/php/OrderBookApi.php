@@ -28,9 +28,9 @@ class OrderBookApi {
   /**
 	 * getOrderBook
 	 * Get current orderbook.
-   * symbol, string:  (required)
+   * symbol, string: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (required)
 
-   * depth, float:  (optional)
+   * depth, float: Orderbook depth. (optional)
 
    * @return Array[OrderBook]
 	 */

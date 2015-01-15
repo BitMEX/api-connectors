@@ -60,6 +60,9 @@ exports.requestWithdrawal = {
     "nickname" : "requestWithdrawal"
   },
   'action': function (req,res) {
+    if (!req.params.currency) {
+      throw errors.invalid('currency');
+    }
     if (!req.params.amount) {
       throw errors.invalid('amount');
     }
@@ -224,6 +227,22 @@ exports.confirmPasswordReset = {
     writeResponse(res, {message: "how about implementing confirmPasswordReset as a POST method?"});    
   }
 };
+exports.getAffiliateStatus = {
+  'spec': {
+    "description" : "Operations about pets",
+    "path" : "/user/affiliateStatus",
+    "notes" : "",
+    "summary" : "Get your current affiliate/referral status.",
+    "method": "POST",
+    "params" : [].concat([]).concat([]).concat([]),
+    "type" : "List[Affiliate]",
+    "responseMessages" : [errors.invalid('id'), errors.notFound('List[Affiliate]')],
+    "nickname" : "getAffiliateStatus"
+  },
+  'action': function (req,res) {
+    writeResponse(res, {message: "how about implementing getAffiliateStatus as a POST method?"});    
+  }
+};
 exports.newUser = {
   'spec': {
     "description" : "Operations about pets",
@@ -317,6 +336,22 @@ exports.logout = {
   },
   'action': function (req,res) {
     writeResponse(res, {message: "how about implementing logout as a POST method?"});    
+  }
+};
+exports.logoutAll = {
+  'spec': {
+    "description" : "Operations about pets",
+    "path" : "/user/logoutAll",
+    "notes" : "",
+    "summary" : "Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.",
+    "method": "POST",
+    "params" : [].concat([]).concat([]).concat([]),
+    "type" : "",
+    "responseMessages" : [errors.invalid('id'), errors.notFound('')],
+    "nickname" : "logoutAll"
+  },
+  'action': function (req,res) {
+    writeResponse(res, {message: "how about implementing logoutAll as a POST method?"});    
   }
 };
 exports.savePreferences = {

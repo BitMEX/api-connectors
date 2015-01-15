@@ -32,6 +32,7 @@ class Execution {
       'side' => 'string',
       'lastQty' => 'float',
       'lastPx' => 'float',
+      'underlyingLastPx' => 'float',
       'lastMkt' => 'string',
       'lastLiquidityInd' => 'string',
       'orderQty' => 'float',
@@ -52,11 +53,14 @@ class Execution {
       'avgPx' => 'float',
       'commission' => 'float',
       'commType' => 'string',
+      'tradePublishIndicator' => 'string',
       'multiLegReportingType' => 'string',
       'text' => 'string',
       'trdMatchID' => 'string',
       'execCost' => 'float',
       'execComm' => 'float',
+      'homeNotional' => 'float',
+      'foreignNotional' => 'float',
       'transactTime' => 'DateTime',
       'timestamp' => 'DateTime'
 
@@ -70,6 +74,7 @@ class Execution {
   public $side; // string
   public $lastQty; // float
   public $lastPx; // float
+  public $underlyingLastPx; // float
   public $lastMkt; // string
   public $lastLiquidityInd; // string
   public $orderQty; // float
@@ -90,11 +95,14 @@ class Execution {
   public $avgPx; // float
   public $commission; // float
   public $commType; // string
+  public $tradePublishIndicator; // string
   public $multiLegReportingType; // string
   public $text; // string
   public $trdMatchID; // string
   public $execCost; // float
   public $execComm; // float
+  public $homeNotional; // float
+  public $foreignNotional; // float
   public $transactTime; // DateTime
   public $timestamp; // DateTime
   }

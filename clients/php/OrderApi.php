@@ -26,33 +26,63 @@ class OrderApi {
 	}
 
   /**
-	 * newOrder
-	 * Create a new order. [Deprecated]
-   * symbol, string: Instrument name. (required)
+	 * getOrders
+	 * Get your orders.
+   * symbol, string: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
 
-   * quantity, float: Quantity. Use positive numbers to buy, negative to sell. (required)
+   * filter, object: Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}. (optional)
 
-   * price, float: Price to buy. (required)
+   * columns, array[string]: Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
 
-   * ioc, bool: Set to true to place an immediateOrCancel order. (optional)
+   * start, float: Starting point for results. (optional)
 
-   * clOrdID, string: Optional Client Order ID to give this order. This ID will come back on any execution messages tied to this order. (optional)
+   * reverse, bool: If true, will sort results newest first. (optional)
 
-   * @return Order
+   * startTime, DateTime: Starting date filter for results. (optional)
+
+   * endTime, DateTime: Ending date filter for results. (optional)
+
+   * count, float: Number of results to fetch. (optional)
+
+   * @return Array[Order]
 	 */
 
-   public function newOrder($symbol, $quantity, $price, $ioc=null, $clOrdID=null) {
+   public function getOrders($symbol=null, $filter=null, $columns=null, $start=null, $reverse=null, $startTime=null, $endTime=null, $count=null) {
 
   		//parse inputs
-  		$resourcePath = "/order/new";
+  		$resourcePath = "/order";
   		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "POST";
+  		$method = "GET";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
-      //make the API Call
+      if($symbol != null) {
+  		  $queryParams['symbol'] = $this->apiClient->toQueryValue($symbol);
+  		}
+  		if($filter != null) {
+  		  $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
+  		}
+  		if($columns != null) {
+  		  $queryParams['columns'] = $this->apiClient->toQueryValue($columns);
+  		}
+  		if($count != null) {
+  		  $queryParams['count'] = $this->apiClient->toQueryValue($count);
+  		}
+  		if($start != null) {
+  		  $queryParams['start'] = $this->apiClient->toQueryValue($start);
+  		}
+  		if($reverse != null) {
+  		  $queryParams['reverse'] = $this->apiClient->toQueryValue($reverse);
+  		}
+  		if($startTime != null) {
+  		  $queryParams['startTime'] = $this->apiClient->toQueryValue($startTime);
+  		}
+  		if($endTime != null) {
+  		  $queryParams['endTime'] = $this->apiClient->toQueryValue($endTime);
+  		}
+  		//make the API Call
       if (! isset($body)) {
         $body = null;
       }
@@ -66,14 +96,14 @@ class OrderApi {
         }
 
   		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Order');
+  		                                                'Array[Order]');
   		return $responseObject;
 
       }
   /**
-	 * newOrder_OrderApi_0
+	 * newOrder
 	 * Create a new order.
-   * symbol, string: Instrument name. (required)
+   * symbol, string: Instrument symbol. (required)
 
    * quantity, float: Quantity. Use positive numbers to buy, negative to sell. (required)
 
@@ -86,7 +116,7 @@ class OrderApi {
    * @return Order
 	 */
 
-   public function newOrder_OrderApi_0($symbol, $quantity, $price, $ioc=null, $clOrdID=null) {
+   public function newOrder($symbol, $quantity, $price, $ioc=null, $clOrdID=null) {
 
   		//parse inputs
   		$resourcePath = "/order";
@@ -139,197 +169,6 @@ class OrderApi {
       $headerParams['Content-Type'] = 'application/json';
 
       //make the API Call
-      if (! isset($body)) {
-        $body = null;
-      }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
-
-
-      if(! $response){
-          return null;
-        }
-
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[Order]');
-  		return $responseObject;
-
-      }
-  /**
-	 * getOrders
-	 * Get your orders.
-   * filter, object: Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}. (optional)
-
-   * columns, array[any]: Which columns to fetch. For example, send [&quot;columnName&quot;]. (optional)
-
-   * count, float: Number of rows to fetch. (optional)
-
-   * @return Array[Order]
-	 */
-
-   public function getOrders($filter=null, $columns=null, $count=null) {
-
-  		//parse inputs
-  		$resourcePath = "/order";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "GET";
-      $queryParams = array();
-      $headerParams = array();
-      $headerParams['Accept'] = 'application/json';
-      $headerParams['Content-Type'] = 'application/json';
-
-      if($filter != null) {
-  		  $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
-  		}
-  		if($columns != null) {
-  		  $queryParams['columns'] = $this->apiClient->toQueryValue($columns);
-  		}
-  		if($count != null) {
-  		  $queryParams['count'] = $this->apiClient->toQueryValue($count);
-  		}
-  		//make the API Call
-      if (! isset($body)) {
-        $body = null;
-      }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
-
-
-      if(! $response){
-          return null;
-        }
-
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[Order]');
-  		return $responseObject;
-
-      }
-  /**
-	 * cancelOrder_OrderApi_0
-	 * Cancel order(s). Send multiple order IDs to cancel in bulk. [Deprecated]
-   * orderID, string: Order ID(s). (required)
-
-   * clOrdID, string: Client Order ID(s). See POST /order. (optional)
-
-   * text, string: Optional cancellation annotation. e.g. 'Spread Exceeded' (optional)
-
-   * @return Array[Order]
-	 */
-
-   public function cancelOrder_OrderApi_0($orderID, $clOrdID=null, $text=null) {
-
-  		//parse inputs
-  		$resourcePath = "/order/cancel";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "POST";
-      $queryParams = array();
-      $headerParams = array();
-      $headerParams['Accept'] = 'application/json';
-      $headerParams['Content-Type'] = 'application/json';
-
-      //make the API Call
-      if (! isset($body)) {
-        $body = null;
-      }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
-
-
-      if(! $response){
-          return null;
-        }
-
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[Order]');
-  		return $responseObject;
-
-      }
-  /**
-	 * getOrders_OrderApi_0
-	 * Get your orders. [Deprecated, use GET /order]
-   * filter, object: Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}. (optional)
-
-   * columns, array[any]: Which columns to fetch. For example, send [&quot;columnName&quot;]. (optional)
-
-   * count, float: Number of rows to fetch. (optional)
-
-   * @return Array[Order]
-	 */
-
-   public function getOrders_OrderApi_0($filter=null, $columns=null, $count=null) {
-
-  		//parse inputs
-  		$resourcePath = "/order/myOrders";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "GET";
-      $queryParams = array();
-      $headerParams = array();
-      $headerParams['Accept'] = 'application/json';
-      $headerParams['Content-Type'] = 'application/json';
-
-      if($filter != null) {
-  		  $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
-  		}
-  		if($columns != null) {
-  		  $queryParams['columns'] = $this->apiClient->toQueryValue($columns);
-  		}
-  		if($count != null) {
-  		  $queryParams['count'] = $this->apiClient->toQueryValue($count);
-  		}
-  		//make the API Call
-      if (! isset($body)) {
-        $body = null;
-      }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
-
-
-      if(! $response){
-          return null;
-        }
-
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[Order]');
-  		return $responseObject;
-
-      }
-  /**
-	 * getOrders_OrderApi_1
-	 * Get your open orders.
-   * filter, object: Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}. (optional)
-
-   * columns, array[any]: Which columns to fetch. For example, send [&quot;columnName&quot;]. (optional)
-
-   * count, float: Number of rows to fetch. (optional)
-
-   * @return Array[Order]
-	 */
-
-   public function getOrders_OrderApi_1($filter=null, $columns=null, $count=null) {
-
-  		//parse inputs
-  		$resourcePath = "/order/myOpenOrders";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "GET";
-      $queryParams = array();
-      $headerParams = array();
-      $headerParams['Accept'] = 'application/json';
-      $headerParams['Content-Type'] = 'application/json';
-
-      if($filter != null) {
-  		  $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
-  		}
-  		if($columns != null) {
-  		  $queryParams['columns'] = $this->apiClient->toQueryValue($columns);
-  		}
-  		if($count != null) {
-  		  $queryParams['count'] = $this->apiClient->toQueryValue($count);
-  		}
-  		//make the API Call
       if (! isset($body)) {
         $body = null;
       }

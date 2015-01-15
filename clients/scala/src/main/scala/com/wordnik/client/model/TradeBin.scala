@@ -12,5 +12,8 @@ case class TradeBin (
   volume: Double,
   vwap: Double,
   lastSize: Double,
+  turnover: Double,
+  homeNotional: Double,
+  foreignNotional: Double,
   id: Double)
 

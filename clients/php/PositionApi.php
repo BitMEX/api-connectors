@@ -28,7 +28,7 @@ class PositionApi {
   /**
 	 * find
 	 * Get your positions.
-   * filter, object: Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}. (optional)
+   * filter, object: Table filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;}. (optional)
 
    * columns, array[any]: Which columns to fetch. For example, send [&quot;columnName&quot;]. (optional)
 

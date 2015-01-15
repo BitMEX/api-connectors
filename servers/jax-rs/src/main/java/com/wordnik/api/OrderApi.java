@@ -2,7 +2,6 @@ package com.wordnik.api;
 
 import com.wordnik.swagger.annotations.*;
 
-import com.wordnik.client.model.Error;
 import com.wordnik.client.model.Object;
 import com.wordnik.client.model.Order;
 import java.util.List;
@@ -15,13 +14,46 @@ import javax.ws.rs.*;
 @Api(value = "/order", description = "the order API")
 @Produces({"application/json"})
 public class OrderApi {
-  @POST
-  @Path("/new")
-  @ApiOperation(value = "Create a new order. [Deprecated]", notes = "", responseClass = "Order")
+  @GET
+  @Path("/")
+  @ApiOperation(value = "Get your orders.", notes = "To get open orders only, send {"open": true} in the filter param.", responseClass = "List<Order>")
   @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful"),@ApiError(code = 400, reason = "Parameter Error"),@ApiError(code = 401, reason = "Unauthorized"),@ApiError(code = 404, reason = "Not Found")})
      
-  public Response newOrder(
-    ,,,,)
+  public Response getOrders(
+    @ApiParam(value = "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series."
+    ,required=true
+)@QueryParam("symbol")
+ String symbol
+    ,@ApiParam(value = "Generic table filter. Send JSON key/value pairs, such as {"key": "value"}."
+    ,required=true
+)@QueryParam("filter")
+ Object filter
+    ,@ApiParam(value = "Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect."
+    ,required=true
+)@QueryParam("columns")
+ List<String> columns
+    ,@ApiParam(value = "Starting point for results."
+    ,required=true
+)@QueryParam("start")
+ Double start
+    ,@ApiParam(value = "If true, will sort results newest first."
+    ,required=true
+)@QueryParam("reverse")
+ Boolean reverse
+    ,@ApiParam(value = "Starting date filter for results."
+    ,required=true
+)@QueryParam("startTime")
+ Date startTime
+    ,@ApiParam(value = "Ending date filter for results."
+    ,required=true
+)@QueryParam("endTime")
+ Date endTime
+    ,@ApiParam(value = "Number of results to fetch."
+    ,required=true
+, defaultValue="100"
+)@QueryParam("count")
+ Double count
+    )
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
@@ -32,7 +64,7 @@ public class OrderApi {
   @ApiOperation(value = "Create a new order.", notes = "If you want to keep track of order IDs yourself, set a unique clOrdID per order. This ID will come back as a property on the order and any related executions executions (including on the WebSocket), and can be used to cancel the order.", responseClass = "Order")
   @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful"),@ApiError(code = 400, reason = "Parameter Error"),@ApiError(code = 401, reason = "Unauthorized"),@ApiError(code = 404, reason = "Not Found")})
      
-  public Response newOrder_OrderApi_0(
+  public Response newOrder(
     ,,,,)
       throws NotFoundException {
       // do some magic!
@@ -46,90 +78,6 @@ public class OrderApi {
      
   public Response cancelOrder(
     ,,)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
-  }
-
-  @GET
-  @Path("/")
-  @ApiOperation(value = "Get your orders.", notes = "", responseClass = "List<Order>")
-  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful"),@ApiError(code = 400, reason = "Parameter Error"),@ApiError(code = 401, reason = "Unauthorized"),@ApiError(code = 404, reason = "Not Found")})
-     
-  public Response getOrders(
-    @ApiParam(value = "Filter. For example, send {"symbol": "XBTF15", "open": true}."
-    ,required=true
-)@QueryParam("filter")
- Object filter
-    ,@ApiParam(value = "Which columns to fetch. For example, send ["columnName"]."
-    ,required=true
-)@QueryParam("columns")
- List<any> columns
-    ,@ApiParam(value = "Number of rows to fetch."
-    ,required=true
-)@QueryParam("count")
- Double count
-    )
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
-  }
-
-  @POST
-  @Path("/cancel")
-  @ApiOperation(value = "Cancel order(s). Send multiple order IDs to cancel in bulk. [Deprecated]", notes = "", responseClass = "List<Order>")
-  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful"),@ApiError(code = 400, reason = "Parameter Error"),@ApiError(code = 401, reason = "Unauthorized"),@ApiError(code = 404, reason = "Not Found")})
-     
-  public Response cancelOrder_OrderApi_0(
-    ,,)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
-  }
-
-  @GET
-  @Path("/myOrders")
-  @ApiOperation(value = "Get your orders. [Deprecated, use GET /order]", notes = "", responseClass = "List<Order>")
-  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful"),@ApiError(code = 400, reason = "Parameter Error"),@ApiError(code = 401, reason = "Unauthorized"),@ApiError(code = 404, reason = "Not Found")})
-     
-  public Response getOrders_OrderApi_0(
-    @ApiParam(value = "Filter. For example, send {"symbol": "XBTF15", "open": true}."
-    ,required=true
-)@QueryParam("filter")
- Object filter
-    ,@ApiParam(value = "Which columns to fetch. For example, send ["columnName"]."
-    ,required=true
-)@QueryParam("columns")
- List<any> columns
-    ,@ApiParam(value = "Number of rows to fetch."
-    ,required=true
-)@QueryParam("count")
- Double count
-    )
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
-  }
-
-  @GET
-  @Path("/myOpenOrders")
-  @ApiOperation(value = "Get your open orders.", notes = "", responseClass = "List<Order>")
-  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful"),@ApiError(code = 400, reason = "Parameter Error"),@ApiError(code = 401, reason = "Unauthorized"),@ApiError(code = 404, reason = "Not Found")})
-     
-  public Response getOrders_OrderApi_1(
-    @ApiParam(value = "Filter. For example, send {"symbol": "XBTF15", "open": true}."
-    ,required=true
-)@QueryParam("filter")
- Object filter
-    ,@ApiParam(value = "Which columns to fetch. For example, send ["columnName"]."
-    ,required=true
-)@QueryParam("columns")
- List<any> columns
-    ,@ApiParam(value = "Number of rows to fetch."
-    ,required=true
-)@QueryParam("count")
- Double count
-    )
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();

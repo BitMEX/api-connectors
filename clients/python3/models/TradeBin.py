@@ -31,6 +31,9 @@ class TradeBin:
             'volume': 'float',
             'vwap': 'float',
             'lastSize': 'float',
+            'turnover': 'float',
+            'homeNotional': 'float',
+            'foreignNotional': 'float',
             'id': 'float'
 
         }
@@ -46,5 +49,8 @@ class TradeBin:
         self.volume = None # float
         self.vwap = None # float
         self.lastSize = None # float
+        self.turnover = None # float
+        self.homeNotional = None # float
+        self.foreignNotional = None # float
         self.id = None # float
         

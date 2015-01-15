@@ -31,6 +31,9 @@ class Trade {
       'price' => 'float',
       'tickDirection' => 'string',
       'trdMatchID' => 'string',
+      'grossValue' => 'float',
+      'homeNotional' => 'float',
+      'foreignNotional' => 'float',
       'id' => 'float'
 
     );
@@ -42,6 +45,9 @@ class Trade {
   public $price; // float
   public $tickDirection; // string
   public $trdMatchID; // string
+  public $grossValue; // float
+  public $homeNotional; // float
+  public $foreignNotional; // float
   public $id; // float
   }
 

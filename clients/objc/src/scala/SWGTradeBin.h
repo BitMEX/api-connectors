@@ -25,6 +25,12 @@
 
 @property(nonatomic) NSNumber* lastSize;  
 
+@property(nonatomic) NSNumber* turnover;  
+
+@property(nonatomic) NSNumber* homeNotional;  
+
+@property(nonatomic) NSNumber* foreignNotional;  
+
 @property(nonatomic) NSNumber* _id;  
 
 - (id) timestamp: (SWGDate*) timestamp
@@ -37,6 +43,9 @@
      volume: (NSNumber*) volume
      vwap: (NSNumber*) vwap
      lastSize: (NSNumber*) lastSize
+     turnover: (NSNumber*) turnover
+     homeNotional: (NSNumber*) homeNotional
+     foreignNotional: (NSNumber*) foreignNotional
      _id: (NSNumber*) _id;
 
 - (id) initWithValues: (NSDictionary*)dict;

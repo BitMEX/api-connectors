@@ -77,6 +77,12 @@ namespace Swagger.Client.Model {
 
     public double? volume { get; set; }
 
+    public double? prevTotalTurnover { get; set; }
+
+    public double? totalTurnover { get; set; }
+
+    public double? turnover { get; set; }
+
     public double? vwap { get; set; }
 
     public double? highPrice { get; set; }
@@ -96,6 +102,8 @@ namespace Swagger.Client.Model {
     public double? askPrice { get; set; }
 
     public double? openInterest { get; set; }
+
+    public double? openValue { get; set; }
 
     public double? settledPrice { get; set; }
 
@@ -140,6 +148,9 @@ namespace Swagger.Client.Model {
       sb.Append("  prevTotalVolume: ").Append(prevTotalVolume).Append("\n");
       sb.Append("  totalVolume: ").Append(totalVolume).Append("\n");
       sb.Append("  volume: ").Append(volume).Append("\n");
+      sb.Append("  prevTotalTurnover: ").Append(prevTotalTurnover).Append("\n");
+      sb.Append("  totalTurnover: ").Append(totalTurnover).Append("\n");
+      sb.Append("  turnover: ").Append(turnover).Append("\n");
       sb.Append("  vwap: ").Append(vwap).Append("\n");
       sb.Append("  highPrice: ").Append(highPrice).Append("\n");
       sb.Append("  lowPrice: ").Append(lowPrice).Append("\n");
@@ -150,6 +161,7 @@ namespace Swagger.Client.Model {
       sb.Append("  midPrice: ").Append(midPrice).Append("\n");
       sb.Append("  askPrice: ").Append(askPrice).Append("\n");
       sb.Append("  openInterest: ").Append(openInterest).Append("\n");
+      sb.Append("  openValue: ").Append(openValue).Append("\n");
       sb.Append("  settledPrice: ").Append(settledPrice).Append("\n");
       sb.Append("  timestamp: ").Append(timestamp).Append("\n");
       sb.Append("}\n");

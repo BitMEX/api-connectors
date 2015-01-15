@@ -1,6 +1,5 @@
 package apis
 
-import com.wordnik.client.model.Error
 import com.wordnik.client.model.Object
 import com.wordnik.client.model.Order
 import java.io.File
@@ -30,35 +29,41 @@ class OrderApi (implicit val swagger: Swagger) extends ScalatraServlet
 
 
 
-  val newOrderOperation = (apiOperation[Order]("newOrder")
-      summary "Create a new order. [Deprecated]"
+  val getOrdersOperation = (apiOperation[List[Order]]("getOrders")
+      summary "Get your orders."
       parameters(
-        formParam[String]("symbol").description(""),formParam[Double]("quantity").description(""),formParam[Double]("price").description(""),formParam[Boolean]("ioc").description(""),formParam[String]("clOrdID").description(""))
+        queryParam[String]("symbol").description(""),queryParam[Any]("filter").description(""),queryParam[List[String]]("columns").description(""),queryParam[Double]("start").description(""),queryParam[Boolean]("reverse").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""),queryParam[Double]("count").description("").defaultValue(100))
   )
 
-  post("/new",operation(newOrderOperation)) {
+  get("/",operation(getOrdersOperation)) {
     val symbol = params.getAs[String]("symbol")
     println("symbol: " + symbol)
-  val quantity = params.getAs[Double]("quantity")
-    println("quantity: " + quantity)
-  val price = params.getAs[Double]("price")
-    println("price: " + price)
-  val ioc = params.getAs[Boolean]("ioc")
-    println("ioc: " + ioc)
-  val clOrdID = params.getAs[String]("clOrdID")
-    println("clOrdID: " + clOrdID)
+  val filter = params.getAs[Any]("filter")
+    println("filter: " + filter)
+  val columns = params.getAs[List[String]]("columns")
+    println("columns: " + columns)
+  val start = params.getAs[Double]("start")
+    println("start: " + start)
+  val reverse = params.getAs[Boolean]("reverse")
+    println("reverse: " + reverse)
+  val startTime = params.getAs[Date]("startTime")
+    println("startTime: " + startTime)
+  val endTime = params.getAs[Date]("endTime")
+    println("endTime: " + endTime)
+  val count = params.getAs[Double]("count")
+    println("count: " + count)
   }
 
 
 
 
-  val newOrder_OrderApi_0Operation = (apiOperation[Order]("newOrder_OrderApi_0")
+  val newOrderOperation = (apiOperation[Order]("newOrder")
       summary "Create a new order."
       parameters(
         formParam[String]("symbol").description(""),formParam[Double]("quantity").description(""),formParam[Double]("price").description(""),formParam[Boolean]("ioc").description(""),formParam[String]("clOrdID").description(""))
   )
 
-  post("/",operation(newOrder_OrderApi_0Operation)) {
+  post("/",operation(newOrderOperation)) {
     val symbol = params.getAs[String]("symbol")
     println("symbol: " + symbol)
   val quantity = params.getAs[Double]("quantity")
@@ -87,78 +92,6 @@ class OrderApi (implicit val swagger: Swagger) extends ScalatraServlet
     println("clOrdID: " + clOrdID)
   val text = params.getAs[String]("text")
     println("text: " + text)
-  }
-
-
-
-
-  val getOrdersOperation = (apiOperation[List[Order]]("getOrders")
-      summary "Get your orders."
-      parameters(
-        queryParam[Any]("filter").description(""),queryParam[List[any]]("columns").description(""),queryParam[Double]("count").description(""))
-  )
-
-  get("/",operation(getOrdersOperation)) {
-    val filter = params.getAs[Any]("filter")
-    println("filter: " + filter)
-  val columns = params.getAs[List[any]]("columns")
-    println("columns: " + columns)
-  val count = params.getAs[Double]("count")
-    println("count: " + count)
-  }
-
-
-
-
-  val cancelOrder_OrderApi_0Operation = (apiOperation[List[Order]]("cancelOrder_OrderApi_0")
-      summary "Cancel order(s). Send multiple order IDs to cancel in bulk. [Deprecated]"
-      parameters(
-        formParam[String]("orderID").description(""),formParam[String]("clOrdID").description(""),formParam[String]("text").description(""))
-  )
-
-  post("/cancel",operation(cancelOrder_OrderApi_0Operation)) {
-    val orderID = params.getAs[String]("orderID")
-    println("orderID: " + orderID)
-  val clOrdID = params.getAs[String]("clOrdID")
-    println("clOrdID: " + clOrdID)
-  val text = params.getAs[String]("text")
-    println("text: " + text)
-  }
-
-
-
-
-  val getOrders_OrderApi_0Operation = (apiOperation[List[Order]]("getOrders_OrderApi_0")
-      summary "Get your orders. [Deprecated, use GET /order]"
-      parameters(
-        queryParam[Any]("filter").description(""),queryParam[List[any]]("columns").description(""),queryParam[Double]("count").description(""))
-  )
-
-  get("/myOrders",operation(getOrders_OrderApi_0Operation)) {
-    val filter = params.getAs[Any]("filter")
-    println("filter: " + filter)
-  val columns = params.getAs[List[any]]("columns")
-    println("columns: " + columns)
-  val count = params.getAs[Double]("count")
-    println("count: " + count)
-  }
-
-
-
-
-  val getOrders_OrderApi_1Operation = (apiOperation[List[Order]]("getOrders_OrderApi_1")
-      summary "Get your open orders."
-      parameters(
-        queryParam[Any]("filter").description(""),queryParam[List[any]]("columns").description(""),queryParam[Double]("count").description(""))
-  )
-
-  get("/myOpenOrders",operation(getOrders_OrderApi_1Operation)) {
-    val filter = params.getAs[Any]("filter")
-    println("filter: " + filter)
-  val columns = params.getAs[List[any]]("columns")
-    println("columns: " + columns)
-  val count = params.getAs[Double]("count")
-    println("count: " + count)
   }
 
 

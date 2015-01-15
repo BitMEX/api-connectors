@@ -10,12 +10,20 @@ MyApp.add_route('get', '/', {
   "parameters" => [
     {
       "name" => "count",
-      "description" => "",
+      "description" => "Number of results to fetch.",
       "dataType" => "double",
       "paramType" => "query",
       "allowMultiple" => false,
       "allowableValues" => "",
       "defaultValue" => 100},
+    {
+      "name" => "start",
+      "description" => "Starting point for results.",
+      "dataType" => "double",
+      "paramType" => "query",
+      "allowMultiple" => false,
+      "allowableValues" => "",
+      },
     ]}) do
   cross_origin
   # the guts live here

@@ -29,9 +29,10 @@
       /// <summary>
       /// Get chat messages. 
       /// </summary>
-      /// <param name="count"></param>
+      /// <param name="start">Starting point for results.</param>
+      /// <param name="count">Number of results to fetch.</param>
       /// <returns></returns>
-      public List<Chat> get (double? count) {
+      public List<Chat> get (double? start, double? count) {
         // create path and map variables
         var path = "/chat".Replace("{format}","json");
 
@@ -43,6 +44,10 @@
         if (count != null){
           string paramStr = (count is DateTime) ? ((DateTime)(object)count).ToString("u") : Convert.ToString(count);
           queryParams.Add("count", paramStr);
+		}
+        if (start != null){
+          string paramStr = (start is DateTime) ? ((DateTime)(object)start).ToString("u") : Convert.ToString(start);
+          queryParams.Add("start", paramStr);
 		}
         try {
           if (typeof(List<Chat>) == typeof(byte[])) {

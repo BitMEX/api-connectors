@@ -1,5 +1,4 @@
 #import <Foundation/Foundation.h>
-#import "SWGError.h"
 #import "SWGPosition.h"
 
 
@@ -15,7 +14,7 @@
 
  Get your positions.
  
- @param filter Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}.
+ @param filter Table filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;}.
  @param columns Which columns to fetch. For example, send [&quot;columnName&quot;].
  @param count Number of rows to fetch.
  */

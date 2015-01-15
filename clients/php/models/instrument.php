@@ -60,6 +60,9 @@ class Instrument {
       'prevTotalVolume' => 'float',
       'totalVolume' => 'float',
       'volume' => 'float',
+      'prevTotalTurnover' => 'float',
+      'totalTurnover' => 'float',
+      'turnover' => 'float',
       'vwap' => 'float',
       'highPrice' => 'float',
       'lowPrice' => 'float',
@@ -70,6 +73,7 @@ class Instrument {
       'midPrice' => 'float',
       'askPrice' => 'float',
       'openInterest' => 'float',
+      'openValue' => 'float',
       'settledPrice' => 'float',
       'timestamp' => 'DateTime'
 
@@ -111,6 +115,9 @@ class Instrument {
   public $prevTotalVolume; // float
   public $totalVolume; // float
   public $volume; // float
+  public $prevTotalTurnover; // float
+  public $totalTurnover; // float
+  public $turnover; // float
   public $vwap; // float
   public $highPrice; // float
   public $lowPrice; // float
@@ -121,6 +128,7 @@ class Instrument {
   public $midPrice; // float
   public $askPrice; // float
   public $openInterest; // float
+  public $openValue; // float
   public $settledPrice; // float
   public $timestamp; // DateTime
   }

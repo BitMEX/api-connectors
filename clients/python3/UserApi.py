@@ -112,22 +112,24 @@ class UserApi(object):
 
         
 
-    def requestWithdrawal(self, amount, address, **kwargs):
+    def requestWithdrawal(self, currency= None, amount, address, **kwargs):
         """Request a withdrawal to an external wallet.
 
         Args:
+            otpToken, str: 2FA token. Required if 2FA is enabled on your account. (optional)
+
             amount, float: Amount of withdrawal currency. Note that for Bitcoin withdrawals, a standard 0.0001 XBT fee is charged by the Bitcoin network. (required)
 
             address, str: Destination Address. (required)
 
-            currency, str: Currency you're withdrawing. (optional)
+            currency, str: Currency you're withdrawing. Options: [&quot;XBt&quot;] (required)
 
             
 
         Returns: Transaction
         """
 
-        allParams = ['amount', 'address', 'currency']
+        allParams = ['otpToken', 'amount', 'address', 'currency']
 
         params = locals()
         for (key, val) in params['kwargs'].items():
@@ -493,6 +495,45 @@ class UserApi(object):
 
         
 
+    def getAffiliateStatus(self, **kwargs):
+        """Get your current affiliate/referral status.
+
+        Args:
+            
+
+        Returns: Array[Affiliate]
+        """
+
+        allParams = []
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method getAffiliateStatus" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/user/affiliateStatus'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'Array[Affiliate]')
+        return responseObject
+        
+
+        
+
     def newUser(self, email, password, username, **kwargs):
         """Register a new user.
 
@@ -509,6 +550,8 @@ class UserApi(object):
 
             acceptsTOS, str: Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms). (optional)
 
+            referrerID, str: Optional Referrer ID. (optional)
+
             accountType, str: Account type. Options: ['Trader', 'Hedger']. See the &lt;a href=&quot;/app/fees&quot;&gt;fees page&lt;/a&gt; for more details. (optional)
 
             
@@ -516,7 +559,7 @@ class UserApi(object):
         Returns: User
         """
 
-        allParams = ['email', 'password', 'username', 'firstname', 'lastname', 'acceptsTOS', 'accountType']
+        allParams = ['email', 'password', 'username', 'firstname', 'lastname', 'acceptsTOS', 'referrerID', 'accountType']
 
         params = locals()
         for (key, val) in params['kwargs'].items():
@@ -700,6 +743,40 @@ class UserApi(object):
         del params['kwargs']
 
         resourcePath = '/user/logout'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        postData = (params['body'] if 'body' in params else None)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        
+
+        
+
+    def logoutAll(self, **kwargs):
+        """Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.
+
+        Args:
+            
+
+        Returns: 
+        """
+
+        allParams = []
+
+        params = locals()
+        for (key, val) in params['kwargs'].items():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method logoutAll" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/user/logoutAll'
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'POST'
 

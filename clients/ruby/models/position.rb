@@ -1,11 +1,13 @@
 class Position
-  attr_accessor :account, :symbol, :currency, :commission, :prev_realised_pnl, :prev_unrealised_pnl, :prev_close_price, :realised_cost, :realised_pnl, :opening_timestamp, :opening_qty, :opening_cost, :opening_comm, :open_order_buy_qty, :open_order_buy_cost, :open_order_sell_qty, :open_order_sell_cost, :exec_buy_qty, :exec_buy_cost, :exec_sell_qty, :exec_sell_cost, :exec_qty, :exec_cost, :exec_comm, :current_timestamp, :current_qty, :current_cost, :current_comm, :unrealised_cost, :gross_open_cost, :gross_exec_cost, :last_price, :last_value, :notional_currency1, :notional_value1, :notional_currency2, :notional_value2, :init_margin, :maint_margin, :session_margin, :target_excess_margin, :var_margin, :unrealised_pnl, :unrealised_pnl_pcnt, :avg_entry_price, :break_even_price, :margin_call_price, :liquidation_price, :bankrupt_price, :timestamp
+  attr_accessor :account, :symbol, :underlying, :quote_currency, :currency, :commission, :prev_realised_pnl, :prev_unrealised_pnl, :prev_close_price, :realised_cost, :realised_pnl, :opening_timestamp, :opening_qty, :opening_cost, :opening_comm, :open_order_buy_qty, :open_order_buy_cost, :open_order_sell_qty, :open_order_sell_cost, :exec_buy_qty, :exec_buy_cost, :exec_sell_qty, :exec_sell_cost, :exec_qty, :exec_cost, :exec_comm, :current_timestamp, :current_qty, :current_cost, :current_comm, :unrealised_cost, :gross_open_cost, :gross_exec_cost, :last_price, :last_value, :home_notional, :foreign_notional, :notional_currency1, :notional_value1, :notional_currency2, :notional_value2, :init_margin, :maint_margin, :session_margin, :target_excess_margin, :var_margin, :unrealised_pnl, :unrealised_pnl_pcnt, :avg_entry_price, :break_even_price, :margin_call_price, :liquidation_price, :bankrupt_price, :timestamp
 
   # :internal => :external
   def self.attribute_map
     {
       :account => :account,
       :symbol => :symbol,
+      :underlying => :underlying,
+      :quote_currency => :quoteCurrency,
       :currency => :currency,
       :commission => :commission,
       :prev_realised_pnl => :prevRealisedPnl,
@@ -37,6 +39,8 @@ class Position
       :gross_exec_cost => :grossExecCost,
       :last_price => :lastPrice,
       :last_value => :lastValue,
+      :home_notional => :homeNotional,
+      :foreign_notional => :foreignNotional,
       :notional_currency1 => :notionalCurrency1,
       :notional_value1 => :notionalValue1,
       :notional_currency2 => :notionalCurrency2,
@@ -66,6 +70,12 @@ class Position
     end
     if self.class.attribute_map[:"symbol"]
       @symbol = attributes["symbol"]
+    end
+    if self.class.attribute_map[:"underlying"]
+      @underlying = attributes["underlying"]
+    end
+    if self.class.attribute_map[:"quote_currency"]
+      @quote_currency = attributes["quoteCurrency"]
     end
     if self.class.attribute_map[:"currency"]
       @currency = attributes["currency"]
@@ -159,6 +169,12 @@ class Position
     end
     if self.class.attribute_map[:"last_value"]
       @last_value = attributes["lastValue"]
+    end
+    if self.class.attribute_map[:"home_notional"]
+      @home_notional = attributes["homeNotional"]
+    end
+    if self.class.attribute_map[:"foreign_notional"]
+      @foreign_notional = attributes["foreignNotional"]
     end
     if self.class.attribute_map[:"notional_currency1"]
       @notional_currency1 = attributes["notionalCurrency1"]

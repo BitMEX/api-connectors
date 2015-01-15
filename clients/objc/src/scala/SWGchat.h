@@ -5,6 +5,8 @@
 
 @interface SWGChat : SWGObject
 
+@property(nonatomic) NSNumber* _id;  
+
 @property(nonatomic) SWGDate* date;  
 
 @property(nonatomic) NSString* user;  
@@ -15,14 +17,12 @@
 
 @property(nonatomic) NSNumber* fromBot;  
 
-@property(nonatomic) NSNumber* _id;  
-
-- (id) date: (SWGDate*) date
+- (id) _id: (NSNumber*) _id
+     date: (SWGDate*) date
      user: (NSString*) user
      message: (NSString*) message
      html: (NSString*) html
-     fromBot: (NSNumber*) fromBot
-     _id: (NSNumber*) _id;
+     fromBot: (NSNumber*) fromBot;
 
 - (id) initWithValues: (NSDictionary*)dict;
 - (NSDictionary*) asDictionary;

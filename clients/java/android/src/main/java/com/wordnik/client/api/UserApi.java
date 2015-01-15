@@ -4,6 +4,7 @@ import com.wordnik.client.ApiException;
 import com.wordnik.client.ApiInvoker;
 import com.wordnik.client.model.User;
 import com.wordnik.client.model.Transaction;
+import com.wordnik.client.model.Affiliate;
 import com.wordnik.client.model.AccessToken;
 import com.wordnik.client.model.Any;
 import java.util.*;
@@ -88,9 +89,9 @@ public class UserApi {
     }
   }
   //error info- code: 200 reason: "Request was successful" model: <none>
-  public Transaction requestWithdrawal (Double amount, String address, String currency) throws ApiException {
+  public Transaction requestWithdrawal (String otpToken, Double amount, String address, String currency) throws ApiException {
     // verify required params are set
-    if(amount == null || address == null ) {
+    if(currency == null || amount == null || address == null ) {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
@@ -374,7 +375,35 @@ public class UserApi {
     }
   }
   //error info- code: 200 reason: "Request was successful" model: <none>
-  public User newUser (String email, String password, String username, String firstname, String lastname, String acceptsTOS, String accountType) throws ApiException {
+  public List<Affiliate> getAffiliateStatus () throws ApiException {
+    // create path and map variables
+    String path = "/user/affiliateStatus".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    String contentType = "application/json";
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, null, headerParams, contentType);
+      if(response != null){
+        return (List<Affiliate>) ApiInvoker.deserialize(response, "List", Affiliate.class);
+      }
+      else {
+        return null;
+      }
+    } catch (ApiException ex) {
+      if(ex.getCode() == 404) {
+        return null;
+      }
+      else {
+        throw ex;
+      }
+    }
+  }
+  //error info- code: 200 reason: "Request was successful" model: <none>
+  public User newUser (String email, String password, String username, String firstname, String lastname, String acceptsTOS, String referrerID, String accountType) throws ApiException {
     // verify required params are set
     if(email == null || password == null || username == null ) {
        throw new ApiException(400, "missing required params");
@@ -497,6 +526,34 @@ public class UserApi {
   public void logout () throws ApiException {
     // create path and map variables
     String path = "/user/logout".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    String contentType = "application/json";
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, null, headerParams, contentType);
+      if(response != null){
+        return ;
+      }
+      else {
+        return ;
+      }
+    } catch (ApiException ex) {
+      if(ex.getCode() == 404) {
+        return ;
+      }
+      else {
+        throw ex;
+      }
+    }
+  }
+  //error info- code: 204 reason: "Request was successful" model: <none>
+  public void logoutAll () throws ApiException {
+    // create path and map variables
+    String path = "/user/logoutAll".replaceAll("\\{format\\}","json");
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();

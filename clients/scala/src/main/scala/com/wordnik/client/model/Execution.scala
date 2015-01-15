@@ -10,6 +10,7 @@ case class Execution (
   side: String,
   lastQty: Double,
   lastPx: Double,
+  underlyingLastPx: Double,
   lastMkt: String,
   lastLiquidityInd: String,
   orderQty: Double,
@@ -30,11 +31,14 @@ case class Execution (
   avgPx: Double,
   commission: Double,
   commType: String,
+  tradePublishIndicator: String,
   multiLegReportingType: String,
   text: String,
   trdMatchID: String,
   execCost: Double,
   execComm: Double,
+  homeNotional: Double,
+  foreignNotional: Double,
   transactTime: Date,
   timestamp: Date)
 

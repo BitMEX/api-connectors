@@ -10,7 +10,7 @@ MyApp.add_route('get', '/', {
   "parameters" => [
     {
       "name" => "filter",
-      "description" => "Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}.",
+      "description" => "Table filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;}.",
       "dataType" => "object",
       "paramType" => "query",
       "allowMultiple" => false,

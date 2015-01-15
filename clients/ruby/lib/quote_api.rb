@@ -8,18 +8,20 @@ class Quote_api
     URI.encode(string.to_s)
   end
 
-  def self.get_bucketed (symbol,start_time,end_time,count,bin_size= "1m",opts={})
-    query_param_keys = [:symbol,:bin_size,:start_time,:end_time,:count]
+  def self.get_bucketed (symbol,filter,columns,start,reverse,start_time,end_time,bin_size= "1m",count= 100,opts={})
+    query_param_keys = [:bin_size,:symbol,:filter,:columns,:count,:start,:reverse,:start_time,:end_time]
 
-    # verify existence of params
-    raise "symbol is required" if symbol.nil?
     # set default values and merge with input
     options = {
     :symbol => symbol,
+      :filter => filter,
+      :columns => columns,
+      :start => start,
+      :reverse => reverse,
       :start_time => start_time,
       :end_time => end_time,
-      :count => count,
-      :bin_size => bin_size}.merge(opts)
+      :bin_size => bin_size,
+      :count => count}.merge(opts)
 
     #resource path
     path = "/quote/bucketed".sub('{format}','json')

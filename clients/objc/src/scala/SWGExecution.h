@@ -21,6 +21,8 @@
 
 @property(nonatomic) NSNumber* lastPx;  
 
+@property(nonatomic) NSNumber* underlyingLastPx;  
+
 @property(nonatomic) NSString* lastMkt;  
 
 @property(nonatomic) NSString* lastLiquidityInd;  
@@ -61,6 +63,8 @@
 
 @property(nonatomic) NSString* commType;  
 
+@property(nonatomic) NSString* tradePublishIndicator;  
+
 @property(nonatomic) NSString* multiLegReportingType;  
 
 @property(nonatomic) NSString* text;  
@@ -70,6 +74,10 @@
 @property(nonatomic) NSNumber* execCost;  
 
 @property(nonatomic) NSNumber* execComm;  
+
+@property(nonatomic) NSNumber* homeNotional;  
+
+@property(nonatomic) NSNumber* foreignNotional;  
 
 @property(nonatomic) SWGDate* transactTime;  
 
@@ -83,6 +91,7 @@
      side: (NSString*) side
      lastQty: (NSNumber*) lastQty
      lastPx: (NSNumber*) lastPx
+     underlyingLastPx: (NSNumber*) underlyingLastPx
      lastMkt: (NSString*) lastMkt
      lastLiquidityInd: (NSString*) lastLiquidityInd
      orderQty: (NSNumber*) orderQty
@@ -103,11 +112,14 @@
      avgPx: (NSNumber*) avgPx
      commission: (NSNumber*) commission
      commType: (NSString*) commType
+     tradePublishIndicator: (NSString*) tradePublishIndicator
      multiLegReportingType: (NSString*) multiLegReportingType
      text: (NSString*) text
      trdMatchID: (NSString*) trdMatchID
      execCost: (NSNumber*) execCost
      execComm: (NSNumber*) execComm
+     homeNotional: (NSNumber*) homeNotional
+     foreignNotional: (NSNumber*) foreignNotional
      transactTime: (SWGDate*) transactTime
      timestamp: (SWGDate*) timestamp;
 

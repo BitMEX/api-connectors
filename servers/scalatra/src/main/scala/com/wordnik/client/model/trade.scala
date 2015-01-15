@@ -16,6 +16,12 @@ case class Trade (
 
   trdMatchID: Option[String],
 
+  grossValue: Option[Double],
+
+  homeNotional: Option[Double],
+
+  foreignNotional: Option[Double],
+
   id: Option[Double]
 
   )

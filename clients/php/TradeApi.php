@@ -26,27 +26,31 @@ class TradeApi {
 	}
 
   /**
-	 * getBucketed
-	 * Get previous trades bucketed by seconds.
-   * symbol, string: Instrument name. (required)
+	 * get
+	 * Get Trades.
+   * symbol, string: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
 
-   * startTime, DateTime: Start date. Expects ISO formatted date strings. (optional)
+   * filter, object: Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}. (optional)
 
-   * endTime, DateTime: End Date. Expects ISO formatted date strings. (optional)
+   * columns, array[string]: Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
 
-   * count, float: Number of buckets to fetch. (optional)
+   * start, float: Starting point for results. (optional)
 
-   * useMillisecondTime, bool: Return dates in milliseconds (GMT). Useful for charting. (optional)
+   * reverse, bool: If true, will sort results newest first. (optional)
 
-   * binSize, string: Time interval to bucket by. Available options: ['30s', '1m', '5m', '1h', '1d']. (optional)
+   * startTime, DateTime: Starting date filter for results. (optional)
 
-   * @return Array[TradeBin]
+   * endTime, DateTime: Ending date filter for results. (optional)
+
+   * count, float: Number of results to fetch. (optional)
+
+   * @return Array[Trade]
 	 */
 
-   public function getBucketed($symbol, $startTime=null, $endTime=null, $count=null, $useMillisecondTime=null, $binSize=null) {
+   public function get($symbol=null, $filter=null, $columns=null, $start=null, $reverse=null, $startTime=null, $endTime=null, $count=null) {
 
   		//parse inputs
-  		$resourcePath = "/trade/bucketed";
+  		$resourcePath = "/trade";
   		$resourcePath = str_replace("{format}", "json", $resourcePath);
   		$method = "GET";
       $queryParams = array();
@@ -57,8 +61,20 @@ class TradeApi {
       if($symbol != null) {
   		  $queryParams['symbol'] = $this->apiClient->toQueryValue($symbol);
   		}
-  		if($binSize != null) {
-  		  $queryParams['binSize'] = $this->apiClient->toQueryValue($binSize);
+  		if($filter != null) {
+  		  $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
+  		}
+  		if($columns != null) {
+  		  $queryParams['columns'] = $this->apiClient->toQueryValue($columns);
+  		}
+  		if($count != null) {
+  		  $queryParams['count'] = $this->apiClient->toQueryValue($count);
+  		}
+  		if($start != null) {
+  		  $queryParams['start'] = $this->apiClient->toQueryValue($start);
+  		}
+  		if($reverse != null) {
+  		  $queryParams['reverse'] = $this->apiClient->toQueryValue($reverse);
   		}
   		if($startTime != null) {
   		  $queryParams['startTime'] = $this->apiClient->toQueryValue($startTime);
@@ -66,11 +82,85 @@ class TradeApi {
   		if($endTime != null) {
   		  $queryParams['endTime'] = $this->apiClient->toQueryValue($endTime);
   		}
+  		//make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'Array[Trade]');
+  		return $responseObject;
+
+      }
+  /**
+	 * getBucketed
+	 * Get previous trades in time buckets.
+   * symbol, string: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
+
+   * filter, object: Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}. (optional)
+
+   * columns, array[string]: Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
+
+   * start, float: Starting point for results. (optional)
+
+   * reverse, bool: If true, will sort results newest first. (optional)
+
+   * startTime, DateTime: Starting date filter for results. (optional)
+
+   * endTime, DateTime: Ending date filter for results. (optional)
+
+   * binSize, string: Time interval to bucket by. Available options: ['30s', '1m', '5m', '1h', '1d']. (optional)
+
+   * count, float: Number of results to fetch. (optional)
+
+   * @return Array[TradeBin]
+	 */
+
+   public function getBucketed($symbol=null, $filter=null, $columns=null, $start=null, $reverse=null, $startTime=null, $endTime=null, $binSize=null, $count=null) {
+
+  		//parse inputs
+  		$resourcePath = "/trade/bucketed";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "GET";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      if($binSize != null) {
+  		  $queryParams['binSize'] = $this->apiClient->toQueryValue($binSize);
+  		}
+  		if($symbol != null) {
+  		  $queryParams['symbol'] = $this->apiClient->toQueryValue($symbol);
+  		}
+  		if($filter != null) {
+  		  $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
+  		}
+  		if($columns != null) {
+  		  $queryParams['columns'] = $this->apiClient->toQueryValue($columns);
+  		}
   		if($count != null) {
   		  $queryParams['count'] = $this->apiClient->toQueryValue($count);
   		}
-  		if($useMillisecondTime != null) {
-  		  $queryParams['useMillisecondTime'] = $this->apiClient->toQueryValue($useMillisecondTime);
+  		if($start != null) {
+  		  $queryParams['start'] = $this->apiClient->toQueryValue($start);
+  		}
+  		if($reverse != null) {
+  		  $queryParams['reverse'] = $this->apiClient->toQueryValue($reverse);
+  		}
+  		if($startTime != null) {
+  		  $queryParams['startTime'] = $this->apiClient->toQueryValue($startTime);
+  		}
+  		if($endTime != null) {
+  		  $queryParams['endTime'] = $this->apiClient->toQueryValue($endTime);
   		}
   		//make the API Call
       if (! isset($body)) {
@@ -92,8 +182,8 @@ class TradeApi {
       }
   /**
 	 * getByDate
-	 * Get trades between two dates.
-   * symbol, string: Instrument name. (optional)
+	 * Get trades between two dates. [Deprecated, use GET /trades]
+   * symbol, string: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
 
    * startTime, DateTime: Start date. (required)
 
@@ -142,10 +232,10 @@ class TradeApi {
       }
   /**
 	 * getRecent
-	 * Get recent trades.
-   * symbol, string: Instrument name. (optional)
+	 * Get recent trades. [Deprecated, use GET /trades]
+   * symbol, string: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
 
-   * count, float: Number of trades to fetch (required)
+   * count, float: Number of trades to fetch. (required)
 
    * @return Array[Trade]
 	 */

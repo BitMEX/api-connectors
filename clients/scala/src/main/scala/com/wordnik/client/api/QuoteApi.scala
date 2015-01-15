@@ -1,6 +1,5 @@
 package com.wordnik.client.api
 
-import com.wordnik.client.model.Error
 import com.wordnik.client.model.Quote
 import com.wordnik.client.common.ApiInvoker
 import com.wordnik.client.common.ApiException
@@ -16,7 +15,7 @@ class QuoteApi {
   
   def addHeader(key: String, value: String) = apiInvoker.defaultHeaders += key -> value 
 
-  def getBucketed (symbol: String, startTime: Date, endTime: Date, count: Double, binSize: String= "1m") : Option[List[Quote]]= {
+  def getBucketed (symbol: String, filter: Any, columns: List[String], start: Double, reverse: Boolean, startTime: Date, endTime: Date, binSize: String= "1m", count: Double= 100) : Option[List[Quote]]= {
     // create path and map variables
     val path = "/quote/bucketed".replaceAll("\\{format\\}","json")
 
@@ -27,16 +26,15 @@ class QuoteApi {
     val queryParams = new HashMap[String, String]
     val headerParams = new HashMap[String, String]
 
-    // verify required params are set
-    (List(symbol).filter(_ != null)).size match {
-       case 1 => // all required values set
-       case _ => throw new Exception("missing required params")
-    }
-    if(String.valueOf(symbol) != "null") queryParams += "symbol" -> symbol.toString
     if(String.valueOf(binSize) != "null") queryParams += "binSize" -> binSize.toString
+    if(String.valueOf(symbol) != "null") queryParams += "symbol" -> symbol.toString
+    if(String.valueOf(filter) != "null") queryParams += "filter" -> filter.toString
+    if(String.valueOf(columns) != "null") queryParams += "columns" -> columns.toString
+    if(String.valueOf(count) != "null") queryParams += "count" -> count.toString
+    if(String.valueOf(start) != "null") queryParams += "start" -> start.toString
+    if(String.valueOf(reverse) != "null") queryParams += "reverse" -> reverse.toString
     if(String.valueOf(startTime) != "null") queryParams += "startTime" -> startTime.toString
     if(String.valueOf(endTime) != "null") queryParams += "endTime" -> endTime.toString
-    if(String.valueOf(count) != "null") queryParams += "count" -> count.toString
     try {
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
         case s: String =>

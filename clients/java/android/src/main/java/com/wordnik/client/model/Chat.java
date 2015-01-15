@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
 public class Chat {
+  @JsonProperty("id")
+  private Double id = null;
   @JsonProperty("date")
   private Date date = null;
   @JsonProperty("user")
@@ -14,8 +16,13 @@ public class Chat {
   private String html = null;
   @JsonProperty("fromBot")
   private Boolean fromBot = null;
-  @JsonProperty("id")
-  private Double id = null;
+  public Double getId() {
+    return id;
+  }
+  public void setId(Double id) {
+    this.id = id;
+  }
+
   public Date getDate() {
     return date;
   }
@@ -51,23 +58,16 @@ public class Chat {
     this.fromBot = fromBot;
   }
 
-  public Double getId() {
-    return id;
-  }
-  public void setId(Double id) {
-    this.id = id;
-  }
-
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
     sb.append("class Chat {\n");
+    sb.append("  id: ").append(id).append("\n");
     sb.append("  date: ").append(date).append("\n");
     sb.append("  user: ").append(user).append("\n");
     sb.append("  message: ").append(message).append("\n");
     sb.append("  html: ").append(html).append("\n");
     sb.append("  fromBot: ").append(fromBot).append("\n");
-    sb.append("  id: ").append(id).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

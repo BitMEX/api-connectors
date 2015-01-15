@@ -9,6 +9,10 @@
 
 @property(nonatomic) NSString* symbol;  
 
+@property(nonatomic) NSString* underlying;  
+
+@property(nonatomic) NSString* quoteCurrency;  
+
 @property(nonatomic) NSString* currency;  
 
 @property(nonatomic) NSNumber* commission;  
@@ -71,6 +75,10 @@
 
 @property(nonatomic) NSNumber* lastValue;  
 
+@property(nonatomic) NSNumber* homeNotional;  
+
+@property(nonatomic) NSNumber* foreignNotional;  
+
 @property(nonatomic) NSString* notionalCurrency1;  
 
 @property(nonatomic) NSNumber* notionalValue1;  
@@ -107,6 +115,8 @@
 
 - (id) account: (NSNumber*) account
      symbol: (NSString*) symbol
+     underlying: (NSString*) underlying
+     quoteCurrency: (NSString*) quoteCurrency
      currency: (NSString*) currency
      commission: (NSNumber*) commission
      prevRealisedPnl: (NSNumber*) prevRealisedPnl
@@ -138,6 +148,8 @@
      grossExecCost: (NSNumber*) grossExecCost
      lastPrice: (NSNumber*) lastPrice
      lastValue: (NSNumber*) lastValue
+     homeNotional: (NSNumber*) homeNotional
+     foreignNotional: (NSNumber*) foreignNotional
      notionalCurrency1: (NSString*) notionalCurrency1
      notionalValue1: (NSNumber*) notionalValue1
      notionalCurrency2: (NSString*) notionalCurrency2

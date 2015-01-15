@@ -40,6 +40,9 @@ class Instrument {
   Double prevTotalVolume = null
   Double totalVolume = null
   Double volume = null
+  Double prevTotalTurnover = null
+  Double totalTurnover = null
+  Double turnover = null
   Double vwap = null
   Double highPrice = null
   Double lowPrice = null
@@ -50,6 +53,7 @@ class Instrument {
   Double midPrice = null
   Double askPrice = null
   Double openInterest = null
+  Double openValue = null
   Double settledPrice = null
   Date timestamp = null
   }

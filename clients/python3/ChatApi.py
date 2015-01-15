@@ -34,14 +34,16 @@ class ChatApi(object):
         """Get chat messages.
 
         Args:
-            count, float:  (optional)
+            start, float: Starting point for results. (optional)
+
+            count, float: Number of results to fetch. (optional)
 
             
 
         Returns: Array[Chat]
         """
 
-        allParams = ['count']
+        allParams = ['start', 'count']
 
         params = locals()
         for (key, val) in params['kwargs'].items():
@@ -59,6 +61,8 @@ class ChatApi(object):
 
         if ('count' in params):
             queryParams['count'] = self.apiClient.toPathValue(params['count'])
+        if ('start' in params):
+            queryParams['start'] = self.apiClient.toPathValue(params['start'])
         postData = (params['body'] if 'body' in params else None)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,

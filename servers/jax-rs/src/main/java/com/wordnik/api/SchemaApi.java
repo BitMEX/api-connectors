@@ -2,7 +2,6 @@ package com.wordnik.api;
 
 import com.wordnik.swagger.annotations.*;
 
-import com.wordnik.client.model.Error;
 import com.wordnik.client.model.Object;
 import java.util.List;
 import com.wordnik.api.NotFoundException;

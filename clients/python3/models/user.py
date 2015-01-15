@@ -21,6 +21,7 @@ class User:
 
     def __init__(self):
         self.swaggerTypes = {
+            'id': 'float',
             'firstname': 'str',
             'lastname': 'str',
             'status': 'str',
@@ -33,11 +34,12 @@ class User:
             'preferences': 'object',
             'role': 'str',
             'TFAEnabled': 'str',
-            'id': 'float'
+            'affiliateID': 'str'
 
         }
 
 
+        self.id = None # float
         self.firstname = None # str
         self.lastname = None # str
         self.status = None # str
@@ -50,5 +52,5 @@ class User:
         self.preferences = None # object
         self.role = None # str
         self.TFAEnabled = None # str
-        self.id = None # float
+        self.affiliateID = None # str
         

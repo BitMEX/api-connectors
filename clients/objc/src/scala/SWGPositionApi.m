@@ -1,7 +1,6 @@
 #import "SWGPositionApi.h"
 #import "SWGFile.h"
 #import "SWGApiClient.h"
-#import "SWGError.h"
 #import "SWGPosition.h"
 
 

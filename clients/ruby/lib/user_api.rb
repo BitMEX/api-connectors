@@ -54,15 +54,17 @@ def self.get_wallet_history (opts={})
 
   end
 
-def self.request_withdrawal (amount,address,currency= "XBt",opts={})
+def self.request_withdrawal (otp_token,amount,address,currency= "XBt",opts={})
     query_param_keys = []
 
     # verify existence of params
+    raise "currency is required" if currency.nil?
     raise "amount is required" if amount.nil?
     raise "address is required" if address.nil?
     # set default values and merge with input
     options = {
-    :amount => amount,
+    :otp_token => otp_token,
+      :amount => amount,
       :address => address,
       :currency => currency}.merge(opts)
 
@@ -285,7 +287,30 @@ def self.confirm_password_reset (email,token,new_password,opts={})
 
   end
 
-def self.new_user (email,password,username,firstname,lastname,accepts_t_o_s,account_type= "Trader",opts={})
+def self.get_affiliate_status (opts={})
+    query_param_keys = []
+
+    # set default values and merge with input
+    options = {
+    }.merge(opts)
+
+    #resource path
+    path = "/user/affiliateStatus".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:POST, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    response.map {|response|Affiliate.new(response)}
+
+  end
+
+def self.new_user (email,password,username,firstname,lastname,accepts_t_o_s,referrer_i_d,account_type= "Trader",opts={})
     query_param_keys = []
 
     # verify existence of params
@@ -300,6 +325,7 @@ def self.new_user (email,password,username,firstname,lastname,accepts_t_o_s,acco
       :firstname => firstname,
       :lastname => lastname,
       :accepts_t_o_s => accepts_t_o_s,
+      :referrer_i_d => referrer_i_d,
       :account_type => account_type}.merge(opts)
 
     #resource path
@@ -406,6 +432,29 @@ def self.logout (opts={})
 
     #resource path
     path = "/user/logout".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    Swagger::Request.new(:POST, path, {:params=>queryopts,:headers=>headers, :body=>post_body}).make
+    
+
+  end
+
+def self.logout_all (opts={})
+    query_param_keys = []
+
+    # set default values and merge with input
+    options = {
+    }.merge(opts)
+
+    #resource path
+    path = "/user/logoutAll".sub('{format}','json')
 
     
     # pull querystring keys from options

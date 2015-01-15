@@ -1,6 +1,5 @@
 package com.wordnik.client.api
 
-import com.wordnik.client.model.Error
 import com.wordnik.client.model.Object
 import com.wordnik.client.model.Order
 import com.wordnik.client.common.ApiInvoker
@@ -17,9 +16,9 @@ class OrderApi {
   
   def addHeader(key: String, value: String) = apiInvoker.defaultHeaders += key -> value 
 
-  def newOrder (symbol: String, quantity: Double, price: Double, ioc: Boolean, clOrdID: String) : Option[Order]= {
+  def getOrders (symbol: String, filter: Any, columns: List[String], start: Double, reverse: Boolean, startTime: Date, endTime: Date, count: Double= 100) : Option[List[Order]]= {
     // create path and map variables
-    val path = "/order/new".replaceAll("\\{format\\}","json")
+    val path = "/order".replaceAll("\\{format\\}","json")
 
     val contentType = {
       "application/json"}
@@ -28,15 +27,18 @@ class OrderApi {
     val queryParams = new HashMap[String, String]
     val headerParams = new HashMap[String, String]
 
-    // verify required params are set
-    (List(symbol, quantity, price).filter(_ != null)).size match {
-       case 3 => // all required values set
-       case _ => throw new Exception("missing required params")
-    }
+    if(String.valueOf(symbol) != "null") queryParams += "symbol" -> symbol.toString
+    if(String.valueOf(filter) != "null") queryParams += "filter" -> filter.toString
+    if(String.valueOf(columns) != "null") queryParams += "columns" -> columns.toString
+    if(String.valueOf(count) != "null") queryParams += "count" -> count.toString
+    if(String.valueOf(start) != "null") queryParams += "start" -> start.toString
+    if(String.valueOf(reverse) != "null") queryParams += "reverse" -> reverse.toString
+    if(String.valueOf(startTime) != "null") queryParams += "startTime" -> startTime.toString
+    if(String.valueOf(endTime) != "null") queryParams += "endTime" -> endTime.toString
     try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, None, headerParams.toMap, contentType) match {
+      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
         case s: String =>
-          Some(ApiInvoker.deserialize(s, "", classOf[Order]).asInstanceOf[Order])
+          Some(ApiInvoker.deserialize(s, "Array", classOf[Order]).asInstanceOf[List[Order]])
         case _ => None
       }
     } catch {
@@ -44,7 +46,7 @@ class OrderApi {
       case ex: ApiException => throw ex
     }
   }
-  def newOrder_OrderApi_0 (symbol: String, quantity: Double, price: Double, ioc: Boolean, clOrdID: String) : Option[Order]= {
+  def newOrder (symbol: String, quantity: Double, price: Double, ioc: Boolean, clOrdID: String) : Option[Order]= {
     // create path and map variables
     val path = "/order".replaceAll("\\{format\\}","json")
 
@@ -84,108 +86,6 @@ class OrderApi {
 
     try {
       apiInvoker.invokeApi(basePath, path, "DELETE", queryParams.toMap, None, headerParams.toMap, contentType) match {
-        case s: String =>
-          Some(ApiInvoker.deserialize(s, "Array", classOf[Order]).asInstanceOf[List[Order]])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-  def getOrders (filter: Any, columns: List[any], count: Double) : Option[List[Order]]= {
-    // create path and map variables
-    val path = "/order".replaceAll("\\{format\\}","json")
-
-    val contentType = {
-      "application/json"}
-
-    // query params
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-
-    if(String.valueOf(filter) != "null") queryParams += "filter" -> filter.toString
-    if(String.valueOf(columns) != "null") queryParams += "columns" -> columns.toString
-    if(String.valueOf(count) != "null") queryParams += "count" -> count.toString
-    try {
-      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
-        case s: String =>
-          Some(ApiInvoker.deserialize(s, "Array", classOf[Order]).asInstanceOf[List[Order]])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-  def cancelOrder_OrderApi_0 (orderID: String, clOrdID: String, text: String) : Option[List[Order]]= {
-    // create path and map variables
-    val path = "/order/cancel".replaceAll("\\{format\\}","json")
-
-    val contentType = {
-      "application/json"}
-
-    // query params
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-
-    // verify required params are set
-    (List(orderID).filter(_ != null)).size match {
-       case 1 => // all required values set
-       case _ => throw new Exception("missing required params")
-    }
-    try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, None, headerParams.toMap, contentType) match {
-        case s: String =>
-          Some(ApiInvoker.deserialize(s, "Array", classOf[Order]).asInstanceOf[List[Order]])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-  def getOrders_OrderApi_0 (filter: Any, columns: List[any], count: Double) : Option[List[Order]]= {
-    // create path and map variables
-    val path = "/order/myOrders".replaceAll("\\{format\\}","json")
-
-    val contentType = {
-      "application/json"}
-
-    // query params
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-
-    if(String.valueOf(filter) != "null") queryParams += "filter" -> filter.toString
-    if(String.valueOf(columns) != "null") queryParams += "columns" -> columns.toString
-    if(String.valueOf(count) != "null") queryParams += "count" -> count.toString
-    try {
-      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
-        case s: String =>
-          Some(ApiInvoker.deserialize(s, "Array", classOf[Order]).asInstanceOf[List[Order]])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-  def getOrders_OrderApi_1 (filter: Any, columns: List[any], count: Double) : Option[List[Order]]= {
-    // create path and map variables
-    val path = "/order/myOpenOrders".replaceAll("\\{format\\}","json")
-
-    val contentType = {
-      "application/json"}
-
-    // query params
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-
-    if(String.valueOf(filter) != "null") queryParams += "filter" -> filter.toString
-    if(String.valueOf(columns) != "null") queryParams += "columns" -> columns.toString
-    if(String.valueOf(count) != "null") queryParams += "count" -> count.toString
-    try {
-      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
         case s: String =>
           Some(ApiInvoker.deserialize(s, "Array", classOf[Order]).asInstanceOf[List[Order]])
         case _ => None

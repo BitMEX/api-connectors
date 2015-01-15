@@ -24,6 +24,7 @@
 class User {
 
   static $swaggerTypes = array(
+      'id' => 'float',
       'firstname' => 'string',
       'lastname' => 'string',
       'status' => 'string',
@@ -36,10 +37,11 @@ class User {
       'preferences' => 'object',
       'role' => 'string',
       'TFAEnabled' => 'string',
-      'id' => 'float'
+      'affiliateID' => 'string'
 
     );
 
+  public $id; // float
   public $firstname; // string
   public $lastname; // string
   public $status; // string
@@ -52,6 +54,6 @@ class User {
   public $preferences; // object
   public $role; // string
   public $TFAEnabled; // string
-  public $id; // float
+  public $affiliateID; // string
   }
 

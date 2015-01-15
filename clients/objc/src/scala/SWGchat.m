@@ -3,19 +3,19 @@
 
 @implementation SWGChat
 
--(id)date: (SWGDate*) date
+-(id)_id: (NSNumber*) _id
+    date: (SWGDate*) date
     user: (NSString*) user
     message: (NSString*) message
     html: (NSString*) html
     fromBot: (NSNumber*) fromBot
-    _id: (NSNumber*) _id
 {
+  __id = _id;
   _date = date;
   _user = user;
   _message = message;
   _html = html;
   _fromBot = fromBot;
-  __id = _id;
   return self;
 }
 
@@ -23,6 +23,7 @@
 {
     self = [super init];
     if(self) {
+        __id = dict[@"id"]; 
         id date_dict = dict[@"date"];
         if(date_dict != nil)
             _date = [[SWGDate alloc]initWithValues:date_dict];
@@ -30,7 +31,6 @@
         _message = dict[@"message"]; 
         _html = dict[@"html"]; 
         _fromBot = dict[@"fromBot"]; 
-        __id = dict[@"id"]; 
         
 
     }
@@ -39,7 +39,8 @@
 
 -(NSDictionary*) asDictionary {
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-    if(_date != nil){
+    if(__id != nil) dict[@"id"] = __id ;
+        if(_date != nil){
         if([_date isKindOfClass:[NSArray class]]){
             NSMutableArray * array = [[NSMutableArray alloc] init];
             for( SWGDate *date in (NSArray*)_date) {
@@ -61,7 +62,6 @@
         if(_message != nil) dict[@"message"] = _message ;
         if(_html != nil) dict[@"html"] = _html ;
         if(_fromBot != nil) dict[@"fromBot"] = _fromBot ;
-        if(__id != nil) dict[@"id"] = __id ;
         NSDictionary* output = [dict copy];
     return output;
 }

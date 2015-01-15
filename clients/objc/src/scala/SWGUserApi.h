@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "SWGUser.h"
 #import "SWGTransaction.h"
+#import "SWGAffiliate.h"
 #import "SWGAccessToken.h"
 #import "SWGAny.h"
 
@@ -33,11 +34,13 @@
 
  Request a withdrawal to an external wallet.
  
+ @param otpToken 2FA token. Required if 2FA is enabled on your account.
  @param amount Amount of withdrawal currency. Note that for Bitcoin withdrawals, a standard 0.0001 XBT fee is charged by the Bitcoin network.
  @param address Destination Address.
- @param currency Currency you're withdrawing.
+ @param currency Currency you're withdrawing. Options: [&quot;XBt&quot;]
  */
--(NSNumber*) requestWithdrawalWithCompletionBlock :(NSNumber*) amount 
+-(NSNumber*) requestWithdrawalWithCompletionBlock :(NSString*) otpToken 
+        amount:(NSNumber*) amount 
         address:(NSString*) address 
         currency:(NSString*) currency 
         completionHandler: (void (^)(SWGTransaction* output, NSError* error))completionBlock;
@@ -122,6 +125,13 @@
 
 /**
 
+ Get your current affiliate/referral status.
+ 
+ */
+-(NSNumber*) getAffiliateStatusWithCompletionBlock :(void (^)(NSArray* output, NSError* error))completionBlock;
+
+/**
+
  Register a new user.
  
  @param email Your email address.
@@ -130,6 +140,7 @@
  @param firstname First name.
  @param lastname Last name.
  @param acceptsTOS Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms).
+ @param referrerID Optional Referrer ID.
  @param accountType Account type. Options: ['Trader', 'Hedger']. See the &lt;a href=&quot;/app/fees&quot;&gt;fees page&lt;/a&gt; for more details.
  */
 -(NSNumber*) newUserWithCompletionBlock :(NSString*) email 
@@ -138,6 +149,7 @@
         firstname:(NSString*) firstname 
         lastname:(NSString*) lastname 
         acceptsTOS:(NSString*) acceptsTOS 
+        referrerID:(NSString*) referrerID 
         accountType:(NSString*) accountType 
         completionHandler: (void (^)(SWGUser* output, NSError* error))completionBlock;
 
@@ -186,6 +198,13 @@
  
  */
 -(NSNumber*) logoutWithCompletionBlock :(void (^)(NSError* error))completionBlock;
+
+/**
+
+ Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.
+ 
+ */
+-(NSNumber*) logoutAllWithCompletionBlock :(void (^)(NSError* error))completionBlock;
 
 /**
 

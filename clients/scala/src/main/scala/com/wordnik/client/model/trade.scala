@@ -9,5 +9,8 @@ case class Trade (
   price: Double,
   tickDirection: String,
   trdMatchID: String,
+  grossValue: Double,
+  homeNotional: Double,
+  foreignNotional: Double,
   id: Double)
 

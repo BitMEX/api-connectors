@@ -14,6 +14,9 @@ class TradeBin {
   Double volume = null
   Double vwap = null
   Double lastSize = null
+  Double turnover = null
+  Double homeNotional = null
+  Double foreignNotional = null
   Double id = null
   }
 

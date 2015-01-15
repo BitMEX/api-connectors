@@ -1,5 +1,4 @@
 #import <Foundation/Foundation.h>
-#import "SWGError.h"
 #import "Object.h"
 #import "SWGOrder.h"
 
@@ -14,32 +13,38 @@
 +(NSString*) getBasePath;
 /**
 
- Create a new order. [Deprecated]
- 
- @param symbol Instrument name.
+ Get your orders.
+ To get open orders only, send {"open": true} in the filter param.
+ @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
+ @param filter Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}.
+ @param columns Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
+ @param start Starting point for results.
+ @param reverse If true, will sort results newest first.
+ @param startTime Starting date filter for results.
+ @param endTime Ending date filter for results.
+ @param count Number of results to fetch.
+ */
+-(NSNumber*) getOrdersWithCompletionBlock :(NSString*) symbol 
+        filter:(NSObject*) filter 
+        columns:(NSArray*) columns 
+        start:(NSNumber*) start 
+        reverse:(NSNumber*) reverse 
+        startTime:(SWGDate*) startTime 
+        endTime:(SWGDate*) endTime 
+        count:(NSNumber*) count 
+        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
+
+/**
+
+ Create a new order.
+ If you want to keep track of order IDs yourself, set a unique clOrdID per order. This ID will come back as a property on the order and any related executions executions (including on the WebSocket), and can be used to cancel the order.
+ @param symbol Instrument symbol.
  @param quantity Quantity. Use positive numbers to buy, negative to sell.
  @param price Price to buy.
  @param ioc Set to true to place an immediateOrCancel order.
  @param clOrdID Optional Client Order ID to give this order. This ID will come back on any execution messages tied to this order.
  */
 -(NSNumber*) newOrderWithCompletionBlock :(NSString*) symbol 
-        quantity:(NSNumber*) quantity 
-        price:(NSNumber*) price 
-        ioc:(NSNumber*) ioc 
-        clOrdID:(NSString*) clOrdID 
-        completionHandler: (void (^)(SWGOrder* output, NSError* error))completionBlock;
-
-/**
-
- Create a new order.
- If you want to keep track of order IDs yourself, set a unique clOrdID per order. This ID will come back as a property on the order and any related executions executions (including on the WebSocket), and can be used to cancel the order.
- @param symbol Instrument name.
- @param quantity Quantity. Use positive numbers to buy, negative to sell.
- @param price Price to buy.
- @param ioc Set to true to place an immediateOrCancel order.
- @param clOrdID Optional Client Order ID to give this order. This ID will come back on any execution messages tied to this order.
- */
--(NSNumber*) newOrder_SWGOrderApi_0WithCompletionBlock :(NSString*) symbol 
         quantity:(NSNumber*) quantity 
         price:(NSNumber*) price 
         ioc:(NSNumber*) ioc 
@@ -57,58 +62,6 @@
 -(NSNumber*) cancelOrderWithCompletionBlock :(NSString*) orderID 
         clOrdID:(NSString*) clOrdID 
         text:(NSString*) text 
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
-
-/**
-
- Get your orders.
- 
- @param filter Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}.
- @param columns Which columns to fetch. For example, send [&quot;columnName&quot;].
- @param count Number of rows to fetch.
- */
--(NSNumber*) getOrdersWithCompletionBlock :(NSObject*) filter 
-        columns:(NSArray*) columns 
-        count:(NSNumber*) count 
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
-
-/**
-
- Cancel order(s). Send multiple order IDs to cancel in bulk. [Deprecated]
- 
- @param orderID Order ID(s).
- @param clOrdID Client Order ID(s). See POST /order.
- @param text Optional cancellation annotation. e.g. 'Spread Exceeded'
- */
--(NSNumber*) cancelOrder_SWGOrderApi_0WithCompletionBlock :(NSString*) orderID 
-        clOrdID:(NSString*) clOrdID 
-        text:(NSString*) text 
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
-
-/**
-
- Get your orders. [Deprecated, use GET /order]
- 
- @param filter Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}.
- @param columns Which columns to fetch. For example, send [&quot;columnName&quot;].
- @param count Number of rows to fetch.
- */
--(NSNumber*) getOrders_SWGOrderApi_0WithCompletionBlock :(NSObject*) filter 
-        columns:(NSArray*) columns 
-        count:(NSNumber*) count 
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
-
-/**
-
- Get your open orders.
- 
- @param filter Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}.
- @param columns Which columns to fetch. For example, send [&quot;columnName&quot;].
- @param count Number of rows to fetch.
- */
--(NSNumber*) getOrders_SWGOrderApi_1WithCompletionBlock :(NSObject*) filter 
-        columns:(NSArray*) columns 
-        count:(NSNumber*) count 
         completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
 
 /**

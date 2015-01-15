@@ -34,9 +34,9 @@ class OrderBookApi(object):
         """Get current orderbook.
 
         Args:
-            symbol, str:  (required)
+            symbol, str: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (required)
 
-            depth, float:  (optional)
+            depth, float: Orderbook depth. (optional)
 
             
 

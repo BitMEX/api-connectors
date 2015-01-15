@@ -21,6 +21,8 @@ namespace Swagger.Client.Model {
 
     public double? lastPx { get; set; }
 
+    public double? underlyingLastPx { get; set; }
+
     public string lastMkt { get; set; }
 
     public string lastLiquidityInd { get; set; }
@@ -61,6 +63,8 @@ namespace Swagger.Client.Model {
 
     public string commType { get; set; }
 
+    public string tradePublishIndicator { get; set; }
+
     public string multiLegReportingType { get; set; }
 
     public string text { get; set; }
@@ -70,6 +74,10 @@ namespace Swagger.Client.Model {
     public double? execCost { get; set; }
 
     public double? execComm { get; set; }
+
+    public double? homeNotional { get; set; }
+
+    public double? foreignNotional { get; set; }
 
     public DateTime? transactTime { get; set; }
 
@@ -86,6 +94,7 @@ namespace Swagger.Client.Model {
       sb.Append("  side: ").Append(side).Append("\n");
       sb.Append("  lastQty: ").Append(lastQty).Append("\n");
       sb.Append("  lastPx: ").Append(lastPx).Append("\n");
+      sb.Append("  underlyingLastPx: ").Append(underlyingLastPx).Append("\n");
       sb.Append("  lastMkt: ").Append(lastMkt).Append("\n");
       sb.Append("  lastLiquidityInd: ").Append(lastLiquidityInd).Append("\n");
       sb.Append("  orderQty: ").Append(orderQty).Append("\n");
@@ -106,11 +115,14 @@ namespace Swagger.Client.Model {
       sb.Append("  avgPx: ").Append(avgPx).Append("\n");
       sb.Append("  commission: ").Append(commission).Append("\n");
       sb.Append("  commType: ").Append(commType).Append("\n");
+      sb.Append("  tradePublishIndicator: ").Append(tradePublishIndicator).Append("\n");
       sb.Append("  multiLegReportingType: ").Append(multiLegReportingType).Append("\n");
       sb.Append("  text: ").Append(text).Append("\n");
       sb.Append("  trdMatchID: ").Append(trdMatchID).Append("\n");
       sb.Append("  execCost: ").Append(execCost).Append("\n");
       sb.Append("  execComm: ").Append(execComm).Append("\n");
+      sb.Append("  homeNotional: ").Append(homeNotional).Append("\n");
+      sb.Append("  foreignNotional: ").Append(foreignNotional).Append("\n");
       sb.Append("  transactTime: ").Append(transactTime).Append("\n");
       sb.Append("  timestamp: ").Append(timestamp).Append("\n");
       sb.Append("}\n");

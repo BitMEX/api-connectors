@@ -1,6 +1,5 @@
 package apis
 
-import com.wordnik.client.model.Error
 import com.wordnik.client.model.Trade
 import com.wordnik.client.model.TradeBin
 import java.io.File
@@ -30,32 +29,66 @@ class TradeApi (implicit val swagger: Swagger) extends ScalatraServlet
 
 
 
-  val getBucketedOperation = (apiOperation[List[TradeBin]]("getBucketed")
-      summary "Get previous trades bucketed by seconds."
+  val getOperation = (apiOperation[List[Trade]]("get")
+      summary "Get Trades."
       parameters(
-        queryParam[String]("symbol").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""),queryParam[Double]("count").description(""),queryParam[Boolean]("useMillisecondTime").description(""),queryParam[String]("binSize").description("").defaultValue("1m"))
+        queryParam[String]("symbol").description(""),queryParam[Any]("filter").description(""),queryParam[List[String]]("columns").description(""),queryParam[Double]("start").description(""),queryParam[Boolean]("reverse").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""),queryParam[Double]("count").description("").defaultValue(100))
   )
 
-  get("/bucketed",operation(getBucketedOperation)) {
+  get("/",operation(getOperation)) {
     val symbol = params.getAs[String]("symbol")
     println("symbol: " + symbol)
+  val filter = params.getAs[Any]("filter")
+    println("filter: " + filter)
+  val columns = params.getAs[List[String]]("columns")
+    println("columns: " + columns)
+  val start = params.getAs[Double]("start")
+    println("start: " + start)
+  val reverse = params.getAs[Boolean]("reverse")
+    println("reverse: " + reverse)
   val startTime = params.getAs[Date]("startTime")
     println("startTime: " + startTime)
   val endTime = params.getAs[Date]("endTime")
     println("endTime: " + endTime)
   val count = params.getAs[Double]("count")
     println("count: " + count)
-  val useMillisecondTime = params.getAs[Boolean]("useMillisecondTime")
-    println("useMillisecondTime: " + useMillisecondTime)
+  }
+
+
+
+
+  val getBucketedOperation = (apiOperation[List[TradeBin]]("getBucketed")
+      summary "Get previous trades in time buckets."
+      parameters(
+        queryParam[String]("symbol").description(""),queryParam[Any]("filter").description(""),queryParam[List[String]]("columns").description(""),queryParam[Double]("start").description(""),queryParam[Boolean]("reverse").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""),queryParam[String]("binSize").description("").defaultValue("1m"),queryParam[Double]("count").description("").defaultValue(100))
+  )
+
+  get("/bucketed",operation(getBucketedOperation)) {
+    val symbol = params.getAs[String]("symbol")
+    println("symbol: " + symbol)
+  val filter = params.getAs[Any]("filter")
+    println("filter: " + filter)
+  val columns = params.getAs[List[String]]("columns")
+    println("columns: " + columns)
+  val start = params.getAs[Double]("start")
+    println("start: " + start)
+  val reverse = params.getAs[Boolean]("reverse")
+    println("reverse: " + reverse)
+  val startTime = params.getAs[Date]("startTime")
+    println("startTime: " + startTime)
+  val endTime = params.getAs[Date]("endTime")
+    println("endTime: " + endTime)
   val binSize = params.getAs[String]("binSize")
     println("binSize: " + binSize)
+  val count = params.getAs[Double]("count")
+    println("count: " + count)
   }
 
 
 
 
   val getByDateOperation = (apiOperation[List[Trade]]("getByDate")
-      summary "Get trades between two dates."
+      summary "Get trades between two dates. [Deprecated, use GET /trades]"
       parameters(
         queryParam[String]("symbol").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""))
   )
@@ -73,7 +106,7 @@ class TradeApi (implicit val swagger: Swagger) extends ScalatraServlet
 
 
   val getRecentOperation = (apiOperation[List[Trade]]("getRecent")
-      summary "Get recent trades."
+      summary "Get recent trades. [Deprecated, use GET /trades]"
       parameters(
         queryParam[String]("symbol").description(""),queryParam[Double]("count").description("").defaultValue(100))
   )

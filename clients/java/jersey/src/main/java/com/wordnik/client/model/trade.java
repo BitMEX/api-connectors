@@ -9,6 +9,9 @@ public class Trade {
   private Double price = null;
   private String tickDirection = null;
   private String trdMatchID = null;
+  private Double grossValue = null;
+  private Double homeNotional = null;
+  private Double foreignNotional = null;
   private Double id = null;
   public Date getTimestamp() {
     return timestamp;
@@ -59,6 +62,27 @@ public class Trade {
     this.trdMatchID = trdMatchID;
   }
 
+  public Double getGrossValue() {
+    return grossValue;
+  }
+  public void setGrossValue(Double grossValue) {
+    this.grossValue = grossValue;
+  }
+
+  public Double getHomeNotional() {
+    return homeNotional;
+  }
+  public void setHomeNotional(Double homeNotional) {
+    this.homeNotional = homeNotional;
+  }
+
+  public Double getForeignNotional() {
+    return foreignNotional;
+  }
+  public void setForeignNotional(Double foreignNotional) {
+    this.foreignNotional = foreignNotional;
+  }
+
   public Double getId() {
     return id;
   }
@@ -77,6 +101,9 @@ public class Trade {
     sb.append("  price: ").append(price).append("\n");
     sb.append("  tickDirection: ").append(tickDirection).append("\n");
     sb.append("  trdMatchID: ").append(trdMatchID).append("\n");
+    sb.append("  grossValue: ").append(grossValue).append("\n");
+    sb.append("  homeNotional: ").append(homeNotional).append("\n");
+    sb.append("  foreignNotional: ").append(foreignNotional).append("\n");
     sb.append("  id: ").append(id).append("\n");
     sb.append("}\n");
     return sb.toString();

@@ -38,6 +38,9 @@ case class Instrument (
   prevTotalVolume: Double,
   totalVolume: Double,
   volume: Double,
+  prevTotalTurnover: Double,
+  totalTurnover: Double,
+  turnover: Double,
   vwap: Double,
   highPrice: Double,
   lowPrice: Double,
@@ -48,6 +51,7 @@ case class Instrument (
   midPrice: Double,
   askPrice: Double,
   openInterest: Double,
+  openValue: Double,
   settledPrice: Double,
   timestamp: Date)
 

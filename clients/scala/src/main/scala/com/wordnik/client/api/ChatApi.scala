@@ -1,6 +1,5 @@
 package com.wordnik.client.api
 
-import com.wordnik.client.model.Error
 import com.wordnik.client.model.Chat
 import com.wordnik.client.common.ApiInvoker
 import com.wordnik.client.common.ApiException
@@ -16,7 +15,7 @@ class ChatApi {
   
   def addHeader(key: String, value: String) = apiInvoker.defaultHeaders += key -> value 
 
-  def get (count: Double= 100) : Option[List[Chat]]= {
+  def get (start: Double, count: Double= 100) : Option[List[Chat]]= {
     // create path and map variables
     val path = "/chat".replaceAll("\\{format\\}","json")
 
@@ -28,6 +27,7 @@ class ChatApi {
     val headerParams = new HashMap[String, String]
 
     if(String.valueOf(count) != "null") queryParams += "count" -> count.toString
+    if(String.valueOf(start) != "null") queryParams += "start" -> start.toString
     try {
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
         case s: String =>

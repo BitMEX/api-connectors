@@ -11,6 +11,7 @@
     side: (NSString*) side
     lastQty: (NSNumber*) lastQty
     lastPx: (NSNumber*) lastPx
+    underlyingLastPx: (NSNumber*) underlyingLastPx
     lastMkt: (NSString*) lastMkt
     lastLiquidityInd: (NSString*) lastLiquidityInd
     orderQty: (NSNumber*) orderQty
@@ -31,11 +32,14 @@
     avgPx: (NSNumber*) avgPx
     commission: (NSNumber*) commission
     commType: (NSString*) commType
+    tradePublishIndicator: (NSString*) tradePublishIndicator
     multiLegReportingType: (NSString*) multiLegReportingType
     text: (NSString*) text
     trdMatchID: (NSString*) trdMatchID
     execCost: (NSNumber*) execCost
     execComm: (NSNumber*) execComm
+    homeNotional: (NSNumber*) homeNotional
+    foreignNotional: (NSNumber*) foreignNotional
     transactTime: (SWGDate*) transactTime
     timestamp: (SWGDate*) timestamp
 {
@@ -47,6 +51,7 @@
   _side = side;
   _lastQty = lastQty;
   _lastPx = lastPx;
+  _underlyingLastPx = underlyingLastPx;
   _lastMkt = lastMkt;
   _lastLiquidityInd = lastLiquidityInd;
   _orderQty = orderQty;
@@ -67,11 +72,14 @@
   _avgPx = avgPx;
   _commission = commission;
   _commType = commType;
+  _tradePublishIndicator = tradePublishIndicator;
   _multiLegReportingType = multiLegReportingType;
   _text = text;
   _trdMatchID = trdMatchID;
   _execCost = execCost;
   _execComm = execComm;
+  _homeNotional = homeNotional;
+  _foreignNotional = foreignNotional;
   _transactTime = transactTime;
   _timestamp = timestamp;
   return self;
@@ -89,6 +97,7 @@
         _side = dict[@"side"]; 
         _lastQty = dict[@"lastQty"]; 
         _lastPx = dict[@"lastPx"]; 
+        _underlyingLastPx = dict[@"underlyingLastPx"]; 
         _lastMkt = dict[@"lastMkt"]; 
         _lastLiquidityInd = dict[@"lastLiquidityInd"]; 
         _orderQty = dict[@"orderQty"]; 
@@ -109,11 +118,14 @@
         _avgPx = dict[@"avgPx"]; 
         _commission = dict[@"commission"]; 
         _commType = dict[@"commType"]; 
+        _tradePublishIndicator = dict[@"tradePublishIndicator"]; 
         _multiLegReportingType = dict[@"multiLegReportingType"]; 
         _text = dict[@"text"]; 
         _trdMatchID = dict[@"trdMatchID"]; 
         _execCost = dict[@"execCost"]; 
         _execComm = dict[@"execComm"]; 
+        _homeNotional = dict[@"homeNotional"]; 
+        _foreignNotional = dict[@"foreignNotional"]; 
         id transactTime_dict = dict[@"transactTime"];
         if(transactTime_dict != nil)
             _transactTime = [[SWGDate alloc]initWithValues:transactTime_dict];
@@ -136,6 +148,7 @@
         if(_side != nil) dict[@"side"] = _side ;
         if(_lastQty != nil) dict[@"lastQty"] = _lastQty ;
         if(_lastPx != nil) dict[@"lastPx"] = _lastPx ;
+        if(_underlyingLastPx != nil) dict[@"underlyingLastPx"] = _underlyingLastPx ;
         if(_lastMkt != nil) dict[@"lastMkt"] = _lastMkt ;
         if(_lastLiquidityInd != nil) dict[@"lastLiquidityInd"] = _lastLiquidityInd ;
         if(_orderQty != nil) dict[@"orderQty"] = _orderQty ;
@@ -156,11 +169,14 @@
         if(_avgPx != nil) dict[@"avgPx"] = _avgPx ;
         if(_commission != nil) dict[@"commission"] = _commission ;
         if(_commType != nil) dict[@"commType"] = _commType ;
+        if(_tradePublishIndicator != nil) dict[@"tradePublishIndicator"] = _tradePublishIndicator ;
         if(_multiLegReportingType != nil) dict[@"multiLegReportingType"] = _multiLegReportingType ;
         if(_text != nil) dict[@"text"] = _text ;
         if(_trdMatchID != nil) dict[@"trdMatchID"] = _trdMatchID ;
         if(_execCost != nil) dict[@"execCost"] = _execCost ;
         if(_execComm != nil) dict[@"execComm"] = _execComm ;
+        if(_homeNotional != nil) dict[@"homeNotional"] = _homeNotional ;
+        if(_foreignNotional != nil) dict[@"foreignNotional"] = _foreignNotional ;
         if(_transactTime != nil){
         if([_transactTime isKindOfClass:[NSArray class]]){
             NSMutableArray * array = [[NSMutableArray alloc] init];

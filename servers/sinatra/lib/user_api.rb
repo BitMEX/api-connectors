@@ -181,6 +181,21 @@ MyApp.add_route('post', '/confirmPasswordReset', {
   {"message" => "yes, it worked"}.to_json
 end
 
+MyApp.add_route('post', '/affiliateStatus', {
+  "resourcePath" => "/user",
+  "summary" => "Get your current affiliate/referral status.",
+  "nickname" => "getAffiliateStatus", 
+  "responseClass" => "Array[Affiliate]", 
+  "endpoint" => "/affiliateStatus", 
+  "notes" => "",
+  "parameters" => [
+    ]}) do
+  cross_origin
+  # the guts live here
+
+  {"message" => "yes, it worked"}.to_json
+end
+
 MyApp.add_route('post', '/', {
   "resourcePath" => "/user",
   "summary" => "Register a new user.",
@@ -247,6 +262,21 @@ MyApp.add_route('post', '/logout', {
   "nickname" => "logout", 
   "responseClass" => "void", 
   "endpoint" => "/logout", 
+  "notes" => "",
+  "parameters" => [
+    ]}) do
+  cross_origin
+  # the guts live here
+
+  {"message" => "yes, it worked"}.to_json
+end
+
+MyApp.add_route('post', '/logoutAll', {
+  "resourcePath" => "/user",
+  "summary" => "Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.",
+  "nickname" => "logoutAll", 
+  "responseClass" => "void", 
+  "endpoint" => "/logoutAll", 
   "notes" => "",
   "parameters" => [
     ]}) do

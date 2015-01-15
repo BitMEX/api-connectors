@@ -1,5 +1,4 @@
 #import <Foundation/Foundation.h>
-#import "SWGError.h"
 #import "SWGOrderBook.h"
 
 
@@ -15,8 +14,8 @@
 
  Get current orderbook.
  
- @param symbol 
- @param depth 
+ @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
+ @param depth Orderbook depth.
  */
 -(NSNumber*) getOrderBookWithCompletionBlock :(NSString*) symbol 
         depth:(NSNumber*) depth 

@@ -3,7 +3,8 @@
 
 @implementation SWGUser
 
--(id)firstname: (NSString*) firstname
+-(id)_id: (NSNumber*) _id
+    firstname: (NSString*) firstname
     lastname: (NSString*) lastname
     status: (NSString*) status
     username: (NSString*) username
@@ -15,8 +16,9 @@
     preferences: (NSObject*) preferences
     role: (NSString*) role
     TFAEnabled: (NSString*) TFAEnabled
-    _id: (NSNumber*) _id
+    affiliateID: (NSString*) affiliateID
 {
+  __id = _id;
   _firstname = firstname;
   _lastname = lastname;
   _status = status;
@@ -29,7 +31,7 @@
   _preferences = preferences;
   _role = role;
   _TFAEnabled = TFAEnabled;
-  __id = _id;
+  _affiliateID = affiliateID;
   return self;
 }
 
@@ -37,6 +39,7 @@
 {
     self = [super init];
     if(self) {
+        __id = dict[@"id"]; 
         _firstname = dict[@"firstname"]; 
         _lastname = dict[@"lastname"]; 
         _status = dict[@"status"]; 
@@ -53,7 +56,7 @@
         _preferences = dict[@"preferences"]; 
         _role = dict[@"role"]; 
         _TFAEnabled = dict[@"TFAEnabled"]; 
-        __id = dict[@"id"]; 
+        _affiliateID = dict[@"affiliateID"]; 
         
 
     }
@@ -62,7 +65,8 @@
 
 -(NSDictionary*) asDictionary {
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-    if(_firstname != nil) dict[@"firstname"] = _firstname ;
+    if(__id != nil) dict[@"id"] = __id ;
+        if(_firstname != nil) dict[@"firstname"] = _firstname ;
         if(_lastname != nil) dict[@"lastname"] = _lastname ;
         if(_status != nil) dict[@"status"] = _status ;
         if(_username != nil) dict[@"username"] = _username ;
@@ -108,7 +112,7 @@
     if(_preferences != nil) dict[@"preferences"] = _preferences ;
         if(_role != nil) dict[@"role"] = _role ;
         if(_TFAEnabled != nil) dict[@"TFAEnabled"] = _TFAEnabled ;
-        if(__id != nil) dict[@"id"] = __id ;
+        if(_affiliateID != nil) dict[@"affiliateID"] = _affiliateID ;
         NSDictionary* output = [dict copy];
     return output;
 }

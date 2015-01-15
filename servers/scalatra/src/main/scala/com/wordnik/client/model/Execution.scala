@@ -18,6 +18,8 @@ case class Execution (
 
   lastPx: Option[Double],
 
+  underlyingLastPx: Option[Double],
+
   lastMkt: Option[String],
 
   lastLiquidityInd: Option[String],
@@ -58,6 +60,8 @@ case class Execution (
 
   commType: Option[String],
 
+  tradePublishIndicator: Option[String],
+
   multiLegReportingType: Option[String],
 
   text: Option[String],
@@ -67,6 +71,10 @@ case class Execution (
   execCost: Option[Double],
 
   execComm: Option[Double],
+
+  homeNotional: Option[Double],
+
+  foreignNotional: Option[Double],
 
   transactTime: Option[Date],
 

@@ -9,6 +9,10 @@ namespace Swagger.Client.Model {
 
     public string symbol { get; set; }
 
+    public string underlying { get; set; }
+
+    public string quoteCurrency { get; set; }
+
     public string currency { get; set; }
 
     public double? commission { get; set; }
@@ -71,6 +75,10 @@ namespace Swagger.Client.Model {
 
     public double? lastValue { get; set; }
 
+    public double? homeNotional { get; set; }
+
+    public double? foreignNotional { get; set; }
+
     public string notionalCurrency1 { get; set; }
 
     public double? notionalValue1 { get; set; }
@@ -110,6 +118,8 @@ namespace Swagger.Client.Model {
       sb.Append("class Position {\n");
       sb.Append("  account: ").Append(account).Append("\n");
       sb.Append("  symbol: ").Append(symbol).Append("\n");
+      sb.Append("  underlying: ").Append(underlying).Append("\n");
+      sb.Append("  quoteCurrency: ").Append(quoteCurrency).Append("\n");
       sb.Append("  currency: ").Append(currency).Append("\n");
       sb.Append("  commission: ").Append(commission).Append("\n");
       sb.Append("  prevRealisedPnl: ").Append(prevRealisedPnl).Append("\n");
@@ -141,6 +151,8 @@ namespace Swagger.Client.Model {
       sb.Append("  grossExecCost: ").Append(grossExecCost).Append("\n");
       sb.Append("  lastPrice: ").Append(lastPrice).Append("\n");
       sb.Append("  lastValue: ").Append(lastValue).Append("\n");
+      sb.Append("  homeNotional: ").Append(homeNotional).Append("\n");
+      sb.Append("  foreignNotional: ").Append(foreignNotional).Append("\n");
       sb.Append("  notionalCurrency1: ").Append(notionalCurrency1).Append("\n");
       sb.Append("  notionalValue1: ").Append(notionalValue1).Append("\n");
       sb.Append("  notionalCurrency2: ").Append(notionalCurrency2).Append("\n");

@@ -8,6 +8,10 @@ public class Position {
   private Double account = null;
   @JsonProperty("symbol")
   private String symbol = null;
+  @JsonProperty("underlying")
+  private String underlying = null;
+  @JsonProperty("quoteCurrency")
+  private String quoteCurrency = null;
   @JsonProperty("currency")
   private String currency = null;
   @JsonProperty("commission")
@@ -70,6 +74,10 @@ public class Position {
   private Double lastPrice = null;
   @JsonProperty("lastValue")
   private Double lastValue = null;
+  @JsonProperty("homeNotional")
+  private Double homeNotional = null;
+  @JsonProperty("foreignNotional")
+  private Double foreignNotional = null;
   @JsonProperty("notionalCurrency1")
   private String notionalCurrency1 = null;
   @JsonProperty("notionalValue1")
@@ -116,6 +124,20 @@ public class Position {
   }
   public void setSymbol(String symbol) {
     this.symbol = symbol;
+  }
+
+  public String getUnderlying() {
+    return underlying;
+  }
+  public void setUnderlying(String underlying) {
+    this.underlying = underlying;
+  }
+
+  public String getQuoteCurrency() {
+    return quoteCurrency;
+  }
+  public void setQuoteCurrency(String quoteCurrency) {
+    this.quoteCurrency = quoteCurrency;
   }
 
   public String getCurrency() {
@@ -335,6 +357,20 @@ public class Position {
     this.lastValue = lastValue;
   }
 
+  public Double getHomeNotional() {
+    return homeNotional;
+  }
+  public void setHomeNotional(Double homeNotional) {
+    this.homeNotional = homeNotional;
+  }
+
+  public Double getForeignNotional() {
+    return foreignNotional;
+  }
+  public void setForeignNotional(Double foreignNotional) {
+    this.foreignNotional = foreignNotional;
+  }
+
   public String getNotionalCurrency1() {
     return notionalCurrency1;
   }
@@ -460,6 +496,8 @@ public class Position {
     sb.append("class Position {\n");
     sb.append("  account: ").append(account).append("\n");
     sb.append("  symbol: ").append(symbol).append("\n");
+    sb.append("  underlying: ").append(underlying).append("\n");
+    sb.append("  quoteCurrency: ").append(quoteCurrency).append("\n");
     sb.append("  currency: ").append(currency).append("\n");
     sb.append("  commission: ").append(commission).append("\n");
     sb.append("  prevRealisedPnl: ").append(prevRealisedPnl).append("\n");
@@ -491,6 +529,8 @@ public class Position {
     sb.append("  grossExecCost: ").append(grossExecCost).append("\n");
     sb.append("  lastPrice: ").append(lastPrice).append("\n");
     sb.append("  lastValue: ").append(lastValue).append("\n");
+    sb.append("  homeNotional: ").append(homeNotional).append("\n");
+    sb.append("  foreignNotional: ").append(foreignNotional).append("\n");
     sb.append("  notionalCurrency1: ").append(notionalCurrency1).append("\n");
     sb.append("  notionalValue1: ").append(notionalValue1).append("\n");
     sb.append("  notionalCurrency2: ").append(notionalCurrency2).append("\n");

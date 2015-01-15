@@ -1,5 +1,5 @@
 class Instrument
-  attr_accessor :symbol, :root_symbol, :state, :typ, :listing, :front, :expiry, :inverse_leg, :sell_leg, :buy_leg, :underlying, :quote_currency, :underlying_symbol, :reference, :reference_symbol, :tick_size, :multiplier, :settl_currency, :underlying_to_settle_multiplier, :quote_to_settle_multiplier, :is_quanto, :is_inverse, :init_margin, :maint_margin, :limit, :maker_fee, :taker_fee, :insurance_fee, :opening_timestamp, :closing_timestamp, :prev_close_price, :limit_down_price, :limit_up_price, :prev_total_volume, :total_volume, :volume, :vwap, :high_price, :low_price, :last_price, :last_tick_direction, :last_change_pcnt, :bid_price, :mid_price, :ask_price, :open_interest, :settled_price, :timestamp
+  attr_accessor :symbol, :root_symbol, :state, :typ, :listing, :front, :expiry, :inverse_leg, :sell_leg, :buy_leg, :underlying, :quote_currency, :underlying_symbol, :reference, :reference_symbol, :tick_size, :multiplier, :settl_currency, :underlying_to_settle_multiplier, :quote_to_settle_multiplier, :is_quanto, :is_inverse, :init_margin, :maint_margin, :limit, :maker_fee, :taker_fee, :insurance_fee, :opening_timestamp, :closing_timestamp, :prev_close_price, :limit_down_price, :limit_up_price, :prev_total_volume, :total_volume, :volume, :prev_total_turnover, :total_turnover, :turnover, :vwap, :high_price, :low_price, :last_price, :last_tick_direction, :last_change_pcnt, :bid_price, :mid_price, :ask_price, :open_interest, :open_value, :settled_price, :timestamp
 
   # :internal => :external
   def self.attribute_map
@@ -40,6 +40,9 @@ class Instrument
       :prev_total_volume => :prevTotalVolume,
       :total_volume => :totalVolume,
       :volume => :volume,
+      :prev_total_turnover => :prevTotalTurnover,
+      :total_turnover => :totalTurnover,
+      :turnover => :turnover,
       :vwap => :vwap,
       :high_price => :highPrice,
       :low_price => :lowPrice,
@@ -50,6 +53,7 @@ class Instrument
       :mid_price => :midPrice,
       :ask_price => :askPrice,
       :open_interest => :openInterest,
+      :open_value => :openValue,
       :settled_price => :settledPrice,
       :timestamp => :timestamp
 
@@ -167,6 +171,15 @@ class Instrument
     if self.class.attribute_map[:"volume"]
       @volume = attributes["volume"]
     end
+    if self.class.attribute_map[:"prev_total_turnover"]
+      @prev_total_turnover = attributes["prevTotalTurnover"]
+    end
+    if self.class.attribute_map[:"total_turnover"]
+      @total_turnover = attributes["totalTurnover"]
+    end
+    if self.class.attribute_map[:"turnover"]
+      @turnover = attributes["turnover"]
+    end
     if self.class.attribute_map[:"vwap"]
       @vwap = attributes["vwap"]
     end
@@ -196,6 +209,9 @@ class Instrument
     end
     if self.class.attribute_map[:"open_interest"]
       @open_interest = attributes["openInterest"]
+    end
+    if self.class.attribute_map[:"open_value"]
+      @open_value = attributes["openValue"]
     end
     if self.class.attribute_map[:"settled_price"]
       @settled_price = attributes["settledPrice"]

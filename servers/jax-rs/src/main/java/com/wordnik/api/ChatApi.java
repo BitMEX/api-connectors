@@ -2,7 +2,6 @@ package com.wordnik.api;
 
 import com.wordnik.swagger.annotations.*;
 
-import com.wordnik.client.model.Error;
 import com.wordnik.client.model.Chat;
 import java.util.List;
 import com.wordnik.api.NotFoundException;
@@ -20,7 +19,11 @@ public class ChatApi {
   @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful"),@ApiError(code = 400, reason = "Parameter Error"),@ApiError(code = 401, reason = "Unauthorized"),@ApiError(code = 404, reason = "Not Found")})
      
   public Response get(
-    @ApiParam(value = ""
+    @ApiParam(value = "Starting point for results."
+    ,required=true
+)@QueryParam("start")
+ Double start
+    ,@ApiParam(value = "Number of results to fetch."
     ,required=true
 , defaultValue="100"
 )@QueryParam("count")

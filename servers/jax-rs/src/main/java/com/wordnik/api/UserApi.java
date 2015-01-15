@@ -4,6 +4,7 @@ import com.wordnik.swagger.annotations.*;
 
 import com.wordnik.client.model.User;
 import com.wordnik.client.model.Transaction;
+import com.wordnik.client.model.Affiliate;
 import com.wordnik.client.model.AccessToken;
 import com.wordnik.client.model.Any;
 import java.util.List;
@@ -51,7 +52,7 @@ public class UserApi {
   @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
      
   public Response requestWithdrawal(
-    ,,)
+    ,,,)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
@@ -158,12 +159,24 @@ public class UserApi {
   }
 
   @POST
+  @Path("/affiliateStatus")
+  @ApiOperation(value = "Get your current affiliate/referral status.", notes = "", responseClass = "List<Affiliate>")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
+     
+  public Response getAffiliateStatus(
+    )
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
+  }
+
+  @POST
   @Path("/")
   @ApiOperation(value = "Register a new user.", notes = "", responseClass = "User")
   @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
      
   public Response newUser(
-    ,,,,,,)
+    ,,,,,,,)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
@@ -211,6 +224,18 @@ public class UserApi {
   @ApiErrors(value = { @ApiError(code = 204, reason = "Request was successful")})
      
   public Response logout(
+    )
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
+  }
+
+  @POST
+  @Path("/logoutAll")
+  @ApiOperation(value = "Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.", notes = "", responseClass = "void")
+  @ApiErrors(value = { @ApiError(code = 204, reason = "Request was successful")})
+     
+  public Response logoutAll(
     )
       throws NotFoundException {
       // do some magic!

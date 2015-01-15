@@ -1,7 +1,6 @@
 #import "SWGApiKeyApi.h"
 #import "SWGFile.h"
 #import "SWGApiClient.h"
-#import "SWGError.h"
 #import "SWGApiKey.h"
 
 

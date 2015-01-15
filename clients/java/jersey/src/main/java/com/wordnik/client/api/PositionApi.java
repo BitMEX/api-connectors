@@ -3,7 +3,6 @@ package com.wordnik.client.api;
 import com.wordnik.client.common.ApiException;
 import com.wordnik.client.common.ApiInvoker;
 
-import com.wordnik.client.model.Error;
 import com.wordnik.client.model.Position;
 import com.sun.jersey.multipart.FormDataMultiPart;
 
@@ -29,9 +28,9 @@ public class PositionApi {
   }
 
   //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: Error
-  //error info- code: 401 reason: "Unauthorized" model: Error
-  //error info- code: 404 reason: "Not Found" model: Error
+  //error info- code: 400 reason: "Parameter Error" model: <none>
+  //error info- code: 401 reason: "Unauthorized" model: <none>
+  //error info- code: 404 reason: "Not Found" model: <none>
   public List<Position> find (Object filter, List<any> columns, Double count) throws ApiException {
     Object postBody = null;
     // create path and map variables

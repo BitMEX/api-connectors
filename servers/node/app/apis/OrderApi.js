@@ -15,12 +15,28 @@ function writeResponse (response, data) {
 
 exports.models = models = require("../models.js");
 
+exports.getOrders = {
+  'spec': {
+    "description" : "Operations about pets",
+    "path" : "/order",
+    "notes" : "To get open orders only, send {"open": true} in the filter param.",
+    "summary" : "Get your orders.",
+    "method": "GET",
+    "params" : [params.query("symbol", "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.", "string", false, false, ""),params.query("filter", "Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}.", "object", false, false, ""),params.query("columns", "Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.", "Array[string]", false, false, ""),params.query("count", "Number of results to fetch.", "double", false, false, "", 100),params.query("start", "Starting point for results.", "double", false, false, ""),params.query("reverse", "If true, will sort results newest first.", "boolean", false, false, ""),params.query("startTime", "Starting date filter for results.", "Date", false, false, ""),params.query("endTime", "Ending date filter for results.", "Date", false, false, "")].concat([]).concat([]).concat([]),
+    "type" : "List[Order]",
+    "responseMessages" : [errors.invalid('id'), errors.notFound('List[Order]')],
+    "nickname" : "getOrders"
+  },
+  'action': function (req,res) {
+    writeResponse(res, {message: "how about implementing getOrders as a GET method?"});    
+  }
+};
 exports.newOrder = {
   'spec': {
     "description" : "Operations about pets",
-    "path" : "/order/new",
-    "notes" : "",
-    "summary" : "Create a new order. [Deprecated]",
+    "path" : "/order",
+    "notes" : "If you want to keep track of order IDs yourself, set a unique clOrdID per order. This ID will come back as a property on the order and any related executions executions (including on the WebSocket), and can be used to cancel the order.",
+    "summary" : "Create a new order.",
     "method": "POST",
     "params" : [].concat([]).concat([]).concat([]),
     "type" : "Order",
@@ -40,31 +56,6 @@ exports.newOrder = {
     writeResponse(res, {message: "how about implementing newOrder as a POST method?"});    
   }
 };
-exports.newOrder_OrderApi_0 = {
-  'spec': {
-    "description" : "Operations about pets",
-    "path" : "/order",
-    "notes" : "If you want to keep track of order IDs yourself, set a unique clOrdID per order. This ID will come back as a property on the order and any related executions executions (including on the WebSocket), and can be used to cancel the order.",
-    "summary" : "Create a new order.",
-    "method": "POST",
-    "params" : [].concat([]).concat([]).concat([]),
-    "type" : "Order",
-    "responseMessages" : [errors.invalid('id'), errors.notFound('Order')],
-    "nickname" : "newOrder_OrderApi_0"
-  },
-  'action': function (req,res) {
-    if (!req.params.symbol) {
-      throw errors.invalid('symbol');
-    }
-    if (!req.params.quantity) {
-      throw errors.invalid('quantity');
-    }
-    if (!req.params.price) {
-      throw errors.invalid('price');
-    }
-    writeResponse(res, {message: "how about implementing newOrder_OrderApi_0 as a POST method?"});    
-  }
-};
 exports.cancelOrder = {
   'spec': {
     "description" : "Operations about pets",
@@ -79,73 +70,6 @@ exports.cancelOrder = {
   },
   'action': function (req,res) {
     writeResponse(res, {message: "how about implementing cancelOrder as a DELETE method?"});    
-  }
-};
-exports.getOrders = {
-  'spec': {
-    "description" : "Operations about pets",
-    "path" : "/order",
-    "notes" : "",
-    "summary" : "Get your orders.",
-    "method": "GET",
-    "params" : [params.query("filter", "Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}.", "object", false, false, ""),params.query("columns", "Which columns to fetch. For example, send [&quot;columnName&quot;].", "Array[any]", false, false, ""),params.query("count", "Number of rows to fetch.", "double", false, false, "")].concat([]).concat([]).concat([]),
-    "type" : "List[Order]",
-    "responseMessages" : [errors.invalid('id'), errors.notFound('List[Order]')],
-    "nickname" : "getOrders"
-  },
-  'action': function (req,res) {
-    writeResponse(res, {message: "how about implementing getOrders as a GET method?"});    
-  }
-};
-exports.cancelOrder_OrderApi_0 = {
-  'spec': {
-    "description" : "Operations about pets",
-    "path" : "/order/cancel",
-    "notes" : "",
-    "summary" : "Cancel order(s). Send multiple order IDs to cancel in bulk. [Deprecated]",
-    "method": "POST",
-    "params" : [].concat([]).concat([]).concat([]),
-    "type" : "List[Order]",
-    "responseMessages" : [errors.invalid('id'), errors.notFound('List[Order]')],
-    "nickname" : "cancelOrder_OrderApi_0"
-  },
-  'action': function (req,res) {
-    if (!req.params.orderID) {
-      throw errors.invalid('orderID');
-    }
-    writeResponse(res, {message: "how about implementing cancelOrder_OrderApi_0 as a POST method?"});    
-  }
-};
-exports.getOrders_OrderApi_0 = {
-  'spec': {
-    "description" : "Operations about pets",
-    "path" : "/order/myOrders",
-    "notes" : "",
-    "summary" : "Get your orders. [Deprecated, use GET /order]",
-    "method": "GET",
-    "params" : [params.query("filter", "Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}.", "object", false, false, ""),params.query("columns", "Which columns to fetch. For example, send [&quot;columnName&quot;].", "Array[any]", false, false, ""),params.query("count", "Number of rows to fetch.", "double", false, false, "")].concat([]).concat([]).concat([]),
-    "type" : "List[Order]",
-    "responseMessages" : [errors.invalid('id'), errors.notFound('List[Order]')],
-    "nickname" : "getOrders_OrderApi_0"
-  },
-  'action': function (req,res) {
-    writeResponse(res, {message: "how about implementing getOrders_OrderApi_0 as a GET method?"});    
-  }
-};
-exports.getOrders_OrderApi_1 = {
-  'spec': {
-    "description" : "Operations about pets",
-    "path" : "/order/myOpenOrders",
-    "notes" : "",
-    "summary" : "Get your open orders.",
-    "method": "GET",
-    "params" : [params.query("filter", "Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}.", "object", false, false, ""),params.query("columns", "Which columns to fetch. For example, send [&quot;columnName&quot;].", "Array[any]", false, false, ""),params.query("count", "Number of rows to fetch.", "double", false, false, "")].concat([]).concat([]).concat([]),
-    "type" : "List[Order]",
-    "responseMessages" : [errors.invalid('id'), errors.notFound('List[Order]')],
-    "nickname" : "getOrders_OrderApi_1"
-  },
-  'action': function (req,res) {
-    writeResponse(res, {message: "how about implementing getOrders_OrderApi_1 as a GET method?"});    
   }
 };
 exports.cancelAllAfter = {

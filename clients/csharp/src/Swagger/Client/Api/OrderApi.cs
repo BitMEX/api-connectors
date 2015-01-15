@@ -27,75 +27,66 @@
       }
 
       /// <summary>
-      /// Create a new order. [Deprecated] 
+      /// Get your orders. To get open orders only, send {&quot;open&quot;: true} in the filter param.
       /// </summary>
-      /// <param name="symbol">Instrument name.</param>
-      /// <param name="quantity">Quantity. Use positive numbers to buy, negative to sell.</param>
-      /// <param name="price">Price to buy.</param>
-      /// <param name="ioc">Set to true to place an immediateOrCancel order.</param>
-      /// <param name="clOrdID">Optional Client Order ID to give this order. This ID will come back on any execution messages tied to this order.</param>
+      /// <param name="symbol">Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</param>
+      /// <param name="filter">Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}.</param>
+      /// <param name="columns">Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.</param>
+      /// <param name="start">Starting point for results.</param>
+      /// <param name="reverse">If true, will sort results newest first.</param>
+      /// <param name="startTime">Starting date filter for results.</param>
+      /// <param name="endTime">Ending date filter for results.</param>
+      /// <param name="count">Number of results to fetch.</param>
       /// <returns></returns>
-      public Order newOrder (string symbol, double? quantity, double? price, bool? ioc, string clOrdID) {
+      public List<Order> getOrders (string symbol, object filter, List<string> columns, double? start, bool? reverse, DateTime? startTime, DateTime? endTime, double? count) {
         // create path and map variables
-        var path = "/order/new".Replace("{format}","json");
+        var path = "/order".Replace("{format}","json");
 
         // query params
         var queryParams = new Dictionary<String, String>();
         var headerParams = new Dictionary<String, String>();
         var formParams = new Dictionary<String, object>();
 
-        // verify required params are set
-        if (symbol == null || quantity == null || price == null ) {
-           throw new ApiException(400, "missing required params");
-        }
         if (symbol != null){
-          if(symbol is byte[]) {
-            formParams.Add("symbol", symbol);
-          } else {
-            string paramStr = (symbol is DateTime) ? ((DateTime)(object)symbol).ToString("u") : Convert.ToString(symbol);
-            formParams.Add("symbol", paramStr);
-          }
+          string paramStr = (symbol is DateTime) ? ((DateTime)(object)symbol).ToString("u") : Convert.ToString(symbol);
+          queryParams.Add("symbol", paramStr);
 		}
-        if (quantity != null){
-          if(quantity is byte[]) {
-            formParams.Add("quantity", quantity);
-          } else {
-            string paramStr = (quantity is DateTime) ? ((DateTime)(object)quantity).ToString("u") : Convert.ToString(quantity);
-            formParams.Add("quantity", paramStr);
-          }
+        if (filter != null){
+          string paramStr = (filter is DateTime) ? ((DateTime)(object)filter).ToString("u") : Convert.ToString(filter);
+          queryParams.Add("filter", paramStr);
 		}
-        if (price != null){
-          if(price is byte[]) {
-            formParams.Add("price", price);
-          } else {
-            string paramStr = (price is DateTime) ? ((DateTime)(object)price).ToString("u") : Convert.ToString(price);
-            formParams.Add("price", paramStr);
-          }
+        if (columns != null){
+          string paramStr = (columns is DateTime) ? ((DateTime)(object)columns).ToString("u") : Convert.ToString(columns);
+          queryParams.Add("columns", paramStr);
 		}
-        if (ioc != null){
-          if(ioc is byte[]) {
-            formParams.Add("ioc", ioc);
-          } else {
-            string paramStr = (ioc is DateTime) ? ((DateTime)(object)ioc).ToString("u") : Convert.ToString(ioc);
-            formParams.Add("ioc", paramStr);
-          }
+        if (count != null){
+          string paramStr = (count is DateTime) ? ((DateTime)(object)count).ToString("u") : Convert.ToString(count);
+          queryParams.Add("count", paramStr);
 		}
-        if (clOrdID != null){
-          if(clOrdID is byte[]) {
-            formParams.Add("clOrdID", clOrdID);
-          } else {
-            string paramStr = (clOrdID is DateTime) ? ((DateTime)(object)clOrdID).ToString("u") : Convert.ToString(clOrdID);
-            formParams.Add("clOrdID", paramStr);
-          }
+        if (start != null){
+          string paramStr = (start is DateTime) ? ((DateTime)(object)start).ToString("u") : Convert.ToString(start);
+          queryParams.Add("start", paramStr);
+		}
+        if (reverse != null){
+          string paramStr = (reverse is DateTime) ? ((DateTime)(object)reverse).ToString("u") : Convert.ToString(reverse);
+          queryParams.Add("reverse", paramStr);
+		}
+        if (startTime != null){
+          string paramStr = (startTime is DateTime) ? ((DateTime)(object)startTime).ToString("u") : Convert.ToString(startTime);
+          queryParams.Add("startTime", paramStr);
+		}
+        if (endTime != null){
+          string paramStr = (endTime is DateTime) ? ((DateTime)(object)endTime).ToString("u") : Convert.ToString(endTime);
+          queryParams.Add("endTime", paramStr);
 		}
         try {
-          if (typeof(Order) == typeof(byte[])) {
+          if (typeof(List<Order>) == typeof(byte[])) {
             var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
-            return ((object)response) as Order;
+            return ((object)response) as List<Order>;
           } else {
-            var response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, null, headerParams, formParams);
+            var response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
             if(response != null){
-               return (Order) ApiInvoker.deserialize(response, typeof(Order));
+               return (List<Order>) ApiInvoker.deserialize(response, typeof(List<Order>));
             }
             else {
               return null;
@@ -113,13 +104,13 @@
       /// <summary>
       /// Create a new order. If you want to keep track of order IDs yourself, set a unique clOrdID per order. This ID will come back as a property on the order and any related executions executions (including on the WebSocket), and can be used to cancel the order.
       /// </summary>
-      /// <param name="symbol">Instrument name.</param>
+      /// <param name="symbol">Instrument symbol.</param>
       /// <param name="quantity">Quantity. Use positive numbers to buy, negative to sell.</param>
       /// <param name="price">Price to buy.</param>
       /// <param name="ioc">Set to true to place an immediateOrCancel order.</param>
       /// <param name="clOrdID">Optional Client Order ID to give this order. This ID will come back on any execution messages tied to this order.</param>
       /// <returns></returns>
-      public Order newOrder_OrderApi_0 (string symbol, double? quantity, double? price, bool? ioc, string clOrdID) {
+      public Order newOrder (string symbol, double? quantity, double? price, bool? ioc, string clOrdID) {
         // create path and map variables
         var path = "/order".Replace("{format}","json");
 
@@ -240,222 +231,6 @@
             return ((object)response) as List<Order>;
           } else {
             var response = apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, null, headerParams, formParams);
-            if(response != null){
-               return (List<Order>) ApiInvoker.deserialize(response, typeof(List<Order>));
-            }
-            else {
-              return null;
-            }
-          }
-        } catch (ApiException ex) {
-          if(ex.ErrorCode == 404) {
-          	return null;
-          }
-          else {
-            throw ex;
-          }
-        }
-      }
-      /// <summary>
-      /// Get your orders. 
-      /// </summary>
-      /// <param name="filter">Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}.</param>
-      /// <param name="columns">Which columns to fetch. For example, send [&quot;columnName&quot;].</param>
-      /// <param name="count">Number of rows to fetch.</param>
-      /// <returns></returns>
-      public List<Order> getOrders (object filter, List<any> columns, double? count) {
-        // create path and map variables
-        var path = "/order".Replace("{format}","json");
-
-        // query params
-        var queryParams = new Dictionary<String, String>();
-        var headerParams = new Dictionary<String, String>();
-        var formParams = new Dictionary<String, object>();
-
-        if (filter != null){
-          string paramStr = (filter is DateTime) ? ((DateTime)(object)filter).ToString("u") : Convert.ToString(filter);
-          queryParams.Add("filter", paramStr);
-		}
-        if (columns != null){
-          string paramStr = (columns is DateTime) ? ((DateTime)(object)columns).ToString("u") : Convert.ToString(columns);
-          queryParams.Add("columns", paramStr);
-		}
-        if (count != null){
-          string paramStr = (count is DateTime) ? ((DateTime)(object)count).ToString("u") : Convert.ToString(count);
-          queryParams.Add("count", paramStr);
-		}
-        try {
-          if (typeof(List<Order>) == typeof(byte[])) {
-            var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
-            return ((object)response) as List<Order>;
-          } else {
-            var response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
-            if(response != null){
-               return (List<Order>) ApiInvoker.deserialize(response, typeof(List<Order>));
-            }
-            else {
-              return null;
-            }
-          }
-        } catch (ApiException ex) {
-          if(ex.ErrorCode == 404) {
-          	return null;
-          }
-          else {
-            throw ex;
-          }
-        }
-      }
-      /// <summary>
-      /// Cancel order(s). Send multiple order IDs to cancel in bulk. [Deprecated] 
-      /// </summary>
-      /// <param name="orderID">Order ID(s).</param>
-      /// <param name="clOrdID">Client Order ID(s). See POST /order.</param>
-      /// <param name="text">Optional cancellation annotation. e.g. 'Spread Exceeded'</param>
-      /// <returns></returns>
-      public List<Order> cancelOrder_OrderApi_0 (string orderID, string clOrdID, string text) {
-        // create path and map variables
-        var path = "/order/cancel".Replace("{format}","json");
-
-        // query params
-        var queryParams = new Dictionary<String, String>();
-        var headerParams = new Dictionary<String, String>();
-        var formParams = new Dictionary<String, object>();
-
-        // verify required params are set
-        if (orderID == null ) {
-           throw new ApiException(400, "missing required params");
-        }
-        if (orderID != null){
-          if(orderID is byte[]) {
-            formParams.Add("orderID", orderID);
-          } else {
-            string paramStr = (orderID is DateTime) ? ((DateTime)(object)orderID).ToString("u") : Convert.ToString(orderID);
-            formParams.Add("orderID", paramStr);
-          }
-		}
-        if (clOrdID != null){
-          if(clOrdID is byte[]) {
-            formParams.Add("clOrdID", clOrdID);
-          } else {
-            string paramStr = (clOrdID is DateTime) ? ((DateTime)(object)clOrdID).ToString("u") : Convert.ToString(clOrdID);
-            formParams.Add("clOrdID", paramStr);
-          }
-		}
-        if (text != null){
-          if(text is byte[]) {
-            formParams.Add("text", text);
-          } else {
-            string paramStr = (text is DateTime) ? ((DateTime)(object)text).ToString("u") : Convert.ToString(text);
-            formParams.Add("text", paramStr);
-          }
-		}
-        try {
-          if (typeof(List<Order>) == typeof(byte[])) {
-            var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
-            return ((object)response) as List<Order>;
-          } else {
-            var response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, null, headerParams, formParams);
-            if(response != null){
-               return (List<Order>) ApiInvoker.deserialize(response, typeof(List<Order>));
-            }
-            else {
-              return null;
-            }
-          }
-        } catch (ApiException ex) {
-          if(ex.ErrorCode == 404) {
-          	return null;
-          }
-          else {
-            throw ex;
-          }
-        }
-      }
-      /// <summary>
-      /// Get your orders. [Deprecated, use GET /order] 
-      /// </summary>
-      /// <param name="filter">Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}.</param>
-      /// <param name="columns">Which columns to fetch. For example, send [&quot;columnName&quot;].</param>
-      /// <param name="count">Number of rows to fetch.</param>
-      /// <returns></returns>
-      public List<Order> getOrders_OrderApi_0 (object filter, List<any> columns, double? count) {
-        // create path and map variables
-        var path = "/order/myOrders".Replace("{format}","json");
-
-        // query params
-        var queryParams = new Dictionary<String, String>();
-        var headerParams = new Dictionary<String, String>();
-        var formParams = new Dictionary<String, object>();
-
-        if (filter != null){
-          string paramStr = (filter is DateTime) ? ((DateTime)(object)filter).ToString("u") : Convert.ToString(filter);
-          queryParams.Add("filter", paramStr);
-		}
-        if (columns != null){
-          string paramStr = (columns is DateTime) ? ((DateTime)(object)columns).ToString("u") : Convert.ToString(columns);
-          queryParams.Add("columns", paramStr);
-		}
-        if (count != null){
-          string paramStr = (count is DateTime) ? ((DateTime)(object)count).ToString("u") : Convert.ToString(count);
-          queryParams.Add("count", paramStr);
-		}
-        try {
-          if (typeof(List<Order>) == typeof(byte[])) {
-            var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
-            return ((object)response) as List<Order>;
-          } else {
-            var response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
-            if(response != null){
-               return (List<Order>) ApiInvoker.deserialize(response, typeof(List<Order>));
-            }
-            else {
-              return null;
-            }
-          }
-        } catch (ApiException ex) {
-          if(ex.ErrorCode == 404) {
-          	return null;
-          }
-          else {
-            throw ex;
-          }
-        }
-      }
-      /// <summary>
-      /// Get your open orders. 
-      /// </summary>
-      /// <param name="filter">Filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;, &quot;open&quot;: true}.</param>
-      /// <param name="columns">Which columns to fetch. For example, send [&quot;columnName&quot;].</param>
-      /// <param name="count">Number of rows to fetch.</param>
-      /// <returns></returns>
-      public List<Order> getOrders_OrderApi_1 (object filter, List<any> columns, double? count) {
-        // create path and map variables
-        var path = "/order/myOpenOrders".Replace("{format}","json");
-
-        // query params
-        var queryParams = new Dictionary<String, String>();
-        var headerParams = new Dictionary<String, String>();
-        var formParams = new Dictionary<String, object>();
-
-        if (filter != null){
-          string paramStr = (filter is DateTime) ? ((DateTime)(object)filter).ToString("u") : Convert.ToString(filter);
-          queryParams.Add("filter", paramStr);
-		}
-        if (columns != null){
-          string paramStr = (columns is DateTime) ? ((DateTime)(object)columns).ToString("u") : Convert.ToString(columns);
-          queryParams.Add("columns", paramStr);
-		}
-        if (count != null){
-          string paramStr = (count is DateTime) ? ((DateTime)(object)count).ToString("u") : Convert.ToString(count);
-          queryParams.Add("count", paramStr);
-		}
-        try {
-          if (typeof(List<Order>) == typeof(byte[])) {
-            var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
-            return ((object)response) as List<Order>;
-          } else {
-            var response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
             if(response != null){
                return (List<Order>) ApiInvoker.deserialize(response, typeof(List<Order>));
             }

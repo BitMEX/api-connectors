@@ -26,6 +26,8 @@ class Position {
   static $swaggerTypes = array(
       'account' => 'float',
       'symbol' => 'string',
+      'underlying' => 'string',
+      'quoteCurrency' => 'string',
       'currency' => 'string',
       'commission' => 'float',
       'prevRealisedPnl' => 'float',
@@ -57,6 +59,8 @@ class Position {
       'grossExecCost' => 'float',
       'lastPrice' => 'float',
       'lastValue' => 'float',
+      'homeNotional' => 'float',
+      'foreignNotional' => 'float',
       'notionalCurrency1' => 'string',
       'notionalValue1' => 'float',
       'notionalCurrency2' => 'string',
@@ -79,6 +83,8 @@ class Position {
 
   public $account; // float
   public $symbol; // string
+  public $underlying; // string
+  public $quoteCurrency; // string
   public $currency; // string
   public $commission; // float
   public $prevRealisedPnl; // float
@@ -110,6 +116,8 @@ class Position {
   public $grossExecCost; // float
   public $lastPrice; // float
   public $lastValue; // float
+  public $homeNotional; // float
+  public $foreignNotional; // float
   public $notionalCurrency1; // string
   public $notionalValue1; // float
   public $notionalCurrency2; // string

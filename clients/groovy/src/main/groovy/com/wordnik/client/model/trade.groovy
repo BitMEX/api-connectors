@@ -11,6 +11,9 @@ class Trade {
   Double price = null
   String tickDirection = null
   String trdMatchID = null
+  Double grossValue = null
+  Double homeNotional = null
+  Double foreignNotional = null
   Double id = null
   }
 

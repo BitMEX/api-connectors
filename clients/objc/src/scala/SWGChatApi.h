@@ -1,5 +1,4 @@
 #import <Foundation/Foundation.h>
-#import "SWGError.h"
 #import "SWGChat.h"
 
 
@@ -15,9 +14,11 @@
 
  Get chat messages.
  
- @param count 
+ @param start Starting point for results.
+ @param count Number of results to fetch.
  */
--(NSNumber*) getWithCompletionBlock :(NSNumber*) count 
+-(NSNumber*) getWithCompletionBlock :(NSNumber*) start 
+        count:(NSNumber*) count 
         completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
 
 /**

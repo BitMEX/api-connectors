@@ -5,6 +5,7 @@ import com.wordnik.client.common.ApiInvoker;
 
 import com.wordnik.client.model.User;
 import com.wordnik.client.model.Transaction;
+import com.wordnik.client.model.Affiliate;
 import com.wordnik.client.model.AccessToken;
 import com.wordnik.client.model.Any;
 import com.sun.jersey.multipart.FormDataMultiPart;
@@ -117,10 +118,10 @@ public class UserApi {
     }
   }
   //error info- code: 200 reason: "Request was successful" model: <none>
-  public Transaction requestWithdrawal (Double amount, String address, String currency) throws ApiException {
+  public Transaction requestWithdrawal (String otpToken, Double amount, String address, String currency) throws ApiException {
     Object postBody = null;
     // verify required params are set
-    if(amount == null || address == null ) {
+    if(currency == null || amount == null || address == null ) {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
@@ -140,6 +141,8 @@ public class UserApi {
       boolean hasFields = false;
       FormDataMultiPart mp = new FormDataMultiPart();
       hasFields = true;
+      mp.field("otpToken", otpToken, MediaType.MULTIPART_FORM_DATA_TYPE);
+      hasFields = true;
       mp.field("currency", currency, MediaType.MULTIPART_FORM_DATA_TYPE);
       hasFields = true;
       mp.field("amount", amount, MediaType.MULTIPART_FORM_DATA_TYPE);
@@ -149,7 +152,7 @@ public class UserApi {
         postBody = mp;
     }
     else {
-      formParams.put("currency", currency);formParams.put("amount", amount);formParams.put("address", address);}
+      formParams.put("otpToken", otpToken);formParams.put("currency", currency);formParams.put("amount", amount);formParams.put("address", address);}
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
@@ -555,7 +558,49 @@ public class UserApi {
     }
   }
   //error info- code: 200 reason: "Request was successful" model: <none>
-  public User newUser (String email, String password, String username, String firstname, String lastname, String acceptsTOS, String accountType) throws ApiException {
+  public List<Affiliate> getAffiliateStatus () throws ApiException {
+    Object postBody = null;
+    // create path and map variables
+    String path = "/user/affiliateStatus".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    String[] contentTypes = {
+      "application/json"};
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      FormDataMultiPart mp = new FormDataMultiPart();
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      }
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (List<Affiliate>) ApiInvoker.deserialize(response, "List", Affiliate.class);
+      }
+      else {
+        return null;
+      }
+    } catch (ApiException ex) {
+      if(ex.getCode() == 404) {
+      	return null;
+      }
+      else {
+        throw ex;
+      }
+    }
+  }
+  //error info- code: 200 reason: "Request was successful" model: <none>
+  public User newUser (String email, String password, String username, String firstname, String lastname, String acceptsTOS, String referrerID, String accountType) throws ApiException {
     Object postBody = null;
     // verify required params are set
     if(email == null || password == null || username == null ) {
@@ -591,11 +636,13 @@ public class UserApi {
       mp.field("accountType", accountType, MediaType.MULTIPART_FORM_DATA_TYPE);
       hasFields = true;
       mp.field("acceptsTOS", acceptsTOS, MediaType.MULTIPART_FORM_DATA_TYPE);
+      hasFields = true;
+      mp.field("referrerID", referrerID, MediaType.MULTIPART_FORM_DATA_TYPE);
       if(hasFields)
         postBody = mp;
     }
     else {
-      formParams.put("email", email);formParams.put("password", password);formParams.put("username", username);formParams.put("firstname", firstname);formParams.put("lastname", lastname);formParams.put("accountType", accountType);formParams.put("acceptsTOS", acceptsTOS);}
+      formParams.put("email", email);formParams.put("password", password);formParams.put("username", username);formParams.put("firstname", firstname);formParams.put("lastname", lastname);formParams.put("accountType", accountType);formParams.put("acceptsTOS", acceptsTOS);formParams.put("referrerID", referrerID);}
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
@@ -767,6 +814,48 @@ public class UserApi {
     Object postBody = null;
     // create path and map variables
     String path = "/user/logout".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    String[] contentTypes = {
+      "application/json"};
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      FormDataMultiPart mp = new FormDataMultiPart();
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      }
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return ;
+      }
+      else {
+        return ;
+      }
+    } catch (ApiException ex) {
+      if(ex.getCode() == 404) {
+      	return ;
+      }
+      else {
+        throw ex;
+      }
+    }
+  }
+  //error info- code: 204 reason: "Request was successful" model: <none>
+  public void logoutAll () throws ApiException {
+    Object postBody = null;
+    // create path and map variables
+    String path = "/user/logoutAll".replaceAll("\\{format\\}","json");
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();

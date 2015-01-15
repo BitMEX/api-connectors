@@ -12,6 +12,7 @@ class Execution {
   String side = null
   Double lastQty = null
   Double lastPx = null
+  Double underlyingLastPx = null
   String lastMkt = null
   String lastLiquidityInd = null
   Double orderQty = null
@@ -32,11 +33,14 @@ class Execution {
   Double avgPx = null
   Double commission = null
   String commType = null
+  String tradePublishIndicator = null
   String multiLegReportingType = null
   String text = null
   String trdMatchID = null
   Double execCost = null
   Double execComm = null
+  Double homeNotional = null
+  Double foreignNotional = null
   Date transactTime = null
   Date timestamp = null
   }

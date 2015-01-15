@@ -26,16 +26,28 @@ class ExecutionApi {
 	}
 
   /**
-	 * getMyExecutions
-	 * Get your executions. This includes each trade and insurance charge.
-   * filter, object: Table filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;}. (optional)
+	 * get
+	 * Get all raw executions for your account.
+   * symbol, string: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
 
-   * count, float: Number of executions to fetch (optional)
+   * filter, object: Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}. (optional)
+
+   * columns, array[string]: Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
+
+   * start, float: Starting point for results. (optional)
+
+   * reverse, bool: If true, will sort results newest first. (optional)
+
+   * startTime, DateTime: Starting date filter for results. (optional)
+
+   * endTime, DateTime: Ending date filter for results. (optional)
+
+   * count, float: Number of results to fetch. (optional)
 
    * @return Array[Execution]
 	 */
 
-   public function getMyExecutions($filter=null, $count=null) {
+   public function get($symbol=null, $filter=null, $columns=null, $start=null, $reverse=null, $startTime=null, $endTime=null, $count=null) {
 
   		//parse inputs
   		$resourcePath = "/execution";
@@ -46,11 +58,104 @@ class ExecutionApi {
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
-      if($filter != null) {
+      if($symbol != null) {
+  		  $queryParams['symbol'] = $this->apiClient->toQueryValue($symbol);
+  		}
+  		if($filter != null) {
   		  $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
+  		}
+  		if($columns != null) {
+  		  $queryParams['columns'] = $this->apiClient->toQueryValue($columns);
   		}
   		if($count != null) {
   		  $queryParams['count'] = $this->apiClient->toQueryValue($count);
+  		}
+  		if($start != null) {
+  		  $queryParams['start'] = $this->apiClient->toQueryValue($start);
+  		}
+  		if($reverse != null) {
+  		  $queryParams['reverse'] = $this->apiClient->toQueryValue($reverse);
+  		}
+  		if($startTime != null) {
+  		  $queryParams['startTime'] = $this->apiClient->toQueryValue($startTime);
+  		}
+  		if($endTime != null) {
+  		  $queryParams['endTime'] = $this->apiClient->toQueryValue($endTime);
+  		}
+  		//make the API Call
+      if (! isset($body)) {
+        $body = null;
+      }
+  		$response = $this->apiClient->callAPI($resourcePath, $method,
+  		                                      $queryParams, $body,
+  		                                      $headerParams);
+
+
+      if(! $response){
+          return null;
+        }
+
+  		$responseObject = $this->apiClient->deserialize($response,
+  		                                                'Array[Execution]');
+  		return $responseObject;
+
+      }
+  /**
+	 * getTradeHistory
+	 * Get all balance-affecting executions. This includes each trade, insurance charge, and settlement.
+   * symbol, string: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
+
+   * filter, object: Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}. (optional)
+
+   * columns, array[string]: Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
+
+   * start, float: Starting point for results. (optional)
+
+   * reverse, bool: If true, will sort results newest first. (optional)
+
+   * startTime, DateTime: Starting date filter for results. (optional)
+
+   * endTime, DateTime: Ending date filter for results. (optional)
+
+   * count, float: Number of results to fetch. (optional)
+
+   * @return Array[Execution]
+	 */
+
+   public function getTradeHistory($symbol=null, $filter=null, $columns=null, $start=null, $reverse=null, $startTime=null, $endTime=null, $count=null) {
+
+  		//parse inputs
+  		$resourcePath = "/execution/tradeHistory";
+  		$resourcePath = str_replace("{format}", "json", $resourcePath);
+  		$method = "GET";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      if($symbol != null) {
+  		  $queryParams['symbol'] = $this->apiClient->toQueryValue($symbol);
+  		}
+  		if($filter != null) {
+  		  $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
+  		}
+  		if($columns != null) {
+  		  $queryParams['columns'] = $this->apiClient->toQueryValue($columns);
+  		}
+  		if($count != null) {
+  		  $queryParams['count'] = $this->apiClient->toQueryValue($count);
+  		}
+  		if($start != null) {
+  		  $queryParams['start'] = $this->apiClient->toQueryValue($start);
+  		}
+  		if($reverse != null) {
+  		  $queryParams['reverse'] = $this->apiClient->toQueryValue($reverse);
+  		}
+  		if($startTime != null) {
+  		  $queryParams['startTime'] = $this->apiClient->toQueryValue($startTime);
+  		}
+  		if($endTime != null) {
+  		  $queryParams['endTime'] = $this->apiClient->toQueryValue($endTime);
   		}
   		//make the API Call
       if (! isset($body)) {

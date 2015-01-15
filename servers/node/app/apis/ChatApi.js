@@ -22,7 +22,7 @@ exports.get = {
     "notes" : "",
     "summary" : "Get chat messages.",
     "method": "GET",
-    "params" : [params.query("count", "", "double", false, false, "", 100)].concat([]).concat([]).concat([]),
+    "params" : [params.query("count", "Number of results to fetch.", "double", false, false, "", 100),params.query("start", "Starting point for results.", "double", false, false, "")].concat([]).concat([]).concat([]),
     "type" : "List[Chat]",
     "responseMessages" : [errors.invalid('id'), errors.notFound('List[Chat]')],
     "nickname" : "get"
