@@ -1,3 +1,3 @@
 [submodule "swagger-codegen"]
 	path = swagger-codegen
-	url = git@github.com:wordnik/swagger-codegen.git
+	url = git@github.com:strml/swagger-codegen.git
