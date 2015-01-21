@@ -15,7 +15,7 @@ class ChatApi {
   
   def addHeader(key: String, value: String) = apiInvoker.defaultHeaders += key -> value 
 
-  def get (start: Double, count: Double= 100) : Option[List[Chat]]= {
+  def get (start: Double, reverse: Boolean, count: Double= 100) : Option[List[Chat]]= {
     // create path and map variables
     val path = "/chat".replaceAll("\\{format\\}","json")
 
@@ -28,6 +28,7 @@ class ChatApi {
 
     if(String.valueOf(count) != "null") queryParams += "count" -> count.toString
     if(String.valueOf(start) != "null") queryParams += "start" -> start.toString
+    if(String.valueOf(reverse) != "null") queryParams += "reverse" -> reverse.toString
     try {
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
         case s: String =>

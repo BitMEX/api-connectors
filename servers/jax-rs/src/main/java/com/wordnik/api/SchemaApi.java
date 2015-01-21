@@ -20,8 +20,7 @@ public class SchemaApi {
      
   public Response find(
     @ApiParam(value = "Optional model filter. If omitted, will return all models."
-    ,required=true
-)@QueryParam("model")
+    )@QueryParam("model")
  String model
     )
       throws NotFoundException {

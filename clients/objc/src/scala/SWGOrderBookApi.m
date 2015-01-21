@@ -53,7 +53,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 
 -(NSNumber*) getOrderBookWithCompletionBlock:(NSString*) symbol
         depth:(NSNumber*) depth
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/orderBook", basePath];
 

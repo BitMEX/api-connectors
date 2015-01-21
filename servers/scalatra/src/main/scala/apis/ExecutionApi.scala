@@ -31,7 +31,7 @@ class ExecutionApi (implicit val swagger: Swagger) extends ScalatraServlet
   val getOperation = (apiOperation[List[Execution]]("get")
       summary "Get all raw executions for your account."
       parameters(
-        queryParam[String]("symbol").description(""),queryParam[Any]("filter").description(""),queryParam[List[String]]("columns").description(""),queryParam[Double]("start").description(""),queryParam[Boolean]("reverse").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""),queryParam[Double]("count").description("").defaultValue(100))
+        queryParam[String]("symbol").description("").optional,queryParam[Any]("filter").description("").optional,queryParam[List[String]]("columns").description("").optional,queryParam[Double]("start").description("").optional,queryParam[Boolean]("reverse").description("").optional,queryParam[Date]("startTime").description("").optional,queryParam[Date]("endTime").description("").optional,queryParam[Double]("count").description("").optional.defaultValue(100))
   )
 
   get("/",operation(getOperation)) {
@@ -59,7 +59,7 @@ class ExecutionApi (implicit val swagger: Swagger) extends ScalatraServlet
   val getTradeHistoryOperation = (apiOperation[List[Execution]]("getTradeHistory")
       summary "Get all balance-affecting executions. This includes each trade, insurance charge, and settlement."
       parameters(
-        queryParam[String]("symbol").description(""),queryParam[Any]("filter").description(""),queryParam[List[String]]("columns").description(""),queryParam[Double]("start").description(""),queryParam[Boolean]("reverse").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""),queryParam[Double]("count").description("").defaultValue(100))
+        queryParam[String]("symbol").description("").optional,queryParam[Any]("filter").description("").optional,queryParam[List[String]]("columns").description("").optional,queryParam[Double]("start").description("").optional,queryParam[Boolean]("reverse").description("").optional,queryParam[Date]("startTime").description("").optional,queryParam[Date]("endTime").description("").optional,queryParam[Double]("count").description("").optional.defaultValue(100))
   )
 
   get("/tradeHistory",operation(getTradeHistoryOperation)) {

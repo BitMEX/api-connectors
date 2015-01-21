@@ -31,12 +31,14 @@ class ChatApi (implicit val swagger: Swagger) extends ScalatraServlet
   val getOperation = (apiOperation[List[Chat]]("get")
       summary "Get chat messages."
       parameters(
-        queryParam[Double]("start").description(""),queryParam[Double]("count").description("").defaultValue(100))
+        queryParam[Double]("start").description("").optional,queryParam[Boolean]("reverse").description("").optional,queryParam[Double]("count").description("").optional.defaultValue(100))
   )
 
   get("/",operation(getOperation)) {
     val start = params.getAs[Double]("start")
     println("start: " + start)
+  val reverse = params.getAs[Boolean]("reverse")
+    println("reverse: " + reverse)
   val count = params.getAs[Double]("count")
     println("count: " + count)
   }

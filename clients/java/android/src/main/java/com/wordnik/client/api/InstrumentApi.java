@@ -6,6 +6,14 @@ import com.wordnik.client.model.Instrument;
 import java.util.*;
 import java.io.File;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.entity.mime.*;
+import org.apache.http.entity.mime.content.*;
+import org.apache.http.entity.ContentType;
+
+import android.webkit.MimeTypeMap;
+
 public class InstrumentApi {
   String basePath = "https://www.bitmex.com/api/v1";
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
@@ -26,11 +34,19 @@ public class InstrumentApi {
     return basePath;
   }
 
+  private static String getMimeType(File file) {
+    MimeTypeMap mime = MimeTypeMap.getSingleton();
+    int index = file.getName().lastIndexOf('.')+1;
+    String ext = file.getName().substring(index).toLowerCase();
+    return mime.getMimeTypeFromExtension(ext);
+  }
+
   //error info- code: 200 reason: "Request was successful" model: <none>
   //error info- code: 400 reason: "Parameter Error" model: <none>
   //error info- code: 401 reason: "Unauthorized" model: <none>
   //error info- code: 404 reason: "Not Found" model: <none>
   public List<Instrument> get (Object filter) throws ApiException {
+    Object postBody = null;
     // create path and map variables
     String path = "/instrument".replaceAll("\\{format\\}","json");
 
@@ -40,10 +56,30 @@ public class InstrumentApi {
 
     if(!"null".equals(String.valueOf(filter)))
       queryParams.put("filter", String.valueOf(filter));
-    String contentType = "application/json";
+    String[] contentTypes = {
+      "application/json"};
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("application/x-www-form-urlencoded")) {
+      boolean hasFields = false;
+      List<NameValuePair> mp = new ArrayList<NameValuePair>();
+      if(hasFields)
+        postBody = mp;
+    }
+    else if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+      builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      if(hasFields)
+        postBody = builder;
+    }
+    else {
+      postBody = null;
+    }
 
     try {
-      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, contentType);
+      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, contentType);
       if(response != null){
         return (List<Instrument>) ApiInvoker.deserialize(response, "List", Instrument.class);
       }
@@ -64,6 +100,7 @@ public class InstrumentApi {
   //error info- code: 401 reason: "Unauthorized" model: <none>
   //error info- code: 404 reason: "Not Found" model: <none>
   public List<Instrument> getActive () throws ApiException {
+    Object postBody = null;
     // create path and map variables
     String path = "/instrument/active".replaceAll("\\{format\\}","json");
 
@@ -71,10 +108,30 @@ public class InstrumentApi {
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
 
-    String contentType = "application/json";
+    String[] contentTypes = {
+      "application/json"};
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("application/x-www-form-urlencoded")) {
+      boolean hasFields = false;
+      List<NameValuePair> mp = new ArrayList<NameValuePair>();
+      if(hasFields)
+        postBody = mp;
+    }
+    else if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+      builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      if(hasFields)
+        postBody = builder;
+    }
+    else {
+      postBody = null;
+    }
 
     try {
-      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, contentType);
+      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, contentType);
       if(response != null){
         return (List<Instrument>) ApiInvoker.deserialize(response, "List", Instrument.class);
       }

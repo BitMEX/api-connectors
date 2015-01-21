@@ -21,258 +21,260 @@
  */
 class TradeApi {
 
-	function __construct($apiClient) {
-	  $this->apiClient = $apiClient;
-	}
+  function __construct($apiClient) {
+    $this->apiClient = $apiClient;
+  }
 
   /**
-	 * get
-	 * Get Trades.
-   * symbol, string: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
-
-   * filter, object: Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}. (optional)
-
-   * columns, array[string]: Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
-
-   * start, float: Starting point for results. (optional)
-
-   * reverse, bool: If true, will sort results newest first. (optional)
-
-   * startTime, DateTime: Starting date filter for results. (optional)
-
-   * endTime, DateTime: Ending date filter for results. (optional)
-
-   * count, float: Number of results to fetch. (optional)
-
+   * get
+   * Get Trades.
+   * 
+   * @param string $symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
+   * @param object $filter Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}. (optional)
+   * @param array[string] $columns Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
+   * @param float $start Starting point for results. (optional)
+   * @param bool $reverse If true, will sort results newest first. (optional)
+   * @param DateTime $startTime Starting date filter for results. (optional)
+   * @param DateTime $endTime Ending date filter for results. (optional)
+   * @param float $count Number of results to fetch. (optional)
    * @return Array[Trade]
-	 */
+   */
 
    public function get($symbol=null, $filter=null, $columns=null, $start=null, $reverse=null, $startTime=null, $endTime=null, $count=null) {
 
-  		//parse inputs
-  		$resourcePath = "/trade";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "GET";
+      //parse inputs
+      $resourcePath = "/trade";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "GET";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
       if($symbol != null) {
-  		  $queryParams['symbol'] = $this->apiClient->toQueryValue($symbol);
-  		}
-  		if($filter != null) {
-  		  $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
-  		}
-  		if($columns != null) {
-  		  $queryParams['columns'] = $this->apiClient->toQueryValue($columns);
-  		}
-  		if($count != null) {
-  		  $queryParams['count'] = $this->apiClient->toQueryValue($count);
-  		}
-  		if($start != null) {
-  		  $queryParams['start'] = $this->apiClient->toQueryValue($start);
-  		}
-  		if($reverse != null) {
-  		  $queryParams['reverse'] = $this->apiClient->toQueryValue($reverse);
-  		}
-  		if($startTime != null) {
-  		  $queryParams['startTime'] = $this->apiClient->toQueryValue($startTime);
-  		}
-  		if($endTime != null) {
-  		  $queryParams['endTime'] = $this->apiClient->toQueryValue($endTime);
-  		}
-  		//make the API Call
+        $queryParams['symbol'] = $this->apiClient->toQueryValue($symbol);
+      }
+      if($filter != null) {
+        $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
+      }
+      if($columns != null) {
+        $queryParams['columns'] = $this->apiClient->toQueryValue($columns);
+      }
+      if($count != null) {
+        $queryParams['count'] = $this->apiClient->toQueryValue($count);
+      }
+      if($start != null) {
+        $queryParams['start'] = $this->apiClient->toQueryValue($start);
+      }
+      if($reverse != null) {
+        $queryParams['reverse'] = $this->apiClient->toQueryValue($reverse);
+      }
+      if($startTime != null) {
+        $queryParams['startTime'] = $this->apiClient->toQueryValue($startTime);
+      }
+      if($endTime != null) {
+        $queryParams['endTime'] = $this->apiClient->toQueryValue($endTime);
+      }
+      // Generate form params
       if (! isset($body)) {
+        $body = array();
+      }
+      if (empty($body)) {
         $body = null;
       }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
 
 
       if(! $response){
           return null;
-        }
+      }
 
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[Trade]');
-  		return $responseObject;
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'Array[Trade]');
+      return $responseObject;
 
       }
   /**
-	 * getBucketed
-	 * Get previous trades in time buckets.
-   * symbol, string: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
-
-   * filter, object: Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}. (optional)
-
-   * columns, array[string]: Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
-
-   * start, float: Starting point for results. (optional)
-
-   * reverse, bool: If true, will sort results newest first. (optional)
-
-   * startTime, DateTime: Starting date filter for results. (optional)
-
-   * endTime, DateTime: Ending date filter for results. (optional)
-
-   * binSize, string: Time interval to bucket by. Available options: ['30s', '1m', '5m', '1h', '1d']. (optional)
-
-   * count, float: Number of results to fetch. (optional)
-
+   * getBucketed
+   * Get previous trades in time buckets.
+   * 
+   * @param string $symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
+   * @param object $filter Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}. (optional)
+   * @param array[string] $columns Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
+   * @param float $start Starting point for results. (optional)
+   * @param bool $reverse If true, will sort results newest first. (optional)
+   * @param DateTime $startTime Starting date filter for results. (optional)
+   * @param DateTime $endTime Ending date filter for results. (optional)
+   * @param string $binSize Time interval to bucket by. Available options: ['30s', '1m', '5m', '1h', '1d']. (optional)
+   * @param float $count Number of results to fetch. (optional)
    * @return Array[TradeBin]
-	 */
+   */
 
    public function getBucketed($symbol=null, $filter=null, $columns=null, $start=null, $reverse=null, $startTime=null, $endTime=null, $binSize=null, $count=null) {
 
-  		//parse inputs
-  		$resourcePath = "/trade/bucketed";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "GET";
+      //parse inputs
+      $resourcePath = "/trade/bucketed";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "GET";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
       if($binSize != null) {
-  		  $queryParams['binSize'] = $this->apiClient->toQueryValue($binSize);
-  		}
-  		if($symbol != null) {
-  		  $queryParams['symbol'] = $this->apiClient->toQueryValue($symbol);
-  		}
-  		if($filter != null) {
-  		  $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
-  		}
-  		if($columns != null) {
-  		  $queryParams['columns'] = $this->apiClient->toQueryValue($columns);
-  		}
-  		if($count != null) {
-  		  $queryParams['count'] = $this->apiClient->toQueryValue($count);
-  		}
-  		if($start != null) {
-  		  $queryParams['start'] = $this->apiClient->toQueryValue($start);
-  		}
-  		if($reverse != null) {
-  		  $queryParams['reverse'] = $this->apiClient->toQueryValue($reverse);
-  		}
-  		if($startTime != null) {
-  		  $queryParams['startTime'] = $this->apiClient->toQueryValue($startTime);
-  		}
-  		if($endTime != null) {
-  		  $queryParams['endTime'] = $this->apiClient->toQueryValue($endTime);
-  		}
-  		//make the API Call
+        $queryParams['binSize'] = $this->apiClient->toQueryValue($binSize);
+      }
+      if($symbol != null) {
+        $queryParams['symbol'] = $this->apiClient->toQueryValue($symbol);
+      }
+      if($filter != null) {
+        $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
+      }
+      if($columns != null) {
+        $queryParams['columns'] = $this->apiClient->toQueryValue($columns);
+      }
+      if($count != null) {
+        $queryParams['count'] = $this->apiClient->toQueryValue($count);
+      }
+      if($start != null) {
+        $queryParams['start'] = $this->apiClient->toQueryValue($start);
+      }
+      if($reverse != null) {
+        $queryParams['reverse'] = $this->apiClient->toQueryValue($reverse);
+      }
+      if($startTime != null) {
+        $queryParams['startTime'] = $this->apiClient->toQueryValue($startTime);
+      }
+      if($endTime != null) {
+        $queryParams['endTime'] = $this->apiClient->toQueryValue($endTime);
+      }
+      // Generate form params
       if (! isset($body)) {
+        $body = array();
+      }
+      if (empty($body)) {
         $body = null;
       }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
 
 
       if(! $response){
           return null;
-        }
+      }
 
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[TradeBin]');
-  		return $responseObject;
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'Array[TradeBin]');
+      return $responseObject;
 
       }
   /**
-	 * getByDate
-	 * Get trades between two dates. [Deprecated, use GET /trades]
-   * symbol, string: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
-
-   * startTime, DateTime: Start date. (required)
-
-   * endTime, DateTime: End Date. (optional)
-
+   * getByDate
+   * Get trades between two dates. [Deprecated, use GET /trades]
+   * 
+   * @param string $symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
+   * @param DateTime $startTime Start date. (required)
+   * @param DateTime $endTime End Date. (optional)
    * @return Array[Trade]
-	 */
+   */
 
    public function getByDate($symbol=null, $startTime, $endTime=null) {
 
-  		//parse inputs
-  		$resourcePath = "/trade/byDate";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "GET";
+      //parse inputs
+      $resourcePath = "/trade/byDate";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "GET";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
       if($symbol != null) {
-  		  $queryParams['symbol'] = $this->apiClient->toQueryValue($symbol);
-  		}
-  		if($startTime != null) {
-  		  $queryParams['startTime'] = $this->apiClient->toQueryValue($startTime);
-  		}
-  		if($endTime != null) {
-  		  $queryParams['endTime'] = $this->apiClient->toQueryValue($endTime);
-  		}
-  		//make the API Call
+        $queryParams['symbol'] = $this->apiClient->toQueryValue($symbol);
+      }
+      if($startTime != null) {
+        $queryParams['startTime'] = $this->apiClient->toQueryValue($startTime);
+      }
+      if($endTime != null) {
+        $queryParams['endTime'] = $this->apiClient->toQueryValue($endTime);
+      }
+      // Generate form params
       if (! isset($body)) {
+        $body = array();
+      }
+      if (empty($body)) {
         $body = null;
       }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
 
 
       if(! $response){
           return null;
-        }
+      }
 
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[Trade]');
-  		return $responseObject;
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'Array[Trade]');
+      return $responseObject;
 
       }
   /**
-	 * getRecent
-	 * Get recent trades. [Deprecated, use GET /trades]
-   * symbol, string: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
-
-   * count, float: Number of trades to fetch. (required)
-
+   * getRecent
+   * Get recent trades. [Deprecated, use GET /trades]
+   * 
+   * @param string $symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
+   * @param float $count Number of trades to fetch. (required)
    * @return Array[Trade]
-	 */
+   */
 
    public function getRecent($symbol=null, $count) {
 
-  		//parse inputs
-  		$resourcePath = "/trade/recent";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "GET";
+      //parse inputs
+      $resourcePath = "/trade/recent";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "GET";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
       if($symbol != null) {
-  		  $queryParams['symbol'] = $this->apiClient->toQueryValue($symbol);
-  		}
-  		if($count != null) {
-  		  $queryParams['count'] = $this->apiClient->toQueryValue($count);
-  		}
-  		//make the API Call
+        $queryParams['symbol'] = $this->apiClient->toQueryValue($symbol);
+      }
+      if($count != null) {
+        $queryParams['count'] = $this->apiClient->toQueryValue($count);
+      }
+      // Generate form params
       if (! isset($body)) {
+        $body = array();
+      }
+      if (empty($body)) {
         $body = null;
       }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
 
 
       if(! $response){
           return null;
-        }
+      }
 
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[Trade]');
-  		return $responseObject;
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'Array[Trade]');
+      return $responseObject;
 
       }
   

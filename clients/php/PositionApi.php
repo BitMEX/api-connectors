@@ -21,58 +21,61 @@
  */
 class PositionApi {
 
-	function __construct($apiClient) {
-	  $this->apiClient = $apiClient;
-	}
+  function __construct($apiClient) {
+    $this->apiClient = $apiClient;
+  }
 
   /**
-	 * find
-	 * Get your positions.
-   * filter, object: Table filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;}. (optional)
-
-   * columns, array[any]: Which columns to fetch. For example, send [&quot;columnName&quot;]. (optional)
-
-   * count, float: Number of rows to fetch. (optional)
-
+   * find
+   * Get your positions.
+   * 
+   * @param object $filter Table filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;}. (optional)
+   * @param array[any] $columns Which columns to fetch. For example, send [&quot;columnName&quot;]. (optional)
+   * @param float $count Number of rows to fetch. (optional)
    * @return Array[Position]
-	 */
+   */
 
    public function find($filter=null, $columns=null, $count=null) {
 
-  		//parse inputs
-  		$resourcePath = "/position";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "GET";
+      //parse inputs
+      $resourcePath = "/position";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "GET";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
       if($filter != null) {
-  		  $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
-  		}
-  		if($columns != null) {
-  		  $queryParams['columns'] = $this->apiClient->toQueryValue($columns);
-  		}
-  		if($count != null) {
-  		  $queryParams['count'] = $this->apiClient->toQueryValue($count);
-  		}
-  		//make the API Call
+        $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
+      }
+      if($columns != null) {
+        $queryParams['columns'] = $this->apiClient->toQueryValue($columns);
+      }
+      if($count != null) {
+        $queryParams['count'] = $this->apiClient->toQueryValue($count);
+      }
+      // Generate form params
       if (! isset($body)) {
+        $body = array();
+      }
+      if (empty($body)) {
         $body = null;
       }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
 
 
       if(! $response){
           return null;
-        }
+      }
 
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[Position]');
-  		return $responseObject;
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'Array[Position]');
+      return $responseObject;
 
       }
   

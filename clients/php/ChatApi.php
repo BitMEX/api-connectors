@@ -21,90 +21,106 @@
  */
 class ChatApi {
 
-	function __construct($apiClient) {
-	  $this->apiClient = $apiClient;
-	}
+  function __construct($apiClient) {
+    $this->apiClient = $apiClient;
+  }
 
   /**
-	 * get
-	 * Get chat messages.
-   * start, float: Starting point for results. (optional)
-
-   * count, float: Number of results to fetch. (optional)
-
+   * get
+   * Get chat messages.
+   * 
+   * @param float $start Starting point for results. (optional)
+   * @param bool $reverse If true, will sort results newest first. (optional)
+   * @param float $count Number of results to fetch. (optional)
    * @return Array[Chat]
-	 */
+   */
 
-   public function get($start=null, $count=null) {
+   public function get($start=null, $reverse=null, $count=null) {
 
-  		//parse inputs
-  		$resourcePath = "/chat";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "GET";
+      //parse inputs
+      $resourcePath = "/chat";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "GET";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
       if($count != null) {
-  		  $queryParams['count'] = $this->apiClient->toQueryValue($count);
-  		}
-  		if($start != null) {
-  		  $queryParams['start'] = $this->apiClient->toQueryValue($start);
-  		}
-  		//make the API Call
+        $queryParams['count'] = $this->apiClient->toQueryValue($count);
+      }
+      if($start != null) {
+        $queryParams['start'] = $this->apiClient->toQueryValue($start);
+      }
+      if($reverse != null) {
+        $queryParams['reverse'] = $this->apiClient->toQueryValue($reverse);
+      }
+      // Generate form params
       if (! isset($body)) {
+        $body = array();
+      }
+      if (empty($body)) {
         $body = null;
       }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
 
 
       if(! $response){
           return null;
-        }
+      }
 
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[Chat]');
-  		return $responseObject;
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'Array[Chat]');
+      return $responseObject;
 
       }
   /**
-	 * send
-	 * Send a chat message.
-   * message, string:  (required)
-
+   * send
+   * Send a chat message.
+   * 
+   * @param string $message  (required)
    * @return Chat
-	 */
+   */
 
    public function send($message) {
 
-  		//parse inputs
-  		$resourcePath = "/chat";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "POST";
+      //parse inputs
+      $resourcePath = "/chat";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "POST";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
-      //make the API Call
+      // Generate form params
       if (! isset($body)) {
+        $body = array();
+      }
+      if($message != null) {
+        $body['message'] = $message;
+      }
+      if (empty($body)) {
         $body = null;
       }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
 
 
       if(! $response){
           return null;
-        }
+      }
 
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Chat');
-  		return $responseObject;
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'Chat');
+      return $responseObject;
 
       }
   

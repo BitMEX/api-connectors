@@ -21,7 +21,7 @@
  @param currency 
  */
 -(NSNumber*) getDepositAddressWithCompletionBlock :(NSString*) currency 
-        completionHandler: (void (^)(NSString* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(NSString* output, NSError* error))completionBlock;
 
 /**
 
@@ -43,7 +43,7 @@
         amount:(NSNumber*) amount 
         address:(NSString*) address 
         currency:(NSString*) currency 
-        completionHandler: (void (^)(SWGTransaction* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(SWGTransaction* output, NSError* error))completionBlock;
 
 /**
 
@@ -52,7 +52,7 @@
  @param token 
  */
 -(NSNumber*) cancelWithdrawalWithCompletionBlock :(NSString*) token 
-        completionHandler: (void (^)(SWGTransaction* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(SWGTransaction* output, NSError* error))completionBlock;
 
 /**
 
@@ -61,7 +61,7 @@
  @param token 
  */
 -(NSNumber*) confirmWithdrawalWithCompletionBlock :(NSString*) token 
-        completionHandler: (void (^)(SWGTransaction* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(SWGTransaction* output, NSError* error))completionBlock;
 
 /**
 
@@ -70,7 +70,7 @@
  @param type Two-factor auth type. Supported types: 'GA' (Google Authenticator)
  */
 -(NSNumber*) requestEnableTFAWithCompletionBlock :(NSString*) type 
-        completionHandler: (void (^)(NSNumber* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(NSNumber* output, NSError* error))completionBlock;
 
 /**
 
@@ -81,7 +81,7 @@
  */
 -(NSNumber*) confirmEnableTFAWithCompletionBlock :(NSString*) token 
         type:(NSString*) type 
-        completionHandler: (void (^)(NSNumber* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(NSNumber* output, NSError* error))completionBlock;
 
 /**
 
@@ -90,7 +90,7 @@
  @param email 
  */
 -(NSNumber*) sendVerificationEmailWithCompletionBlock :(NSString*) email 
-        completionHandler: (void (^)(NSNumber* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(NSNumber* output, NSError* error))completionBlock;
 
 /**
 
@@ -99,7 +99,7 @@
  @param token 
  */
 -(NSNumber*) confirmEmailWithCompletionBlock :(NSString*) token 
-        completionHandler: (void (^)(NSNumber* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(NSNumber* output, NSError* error))completionBlock;
 
 /**
 
@@ -108,7 +108,7 @@
  @param email 
  */
 -(NSNumber*) requestPasswordResetWithCompletionBlock :(NSString*) email 
-        completionHandler: (void (^)(NSNumber* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(NSNumber* output, NSError* error))completionBlock;
 
 /**
 
@@ -121,7 +121,7 @@
 -(NSNumber*) confirmPasswordResetWithCompletionBlock :(NSString*) email 
         token:(NSString*) token 
         _newPassword:(NSString*) _newPassword 
-        completionHandler: (void (^)(NSNumber* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(NSNumber* output, NSError* error))completionBlock;
 
 /**
 
@@ -151,7 +151,7 @@
         acceptsTOS:(NSString*) acceptsTOS 
         referrerID:(NSString*) referrerID 
         accountType:(NSString*) accountType 
-        completionHandler: (void (^)(SWGUser* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(SWGUser* output, NSError* error))completionBlock;
 
 /**
 
@@ -177,7 +177,7 @@
         _newPassword:(NSString*) _newPassword 
         _newPasswordConfirm:(NSString*) _newPasswordConfirm 
         accountType:(NSString*) accountType 
-        completionHandler: (void (^)(SWGUser* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(SWGUser* output, NSError* error))completionBlock;
 
 /**
 
@@ -190,7 +190,7 @@
 -(NSNumber*) loginWithCompletionBlock :(NSString*) email 
         password:(NSString*) password 
         token:(NSString*) token 
-        completionHandler: (void (^)(SWGAccessToken* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(SWGAccessToken* output, NSError* error))completionBlock;
 
 /**
 
@@ -213,7 +213,7 @@
  @param prefs 
  */
 -(NSNumber*) savePreferencesWithCompletionBlock :(NSObject*) prefs 
-        completionHandler: (void (^)(SWGUser* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(SWGUser* output, NSError* error))completionBlock;
 
 /**
 

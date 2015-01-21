@@ -47,7 +47,7 @@ class ApiKeyApi {
                     ApiKey.class )
 
   }
-  def remove (String accessKey,Closure onSuccess, Closure onFailure)  {
+  def remove (String apiKeyID,Closure onSuccess, Closure onFailure)  {
     // create path and map variables
     String resourcePath = "/apiKey"
 
@@ -61,7 +61,7 @@ class ApiKeyApi {
                     Boolean.class )
 
   }
-  def disable (String accessKey,Closure onSuccess, Closure onFailure)  {
+  def disable (String apiKeyID,Closure onSuccess, Closure onFailure)  {
     // create path and map variables
     String resourcePath = "/apiKey/disable"
 
@@ -75,7 +75,7 @@ class ApiKeyApi {
                     ApiKey.class )
 
   }
-  def enable (String accessKey,Closure onSuccess, Closure onFailure)  {
+  def enable (String apiKeyID,Closure onSuccess, Closure onFailure)  {
     // create path and map variables
     String resourcePath = "/apiKey/enable"
 

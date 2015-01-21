@@ -24,8 +24,7 @@ public class UserApi {
      
   public Response getDepositAddress(
     @ApiParam(value = ""
-    ,required=true
-, defaultValue="XBt"
+    , defaultValue="XBt"
 )@QueryParam("currency")
  String currency
     )

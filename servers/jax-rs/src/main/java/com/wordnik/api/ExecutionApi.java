@@ -20,36 +20,28 @@ public class ExecutionApi {
      
   public Response get(
     @ApiParam(value = "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series."
-    ,required=true
-)@QueryParam("symbol")
+    )@QueryParam("symbol")
  String symbol
     ,@ApiParam(value = "Generic table filter. Send JSON key/value pairs, such as {"key": "value"}."
-    ,required=true
-)@QueryParam("filter")
+    )@QueryParam("filter")
  Object filter
     ,@ApiParam(value = "Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect."
-    ,required=true
-)@QueryParam("columns")
+    )@QueryParam("columns")
  List<String> columns
     ,@ApiParam(value = "Starting point for results."
-    ,required=true
-)@QueryParam("start")
+    )@QueryParam("start")
  Double start
     ,@ApiParam(value = "If true, will sort results newest first."
-    ,required=true
-)@QueryParam("reverse")
+    )@QueryParam("reverse")
  Boolean reverse
     ,@ApiParam(value = "Starting date filter for results."
-    ,required=true
-)@QueryParam("startTime")
+    )@QueryParam("startTime")
  Date startTime
     ,@ApiParam(value = "Ending date filter for results."
-    ,required=true
-)@QueryParam("endTime")
+    )@QueryParam("endTime")
  Date endTime
     ,@ApiParam(value = "Number of results to fetch."
-    ,required=true
-, defaultValue="100"
+    , defaultValue="100"
 )@QueryParam("count")
  Double count
     )
@@ -65,36 +57,28 @@ public class ExecutionApi {
      
   public Response getTradeHistory(
     @ApiParam(value = "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series."
-    ,required=true
-)@QueryParam("symbol")
+    )@QueryParam("symbol")
  String symbol
     ,@ApiParam(value = "Generic table filter. Send JSON key/value pairs, such as {"key": "value"}."
-    ,required=true
-)@QueryParam("filter")
+    )@QueryParam("filter")
  Object filter
     ,@ApiParam(value = "Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect."
-    ,required=true
-)@QueryParam("columns")
+    )@QueryParam("columns")
  List<String> columns
     ,@ApiParam(value = "Starting point for results."
-    ,required=true
-)@QueryParam("start")
+    )@QueryParam("start")
  Double start
     ,@ApiParam(value = "If true, will sort results newest first."
-    ,required=true
-)@QueryParam("reverse")
+    )@QueryParam("reverse")
  Boolean reverse
     ,@ApiParam(value = "Starting date filter for results."
-    ,required=true
-)@QueryParam("startTime")
+    )@QueryParam("startTime")
  Date startTime
     ,@ApiParam(value = "Ending date filter for results."
-    ,required=true
-)@QueryParam("endTime")
+    )@QueryParam("endTime")
  Date endTime
     ,@ApiParam(value = "Number of results to fetch."
-    ,required=true
-, defaultValue="100"
+    , defaultValue="100"
 )@QueryParam("count")
  Double count
     )

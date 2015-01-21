@@ -27,10 +27,12 @@ public class SchemaApi {
     return basePath;
   }
 
-  //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: <none>
-  //error info- code: 401 reason: "Unauthorized" model: <none>
-  //error info- code: 404 reason: "Not Found" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
   public Object find (String model) throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -74,10 +76,12 @@ public class SchemaApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: <none>
-  //error info- code: 401 reason: "Unauthorized" model: <none>
-  //error info- code: 404 reason: "Not Found" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
   public Object websocketHelp () throws ApiException {
     Object postBody = null;
     // create path and map variables

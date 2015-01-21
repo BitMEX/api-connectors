@@ -54,7 +54,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 -(NSNumber*) createKeyWithCompletionBlock:(NSString*) name
         cidr:(NSString*) cidr
         enabled:(NSNumber*) enabled
-        completionHandler: (void (^)(SWGApiKey* output, NSError* error))completionBlock{
+        completionHandler : (void (^)(SWGApiKey* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/apiKey", basePath];
 
@@ -131,8 +131,8 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 
 }
 
--(NSNumber*) removeWithCompletionBlock:(NSString*) accessKey
-        completionHandler: (void (^)(NSNumber* output, NSError* error))completionBlock{
+-(NSNumber*) removeWithCompletionBlock:(NSString*) apiKeyID
+        completionHandler : (void (^)(NSNumber* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/apiKey", basePath];
 
@@ -167,8 +167,8 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 
 }
 
--(NSNumber*) disableWithCompletionBlock:(NSString*) accessKey
-        completionHandler: (void (^)(SWGApiKey* output, NSError* error))completionBlock{
+-(NSNumber*) disableWithCompletionBlock:(NSString*) apiKeyID
+        completionHandler : (void (^)(SWGApiKey* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/apiKey/disable", basePath];
 
@@ -204,8 +204,8 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 
 }
 
--(NSNumber*) enableWithCompletionBlock:(NSString*) accessKey
-        completionHandler: (void (^)(SWGApiKey* output, NSError* error))completionBlock{
+-(NSNumber*) enableWithCompletionBlock:(NSString*) apiKeyID
+        completionHandler : (void (^)(SWGApiKey* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/apiKey/enable", basePath];
 

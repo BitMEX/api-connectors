@@ -21,7 +21,7 @@
 -(NSNumber*) createKeyWithCompletionBlock :(NSString*) name 
         cidr:(NSString*) cidr 
         enabled:(NSNumber*) enabled 
-        completionHandler: (void (^)(SWGApiKey* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(SWGApiKey* output, NSError* error))completionBlock;
 
 /**
 
@@ -34,27 +34,27 @@
 
  Remove an API Key.
  
- @param accessKey Access Key (public component).
+ @param apiKeyID API Key ID (public component).
  */
--(NSNumber*) removeWithCompletionBlock :(NSString*) accessKey 
-        completionHandler: (void (^)(NSNumber* output, NSError* error))completionBlock;
+-(NSNumber*) removeWithCompletionBlock :(NSString*) apiKeyID 
+        completionHandler : (void (^)(NSNumber* output, NSError* error))completionBlock;
 
 /**
 
  Disable an API Key.
  
- @param accessKey Access Key (public component).
+ @param apiKeyID API Key ID (public component).
  */
--(NSNumber*) disableWithCompletionBlock :(NSString*) accessKey 
-        completionHandler: (void (^)(SWGApiKey* output, NSError* error))completionBlock;
+-(NSNumber*) disableWithCompletionBlock :(NSString*) apiKeyID 
+        completionHandler : (void (^)(SWGApiKey* output, NSError* error))completionBlock;
 
 /**
 
  Enable an API Key.
  
- @param accessKey Access Key (public component).
+ @param apiKeyID API Key ID (public component).
  */
--(NSNumber*) enableWithCompletionBlock :(NSString*) accessKey 
-        completionHandler: (void (^)(SWGApiKey* output, NSError* error))completionBlock;
+-(NSNumber*) enableWithCompletionBlock :(NSString*) apiKeyID 
+        completionHandler : (void (^)(SWGApiKey* output, NSError* error))completionBlock;
 
 @end

@@ -31,7 +31,7 @@ class PositionApi (implicit val swagger: Swagger) extends ScalatraServlet
   val findOperation = (apiOperation[List[Position]]("find")
       summary "Get your positions."
       parameters(
-        queryParam[Any]("filter").description(""),queryParam[List[any]]("columns").description(""),queryParam[Double]("count").description(""))
+        queryParam[Any]("filter").description("").optional,queryParam[List[any]]("columns").description("").optional,queryParam[Double]("count").description("").optional)
   )
 
   get("/",operation(findOperation)) {

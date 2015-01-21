@@ -118,14 +118,14 @@ class ApiKeyApi(object):
         """Remove an API Key.
 
         Args:
-            accessKey, str: Access Key (public component). (optional)
+            apiKeyID, str: API Key ID (public component). (optional)
 
             
 
         Returns: bool
         """
 
-        allParams = ['accessKey']
+        allParams = ['apiKeyID']
 
         params = locals()
         for (key, val) in params['kwargs'].items():
@@ -159,14 +159,14 @@ class ApiKeyApi(object):
         """Disable an API Key.
 
         Args:
-            accessKey, str: Access Key (public component). (optional)
+            apiKeyID, str: API Key ID (public component). (optional)
 
             
 
         Returns: ApiKey
         """
 
-        allParams = ['accessKey']
+        allParams = ['apiKeyID']
 
         params = locals()
         for (key, val) in params['kwargs'].items():
@@ -200,14 +200,14 @@ class ApiKeyApi(object):
         """Enable an API Key.
 
         Args:
-            accessKey, str: Access Key (public component). (optional)
+            apiKeyID, str: API Key ID (public component). (optional)
 
             
 
         Returns: ApiKey
         """
 
-        allParams = ['accessKey']
+        allParams = ['apiKeyID']
 
         params = locals()
         for (key, val) in params['kwargs'].items():

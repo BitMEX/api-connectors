@@ -31,7 +31,7 @@ class SchemaApi (implicit val swagger: Swagger) extends ScalatraServlet
   val findOperation = (apiOperation[Any]("find")
       summary "Get model schemata for data objects returned by this API."
       parameters(
-        queryParam[String]("model").description(""))
+        queryParam[String]("model").description("").optional)
   )
 
   get("/",operation(findOperation)) {

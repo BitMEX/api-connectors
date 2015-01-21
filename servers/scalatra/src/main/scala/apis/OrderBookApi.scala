@@ -31,7 +31,7 @@ class OrderBookApi (implicit val swagger: Swagger) extends ScalatraServlet
   val getOrderBookOperation = (apiOperation[List[OrderBook]]("getOrderBook")
       summary "Get current orderbook."
       parameters(
-        queryParam[String]("symbol").description(""),queryParam[Double]("depth").description("").defaultValue(25))
+        queryParam[String]("symbol").description(""),queryParam[Double]("depth").description("").optional.defaultValue(25))
   )
 
   get("/",operation(getOrderBookOperation)) {

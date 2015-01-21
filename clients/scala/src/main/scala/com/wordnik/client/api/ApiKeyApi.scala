@@ -59,7 +59,7 @@ class ApiKeyApi {
       case ex: ApiException => throw ex
     }
   }
-  def remove (accessKey: String) : Option[Boolean]= {
+  def remove (apiKeyID: String) : Option[Boolean]= {
     // create path and map variables
     val path = "/apiKey".replaceAll("\\{format\\}","json")
 
@@ -81,7 +81,7 @@ class ApiKeyApi {
       case ex: ApiException => throw ex
     }
   }
-  def disable (accessKey: String) : Option[ApiKey]= {
+  def disable (apiKeyID: String) : Option[ApiKey]= {
     // create path and map variables
     val path = "/apiKey/disable".replaceAll("\\{format\\}","json")
 
@@ -103,7 +103,7 @@ class ApiKeyApi {
       case ex: ApiException => throw ex
     }
   }
-  def enable (accessKey: String) : Option[ApiKey]= {
+  def enable (apiKeyID: String) : Option[ApiKey]= {
     // create path and map variables
     val path = "/apiKey/enable".replaceAll("\\{format\\}","json")
 

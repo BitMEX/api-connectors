@@ -17,7 +17,7 @@
  @param model Optional model filter. If omitted, will return all models.
  */
 -(NSNumber*) findWithCompletionBlock :(NSString*) model 
-        completionHandler: (void (^)(NSObject* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(NSObject* output, NSError* error))completionBlock;
 
 /**
 

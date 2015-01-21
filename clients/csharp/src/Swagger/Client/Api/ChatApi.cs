@@ -30,9 +30,10 @@
       /// Get chat messages. 
       /// </summary>
       /// <param name="start">Starting point for results.</param>
+      /// <param name="reverse">If true, will sort results newest first.</param>
       /// <param name="count">Number of results to fetch.</param>
       /// <returns></returns>
-      public List<Chat> get (double? start, double? count) {
+      public List<Chat> get (double? start, bool? reverse, double? count) {
         // create path and map variables
         var path = "/chat".Replace("{format}","json");
 
@@ -48,6 +49,10 @@
         if (start != null){
           string paramStr = (start is DateTime) ? ((DateTime)(object)start).ToString("u") : Convert.ToString(start);
           queryParams.Add("start", paramStr);
+		}
+        if (reverse != null){
+          string paramStr = (reverse is DateTime) ? ((DateTime)(object)reverse).ToString("u") : Convert.ToString(reverse);
+          queryParams.Add("reverse", paramStr);
 		}
         try {
           if (typeof(List<Chat>) == typeof(byte[])) {

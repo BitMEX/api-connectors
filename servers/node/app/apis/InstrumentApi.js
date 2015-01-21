@@ -22,7 +22,7 @@ exports.get = {
     "notes" : "",
     "summary" : "Get instruments.",
     "method": "GET",
-    "params" : [params.query("filter", "Table filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;}.", "object", false, false, "")].concat([]).concat([]).concat([]),
+    "params" : [params.query("filter", "Table filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;}.", "object", , false, "")].concat([]).concat([]).concat([]),
     "type" : "List[Instrument]",
     "responseMessages" : [errors.invalid('id'), errors.notFound('List[Instrument]')],
     "nickname" : "get"

@@ -36,6 +36,8 @@ class ChatApi(object):
         Args:
             start, float: Starting point for results. (optional)
 
+            reverse, bool: If true, will sort results newest first. (optional)
+
             count, float: Number of results to fetch. (optional)
 
             
@@ -43,7 +45,7 @@ class ChatApi(object):
         Returns: Array[Chat]
         """
 
-        allParams = ['start', 'count']
+        allParams = ['start', 'reverse', 'count']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -58,12 +60,19 @@ class ChatApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
         if ('count' in params):
             queryParams['count'] = self.apiClient.toPathValue(params['count'])
         if ('start' in params):
             queryParams['start'] = self.apiClient.toPathValue(params['start'])
-        postData = (params['body'] if 'body' in params else None)
+        if ('reverse' in params):
+            queryParams['reverse'] = self.apiClient.toPathValue(params['reverse'])
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -103,8 +112,15 @@ class ChatApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('message' in params):
+            formParams['message'] = params['message']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)

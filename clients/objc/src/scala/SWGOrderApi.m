@@ -60,7 +60,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
         startTime:(SWGDate*) startTime
         endTime:(SWGDate*) endTime
         count:(NSNumber*) count
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/order", basePath];
 
@@ -122,7 +122,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
         price:(NSNumber*) price
         ioc:(NSNumber*) ioc
         clOrdID:(NSString*) clOrdID
-        completionHandler: (void (^)(SWGOrder* output, NSError* error))completionBlock{
+        completionHandler : (void (^)(SWGOrder* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/order", basePath];
 
@@ -170,7 +170,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 -(NSNumber*) cancelOrderWithCompletionBlock:(NSString*) orderID
         clOrdID:(NSString*) clOrdID
         text:(NSString*) text
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/order", basePath];
 
@@ -212,7 +212,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 }
 
 -(NSNumber*) cancelAllAfterWithCompletionBlock:(NSNumber*) timeout
-        completionHandler: (void (^)(NSObject* output, NSError* error))completionBlock{
+        completionHandler : (void (^)(NSObject* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/order/cancelAllAfter", basePath];
 

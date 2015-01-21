@@ -59,7 +59,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
         startTime:(SWGDate*) startTime
         endTime:(SWGDate*) endTime
         count:(NSNumber*) count
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/execution", basePath];
 
@@ -124,7 +124,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
         startTime:(SWGDate*) startTime
         endTime:(SWGDate*) endTime
         count:(NSNumber*) count
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/execution/tradeHistory", basePath];
 

@@ -70,6 +70,8 @@ class OrderApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
         if ('symbol' in params):
             queryParams['symbol'] = self.apiClient.toPathValue(params['symbol'])
@@ -87,7 +89,10 @@ class OrderApi(object):
             queryParams['startTime'] = self.apiClient.toPathValue(params['startTime'])
         if ('endTime' in params):
             queryParams['endTime'] = self.apiClient.toPathValue(params['endTime'])
-        postData = (params['body'] if 'body' in params else None)
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -135,8 +140,23 @@ class OrderApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('symbol' in params):
+            formParams['symbol'] = params['symbol']
+        if ('quantity' in params):
+            formParams['quantity'] = params['quantity']
+        if ('price' in params):
+            formParams['price'] = params['price']
+        if ('ioc' in params):
+            formParams['ioc'] = params['ioc']
+        if ('clOrdID' in params):
+            formParams['clOrdID'] = params['clOrdID']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -180,8 +200,19 @@ class OrderApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('orderID' in params):
+            formParams['orderID'] = params['orderID']
+        if ('clOrdID' in params):
+            formParams['clOrdID'] = params['clOrdID']
+        if ('text' in params):
+            formParams['text'] = params['text']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -221,8 +252,15 @@ class OrderApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('timeout' in params):
+            formParams['timeout'] = params['timeout']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)

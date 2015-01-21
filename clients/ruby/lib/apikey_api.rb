@@ -56,12 +56,12 @@ def self.get_keys (opts={})
 
   end
 
-def self.remove (access_key,opts={})
+def self.remove (api_key_i_d,opts={})
     query_param_keys = []
 
     # set default values and merge with input
     options = {
-    :access_key => access_key}.merge(opts)
+    :api_key_i_d => api_key_i_d}.merge(opts)
 
     #resource path
     path = "/apiKey".sub('{format}','json')
@@ -79,12 +79,12 @@ def self.remove (access_key,opts={})
 
   end
 
-def self.disable (access_key,opts={})
+def self.disable (api_key_i_d,opts={})
     query_param_keys = []
 
     # set default values and merge with input
     options = {
-    :access_key => access_key}.merge(opts)
+    :api_key_i_d => api_key_i_d}.merge(opts)
 
     #resource path
     path = "/apiKey/disable".sub('{format}','json')
@@ -102,12 +102,12 @@ def self.disable (access_key,opts={})
 
   end
 
-def self.enable (access_key,opts={})
+def self.enable (api_key_i_d,opts={})
     query_param_keys = []
 
     # set default values and merge with input
     options = {
-    :access_key => access_key}.merge(opts)
+    :api_key_i_d => api_key_i_d}.merge(opts)
 
     #resource path
     path = "/apiKey/enable".sub('{format}','json')

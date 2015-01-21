@@ -20,8 +20,7 @@ public class InstrumentApi {
      
   public Response get(
     @ApiParam(value = "Table filter. For example, send {"symbol": "XBTF15"}."
-    ,required=true
-)@QueryParam("filter")
+    )@QueryParam("filter")
  Object filter
     )
       throws NotFoundException {

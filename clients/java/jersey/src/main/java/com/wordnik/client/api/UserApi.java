@@ -31,7 +31,9 @@ public class UserApi {
     return basePath;
   }
 
-  //error info- code: 200 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  */
   public String getDepositAddress (String currency) throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -75,7 +77,9 @@ public class UserApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  */
   public List<Transaction> getWalletHistory () throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -117,7 +121,9 @@ public class UserApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  */
   public Transaction requestWithdrawal (String otpToken, Double amount, String address, String currency) throws ApiException {
     Object postBody = null;
     // verify required params are set
@@ -152,7 +158,11 @@ public class UserApi {
         postBody = mp;
     }
     else {
-      formParams.put("otpToken", otpToken);formParams.put("currency", currency);formParams.put("amount", amount);formParams.put("address", address);}
+      formParams.put("otpToken", String.valueOf(otpToken));
+      formParams.put("currency", String.valueOf(currency));
+      formParams.put("amount", String.valueOf(amount));
+      formParams.put("address", String.valueOf(address));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
@@ -171,7 +181,9 @@ public class UserApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  */
   public Transaction cancelWithdrawal (String token) throws ApiException {
     Object postBody = null;
     // verify required params are set
@@ -200,7 +212,8 @@ public class UserApi {
         postBody = mp;
     }
     else {
-      formParams.put("token", token);}
+      formParams.put("token", String.valueOf(token));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
@@ -219,7 +232,9 @@ public class UserApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  */
   public Transaction confirmWithdrawal (String token) throws ApiException {
     Object postBody = null;
     // verify required params are set
@@ -248,7 +263,8 @@ public class UserApi {
         postBody = mp;
     }
     else {
-      formParams.put("token", token);}
+      formParams.put("token", String.valueOf(token));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
@@ -267,7 +283,9 @@ public class UserApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  */
   public Boolean requestEnableTFA (String type) throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -292,7 +310,8 @@ public class UserApi {
         postBody = mp;
     }
     else {
-      formParams.put("type", type);}
+      formParams.put("type", String.valueOf(type));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
@@ -311,7 +330,9 @@ public class UserApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  */
   public Boolean confirmEnableTFA (String token, String type) throws ApiException {
     Object postBody = null;
     // verify required params are set
@@ -342,7 +363,9 @@ public class UserApi {
         postBody = mp;
     }
     else {
-      formParams.put("type", type);formParams.put("token", token);}
+      formParams.put("type", String.valueOf(type));
+      formParams.put("token", String.valueOf(token));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
@@ -361,7 +384,9 @@ public class UserApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  */
   public Boolean sendVerificationEmail (String email) throws ApiException {
     Object postBody = null;
     // verify required params are set
@@ -409,7 +434,9 @@ public class UserApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  */
   public Boolean confirmEmail (String token) throws ApiException {
     Object postBody = null;
     // verify required params are set
@@ -438,7 +465,8 @@ public class UserApi {
         postBody = mp;
     }
     else {
-      formParams.put("token", token);}
+      formParams.put("token", String.valueOf(token));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
@@ -457,7 +485,9 @@ public class UserApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  */
   public Boolean requestPasswordReset (String email) throws ApiException {
     Object postBody = null;
     // verify required params are set
@@ -486,7 +516,8 @@ public class UserApi {
         postBody = mp;
     }
     else {
-      formParams.put("email", email);}
+      formParams.put("email", String.valueOf(email));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
@@ -505,7 +536,9 @@ public class UserApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  */
   public Boolean confirmPasswordReset (String email, String token, String newPassword) throws ApiException {
     Object postBody = null;
     // verify required params are set
@@ -538,7 +571,10 @@ public class UserApi {
         postBody = mp;
     }
     else {
-      formParams.put("email", email);formParams.put("token", token);formParams.put("newPassword", newPassword);}
+      formParams.put("email", String.valueOf(email));
+      formParams.put("token", String.valueOf(token));
+      formParams.put("newPassword", String.valueOf(newPassword));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
@@ -557,7 +593,9 @@ public class UserApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  */
   public List<Affiliate> getAffiliateStatus () throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -599,7 +637,9 @@ public class UserApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  */
   public User newUser (String email, String password, String username, String firstname, String lastname, String acceptsTOS, String referrerID, String accountType) throws ApiException {
     Object postBody = null;
     // verify required params are set
@@ -642,7 +682,15 @@ public class UserApi {
         postBody = mp;
     }
     else {
-      formParams.put("email", email);formParams.put("password", password);formParams.put("username", username);formParams.put("firstname", firstname);formParams.put("lastname", lastname);formParams.put("accountType", accountType);formParams.put("acceptsTOS", acceptsTOS);formParams.put("referrerID", referrerID);}
+      formParams.put("email", String.valueOf(email));
+      formParams.put("password", String.valueOf(password));
+      formParams.put("username", String.valueOf(username));
+      formParams.put("firstname", String.valueOf(firstname));
+      formParams.put("lastname", String.valueOf(lastname));
+      formParams.put("accountType", String.valueOf(accountType));
+      formParams.put("acceptsTOS", String.valueOf(acceptsTOS));
+      formParams.put("referrerID", String.valueOf(referrerID));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
@@ -661,7 +709,9 @@ public class UserApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  */
   public User getMe () throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -703,7 +753,9 @@ public class UserApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  */
   public User updateMe (String firstname, String lastname, String oldPassword, String newPassword, String newPasswordConfirm, String accountType) throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -738,7 +790,13 @@ public class UserApi {
         postBody = mp;
     }
     else {
-      formParams.put("firstname", firstname);formParams.put("lastname", lastname);formParams.put("oldPassword", oldPassword);formParams.put("newPassword", newPassword);formParams.put("newPasswordConfirm", newPasswordConfirm);formParams.put("accountType", accountType);}
+      formParams.put("firstname", String.valueOf(firstname));
+      formParams.put("lastname", String.valueOf(lastname));
+      formParams.put("oldPassword", String.valueOf(oldPassword));
+      formParams.put("newPassword", String.valueOf(newPassword));
+      formParams.put("newPasswordConfirm", String.valueOf(newPasswordConfirm));
+      formParams.put("accountType", String.valueOf(accountType));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType);
@@ -757,7 +815,9 @@ public class UserApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  */
   public AccessToken login (String email, String password, String token) throws ApiException {
     Object postBody = null;
     // verify required params are set
@@ -790,7 +850,10 @@ public class UserApi {
         postBody = mp;
     }
     else {
-      formParams.put("email", email);formParams.put("password", password);formParams.put("token", token);}
+      formParams.put("email", String.valueOf(email));
+      formParams.put("password", String.valueOf(password));
+      formParams.put("token", String.valueOf(token));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
@@ -809,7 +872,9 @@ public class UserApi {
       }
     }
   }
-  //error info- code: 204 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 204 reason: "Request was successful" model: <none>
+  */
   public void logout () throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -851,7 +916,9 @@ public class UserApi {
       }
     }
   }
-  //error info- code: 204 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 204 reason: "Request was successful" model: <none>
+  */
   public void logoutAll () throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -893,7 +960,9 @@ public class UserApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  */
   public User savePreferences (Object prefs) throws ApiException {
     Object postBody = null;
     // verify required params are set
@@ -922,7 +991,8 @@ public class UserApi {
         postBody = mp;
     }
     else {
-      formParams.put("prefs", prefs);}
+      formParams.put("prefs", String.valueOf(prefs));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
@@ -941,7 +1011,9 @@ public class UserApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  */
   public List<any> getCommission () throws ApiException {
     Object postBody = null;
     // create path and map variables

@@ -56,10 +56,15 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
         if ('currency' in params):
             queryParams['currency'] = self.apiClient.toPathValue(params['currency'])
-        postData = (params['body'] if 'body' in params else None)
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -97,8 +102,13 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -144,8 +154,21 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('otpToken' in params):
+            formParams['otpToken'] = params['otpToken']
+        if ('currency' in params):
+            formParams['currency'] = params['currency']
+        if ('amount' in params):
+            formParams['amount'] = params['amount']
+        if ('address' in params):
+            formParams['address'] = params['address']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -185,8 +208,15 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('token' in params):
+            formParams['token'] = params['token']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -226,8 +256,15 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('token' in params):
+            formParams['token'] = params['token']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -267,8 +304,15 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('type' in params):
+            formParams['type'] = params['type']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -310,8 +354,17 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('type' in params):
+            formParams['type'] = params['type']
+        if ('token' in params):
+            formParams['token'] = params['token']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -351,10 +404,15 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
         if ('email' in params):
             queryParams['email'] = self.apiClient.toPathValue(params['email'])
-        postData = (params['body'] if 'body' in params else None)
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -394,8 +452,15 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('token' in params):
+            formParams['token'] = params['token']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -435,8 +500,15 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('email' in params):
+            formParams['email'] = params['email']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -480,8 +552,19 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('email' in params):
+            formParams['email'] = params['email']
+        if ('token' in params):
+            formParams['token'] = params['token']
+        if ('newPassword' in params):
+            formParams['newPassword'] = params['newPassword']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -519,8 +602,13 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -574,8 +662,29 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('email' in params):
+            formParams['email'] = params['email']
+        if ('password' in params):
+            formParams['password'] = params['password']
+        if ('username' in params):
+            formParams['username'] = params['username']
+        if ('firstname' in params):
+            formParams['firstname'] = params['firstname']
+        if ('lastname' in params):
+            formParams['lastname'] = params['lastname']
+        if ('accountType' in params):
+            formParams['accountType'] = params['accountType']
+        if ('acceptsTOS' in params):
+            formParams['acceptsTOS'] = params['acceptsTOS']
+        if ('referrerID' in params):
+            formParams['referrerID'] = params['referrerID']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -613,8 +722,13 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -664,8 +778,25 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('firstname' in params):
+            formParams['firstname'] = params['firstname']
+        if ('lastname' in params):
+            formParams['lastname'] = params['lastname']
+        if ('oldPassword' in params):
+            formParams['oldPassword'] = params['oldPassword']
+        if ('newPassword' in params):
+            formParams['newPassword'] = params['newPassword']
+        if ('newPasswordConfirm' in params):
+            formParams['newPasswordConfirm'] = params['newPasswordConfirm']
+        if ('accountType' in params):
+            formParams['accountType'] = params['accountType']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -709,8 +840,19 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('email' in params):
+            formParams['email'] = params['email']
+        if ('password' in params):
+            formParams['password'] = params['password']
+        if ('token' in params):
+            formParams['token'] = params['token']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -748,8 +890,13 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -782,8 +929,13 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -818,8 +970,15 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('prefs' in params):
+            formParams['prefs'] = params['prefs']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -857,8 +1016,13 @@ class UserApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)

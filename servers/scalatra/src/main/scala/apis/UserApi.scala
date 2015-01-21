@@ -35,7 +35,7 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
   val getDepositAddressOperation = (apiOperation[String]("getDepositAddress")
       summary "Get a deposit address."
       parameters(
-        queryParam[String]("currency").description("").defaultValue("XBt"))
+        queryParam[String]("currency").description("").optional.defaultValue("XBt"))
   )
 
   get("/depositAddress",operation(getDepositAddressOperation)) {
@@ -61,7 +61,7 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
   val requestWithdrawalOperation = (apiOperation[Transaction]("requestWithdrawal")
       summary "Request a withdrawal to an external wallet."
       parameters(
-        formParam[String]("otpToken").description(""),formParam[Double]("amount").description(""),formParam[String]("address").description(""),formParam[String]("currency").description("").defaultValue("XBt"))
+        formParam[String]("otpToken").description("").optional,formParam[Double]("amount").description(""),formParam[String]("address").description(""),formParam[String]("currency").description("").defaultValue("XBt"))
   )
 
   post("/requestWithdrawal",operation(requestWithdrawalOperation)) {
@@ -109,7 +109,7 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
   val requestEnableTFAOperation = (apiOperation[Boolean]("requestEnableTFA")
       summary "Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled."
       parameters(
-        formParam[String]("`type`").description("").defaultValue("GA"))
+        formParam[String]("`type`").description("").optional.defaultValue("GA"))
   )
 
   post("/requestEnableTFA",operation(requestEnableTFAOperation)) {
@@ -123,7 +123,7 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
   val confirmEnableTFAOperation = (apiOperation[Boolean]("confirmEnableTFA")
       summary "Confirm two-factor auth for this account."
       parameters(
-        formParam[String]("token").description(""),formParam[String]("`type`").description("").defaultValue("GA"))
+        formParam[String]("token").description(""),formParam[String]("`type`").description("").optional.defaultValue("GA"))
   )
 
   post("/confirmEnableTFA",operation(confirmEnableTFAOperation)) {
@@ -211,7 +211,7 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
   val newUserOperation = (apiOperation[User]("newUser")
       summary "Register a new user."
       parameters(
-        formParam[String]("email").description(""),formParam[String]("password").description(""),formParam[String]("username").description(""),formParam[String]("firstname").description(""),formParam[String]("lastname").description(""),formParam[String]("acceptsTOS").description(""),formParam[String]("referrerID").description(""),formParam[String]("accountType").description("").defaultValue("Trader"))
+        formParam[String]("email").description(""),formParam[String]("password").description(""),formParam[String]("username").description(""),formParam[String]("firstname").description("").optional,formParam[String]("lastname").description("").optional,formParam[String]("acceptsTOS").description("").optional,formParam[String]("referrerID").description("").optional,formParam[String]("accountType").description("").optional.defaultValue("Trader"))
   )
 
   post("/",operation(newUserOperation)) {
@@ -251,7 +251,7 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
   val updateMeOperation = (apiOperation[User]("updateMe")
       summary "Update your password, name, and other attributes."
       parameters(
-        formParam[String]("firstname").description(""),formParam[String]("lastname").description(""),formParam[String]("oldPassword").description(""),formParam[String]("newPassword").description(""),formParam[String]("newPasswordConfirm").description(""),formParam[String]("accountType").description(""))
+        formParam[String]("firstname").description("").optional,formParam[String]("lastname").description("").optional,formParam[String]("oldPassword").description("").optional,formParam[String]("newPassword").description("").optional,formParam[String]("newPasswordConfirm").description("").optional,formParam[String]("accountType").description("").optional)
   )
 
   put("/",operation(updateMeOperation)) {
@@ -275,7 +275,7 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
   val loginOperation = (apiOperation[AccessToken]("login")
       summary "Log in to BitMEX."
       parameters(
-        formParam[String]("email").description(""),formParam[String]("password").description(""),formParam[String]("token").description(""))
+        formParam[String]("email").description(""),formParam[String]("password").description(""),formParam[String]("token").description("").optional)
   )
 
   post("/login",operation(loginOperation)) {

@@ -126,9 +126,9 @@
       /// <summary>
       /// Remove an API Key. 
       /// </summary>
-      /// <param name="accessKey">Access Key (public component).</param>
+      /// <param name="apiKeyID">API Key ID (public component).</param>
       /// <returns></returns>
-      public bool? remove (string accessKey) {
+      public bool? remove (string apiKeyID) {
         // create path and map variables
         var path = "/apiKey".Replace("{format}","json");
 
@@ -137,12 +137,12 @@
         var headerParams = new Dictionary<String, String>();
         var formParams = new Dictionary<String, object>();
 
-        if (accessKey != null){
-          if(accessKey is byte[]) {
-            formParams.Add("accessKey", accessKey);
+        if (apiKeyID != null){
+          if(apiKeyID is byte[]) {
+            formParams.Add("apiKeyID", apiKeyID);
           } else {
-            string paramStr = (accessKey is DateTime) ? ((DateTime)(object)accessKey).ToString("u") : Convert.ToString(accessKey);
-            formParams.Add("accessKey", paramStr);
+            string paramStr = (apiKeyID is DateTime) ? ((DateTime)(object)apiKeyID).ToString("u") : Convert.ToString(apiKeyID);
+            formParams.Add("apiKeyID", paramStr);
           }
 		}
         try {
@@ -170,9 +170,9 @@
       /// <summary>
       /// Disable an API Key. 
       /// </summary>
-      /// <param name="accessKey">Access Key (public component).</param>
+      /// <param name="apiKeyID">API Key ID (public component).</param>
       /// <returns></returns>
-      public ApiKey disable (string accessKey) {
+      public ApiKey disable (string apiKeyID) {
         // create path and map variables
         var path = "/apiKey/disable".Replace("{format}","json");
 
@@ -181,12 +181,12 @@
         var headerParams = new Dictionary<String, String>();
         var formParams = new Dictionary<String, object>();
 
-        if (accessKey != null){
-          if(accessKey is byte[]) {
-            formParams.Add("accessKey", accessKey);
+        if (apiKeyID != null){
+          if(apiKeyID is byte[]) {
+            formParams.Add("apiKeyID", apiKeyID);
           } else {
-            string paramStr = (accessKey is DateTime) ? ((DateTime)(object)accessKey).ToString("u") : Convert.ToString(accessKey);
-            formParams.Add("accessKey", paramStr);
+            string paramStr = (apiKeyID is DateTime) ? ((DateTime)(object)apiKeyID).ToString("u") : Convert.ToString(apiKeyID);
+            formParams.Add("apiKeyID", paramStr);
           }
 		}
         try {
@@ -214,9 +214,9 @@
       /// <summary>
       /// Enable an API Key. 
       /// </summary>
-      /// <param name="accessKey">Access Key (public component).</param>
+      /// <param name="apiKeyID">API Key ID (public component).</param>
       /// <returns></returns>
-      public ApiKey enable (string accessKey) {
+      public ApiKey enable (string apiKeyID) {
         // create path and map variables
         var path = "/apiKey/enable".Replace("{format}","json");
 
@@ -225,12 +225,12 @@
         var headerParams = new Dictionary<String, String>();
         var formParams = new Dictionary<String, object>();
 
-        if (accessKey != null){
-          if(accessKey is byte[]) {
-            formParams.Add("accessKey", accessKey);
+        if (apiKeyID != null){
+          if(apiKeyID is byte[]) {
+            formParams.Add("apiKeyID", apiKeyID);
           } else {
-            string paramStr = (accessKey is DateTime) ? ((DateTime)(object)accessKey).ToString("u") : Convert.ToString(accessKey);
-            formParams.Add("accessKey", paramStr);
+            string paramStr = (apiKeyID is DateTime) ? ((DateTime)(object)apiKeyID).ToString("u") : Convert.ToString(apiKeyID);
+            formParams.Add("apiKeyID", paramStr);
           }
 		}
         try {

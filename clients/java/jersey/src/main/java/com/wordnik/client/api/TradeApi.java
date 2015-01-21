@@ -28,10 +28,12 @@ public class TradeApi {
     return basePath;
   }
 
-  //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: <none>
-  //error info- code: 401 reason: "Unauthorized" model: <none>
-  //error info- code: 404 reason: "Not Found" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
   public List<Trade> get (String symbol, Object filter, List<String> columns, Double start, Boolean reverse, Date startTime, Date endTime, Double count) throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -89,10 +91,12 @@ public class TradeApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: <none>
-  //error info- code: 401 reason: "Unauthorized" model: <none>
-  //error info- code: 404 reason: "Not Found" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
   public List<TradeBin> getBucketed (String symbol, Object filter, List<String> columns, Double start, Boolean reverse, Date startTime, Date endTime, String binSize, Double count) throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -152,10 +156,12 @@ public class TradeApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: <none>
-  //error info- code: 401 reason: "Unauthorized" model: <none>
-  //error info- code: 404 reason: "Not Found" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
   public List<Trade> getByDate (String symbol, Date startTime, Date endTime) throws ApiException {
     Object postBody = null;
     // verify required params are set
@@ -207,10 +213,12 @@ public class TradeApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: <none>
-  //error info- code: 401 reason: "Unauthorized" model: <none>
-  //error info- code: 404 reason: "Not Found" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
   public List<Trade> getRecent (String symbol, Double count) throws ApiException {
     Object postBody = null;
     // verify required params are set

@@ -1,7 +1,6 @@
 package com.wordnik.client.model
 
 import java.util.Date
-import com.wordnik.client.model.Object
 case class User (
   id: Double,
   firstname: String,

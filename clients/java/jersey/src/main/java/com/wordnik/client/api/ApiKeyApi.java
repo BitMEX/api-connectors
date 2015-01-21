@@ -27,10 +27,12 @@ public class ApiKeyApi {
     return basePath;
   }
 
-  //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: <none>
-  //error info- code: 401 reason: "Unauthorized" model: <none>
-  //error info- code: 404 reason: "Not Found" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
   public ApiKey createKey (String name, String cidr, Boolean enabled) throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -59,7 +61,10 @@ public class ApiKeyApi {
         postBody = mp;
     }
     else {
-      formParams.put("name", name);formParams.put("cidr", cidr);formParams.put("enabled", enabled);}
+      formParams.put("name", String.valueOf(name));
+      formParams.put("cidr", String.valueOf(cidr));
+      formParams.put("enabled", String.valueOf(enabled));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
@@ -78,10 +83,12 @@ public class ApiKeyApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: <none>
-  //error info- code: 401 reason: "Unauthorized" model: <none>
-  //error info- code: 404 reason: "Not Found" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
   public List<ApiKey> getKeys () throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -123,11 +130,13 @@ public class ApiKeyApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: <none>
-  //error info- code: 401 reason: "Unauthorized" model: <none>
-  //error info- code: 404 reason: "Not Found" model: <none>
-  public Boolean remove (String accessKey) throws ApiException {
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
+  public Boolean remove (String apiKeyID) throws ApiException {
     Object postBody = null;
     // create path and map variables
     String path = "/apiKey".replaceAll("\\{format\\}","json");
@@ -146,12 +155,13 @@ public class ApiKeyApi {
       boolean hasFields = false;
       FormDataMultiPart mp = new FormDataMultiPart();
       hasFields = true;
-      mp.field("accessKey", accessKey, MediaType.MULTIPART_FORM_DATA_TYPE);
+      mp.field("apiKeyID", apiKeyID, MediaType.MULTIPART_FORM_DATA_TYPE);
       if(hasFields)
         postBody = mp;
     }
     else {
-      formParams.put("accessKey", accessKey);}
+      formParams.put("apiKeyID", String.valueOf(apiKeyID));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType);
@@ -170,11 +180,13 @@ public class ApiKeyApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: <none>
-  //error info- code: 401 reason: "Unauthorized" model: <none>
-  //error info- code: 404 reason: "Not Found" model: <none>
-  public ApiKey disable (String accessKey) throws ApiException {
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
+  public ApiKey disable (String apiKeyID) throws ApiException {
     Object postBody = null;
     // create path and map variables
     String path = "/apiKey/disable".replaceAll("\\{format\\}","json");
@@ -193,12 +205,13 @@ public class ApiKeyApi {
       boolean hasFields = false;
       FormDataMultiPart mp = new FormDataMultiPart();
       hasFields = true;
-      mp.field("accessKey", accessKey, MediaType.MULTIPART_FORM_DATA_TYPE);
+      mp.field("apiKeyID", apiKeyID, MediaType.MULTIPART_FORM_DATA_TYPE);
       if(hasFields)
         postBody = mp;
     }
     else {
-      formParams.put("accessKey", accessKey);}
+      formParams.put("apiKeyID", String.valueOf(apiKeyID));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
@@ -217,11 +230,13 @@ public class ApiKeyApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: <none>
-  //error info- code: 401 reason: "Unauthorized" model: <none>
-  //error info- code: 404 reason: "Not Found" model: <none>
-  public ApiKey enable (String accessKey) throws ApiException {
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
+  public ApiKey enable (String apiKeyID) throws ApiException {
     Object postBody = null;
     // create path and map variables
     String path = "/apiKey/enable".replaceAll("\\{format\\}","json");
@@ -240,12 +255,13 @@ public class ApiKeyApi {
       boolean hasFields = false;
       FormDataMultiPart mp = new FormDataMultiPart();
       hasFields = true;
-      mp.field("accessKey", accessKey, MediaType.MULTIPART_FORM_DATA_TYPE);
+      mp.field("apiKeyID", apiKeyID, MediaType.MULTIPART_FORM_DATA_TYPE);
       if(hasFields)
         postBody = mp;
     }
     else {
-      formParams.put("accessKey", accessKey);}
+      formParams.put("apiKeyID", String.valueOf(apiKeyID));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);

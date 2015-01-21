@@ -31,7 +31,7 @@ class InstrumentApi (implicit val swagger: Swagger) extends ScalatraServlet
   val getOperation = (apiOperation[List[Instrument]]("get")
       summary "Get instruments."
       parameters(
-        queryParam[Any]("filter").description(""))
+        queryParam[Any]("filter").description("").optional)
   )
 
   get("/",operation(getOperation)) {

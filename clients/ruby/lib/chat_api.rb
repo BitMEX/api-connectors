@@ -8,12 +8,13 @@ class Chat_api
     URI.encode(string.to_s)
   end
 
-  def self.get (start,count= 100,opts={})
-    query_param_keys = [:count,:start]
+  def self.get (start,reverse,count= 100,opts={})
+    query_param_keys = [:count,:start,:reverse]
 
     # set default values and merge with input
     options = {
     :start => start,
+      :reverse => reverse,
       :count => count}.merge(opts)
 
     #resource path

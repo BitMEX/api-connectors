@@ -21,6 +21,6 @@
 -(NSNumber*) findWithCompletionBlock :(NSObject*) filter 
         columns:(NSArray*) columns 
         count:(NSNumber*) count 
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock;
 
 @end

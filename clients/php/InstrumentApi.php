@@ -21,83 +21,94 @@
  */
 class InstrumentApi {
 
-	function __construct($apiClient) {
-	  $this->apiClient = $apiClient;
-	}
+  function __construct($apiClient) {
+    $this->apiClient = $apiClient;
+  }
 
   /**
-	 * get
-	 * Get instruments.
-   * filter, object: Table filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;}. (optional)
-
+   * get
+   * Get instruments.
+   * 
+   * @param object $filter Table filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;}. (optional)
    * @return Array[Instrument]
-	 */
+   */
 
    public function get($filter=null) {
 
-  		//parse inputs
-  		$resourcePath = "/instrument";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "GET";
+      //parse inputs
+      $resourcePath = "/instrument";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "GET";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
       if($filter != null) {
-  		  $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
-  		}
-  		//make the API Call
+        $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
+      }
+      // Generate form params
       if (! isset($body)) {
+        $body = array();
+      }
+      if (empty($body)) {
         $body = null;
       }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
 
 
       if(! $response){
           return null;
-        }
+      }
 
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[Instrument]');
-  		return $responseObject;
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'Array[Instrument]');
+      return $responseObject;
 
       }
   /**
-	 * getActive
-	 * Get all active instruments and instruments that have expired in &lt;24hrs.
+   * getActive
+   * Get all active instruments and instruments that have expired in &lt;24hrs.
+   * 
    * @return Array[Instrument]
-	 */
+   */
 
    public function getActive() {
 
-  		//parse inputs
-  		$resourcePath = "/instrument/active";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "GET";
+      //parse inputs
+      $resourcePath = "/instrument/active";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "GET";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
-      //make the API Call
+      // Generate form params
       if (! isset($body)) {
+        $body = array();
+      }
+      if (empty($body)) {
         $body = null;
       }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
 
 
       if(! $response){
           return null;
-        }
+      }
 
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[Instrument]');
-  		return $responseObject;
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'Array[Instrument]');
+      return $responseObject;
 
       }
   

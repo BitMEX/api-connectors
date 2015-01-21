@@ -60,7 +60,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
         endTime:(SWGDate*) endTime
         binSize:(NSString*) binSize
         count:(NSNumber*) count
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/quote/bucketed", basePath];
 

@@ -31,7 +31,7 @@ class ApiKeyApi (implicit val swagger: Swagger) extends ScalatraServlet
   val createKeyOperation = (apiOperation[ApiKey]("createKey")
       summary "Create a new API Key."
       parameters(
-        formParam[String]("name").description(""),formParam[String]("cidr").description(""),formParam[Boolean]("enabled").description(""))
+        formParam[String]("name").description("").optional,formParam[String]("cidr").description("").optional,formParam[Boolean]("enabled").description("").optional)
   )
 
   post("/",operation(createKeyOperation)) {
@@ -61,12 +61,12 @@ class ApiKeyApi (implicit val swagger: Swagger) extends ScalatraServlet
   val removeOperation = (apiOperation[Boolean]("remove")
       summary "Remove an API Key."
       parameters(
-        formParam[String]("accessKey").description(""))
+        formParam[String]("apiKeyID").description("").optional)
   )
 
   delete("/",operation(removeOperation)) {
-    val accessKey = params.getAs[String]("accessKey")
-    println("accessKey: " + accessKey)
+    val apiKeyID = params.getAs[String]("apiKeyID")
+    println("apiKeyID: " + apiKeyID)
   }
 
 
@@ -75,12 +75,12 @@ class ApiKeyApi (implicit val swagger: Swagger) extends ScalatraServlet
   val disableOperation = (apiOperation[ApiKey]("disable")
       summary "Disable an API Key."
       parameters(
-        formParam[String]("accessKey").description(""))
+        formParam[String]("apiKeyID").description("").optional)
   )
 
   post("/disable",operation(disableOperation)) {
-    val accessKey = params.getAs[String]("accessKey")
-    println("accessKey: " + accessKey)
+    val apiKeyID = params.getAs[String]("apiKeyID")
+    println("apiKeyID: " + apiKeyID)
   }
 
 
@@ -89,12 +89,12 @@ class ApiKeyApi (implicit val swagger: Swagger) extends ScalatraServlet
   val enableOperation = (apiOperation[ApiKey]("enable")
       summary "Enable an API Key."
       parameters(
-        formParam[String]("accessKey").description(""))
+        formParam[String]("apiKeyID").description("").optional)
   )
 
   post("/enable",operation(enableOperation)) {
-    val accessKey = params.getAs[String]("accessKey")
-    println("accessKey: " + accessKey)
+    val apiKeyID = params.getAs[String]("apiKeyID")
+    println("apiKeyID: " + apiKeyID)
   }
 
 }

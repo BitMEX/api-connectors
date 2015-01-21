@@ -52,8 +52,9 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 
 
 -(NSNumber*) getWithCompletionBlock:(NSNumber*) start
+        reverse:(NSNumber*) reverse
         count:(NSNumber*) count
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/chat", basePath];
 
@@ -69,6 +70,8 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
         queryParams[@"count"] = count;
     if(start != nil)
         queryParams[@"start"] = start;
+    if(reverse != nil)
+        queryParams[@"reverse"] = reverse;
     NSMutableDictionary* headerParams = [[NSMutableDictionary alloc] init];
     id bodyDictionary = nil;
         SWGApiClient* client = [SWGApiClient sharedClientFromPool:basePath];
@@ -99,7 +102,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 }
 
 -(NSNumber*) sendWithCompletionBlock:(NSString*) message
-        completionHandler: (void (^)(SWGChat* output, NSError* error))completionBlock{
+        completionHandler : (void (^)(SWGChat* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/chat", basePath];
 

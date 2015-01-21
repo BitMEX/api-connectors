@@ -22,7 +22,7 @@ exports.find = {
     "notes" : "",
     "summary" : "Get model schemata for data objects returned by this API.",
     "method": "GET",
-    "params" : [params.query("model", "Optional model filter. If omitted, will return all models.", "string", false, false, "")].concat([]).concat([]).concat([]),
+    "params" : [params.query("model", "Optional model filter. If omitted, will return all models.", "string", , false, "")].concat([]).concat([]).concat([]),
     "type" : "Any",
     "responseMessages" : [errors.invalid('id'), errors.notFound('Any')],
     "nickname" : "find"

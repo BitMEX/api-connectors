@@ -21,53 +21,57 @@
  */
 class OrderBookApi {
 
-	function __construct($apiClient) {
-	  $this->apiClient = $apiClient;
-	}
+  function __construct($apiClient) {
+    $this->apiClient = $apiClient;
+  }
 
   /**
-	 * getOrderBook
-	 * Get current orderbook.
-   * symbol, string: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (required)
-
-   * depth, float: Orderbook depth. (optional)
-
+   * getOrderBook
+   * Get current orderbook.
+   * 
+   * @param string $symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (required)
+   * @param float $depth Orderbook depth. (optional)
    * @return Array[OrderBook]
-	 */
+   */
 
    public function getOrderBook($symbol, $depth=null) {
 
-  		//parse inputs
-  		$resourcePath = "/orderBook";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "GET";
+      //parse inputs
+      $resourcePath = "/orderBook";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "GET";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
       if($symbol != null) {
-  		  $queryParams['symbol'] = $this->apiClient->toQueryValue($symbol);
-  		}
-  		if($depth != null) {
-  		  $queryParams['depth'] = $this->apiClient->toQueryValue($depth);
-  		}
-  		//make the API Call
+        $queryParams['symbol'] = $this->apiClient->toQueryValue($symbol);
+      }
+      if($depth != null) {
+        $queryParams['depth'] = $this->apiClient->toQueryValue($depth);
+      }
+      // Generate form params
       if (! isset($body)) {
+        $body = array();
+      }
+      if (empty($body)) {
         $body = null;
       }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
 
 
       if(! $response){
           return null;
-        }
+      }
 
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[OrderBook]');
-  		return $responseObject;
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'Array[OrderBook]');
+      return $responseObject;
 
       }
   

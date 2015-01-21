@@ -17,7 +17,7 @@
  @param filter Table filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;}.
  */
 -(NSNumber*) getWithCompletionBlock :(NSObject*) filter 
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock;
 
 /**
 

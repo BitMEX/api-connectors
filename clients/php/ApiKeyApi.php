@@ -21,195 +21,237 @@
  */
 class ApiKeyApi {
 
-	function __construct($apiClient) {
-	  $this->apiClient = $apiClient;
-	}
+  function __construct($apiClient) {
+    $this->apiClient = $apiClient;
+  }
 
   /**
-	 * createKey
-	 * Create a new API Key.
-   * name, string: Key name. This name is for reference only. (optional)
-
-   * cidr, string: CIDR block to restrict this key to. To restrict to a single address, append &quot;/32&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href=&quot;http://software77.net/cidr-101.html&quot;&gt;More on CIDR blocks&lt;/a&gt; (optional)
-
-   * enabled, bool: Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (optional)
-
+   * createKey
+   * Create a new API Key.
+   * 
+   * @param string $name Key name. This name is for reference only. (optional)
+   * @param string $cidr CIDR block to restrict this key to. To restrict to a single address, append &quot;/32&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href=&quot;http://software77.net/cidr-101.html&quot;&gt;More on CIDR blocks&lt;/a&gt; (optional)
+   * @param bool $enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (optional)
    * @return ApiKey
-	 */
+   */
 
    public function createKey($name=null, $cidr=null, $enabled=null) {
 
-  		//parse inputs
-  		$resourcePath = "/apiKey";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "POST";
+      //parse inputs
+      $resourcePath = "/apiKey";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "POST";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
-      //make the API Call
+      // Generate form params
       if (! isset($body)) {
+        $body = array();
+      }
+      if($name != null) {
+        $body['name'] = $name;
+      }
+      if($cidr != null) {
+        $body['cidr'] = $cidr;
+      }
+      if($enabled != null) {
+        $body['enabled'] = $enabled;
+      }
+      if (empty($body)) {
         $body = null;
       }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
 
 
       if(! $response){
           return null;
-        }
+      }
 
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'ApiKey');
-  		return $responseObject;
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'ApiKey');
+      return $responseObject;
 
       }
   /**
-	 * getKeys
-	 * Get your API Keys.
+   * getKeys
+   * Get your API Keys.
+   * 
    * @return Array[ApiKey]
-	 */
+   */
 
    public function getKeys() {
 
-  		//parse inputs
-  		$resourcePath = "/apiKey";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "GET";
+      //parse inputs
+      $resourcePath = "/apiKey";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "GET";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
-      //make the API Call
+      // Generate form params
       if (! isset($body)) {
+        $body = array();
+      }
+      if (empty($body)) {
         $body = null;
       }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
 
 
       if(! $response){
           return null;
-        }
+      }
 
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[ApiKey]');
-  		return $responseObject;
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'Array[ApiKey]');
+      return $responseObject;
 
       }
   /**
-	 * remove
-	 * Remove an API Key.
-   * accessKey, string: Access Key (public component). (optional)
-
+   * remove
+   * Remove an API Key.
+   * 
+   * @param string $apiKeyID API Key ID (public component). (optional)
    * @return bool
-	 */
+   */
 
-   public function remove($accessKey=null) {
+   public function remove($apiKeyID=null) {
 
-  		//parse inputs
-  		$resourcePath = "/apiKey";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "DELETE";
+      //parse inputs
+      $resourcePath = "/apiKey";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "DELETE";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
-      //make the API Call
+      // Generate form params
       if (! isset($body)) {
+        $body = array();
+      }
+      if($apiKeyID != null) {
+        $body['apiKeyID'] = $apiKeyID;
+      }
+      if (empty($body)) {
         $body = null;
       }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
 
 
       if(! $response){
           return null;
-        }
+      }
 
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'bool');
-  		return $responseObject;
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'bool');
+      return $responseObject;
 
       }
   /**
-	 * disable
-	 * Disable an API Key.
-   * accessKey, string: Access Key (public component). (optional)
-
+   * disable
+   * Disable an API Key.
+   * 
+   * @param string $apiKeyID API Key ID (public component). (optional)
    * @return ApiKey
-	 */
+   */
 
-   public function disable($accessKey=null) {
+   public function disable($apiKeyID=null) {
 
-  		//parse inputs
-  		$resourcePath = "/apiKey/disable";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "POST";
+      //parse inputs
+      $resourcePath = "/apiKey/disable";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "POST";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
-      //make the API Call
+      // Generate form params
       if (! isset($body)) {
+        $body = array();
+      }
+      if($apiKeyID != null) {
+        $body['apiKeyID'] = $apiKeyID;
+      }
+      if (empty($body)) {
         $body = null;
       }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
 
 
       if(! $response){
           return null;
-        }
+      }
 
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'ApiKey');
-  		return $responseObject;
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'ApiKey');
+      return $responseObject;
 
       }
   /**
-	 * enable
-	 * Enable an API Key.
-   * accessKey, string: Access Key (public component). (optional)
-
+   * enable
+   * Enable an API Key.
+   * 
+   * @param string $apiKeyID API Key ID (public component). (optional)
    * @return ApiKey
-	 */
+   */
 
-   public function enable($accessKey=null) {
+   public function enable($apiKeyID=null) {
 
-  		//parse inputs
-  		$resourcePath = "/apiKey/enable";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "POST";
+      //parse inputs
+      $resourcePath = "/apiKey/enable";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "POST";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
-      //make the API Call
+      // Generate form params
       if (! isset($body)) {
+        $body = array();
+      }
+      if($apiKeyID != null) {
+        $body['apiKeyID'] = $apiKeyID;
+      }
+      if (empty($body)) {
         $body = null;
       }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
 
 
       if(! $response){
           return null;
-        }
+      }
 
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'ApiKey');
-  		return $responseObject;
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'ApiKey');
+      return $responseObject;
 
       }
   

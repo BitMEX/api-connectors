@@ -58,12 +58,17 @@ class OrderBookApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
         if ('symbol' in params):
             queryParams['symbol'] = self.apiClient.toPathValue(params['symbol'])
         if ('depth' in params):
             queryParams['depth'] = self.apiClient.toPathValue(params['depth'])
-        postData = (params['body'] if 'body' in params else None)
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)

@@ -31,7 +31,7 @@
         startTime:(SWGDate*) startTime 
         endTime:(SWGDate*) endTime 
         count:(NSNumber*) count 
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock;
 
 /**
 
@@ -54,6 +54,6 @@
         startTime:(SWGDate*) startTime 
         endTime:(SWGDate*) endTime 
         count:(NSNumber*) count 
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock;
 
 @end

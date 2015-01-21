@@ -19,6 +19,6 @@
  */
 -(NSNumber*) getOrderBookWithCompletionBlock :(NSString*) symbol 
         depth:(NSNumber*) depth 
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock;
 
 @end

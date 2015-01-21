@@ -1,7 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "SWGObject.h"
 #import "SWGDate.h"
-#import "Object.h"
 
 
 @interface SWGUser : SWGObject

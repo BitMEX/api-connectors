@@ -19,7 +19,7 @@ class ChatApi {
     String versionPath = "/api/v1"
 
 
-  def get (Double start,Double count,Closure onSuccess, Closure onFailure)  {
+  def get (Double start,Boolean reverse,Double count,Closure onSuccess, Closure onFailure)  {
     // create path and map variables
     String resourcePath = "/chat"
 
@@ -32,6 +32,8 @@ class ChatApi {
       queryParams.put("count", String.valueOf(count))
     if(!"null".equals(String.valueOf(start)))
       queryParams.put("start", String.valueOf(start))
+    if(!"null".equals(String.valueOf(reverse)))
+      queryParams.put("reverse", String.valueOf(reverse))
     invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "List",
                     Chat.class )

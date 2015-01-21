@@ -1,6 +1,5 @@
 #import <Foundation/Foundation.h>
 #import "SWGObject.h"
-#import "Object.h"
 
 
 @interface SWGApiKey : SWGObject

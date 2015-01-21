@@ -22,7 +22,7 @@ exports.get = {
     "notes" : "",
     "summary" : "Get Trades.",
     "method": "GET",
-    "params" : [params.query("symbol", "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.", "string", false, false, ""),params.query("filter", "Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}.", "object", false, false, ""),params.query("columns", "Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.", "Array[string]", false, false, ""),params.query("count", "Number of results to fetch.", "double", false, false, "", 100),params.query("start", "Starting point for results.", "double", false, false, ""),params.query("reverse", "If true, will sort results newest first.", "boolean", false, false, ""),params.query("startTime", "Starting date filter for results.", "Date", false, false, ""),params.query("endTime", "Ending date filter for results.", "Date", false, false, "")].concat([]).concat([]).concat([]),
+    "params" : [params.query("symbol", "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.", "string", , false, ""),params.query("filter", "Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}.", "object", , false, ""),params.query("columns", "Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.", "Array[string]", , false, ""),params.query("count", "Number of results to fetch.", "double", , false, "", 100),params.query("start", "Starting point for results.", "double", , false, ""),params.query("reverse", "If true, will sort results newest first.", "boolean", , false, ""),params.query("startTime", "Starting date filter for results.", "Date", , false, ""),params.query("endTime", "Ending date filter for results.", "Date", , false, "")].concat([]).concat([]).concat([]),
     "type" : "List[Trade]",
     "responseMessages" : [errors.invalid('id'), errors.notFound('List[Trade]')],
     "nickname" : "get"
@@ -38,7 +38,7 @@ exports.getBucketed = {
     "notes" : "",
     "summary" : "Get previous trades in time buckets.",
     "method": "GET",
-    "params" : [params.query("binSize", "Time interval to bucket by. Available options: ['30s', '1m', '5m', '1h', '1d'].", "string", false, false, "", "1m"),params.query("symbol", "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.", "string", false, false, ""),params.query("filter", "Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}.", "object", false, false, ""),params.query("columns", "Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.", "Array[string]", false, false, ""),params.query("count", "Number of results to fetch.", "double", false, false, "", 100),params.query("start", "Starting point for results.", "double", false, false, ""),params.query("reverse", "If true, will sort results newest first.", "boolean", false, false, ""),params.query("startTime", "Starting date filter for results.", "Date", false, false, ""),params.query("endTime", "Ending date filter for results.", "Date", false, false, "")].concat([]).concat([]).concat([]),
+    "params" : [params.query("binSize", "Time interval to bucket by. Available options: ['30s', '1m', '5m', '1h', '1d'].", "string", , false, "", "1m"),params.query("symbol", "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.", "string", , false, ""),params.query("filter", "Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}.", "object", , false, ""),params.query("columns", "Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.", "Array[string]", , false, ""),params.query("count", "Number of results to fetch.", "double", , false, "", 100),params.query("start", "Starting point for results.", "double", , false, ""),params.query("reverse", "If true, will sort results newest first.", "boolean", , false, ""),params.query("startTime", "Starting date filter for results.", "Date", , false, ""),params.query("endTime", "Ending date filter for results.", "Date", , false, "")].concat([]).concat([]).concat([]),
     "type" : "List[TradeBin]",
     "responseMessages" : [errors.invalid('id'), errors.notFound('List[TradeBin]')],
     "nickname" : "getBucketed"
@@ -54,7 +54,7 @@ exports.getByDate = {
     "notes" : "",
     "summary" : "Get trades between two dates. [Deprecated, use GET /trades]",
     "method": "GET",
-    "params" : [params.query("symbol", "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.", "string", false, false, ""),params.query("startTime", "Start date.", "Date", true, false, ""),params.query("endTime", "End Date.", "Date", false, false, "")].concat([]).concat([]).concat([]),
+    "params" : [params.query("symbol", "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.", "string", , false, ""),params.query("startTime", "Start date.", "Date", true, false, ""),params.query("endTime", "End Date.", "Date", , false, "")].concat([]).concat([]).concat([]),
     "type" : "List[Trade]",
     "responseMessages" : [errors.invalid('id'), errors.notFound('List[Trade]')],
     "nickname" : "getByDate"
@@ -73,7 +73,7 @@ exports.getRecent = {
     "notes" : "",
     "summary" : "Get recent trades. [Deprecated, use GET /trades]",
     "method": "GET",
-    "params" : [params.query("symbol", "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.", "string", false, false, ""),params.query("count", "Number of trades to fetch.", "double", true, false, "", 100)].concat([]).concat([]).concat([]),
+    "params" : [params.query("symbol", "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.", "string", , false, ""),params.query("count", "Number of trades to fetch.", "double", true, false, "", 100)].concat([]).concat([]).concat([]),
     "type" : "List[Trade]",
     "responseMessages" : [errors.invalid('id'), errors.notFound('List[Trade]')],
     "nickname" : "getRecent"

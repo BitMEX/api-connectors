@@ -60,8 +60,19 @@ class ApiKeyApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('name' in params):
+            formParams['name'] = params['name']
+        if ('cidr' in params):
+            formParams['cidr'] = params['cidr']
+        if ('enabled' in params):
+            formParams['enabled'] = params['enabled']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -99,8 +110,13 @@ class ApiKeyApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -118,14 +134,14 @@ class ApiKeyApi(object):
         """Remove an API Key.
 
         Args:
-            accessKey, str: Access Key (public component). (optional)
+            apiKeyID, str: API Key ID (public component). (optional)
 
             
 
         Returns: bool
         """
 
-        allParams = ['accessKey']
+        allParams = ['apiKeyID']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -140,8 +156,15 @@ class ApiKeyApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('apiKeyID' in params):
+            formParams['apiKeyID'] = params['apiKeyID']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -159,14 +182,14 @@ class ApiKeyApi(object):
         """Disable an API Key.
 
         Args:
-            accessKey, str: Access Key (public component). (optional)
+            apiKeyID, str: API Key ID (public component). (optional)
 
             
 
         Returns: ApiKey
         """
 
-        allParams = ['accessKey']
+        allParams = ['apiKeyID']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -181,8 +204,15 @@ class ApiKeyApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('apiKeyID' in params):
+            formParams['apiKeyID'] = params['apiKeyID']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -200,14 +230,14 @@ class ApiKeyApi(object):
         """Enable an API Key.
 
         Args:
-            accessKey, str: Access Key (public component). (optional)
+            apiKeyID, str: API Key ID (public component). (optional)
 
             
 
         Returns: ApiKey
         """
 
-        allParams = ['accessKey']
+        allParams = ['apiKeyID']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -222,8 +252,15 @@ class ApiKeyApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
-        postData = (params['body'] if 'body' in params else None)
+        if ('apiKeyID' in params):
+            formParams['apiKeyID'] = params['apiKeyID']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)

@@ -52,7 +52,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 
 
 -(NSNumber*) getWithCompletionBlock:(NSObject*) filter
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/instrument", basePath];
 

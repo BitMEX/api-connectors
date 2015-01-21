@@ -32,7 +32,7 @@ class TradeApi (implicit val swagger: Swagger) extends ScalatraServlet
   val getOperation = (apiOperation[List[Trade]]("get")
       summary "Get Trades."
       parameters(
-        queryParam[String]("symbol").description(""),queryParam[Any]("filter").description(""),queryParam[List[String]]("columns").description(""),queryParam[Double]("start").description(""),queryParam[Boolean]("reverse").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""),queryParam[Double]("count").description("").defaultValue(100))
+        queryParam[String]("symbol").description("").optional,queryParam[Any]("filter").description("").optional,queryParam[List[String]]("columns").description("").optional,queryParam[Double]("start").description("").optional,queryParam[Boolean]("reverse").description("").optional,queryParam[Date]("startTime").description("").optional,queryParam[Date]("endTime").description("").optional,queryParam[Double]("count").description("").optional.defaultValue(100))
   )
 
   get("/",operation(getOperation)) {
@@ -60,7 +60,7 @@ class TradeApi (implicit val swagger: Swagger) extends ScalatraServlet
   val getBucketedOperation = (apiOperation[List[TradeBin]]("getBucketed")
       summary "Get previous trades in time buckets."
       parameters(
-        queryParam[String]("symbol").description(""),queryParam[Any]("filter").description(""),queryParam[List[String]]("columns").description(""),queryParam[Double]("start").description(""),queryParam[Boolean]("reverse").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""),queryParam[String]("binSize").description("").defaultValue("1m"),queryParam[Double]("count").description("").defaultValue(100))
+        queryParam[String]("symbol").description("").optional,queryParam[Any]("filter").description("").optional,queryParam[List[String]]("columns").description("").optional,queryParam[Double]("start").description("").optional,queryParam[Boolean]("reverse").description("").optional,queryParam[Date]("startTime").description("").optional,queryParam[Date]("endTime").description("").optional,queryParam[String]("binSize").description("").optional.defaultValue("1m"),queryParam[Double]("count").description("").optional.defaultValue(100))
   )
 
   get("/bucketed",operation(getBucketedOperation)) {
@@ -90,7 +90,7 @@ class TradeApi (implicit val swagger: Swagger) extends ScalatraServlet
   val getByDateOperation = (apiOperation[List[Trade]]("getByDate")
       summary "Get trades between two dates. [Deprecated, use GET /trades]"
       parameters(
-        queryParam[String]("symbol").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""))
+        queryParam[String]("symbol").description("").optional,queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description("").optional)
   )
 
   get("/byDate",operation(getByDateOperation)) {
@@ -108,7 +108,7 @@ class TradeApi (implicit val swagger: Swagger) extends ScalatraServlet
   val getRecentOperation = (apiOperation[List[Trade]]("getRecent")
       summary "Get recent trades. [Deprecated, use GET /trades]"
       parameters(
-        queryParam[String]("symbol").description(""),queryParam[Double]("count").description("").defaultValue(100))
+        queryParam[String]("symbol").description("").optional,queryParam[Double]("count").description("").defaultValue(100))
   )
 
   get("/recent",operation(getRecentOperation)) {

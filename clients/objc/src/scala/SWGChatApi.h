@@ -15,11 +15,13 @@
  Get chat messages.
  
  @param start Starting point for results.
+ @param reverse If true, will sort results newest first.
  @param count Number of results to fetch.
  */
 -(NSNumber*) getWithCompletionBlock :(NSNumber*) start 
+        reverse:(NSNumber*) reverse 
         count:(NSNumber*) count 
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock;
 
 /**
 
@@ -28,6 +30,6 @@
  @param message 
  */
 -(NSNumber*) sendWithCompletionBlock :(NSString*) message 
-        completionHandler: (void (^)(SWGChat* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(SWGChat* output, NSError* error))completionBlock;
 
 @end

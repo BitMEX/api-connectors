@@ -21,88 +21,85 @@
  */
 class QuoteApi {
 
-	function __construct($apiClient) {
-	  $this->apiClient = $apiClient;
-	}
+  function __construct($apiClient) {
+    $this->apiClient = $apiClient;
+  }
 
   /**
-	 * getBucketed
-	 * Get previous quotes in time buckets.
-   * symbol, string: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
-
-   * filter, object: Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}. (optional)
-
-   * columns, array[string]: Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
-
-   * start, float: Starting point for results. (optional)
-
-   * reverse, bool: If true, will sort results newest first. (optional)
-
-   * startTime, DateTime: Starting date filter for results. (optional)
-
-   * endTime, DateTime: Ending date filter for results. (optional)
-
-   * binSize, string: Time interval to bucket by. Available options: ['30s', '1m', '5m', '1h', '1d']. (optional)
-
-   * count, float: Number of results to fetch. (optional)
-
+   * getBucketed
+   * Get previous quotes in time buckets.
+   * 
+   * @param string $symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
+   * @param object $filter Generic table filter. Send JSON key/value pairs, such as {&quot;key&quot;: &quot;value&quot;}. (optional)
+   * @param array[string] $columns Array of column names to fetch. If omitted, will return all columns. Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
+   * @param float $start Starting point for results. (optional)
+   * @param bool $reverse If true, will sort results newest first. (optional)
+   * @param DateTime $startTime Starting date filter for results. (optional)
+   * @param DateTime $endTime Ending date filter for results. (optional)
+   * @param string $binSize Time interval to bucket by. Available options: ['30s', '1m', '5m', '1h', '1d']. (optional)
+   * @param float $count Number of results to fetch. (optional)
    * @return Array[Quote]
-	 */
+   */
 
    public function getBucketed($symbol=null, $filter=null, $columns=null, $start=null, $reverse=null, $startTime=null, $endTime=null, $binSize=null, $count=null) {
 
-  		//parse inputs
-  		$resourcePath = "/quote/bucketed";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "GET";
+      //parse inputs
+      $resourcePath = "/quote/bucketed";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "GET";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
       if($binSize != null) {
-  		  $queryParams['binSize'] = $this->apiClient->toQueryValue($binSize);
-  		}
-  		if($symbol != null) {
-  		  $queryParams['symbol'] = $this->apiClient->toQueryValue($symbol);
-  		}
-  		if($filter != null) {
-  		  $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
-  		}
-  		if($columns != null) {
-  		  $queryParams['columns'] = $this->apiClient->toQueryValue($columns);
-  		}
-  		if($count != null) {
-  		  $queryParams['count'] = $this->apiClient->toQueryValue($count);
-  		}
-  		if($start != null) {
-  		  $queryParams['start'] = $this->apiClient->toQueryValue($start);
-  		}
-  		if($reverse != null) {
-  		  $queryParams['reverse'] = $this->apiClient->toQueryValue($reverse);
-  		}
-  		if($startTime != null) {
-  		  $queryParams['startTime'] = $this->apiClient->toQueryValue($startTime);
-  		}
-  		if($endTime != null) {
-  		  $queryParams['endTime'] = $this->apiClient->toQueryValue($endTime);
-  		}
-  		//make the API Call
+        $queryParams['binSize'] = $this->apiClient->toQueryValue($binSize);
+      }
+      if($symbol != null) {
+        $queryParams['symbol'] = $this->apiClient->toQueryValue($symbol);
+      }
+      if($filter != null) {
+        $queryParams['filter'] = $this->apiClient->toQueryValue($filter);
+      }
+      if($columns != null) {
+        $queryParams['columns'] = $this->apiClient->toQueryValue($columns);
+      }
+      if($count != null) {
+        $queryParams['count'] = $this->apiClient->toQueryValue($count);
+      }
+      if($start != null) {
+        $queryParams['start'] = $this->apiClient->toQueryValue($start);
+      }
+      if($reverse != null) {
+        $queryParams['reverse'] = $this->apiClient->toQueryValue($reverse);
+      }
+      if($startTime != null) {
+        $queryParams['startTime'] = $this->apiClient->toQueryValue($startTime);
+      }
+      if($endTime != null) {
+        $queryParams['endTime'] = $this->apiClient->toQueryValue($endTime);
+      }
+      // Generate form params
       if (! isset($body)) {
+        $body = array();
+      }
+      if (empty($body)) {
         $body = null;
       }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
 
 
       if(! $response){
           return null;
-        }
+      }
 
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'Array[Quote]');
-  		return $responseObject;
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'Array[Quote]');
+      return $responseObject;
 
       }
   

@@ -32,7 +32,7 @@ class OrderApi (implicit val swagger: Swagger) extends ScalatraServlet
   val getOrdersOperation = (apiOperation[List[Order]]("getOrders")
       summary "Get your orders."
       parameters(
-        queryParam[String]("symbol").description(""),queryParam[Any]("filter").description(""),queryParam[List[String]]("columns").description(""),queryParam[Double]("start").description(""),queryParam[Boolean]("reverse").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""),queryParam[Double]("count").description("").defaultValue(100))
+        queryParam[String]("symbol").description("").optional,queryParam[Any]("filter").description("").optional,queryParam[List[String]]("columns").description("").optional,queryParam[Double]("start").description("").optional,queryParam[Boolean]("reverse").description("").optional,queryParam[Date]("startTime").description("").optional,queryParam[Date]("endTime").description("").optional,queryParam[Double]("count").description("").optional.defaultValue(100))
   )
 
   get("/",operation(getOrdersOperation)) {
@@ -60,7 +60,7 @@ class OrderApi (implicit val swagger: Swagger) extends ScalatraServlet
   val newOrderOperation = (apiOperation[Order]("newOrder")
       summary "Create a new order."
       parameters(
-        formParam[String]("symbol").description(""),formParam[Double]("quantity").description(""),formParam[Double]("price").description(""),formParam[Boolean]("ioc").description(""),formParam[String]("clOrdID").description(""))
+        formParam[String]("symbol").description(""),formParam[Double]("quantity").description(""),formParam[Double]("price").description(""),formParam[Boolean]("ioc").description("").optional,formParam[String]("clOrdID").description("").optional)
   )
 
   post("/",operation(newOrderOperation)) {
@@ -82,7 +82,7 @@ class OrderApi (implicit val swagger: Swagger) extends ScalatraServlet
   val cancelOrderOperation = (apiOperation[List[Order]]("cancelOrder")
       summary "Cancel order(s). Send multiple order IDs to cancel in bulk."
       parameters(
-        formParam[String]("orderID").description(""),formParam[String]("clOrdID").description(""),formParam[String]("text").description(""))
+        formParam[String]("orderID").description("").optional,formParam[String]("clOrdID").description("").optional,formParam[String]("text").description("").optional)
   )
 
   delete("/",operation(cancelOrderOperation)) {

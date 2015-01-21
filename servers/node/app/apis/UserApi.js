@@ -22,7 +22,7 @@ exports.getDepositAddress = {
     "notes" : "",
     "summary" : "Get a deposit address.",
     "method": "GET",
-    "params" : [params.query("currency", "", "string", false, false, "", "XBt")].concat([]).concat([]).concat([]),
+    "params" : [params.query("currency", "", "string", , false, "", "XBt")].concat([]).concat([]).concat([]),
     "type" : "String",
     "responseMessages" : [errors.invalid('id'), errors.notFound('String')],
     "nickname" : "getDepositAddress"

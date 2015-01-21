@@ -27,10 +27,12 @@ public class ExecutionApi {
     return basePath;
   }
 
-  //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: <none>
-  //error info- code: 401 reason: "Unauthorized" model: <none>
-  //error info- code: 404 reason: "Not Found" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
   public List<Execution> get (String symbol, Object filter, List<String> columns, Double start, Boolean reverse, Date startTime, Date endTime, Double count) throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -88,10 +90,12 @@ public class ExecutionApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: <none>
-  //error info- code: 401 reason: "Unauthorized" model: <none>
-  //error info- code: 404 reason: "Not Found" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
   public List<Execution> getTradeHistory (String symbol, Object filter, List<String> columns, Double start, Boolean reverse, Date startTime, Date endTime, Double count) throws ApiException {
     Object postBody = null;
     // create path and map variables

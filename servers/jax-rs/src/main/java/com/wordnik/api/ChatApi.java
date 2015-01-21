@@ -20,12 +20,13 @@ public class ChatApi {
      
   public Response get(
     @ApiParam(value = "Starting point for results."
-    ,required=true
-)@QueryParam("start")
+    )@QueryParam("start")
  Double start
+    ,@ApiParam(value = "If true, will sort results newest first."
+    )@QueryParam("reverse")
+ Boolean reverse
     ,@ApiParam(value = "Number of results to fetch."
-    ,required=true
-, defaultValue="100"
+    , defaultValue="100"
 )@QueryParam("count")
  Double count
     )

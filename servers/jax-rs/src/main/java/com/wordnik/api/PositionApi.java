@@ -20,16 +20,13 @@ public class PositionApi {
      
   public Response find(
     @ApiParam(value = "Table filter. For example, send {"symbol": "XBTF15"}."
-    ,required=true
-)@QueryParam("filter")
+    )@QueryParam("filter")
  Object filter
     ,@ApiParam(value = "Which columns to fetch. For example, send ["columnName"]."
-    ,required=true
-)@QueryParam("columns")
+    )@QueryParam("columns")
  List<any> columns
     ,@ApiParam(value = "Number of rows to fetch."
-    ,required=true
-)@QueryParam("count")
+    )@QueryParam("count")
  Double count
     )
       throws NotFoundException {

@@ -24,8 +24,7 @@ public class OrderBookApi {
 )@QueryParam("symbol")
  String symbol
     ,@ApiParam(value = "Orderbook depth."
-    ,required=true
-, defaultValue="25"
+    , defaultValue="25"
 )@QueryParam("depth")
  Double depth
     )

@@ -22,7 +22,7 @@ exports.find = {
     "notes" : "",
     "summary" : "Get your positions.",
     "method": "GET",
-    "params" : [params.query("filter", "Table filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;}.", "object", false, false, ""),params.query("columns", "Which columns to fetch. For example, send [&quot;columnName&quot;].", "Array[any]", false, false, ""),params.query("count", "Number of rows to fetch.", "double", false, false, "")].concat([]).concat([]).concat([]),
+    "params" : [params.query("filter", "Table filter. For example, send {&quot;symbol&quot;: &quot;XBTF15&quot;}.", "object", , false, ""),params.query("columns", "Which columns to fetch. For example, send [&quot;columnName&quot;].", "Array[any]", , false, ""),params.query("count", "Number of rows to fetch.", "double", , false, "")].concat([]).concat([]).concat([]),
     "type" : "List[Position]",
     "responseMessages" : [errors.invalid('id'), errors.notFound('List[Position]')],
     "nickname" : "find"

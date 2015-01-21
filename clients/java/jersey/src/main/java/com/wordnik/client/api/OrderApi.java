@@ -28,10 +28,12 @@ public class OrderApi {
     return basePath;
   }
 
-  //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: <none>
-  //error info- code: 401 reason: "Unauthorized" model: <none>
-  //error info- code: 404 reason: "Not Found" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
   public List<Order> getOrders (String symbol, Object filter, List<String> columns, Double start, Boolean reverse, Date startTime, Date endTime, Double count) throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -89,10 +91,12 @@ public class OrderApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: <none>
-  //error info- code: 401 reason: "Unauthorized" model: <none>
-  //error info- code: 404 reason: "Not Found" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
   public Order newOrder (String symbol, Double quantity, Double price, Boolean ioc, String clOrdID) throws ApiException {
     Object postBody = null;
     // verify required params are set
@@ -129,7 +133,12 @@ public class OrderApi {
         postBody = mp;
     }
     else {
-      formParams.put("symbol", symbol);formParams.put("quantity", quantity);formParams.put("price", price);formParams.put("ioc", ioc);formParams.put("clOrdID", clOrdID);}
+      formParams.put("symbol", String.valueOf(symbol));
+      formParams.put("quantity", String.valueOf(quantity));
+      formParams.put("price", String.valueOf(price));
+      formParams.put("ioc", String.valueOf(ioc));
+      formParams.put("clOrdID", String.valueOf(clOrdID));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
@@ -148,10 +157,12 @@ public class OrderApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: <none>
-  //error info- code: 401 reason: "Unauthorized" model: <none>
-  //error info- code: 404 reason: "Not Found" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
   public List<Order> cancelOrder (String orderID, String clOrdID, String text) throws ApiException {
     Object postBody = null;
     // create path and map variables
@@ -180,7 +191,10 @@ public class OrderApi {
         postBody = mp;
     }
     else {
-      formParams.put("orderID", orderID);formParams.put("clOrdID", clOrdID);formParams.put("text", text);}
+      formParams.put("orderID", String.valueOf(orderID));
+      formParams.put("clOrdID", String.valueOf(clOrdID));
+      formParams.put("text", String.valueOf(text));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType);
@@ -199,10 +213,12 @@ public class OrderApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: <none>
-  //error info- code: 401 reason: "Unauthorized" model: <none>
-  //error info- code: 404 reason: "Not Found" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
   public Object cancelAllAfter (Double timeout) throws ApiException {
     Object postBody = null;
     // verify required params are set
@@ -231,7 +247,8 @@ public class OrderApi {
         postBody = mp;
     }
     else {
-      formParams.put("timeout", timeout);}
+      formParams.put("timeout", String.valueOf(timeout));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);

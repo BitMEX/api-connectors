@@ -52,7 +52,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 
 
 -(NSNumber*) findWithCompletionBlock:(NSString*) model
-        completionHandler: (void (^)(NSObject* output, NSError* error))completionBlock{
+        completionHandler : (void (^)(NSObject* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/schema", basePath];
 

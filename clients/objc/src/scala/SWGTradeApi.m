@@ -60,7 +60,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
         startTime:(SWGDate*) startTime
         endTime:(SWGDate*) endTime
         count:(NSNumber*) count
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/trade", basePath];
 
@@ -126,7 +126,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
         endTime:(SWGDate*) endTime
         binSize:(NSString*) binSize
         count:(NSNumber*) count
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/trade/bucketed", basePath];
 
@@ -188,7 +188,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 -(NSNumber*) getByDateWithCompletionBlock:(NSString*) symbol
         startTime:(SWGDate*) startTime
         endTime:(SWGDate*) endTime
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/trade/byDate", basePath];
 
@@ -240,7 +240,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 
 -(NSNumber*) getRecentWithCompletionBlock:(NSString*) symbol
         count:(NSNumber*) count
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock{
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock{
 
     NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/trade/recent", basePath];
 

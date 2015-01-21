@@ -31,7 +31,7 @@ class QuoteApi (implicit val swagger: Swagger) extends ScalatraServlet
   val getBucketedOperation = (apiOperation[List[Quote]]("getBucketed")
       summary "Get previous quotes in time buckets."
       parameters(
-        queryParam[String]("symbol").description(""),queryParam[Any]("filter").description(""),queryParam[List[String]]("columns").description(""),queryParam[Double]("start").description(""),queryParam[Boolean]("reverse").description(""),queryParam[Date]("startTime").description(""),queryParam[Date]("endTime").description(""),queryParam[String]("binSize").description("").defaultValue("1m"),queryParam[Double]("count").description("").defaultValue(100))
+        queryParam[String]("symbol").description("").optional,queryParam[Any]("filter").description("").optional,queryParam[List[String]]("columns").description("").optional,queryParam[Double]("start").description("").optional,queryParam[Boolean]("reverse").description("").optional,queryParam[Date]("startTime").description("").optional,queryParam[Date]("endTime").description("").optional,queryParam[String]("binSize").description("").optional.defaultValue("1m"),queryParam[Double]("count").description("").optional.defaultValue(100))
   )
 
   get("/bucketed",operation(getBucketedOperation)) {

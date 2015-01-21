@@ -27,11 +27,13 @@ public class ChatApi {
     return basePath;
   }
 
-  //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: <none>
-  //error info- code: 401 reason: "Unauthorized" model: <none>
-  //error info- code: 404 reason: "Not Found" model: <none>
-  public List<Chat> get (Double start, Double count) throws ApiException {
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
+  public List<Chat> get (Double start, Boolean reverse, Double count) throws ApiException {
     Object postBody = null;
     // create path and map variables
     String path = "/chat".replaceAll("\\{format\\}","json");
@@ -45,6 +47,8 @@ public class ChatApi {
       queryParams.put("count", String.valueOf(count));
     if(!"null".equals(String.valueOf(start)))
       queryParams.put("start", String.valueOf(start));
+    if(!"null".equals(String.valueOf(reverse)))
+      queryParams.put("reverse", String.valueOf(reverse));
     String[] contentTypes = {
       "application/json"};
 
@@ -76,10 +80,12 @@ public class ChatApi {
       }
     }
   }
-  //error info- code: 200 reason: "Request was successful" model: <none>
-  //error info- code: 400 reason: "Parameter Error" model: <none>
-  //error info- code: 401 reason: "Unauthorized" model: <none>
-  //error info- code: 404 reason: "Not Found" model: <none>
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
   public Chat send (String message) throws ApiException {
     Object postBody = null;
     // verify required params are set
@@ -108,7 +114,8 @@ public class ChatApi {
         postBody = mp;
     }
     else {
-      formParams.put("message", message);}
+      formParams.put("message", String.valueOf(message));
+      }
 
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);

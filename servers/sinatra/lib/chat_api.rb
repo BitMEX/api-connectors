@@ -24,6 +24,14 @@ MyApp.add_route('get', '/', {
       "allowMultiple" => false,
       "allowableValues" => "",
       },
+    {
+      "name" => "reverse",
+      "description" => "If true, will sort results newest first.",
+      "dataType" => "boolean",
+      "paramType" => "query",
+      "allowMultiple" => false,
+      "allowableValues" => "",
+      },
     ]}) do
   cross_origin
   # the guts live here

@@ -32,7 +32,7 @@
         startTime:(SWGDate*) startTime 
         endTime:(SWGDate*) endTime 
         count:(NSNumber*) count 
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock;
 
 /**
 
@@ -49,7 +49,7 @@
         price:(NSNumber*) price 
         ioc:(NSNumber*) ioc 
         clOrdID:(NSString*) clOrdID 
-        completionHandler: (void (^)(SWGOrder* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(SWGOrder* output, NSError* error))completionBlock;
 
 /**
 
@@ -62,7 +62,7 @@
 -(NSNumber*) cancelOrderWithCompletionBlock :(NSString*) orderID 
         clOrdID:(NSString*) clOrdID 
         text:(NSString*) text 
-        completionHandler: (void (^)(NSArray* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(NSArray* output, NSError* error))completionBlock;
 
 /**
 
@@ -71,6 +71,6 @@
  @param timeout Timeout in ms. Set to 0 to cancel this timer. 
  */
 -(NSNumber*) cancelAllAfterWithCompletionBlock :(NSNumber*) timeout 
-        completionHandler: (void (^)(NSObject* output, NSError* error))completionBlock;
+        completionHandler : (void (^)(NSObject* output, NSError* error))completionBlock;
 
 @end

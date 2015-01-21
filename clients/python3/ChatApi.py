@@ -36,6 +36,8 @@ class ChatApi(object):
         Args:
             start, float: Starting point for results. (optional)
 
+            reverse, bool: If true, will sort results newest first. (optional)
+
             count, float: Number of results to fetch. (optional)
 
             
@@ -43,7 +45,7 @@ class ChatApi(object):
         Returns: Array[Chat]
         """
 
-        allParams = ['start', 'count']
+        allParams = ['start', 'reverse', 'count']
 
         params = locals()
         for (key, val) in params['kwargs'].items():
@@ -63,6 +65,8 @@ class ChatApi(object):
             queryParams['count'] = self.apiClient.toPathValue(params['count'])
         if ('start' in params):
             queryParams['start'] = self.apiClient.toPathValue(params['start'])
+        if ('reverse' in params):
+            queryParams['reverse'] = self.apiClient.toPathValue(params['reverse'])
         postData = (params['body'] if 'body' in params else None)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,

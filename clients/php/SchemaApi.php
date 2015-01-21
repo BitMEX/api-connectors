@@ -21,83 +21,94 @@
  */
 class SchemaApi {
 
-	function __construct($apiClient) {
-	  $this->apiClient = $apiClient;
-	}
+  function __construct($apiClient) {
+    $this->apiClient = $apiClient;
+  }
 
   /**
-	 * find
-	 * Get model schemata for data objects returned by this API.
-   * model, string: Optional model filter. If omitted, will return all models. (optional)
-
+   * find
+   * Get model schemata for data objects returned by this API.
+   * 
+   * @param string $model Optional model filter. If omitted, will return all models. (optional)
    * @return object
-	 */
+   */
 
    public function find($model=null) {
 
-  		//parse inputs
-  		$resourcePath = "/schema";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "GET";
+      //parse inputs
+      $resourcePath = "/schema";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "GET";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
       if($model != null) {
-  		  $queryParams['model'] = $this->apiClient->toQueryValue($model);
-  		}
-  		//make the API Call
+        $queryParams['model'] = $this->apiClient->toQueryValue($model);
+      }
+      // Generate form params
       if (! isset($body)) {
+        $body = array();
+      }
+      if (empty($body)) {
         $body = null;
       }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
 
 
       if(! $response){
           return null;
-        }
+      }
 
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'object');
-  		return $responseObject;
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'object');
+      return $responseObject;
 
       }
   /**
-	 * websocketHelp
-	 * Returns help text &amp; subject list for websocket usage.
+   * websocketHelp
+   * Returns help text &amp; subject list for websocket usage.
+   * 
    * @return object
-	 */
+   */
 
    public function websocketHelp() {
 
-  		//parse inputs
-  		$resourcePath = "/schema/websocketHelp";
-  		$resourcePath = str_replace("{format}", "json", $resourcePath);
-  		$method = "GET";
+      //parse inputs
+      $resourcePath = "/schema/websocketHelp";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "GET";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
       $headerParams['Content-Type'] = 'application/json';
 
-      //make the API Call
+      // Generate form params
       if (! isset($body)) {
+        $body = array();
+      }
+      if (empty($body)) {
         $body = null;
       }
-  		$response = $this->apiClient->callAPI($resourcePath, $method,
-  		                                      $queryParams, $body,
-  		                                      $headerParams);
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
 
 
       if(! $response){
           return null;
-        }
+      }
 
-  		$responseObject = $this->apiClient->deserialize($response,
-  		                                                'object');
-  		return $responseObject;
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'object');
+      return $responseObject;
 
       }
   

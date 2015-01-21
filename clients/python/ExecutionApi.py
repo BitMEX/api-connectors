@@ -70,6 +70,8 @@ class ExecutionApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
         if ('symbol' in params):
             queryParams['symbol'] = self.apiClient.toPathValue(params['symbol'])
@@ -87,7 +89,10 @@ class ExecutionApi(object):
             queryParams['startTime'] = self.apiClient.toPathValue(params['startTime'])
         if ('endTime' in params):
             queryParams['endTime'] = self.apiClient.toPathValue(params['endTime'])
-        postData = (params['body'] if 'body' in params else None)
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
@@ -141,6 +146,8 @@ class ExecutionApi(object):
 
         queryParams = {}
         headerParams = {}
+        formParams = {}
+        bodyParam = None
 
         if ('symbol' in params):
             queryParams['symbol'] = self.apiClient.toPathValue(params['symbol'])
@@ -158,7 +165,10 @@ class ExecutionApi(object):
             queryParams['startTime'] = self.apiClient.toPathValue(params['startTime'])
         if ('endTime' in params):
             queryParams['endTime'] = self.apiClient.toPathValue(params['endTime'])
-        postData = (params['body'] if 'body' in params else None)
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
 
         response = self.apiClient.callAPI(resourcePath, method, queryParams,
                                           postData, headerParams)
