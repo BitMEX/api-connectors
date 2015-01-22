@@ -11,7 +11,16 @@ ws.on('open', function open() {
   ws.send(JSON.stringify({subscribe: 'instrument'}));
 });
 
-ws.on('message', function(data, flags) {
-  debug(data);
+ws.on('message', function(message, flags) {
+  message = JSON.parse(message);
+  // An example of how you might split data by subscription:
+  if (message.action) {
+    messageReceivedOnStream(message.table, message.action, message.data);
+  } else {
+    debug(message);
+  }
 });
 
+function messageReceivedOnStream(streamName, action, data) {
+  debug("Message received for subscription %s (%s): %j", streamName, action, data);
+}
