@@ -10,8 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "debug": "^2.0.0",
-    "mux-demux": "^3.7.9",
-    "reconnect-core": "^0.2.0",
-    "sockjs-stream": "^1.0.2"
+    "ws": "^0.6.5"
   }
 }
