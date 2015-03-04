@@ -219,6 +219,59 @@ public class OrderApi {
   * error info- code: 401 reason: "Unauthorized" model: <none>
   * error info- code: 404 reason: "Not Found" model: <none>
   */
+  public Object cancelAll (String symbol, String text) throws ApiException {
+    Object postBody = null;
+    // create path and map variables
+    String path = "/order/all".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    String[] contentTypes = {
+      "application/json"};
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      FormDataMultiPart mp = new FormDataMultiPart();
+      hasFields = true;
+      mp.field("symbol", symbol, MediaType.MULTIPART_FORM_DATA_TYPE);
+      hasFields = true;
+      mp.field("text", text, MediaType.MULTIPART_FORM_DATA_TYPE);
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      formParams.put("symbol", String.valueOf(symbol));
+      formParams.put("text", String.valueOf(text));
+      }
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (Object) ApiInvoker.deserialize(response, "", Object.class);
+      }
+      else {
+        return null;
+      }
+    } catch (ApiException ex) {
+      if(ex.getCode() == 404) {
+      	return null;
+      }
+      else {
+        throw ex;
+      }
+    }
+  }
+  /*
+  * error info- code: 200 reason: "Request was successful" model: <none>
+  * error info- code: 400 reason: "Parameter Error" model: <none>
+  * error info- code: 401 reason: "Unauthorized" model: <none>
+  * error info- code: 404 reason: "Not Found" model: <none>
+  */
   public Object cancelAllAfter (Double timeout) throws ApiException {
     Object postBody = null;
     // verify required params are set

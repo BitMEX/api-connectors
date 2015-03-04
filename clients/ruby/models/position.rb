@@ -1,5 +1,5 @@
 class Position
-  attr_accessor :account, :symbol, :underlying, :quote_currency, :currency, :commission, :prev_realised_pnl, :prev_unrealised_pnl, :prev_close_price, :realised_cost, :realised_pnl, :opening_timestamp, :opening_qty, :opening_cost, :opening_comm, :open_order_buy_qty, :open_order_buy_cost, :open_order_sell_qty, :open_order_sell_cost, :exec_buy_qty, :exec_buy_cost, :exec_sell_qty, :exec_sell_cost, :exec_qty, :exec_cost, :exec_comm, :current_timestamp, :current_qty, :current_cost, :current_comm, :unrealised_cost, :gross_open_cost, :gross_exec_cost, :last_price, :last_value, :home_notional, :foreign_notional, :notional_currency1, :notional_value1, :notional_currency2, :notional_value2, :init_margin, :maint_margin, :session_margin, :target_excess_margin, :var_margin, :unrealised_pnl, :unrealised_pnl_pcnt, :avg_entry_price, :break_even_price, :margin_call_price, :liquidation_price, :bankrupt_price, :timestamp
+  attr_accessor :account, :symbol, :underlying, :quote_currency, :currency, :commission, :prev_realised_pnl, :prev_unrealised_pnl, :prev_close_price, :realised_cost, :realised_pnl, :opening_timestamp, :opening_qty, :opening_cost, :opening_comm, :open_order_buy_qty, :open_order_buy_cost, :open_order_sell_qty, :open_order_sell_cost, :exec_buy_qty, :exec_buy_cost, :exec_sell_qty, :exec_sell_cost, :exec_qty, :exec_cost, :exec_comm, :current_timestamp, :current_qty, :current_cost, :current_comm, :unrealised_cost, :gross_open_cost, :gross_exec_cost, :last_price, :last_value, :home_notional, :foreign_notional, :init_margin, :maint_margin, :session_margin, :target_excess_margin, :var_margin, :unrealised_pnl, :unrealised_pnl_pcnt, :simple_qty, :simple_cost, :simple_value, :simple_pnl, :simple_pnl_pcnt, :avg_entry_price, :break_even_price, :margin_call_price, :liquidation_price, :bankrupt_price, :timestamp
 
   # :internal => :external
   def self.attribute_map
@@ -41,10 +41,6 @@ class Position
       :last_value => :lastValue,
       :home_notional => :homeNotional,
       :foreign_notional => :foreignNotional,
-      :notional_currency1 => :notionalCurrency1,
-      :notional_value1 => :notionalValue1,
-      :notional_currency2 => :notionalCurrency2,
-      :notional_value2 => :notionalValue2,
       :init_margin => :initMargin,
       :maint_margin => :maintMargin,
       :session_margin => :sessionMargin,
@@ -52,6 +48,11 @@ class Position
       :var_margin => :varMargin,
       :unrealised_pnl => :unrealisedPnl,
       :unrealised_pnl_pcnt => :unrealisedPnlPcnt,
+      :simple_qty => :simpleQty,
+      :simple_cost => :simpleCost,
+      :simple_value => :simpleValue,
+      :simple_pnl => :simplePnl,
+      :simple_pnl_pcnt => :simplePnlPcnt,
       :avg_entry_price => :avgEntryPrice,
       :break_even_price => :breakEvenPrice,
       :margin_call_price => :marginCallPrice,
@@ -176,18 +177,6 @@ class Position
     if self.class.attribute_map[:"foreign_notional"]
       @foreign_notional = attributes["foreignNotional"]
     end
-    if self.class.attribute_map[:"notional_currency1"]
-      @notional_currency1 = attributes["notionalCurrency1"]
-    end
-    if self.class.attribute_map[:"notional_value1"]
-      @notional_value1 = attributes["notionalValue1"]
-    end
-    if self.class.attribute_map[:"notional_currency2"]
-      @notional_currency2 = attributes["notionalCurrency2"]
-    end
-    if self.class.attribute_map[:"notional_value2"]
-      @notional_value2 = attributes["notionalValue2"]
-    end
     if self.class.attribute_map[:"init_margin"]
       @init_margin = attributes["initMargin"]
     end
@@ -208,6 +197,21 @@ class Position
     end
     if self.class.attribute_map[:"unrealised_pnl_pcnt"]
       @unrealised_pnl_pcnt = attributes["unrealisedPnlPcnt"]
+    end
+    if self.class.attribute_map[:"simple_qty"]
+      @simple_qty = attributes["simpleQty"]
+    end
+    if self.class.attribute_map[:"simple_cost"]
+      @simple_cost = attributes["simpleCost"]
+    end
+    if self.class.attribute_map[:"simple_value"]
+      @simple_value = attributes["simpleValue"]
+    end
+    if self.class.attribute_map[:"simple_pnl"]
+      @simple_pnl = attributes["simplePnl"]
+    end
+    if self.class.attribute_map[:"simple_pnl_pcnt"]
+      @simple_pnl_pcnt = attributes["simplePnlPcnt"]
     end
     if self.class.attribute_map[:"avg_entry_price"]
       @avg_entry_price = attributes["avgEntryPrice"]

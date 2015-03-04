@@ -97,6 +97,22 @@ class OrderApi (implicit val swagger: Swagger) extends ScalatraServlet
 
 
 
+  val cancelAllOperation = (apiOperation[Any]("cancelAll")
+      summary "Cancels all of your orders."
+      parameters(
+        formParam[String]("symbol").description("").optional,formParam[String]("text").description("").optional)
+  )
+
+  delete("/all",operation(cancelAllOperation)) {
+    val symbol = params.getAs[String]("symbol")
+    println("symbol: " + symbol)
+  val text = params.getAs[String]("text")
+    println("text: " + text)
+  }
+
+
+
+
   val cancelAllAfterOperation = (apiOperation[Any]("cancelAllAfter")
       summary "Automatically cancel all your orders after a specified timeout."
       parameters(

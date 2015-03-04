@@ -41,10 +41,6 @@ class Position {
   Double lastValue = null
   Double homeNotional = null
   Double foreignNotional = null
-  String notionalCurrency1 = null
-  Double notionalValue1 = null
-  String notionalCurrency2 = null
-  Double notionalValue2 = null
   Double initMargin = null
   Double maintMargin = null
   Double sessionMargin = null
@@ -52,6 +48,11 @@ class Position {
   Double varMargin = null
   Double unrealisedPnl = null
   Double unrealisedPnlPcnt = null
+  Double simpleQty = null
+  Double simpleCost = null
+  Double simpleValue = null
+  Double simplePnl = null
+  Double simplePnlPcnt = null
   Double avgEntryPrice = null
   Double breakEvenPrice = null
   Double marginCallPrice = null

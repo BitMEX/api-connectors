@@ -15,6 +15,8 @@ namespace Swagger.Client.Model {
 
     public string side { get; set; }
 
+    public double? simpleOrderQty { get; set; }
+
     public double? orderQty { get; set; }
 
     public double? price { get; set; }
@@ -39,7 +41,11 @@ namespace Swagger.Client.Model {
 
     public string ordRejReason { get; set; }
 
+    public double? simpleLeavesQty { get; set; }
+
     public double? leavesQty { get; set; }
+
+    public double? simpleCumQty { get; set; }
 
     public double? cumQty { get; set; }
 
@@ -61,6 +67,7 @@ namespace Swagger.Client.Model {
       sb.Append("  account: ").Append(account).Append("\n");
       sb.Append("  symbol: ").Append(symbol).Append("\n");
       sb.Append("  side: ").Append(side).Append("\n");
+      sb.Append("  simpleOrderQty: ").Append(simpleOrderQty).Append("\n");
       sb.Append("  orderQty: ").Append(orderQty).Append("\n");
       sb.Append("  price: ").Append(price).Append("\n");
       sb.Append("  minQty: ").Append(minQty).Append("\n");
@@ -73,7 +80,9 @@ namespace Swagger.Client.Model {
       sb.Append("  ordStatus: ").Append(ordStatus).Append("\n");
       sb.Append("  workingIndicator: ").Append(workingIndicator).Append("\n");
       sb.Append("  ordRejReason: ").Append(ordRejReason).Append("\n");
+      sb.Append("  simpleLeavesQty: ").Append(simpleLeavesQty).Append("\n");
       sb.Append("  leavesQty: ").Append(leavesQty).Append("\n");
+      sb.Append("  simpleCumQty: ").Append(simpleCumQty).Append("\n");
       sb.Append("  cumQty: ").Append(cumQty).Append("\n");
       sb.Append("  avgPx: ").Append(avgPx).Append("\n");
       sb.Append("  multiLegReportingType: ").Append(multiLegReportingType).Append("\n");

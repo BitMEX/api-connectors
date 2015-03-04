@@ -35,6 +35,7 @@ class Execution {
       'underlyingLastPx' => 'float',
       'lastMkt' => 'string',
       'lastLiquidityInd' => 'string',
+      'simpleOrderQty' => 'float',
       'orderQty' => 'float',
       'price' => 'float',
       'minQty' => 'float',
@@ -48,7 +49,9 @@ class Execution {
       'ordStatus' => 'string',
       'workingIndicator' => 'bool',
       'ordRejReason' => 'string',
+      'simpleLeavesQty' => 'float',
       'leavesQty' => 'float',
+      'simpleCumQty' => 'float',
       'cumQty' => 'float',
       'avgPx' => 'float',
       'commission' => 'float',
@@ -77,6 +80,7 @@ class Execution {
   public $underlyingLastPx; // float
   public $lastMkt; // string
   public $lastLiquidityInd; // string
+  public $simpleOrderQty; // float
   public $orderQty; // float
   public $price; // float
   public $minQty; // float
@@ -90,7 +94,9 @@ class Execution {
   public $ordStatus; // string
   public $workingIndicator; // bool
   public $ordRejReason; // string
+  public $simpleLeavesQty; // float
   public $leavesQty; // float
+  public $simpleCumQty; // float
   public $cumQty; // float
   public $avgPx; // float
   public $commission; // float

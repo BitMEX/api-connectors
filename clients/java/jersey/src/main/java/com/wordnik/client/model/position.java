@@ -39,10 +39,6 @@ public class Position {
   private Double lastValue = null;
   private Double homeNotional = null;
   private Double foreignNotional = null;
-  private String notionalCurrency1 = null;
-  private Double notionalValue1 = null;
-  private String notionalCurrency2 = null;
-  private Double notionalValue2 = null;
   private Double initMargin = null;
   private Double maintMargin = null;
   private Double sessionMargin = null;
@@ -50,6 +46,11 @@ public class Position {
   private Double varMargin = null;
   private Double unrealisedPnl = null;
   private Double unrealisedPnlPcnt = null;
+  private Double simpleQty = null;
+  private Double simpleCost = null;
+  private Double simpleValue = null;
+  private Double simplePnl = null;
+  private Double simplePnlPcnt = null;
   private Double avgEntryPrice = null;
   private Double breakEvenPrice = null;
   private Double marginCallPrice = null;
@@ -315,34 +316,6 @@ public class Position {
     this.foreignNotional = foreignNotional;
   }
 
-  public String getNotionalCurrency1() {
-    return notionalCurrency1;
-  }
-  public void setNotionalCurrency1(String notionalCurrency1) {
-    this.notionalCurrency1 = notionalCurrency1;
-  }
-
-  public Double getNotionalValue1() {
-    return notionalValue1;
-  }
-  public void setNotionalValue1(Double notionalValue1) {
-    this.notionalValue1 = notionalValue1;
-  }
-
-  public String getNotionalCurrency2() {
-    return notionalCurrency2;
-  }
-  public void setNotionalCurrency2(String notionalCurrency2) {
-    this.notionalCurrency2 = notionalCurrency2;
-  }
-
-  public Double getNotionalValue2() {
-    return notionalValue2;
-  }
-  public void setNotionalValue2(Double notionalValue2) {
-    this.notionalValue2 = notionalValue2;
-  }
-
   public Double getInitMargin() {
     return initMargin;
   }
@@ -390,6 +363,41 @@ public class Position {
   }
   public void setUnrealisedPnlPcnt(Double unrealisedPnlPcnt) {
     this.unrealisedPnlPcnt = unrealisedPnlPcnt;
+  }
+
+  public Double getSimpleQty() {
+    return simpleQty;
+  }
+  public void setSimpleQty(Double simpleQty) {
+    this.simpleQty = simpleQty;
+  }
+
+  public Double getSimpleCost() {
+    return simpleCost;
+  }
+  public void setSimpleCost(Double simpleCost) {
+    this.simpleCost = simpleCost;
+  }
+
+  public Double getSimpleValue() {
+    return simpleValue;
+  }
+  public void setSimpleValue(Double simpleValue) {
+    this.simpleValue = simpleValue;
+  }
+
+  public Double getSimplePnl() {
+    return simplePnl;
+  }
+  public void setSimplePnl(Double simplePnl) {
+    this.simplePnl = simplePnl;
+  }
+
+  public Double getSimplePnlPcnt() {
+    return simplePnlPcnt;
+  }
+  public void setSimplePnlPcnt(Double simplePnlPcnt) {
+    this.simplePnlPcnt = simplePnlPcnt;
   }
 
   public Double getAvgEntryPrice() {
@@ -475,10 +483,6 @@ public class Position {
     sb.append("  lastValue: ").append(lastValue).append("\n");
     sb.append("  homeNotional: ").append(homeNotional).append("\n");
     sb.append("  foreignNotional: ").append(foreignNotional).append("\n");
-    sb.append("  notionalCurrency1: ").append(notionalCurrency1).append("\n");
-    sb.append("  notionalValue1: ").append(notionalValue1).append("\n");
-    sb.append("  notionalCurrency2: ").append(notionalCurrency2).append("\n");
-    sb.append("  notionalValue2: ").append(notionalValue2).append("\n");
     sb.append("  initMargin: ").append(initMargin).append("\n");
     sb.append("  maintMargin: ").append(maintMargin).append("\n");
     sb.append("  sessionMargin: ").append(sessionMargin).append("\n");
@@ -486,6 +490,11 @@ public class Position {
     sb.append("  varMargin: ").append(varMargin).append("\n");
     sb.append("  unrealisedPnl: ").append(unrealisedPnl).append("\n");
     sb.append("  unrealisedPnlPcnt: ").append(unrealisedPnlPcnt).append("\n");
+    sb.append("  simpleQty: ").append(simpleQty).append("\n");
+    sb.append("  simpleCost: ").append(simpleCost).append("\n");
+    sb.append("  simpleValue: ").append(simpleValue).append("\n");
+    sb.append("  simplePnl: ").append(simplePnl).append("\n");
+    sb.append("  simplePnlPcnt: ").append(simplePnlPcnt).append("\n");
     sb.append("  avgEntryPrice: ").append(avgEntryPrice).append("\n");
     sb.append("  breakEvenPrice: ").append(breakEvenPrice).append("\n");
     sb.append("  marginCallPrice: ").append(marginCallPrice).append("\n");

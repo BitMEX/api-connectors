@@ -78,14 +78,6 @@ public class Position {
   private Double homeNotional = null;
   @JsonProperty("foreignNotional")
   private Double foreignNotional = null;
-  @JsonProperty("notionalCurrency1")
-  private String notionalCurrency1 = null;
-  @JsonProperty("notionalValue1")
-  private Double notionalValue1 = null;
-  @JsonProperty("notionalCurrency2")
-  private String notionalCurrency2 = null;
-  @JsonProperty("notionalValue2")
-  private Double notionalValue2 = null;
   @JsonProperty("initMargin")
   private Double initMargin = null;
   @JsonProperty("maintMargin")
@@ -100,6 +92,16 @@ public class Position {
   private Double unrealisedPnl = null;
   @JsonProperty("unrealisedPnlPcnt")
   private Double unrealisedPnlPcnt = null;
+  @JsonProperty("simpleQty")
+  private Double simpleQty = null;
+  @JsonProperty("simpleCost")
+  private Double simpleCost = null;
+  @JsonProperty("simpleValue")
+  private Double simpleValue = null;
+  @JsonProperty("simplePnl")
+  private Double simplePnl = null;
+  @JsonProperty("simplePnlPcnt")
+  private Double simplePnlPcnt = null;
   @JsonProperty("avgEntryPrice")
   private Double avgEntryPrice = null;
   @JsonProperty("breakEvenPrice")
@@ -371,34 +373,6 @@ public class Position {
     this.foreignNotional = foreignNotional;
   }
 
-  public String getNotionalCurrency1() {
-    return notionalCurrency1;
-  }
-  public void setNotionalCurrency1(String notionalCurrency1) {
-    this.notionalCurrency1 = notionalCurrency1;
-  }
-
-  public Double getNotionalValue1() {
-    return notionalValue1;
-  }
-  public void setNotionalValue1(Double notionalValue1) {
-    this.notionalValue1 = notionalValue1;
-  }
-
-  public String getNotionalCurrency2() {
-    return notionalCurrency2;
-  }
-  public void setNotionalCurrency2(String notionalCurrency2) {
-    this.notionalCurrency2 = notionalCurrency2;
-  }
-
-  public Double getNotionalValue2() {
-    return notionalValue2;
-  }
-  public void setNotionalValue2(Double notionalValue2) {
-    this.notionalValue2 = notionalValue2;
-  }
-
   public Double getInitMargin() {
     return initMargin;
   }
@@ -446,6 +420,41 @@ public class Position {
   }
   public void setUnrealisedPnlPcnt(Double unrealisedPnlPcnt) {
     this.unrealisedPnlPcnt = unrealisedPnlPcnt;
+  }
+
+  public Double getSimpleQty() {
+    return simpleQty;
+  }
+  public void setSimpleQty(Double simpleQty) {
+    this.simpleQty = simpleQty;
+  }
+
+  public Double getSimpleCost() {
+    return simpleCost;
+  }
+  public void setSimpleCost(Double simpleCost) {
+    this.simpleCost = simpleCost;
+  }
+
+  public Double getSimpleValue() {
+    return simpleValue;
+  }
+  public void setSimpleValue(Double simpleValue) {
+    this.simpleValue = simpleValue;
+  }
+
+  public Double getSimplePnl() {
+    return simplePnl;
+  }
+  public void setSimplePnl(Double simplePnl) {
+    this.simplePnl = simplePnl;
+  }
+
+  public Double getSimplePnlPcnt() {
+    return simplePnlPcnt;
+  }
+  public void setSimplePnlPcnt(Double simplePnlPcnt) {
+    this.simplePnlPcnt = simplePnlPcnt;
   }
 
   public Double getAvgEntryPrice() {
@@ -531,10 +540,6 @@ public class Position {
     sb.append("  lastValue: ").append(lastValue).append("\n");
     sb.append("  homeNotional: ").append(homeNotional).append("\n");
     sb.append("  foreignNotional: ").append(foreignNotional).append("\n");
-    sb.append("  notionalCurrency1: ").append(notionalCurrency1).append("\n");
-    sb.append("  notionalValue1: ").append(notionalValue1).append("\n");
-    sb.append("  notionalCurrency2: ").append(notionalCurrency2).append("\n");
-    sb.append("  notionalValue2: ").append(notionalValue2).append("\n");
     sb.append("  initMargin: ").append(initMargin).append("\n");
     sb.append("  maintMargin: ").append(maintMargin).append("\n");
     sb.append("  sessionMargin: ").append(sessionMargin).append("\n");
@@ -542,6 +547,11 @@ public class Position {
     sb.append("  varMargin: ").append(varMargin).append("\n");
     sb.append("  unrealisedPnl: ").append(unrealisedPnl).append("\n");
     sb.append("  unrealisedPnlPcnt: ").append(unrealisedPnlPcnt).append("\n");
+    sb.append("  simpleQty: ").append(simpleQty).append("\n");
+    sb.append("  simpleCost: ").append(simpleCost).append("\n");
+    sb.append("  simpleValue: ").append(simpleValue).append("\n");
+    sb.append("  simplePnl: ").append(simplePnl).append("\n");
+    sb.append("  simplePnlPcnt: ").append(simplePnlPcnt).append("\n");
     sb.append("  avgEntryPrice: ").append(avgEntryPrice).append("\n");
     sb.append("  breakEvenPrice: ").append(breakEvenPrice).append("\n");
     sb.append("  marginCallPrice: ").append(marginCallPrice).append("\n");

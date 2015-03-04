@@ -598,7 +598,7 @@ class UserApi(object):
 
         resourcePath = '/user/affiliateStatus'
         resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'POST'
+        method = 'GET'
 
         queryParams = {}
         headerParams = {}
@@ -617,6 +617,54 @@ class UserApi(object):
             return None
 
         responseObject = self.apiClient.deserialize(response, 'Array[Affiliate]')
+        return responseObject
+        
+
+        
+
+    def checkReferralCode(self, **kwargs):
+        """Check if a referral code is valid.
+
+        Args:
+            referralCode, str:  (optional)
+
+            
+
+        Returns: float
+        """
+
+        allParams = ['referralCode']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method checkReferralCode" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/user/checkReferralCode'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+        formParams = {}
+        bodyParam = None
+
+        if ('referralCode' in params):
+            queryParams['referralCode'] = self.apiClient.toPathValue(params['referralCode'])
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'float')
         return responseObject
         
 
@@ -699,7 +747,7 @@ class UserApi(object):
         
 
     def getMe(self, **kwargs):
-        """Get your user model.
+        """Get your user model. This also includes your margin data.
 
         Args:
             
@@ -1031,6 +1079,50 @@ class UserApi(object):
             return None
 
         responseObject = self.apiClient.deserialize(response, 'Array[any]')
+        return responseObject
+        
+
+        
+
+    def getMargin(self, **kwargs):
+        """Get your account's margin status.
+
+        Args:
+            
+
+        Returns: Margin
+        """
+
+        allParams = []
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method getMargin" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/user/margin'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+        formParams = {}
+        bodyParam = None
+
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'Margin')
         return responseObject
         
 

@@ -102,7 +102,11 @@
         }
       }
       /// <summary>
-      /// Create a new order. If you want to keep track of order IDs yourself, set a unique clOrdID per order. This ID will come back as a property on the order and any related executions executions (including on the WebSocket), and can be used to cancel the order.
+      /// Create a new order. If you want to keep track of order IDs yourself, set a unique clOrdID per order. This ID will come back as a property on the order and any related executions (including on the WebSocket), and can be used to get or cancel the order. Max length is 36 characters.
+
+To generate a clOrdID, consider setting a prefix, and incrementing a counter or generating a UUID. Some UUIDs are longer than 36 characters, so use a url-safe base64 encoding. For example, the prefix 'bmex_mm_' and the UUID '7fbd6545-bb0c-11e4-a273-6003088a7c04' creates 'bmex_mm_f71lRbsMEeSic2ADCIp8BA'.
+
+See the BitMEX &lt;a href='https://github.com/BitMEX/market-maker/blob/22c75a2b6db63e20212813e9afdb845db1b09b2a/bitmex.py#L152'&gt;Reference Market Maker&lt;/a&gt; for an example of how to use and generate clOrdIDs.
       /// </summary>
       /// <param name="symbol">Instrument symbol.</param>
       /// <param name="quantity">Quantity. Use positive numbers to buy, negative to sell.</param>
@@ -233,6 +237,59 @@
             var response = apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, null, headerParams, formParams);
             if(response != null){
                return (List<Order>) ApiInvoker.deserialize(response, typeof(List<Order>));
+            }
+            else {
+              return null;
+            }
+          }
+        } catch (ApiException ex) {
+          if(ex.ErrorCode == 404) {
+          	return null;
+          }
+          else {
+            throw ex;
+          }
+        }
+      }
+      /// <summary>
+      /// Cancels all of your orders. 
+      /// </summary>
+      /// <param name="symbol">Optional symbol. If provided, only cancels orders for that symbol.</param>
+      /// <param name="text">Optional cancellation annotation. e.g. 'Spread Exceeded'</param>
+      /// <returns></returns>
+      public object cancelAll (string symbol, string text) {
+        // create path and map variables
+        var path = "/order/all".Replace("{format}","json");
+
+        // query params
+        var queryParams = new Dictionary<String, String>();
+        var headerParams = new Dictionary<String, String>();
+        var formParams = new Dictionary<String, object>();
+
+        if (symbol != null){
+          if(symbol is byte[]) {
+            formParams.Add("symbol", symbol);
+          } else {
+            string paramStr = (symbol is DateTime) ? ((DateTime)(object)symbol).ToString("u") : Convert.ToString(symbol);
+            formParams.Add("symbol", paramStr);
+          }
+		}
+        if (text != null){
+          if(text is byte[]) {
+            formParams.Add("text", text);
+          } else {
+            string paramStr = (text is DateTime) ? ((DateTime)(object)text).ToString("u") : Convert.ToString(text);
+            formParams.Add("text", paramStr);
+          }
+		}
+        try {
+          if (typeof(object) == typeof(byte[])) {
+            var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
+            return ((object)response) as object;
+          } else {
+            var response = apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, null, headerParams, formParams);
+            if(response != null){
+               return (object) ApiInvoker.deserialize(response, typeof(object));
             }
             else {
               return null;

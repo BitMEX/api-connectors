@@ -1,5 +1,5 @@
 class Instrument
-  attr_accessor :symbol, :root_symbol, :state, :typ, :listing, :front, :expiry, :inverse_leg, :sell_leg, :buy_leg, :underlying, :quote_currency, :underlying_symbol, :reference, :reference_symbol, :tick_size, :multiplier, :settl_currency, :underlying_to_settle_multiplier, :quote_to_settle_multiplier, :is_quanto, :is_inverse, :init_margin, :maint_margin, :limit, :maker_fee, :taker_fee, :insurance_fee, :opening_timestamp, :closing_timestamp, :prev_close_price, :limit_down_price, :limit_up_price, :prev_total_volume, :total_volume, :volume, :prev_total_turnover, :total_turnover, :turnover, :vwap, :high_price, :low_price, :last_price, :last_tick_direction, :last_change_pcnt, :bid_price, :mid_price, :ask_price, :open_interest, :open_value, :settled_price, :timestamp
+  attr_accessor :symbol, :root_symbol, :state, :typ, :listing, :front, :expiry, :relist_interval, :inverse_leg, :sell_leg, :buy_leg, :underlying, :quote_currency, :underlying_symbol, :reference, :reference_symbol, :tick_size, :multiplier, :settl_currency, :underlying_to_settle_multiplier, :quote_to_settle_multiplier, :is_quanto, :is_inverse, :init_margin, :maint_margin, :limit, :maker_fee, :taker_fee, :insurance_fee, :hedger_maker_fee, :hedger_taker_fee, :hedger_insurance_fee, :opening_timestamp, :closing_timestamp, :session_interval, :prev_close_price, :limit_down_price, :limit_up_price, :prev_total_volume, :total_volume, :volume, :volume24h, :prev_total_turnover, :total_turnover, :turnover, :turnover24h, :vwap, :high_price, :low_price, :last_price, :last_tick_direction, :last_change_pcnt, :bid_price, :mid_price, :ask_price, :open_interest, :open_value, :settled_price, :timestamp
 
   # :internal => :external
   def self.attribute_map
@@ -11,6 +11,7 @@ class Instrument
       :listing => :listing,
       :front => :front,
       :expiry => :expiry,
+      :relist_interval => :relistInterval,
       :inverse_leg => :inverseLeg,
       :sell_leg => :sellLeg,
       :buy_leg => :buyLeg,
@@ -32,17 +33,23 @@ class Instrument
       :maker_fee => :makerFee,
       :taker_fee => :takerFee,
       :insurance_fee => :insuranceFee,
+      :hedger_maker_fee => :hedgerMakerFee,
+      :hedger_taker_fee => :hedgerTakerFee,
+      :hedger_insurance_fee => :hedgerInsuranceFee,
       :opening_timestamp => :openingTimestamp,
       :closing_timestamp => :closingTimestamp,
+      :session_interval => :sessionInterval,
       :prev_close_price => :prevClosePrice,
       :limit_down_price => :limitDownPrice,
       :limit_up_price => :limitUpPrice,
       :prev_total_volume => :prevTotalVolume,
       :total_volume => :totalVolume,
       :volume => :volume,
+      :volume24h => :volume24h,
       :prev_total_turnover => :prevTotalTurnover,
       :total_turnover => :totalTurnover,
       :turnover => :turnover,
+      :turnover24h => :turnover24h,
       :vwap => :vwap,
       :high_price => :highPrice,
       :low_price => :lowPrice,
@@ -83,6 +90,9 @@ class Instrument
     end
     if self.class.attribute_map[:"expiry"]
       @expiry = attributes["expiry"]
+    end
+    if self.class.attribute_map[:"relist_interval"]
+      @relist_interval = attributes["relistInterval"]
     end
     if self.class.attribute_map[:"inverse_leg"]
       @inverse_leg = attributes["inverseLeg"]
@@ -147,11 +157,23 @@ class Instrument
     if self.class.attribute_map[:"insurance_fee"]
       @insurance_fee = attributes["insuranceFee"]
     end
+    if self.class.attribute_map[:"hedger_maker_fee"]
+      @hedger_maker_fee = attributes["hedgerMakerFee"]
+    end
+    if self.class.attribute_map[:"hedger_taker_fee"]
+      @hedger_taker_fee = attributes["hedgerTakerFee"]
+    end
+    if self.class.attribute_map[:"hedger_insurance_fee"]
+      @hedger_insurance_fee = attributes["hedgerInsuranceFee"]
+    end
     if self.class.attribute_map[:"opening_timestamp"]
       @opening_timestamp = attributes["openingTimestamp"]
     end
     if self.class.attribute_map[:"closing_timestamp"]
       @closing_timestamp = attributes["closingTimestamp"]
+    end
+    if self.class.attribute_map[:"session_interval"]
+      @session_interval = attributes["sessionInterval"]
     end
     if self.class.attribute_map[:"prev_close_price"]
       @prev_close_price = attributes["prevClosePrice"]
@@ -171,6 +193,9 @@ class Instrument
     if self.class.attribute_map[:"volume"]
       @volume = attributes["volume"]
     end
+    if self.class.attribute_map[:"volume24h"]
+      @volume24h = attributes["volume24h"]
+    end
     if self.class.attribute_map[:"prev_total_turnover"]
       @prev_total_turnover = attributes["prevTotalTurnover"]
     end
@@ -179,6 +204,9 @@ class Instrument
     end
     if self.class.attribute_map[:"turnover"]
       @turnover = attributes["turnover"]
+    end
+    if self.class.attribute_map[:"turnover24h"]
+      @turnover24h = attributes["turnover24h"]
     end
     if self.class.attribute_map[:"vwap"]
       @vwap = attributes["vwap"]

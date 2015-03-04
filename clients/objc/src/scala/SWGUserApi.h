@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "SWGUser.h"
+#import "SWGMargin.h"
 #import "SWGTransaction.h"
 #import "SWGAffiliate.h"
 #import "SWGAccessToken.h"
@@ -132,6 +133,15 @@
 
 /**
 
+ Check if a referral code is valid.
+ If the code is valid, responds with the referral code's discount (e.g. `0.1` for 10%). Otherwise, will return a 404.
+ @param referralCode 
+ */
+-(NSNumber*) checkReferralCodeWithCompletionBlock :(NSString*) referralCode 
+        completionHandler : (void (^)(NSNumber* output, NSError* error))completionBlock;
+
+/**
+
  Register a new user.
  
  @param email Your email address.
@@ -155,7 +165,7 @@
 
 /**
 
- Get your user model.
+ Get your user model. This also includes your margin data.
  
  */
 -(NSNumber*) getMeWithCompletionBlock :(void (^)(SWGUser* output, NSError* error))completionBlock;
@@ -221,5 +231,12 @@
  
  */
 -(NSNumber*) getCommissionWithCompletionBlock :(void (^)(NSArray* output, NSError* error))completionBlock;
+
+/**
+
+ Get your account's margin status.
+ 
+ */
+-(NSNumber*) getMarginWithCompletionBlock :(void (^)(SWGMargin* output, NSError* error))completionBlock;
 
 @end

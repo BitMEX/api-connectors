@@ -94,6 +94,30 @@ def self.cancel_order (order_i_d,cl_ord_i_d,text,opts={})
 
   end
 
+def self.cancel_all (symbol,text,opts={})
+    query_param_keys = []
+
+    # set default values and merge with input
+    options = {
+    :symbol => symbol,
+      :text => text}.merge(opts)
+
+    #resource path
+    path = "/order/all".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:DELETE, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    object.new(response)
+
+  end
+
 def self.cancel_all_after (timeout,opts={})
     query_param_keys = []
 

@@ -3,6 +3,7 @@ package com.wordnik.api;
 import com.wordnik.swagger.annotations.*;
 
 import com.wordnik.client.model.User;
+import com.wordnik.client.model.Margin;
 import com.wordnik.client.model.Transaction;
 import com.wordnik.client.model.Affiliate;
 import com.wordnik.client.model.AccessToken;
@@ -157,12 +158,27 @@ public class UserApi {
       return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
   }
 
-  @POST
+  @GET
   @Path("/affiliateStatus")
   @ApiOperation(value = "Get your current affiliate/referral status.", notes = "", responseClass = "List<Affiliate>")
   @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
      
   public Response getAffiliateStatus(
+    )
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
+  }
+
+  @GET
+  @Path("/checkReferralCode")
+  @ApiOperation(value = "Check if a referral code is valid.", notes = "If the code is valid, responds with the referral code's discount (e.g. `0.1` for 10%). Otherwise, will return a 404.", responseClass = "Double")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
+     
+  public Response checkReferralCode(
+    @ApiParam(value = ""
+    )@QueryParam("referralCode")
+ String referralCode
     )
       throws NotFoundException {
       // do some magic!
@@ -183,7 +199,7 @@ public class UserApi {
 
   @GET
   @Path("/")
-  @ApiOperation(value = "Get your user model.", notes = "", responseClass = "User")
+  @ApiOperation(value = "Get your user model. This also includes your margin data.", notes = "", responseClass = "User")
   @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
      
   public Response getMe(
@@ -259,6 +275,18 @@ public class UserApi {
   @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
      
   public Response getCommission(
+    )
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
+  }
+
+  @GET
+  @Path("/margin")
+  @ApiOperation(value = "Get your account's margin status.", notes = "", responseClass = "Margin")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful")})
+     
+  public Response getMargin(
     )
       throws NotFoundException {
       // do some magic!

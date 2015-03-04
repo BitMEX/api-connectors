@@ -11,6 +11,7 @@ import com.wordnik.client.common.ApiUtils
 //-------------
 
 import com.wordnik.client.model.User
+import com.wordnik.client.model.Margin
 import com.wordnik.client.model.Transaction
 import com.wordnik.client.model.Affiliate
 import com.wordnik.client.model.AccessToken
@@ -223,8 +224,24 @@ class UserApi {
     def headerParams = [:]
 
     invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "POST", "List",
+                    "GET", "List",
                     Affiliate.class )
+
+  }
+  def checkReferralCode (String referralCode,Closure onSuccess, Closure onFailure)  {
+    // create path and map variables
+    String resourcePath = "/user/checkReferralCode"
+
+
+    // query params
+    def queryParams = [:]
+    def headerParams = [:]
+
+    if(!"null".equals(String.valueOf(referralCode)))
+      queryParams.put("referralCode", String.valueOf(referralCode))
+    invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "GET", "",
+                    Double.class )
 
   }
   def newUser (String email,String password,String username,String firstname,String lastname,String acceptsTOS,String referrerID,String accountType,Closure onSuccess, Closure onFailure)  {
@@ -349,6 +366,20 @@ class UserApi {
     invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
                     "GET", "List",
                     any.class )
+
+  }
+  def getMargin (Closure onSuccess, Closure onFailure)  {
+    // create path and map variables
+    String resourcePath = "/user/margin"
+
+
+    // query params
+    def queryParams = [:]
+    def headerParams = [:]
+
+    invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "GET", "",
+                    Margin.class )
 
   }
   }

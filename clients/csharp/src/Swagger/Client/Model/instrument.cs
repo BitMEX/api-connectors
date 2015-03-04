@@ -19,6 +19,8 @@ namespace Swagger.Client.Model {
 
     public DateTime? expiry { get; set; }
 
+    public DateTime? relistInterval { get; set; }
+
     public string inverseLeg { get; set; }
 
     public string sellLeg { get; set; }
@@ -61,9 +63,17 @@ namespace Swagger.Client.Model {
 
     public double? insuranceFee { get; set; }
 
+    public double? hedgerMakerFee { get; set; }
+
+    public double? hedgerTakerFee { get; set; }
+
+    public double? hedgerInsuranceFee { get; set; }
+
     public DateTime? openingTimestamp { get; set; }
 
     public DateTime? closingTimestamp { get; set; }
+
+    public DateTime? sessionInterval { get; set; }
 
     public double? prevClosePrice { get; set; }
 
@@ -77,11 +87,15 @@ namespace Swagger.Client.Model {
 
     public double? volume { get; set; }
 
+    public double? volume24h { get; set; }
+
     public double? prevTotalTurnover { get; set; }
 
     public double? totalTurnover { get; set; }
 
     public double? turnover { get; set; }
+
+    public double? turnover24h { get; set; }
 
     public double? vwap { get; set; }
 
@@ -119,6 +133,7 @@ namespace Swagger.Client.Model {
       sb.Append("  listing: ").Append(listing).Append("\n");
       sb.Append("  front: ").Append(front).Append("\n");
       sb.Append("  expiry: ").Append(expiry).Append("\n");
+      sb.Append("  relistInterval: ").Append(relistInterval).Append("\n");
       sb.Append("  inverseLeg: ").Append(inverseLeg).Append("\n");
       sb.Append("  sellLeg: ").Append(sellLeg).Append("\n");
       sb.Append("  buyLeg: ").Append(buyLeg).Append("\n");
@@ -140,17 +155,23 @@ namespace Swagger.Client.Model {
       sb.Append("  makerFee: ").Append(makerFee).Append("\n");
       sb.Append("  takerFee: ").Append(takerFee).Append("\n");
       sb.Append("  insuranceFee: ").Append(insuranceFee).Append("\n");
+      sb.Append("  hedgerMakerFee: ").Append(hedgerMakerFee).Append("\n");
+      sb.Append("  hedgerTakerFee: ").Append(hedgerTakerFee).Append("\n");
+      sb.Append("  hedgerInsuranceFee: ").Append(hedgerInsuranceFee).Append("\n");
       sb.Append("  openingTimestamp: ").Append(openingTimestamp).Append("\n");
       sb.Append("  closingTimestamp: ").Append(closingTimestamp).Append("\n");
+      sb.Append("  sessionInterval: ").Append(sessionInterval).Append("\n");
       sb.Append("  prevClosePrice: ").Append(prevClosePrice).Append("\n");
       sb.Append("  limitDownPrice: ").Append(limitDownPrice).Append("\n");
       sb.Append("  limitUpPrice: ").Append(limitUpPrice).Append("\n");
       sb.Append("  prevTotalVolume: ").Append(prevTotalVolume).Append("\n");
       sb.Append("  totalVolume: ").Append(totalVolume).Append("\n");
       sb.Append("  volume: ").Append(volume).Append("\n");
+      sb.Append("  volume24h: ").Append(volume24h).Append("\n");
       sb.Append("  prevTotalTurnover: ").Append(prevTotalTurnover).Append("\n");
       sb.Append("  totalTurnover: ").Append(totalTurnover).Append("\n");
       sb.Append("  turnover: ").Append(turnover).Append("\n");
+      sb.Append("  turnover24h: ").Append(turnover24h).Append("\n");
       sb.Append("  vwap: ").Append(vwap).Append("\n");
       sb.Append("  highPrice: ").Append(highPrice).Append("\n");
       sb.Append("  lowPrice: ").Append(lowPrice).Append("\n");

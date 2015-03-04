@@ -1,5 +1,5 @@
 class Execution
-  attr_accessor :exec_i_d, :order_i_d, :cl_ord_i_d, :account, :symbol, :side, :last_qty, :last_px, :underlying_last_px, :last_mkt, :last_liquidity_ind, :order_qty, :price, :min_qty, :stop_px, :currency, :settl_currency, :exec_type, :ord_type, :time_in_force, :ex_destination, :ord_status, :working_indicator, :ord_rej_reason, :leaves_qty, :cum_qty, :avg_px, :commission, :comm_type, :trade_publish_indicator, :multi_leg_reporting_type, :text, :trd_match_i_d, :exec_cost, :exec_comm, :home_notional, :foreign_notional, :transact_time, :timestamp
+  attr_accessor :exec_i_d, :order_i_d, :cl_ord_i_d, :account, :symbol, :side, :last_qty, :last_px, :underlying_last_px, :last_mkt, :last_liquidity_ind, :simple_order_qty, :order_qty, :price, :min_qty, :stop_px, :currency, :settl_currency, :exec_type, :ord_type, :time_in_force, :ex_destination, :ord_status, :working_indicator, :ord_rej_reason, :simple_leaves_qty, :leaves_qty, :simple_cum_qty, :cum_qty, :avg_px, :commission, :comm_type, :trade_publish_indicator, :multi_leg_reporting_type, :text, :trd_match_i_d, :exec_cost, :exec_comm, :home_notional, :foreign_notional, :transact_time, :timestamp
 
   # :internal => :external
   def self.attribute_map
@@ -15,6 +15,7 @@ class Execution
       :underlying_last_px => :underlyingLastPx,
       :last_mkt => :lastMkt,
       :last_liquidity_ind => :lastLiquidityInd,
+      :simple_order_qty => :simpleOrderQty,
       :order_qty => :orderQty,
       :price => :price,
       :min_qty => :minQty,
@@ -28,7 +29,9 @@ class Execution
       :ord_status => :ordStatus,
       :working_indicator => :workingIndicator,
       :ord_rej_reason => :ordRejReason,
+      :simple_leaves_qty => :simpleLeavesQty,
       :leaves_qty => :leavesQty,
+      :simple_cum_qty => :simpleCumQty,
       :cum_qty => :cumQty,
       :avg_px => :avgPx,
       :commission => :commission,
@@ -83,6 +86,9 @@ class Execution
     if self.class.attribute_map[:"last_liquidity_ind"]
       @last_liquidity_ind = attributes["lastLiquidityInd"]
     end
+    if self.class.attribute_map[:"simple_order_qty"]
+      @simple_order_qty = attributes["simpleOrderQty"]
+    end
     if self.class.attribute_map[:"order_qty"]
       @order_qty = attributes["orderQty"]
     end
@@ -122,8 +128,14 @@ class Execution
     if self.class.attribute_map[:"ord_rej_reason"]
       @ord_rej_reason = attributes["ordRejReason"]
     end
+    if self.class.attribute_map[:"simple_leaves_qty"]
+      @simple_leaves_qty = attributes["simpleLeavesQty"]
+    end
     if self.class.attribute_map[:"leaves_qty"]
       @leaves_qty = attributes["leavesQty"]
+    end
+    if self.class.attribute_map[:"simple_cum_qty"]
+      @simple_cum_qty = attributes["simpleCumQty"]
     end
     if self.class.attribute_map[:"cum_qty"]
       @cum_qty = attributes["cumQty"]

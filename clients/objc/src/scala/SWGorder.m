@@ -8,6 +8,7 @@
     account: (NSNumber*) account
     symbol: (NSString*) symbol
     side: (NSString*) side
+    simpleOrderQty: (NSNumber*) simpleOrderQty
     orderQty: (NSNumber*) orderQty
     price: (NSNumber*) price
     minQty: (NSNumber*) minQty
@@ -20,7 +21,9 @@
     ordStatus: (NSString*) ordStatus
     workingIndicator: (NSNumber*) workingIndicator
     ordRejReason: (NSString*) ordRejReason
+    simpleLeavesQty: (NSNumber*) simpleLeavesQty
     leavesQty: (NSNumber*) leavesQty
+    simpleCumQty: (NSNumber*) simpleCumQty
     cumQty: (NSNumber*) cumQty
     avgPx: (NSNumber*) avgPx
     multiLegReportingType: (NSString*) multiLegReportingType
@@ -33,6 +36,7 @@
   _account = account;
   _symbol = symbol;
   _side = side;
+  _simpleOrderQty = simpleOrderQty;
   _orderQty = orderQty;
   _price = price;
   _minQty = minQty;
@@ -45,7 +49,9 @@
   _ordStatus = ordStatus;
   _workingIndicator = workingIndicator;
   _ordRejReason = ordRejReason;
+  _simpleLeavesQty = simpleLeavesQty;
   _leavesQty = leavesQty;
+  _simpleCumQty = simpleCumQty;
   _cumQty = cumQty;
   _avgPx = avgPx;
   _multiLegReportingType = multiLegReportingType;
@@ -64,6 +70,7 @@
         _account = dict[@"account"]; 
         _symbol = dict[@"symbol"]; 
         _side = dict[@"side"]; 
+        _simpleOrderQty = dict[@"simpleOrderQty"]; 
         _orderQty = dict[@"orderQty"]; 
         _price = dict[@"price"]; 
         _minQty = dict[@"minQty"]; 
@@ -76,7 +83,9 @@
         _ordStatus = dict[@"ordStatus"]; 
         _workingIndicator = dict[@"workingIndicator"]; 
         _ordRejReason = dict[@"ordRejReason"]; 
+        _simpleLeavesQty = dict[@"simpleLeavesQty"]; 
         _leavesQty = dict[@"leavesQty"]; 
+        _simpleCumQty = dict[@"simpleCumQty"]; 
         _cumQty = dict[@"cumQty"]; 
         _avgPx = dict[@"avgPx"]; 
         _multiLegReportingType = dict[@"multiLegReportingType"]; 
@@ -100,6 +109,7 @@
         if(_account != nil) dict[@"account"] = _account ;
         if(_symbol != nil) dict[@"symbol"] = _symbol ;
         if(_side != nil) dict[@"side"] = _side ;
+        if(_simpleOrderQty != nil) dict[@"simpleOrderQty"] = _simpleOrderQty ;
         if(_orderQty != nil) dict[@"orderQty"] = _orderQty ;
         if(_price != nil) dict[@"price"] = _price ;
         if(_minQty != nil) dict[@"minQty"] = _minQty ;
@@ -112,7 +122,9 @@
         if(_ordStatus != nil) dict[@"ordStatus"] = _ordStatus ;
         if(_workingIndicator != nil) dict[@"workingIndicator"] = _workingIndicator ;
         if(_ordRejReason != nil) dict[@"ordRejReason"] = _ordRejReason ;
+        if(_simpleLeavesQty != nil) dict[@"simpleLeavesQty"] = _simpleLeavesQty ;
         if(_leavesQty != nil) dict[@"leavesQty"] = _leavesQty ;
+        if(_simpleCumQty != nil) dict[@"simpleCumQty"] = _simpleCumQty ;
         if(_cumQty != nil) dict[@"cumQty"] = _cumQty ;
         if(_avgPx != nil) dict[@"avgPx"] = _avgPx ;
         if(_multiLegReportingType != nil) dict[@"multiLegReportingType"] = _multiLegReportingType ;

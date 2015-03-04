@@ -1,5 +1,5 @@
 class Order
-  attr_accessor :order_i_d, :cl_ord_i_d, :account, :symbol, :side, :order_qty, :price, :min_qty, :stop_px, :currency, :settl_currency, :ord_type, :time_in_force, :ex_destination, :ord_status, :working_indicator, :ord_rej_reason, :leaves_qty, :cum_qty, :avg_px, :multi_leg_reporting_type, :text, :transact_time, :timestamp
+  attr_accessor :order_i_d, :cl_ord_i_d, :account, :symbol, :side, :simple_order_qty, :order_qty, :price, :min_qty, :stop_px, :currency, :settl_currency, :ord_type, :time_in_force, :ex_destination, :ord_status, :working_indicator, :ord_rej_reason, :simple_leaves_qty, :leaves_qty, :simple_cum_qty, :cum_qty, :avg_px, :multi_leg_reporting_type, :text, :transact_time, :timestamp
 
   # :internal => :external
   def self.attribute_map
@@ -9,6 +9,7 @@ class Order
       :account => :account,
       :symbol => :symbol,
       :side => :side,
+      :simple_order_qty => :simpleOrderQty,
       :order_qty => :orderQty,
       :price => :price,
       :min_qty => :minQty,
@@ -21,7 +22,9 @@ class Order
       :ord_status => :ordStatus,
       :working_indicator => :workingIndicator,
       :ord_rej_reason => :ordRejReason,
+      :simple_leaves_qty => :simpleLeavesQty,
       :leaves_qty => :leavesQty,
+      :simple_cum_qty => :simpleCumQty,
       :cum_qty => :cumQty,
       :avg_px => :avgPx,
       :multi_leg_reporting_type => :multiLegReportingType,
@@ -49,6 +52,9 @@ class Order
     end
     if self.class.attribute_map[:"side"]
       @side = attributes["side"]
+    end
+    if self.class.attribute_map[:"simple_order_qty"]
+      @simple_order_qty = attributes["simpleOrderQty"]
     end
     if self.class.attribute_map[:"order_qty"]
       @order_qty = attributes["orderQty"]
@@ -86,8 +92,14 @@ class Order
     if self.class.attribute_map[:"ord_rej_reason"]
       @ord_rej_reason = attributes["ordRejReason"]
     end
+    if self.class.attribute_map[:"simple_leaves_qty"]
+      @simple_leaves_qty = attributes["simpleLeavesQty"]
+    end
     if self.class.attribute_map[:"leaves_qty"]
       @leaves_qty = attributes["leavesQty"]
+    end
+    if self.class.attribute_map[:"simple_cum_qty"]
+      @simple_cum_qty = attributes["simpleCumQty"]
     end
     if self.class.attribute_map[:"cum_qty"]
       @cum_qty = attributes["cumQty"]

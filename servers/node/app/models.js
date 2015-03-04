@@ -33,6 +33,36 @@ exports.models = {
   }
 },
 
+  "Stats": {
+  "id" : "Stats",
+  "name" : "",
+  "required" : [ "rootSymbol" ],
+  "properties" : {
+    "openValue" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "volume24h" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "openInterest" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "currency" : {
+      "type" : "string"
+    },
+    "turnover24h" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "rootSymbol" : {
+      "type" : "string"
+    }
+  }
+},
+
   "Transaction": {
   "id" : "Transaction",
   "name" : "",
@@ -74,6 +104,40 @@ exports.models = {
     },
     "tx" : {
       "type" : "string"
+    }
+  }
+},
+
+  "ApiKey": {
+  "id" : "ApiKey",
+  "name" : "",
+  "required" : [ "id", "secret", "name", "nonce", "userId" ],
+  "properties" : {
+    "secret" : {
+      "type" : "string"
+    },
+    "name" : {
+      "type" : "string"
+    },
+    "nonce" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "cidr" : {
+      "type" : "string"
+    },
+    "enabled" : {
+      "type" : "boolean"
+    },
+    "id" : {
+      "type" : "string"
+    },
+    "userId" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "constriants" : {
+      "type" : "object"
     }
   }
 },
@@ -193,40 +257,6 @@ exports.models = {
   }
 },
 
-  "ApiKey": {
-  "id" : "ApiKey",
-  "name" : "",
-  "required" : [ "id", "secret", "name", "nonce", "userId" ],
-  "properties" : {
-    "secret" : {
-      "type" : "string"
-    },
-    "name" : {
-      "type" : "string"
-    },
-    "nonce" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "cidr" : {
-      "type" : "string"
-    },
-    "enabled" : {
-      "type" : "boolean"
-    },
-    "id" : {
-      "type" : "string"
-    },
-    "userId" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "constriants" : {
-      "type" : "object"
-    }
-  }
-},
-
   "Instrument": {
   "id" : "Instrument",
   "name" : "",
@@ -239,7 +269,19 @@ exports.models = {
     "reference" : {
       "type" : "string"
     },
+    "sessionInterval" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "volume24h" : {
+      "type" : "number",
+      "format" : "double"
+    },
     "quoteToSettleMultiplier" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "hedgerMakerFee" : {
       "type" : "number",
       "format" : "double"
     },
@@ -268,6 +310,10 @@ exports.models = {
     "state" : {
       "type" : "string"
     },
+    "hedgerInsuranceFee" : {
+      "type" : "number",
+      "format" : "double"
+    },
     "settlCurrency" : {
       "type" : "string"
     },
@@ -284,6 +330,10 @@ exports.models = {
     },
     "underlyingSymbol" : {
       "type" : "string"
+    },
+    "hedgerTakerFee" : {
+      "type" : "number",
+      "format" : "double"
     },
     "insuranceFee" : {
       "type" : "number",
@@ -374,6 +424,10 @@ exports.models = {
       "type" : "number",
       "format" : "double"
     },
+    "turnover24h" : {
+      "type" : "number",
+      "format" : "double"
+    },
     "limitDownPrice" : {
       "type" : "number",
       "format" : "double"
@@ -412,6 +466,10 @@ exports.models = {
     "totalVolume" : {
       "type" : "number",
       "format" : "double"
+    },
+    "relistInterval" : {
+      "type" : "string",
+      "format" : "date-time"
     },
     "turnover" : {
       "type" : "number",
@@ -552,7 +610,15 @@ exports.models = {
     "ordStatus" : {
       "type" : "string"
     },
+    "simpleCumQty" : {
+      "type" : "number",
+      "format" : "double"
+    },
     "execCost" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "simpleOrderQty" : {
       "type" : "number",
       "format" : "double"
     },
@@ -625,7 +691,148 @@ exports.models = {
     "clOrdID" : {
       "type" : "string"
     },
+    "simpleLeavesQty" : {
+      "type" : "number",
+      "format" : "double"
+    },
     "cumQty" : {
+      "type" : "number",
+      "format" : "double"
+    }
+  }
+},
+
+  "Margin": {
+  "id" : "Margin",
+  "name" : "",
+  "required" : [ "account", "currency" ],
+  "properties" : {
+    "grossExecCost" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "walletBalance" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "realisedPnl" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "timestamp" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "commission" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "state" : {
+      "type" : "string"
+    },
+    "varMargin" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "riskValue" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "marginUsedPcnt" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "grossOpenCost" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "marginBalance" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "targetExcessMargin" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "marginBalancePcnt" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "excessMargin" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "initMargin" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "amount" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "availableMargin" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "maintMargin" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "grossComm" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "riskLimit" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "pendingDebit" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "marginLeverage" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "currency" : {
+      "type" : "string"
+    },
+    "pendingCredit" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "withdrawableMargin" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "sessionMargin" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "account" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "prevRealisedPnl" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "excessMarginPcnt" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "prevUnrealisedPnl" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "action" : {
+      "type" : "string"
+    },
+    "grossLastValue" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "unrealisedPnl" : {
       "type" : "number",
       "format" : "double"
     }
@@ -721,6 +928,32 @@ exports.models = {
   }
 },
 
+  "StatsHistory": {
+  "id" : "StatsHistory",
+  "name" : "",
+  "required" : [ "date", "rootSymbol" ],
+  "properties" : {
+    "date" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "currency" : {
+      "type" : "string"
+    },
+    "volume" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "turnover" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "rootSymbol" : {
+      "type" : "string"
+    }
+  }
+},
+
   "Position": {
   "id" : "Position",
   "name" : "",
@@ -746,6 +979,10 @@ exports.models = {
       "type" : "number",
       "format" : "double"
     },
+    "simplePnlPcnt" : {
+      "type" : "number",
+      "format" : "double"
+    },
     "timestamp" : {
       "type" : "string",
       "format" : "date-time"
@@ -759,9 +996,6 @@ exports.models = {
       "format" : "double"
     },
     "quoteCurrency" : {
-      "type" : "string"
-    },
-    "notionalCurrency2" : {
       "type" : "string"
     },
     "varMargin" : {
@@ -808,7 +1042,7 @@ exports.models = {
       "type" : "string",
       "format" : "date-time"
     },
-    "notionalValue1" : {
+    "simplePnl" : {
       "type" : "number",
       "format" : "double"
     },
@@ -817,6 +1051,10 @@ exports.models = {
       "format" : "double"
     },
     "initMargin" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "simpleQty" : {
       "type" : "number",
       "format" : "double"
     },
@@ -832,14 +1070,15 @@ exports.models = {
       "type" : "number",
       "format" : "double"
     },
+    "simpleValue" : {
+      "type" : "number",
+      "format" : "double"
+    },
     "openingComm" : {
       "type" : "number",
       "format" : "double"
     },
     "symbol" : {
-      "type" : "string"
-    },
-    "notionalCurrency1" : {
       "type" : "string"
     },
     "maintMargin" : {
@@ -900,15 +1139,15 @@ exports.models = {
       "type" : "number",
       "format" : "double"
     },
-    "notionalValue2" : {
-      "type" : "number",
-      "format" : "double"
-    },
     "prevUnrealisedPnl" : {
       "type" : "number",
       "format" : "double"
     },
     "execBuyQty" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "simpleCost" : {
       "type" : "number",
       "format" : "double"
     },
@@ -1020,6 +1259,14 @@ exports.models = {
     "ordStatus" : {
       "type" : "string"
     },
+    "simpleCumQty" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "simpleOrderQty" : {
+      "type" : "number",
+      "format" : "double"
+    },
     "text" : {
       "type" : "string"
     },
@@ -1068,6 +1315,10 @@ exports.models = {
     },
     "clOrdID" : {
       "type" : "string"
+    },
+    "simpleLeavesQty" : {
+      "type" : "number",
+      "format" : "double"
     },
     "cumQty" : {
       "type" : "number",

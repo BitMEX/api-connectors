@@ -1,6 +1,7 @@
 package apis
 
 import com.wordnik.client.model.User
+import com.wordnik.client.model.Margin
 import com.wordnik.client.model.Transaction
 import com.wordnik.client.model.Affiliate
 import com.wordnik.client.model.AccessToken
@@ -202,8 +203,22 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
         )
   )
 
-  post("/affiliateStatus",operation(getAffiliateStatusOperation)) {
+  get("/affiliateStatus",operation(getAffiliateStatusOperation)) {
     }
+
+
+
+
+  val checkReferralCodeOperation = (apiOperation[Double]("checkReferralCode")
+      summary "Check if a referral code is valid."
+      parameters(
+        queryParam[String]("referralCode").description("").optional)
+  )
+
+  get("/checkReferralCode",operation(checkReferralCodeOperation)) {
+    val referralCode = params.getAs[String]("referralCode")
+    println("referralCode: " + referralCode)
+  }
 
 
 
@@ -237,7 +252,7 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
 
 
   val getMeOperation = (apiOperation[User]("getMe")
-      summary "Get your user model."
+      summary "Get your user model. This also includes your margin data."
       parameters(
         )
   )
@@ -335,6 +350,18 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
   )
 
   get("/commission",operation(getCommissionOperation)) {
+    }
+
+
+
+
+  val getMarginOperation = (apiOperation[Margin]("getMargin")
+      summary "Get your account's margin status."
+      parameters(
+        )
+  )
+
+  get("/margin",operation(getMarginOperation)) {
     }
 
 }

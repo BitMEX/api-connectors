@@ -254,6 +254,66 @@ public class OrderApi {
   //error info- code: 400 reason: "Parameter Error" model: <none>
   //error info- code: 401 reason: "Unauthorized" model: <none>
   //error info- code: 404 reason: "Not Found" model: <none>
+  public Object cancelAll (String symbol, String text) throws ApiException {
+    Object postBody = null;
+    // create path and map variables
+    String path = "/order/all".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    String[] contentTypes = {
+      "application/json"};
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("application/x-www-form-urlencoded")) {
+      boolean hasFields = false;
+      List<NameValuePair> mp = new ArrayList<NameValuePair>();
+      hasFields = true;
+      mp.add(new BasicNameValuePair("symbol", symbol));
+      hasFields = true;
+      mp.add(new BasicNameValuePair("text", text));
+      if(hasFields)
+        postBody = mp;
+    }
+    else if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+      builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      hasFields = true;
+      builder.addTextBody("symbol", symbol.toString());
+      hasFields = true;
+      builder.addTextBody("text", text.toString());
+      if(hasFields)
+        postBody = builder;
+    }
+    else {
+      postBody = null;
+    }
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, contentType);
+      if(response != null){
+        return (Object) ApiInvoker.deserialize(response, "", Object.class);
+      }
+      else {
+        return null;
+      }
+    } catch (ApiException ex) {
+      if(ex.getCode() == 404) {
+        return null;
+      }
+      else {
+        throw ex;
+      }
+    }
+  }
+  //error info- code: 200 reason: "Request was successful" model: <none>
+  //error info- code: 400 reason: "Parameter Error" model: <none>
+  //error info- code: 401 reason: "Unauthorized" model: <none>
+  //error info- code: 404 reason: "Not Found" model: <none>
   public Object cancelAllAfter (Double timeout) throws ApiException {
     Object postBody = null;
     // verify required params are set

@@ -76,14 +76,6 @@ case class Position (
 
   foreignNotional: Option[Double],
 
-  notionalCurrency1: Option[String],
-
-  notionalValue1: Option[Double],
-
-  notionalCurrency2: Option[String],
-
-  notionalValue2: Option[Double],
-
   initMargin: Option[Double],
 
   maintMargin: Option[Double],
@@ -97,6 +89,16 @@ case class Position (
   unrealisedPnl: Option[Double],
 
   unrealisedPnlPcnt: Option[Double],
+
+  simpleQty: Option[Double],
+
+  simpleCost: Option[Double],
+
+  simpleValue: Option[Double],
+
+  simplePnl: Option[Double],
+
+  simplePnlPcnt: Option[Double],
 
   avgEntryPrice: Option[Double],
 

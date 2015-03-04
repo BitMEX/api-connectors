@@ -14,6 +14,8 @@ public class Order {
   private String symbol = null;
   @JsonProperty("side")
   private String side = null;
+  @JsonProperty("simpleOrderQty")
+  private Double simpleOrderQty = null;
   @JsonProperty("orderQty")
   private Double orderQty = null;
   @JsonProperty("price")
@@ -38,8 +40,12 @@ public class Order {
   private Boolean workingIndicator = null;
   @JsonProperty("ordRejReason")
   private String ordRejReason = null;
+  @JsonProperty("simpleLeavesQty")
+  private Double simpleLeavesQty = null;
   @JsonProperty("leavesQty")
   private Double leavesQty = null;
+  @JsonProperty("simpleCumQty")
+  private Double simpleCumQty = null;
   @JsonProperty("cumQty")
   private Double cumQty = null;
   @JsonProperty("avgPx")
@@ -85,6 +91,13 @@ public class Order {
   }
   public void setSide(String side) {
     this.side = side;
+  }
+
+  public Double getSimpleOrderQty() {
+    return simpleOrderQty;
+  }
+  public void setSimpleOrderQty(Double simpleOrderQty) {
+    this.simpleOrderQty = simpleOrderQty;
   }
 
   public Double getOrderQty() {
@@ -171,11 +184,25 @@ public class Order {
     this.ordRejReason = ordRejReason;
   }
 
+  public Double getSimpleLeavesQty() {
+    return simpleLeavesQty;
+  }
+  public void setSimpleLeavesQty(Double simpleLeavesQty) {
+    this.simpleLeavesQty = simpleLeavesQty;
+  }
+
   public Double getLeavesQty() {
     return leavesQty;
   }
   public void setLeavesQty(Double leavesQty) {
     this.leavesQty = leavesQty;
+  }
+
+  public Double getSimpleCumQty() {
+    return simpleCumQty;
+  }
+  public void setSimpleCumQty(Double simpleCumQty) {
+    this.simpleCumQty = simpleCumQty;
   }
 
   public Double getCumQty() {
@@ -229,6 +256,7 @@ public class Order {
     sb.append("  account: ").append(account).append("\n");
     sb.append("  symbol: ").append(symbol).append("\n");
     sb.append("  side: ").append(side).append("\n");
+    sb.append("  simpleOrderQty: ").append(simpleOrderQty).append("\n");
     sb.append("  orderQty: ").append(orderQty).append("\n");
     sb.append("  price: ").append(price).append("\n");
     sb.append("  minQty: ").append(minQty).append("\n");
@@ -241,7 +269,9 @@ public class Order {
     sb.append("  ordStatus: ").append(ordStatus).append("\n");
     sb.append("  workingIndicator: ").append(workingIndicator).append("\n");
     sb.append("  ordRejReason: ").append(ordRejReason).append("\n");
+    sb.append("  simpleLeavesQty: ").append(simpleLeavesQty).append("\n");
     sb.append("  leavesQty: ").append(leavesQty).append("\n");
+    sb.append("  simpleCumQty: ").append(simpleCumQty).append("\n");
     sb.append("  cumQty: ").append(cumQty).append("\n");
     sb.append("  avgPx: ").append(avgPx).append("\n");
     sb.append("  multiLegReportingType: ").append(multiLegReportingType).append("\n");

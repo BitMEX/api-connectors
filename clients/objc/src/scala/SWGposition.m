@@ -40,10 +40,6 @@
     lastValue: (NSNumber*) lastValue
     homeNotional: (NSNumber*) homeNotional
     foreignNotional: (NSNumber*) foreignNotional
-    notionalCurrency1: (NSString*) notionalCurrency1
-    notionalValue1: (NSNumber*) notionalValue1
-    notionalCurrency2: (NSString*) notionalCurrency2
-    notionalValue2: (NSNumber*) notionalValue2
     initMargin: (NSNumber*) initMargin
     maintMargin: (NSNumber*) maintMargin
     sessionMargin: (NSNumber*) sessionMargin
@@ -51,6 +47,11 @@
     varMargin: (NSNumber*) varMargin
     unrealisedPnl: (NSNumber*) unrealisedPnl
     unrealisedPnlPcnt: (NSNumber*) unrealisedPnlPcnt
+    simpleQty: (NSNumber*) simpleQty
+    simpleCost: (NSNumber*) simpleCost
+    simpleValue: (NSNumber*) simpleValue
+    simplePnl: (NSNumber*) simplePnl
+    simplePnlPcnt: (NSNumber*) simplePnlPcnt
     avgEntryPrice: (NSNumber*) avgEntryPrice
     breakEvenPrice: (NSNumber*) breakEvenPrice
     marginCallPrice: (NSNumber*) marginCallPrice
@@ -95,10 +96,6 @@
   _lastValue = lastValue;
   _homeNotional = homeNotional;
   _foreignNotional = foreignNotional;
-  _notionalCurrency1 = notionalCurrency1;
-  _notionalValue1 = notionalValue1;
-  _notionalCurrency2 = notionalCurrency2;
-  _notionalValue2 = notionalValue2;
   _initMargin = initMargin;
   _maintMargin = maintMargin;
   _sessionMargin = sessionMargin;
@@ -106,6 +103,11 @@
   _varMargin = varMargin;
   _unrealisedPnl = unrealisedPnl;
   _unrealisedPnlPcnt = unrealisedPnlPcnt;
+  _simpleQty = simpleQty;
+  _simpleCost = simpleCost;
+  _simpleValue = simpleValue;
+  _simplePnl = simplePnl;
+  _simplePnlPcnt = simplePnlPcnt;
   _avgEntryPrice = avgEntryPrice;
   _breakEvenPrice = breakEvenPrice;
   _marginCallPrice = marginCallPrice;
@@ -160,10 +162,6 @@
         _lastValue = dict[@"lastValue"]; 
         _homeNotional = dict[@"homeNotional"]; 
         _foreignNotional = dict[@"foreignNotional"]; 
-        _notionalCurrency1 = dict[@"notionalCurrency1"]; 
-        _notionalValue1 = dict[@"notionalValue1"]; 
-        _notionalCurrency2 = dict[@"notionalCurrency2"]; 
-        _notionalValue2 = dict[@"notionalValue2"]; 
         _initMargin = dict[@"initMargin"]; 
         _maintMargin = dict[@"maintMargin"]; 
         _sessionMargin = dict[@"sessionMargin"]; 
@@ -171,6 +169,11 @@
         _varMargin = dict[@"varMargin"]; 
         _unrealisedPnl = dict[@"unrealisedPnl"]; 
         _unrealisedPnlPcnt = dict[@"unrealisedPnlPcnt"]; 
+        _simpleQty = dict[@"simpleQty"]; 
+        _simpleCost = dict[@"simpleCost"]; 
+        _simpleValue = dict[@"simpleValue"]; 
+        _simplePnl = dict[@"simplePnl"]; 
+        _simplePnlPcnt = dict[@"simplePnlPcnt"]; 
         _avgEntryPrice = dict[@"avgEntryPrice"]; 
         _breakEvenPrice = dict[@"breakEvenPrice"]; 
         _marginCallPrice = dict[@"marginCallPrice"]; 
@@ -258,10 +261,6 @@
         if(_lastValue != nil) dict[@"lastValue"] = _lastValue ;
         if(_homeNotional != nil) dict[@"homeNotional"] = _homeNotional ;
         if(_foreignNotional != nil) dict[@"foreignNotional"] = _foreignNotional ;
-        if(_notionalCurrency1 != nil) dict[@"notionalCurrency1"] = _notionalCurrency1 ;
-        if(_notionalValue1 != nil) dict[@"notionalValue1"] = _notionalValue1 ;
-        if(_notionalCurrency2 != nil) dict[@"notionalCurrency2"] = _notionalCurrency2 ;
-        if(_notionalValue2 != nil) dict[@"notionalValue2"] = _notionalValue2 ;
         if(_initMargin != nil) dict[@"initMargin"] = _initMargin ;
         if(_maintMargin != nil) dict[@"maintMargin"] = _maintMargin ;
         if(_sessionMargin != nil) dict[@"sessionMargin"] = _sessionMargin ;
@@ -269,6 +268,11 @@
         if(_varMargin != nil) dict[@"varMargin"] = _varMargin ;
         if(_unrealisedPnl != nil) dict[@"unrealisedPnl"] = _unrealisedPnl ;
         if(_unrealisedPnlPcnt != nil) dict[@"unrealisedPnlPcnt"] = _unrealisedPnlPcnt ;
+        if(_simpleQty != nil) dict[@"simpleQty"] = _simpleQty ;
+        if(_simpleCost != nil) dict[@"simpleCost"] = _simpleCost ;
+        if(_simpleValue != nil) dict[@"simpleValue"] = _simpleValue ;
+        if(_simplePnl != nil) dict[@"simplePnl"] = _simplePnl ;
+        if(_simplePnlPcnt != nil) dict[@"simplePnlPcnt"] = _simplePnlPcnt ;
         if(_avgEntryPrice != nil) dict[@"avgEntryPrice"] = _avgEntryPrice ;
         if(_breakEvenPrice != nil) dict[@"breakEvenPrice"] = _breakEvenPrice ;
         if(_marginCallPrice != nil) dict[@"marginCallPrice"] = _marginCallPrice ;

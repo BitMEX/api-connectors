@@ -213,6 +213,55 @@ class OrderApi {
 
       }
   /**
+   * cancelAll
+   * Cancels all of your orders.
+   * 
+   * @param string $symbol Optional symbol. If provided, only cancels orders for that symbol. (optional)
+   * @param string $text Optional cancellation annotation. e.g. 'Spread Exceeded' (optional)
+   * @return object
+   */
+
+   public function cancelAll($symbol=null, $text=null) {
+
+      //parse inputs
+      $resourcePath = "/order/all";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "DELETE";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      // Generate form params
+      if (! isset($body)) {
+        $body = array();
+      }
+      if($symbol != null) {
+        $body['symbol'] = $symbol;
+      }
+      if($text != null) {
+        $body['text'] = $text;
+      }
+      if (empty($body)) {
+        $body = null;
+      }
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
+
+
+      if(! $response){
+          return null;
+      }
+
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'object');
+      return $responseObject;
+
+      }
+  /**
    * cancelAllAfter
    * Automatically cancel all your orders after a specified timeout.
    * 

@@ -3,6 +3,7 @@ package com.wordnik.client.api;
 import com.wordnik.client.ApiException;
 import com.wordnik.client.ApiInvoker;
 import com.wordnik.client.model.User;
+import com.wordnik.client.model.Margin;
 import com.wordnik.client.model.Transaction;
 import com.wordnik.client.model.Affiliate;
 import com.wordnik.client.model.AccessToken;
@@ -709,9 +710,60 @@ public class UserApi {
     }
 
     try {
-      String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, contentType);
+      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, contentType);
       if(response != null){
         return (List<Affiliate>) ApiInvoker.deserialize(response, "List", Affiliate.class);
+      }
+      else {
+        return null;
+      }
+    } catch (ApiException ex) {
+      if(ex.getCode() == 404) {
+        return null;
+      }
+      else {
+        throw ex;
+      }
+    }
+  }
+  //error info- code: 200 reason: "Request was successful" model: <none>
+  public Double checkReferralCode (String referralCode) throws ApiException {
+    Object postBody = null;
+    // create path and map variables
+    String path = "/user/checkReferralCode".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    if(!"null".equals(String.valueOf(referralCode)))
+      queryParams.put("referralCode", String.valueOf(referralCode));
+    String[] contentTypes = {
+      "application/json"};
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("application/x-www-form-urlencoded")) {
+      boolean hasFields = false;
+      List<NameValuePair> mp = new ArrayList<NameValuePair>();
+      if(hasFields)
+        postBody = mp;
+    }
+    else if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+      builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      if(hasFields)
+        postBody = builder;
+    }
+    else {
+      postBody = null;
+    }
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, contentType);
+      if(response != null){
+        return (Double) ApiInvoker.deserialize(response, "", Double.class);
       }
       else {
         return null;
@@ -1188,6 +1240,55 @@ public class UserApi {
       String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, contentType);
       if(response != null){
         return (List<any>) ApiInvoker.deserialize(response, "List", any.class);
+      }
+      else {
+        return null;
+      }
+    } catch (ApiException ex) {
+      if(ex.getCode() == 404) {
+        return null;
+      }
+      else {
+        throw ex;
+      }
+    }
+  }
+  //error info- code: 200 reason: "Request was successful" model: <none>
+  public Margin getMargin () throws ApiException {
+    Object postBody = null;
+    // create path and map variables
+    String path = "/user/margin".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+
+    String[] contentTypes = {
+      "application/json"};
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("application/x-www-form-urlencoded")) {
+      boolean hasFields = false;
+      List<NameValuePair> mp = new ArrayList<NameValuePair>();
+      if(hasFields)
+        postBody = mp;
+    }
+    else if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+      builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      if(hasFields)
+        postBody = builder;
+    }
+    else {
+      postBody = null;
+    }
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, contentType);
+      if(response != null){
+        return (Margin) ApiInvoker.deserialize(response, "", Margin.class);
       }
       else {
         return null;

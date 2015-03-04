@@ -597,9 +597,49 @@
             var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
             return ((object)response) as List<Affiliate>;
           } else {
-            var response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, null, headerParams, formParams);
+            var response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
             if(response != null){
                return (List<Affiliate>) ApiInvoker.deserialize(response, typeof(List<Affiliate>));
+            }
+            else {
+              return null;
+            }
+          }
+        } catch (ApiException ex) {
+          if(ex.ErrorCode == 404) {
+          	return null;
+          }
+          else {
+            throw ex;
+          }
+        }
+      }
+      /// <summary>
+      /// Check if a referral code is valid. If the code is valid, responds with the referral code's discount (e.g. `0.1` for 10%). Otherwise, will return a 404.
+      /// </summary>
+      /// <param name="referralCode"></param>
+      /// <returns></returns>
+      public double? checkReferralCode (string referralCode) {
+        // create path and map variables
+        var path = "/user/checkReferralCode".Replace("{format}","json");
+
+        // query params
+        var queryParams = new Dictionary<String, String>();
+        var headerParams = new Dictionary<String, String>();
+        var formParams = new Dictionary<String, object>();
+
+        if (referralCode != null){
+          string paramStr = (referralCode is DateTime) ? ((DateTime)(object)referralCode).ToString("u") : Convert.ToString(referralCode);
+          queryParams.Add("referralCode", paramStr);
+		}
+        try {
+          if (typeof(double?) == typeof(byte[])) {
+            var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
+            return ((object)response) as double?;
+          } else {
+            var response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
+            if(response != null){
+               return (double?) ApiInvoker.deserialize(response, typeof(double?));
             }
             else {
               return null;
@@ -726,7 +766,7 @@
         }
       }
       /// <summary>
-      /// Get your user model. 
+      /// Get your user model. This also includes your margin data. 
       /// </summary>
       /// <returns></returns>
       public User getMe () {
@@ -1054,6 +1094,41 @@
             var response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
             if(response != null){
                return (List<any>) ApiInvoker.deserialize(response, typeof(List<any>));
+            }
+            else {
+              return null;
+            }
+          }
+        } catch (ApiException ex) {
+          if(ex.ErrorCode == 404) {
+          	return null;
+          }
+          else {
+            throw ex;
+          }
+        }
+      }
+      /// <summary>
+      /// Get your account's margin status. 
+      /// </summary>
+      /// <returns></returns>
+      public Margin getMargin () {
+        // create path and map variables
+        var path = "/user/margin".Replace("{format}","json");
+
+        // query params
+        var queryParams = new Dictionary<String, String>();
+        var headerParams = new Dictionary<String, String>();
+        var formParams = new Dictionary<String, object>();
+
+        try {
+          if (typeof(Margin) == typeof(byte[])) {
+            var response = apiInvoker.invokeBinaryAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
+            return ((object)response) as Margin;
+          } else {
+            var response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, null, headerParams, formParams);
+            if(response != null){
+               return (Margin) ApiInvoker.deserialize(response, typeof(Margin));
             }
             else {
               return null;

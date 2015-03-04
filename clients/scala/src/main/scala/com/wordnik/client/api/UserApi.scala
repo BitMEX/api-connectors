@@ -1,6 +1,7 @@
 package com.wordnik.client.api
 
 import com.wordnik.client.model.User
+import com.wordnik.client.model.Margin
 import com.wordnik.client.model.Transaction
 import com.wordnik.client.model.Affiliate
 import com.wordnik.client.model.AccessToken
@@ -315,9 +316,32 @@ class UserApi {
     val headerParams = new HashMap[String, String]
 
     try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, None, headerParams.toMap, contentType) match {
+      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
         case s: String =>
           Some(ApiInvoker.deserialize(s, "Array", classOf[Affiliate]).asInstanceOf[List[Affiliate]])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+  def checkReferralCode (referralCode: String) : Option[Double]= {
+    // create path and map variables
+    val path = "/user/checkReferralCode".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    if(String.valueOf(referralCode) != "null") queryParams += "referralCode" -> referralCode.toString
+    try {
+      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          Some(ApiInvoker.deserialize(s, "", classOf[Double]).asInstanceOf[Double])
         case _ => None
       }
     } catch {
@@ -507,6 +531,28 @@ class UserApi {
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
         case s: String =>
           Some(ApiInvoker.deserialize(s, "Array", classOf[any]).asInstanceOf[List[any]])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+  def getMargin () : Option[Margin]= {
+    // create path and map variables
+    val path = "/user/margin".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    try {
+      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          Some(ApiInvoker.deserialize(s, "", classOf[Margin]).asInstanceOf[Margin])
         case _ => None
       }
     } catch {

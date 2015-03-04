@@ -28,6 +28,7 @@ class Instrument:
             'listing': 'datetime',
             'front': 'datetime',
             'expiry': 'datetime',
+            'relistInterval': 'datetime',
             'inverseLeg': 'str',
             'sellLeg': 'str',
             'buyLeg': 'str',
@@ -49,17 +50,23 @@ class Instrument:
             'makerFee': 'float',
             'takerFee': 'float',
             'insuranceFee': 'float',
+            'hedgerMakerFee': 'float',
+            'hedgerTakerFee': 'float',
+            'hedgerInsuranceFee': 'float',
             'openingTimestamp': 'datetime',
             'closingTimestamp': 'datetime',
+            'sessionInterval': 'datetime',
             'prevClosePrice': 'float',
             'limitDownPrice': 'float',
             'limitUpPrice': 'float',
             'prevTotalVolume': 'float',
             'totalVolume': 'float',
             'volume': 'float',
+            'volume24h': 'float',
             'prevTotalTurnover': 'float',
             'totalTurnover': 'float',
             'turnover': 'float',
+            'turnover24h': 'float',
             'vwap': 'float',
             'highPrice': 'float',
             'lowPrice': 'float',
@@ -84,6 +91,7 @@ class Instrument:
         self.listing = None # datetime
         self.front = None # datetime
         self.expiry = None # datetime
+        self.relistInterval = None # datetime
         self.inverseLeg = None # str
         self.sellLeg = None # str
         self.buyLeg = None # str
@@ -105,17 +113,23 @@ class Instrument:
         self.makerFee = None # float
         self.takerFee = None # float
         self.insuranceFee = None # float
+        self.hedgerMakerFee = None # float
+        self.hedgerTakerFee = None # float
+        self.hedgerInsuranceFee = None # float
         self.openingTimestamp = None # datetime
         self.closingTimestamp = None # datetime
+        self.sessionInterval = None # datetime
         self.prevClosePrice = None # float
         self.limitDownPrice = None # float
         self.limitUpPrice = None # float
         self.prevTotalVolume = None # float
         self.totalVolume = None # float
         self.volume = None # float
+        self.volume24h = None # float
         self.prevTotalTurnover = None # float
         self.totalTurnover = None # float
         self.turnover = None # float
+        self.turnover24h = None # float
         self.vwap = None # float
         self.highPrice = None # float
         self.lowPrice = None # float

@@ -9,6 +9,7 @@ public class Instrument {
   private Date listing = null;
   private Date front = null;
   private Date expiry = null;
+  private Date relistInterval = null;
   private String inverseLeg = null;
   private String sellLeg = null;
   private String buyLeg = null;
@@ -30,17 +31,23 @@ public class Instrument {
   private Double makerFee = null;
   private Double takerFee = null;
   private Double insuranceFee = null;
+  private Double hedgerMakerFee = null;
+  private Double hedgerTakerFee = null;
+  private Double hedgerInsuranceFee = null;
   private Date openingTimestamp = null;
   private Date closingTimestamp = null;
+  private Date sessionInterval = null;
   private Double prevClosePrice = null;
   private Double limitDownPrice = null;
   private Double limitUpPrice = null;
   private Double prevTotalVolume = null;
   private Double totalVolume = null;
   private Double volume = null;
+  private Double volume24h = null;
   private Double prevTotalTurnover = null;
   private Double totalTurnover = null;
   private Double turnover = null;
+  private Double turnover24h = null;
   private Double vwap = null;
   private Double highPrice = null;
   private Double lowPrice = null;
@@ -101,6 +108,13 @@ public class Instrument {
   }
   public void setExpiry(Date expiry) {
     this.expiry = expiry;
+  }
+
+  public Date getRelistInterval() {
+    return relistInterval;
+  }
+  public void setRelistInterval(Date relistInterval) {
+    this.relistInterval = relistInterval;
   }
 
   public String getInverseLeg() {
@@ -250,6 +264,27 @@ public class Instrument {
     this.insuranceFee = insuranceFee;
   }
 
+  public Double getHedgerMakerFee() {
+    return hedgerMakerFee;
+  }
+  public void setHedgerMakerFee(Double hedgerMakerFee) {
+    this.hedgerMakerFee = hedgerMakerFee;
+  }
+
+  public Double getHedgerTakerFee() {
+    return hedgerTakerFee;
+  }
+  public void setHedgerTakerFee(Double hedgerTakerFee) {
+    this.hedgerTakerFee = hedgerTakerFee;
+  }
+
+  public Double getHedgerInsuranceFee() {
+    return hedgerInsuranceFee;
+  }
+  public void setHedgerInsuranceFee(Double hedgerInsuranceFee) {
+    this.hedgerInsuranceFee = hedgerInsuranceFee;
+  }
+
   public Date getOpeningTimestamp() {
     return openingTimestamp;
   }
@@ -262,6 +297,13 @@ public class Instrument {
   }
   public void setClosingTimestamp(Date closingTimestamp) {
     this.closingTimestamp = closingTimestamp;
+  }
+
+  public Date getSessionInterval() {
+    return sessionInterval;
+  }
+  public void setSessionInterval(Date sessionInterval) {
+    this.sessionInterval = sessionInterval;
   }
 
   public Double getPrevClosePrice() {
@@ -306,6 +348,13 @@ public class Instrument {
     this.volume = volume;
   }
 
+  public Double getVolume24h() {
+    return volume24h;
+  }
+  public void setVolume24h(Double volume24h) {
+    this.volume24h = volume24h;
+  }
+
   public Double getPrevTotalTurnover() {
     return prevTotalTurnover;
   }
@@ -325,6 +374,13 @@ public class Instrument {
   }
   public void setTurnover(Double turnover) {
     this.turnover = turnover;
+  }
+
+  public Double getTurnover24h() {
+    return turnover24h;
+  }
+  public void setTurnover24h(Double turnover24h) {
+    this.turnover24h = turnover24h;
   }
 
   public Double getVwap() {
@@ -429,6 +485,7 @@ public class Instrument {
     sb.append("  listing: ").append(listing).append("\n");
     sb.append("  front: ").append(front).append("\n");
     sb.append("  expiry: ").append(expiry).append("\n");
+    sb.append("  relistInterval: ").append(relistInterval).append("\n");
     sb.append("  inverseLeg: ").append(inverseLeg).append("\n");
     sb.append("  sellLeg: ").append(sellLeg).append("\n");
     sb.append("  buyLeg: ").append(buyLeg).append("\n");
@@ -450,17 +507,23 @@ public class Instrument {
     sb.append("  makerFee: ").append(makerFee).append("\n");
     sb.append("  takerFee: ").append(takerFee).append("\n");
     sb.append("  insuranceFee: ").append(insuranceFee).append("\n");
+    sb.append("  hedgerMakerFee: ").append(hedgerMakerFee).append("\n");
+    sb.append("  hedgerTakerFee: ").append(hedgerTakerFee).append("\n");
+    sb.append("  hedgerInsuranceFee: ").append(hedgerInsuranceFee).append("\n");
     sb.append("  openingTimestamp: ").append(openingTimestamp).append("\n");
     sb.append("  closingTimestamp: ").append(closingTimestamp).append("\n");
+    sb.append("  sessionInterval: ").append(sessionInterval).append("\n");
     sb.append("  prevClosePrice: ").append(prevClosePrice).append("\n");
     sb.append("  limitDownPrice: ").append(limitDownPrice).append("\n");
     sb.append("  limitUpPrice: ").append(limitUpPrice).append("\n");
     sb.append("  prevTotalVolume: ").append(prevTotalVolume).append("\n");
     sb.append("  totalVolume: ").append(totalVolume).append("\n");
     sb.append("  volume: ").append(volume).append("\n");
+    sb.append("  volume24h: ").append(volume24h).append("\n");
     sb.append("  prevTotalTurnover: ").append(prevTotalTurnover).append("\n");
     sb.append("  totalTurnover: ").append(totalTurnover).append("\n");
     sb.append("  turnover: ").append(turnover).append("\n");
+    sb.append("  turnover24h: ").append(turnover24h).append("\n");
     sb.append("  vwap: ").append(vwap).append("\n");
     sb.append("  highPrice: ").append(highPrice).append("\n");
     sb.append("  lowPrice: ").append(lowPrice).append("\n");

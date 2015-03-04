@@ -552,7 +552,7 @@ class UserApi {
       //parse inputs
       $resourcePath = "/user/affiliateStatus";
       $resourcePath = str_replace("{format}", "json", $resourcePath);
-      $method = "POST";
+      $method = "GET";
       $queryParams = array();
       $headerParams = array();
       $headerParams['Accept'] = 'application/json';
@@ -578,6 +578,51 @@ class UserApi {
 
       $responseObject = $this->apiClient->deserialize($response,
                                                       'Array[Affiliate]');
+      return $responseObject;
+
+      }
+  /**
+   * checkReferralCode
+   * Check if a referral code is valid.
+   * 
+   * @param string $referralCode  (optional)
+   * @return float
+   */
+
+   public function checkReferralCode($referralCode=null) {
+
+      //parse inputs
+      $resourcePath = "/user/checkReferralCode";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "GET";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      if($referralCode != null) {
+        $queryParams['referralCode'] = $this->apiClient->toQueryValue($referralCode);
+      }
+      // Generate form params
+      if (! isset($body)) {
+        $body = array();
+      }
+      if (empty($body)) {
+        $body = null;
+      }
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
+
+
+      if(! $response){
+          return null;
+      }
+
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'float');
       return $responseObject;
 
       }
@@ -656,7 +701,7 @@ class UserApi {
       }
   /**
    * getMe
-   * Get your user model.
+   * Get your user model. This also includes your margin data.
    * 
    * @return User
    */
@@ -962,6 +1007,47 @@ class UserApi {
 
       $responseObject = $this->apiClient->deserialize($response,
                                                       'Array[any]');
+      return $responseObject;
+
+      }
+  /**
+   * getMargin
+   * Get your account's margin status.
+   * 
+   * @return Margin
+   */
+
+   public function getMargin() {
+
+      //parse inputs
+      $resourcePath = "/user/margin";
+      $resourcePath = str_replace("{format}", "json", $resourcePath);
+      $method = "GET";
+      $queryParams = array();
+      $headerParams = array();
+      $headerParams['Accept'] = 'application/json';
+      $headerParams['Content-Type'] = 'application/json';
+
+      // Generate form params
+      if (! isset($body)) {
+        $body = array();
+      }
+      if (empty($body)) {
+        $body = null;
+      }
+
+      // Make the API Call
+      $response = $this->apiClient->callAPI($resourcePath, $method,
+                                            $queryParams, $body,
+                                            $headerParams);
+
+
+      if(! $response){
+          return null;
+      }
+
+      $responseObject = $this->apiClient->deserialize($response,
+                                                      'Margin');
       return $responseObject;
 
       }

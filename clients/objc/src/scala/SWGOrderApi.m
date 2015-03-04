@@ -211,6 +211,44 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
 
 }
 
+-(NSNumber*) cancelAllWithCompletionBlock:(NSString*) symbol
+        text:(NSString*) text
+        completionHandler : (void (^)(NSObject* output, NSError* error))completionBlock{
+
+    NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/order/all", basePath];
+
+    // remove format in URL if needed
+    if ([requestUrl rangeOfString:@".{format}"].location != NSNotFound)
+        [requestUrl replaceCharactersInRange: [requestUrl rangeOfString:@".{format}"] withString:@".json"];
+
+    NSString* requestContentType = @"application/json";
+    NSString* responseContentType = @"application/json";
+
+        NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [[NSMutableDictionary alloc] init];
+    id bodyDictionary = nil;
+        SWGApiClient* client = [SWGApiClient sharedClientFromPool:basePath];
+
+    return [client dictionary:requestUrl 
+                              method:@"DELETE" 
+                         queryParams:queryParams 
+                                body:bodyDictionary 
+                        headerParams:headerParams
+                  requestContentType:requestContentType
+                 responseContentType:responseContentType
+                     completionBlock:^(NSDictionary *data, NSError *error) {
+                        if (error) {
+                            completionBlock(nil, error);return;
+                        }
+                        NSObject *result = nil;
+                        if (data) {
+                            result = [[NSObject alloc]initWithValues: data];
+                        }
+                        completionBlock(result , nil);}];
+    
+
+}
+
 -(NSNumber*) cancelAllAfterWithCompletionBlock:(NSNumber*) timeout
         completionHandler : (void (^)(NSObject* output, NSError* error))completionBlock{
 

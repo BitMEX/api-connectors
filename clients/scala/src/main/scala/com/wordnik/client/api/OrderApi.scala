@@ -95,6 +95,28 @@ class OrderApi {
       case ex: ApiException => throw ex
     }
   }
+  def cancelAll (symbol: String, text: String) : Option[Any]= {
+    // create path and map variables
+    val path = "/order/all".replaceAll("\\{format\\}","json")
+
+    val contentType = {
+      "application/json"}
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+
+    try {
+      apiInvoker.invokeApi(basePath, path, "DELETE", queryParams.toMap, None, headerParams.toMap, contentType) match {
+        case s: String =>
+          Some(ApiInvoker.deserialize(s, "", classOf[Any]).asInstanceOf[Any])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
   def cancelAllAfter (timeout: Double) : Option[Any]= {
     // create path and map variables
     val path = "/order/cancelAllAfter".replaceAll("\\{format\\}","json")

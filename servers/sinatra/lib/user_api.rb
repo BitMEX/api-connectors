@@ -181,7 +181,7 @@ MyApp.add_route('post', '/confirmPasswordReset', {
   {"message" => "yes, it worked"}.to_json
 end
 
-MyApp.add_route('post', '/affiliateStatus', {
+MyApp.add_route('get', '/affiliateStatus', {
   "resourcePath" => "/user",
   "summary" => "Get your current affiliate/referral status.",
   "nickname" => "getAffiliateStatus", 
@@ -189,6 +189,29 @@ MyApp.add_route('post', '/affiliateStatus', {
   "endpoint" => "/affiliateStatus", 
   "notes" => "",
   "parameters" => [
+    ]}) do
+  cross_origin
+  # the guts live here
+
+  {"message" => "yes, it worked"}.to_json
+end
+
+MyApp.add_route('get', '/checkReferralCode', {
+  "resourcePath" => "/user",
+  "summary" => "Check if a referral code is valid.",
+  "nickname" => "checkReferralCode", 
+  "responseClass" => "double", 
+  "endpoint" => "/checkReferralCode", 
+  "notes" => "If the code is valid, responds with the referral code's discount (e.g. `0.1` for 10%). Otherwise, will return a 404.",
+  "parameters" => [
+    {
+      "name" => "referralCode",
+      "description" => "",
+      "dataType" => "string",
+      "paramType" => "query",
+      "allowMultiple" => false,
+      "allowableValues" => "",
+      },
     ]}) do
   cross_origin
   # the guts live here
@@ -213,7 +236,7 @@ end
 
 MyApp.add_route('get', '/', {
   "resourcePath" => "/user",
-  "summary" => "Get your user model.",
+  "summary" => "Get your user model. This also includes your margin data.",
   "nickname" => "getMe", 
   "responseClass" => "User", 
   "endpoint" => "/", 
@@ -307,6 +330,21 @@ MyApp.add_route('get', '/commission', {
   "nickname" => "getCommission", 
   "responseClass" => "Array[any]", 
   "endpoint" => "/commission", 
+  "notes" => "",
+  "parameters" => [
+    ]}) do
+  cross_origin
+  # the guts live here
+
+  {"message" => "yes, it worked"}.to_json
+end
+
+MyApp.add_route('get', '/margin', {
+  "resourcePath" => "/user",
+  "summary" => "Get your account's margin status.",
+  "nickname" => "getMargin", 
+  "responseClass" => "Margin", 
+  "endpoint" => "/margin", 
   "notes" => "",
   "parameters" => [
     ]}) do

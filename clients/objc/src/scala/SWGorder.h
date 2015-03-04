@@ -15,6 +15,8 @@
 
 @property(nonatomic) NSString* side;  
 
+@property(nonatomic) NSNumber* simpleOrderQty;  
+
 @property(nonatomic) NSNumber* orderQty;  
 
 @property(nonatomic) NSNumber* price;  
@@ -39,7 +41,11 @@
 
 @property(nonatomic) NSString* ordRejReason;  
 
+@property(nonatomic) NSNumber* simpleLeavesQty;  
+
 @property(nonatomic) NSNumber* leavesQty;  
+
+@property(nonatomic) NSNumber* simpleCumQty;  
 
 @property(nonatomic) NSNumber* cumQty;  
 
@@ -58,6 +64,7 @@
      account: (NSNumber*) account
      symbol: (NSString*) symbol
      side: (NSString*) side
+     simpleOrderQty: (NSNumber*) simpleOrderQty
      orderQty: (NSNumber*) orderQty
      price: (NSNumber*) price
      minQty: (NSNumber*) minQty
@@ -70,7 +77,9 @@
      ordStatus: (NSString*) ordStatus
      workingIndicator: (NSNumber*) workingIndicator
      ordRejReason: (NSString*) ordRejReason
+     simpleLeavesQty: (NSNumber*) simpleLeavesQty
      leavesQty: (NSNumber*) leavesQty
+     simpleCumQty: (NSNumber*) simpleCumQty
      cumQty: (NSNumber*) cumQty
      avgPx: (NSNumber*) avgPx
      multiLegReportingType: (NSString*) multiLegReportingType

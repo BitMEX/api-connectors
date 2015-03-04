@@ -17,6 +17,7 @@ class ScalatraBootstrap extends LifeCycle {
       context mount (new InstrumentApi, "/instrument/*")
       context mount (new ChatApi, "/chat/*")
       context mount (new ApiKeyApi, "/apiKey/*")
+      context mount (new StatsApi, "/stats/*")
       context mount (new TradeApi, "/trade/*")
       context mount (new QuoteApi, "/quote/*")
       context mount (new OrderApi, "/order/*")

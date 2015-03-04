@@ -61,10 +61,6 @@ class Position {
       'lastValue' => 'float',
       'homeNotional' => 'float',
       'foreignNotional' => 'float',
-      'notionalCurrency1' => 'string',
-      'notionalValue1' => 'float',
-      'notionalCurrency2' => 'string',
-      'notionalValue2' => 'float',
       'initMargin' => 'float',
       'maintMargin' => 'float',
       'sessionMargin' => 'float',
@@ -72,6 +68,11 @@ class Position {
       'varMargin' => 'float',
       'unrealisedPnl' => 'float',
       'unrealisedPnlPcnt' => 'float',
+      'simpleQty' => 'float',
+      'simpleCost' => 'float',
+      'simpleValue' => 'float',
+      'simplePnl' => 'float',
+      'simplePnlPcnt' => 'float',
       'avgEntryPrice' => 'float',
       'breakEvenPrice' => 'float',
       'marginCallPrice' => 'float',
@@ -118,10 +119,6 @@ class Position {
   public $lastValue; // float
   public $homeNotional; // float
   public $foreignNotional; // float
-  public $notionalCurrency1; // string
-  public $notionalValue1; // float
-  public $notionalCurrency2; // string
-  public $notionalValue2; // float
   public $initMargin; // float
   public $maintMargin; // float
   public $sessionMargin; // float
@@ -129,6 +126,11 @@ class Position {
   public $varMargin; // float
   public $unrealisedPnl; // float
   public $unrealisedPnlPcnt; // float
+  public $simpleQty; // float
+  public $simpleCost; // float
+  public $simpleValue; // float
+  public $simplePnl; // float
+  public $simplePnlPcnt; // float
   public $avgEntryPrice; // float
   public $breakEvenPrice; // float
   public $marginCallPrice; // float

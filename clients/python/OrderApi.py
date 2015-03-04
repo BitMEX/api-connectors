@@ -226,6 +226,58 @@ class OrderApi(object):
 
         
 
+    def cancelAll(self, **kwargs):
+        """Cancels all of your orders.
+
+        Args:
+            symbol, str: Optional symbol. If provided, only cancels orders for that symbol. (optional)
+
+            text, str: Optional cancellation annotation. e.g. 'Spread Exceeded' (optional)
+
+            
+
+        Returns: object
+        """
+
+        allParams = ['symbol', 'text']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method cancelAll" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/order/all'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'DELETE'
+
+        queryParams = {}
+        headerParams = {}
+        formParams = {}
+        bodyParam = None
+
+        if ('symbol' in params):
+            formParams['symbol'] = params['symbol']
+        if ('text' in params):
+            formParams['text'] = params['text']
+        if formParams:
+            headerParams['Content-type'] = 'application/x-www-form-urlencoded'
+
+        postData = (formParams if formParams else bodyParam)
+
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'object')
+        return responseObject
+        
+
+        
+
     def cancelAllAfter(self, timeout, **kwargs):
         """Automatically cancel all your orders after a specified timeout.
 

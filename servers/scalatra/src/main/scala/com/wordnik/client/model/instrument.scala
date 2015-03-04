@@ -16,6 +16,8 @@ case class Instrument (
 
   expiry: Option[Date],
 
+  relistInterval: Option[Date],
+
   inverseLeg: Option[String],
 
   sellLeg: Option[String],
@@ -58,9 +60,17 @@ case class Instrument (
 
   insuranceFee: Option[Double],
 
+  hedgerMakerFee: Option[Double],
+
+  hedgerTakerFee: Option[Double],
+
+  hedgerInsuranceFee: Option[Double],
+
   openingTimestamp: Option[Date],
 
   closingTimestamp: Option[Date],
+
+  sessionInterval: Option[Date],
 
   prevClosePrice: Option[Double],
 
@@ -74,11 +84,15 @@ case class Instrument (
 
   volume: Option[Double],
 
+  volume24h: Option[Double],
+
   prevTotalTurnover: Option[Double],
 
   totalTurnover: Option[Double],
 
   turnover: Option[Double],
+
+  turnover24h: Option[Double],
 
   vwap: Option[Double],
 

@@ -29,6 +29,7 @@ class Order {
       'account' => 'float',
       'symbol' => 'string',
       'side' => 'string',
+      'simpleOrderQty' => 'float',
       'orderQty' => 'float',
       'price' => 'float',
       'minQty' => 'float',
@@ -41,7 +42,9 @@ class Order {
       'ordStatus' => 'string',
       'workingIndicator' => 'bool',
       'ordRejReason' => 'string',
+      'simpleLeavesQty' => 'float',
       'leavesQty' => 'float',
+      'simpleCumQty' => 'float',
       'cumQty' => 'float',
       'avgPx' => 'float',
       'multiLegReportingType' => 'string',
@@ -56,6 +59,7 @@ class Order {
   public $account; // float
   public $symbol; // string
   public $side; // string
+  public $simpleOrderQty; // float
   public $orderQty; // float
   public $price; // float
   public $minQty; // float
@@ -68,7 +72,9 @@ class Order {
   public $ordStatus; // string
   public $workingIndicator; // bool
   public $ordRejReason; // string
+  public $simpleLeavesQty; // float
   public $leavesQty; // float
+  public $simpleCumQty; // float
   public $cumQty; // float
   public $avgPx; // float
   public $multiLegReportingType; // string

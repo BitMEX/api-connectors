@@ -233,14 +233,30 @@ exports.getAffiliateStatus = {
     "path" : "/user/affiliateStatus",
     "notes" : "",
     "summary" : "Get your current affiliate/referral status.",
-    "method": "POST",
+    "method": "GET",
     "params" : [].concat([]).concat([]).concat([]),
     "type" : "List[Affiliate]",
     "responseMessages" : [errors.invalid('id'), errors.notFound('List[Affiliate]')],
     "nickname" : "getAffiliateStatus"
   },
   'action': function (req,res) {
-    writeResponse(res, {message: "how about implementing getAffiliateStatus as a POST method?"});    
+    writeResponse(res, {message: "how about implementing getAffiliateStatus as a GET method?"});    
+  }
+};
+exports.checkReferralCode = {
+  'spec': {
+    "description" : "Operations about pets",
+    "path" : "/user/checkReferralCode",
+    "notes" : "If the code is valid, responds with the referral code's discount (e.g. `0.1` for 10%). Otherwise, will return a 404.",
+    "summary" : "Check if a referral code is valid.",
+    "method": "GET",
+    "params" : [params.query("referralCode", "", "string", , false, "")].concat([]).concat([]).concat([]),
+    "type" : "Double",
+    "responseMessages" : [errors.invalid('id'), errors.notFound('Double')],
+    "nickname" : "checkReferralCode"
+  },
+  'action': function (req,res) {
+    writeResponse(res, {message: "how about implementing checkReferralCode as a GET method?"});    
   }
 };
 exports.newUser = {
@@ -273,7 +289,7 @@ exports.getMe = {
     "description" : "Operations about pets",
     "path" : "/user",
     "notes" : "",
-    "summary" : "Get your user model.",
+    "summary" : "Get your user model. This also includes your margin data.",
     "method": "GET",
     "params" : [].concat([]).concat([]).concat([]),
     "type" : "User",
@@ -387,6 +403,22 @@ exports.getCommission = {
   },
   'action': function (req,res) {
     writeResponse(res, {message: "how about implementing getCommission as a GET method?"});    
+  }
+};
+exports.getMargin = {
+  'spec': {
+    "description" : "Operations about pets",
+    "path" : "/user/margin",
+    "notes" : "",
+    "summary" : "Get your account's margin status.",
+    "method": "GET",
+    "params" : [].concat([]).concat([]).concat([]),
+    "type" : "Margin",
+    "responseMessages" : [errors.invalid('id'), errors.notFound('Margin')],
+    "nickname" : "getMargin"
+  },
+  'action': function (req,res) {
+    writeResponse(res, {message: "how about implementing getMargin as a GET method?"});    
   }
 };
 

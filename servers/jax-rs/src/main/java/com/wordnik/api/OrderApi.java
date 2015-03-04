@@ -53,7 +53,11 @@ public class OrderApi {
 
   @POST
   @Path("/")
-  @ApiOperation(value = "Create a new order.", notes = "If you want to keep track of order IDs yourself, set a unique clOrdID per order. This ID will come back as a property on the order and any related executions executions (including on the WebSocket), and can be used to cancel the order.", responseClass = "Order")
+  @ApiOperation(value = "Create a new order.", notes = "If you want to keep track of order IDs yourself, set a unique clOrdID per order. This ID will come back as a property on the order and any related executions (including on the WebSocket), and can be used to get or cancel the order. Max length is 36 characters.
+
+To generate a clOrdID, consider setting a prefix, and incrementing a counter or generating a UUID. Some UUIDs are longer than 36 characters, so use a url-safe base64 encoding. For example, the prefix 'bmex_mm_' and the UUID '7fbd6545-bb0c-11e4-a273-6003088a7c04' creates 'bmex_mm_f71lRbsMEeSic2ADCIp8BA'.
+
+See the BitMEX <a href='https://github.com/BitMEX/market-maker/blob/22c75a2b6db63e20212813e9afdb845db1b09b2a/bitmex.py#L152'>Reference Market Maker</a> for an example of how to use and generate clOrdIDs.", responseClass = "Order")
   @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful"),@ApiError(code = 400, reason = "Parameter Error"),@ApiError(code = 401, reason = "Unauthorized"),@ApiError(code = 404, reason = "Not Found")})
      
   public Response newOrder(
@@ -70,6 +74,18 @@ public class OrderApi {
      
   public Response cancelOrder(
     ,,)
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();
+  }
+
+  @DELETE
+  @Path("/all")
+  @ApiOperation(value = "Cancels all of your orders.", notes = "", responseClass = "Object")
+  @ApiErrors(value = { @ApiError(code = 200, reason = "Request was successful"),@ApiError(code = 400, reason = "Parameter Error"),@ApiError(code = 401, reason = "Unauthorized"),@ApiError(code = 404, reason = "Not Found")})
+     
+  public Response cancelAll(
+    ,)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponse(ApiResponse.OK, "magic!")).build();

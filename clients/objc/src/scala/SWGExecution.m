@@ -14,6 +14,7 @@
     underlyingLastPx: (NSNumber*) underlyingLastPx
     lastMkt: (NSString*) lastMkt
     lastLiquidityInd: (NSString*) lastLiquidityInd
+    simpleOrderQty: (NSNumber*) simpleOrderQty
     orderQty: (NSNumber*) orderQty
     price: (NSNumber*) price
     minQty: (NSNumber*) minQty
@@ -27,7 +28,9 @@
     ordStatus: (NSString*) ordStatus
     workingIndicator: (NSNumber*) workingIndicator
     ordRejReason: (NSString*) ordRejReason
+    simpleLeavesQty: (NSNumber*) simpleLeavesQty
     leavesQty: (NSNumber*) leavesQty
+    simpleCumQty: (NSNumber*) simpleCumQty
     cumQty: (NSNumber*) cumQty
     avgPx: (NSNumber*) avgPx
     commission: (NSNumber*) commission
@@ -54,6 +57,7 @@
   _underlyingLastPx = underlyingLastPx;
   _lastMkt = lastMkt;
   _lastLiquidityInd = lastLiquidityInd;
+  _simpleOrderQty = simpleOrderQty;
   _orderQty = orderQty;
   _price = price;
   _minQty = minQty;
@@ -67,7 +71,9 @@
   _ordStatus = ordStatus;
   _workingIndicator = workingIndicator;
   _ordRejReason = ordRejReason;
+  _simpleLeavesQty = simpleLeavesQty;
   _leavesQty = leavesQty;
+  _simpleCumQty = simpleCumQty;
   _cumQty = cumQty;
   _avgPx = avgPx;
   _commission = commission;
@@ -100,6 +106,7 @@
         _underlyingLastPx = dict[@"underlyingLastPx"]; 
         _lastMkt = dict[@"lastMkt"]; 
         _lastLiquidityInd = dict[@"lastLiquidityInd"]; 
+        _simpleOrderQty = dict[@"simpleOrderQty"]; 
         _orderQty = dict[@"orderQty"]; 
         _price = dict[@"price"]; 
         _minQty = dict[@"minQty"]; 
@@ -113,7 +120,9 @@
         _ordStatus = dict[@"ordStatus"]; 
         _workingIndicator = dict[@"workingIndicator"]; 
         _ordRejReason = dict[@"ordRejReason"]; 
+        _simpleLeavesQty = dict[@"simpleLeavesQty"]; 
         _leavesQty = dict[@"leavesQty"]; 
+        _simpleCumQty = dict[@"simpleCumQty"]; 
         _cumQty = dict[@"cumQty"]; 
         _avgPx = dict[@"avgPx"]; 
         _commission = dict[@"commission"]; 
@@ -151,6 +160,7 @@
         if(_underlyingLastPx != nil) dict[@"underlyingLastPx"] = _underlyingLastPx ;
         if(_lastMkt != nil) dict[@"lastMkt"] = _lastMkt ;
         if(_lastLiquidityInd != nil) dict[@"lastLiquidityInd"] = _lastLiquidityInd ;
+        if(_simpleOrderQty != nil) dict[@"simpleOrderQty"] = _simpleOrderQty ;
         if(_orderQty != nil) dict[@"orderQty"] = _orderQty ;
         if(_price != nil) dict[@"price"] = _price ;
         if(_minQty != nil) dict[@"minQty"] = _minQty ;
@@ -164,7 +174,9 @@
         if(_ordStatus != nil) dict[@"ordStatus"] = _ordStatus ;
         if(_workingIndicator != nil) dict[@"workingIndicator"] = _workingIndicator ;
         if(_ordRejReason != nil) dict[@"ordRejReason"] = _ordRejReason ;
+        if(_simpleLeavesQty != nil) dict[@"simpleLeavesQty"] = _simpleLeavesQty ;
         if(_leavesQty != nil) dict[@"leavesQty"] = _leavesQty ;
+        if(_simpleCumQty != nil) dict[@"simpleCumQty"] = _simpleCumQty ;
         if(_cumQty != nil) dict[@"cumQty"] = _cumQty ;
         if(_avgPx != nil) dict[@"avgPx"] = _avgPx ;
         if(_commission != nil) dict[@"commission"] = _commission ;

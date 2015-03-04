@@ -305,8 +305,31 @@ def self.get_affiliate_status (opts={})
     
     headers = nil
     post_body = nil
-    response = Swagger::Request.new(:POST, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
     response.map {|response|Affiliate.new(response)}
+
+  end
+
+def self.check_referral_code (referral_code,opts={})
+    query_param_keys = [:referral_code]
+
+    # set default values and merge with input
+    options = {
+    :referral_code => referral_code}.merge(opts)
+
+    #resource path
+    path = "/user/checkReferralCode".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    double.new(response)
 
   end
 
@@ -514,6 +537,29 @@ def self.get_commission (opts={})
     post_body = nil
     response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
     response.map {|response|any.new(response)}
+
+  end
+
+def self.get_margin (opts={})
+    query_param_keys = []
+
+    # set default values and merge with input
+    options = {
+    }.merge(opts)
+
+    #resource path
+    path = "/user/margin".sub('{format}','json')
+
+    
+    # pull querystring keys from options
+    queryopts = options.select do |key,value|
+      query_param_keys.include? key
+    end
+    
+    headers = nil
+    post_body = nil
+    response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
+    Margin.new(response)
 
   end
 

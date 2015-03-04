@@ -2,6 +2,7 @@
 #import "SWGFile.h"
 #import "SWGApiClient.h"
 #import "SWGUser.h"
+#import "SWGMargin.h"
 #import "SWGTransaction.h"
 #import "SWGAffiliate.h"
 #import "SWGAccessToken.h"
@@ -522,7 +523,7 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
         SWGApiClient* client = [SWGApiClient sharedClientFromPool:basePath];
 
     return [client dictionary: requestUrl 
-                               method: @"POST" 
+                               method: @"GET" 
                           queryParams: queryParams 
                                  body: bodyDictionary 
                          headerParams: headerParams
@@ -542,6 +543,44 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
                              completionBlock(objs, nil);
                          }
                         }];
+    
+
+}
+
+-(NSNumber*) checkReferralCodeWithCompletionBlock:(NSString*) referralCode
+        completionHandler : (void (^)(NSNumber* output, NSError* error))completionBlock{
+
+    NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/user/checkReferralCode", basePath];
+
+    // remove format in URL if needed
+    if ([requestUrl rangeOfString:@".{format}"].location != NSNotFound)
+        [requestUrl replaceCharactersInRange: [requestUrl rangeOfString:@".{format}"] withString:@".json"];
+
+    NSString* requestContentType = @"application/json";
+    NSString* responseContentType = @"application/json";
+
+        NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if(referralCode != nil)
+        queryParams[@"referralCode"] = referralCode;
+    NSMutableDictionary* headerParams = [[NSMutableDictionary alloc] init];
+    id bodyDictionary = nil;
+        SWGApiClient* client = [SWGApiClient sharedClientFromPool:basePath];
+
+    return [client stringWithCompletionBlock:requestUrl 
+                                              method:@"GET" 
+                                         queryParams:queryParams 
+                                                body:bodyDictionary 
+                                        headerParams:headerParams
+                                  requestContentType: requestContentType
+                                 responseContentType: responseContentType
+                                     completionBlock:^(NSString *data, NSError *error) {
+                         if (error) {
+                             completionBlock(nil, error);
+                             return;
+                         }
+                        NSNumber *result = data ? [[NSNumber alloc]initWithString: data] : nil;
+                        completionBlock(result, nil);
+                     }];
     
 
 }
@@ -867,6 +906,42 @@ static NSString * basePath = @"https://www.bitmex.com/api/v1";
                              completionBlock(objs, nil);
                          }
                         }];
+    
+
+}
+
+-(NSNumber*) getMarginWithCompletionBlock: (void (^)(SWGMargin* output, NSError* error))completionBlock{
+
+    NSMutableString* requestUrl = [NSMutableString stringWithFormat:@"%@/user/margin", basePath];
+
+    // remove format in URL if needed
+    if ([requestUrl rangeOfString:@".{format}"].location != NSNotFound)
+        [requestUrl replaceCharactersInRange: [requestUrl rangeOfString:@".{format}"] withString:@".json"];
+
+    NSString* requestContentType = @"application/json";
+    NSString* responseContentType = @"application/json";
+
+        NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [[NSMutableDictionary alloc] init];
+    id bodyDictionary = nil;
+        SWGApiClient* client = [SWGApiClient sharedClientFromPool:basePath];
+
+    return [client dictionary:requestUrl 
+                              method:@"GET" 
+                         queryParams:queryParams 
+                                body:bodyDictionary 
+                        headerParams:headerParams
+                  requestContentType:requestContentType
+                 responseContentType:responseContentType
+                     completionBlock:^(NSDictionary *data, NSError *error) {
+                        if (error) {
+                            completionBlock(nil, error);return;
+                        }
+                        SWGMargin *result = nil;
+                        if (data) {
+                            result = [[SWGMargin alloc]initWithValues: data];
+                        }
+                        completionBlock(result , nil);}];
     
 
 }

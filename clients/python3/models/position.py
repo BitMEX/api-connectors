@@ -58,10 +58,6 @@ class Position:
             'lastValue': 'float',
             'homeNotional': 'float',
             'foreignNotional': 'float',
-            'notionalCurrency1': 'str',
-            'notionalValue1': 'float',
-            'notionalCurrency2': 'str',
-            'notionalValue2': 'float',
             'initMargin': 'float',
             'maintMargin': 'float',
             'sessionMargin': 'float',
@@ -69,6 +65,11 @@ class Position:
             'varMargin': 'float',
             'unrealisedPnl': 'float',
             'unrealisedPnlPcnt': 'float',
+            'simpleQty': 'float',
+            'simpleCost': 'float',
+            'simpleValue': 'float',
+            'simplePnl': 'float',
+            'simplePnlPcnt': 'float',
             'avgEntryPrice': 'float',
             'breakEvenPrice': 'float',
             'marginCallPrice': 'float',
@@ -116,10 +117,6 @@ class Position:
         self.lastValue = None # float
         self.homeNotional = None # float
         self.foreignNotional = None # float
-        self.notionalCurrency1 = None # str
-        self.notionalValue1 = None # float
-        self.notionalCurrency2 = None # str
-        self.notionalValue2 = None # float
         self.initMargin = None # float
         self.maintMargin = None # float
         self.sessionMargin = None # float
@@ -127,6 +124,11 @@ class Position:
         self.varMargin = None # float
         self.unrealisedPnl = None # float
         self.unrealisedPnlPcnt = None # float
+        self.simpleQty = None # float
+        self.simpleCost = None # float
+        self.simpleValue = None # float
+        self.simplePnl = None # float
+        self.simplePnlPcnt = None # float
         self.avgEntryPrice = None # float
         self.breakEvenPrice = None # float
         self.marginCallPrice = None # float

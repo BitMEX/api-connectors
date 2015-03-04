@@ -31,6 +31,7 @@ class Instrument {
       'listing' => 'DateTime',
       'front' => 'DateTime',
       'expiry' => 'DateTime',
+      'relistInterval' => 'DateTime',
       'inverseLeg' => 'string',
       'sellLeg' => 'string',
       'buyLeg' => 'string',
@@ -52,17 +53,23 @@ class Instrument {
       'makerFee' => 'float',
       'takerFee' => 'float',
       'insuranceFee' => 'float',
+      'hedgerMakerFee' => 'float',
+      'hedgerTakerFee' => 'float',
+      'hedgerInsuranceFee' => 'float',
       'openingTimestamp' => 'DateTime',
       'closingTimestamp' => 'DateTime',
+      'sessionInterval' => 'DateTime',
       'prevClosePrice' => 'float',
       'limitDownPrice' => 'float',
       'limitUpPrice' => 'float',
       'prevTotalVolume' => 'float',
       'totalVolume' => 'float',
       'volume' => 'float',
+      'volume24h' => 'float',
       'prevTotalTurnover' => 'float',
       'totalTurnover' => 'float',
       'turnover' => 'float',
+      'turnover24h' => 'float',
       'vwap' => 'float',
       'highPrice' => 'float',
       'lowPrice' => 'float',
@@ -86,6 +93,7 @@ class Instrument {
   public $listing; // DateTime
   public $front; // DateTime
   public $expiry; // DateTime
+  public $relistInterval; // DateTime
   public $inverseLeg; // string
   public $sellLeg; // string
   public $buyLeg; // string
@@ -107,17 +115,23 @@ class Instrument {
   public $makerFee; // float
   public $takerFee; // float
   public $insuranceFee; // float
+  public $hedgerMakerFee; // float
+  public $hedgerTakerFee; // float
+  public $hedgerInsuranceFee; // float
   public $openingTimestamp; // DateTime
   public $closingTimestamp; // DateTime
+  public $sessionInterval; // DateTime
   public $prevClosePrice; // float
   public $limitDownPrice; // float
   public $limitUpPrice; // float
   public $prevTotalVolume; // float
   public $totalVolume; // float
   public $volume; // float
+  public $volume24h; // float
   public $prevTotalTurnover; // float
   public $totalTurnover; // float
   public $turnover; // float
+  public $turnover24h; // float
   public $vwap; // float
   public $highPrice; // float
   public $lowPrice; // float

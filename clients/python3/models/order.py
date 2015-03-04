@@ -26,6 +26,7 @@ class Order:
             'account': 'float',
             'symbol': 'str',
             'side': 'str',
+            'simpleOrderQty': 'float',
             'orderQty': 'float',
             'price': 'float',
             'minQty': 'float',
@@ -38,7 +39,9 @@ class Order:
             'ordStatus': 'str',
             'workingIndicator': 'bool',
             'ordRejReason': 'str',
+            'simpleLeavesQty': 'float',
             'leavesQty': 'float',
+            'simpleCumQty': 'float',
             'cumQty': 'float',
             'avgPx': 'float',
             'multiLegReportingType': 'str',
@@ -54,6 +57,7 @@ class Order:
         self.account = None # float
         self.symbol = None # str
         self.side = None # str
+        self.simpleOrderQty = None # float
         self.orderQty = None # float
         self.price = None # float
         self.minQty = None # float
@@ -66,7 +70,9 @@ class Order:
         self.ordStatus = None # str
         self.workingIndicator = None # bool
         self.ordRejReason = None # str
+        self.simpleLeavesQty = None # float
         self.leavesQty = None # float
+        self.simpleCumQty = None # float
         self.cumQty = None # float
         self.avgPx = None # float
         self.multiLegReportingType = None # str

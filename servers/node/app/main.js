@@ -32,6 +32,7 @@ var PositionApi = require("./apis/PositionApi.js");
 var InstrumentApi = require("./apis/InstrumentApi.js");
 var ChatApi = require("./apis/ChatApi.js");
 var ApiKeyApi = require("./apis/ApiKeyApi.js");
+var StatsApi = require("./apis/StatsApi.js");
 var TradeApi = require("./apis/TradeApi.js");
 var QuoteApi = require("./apis/QuoteApi.js");
 var OrderApi = require("./apis/OrderApi.js");
@@ -52,6 +53,8 @@ swagger.addModels(models)
 .addDELETE(ApiKeyApi.remove)
 .addPOST(ApiKeyApi.disable)
 .addPOST(ApiKeyApi.enable)
+.addGET(StatsApi.find)
+.addGET(StatsApi.history)
 .addGET(TradeApi.get)
 .addGET(TradeApi.getBucketed)
 .addGET(TradeApi.getByDate)
@@ -60,6 +63,7 @@ swagger.addModels(models)
 .addGET(OrderApi.getOrders)
 .addPOST(OrderApi.newOrder)
 .addDELETE(OrderApi.cancelOrder)
+.addDELETE(OrderApi.cancelAll)
 .addPOST(OrderApi.cancelAllAfter)
 .addGET(UserApi.getDepositAddress)
 .addGET(UserApi.getWalletHistory)
@@ -72,7 +76,8 @@ swagger.addModels(models)
 .addPOST(UserApi.confirmEmail)
 .addPOST(UserApi.requestPasswordReset)
 .addPOST(UserApi.confirmPasswordReset)
-.addPOST(UserApi.getAffiliateStatus)
+.addGET(UserApi.getAffiliateStatus)
+.addGET(UserApi.checkReferralCode)
 .addPOST(UserApi.newUser)
 .addGET(UserApi.getMe)
 .addPUT(UserApi.updateMe)
@@ -81,6 +86,7 @@ swagger.addModels(models)
 .addPOST(UserApi.logoutAll)
 .addPOST(UserApi.savePreferences)
 .addGET(UserApi.getCommission)
+.addGET(UserApi.getMargin)
 ;
   // configures the app
 swagger.configure("http://localhost:8002", "0.1");

@@ -79,14 +79,6 @@
 
 @property(nonatomic) NSNumber* foreignNotional;  
 
-@property(nonatomic) NSString* notionalCurrency1;  
-
-@property(nonatomic) NSNumber* notionalValue1;  
-
-@property(nonatomic) NSString* notionalCurrency2;  
-
-@property(nonatomic) NSNumber* notionalValue2;  
-
 @property(nonatomic) NSNumber* initMargin;  
 
 @property(nonatomic) NSNumber* maintMargin;  
@@ -100,6 +92,16 @@
 @property(nonatomic) NSNumber* unrealisedPnl;  
 
 @property(nonatomic) NSNumber* unrealisedPnlPcnt;  
+
+@property(nonatomic) NSNumber* simpleQty;  
+
+@property(nonatomic) NSNumber* simpleCost;  
+
+@property(nonatomic) NSNumber* simpleValue;  
+
+@property(nonatomic) NSNumber* simplePnl;  
+
+@property(nonatomic) NSNumber* simplePnlPcnt;  
 
 @property(nonatomic) NSNumber* avgEntryPrice;  
 
@@ -150,10 +152,6 @@
      lastValue: (NSNumber*) lastValue
      homeNotional: (NSNumber*) homeNotional
      foreignNotional: (NSNumber*) foreignNotional
-     notionalCurrency1: (NSString*) notionalCurrency1
-     notionalValue1: (NSNumber*) notionalValue1
-     notionalCurrency2: (NSString*) notionalCurrency2
-     notionalValue2: (NSNumber*) notionalValue2
      initMargin: (NSNumber*) initMargin
      maintMargin: (NSNumber*) maintMargin
      sessionMargin: (NSNumber*) sessionMargin
@@ -161,6 +159,11 @@
      varMargin: (NSNumber*) varMargin
      unrealisedPnl: (NSNumber*) unrealisedPnl
      unrealisedPnlPcnt: (NSNumber*) unrealisedPnlPcnt
+     simpleQty: (NSNumber*) simpleQty
+     simpleCost: (NSNumber*) simpleCost
+     simpleValue: (NSNumber*) simpleValue
+     simplePnl: (NSNumber*) simplePnl
+     simplePnlPcnt: (NSNumber*) simplePnlPcnt
      avgEntryPrice: (NSNumber*) avgEntryPrice
      breakEvenPrice: (NSNumber*) breakEvenPrice
      marginCallPrice: (NSNumber*) marginCallPrice

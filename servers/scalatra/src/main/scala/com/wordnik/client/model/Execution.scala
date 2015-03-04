@@ -24,6 +24,8 @@ case class Execution (
 
   lastLiquidityInd: Option[String],
 
+  simpleOrderQty: Option[Double],
+
   orderQty: Option[Double],
 
   price: Option[Double],
@@ -50,7 +52,11 @@ case class Execution (
 
   ordRejReason: Option[String],
 
+  simpleLeavesQty: Option[Double],
+
   leavesQty: Option[Double],
+
+  simpleCumQty: Option[Double],
 
   cumQty: Option[Double],
 

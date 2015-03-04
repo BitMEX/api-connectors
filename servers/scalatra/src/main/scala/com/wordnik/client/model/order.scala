@@ -12,6 +12,8 @@ case class Order (
 
   side: Option[String],
 
+  simpleOrderQty: Option[Double],
+
   orderQty: Option[Double],
 
   price: Option[Double],
@@ -36,7 +38,11 @@ case class Order (
 
   ordRejReason: Option[String],
 
+  simpleLeavesQty: Option[Double],
+
   leavesQty: Option[Double],
+
+  simpleCumQty: Option[Double],
 
   cumQty: Option[Double],
 

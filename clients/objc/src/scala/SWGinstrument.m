@@ -10,6 +10,7 @@
     listing: (SWGDate*) listing
     front: (SWGDate*) front
     expiry: (SWGDate*) expiry
+    relistInterval: (SWGDate*) relistInterval
     inverseLeg: (NSString*) inverseLeg
     sellLeg: (NSString*) sellLeg
     buyLeg: (NSString*) buyLeg
@@ -31,17 +32,23 @@
     makerFee: (NSNumber*) makerFee
     takerFee: (NSNumber*) takerFee
     insuranceFee: (NSNumber*) insuranceFee
+    hedgerMakerFee: (NSNumber*) hedgerMakerFee
+    hedgerTakerFee: (NSNumber*) hedgerTakerFee
+    hedgerInsuranceFee: (NSNumber*) hedgerInsuranceFee
     openingTimestamp: (SWGDate*) openingTimestamp
     closingTimestamp: (SWGDate*) closingTimestamp
+    sessionInterval: (SWGDate*) sessionInterval
     prevClosePrice: (NSNumber*) prevClosePrice
     limitDownPrice: (NSNumber*) limitDownPrice
     limitUpPrice: (NSNumber*) limitUpPrice
     prevTotalVolume: (NSNumber*) prevTotalVolume
     totalVolume: (NSNumber*) totalVolume
     volume: (NSNumber*) volume
+    volume24h: (NSNumber*) volume24h
     prevTotalTurnover: (NSNumber*) prevTotalTurnover
     totalTurnover: (NSNumber*) totalTurnover
     turnover: (NSNumber*) turnover
+    turnover24h: (NSNumber*) turnover24h
     vwap: (NSNumber*) vwap
     highPrice: (NSNumber*) highPrice
     lowPrice: (NSNumber*) lowPrice
@@ -63,6 +70,7 @@
   _listing = listing;
   _front = front;
   _expiry = expiry;
+  _relistInterval = relistInterval;
   _inverseLeg = inverseLeg;
   _sellLeg = sellLeg;
   _buyLeg = buyLeg;
@@ -84,17 +92,23 @@
   _makerFee = makerFee;
   _takerFee = takerFee;
   _insuranceFee = insuranceFee;
+  _hedgerMakerFee = hedgerMakerFee;
+  _hedgerTakerFee = hedgerTakerFee;
+  _hedgerInsuranceFee = hedgerInsuranceFee;
   _openingTimestamp = openingTimestamp;
   _closingTimestamp = closingTimestamp;
+  _sessionInterval = sessionInterval;
   _prevClosePrice = prevClosePrice;
   _limitDownPrice = limitDownPrice;
   _limitUpPrice = limitUpPrice;
   _prevTotalVolume = prevTotalVolume;
   _totalVolume = totalVolume;
   _volume = volume;
+  _volume24h = volume24h;
   _prevTotalTurnover = prevTotalTurnover;
   _totalTurnover = totalTurnover;
   _turnover = turnover;
+  _turnover24h = turnover24h;
   _vwap = vwap;
   _highPrice = highPrice;
   _lowPrice = lowPrice;
@@ -128,6 +142,9 @@
         id expiry_dict = dict[@"expiry"];
         if(expiry_dict != nil)
             _expiry = [[SWGDate alloc]initWithValues:expiry_dict];
+        id relistInterval_dict = dict[@"relistInterval"];
+        if(relistInterval_dict != nil)
+            _relistInterval = [[SWGDate alloc]initWithValues:relistInterval_dict];
         _inverseLeg = dict[@"inverseLeg"]; 
         _sellLeg = dict[@"sellLeg"]; 
         _buyLeg = dict[@"buyLeg"]; 
@@ -149,21 +166,29 @@
         _makerFee = dict[@"makerFee"]; 
         _takerFee = dict[@"takerFee"]; 
         _insuranceFee = dict[@"insuranceFee"]; 
+        _hedgerMakerFee = dict[@"hedgerMakerFee"]; 
+        _hedgerTakerFee = dict[@"hedgerTakerFee"]; 
+        _hedgerInsuranceFee = dict[@"hedgerInsuranceFee"]; 
         id openingTimestamp_dict = dict[@"openingTimestamp"];
         if(openingTimestamp_dict != nil)
             _openingTimestamp = [[SWGDate alloc]initWithValues:openingTimestamp_dict];
         id closingTimestamp_dict = dict[@"closingTimestamp"];
         if(closingTimestamp_dict != nil)
             _closingTimestamp = [[SWGDate alloc]initWithValues:closingTimestamp_dict];
+        id sessionInterval_dict = dict[@"sessionInterval"];
+        if(sessionInterval_dict != nil)
+            _sessionInterval = [[SWGDate alloc]initWithValues:sessionInterval_dict];
         _prevClosePrice = dict[@"prevClosePrice"]; 
         _limitDownPrice = dict[@"limitDownPrice"]; 
         _limitUpPrice = dict[@"limitUpPrice"]; 
         _prevTotalVolume = dict[@"prevTotalVolume"]; 
         _totalVolume = dict[@"totalVolume"]; 
         _volume = dict[@"volume"]; 
+        _volume24h = dict[@"volume24h"]; 
         _prevTotalTurnover = dict[@"prevTotalTurnover"]; 
         _totalTurnover = dict[@"totalTurnover"]; 
         _turnover = dict[@"turnover"]; 
+        _turnover24h = dict[@"turnover24h"]; 
         _vwap = dict[@"vwap"]; 
         _highPrice = dict[@"highPrice"]; 
         _lowPrice = dict[@"lowPrice"]; 
@@ -245,6 +270,24 @@
         if(_expiry != nil) dict[@"expiry"] = [(SWGObject*)_expiry asDictionary];
         }
     }
+    if(_relistInterval != nil){
+        if([_relistInterval isKindOfClass:[NSArray class]]){
+            NSMutableArray * array = [[NSMutableArray alloc] init];
+            for( SWGDate *relistInterval in (NSArray*)_relistInterval) {
+                [array addObject:[(SWGObject*)relistInterval asDictionary]];
+            }
+            dict[@"relistInterval"] = array;
+        }
+        else if(_relistInterval && [_relistInterval isKindOfClass:[SWGDate class]]) {
+            NSString * dateString = [(SWGDate*)_relistInterval toString];
+            if(dateString){
+                dict[@"relistInterval"] = dateString;
+            }
+        }
+        else {
+        if(_relistInterval != nil) dict[@"relistInterval"] = [(SWGObject*)_relistInterval asDictionary];
+        }
+    }
     if(_inverseLeg != nil) dict[@"inverseLeg"] = _inverseLeg ;
         if(_sellLeg != nil) dict[@"sellLeg"] = _sellLeg ;
         if(_buyLeg != nil) dict[@"buyLeg"] = _buyLeg ;
@@ -266,6 +309,9 @@
         if(_makerFee != nil) dict[@"makerFee"] = _makerFee ;
         if(_takerFee != nil) dict[@"takerFee"] = _takerFee ;
         if(_insuranceFee != nil) dict[@"insuranceFee"] = _insuranceFee ;
+        if(_hedgerMakerFee != nil) dict[@"hedgerMakerFee"] = _hedgerMakerFee ;
+        if(_hedgerTakerFee != nil) dict[@"hedgerTakerFee"] = _hedgerTakerFee ;
+        if(_hedgerInsuranceFee != nil) dict[@"hedgerInsuranceFee"] = _hedgerInsuranceFee ;
         if(_openingTimestamp != nil){
         if([_openingTimestamp isKindOfClass:[NSArray class]]){
             NSMutableArray * array = [[NSMutableArray alloc] init];
@@ -302,15 +348,35 @@
         if(_closingTimestamp != nil) dict[@"closingTimestamp"] = [(SWGObject*)_closingTimestamp asDictionary];
         }
     }
+    if(_sessionInterval != nil){
+        if([_sessionInterval isKindOfClass:[NSArray class]]){
+            NSMutableArray * array = [[NSMutableArray alloc] init];
+            for( SWGDate *sessionInterval in (NSArray*)_sessionInterval) {
+                [array addObject:[(SWGObject*)sessionInterval asDictionary]];
+            }
+            dict[@"sessionInterval"] = array;
+        }
+        else if(_sessionInterval && [_sessionInterval isKindOfClass:[SWGDate class]]) {
+            NSString * dateString = [(SWGDate*)_sessionInterval toString];
+            if(dateString){
+                dict[@"sessionInterval"] = dateString;
+            }
+        }
+        else {
+        if(_sessionInterval != nil) dict[@"sessionInterval"] = [(SWGObject*)_sessionInterval asDictionary];
+        }
+    }
     if(_prevClosePrice != nil) dict[@"prevClosePrice"] = _prevClosePrice ;
         if(_limitDownPrice != nil) dict[@"limitDownPrice"] = _limitDownPrice ;
         if(_limitUpPrice != nil) dict[@"limitUpPrice"] = _limitUpPrice ;
         if(_prevTotalVolume != nil) dict[@"prevTotalVolume"] = _prevTotalVolume ;
         if(_totalVolume != nil) dict[@"totalVolume"] = _totalVolume ;
         if(_volume != nil) dict[@"volume"] = _volume ;
+        if(_volume24h != nil) dict[@"volume24h"] = _volume24h ;
         if(_prevTotalTurnover != nil) dict[@"prevTotalTurnover"] = _prevTotalTurnover ;
         if(_totalTurnover != nil) dict[@"totalTurnover"] = _totalTurnover ;
         if(_turnover != nil) dict[@"turnover"] = _turnover ;
+        if(_turnover24h != nil) dict[@"turnover24h"] = _turnover24h ;
         if(_vwap != nil) dict[@"vwap"] = _vwap ;
         if(_highPrice != nil) dict[@"highPrice"] = _highPrice ;
         if(_lowPrice != nil) dict[@"lowPrice"] = _lowPrice ;

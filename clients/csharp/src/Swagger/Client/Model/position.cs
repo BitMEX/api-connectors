@@ -79,14 +79,6 @@ namespace Swagger.Client.Model {
 
     public double? foreignNotional { get; set; }
 
-    public string notionalCurrency1 { get; set; }
-
-    public double? notionalValue1 { get; set; }
-
-    public string notionalCurrency2 { get; set; }
-
-    public double? notionalValue2 { get; set; }
-
     public double? initMargin { get; set; }
 
     public double? maintMargin { get; set; }
@@ -100,6 +92,16 @@ namespace Swagger.Client.Model {
     public double? unrealisedPnl { get; set; }
 
     public double? unrealisedPnlPcnt { get; set; }
+
+    public double? simpleQty { get; set; }
+
+    public double? simpleCost { get; set; }
+
+    public double? simpleValue { get; set; }
+
+    public double? simplePnl { get; set; }
+
+    public double? simplePnlPcnt { get; set; }
 
     public double? avgEntryPrice { get; set; }
 
@@ -153,10 +155,6 @@ namespace Swagger.Client.Model {
       sb.Append("  lastValue: ").Append(lastValue).Append("\n");
       sb.Append("  homeNotional: ").Append(homeNotional).Append("\n");
       sb.Append("  foreignNotional: ").Append(foreignNotional).Append("\n");
-      sb.Append("  notionalCurrency1: ").Append(notionalCurrency1).Append("\n");
-      sb.Append("  notionalValue1: ").Append(notionalValue1).Append("\n");
-      sb.Append("  notionalCurrency2: ").Append(notionalCurrency2).Append("\n");
-      sb.Append("  notionalValue2: ").Append(notionalValue2).Append("\n");
       sb.Append("  initMargin: ").Append(initMargin).Append("\n");
       sb.Append("  maintMargin: ").Append(maintMargin).Append("\n");
       sb.Append("  sessionMargin: ").Append(sessionMargin).Append("\n");
@@ -164,6 +162,11 @@ namespace Swagger.Client.Model {
       sb.Append("  varMargin: ").Append(varMargin).Append("\n");
       sb.Append("  unrealisedPnl: ").Append(unrealisedPnl).Append("\n");
       sb.Append("  unrealisedPnlPcnt: ").Append(unrealisedPnlPcnt).Append("\n");
+      sb.Append("  simpleQty: ").Append(simpleQty).Append("\n");
+      sb.Append("  simpleCost: ").Append(simpleCost).Append("\n");
+      sb.Append("  simpleValue: ").Append(simpleValue).Append("\n");
+      sb.Append("  simplePnl: ").Append(simplePnl).Append("\n");
+      sb.Append("  simplePnlPcnt: ").Append(simplePnlPcnt).Append("\n");
       sb.Append("  avgEntryPrice: ").Append(avgEntryPrice).Append("\n");
       sb.Append("  breakEvenPrice: ").Append(breakEvenPrice).Append("\n");
       sb.Append("  marginCallPrice: ").Append(marginCallPrice).Append("\n");

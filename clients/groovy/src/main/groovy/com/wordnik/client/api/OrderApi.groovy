@@ -82,6 +82,20 @@ class OrderApi {
                     Order.class )
 
   }
+  def cancelAll (String symbol,String text,Closure onSuccess, Closure onFailure)  {
+    // create path and map variables
+    String resourcePath = "/order/all"
+
+
+    // query params
+    def queryParams = [:]
+    def headerParams = [:]
+
+    invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+                    "DELETE", "",
+                    Object.class )
+
+  }
   def cancelAllAfter (Double timeout,Closure onSuccess, Closure onFailure)  {
     // create path and map variables
     String resourcePath = "/order/cancelAllAfter"

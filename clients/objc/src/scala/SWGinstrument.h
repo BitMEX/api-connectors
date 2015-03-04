@@ -19,6 +19,8 @@
 
 @property(nonatomic) SWGDate* expiry;  
 
+@property(nonatomic) SWGDate* relistInterval;  
+
 @property(nonatomic) NSString* inverseLeg;  
 
 @property(nonatomic) NSString* sellLeg;  
@@ -61,9 +63,17 @@
 
 @property(nonatomic) NSNumber* insuranceFee;  
 
+@property(nonatomic) NSNumber* hedgerMakerFee;  
+
+@property(nonatomic) NSNumber* hedgerTakerFee;  
+
+@property(nonatomic) NSNumber* hedgerInsuranceFee;  
+
 @property(nonatomic) SWGDate* openingTimestamp;  
 
 @property(nonatomic) SWGDate* closingTimestamp;  
+
+@property(nonatomic) SWGDate* sessionInterval;  
 
 @property(nonatomic) NSNumber* prevClosePrice;  
 
@@ -77,11 +87,15 @@
 
 @property(nonatomic) NSNumber* volume;  
 
+@property(nonatomic) NSNumber* volume24h;  
+
 @property(nonatomic) NSNumber* prevTotalTurnover;  
 
 @property(nonatomic) NSNumber* totalTurnover;  
 
 @property(nonatomic) NSNumber* turnover;  
+
+@property(nonatomic) NSNumber* turnover24h;  
 
 @property(nonatomic) NSNumber* vwap;  
 
@@ -116,6 +130,7 @@
      listing: (SWGDate*) listing
      front: (SWGDate*) front
      expiry: (SWGDate*) expiry
+     relistInterval: (SWGDate*) relistInterval
      inverseLeg: (NSString*) inverseLeg
      sellLeg: (NSString*) sellLeg
      buyLeg: (NSString*) buyLeg
@@ -137,17 +152,23 @@
      makerFee: (NSNumber*) makerFee
      takerFee: (NSNumber*) takerFee
      insuranceFee: (NSNumber*) insuranceFee
+     hedgerMakerFee: (NSNumber*) hedgerMakerFee
+     hedgerTakerFee: (NSNumber*) hedgerTakerFee
+     hedgerInsuranceFee: (NSNumber*) hedgerInsuranceFee
      openingTimestamp: (SWGDate*) openingTimestamp
      closingTimestamp: (SWGDate*) closingTimestamp
+     sessionInterval: (SWGDate*) sessionInterval
      prevClosePrice: (NSNumber*) prevClosePrice
      limitDownPrice: (NSNumber*) limitDownPrice
      limitUpPrice: (NSNumber*) limitUpPrice
      prevTotalVolume: (NSNumber*) prevTotalVolume
      totalVolume: (NSNumber*) totalVolume
      volume: (NSNumber*) volume
+     volume24h: (NSNumber*) volume24h
      prevTotalTurnover: (NSNumber*) prevTotalTurnover
      totalTurnover: (NSNumber*) totalTurnover
      turnover: (NSNumber*) turnover
+     turnover24h: (NSNumber*) turnover24h
      vwap: (NSNumber*) vwap
      highPrice: (NSNumber*) highPrice
      lowPrice: (NSNumber*) lowPrice
