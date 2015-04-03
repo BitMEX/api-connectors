@@ -14,7 +14,7 @@ var swagger = new client.SwaggerApi({
 function isReady(client) {
   // Inspect the client to view our API methods
   // All methods accept a data callback.
-  client.trade.trade_getRecent({symbol: 'XBTP14', count: 40}, function(response) {
+  client.trade.get({symbol: 'XBU24H', count: 40}, function(response) {
     var trades = JSON.parse(response.data.toString());
     // Print the max price traded in the last `count` trades.
     console.log('max:', _.max(trades, 'price'));
