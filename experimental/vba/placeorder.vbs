@@ -45,7 +45,7 @@ httpObject.setRequestHeader "Content-Type", "application/x-www-form-urlencoded"
 httpObject.setRequestHeader "api-nonce", nonceStr
 httpObject.setRequestHeader "api-key", apiKey
 httpObject.setRequestHeader "api-signature", Signature
-httpObject.Send
+httpObject.Send (postdata)
 
 ' Catch response
 replytext = httpObject.ResponseText
