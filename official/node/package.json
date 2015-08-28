@@ -10,6 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "^2.4.1",
-    "swagger-client": "^2.0.29"
+    "swagger-client": "^2.1.3"
   }
 }
