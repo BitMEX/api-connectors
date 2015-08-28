@@ -1,33 +1,29 @@
 BitMEX API Node.js Connector
 ============================
 
-Usage:
+This is an example of using the `swagger-client` package to authenticate with BitMEX and send requests.
 
-```javascript
-'use strict';
-var client = require("swagger-client");
-var _ = require('lodash');
+`swagger-client` is especially nice because it exports an object that can call our methods directly.
 
-var swagger = new client.SwaggerApi({
-  url: 'http://localhost:3000/api/swagger/resources',
-  success: function() {
-    if(swagger.ready === true) {
-      isReady(swagger.apis);
-    }
-  }
-});
+You don't have to worry about headers or form encoding using this package - just call the methods are if they
+were direct RPC.
 
-function isReady(client) {
-  // Inspect the client to view our API methods
-  // All methods accept a data callback.
-  client.trades.trade_getRecent({symbol: 'XBTN14', count: 40}, function(response) {
-    var trades = JSON.parse(response.data.toString());
-    // Print the max price traded in the last `count` trades.
-    console.log('max:', _.max(trades, 'price'));
-  }, function(response) {
-    var err = JSON.parse(response.data.toString()).error;
-    // Error handling...
-    console.log('Error:', err.message);
-  });
-}
-```
+[swaggerClient.js](/swaggerClient.js) contains a simple example of how to use this.
+
+Usage
+-----
+
+If you're building your own project, copy the contents of this one into it.
+
+In the near future we will release this as a standalone NPM module.
+
+Authentication
+--------------
+
+Most of the time, when using the API, you'll want to generate a permanent API key. As of this moment
+there is no UI on BitMEX.com for generating one, but you can generate one via
+[the API](https://www.bitmex.com/api/explorer/#!/apiKey/createKey) (be sure to generate an Access Token first
+by logging in and copying the `id` to the top box), or by using
+[this handy Python script](https://github.com/BitMEX/market-maker/blob/master/util/generate-api-key.py).
+
+See also the official BitMEX [documentation on authentication](https://www.bitmex.com/app/restAPI#authentication).
