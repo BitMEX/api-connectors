@@ -1,0 +1,45 @@
+package io.swagger.client.model
+
+import org.joda.time.DateTime
+
+
+case class Margin (
+  account: Number,
+  currency: String,
+  riskLimit: Number,
+  prevState: String,
+  state: String,
+  action: String,
+  amount: Number,
+  pendingCredit: Number,
+  pendingDebit: Number,
+  prevRealisedPnl: Number,
+  prevUnrealisedPnl: Number,
+  grossComm: Number,
+  grossOpenCost: Number,
+  grossOpenPremium: Number,
+  grossExecCost: Number,
+  grossMarkValue: Number,
+  riskValue: Number,
+  taxableMargin: Number,
+  initMargin: Number,
+  maintMargin: Number,
+  sessionMargin: Number,
+  targetExcessMargin: Number,
+  varMargin: Number,
+  realisedPnl: Number,
+  unrealisedPnl: Number,
+  indicativeTax: Number,
+  unrealisedProfit: Number,
+  walletBalance: Number,
+  marginBalance: Number,
+  marginBalancePcnt: Double,
+  marginLeverage: Double,
+  marginUsedPcnt: Double,
+  excessMargin: Number,
+  excessMarginPcnt: Double,
+  availableMargin: Number,
+  withdrawableMargin: Number,
+  timestamp: Date
+  
+)

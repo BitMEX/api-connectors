@@ -1,0 +1,3761 @@
+---
+swagger: "2.0"
+info:
+  description: "REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\"\
+    >REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>"
+  version: "1.2.0"
+  title: "BitMEX API"
+  termsOfService: "https://www.bitmex.com/app/terms"
+  contact:
+    email: "support@bitmex.com"
+basePath: "/api/v1"
+tags:
+- name: "Chat"
+- name: "Announcement"
+- name: "ApiKey"
+- name: "Execution"
+- name: "Instrument"
+- name: "Order"
+- name: "OrderBook"
+- name: "Position"
+- name: "Quote"
+- name: "Schema"
+- name: "Settlement"
+- name: "Stats"
+- name: "Trade"
+- name: "User"
+consumes:
+- "application/json"
+- "application/x-www-form-urlencoded"
+produces:
+- "application/json"
+- "application/xml"
+- "text/xml"
+- "application/javascript"
+- "text/javascript"
+paths:
+  /announcement:
+    get:
+      tags:
+      - "Announcement"
+      summary: "Get site announcements."
+      operationId: "Announcement.get"
+      parameters:
+      - name: "columns"
+        in: "query"
+        description: "Array of column names to fetch. If omitted, will return all\
+          \ columns."
+        required: false
+        type: "string"
+        format: "JSON"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Announcement"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Announcement"
+  /announcement/urgent:
+    get:
+      tags:
+      - "Announcement"
+      summary: "Get urgent (banner) announcements."
+      operationId: "Announcement.getUrgent"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Announcement"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Announcement"
+  /apiKey:
+    get:
+      tags:
+      - "ApiKey"
+      summary: "Get your API Keys."
+      operationId: "ApiKey.getKeys"
+      parameters:
+      - name: "reverse"
+        in: "query"
+        description: "If true, will sort results newest first."
+        required: false
+        type: "boolean"
+        default: false
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ApiKey"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "ApiKey"
+    post:
+      tags:
+      - "ApiKey"
+      summary: "Create a new API Key."
+      description: "API Keys can also be created via <a href=\"https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py\"\
+        >this Python script</a>. See the <a href=\"/app/apiKeys\">API Key Documentation</a>\
+        \ for more information on capabilities."
+      operationId: "ApiKey.createKey"
+      parameters:
+      - name: "name"
+        in: "formData"
+        description: "Key name. This name is for reference only."
+        required: false
+        type: "string"
+      - name: "cidr"
+        in: "formData"
+        description: "CIDR block to restrict this key to. To restrict to a single\
+          \ address, append \"/32\", e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0\
+          \ to allow all IPs. Only one block may be set. <a href=\"http://software77.net/cidr-101.html\"\
+          >More on CIDR blocks</a>"
+        required: false
+        type: "string"
+      - name: "permissions"
+        in: "formData"
+        description: "Key Permissions. All keys can read margin and position data.\
+          \ Additional permissions must be added. Available: [\"order\", \"withdraw\"\
+          ]."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "enabled"
+        in: "formData"
+        description: "Set to true to enable this key on creation. Otherwise, it must\
+          \ be explicitly enabled via /apiKey/enable."
+        required: false
+        type: "boolean"
+        default: false
+      - name: "token"
+        in: "formData"
+        description: "OTP Token (YubiKey, Google Authenticator)"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/ApiKey"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "ApiKey"
+    delete:
+      tags:
+      - "ApiKey"
+      summary: "Remove an API Key."
+      operationId: "ApiKey.remove"
+      parameters:
+      - name: "apiKeyID"
+        in: "formData"
+        description: "API Key ID (public component)."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/inline_response_200"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "ApiKey"
+  /apiKey/disable:
+    post:
+      tags:
+      - "ApiKey"
+      summary: "Disable an API Key."
+      operationId: "ApiKey.disable"
+      parameters:
+      - name: "apiKeyID"
+        in: "formData"
+        description: "API Key ID (public component)."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/ApiKey"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "ApiKey"
+  /apiKey/enable:
+    post:
+      tags:
+      - "ApiKey"
+      summary: "Enable an API Key."
+      operationId: "ApiKey.enable"
+      parameters:
+      - name: "apiKeyID"
+        in: "formData"
+        description: "API Key ID (public component)."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/ApiKey"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "ApiKey"
+  /chat:
+    get:
+      tags:
+      - "Chat"
+      summary: "Get chat messages."
+      operationId: "Chat.get"
+      parameters:
+      - name: "count"
+        in: "query"
+        description: "Number of results to fetch."
+        required: false
+        type: "number"
+        default: 100.0
+        format: "int32"
+      - name: "start"
+        in: "query"
+        description: "Starting point for results."
+        required: false
+        type: "number"
+        default: 0.0
+        format: "int32"
+      - name: "reverse"
+        in: "query"
+        description: "If true, will sort results newest first."
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Chat"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Chat"
+    post:
+      tags:
+      - "Chat"
+      summary: "Send a chat message."
+      operationId: "Chat.send"
+      parameters:
+      - name: "message"
+        in: "formData"
+        required: true
+        type: "string"
+        maximum: 500.0
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/Chat"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Chat"
+  /chat/connected:
+    get:
+      tags:
+      - "Chat"
+      summary: "Get connected users."
+      description: "Returns an array with browser users in the first position and\
+        \ API users (bots) in the second position."
+      operationId: "Chat.getConnected"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/ConnectedUsers"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Chat"
+  /execution:
+    get:
+      tags:
+      - "Execution"
+      summary: "Get all raw executions for your account."
+      description: "This returns all raw transactions, which includes order opening\
+        \ and cancelation, and order status changes. It can be quite noisy. More focused\
+        \ information is available at /execution/tradeHistory. You may also use the\
+        \ `filter` param to target your query. Specify an array as a filter value,\
+        \ such as {\"execType\": [\"Settlement\", \"Trade\"]} to filter on multiple\
+        \ values."
+      operationId: "Execution.get"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+          \ for the nearest expiring contract in that series.\n\nYou can also send\
+          \ a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly',\
+          \ 'quarterly', and 'biquarterly'."
+        required: false
+        type: "string"
+      - name: "filter"
+        in: "query"
+        description: "Generic table filter. Send JSON key/value pairs, such as {\"\
+          key\": \"value\"}. You can key on individual fields, and do more advanced\
+          \ querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\"\
+          >http://localhost:2001/app/restAPI#timestamp-filters</a> for more details."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "columns"
+        in: "query"
+        description: "Array of column names to fetch. If omitted, will return all\
+          \ columns.\n\nNote that this method will always return item keys, even when\
+          \ not specified, so you may receive more columns that you expect."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "count"
+        in: "query"
+        description: "Number of results to fetch."
+        required: false
+        type: "number"
+        default: 100.0
+        format: "int32"
+      - name: "start"
+        in: "query"
+        description: "Starting point for results."
+        required: false
+        type: "number"
+        default: 0.0
+        format: "int32"
+      - name: "reverse"
+        in: "query"
+        description: "If true, will sort results newest first."
+        required: false
+        type: "boolean"
+        default: false
+      - name: "startTime"
+        in: "query"
+        description: "Starting date filter for results."
+        required: false
+        type: "string"
+        format: "date"
+      - name: "endTime"
+        in: "query"
+        description: "Ending date filter for results."
+        required: false
+        type: "string"
+        format: "date"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Execution"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Execution"
+  /execution/tradeHistory:
+    get:
+      tags:
+      - "Execution"
+      summary: "Get all balance-affecting executions. This includes each trade, insurance\
+        \ charge, and settlement."
+      operationId: "Execution.getTradeHistory"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+          \ for the nearest expiring contract in that series.\n\nYou can also send\
+          \ a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly',\
+          \ 'quarterly', and 'biquarterly'."
+        required: false
+        type: "string"
+      - name: "filter"
+        in: "query"
+        description: "Generic table filter. Send JSON key/value pairs, such as {\"\
+          key\": \"value\"}. You can key on individual fields, and do more advanced\
+          \ querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\"\
+          >http://localhost:2001/app/restAPI#timestamp-filters</a> for more details."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "columns"
+        in: "query"
+        description: "Array of column names to fetch. If omitted, will return all\
+          \ columns.\n\nNote that this method will always return item keys, even when\
+          \ not specified, so you may receive more columns that you expect."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "count"
+        in: "query"
+        description: "Number of results to fetch."
+        required: false
+        type: "number"
+        default: 100.0
+        format: "int32"
+      - name: "start"
+        in: "query"
+        description: "Starting point for results."
+        required: false
+        type: "number"
+        default: 0.0
+        format: "int32"
+      - name: "reverse"
+        in: "query"
+        description: "If true, will sort results newest first."
+        required: false
+        type: "boolean"
+        default: false
+      - name: "startTime"
+        in: "query"
+        description: "Starting date filter for results."
+        required: false
+        type: "string"
+        format: "date"
+      - name: "endTime"
+        in: "query"
+        description: "Ending date filter for results."
+        required: false
+        type: "string"
+        format: "date"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Execution"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Execution"
+  /instrument:
+    get:
+      tags:
+      - "Instrument"
+      summary: "Get instruments."
+      description: "This returns all instruments and indices, including those that\
+        \ have settled or are unlisted. Use this endpoint if you want to query for\
+        \ individual instruments or use a complex filter. Use the endpoint /instrument/active\
+        \ to return active instruments, or use a filter like {\"state\": \"Open\"\
+        }."
+      operationId: "Instrument.get"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+          \ for the nearest expiring contract in that series.\n\nYou can also send\
+          \ a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly',\
+          \ 'quarterly', and 'biquarterly'."
+        required: false
+        type: "string"
+      - name: "filter"
+        in: "query"
+        description: "Generic table filter. Send JSON key/value pairs, such as {\"\
+          key\": \"value\"}. You can key on individual fields, and do more advanced\
+          \ querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\"\
+          >http://localhost:2001/app/restAPI#timestamp-filters</a> for more details."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "columns"
+        in: "query"
+        description: "Array of column names to fetch. If omitted, will return all\
+          \ columns.\n\nNote that this method will always return item keys, even when\
+          \ not specified, so you may receive more columns that you expect."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "count"
+        in: "query"
+        description: "Number of results to fetch."
+        required: false
+        type: "number"
+        default: 100.0
+        format: "int32"
+      - name: "start"
+        in: "query"
+        description: "Starting point for results."
+        required: false
+        type: "number"
+        default: 0.0
+        format: "int32"
+      - name: "reverse"
+        in: "query"
+        description: "If true, will sort results newest first."
+        required: false
+        type: "boolean"
+        default: false
+      - name: "startTime"
+        in: "query"
+        description: "Starting date filter for results."
+        required: false
+        type: "string"
+        format: "date"
+      - name: "endTime"
+        in: "query"
+        description: "Ending date filter for results."
+        required: false
+        type: "string"
+        format: "date"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Instrument"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Instrument"
+  /instrument/active:
+    get:
+      tags:
+      - "Instrument"
+      summary: "Get all active instruments and instruments that have expired in <24hrs."
+      operationId: "Instrument.getActive"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Instrument"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Instrument"
+  /instrument/activeAndIndices:
+    get:
+      tags:
+      - "Instrument"
+      summary: "Helper method. Gets all active instruments and all indices. This is\
+        \ a join of the result of /indices and /active."
+      operationId: "Instrument.getActiveAndIndices"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Instrument"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Instrument"
+  /instrument/activeIntervals:
+    get:
+      tags:
+      - "Instrument"
+      summary: "Return all active contract series and interval pairs."
+      description: "This endpoint is useful for determining which pairs are live.\
+        \ It returns two arrays of   strings. The first is intervals, such as `[\"\
+        BVOL:daily\", \"BVOL:weekly\", \"XBU:daily\", \"XBU:monthly\", ...]`. These\
+        \ identifiers are usable in any query's \"symbol\" param. The second array\
+        \ is the current resolution of these intervals. Results are mapped at the\
+        \ same index."
+      operationId: "Instrument.getActiveIntervals"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/InstrumentInterval"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Instrument"
+  /instrument/indices:
+    get:
+      tags:
+      - "Instrument"
+      summary: "Get all price indices."
+      operationId: "Instrument.getIndices"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Instrument"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Instrument"
+  /order:
+    get:
+      tags:
+      - "Order"
+      summary: "Get your orders."
+      description: "To get open orders only, send {\"open\": true} in the filter param."
+      operationId: "Order.getOrders"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+          \ for the nearest expiring contract in that series.\n\nYou can also send\
+          \ a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly',\
+          \ 'quarterly', and 'biquarterly'."
+        required: false
+        type: "string"
+      - name: "filter"
+        in: "query"
+        description: "Generic table filter. Send JSON key/value pairs, such as {\"\
+          key\": \"value\"}. You can key on individual fields, and do more advanced\
+          \ querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\"\
+          >http://localhost:2001/app/restAPI#timestamp-filters</a> for more details."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "columns"
+        in: "query"
+        description: "Array of column names to fetch. If omitted, will return all\
+          \ columns.\n\nNote that this method will always return item keys, even when\
+          \ not specified, so you may receive more columns that you expect."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "count"
+        in: "query"
+        description: "Number of results to fetch."
+        required: false
+        type: "number"
+        default: 100.0
+        format: "int32"
+      - name: "start"
+        in: "query"
+        description: "Starting point for results."
+        required: false
+        type: "number"
+        default: 0.0
+        format: "int32"
+      - name: "reverse"
+        in: "query"
+        description: "If true, will sort results newest first."
+        required: false
+        type: "boolean"
+        default: false
+      - name: "startTime"
+        in: "query"
+        description: "Starting date filter for results."
+        required: false
+        type: "string"
+        format: "date"
+      - name: "endTime"
+        in: "query"
+        description: "Ending date filter for results."
+        required: false
+        type: "string"
+        format: "date"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Order"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Order"
+    post:
+      tags:
+      - "Order"
+      summary: "Create a new order."
+      description: "This endpoint is used for placing orders. Valid order types are\
+        \ 'Limit' and 'StopLimit'. If none is provided, BitMEX will assume a Limit\
+        \ Order.\n\nA note on API tools: if you want to keep track of order IDs yourself,\
+        \ set a unique clOrdID per order. This ID will come back as a property on\
+        \ the order and any related executions (including on the WebSocket), and can\
+        \ be used to get or cancel the order. Max length is 36 characters.\n\nTo generate\
+        \ a clOrdID, consider setting a prefix, and incrementing a counter or generating\
+        \ a UUID. Some UUIDs are longer than 36 characters, so use a url-safe base64\
+        \ encoding. For example, the prefix 'bmex_mm_' and the UUID '7fbd6545-bb0c-11e4-a273-6003088a7c04'\
+        \ creates 'bmex_mm_f71lRbsMEeSic2ADCIp8BA'.\n\nSee the BitMEX <a href='https://github.com/BitMEX/market-maker/blob/22c75a2b6db63e20212813e9afdb845db1b09b2a/bitmex.py#L152'>Reference\
+        \ Market Maker</a> for an example of how to use and generate clOrdIDs."
+      operationId: "Order.newOrder"
+      parameters:
+      - name: "symbol"
+        in: "formData"
+        description: "Instrument symbol."
+        required: true
+        type: "string"
+      - name: "quantity"
+        in: "formData"
+        description: "Quantity. Use positive numbers to buy, negative to sell."
+        required: true
+        type: "number"
+        format: "int32"
+      - name: "price"
+        in: "formData"
+        description: "Order price."
+        required: true
+        type: "number"
+        format: "double"
+      - name: "timeInForce"
+        in: "formData"
+        description: "Time in force. Valid options: 'IOC' (Immediate-Or-Cancel), 'GTC'\
+          \ (Good-Till-Cancelled)."
+        required: false
+        type: "string"
+        default: "GTC"
+      - name: "type"
+        in: "formData"
+        description: "Order type. Available: 'Limit', 'StopLimit'"
+        required: false
+        type: "string"
+        default: "Limit"
+      - name: "stopPrice"
+        in: "formData"
+        description: "If order type is 'StopLimit', this is the trigger/stop price."
+        required: false
+        type: "number"
+        format: "double"
+      - name: "clOrdID"
+        in: "formData"
+        description: "Optional Client Order ID to give this order. This ID will come\
+          \ back on any execution messages tied to this order."
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/Order"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Order"
+    delete:
+      tags:
+      - "Order"
+      summary: "Cancel order(s). Send multiple order IDs to cancel in bulk."
+      description: "Either an orderID or a clOrdID must be provided."
+      operationId: "Order.cancelOrder"
+      parameters:
+      - name: "orderID"
+        in: "formData"
+        description: "Order ID(s)."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "clOrdID"
+        in: "formData"
+        description: "Client Order ID(s). See POST /order."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "text"
+        in: "formData"
+        description: "Optional cancellation annotation. e.g. 'Spread Exceeded'"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Order"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Order"
+  /order/all:
+    delete:
+      tags:
+      - "Order"
+      summary: "Cancels all of your orders."
+      operationId: "Order.cancelAll"
+      parameters:
+      - name: "symbol"
+        in: "formData"
+        description: "Optional symbol. If provided, only cancels orders for that symbol."
+        required: false
+        type: "string"
+      - name: "filter"
+        in: "formData"
+        description: "Optional filter for cancellation. Use to only cancel some orders,\
+          \ e.g. `{\"side\": \"Buy\"}`."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "text"
+        in: "formData"
+        description: "Optional cancellation annotation. e.g. 'Spread Exceeded'"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/inline_response_200"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Order"
+  /order/cancelAllAfter:
+    post:
+      tags:
+      - "Order"
+      summary: "Automatically cancel all your orders after a specified timeout."
+      description: "Useful as a dead-man's switch to ensure your orders are canceled\
+        \ in case of an outage. If called repeatedly, the existing offset will be\
+        \ canceled and a new one will be inserted in its place. <br><br>Example usage:\
+        \ call this route at 15s intervals with an offset of 60000 (60s). If this\
+        \ route is not called within 60 seconds, all your orders will be automatically\
+        \ canceled.<br><br>This is also available via <a href=\"https://www.bitmex.com/app/wsAPI#dead-man-s-switch-auto-cancel-\"\
+        >WebSocket</a>."
+      operationId: "Order.cancelAllAfter"
+      parameters:
+      - name: "timeout"
+        in: "formData"
+        description: "Timeout in ms. Set to 0 to cancel this timer. "
+        required: true
+        type: "number"
+        format: "double"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/inline_response_200"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Order"
+  /order/closePosition:
+    post:
+      tags:
+      - "Order"
+      summary: "Close a position with a market order."
+      description: "If no price is specified, a market order will be submitted to\
+        \ close the entirety of your position. Be careful with market orders as you\
+        \ may not be filled at a favorable price."
+      operationId: "Order.closePosition"
+      parameters:
+      - name: "symbol"
+        in: "formData"
+        description: "Symbol of position to close."
+        required: true
+        type: "string"
+      - name: "price"
+        in: "formData"
+        description: "Optional limit price."
+        required: false
+        type: "number"
+        format: "double"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            description: "Resulting close order."
+            $ref: "#/definitions/Order"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Order"
+  /order/liquidations:
+    get:
+      tags:
+      - "Order"
+      summary: "Get open liquidation orders."
+      operationId: "Order.getCloseOutOrders"
+      parameters:
+      - name: "filter"
+        in: "query"
+        description: "Filter. For example, send {\"symbol\": \"XBT24H\"}."
+        required: false
+        type: "string"
+        format: "JSON"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/LiquidationOrder"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Order"
+  /orderBook:
+    get:
+      tags:
+      - "OrderBook"
+      summary: "Get current orderbook."
+      operationId: "OrderBook.getOrderBook"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "Instrument symbol. Send a series (e.g. XBT) to get data for\
+          \ the nearest contract in that series."
+        required: true
+        type: "string"
+      - name: "depth"
+        in: "query"
+        description: "Orderbook depth."
+        required: false
+        type: "number"
+        minimum: 0.0
+        format: "int32"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/OrderBook"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "OrderBook"
+  /position:
+    get:
+      tags:
+      - "Position"
+      summary: "Get your positions."
+      operationId: "Position.find"
+      parameters:
+      - name: "filter"
+        in: "query"
+        description: "Table filter. For example, send {\"symbol\": \"XBT24H\"}."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "columns"
+        in: "query"
+        description: "Which columns to fetch. For example, send [\"columnName\"]."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "count"
+        in: "query"
+        description: "Number of rows to fetch."
+        required: false
+        type: "number"
+        format: "int32"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Position"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Position"
+  /position/isolate:
+    post:
+      tags:
+      - "Position"
+      summary: "Toggle isolated (fixed) margin per-position."
+      description: "On Speculative (DPE-Enabled) contracts, users can switch isolate\
+        \ margin per-position. This function allows switching margin isolation (aka\
+        \ fixed margin) on and off. A position must be open to isolate it."
+      operationId: "Position.isolateMargin"
+      parameters:
+      - name: "symbol"
+        in: "formData"
+        description: "Position symbol to isolate."
+        required: true
+        type: "string"
+      - name: "enabled"
+        in: "formData"
+        description: "If true, will enable isolated margin."
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            description: "Affected position."
+            $ref: "#/definitions/Position"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Position"
+  /position/transferMargin:
+    post:
+      tags:
+      - "Position"
+      summary: "Transfer equity in or out of a position."
+      description: "When margin is isolated on a position, use this function to add\
+        \ or remove margin from the position. Note that you cannot remove margin below\
+        \ the initial margin threshold."
+      operationId: "Position.transferIsolatedMargin"
+      parameters:
+      - name: "symbol"
+        in: "formData"
+        description: "Position symbol to isolate."
+        required: true
+        type: "string"
+      - name: "amount"
+        in: "formData"
+        description: "Amount to transfer, in satoshis. May be negative."
+        required: true
+        type: "number"
+        format: "int64"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            description: "Affected position."
+            $ref: "#/definitions/Position"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Position"
+  /quote:
+    get:
+      tags:
+      - "Quote"
+      summary: "Get Quotes."
+      operationId: "Quote.get"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+          \ for the nearest expiring contract in that series.\n\nYou can also send\
+          \ a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly',\
+          \ 'quarterly', and 'biquarterly'."
+        required: false
+        type: "string"
+      - name: "filter"
+        in: "query"
+        description: "Generic table filter. Send JSON key/value pairs, such as {\"\
+          key\": \"value\"}. You can key on individual fields, and do more advanced\
+          \ querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\"\
+          >http://localhost:2001/app/restAPI#timestamp-filters</a> for more details."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "columns"
+        in: "query"
+        description: "Array of column names to fetch. If omitted, will return all\
+          \ columns.\n\nNote that this method will always return item keys, even when\
+          \ not specified, so you may receive more columns that you expect."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "count"
+        in: "query"
+        description: "Number of results to fetch."
+        required: false
+        type: "number"
+        default: 100.0
+        format: "int32"
+      - name: "start"
+        in: "query"
+        description: "Starting point for results."
+        required: false
+        type: "number"
+        default: 0.0
+        format: "int32"
+      - name: "reverse"
+        in: "query"
+        description: "If true, will sort results newest first."
+        required: false
+        type: "boolean"
+        default: false
+      - name: "startTime"
+        in: "query"
+        description: "Starting date filter for results."
+        required: false
+        type: "string"
+        format: "date"
+      - name: "endTime"
+        in: "query"
+        description: "Ending date filter for results."
+        required: false
+        type: "string"
+        format: "date"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Quote"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Quote"
+  /quote/bucketed:
+    get:
+      tags:
+      - "Quote"
+      summary: "Get previous quotes in time buckets."
+      operationId: "Quote.getBucketed"
+      parameters:
+      - name: "binSize"
+        in: "query"
+        description: "Time interval to bucket by. Available options: ['1m', '5m',\
+          \ '1h', '1d']."
+        required: false
+        type: "string"
+      - name: "symbol"
+        in: "query"
+        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+          \ for the nearest expiring contract in that series.\n\nYou can also send\
+          \ a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly',\
+          \ 'quarterly', and 'biquarterly'."
+        required: false
+        type: "string"
+      - name: "filter"
+        in: "query"
+        description: "Generic table filter. Send JSON key/value pairs, such as {\"\
+          key\": \"value\"}. You can key on individual fields, and do more advanced\
+          \ querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\"\
+          >http://localhost:2001/app/restAPI#timestamp-filters</a> for more details."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "columns"
+        in: "query"
+        description: "Array of column names to fetch. If omitted, will return all\
+          \ columns.\n\nNote that this method will always return item keys, even when\
+          \ not specified, so you may receive more columns that you expect."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "count"
+        in: "query"
+        description: "Number of results to fetch."
+        required: false
+        type: "number"
+        default: 100.0
+        format: "int32"
+      - name: "start"
+        in: "query"
+        description: "Starting point for results."
+        required: false
+        type: "number"
+        default: 0.0
+        format: "int32"
+      - name: "reverse"
+        in: "query"
+        description: "If true, will sort results newest first."
+        required: false
+        type: "boolean"
+        default: false
+      - name: "startTime"
+        in: "query"
+        description: "Starting date filter for results."
+        required: false
+        type: "string"
+        format: "date"
+      - name: "endTime"
+        in: "query"
+        description: "Ending date filter for results."
+        required: false
+        type: "string"
+        format: "date"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Quote"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Quote"
+  /schema:
+    get:
+      tags:
+      - "Schema"
+      summary: "Get model schemata for data objects returned by this API."
+      operationId: "Schema.find"
+      parameters:
+      - name: "model"
+        in: "query"
+        description: "Optional model filter. If omitted, will return all models."
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/inline_response_200"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Schema"
+  /schema/websocketHelp:
+    get:
+      tags:
+      - "Schema"
+      summary: "Returns help text & subject list for websocket usage."
+      operationId: "Schema.websocketHelp"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/inline_response_200"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Schema"
+  /settlement:
+    get:
+      tags:
+      - "Settlement"
+      summary: "Get settlement history."
+      operationId: "Settlement.get"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+          \ for the nearest expiring contract in that series.\n\nYou can also send\
+          \ a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly',\
+          \ 'quarterly', and 'biquarterly'."
+        required: false
+        type: "string"
+      - name: "filter"
+        in: "query"
+        description: "Generic table filter. Send JSON key/value pairs, such as {\"\
+          key\": \"value\"}. You can key on individual fields, and do more advanced\
+          \ querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\"\
+          >http://localhost:2001/app/restAPI#timestamp-filters</a> for more details."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "columns"
+        in: "query"
+        description: "Array of column names to fetch. If omitted, will return all\
+          \ columns.\n\nNote that this method will always return item keys, even when\
+          \ not specified, so you may receive more columns that you expect."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "count"
+        in: "query"
+        description: "Number of results to fetch."
+        required: false
+        type: "number"
+        default: 100.0
+        format: "int32"
+      - name: "start"
+        in: "query"
+        description: "Starting point for results."
+        required: false
+        type: "number"
+        default: 0.0
+        format: "int32"
+      - name: "reverse"
+        in: "query"
+        description: "If true, will sort results newest first."
+        required: false
+        type: "boolean"
+        default: false
+      - name: "startTime"
+        in: "query"
+        description: "Starting date filter for results."
+        required: false
+        type: "string"
+        format: "date"
+      - name: "endTime"
+        in: "query"
+        description: "Ending date filter for results."
+        required: false
+        type: "string"
+        format: "date"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Settlement"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Settlement"
+  /stats:
+    get:
+      tags:
+      - "Stats"
+      summary: "Get exchange-wide and per-series turnover and volume statistics."
+      operationId: "Stats.find"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Stats"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Stats"
+  /stats/history:
+    get:
+      tags:
+      - "Stats"
+      summary: "Get historical exchange-wide and per-series turnover and volume statistics."
+      operationId: "Stats.history"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/StatsHistory"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Stats"
+  /trade:
+    get:
+      tags:
+      - "Trade"
+      summary: "Get Trades."
+      operationId: "Trade.get"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+          \ for the nearest expiring contract in that series.\n\nYou can also send\
+          \ a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly',\
+          \ 'quarterly', and 'biquarterly'."
+        required: false
+        type: "string"
+      - name: "filter"
+        in: "query"
+        description: "Generic table filter. Send JSON key/value pairs, such as {\"\
+          key\": \"value\"}. You can key on individual fields, and do more advanced\
+          \ querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\"\
+          >http://localhost:2001/app/restAPI#timestamp-filters</a> for more details."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "columns"
+        in: "query"
+        description: "Array of column names to fetch. If omitted, will return all\
+          \ columns.\n\nNote that this method will always return item keys, even when\
+          \ not specified, so you may receive more columns that you expect."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "count"
+        in: "query"
+        description: "Number of results to fetch."
+        required: false
+        type: "number"
+        default: 100.0
+        format: "int32"
+      - name: "start"
+        in: "query"
+        description: "Starting point for results."
+        required: false
+        type: "number"
+        default: 0.0
+        format: "int32"
+      - name: "reverse"
+        in: "query"
+        description: "If true, will sort results newest first."
+        required: false
+        type: "boolean"
+        default: false
+      - name: "startTime"
+        in: "query"
+        description: "Starting date filter for results."
+        required: false
+        type: "string"
+        format: "date"
+      - name: "endTime"
+        in: "query"
+        description: "Ending date filter for results."
+        required: false
+        type: "string"
+        format: "date"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Trade"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Trade"
+  /trade/bucketed:
+    get:
+      tags:
+      - "Trade"
+      summary: "Get previous trades in time buckets."
+      operationId: "Trade.getBucketed"
+      parameters:
+      - name: "binSize"
+        in: "query"
+        description: "Time interval to bucket by. Available options: ['1m', '5m',\
+          \ '1h', '1d']."
+        required: false
+        type: "string"
+      - name: "symbol"
+        in: "query"
+        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+          \ for the nearest expiring contract in that series.\n\nYou can also send\
+          \ a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly',\
+          \ 'quarterly', and 'biquarterly'."
+        required: false
+        type: "string"
+      - name: "filter"
+        in: "query"
+        description: "Generic table filter. Send JSON key/value pairs, such as {\"\
+          key\": \"value\"}. You can key on individual fields, and do more advanced\
+          \ querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\"\
+          >http://localhost:2001/app/restAPI#timestamp-filters</a> for more details."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "columns"
+        in: "query"
+        description: "Array of column names to fetch. If omitted, will return all\
+          \ columns.\n\nNote that this method will always return item keys, even when\
+          \ not specified, so you may receive more columns that you expect."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "count"
+        in: "query"
+        description: "Number of results to fetch."
+        required: false
+        type: "number"
+        default: 100.0
+        format: "int32"
+      - name: "start"
+        in: "query"
+        description: "Starting point for results."
+        required: false
+        type: "number"
+        default: 0.0
+        format: "int32"
+      - name: "reverse"
+        in: "query"
+        description: "If true, will sort results newest first."
+        required: false
+        type: "boolean"
+        default: false
+      - name: "startTime"
+        in: "query"
+        description: "Starting date filter for results."
+        required: false
+        type: "string"
+        format: "date"
+      - name: "endTime"
+        in: "query"
+        description: "Ending date filter for results."
+        required: false
+        type: "string"
+        format: "date"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/TradeBin"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Trade"
+  /trade/byDate:
+    get:
+      tags:
+      - "Trade"
+      summary: "Get trades between two dates. [Deprecated, use GET /trades]"
+      operationId: "Trade.getByDate"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "Instrument symbol. Send a series (e.g. XBT) to get data for\
+          \ the nearest contract in that series."
+        required: false
+        type: "string"
+      - name: "startTime"
+        in: "query"
+        description: "Start date."
+        required: true
+        type: "string"
+        format: "date"
+      - name: "endTime"
+        in: "query"
+        description: "End Date."
+        required: false
+        type: "string"
+        format: "date"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Trade"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Trade"
+  /trade/recent:
+    get:
+      tags:
+      - "Trade"
+      summary: "Get recent trades. [Deprecated, use GET /trades]"
+      operationId: "Trade.getRecent"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        description: "Instrument symbol. Send a series (e.g. XBT) to get data for\
+          \ the nearest contract in that series."
+        required: false
+        type: "string"
+      - name: "count"
+        in: "query"
+        description: "Number of trades to fetch."
+        required: true
+        type: "number"
+        default: 100.0
+        format: "int32"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Trade"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "Trade"
+  /user:
+    get:
+      tags:
+      - "User"
+      summary: "Get your user model."
+      operationId: "User.getMe"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/User"
+      x-tags:
+      - tag: "User"
+    post:
+      tags:
+      - "User"
+      summary: "Register a new user."
+      operationId: "User.newUser"
+      parameters:
+      - name: "email"
+        in: "formData"
+        description: "Your email address."
+        required: true
+        type: "string"
+      - name: "password"
+        in: "formData"
+        description: "Your password."
+        required: true
+        type: "string"
+      - name: "username"
+        in: "formData"
+        description: "Desired username."
+        required: true
+        type: "string"
+      - name: "firstname"
+        in: "formData"
+        description: "First name."
+        required: false
+        type: "string"
+      - name: "lastname"
+        in: "formData"
+        description: "Last name."
+        required: false
+        type: "string"
+      - name: "acceptsTOS"
+        in: "formData"
+        description: "Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms)."
+        required: false
+        type: "string"
+      - name: "referrerID"
+        in: "formData"
+        description: "Optional Referrer ID."
+        required: false
+        type: "string"
+      - name: "country"
+        in: "formData"
+        description: "Country of residence."
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            description: "New User."
+            $ref: "#/definitions/User"
+      x-tags:
+      - tag: "User"
+    put:
+      tags:
+      - "User"
+      summary: "Update your password, name, and other attributes."
+      operationId: "User.updateMe"
+      parameters:
+      - name: "firstname"
+        in: "formData"
+        required: false
+        type: "string"
+      - name: "lastname"
+        in: "formData"
+        required: false
+        type: "string"
+      - name: "oldPassword"
+        in: "formData"
+        required: false
+        type: "string"
+      - name: "newPassword"
+        in: "formData"
+        required: false
+        type: "string"
+      - name: "newPasswordConfirm"
+        in: "formData"
+        required: false
+        type: "string"
+      - name: "country"
+        in: "formData"
+        description: "Country of residence."
+        required: false
+        type: "string"
+      - name: "pgpPubKey"
+        in: "formData"
+        description: "PGP Public Key. If specified, automated emails will be sentwith\
+          \ this key."
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/User"
+      x-tags:
+      - tag: "User"
+  /user/affiliateStatus:
+    get:
+      tags:
+      - "User"
+      summary: "Get your current affiliate/referral status."
+      operationId: "User.getAffiliateStatus"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Affiliate"
+      x-tags:
+      - tag: "User"
+  /user/cancelWithdrawal:
+    post:
+      tags:
+      - "User"
+      summary: "Cancel a withdrawal."
+      operationId: "User.cancelWithdrawal"
+      parameters:
+      - name: "token"
+        in: "formData"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/Transaction"
+      x-tags:
+      - tag: "User"
+  /user/checkReferralCode:
+    get:
+      tags:
+      - "User"
+      summary: "Check if a referral code is valid."
+      description: "If the code is valid, responds with the referral code's discount\
+        \ (e.g. `0.1` for 10%). Otherwise, will return a 404."
+      operationId: "User.checkReferralCode"
+      parameters:
+      - name: "referralCode"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "number"
+            format: "double"
+      x-tags:
+      - tag: "User"
+  /user/commission:
+    get:
+      tags:
+      - "User"
+      summary: "Get your account's commission status."
+      operationId: "User.getCommission"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/UserCommission"
+      x-tags:
+      - tag: "User"
+  /user/confirmEmail:
+    post:
+      tags:
+      - "User"
+      summary: "Confirm your email address with a token."
+      operationId: "User.confirmEmail"
+      parameters:
+      - name: "token"
+        in: "formData"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/AccessToken"
+      x-tags:
+      - tag: "User"
+  /user/confirmEnableTFA:
+    post:
+      tags:
+      - "User"
+      summary: "Confirm two-factor auth for this account. If using a Yubikey, simply\
+        \ send a token to this endpoint."
+      operationId: "User.confirmEnableTFA"
+      parameters:
+      - name: "type"
+        in: "formData"
+        description: "Two-factor auth type. Supported types: 'GA' (Google Authenticator),\
+          \ 'Yubikey'"
+        required: false
+        type: "string"
+      - name: "token"
+        in: "formData"
+        description: "Token from your selected TFA type."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "boolean"
+      x-tags:
+      - tag: "User"
+  /user/confirmPasswordReset:
+    post:
+      tags:
+      - "User"
+      summary: "Confirm a password reset."
+      operationId: "User.confirmPasswordReset"
+      parameters:
+      - name: "token"
+        in: "formData"
+        required: true
+        type: "string"
+      - name: "newPassword"
+        in: "formData"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "boolean"
+      x-tags:
+      - tag: "User"
+  /user/confirmWithdrawal:
+    post:
+      tags:
+      - "User"
+      summary: "Confirm a withdrawal."
+      operationId: "User.confirmWithdrawal"
+      parameters:
+      - name: "token"
+        in: "formData"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/Transaction"
+      x-tags:
+      - tag: "User"
+  /user/depositAddress:
+    get:
+      tags:
+      - "User"
+      summary: "Get a deposit address."
+      operationId: "User.getDepositAddress"
+      parameters:
+      - name: "currency"
+        in: "query"
+        required: false
+        type: "string"
+        default: "XBt"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "string"
+      x-tags:
+      - tag: "User"
+  /user/disableTFA:
+    post:
+      tags:
+      - "User"
+      summary: "Disable two-factor auth for this account."
+      operationId: "User.disableTFA"
+      parameters:
+      - name: "type"
+        in: "formData"
+        description: "Two-factor auth type. Supported types: 'GA' (Google Authenticator)"
+        required: false
+        type: "string"
+      - name: "token"
+        in: "formData"
+        description: "Token from your selected TFA type."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "boolean"
+      x-tags:
+      - tag: "User"
+  /user/login:
+    post:
+      tags:
+      - "User"
+      summary: "Log in to BitMEX."
+      operationId: "User.login"
+      parameters:
+      - name: "email"
+        in: "formData"
+        description: "Your email address."
+        required: true
+        type: "string"
+      - name: "password"
+        in: "formData"
+        description: "Your password."
+        required: true
+        type: "string"
+      - name: "token"
+        in: "formData"
+        description: "OTP Token (YubiKey, Google Authenticator)"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/AccessToken"
+      x-tags:
+      - tag: "User"
+  /user/logout:
+    post:
+      tags:
+      - "User"
+      summary: "Log out of BitMEX."
+      operationId: "User.logout"
+      parameters: []
+      responses:
+        204:
+          description: "Request was successful"
+      x-tags:
+      - tag: "User"
+  /user/logoutAll:
+    post:
+      tags:
+      - "User"
+      summary: "Log all systems out of BitMEX. This will revoke all of your account's\
+        \ access tokens, logging you out on all devices."
+      operationId: "User.logoutAll"
+      parameters: []
+      responses:
+        204:
+          description: "Request was successful"
+      x-tags:
+      - tag: "User"
+  /user/margin:
+    get:
+      tags:
+      - "User"
+      summary: "Get your account's margin status."
+      operationId: "User.getMargin"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/Margin"
+      x-tags:
+      - tag: "User"
+  /user/preferences:
+    post:
+      tags:
+      - "User"
+      summary: "Save application preferences."
+      operationId: "User.savePreferences"
+      parameters:
+      - name: "prefs"
+        in: "formData"
+        required: true
+        type: "string"
+        format: "JSON"
+      - name: "overwrite"
+        in: "formData"
+        description: "If true, will overwrite all existing preferences."
+        required: false
+        type: "boolean"
+        default: false
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/User"
+      x-tags:
+      - tag: "User"
+  /user/requestEnableTFA:
+    post:
+      tags:
+      - "User"
+      summary: "Get Google Authenticator secret key for setting up two-factor auth.\
+        \ Fails if already enabled. Use /confirmEnableTFA for Yubikeys."
+      operationId: "User.requestEnableTFA"
+      parameters:
+      - name: "type"
+        in: "formData"
+        description: "Two-factor auth type. Supported types: 'GA' (Google Authenticator)"
+        required: false
+        type: "string"
+      - name: "token"
+        in: "formData"
+        description: "If Yubikey, send one output from the key."
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "boolean"
+      x-tags:
+      - tag: "User"
+  /user/requestPasswordReset:
+    post:
+      tags:
+      - "User"
+      summary: "Request a password reset."
+      operationId: "User.requestPasswordReset"
+      parameters:
+      - name: "email"
+        in: "formData"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "boolean"
+      x-tags:
+      - tag: "User"
+  /user/requestWithdrawal:
+    post:
+      tags:
+      - "User"
+      summary: "Request a withdrawal to an external wallet."
+      description: "This will send a confirmation email to the email address on record,\
+        \ unless requested via an API Key with the \"withdraw\" permission."
+      operationId: "User.requestWithdrawal"
+      parameters:
+      - name: "otpToken"
+        in: "formData"
+        description: "2FA token. Required if 2FA is enabled on your account."
+        required: false
+        type: "string"
+      - name: "currency"
+        in: "formData"
+        description: "Currency you're withdrawing. Options: \"XBt\""
+        required: true
+        type: "string"
+        default: "XBt"
+      - name: "amount"
+        in: "formData"
+        description: "Amount of withdrawal currency."
+        required: true
+        type: "number"
+        format: "int64"
+      - name: "address"
+        in: "formData"
+        description: "Destination Address."
+        required: true
+        type: "string"
+      - name: "fee"
+        in: "formData"
+        description: "Network fee for Bitcoin withdrawals. If not specified, a default\
+          \ value will be calculated based on Bitcoin network conditions. You will\
+          \ have a chance to confirm this via email."
+        required: false
+        type: "number"
+        format: "double"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/Transaction"
+      x-tags:
+      - tag: "User"
+  /user/resendVerificationEmail:
+    get:
+      tags:
+      - "User"
+      summary: "Re-send verification email."
+      operationId: "User.sendVerificationEmail"
+      parameters:
+      - name: "email"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "boolean"
+      x-tags:
+      - tag: "User"
+  /user/walletHistory:
+    get:
+      tags:
+      - "User"
+      summary: "Get a history of all of your wallet transactions (deposits and withdrawals)."
+      operationId: "User.getWalletHistory"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Transaction"
+      x-tags:
+      - tag: "User"
+definitions:
+  AnonymousModel_0:
+    properties:
+      apns:
+        $ref: "#/definitions/x-any"
+      gcm:
+        $ref: "#/definitions/x-any"
+  AnonymousModel_5:
+    properties:
+      scheme:
+        type: "string"
+        description: "See the API docs for the list of supported values."
+      credential:
+        type: "object"
+        description: "Scheme-specific credentials"
+        properties: {}
+  UserPreferences:
+    properties:
+      announcementsLastSeen:
+        type: "string"
+        format: "date"
+      colorTheme:
+        type: "string"
+      currency:
+        type: "string"
+      debug:
+        type: "boolean"
+      disableEmails:
+        type: "array"
+        items:
+          type: "string"
+      hideConfirmDialogs:
+        type: "array"
+        items:
+          type: "string"
+      hideNotifications:
+        type: "array"
+        items:
+          type: "string"
+      hidePhoneConfirm:
+        type: "boolean"
+      msgsSeen:
+        type: "array"
+        items:
+          type: "string"
+      orderBookBinning:
+        type: "number"
+        format: "int32"
+      orderControlsPlusMinus:
+        type: "boolean"
+      sounds:
+        type: "array"
+        items:
+          type: "string"
+      strictIPCheck:
+        type: "boolean"
+        default: false
+      tickerGroup:
+        type: "string"
+      tickerPinned:
+        type: "boolean"
+      tradeLayout:
+        type: "string"
+  AccessToken:
+    required:
+    - "id"
+    properties:
+      id:
+        type: "string"
+      ttl:
+        type: "number"
+        format: "double"
+        description: "time to live in seconds (2 weeks by default)"
+        default: 1209600.0
+      created:
+        type: "string"
+        format: "date"
+      userId:
+        type: "number"
+        format: "double"
+  Margin:
+    required:
+    - "account"
+    - "currency"
+    properties:
+      account:
+        type: "number"
+        format: "int64"
+      currency:
+        type: "string"
+      riskLimit:
+        type: "number"
+        format: "int64"
+      prevState:
+        type: "string"
+      state:
+        type: "string"
+      action:
+        type: "string"
+      amount:
+        type: "number"
+        format: "int64"
+      pendingCredit:
+        type: "number"
+        format: "int64"
+      pendingDebit:
+        type: "number"
+        format: "int64"
+      prevRealisedPnl:
+        type: "number"
+        format: "int64"
+      prevUnrealisedPnl:
+        type: "number"
+        format: "int64"
+      grossComm:
+        type: "number"
+        format: "int64"
+      grossOpenCost:
+        type: "number"
+        format: "int64"
+      grossOpenPremium:
+        type: "number"
+        format: "int64"
+      grossExecCost:
+        type: "number"
+        format: "int64"
+      grossMarkValue:
+        type: "number"
+        format: "int64"
+      riskValue:
+        type: "number"
+        format: "int64"
+      taxableMargin:
+        type: "number"
+        format: "int64"
+      initMargin:
+        type: "number"
+        format: "int64"
+      maintMargin:
+        type: "number"
+        format: "int64"
+      sessionMargin:
+        type: "number"
+        format: "int64"
+      targetExcessMargin:
+        type: "number"
+        format: "int64"
+      varMargin:
+        type: "number"
+        format: "int64"
+      realisedPnl:
+        type: "number"
+        format: "int64"
+      unrealisedPnl:
+        type: "number"
+        format: "int64"
+      indicativeTax:
+        type: "number"
+        format: "int64"
+      unrealisedProfit:
+        type: "number"
+        format: "int64"
+      walletBalance:
+        type: "number"
+        format: "int64"
+      marginBalance:
+        type: "number"
+        format: "int64"
+      marginBalancePcnt:
+        type: "number"
+        format: "double"
+        default: 0.0
+      marginLeverage:
+        type: "number"
+        format: "double"
+        default: 0.0
+      marginUsedPcnt:
+        type: "number"
+        format: "double"
+        default: 0.0
+      excessMargin:
+        type: "number"
+        format: "int64"
+      excessMarginPcnt:
+        type: "number"
+        format: "double"
+        default: 0.0
+      availableMargin:
+        type: "number"
+        format: "int64"
+      withdrawableMargin:
+        type: "number"
+        format: "int64"
+      timestamp:
+        type: "string"
+        format: "date"
+  RoleMapping:
+    properties:
+      id:
+        type: "number"
+        format: "double"
+      principalType:
+        type: "string"
+        description: "The principal type, such as user, application, or role"
+      principalId:
+        type: "string"
+      roleId:
+        type: "number"
+        format: "double"
+    description: "Map principals to roles"
+  Chat:
+    required:
+    - "date"
+    - "html"
+    - "message"
+    - "user"
+    properties:
+      id:
+        type: "number"
+        format: "int32"
+      date:
+        type: "string"
+        format: "date"
+      user:
+        type: "string"
+      message:
+        type: "string"
+      html:
+        type: "string"
+      fromBot:
+        type: "boolean"
+        default: false
+  Error:
+    required:
+    - "code"
+    - "message"
+    properties:
+      message:
+        type: "string"
+      code:
+        type: "number"
+        format: "int32"
+  ConnectedUsers:
+    properties:
+      users:
+        type: "number"
+        format: "int32"
+      bots:
+        type: "number"
+        format: "int32"
+  Announcement:
+    required:
+    - "id"
+    properties:
+      id:
+        type: "number"
+        format: "int32"
+      link:
+        type: "string"
+      title:
+        type: "string"
+      content:
+        type: "string"
+      date:
+        type: "string"
+        format: "date"
+  ApiKey:
+    required:
+    - "id"
+    - "name"
+    - "nonce"
+    - "secret"
+    - "userId"
+    properties:
+      id:
+        type: "string"
+        maxLength: 24
+      secret:
+        type: "string"
+        maxLength: 48
+      name:
+        type: "string"
+        maxLength: 64
+      nonce:
+        type: "number"
+        format: "int64"
+      cidr:
+        type: "string"
+        maxLength: 18
+      permissions:
+        type: "array"
+        items:
+          type: "string"
+      enabled:
+        type: "boolean"
+        default: false
+      userId:
+        type: "number"
+        format: "int32"
+      created:
+        type: "string"
+        format: "date"
+  Execution:
+    required:
+    - "execID"
+    properties:
+      execID:
+        type: "string"
+      orderID:
+        type: "string"
+      clOrdID:
+        type: "string"
+      account:
+        type: "number"
+        format: "int64"
+      symbol:
+        type: "string"
+      side:
+        type: "string"
+      lastQty:
+        type: "number"
+        format: "int64"
+      lastPx:
+        type: "number"
+        format: "double"
+      underlyingLastPx:
+        type: "number"
+        format: "double"
+      lastMkt:
+        type: "string"
+      lastLiquidityInd:
+        type: "string"
+      simpleOrderQty:
+        type: "number"
+        format: "double"
+      orderQty:
+        type: "number"
+        format: "int64"
+      price:
+        type: "number"
+        format: "double"
+      minQty:
+        type: "number"
+        format: "int64"
+      stopPx:
+        type: "number"
+        format: "double"
+      currency:
+        type: "string"
+      settlCurrency:
+        type: "string"
+      execType:
+        type: "string"
+      ordType:
+        type: "string"
+      timeInForce:
+        type: "string"
+      exDestination:
+        type: "string"
+      ordStatus:
+        type: "string"
+      workingIndicator:
+        type: "boolean"
+      ordRejReason:
+        type: "string"
+      simpleLeavesQty:
+        type: "number"
+        format: "double"
+      leavesQty:
+        type: "number"
+        format: "int64"
+      simpleCumQty:
+        type: "number"
+        format: "double"
+      cumQty:
+        type: "number"
+        format: "int64"
+      avgPx:
+        type: "number"
+        format: "double"
+      commission:
+        type: "number"
+        format: "double"
+      commType:
+        type: "string"
+      tradePublishIndicator:
+        type: "string"
+      multiLegReportingType:
+        type: "string"
+      text:
+        type: "string"
+      trdMatchID:
+        type: "string"
+      execCost:
+        type: "number"
+        format: "int64"
+      execComm:
+        type: "number"
+        format: "int64"
+      homeNotional:
+        type: "number"
+        format: "double"
+      foreignNotional:
+        type: "number"
+        format: "double"
+      transactTime:
+        type: "string"
+        format: "date"
+      timestamp:
+        type: "string"
+        format: "date"
+  Instrument:
+    required:
+    - "symbol"
+    properties:
+      symbol:
+        type: "string"
+      rootSymbol:
+        type: "string"
+      state:
+        type: "string"
+      typ:
+        type: "string"
+      listing:
+        type: "string"
+        format: "date"
+      front:
+        type: "string"
+        format: "date"
+      expiry:
+        type: "string"
+        format: "date"
+      relistInterval:
+        type: "string"
+        format: "date"
+      inverseLeg:
+        type: "string"
+      sellLeg:
+        type: "string"
+      buyLeg:
+        type: "string"
+      underlying:
+        type: "string"
+      quoteCurrency:
+        type: "string"
+      underlyingSymbol:
+        type: "string"
+      reference:
+        type: "string"
+      referenceSymbol:
+        type: "string"
+      tickSize:
+        type: "number"
+        format: "double"
+      multiplier:
+        type: "number"
+        format: "int64"
+      settlCurrency:
+        type: "string"
+      underlyingToSettleMultiplier:
+        type: "number"
+        format: "int64"
+      quoteToSettleMultiplier:
+        type: "number"
+        format: "int64"
+      isQuanto:
+        type: "boolean"
+      isInverse:
+        type: "boolean"
+      initMargin:
+        type: "number"
+        format: "double"
+      maintMargin:
+        type: "number"
+        format: "double"
+      limit:
+        type: "number"
+        format: "double"
+      capped:
+        type: "boolean"
+      taxed:
+        type: "boolean"
+      makerFee:
+        type: "number"
+        format: "double"
+      takerFee:
+        type: "number"
+        format: "double"
+      insuranceFee:
+        type: "number"
+        format: "double"
+      hedgerMakerFee:
+        type: "number"
+        format: "double"
+      hedgerTakerFee:
+        type: "number"
+        format: "double"
+      hedgerInsuranceFee:
+        type: "number"
+        format: "double"
+      openingTimestamp:
+        type: "string"
+        format: "date"
+      closingTimestamp:
+        type: "string"
+        format: "date"
+      sessionInterval:
+        type: "string"
+        format: "date"
+      prevClosePrice:
+        type: "number"
+        format: "double"
+      limitDownPrice:
+        type: "number"
+        format: "double"
+      limitUpPrice:
+        type: "number"
+        format: "double"
+      bankruptLimitDownPrice:
+        type: "number"
+        format: "double"
+      bankruptLimitUpPrice:
+        type: "number"
+        format: "double"
+      prevTotalVolume:
+        type: "number"
+        format: "int64"
+      totalVolume:
+        type: "number"
+        format: "int64"
+      volume:
+        type: "number"
+        format: "int64"
+      volume24h:
+        type: "number"
+        format: "int64"
+      prevTotalTurnover:
+        type: "number"
+        format: "int64"
+      totalTurnover:
+        type: "number"
+        format: "int64"
+      turnover:
+        type: "number"
+        format: "int64"
+      turnover24h:
+        type: "number"
+        format: "int64"
+      prevPrice24h:
+        type: "number"
+        format: "double"
+      vwap:
+        type: "number"
+        format: "double"
+      highPrice:
+        type: "number"
+        format: "double"
+      lowPrice:
+        type: "number"
+        format: "double"
+      lastPrice:
+        type: "number"
+        format: "double"
+      lastPriceProtected:
+        type: "number"
+        format: "double"
+      lastTickDirection:
+        type: "string"
+      lastChangePcnt:
+        type: "number"
+        format: "double"
+      bidPrice:
+        type: "number"
+        format: "double"
+      midPrice:
+        type: "number"
+        format: "double"
+      askPrice:
+        type: "number"
+        format: "double"
+      impactBidPrice:
+        type: "number"
+        format: "double"
+      impactMidPrice:
+        type: "number"
+        format: "double"
+      impactAskPrice:
+        type: "number"
+        format: "double"
+      hasLiquidity:
+        type: "boolean"
+      openInterest:
+        type: "number"
+        format: "int64"
+      openValue:
+        type: "number"
+        format: "int64"
+      fairMethod:
+        type: "string"
+      fairBasisRate:
+        type: "number"
+        format: "double"
+      fairBasis:
+        type: "number"
+        format: "double"
+      fairPrice:
+        type: "number"
+        format: "double"
+      markMethod:
+        type: "string"
+      markPrice:
+        type: "number"
+        format: "double"
+      indicativeTaxRate:
+        type: "number"
+        format: "double"
+      indicativeSettlePrice:
+        type: "number"
+        format: "double"
+      settledPrice:
+        type: "number"
+        format: "double"
+      timestamp:
+        type: "string"
+        format: "date"
+  InstrumentInterval:
+    required:
+    - "intervals"
+    - "symbols"
+    properties:
+      intervals:
+        type: "array"
+        items:
+          type: "string"
+      symbols:
+        type: "array"
+        items:
+          type: "string"
+  Order:
+    required:
+    - "orderID"
+    properties:
+      orderID:
+        type: "string"
+      clOrdID:
+        type: "string"
+      account:
+        type: "number"
+        format: "int64"
+      symbol:
+        type: "string"
+      side:
+        type: "string"
+      simpleOrderQty:
+        type: "number"
+        format: "double"
+      orderQty:
+        type: "number"
+        format: "int64"
+      price:
+        type: "number"
+        format: "double"
+      minQty:
+        type: "number"
+        format: "int64"
+      stopPx:
+        type: "number"
+        format: "double"
+      currency:
+        type: "string"
+      settlCurrency:
+        type: "string"
+      ordType:
+        type: "string"
+      timeInForce:
+        type: "string"
+      exDestination:
+        type: "string"
+      ordStatus:
+        type: "string"
+      workingIndicator:
+        type: "boolean"
+      ordRejReason:
+        type: "string"
+      simpleLeavesQty:
+        type: "number"
+        format: "double"
+      leavesQty:
+        type: "number"
+        format: "int64"
+      simpleCumQty:
+        type: "number"
+        format: "double"
+      cumQty:
+        type: "number"
+        format: "int64"
+      avgPx:
+        type: "number"
+        format: "double"
+      multiLegReportingType:
+        type: "string"
+      text:
+        type: "string"
+      transactTime:
+        type: "string"
+        format: "date"
+      timestamp:
+        type: "string"
+        format: "date"
+  LiquidationOrder:
+    properties:
+      symbol:
+        type: "string"
+      side:
+        type: "string"
+      qty:
+        type: "number"
+        format: "int32"
+      price:
+        type: "number"
+        format: "double"
+  OrderBook:
+    required:
+    - "level"
+    - "symbol"
+    properties:
+      symbol:
+        type: "string"
+      level:
+        type: "number"
+        format: "int64"
+      bidSize:
+        type: "number"
+        format: "int64"
+      bidPrice:
+        type: "number"
+        format: "double"
+      askPrice:
+        type: "number"
+        format: "double"
+      askSize:
+        type: "number"
+        format: "int64"
+      timestamp:
+        type: "string"
+        format: "date"
+  Position:
+    required:
+    - "account"
+    - "symbol"
+    properties:
+      account:
+        type: "number"
+        format: "int64"
+      symbol:
+        type: "string"
+      underlying:
+        type: "string"
+      quoteCurrency:
+        type: "string"
+      currency:
+        type: "string"
+      commission:
+        type: "number"
+        format: "double"
+      crossMargin:
+        type: "boolean"
+      rebalancedPnl:
+        type: "number"
+        format: "int64"
+      prevRealisedPnl:
+        type: "number"
+        format: "int64"
+      prevUnrealisedPnl:
+        type: "number"
+        format: "int64"
+      prevClosePrice:
+        type: "number"
+        format: "double"
+      openingTimestamp:
+        type: "string"
+        format: "date"
+      openingQty:
+        type: "number"
+        format: "int64"
+      openingCost:
+        type: "number"
+        format: "int64"
+      openingComm:
+        type: "number"
+        format: "int64"
+      openOrderBuyQty:
+        type: "number"
+        format: "int64"
+      openOrderBuyCost:
+        type: "number"
+        format: "int64"
+      openOrderBuyPremium:
+        type: "number"
+        format: "int64"
+      openOrderSellQty:
+        type: "number"
+        format: "int64"
+      openOrderSellCost:
+        type: "number"
+        format: "int64"
+      openOrderSellPremium:
+        type: "number"
+        format: "int64"
+      execBuyQty:
+        type: "number"
+        format: "int64"
+      execBuyCost:
+        type: "number"
+        format: "int64"
+      execSellQty:
+        type: "number"
+        format: "int64"
+      execSellCost:
+        type: "number"
+        format: "int64"
+      execQty:
+        type: "number"
+        format: "int64"
+      execCost:
+        type: "number"
+        format: "int64"
+      execComm:
+        type: "number"
+        format: "int64"
+      currentTimestamp:
+        type: "string"
+        format: "date"
+      currentQty:
+        type: "number"
+        format: "int64"
+      currentCost:
+        type: "number"
+        format: "int64"
+      currentComm:
+        type: "number"
+        format: "int64"
+      realisedCost:
+        type: "number"
+        format: "int64"
+      unrealisedCost:
+        type: "number"
+        format: "int64"
+      grossOpenCost:
+        type: "number"
+        format: "int64"
+      grossOpenPremium:
+        type: "number"
+        format: "int64"
+      grossExecCost:
+        type: "number"
+        format: "int64"
+      isOpen:
+        type: "boolean"
+      markPrice:
+        type: "number"
+        format: "double"
+      markValue:
+        type: "number"
+        format: "int64"
+      homeNotional:
+        type: "number"
+        format: "double"
+      foreignNotional:
+        type: "number"
+        format: "double"
+      posState:
+        type: "string"
+      posCost:
+        type: "number"
+        format: "int64"
+      posCost2:
+        type: "number"
+        format: "int64"
+      posCross:
+        type: "number"
+        format: "int64"
+      posInit:
+        type: "number"
+        format: "int64"
+      posComm:
+        type: "number"
+        format: "int64"
+      posLoss:
+        type: "number"
+        format: "int64"
+      posMargin:
+        type: "number"
+        format: "int64"
+      posMaint:
+        type: "number"
+        format: "int64"
+      posAllowance:
+        type: "number"
+        format: "int64"
+      taxableMargin:
+        type: "number"
+        format: "int64"
+      initMargin:
+        type: "number"
+        format: "int64"
+      maintMargin:
+        type: "number"
+        format: "int64"
+      sessionMargin:
+        type: "number"
+        format: "int64"
+      targetExcessMargin:
+        type: "number"
+        format: "int64"
+      varMargin:
+        type: "number"
+        format: "int64"
+      realisedGrossPnl:
+        type: "number"
+        format: "int64"
+      realisedTax:
+        type: "number"
+        format: "int64"
+      realisedPnl:
+        type: "number"
+        format: "int64"
+      unrealisedGrossPnl:
+        type: "number"
+        format: "int64"
+      longBankrupt:
+        type: "number"
+        format: "int64"
+      shortBankrupt:
+        type: "number"
+        format: "int64"
+      taxBase:
+        type: "number"
+        format: "int64"
+      indicativeTaxRate:
+        type: "number"
+        format: "double"
+      indicativeTax:
+        type: "number"
+        format: "int64"
+      unrealisedTax:
+        type: "number"
+        format: "int64"
+      unrealisedPnl:
+        type: "number"
+        format: "int64"
+      unrealisedPnlPcnt:
+        type: "number"
+        format: "double"
+      unrealisedRoePcnt:
+        type: "number"
+        format: "double"
+      simpleQty:
+        type: "number"
+        format: "double"
+      simpleCost:
+        type: "number"
+        format: "double"
+      simpleValue:
+        type: "number"
+        format: "double"
+      simplePnl:
+        type: "number"
+        format: "double"
+      simplePnlPcnt:
+        type: "number"
+        format: "double"
+      avgCostPrice:
+        type: "number"
+        format: "double"
+      avgEntryPrice:
+        type: "number"
+        format: "double"
+      breakEvenPrice:
+        type: "number"
+        format: "double"
+      marginCallPrice:
+        type: "number"
+        format: "double"
+      liquidationPrice:
+        type: "number"
+        format: "double"
+      bankruptPrice:
+        type: "number"
+        format: "double"
+      timestamp:
+        type: "string"
+        format: "date"
+  Quote:
+    properties:
+      timestamp:
+        type: "string"
+        format: "date"
+      symbol:
+        type: "string"
+      bidSize:
+        type: "number"
+        format: "int64"
+      bidPrice:
+        type: "number"
+        format: "double"
+      askPrice:
+        type: "number"
+        format: "double"
+      askSize:
+        type: "number"
+        format: "int64"
+      id:
+        type: "number"
+        format: "double"
+  Settlement:
+    required:
+    - "symbol"
+    - "timestamp"
+    properties:
+      symbol:
+        type: "string"
+      timestamp:
+        type: "string"
+        format: "date"
+      settlementType:
+        type: "string"
+      settledPrice:
+        type: "number"
+        format: "double"
+      bankrupt:
+        type: "number"
+        format: "int64"
+      taxBase:
+        type: "number"
+        format: "int64"
+      taxRate:
+        type: "number"
+        format: "double"
+  Stats:
+    required:
+    - "rootSymbol"
+    properties:
+      rootSymbol:
+        type: "string"
+      currency:
+        type: "string"
+      volume24h:
+        type: "number"
+        format: "int64"
+      turnover24h:
+        type: "number"
+        format: "int64"
+      openInterest:
+        type: "number"
+        format: "int64"
+      openValue:
+        type: "number"
+        format: "int64"
+  StatsHistory:
+    required:
+    - "date"
+    - "rootSymbol"
+    properties:
+      date:
+        type: "string"
+        format: "date"
+      rootSymbol:
+        type: "string"
+      currency:
+        type: "string"
+      volume:
+        type: "number"
+        format: "int64"
+      turnover:
+        type: "number"
+        format: "int64"
+  Trade:
+    properties:
+      timestamp:
+        type: "string"
+        format: "date"
+      symbol:
+        type: "string"
+      side:
+        type: "string"
+      size:
+        type: "number"
+        format: "int64"
+      price:
+        type: "number"
+        format: "double"
+      tickDirection:
+        type: "string"
+      trdMatchID:
+        type: "string"
+      grossValue:
+        type: "number"
+        format: "int64"
+      homeNotional:
+        type: "number"
+        format: "double"
+      foreignNotional:
+        type: "number"
+        format: "double"
+      id:
+        type: "number"
+        format: "double"
+  TradeBin:
+    properties:
+      timestamp:
+        type: "string"
+        format: "date"
+      symbol:
+        type: "string"
+      open:
+        type: "number"
+        format: "double"
+      high:
+        type: "number"
+        format: "double"
+      low:
+        type: "number"
+        format: "double"
+      close:
+        type: "number"
+        format: "double"
+      trades:
+        type: "number"
+        format: "int64"
+      volume:
+        type: "number"
+        format: "int64"
+      vwap:
+        type: "number"
+        format: "double"
+      lastSize:
+        type: "number"
+        format: "int64"
+      turnover:
+        type: "number"
+        format: "int64"
+      homeNotional:
+        type: "number"
+        format: "double"
+      foreignNotional:
+        type: "number"
+        format: "double"
+      id:
+        type: "number"
+        format: "double"
+  Transaction:
+    required:
+    - "transactID"
+    properties:
+      transactID:
+        type: "string"
+      account:
+        type: "number"
+        format: "int64"
+      currency:
+        type: "string"
+      transactType:
+        type: "string"
+      amount:
+        type: "number"
+        format: "int64"
+      fee:
+        type: "number"
+        format: "int64"
+      transactStatus:
+        type: "string"
+      address:
+        type: "string"
+      tx:
+        type: "string"
+      text:
+        type: "string"
+      transactTime:
+        type: "string"
+        format: "date"
+      timestamp:
+        type: "string"
+        format: "date"
+  Affiliate:
+    required:
+    - "account"
+    - "currency"
+    properties:
+      account:
+        type: "number"
+        format: "int64"
+      currency:
+        type: "string"
+      prevPayout:
+        type: "number"
+        format: "int64"
+      prevTurnover:
+        type: "number"
+        format: "int64"
+      prevComm:
+        type: "number"
+        format: "int64"
+      prevTimestamp:
+        type: "string"
+        format: "date"
+      execTurnover:
+        type: "number"
+        format: "int64"
+      execComm:
+        type: "number"
+        format: "int64"
+      totalReferrals:
+        type: "number"
+        format: "int64"
+      totalTurnover:
+        type: "number"
+        format: "int64"
+      totalComm:
+        type: "number"
+        format: "int64"
+      payoutPcnt:
+        type: "number"
+        format: "double"
+      pendingPayout:
+        type: "number"
+        format: "int64"
+      timestamp:
+        type: "string"
+        format: "date"
+  User:
+    required:
+    - "email"
+    - "username"
+    properties:
+      id:
+        type: "number"
+        format: "int32"
+      firstname:
+        type: "string"
+      lastname:
+        type: "string"
+      status:
+        type: "string"
+      username:
+        type: "string"
+      email:
+        type: "string"
+      phone:
+        type: "string"
+      countryCode:
+        type: "number"
+        format: "int32"
+      created:
+        type: "string"
+        format: "date"
+      lastUpdated:
+        type: "string"
+        format: "date"
+      preferences:
+        $ref: "#/definitions/UserPreferences"
+      role:
+        type: "string"
+        default: "user"
+      TFAEnabled:
+        type: "string"
+      affiliateID:
+        type: "string"
+        maxLength: 6
+      pgpPubKey:
+        type: "string"
+        maxLength: 16384
+      country:
+        type: "string"
+        maxLength: 3
+      disabled:
+        type: "boolean"
+        default: false
+  UserCommission:
+    properties:
+      makerFee:
+        type: "string"
+      takerFee:
+        type: "string"
+      insuranceFee:
+        type: "string"
+  inline_response_200: {}

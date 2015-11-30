@@ -1,4 +1,4 @@
-package com.wordnik.swagger.app
+package io.swagger.app
 
 import _root_.akka.actor.ActorSystem
 
@@ -30,10 +30,10 @@ class SwaggerApp extends Swagger(apiInfo = ApiSwagger.apiInfo, apiVersion = "1.0
 
 object ApiSwagger {
   val apiInfo = ApiInfo(
-    "Swagger Sample",
-    "A sample swagger server",
-    "http://developers.helloreverb.com",
-    "hello@helloreverb.com",
-    "All rights reserved",
-    "http://apache.org/licenses/LICENSE-2.0.html")
+    """BitMEX API""",
+    """REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>""",
+    """""",
+    """support@bitmex.com""",
+    """All rights reserved""",
+    """http://apache.org/licenses/LICENSE-2.0.html""")
 }

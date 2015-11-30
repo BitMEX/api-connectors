@@ -1,34 +1,22 @@
 package com.wordnik.client.model
 
+import java.math.BigDecimal
 import java.util.Date
+
+
 case class Affiliate (
-  account: Double,
-
+  account: BigDecimal,
   currency: String,
-
-  prevPayout: Option[Double],
-
-  prevTurnover: Option[Double],
-
-  prevComm: Option[Double],
-
-  prevTimestamp: Option[Date],
-
-  execTurnover: Option[Double],
-
-  execComm: Option[Double],
-
-  totalReferrals: Option[Double],
-
-  totalTurnover: Option[Double],
-
-  totalComm: Option[Double],
-
-  payoutPcnt: Option[Double],
-
-  pendingPayout: Option[Double],
-
-  timestamp: Option[Date]
-
-  )
-
+  prevPayout: BigDecimal,
+  prevTurnover: BigDecimal,
+  prevComm: BigDecimal,
+  prevTimestamp: Date,
+  execTurnover: BigDecimal,
+  execComm: BigDecimal,
+  totalReferrals: BigDecimal,
+  totalTurnover: BigDecimal,
+  totalComm: BigDecimal,
+  payoutPcnt: Double,
+  pendingPayout: BigDecimal,
+  timestamp: Date
+)

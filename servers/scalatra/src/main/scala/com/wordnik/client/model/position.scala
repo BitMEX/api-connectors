@@ -1,116 +1,91 @@
 package com.wordnik.client.model
 
+import java.math.BigDecimal
 import java.util.Date
+
+
 case class Position (
-  account: Double,
-
+  account: BigDecimal,
   symbol: String,
-
-  underlying: Option[String],
-
-  quoteCurrency: Option[String],
-
-  currency: Option[String],
-
-  commission: Option[Double],
-
-  prevRealisedPnl: Option[Double],
-
-  prevUnrealisedPnl: Option[Double],
-
-  prevClosePrice: Option[Double],
-
-  realisedCost: Option[Double],
-
-  realisedPnl: Option[Double],
-
-  openingTimestamp: Option[Date],
-
-  openingQty: Option[Double],
-
-  openingCost: Option[Double],
-
-  openingComm: Option[Double],
-
-  openOrderBuyQty: Option[Double],
-
-  openOrderBuyCost: Option[Double],
-
-  openOrderSellQty: Option[Double],
-
-  openOrderSellCost: Option[Double],
-
-  execBuyQty: Option[Double],
-
-  execBuyCost: Option[Double],
-
-  execSellQty: Option[Double],
-
-  execSellCost: Option[Double],
-
-  execQty: Option[Double],
-
-  execCost: Option[Double],
-
-  execComm: Option[Double],
-
-  currentTimestamp: Option[Date],
-
-  currentQty: Option[Double],
-
-  currentCost: Option[Double],
-
-  currentComm: Option[Double],
-
-  unrealisedCost: Option[Double],
-
-  grossOpenCost: Option[Double],
-
-  grossExecCost: Option[Double],
-
-  lastPrice: Option[Double],
-
-  lastValue: Option[Double],
-
-  homeNotional: Option[Double],
-
-  foreignNotional: Option[Double],
-
-  initMargin: Option[Double],
-
-  maintMargin: Option[Double],
-
-  sessionMargin: Option[Double],
-
-  targetExcessMargin: Option[Double],
-
-  varMargin: Option[Double],
-
-  unrealisedPnl: Option[Double],
-
-  unrealisedPnlPcnt: Option[Double],
-
-  simpleQty: Option[Double],
-
-  simpleCost: Option[Double],
-
-  simpleValue: Option[Double],
-
-  simplePnl: Option[Double],
-
-  simplePnlPcnt: Option[Double],
-
-  avgEntryPrice: Option[Double],
-
-  breakEvenPrice: Option[Double],
-
-  marginCallPrice: Option[Double],
-
-  liquidationPrice: Option[Double],
-
-  bankruptPrice: Option[Double],
-
-  timestamp: Option[Date]
-
-  )
-
+  underlying: String,
+  quoteCurrency: String,
+  currency: String,
+  commission: Double,
+  crossMargin: Boolean,
+  rebalancedPnl: BigDecimal,
+  prevRealisedPnl: BigDecimal,
+  prevUnrealisedPnl: BigDecimal,
+  prevClosePrice: Double,
+  openingTimestamp: Date,
+  openingQty: BigDecimal,
+  openingCost: BigDecimal,
+  openingComm: BigDecimal,
+  openOrderBuyQty: BigDecimal,
+  openOrderBuyCost: BigDecimal,
+  openOrderBuyPremium: BigDecimal,
+  openOrderSellQty: BigDecimal,
+  openOrderSellCost: BigDecimal,
+  openOrderSellPremium: BigDecimal,
+  execBuyQty: BigDecimal,
+  execBuyCost: BigDecimal,
+  execSellQty: BigDecimal,
+  execSellCost: BigDecimal,
+  execQty: BigDecimal,
+  execCost: BigDecimal,
+  execComm: BigDecimal,
+  currentTimestamp: Date,
+  currentQty: BigDecimal,
+  currentCost: BigDecimal,
+  currentComm: BigDecimal,
+  realisedCost: BigDecimal,
+  unrealisedCost: BigDecimal,
+  grossOpenCost: BigDecimal,
+  grossOpenPremium: BigDecimal,
+  grossExecCost: BigDecimal,
+  isOpen: Boolean,
+  markPrice: Double,
+  markValue: BigDecimal,
+  homeNotional: Double,
+  foreignNotional: Double,
+  posState: String,
+  posCost: BigDecimal,
+  posCost2: BigDecimal,
+  posCross: BigDecimal,
+  posInit: BigDecimal,
+  posComm: BigDecimal,
+  posLoss: BigDecimal,
+  posMargin: BigDecimal,
+  posMaint: BigDecimal,
+  posAllowance: BigDecimal,
+  taxableMargin: BigDecimal,
+  initMargin: BigDecimal,
+  maintMargin: BigDecimal,
+  sessionMargin: BigDecimal,
+  targetExcessMargin: BigDecimal,
+  varMargin: BigDecimal,
+  realisedGrossPnl: BigDecimal,
+  realisedTax: BigDecimal,
+  realisedPnl: BigDecimal,
+  unrealisedGrossPnl: BigDecimal,
+  longBankrupt: BigDecimal,
+  shortBankrupt: BigDecimal,
+  taxBase: BigDecimal,
+  indicativeTaxRate: Double,
+  indicativeTax: BigDecimal,
+  unrealisedTax: BigDecimal,
+  unrealisedPnl: BigDecimal,
+  unrealisedPnlPcnt: Double,
+  unrealisedRoePcnt: Double,
+  simpleQty: Double,
+  simpleCost: Double,
+  simpleValue: Double,
+  simplePnl: Double,
+  simplePnlPcnt: Double,
+  avgCostPrice: Double,
+  avgEntryPrice: Double,
+  breakEvenPrice: Double,
+  marginCallPrice: Double,
+  liquidationPrice: Double,
+  bankruptPrice: Double,
+  timestamp: Date
+)

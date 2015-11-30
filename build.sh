@@ -1,17 +1,25 @@
-#!/bin/bash
+#!/bin/bash -ex
 
 # Builds new versions of client libraries using swagger-codegen
 T="$(date +%s)"
 DIR=`pwd`
 CLIENTS=$DIR/clients
 SERVERS=$DIR/servers
-RESOURCES="https://www.bitmex.com/api/explorer/resources"
-declare -a CLIENTLANGS=(scala java objc php python python3 ruby csharp groovy)
-declare -a SERVERLANGS=(jax-rs node sinatra scalatra)
+DOCS=$DIR/docs
+CLI=$DIR/swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar
+RESOURCES="https://www.bitmex.com/api/explorer/swagger.json"
+declare -a CLIENTLANGS=(android async-scala clojure csharp dart java objc php python scala spring-mvc swagger swagger-yaml typescript-angular typescript-node ruby)
+declare -a SERVERLANGS=(jaxrs nodejs python-flask silex-PHP sinatra scalatra spring-mvc)
+declare -a DOCLANGS=(html dynamic-html)
+
+echo "Getting swagger json..."
+rm $DIR/swagger.json || true
+wget $RESOURCES
 
 echo "Creating output folders..."
 rm -rf $CLIENTS
 rm -rf $SERVERS
+rm -rf $DOCS
 for clientLang in "${CLIENTLANGS[@]}"; do
   mkdir -p $CLIENTS/$clientLang
 done
@@ -23,56 +31,24 @@ echo "Checking out newest swagger-codegen..."
 git submodule init
 git submodule update
 
-echo "Building latest scala libraries..."
+echo "Building latest swagger-codegen..."
 cd swagger-codegen
-# Scala 2.11 compat
-# grep "scala\.reflect\.BeanProperty" * -rl | xargs sed -i '' s/scala\.reflect\.BeanProperty/scala\.beans\.BeanProperty/
-./sbt assembly
+mvn package -DskipTests
 
 echo "Generating client libraries..."
-./bin/runscala.sh com.wordnik.swagger.codegen.BasicScalaGenerator $RESOURCES
-./bin/runscala.sh com.wordnik.swagger.codegen.BasicJavaGenerator $RESOURCES
-./bin/runscala.sh com.wordnik.swagger.codegen.BasicObjcGenerator $RESOURCES
-./bin/runscala.sh com.wordnik.swagger.codegen.BasicPHPGenerator $RESOURCES
-./bin/runscala.sh com.wordnik.swagger.codegen.BasicPythonGenerator $RESOURCES
-./bin/runscala.sh com.wordnik.swagger.codegen.BasicPython3Generator $RESOURCES
-./bin/runscala.sh com.wordnik.swagger.codegen.BasicRubyGenerator $RESOURCES
-./bin/runscala.sh com.wordnik.swagger.codegen.BasicAndroidJavaClient $RESOURCES
-./bin/runscala.sh com.wordnik.swagger.codegen.BasicCSharpGenerator $RESOURCES
-./bin/runscala.sh com.wordnik.swagger.codegen.BasicGroovyGenerator $RESOURCES
+for clientLang in "${CLIENTLANGS[@]}"; do
+  java -jar $CLI generate -i $DIR/swagger.json -l $clientLang -o $CLIENTS/$clientLang
+done
 
 echo "Generating sample servers..."
-./bin/runscala.sh samples/server-generator/node/NodeServerFromSpec.scala $RESOURCES
-./bin/runscala.sh samples/server-generator/java-jaxrs/JavaJaxRSServerGenerator.scala $RESOURCES
-./bin/runscala.sh samples/server-generator/scalatra/ScalatraServerGenerator.scala $RESOURCES
-./bin/runscala.sh samples/server-generator/sinatra/SinatraServerGenerator.scala $RESOURCES
-
-
-echo "Moving client libraries into apiConnectors..."
-mv -f generated-code/scala/* $CLIENTS/scala
-# objc directory is wrong
-mv -f generated-code/src/* $CLIENTS/objc/src
-mv -f generated-code/php/* $CLIENTS/php
-mv -f generated-code/python/* $CLIENTS/python
-mv -f generated-code/python3/* $CLIENTS/python3
-mv -f generated-code/ruby/* $CLIENTS/ruby
-mkdir -p $CLIENTS/java/jersey
-mkdir -p $CLIENTS/java/android
-mv -f generated-code/java/* $CLIENTS/java/jersey
-mv -f generated-code/android-java/* $CLIENTS/java/android
-mv -f generated-code/csharp/* $CLIENTS/csharp
-mv -f generated-code/flash/* $CLIENTS/flash
-mv -f generated-code/groovy/* $CLIENTS/groovy
-
-echo "Moving server libraries into apiConnectors..."
-mv -f samples/server-generator/java-jaxrs/output/* $SERVERS/jax-rs
-mv -f samples/server-generator/node/output/* $SERVERS/node
-mv -f samples/server-generator/scalatra/output/* $SERVERS/scalatra
-mv -f samples/server-generator/sinatra/output/* $SERVERS/sinatra
+for serverLang in "${SERVERLANGS[@]}"; do
+  java -jar $CLI generate -i $DIR/swagger.json -l $serverLang -o $SERVERS/$serverLang
+done
 
 echo "Generating static docs..."
-./bin/runscala.sh com.wordnik.swagger.codegen.SwaggerDocGenerator $RESOURCES
-mv -f samples/swagger-static-docs/docs/* $DIR/docs
+for docLang in "${DOCLANGSS[@]}"; do
+  java -jar $CLI generate -i $DIR/swagger.json -l $docLang -o $DOCS/$docLang
+done
 
 T="$(($(date +%s)-T))"
 echo "Done in ${T} seconds."

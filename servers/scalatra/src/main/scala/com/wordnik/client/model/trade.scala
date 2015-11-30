@@ -1,28 +1,19 @@
 package com.wordnik.client.model
 
 import java.util.Date
+import java.math.BigDecimal
+
+
 case class Trade (
-  timestamp: Option[Date],
-
-  symbol: Option[String],
-
-  side: Option[String],
-
-  size: Option[Double],
-
-  price: Option[Double],
-
-  tickDirection: Option[String],
-
-  trdMatchID: Option[String],
-
-  grossValue: Option[Double],
-
-  homeNotional: Option[Double],
-
-  foreignNotional: Option[Double],
-
-  id: Option[Double]
-
-  )
-
+  timestamp: Date,
+  symbol: String,
+  side: String,
+  size: BigDecimal,
+  price: Double,
+  tickDirection: String,
+  trdMatchID: String,
+  grossValue: BigDecimal,
+  homeNotional: Double,
+  foreignNotional: Double,
+  id: Double
+)

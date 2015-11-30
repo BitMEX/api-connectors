@@ -1,34 +1,26 @@
 package com.wordnik.client.model
 
+import com.wordnik.client.model.UserPreferences
+import java.math.BigDecimal
 import java.util.Date
+
+
 case class User (
-  id: Option[Double],
-
-  firstname: Option[String],
-
-  lastname: Option[String],
-
-  status: Option[String],
-
+  id: BigDecimal,
+  firstname: String,
+  lastname: String,
+  status: String,
   username: String,
-
   email: String,
-
-  phone: Option[String],
-
-  countryCode: Option[Double],
-
-  created: Option[Date],
-
-  lastUpdated: Option[Date],
-
-  preferences: Option[Any],
-
-  role: Option[String],
-
-  TFAEnabled: Option[String],
-
-  affiliateID: Option[String]
-
-  )
-
+  phone: String,
+  countryCode: BigDecimal,
+  created: Date,
+  lastUpdated: Date,
+  preferences: UserPreferences,
+  role: String,
+  TFAEnabled: String,
+  affiliateID: String,
+  pgpPubKey: String,
+  country: String,
+  disabled: Boolean
+)

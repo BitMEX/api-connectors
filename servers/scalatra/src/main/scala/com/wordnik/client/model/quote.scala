@@ -1,20 +1,15 @@
 package com.wordnik.client.model
 
 import java.util.Date
+import java.math.BigDecimal
+
+
 case class Quote (
-  timestamp: Option[Date],
-
-  symbol: Option[String],
-
-  bidSize: Option[Double],
-
-  bidPrice: Option[Double],
-
-  askPrice: Option[Double],
-
-  askSize: Option[Double],
-
-  id: Option[Double]
-
-  )
-
+  timestamp: Date,
+  symbol: String,
+  bidSize: BigDecimal,
+  bidPrice: Double,
+  askPrice: Double,
+  askSize: BigDecimal,
+  id: Double
+)

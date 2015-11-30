@@ -1,17 +1,13 @@
 package com.wordnik.client.model
 
+import java.math.BigDecimal
+
+
 case class Stats (
   rootSymbol: String,
-
-  currency: Option[String],
-
-  volume24h: Option[Double],
-
-  turnover24h: Option[Double],
-
-  openInterest: Option[Double],
-
-  openValue: Option[Double]
-
-  )
-
+  currency: String,
+  volume24h: BigDecimal,
+  turnover24h: BigDecimal,
+  openInterest: BigDecimal,
+  openValue: BigDecimal
+)

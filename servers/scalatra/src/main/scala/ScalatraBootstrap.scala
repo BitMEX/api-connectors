@@ -1,6 +1,6 @@
-import apis._
+import com.wordnik.client.api._
 import akka.actor.ActorSystem
-import com.wordnik.swagger.app.{ResourcesApp, SwaggerApp}
+import io.swagger.app.{ResourcesApp, SwaggerApp}
 import javax.servlet.ServletContext
 import org.scalatra.LifeCycle
 
@@ -10,18 +10,21 @@ class ScalatraBootstrap extends LifeCycle {
   override def init(context: ServletContext) {
     implicit val system = ActorSystem("appActorSystem")
     try {
-      context mount (new SchemaApi, "/schema/*")
-      context mount (new OrderBookApi, "/orderBook/*")
-      context mount (new ExecutionApi, "/execution/*")
-      context mount (new PositionApi, "/position/*")
-      context mount (new InstrumentApi, "/instrument/*")
-      context mount (new ChatApi, "/chat/*")
-      context mount (new ApiKeyApi, "/apiKey/*")
-      context mount (new StatsApi, "/stats/*")
-      context mount (new TradeApi, "/trade/*")
-      context mount (new QuoteApi, "/quote/*")
-      context mount (new OrderApi, "/order/*")
-      context mount (new UserApi, "/user/*")
+      context mount (new OrderApi, "/Order/*")
+      context mount (new ApiKeyApi, "/ApiKey/*")
+      context mount (new UserApi, "/User/*")
+      context mount (new AnnouncementApi, "/Announcement/*")
+      context mount (new OrderBookApi, "/OrderBook/*")
+      context mount (new PositionApi, "/Position/*")
+      context mount (new SchemaApi, "/Schema/*")
+      context mount (new QuoteApi, "/Quote/*")
+      context mount (new SettlementApi, "/Settlement/*")
+      context mount (new TradeApi, "/Trade/*")
+      context mount (new ExecutionApi, "/Execution/*")
+      context mount (new ChatApi, "/Chat/*")
+      context mount (new InstrumentApi, "/Instrument/*")
+      context mount (new StatsApi, "/Stats/*")
+      
       context mount (new ResourcesApp, "/api-docs/*")
     } catch {
       case e: Throwable => e.printStackTrace()

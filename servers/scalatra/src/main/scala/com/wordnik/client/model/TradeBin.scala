@@ -1,34 +1,22 @@
 package com.wordnik.client.model
 
 import java.util.Date
+import java.math.BigDecimal
+
+
 case class TradeBin (
-  timestamp: Option[Date],
-
-  symbol: Option[String],
-
-  open: Option[Double],
-
-  high: Option[Double],
-
-  low: Option[Double],
-
-  close: Option[Double],
-
-  trades: Option[Double],
-
-  volume: Option[Double],
-
-  vwap: Option[Double],
-
-  lastSize: Option[Double],
-
-  turnover: Option[Double],
-
-  homeNotional: Option[Double],
-
-  foreignNotional: Option[Double],
-
-  id: Option[Double]
-
-  )
-
+  timestamp: Date,
+  symbol: String,
+  open: Double,
+  high: Double,
+  low: Double,
+  close: Double,
+  trades: BigDecimal,
+  volume: BigDecimal,
+  vwap: Double,
+  lastSize: BigDecimal,
+  turnover: BigDecimal,
+  homeNotional: Double,
+  foreignNotional: Double,
+  id: Double
+)

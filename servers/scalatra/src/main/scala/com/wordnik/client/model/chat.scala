@@ -1,18 +1,14 @@
 package com.wordnik.client.model
 
+import java.math.BigDecimal
 import java.util.Date
+
+
 case class Chat (
-  id: Option[Double],
-
+  id: BigDecimal,
   date: Date,
-
   user: String,
-
   message: String,
-
   html: String,
-
-  fromBot: Option[Boolean]
-
-  )
-
+  fromBot: Boolean
+)

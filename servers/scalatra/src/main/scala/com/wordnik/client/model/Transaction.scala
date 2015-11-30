@@ -1,28 +1,20 @@
 package com.wordnik.client.model
 
+import java.math.BigDecimal
 import java.util.Date
+
+
 case class Transaction (
   transactID: String,
-
-  account: Option[Double],
-
-  currency: Option[String],
-
-  transactType: Option[String],
-
-  amount: Option[Double],
-
-  transactStatus: Option[String],
-
-  address: Option[String],
-
-  tx: Option[String],
-
-  text: Option[String],
-
-  transactTime: Option[Date],
-
-  timestamp: Option[Date]
-
-  )
-
+  account: BigDecimal,
+  currency: String,
+  transactType: String,
+  amount: BigDecimal,
+  fee: BigDecimal,
+  transactStatus: String,
+  address: String,
+  tx: String,
+  text: String,
+  transactTime: Date,
+  timestamp: Date
+)

@@ -1,72 +1,45 @@
 package com.wordnik.client.model
 
+import java.math.BigDecimal
 import java.util.Date
+
+
 case class Margin (
-  account: Double,
-
+  account: BigDecimal,
   currency: String,
-
-  commission: Option[Double],
-
-  riskLimit: Option[Double],
-
-  state: Option[String],
-
-  action: Option[String],
-
-  amount: Option[Double],
-
-  pendingCredit: Option[Double],
-
-  pendingDebit: Option[Double],
-
-  prevRealisedPnl: Option[Double],
-
-  prevUnrealisedPnl: Option[Double],
-
-  grossComm: Option[Double],
-
-  grossOpenCost: Option[Double],
-
-  grossExecCost: Option[Double],
-
-  grossLastValue: Option[Double],
-
-  riskValue: Option[Double],
-
-  initMargin: Option[Double],
-
-  maintMargin: Option[Double],
-
-  sessionMargin: Option[Double],
-
-  targetExcessMargin: Option[Double],
-
-  varMargin: Option[Double],
-
-  realisedPnl: Option[Double],
-
-  unrealisedPnl: Option[Double],
-
-  walletBalance: Option[Double],
-
-  marginBalance: Option[Double],
-
-  marginBalancePcnt: Option[Double],
-
-  marginLeverage: Option[Double],
-
-  marginUsedPcnt: Option[Double],
-
-  excessMargin: Option[Double],
-
-  excessMarginPcnt: Option[Double],
-
-  availableMargin: Option[Double],
-
-  withdrawableMargin: Option[Double],
-
-  timestamp: Option[Date]
-
-  )
-
+  riskLimit: BigDecimal,
+  prevState: String,
+  state: String,
+  action: String,
+  amount: BigDecimal,
+  pendingCredit: BigDecimal,
+  pendingDebit: BigDecimal,
+  prevRealisedPnl: BigDecimal,
+  prevUnrealisedPnl: BigDecimal,
+  grossComm: BigDecimal,
+  grossOpenCost: BigDecimal,
+  grossOpenPremium: BigDecimal,
+  grossExecCost: BigDecimal,
+  grossMarkValue: BigDecimal,
+  riskValue: BigDecimal,
+  taxableMargin: BigDecimal,
+  initMargin: BigDecimal,
+  maintMargin: BigDecimal,
+  sessionMargin: BigDecimal,
+  targetExcessMargin: BigDecimal,
+  varMargin: BigDecimal,
+  realisedPnl: BigDecimal,
+  unrealisedPnl: BigDecimal,
+  indicativeTax: BigDecimal,
+  unrealisedProfit: BigDecimal,
+  walletBalance: BigDecimal,
+  marginBalance: BigDecimal,
+  marginBalancePcnt: Double,
+  marginLeverage: Double,
+  marginUsedPcnt: Double,
+  excessMargin: BigDecimal,
+  excessMarginPcnt: Double,
+  availableMargin: BigDecimal,
+  withdrawableMargin: BigDecimal,
+  timestamp: Date
+)

@@ -1,0 +1,50 @@
+package io.swagger.client.model
+
+import java.util.Date
+
+
+
+case class Execution (
+  execID: String,
+  orderID: String,
+  clOrdID: String,
+  account: Number,
+  symbol: String,
+  side: String,
+  lastQty: Number,
+  lastPx: Double,
+  underlyingLastPx: Double,
+  lastMkt: String,
+  lastLiquidityInd: String,
+  simpleOrderQty: Double,
+  orderQty: Number,
+  price: Double,
+  minQty: Number,
+  stopPx: Double,
+  currency: String,
+  settlCurrency: String,
+  execType: String,
+  ordType: String,
+  timeInForce: String,
+  exDestination: String,
+  ordStatus: String,
+  workingIndicator: Boolean,
+  ordRejReason: String,
+  simpleLeavesQty: Double,
+  leavesQty: Number,
+  simpleCumQty: Double,
+  cumQty: Number,
+  avgPx: Double,
+  commission: Double,
+  commType: String,
+  tradePublishIndicator: String,
+  multiLegReportingType: String,
+  text: String,
+  trdMatchID: String,
+  execCost: Number,
+  execComm: Number,
+  homeNotional: Double,
+  foreignNotional: Double,
+  transactTime: Date,
+  timestamp: Date)
+  

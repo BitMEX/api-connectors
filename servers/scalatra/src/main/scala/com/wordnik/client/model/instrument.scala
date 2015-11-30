@@ -1,124 +1,85 @@
 package com.wordnik.client.model
 
 import java.util.Date
+import java.math.BigDecimal
+
+
 case class Instrument (
   symbol: String,
-
-  rootSymbol: Option[String],
-
-  state: Option[String],
-
-  typ: Option[String],
-
-  listing: Option[Date],
-
-  front: Option[Date],
-
-  expiry: Option[Date],
-
-  relistInterval: Option[Date],
-
-  inverseLeg: Option[String],
-
-  sellLeg: Option[String],
-
-  buyLeg: Option[String],
-
-  underlying: Option[String],
-
-  quoteCurrency: Option[String],
-
-  underlyingSymbol: Option[String],
-
-  reference: Option[String],
-
-  referenceSymbol: Option[String],
-
-  tickSize: Option[Double],
-
-  multiplier: Option[Double],
-
-  settlCurrency: Option[String],
-
-  underlyingToSettleMultiplier: Option[Double],
-
-  quoteToSettleMultiplier: Option[Double],
-
-  isQuanto: Option[Boolean],
-
-  isInverse: Option[Boolean],
-
-  initMargin: Option[Double],
-
-  maintMargin: Option[Double],
-
-  limit: Option[Double],
-
-  makerFee: Option[Double],
-
-  takerFee: Option[Double],
-
-  insuranceFee: Option[Double],
-
-  hedgerMakerFee: Option[Double],
-
-  hedgerTakerFee: Option[Double],
-
-  hedgerInsuranceFee: Option[Double],
-
-  openingTimestamp: Option[Date],
-
-  closingTimestamp: Option[Date],
-
-  sessionInterval: Option[Date],
-
-  prevClosePrice: Option[Double],
-
-  limitDownPrice: Option[Double],
-
-  limitUpPrice: Option[Double],
-
-  prevTotalVolume: Option[Double],
-
-  totalVolume: Option[Double],
-
-  volume: Option[Double],
-
-  volume24h: Option[Double],
-
-  prevTotalTurnover: Option[Double],
-
-  totalTurnover: Option[Double],
-
-  turnover: Option[Double],
-
-  turnover24h: Option[Double],
-
-  vwap: Option[Double],
-
-  highPrice: Option[Double],
-
-  lowPrice: Option[Double],
-
-  lastPrice: Option[Double],
-
-  lastTickDirection: Option[String],
-
-  lastChangePcnt: Option[Double],
-
-  bidPrice: Option[Double],
-
-  midPrice: Option[Double],
-
-  askPrice: Option[Double],
-
-  openInterest: Option[Double],
-
-  openValue: Option[Double],
-
-  settledPrice: Option[Double],
-
-  timestamp: Option[Date]
-
-  )
-
+  rootSymbol: String,
+  state: String,
+  typ: String,
+  listing: Date,
+  front: Date,
+  expiry: Date,
+  relistInterval: Date,
+  inverseLeg: String,
+  sellLeg: String,
+  buyLeg: String,
+  underlying: String,
+  quoteCurrency: String,
+  underlyingSymbol: String,
+  reference: String,
+  referenceSymbol: String,
+  tickSize: Double,
+  multiplier: BigDecimal,
+  settlCurrency: String,
+  underlyingToSettleMultiplier: BigDecimal,
+  quoteToSettleMultiplier: BigDecimal,
+  isQuanto: Boolean,
+  isInverse: Boolean,
+  initMargin: Double,
+  maintMargin: Double,
+  limit: Double,
+  capped: Boolean,
+  taxed: Boolean,
+  makerFee: Double,
+  takerFee: Double,
+  insuranceFee: Double,
+  hedgerMakerFee: Double,
+  hedgerTakerFee: Double,
+  hedgerInsuranceFee: Double,
+  openingTimestamp: Date,
+  closingTimestamp: Date,
+  sessionInterval: Date,
+  prevClosePrice: Double,
+  limitDownPrice: Double,
+  limitUpPrice: Double,
+  bankruptLimitDownPrice: Double,
+  bankruptLimitUpPrice: Double,
+  prevTotalVolume: BigDecimal,
+  totalVolume: BigDecimal,
+  volume: BigDecimal,
+  volume24h: BigDecimal,
+  prevTotalTurnover: BigDecimal,
+  totalTurnover: BigDecimal,
+  turnover: BigDecimal,
+  turnover24h: BigDecimal,
+  prevPrice24h: Double,
+  vwap: Double,
+  highPrice: Double,
+  lowPrice: Double,
+  lastPrice: Double,
+  lastPriceProtected: Double,
+  lastTickDirection: String,
+  lastChangePcnt: Double,
+  bidPrice: Double,
+  midPrice: Double,
+  askPrice: Double,
+  impactBidPrice: Double,
+  impactMidPrice: Double,
+  impactAskPrice: Double,
+  hasLiquidity: Boolean,
+  openInterest: BigDecimal,
+  openValue: BigDecimal,
+  fairMethod: String,
+  fairBasisRate: Double,
+  fairBasis: Double,
+  fairPrice: Double,
+  markMethod: String,
+  markPrice: Double,
+  indicativeTaxRate: Double,
+  indicativeSettlePrice: Double,
+  settledPrice: Double,
+  timestamp: Date
+)
