@@ -1,37 +1,35 @@
 'use strict';
 var SwaggerClient = require("swagger-client");
 var _ = require('lodash');
+// require('debug-trace')({always: true, right: true}); // fancy logging to trace down logging
 var BitMEXAPIKeyAuthorization = require('./lib/BitMEXAPIKeyAuthorization');
 
-var swagger = new SwaggerClient({
+new SwaggerClient({
   url: 'https://testnet.bitmex.com/api/explorer/swagger.json',
-  success: function() {
-    if(swagger.ready === true) {
-      isReady(swagger.apis);
-    }
-  }
-});
+  usePromise: true
+})
+.then(function(client) {
+  // COmment out if you're not authorizing
+  client.clientAuthorizations.add("apiKey", new BitMEXAPIKeyAuthorization('api-key', 'api-secret'));
 
-// This is only needed if you're authorizing, comment it out otherwise.
-// swagger.clientAuthorizations.add("apiKey", new BitMEXAPIKeyAuthorization('apiKey', 'apiSecret'));
+  // Print client capabilities
+  inspect(client.apis);
 
-function isReady(client) {
-  // Inspect the client to view our API methods
-  // All methods accept a data callback.
-  inspect(client);
-
-  console.log("This script will get the highest trade of the last 40 from XBT24H.")
-
-  client.Trade.Trade_get({symbol: 'XBT24H', count: 40}, function(response) {
+  // Get a trade
+  client.Trade.Trade_get({symbol: 'XBT24H', count: 40})
+  .then(function(response) {
     var trades = JSON.parse(response.data.toString());
     // Print the max price traded in the last `count` trades.
     console.log('\nMax Trade:\n----\n', JSON.stringify(_.max(trades, 'price'), undefined, 2));
-  }, function(response) {
-    var err = JSON.parse(response.data.toString()).error;
+  })
+  .catch(function(e) {
     // Error handling...
-    console.log('Error:', err.message);
+    console.log('Error:', e.statusText);
   });
-}
+})
+.catch(function(e) {
+  console.error("Unable to connect:", e);
+})
 
 function inspect(client) {
   console.log("Inspecting BitMEX API...");
