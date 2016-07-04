@@ -11,13 +11,36 @@ class ExecutionApi {
     }
   }
 
-  
   /// Get all raw executions for your account.
   ///
-  /// This returns all raw transactions, which includes order opening and cancelation, and order status\nchanges. It can be quite noisy. More focused information is available at `/execution/tradeHistory`.\n\nYou may also use the `filter` param to target your query. Specify an array as a filter value, such as\n`{\&quot;execType\&quot;: [\&quot;Settlement\&quot;, \&quot;Trade\&quot;]}` to filter on multiple values.\n\nSee [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_8_8.html) for explanations of these fields.
+  /// This returns all raw transactions, which includes order opening and cancelation, and order status changes. It can be quite noisy. More focused information is available at &#x60;/execution/tradeHistory&#x60;.  You may also use the &#x60;filter&#x60; param to target your query. Specify an array as a filter value, such as &#x60;{\&quot;execType\&quot;: [\&quot;Settlement\&quot;, \&quot;Trade\&quot;]}&#x60; to filter on multiple values.  See [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_8_8.html) for explanations of these fields. 
   Future<List<Execution>> executionGet(String symbol, String filter, String columns, Number count, Number start, bool reverse, DateTime startTime, DateTime endTime) {
     Object postBody = null;
-    
+    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if() {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }
 
     // create path and map variables
     String path = "/execution".replaceAll("{format}","json");
@@ -28,23 +51,21 @@ class ExecutionApi {
     Map<String, String> formParams = {};
     if("null" != symbol)
       queryParams["symbol"] = symbol is List ? symbol.join(',') : symbol;
-    if("null" != filter)
+if("null" != filter)
       queryParams["filter"] = filter is List ? filter.join(',') : filter;
-    if("null" != columns)
+if("null" != columns)
       queryParams["columns"] = columns is List ? columns.join(',') : columns;
-    if("null" != count)
+if("null" != count)
       queryParams["count"] = count is List ? count.join(',') : count;
-    if("null" != start)
+if("null" != start)
       queryParams["start"] = start is List ? start.join(',') : start;
-    if("null" != reverse)
+if("null" != reverse)
       queryParams["reverse"] = reverse is List ? reverse.join(',') : reverse;
-    if("null" != startTime)
+if("null" != startTime)
       queryParams["startTime"] = startTime is List ? startTime.join(',') : startTime;
-    if("null" != endTime)
+if("null" != endTime)
       queryParams["endTime"] = endTime is List ? endTime.join(',') : endTime;
     
-    
-
     List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -58,8 +79,7 @@ class ExecutionApi {
         postBody = mp;
     }
     else {
-      
-    }
+          }
 
     return apiClient.invokeAPI(basePath, path, 'GET', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
       if(response.statusCode >= 400) {
@@ -73,13 +93,36 @@ class ExecutionApi {
       }
     });
   }
-  
   /// Get all balance-affecting executions. This includes each trade, insurance charge, and settlement.
   ///
   /// 
   Future<List<Execution>> executionGetTradeHistory(String symbol, String filter, String columns, Number count, Number start, bool reverse, DateTime startTime, DateTime endTime) {
     Object postBody = null;
-    
+    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if() {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }
 
     // create path and map variables
     String path = "/execution/tradeHistory".replaceAll("{format}","json");
@@ -90,23 +133,21 @@ class ExecutionApi {
     Map<String, String> formParams = {};
     if("null" != symbol)
       queryParams["symbol"] = symbol is List ? symbol.join(',') : symbol;
-    if("null" != filter)
+if("null" != filter)
       queryParams["filter"] = filter is List ? filter.join(',') : filter;
-    if("null" != columns)
+if("null" != columns)
       queryParams["columns"] = columns is List ? columns.join(',') : columns;
-    if("null" != count)
+if("null" != count)
       queryParams["count"] = count is List ? count.join(',') : count;
-    if("null" != start)
+if("null" != start)
       queryParams["start"] = start is List ? start.join(',') : start;
-    if("null" != reverse)
+if("null" != reverse)
       queryParams["reverse"] = reverse is List ? reverse.join(',') : reverse;
-    if("null" != startTime)
+if("null" != startTime)
       queryParams["startTime"] = startTime is List ? startTime.join(',') : startTime;
-    if("null" != endTime)
+if("null" != endTime)
       queryParams["endTime"] = endTime is List ? endTime.join(',') : endTime;
     
-    
-
     List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -120,8 +161,7 @@ class ExecutionApi {
         postBody = mp;
     }
     else {
-      
-    }
+          }
 
     return apiClient.invokeAPI(basePath, path, 'GET', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
       if(response.statusCode >= 400) {
@@ -135,5 +175,4 @@ class ExecutionApi {
       }
     });
   }
-  
 }

@@ -18,7 +18,6 @@ public class AccessToken  {
   @SerializedName("userId")
   private Double userId = null;
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -29,7 +28,6 @@ public class AccessToken  {
     this.id = id;
   }
 
-  
   /**
    * time to live in seconds (2 weeks by default)
    **/
@@ -41,7 +39,6 @@ public class AccessToken  {
     this.ttl = ttl;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -52,7 +49,6 @@ public class AccessToken  {
     this.created = created;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -63,7 +59,31 @@ public class AccessToken  {
     this.userId = userId;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    AccessToken accessToken = (AccessToken) o;
+    return (id == null ? accessToken.id == null : id.equals(accessToken.id)) &&
+        (ttl == null ? accessToken.ttl == null : ttl.equals(accessToken.ttl)) &&
+        (created == null ? accessToken.created == null : created.equals(accessToken.created)) &&
+        (userId == null ? accessToken.userId == null : userId.equals(accessToken.userId));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (id == null ? 0: id.hashCode());
+    result = 31 * result + (ttl == null ? 0: ttl.hashCode());
+    result = 31 * result + (created == null ? 0: created.hashCode());
+    result = 31 * result + (userId == null ? 0: userId.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

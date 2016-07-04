@@ -11,13 +11,15 @@ class LeaderboardApi {
     }
   }
 
-  
   /// Get current leaderboard.
   ///
   /// 
   Future<List<Leaderboard>> leaderboardGet(String method) {
     Object postBody = null;
-    
+    // verify required params are set
+    if() {
+       throw new ApiException(400, "missing required params");
+    }
 
     // create path and map variables
     String path = "/leaderboard".replaceAll("{format}","json");
@@ -29,8 +31,6 @@ class LeaderboardApi {
     if("null" != method)
       queryParams["method"] = method is List ? method.join(',') : method;
     
-    
-
     List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -44,8 +44,7 @@ class LeaderboardApi {
         postBody = mp;
     }
     else {
-      
-    }
+          }
 
     return apiClient.invokeAPI(basePath, path, 'GET', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
       if(response.statusCode >= 400) {
@@ -59,5 +58,4 @@ class LeaderboardApi {
       }
     });
   }
-  
 }

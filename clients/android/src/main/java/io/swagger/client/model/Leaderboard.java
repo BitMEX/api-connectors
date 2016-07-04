@@ -17,7 +17,6 @@ public class Leaderboard  {
   @SerializedName("profit")
   private Double profit = null;
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -28,7 +27,6 @@ public class Leaderboard  {
     this.name = name;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -39,7 +37,6 @@ public class Leaderboard  {
     this.isRealName = isRealName;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -50,7 +47,6 @@ public class Leaderboard  {
     this.isMe = isMe;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -61,7 +57,31 @@ public class Leaderboard  {
     this.profit = profit;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Leaderboard leaderboard = (Leaderboard) o;
+    return (name == null ? leaderboard.name == null : name.equals(leaderboard.name)) &&
+        (isRealName == null ? leaderboard.isRealName == null : isRealName.equals(leaderboard.isRealName)) &&
+        (isMe == null ? leaderboard.isMe == null : isMe.equals(leaderboard.isMe)) &&
+        (profit == null ? leaderboard.profit == null : profit.equals(leaderboard.profit));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (name == null ? 0: name.hashCode());
+    result = 31 * result + (isRealName == null ? 0: isRealName.hashCode());
+    result = 31 * result + (isMe == null ? 0: isMe.hashCode());
+    result = 31 * result + (profit == null ? 0: profit.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

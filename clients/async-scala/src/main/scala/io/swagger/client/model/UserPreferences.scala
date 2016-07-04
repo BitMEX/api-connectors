@@ -1,30 +1,30 @@
 package io.swagger.client.model
 
 import org.joda.time.DateTime
+import java.util.UUID
 
 
 case class UserPreferences (
-  announcementsLastSeen: Date,
-  colorTheme: String,
-  currency: String,
-  debug: Boolean,
-  disableEmails: List[String],
-  hideConfirmDialogs: List[String],
-  hideConnectionModal: Boolean,
-  hideFromLeaderboard: Boolean,
-  hideNameFromLeaderboard: Boolean,
-  hideNotifications: List[String],
-  hidePhoneConfirm: Boolean,
-  locale: String,
-  msgsSeen: List[String],
-  orderBookBinning: Number,
-  orderBookType: String,
-  orderControlsPlusMinus: Boolean,
-  sounds: List[String],
-  strictIPCheck: Boolean,
-  strictTimeout: Boolean,
-  tickerGroup: String,
-  tickerPinned: Boolean,
-  tradeLayout: String
-  
+  announcementsLastSeen: Option[Date],
+colorTheme: Option[String],
+currency: Option[String],
+debug: Option[Boolean],
+disableEmails: Option[List[String]],
+hideConfirmDialogs: Option[List[String]],
+hideConnectionModal: Option[Boolean],
+hideFromLeaderboard: Option[Boolean],
+hideNameFromLeaderboard: Option[Boolean],
+hideNotifications: Option[List[String]],
+hidePhoneConfirm: Option[Boolean],
+locale: Option[String],
+msgsSeen: Option[List[String]],
+orderBookBinning: Option[Number],
+orderBookType: Option[String],
+orderControlsPlusMinus: Option[Boolean],
+sounds: Option[List[String]],
+strictIPCheck: Option[Boolean],
+strictTimeout: Option[Boolean],
+tickerGroup: Option[String],
+tickerPinned: Option[Boolean],
+tradeLayout: Option[String]
 )

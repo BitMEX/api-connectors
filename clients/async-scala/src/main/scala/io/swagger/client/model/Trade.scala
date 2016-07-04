@@ -1,19 +1,19 @@
 package io.swagger.client.model
 
 import org.joda.time.DateTime
+import java.util.UUID
 
 
 case class Trade (
-  timestamp: Date,
-  symbol: String,
-  side: String,
-  size: Number,
-  price: Double,
-  tickDirection: String,
-  trdMatchID: String,
-  grossValue: Number,
-  homeNotional: Double,
-  foreignNotional: Double,
-  id: Double
-  
+  timestamp: Option[Date],
+symbol: Option[String],
+side: Option[String],
+size: Option[Number],
+price: Option[Double],
+tickDirection: Option[String],
+trdMatchID: Option[String],
+grossValue: Option[Number],
+homeNotional: Option[Double],
+foreignNotional: Option[Double],
+id: Option[Double]
 )

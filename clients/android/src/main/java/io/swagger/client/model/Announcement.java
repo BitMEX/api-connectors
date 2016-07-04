@@ -21,7 +21,6 @@ public class Announcement  {
   @SerializedName("date")
   private Date date = null;
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -32,7 +31,6 @@ public class Announcement  {
     this.id = id;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -43,7 +41,6 @@ public class Announcement  {
     this.link = link;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -54,7 +51,6 @@ public class Announcement  {
     this.title = title;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -65,7 +61,6 @@ public class Announcement  {
     this.content = content;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -76,7 +71,33 @@ public class Announcement  {
     this.date = date;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Announcement announcement = (Announcement) o;
+    return (id == null ? announcement.id == null : id.equals(announcement.id)) &&
+        (link == null ? announcement.link == null : link.equals(announcement.link)) &&
+        (title == null ? announcement.title == null : title.equals(announcement.title)) &&
+        (content == null ? announcement.content == null : content.equals(announcement.content)) &&
+        (date == null ? announcement.date == null : date.equals(announcement.date));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (id == null ? 0: id.hashCode());
+    result = 31 * result + (link == null ? 0: link.hashCode());
+    result = 31 * result + (title == null ? 0: title.hashCode());
+    result = 31 * result + (content == null ? 0: content.hashCode());
+    result = 31 * result + (date == null ? 0: date.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

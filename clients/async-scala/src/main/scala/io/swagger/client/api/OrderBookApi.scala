@@ -4,14 +4,12 @@ import io.swagger.client.model.Number
 import io.swagger.client.model.OrderBook
 import io.swagger.client.model.Error
 import io.swagger.client.model.OrderBookL2
-import io.swagger.client._
-import scala.concurrent.{ Future, Await }
-import scala.concurrent.duration._
+import com.wordnik.swagger.client._
+import scala.concurrent.Future
 import collection.mutable
 
 class OrderBookApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
-  
   def orderBook.get(symbol: String,
       depth: Option[Number] = Some(25)
       )(implicit reader: ClientResponseReader[List[OrderBook]]): Future[List[OrderBook]] = {
@@ -22,12 +20,11 @@ class OrderBookApi(client: TransportClient, config: SwaggerConfig) extends ApiCl
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
-    
+    if (symbol != null) queryParams += "symbol" -> symbol.toString
 
-    
-    if(symbol != null)   queryParams += "symbol" -> symbol.toStringif(depth != null) depth.foreach { v => queryParams += "depth" -> v.toString }
+    if (depth != null) depth.foreach { v => queryParams += "depth" -> v.toString }
 
-    
+
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>
@@ -35,7 +32,6 @@ class OrderBookApi(client: TransportClient, config: SwaggerConfig) extends ApiCl
     }
   }
 
-  
   def orderBook.getL2(symbol: String,
       depth: Option[Number] = Some(25)
       )(implicit reader: ClientResponseReader[List[OrderBookL2]]): Future[List[OrderBookL2]] = {
@@ -46,12 +42,11 @@ class OrderBookApi(client: TransportClient, config: SwaggerConfig) extends ApiCl
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
-    
+    if (symbol != null) queryParams += "symbol" -> symbol.toString
 
-    
-    if(symbol != null)   queryParams += "symbol" -> symbol.toStringif(depth != null) depth.foreach { v => queryParams += "depth" -> v.toString }
+    if (depth != null) depth.foreach { v => queryParams += "depth" -> v.toString }
 
-    
+
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>
@@ -59,6 +54,5 @@ class OrderBookApi(client: TransportClient, config: SwaggerConfig) extends ApiCl
     }
   }
 
-  
 
 }

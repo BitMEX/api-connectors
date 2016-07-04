@@ -14,7 +14,6 @@ public class ConnectedUsers  {
   @SerializedName("bots")
   private BigDecimal bots = null;
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -25,7 +24,6 @@ public class ConnectedUsers  {
     this.users = users;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -36,7 +34,27 @@ public class ConnectedUsers  {
     this.bots = bots;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ConnectedUsers connectedUsers = (ConnectedUsers) o;
+    return (users == null ? connectedUsers.users == null : users.equals(connectedUsers.users)) &&
+        (bots == null ? connectedUsers.bots == null : bots.equals(connectedUsers.bots));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (users == null ? 0: users.hashCode());
+    result = 31 * result + (bots == null ? 0: bots.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

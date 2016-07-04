@@ -11,13 +11,12 @@ class StatsApi {
     }
   }
 
-  
   /// Get exchange-wide and per-series turnover and volume statistics.
   ///
   /// 
   Future<List<Stats>> statsGet() {
     Object postBody = null;
-    
+
 
     // create path and map variables
     String path = "/stats".replaceAll("{format}","json");
@@ -26,9 +25,7 @@ class StatsApi {
     Map<String, String> queryParams = {};
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
-    
-    
-
+        
     List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -42,8 +39,7 @@ class StatsApi {
         postBody = mp;
     }
     else {
-      
-    }
+          }
 
     return apiClient.invokeAPI(basePath, path, 'GET', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
       if(response.statusCode >= 400) {
@@ -57,13 +53,12 @@ class StatsApi {
       }
     });
   }
-  
   /// Get historical exchange-wide and per-series turnover and volume statistics.
   ///
   /// 
   Future<List<StatsHistory>> statsHistory() {
     Object postBody = null;
-    
+
 
     // create path and map variables
     String path = "/stats/history".replaceAll("{format}","json");
@@ -72,9 +67,7 @@ class StatsApi {
     Map<String, String> queryParams = {};
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
-    
-    
-
+        
     List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -88,8 +81,7 @@ class StatsApi {
         postBody = mp;
     }
     else {
-      
-    }
+          }
 
     return apiClient.invokeAPI(basePath, path, 'GET', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
       if(response.statusCode >= 400) {
@@ -103,5 +95,4 @@ class StatsApi {
       }
     });
   }
-  
 }

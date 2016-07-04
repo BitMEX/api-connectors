@@ -1,8 +1,8 @@
 package io.swagger.client.model;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.Date;
-import java.math.BigDecimal;
 
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -56,7 +56,6 @@ public class UserPreferences  {
   @SerializedName("tradeLayout")
   private String tradeLayout = null;
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -67,7 +66,6 @@ public class UserPreferences  {
     this.announcementsLastSeen = announcementsLastSeen;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -78,7 +76,6 @@ public class UserPreferences  {
     this.colorTheme = colorTheme;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -89,7 +86,6 @@ public class UserPreferences  {
     this.currency = currency;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -100,7 +96,6 @@ public class UserPreferences  {
     this.debug = debug;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -111,7 +106,6 @@ public class UserPreferences  {
     this.disableEmails = disableEmails;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -122,7 +116,6 @@ public class UserPreferences  {
     this.hideConfirmDialogs = hideConfirmDialogs;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -133,7 +126,6 @@ public class UserPreferences  {
     this.hideConnectionModal = hideConnectionModal;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -144,7 +136,6 @@ public class UserPreferences  {
     this.hideFromLeaderboard = hideFromLeaderboard;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -155,7 +146,6 @@ public class UserPreferences  {
     this.hideNameFromLeaderboard = hideNameFromLeaderboard;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -166,7 +156,6 @@ public class UserPreferences  {
     this.hideNotifications = hideNotifications;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -177,7 +166,6 @@ public class UserPreferences  {
     this.hidePhoneConfirm = hidePhoneConfirm;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -188,7 +176,6 @@ public class UserPreferences  {
     this.locale = locale;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -199,7 +186,6 @@ public class UserPreferences  {
     this.msgsSeen = msgsSeen;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -210,7 +196,6 @@ public class UserPreferences  {
     this.orderBookBinning = orderBookBinning;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -221,7 +206,6 @@ public class UserPreferences  {
     this.orderBookType = orderBookType;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -232,7 +216,6 @@ public class UserPreferences  {
     this.orderControlsPlusMinus = orderControlsPlusMinus;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -243,7 +226,6 @@ public class UserPreferences  {
     this.sounds = sounds;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -254,7 +236,6 @@ public class UserPreferences  {
     this.strictIPCheck = strictIPCheck;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -265,7 +246,6 @@ public class UserPreferences  {
     this.strictTimeout = strictTimeout;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -276,7 +256,6 @@ public class UserPreferences  {
     this.tickerGroup = tickerGroup;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -287,7 +266,6 @@ public class UserPreferences  {
     this.tickerPinned = tickerPinned;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -298,7 +276,67 @@ public class UserPreferences  {
     this.tradeLayout = tradeLayout;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    UserPreferences userPreferences = (UserPreferences) o;
+    return (announcementsLastSeen == null ? userPreferences.announcementsLastSeen == null : announcementsLastSeen.equals(userPreferences.announcementsLastSeen)) &&
+        (colorTheme == null ? userPreferences.colorTheme == null : colorTheme.equals(userPreferences.colorTheme)) &&
+        (currency == null ? userPreferences.currency == null : currency.equals(userPreferences.currency)) &&
+        (debug == null ? userPreferences.debug == null : debug.equals(userPreferences.debug)) &&
+        (disableEmails == null ? userPreferences.disableEmails == null : disableEmails.equals(userPreferences.disableEmails)) &&
+        (hideConfirmDialogs == null ? userPreferences.hideConfirmDialogs == null : hideConfirmDialogs.equals(userPreferences.hideConfirmDialogs)) &&
+        (hideConnectionModal == null ? userPreferences.hideConnectionModal == null : hideConnectionModal.equals(userPreferences.hideConnectionModal)) &&
+        (hideFromLeaderboard == null ? userPreferences.hideFromLeaderboard == null : hideFromLeaderboard.equals(userPreferences.hideFromLeaderboard)) &&
+        (hideNameFromLeaderboard == null ? userPreferences.hideNameFromLeaderboard == null : hideNameFromLeaderboard.equals(userPreferences.hideNameFromLeaderboard)) &&
+        (hideNotifications == null ? userPreferences.hideNotifications == null : hideNotifications.equals(userPreferences.hideNotifications)) &&
+        (hidePhoneConfirm == null ? userPreferences.hidePhoneConfirm == null : hidePhoneConfirm.equals(userPreferences.hidePhoneConfirm)) &&
+        (locale == null ? userPreferences.locale == null : locale.equals(userPreferences.locale)) &&
+        (msgsSeen == null ? userPreferences.msgsSeen == null : msgsSeen.equals(userPreferences.msgsSeen)) &&
+        (orderBookBinning == null ? userPreferences.orderBookBinning == null : orderBookBinning.equals(userPreferences.orderBookBinning)) &&
+        (orderBookType == null ? userPreferences.orderBookType == null : orderBookType.equals(userPreferences.orderBookType)) &&
+        (orderControlsPlusMinus == null ? userPreferences.orderControlsPlusMinus == null : orderControlsPlusMinus.equals(userPreferences.orderControlsPlusMinus)) &&
+        (sounds == null ? userPreferences.sounds == null : sounds.equals(userPreferences.sounds)) &&
+        (strictIPCheck == null ? userPreferences.strictIPCheck == null : strictIPCheck.equals(userPreferences.strictIPCheck)) &&
+        (strictTimeout == null ? userPreferences.strictTimeout == null : strictTimeout.equals(userPreferences.strictTimeout)) &&
+        (tickerGroup == null ? userPreferences.tickerGroup == null : tickerGroup.equals(userPreferences.tickerGroup)) &&
+        (tickerPinned == null ? userPreferences.tickerPinned == null : tickerPinned.equals(userPreferences.tickerPinned)) &&
+        (tradeLayout == null ? userPreferences.tradeLayout == null : tradeLayout.equals(userPreferences.tradeLayout));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (announcementsLastSeen == null ? 0: announcementsLastSeen.hashCode());
+    result = 31 * result + (colorTheme == null ? 0: colorTheme.hashCode());
+    result = 31 * result + (currency == null ? 0: currency.hashCode());
+    result = 31 * result + (debug == null ? 0: debug.hashCode());
+    result = 31 * result + (disableEmails == null ? 0: disableEmails.hashCode());
+    result = 31 * result + (hideConfirmDialogs == null ? 0: hideConfirmDialogs.hashCode());
+    result = 31 * result + (hideConnectionModal == null ? 0: hideConnectionModal.hashCode());
+    result = 31 * result + (hideFromLeaderboard == null ? 0: hideFromLeaderboard.hashCode());
+    result = 31 * result + (hideNameFromLeaderboard == null ? 0: hideNameFromLeaderboard.hashCode());
+    result = 31 * result + (hideNotifications == null ? 0: hideNotifications.hashCode());
+    result = 31 * result + (hidePhoneConfirm == null ? 0: hidePhoneConfirm.hashCode());
+    result = 31 * result + (locale == null ? 0: locale.hashCode());
+    result = 31 * result + (msgsSeen == null ? 0: msgsSeen.hashCode());
+    result = 31 * result + (orderBookBinning == null ? 0: orderBookBinning.hashCode());
+    result = 31 * result + (orderBookType == null ? 0: orderBookType.hashCode());
+    result = 31 * result + (orderControlsPlusMinus == null ? 0: orderControlsPlusMinus.hashCode());
+    result = 31 * result + (sounds == null ? 0: sounds.hashCode());
+    result = 31 * result + (strictIPCheck == null ? 0: strictIPCheck.hashCode());
+    result = 31 * result + (strictTimeout == null ? 0: strictTimeout.hashCode());
+    result = 31 * result + (tickerGroup == null ? 0: tickerGroup.hashCode());
+    result = 31 * result + (tickerPinned == null ? 0: tickerPinned.hashCode());
+    result = 31 * result + (tradeLayout == null ? 0: tradeLayout.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

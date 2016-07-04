@@ -105,7 +105,6 @@ public class Execution  {
   @SerializedName("timestamp")
   private Date timestamp = null;
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -116,7 +115,6 @@ public class Execution  {
     this.execID = execID;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -127,7 +125,6 @@ public class Execution  {
     this.orderID = orderID;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -138,7 +135,6 @@ public class Execution  {
     this.clOrdID = clOrdID;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -149,7 +145,6 @@ public class Execution  {
     this.clOrdLinkID = clOrdLinkID;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -160,7 +155,6 @@ public class Execution  {
     this.account = account;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -171,7 +165,6 @@ public class Execution  {
     this.symbol = symbol;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -182,7 +175,6 @@ public class Execution  {
     this.side = side;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -193,7 +185,6 @@ public class Execution  {
     this.lastQty = lastQty;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -204,7 +195,6 @@ public class Execution  {
     this.lastPx = lastPx;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -215,7 +205,6 @@ public class Execution  {
     this.underlyingLastPx = underlyingLastPx;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -226,7 +215,6 @@ public class Execution  {
     this.lastMkt = lastMkt;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -237,7 +225,6 @@ public class Execution  {
     this.lastLiquidityInd = lastLiquidityInd;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -248,7 +235,6 @@ public class Execution  {
     this.simpleOrderQty = simpleOrderQty;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -259,7 +245,6 @@ public class Execution  {
     this.orderQty = orderQty;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -270,7 +255,6 @@ public class Execution  {
     this.price = price;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -281,7 +265,6 @@ public class Execution  {
     this.displayQty = displayQty;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -292,7 +275,6 @@ public class Execution  {
     this.stopPx = stopPx;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -303,7 +285,6 @@ public class Execution  {
     this.pegOffsetValue = pegOffsetValue;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -314,7 +295,6 @@ public class Execution  {
     this.pegPriceType = pegPriceType;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -325,7 +305,6 @@ public class Execution  {
     this.currency = currency;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -336,7 +315,6 @@ public class Execution  {
     this.settlCurrency = settlCurrency;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -347,7 +325,6 @@ public class Execution  {
     this.execType = execType;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -358,7 +335,6 @@ public class Execution  {
     this.ordType = ordType;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -369,7 +345,6 @@ public class Execution  {
     this.timeInForce = timeInForce;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -380,7 +355,6 @@ public class Execution  {
     this.execInst = execInst;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -391,7 +365,6 @@ public class Execution  {
     this.contingencyType = contingencyType;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -402,7 +375,6 @@ public class Execution  {
     this.exDestination = exDestination;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -413,7 +385,6 @@ public class Execution  {
     this.ordStatus = ordStatus;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -424,7 +395,6 @@ public class Execution  {
     this.triggered = triggered;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -435,7 +405,6 @@ public class Execution  {
     this.workingIndicator = workingIndicator;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -446,7 +415,6 @@ public class Execution  {
     this.ordRejReason = ordRejReason;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -457,7 +425,6 @@ public class Execution  {
     this.simpleLeavesQty = simpleLeavesQty;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -468,7 +435,6 @@ public class Execution  {
     this.leavesQty = leavesQty;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -479,7 +445,6 @@ public class Execution  {
     this.simpleCumQty = simpleCumQty;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -490,7 +455,6 @@ public class Execution  {
     this.cumQty = cumQty;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -501,7 +465,6 @@ public class Execution  {
     this.avgPx = avgPx;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -512,7 +475,6 @@ public class Execution  {
     this.commission = commission;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -523,7 +485,6 @@ public class Execution  {
     this.tradePublishIndicator = tradePublishIndicator;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -534,7 +495,6 @@ public class Execution  {
     this.multiLegReportingType = multiLegReportingType;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -545,7 +505,6 @@ public class Execution  {
     this.text = text;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -556,7 +515,6 @@ public class Execution  {
     this.trdMatchID = trdMatchID;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -567,7 +525,6 @@ public class Execution  {
     this.execCost = execCost;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -578,7 +535,6 @@ public class Execution  {
     this.execComm = execComm;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -589,7 +545,6 @@ public class Execution  {
     this.homeNotional = homeNotional;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -600,7 +555,6 @@ public class Execution  {
     this.foreignNotional = foreignNotional;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -611,7 +565,6 @@ public class Execution  {
     this.transactTime = transactTime;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -622,7 +575,117 @@ public class Execution  {
     this.timestamp = timestamp;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Execution execution = (Execution) o;
+    return (execID == null ? execution.execID == null : execID.equals(execution.execID)) &&
+        (orderID == null ? execution.orderID == null : orderID.equals(execution.orderID)) &&
+        (clOrdID == null ? execution.clOrdID == null : clOrdID.equals(execution.clOrdID)) &&
+        (clOrdLinkID == null ? execution.clOrdLinkID == null : clOrdLinkID.equals(execution.clOrdLinkID)) &&
+        (account == null ? execution.account == null : account.equals(execution.account)) &&
+        (symbol == null ? execution.symbol == null : symbol.equals(execution.symbol)) &&
+        (side == null ? execution.side == null : side.equals(execution.side)) &&
+        (lastQty == null ? execution.lastQty == null : lastQty.equals(execution.lastQty)) &&
+        (lastPx == null ? execution.lastPx == null : lastPx.equals(execution.lastPx)) &&
+        (underlyingLastPx == null ? execution.underlyingLastPx == null : underlyingLastPx.equals(execution.underlyingLastPx)) &&
+        (lastMkt == null ? execution.lastMkt == null : lastMkt.equals(execution.lastMkt)) &&
+        (lastLiquidityInd == null ? execution.lastLiquidityInd == null : lastLiquidityInd.equals(execution.lastLiquidityInd)) &&
+        (simpleOrderQty == null ? execution.simpleOrderQty == null : simpleOrderQty.equals(execution.simpleOrderQty)) &&
+        (orderQty == null ? execution.orderQty == null : orderQty.equals(execution.orderQty)) &&
+        (price == null ? execution.price == null : price.equals(execution.price)) &&
+        (displayQty == null ? execution.displayQty == null : displayQty.equals(execution.displayQty)) &&
+        (stopPx == null ? execution.stopPx == null : stopPx.equals(execution.stopPx)) &&
+        (pegOffsetValue == null ? execution.pegOffsetValue == null : pegOffsetValue.equals(execution.pegOffsetValue)) &&
+        (pegPriceType == null ? execution.pegPriceType == null : pegPriceType.equals(execution.pegPriceType)) &&
+        (currency == null ? execution.currency == null : currency.equals(execution.currency)) &&
+        (settlCurrency == null ? execution.settlCurrency == null : settlCurrency.equals(execution.settlCurrency)) &&
+        (execType == null ? execution.execType == null : execType.equals(execution.execType)) &&
+        (ordType == null ? execution.ordType == null : ordType.equals(execution.ordType)) &&
+        (timeInForce == null ? execution.timeInForce == null : timeInForce.equals(execution.timeInForce)) &&
+        (execInst == null ? execution.execInst == null : execInst.equals(execution.execInst)) &&
+        (contingencyType == null ? execution.contingencyType == null : contingencyType.equals(execution.contingencyType)) &&
+        (exDestination == null ? execution.exDestination == null : exDestination.equals(execution.exDestination)) &&
+        (ordStatus == null ? execution.ordStatus == null : ordStatus.equals(execution.ordStatus)) &&
+        (triggered == null ? execution.triggered == null : triggered.equals(execution.triggered)) &&
+        (workingIndicator == null ? execution.workingIndicator == null : workingIndicator.equals(execution.workingIndicator)) &&
+        (ordRejReason == null ? execution.ordRejReason == null : ordRejReason.equals(execution.ordRejReason)) &&
+        (simpleLeavesQty == null ? execution.simpleLeavesQty == null : simpleLeavesQty.equals(execution.simpleLeavesQty)) &&
+        (leavesQty == null ? execution.leavesQty == null : leavesQty.equals(execution.leavesQty)) &&
+        (simpleCumQty == null ? execution.simpleCumQty == null : simpleCumQty.equals(execution.simpleCumQty)) &&
+        (cumQty == null ? execution.cumQty == null : cumQty.equals(execution.cumQty)) &&
+        (avgPx == null ? execution.avgPx == null : avgPx.equals(execution.avgPx)) &&
+        (commission == null ? execution.commission == null : commission.equals(execution.commission)) &&
+        (tradePublishIndicator == null ? execution.tradePublishIndicator == null : tradePublishIndicator.equals(execution.tradePublishIndicator)) &&
+        (multiLegReportingType == null ? execution.multiLegReportingType == null : multiLegReportingType.equals(execution.multiLegReportingType)) &&
+        (text == null ? execution.text == null : text.equals(execution.text)) &&
+        (trdMatchID == null ? execution.trdMatchID == null : trdMatchID.equals(execution.trdMatchID)) &&
+        (execCost == null ? execution.execCost == null : execCost.equals(execution.execCost)) &&
+        (execComm == null ? execution.execComm == null : execComm.equals(execution.execComm)) &&
+        (homeNotional == null ? execution.homeNotional == null : homeNotional.equals(execution.homeNotional)) &&
+        (foreignNotional == null ? execution.foreignNotional == null : foreignNotional.equals(execution.foreignNotional)) &&
+        (transactTime == null ? execution.transactTime == null : transactTime.equals(execution.transactTime)) &&
+        (timestamp == null ? execution.timestamp == null : timestamp.equals(execution.timestamp));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (execID == null ? 0: execID.hashCode());
+    result = 31 * result + (orderID == null ? 0: orderID.hashCode());
+    result = 31 * result + (clOrdID == null ? 0: clOrdID.hashCode());
+    result = 31 * result + (clOrdLinkID == null ? 0: clOrdLinkID.hashCode());
+    result = 31 * result + (account == null ? 0: account.hashCode());
+    result = 31 * result + (symbol == null ? 0: symbol.hashCode());
+    result = 31 * result + (side == null ? 0: side.hashCode());
+    result = 31 * result + (lastQty == null ? 0: lastQty.hashCode());
+    result = 31 * result + (lastPx == null ? 0: lastPx.hashCode());
+    result = 31 * result + (underlyingLastPx == null ? 0: underlyingLastPx.hashCode());
+    result = 31 * result + (lastMkt == null ? 0: lastMkt.hashCode());
+    result = 31 * result + (lastLiquidityInd == null ? 0: lastLiquidityInd.hashCode());
+    result = 31 * result + (simpleOrderQty == null ? 0: simpleOrderQty.hashCode());
+    result = 31 * result + (orderQty == null ? 0: orderQty.hashCode());
+    result = 31 * result + (price == null ? 0: price.hashCode());
+    result = 31 * result + (displayQty == null ? 0: displayQty.hashCode());
+    result = 31 * result + (stopPx == null ? 0: stopPx.hashCode());
+    result = 31 * result + (pegOffsetValue == null ? 0: pegOffsetValue.hashCode());
+    result = 31 * result + (pegPriceType == null ? 0: pegPriceType.hashCode());
+    result = 31 * result + (currency == null ? 0: currency.hashCode());
+    result = 31 * result + (settlCurrency == null ? 0: settlCurrency.hashCode());
+    result = 31 * result + (execType == null ? 0: execType.hashCode());
+    result = 31 * result + (ordType == null ? 0: ordType.hashCode());
+    result = 31 * result + (timeInForce == null ? 0: timeInForce.hashCode());
+    result = 31 * result + (execInst == null ? 0: execInst.hashCode());
+    result = 31 * result + (contingencyType == null ? 0: contingencyType.hashCode());
+    result = 31 * result + (exDestination == null ? 0: exDestination.hashCode());
+    result = 31 * result + (ordStatus == null ? 0: ordStatus.hashCode());
+    result = 31 * result + (triggered == null ? 0: triggered.hashCode());
+    result = 31 * result + (workingIndicator == null ? 0: workingIndicator.hashCode());
+    result = 31 * result + (ordRejReason == null ? 0: ordRejReason.hashCode());
+    result = 31 * result + (simpleLeavesQty == null ? 0: simpleLeavesQty.hashCode());
+    result = 31 * result + (leavesQty == null ? 0: leavesQty.hashCode());
+    result = 31 * result + (simpleCumQty == null ? 0: simpleCumQty.hashCode());
+    result = 31 * result + (cumQty == null ? 0: cumQty.hashCode());
+    result = 31 * result + (avgPx == null ? 0: avgPx.hashCode());
+    result = 31 * result + (commission == null ? 0: commission.hashCode());
+    result = 31 * result + (tradePublishIndicator == null ? 0: tradePublishIndicator.hashCode());
+    result = 31 * result + (multiLegReportingType == null ? 0: multiLegReportingType.hashCode());
+    result = 31 * result + (text == null ? 0: text.hashCode());
+    result = 31 * result + (trdMatchID == null ? 0: trdMatchID.hashCode());
+    result = 31 * result + (execCost == null ? 0: execCost.hashCode());
+    result = 31 * result + (execComm == null ? 0: execComm.hashCode());
+    result = 31 * result + (homeNotional == null ? 0: homeNotional.hashCode());
+    result = 31 * result + (foreignNotional == null ? 0: foreignNotional.hashCode());
+    result = 31 * result + (transactTime == null ? 0: transactTime.hashCode());
+    result = 31 * result + (timestamp == null ? 0: timestamp.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

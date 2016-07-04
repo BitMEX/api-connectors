@@ -1,18 +1,24 @@
 package io.swagger.client.api;
 
+import com.sun.jersey.api.client.GenericType;
+
 import io.swagger.client.ApiException;
 import io.swagger.client.ApiClient;
 import io.swagger.client.Configuration;
+import io.swagger.client.model.*;
 import io.swagger.client.Pair;
-import io.swagger.client.TypeRef;
 
 import io.swagger.client.model.Stats;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.StatsHistory;
 
-import java.util.*;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-04T18:25:18.235-05:00")
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-04T18:27:59.355-05:00")
 public class StatsApi {
   private ApiClient apiClient;
 
@@ -32,99 +38,74 @@ public class StatsApi {
     this.apiClient = apiClient;
   }
 
-  
   /**
    * Get exchange-wide and per-series turnover and volume statistics.
    * 
    * @return List<Stats>
+   * @throws ApiException if fails to make API call
    */
-  public List<Stats> statsGet () throws ApiException {
-    Object postBody = null;
-    byte[] postBinaryBody = null;
+  public List<Stats> statsGet() throws ApiException {
+    Object localVarPostBody = null;
     
     // create path and map variables
-    String path = "/stats".replaceAll("\\{format\\}","json");
+    String localVarPath = "/stats".replaceAll("\\{format\\}","json");
 
     // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, Object> formParams = new HashMap<String, Object>();
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
 
     
-
     
-
-    
-
-    final String[] accepts = {
+    final String[] localVarAccepts = {
       "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
     };
-    final String accept = apiClient.selectHeaderAccept(accepts);
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
-    final String[] contentTypes = {
+    final String[] localVarContentTypes = {
       "application/json", "application/x-www-form-urlencoded"
     };
-    final String contentType = apiClient.selectHeaderContentType(contentTypes);
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] authNames = new String[] {  };
+    String[] localVarAuthNames = new String[] {  };
 
-    
-
-    
-    
-    TypeRef returnType = new TypeRef<List<Stats>>() {};
-    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
-    
-    
-
-
-  }
-  
+    GenericType<List<Stats>> localVarReturnType = new GenericType<List<Stats>>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
   /**
    * Get historical exchange-wide and per-series turnover and volume statistics.
    * 
    * @return List<StatsHistory>
+   * @throws ApiException if fails to make API call
    */
-  public List<StatsHistory> statsHistory () throws ApiException {
-    Object postBody = null;
-    byte[] postBinaryBody = null;
+  public List<StatsHistory> statsHistory() throws ApiException {
+    Object localVarPostBody = null;
     
     // create path and map variables
-    String path = "/stats/history".replaceAll("\\{format\\}","json");
+    String localVarPath = "/stats/history".replaceAll("\\{format\\}","json");
 
     // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, Object> formParams = new HashMap<String, Object>();
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
 
     
-
     
-
-    
-
-    final String[] accepts = {
+    final String[] localVarAccepts = {
       "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
     };
-    final String accept = apiClient.selectHeaderAccept(accepts);
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
-    final String[] contentTypes = {
+    final String[] localVarContentTypes = {
       "application/json", "application/x-www-form-urlencoded"
     };
-    final String contentType = apiClient.selectHeaderContentType(contentTypes);
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] authNames = new String[] {  };
+    String[] localVarAuthNames = new String[] {  };
 
-    
-
-    
-    
-    TypeRef returnType = new TypeRef<List<StatsHistory>>() {};
-    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
-    
-    
-
-
-  }
-  
+    GenericType<List<StatsHistory>> localVarReturnType = new GenericType<List<StatsHistory>>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
 }

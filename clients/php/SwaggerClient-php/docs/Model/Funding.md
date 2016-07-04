@@ -1,0 +1,14 @@
+# Funding
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**timestamp** | [**\DateTime**](Date.md) |  | 
+**symbol** | **string** |  | 
+**funding_interval** | [**\DateTime**](Date.md) |  | [optional] 
+**funding_rate** | **double** |  | [optional] 
+**funding_rate_daily** | **double** |  | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

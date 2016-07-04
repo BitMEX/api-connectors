@@ -4,20 +4,24 @@ part of api;
 @Entity()
 class Funding {
   
+  @Property(name: 'timestamp')
   DateTime timestamp = null;
   
-  
+
+  @Property(name: 'symbol')
   String symbol = null;
   
-  
+
+  @Property(name: 'fundingInterval')
   DateTime fundingInterval = null;
   
+
+  @Property(name: 'fundingRate')
+  double fundingRate = null;
   
-  num fundingRate = null;
-  
-  
-  num fundingRateDaily = null;
-  
+
+  @Property(name: 'fundingRateDaily')
+  double fundingRateDaily = null;
   
   Funding();
 

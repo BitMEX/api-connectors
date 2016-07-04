@@ -11,13 +11,18 @@ class OrderBookApi {
     }
   }
 
-  
   /// Get current orderbook [deprecated, use /orderBook/L2].
   ///
   /// 
   Future<List<OrderBook>> orderBookGet(String symbol, Number depth) {
     Object postBody = null;
-    
+    // verify required params are set
+    if(    // verify required params are set
+    if() {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }
 
     // create path and map variables
     String path = "/orderBook".replaceAll("{format}","json");
@@ -28,11 +33,9 @@ class OrderBookApi {
     Map<String, String> formParams = {};
     if("null" != symbol)
       queryParams["symbol"] = symbol is List ? symbol.join(',') : symbol;
-    if("null" != depth)
+if("null" != depth)
       queryParams["depth"] = depth is List ? depth.join(',') : depth;
     
-    
-
     List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -46,8 +49,7 @@ class OrderBookApi {
         postBody = mp;
     }
     else {
-      
-    }
+          }
 
     return apiClient.invokeAPI(basePath, path, 'GET', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
       if(response.statusCode >= 400) {
@@ -61,13 +63,18 @@ class OrderBookApi {
       }
     });
   }
-  
   /// Get current orderbook in vertical format.
   ///
   /// 
   Future<List<OrderBookL2>> orderBookGetL2(String symbol, Number depth) {
     Object postBody = null;
-    
+    // verify required params are set
+    if(    // verify required params are set
+    if() {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }
 
     // create path and map variables
     String path = "/orderBook/L2".replaceAll("{format}","json");
@@ -78,11 +85,9 @@ class OrderBookApi {
     Map<String, String> formParams = {};
     if("null" != symbol)
       queryParams["symbol"] = symbol is List ? symbol.join(',') : symbol;
-    if("null" != depth)
+if("null" != depth)
       queryParams["depth"] = depth is List ? depth.join(',') : depth;
     
-    
-
     List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -96,8 +101,7 @@ class OrderBookApi {
         postBody = mp;
     }
     else {
-      
-    }
+          }
 
     return apiClient.invokeAPI(basePath, path, 'GET', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
       if(response.statusCode >= 400) {
@@ -111,5 +115,4 @@ class OrderBookApi {
       }
     });
   }
-  
 }

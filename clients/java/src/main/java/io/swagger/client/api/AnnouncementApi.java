@@ -1,17 +1,23 @@
 package io.swagger.client.api;
 
+import com.sun.jersey.api.client.GenericType;
+
 import io.swagger.client.ApiException;
 import io.swagger.client.ApiClient;
 import io.swagger.client.Configuration;
+import io.swagger.client.model.*;
 import io.swagger.client.Pair;
-import io.swagger.client.TypeRef;
 
 import io.swagger.client.model.Announcement;
 import io.swagger.client.model.Error;
 
-import java.util.*;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-04T18:25:18.235-05:00")
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-04T18:27:59.355-05:00")
 public class AnnouncementApi {
   private ApiClient apiClient;
 
@@ -31,102 +37,76 @@ public class AnnouncementApi {
     this.apiClient = apiClient;
   }
 
-  
   /**
    * Get site announcements.
    * 
-   * @param columns Array of column names to fetch. If omitted, will return all columns.
+   * @param columns Array of column names to fetch. If omitted, will return all columns. (optional)
    * @return List<Announcement>
+   * @throws ApiException if fails to make API call
    */
-  public List<Announcement> announcementGet (String columns) throws ApiException {
-    Object postBody = null;
-    byte[] postBinaryBody = null;
+  public List<Announcement> announcementGet(String columns) throws ApiException {
+    Object localVarPostBody = null;
     
     // create path and map variables
-    String path = "/announcement".replaceAll("\\{format\\}","json");
+    String localVarPath = "/announcement".replaceAll("\\{format\\}","json");
 
     // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, Object> formParams = new HashMap<String, Object>();
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "columns", columns));
 
     
-    queryParams.addAll(apiClient.parameterToPairs("", "columns", columns));
     
-
-    
-
-    
-
-    final String[] accepts = {
+    final String[] localVarAccepts = {
       "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
     };
-    final String accept = apiClient.selectHeaderAccept(accepts);
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
-    final String[] contentTypes = {
+    final String[] localVarContentTypes = {
       "application/json", "application/x-www-form-urlencoded"
     };
-    final String contentType = apiClient.selectHeaderContentType(contentTypes);
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] authNames = new String[] {  };
+    String[] localVarAuthNames = new String[] {  };
 
-    
-
-    
-    
-    TypeRef returnType = new TypeRef<List<Announcement>>() {};
-    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
-    
-    
-
-
-  }
-  
+    GenericType<List<Announcement>> localVarReturnType = new GenericType<List<Announcement>>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
   /**
    * Get urgent (banner) announcements.
    * 
    * @return List<Announcement>
+   * @throws ApiException if fails to make API call
    */
-  public List<Announcement> announcementGetUrgent () throws ApiException {
-    Object postBody = null;
-    byte[] postBinaryBody = null;
+  public List<Announcement> announcementGetUrgent() throws ApiException {
+    Object localVarPostBody = null;
     
     // create path and map variables
-    String path = "/announcement/urgent".replaceAll("\\{format\\}","json");
+    String localVarPath = "/announcement/urgent".replaceAll("\\{format\\}","json");
 
     // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, Object> formParams = new HashMap<String, Object>();
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
 
     
-
     
-
-    
-
-    final String[] accepts = {
+    final String[] localVarAccepts = {
       "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
     };
-    final String accept = apiClient.selectHeaderAccept(accepts);
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
-    final String[] contentTypes = {
+    final String[] localVarContentTypes = {
       "application/json", "application/x-www-form-urlencoded"
     };
-    final String contentType = apiClient.selectHeaderContentType(contentTypes);
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] authNames = new String[] {  };
+    String[] localVarAuthNames = new String[] {  };
 
-    
-
-    
-    
-    TypeRef returnType = new TypeRef<List<Announcement>>() {};
-    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
-    
-    
-
-
-  }
-  
+    GenericType<List<Announcement>> localVarReturnType = new GenericType<List<Announcement>>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
 }

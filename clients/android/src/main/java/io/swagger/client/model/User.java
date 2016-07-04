@@ -46,7 +46,6 @@ public class User  {
   @SerializedName("disabled")
   private Boolean disabled = null;
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -57,7 +56,6 @@ public class User  {
     this.id = id;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -68,7 +66,6 @@ public class User  {
     this.ownerId = ownerId;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -79,7 +76,6 @@ public class User  {
     this.firstname = firstname;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -90,7 +86,6 @@ public class User  {
     this.lastname = lastname;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -101,7 +96,6 @@ public class User  {
     this.status = status;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -112,7 +106,6 @@ public class User  {
     this.username = username;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -123,7 +116,6 @@ public class User  {
     this.email = email;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -134,7 +126,6 @@ public class User  {
     this.phone = phone;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -145,7 +136,6 @@ public class User  {
     this.countryCode = countryCode;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -156,7 +146,6 @@ public class User  {
     this.created = created;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -167,7 +156,6 @@ public class User  {
     this.lastUpdated = lastUpdated;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -178,7 +166,6 @@ public class User  {
     this.preferences = preferences;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -189,7 +176,6 @@ public class User  {
     this.tFAEnabled = tFAEnabled;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -200,7 +186,6 @@ public class User  {
     this.affiliateID = affiliateID;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -211,7 +196,6 @@ public class User  {
     this.pgpPubKey = pgpPubKey;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -222,7 +206,6 @@ public class User  {
     this.country = country;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -233,7 +216,57 @@ public class User  {
     this.disabled = disabled;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    User user = (User) o;
+    return (id == null ? user.id == null : id.equals(user.id)) &&
+        (ownerId == null ? user.ownerId == null : ownerId.equals(user.ownerId)) &&
+        (firstname == null ? user.firstname == null : firstname.equals(user.firstname)) &&
+        (lastname == null ? user.lastname == null : lastname.equals(user.lastname)) &&
+        (status == null ? user.status == null : status.equals(user.status)) &&
+        (username == null ? user.username == null : username.equals(user.username)) &&
+        (email == null ? user.email == null : email.equals(user.email)) &&
+        (phone == null ? user.phone == null : phone.equals(user.phone)) &&
+        (countryCode == null ? user.countryCode == null : countryCode.equals(user.countryCode)) &&
+        (created == null ? user.created == null : created.equals(user.created)) &&
+        (lastUpdated == null ? user.lastUpdated == null : lastUpdated.equals(user.lastUpdated)) &&
+        (preferences == null ? user.preferences == null : preferences.equals(user.preferences)) &&
+        (tFAEnabled == null ? user.tFAEnabled == null : tFAEnabled.equals(user.tFAEnabled)) &&
+        (affiliateID == null ? user.affiliateID == null : affiliateID.equals(user.affiliateID)) &&
+        (pgpPubKey == null ? user.pgpPubKey == null : pgpPubKey.equals(user.pgpPubKey)) &&
+        (country == null ? user.country == null : country.equals(user.country)) &&
+        (disabled == null ? user.disabled == null : disabled.equals(user.disabled));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (id == null ? 0: id.hashCode());
+    result = 31 * result + (ownerId == null ? 0: ownerId.hashCode());
+    result = 31 * result + (firstname == null ? 0: firstname.hashCode());
+    result = 31 * result + (lastname == null ? 0: lastname.hashCode());
+    result = 31 * result + (status == null ? 0: status.hashCode());
+    result = 31 * result + (username == null ? 0: username.hashCode());
+    result = 31 * result + (email == null ? 0: email.hashCode());
+    result = 31 * result + (phone == null ? 0: phone.hashCode());
+    result = 31 * result + (countryCode == null ? 0: countryCode.hashCode());
+    result = 31 * result + (created == null ? 0: created.hashCode());
+    result = 31 * result + (lastUpdated == null ? 0: lastUpdated.hashCode());
+    result = 31 * result + (preferences == null ? 0: preferences.hashCode());
+    result = 31 * result + (tFAEnabled == null ? 0: tFAEnabled.hashCode());
+    result = 31 * result + (affiliateID == null ? 0: affiliateID.hashCode());
+    result = 31 * result + (pgpPubKey == null ? 0: pgpPubKey.hashCode());
+    result = 31 * result + (country == null ? 0: country.hashCode());
+    result = 31 * result + (disabled == null ? 0: disabled.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

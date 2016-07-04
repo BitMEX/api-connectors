@@ -1,16 +1,22 @@
 package io.swagger.client.api;
 
+import com.sun.jersey.api.client.GenericType;
+
 import io.swagger.client.ApiException;
 import io.swagger.client.ApiClient;
 import io.swagger.client.Configuration;
+import io.swagger.client.model.*;
 import io.swagger.client.Pair;
-import io.swagger.client.TypeRef;
 
 import io.swagger.client.model.Leaderboard;
 
-import java.util.*;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-04T18:25:18.235-05:00")
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-04T18:27:59.355-05:00")
 public class LeaderboardApi {
   private ApiClient apiClient;
 
@@ -30,55 +36,41 @@ public class LeaderboardApi {
     this.apiClient = apiClient;
   }
 
-  
   /**
    * Get current leaderboard.
    * 
-   * @param method Ranking type. Options: \&quot;notional\&quot;, \&quot;ROE\&quot;
+   * @param method Ranking type. Options: \&quot;notional\&quot;, \&quot;ROE\&quot; (optional, default to notional)
    * @return List<Leaderboard>
+   * @throws ApiException if fails to make API call
    */
-  public List<Leaderboard> leaderboardGet (String method) throws ApiException {
-    Object postBody = null;
-    byte[] postBinaryBody = null;
+  public List<Leaderboard> leaderboardGet(String method) throws ApiException {
+    Object localVarPostBody = null;
     
     // create path and map variables
-    String path = "/leaderboard".replaceAll("\\{format\\}","json");
+    String localVarPath = "/leaderboard".replaceAll("\\{format\\}","json");
 
     // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, Object> formParams = new HashMap<String, Object>();
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "method", method));
 
     
-    queryParams.addAll(apiClient.parameterToPairs("", "method", method));
     
-
-    
-
-    
-
-    final String[] accepts = {
+    final String[] localVarAccepts = {
       "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
     };
-    final String accept = apiClient.selectHeaderAccept(accepts);
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
-    final String[] contentTypes = {
+    final String[] localVarContentTypes = {
       "application/json", "application/x-www-form-urlencoded"
     };
-    final String contentType = apiClient.selectHeaderContentType(contentTypes);
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] authNames = new String[] {  };
+    String[] localVarAuthNames = new String[] {  };
 
-    
-
-    
-    
-    TypeRef returnType = new TypeRef<List<Leaderboard>>() {};
-    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
-    
-    
-
-
-  }
-  
+    GenericType<List<Leaderboard>> localVarReturnType = new GenericType<List<Leaderboard>>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
 }

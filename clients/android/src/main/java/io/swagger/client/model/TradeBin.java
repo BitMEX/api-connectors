@@ -1,7 +1,7 @@
 package io.swagger.client.model;
 
-import java.util.Date;
 import java.math.BigDecimal;
+import java.util.Date;
 
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -39,7 +39,6 @@ public class TradeBin  {
   @SerializedName("id")
   private Double id = null;
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -50,7 +49,6 @@ public class TradeBin  {
     this.timestamp = timestamp;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -61,7 +59,6 @@ public class TradeBin  {
     this.symbol = symbol;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -72,7 +69,6 @@ public class TradeBin  {
     this.open = open;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -83,7 +79,6 @@ public class TradeBin  {
     this.high = high;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -94,7 +89,6 @@ public class TradeBin  {
     this.low = low;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -105,7 +99,6 @@ public class TradeBin  {
     this.close = close;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -116,7 +109,6 @@ public class TradeBin  {
     this.trades = trades;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -127,7 +119,6 @@ public class TradeBin  {
     this.volume = volume;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -138,7 +129,6 @@ public class TradeBin  {
     this.vwap = vwap;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -149,7 +139,6 @@ public class TradeBin  {
     this.lastSize = lastSize;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -160,7 +149,6 @@ public class TradeBin  {
     this.turnover = turnover;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -171,7 +159,6 @@ public class TradeBin  {
     this.homeNotional = homeNotional;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -182,7 +169,6 @@ public class TradeBin  {
     this.foreignNotional = foreignNotional;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -193,7 +179,51 @@ public class TradeBin  {
     this.id = id;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    TradeBin tradeBin = (TradeBin) o;
+    return (timestamp == null ? tradeBin.timestamp == null : timestamp.equals(tradeBin.timestamp)) &&
+        (symbol == null ? tradeBin.symbol == null : symbol.equals(tradeBin.symbol)) &&
+        (open == null ? tradeBin.open == null : open.equals(tradeBin.open)) &&
+        (high == null ? tradeBin.high == null : high.equals(tradeBin.high)) &&
+        (low == null ? tradeBin.low == null : low.equals(tradeBin.low)) &&
+        (close == null ? tradeBin.close == null : close.equals(tradeBin.close)) &&
+        (trades == null ? tradeBin.trades == null : trades.equals(tradeBin.trades)) &&
+        (volume == null ? tradeBin.volume == null : volume.equals(tradeBin.volume)) &&
+        (vwap == null ? tradeBin.vwap == null : vwap.equals(tradeBin.vwap)) &&
+        (lastSize == null ? tradeBin.lastSize == null : lastSize.equals(tradeBin.lastSize)) &&
+        (turnover == null ? tradeBin.turnover == null : turnover.equals(tradeBin.turnover)) &&
+        (homeNotional == null ? tradeBin.homeNotional == null : homeNotional.equals(tradeBin.homeNotional)) &&
+        (foreignNotional == null ? tradeBin.foreignNotional == null : foreignNotional.equals(tradeBin.foreignNotional)) &&
+        (id == null ? tradeBin.id == null : id.equals(tradeBin.id));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (timestamp == null ? 0: timestamp.hashCode());
+    result = 31 * result + (symbol == null ? 0: symbol.hashCode());
+    result = 31 * result + (open == null ? 0: open.hashCode());
+    result = 31 * result + (high == null ? 0: high.hashCode());
+    result = 31 * result + (low == null ? 0: low.hashCode());
+    result = 31 * result + (close == null ? 0: close.hashCode());
+    result = 31 * result + (trades == null ? 0: trades.hashCode());
+    result = 31 * result + (volume == null ? 0: volume.hashCode());
+    result = 31 * result + (vwap == null ? 0: vwap.hashCode());
+    result = 31 * result + (lastSize == null ? 0: lastSize.hashCode());
+    result = 31 * result + (turnover == null ? 0: turnover.hashCode());
+    result = 31 * result + (homeNotional == null ? 0: homeNotional.hashCode());
+    result = 31 * result + (foreignNotional == null ? 0: foreignNotional.hashCode());
+    result = 31 * result + (id == null ? 0: id.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

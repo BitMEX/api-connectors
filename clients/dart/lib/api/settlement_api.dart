@@ -11,13 +11,36 @@ class SettlementApi {
     }
   }
 
-  
   /// Get settlement history.
   ///
   /// 
   Future<List<Settlement>> settlementGet(String symbol, String filter, String columns, Number count, Number start, bool reverse, DateTime startTime, DateTime endTime) {
     Object postBody = null;
-    
+    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if() {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }
 
     // create path and map variables
     String path = "/settlement".replaceAll("{format}","json");
@@ -28,23 +51,21 @@ class SettlementApi {
     Map<String, String> formParams = {};
     if("null" != symbol)
       queryParams["symbol"] = symbol is List ? symbol.join(',') : symbol;
-    if("null" != filter)
+if("null" != filter)
       queryParams["filter"] = filter is List ? filter.join(',') : filter;
-    if("null" != columns)
+if("null" != columns)
       queryParams["columns"] = columns is List ? columns.join(',') : columns;
-    if("null" != count)
+if("null" != count)
       queryParams["count"] = count is List ? count.join(',') : count;
-    if("null" != start)
+if("null" != start)
       queryParams["start"] = start is List ? start.join(',') : start;
-    if("null" != reverse)
+if("null" != reverse)
       queryParams["reverse"] = reverse is List ? reverse.join(',') : reverse;
-    if("null" != startTime)
+if("null" != startTime)
       queryParams["startTime"] = startTime is List ? startTime.join(',') : startTime;
-    if("null" != endTime)
+if("null" != endTime)
       queryParams["endTime"] = endTime is List ? endTime.join(',') : endTime;
     
-    
-
     List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -58,8 +79,7 @@ class SettlementApi {
         postBody = mp;
     }
     else {
-      
-    }
+          }
 
     return apiClient.invokeAPI(basePath, path, 'GET', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
       if(response.statusCode >= 400) {
@@ -73,5 +93,4 @@ class SettlementApi {
       }
     });
   }
-  
 }

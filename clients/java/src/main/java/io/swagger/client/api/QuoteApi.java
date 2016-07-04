@@ -1,19 +1,25 @@
 package io.swagger.client.api;
 
+import com.sun.jersey.api.client.GenericType;
+
 import io.swagger.client.ApiException;
 import io.swagger.client.ApiClient;
 import io.swagger.client.Configuration;
+import io.swagger.client.model.*;
 import io.swagger.client.Pair;
-import io.swagger.client.TypeRef;
 
 import io.swagger.client.model.Quote;
 import io.swagger.client.model.Error;
+import org.joda.time.LocalDate;
 import java.math.BigDecimal;
-import java.util.Date;
 
-import java.util.*;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-04T18:25:18.235-05:00")
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-04T18:27:59.355-05:00")
 public class QuoteApi {
   private ApiClient apiClient;
 
@@ -33,150 +39,108 @@ public class QuoteApi {
     this.apiClient = apiClient;
   }
 
-  
   /**
    * Get Quotes.
    * 
-   * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
-   * @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
-   * @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-   * @param count Number of results to fetch.
-   * @param start Starting point for results.
-   * @param reverse If true, will sort results newest first.
-   * @param startTime Starting date filter for results.
-   * @param endTime Ending date filter for results.
+   * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBU:monthly&#x60;. Timeframes are &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, and &#x60;biquarterly&#x60;. (optional)
+   * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. (optional)
+   * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
+   * @param count Number of results to fetch. (optional, default to 100)
+   * @param start Starting point for results. (optional, default to 0)
+   * @param reverse If true, will sort results newest first. (optional, default to false)
+   * @param startTime Starting date filter for results. (optional)
+   * @param endTime Ending date filter for results. (optional)
    * @return List<Quote>
+   * @throws ApiException if fails to make API call
    */
-  public List<Quote> quoteGet (String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, Date startTime, Date endTime) throws ApiException {
-    Object postBody = null;
-    byte[] postBinaryBody = null;
+  public List<Quote> quoteGet(String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, LocalDate startTime, LocalDate endTime) throws ApiException {
+    Object localVarPostBody = null;
     
     // create path and map variables
-    String path = "/quote".replaceAll("\\{format\\}","json");
+    String localVarPath = "/quote".replaceAll("\\{format\\}","json");
 
     // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, Object> formParams = new HashMap<String, Object>();
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "symbol", symbol));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "filter", filter));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "columns", columns));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "count", count));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "start", start));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "reverse", reverse));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "startTime", startTime));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "endTime", endTime));
 
     
-    queryParams.addAll(apiClient.parameterToPairs("", "symbol", symbol));
     
-    queryParams.addAll(apiClient.parameterToPairs("", "filter", filter));
-    
-    queryParams.addAll(apiClient.parameterToPairs("", "columns", columns));
-    
-    queryParams.addAll(apiClient.parameterToPairs("", "count", count));
-    
-    queryParams.addAll(apiClient.parameterToPairs("", "start", start));
-    
-    queryParams.addAll(apiClient.parameterToPairs("", "reverse", reverse));
-    
-    queryParams.addAll(apiClient.parameterToPairs("", "startTime", startTime));
-    
-    queryParams.addAll(apiClient.parameterToPairs("", "endTime", endTime));
-    
-
-    
-
-    
-
-    final String[] accepts = {
+    final String[] localVarAccepts = {
       "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
     };
-    final String accept = apiClient.selectHeaderAccept(accepts);
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
-    final String[] contentTypes = {
+    final String[] localVarContentTypes = {
       "application/json", "application/x-www-form-urlencoded"
     };
-    final String contentType = apiClient.selectHeaderContentType(contentTypes);
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] authNames = new String[] {  };
+    String[] localVarAuthNames = new String[] {  };
 
-    
-
-    
-    
-    TypeRef returnType = new TypeRef<List<Quote>>() {};
-    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
-    
-    
-
-
-  }
-  
+    GenericType<List<Quote>> localVarReturnType = new GenericType<List<Quote>>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
   /**
    * Get previous quotes in time buckets.
    * 
-   * @param binSize Time interval to bucket by. Available options: [&#39;1m&#39;, &#39;5m&#39;, &#39;1h&#39;, &#39;1d&#39;].
-   * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
-   * @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
-   * @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-   * @param count Number of results to fetch.
-   * @param start Starting point for results.
-   * @param reverse If true, will sort results newest first.
-   * @param startTime Starting date filter for results.
-   * @param endTime Ending date filter for results.
+   * @param binSize Time interval to bucket by. Available options: [&#39;1m&#39;, &#39;5m&#39;, &#39;1h&#39;, &#39;1d&#39;]. (optional)
+   * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBU:monthly&#x60;. Timeframes are &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, and &#x60;biquarterly&#x60;. (optional)
+   * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. (optional)
+   * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
+   * @param count Number of results to fetch. (optional, default to 100)
+   * @param start Starting point for results. (optional, default to 0)
+   * @param reverse If true, will sort results newest first. (optional, default to false)
+   * @param startTime Starting date filter for results. (optional)
+   * @param endTime Ending date filter for results. (optional)
    * @return List<Quote>
+   * @throws ApiException if fails to make API call
    */
-  public List<Quote> quoteGetBucketed (String binSize, String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, Date startTime, Date endTime) throws ApiException {
-    Object postBody = null;
-    byte[] postBinaryBody = null;
+  public List<Quote> quoteGetBucketed(String binSize, String symbol, String filter, String columns, BigDecimal count, BigDecimal start, Boolean reverse, LocalDate startTime, LocalDate endTime) throws ApiException {
+    Object localVarPostBody = null;
     
     // create path and map variables
-    String path = "/quote/bucketed".replaceAll("\\{format\\}","json");
+    String localVarPath = "/quote/bucketed".replaceAll("\\{format\\}","json");
 
     // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, Object> formParams = new HashMap<String, Object>();
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "binSize", binSize));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "symbol", symbol));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "filter", filter));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "columns", columns));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "count", count));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "start", start));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "reverse", reverse));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "startTime", startTime));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "endTime", endTime));
 
     
-    queryParams.addAll(apiClient.parameterToPairs("", "binSize", binSize));
     
-    queryParams.addAll(apiClient.parameterToPairs("", "symbol", symbol));
-    
-    queryParams.addAll(apiClient.parameterToPairs("", "filter", filter));
-    
-    queryParams.addAll(apiClient.parameterToPairs("", "columns", columns));
-    
-    queryParams.addAll(apiClient.parameterToPairs("", "count", count));
-    
-    queryParams.addAll(apiClient.parameterToPairs("", "start", start));
-    
-    queryParams.addAll(apiClient.parameterToPairs("", "reverse", reverse));
-    
-    queryParams.addAll(apiClient.parameterToPairs("", "startTime", startTime));
-    
-    queryParams.addAll(apiClient.parameterToPairs("", "endTime", endTime));
-    
-
-    
-
-    
-
-    final String[] accepts = {
+    final String[] localVarAccepts = {
       "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
     };
-    final String accept = apiClient.selectHeaderAccept(accepts);
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
-    final String[] contentTypes = {
+    final String[] localVarContentTypes = {
       "application/json", "application/x-www-form-urlencoded"
     };
-    final String contentType = apiClient.selectHeaderContentType(contentTypes);
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] authNames = new String[] {  };
+    String[] localVarAuthNames = new String[] {  };
 
-    
-
-    
-    
-    TypeRef returnType = new TypeRef<List<Quote>>() {};
-    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
-    
-    
-
-
-  }
-  
+    GenericType<List<Quote>> localVarReturnType = new GenericType<List<Quote>>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
 }

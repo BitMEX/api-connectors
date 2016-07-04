@@ -1,7 +1,7 @@
 package io.swagger.client.model;
 
-import java.util.Date;
 import java.math.BigDecimal;
+import java.util.Date;
 
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -17,7 +17,6 @@ public class Insurance  {
   @SerializedName("walletBalance")
   private BigDecimal walletBalance = null;
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -28,7 +27,6 @@ public class Insurance  {
     this.currency = currency;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -39,7 +37,6 @@ public class Insurance  {
     this.timestamp = timestamp;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -50,7 +47,29 @@ public class Insurance  {
     this.walletBalance = walletBalance;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Insurance insurance = (Insurance) o;
+    return (currency == null ? insurance.currency == null : currency.equals(insurance.currency)) &&
+        (timestamp == null ? insurance.timestamp == null : timestamp.equals(insurance.timestamp)) &&
+        (walletBalance == null ? insurance.walletBalance == null : walletBalance.equals(insurance.walletBalance));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (currency == null ? 0: currency.hashCode());
+    result = 31 * result + (timestamp == null ? 0: timestamp.hashCode());
+    result = 31 * result + (walletBalance == null ? 0: walletBalance.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

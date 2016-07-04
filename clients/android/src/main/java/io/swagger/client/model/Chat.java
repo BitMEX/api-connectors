@@ -23,7 +23,6 @@ public class Chat  {
   @SerializedName("fromBot")
   private Boolean fromBot = null;
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -34,7 +33,6 @@ public class Chat  {
     this.id = id;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -45,7 +43,6 @@ public class Chat  {
     this.date = date;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -56,7 +53,6 @@ public class Chat  {
     this.user = user;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -67,7 +63,6 @@ public class Chat  {
     this.message = message;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -78,7 +73,6 @@ public class Chat  {
     this.html = html;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -89,7 +83,35 @@ public class Chat  {
     this.fromBot = fromBot;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Chat chat = (Chat) o;
+    return (id == null ? chat.id == null : id.equals(chat.id)) &&
+        (date == null ? chat.date == null : date.equals(chat.date)) &&
+        (user == null ? chat.user == null : user.equals(chat.user)) &&
+        (message == null ? chat.message == null : message.equals(chat.message)) &&
+        (html == null ? chat.html == null : html.equals(chat.html)) &&
+        (fromBot == null ? chat.fromBot == null : fromBot.equals(chat.fromBot));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (id == null ? 0: id.hashCode());
+    result = 31 * result + (date == null ? 0: date.hashCode());
+    result = 31 * result + (user == null ? 0: user.hashCode());
+    result = 31 * result + (message == null ? 0: message.hashCode());
+    result = 31 * result + (html == null ? 0: html.hashCode());
+    result = 31 * result + (fromBot == null ? 0: fromBot.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

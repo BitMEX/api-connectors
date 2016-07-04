@@ -4,11 +4,12 @@ part of api;
 @Entity()
 class InstrumentInterval {
   
+  @Property(name: 'intervals')
   List<String> intervals = [];
   
-  
+
+  @Property(name: 'symbols')
   List<String> symbols = [];
-  
   
   InstrumentInterval();
 

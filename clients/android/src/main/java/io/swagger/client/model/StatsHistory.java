@@ -1,7 +1,7 @@
 package io.swagger.client.model;
 
-import java.util.Date;
 import java.math.BigDecimal;
+import java.util.Date;
 
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -21,7 +21,6 @@ public class StatsHistory  {
   @SerializedName("turnover")
   private BigDecimal turnover = null;
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -32,7 +31,6 @@ public class StatsHistory  {
     this.date = date;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -43,7 +41,6 @@ public class StatsHistory  {
     this.rootSymbol = rootSymbol;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -54,7 +51,6 @@ public class StatsHistory  {
     this.currency = currency;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -65,7 +61,6 @@ public class StatsHistory  {
     this.volume = volume;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -76,7 +71,33 @@ public class StatsHistory  {
     this.turnover = turnover;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    StatsHistory statsHistory = (StatsHistory) o;
+    return (date == null ? statsHistory.date == null : date.equals(statsHistory.date)) &&
+        (rootSymbol == null ? statsHistory.rootSymbol == null : rootSymbol.equals(statsHistory.rootSymbol)) &&
+        (currency == null ? statsHistory.currency == null : currency.equals(statsHistory.currency)) &&
+        (volume == null ? statsHistory.volume == null : volume.equals(statsHistory.volume)) &&
+        (turnover == null ? statsHistory.turnover == null : turnover.equals(statsHistory.turnover));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (date == null ? 0: date.hashCode());
+    result = 31 * result + (rootSymbol == null ? 0: rootSymbol.hashCode());
+    result = 31 * result + (currency == null ? 0: currency.hashCode());
+    result = 31 * result + (volume == null ? 0: volume.hashCode());
+    result = 31 * result + (turnover == null ? 0: turnover.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

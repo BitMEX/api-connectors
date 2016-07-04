@@ -4,17 +4,20 @@ part of api;
 @Entity()
 class Leaderboard {
   
+  @Property(name: 'name')
   String name = null;
   
-  
+
+  @Property(name: 'isRealName')
   bool isRealName = null;
   
-  
+
+  @Property(name: 'isMe')
   bool isMe = null;
   
-  
-  num profit = null;
-  
+
+  @Property(name: 'profit')
+  double profit = null;
   
   Leaderboard();
 

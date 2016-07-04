@@ -35,7 +35,6 @@ public class Transaction  {
   @SerializedName("timestamp")
   private Date timestamp = null;
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -46,7 +45,6 @@ public class Transaction  {
     this.transactID = transactID;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -57,7 +55,6 @@ public class Transaction  {
     this.account = account;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -68,7 +65,6 @@ public class Transaction  {
     this.currency = currency;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -79,7 +75,6 @@ public class Transaction  {
     this.transactType = transactType;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -90,7 +85,6 @@ public class Transaction  {
     this.amount = amount;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -101,7 +95,6 @@ public class Transaction  {
     this.fee = fee;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -112,7 +105,6 @@ public class Transaction  {
     this.transactStatus = transactStatus;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -123,7 +115,6 @@ public class Transaction  {
     this.address = address;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -134,7 +125,6 @@ public class Transaction  {
     this.tx = tx;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -145,7 +135,6 @@ public class Transaction  {
     this.text = text;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -156,7 +145,6 @@ public class Transaction  {
     this.transactTime = transactTime;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -167,7 +155,47 @@ public class Transaction  {
     this.timestamp = timestamp;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Transaction transaction = (Transaction) o;
+    return (transactID == null ? transaction.transactID == null : transactID.equals(transaction.transactID)) &&
+        (account == null ? transaction.account == null : account.equals(transaction.account)) &&
+        (currency == null ? transaction.currency == null : currency.equals(transaction.currency)) &&
+        (transactType == null ? transaction.transactType == null : transactType.equals(transaction.transactType)) &&
+        (amount == null ? transaction.amount == null : amount.equals(transaction.amount)) &&
+        (fee == null ? transaction.fee == null : fee.equals(transaction.fee)) &&
+        (transactStatus == null ? transaction.transactStatus == null : transactStatus.equals(transaction.transactStatus)) &&
+        (address == null ? transaction.address == null : address.equals(transaction.address)) &&
+        (tx == null ? transaction.tx == null : tx.equals(transaction.tx)) &&
+        (text == null ? transaction.text == null : text.equals(transaction.text)) &&
+        (transactTime == null ? transaction.transactTime == null : transactTime.equals(transaction.transactTime)) &&
+        (timestamp == null ? transaction.timestamp == null : timestamp.equals(transaction.timestamp));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (transactID == null ? 0: transactID.hashCode());
+    result = 31 * result + (account == null ? 0: account.hashCode());
+    result = 31 * result + (currency == null ? 0: currency.hashCode());
+    result = 31 * result + (transactType == null ? 0: transactType.hashCode());
+    result = 31 * result + (amount == null ? 0: amount.hashCode());
+    result = 31 * result + (fee == null ? 0: fee.hashCode());
+    result = 31 * result + (transactStatus == null ? 0: transactStatus.hashCode());
+    result = 31 * result + (address == null ? 0: address.hashCode());
+    result = 31 * result + (tx == null ? 0: tx.hashCode());
+    result = 31 * result + (text == null ? 0: text.hashCode());
+    result = 31 * result + (transactTime == null ? 0: transactTime.hashCode());
+    result = 31 * result + (timestamp == null ? 0: timestamp.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

@@ -4,17 +4,20 @@ part of api;
 @Entity()
 class AccessToken {
   
+  @Property(name: 'id')
   String id = null;
   
-  /* time to live in seconds (2 weeks by default) */
-  num ttl = 1209600.0;
+/* time to live in seconds (2 weeks by default) */
+  @Property(name: 'ttl')
+  double ttl = 1209600.0;
   
-  
+
+  @Property(name: 'created')
   DateTime created = null;
   
-  
-  num userId = null;
-  
+
+  @Property(name: 'userId')
+  double userId = null;
   
   AccessToken();
 

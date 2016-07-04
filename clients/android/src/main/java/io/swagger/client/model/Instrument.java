@@ -1,7 +1,7 @@
 package io.swagger.client.model;
 
-import java.util.Date;
 import java.math.BigDecimal;
+import java.util.Date;
 
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -197,7 +197,6 @@ public class Instrument  {
   @SerializedName("timestamp")
   private Date timestamp = null;
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -208,7 +207,6 @@ public class Instrument  {
     this.symbol = symbol;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -219,7 +217,6 @@ public class Instrument  {
     this.rootSymbol = rootSymbol;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -230,7 +227,6 @@ public class Instrument  {
     this.state = state;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -241,7 +237,6 @@ public class Instrument  {
     this.typ = typ;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -252,7 +247,6 @@ public class Instrument  {
     this.listing = listing;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -263,7 +257,6 @@ public class Instrument  {
     this.front = front;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -274,7 +267,6 @@ public class Instrument  {
     this.expiry = expiry;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -285,7 +277,6 @@ public class Instrument  {
     this.settle = settle;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -296,7 +287,6 @@ public class Instrument  {
     this.relistInterval = relistInterval;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -307,7 +297,6 @@ public class Instrument  {
     this.inverseLeg = inverseLeg;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -318,7 +307,6 @@ public class Instrument  {
     this.sellLeg = sellLeg;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -329,7 +317,6 @@ public class Instrument  {
     this.buyLeg = buyLeg;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -340,7 +327,6 @@ public class Instrument  {
     this.positionCurrency = positionCurrency;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -351,7 +337,6 @@ public class Instrument  {
     this.underlying = underlying;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -362,7 +347,6 @@ public class Instrument  {
     this.quoteCurrency = quoteCurrency;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -373,7 +357,6 @@ public class Instrument  {
     this.underlyingSymbol = underlyingSymbol;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -384,7 +367,6 @@ public class Instrument  {
     this.reference = reference;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -395,7 +377,6 @@ public class Instrument  {
     this.referenceSymbol = referenceSymbol;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -406,7 +387,6 @@ public class Instrument  {
     this.calcInterval = calcInterval;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -417,7 +397,6 @@ public class Instrument  {
     this.publishInterval = publishInterval;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -428,7 +407,6 @@ public class Instrument  {
     this.publishTime = publishTime;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -439,7 +417,6 @@ public class Instrument  {
     this.maxOrderQty = maxOrderQty;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -450,7 +427,6 @@ public class Instrument  {
     this.maxPrice = maxPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -461,7 +437,6 @@ public class Instrument  {
     this.lotSize = lotSize;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -472,7 +447,6 @@ public class Instrument  {
     this.tickSize = tickSize;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -483,7 +457,6 @@ public class Instrument  {
     this.multiplier = multiplier;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -494,7 +467,6 @@ public class Instrument  {
     this.settlCurrency = settlCurrency;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -505,7 +477,6 @@ public class Instrument  {
     this.underlyingToPositionMultiplier = underlyingToPositionMultiplier;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -516,7 +487,6 @@ public class Instrument  {
     this.underlyingToSettleMultiplier = underlyingToSettleMultiplier;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -527,7 +497,6 @@ public class Instrument  {
     this.quoteToSettleMultiplier = quoteToSettleMultiplier;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -538,7 +507,6 @@ public class Instrument  {
     this.isQuanto = isQuanto;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -549,7 +517,6 @@ public class Instrument  {
     this.isInverse = isInverse;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -560,7 +527,6 @@ public class Instrument  {
     this.initMargin = initMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -571,7 +537,6 @@ public class Instrument  {
     this.maintMargin = maintMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -582,7 +547,6 @@ public class Instrument  {
     this.limit = limit;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -593,7 +557,6 @@ public class Instrument  {
     this.capped = capped;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -604,7 +567,6 @@ public class Instrument  {
     this.taxed = taxed;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -615,7 +577,6 @@ public class Instrument  {
     this.makerFee = makerFee;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -626,7 +587,6 @@ public class Instrument  {
     this.takerFee = takerFee;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -637,7 +597,6 @@ public class Instrument  {
     this.settlementFee = settlementFee;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -648,7 +607,6 @@ public class Instrument  {
     this.insuranceFee = insuranceFee;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -659,7 +617,6 @@ public class Instrument  {
     this.fundingBaseSymbol = fundingBaseSymbol;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -670,7 +627,6 @@ public class Instrument  {
     this.fundingQuoteSymbol = fundingQuoteSymbol;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -681,7 +637,6 @@ public class Instrument  {
     this.fundingPremiumSymbol = fundingPremiumSymbol;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -692,7 +647,6 @@ public class Instrument  {
     this.fundingTimestamp = fundingTimestamp;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -703,7 +657,6 @@ public class Instrument  {
     this.fundingInterval = fundingInterval;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -714,7 +667,6 @@ public class Instrument  {
     this.fundingRate = fundingRate;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -725,7 +677,6 @@ public class Instrument  {
     this.indicativeFundingRate = indicativeFundingRate;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -736,7 +687,6 @@ public class Instrument  {
     this.rebalanceTimestamp = rebalanceTimestamp;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -747,7 +697,6 @@ public class Instrument  {
     this.rebalanceInterval = rebalanceInterval;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -758,7 +707,6 @@ public class Instrument  {
     this.openingTimestamp = openingTimestamp;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -769,7 +717,6 @@ public class Instrument  {
     this.closingTimestamp = closingTimestamp;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -780,7 +727,6 @@ public class Instrument  {
     this.sessionInterval = sessionInterval;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -791,7 +737,6 @@ public class Instrument  {
     this.prevClosePrice = prevClosePrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -802,7 +747,6 @@ public class Instrument  {
     this.limitDownPrice = limitDownPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -813,7 +757,6 @@ public class Instrument  {
     this.limitUpPrice = limitUpPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -824,7 +767,6 @@ public class Instrument  {
     this.bankruptLimitDownPrice = bankruptLimitDownPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -835,7 +777,6 @@ public class Instrument  {
     this.bankruptLimitUpPrice = bankruptLimitUpPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -846,7 +787,6 @@ public class Instrument  {
     this.prevTotalVolume = prevTotalVolume;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -857,7 +797,6 @@ public class Instrument  {
     this.totalVolume = totalVolume;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -868,7 +807,6 @@ public class Instrument  {
     this.volume = volume;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -879,7 +817,6 @@ public class Instrument  {
     this.volume24h = volume24h;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -890,7 +827,6 @@ public class Instrument  {
     this.prevTotalTurnover = prevTotalTurnover;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -901,7 +837,6 @@ public class Instrument  {
     this.totalTurnover = totalTurnover;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -912,7 +847,6 @@ public class Instrument  {
     this.turnover = turnover;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -923,7 +857,6 @@ public class Instrument  {
     this.turnover24h = turnover24h;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -934,7 +867,6 @@ public class Instrument  {
     this.prevPrice24h = prevPrice24h;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -945,7 +877,6 @@ public class Instrument  {
     this.vwap = vwap;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -956,7 +887,6 @@ public class Instrument  {
     this.highPrice = highPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -967,7 +897,6 @@ public class Instrument  {
     this.lowPrice = lowPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -978,7 +907,6 @@ public class Instrument  {
     this.lastPrice = lastPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -989,7 +917,6 @@ public class Instrument  {
     this.lastPriceProtected = lastPriceProtected;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1000,7 +927,6 @@ public class Instrument  {
     this.lastTickDirection = lastTickDirection;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1011,7 +937,6 @@ public class Instrument  {
     this.lastChangePcnt = lastChangePcnt;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1022,7 +947,6 @@ public class Instrument  {
     this.bidPrice = bidPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1033,7 +957,6 @@ public class Instrument  {
     this.midPrice = midPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1044,7 +967,6 @@ public class Instrument  {
     this.askPrice = askPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1055,7 +977,6 @@ public class Instrument  {
     this.impactBidPrice = impactBidPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1066,7 +987,6 @@ public class Instrument  {
     this.impactMidPrice = impactMidPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1077,7 +997,6 @@ public class Instrument  {
     this.impactAskPrice = impactAskPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1088,7 +1007,6 @@ public class Instrument  {
     this.hasLiquidity = hasLiquidity;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1099,7 +1017,6 @@ public class Instrument  {
     this.openInterest = openInterest;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1110,7 +1027,6 @@ public class Instrument  {
     this.openValue = openValue;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1121,7 +1037,6 @@ public class Instrument  {
     this.fairMethod = fairMethod;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1132,7 +1047,6 @@ public class Instrument  {
     this.fairBasisRate = fairBasisRate;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1143,7 +1057,6 @@ public class Instrument  {
     this.fairBasis = fairBasis;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1154,7 +1067,6 @@ public class Instrument  {
     this.fairPrice = fairPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1165,7 +1077,6 @@ public class Instrument  {
     this.markMethod = markMethod;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1176,7 +1087,6 @@ public class Instrument  {
     this.markPrice = markPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1187,7 +1097,6 @@ public class Instrument  {
     this.indicativeTaxRate = indicativeTaxRate;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1198,7 +1107,6 @@ public class Instrument  {
     this.indicativeSettlePrice = indicativeSettlePrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1209,7 +1117,6 @@ public class Instrument  {
     this.settledPrice = settledPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1220,7 +1127,209 @@ public class Instrument  {
     this.timestamp = timestamp;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Instrument instrument = (Instrument) o;
+    return (symbol == null ? instrument.symbol == null : symbol.equals(instrument.symbol)) &&
+        (rootSymbol == null ? instrument.rootSymbol == null : rootSymbol.equals(instrument.rootSymbol)) &&
+        (state == null ? instrument.state == null : state.equals(instrument.state)) &&
+        (typ == null ? instrument.typ == null : typ.equals(instrument.typ)) &&
+        (listing == null ? instrument.listing == null : listing.equals(instrument.listing)) &&
+        (front == null ? instrument.front == null : front.equals(instrument.front)) &&
+        (expiry == null ? instrument.expiry == null : expiry.equals(instrument.expiry)) &&
+        (settle == null ? instrument.settle == null : settle.equals(instrument.settle)) &&
+        (relistInterval == null ? instrument.relistInterval == null : relistInterval.equals(instrument.relistInterval)) &&
+        (inverseLeg == null ? instrument.inverseLeg == null : inverseLeg.equals(instrument.inverseLeg)) &&
+        (sellLeg == null ? instrument.sellLeg == null : sellLeg.equals(instrument.sellLeg)) &&
+        (buyLeg == null ? instrument.buyLeg == null : buyLeg.equals(instrument.buyLeg)) &&
+        (positionCurrency == null ? instrument.positionCurrency == null : positionCurrency.equals(instrument.positionCurrency)) &&
+        (underlying == null ? instrument.underlying == null : underlying.equals(instrument.underlying)) &&
+        (quoteCurrency == null ? instrument.quoteCurrency == null : quoteCurrency.equals(instrument.quoteCurrency)) &&
+        (underlyingSymbol == null ? instrument.underlyingSymbol == null : underlyingSymbol.equals(instrument.underlyingSymbol)) &&
+        (reference == null ? instrument.reference == null : reference.equals(instrument.reference)) &&
+        (referenceSymbol == null ? instrument.referenceSymbol == null : referenceSymbol.equals(instrument.referenceSymbol)) &&
+        (calcInterval == null ? instrument.calcInterval == null : calcInterval.equals(instrument.calcInterval)) &&
+        (publishInterval == null ? instrument.publishInterval == null : publishInterval.equals(instrument.publishInterval)) &&
+        (publishTime == null ? instrument.publishTime == null : publishTime.equals(instrument.publishTime)) &&
+        (maxOrderQty == null ? instrument.maxOrderQty == null : maxOrderQty.equals(instrument.maxOrderQty)) &&
+        (maxPrice == null ? instrument.maxPrice == null : maxPrice.equals(instrument.maxPrice)) &&
+        (lotSize == null ? instrument.lotSize == null : lotSize.equals(instrument.lotSize)) &&
+        (tickSize == null ? instrument.tickSize == null : tickSize.equals(instrument.tickSize)) &&
+        (multiplier == null ? instrument.multiplier == null : multiplier.equals(instrument.multiplier)) &&
+        (settlCurrency == null ? instrument.settlCurrency == null : settlCurrency.equals(instrument.settlCurrency)) &&
+        (underlyingToPositionMultiplier == null ? instrument.underlyingToPositionMultiplier == null : underlyingToPositionMultiplier.equals(instrument.underlyingToPositionMultiplier)) &&
+        (underlyingToSettleMultiplier == null ? instrument.underlyingToSettleMultiplier == null : underlyingToSettleMultiplier.equals(instrument.underlyingToSettleMultiplier)) &&
+        (quoteToSettleMultiplier == null ? instrument.quoteToSettleMultiplier == null : quoteToSettleMultiplier.equals(instrument.quoteToSettleMultiplier)) &&
+        (isQuanto == null ? instrument.isQuanto == null : isQuanto.equals(instrument.isQuanto)) &&
+        (isInverse == null ? instrument.isInverse == null : isInverse.equals(instrument.isInverse)) &&
+        (initMargin == null ? instrument.initMargin == null : initMargin.equals(instrument.initMargin)) &&
+        (maintMargin == null ? instrument.maintMargin == null : maintMargin.equals(instrument.maintMargin)) &&
+        (limit == null ? instrument.limit == null : limit.equals(instrument.limit)) &&
+        (capped == null ? instrument.capped == null : capped.equals(instrument.capped)) &&
+        (taxed == null ? instrument.taxed == null : taxed.equals(instrument.taxed)) &&
+        (makerFee == null ? instrument.makerFee == null : makerFee.equals(instrument.makerFee)) &&
+        (takerFee == null ? instrument.takerFee == null : takerFee.equals(instrument.takerFee)) &&
+        (settlementFee == null ? instrument.settlementFee == null : settlementFee.equals(instrument.settlementFee)) &&
+        (insuranceFee == null ? instrument.insuranceFee == null : insuranceFee.equals(instrument.insuranceFee)) &&
+        (fundingBaseSymbol == null ? instrument.fundingBaseSymbol == null : fundingBaseSymbol.equals(instrument.fundingBaseSymbol)) &&
+        (fundingQuoteSymbol == null ? instrument.fundingQuoteSymbol == null : fundingQuoteSymbol.equals(instrument.fundingQuoteSymbol)) &&
+        (fundingPremiumSymbol == null ? instrument.fundingPremiumSymbol == null : fundingPremiumSymbol.equals(instrument.fundingPremiumSymbol)) &&
+        (fundingTimestamp == null ? instrument.fundingTimestamp == null : fundingTimestamp.equals(instrument.fundingTimestamp)) &&
+        (fundingInterval == null ? instrument.fundingInterval == null : fundingInterval.equals(instrument.fundingInterval)) &&
+        (fundingRate == null ? instrument.fundingRate == null : fundingRate.equals(instrument.fundingRate)) &&
+        (indicativeFundingRate == null ? instrument.indicativeFundingRate == null : indicativeFundingRate.equals(instrument.indicativeFundingRate)) &&
+        (rebalanceTimestamp == null ? instrument.rebalanceTimestamp == null : rebalanceTimestamp.equals(instrument.rebalanceTimestamp)) &&
+        (rebalanceInterval == null ? instrument.rebalanceInterval == null : rebalanceInterval.equals(instrument.rebalanceInterval)) &&
+        (openingTimestamp == null ? instrument.openingTimestamp == null : openingTimestamp.equals(instrument.openingTimestamp)) &&
+        (closingTimestamp == null ? instrument.closingTimestamp == null : closingTimestamp.equals(instrument.closingTimestamp)) &&
+        (sessionInterval == null ? instrument.sessionInterval == null : sessionInterval.equals(instrument.sessionInterval)) &&
+        (prevClosePrice == null ? instrument.prevClosePrice == null : prevClosePrice.equals(instrument.prevClosePrice)) &&
+        (limitDownPrice == null ? instrument.limitDownPrice == null : limitDownPrice.equals(instrument.limitDownPrice)) &&
+        (limitUpPrice == null ? instrument.limitUpPrice == null : limitUpPrice.equals(instrument.limitUpPrice)) &&
+        (bankruptLimitDownPrice == null ? instrument.bankruptLimitDownPrice == null : bankruptLimitDownPrice.equals(instrument.bankruptLimitDownPrice)) &&
+        (bankruptLimitUpPrice == null ? instrument.bankruptLimitUpPrice == null : bankruptLimitUpPrice.equals(instrument.bankruptLimitUpPrice)) &&
+        (prevTotalVolume == null ? instrument.prevTotalVolume == null : prevTotalVolume.equals(instrument.prevTotalVolume)) &&
+        (totalVolume == null ? instrument.totalVolume == null : totalVolume.equals(instrument.totalVolume)) &&
+        (volume == null ? instrument.volume == null : volume.equals(instrument.volume)) &&
+        (volume24h == null ? instrument.volume24h == null : volume24h.equals(instrument.volume24h)) &&
+        (prevTotalTurnover == null ? instrument.prevTotalTurnover == null : prevTotalTurnover.equals(instrument.prevTotalTurnover)) &&
+        (totalTurnover == null ? instrument.totalTurnover == null : totalTurnover.equals(instrument.totalTurnover)) &&
+        (turnover == null ? instrument.turnover == null : turnover.equals(instrument.turnover)) &&
+        (turnover24h == null ? instrument.turnover24h == null : turnover24h.equals(instrument.turnover24h)) &&
+        (prevPrice24h == null ? instrument.prevPrice24h == null : prevPrice24h.equals(instrument.prevPrice24h)) &&
+        (vwap == null ? instrument.vwap == null : vwap.equals(instrument.vwap)) &&
+        (highPrice == null ? instrument.highPrice == null : highPrice.equals(instrument.highPrice)) &&
+        (lowPrice == null ? instrument.lowPrice == null : lowPrice.equals(instrument.lowPrice)) &&
+        (lastPrice == null ? instrument.lastPrice == null : lastPrice.equals(instrument.lastPrice)) &&
+        (lastPriceProtected == null ? instrument.lastPriceProtected == null : lastPriceProtected.equals(instrument.lastPriceProtected)) &&
+        (lastTickDirection == null ? instrument.lastTickDirection == null : lastTickDirection.equals(instrument.lastTickDirection)) &&
+        (lastChangePcnt == null ? instrument.lastChangePcnt == null : lastChangePcnt.equals(instrument.lastChangePcnt)) &&
+        (bidPrice == null ? instrument.bidPrice == null : bidPrice.equals(instrument.bidPrice)) &&
+        (midPrice == null ? instrument.midPrice == null : midPrice.equals(instrument.midPrice)) &&
+        (askPrice == null ? instrument.askPrice == null : askPrice.equals(instrument.askPrice)) &&
+        (impactBidPrice == null ? instrument.impactBidPrice == null : impactBidPrice.equals(instrument.impactBidPrice)) &&
+        (impactMidPrice == null ? instrument.impactMidPrice == null : impactMidPrice.equals(instrument.impactMidPrice)) &&
+        (impactAskPrice == null ? instrument.impactAskPrice == null : impactAskPrice.equals(instrument.impactAskPrice)) &&
+        (hasLiquidity == null ? instrument.hasLiquidity == null : hasLiquidity.equals(instrument.hasLiquidity)) &&
+        (openInterest == null ? instrument.openInterest == null : openInterest.equals(instrument.openInterest)) &&
+        (openValue == null ? instrument.openValue == null : openValue.equals(instrument.openValue)) &&
+        (fairMethod == null ? instrument.fairMethod == null : fairMethod.equals(instrument.fairMethod)) &&
+        (fairBasisRate == null ? instrument.fairBasisRate == null : fairBasisRate.equals(instrument.fairBasisRate)) &&
+        (fairBasis == null ? instrument.fairBasis == null : fairBasis.equals(instrument.fairBasis)) &&
+        (fairPrice == null ? instrument.fairPrice == null : fairPrice.equals(instrument.fairPrice)) &&
+        (markMethod == null ? instrument.markMethod == null : markMethod.equals(instrument.markMethod)) &&
+        (markPrice == null ? instrument.markPrice == null : markPrice.equals(instrument.markPrice)) &&
+        (indicativeTaxRate == null ? instrument.indicativeTaxRate == null : indicativeTaxRate.equals(instrument.indicativeTaxRate)) &&
+        (indicativeSettlePrice == null ? instrument.indicativeSettlePrice == null : indicativeSettlePrice.equals(instrument.indicativeSettlePrice)) &&
+        (settledPrice == null ? instrument.settledPrice == null : settledPrice.equals(instrument.settledPrice)) &&
+        (timestamp == null ? instrument.timestamp == null : timestamp.equals(instrument.timestamp));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (symbol == null ? 0: symbol.hashCode());
+    result = 31 * result + (rootSymbol == null ? 0: rootSymbol.hashCode());
+    result = 31 * result + (state == null ? 0: state.hashCode());
+    result = 31 * result + (typ == null ? 0: typ.hashCode());
+    result = 31 * result + (listing == null ? 0: listing.hashCode());
+    result = 31 * result + (front == null ? 0: front.hashCode());
+    result = 31 * result + (expiry == null ? 0: expiry.hashCode());
+    result = 31 * result + (settle == null ? 0: settle.hashCode());
+    result = 31 * result + (relistInterval == null ? 0: relistInterval.hashCode());
+    result = 31 * result + (inverseLeg == null ? 0: inverseLeg.hashCode());
+    result = 31 * result + (sellLeg == null ? 0: sellLeg.hashCode());
+    result = 31 * result + (buyLeg == null ? 0: buyLeg.hashCode());
+    result = 31 * result + (positionCurrency == null ? 0: positionCurrency.hashCode());
+    result = 31 * result + (underlying == null ? 0: underlying.hashCode());
+    result = 31 * result + (quoteCurrency == null ? 0: quoteCurrency.hashCode());
+    result = 31 * result + (underlyingSymbol == null ? 0: underlyingSymbol.hashCode());
+    result = 31 * result + (reference == null ? 0: reference.hashCode());
+    result = 31 * result + (referenceSymbol == null ? 0: referenceSymbol.hashCode());
+    result = 31 * result + (calcInterval == null ? 0: calcInterval.hashCode());
+    result = 31 * result + (publishInterval == null ? 0: publishInterval.hashCode());
+    result = 31 * result + (publishTime == null ? 0: publishTime.hashCode());
+    result = 31 * result + (maxOrderQty == null ? 0: maxOrderQty.hashCode());
+    result = 31 * result + (maxPrice == null ? 0: maxPrice.hashCode());
+    result = 31 * result + (lotSize == null ? 0: lotSize.hashCode());
+    result = 31 * result + (tickSize == null ? 0: tickSize.hashCode());
+    result = 31 * result + (multiplier == null ? 0: multiplier.hashCode());
+    result = 31 * result + (settlCurrency == null ? 0: settlCurrency.hashCode());
+    result = 31 * result + (underlyingToPositionMultiplier == null ? 0: underlyingToPositionMultiplier.hashCode());
+    result = 31 * result + (underlyingToSettleMultiplier == null ? 0: underlyingToSettleMultiplier.hashCode());
+    result = 31 * result + (quoteToSettleMultiplier == null ? 0: quoteToSettleMultiplier.hashCode());
+    result = 31 * result + (isQuanto == null ? 0: isQuanto.hashCode());
+    result = 31 * result + (isInverse == null ? 0: isInverse.hashCode());
+    result = 31 * result + (initMargin == null ? 0: initMargin.hashCode());
+    result = 31 * result + (maintMargin == null ? 0: maintMargin.hashCode());
+    result = 31 * result + (limit == null ? 0: limit.hashCode());
+    result = 31 * result + (capped == null ? 0: capped.hashCode());
+    result = 31 * result + (taxed == null ? 0: taxed.hashCode());
+    result = 31 * result + (makerFee == null ? 0: makerFee.hashCode());
+    result = 31 * result + (takerFee == null ? 0: takerFee.hashCode());
+    result = 31 * result + (settlementFee == null ? 0: settlementFee.hashCode());
+    result = 31 * result + (insuranceFee == null ? 0: insuranceFee.hashCode());
+    result = 31 * result + (fundingBaseSymbol == null ? 0: fundingBaseSymbol.hashCode());
+    result = 31 * result + (fundingQuoteSymbol == null ? 0: fundingQuoteSymbol.hashCode());
+    result = 31 * result + (fundingPremiumSymbol == null ? 0: fundingPremiumSymbol.hashCode());
+    result = 31 * result + (fundingTimestamp == null ? 0: fundingTimestamp.hashCode());
+    result = 31 * result + (fundingInterval == null ? 0: fundingInterval.hashCode());
+    result = 31 * result + (fundingRate == null ? 0: fundingRate.hashCode());
+    result = 31 * result + (indicativeFundingRate == null ? 0: indicativeFundingRate.hashCode());
+    result = 31 * result + (rebalanceTimestamp == null ? 0: rebalanceTimestamp.hashCode());
+    result = 31 * result + (rebalanceInterval == null ? 0: rebalanceInterval.hashCode());
+    result = 31 * result + (openingTimestamp == null ? 0: openingTimestamp.hashCode());
+    result = 31 * result + (closingTimestamp == null ? 0: closingTimestamp.hashCode());
+    result = 31 * result + (sessionInterval == null ? 0: sessionInterval.hashCode());
+    result = 31 * result + (prevClosePrice == null ? 0: prevClosePrice.hashCode());
+    result = 31 * result + (limitDownPrice == null ? 0: limitDownPrice.hashCode());
+    result = 31 * result + (limitUpPrice == null ? 0: limitUpPrice.hashCode());
+    result = 31 * result + (bankruptLimitDownPrice == null ? 0: bankruptLimitDownPrice.hashCode());
+    result = 31 * result + (bankruptLimitUpPrice == null ? 0: bankruptLimitUpPrice.hashCode());
+    result = 31 * result + (prevTotalVolume == null ? 0: prevTotalVolume.hashCode());
+    result = 31 * result + (totalVolume == null ? 0: totalVolume.hashCode());
+    result = 31 * result + (volume == null ? 0: volume.hashCode());
+    result = 31 * result + (volume24h == null ? 0: volume24h.hashCode());
+    result = 31 * result + (prevTotalTurnover == null ? 0: prevTotalTurnover.hashCode());
+    result = 31 * result + (totalTurnover == null ? 0: totalTurnover.hashCode());
+    result = 31 * result + (turnover == null ? 0: turnover.hashCode());
+    result = 31 * result + (turnover24h == null ? 0: turnover24h.hashCode());
+    result = 31 * result + (prevPrice24h == null ? 0: prevPrice24h.hashCode());
+    result = 31 * result + (vwap == null ? 0: vwap.hashCode());
+    result = 31 * result + (highPrice == null ? 0: highPrice.hashCode());
+    result = 31 * result + (lowPrice == null ? 0: lowPrice.hashCode());
+    result = 31 * result + (lastPrice == null ? 0: lastPrice.hashCode());
+    result = 31 * result + (lastPriceProtected == null ? 0: lastPriceProtected.hashCode());
+    result = 31 * result + (lastTickDirection == null ? 0: lastTickDirection.hashCode());
+    result = 31 * result + (lastChangePcnt == null ? 0: lastChangePcnt.hashCode());
+    result = 31 * result + (bidPrice == null ? 0: bidPrice.hashCode());
+    result = 31 * result + (midPrice == null ? 0: midPrice.hashCode());
+    result = 31 * result + (askPrice == null ? 0: askPrice.hashCode());
+    result = 31 * result + (impactBidPrice == null ? 0: impactBidPrice.hashCode());
+    result = 31 * result + (impactMidPrice == null ? 0: impactMidPrice.hashCode());
+    result = 31 * result + (impactAskPrice == null ? 0: impactAskPrice.hashCode());
+    result = 31 * result + (hasLiquidity == null ? 0: hasLiquidity.hashCode());
+    result = 31 * result + (openInterest == null ? 0: openInterest.hashCode());
+    result = 31 * result + (openValue == null ? 0: openValue.hashCode());
+    result = 31 * result + (fairMethod == null ? 0: fairMethod.hashCode());
+    result = 31 * result + (fairBasisRate == null ? 0: fairBasisRate.hashCode());
+    result = 31 * result + (fairBasis == null ? 0: fairBasis.hashCode());
+    result = 31 * result + (fairPrice == null ? 0: fairPrice.hashCode());
+    result = 31 * result + (markMethod == null ? 0: markMethod.hashCode());
+    result = 31 * result + (markPrice == null ? 0: markPrice.hashCode());
+    result = 31 * result + (indicativeTaxRate == null ? 0: indicativeTaxRate.hashCode());
+    result = 31 * result + (indicativeSettlePrice == null ? 0: indicativeSettlePrice.hashCode());
+    result = 31 * result + (settledPrice == null ? 0: settledPrice.hashCode());
+    result = 31 * result + (timestamp == null ? 0: timestamp.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

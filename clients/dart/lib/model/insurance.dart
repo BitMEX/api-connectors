@@ -4,14 +4,16 @@ part of api;
 @Entity()
 class Insurance {
   
+  @Property(name: 'currency')
   String currency = null;
   
-  
+
+  @Property(name: 'timestamp')
   DateTime timestamp = null;
   
-  
+
+  @Property(name: 'walletBalance')
   Number walletBalance = null;
-  
   
   Insurance();
 

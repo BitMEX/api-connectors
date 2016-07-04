@@ -22,7 +22,6 @@ public class Stats  {
   @SerializedName("openValue")
   private BigDecimal openValue = null;
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -33,7 +32,6 @@ public class Stats  {
     this.rootSymbol = rootSymbol;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -44,7 +42,6 @@ public class Stats  {
     this.currency = currency;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -55,7 +52,6 @@ public class Stats  {
     this.volume24h = volume24h;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -66,7 +62,6 @@ public class Stats  {
     this.turnover24h = turnover24h;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -77,7 +72,6 @@ public class Stats  {
     this.openInterest = openInterest;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -88,7 +82,35 @@ public class Stats  {
     this.openValue = openValue;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Stats stats = (Stats) o;
+    return (rootSymbol == null ? stats.rootSymbol == null : rootSymbol.equals(stats.rootSymbol)) &&
+        (currency == null ? stats.currency == null : currency.equals(stats.currency)) &&
+        (volume24h == null ? stats.volume24h == null : volume24h.equals(stats.volume24h)) &&
+        (turnover24h == null ? stats.turnover24h == null : turnover24h.equals(stats.turnover24h)) &&
+        (openInterest == null ? stats.openInterest == null : openInterest.equals(stats.openInterest)) &&
+        (openValue == null ? stats.openValue == null : openValue.equals(stats.openValue));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (rootSymbol == null ? 0: rootSymbol.hashCode());
+    result = 31 * result + (currency == null ? 0: currency.hashCode());
+    result = 31 * result + (volume24h == null ? 0: volume24h.hashCode());
+    result = 31 * result + (turnover24h == null ? 0: turnover24h.hashCode());
+    result = 31 * result + (openInterest == null ? 0: openInterest.hashCode());
+    result = 31 * result + (openValue == null ? 0: openValue.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

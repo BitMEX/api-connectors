@@ -1,15 +1,15 @@
 package io.swagger.client.model
 
 import org.joda.time.DateTime
+import java.util.UUID
 
 
 case class Quote (
-  timestamp: Date,
-  symbol: String,
-  bidSize: Number,
-  bidPrice: Double,
-  askPrice: Double,
-  askSize: Number,
-  id: Double
-  
+  timestamp: Option[Date],
+symbol: Option[String],
+bidSize: Option[Number],
+bidPrice: Option[Double],
+askPrice: Option[Double],
+askSize: Option[Number],
+id: Option[Double]
 )

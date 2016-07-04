@@ -4,26 +4,32 @@ part of api;
 @Entity()
 class OrderBook {
   
+  @Property(name: 'symbol')
   String symbol = null;
   
-  
+
+  @Property(name: 'level')
   Number level = null;
   
-  
+
+  @Property(name: 'bidSize')
   Number bidSize = null;
   
+
+  @Property(name: 'bidPrice')
+  double bidPrice = null;
   
-  num bidPrice = null;
+
+  @Property(name: 'askPrice')
+  double askPrice = null;
   
-  
-  num askPrice = null;
-  
-  
+
+  @Property(name: 'askSize')
   Number askSize = null;
   
-  
+
+  @Property(name: 'timestamp')
   DateTime timestamp = null;
-  
   
   OrderBook();
 

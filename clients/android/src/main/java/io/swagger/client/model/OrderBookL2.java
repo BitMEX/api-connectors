@@ -20,7 +20,6 @@ public class OrderBookL2  {
   @SerializedName("price")
   private Double price = null;
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -31,7 +30,6 @@ public class OrderBookL2  {
     this.symbol = symbol;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -42,7 +40,6 @@ public class OrderBookL2  {
     this.id = id;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -53,7 +50,6 @@ public class OrderBookL2  {
     this.side = side;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -64,7 +60,6 @@ public class OrderBookL2  {
     this.size = size;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -75,7 +70,33 @@ public class OrderBookL2  {
     this.price = price;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    OrderBookL2 orderBookL2 = (OrderBookL2) o;
+    return (symbol == null ? orderBookL2.symbol == null : symbol.equals(orderBookL2.symbol)) &&
+        (id == null ? orderBookL2.id == null : id.equals(orderBookL2.id)) &&
+        (side == null ? orderBookL2.side == null : side.equals(orderBookL2.side)) &&
+        (size == null ? orderBookL2.size == null : size.equals(orderBookL2.size)) &&
+        (price == null ? orderBookL2.price == null : price.equals(orderBookL2.price));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (symbol == null ? 0: symbol.hashCode());
+    result = 31 * result + (id == null ? 0: id.hashCode());
+    result = 31 * result + (side == null ? 0: side.hashCode());
+    result = 31 * result + (size == null ? 0: size.hashCode());
+    result = 31 * result + (price == null ? 0: price.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

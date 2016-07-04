@@ -11,13 +11,15 @@ class SchemaApi {
     }
   }
 
-  
   /// Get model schemata for data objects returned by this API.
   ///
   /// 
-  Future<InlineResponse2001> schemaGet(String model) {
+  Future<Object> schemaGet(String model) {
     Object postBody = null;
-    
+    // verify required params are set
+    if() {
+       throw new ApiException(400, "missing required params");
+    }
 
     // create path and map variables
     String path = "/schema".replaceAll("{format}","json");
@@ -29,8 +31,6 @@ class SchemaApi {
     if("null" != model)
       queryParams["model"] = model is List ? model.join(',') : model;
     
-    
-
     List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -44,28 +44,26 @@ class SchemaApi {
         postBody = mp;
     }
     else {
-      
-    }
+          }
 
     return apiClient.invokeAPI(basePath, path, 'GET', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
       if(response.statusCode >= 400) {
         throw new ApiException(response.statusCode, response.body);
       }
       else if(response.body != null){
-        return ApiClient.deserialize(response.body, InlineResponse2001);
+        return ApiClient.deserialize(response.body, Object);
       }
       else {
         return null;
       }
     });
   }
-  
   /// Returns help text &amp; subject list for websocket usage.
   ///
   /// 
-  Future<InlineResponse2001> schemaWebsocketHelp() {
+  Future<Object> schemaWebsocketHelp() {
     Object postBody = null;
-    
+
 
     // create path and map variables
     String path = "/schema/websocketHelp".replaceAll("{format}","json");
@@ -74,9 +72,7 @@ class SchemaApi {
     Map<String, String> queryParams = {};
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
-    
-    
-
+        
     List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -90,20 +86,18 @@ class SchemaApi {
         postBody = mp;
     }
     else {
-      
-    }
+          }
 
     return apiClient.invokeAPI(basePath, path, 'GET', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
       if(response.statusCode >= 400) {
         throw new ApiException(response.statusCode, response.body);
       }
       else if(response.body != null){
-        return ApiClient.deserialize(response.body, InlineResponse2001);
+        return ApiClient.deserialize(response.body, Object);
       }
       else {
         return null;
       }
     });
   }
-  
 }

@@ -4,26 +4,32 @@ part of api;
 @Entity()
 class Quote {
   
+  @Property(name: 'timestamp')
   DateTime timestamp = null;
   
-  
+
+  @Property(name: 'symbol')
   String symbol = null;
   
-  
+
+  @Property(name: 'bidSize')
   Number bidSize = null;
   
+
+  @Property(name: 'bidPrice')
+  double bidPrice = null;
   
-  num bidPrice = null;
+
+  @Property(name: 'askPrice')
+  double askPrice = null;
   
-  
-  num askPrice = null;
-  
-  
+
+  @Property(name: 'askSize')
   Number askSize = null;
   
-  
-  num id = null;
-  
+
+  @Property(name: 'id')
+  double id = null;
   
   Quote();
 

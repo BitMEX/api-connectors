@@ -1,7 +1,7 @@
 package io.swagger.client.model;
 
-import java.util.Date;
 import java.math.BigDecimal;
+import java.util.Date;
 
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -25,7 +25,6 @@ public class Quote  {
   @SerializedName("id")
   private Double id = null;
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -36,7 +35,6 @@ public class Quote  {
     this.timestamp = timestamp;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -47,7 +45,6 @@ public class Quote  {
     this.symbol = symbol;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -58,7 +55,6 @@ public class Quote  {
     this.bidSize = bidSize;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -69,7 +65,6 @@ public class Quote  {
     this.bidPrice = bidPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -80,7 +75,6 @@ public class Quote  {
     this.askPrice = askPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -91,7 +85,6 @@ public class Quote  {
     this.askSize = askSize;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -102,7 +95,37 @@ public class Quote  {
     this.id = id;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Quote quote = (Quote) o;
+    return (timestamp == null ? quote.timestamp == null : timestamp.equals(quote.timestamp)) &&
+        (symbol == null ? quote.symbol == null : symbol.equals(quote.symbol)) &&
+        (bidSize == null ? quote.bidSize == null : bidSize.equals(quote.bidSize)) &&
+        (bidPrice == null ? quote.bidPrice == null : bidPrice.equals(quote.bidPrice)) &&
+        (askPrice == null ? quote.askPrice == null : askPrice.equals(quote.askPrice)) &&
+        (askSize == null ? quote.askSize == null : askSize.equals(quote.askSize)) &&
+        (id == null ? quote.id == null : id.equals(quote.id));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (timestamp == null ? 0: timestamp.hashCode());
+    result = 31 * result + (symbol == null ? 0: symbol.hashCode());
+    result = 31 * result + (bidSize == null ? 0: bidSize.hashCode());
+    result = 31 * result + (bidPrice == null ? 0: bidPrice.hashCode());
+    result = 31 * result + (askPrice == null ? 0: askPrice.hashCode());
+    result = 31 * result + (askSize == null ? 0: askSize.hashCode());
+    result = 31 * result + (id == null ? 0: id.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

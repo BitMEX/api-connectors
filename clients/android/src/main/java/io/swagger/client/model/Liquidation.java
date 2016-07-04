@@ -20,7 +20,6 @@ public class Liquidation  {
   @SerializedName("leavesQty")
   private BigDecimal leavesQty = null;
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -31,7 +30,6 @@ public class Liquidation  {
     this.orderID = orderID;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -42,7 +40,6 @@ public class Liquidation  {
     this.symbol = symbol;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -53,7 +50,6 @@ public class Liquidation  {
     this.side = side;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -64,7 +60,6 @@ public class Liquidation  {
     this.price = price;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -75,7 +70,33 @@ public class Liquidation  {
     this.leavesQty = leavesQty;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Liquidation liquidation = (Liquidation) o;
+    return (orderID == null ? liquidation.orderID == null : orderID.equals(liquidation.orderID)) &&
+        (symbol == null ? liquidation.symbol == null : symbol.equals(liquidation.symbol)) &&
+        (side == null ? liquidation.side == null : side.equals(liquidation.side)) &&
+        (price == null ? liquidation.price == null : price.equals(liquidation.price)) &&
+        (leavesQty == null ? liquidation.leavesQty == null : leavesQty.equals(liquidation.leavesQty));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (orderID == null ? 0: orderID.hashCode());
+    result = 31 * result + (symbol == null ? 0: symbol.hashCode());
+    result = 31 * result + (side == null ? 0: side.hashCode());
+    result = 31 * result + (price == null ? 0: price.hashCode());
+    result = 31 * result + (leavesQty == null ? 0: leavesQty.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

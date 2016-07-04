@@ -1,7 +1,7 @@
 package io.swagger.client.model;
 
-import java.util.*;
 import java.math.BigDecimal;
+import java.util.*;
 import java.util.Date;
 
 import io.swagger.annotations.*;
@@ -30,7 +30,6 @@ public class ApiKey  {
   @SerializedName("created")
   private Date created = null;
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -41,7 +40,6 @@ public class ApiKey  {
     this.id = id;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -52,7 +50,6 @@ public class ApiKey  {
     this.secret = secret;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -63,7 +60,6 @@ public class ApiKey  {
     this.name = name;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -74,7 +70,6 @@ public class ApiKey  {
     this.nonce = nonce;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -85,7 +80,6 @@ public class ApiKey  {
     this.cidr = cidr;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -96,7 +90,6 @@ public class ApiKey  {
     this.permissions = permissions;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -107,7 +100,6 @@ public class ApiKey  {
     this.enabled = enabled;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -118,7 +110,6 @@ public class ApiKey  {
     this.userId = userId;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -129,7 +120,41 @@ public class ApiKey  {
     this.created = created;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ApiKey apiKey = (ApiKey) o;
+    return (id == null ? apiKey.id == null : id.equals(apiKey.id)) &&
+        (secret == null ? apiKey.secret == null : secret.equals(apiKey.secret)) &&
+        (name == null ? apiKey.name == null : name.equals(apiKey.name)) &&
+        (nonce == null ? apiKey.nonce == null : nonce.equals(apiKey.nonce)) &&
+        (cidr == null ? apiKey.cidr == null : cidr.equals(apiKey.cidr)) &&
+        (permissions == null ? apiKey.permissions == null : permissions.equals(apiKey.permissions)) &&
+        (enabled == null ? apiKey.enabled == null : enabled.equals(apiKey.enabled)) &&
+        (userId == null ? apiKey.userId == null : userId.equals(apiKey.userId)) &&
+        (created == null ? apiKey.created == null : created.equals(apiKey.created));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (id == null ? 0: id.hashCode());
+    result = 31 * result + (secret == null ? 0: secret.hashCode());
+    result = 31 * result + (name == null ? 0: name.hashCode());
+    result = 31 * result + (nonce == null ? 0: nonce.hashCode());
+    result = 31 * result + (cidr == null ? 0: cidr.hashCode());
+    result = 31 * result + (permissions == null ? 0: permissions.hashCode());
+    result = 31 * result + (enabled == null ? 0: enabled.hashCode());
+    result = 31 * result + (userId == null ? 0: userId.hashCode());
+    result = 31 * result + (created == null ? 0: created.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

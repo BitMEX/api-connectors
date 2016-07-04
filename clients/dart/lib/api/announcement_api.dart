@@ -11,13 +11,15 @@ class AnnouncementApi {
     }
   }
 
-  
   /// Get site announcements.
   ///
   /// 
   Future<List<Announcement>> announcementGet(String columns) {
     Object postBody = null;
-    
+    // verify required params are set
+    if() {
+       throw new ApiException(400, "missing required params");
+    }
 
     // create path and map variables
     String path = "/announcement".replaceAll("{format}","json");
@@ -29,8 +31,6 @@ class AnnouncementApi {
     if("null" != columns)
       queryParams["columns"] = columns is List ? columns.join(',') : columns;
     
-    
-
     List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -44,8 +44,7 @@ class AnnouncementApi {
         postBody = mp;
     }
     else {
-      
-    }
+          }
 
     return apiClient.invokeAPI(basePath, path, 'GET', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
       if(response.statusCode >= 400) {
@@ -59,13 +58,12 @@ class AnnouncementApi {
       }
     });
   }
-  
   /// Get urgent (banner) announcements.
   ///
   /// 
   Future<List<Announcement>> announcementGetUrgent() {
     Object postBody = null;
-    
+
 
     // create path and map variables
     String path = "/announcement/urgent".replaceAll("{format}","json");
@@ -74,9 +72,7 @@ class AnnouncementApi {
     Map<String, String> queryParams = {};
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
-    
-    
-
+        
     List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -90,8 +86,7 @@ class AnnouncementApi {
         postBody = mp;
     }
     else {
-      
-    }
+          }
 
     return apiClient.invokeAPI(basePath, path, 'GET', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
       if(response.statusCode >= 400) {
@@ -105,5 +100,4 @@ class AnnouncementApi {
       }
     });
   }
-  
 }

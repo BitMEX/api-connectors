@@ -1,7 +1,7 @@
 package io.swagger.client.model;
 
-import java.util.Date;
 import java.math.BigDecimal;
+import java.util.Date;
 
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -25,7 +25,6 @@ public class Settlement  {
   @SerializedName("taxRate")
   private Double taxRate = null;
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -36,7 +35,6 @@ public class Settlement  {
     this.timestamp = timestamp;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -47,7 +45,6 @@ public class Settlement  {
     this.symbol = symbol;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -58,7 +55,6 @@ public class Settlement  {
     this.settlementType = settlementType;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -69,7 +65,6 @@ public class Settlement  {
     this.settledPrice = settledPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -80,7 +75,6 @@ public class Settlement  {
     this.bankrupt = bankrupt;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -91,7 +85,6 @@ public class Settlement  {
     this.taxBase = taxBase;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -102,7 +95,37 @@ public class Settlement  {
     this.taxRate = taxRate;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Settlement settlement = (Settlement) o;
+    return (timestamp == null ? settlement.timestamp == null : timestamp.equals(settlement.timestamp)) &&
+        (symbol == null ? settlement.symbol == null : symbol.equals(settlement.symbol)) &&
+        (settlementType == null ? settlement.settlementType == null : settlementType.equals(settlement.settlementType)) &&
+        (settledPrice == null ? settlement.settledPrice == null : settledPrice.equals(settlement.settledPrice)) &&
+        (bankrupt == null ? settlement.bankrupt == null : bankrupt.equals(settlement.bankrupt)) &&
+        (taxBase == null ? settlement.taxBase == null : taxBase.equals(settlement.taxBase)) &&
+        (taxRate == null ? settlement.taxRate == null : taxRate.equals(settlement.taxRate));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (timestamp == null ? 0: timestamp.hashCode());
+    result = 31 * result + (symbol == null ? 0: symbol.hashCode());
+    result = 31 * result + (settlementType == null ? 0: settlementType.hashCode());
+    result = 31 * result + (settledPrice == null ? 0: settledPrice.hashCode());
+    result = 31 * result + (bankrupt == null ? 0: bankrupt.hashCode());
+    result = 31 * result + (taxBase == null ? 0: taxBase.hashCode());
+    result = 31 * result + (taxRate == null ? 0: taxRate.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

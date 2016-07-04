@@ -11,13 +11,119 @@ class ApiKeyApi {
     }
   }
 
-  
+  /// Disable an API Key.
+  ///
+  /// 
+  Future<ApiKey> apiKeyDisable(String apiKeyID) {
+    Object postBody = null;
+    // verify required params are set
+    if() {
+       throw new ApiException(400, "missing required params");
+    }
+
+    // create path and map variables
+    String path = "/apiKey/disable".replaceAll("{format}","json");
+
+    // query params
+    Map<String, String> queryParams = {};
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+        
+    List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    List<String> authNames = [];
+
+    if(contentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = new MultipartRequest(null, null);
+      
+      if (apiKeyID != null) {
+        hasFields = true;
+        mp.fields['apiKeyID'] = apiClient.parameterToString(apiKeyID);
+      }
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      if (apiKeyID != null)
+        formParams['apiKeyID'] = apiClient.parameterToString(apiKeyID);
+    }
+
+    return apiClient.invokeAPI(basePath, path, 'POST', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
+      if(response.statusCode >= 400) {
+        throw new ApiException(response.statusCode, response.body);
+      }
+      else if(response.body != null){
+        return ApiClient.deserialize(response.body, ApiKey);
+      }
+      else {
+        return null;
+      }
+    });
+  }
+  /// Enable an API Key.
+  ///
+  /// 
+  Future<ApiKey> apiKeyEnable(String apiKeyID) {
+    Object postBody = null;
+    // verify required params are set
+    if() {
+       throw new ApiException(400, "missing required params");
+    }
+
+    // create path and map variables
+    String path = "/apiKey/enable".replaceAll("{format}","json");
+
+    // query params
+    Map<String, String> queryParams = {};
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+        
+    List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    List<String> authNames = [];
+
+    if(contentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = new MultipartRequest(null, null);
+      
+      if (apiKeyID != null) {
+        hasFields = true;
+        mp.fields['apiKeyID'] = apiClient.parameterToString(apiKeyID);
+      }
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      if (apiKeyID != null)
+        formParams['apiKeyID'] = apiClient.parameterToString(apiKeyID);
+    }
+
+    return apiClient.invokeAPI(basePath, path, 'POST', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
+      if(response.statusCode >= 400) {
+        throw new ApiException(response.statusCode, response.body);
+      }
+      else if(response.body != null){
+        return ApiClient.deserialize(response.body, ApiKey);
+      }
+      else {
+        return null;
+      }
+    });
+  }
   /// Get your API Keys.
   ///
   /// 
   Future<List<ApiKey>> apiKeyGet(bool reverse) {
     Object postBody = null;
-    
+    // verify required params are set
+    if() {
+       throw new ApiException(400, "missing required params");
+    }
 
     // create path and map variables
     String path = "/apiKey".replaceAll("{format}","json");
@@ -29,8 +135,6 @@ class ApiKeyApi {
     if("null" != reverse)
       queryParams["reverse"] = reverse is List ? reverse.join(',') : reverse;
     
-    
-
     List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -44,8 +148,7 @@ class ApiKeyApi {
         postBody = mp;
     }
     else {
-      
-    }
+          }
 
     return apiClient.invokeAPI(basePath, path, 'GET', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
       if(response.statusCode >= 400) {
@@ -59,13 +162,27 @@ class ApiKeyApi {
       }
     });
   }
-  
   /// Create a new API Key.
   ///
   /// API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
   Future<ApiKey> apiKeyNew(String name, String cidr, String permissions, bool enabled, String token) {
     Object postBody = null;
-    
+    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if() {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }
 
     // create path and map variables
     String path = "/apiKey".replaceAll("{format}","json");
@@ -74,9 +191,7 @@ class ApiKeyApi {
     Map<String, String> queryParams = {};
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
-    
-    
-
+        
     List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -117,15 +232,14 @@ class ApiKeyApi {
     else {
       if (name != null)
         formParams['name'] = apiClient.parameterToString(name);
-      if (cidr != null)
+if (cidr != null)
         formParams['cidr'] = apiClient.parameterToString(cidr);
-      if (permissions != null)
+if (permissions != null)
         formParams['permissions'] = apiClient.parameterToString(permissions);
-      if (enabled != null)
+if (enabled != null)
         formParams['enabled'] = apiClient.parameterToString(enabled);
-      if (token != null)
+if (token != null)
         formParams['token'] = apiClient.parameterToString(token);
-      
     }
 
     return apiClient.invokeAPI(basePath, path, 'POST', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
@@ -140,13 +254,15 @@ class ApiKeyApi {
       }
     });
   }
-  
   /// Remove an API Key.
   ///
   /// 
   Future<InlineResponse200> apiKeyRemove(String apiKeyID) {
     Object postBody = null;
-    
+    // verify required params are set
+    if() {
+       throw new ApiException(400, "missing required params");
+    }
 
     // create path and map variables
     String path = "/apiKey".replaceAll("{format}","json");
@@ -155,9 +271,7 @@ class ApiKeyApi {
     Map<String, String> queryParams = {};
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
-    
-    
-
+        
     List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -178,7 +292,6 @@ class ApiKeyApi {
     else {
       if (apiKeyID != null)
         formParams['apiKeyID'] = apiClient.parameterToString(apiKeyID);
-      
     }
 
     return apiClient.invokeAPI(basePath, path, 'DELETE', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
@@ -193,111 +306,4 @@ class ApiKeyApi {
       }
     });
   }
-  
-  /// Disable an API Key.
-  ///
-  /// 
-  Future<ApiKey> apiKeyDisable(String apiKeyID) {
-    Object postBody = null;
-    
-
-    // create path and map variables
-    String path = "/apiKey/disable".replaceAll("{format}","json");
-
-    // query params
-    Map<String, String> queryParams = {};
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    
-    
-
-    List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if (apiKeyID != null) {
-        hasFields = true;
-        mp.fields['apiKeyID'] = apiClient.parameterToString(apiKeyID);
-      }
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      if (apiKeyID != null)
-        formParams['apiKeyID'] = apiClient.parameterToString(apiKeyID);
-      
-    }
-
-    return apiClient.invokeAPI(basePath, path, 'POST', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
-      if(response.statusCode >= 400) {
-        throw new ApiException(response.statusCode, response.body);
-      }
-      else if(response.body != null){
-        return ApiClient.deserialize(response.body, ApiKey);
-      }
-      else {
-        return null;
-      }
-    });
-  }
-  
-  /// Enable an API Key.
-  ///
-  /// 
-  Future<ApiKey> apiKeyEnable(String apiKeyID) {
-    Object postBody = null;
-    
-
-    // create path and map variables
-    String path = "/apiKey/enable".replaceAll("{format}","json");
-
-    // query params
-    Map<String, String> queryParams = {};
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    
-    
-
-    List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if (apiKeyID != null) {
-        hasFields = true;
-        mp.fields['apiKeyID'] = apiClient.parameterToString(apiKeyID);
-      }
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      if (apiKeyID != null)
-        formParams['apiKeyID'] = apiClient.parameterToString(apiKeyID);
-      
-    }
-
-    return apiClient.invokeAPI(basePath, path, 'POST', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
-      if(response.statusCode >= 400) {
-        throw new ApiException(response.statusCode, response.body);
-      }
-      else if(response.body != null){
-        return ApiClient.deserialize(response.body, ApiKey);
-      }
-      else {
-        return null;
-      }
-    });
-  }
-  
 }

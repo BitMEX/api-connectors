@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-Copyright 2015 SmartBear Software
+Copyright 2016 SmartBear Software
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -66,8 +66,7 @@ class ApiClient(object):
     :param header_name: a header to pass when making calls to the API.
     :param header_value: a header value to pass when making calls to the API.
     """
-    def __init__(self, host=Configuration().host,
-                 header_name=None, header_value=None, cookie=None):
+    def __init__(self, host=None, header_name=None, header_value=None, cookie=None):
 
         """
         Constructor of the class.
@@ -76,10 +75,13 @@ class ApiClient(object):
         self.default_headers = {}
         if header_name is not None:
             self.default_headers[header_name] = header_value
-        self.host = host
+        if host is None:
+            self.host = Configuration().host
+        else:
+            self.host = host
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'Python-Swagger/1.0.0'
+        self.user_agent = 'Swagger-Codegen/1.0.0/python'
 
     @property
     def user_agent(self):
@@ -101,7 +103,7 @@ class ApiClient(object):
     def __call_api(self, resource_path, method,
                    path_params=None, query_params=None, header_params=None,
                    body=None, post_params=None, files=None,
-                   response_type=None, auth_settings=None, callback=None):
+                   response_type=None, auth_settings=None, callback=None, _return_http_data_only=None):
 
         # headers parameters
         header_params = header_params or {}
@@ -155,9 +157,12 @@ class ApiClient(object):
             deserialized_data = None
 
         if callback:
-            callback(deserialized_data)
+            callback(deserialized_data) if _return_http_data_only else callback((deserialized_data, response_data.status, response_data.getheaders()))
+        elif _return_http_data_only:
+            return ( deserialized_data );
         else:
-            return deserialized_data
+            return (deserialized_data, response_data.status, response_data.getheaders())
+        
 
     def to_path_value(self, obj):
         """
@@ -189,7 +194,7 @@ class ApiClient(object):
         :return: The serialized form of data.
         """
         types = (str, int, float, bool, tuple)
-        if sys.version_info < (3,0):
+        if sys.version_info < (3, 0):
             types = types + (unicode,)
         if isinstance(obj, type(None)):
             return None
@@ -285,7 +290,7 @@ class ApiClient(object):
     def call_api(self, resource_path, method,
                  path_params=None, query_params=None, header_params=None,
                  body=None, post_params=None, files=None,
-                 response_type=None, auth_settings=None, callback=None):
+                 response_type=None, auth_settings=None, callback=None, _return_http_data_only=None):
         """
         Makes the HTTP request (synchronous) and return the deserialized data.
         To make an async request, define a function for callback.
@@ -306,6 +311,7 @@ class ApiClient(object):
         :param callback function: Callback function for asynchronous request.
             If provide this parameter,
             the request will be called asynchronously.
+        :param _return_http_data_only: response data without head status code and headers
         :return:
             If provide parameter callback,
             the request will be called asynchronously.
@@ -317,7 +323,7 @@ class ApiClient(object):
             return self.__call_api(resource_path, method,
                                    path_params, query_params, header_params,
                                    body, post_params, files,
-                                   response_type, auth_settings, callback)
+                                   response_type, auth_settings, callback, _return_http_data_only)
         else:
             thread = threading.Thread(target=self.__call_api,
                                       args=(resource_path, method,
@@ -325,7 +331,7 @@ class ApiClient(object):
                                             header_params, body,
                                             post_params, files,
                                             response_type, auth_settings,
-                                            callback))
+                                            callback,_return_http_data_only))
         thread.start()
         return thread
 
@@ -369,7 +375,8 @@ class ApiClient(object):
         elif method == "DELETE":
             return self.rest_client.DELETE(url,
                                            query_params=query_params,
-                                           headers=headers)
+                                           headers=headers,
+                                           body=body)
         else:
             raise ValueError(
                 "http method must be `GET`, `HEAD`,"
@@ -384,22 +391,23 @@ class ApiClient(object):
         :param files: File parameters.
         :return: Form parameters with files.
         """
-        params = {}
+        params = []
 
         if post_params:
-            params.update(post_params)
+            params = post_params
 
         if files:
             for k, v in iteritems(files):
                 if not v:
                     continue
-
-                with open(v, 'rb') as f:
-                    filename = os.path.basename(f.name)
-                    filedata = f.read()
-                    mimetype = mimetypes.\
-                        guess_type(filename)[0] or 'application/octet-stream'
-                    params[k] = tuple([filename, filedata, mimetype])
+                file_names = v if type(v) is list else [v]
+                for n in file_names:
+                    with open(n, 'rb') as f:
+                        filename = os.path.basename(f.name)
+                        filedata = f.read()
+                        mimetype = mimetypes.\
+                            guess_type(filename)[0] or 'application/octet-stream'
+                        params.append(tuple([k, tuple([filename, filedata, mimetype])]))
 
         return params
 

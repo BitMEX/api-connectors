@@ -14,7 +14,6 @@ public class Error  {
   @SerializedName("code")
   private BigDecimal code = null;
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -25,7 +24,6 @@ public class Error  {
     this.message = message;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -36,7 +34,27 @@ public class Error  {
     this.code = code;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Error error = (Error) o;
+    return (message == null ? error.message == null : message.equals(error.message)) &&
+        (code == null ? error.code == null : code.equals(error.code));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (message == null ? 0: message.hashCode());
+    result = 31 * result + (code == null ? 0: code.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

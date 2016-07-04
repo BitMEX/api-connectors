@@ -183,7 +183,6 @@ public class Position  {
   @SerializedName("lastValue")
   private BigDecimal lastValue = null;
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -194,7 +193,6 @@ public class Position  {
     this.account = account;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -205,7 +203,6 @@ public class Position  {
     this.symbol = symbol;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -216,7 +213,6 @@ public class Position  {
     this.currency = currency;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -227,7 +223,6 @@ public class Position  {
     this.underlying = underlying;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -238,7 +233,6 @@ public class Position  {
     this.quoteCurrency = quoteCurrency;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -249,7 +243,6 @@ public class Position  {
     this.commission = commission;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -260,7 +253,6 @@ public class Position  {
     this.leverage = leverage;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -271,7 +263,6 @@ public class Position  {
     this.crossMargin = crossMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -282,7 +273,6 @@ public class Position  {
     this.rebalancedPnl = rebalancedPnl;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -293,7 +283,6 @@ public class Position  {
     this.prevRealisedPnl = prevRealisedPnl;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -304,7 +293,6 @@ public class Position  {
     this.prevUnrealisedPnl = prevUnrealisedPnl;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -315,7 +303,6 @@ public class Position  {
     this.prevClosePrice = prevClosePrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -326,7 +313,6 @@ public class Position  {
     this.openingTimestamp = openingTimestamp;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -337,7 +323,6 @@ public class Position  {
     this.openingQty = openingQty;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -348,7 +333,6 @@ public class Position  {
     this.openingCost = openingCost;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -359,7 +343,6 @@ public class Position  {
     this.openingComm = openingComm;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -370,7 +353,6 @@ public class Position  {
     this.openOrderBuyQty = openOrderBuyQty;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -381,7 +363,6 @@ public class Position  {
     this.openOrderBuyCost = openOrderBuyCost;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -392,7 +373,6 @@ public class Position  {
     this.openOrderBuyPremium = openOrderBuyPremium;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -403,7 +383,6 @@ public class Position  {
     this.openOrderSellQty = openOrderSellQty;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -414,7 +393,6 @@ public class Position  {
     this.openOrderSellCost = openOrderSellCost;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -425,7 +403,6 @@ public class Position  {
     this.openOrderSellPremium = openOrderSellPremium;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -436,7 +413,6 @@ public class Position  {
     this.execBuyQty = execBuyQty;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -447,7 +423,6 @@ public class Position  {
     this.execBuyCost = execBuyCost;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -458,7 +433,6 @@ public class Position  {
     this.execSellQty = execSellQty;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -469,7 +443,6 @@ public class Position  {
     this.execSellCost = execSellCost;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -480,7 +453,6 @@ public class Position  {
     this.execQty = execQty;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -491,7 +463,6 @@ public class Position  {
     this.execCost = execCost;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -502,7 +473,6 @@ public class Position  {
     this.execComm = execComm;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -513,7 +483,6 @@ public class Position  {
     this.currentTimestamp = currentTimestamp;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -524,7 +493,6 @@ public class Position  {
     this.currentQty = currentQty;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -535,7 +503,6 @@ public class Position  {
     this.currentCost = currentCost;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -546,7 +513,6 @@ public class Position  {
     this.currentComm = currentComm;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -557,7 +523,6 @@ public class Position  {
     this.realisedCost = realisedCost;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -568,7 +533,6 @@ public class Position  {
     this.unrealisedCost = unrealisedCost;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -579,7 +543,6 @@ public class Position  {
     this.grossOpenCost = grossOpenCost;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -590,7 +553,6 @@ public class Position  {
     this.grossOpenPremium = grossOpenPremium;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -601,7 +563,6 @@ public class Position  {
     this.grossExecCost = grossExecCost;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -612,7 +573,6 @@ public class Position  {
     this.isOpen = isOpen;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -623,7 +583,6 @@ public class Position  {
     this.markPrice = markPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -634,7 +593,6 @@ public class Position  {
     this.markValue = markValue;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -645,7 +603,6 @@ public class Position  {
     this.homeNotional = homeNotional;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -656,7 +613,6 @@ public class Position  {
     this.foreignNotional = foreignNotional;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -667,7 +623,6 @@ public class Position  {
     this.posState = posState;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -678,7 +633,6 @@ public class Position  {
     this.posCost = posCost;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -689,7 +643,6 @@ public class Position  {
     this.posCost2 = posCost2;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -700,7 +653,6 @@ public class Position  {
     this.posCross = posCross;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -711,7 +663,6 @@ public class Position  {
     this.posInit = posInit;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -722,7 +673,6 @@ public class Position  {
     this.posComm = posComm;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -733,7 +683,6 @@ public class Position  {
     this.posLoss = posLoss;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -744,7 +693,6 @@ public class Position  {
     this.posMargin = posMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -755,7 +703,6 @@ public class Position  {
     this.posMaint = posMaint;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -766,7 +713,6 @@ public class Position  {
     this.posAllowance = posAllowance;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -777,7 +723,6 @@ public class Position  {
     this.taxableMargin = taxableMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -788,7 +733,6 @@ public class Position  {
     this.initMargin = initMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -799,7 +743,6 @@ public class Position  {
     this.maintMargin = maintMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -810,7 +753,6 @@ public class Position  {
     this.sessionMargin = sessionMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -821,7 +763,6 @@ public class Position  {
     this.targetExcessMargin = targetExcessMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -832,7 +773,6 @@ public class Position  {
     this.varMargin = varMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -843,7 +783,6 @@ public class Position  {
     this.realisedGrossPnl = realisedGrossPnl;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -854,7 +793,6 @@ public class Position  {
     this.realisedTax = realisedTax;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -865,7 +803,6 @@ public class Position  {
     this.realisedPnl = realisedPnl;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -876,7 +813,6 @@ public class Position  {
     this.unrealisedGrossPnl = unrealisedGrossPnl;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -887,7 +823,6 @@ public class Position  {
     this.longBankrupt = longBankrupt;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -898,7 +833,6 @@ public class Position  {
     this.shortBankrupt = shortBankrupt;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -909,7 +843,6 @@ public class Position  {
     this.taxBase = taxBase;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -920,7 +853,6 @@ public class Position  {
     this.indicativeTaxRate = indicativeTaxRate;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -931,7 +863,6 @@ public class Position  {
     this.indicativeTax = indicativeTax;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -942,7 +873,6 @@ public class Position  {
     this.unrealisedTax = unrealisedTax;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -953,7 +883,6 @@ public class Position  {
     this.unrealisedPnl = unrealisedPnl;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -964,7 +893,6 @@ public class Position  {
     this.unrealisedPnlPcnt = unrealisedPnlPcnt;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -975,7 +903,6 @@ public class Position  {
     this.unrealisedRoePcnt = unrealisedRoePcnt;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -986,7 +913,6 @@ public class Position  {
     this.simpleQty = simpleQty;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -997,7 +923,6 @@ public class Position  {
     this.simpleCost = simpleCost;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1008,7 +933,6 @@ public class Position  {
     this.simpleValue = simpleValue;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1019,7 +943,6 @@ public class Position  {
     this.simplePnl = simplePnl;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1030,7 +953,6 @@ public class Position  {
     this.simplePnlPcnt = simplePnlPcnt;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1041,7 +963,6 @@ public class Position  {
     this.avgCostPrice = avgCostPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1052,7 +973,6 @@ public class Position  {
     this.avgEntryPrice = avgEntryPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1063,7 +983,6 @@ public class Position  {
     this.breakEvenPrice = breakEvenPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1074,7 +993,6 @@ public class Position  {
     this.marginCallPrice = marginCallPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1085,7 +1003,6 @@ public class Position  {
     this.liquidationPrice = liquidationPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1096,7 +1013,6 @@ public class Position  {
     this.bankruptPrice = bankruptPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1107,7 +1023,6 @@ public class Position  {
     this.timestamp = timestamp;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1118,7 +1033,6 @@ public class Position  {
     this.lastPrice = lastPrice;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -1129,7 +1043,195 @@ public class Position  {
     this.lastValue = lastValue;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Position position = (Position) o;
+    return (account == null ? position.account == null : account.equals(position.account)) &&
+        (symbol == null ? position.symbol == null : symbol.equals(position.symbol)) &&
+        (currency == null ? position.currency == null : currency.equals(position.currency)) &&
+        (underlying == null ? position.underlying == null : underlying.equals(position.underlying)) &&
+        (quoteCurrency == null ? position.quoteCurrency == null : quoteCurrency.equals(position.quoteCurrency)) &&
+        (commission == null ? position.commission == null : commission.equals(position.commission)) &&
+        (leverage == null ? position.leverage == null : leverage.equals(position.leverage)) &&
+        (crossMargin == null ? position.crossMargin == null : crossMargin.equals(position.crossMargin)) &&
+        (rebalancedPnl == null ? position.rebalancedPnl == null : rebalancedPnl.equals(position.rebalancedPnl)) &&
+        (prevRealisedPnl == null ? position.prevRealisedPnl == null : prevRealisedPnl.equals(position.prevRealisedPnl)) &&
+        (prevUnrealisedPnl == null ? position.prevUnrealisedPnl == null : prevUnrealisedPnl.equals(position.prevUnrealisedPnl)) &&
+        (prevClosePrice == null ? position.prevClosePrice == null : prevClosePrice.equals(position.prevClosePrice)) &&
+        (openingTimestamp == null ? position.openingTimestamp == null : openingTimestamp.equals(position.openingTimestamp)) &&
+        (openingQty == null ? position.openingQty == null : openingQty.equals(position.openingQty)) &&
+        (openingCost == null ? position.openingCost == null : openingCost.equals(position.openingCost)) &&
+        (openingComm == null ? position.openingComm == null : openingComm.equals(position.openingComm)) &&
+        (openOrderBuyQty == null ? position.openOrderBuyQty == null : openOrderBuyQty.equals(position.openOrderBuyQty)) &&
+        (openOrderBuyCost == null ? position.openOrderBuyCost == null : openOrderBuyCost.equals(position.openOrderBuyCost)) &&
+        (openOrderBuyPremium == null ? position.openOrderBuyPremium == null : openOrderBuyPremium.equals(position.openOrderBuyPremium)) &&
+        (openOrderSellQty == null ? position.openOrderSellQty == null : openOrderSellQty.equals(position.openOrderSellQty)) &&
+        (openOrderSellCost == null ? position.openOrderSellCost == null : openOrderSellCost.equals(position.openOrderSellCost)) &&
+        (openOrderSellPremium == null ? position.openOrderSellPremium == null : openOrderSellPremium.equals(position.openOrderSellPremium)) &&
+        (execBuyQty == null ? position.execBuyQty == null : execBuyQty.equals(position.execBuyQty)) &&
+        (execBuyCost == null ? position.execBuyCost == null : execBuyCost.equals(position.execBuyCost)) &&
+        (execSellQty == null ? position.execSellQty == null : execSellQty.equals(position.execSellQty)) &&
+        (execSellCost == null ? position.execSellCost == null : execSellCost.equals(position.execSellCost)) &&
+        (execQty == null ? position.execQty == null : execQty.equals(position.execQty)) &&
+        (execCost == null ? position.execCost == null : execCost.equals(position.execCost)) &&
+        (execComm == null ? position.execComm == null : execComm.equals(position.execComm)) &&
+        (currentTimestamp == null ? position.currentTimestamp == null : currentTimestamp.equals(position.currentTimestamp)) &&
+        (currentQty == null ? position.currentQty == null : currentQty.equals(position.currentQty)) &&
+        (currentCost == null ? position.currentCost == null : currentCost.equals(position.currentCost)) &&
+        (currentComm == null ? position.currentComm == null : currentComm.equals(position.currentComm)) &&
+        (realisedCost == null ? position.realisedCost == null : realisedCost.equals(position.realisedCost)) &&
+        (unrealisedCost == null ? position.unrealisedCost == null : unrealisedCost.equals(position.unrealisedCost)) &&
+        (grossOpenCost == null ? position.grossOpenCost == null : grossOpenCost.equals(position.grossOpenCost)) &&
+        (grossOpenPremium == null ? position.grossOpenPremium == null : grossOpenPremium.equals(position.grossOpenPremium)) &&
+        (grossExecCost == null ? position.grossExecCost == null : grossExecCost.equals(position.grossExecCost)) &&
+        (isOpen == null ? position.isOpen == null : isOpen.equals(position.isOpen)) &&
+        (markPrice == null ? position.markPrice == null : markPrice.equals(position.markPrice)) &&
+        (markValue == null ? position.markValue == null : markValue.equals(position.markValue)) &&
+        (homeNotional == null ? position.homeNotional == null : homeNotional.equals(position.homeNotional)) &&
+        (foreignNotional == null ? position.foreignNotional == null : foreignNotional.equals(position.foreignNotional)) &&
+        (posState == null ? position.posState == null : posState.equals(position.posState)) &&
+        (posCost == null ? position.posCost == null : posCost.equals(position.posCost)) &&
+        (posCost2 == null ? position.posCost2 == null : posCost2.equals(position.posCost2)) &&
+        (posCross == null ? position.posCross == null : posCross.equals(position.posCross)) &&
+        (posInit == null ? position.posInit == null : posInit.equals(position.posInit)) &&
+        (posComm == null ? position.posComm == null : posComm.equals(position.posComm)) &&
+        (posLoss == null ? position.posLoss == null : posLoss.equals(position.posLoss)) &&
+        (posMargin == null ? position.posMargin == null : posMargin.equals(position.posMargin)) &&
+        (posMaint == null ? position.posMaint == null : posMaint.equals(position.posMaint)) &&
+        (posAllowance == null ? position.posAllowance == null : posAllowance.equals(position.posAllowance)) &&
+        (taxableMargin == null ? position.taxableMargin == null : taxableMargin.equals(position.taxableMargin)) &&
+        (initMargin == null ? position.initMargin == null : initMargin.equals(position.initMargin)) &&
+        (maintMargin == null ? position.maintMargin == null : maintMargin.equals(position.maintMargin)) &&
+        (sessionMargin == null ? position.sessionMargin == null : sessionMargin.equals(position.sessionMargin)) &&
+        (targetExcessMargin == null ? position.targetExcessMargin == null : targetExcessMargin.equals(position.targetExcessMargin)) &&
+        (varMargin == null ? position.varMargin == null : varMargin.equals(position.varMargin)) &&
+        (realisedGrossPnl == null ? position.realisedGrossPnl == null : realisedGrossPnl.equals(position.realisedGrossPnl)) &&
+        (realisedTax == null ? position.realisedTax == null : realisedTax.equals(position.realisedTax)) &&
+        (realisedPnl == null ? position.realisedPnl == null : realisedPnl.equals(position.realisedPnl)) &&
+        (unrealisedGrossPnl == null ? position.unrealisedGrossPnl == null : unrealisedGrossPnl.equals(position.unrealisedGrossPnl)) &&
+        (longBankrupt == null ? position.longBankrupt == null : longBankrupt.equals(position.longBankrupt)) &&
+        (shortBankrupt == null ? position.shortBankrupt == null : shortBankrupt.equals(position.shortBankrupt)) &&
+        (taxBase == null ? position.taxBase == null : taxBase.equals(position.taxBase)) &&
+        (indicativeTaxRate == null ? position.indicativeTaxRate == null : indicativeTaxRate.equals(position.indicativeTaxRate)) &&
+        (indicativeTax == null ? position.indicativeTax == null : indicativeTax.equals(position.indicativeTax)) &&
+        (unrealisedTax == null ? position.unrealisedTax == null : unrealisedTax.equals(position.unrealisedTax)) &&
+        (unrealisedPnl == null ? position.unrealisedPnl == null : unrealisedPnl.equals(position.unrealisedPnl)) &&
+        (unrealisedPnlPcnt == null ? position.unrealisedPnlPcnt == null : unrealisedPnlPcnt.equals(position.unrealisedPnlPcnt)) &&
+        (unrealisedRoePcnt == null ? position.unrealisedRoePcnt == null : unrealisedRoePcnt.equals(position.unrealisedRoePcnt)) &&
+        (simpleQty == null ? position.simpleQty == null : simpleQty.equals(position.simpleQty)) &&
+        (simpleCost == null ? position.simpleCost == null : simpleCost.equals(position.simpleCost)) &&
+        (simpleValue == null ? position.simpleValue == null : simpleValue.equals(position.simpleValue)) &&
+        (simplePnl == null ? position.simplePnl == null : simplePnl.equals(position.simplePnl)) &&
+        (simplePnlPcnt == null ? position.simplePnlPcnt == null : simplePnlPcnt.equals(position.simplePnlPcnt)) &&
+        (avgCostPrice == null ? position.avgCostPrice == null : avgCostPrice.equals(position.avgCostPrice)) &&
+        (avgEntryPrice == null ? position.avgEntryPrice == null : avgEntryPrice.equals(position.avgEntryPrice)) &&
+        (breakEvenPrice == null ? position.breakEvenPrice == null : breakEvenPrice.equals(position.breakEvenPrice)) &&
+        (marginCallPrice == null ? position.marginCallPrice == null : marginCallPrice.equals(position.marginCallPrice)) &&
+        (liquidationPrice == null ? position.liquidationPrice == null : liquidationPrice.equals(position.liquidationPrice)) &&
+        (bankruptPrice == null ? position.bankruptPrice == null : bankruptPrice.equals(position.bankruptPrice)) &&
+        (timestamp == null ? position.timestamp == null : timestamp.equals(position.timestamp)) &&
+        (lastPrice == null ? position.lastPrice == null : lastPrice.equals(position.lastPrice)) &&
+        (lastValue == null ? position.lastValue == null : lastValue.equals(position.lastValue));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (account == null ? 0: account.hashCode());
+    result = 31 * result + (symbol == null ? 0: symbol.hashCode());
+    result = 31 * result + (currency == null ? 0: currency.hashCode());
+    result = 31 * result + (underlying == null ? 0: underlying.hashCode());
+    result = 31 * result + (quoteCurrency == null ? 0: quoteCurrency.hashCode());
+    result = 31 * result + (commission == null ? 0: commission.hashCode());
+    result = 31 * result + (leverage == null ? 0: leverage.hashCode());
+    result = 31 * result + (crossMargin == null ? 0: crossMargin.hashCode());
+    result = 31 * result + (rebalancedPnl == null ? 0: rebalancedPnl.hashCode());
+    result = 31 * result + (prevRealisedPnl == null ? 0: prevRealisedPnl.hashCode());
+    result = 31 * result + (prevUnrealisedPnl == null ? 0: prevUnrealisedPnl.hashCode());
+    result = 31 * result + (prevClosePrice == null ? 0: prevClosePrice.hashCode());
+    result = 31 * result + (openingTimestamp == null ? 0: openingTimestamp.hashCode());
+    result = 31 * result + (openingQty == null ? 0: openingQty.hashCode());
+    result = 31 * result + (openingCost == null ? 0: openingCost.hashCode());
+    result = 31 * result + (openingComm == null ? 0: openingComm.hashCode());
+    result = 31 * result + (openOrderBuyQty == null ? 0: openOrderBuyQty.hashCode());
+    result = 31 * result + (openOrderBuyCost == null ? 0: openOrderBuyCost.hashCode());
+    result = 31 * result + (openOrderBuyPremium == null ? 0: openOrderBuyPremium.hashCode());
+    result = 31 * result + (openOrderSellQty == null ? 0: openOrderSellQty.hashCode());
+    result = 31 * result + (openOrderSellCost == null ? 0: openOrderSellCost.hashCode());
+    result = 31 * result + (openOrderSellPremium == null ? 0: openOrderSellPremium.hashCode());
+    result = 31 * result + (execBuyQty == null ? 0: execBuyQty.hashCode());
+    result = 31 * result + (execBuyCost == null ? 0: execBuyCost.hashCode());
+    result = 31 * result + (execSellQty == null ? 0: execSellQty.hashCode());
+    result = 31 * result + (execSellCost == null ? 0: execSellCost.hashCode());
+    result = 31 * result + (execQty == null ? 0: execQty.hashCode());
+    result = 31 * result + (execCost == null ? 0: execCost.hashCode());
+    result = 31 * result + (execComm == null ? 0: execComm.hashCode());
+    result = 31 * result + (currentTimestamp == null ? 0: currentTimestamp.hashCode());
+    result = 31 * result + (currentQty == null ? 0: currentQty.hashCode());
+    result = 31 * result + (currentCost == null ? 0: currentCost.hashCode());
+    result = 31 * result + (currentComm == null ? 0: currentComm.hashCode());
+    result = 31 * result + (realisedCost == null ? 0: realisedCost.hashCode());
+    result = 31 * result + (unrealisedCost == null ? 0: unrealisedCost.hashCode());
+    result = 31 * result + (grossOpenCost == null ? 0: grossOpenCost.hashCode());
+    result = 31 * result + (grossOpenPremium == null ? 0: grossOpenPremium.hashCode());
+    result = 31 * result + (grossExecCost == null ? 0: grossExecCost.hashCode());
+    result = 31 * result + (isOpen == null ? 0: isOpen.hashCode());
+    result = 31 * result + (markPrice == null ? 0: markPrice.hashCode());
+    result = 31 * result + (markValue == null ? 0: markValue.hashCode());
+    result = 31 * result + (homeNotional == null ? 0: homeNotional.hashCode());
+    result = 31 * result + (foreignNotional == null ? 0: foreignNotional.hashCode());
+    result = 31 * result + (posState == null ? 0: posState.hashCode());
+    result = 31 * result + (posCost == null ? 0: posCost.hashCode());
+    result = 31 * result + (posCost2 == null ? 0: posCost2.hashCode());
+    result = 31 * result + (posCross == null ? 0: posCross.hashCode());
+    result = 31 * result + (posInit == null ? 0: posInit.hashCode());
+    result = 31 * result + (posComm == null ? 0: posComm.hashCode());
+    result = 31 * result + (posLoss == null ? 0: posLoss.hashCode());
+    result = 31 * result + (posMargin == null ? 0: posMargin.hashCode());
+    result = 31 * result + (posMaint == null ? 0: posMaint.hashCode());
+    result = 31 * result + (posAllowance == null ? 0: posAllowance.hashCode());
+    result = 31 * result + (taxableMargin == null ? 0: taxableMargin.hashCode());
+    result = 31 * result + (initMargin == null ? 0: initMargin.hashCode());
+    result = 31 * result + (maintMargin == null ? 0: maintMargin.hashCode());
+    result = 31 * result + (sessionMargin == null ? 0: sessionMargin.hashCode());
+    result = 31 * result + (targetExcessMargin == null ? 0: targetExcessMargin.hashCode());
+    result = 31 * result + (varMargin == null ? 0: varMargin.hashCode());
+    result = 31 * result + (realisedGrossPnl == null ? 0: realisedGrossPnl.hashCode());
+    result = 31 * result + (realisedTax == null ? 0: realisedTax.hashCode());
+    result = 31 * result + (realisedPnl == null ? 0: realisedPnl.hashCode());
+    result = 31 * result + (unrealisedGrossPnl == null ? 0: unrealisedGrossPnl.hashCode());
+    result = 31 * result + (longBankrupt == null ? 0: longBankrupt.hashCode());
+    result = 31 * result + (shortBankrupt == null ? 0: shortBankrupt.hashCode());
+    result = 31 * result + (taxBase == null ? 0: taxBase.hashCode());
+    result = 31 * result + (indicativeTaxRate == null ? 0: indicativeTaxRate.hashCode());
+    result = 31 * result + (indicativeTax == null ? 0: indicativeTax.hashCode());
+    result = 31 * result + (unrealisedTax == null ? 0: unrealisedTax.hashCode());
+    result = 31 * result + (unrealisedPnl == null ? 0: unrealisedPnl.hashCode());
+    result = 31 * result + (unrealisedPnlPcnt == null ? 0: unrealisedPnlPcnt.hashCode());
+    result = 31 * result + (unrealisedRoePcnt == null ? 0: unrealisedRoePcnt.hashCode());
+    result = 31 * result + (simpleQty == null ? 0: simpleQty.hashCode());
+    result = 31 * result + (simpleCost == null ? 0: simpleCost.hashCode());
+    result = 31 * result + (simpleValue == null ? 0: simpleValue.hashCode());
+    result = 31 * result + (simplePnl == null ? 0: simplePnl.hashCode());
+    result = 31 * result + (simplePnlPcnt == null ? 0: simplePnlPcnt.hashCode());
+    result = 31 * result + (avgCostPrice == null ? 0: avgCostPrice.hashCode());
+    result = 31 * result + (avgEntryPrice == null ? 0: avgEntryPrice.hashCode());
+    result = 31 * result + (breakEvenPrice == null ? 0: breakEvenPrice.hashCode());
+    result = 31 * result + (marginCallPrice == null ? 0: marginCallPrice.hashCode());
+    result = 31 * result + (liquidationPrice == null ? 0: liquidationPrice.hashCode());
+    result = 31 * result + (bankruptPrice == null ? 0: bankruptPrice.hashCode());
+    result = 31 * result + (timestamp == null ? 0: timestamp.hashCode());
+    result = 31 * result + (lastPrice == null ? 0: lastPrice.hashCode());
+    result = 31 * result + (lastValue == null ? 0: lastValue.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

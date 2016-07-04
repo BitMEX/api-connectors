@@ -4,11 +4,12 @@ part of api;
 @Entity()
 class ConnectedUsers {
   
+  @Property(name: 'users')
   Number users = null;
   
-  
+
+  @Property(name: 'bots')
   Number bots = null;
-  
   
   ConnectedUsers();
 

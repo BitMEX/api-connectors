@@ -4,47 +4,60 @@ part of api;
 @Entity()
 class TradeBin {
   
+  @Property(name: 'timestamp')
   DateTime timestamp = null;
   
-  
+
+  @Property(name: 'symbol')
   String symbol = null;
   
+
+  @Property(name: 'open')
+  double open = null;
   
-  num open = null;
+
+  @Property(name: 'high')
+  double high = null;
   
+
+  @Property(name: 'low')
+  double low = null;
   
-  num high = null;
+
+  @Property(name: 'close')
+  double close = null;
   
-  
-  num low = null;
-  
-  
-  num close = null;
-  
-  
+
+  @Property(name: 'trades')
   Number trades = null;
   
-  
+
+  @Property(name: 'volume')
   Number volume = null;
   
+
+  @Property(name: 'vwap')
+  double vwap = null;
   
-  num vwap = null;
-  
-  
+
+  @Property(name: 'lastSize')
   Number lastSize = null;
   
-  
+
+  @Property(name: 'turnover')
   Number turnover = null;
   
+
+  @Property(name: 'homeNotional')
+  double homeNotional = null;
   
-  num homeNotional = null;
+
+  @Property(name: 'foreignNotional')
+  double foreignNotional = null;
   
-  
-  num foreignNotional = null;
-  
-  
-  num id = null;
-  
+
+  @Property(name: 'id')
+  double id = null;
   
   TradeBin();
 

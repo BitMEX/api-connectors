@@ -1,7 +1,7 @@
 package io.swagger.client.model;
 
-import java.util.Date;
 import java.math.BigDecimal;
+import java.util.Date;
 
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -33,7 +33,6 @@ public class Trade  {
   @SerializedName("id")
   private Double id = null;
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -44,7 +43,6 @@ public class Trade  {
     this.timestamp = timestamp;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -55,7 +53,6 @@ public class Trade  {
     this.symbol = symbol;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -66,7 +63,6 @@ public class Trade  {
     this.side = side;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -77,7 +73,6 @@ public class Trade  {
     this.size = size;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -88,7 +83,6 @@ public class Trade  {
     this.price = price;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -99,7 +93,6 @@ public class Trade  {
     this.tickDirection = tickDirection;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -110,7 +103,6 @@ public class Trade  {
     this.trdMatchID = trdMatchID;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -121,7 +113,6 @@ public class Trade  {
     this.grossValue = grossValue;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -132,7 +123,6 @@ public class Trade  {
     this.homeNotional = homeNotional;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -143,7 +133,6 @@ public class Trade  {
     this.foreignNotional = foreignNotional;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -154,7 +143,45 @@ public class Trade  {
     this.id = id;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Trade trade = (Trade) o;
+    return (timestamp == null ? trade.timestamp == null : timestamp.equals(trade.timestamp)) &&
+        (symbol == null ? trade.symbol == null : symbol.equals(trade.symbol)) &&
+        (side == null ? trade.side == null : side.equals(trade.side)) &&
+        (size == null ? trade.size == null : size.equals(trade.size)) &&
+        (price == null ? trade.price == null : price.equals(trade.price)) &&
+        (tickDirection == null ? trade.tickDirection == null : tickDirection.equals(trade.tickDirection)) &&
+        (trdMatchID == null ? trade.trdMatchID == null : trdMatchID.equals(trade.trdMatchID)) &&
+        (grossValue == null ? trade.grossValue == null : grossValue.equals(trade.grossValue)) &&
+        (homeNotional == null ? trade.homeNotional == null : homeNotional.equals(trade.homeNotional)) &&
+        (foreignNotional == null ? trade.foreignNotional == null : foreignNotional.equals(trade.foreignNotional)) &&
+        (id == null ? trade.id == null : id.equals(trade.id));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (timestamp == null ? 0: timestamp.hashCode());
+    result = 31 * result + (symbol == null ? 0: symbol.hashCode());
+    result = 31 * result + (side == null ? 0: side.hashCode());
+    result = 31 * result + (size == null ? 0: size.hashCode());
+    result = 31 * result + (price == null ? 0: price.hashCode());
+    result = 31 * result + (tickDirection == null ? 0: tickDirection.hashCode());
+    result = 31 * result + (trdMatchID == null ? 0: trdMatchID.hashCode());
+    result = 31 * result + (grossValue == null ? 0: grossValue.hashCode());
+    result = 31 * result + (homeNotional == null ? 0: homeNotional.hashCode());
+    result = 31 * result + (foreignNotional == null ? 0: foreignNotional.hashCode());
+    result = 31 * result + (id == null ? 0: id.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

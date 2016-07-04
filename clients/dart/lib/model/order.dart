@@ -4,104 +4,136 @@ part of api;
 @Entity()
 class Order {
   
+  @Property(name: 'orderID')
   String orderID = null;
   
-  
+
+  @Property(name: 'clOrdID')
   String clOrdID = null;
   
-  
+
+  @Property(name: 'clOrdLinkID')
   String clOrdLinkID = null;
   
-  
+
+  @Property(name: 'account')
   Number account = null;
   
-  
+
+  @Property(name: 'symbol')
   String symbol = null;
   
-  
+
+  @Property(name: 'side')
   String side = null;
   
+
+  @Property(name: 'simpleOrderQty')
+  double simpleOrderQty = null;
   
-  num simpleOrderQty = null;
-  
-  
+
+  @Property(name: 'orderQty')
   Number orderQty = null;
   
+
+  @Property(name: 'price')
+  double price = null;
   
-  num price = null;
-  
-  
+
+  @Property(name: 'displayQty')
   Number displayQty = null;
   
+
+  @Property(name: 'stopPx')
+  double stopPx = null;
   
-  num stopPx = null;
+
+  @Property(name: 'pegOffsetValue')
+  double pegOffsetValue = null;
   
-  
-  num pegOffsetValue = null;
-  
-  
+
+  @Property(name: 'pegPriceType')
   String pegPriceType = null;
   
-  
+
+  @Property(name: 'currency')
   String currency = null;
   
-  
+
+  @Property(name: 'settlCurrency')
   String settlCurrency = null;
   
-  
+
+  @Property(name: 'ordType')
   String ordType = null;
   
-  
+
+  @Property(name: 'timeInForce')
   String timeInForce = null;
   
-  
+
+  @Property(name: 'execInst')
   String execInst = null;
   
-  
+
+  @Property(name: 'contingencyType')
   String contingencyType = null;
   
-  
+
+  @Property(name: 'exDestination')
   String exDestination = null;
   
-  
+
+  @Property(name: 'ordStatus')
   String ordStatus = null;
   
-  
+
+  @Property(name: 'triggered')
   String triggered = null;
   
-  
+
+  @Property(name: 'workingIndicator')
   bool workingIndicator = null;
   
-  
+
+  @Property(name: 'ordRejReason')
   String ordRejReason = null;
   
+
+  @Property(name: 'simpleLeavesQty')
+  double simpleLeavesQty = null;
   
-  num simpleLeavesQty = null;
-  
-  
+
+  @Property(name: 'leavesQty')
   Number leavesQty = null;
   
+
+  @Property(name: 'simpleCumQty')
+  double simpleCumQty = null;
   
-  num simpleCumQty = null;
-  
-  
+
+  @Property(name: 'cumQty')
   Number cumQty = null;
   
+
+  @Property(name: 'avgPx')
+  double avgPx = null;
   
-  num avgPx = null;
-  
-  
+
+  @Property(name: 'multiLegReportingType')
   String multiLegReportingType = null;
   
-  
+
+  @Property(name: 'text')
   String text = null;
   
-  
+
+  @Property(name: 'transactTime')
   DateTime transactTime = null;
   
-  
+
+  @Property(name: 'timestamp')
   DateTime timestamp = null;
-  
   
   Order();
 

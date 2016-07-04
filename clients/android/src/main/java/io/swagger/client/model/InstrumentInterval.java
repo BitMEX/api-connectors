@@ -14,7 +14,6 @@ public class InstrumentInterval  {
   @SerializedName("symbols")
   private List<String> symbols = null;
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -25,7 +24,6 @@ public class InstrumentInterval  {
     this.intervals = intervals;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -36,7 +34,27 @@ public class InstrumentInterval  {
     this.symbols = symbols;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    InstrumentInterval instrumentInterval = (InstrumentInterval) o;
+    return (intervals == null ? instrumentInterval.intervals == null : intervals.equals(instrumentInterval.intervals)) &&
+        (symbols == null ? instrumentInterval.symbols == null : symbols.equals(instrumentInterval.symbols));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (intervals == null ? 0: intervals.hashCode());
+    result = 31 * result + (symbols == null ? 0: symbols.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

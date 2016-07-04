@@ -93,7 +93,6 @@ public class Margin  {
   @SerializedName("commission")
   private Double commission = 0.0;
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -104,7 +103,6 @@ public class Margin  {
     this.account = account;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -115,7 +113,6 @@ public class Margin  {
     this.currency = currency;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -126,7 +123,6 @@ public class Margin  {
     this.riskLimit = riskLimit;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -137,7 +133,6 @@ public class Margin  {
     this.prevState = prevState;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -148,7 +143,6 @@ public class Margin  {
     this.state = state;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -159,7 +153,6 @@ public class Margin  {
     this.action = action;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -170,7 +163,6 @@ public class Margin  {
     this.amount = amount;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -181,7 +173,6 @@ public class Margin  {
     this.pendingCredit = pendingCredit;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -192,7 +183,6 @@ public class Margin  {
     this.pendingDebit = pendingDebit;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -203,7 +193,6 @@ public class Margin  {
     this.confirmedDebit = confirmedDebit;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -214,7 +203,6 @@ public class Margin  {
     this.prevRealisedPnl = prevRealisedPnl;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -225,7 +213,6 @@ public class Margin  {
     this.prevUnrealisedPnl = prevUnrealisedPnl;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -236,7 +223,6 @@ public class Margin  {
     this.grossComm = grossComm;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -247,7 +233,6 @@ public class Margin  {
     this.grossOpenCost = grossOpenCost;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -258,7 +243,6 @@ public class Margin  {
     this.grossOpenPremium = grossOpenPremium;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -269,7 +253,6 @@ public class Margin  {
     this.grossExecCost = grossExecCost;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -280,7 +263,6 @@ public class Margin  {
     this.grossMarkValue = grossMarkValue;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -291,7 +273,6 @@ public class Margin  {
     this.riskValue = riskValue;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -302,7 +283,6 @@ public class Margin  {
     this.taxableMargin = taxableMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -313,7 +293,6 @@ public class Margin  {
     this.initMargin = initMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -324,7 +303,6 @@ public class Margin  {
     this.maintMargin = maintMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -335,7 +313,6 @@ public class Margin  {
     this.sessionMargin = sessionMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -346,7 +323,6 @@ public class Margin  {
     this.targetExcessMargin = targetExcessMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -357,7 +333,6 @@ public class Margin  {
     this.varMargin = varMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -368,7 +343,6 @@ public class Margin  {
     this.realisedPnl = realisedPnl;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -379,7 +353,6 @@ public class Margin  {
     this.unrealisedPnl = unrealisedPnl;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -390,7 +363,6 @@ public class Margin  {
     this.indicativeTax = indicativeTax;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -401,7 +373,6 @@ public class Margin  {
     this.unrealisedProfit = unrealisedProfit;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -412,7 +383,6 @@ public class Margin  {
     this.syntheticMargin = syntheticMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -423,7 +393,6 @@ public class Margin  {
     this.walletBalance = walletBalance;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -434,7 +403,6 @@ public class Margin  {
     this.marginBalance = marginBalance;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -445,7 +413,6 @@ public class Margin  {
     this.marginBalancePcnt = marginBalancePcnt;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -456,7 +423,6 @@ public class Margin  {
     this.marginLeverage = marginLeverage;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -467,7 +433,6 @@ public class Margin  {
     this.marginUsedPcnt = marginUsedPcnt;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -478,7 +443,6 @@ public class Margin  {
     this.excessMargin = excessMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -489,7 +453,6 @@ public class Margin  {
     this.excessMarginPcnt = excessMarginPcnt;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -500,7 +463,6 @@ public class Margin  {
     this.availableMargin = availableMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -511,7 +473,6 @@ public class Margin  {
     this.withdrawableMargin = withdrawableMargin;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -522,7 +483,6 @@ public class Margin  {
     this.timestamp = timestamp;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -533,7 +493,6 @@ public class Margin  {
     this.grossLastValue = grossLastValue;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -544,7 +503,105 @@ public class Margin  {
     this.commission = commission;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Margin margin = (Margin) o;
+    return (account == null ? margin.account == null : account.equals(margin.account)) &&
+        (currency == null ? margin.currency == null : currency.equals(margin.currency)) &&
+        (riskLimit == null ? margin.riskLimit == null : riskLimit.equals(margin.riskLimit)) &&
+        (prevState == null ? margin.prevState == null : prevState.equals(margin.prevState)) &&
+        (state == null ? margin.state == null : state.equals(margin.state)) &&
+        (action == null ? margin.action == null : action.equals(margin.action)) &&
+        (amount == null ? margin.amount == null : amount.equals(margin.amount)) &&
+        (pendingCredit == null ? margin.pendingCredit == null : pendingCredit.equals(margin.pendingCredit)) &&
+        (pendingDebit == null ? margin.pendingDebit == null : pendingDebit.equals(margin.pendingDebit)) &&
+        (confirmedDebit == null ? margin.confirmedDebit == null : confirmedDebit.equals(margin.confirmedDebit)) &&
+        (prevRealisedPnl == null ? margin.prevRealisedPnl == null : prevRealisedPnl.equals(margin.prevRealisedPnl)) &&
+        (prevUnrealisedPnl == null ? margin.prevUnrealisedPnl == null : prevUnrealisedPnl.equals(margin.prevUnrealisedPnl)) &&
+        (grossComm == null ? margin.grossComm == null : grossComm.equals(margin.grossComm)) &&
+        (grossOpenCost == null ? margin.grossOpenCost == null : grossOpenCost.equals(margin.grossOpenCost)) &&
+        (grossOpenPremium == null ? margin.grossOpenPremium == null : grossOpenPremium.equals(margin.grossOpenPremium)) &&
+        (grossExecCost == null ? margin.grossExecCost == null : grossExecCost.equals(margin.grossExecCost)) &&
+        (grossMarkValue == null ? margin.grossMarkValue == null : grossMarkValue.equals(margin.grossMarkValue)) &&
+        (riskValue == null ? margin.riskValue == null : riskValue.equals(margin.riskValue)) &&
+        (taxableMargin == null ? margin.taxableMargin == null : taxableMargin.equals(margin.taxableMargin)) &&
+        (initMargin == null ? margin.initMargin == null : initMargin.equals(margin.initMargin)) &&
+        (maintMargin == null ? margin.maintMargin == null : maintMargin.equals(margin.maintMargin)) &&
+        (sessionMargin == null ? margin.sessionMargin == null : sessionMargin.equals(margin.sessionMargin)) &&
+        (targetExcessMargin == null ? margin.targetExcessMargin == null : targetExcessMargin.equals(margin.targetExcessMargin)) &&
+        (varMargin == null ? margin.varMargin == null : varMargin.equals(margin.varMargin)) &&
+        (realisedPnl == null ? margin.realisedPnl == null : realisedPnl.equals(margin.realisedPnl)) &&
+        (unrealisedPnl == null ? margin.unrealisedPnl == null : unrealisedPnl.equals(margin.unrealisedPnl)) &&
+        (indicativeTax == null ? margin.indicativeTax == null : indicativeTax.equals(margin.indicativeTax)) &&
+        (unrealisedProfit == null ? margin.unrealisedProfit == null : unrealisedProfit.equals(margin.unrealisedProfit)) &&
+        (syntheticMargin == null ? margin.syntheticMargin == null : syntheticMargin.equals(margin.syntheticMargin)) &&
+        (walletBalance == null ? margin.walletBalance == null : walletBalance.equals(margin.walletBalance)) &&
+        (marginBalance == null ? margin.marginBalance == null : marginBalance.equals(margin.marginBalance)) &&
+        (marginBalancePcnt == null ? margin.marginBalancePcnt == null : marginBalancePcnt.equals(margin.marginBalancePcnt)) &&
+        (marginLeverage == null ? margin.marginLeverage == null : marginLeverage.equals(margin.marginLeverage)) &&
+        (marginUsedPcnt == null ? margin.marginUsedPcnt == null : marginUsedPcnt.equals(margin.marginUsedPcnt)) &&
+        (excessMargin == null ? margin.excessMargin == null : excessMargin.equals(margin.excessMargin)) &&
+        (excessMarginPcnt == null ? margin.excessMarginPcnt == null : excessMarginPcnt.equals(margin.excessMarginPcnt)) &&
+        (availableMargin == null ? margin.availableMargin == null : availableMargin.equals(margin.availableMargin)) &&
+        (withdrawableMargin == null ? margin.withdrawableMargin == null : withdrawableMargin.equals(margin.withdrawableMargin)) &&
+        (timestamp == null ? margin.timestamp == null : timestamp.equals(margin.timestamp)) &&
+        (grossLastValue == null ? margin.grossLastValue == null : grossLastValue.equals(margin.grossLastValue)) &&
+        (commission == null ? margin.commission == null : commission.equals(margin.commission));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (account == null ? 0: account.hashCode());
+    result = 31 * result + (currency == null ? 0: currency.hashCode());
+    result = 31 * result + (riskLimit == null ? 0: riskLimit.hashCode());
+    result = 31 * result + (prevState == null ? 0: prevState.hashCode());
+    result = 31 * result + (state == null ? 0: state.hashCode());
+    result = 31 * result + (action == null ? 0: action.hashCode());
+    result = 31 * result + (amount == null ? 0: amount.hashCode());
+    result = 31 * result + (pendingCredit == null ? 0: pendingCredit.hashCode());
+    result = 31 * result + (pendingDebit == null ? 0: pendingDebit.hashCode());
+    result = 31 * result + (confirmedDebit == null ? 0: confirmedDebit.hashCode());
+    result = 31 * result + (prevRealisedPnl == null ? 0: prevRealisedPnl.hashCode());
+    result = 31 * result + (prevUnrealisedPnl == null ? 0: prevUnrealisedPnl.hashCode());
+    result = 31 * result + (grossComm == null ? 0: grossComm.hashCode());
+    result = 31 * result + (grossOpenCost == null ? 0: grossOpenCost.hashCode());
+    result = 31 * result + (grossOpenPremium == null ? 0: grossOpenPremium.hashCode());
+    result = 31 * result + (grossExecCost == null ? 0: grossExecCost.hashCode());
+    result = 31 * result + (grossMarkValue == null ? 0: grossMarkValue.hashCode());
+    result = 31 * result + (riskValue == null ? 0: riskValue.hashCode());
+    result = 31 * result + (taxableMargin == null ? 0: taxableMargin.hashCode());
+    result = 31 * result + (initMargin == null ? 0: initMargin.hashCode());
+    result = 31 * result + (maintMargin == null ? 0: maintMargin.hashCode());
+    result = 31 * result + (sessionMargin == null ? 0: sessionMargin.hashCode());
+    result = 31 * result + (targetExcessMargin == null ? 0: targetExcessMargin.hashCode());
+    result = 31 * result + (varMargin == null ? 0: varMargin.hashCode());
+    result = 31 * result + (realisedPnl == null ? 0: realisedPnl.hashCode());
+    result = 31 * result + (unrealisedPnl == null ? 0: unrealisedPnl.hashCode());
+    result = 31 * result + (indicativeTax == null ? 0: indicativeTax.hashCode());
+    result = 31 * result + (unrealisedProfit == null ? 0: unrealisedProfit.hashCode());
+    result = 31 * result + (syntheticMargin == null ? 0: syntheticMargin.hashCode());
+    result = 31 * result + (walletBalance == null ? 0: walletBalance.hashCode());
+    result = 31 * result + (marginBalance == null ? 0: marginBalance.hashCode());
+    result = 31 * result + (marginBalancePcnt == null ? 0: marginBalancePcnt.hashCode());
+    result = 31 * result + (marginLeverage == null ? 0: marginLeverage.hashCode());
+    result = 31 * result + (marginUsedPcnt == null ? 0: marginUsedPcnt.hashCode());
+    result = 31 * result + (excessMargin == null ? 0: excessMargin.hashCode());
+    result = 31 * result + (excessMarginPcnt == null ? 0: excessMarginPcnt.hashCode());
+    result = 31 * result + (availableMargin == null ? 0: availableMargin.hashCode());
+    result = 31 * result + (withdrawableMargin == null ? 0: withdrawableMargin.hashCode());
+    result = 31 * result + (timestamp == null ? 0: timestamp.hashCode());
+    result = 31 * result + (grossLastValue == null ? 0: grossLastValue.hashCode());
+    result = 31 * result + (commission == null ? 0: commission.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

@@ -1,17 +1,22 @@
 package io.swagger.client.api;
 
+import com.sun.jersey.api.client.GenericType;
+
 import io.swagger.client.ApiException;
 import io.swagger.client.ApiClient;
 import io.swagger.client.Configuration;
+import io.swagger.client.model.*;
 import io.swagger.client.Pair;
-import io.swagger.client.TypeRef;
 
-import io.swagger.client.model.InlineResponse2001;
 import io.swagger.client.model.Error;
 
-import java.util.*;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-04T18:25:18.235-05:00")
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-04T18:27:59.355-05:00")
 public class SchemaApi {
   private ApiClient apiClient;
 
@@ -31,102 +36,76 @@ public class SchemaApi {
     this.apiClient = apiClient;
   }
 
-  
   /**
    * Get model schemata for data objects returned by this API.
    * 
-   * @param model Optional model filter. If omitted, will return all models.
-   * @return InlineResponse2001
+   * @param model Optional model filter. If omitted, will return all models. (optional)
+   * @return Object
+   * @throws ApiException if fails to make API call
    */
-  public InlineResponse2001 schemaGet (String model) throws ApiException {
-    Object postBody = null;
-    byte[] postBinaryBody = null;
+  public Object schemaGet(String model) throws ApiException {
+    Object localVarPostBody = null;
     
     // create path and map variables
-    String path = "/schema".replaceAll("\\{format\\}","json");
+    String localVarPath = "/schema".replaceAll("\\{format\\}","json");
 
     // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, Object> formParams = new HashMap<String, Object>();
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "model", model));
 
     
-    queryParams.addAll(apiClient.parameterToPairs("", "model", model));
     
-
-    
-
-    
-
-    final String[] accepts = {
+    final String[] localVarAccepts = {
       "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
     };
-    final String accept = apiClient.selectHeaderAccept(accepts);
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
-    final String[] contentTypes = {
+    final String[] localVarContentTypes = {
       "application/json", "application/x-www-form-urlencoded"
     };
-    final String contentType = apiClient.selectHeaderContentType(contentTypes);
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] authNames = new String[] {  };
+    String[] localVarAuthNames = new String[] {  };
 
-    
-
-    
-    
-    TypeRef returnType = new TypeRef<InlineResponse2001>() {};
-    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
-    
-    
-
-
-  }
-  
+    GenericType<Object> localVarReturnType = new GenericType<Object>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
   /**
    * Returns help text &amp; subject list for websocket usage.
    * 
-   * @return InlineResponse2001
+   * @return Object
+   * @throws ApiException if fails to make API call
    */
-  public InlineResponse2001 schemaWebsocketHelp () throws ApiException {
-    Object postBody = null;
-    byte[] postBinaryBody = null;
+  public Object schemaWebsocketHelp() throws ApiException {
+    Object localVarPostBody = null;
     
     // create path and map variables
-    String path = "/schema/websocketHelp".replaceAll("\\{format\\}","json");
+    String localVarPath = "/schema/websocketHelp".replaceAll("\\{format\\}","json");
 
     // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, Object> formParams = new HashMap<String, Object>();
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
 
     
-
     
-
-    
-
-    final String[] accepts = {
+    final String[] localVarAccepts = {
       "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
     };
-    final String accept = apiClient.selectHeaderAccept(accepts);
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
-    final String[] contentTypes = {
+    final String[] localVarContentTypes = {
       "application/json", "application/x-www-form-urlencoded"
     };
-    final String contentType = apiClient.selectHeaderContentType(contentTypes);
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] authNames = new String[] {  };
+    String[] localVarAuthNames = new String[] {  };
 
-    
-
-    
-    
-    TypeRef returnType = new TypeRef<InlineResponse2001>() {};
-    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
-    
-    
-
-
-  }
-  
+    GenericType<Object> localVarReturnType = new GenericType<Object>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
 }

@@ -59,162 +59,66 @@ class ApiClient {
     bool isMap = json is Map;
 
     switch(clazz) {
-      
-      
-      case Chat:
-        return isMap ? dson.map(json, new Chat()) : dson.decode(json, new Chat());
-      
-      
-      
-      case Error:
-        return isMap ? dson.map(json, new Error()) : dson.decode(json, new Error());
-      
-      
-      
-      case ConnectedUsers:
-        return isMap ? dson.map(json, new ConnectedUsers()) : dson.decode(json, new ConnectedUsers());
-      
-      
-      
-      case Announcement:
-        return isMap ? dson.map(json, new Announcement()) : dson.decode(json, new Announcement());
-      
-      
-      
-      case ApiKey:
-        return isMap ? dson.map(json, new ApiKey()) : dson.decode(json, new ApiKey());
-      
-      
-      
-      case Execution:
-        return isMap ? dson.map(json, new Execution()) : dson.decode(json, new Execution());
-      
-      
-      
-      case Instrument:
-        return isMap ? dson.map(json, new Instrument()) : dson.decode(json, new Instrument());
-      
-      
-      
-      case InstrumentInterval:
-        return isMap ? dson.map(json, new InstrumentInterval()) : dson.decode(json, new InstrumentInterval());
-      
-      
-      
-      case Insurance:
-        return isMap ? dson.map(json, new Insurance()) : dson.decode(json, new Insurance());
-      
-      
-      
-      case Leaderboard:
-        return isMap ? dson.map(json, new Leaderboard()) : dson.decode(json, new Leaderboard());
-      
-      
-      
-      case Liquidation:
-        return isMap ? dson.map(json, new Liquidation()) : dson.decode(json, new Liquidation());
-      
-      
-      
-      case Order:
-        return isMap ? dson.map(json, new Order()) : dson.decode(json, new Order());
-      
-      
-      
-      case OrderBook:
-        return isMap ? dson.map(json, new OrderBook()) : dson.decode(json, new OrderBook());
-      
-      
-      
-      case OrderBookL2:
-        return isMap ? dson.map(json, new OrderBookL2()) : dson.decode(json, new OrderBookL2());
-      
-      
-      
-      case Position:
-        return isMap ? dson.map(json, new Position()) : dson.decode(json, new Position());
-      
-      
-      
-      case Quote:
-        return isMap ? dson.map(json, new Quote()) : dson.decode(json, new Quote());
-      
-      
-      
-      case Settlement:
-        return isMap ? dson.map(json, new Settlement()) : dson.decode(json, new Settlement());
-      
-      
-      
-      case Funding:
-        return isMap ? dson.map(json, new Funding()) : dson.decode(json, new Funding());
-      
-      
-      
-      case Stats:
-        return isMap ? dson.map(json, new Stats()) : dson.decode(json, new Stats());
-      
-      
-      
-      case StatsHistory:
-        return isMap ? dson.map(json, new StatsHistory()) : dson.decode(json, new StatsHistory());
-      
-      
-      
-      case Trade:
-        return isMap ? dson.map(json, new Trade()) : dson.decode(json, new Trade());
-      
-      
-      
-      case TradeBin:
-        return isMap ? dson.map(json, new TradeBin()) : dson.decode(json, new TradeBin());
-      
-      
-      
-      case Transaction:
-        return isMap ? dson.map(json, new Transaction()) : dson.decode(json, new Transaction());
-      
-      
-      
       case AccessToken:
         return isMap ? dson.map(json, new AccessToken()) : dson.decode(json, new AccessToken());
-      
-      
-      
       case Affiliate:
         return isMap ? dson.map(json, new Affiliate()) : dson.decode(json, new Affiliate());
-      
-      
-      
-      case User:
-        return isMap ? dson.map(json, new User()) : dson.decode(json, new User());
-      
-      
-      
-      case UserCommission:
-        return isMap ? dson.map(json, new UserCommission()) : dson.decode(json, new UserCommission());
-      
-      
-      
-      case Margin:
-        return isMap ? dson.map(json, new Margin()) : dson.decode(json, new Margin());
-      
-      
-      
-      case UserPreferences:
-        return isMap ? dson.map(json, new UserPreferences()) : dson.decode(json, new UserPreferences());
-      
-      
-      
+      case Announcement:
+        return isMap ? dson.map(json, new Announcement()) : dson.decode(json, new Announcement());
+      case ApiKey:
+        return isMap ? dson.map(json, new ApiKey()) : dson.decode(json, new ApiKey());
+      case Chat:
+        return isMap ? dson.map(json, new Chat()) : dson.decode(json, new Chat());
+      case ConnectedUsers:
+        return isMap ? dson.map(json, new ConnectedUsers()) : dson.decode(json, new ConnectedUsers());
+      case Error:
+        return isMap ? dson.map(json, new Error()) : dson.decode(json, new Error());
+      case Execution:
+        return isMap ? dson.map(json, new Execution()) : dson.decode(json, new Execution());
+      case Funding:
+        return isMap ? dson.map(json, new Funding()) : dson.decode(json, new Funding());
       case InlineResponse200:
         return isMap ? dson.map(json, new InlineResponse200()) : dson.decode(json, new InlineResponse200());
-      
-      
-      
-      case InlineResponse2001:
-        return isMap ? dson.map(json, new InlineResponse2001()) : dson.decode(json, new InlineResponse2001());
-      
-      
+      case Instrument:
+        return isMap ? dson.map(json, new Instrument()) : dson.decode(json, new Instrument());
+      case InstrumentInterval:
+        return isMap ? dson.map(json, new InstrumentInterval()) : dson.decode(json, new InstrumentInterval());
+      case Insurance:
+        return isMap ? dson.map(json, new Insurance()) : dson.decode(json, new Insurance());
+      case Leaderboard:
+        return isMap ? dson.map(json, new Leaderboard()) : dson.decode(json, new Leaderboard());
+      case Liquidation:
+        return isMap ? dson.map(json, new Liquidation()) : dson.decode(json, new Liquidation());
+      case Margin:
+        return isMap ? dson.map(json, new Margin()) : dson.decode(json, new Margin());
+      case Order:
+        return isMap ? dson.map(json, new Order()) : dson.decode(json, new Order());
+      case OrderBook:
+        return isMap ? dson.map(json, new OrderBook()) : dson.decode(json, new OrderBook());
+      case OrderBookL2:
+        return isMap ? dson.map(json, new OrderBookL2()) : dson.decode(json, new OrderBookL2());
+      case Position:
+        return isMap ? dson.map(json, new Position()) : dson.decode(json, new Position());
+      case Quote:
+        return isMap ? dson.map(json, new Quote()) : dson.decode(json, new Quote());
+      case Settlement:
+        return isMap ? dson.map(json, new Settlement()) : dson.decode(json, new Settlement());
+      case Stats:
+        return isMap ? dson.map(json, new Stats()) : dson.decode(json, new Stats());
+      case StatsHistory:
+        return isMap ? dson.map(json, new StatsHistory()) : dson.decode(json, new StatsHistory());
+      case Trade:
+        return isMap ? dson.map(json, new Trade()) : dson.decode(json, new Trade());
+      case TradeBin:
+        return isMap ? dson.map(json, new TradeBin()) : dson.decode(json, new TradeBin());
+      case Transaction:
+        return isMap ? dson.map(json, new Transaction()) : dson.decode(json, new Transaction());
+      case User:
+        return isMap ? dson.map(json, new User()) : dson.decode(json, new User());
+      case UserCommission:
+        return isMap ? dson.map(json, new UserCommission()) : dson.decode(json, new UserCommission());
+      case UserPreferences:
+        return isMap ? dson.map(json, new UserPreferences()) : dson.decode(json, new UserPreferences());
       default:
         throw new ApiException(500, 'Could not find a suitable class for deserialization');
     }

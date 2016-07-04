@@ -35,16 +35,12 @@ public class JsonUtil {
   public static Type getListTypeForDeserialization(Class cls) {
     String className = cls.getSimpleName();
     
-    if ("Chat".equalsIgnoreCase(className)) {
-      return new TypeToken<List<Chat>>(){}.getType();
+    if ("AccessToken".equalsIgnoreCase(className)) {
+      return new TypeToken<List<AccessToken>>(){}.getType();
     }
     
-    if ("Error".equalsIgnoreCase(className)) {
-      return new TypeToken<List<Error>>(){}.getType();
-    }
-    
-    if ("ConnectedUsers".equalsIgnoreCase(className)) {
-      return new TypeToken<List<ConnectedUsers>>(){}.getType();
+    if ("Affiliate".equalsIgnoreCase(className)) {
+      return new TypeToken<List<Affiliate>>(){}.getType();
     }
     
     if ("Announcement".equalsIgnoreCase(className)) {
@@ -55,8 +51,28 @@ public class JsonUtil {
       return new TypeToken<List<ApiKey>>(){}.getType();
     }
     
+    if ("Chat".equalsIgnoreCase(className)) {
+      return new TypeToken<List<Chat>>(){}.getType();
+    }
+    
+    if ("ConnectedUsers".equalsIgnoreCase(className)) {
+      return new TypeToken<List<ConnectedUsers>>(){}.getType();
+    }
+    
+    if ("Error".equalsIgnoreCase(className)) {
+      return new TypeToken<List<Error>>(){}.getType();
+    }
+    
     if ("Execution".equalsIgnoreCase(className)) {
       return new TypeToken<List<Execution>>(){}.getType();
+    }
+    
+    if ("Funding".equalsIgnoreCase(className)) {
+      return new TypeToken<List<Funding>>(){}.getType();
+    }
+    
+    if ("InlineResponse200".equalsIgnoreCase(className)) {
+      return new TypeToken<List<InlineResponse200>>(){}.getType();
     }
     
     if ("Instrument".equalsIgnoreCase(className)) {
@@ -77,6 +93,10 @@ public class JsonUtil {
     
     if ("Liquidation".equalsIgnoreCase(className)) {
       return new TypeToken<List<Liquidation>>(){}.getType();
+    }
+    
+    if ("Margin".equalsIgnoreCase(className)) {
+      return new TypeToken<List<Margin>>(){}.getType();
     }
     
     if ("Order".equalsIgnoreCase(className)) {
@@ -103,10 +123,6 @@ public class JsonUtil {
       return new TypeToken<List<Settlement>>(){}.getType();
     }
     
-    if ("Funding".equalsIgnoreCase(className)) {
-      return new TypeToken<List<Funding>>(){}.getType();
-    }
-    
     if ("Stats".equalsIgnoreCase(className)) {
       return new TypeToken<List<Stats>>(){}.getType();
     }
@@ -127,14 +143,6 @@ public class JsonUtil {
       return new TypeToken<List<Transaction>>(){}.getType();
     }
     
-    if ("AccessToken".equalsIgnoreCase(className)) {
-      return new TypeToken<List<AccessToken>>(){}.getType();
-    }
-    
-    if ("Affiliate".equalsIgnoreCase(className)) {
-      return new TypeToken<List<Affiliate>>(){}.getType();
-    }
-    
     if ("User".equalsIgnoreCase(className)) {
       return new TypeToken<List<User>>(){}.getType();
     }
@@ -143,20 +151,8 @@ public class JsonUtil {
       return new TypeToken<List<UserCommission>>(){}.getType();
     }
     
-    if ("Margin".equalsIgnoreCase(className)) {
-      return new TypeToken<List<Margin>>(){}.getType();
-    }
-    
     if ("UserPreferences".equalsIgnoreCase(className)) {
       return new TypeToken<List<UserPreferences>>(){}.getType();
-    }
-    
-    if ("InlineResponse200".equalsIgnoreCase(className)) {
-      return new TypeToken<List<InlineResponse200>>(){}.getType();
-    }
-    
-    if ("InlineResponse2001".equalsIgnoreCase(className)) {
-      return new TypeToken<List<InlineResponse2001>>(){}.getType();
     }
     
     return new TypeToken<List<Object>>(){}.getType();
@@ -165,16 +161,12 @@ public class JsonUtil {
   public static Type getTypeForDeserialization(Class cls) {
     String className = cls.getSimpleName();
     
-    if ("Chat".equalsIgnoreCase(className)) {
-      return new TypeToken<Chat>(){}.getType();
+    if ("AccessToken".equalsIgnoreCase(className)) {
+      return new TypeToken<AccessToken>(){}.getType();
     }
     
-    if ("Error".equalsIgnoreCase(className)) {
-      return new TypeToken<Error>(){}.getType();
-    }
-    
-    if ("ConnectedUsers".equalsIgnoreCase(className)) {
-      return new TypeToken<ConnectedUsers>(){}.getType();
+    if ("Affiliate".equalsIgnoreCase(className)) {
+      return new TypeToken<Affiliate>(){}.getType();
     }
     
     if ("Announcement".equalsIgnoreCase(className)) {
@@ -185,8 +177,28 @@ public class JsonUtil {
       return new TypeToken<ApiKey>(){}.getType();
     }
     
+    if ("Chat".equalsIgnoreCase(className)) {
+      return new TypeToken<Chat>(){}.getType();
+    }
+    
+    if ("ConnectedUsers".equalsIgnoreCase(className)) {
+      return new TypeToken<ConnectedUsers>(){}.getType();
+    }
+    
+    if ("Error".equalsIgnoreCase(className)) {
+      return new TypeToken<Error>(){}.getType();
+    }
+    
     if ("Execution".equalsIgnoreCase(className)) {
       return new TypeToken<Execution>(){}.getType();
+    }
+    
+    if ("Funding".equalsIgnoreCase(className)) {
+      return new TypeToken<Funding>(){}.getType();
+    }
+    
+    if ("InlineResponse200".equalsIgnoreCase(className)) {
+      return new TypeToken<InlineResponse200>(){}.getType();
     }
     
     if ("Instrument".equalsIgnoreCase(className)) {
@@ -207,6 +219,10 @@ public class JsonUtil {
     
     if ("Liquidation".equalsIgnoreCase(className)) {
       return new TypeToken<Liquidation>(){}.getType();
+    }
+    
+    if ("Margin".equalsIgnoreCase(className)) {
+      return new TypeToken<Margin>(){}.getType();
     }
     
     if ("Order".equalsIgnoreCase(className)) {
@@ -233,10 +249,6 @@ public class JsonUtil {
       return new TypeToken<Settlement>(){}.getType();
     }
     
-    if ("Funding".equalsIgnoreCase(className)) {
-      return new TypeToken<Funding>(){}.getType();
-    }
-    
     if ("Stats".equalsIgnoreCase(className)) {
       return new TypeToken<Stats>(){}.getType();
     }
@@ -257,14 +269,6 @@ public class JsonUtil {
       return new TypeToken<Transaction>(){}.getType();
     }
     
-    if ("AccessToken".equalsIgnoreCase(className)) {
-      return new TypeToken<AccessToken>(){}.getType();
-    }
-    
-    if ("Affiliate".equalsIgnoreCase(className)) {
-      return new TypeToken<Affiliate>(){}.getType();
-    }
-    
     if ("User".equalsIgnoreCase(className)) {
       return new TypeToken<User>(){}.getType();
     }
@@ -273,20 +277,8 @@ public class JsonUtil {
       return new TypeToken<UserCommission>(){}.getType();
     }
     
-    if ("Margin".equalsIgnoreCase(className)) {
-      return new TypeToken<Margin>(){}.getType();
-    }
-    
     if ("UserPreferences".equalsIgnoreCase(className)) {
       return new TypeToken<UserPreferences>(){}.getType();
-    }
-    
-    if ("InlineResponse200".equalsIgnoreCase(className)) {
-      return new TypeToken<InlineResponse200>(){}.getType();
-    }
-    
-    if ("InlineResponse2001".equalsIgnoreCase(className)) {
-      return new TypeToken<InlineResponse2001>(){}.getType();
     }
     
     return new TypeToken<Object>(){}.getType();

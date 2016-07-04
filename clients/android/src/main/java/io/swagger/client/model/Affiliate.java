@@ -39,7 +39,6 @@ public class Affiliate  {
   @SerializedName("timestamp")
   private Date timestamp = null;
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -50,7 +49,6 @@ public class Affiliate  {
     this.account = account;
   }
 
-  
   /**
    **/
   @ApiModelProperty(required = true, value = "")
@@ -61,7 +59,6 @@ public class Affiliate  {
     this.currency = currency;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -72,7 +69,6 @@ public class Affiliate  {
     this.prevPayout = prevPayout;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -83,7 +79,6 @@ public class Affiliate  {
     this.prevTurnover = prevTurnover;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -94,7 +89,6 @@ public class Affiliate  {
     this.prevComm = prevComm;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -105,7 +99,6 @@ public class Affiliate  {
     this.prevTimestamp = prevTimestamp;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -116,7 +109,6 @@ public class Affiliate  {
     this.execTurnover = execTurnover;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -127,7 +119,6 @@ public class Affiliate  {
     this.execComm = execComm;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -138,7 +129,6 @@ public class Affiliate  {
     this.totalReferrals = totalReferrals;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -149,7 +139,6 @@ public class Affiliate  {
     this.totalTurnover = totalTurnover;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -160,7 +149,6 @@ public class Affiliate  {
     this.totalComm = totalComm;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -171,7 +159,6 @@ public class Affiliate  {
     this.payoutPcnt = payoutPcnt;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -182,7 +169,6 @@ public class Affiliate  {
     this.pendingPayout = pendingPayout;
   }
 
-  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -193,7 +179,51 @@ public class Affiliate  {
     this.timestamp = timestamp;
   }
 
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Affiliate affiliate = (Affiliate) o;
+    return (account == null ? affiliate.account == null : account.equals(affiliate.account)) &&
+        (currency == null ? affiliate.currency == null : currency.equals(affiliate.currency)) &&
+        (prevPayout == null ? affiliate.prevPayout == null : prevPayout.equals(affiliate.prevPayout)) &&
+        (prevTurnover == null ? affiliate.prevTurnover == null : prevTurnover.equals(affiliate.prevTurnover)) &&
+        (prevComm == null ? affiliate.prevComm == null : prevComm.equals(affiliate.prevComm)) &&
+        (prevTimestamp == null ? affiliate.prevTimestamp == null : prevTimestamp.equals(affiliate.prevTimestamp)) &&
+        (execTurnover == null ? affiliate.execTurnover == null : execTurnover.equals(affiliate.execTurnover)) &&
+        (execComm == null ? affiliate.execComm == null : execComm.equals(affiliate.execComm)) &&
+        (totalReferrals == null ? affiliate.totalReferrals == null : totalReferrals.equals(affiliate.totalReferrals)) &&
+        (totalTurnover == null ? affiliate.totalTurnover == null : totalTurnover.equals(affiliate.totalTurnover)) &&
+        (totalComm == null ? affiliate.totalComm == null : totalComm.equals(affiliate.totalComm)) &&
+        (payoutPcnt == null ? affiliate.payoutPcnt == null : payoutPcnt.equals(affiliate.payoutPcnt)) &&
+        (pendingPayout == null ? affiliate.pendingPayout == null : pendingPayout.equals(affiliate.pendingPayout)) &&
+        (timestamp == null ? affiliate.timestamp == null : timestamp.equals(affiliate.timestamp));
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = 31 * result + (account == null ? 0: account.hashCode());
+    result = 31 * result + (currency == null ? 0: currency.hashCode());
+    result = 31 * result + (prevPayout == null ? 0: prevPayout.hashCode());
+    result = 31 * result + (prevTurnover == null ? 0: prevTurnover.hashCode());
+    result = 31 * result + (prevComm == null ? 0: prevComm.hashCode());
+    result = 31 * result + (prevTimestamp == null ? 0: prevTimestamp.hashCode());
+    result = 31 * result + (execTurnover == null ? 0: execTurnover.hashCode());
+    result = 31 * result + (execComm == null ? 0: execComm.hashCode());
+    result = 31 * result + (totalReferrals == null ? 0: totalReferrals.hashCode());
+    result = 31 * result + (totalTurnover == null ? 0: totalTurnover.hashCode());
+    result = 31 * result + (totalComm == null ? 0: totalComm.hashCode());
+    result = 31 * result + (payoutPcnt == null ? 0: payoutPcnt.hashCode());
+    result = 31 * result + (pendingPayout == null ? 0: pendingPayout.hashCode());
+    result = 31 * result + (timestamp == null ? 0: timestamp.hashCode());
+    return result;
+  }
 
   @Override
   public String toString()  {

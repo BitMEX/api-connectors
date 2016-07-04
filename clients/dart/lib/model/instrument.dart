@@ -4,284 +4,376 @@ part of api;
 @Entity()
 class Instrument {
   
+  @Property(name: 'symbol')
   String symbol = null;
   
-  
+
+  @Property(name: 'rootSymbol')
   String rootSymbol = null;
   
-  
+
+  @Property(name: 'state')
   String state = null;
   
-  
+
+  @Property(name: 'typ')
   String typ = null;
   
-  
+
+  @Property(name: 'listing')
   DateTime listing = null;
   
-  
+
+  @Property(name: 'front')
   DateTime front = null;
   
-  
+
+  @Property(name: 'expiry')
   DateTime expiry = null;
   
-  
+
+  @Property(name: 'settle')
   DateTime settle = null;
   
-  
+
+  @Property(name: 'relistInterval')
   DateTime relistInterval = null;
   
-  
+
+  @Property(name: 'inverseLeg')
   String inverseLeg = null;
   
-  
+
+  @Property(name: 'sellLeg')
   String sellLeg = null;
   
-  
+
+  @Property(name: 'buyLeg')
   String buyLeg = null;
   
-  
+
+  @Property(name: 'positionCurrency')
   String positionCurrency = null;
   
-  
+
+  @Property(name: 'underlying')
   String underlying = null;
   
-  
+
+  @Property(name: 'quoteCurrency')
   String quoteCurrency = null;
   
-  
+
+  @Property(name: 'underlyingSymbol')
   String underlyingSymbol = null;
   
-  
+
+  @Property(name: 'reference')
   String reference = null;
   
-  
+
+  @Property(name: 'referenceSymbol')
   String referenceSymbol = null;
   
-  
+
+  @Property(name: 'calcInterval')
   DateTime calcInterval = null;
   
-  
+
+  @Property(name: 'publishInterval')
   DateTime publishInterval = null;
   
-  
+
+  @Property(name: 'publishTime')
   DateTime publishTime = null;
   
-  
+
+  @Property(name: 'maxOrderQty')
   Number maxOrderQty = null;
   
+
+  @Property(name: 'maxPrice')
+  double maxPrice = null;
   
-  num maxPrice = null;
-  
-  
+
+  @Property(name: 'lotSize')
   Number lotSize = null;
   
+
+  @Property(name: 'tickSize')
+  double tickSize = null;
   
-  num tickSize = null;
-  
-  
+
+  @Property(name: 'multiplier')
   Number multiplier = null;
   
-  
+
+  @Property(name: 'settlCurrency')
   String settlCurrency = null;
   
-  
+
+  @Property(name: 'underlyingToPositionMultiplier')
   Number underlyingToPositionMultiplier = null;
   
-  
+
+  @Property(name: 'underlyingToSettleMultiplier')
   Number underlyingToSettleMultiplier = null;
   
-  
+
+  @Property(name: 'quoteToSettleMultiplier')
   Number quoteToSettleMultiplier = null;
   
-  
+
+  @Property(name: 'isQuanto')
   bool isQuanto = null;
   
-  
+
+  @Property(name: 'isInverse')
   bool isInverse = null;
   
+
+  @Property(name: 'initMargin')
+  double initMargin = null;
   
-  num initMargin = null;
+
+  @Property(name: 'maintMargin')
+  double maintMargin = null;
   
+
+  @Property(name: 'limit')
+  double limit = null;
   
-  num maintMargin = null;
-  
-  
-  num limit = null;
-  
-  
+
+  @Property(name: 'capped')
   bool capped = null;
   
-  
+
+  @Property(name: 'taxed')
   bool taxed = null;
   
+
+  @Property(name: 'makerFee')
+  double makerFee = null;
   
-  num makerFee = null;
+
+  @Property(name: 'takerFee')
+  double takerFee = null;
   
+
+  @Property(name: 'settlementFee')
+  double settlementFee = null;
   
-  num takerFee = null;
+
+  @Property(name: 'insuranceFee')
+  double insuranceFee = null;
   
-  
-  num settlementFee = null;
-  
-  
-  num insuranceFee = null;
-  
-  
+
+  @Property(name: 'fundingBaseSymbol')
   String fundingBaseSymbol = null;
   
-  
+
+  @Property(name: 'fundingQuoteSymbol')
   String fundingQuoteSymbol = null;
   
-  
+
+  @Property(name: 'fundingPremiumSymbol')
   String fundingPremiumSymbol = null;
   
-  
+
+  @Property(name: 'fundingTimestamp')
   DateTime fundingTimestamp = null;
   
-  
+
+  @Property(name: 'fundingInterval')
   DateTime fundingInterval = null;
   
+
+  @Property(name: 'fundingRate')
+  double fundingRate = null;
   
-  num fundingRate = null;
+
+  @Property(name: 'indicativeFundingRate')
+  double indicativeFundingRate = null;
   
-  
-  num indicativeFundingRate = null;
-  
-  
+
+  @Property(name: 'rebalanceTimestamp')
   DateTime rebalanceTimestamp = null;
   
-  
+
+  @Property(name: 'rebalanceInterval')
   DateTime rebalanceInterval = null;
   
-  
+
+  @Property(name: 'openingTimestamp')
   DateTime openingTimestamp = null;
   
-  
+
+  @Property(name: 'closingTimestamp')
   DateTime closingTimestamp = null;
   
-  
+
+  @Property(name: 'sessionInterval')
   DateTime sessionInterval = null;
   
+
+  @Property(name: 'prevClosePrice')
+  double prevClosePrice = null;
   
-  num prevClosePrice = null;
+
+  @Property(name: 'limitDownPrice')
+  double limitDownPrice = null;
   
+
+  @Property(name: 'limitUpPrice')
+  double limitUpPrice = null;
   
-  num limitDownPrice = null;
+
+  @Property(name: 'bankruptLimitDownPrice')
+  double bankruptLimitDownPrice = null;
   
+
+  @Property(name: 'bankruptLimitUpPrice')
+  double bankruptLimitUpPrice = null;
   
-  num limitUpPrice = null;
-  
-  
-  num bankruptLimitDownPrice = null;
-  
-  
-  num bankruptLimitUpPrice = null;
-  
-  
+
+  @Property(name: 'prevTotalVolume')
   Number prevTotalVolume = null;
   
-  
+
+  @Property(name: 'totalVolume')
   Number totalVolume = null;
   
-  
+
+  @Property(name: 'volume')
   Number volume = null;
   
-  
+
+  @Property(name: 'volume24h')
   Number volume24h = null;
   
-  
+
+  @Property(name: 'prevTotalTurnover')
   Number prevTotalTurnover = null;
   
-  
+
+  @Property(name: 'totalTurnover')
   Number totalTurnover = null;
   
-  
+
+  @Property(name: 'turnover')
   Number turnover = null;
   
-  
+
+  @Property(name: 'turnover24h')
   Number turnover24h = null;
   
+
+  @Property(name: 'prevPrice24h')
+  double prevPrice24h = null;
   
-  num prevPrice24h = null;
+
+  @Property(name: 'vwap')
+  double vwap = null;
   
+
+  @Property(name: 'highPrice')
+  double highPrice = null;
   
-  num vwap = null;
+
+  @Property(name: 'lowPrice')
+  double lowPrice = null;
   
+
+  @Property(name: 'lastPrice')
+  double lastPrice = null;
   
-  num highPrice = null;
+
+  @Property(name: 'lastPriceProtected')
+  double lastPriceProtected = null;
   
-  
-  num lowPrice = null;
-  
-  
-  num lastPrice = null;
-  
-  
-  num lastPriceProtected = null;
-  
-  
+
+  @Property(name: 'lastTickDirection')
   String lastTickDirection = null;
   
+
+  @Property(name: 'lastChangePcnt')
+  double lastChangePcnt = null;
   
-  num lastChangePcnt = null;
+
+  @Property(name: 'bidPrice')
+  double bidPrice = null;
   
+
+  @Property(name: 'midPrice')
+  double midPrice = null;
   
-  num bidPrice = null;
+
+  @Property(name: 'askPrice')
+  double askPrice = null;
   
+
+  @Property(name: 'impactBidPrice')
+  double impactBidPrice = null;
   
-  num midPrice = null;
+
+  @Property(name: 'impactMidPrice')
+  double impactMidPrice = null;
   
+
+  @Property(name: 'impactAskPrice')
+  double impactAskPrice = null;
   
-  num askPrice = null;
-  
-  
-  num impactBidPrice = null;
-  
-  
-  num impactMidPrice = null;
-  
-  
-  num impactAskPrice = null;
-  
-  
+
+  @Property(name: 'hasLiquidity')
   bool hasLiquidity = null;
   
-  
+
+  @Property(name: 'openInterest')
   Number openInterest = null;
   
-  
+
+  @Property(name: 'openValue')
   Number openValue = null;
   
-  
+
+  @Property(name: 'fairMethod')
   String fairMethod = null;
   
+
+  @Property(name: 'fairBasisRate')
+  double fairBasisRate = null;
   
-  num fairBasisRate = null;
+
+  @Property(name: 'fairBasis')
+  double fairBasis = null;
   
+
+  @Property(name: 'fairPrice')
+  double fairPrice = null;
   
-  num fairBasis = null;
-  
-  
-  num fairPrice = null;
-  
-  
+
+  @Property(name: 'markMethod')
   String markMethod = null;
   
+
+  @Property(name: 'markPrice')
+  double markPrice = null;
   
-  num markPrice = null;
+
+  @Property(name: 'indicativeTaxRate')
+  double indicativeTaxRate = null;
   
+
+  @Property(name: 'indicativeSettlePrice')
+  double indicativeSettlePrice = null;
   
-  num indicativeTaxRate = null;
+
+  @Property(name: 'settledPrice')
+  double settledPrice = null;
   
-  
-  num indicativeSettlePrice = null;
-  
-  
-  num settledPrice = null;
-  
-  
+
+  @Property(name: 'timestamp')
   DateTime timestamp = null;
-  
   
   Instrument();
 

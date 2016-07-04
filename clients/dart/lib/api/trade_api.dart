@@ -11,13 +11,36 @@ class TradeApi {
     }
   }
 
-  
   /// Get Trades.
   ///
-  /// Please note that indices (symbols starting with `.`) post trades at intervals to the trade feed. These have a `size` of 0 and are used only to indicate a changing price.\n\nSee [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AE_6569.html) for explanations of these fields.
+  /// Please note that indices (symbols starting with &#x60;.&#x60;) post trades at intervals to the trade feed. These have a &#x60;size&#x60; of 0 and are used only to indicate a changing price.  See [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AE_6569.html) for explanations of these fields.
   Future<List<Trade>> tradeGet(String symbol, String filter, String columns, Number count, Number start, bool reverse, DateTime startTime, DateTime endTime) {
     Object postBody = null;
-    
+    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if() {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }
 
     // create path and map variables
     String path = "/trade".replaceAll("{format}","json");
@@ -28,23 +51,21 @@ class TradeApi {
     Map<String, String> formParams = {};
     if("null" != symbol)
       queryParams["symbol"] = symbol is List ? symbol.join(',') : symbol;
-    if("null" != filter)
+if("null" != filter)
       queryParams["filter"] = filter is List ? filter.join(',') : filter;
-    if("null" != columns)
+if("null" != columns)
       queryParams["columns"] = columns is List ? columns.join(',') : columns;
-    if("null" != count)
+if("null" != count)
       queryParams["count"] = count is List ? count.join(',') : count;
-    if("null" != start)
+if("null" != start)
       queryParams["start"] = start is List ? start.join(',') : start;
-    if("null" != reverse)
+if("null" != reverse)
       queryParams["reverse"] = reverse is List ? reverse.join(',') : reverse;
-    if("null" != startTime)
+if("null" != startTime)
       queryParams["startTime"] = startTime is List ? startTime.join(',') : startTime;
-    if("null" != endTime)
+if("null" != endTime)
       queryParams["endTime"] = endTime is List ? endTime.join(',') : endTime;
     
-    
-
     List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -58,8 +79,7 @@ class TradeApi {
         postBody = mp;
     }
     else {
-      
-    }
+          }
 
     return apiClient.invokeAPI(basePath, path, 'GET', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
       if(response.statusCode >= 400) {
@@ -73,13 +93,39 @@ class TradeApi {
       }
     });
   }
-  
   /// Get previous trades in time buckets.
   ///
   /// 
   Future<List<TradeBin>> tradeGetBucketed(String binSize, String symbol, String filter, String columns, Number count, Number start, bool reverse, DateTime startTime, DateTime endTime) {
     Object postBody = null;
-    
+    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if(    // verify required params are set
+    if() {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }
 
     // create path and map variables
     String path = "/trade/bucketed".replaceAll("{format}","json");
@@ -90,25 +136,23 @@ class TradeApi {
     Map<String, String> formParams = {};
     if("null" != binSize)
       queryParams["binSize"] = binSize is List ? binSize.join(',') : binSize;
-    if("null" != symbol)
+if("null" != symbol)
       queryParams["symbol"] = symbol is List ? symbol.join(',') : symbol;
-    if("null" != filter)
+if("null" != filter)
       queryParams["filter"] = filter is List ? filter.join(',') : filter;
-    if("null" != columns)
+if("null" != columns)
       queryParams["columns"] = columns is List ? columns.join(',') : columns;
-    if("null" != count)
+if("null" != count)
       queryParams["count"] = count is List ? count.join(',') : count;
-    if("null" != start)
+if("null" != start)
       queryParams["start"] = start is List ? start.join(',') : start;
-    if("null" != reverse)
+if("null" != reverse)
       queryParams["reverse"] = reverse is List ? reverse.join(',') : reverse;
-    if("null" != startTime)
+if("null" != startTime)
       queryParams["startTime"] = startTime is List ? startTime.join(',') : startTime;
-    if("null" != endTime)
+if("null" != endTime)
       queryParams["endTime"] = endTime is List ? endTime.join(',') : endTime;
     
-    
-
     List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -122,8 +166,7 @@ class TradeApi {
         postBody = mp;
     }
     else {
-      
-    }
+          }
 
     return apiClient.invokeAPI(basePath, path, 'GET', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
       if(response.statusCode >= 400) {
@@ -137,5 +180,4 @@ class TradeApi {
       }
     });
   }
-  
 }
