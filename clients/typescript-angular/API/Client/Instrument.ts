@@ -19,6 +19,8 @@ namespace API.Client {
 
         expiry?: date;
 
+        settle?: date;
+
         relistInterval?: date;
 
         inverseLeg?: string;
@@ -26,6 +28,8 @@ namespace API.Client {
         sellLeg?: string;
 
         buyLeg?: string;
+
+        positionCurrency?: string;
 
         underlying?: string;
 
@@ -37,11 +41,25 @@ namespace API.Client {
 
         referenceSymbol?: string;
 
+        calcInterval?: date;
+
+        publishInterval?: date;
+
+        publishTime?: date;
+
+        maxOrderQty?: number;
+
+        maxPrice?: number;
+
+        lotSize?: number;
+
         tickSize?: number;
 
         multiplier?: number;
 
         settlCurrency?: string;
+
+        underlyingToPositionMultiplier?: number;
 
         underlyingToSettleMultiplier?: number;
 
@@ -65,13 +83,27 @@ namespace API.Client {
 
         takerFee?: number;
 
+        settlementFee?: number;
+
         insuranceFee?: number;
 
-        hedgerMakerFee?: number;
+        fundingBaseSymbol?: string;
 
-        hedgerTakerFee?: number;
+        fundingQuoteSymbol?: string;
 
-        hedgerInsuranceFee?: number;
+        fundingPremiumSymbol?: string;
+
+        fundingTimestamp?: date;
+
+        fundingInterval?: date;
+
+        fundingRate?: number;
+
+        indicativeFundingRate?: number;
+
+        rebalanceTimestamp?: date;
+
+        rebalanceInterval?: date;
 
         openingTimestamp?: date;
 

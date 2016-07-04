@@ -10,7 +10,7 @@ import java.util.Objects;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2015-11-30T13:35:50.750-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2016-07-04T18:25:23.952-05:00")
 public class Instrument  {
   
   private String symbol = null;
@@ -20,18 +20,27 @@ public class Instrument  {
   private Date listing = null;
   private Date front = null;
   private Date expiry = null;
+  private Date settle = null;
   private Date relistInterval = null;
   private String inverseLeg = null;
   private String sellLeg = null;
   private String buyLeg = null;
+  private String positionCurrency = null;
   private String underlying = null;
   private String quoteCurrency = null;
   private String underlyingSymbol = null;
   private String reference = null;
   private String referenceSymbol = null;
+  private Date calcInterval = null;
+  private Date publishInterval = null;
+  private Date publishTime = null;
+  private BigDecimal maxOrderQty = null;
+  private Double maxPrice = null;
+  private BigDecimal lotSize = null;
   private Double tickSize = null;
   private BigDecimal multiplier = null;
   private String settlCurrency = null;
+  private BigDecimal underlyingToPositionMultiplier = null;
   private BigDecimal underlyingToSettleMultiplier = null;
   private BigDecimal quoteToSettleMultiplier = null;
   private Boolean isQuanto = null;
@@ -43,10 +52,17 @@ public class Instrument  {
   private Boolean taxed = null;
   private Double makerFee = null;
   private Double takerFee = null;
+  private Double settlementFee = null;
   private Double insuranceFee = null;
-  private Double hedgerMakerFee = null;
-  private Double hedgerTakerFee = null;
-  private Double hedgerInsuranceFee = null;
+  private String fundingBaseSymbol = null;
+  private String fundingQuoteSymbol = null;
+  private String fundingPremiumSymbol = null;
+  private Date fundingTimestamp = null;
+  private Date fundingInterval = null;
+  private Double fundingRate = null;
+  private Double indicativeFundingRate = null;
+  private Date rebalanceTimestamp = null;
+  private Date rebalanceInterval = null;
   private Date openingTimestamp = null;
   private Date closingTimestamp = null;
   private Date sessionInterval = null;
@@ -179,6 +195,18 @@ public class Instrument  {
   /**
    **/
   @ApiModelProperty(value = "")
+  @JsonProperty("settle")
+  public Date getSettle() {
+    return settle;
+  }
+  public void setSettle(Date settle) {
+    this.settle = settle;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
   @JsonProperty("relistInterval")
   public Date getRelistInterval() {
     return relistInterval;
@@ -221,6 +249,18 @@ public class Instrument  {
   }
   public void setBuyLeg(String buyLeg) {
     this.buyLeg = buyLeg;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("positionCurrency")
+  public String getPositionCurrency() {
+    return positionCurrency;
+  }
+  public void setPositionCurrency(String positionCurrency) {
+    this.positionCurrency = positionCurrency;
   }
 
   
@@ -287,6 +327,78 @@ public class Instrument  {
   /**
    **/
   @ApiModelProperty(value = "")
+  @JsonProperty("calcInterval")
+  public Date getCalcInterval() {
+    return calcInterval;
+  }
+  public void setCalcInterval(Date calcInterval) {
+    this.calcInterval = calcInterval;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("publishInterval")
+  public Date getPublishInterval() {
+    return publishInterval;
+  }
+  public void setPublishInterval(Date publishInterval) {
+    this.publishInterval = publishInterval;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("publishTime")
+  public Date getPublishTime() {
+    return publishTime;
+  }
+  public void setPublishTime(Date publishTime) {
+    this.publishTime = publishTime;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("maxOrderQty")
+  public BigDecimal getMaxOrderQty() {
+    return maxOrderQty;
+  }
+  public void setMaxOrderQty(BigDecimal maxOrderQty) {
+    this.maxOrderQty = maxOrderQty;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("maxPrice")
+  public Double getMaxPrice() {
+    return maxPrice;
+  }
+  public void setMaxPrice(Double maxPrice) {
+    this.maxPrice = maxPrice;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("lotSize")
+  public BigDecimal getLotSize() {
+    return lotSize;
+  }
+  public void setLotSize(BigDecimal lotSize) {
+    this.lotSize = lotSize;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
   @JsonProperty("tickSize")
   public Double getTickSize() {
     return tickSize;
@@ -317,6 +429,18 @@ public class Instrument  {
   }
   public void setSettlCurrency(String settlCurrency) {
     this.settlCurrency = settlCurrency;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("underlyingToPositionMultiplier")
+  public BigDecimal getUnderlyingToPositionMultiplier() {
+    return underlyingToPositionMultiplier;
+  }
+  public void setUnderlyingToPositionMultiplier(BigDecimal underlyingToPositionMultiplier) {
+    this.underlyingToPositionMultiplier = underlyingToPositionMultiplier;
   }
 
   
@@ -455,6 +579,18 @@ public class Instrument  {
   /**
    **/
   @ApiModelProperty(value = "")
+  @JsonProperty("settlementFee")
+  public Double getSettlementFee() {
+    return settlementFee;
+  }
+  public void setSettlementFee(Double settlementFee) {
+    this.settlementFee = settlementFee;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
   @JsonProperty("insuranceFee")
   public Double getInsuranceFee() {
     return insuranceFee;
@@ -467,36 +603,108 @@ public class Instrument  {
   /**
    **/
   @ApiModelProperty(value = "")
-  @JsonProperty("hedgerMakerFee")
-  public Double getHedgerMakerFee() {
-    return hedgerMakerFee;
+  @JsonProperty("fundingBaseSymbol")
+  public String getFundingBaseSymbol() {
+    return fundingBaseSymbol;
   }
-  public void setHedgerMakerFee(Double hedgerMakerFee) {
-    this.hedgerMakerFee = hedgerMakerFee;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  @JsonProperty("hedgerTakerFee")
-  public Double getHedgerTakerFee() {
-    return hedgerTakerFee;
-  }
-  public void setHedgerTakerFee(Double hedgerTakerFee) {
-    this.hedgerTakerFee = hedgerTakerFee;
+  public void setFundingBaseSymbol(String fundingBaseSymbol) {
+    this.fundingBaseSymbol = fundingBaseSymbol;
   }
 
   
   /**
    **/
   @ApiModelProperty(value = "")
-  @JsonProperty("hedgerInsuranceFee")
-  public Double getHedgerInsuranceFee() {
-    return hedgerInsuranceFee;
+  @JsonProperty("fundingQuoteSymbol")
+  public String getFundingQuoteSymbol() {
+    return fundingQuoteSymbol;
   }
-  public void setHedgerInsuranceFee(Double hedgerInsuranceFee) {
-    this.hedgerInsuranceFee = hedgerInsuranceFee;
+  public void setFundingQuoteSymbol(String fundingQuoteSymbol) {
+    this.fundingQuoteSymbol = fundingQuoteSymbol;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("fundingPremiumSymbol")
+  public String getFundingPremiumSymbol() {
+    return fundingPremiumSymbol;
+  }
+  public void setFundingPremiumSymbol(String fundingPremiumSymbol) {
+    this.fundingPremiumSymbol = fundingPremiumSymbol;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("fundingTimestamp")
+  public Date getFundingTimestamp() {
+    return fundingTimestamp;
+  }
+  public void setFundingTimestamp(Date fundingTimestamp) {
+    this.fundingTimestamp = fundingTimestamp;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("fundingInterval")
+  public Date getFundingInterval() {
+    return fundingInterval;
+  }
+  public void setFundingInterval(Date fundingInterval) {
+    this.fundingInterval = fundingInterval;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("fundingRate")
+  public Double getFundingRate() {
+    return fundingRate;
+  }
+  public void setFundingRate(Double fundingRate) {
+    this.fundingRate = fundingRate;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("indicativeFundingRate")
+  public Double getIndicativeFundingRate() {
+    return indicativeFundingRate;
+  }
+  public void setIndicativeFundingRate(Double indicativeFundingRate) {
+    this.indicativeFundingRate = indicativeFundingRate;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("rebalanceTimestamp")
+  public Date getRebalanceTimestamp() {
+    return rebalanceTimestamp;
+  }
+  public void setRebalanceTimestamp(Date rebalanceTimestamp) {
+    this.rebalanceTimestamp = rebalanceTimestamp;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("rebalanceInterval")
+  public Date getRebalanceInterval() {
+    return rebalanceInterval;
+  }
+  public void setRebalanceInterval(Date rebalanceInterval) {
+    this.rebalanceInterval = rebalanceInterval;
   }
 
   
@@ -1033,18 +1241,27 @@ public class Instrument  {
         Objects.equals(listing, instrument.listing) &&
         Objects.equals(front, instrument.front) &&
         Objects.equals(expiry, instrument.expiry) &&
+        Objects.equals(settle, instrument.settle) &&
         Objects.equals(relistInterval, instrument.relistInterval) &&
         Objects.equals(inverseLeg, instrument.inverseLeg) &&
         Objects.equals(sellLeg, instrument.sellLeg) &&
         Objects.equals(buyLeg, instrument.buyLeg) &&
+        Objects.equals(positionCurrency, instrument.positionCurrency) &&
         Objects.equals(underlying, instrument.underlying) &&
         Objects.equals(quoteCurrency, instrument.quoteCurrency) &&
         Objects.equals(underlyingSymbol, instrument.underlyingSymbol) &&
         Objects.equals(reference, instrument.reference) &&
         Objects.equals(referenceSymbol, instrument.referenceSymbol) &&
+        Objects.equals(calcInterval, instrument.calcInterval) &&
+        Objects.equals(publishInterval, instrument.publishInterval) &&
+        Objects.equals(publishTime, instrument.publishTime) &&
+        Objects.equals(maxOrderQty, instrument.maxOrderQty) &&
+        Objects.equals(maxPrice, instrument.maxPrice) &&
+        Objects.equals(lotSize, instrument.lotSize) &&
         Objects.equals(tickSize, instrument.tickSize) &&
         Objects.equals(multiplier, instrument.multiplier) &&
         Objects.equals(settlCurrency, instrument.settlCurrency) &&
+        Objects.equals(underlyingToPositionMultiplier, instrument.underlyingToPositionMultiplier) &&
         Objects.equals(underlyingToSettleMultiplier, instrument.underlyingToSettleMultiplier) &&
         Objects.equals(quoteToSettleMultiplier, instrument.quoteToSettleMultiplier) &&
         Objects.equals(isQuanto, instrument.isQuanto) &&
@@ -1056,10 +1273,17 @@ public class Instrument  {
         Objects.equals(taxed, instrument.taxed) &&
         Objects.equals(makerFee, instrument.makerFee) &&
         Objects.equals(takerFee, instrument.takerFee) &&
+        Objects.equals(settlementFee, instrument.settlementFee) &&
         Objects.equals(insuranceFee, instrument.insuranceFee) &&
-        Objects.equals(hedgerMakerFee, instrument.hedgerMakerFee) &&
-        Objects.equals(hedgerTakerFee, instrument.hedgerTakerFee) &&
-        Objects.equals(hedgerInsuranceFee, instrument.hedgerInsuranceFee) &&
+        Objects.equals(fundingBaseSymbol, instrument.fundingBaseSymbol) &&
+        Objects.equals(fundingQuoteSymbol, instrument.fundingQuoteSymbol) &&
+        Objects.equals(fundingPremiumSymbol, instrument.fundingPremiumSymbol) &&
+        Objects.equals(fundingTimestamp, instrument.fundingTimestamp) &&
+        Objects.equals(fundingInterval, instrument.fundingInterval) &&
+        Objects.equals(fundingRate, instrument.fundingRate) &&
+        Objects.equals(indicativeFundingRate, instrument.indicativeFundingRate) &&
+        Objects.equals(rebalanceTimestamp, instrument.rebalanceTimestamp) &&
+        Objects.equals(rebalanceInterval, instrument.rebalanceInterval) &&
         Objects.equals(openingTimestamp, instrument.openingTimestamp) &&
         Objects.equals(closingTimestamp, instrument.closingTimestamp) &&
         Objects.equals(sessionInterval, instrument.sessionInterval) &&
@@ -1107,7 +1331,7 @@ public class Instrument  {
 
   @Override
   public int hashCode() {
-    return Objects.hash(symbol, rootSymbol, state, typ, listing, front, expiry, relistInterval, inverseLeg, sellLeg, buyLeg, underlying, quoteCurrency, underlyingSymbol, reference, referenceSymbol, tickSize, multiplier, settlCurrency, underlyingToSettleMultiplier, quoteToSettleMultiplier, isQuanto, isInverse, initMargin, maintMargin, limit, capped, taxed, makerFee, takerFee, insuranceFee, hedgerMakerFee, hedgerTakerFee, hedgerInsuranceFee, openingTimestamp, closingTimestamp, sessionInterval, prevClosePrice, limitDownPrice, limitUpPrice, bankruptLimitDownPrice, bankruptLimitUpPrice, prevTotalVolume, totalVolume, volume, volume24h, prevTotalTurnover, totalTurnover, turnover, turnover24h, prevPrice24h, vwap, highPrice, lowPrice, lastPrice, lastPriceProtected, lastTickDirection, lastChangePcnt, bidPrice, midPrice, askPrice, impactBidPrice, impactMidPrice, impactAskPrice, hasLiquidity, openInterest, openValue, fairMethod, fairBasisRate, fairBasis, fairPrice, markMethod, markPrice, indicativeTaxRate, indicativeSettlePrice, settledPrice, timestamp);
+    return Objects.hash(symbol, rootSymbol, state, typ, listing, front, expiry, settle, relistInterval, inverseLeg, sellLeg, buyLeg, positionCurrency, underlying, quoteCurrency, underlyingSymbol, reference, referenceSymbol, calcInterval, publishInterval, publishTime, maxOrderQty, maxPrice, lotSize, tickSize, multiplier, settlCurrency, underlyingToPositionMultiplier, underlyingToSettleMultiplier, quoteToSettleMultiplier, isQuanto, isInverse, initMargin, maintMargin, limit, capped, taxed, makerFee, takerFee, settlementFee, insuranceFee, fundingBaseSymbol, fundingQuoteSymbol, fundingPremiumSymbol, fundingTimestamp, fundingInterval, fundingRate, indicativeFundingRate, rebalanceTimestamp, rebalanceInterval, openingTimestamp, closingTimestamp, sessionInterval, prevClosePrice, limitDownPrice, limitUpPrice, bankruptLimitDownPrice, bankruptLimitUpPrice, prevTotalVolume, totalVolume, volume, volume24h, prevTotalTurnover, totalTurnover, turnover, turnover24h, prevPrice24h, vwap, highPrice, lowPrice, lastPrice, lastPriceProtected, lastTickDirection, lastChangePcnt, bidPrice, midPrice, askPrice, impactBidPrice, impactMidPrice, impactAskPrice, hasLiquidity, openInterest, openValue, fairMethod, fairBasisRate, fairBasis, fairPrice, markMethod, markPrice, indicativeTaxRate, indicativeSettlePrice, settledPrice, timestamp);
   }
 
   @Override
@@ -1122,18 +1346,27 @@ public class Instrument  {
     sb.append("  listing: ").append(listing).append("\n");
     sb.append("  front: ").append(front).append("\n");
     sb.append("  expiry: ").append(expiry).append("\n");
+    sb.append("  settle: ").append(settle).append("\n");
     sb.append("  relistInterval: ").append(relistInterval).append("\n");
     sb.append("  inverseLeg: ").append(inverseLeg).append("\n");
     sb.append("  sellLeg: ").append(sellLeg).append("\n");
     sb.append("  buyLeg: ").append(buyLeg).append("\n");
+    sb.append("  positionCurrency: ").append(positionCurrency).append("\n");
     sb.append("  underlying: ").append(underlying).append("\n");
     sb.append("  quoteCurrency: ").append(quoteCurrency).append("\n");
     sb.append("  underlyingSymbol: ").append(underlyingSymbol).append("\n");
     sb.append("  reference: ").append(reference).append("\n");
     sb.append("  referenceSymbol: ").append(referenceSymbol).append("\n");
+    sb.append("  calcInterval: ").append(calcInterval).append("\n");
+    sb.append("  publishInterval: ").append(publishInterval).append("\n");
+    sb.append("  publishTime: ").append(publishTime).append("\n");
+    sb.append("  maxOrderQty: ").append(maxOrderQty).append("\n");
+    sb.append("  maxPrice: ").append(maxPrice).append("\n");
+    sb.append("  lotSize: ").append(lotSize).append("\n");
     sb.append("  tickSize: ").append(tickSize).append("\n");
     sb.append("  multiplier: ").append(multiplier).append("\n");
     sb.append("  settlCurrency: ").append(settlCurrency).append("\n");
+    sb.append("  underlyingToPositionMultiplier: ").append(underlyingToPositionMultiplier).append("\n");
     sb.append("  underlyingToSettleMultiplier: ").append(underlyingToSettleMultiplier).append("\n");
     sb.append("  quoteToSettleMultiplier: ").append(quoteToSettleMultiplier).append("\n");
     sb.append("  isQuanto: ").append(isQuanto).append("\n");
@@ -1145,10 +1378,17 @@ public class Instrument  {
     sb.append("  taxed: ").append(taxed).append("\n");
     sb.append("  makerFee: ").append(makerFee).append("\n");
     sb.append("  takerFee: ").append(takerFee).append("\n");
+    sb.append("  settlementFee: ").append(settlementFee).append("\n");
     sb.append("  insuranceFee: ").append(insuranceFee).append("\n");
-    sb.append("  hedgerMakerFee: ").append(hedgerMakerFee).append("\n");
-    sb.append("  hedgerTakerFee: ").append(hedgerTakerFee).append("\n");
-    sb.append("  hedgerInsuranceFee: ").append(hedgerInsuranceFee).append("\n");
+    sb.append("  fundingBaseSymbol: ").append(fundingBaseSymbol).append("\n");
+    sb.append("  fundingQuoteSymbol: ").append(fundingQuoteSymbol).append("\n");
+    sb.append("  fundingPremiumSymbol: ").append(fundingPremiumSymbol).append("\n");
+    sb.append("  fundingTimestamp: ").append(fundingTimestamp).append("\n");
+    sb.append("  fundingInterval: ").append(fundingInterval).append("\n");
+    sb.append("  fundingRate: ").append(fundingRate).append("\n");
+    sb.append("  indicativeFundingRate: ").append(indicativeFundingRate).append("\n");
+    sb.append("  rebalanceTimestamp: ").append(rebalanceTimestamp).append("\n");
+    sb.append("  rebalanceInterval: ").append(rebalanceInterval).append("\n");
     sb.append("  openingTimestamp: ").append(openingTimestamp).append("\n");
     sb.append("  closingTimestamp: ").append(closingTimestamp).append("\n");
     sb.append("  sessionInterval: ").append(sessionInterval).append("\n");

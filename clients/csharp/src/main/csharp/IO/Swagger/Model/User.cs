@@ -25,6 +25,13 @@ namespace IO.Swagger.Model
   
         
         /// <summary>
+        /// Gets or Sets OwnerId
+        /// </summary>
+        [DataMember(Name="ownerId", EmitDefaultValue=false)]
+        public double? OwnerId { get; set; }
+  
+        
+        /// <summary>
         /// Gets or Sets Firstname
         /// </summary>
         [DataMember(Name="firstname", EmitDefaultValue=false)]
@@ -95,13 +102,6 @@ namespace IO.Swagger.Model
   
         
         /// <summary>
-        /// Gets or Sets Role
-        /// </summary>
-        [DataMember(Name="role", EmitDefaultValue=false)]
-        public string Role { get; set; }
-  
-        
-        /// <summary>
         /// Gets or Sets TFAEnabled
         /// </summary>
         [DataMember(Name="TFAEnabled", EmitDefaultValue=false)]
@@ -146,6 +146,7 @@ namespace IO.Swagger.Model
             var sb = new StringBuilder();
             sb.Append("class User {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  OwnerId: ").Append(OwnerId).Append("\n");
             sb.Append("  Firstname: ").Append(Firstname).Append("\n");
             sb.Append("  Lastname: ").Append(Lastname).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
@@ -156,7 +157,6 @@ namespace IO.Swagger.Model
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  LastUpdated: ").Append(LastUpdated).Append("\n");
             sb.Append("  Preferences: ").Append(Preferences).Append("\n");
-            sb.Append("  Role: ").Append(Role).Append("\n");
             sb.Append("  TFAEnabled: ").Append(TFAEnabled).Append("\n");
             sb.Append("  AffiliateID: ").Append(AffiliateID).Append("\n");
             sb.Append("  PgpPubKey: ").Append(PgpPubKey).Append("\n");
@@ -203,6 +203,11 @@ namespace IO.Swagger.Model
                     this.Id == other.Id ||
                     this.Id != null &&
                     this.Id.Equals(other.Id)
+                ) && 
+                (
+                    this.OwnerId == other.OwnerId ||
+                    this.OwnerId != null &&
+                    this.OwnerId.Equals(other.OwnerId)
                 ) && 
                 (
                     this.Firstname == other.Firstname ||
@@ -255,11 +260,6 @@ namespace IO.Swagger.Model
                     this.Preferences.Equals(other.Preferences)
                 ) && 
                 (
-                    this.Role == other.Role ||
-                    this.Role != null &&
-                    this.Role.Equals(other.Role)
-                ) && 
-                (
                     this.TFAEnabled == other.TFAEnabled ||
                     this.TFAEnabled != null &&
                     this.TFAEnabled.Equals(other.TFAEnabled)
@@ -301,6 +301,9 @@ namespace IO.Swagger.Model
                 if (this.Id != null)
                     hash = hash * 57 + this.Id.GetHashCode();
                 
+                if (this.OwnerId != null)
+                    hash = hash * 57 + this.OwnerId.GetHashCode();
+                
                 if (this.Firstname != null)
                     hash = hash * 57 + this.Firstname.GetHashCode();
                 
@@ -330,9 +333,6 @@ namespace IO.Swagger.Model
                 
                 if (this.Preferences != null)
                     hash = hash * 57 + this.Preferences.GetHashCode();
-                
-                if (this.Role != null)
-                    hash = hash * 57 + this.Role.GetHashCode();
                 
                 if (this.TFAEnabled != null)
                     hash = hash * 57 + this.TFAEnabled.GetHashCode();

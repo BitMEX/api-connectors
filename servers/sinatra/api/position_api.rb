@@ -4,10 +4,10 @@ require 'json'
 MyApp.add_route('GET', '/position', {
   "resourcePath" => "/Position",
   "summary" => "Get your positions.",
-  "nickname" => "position/find", 
+  "nickname" => "position/get", 
   "responseClass" => "array[Position]", 
   "endpoint" => "/position", 
-  "notes" => "",
+  "notes" => "See <a href=\"http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html\">the FIX Spec</a> for explanations of these fields.",
   "parameters" => [
     
     {
@@ -53,11 +53,31 @@ end
 
 MyApp.add_route('POST', '/position/isolate', {
   "resourcePath" => "/Position",
-  "summary" => "Toggle isolated (fixed) margin per-position.",
+  "summary" => "Enable isolated margin or cross margin per-position.",
   "nickname" => "position/isolate_margin", 
   "responseClass" => "Position", 
   "endpoint" => "/position/isolate", 
-  "notes" => "On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off. A position must be open to isolate it.",
+  "notes" => "On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.",
+  "parameters" => [
+    
+    
+    
+    
+    ]}) do
+  cross_origin
+  # the guts live here
+
+  {"message" => "yes, it worked"}.to_json
+end
+
+
+MyApp.add_route('POST', '/position/leverage', {
+  "resourcePath" => "/Position",
+  "summary" => "Choose leverage for a position.",
+  "nickname" => "position/update_leverage", 
+  "responseClass" => "Position", 
+  "endpoint" => "/position/leverage", 
+  "notes" => "On Speculative (DPE-Enabled) contracts, users can choose an isolated leverage. This will automatically enable isolated margin.",
   "parameters" => [
     
     

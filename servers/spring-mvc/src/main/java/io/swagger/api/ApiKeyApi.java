@@ -33,7 +33,7 @@ import static org.springframework.http.MediaType.*;
 @Controller
 @RequestMapping(value = "/apiKey", produces = {APPLICATION_JSON_VALUE})
 @Api(value = "/apiKey", description = "the apiKey API")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2015-11-30T13:36:04.774-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2016-07-04T18:25:39.823-05:00")
 public class ApiKeyApi {
   
 
@@ -47,7 +47,7 @@ public class ApiKeyApi {
     produces = { "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" }, 
     consumes = { "application/json", "application/x-www-form-urlencoded" },
     method = RequestMethod.GET)
-  public ResponseEntity<List<ApiKey>> apiKeyGetKeys(@ApiParam(value = "If true, will sort results newest first.", defaultValue = "false") @RequestParam(value = "reverse", required = false, defaultValue="false") Boolean reverse
+  public ResponseEntity<List<ApiKey>> apiKeyGet(@ApiParam(value = "If true, will sort results newest first.", defaultValue = "false") @RequestParam(value = "reverse", required = false, defaultValue="false") Boolean reverse
 
 
 )
@@ -58,7 +58,7 @@ public class ApiKeyApi {
 
   
 
-  @ApiOperation(value = "Create a new API Key.", notes = "API Keys can also be created via <a href=\"https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py\">this Python script</a>. See the <a href=\"/app/apiKeys\">API Key Documentation</a> for more information on capabilities.", response = ApiKey.class)
+  @ApiOperation(value = "Create a new API Key.", notes = "API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.", response = ApiKey.class)
   @ApiResponses(value = { 
     @ApiResponse(code = 200, message = "Request was successful"),
     @ApiResponse(code = 400, message = "Parameter Error"),
@@ -68,7 +68,7 @@ public class ApiKeyApi {
     produces = { "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" }, 
     consumes = { "application/json", "application/x-www-form-urlencoded" },
     method = RequestMethod.POST)
-  public ResponseEntity<ApiKey> apiKeyCreateKey(
+  public ResponseEntity<ApiKey> apiKeyNew(
 
 
 @ApiParam(value = "Key name. This name is for reference only." ) @RequestPart(value="name", required=false)  String name

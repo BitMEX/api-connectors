@@ -30,7 +30,7 @@ namespace API.Client {
          * Get exchange-wide and per-series turnover and volume statistics.
          * 
          */
-        public statsFind (extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<Stats>> {
+        public statsGet (extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<Stats>> {
             const path = this.basePath + '/stats';
 
             let queryParameters: any = {};

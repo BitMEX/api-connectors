@@ -14,6 +14,8 @@ class ScalatraBootstrap extends LifeCycle {
       context mount (new ApiKeyApi, "/ApiKey/*")
       context mount (new UserApi, "/User/*")
       context mount (new AnnouncementApi, "/Announcement/*")
+      context mount (new LeaderboardApi, "/Leaderboard/*")
+      context mount (new FundingApi, "/Funding/*")
       context mount (new OrderBookApi, "/OrderBook/*")
       context mount (new PositionApi, "/Position/*")
       context mount (new SchemaApi, "/Schema/*")
@@ -21,9 +23,11 @@ class ScalatraBootstrap extends LifeCycle {
       context mount (new SettlementApi, "/Settlement/*")
       context mount (new TradeApi, "/Trade/*")
       context mount (new ExecutionApi, "/Execution/*")
+      context mount (new InsuranceApi, "/Insurance/*")
       context mount (new ChatApi, "/Chat/*")
       context mount (new InstrumentApi, "/Instrument/*")
       context mount (new StatsApi, "/Stats/*")
+      context mount (new LiquidationApi, "/Liquidation/*")
       
       context mount (new ResourcesApp, "/api-docs/*")
     } catch {

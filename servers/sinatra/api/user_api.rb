@@ -4,7 +4,7 @@ require 'json'
 MyApp.add_route('GET', '/user', {
   "resourcePath" => "/User",
   "summary" => "Get your user model.",
-  "nickname" => "user/get_me", 
+  "nickname" => "user/get", 
   "responseClass" => "User", 
   "endpoint" => "/user", 
   "notes" => "",
@@ -24,7 +24,7 @@ end
 MyApp.add_route('PUT', '/user', {
   "resourcePath" => "/User",
   "summary" => "Update your password, name, and other attributes.",
-  "nickname" => "user/update_me", 
+  "nickname" => "user/update", 
   "responseClass" => "User", 
   "endpoint" => "/user", 
   "notes" => "",
@@ -44,7 +44,7 @@ end
 MyApp.add_route('POST', '/user', {
   "resourcePath" => "/User",
   "summary" => "Register a new user.",
-  "nickname" => "user/new_user", 
+  "nickname" => "user/new", 
   "responseClass" => "User", 
   "endpoint" => "/user", 
   "notes" => "",
@@ -325,7 +325,7 @@ MyApp.add_route('POST', '/user/logoutAll', {
   "resourcePath" => "/User",
   "summary" => "Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.",
   "nickname" => "user/logout_all", 
-  "responseClass" => "void", 
+  "responseClass" => "double", 
   "endpoint" => "/user/logoutAll", 
   "notes" => "",
   "parameters" => [
@@ -343,12 +343,22 @@ end
 
 MyApp.add_route('GET', '/user/margin', {
   "resourcePath" => "/User",
-  "summary" => "Get your account's margin status.",
+  "summary" => "Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.",
   "nickname" => "user/get_margin", 
   "responseClass" => "Margin", 
   "endpoint" => "/user/margin", 
   "notes" => "",
   "parameters" => [
+    
+    {
+      "name" => "currency",
+      "description" => "",
+      "dataType" => "string",
+      "paramType" => "query",
+      
+      "allowableValues" => "",
+      "defaultValue" => "XBt"
+    },
     
     
     
@@ -363,7 +373,7 @@ end
 
 MyApp.add_route('POST', '/user/preferences', {
   "resourcePath" => "/User",
-  "summary" => "Save application preferences.",
+  "summary" => "Save user preferences.",
   "nickname" => "user/save_preferences", 
   "responseClass" => "User", 
   "endpoint" => "/user/preferences", 
@@ -427,7 +437,7 @@ MyApp.add_route('POST', '/user/requestWithdrawal', {
   "nickname" => "user/request_withdrawal", 
   "responseClass" => "Transaction", 
   "endpoint" => "/user/requestWithdrawal", 
-  "notes" => "This will send a confirmation email to the email address on record, unless requested via an API Key with the \"withdraw\" permission.",
+  "notes" => "This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission.",
   "parameters" => [
     
     
@@ -441,7 +451,7 @@ MyApp.add_route('POST', '/user/requestWithdrawal', {
 end
 
 
-MyApp.add_route('GET', '/user/resendVerificationEmail', {
+MyApp.add_route('POST', '/user/resendVerificationEmail', {
   "resourcePath" => "/User",
   "summary" => "Re-send verification email.",
   "nickname" => "user/send_verification_email", 
@@ -449,16 +459,6 @@ MyApp.add_route('GET', '/user/resendVerificationEmail', {
   "endpoint" => "/user/resendVerificationEmail", 
   "notes" => "",
   "parameters" => [
-    
-    {
-      "name" => "email",
-      "description" => "",
-      "dataType" => "string",
-      "paramType" => "query",
-      
-      "allowableValues" => "",
-      
-    },
     
     
     
@@ -479,6 +479,16 @@ MyApp.add_route('GET', '/user/walletHistory', {
   "endpoint" => "/user/walletHistory", 
   "notes" => "",
   "parameters" => [
+    
+    {
+      "name" => "currency",
+      "description" => "",
+      "dataType" => "string",
+      "paramType" => "query",
+      
+      "allowableValues" => "",
+      "defaultValue" => "XBt"
+    },
     
     
     

@@ -9,13 +9,15 @@ namespace API.Client {
 
         symbol: string;
 
+        currency: string;
+
         underlying?: string;
 
         quoteCurrency?: string;
 
-        currency?: string;
-
         commission?: number;
+
+        leverage?: number;
 
         crossMargin?: boolean;
 
@@ -170,6 +172,10 @@ namespace API.Client {
         bankruptPrice?: number;
 
         timestamp?: date;
+
+        lastPrice?: number;
+
+        lastValue?: number;
     }
 
 }

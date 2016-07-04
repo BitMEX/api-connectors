@@ -1,5 +1,4 @@
 // @flow
-'use strict';
 var debug = require('debug')('WebsocketManager');
 
 type EnumType = 'a' | 'b';

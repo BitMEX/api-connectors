@@ -53,10 +53,11 @@ class Position implements ArrayAccess
     static $swaggerTypes = array(
         'account' => 'Number',
         'symbol' => 'string',
+        'currency' => 'string',
         'underlying' => 'string',
         'quote_currency' => 'string',
-        'currency' => 'string',
         'commission' => 'double',
+        'leverage' => 'double',
         'cross_margin' => 'bool',
         'rebalanced_pnl' => 'Number',
         'prev_realised_pnl' => 'Number',
@@ -133,7 +134,9 @@ class Position implements ArrayAccess
         'margin_call_price' => 'double',
         'liquidation_price' => 'double',
         'bankrupt_price' => 'double',
-        'timestamp' => '\DateTime'
+        'timestamp' => '\DateTime',
+        'last_price' => 'double',
+        'last_value' => 'Number'
     );
   
     /** 
@@ -143,10 +146,11 @@ class Position implements ArrayAccess
     static $attributeMap = array(
         'account' => 'account',
         'symbol' => 'symbol',
+        'currency' => 'currency',
         'underlying' => 'underlying',
         'quote_currency' => 'quoteCurrency',
-        'currency' => 'currency',
         'commission' => 'commission',
+        'leverage' => 'leverage',
         'cross_margin' => 'crossMargin',
         'rebalanced_pnl' => 'rebalancedPnl',
         'prev_realised_pnl' => 'prevRealisedPnl',
@@ -223,7 +227,9 @@ class Position implements ArrayAccess
         'margin_call_price' => 'marginCallPrice',
         'liquidation_price' => 'liquidationPrice',
         'bankrupt_price' => 'bankruptPrice',
-        'timestamp' => 'timestamp'
+        'timestamp' => 'timestamp',
+        'last_price' => 'lastPrice',
+        'last_value' => 'lastValue'
     );
   
     /**
@@ -233,10 +239,11 @@ class Position implements ArrayAccess
     static $setters = array(
         'account' => 'setAccount',
         'symbol' => 'setSymbol',
+        'currency' => 'setCurrency',
         'underlying' => 'setUnderlying',
         'quote_currency' => 'setQuoteCurrency',
-        'currency' => 'setCurrency',
         'commission' => 'setCommission',
+        'leverage' => 'setLeverage',
         'cross_margin' => 'setCrossMargin',
         'rebalanced_pnl' => 'setRebalancedPnl',
         'prev_realised_pnl' => 'setPrevRealisedPnl',
@@ -313,7 +320,9 @@ class Position implements ArrayAccess
         'margin_call_price' => 'setMarginCallPrice',
         'liquidation_price' => 'setLiquidationPrice',
         'bankrupt_price' => 'setBankruptPrice',
-        'timestamp' => 'setTimestamp'
+        'timestamp' => 'setTimestamp',
+        'last_price' => 'setLastPrice',
+        'last_value' => 'setLastValue'
     );
   
     /**
@@ -323,10 +332,11 @@ class Position implements ArrayAccess
     static $getters = array(
         'account' => 'getAccount',
         'symbol' => 'getSymbol',
+        'currency' => 'getCurrency',
         'underlying' => 'getUnderlying',
         'quote_currency' => 'getQuoteCurrency',
-        'currency' => 'getCurrency',
         'commission' => 'getCommission',
+        'leverage' => 'getLeverage',
         'cross_margin' => 'getCrossMargin',
         'rebalanced_pnl' => 'getRebalancedPnl',
         'prev_realised_pnl' => 'getPrevRealisedPnl',
@@ -403,7 +413,9 @@ class Position implements ArrayAccess
         'margin_call_price' => 'getMarginCallPrice',
         'liquidation_price' => 'getLiquidationPrice',
         'bankrupt_price' => 'getBankruptPrice',
-        'timestamp' => 'getTimestamp'
+        'timestamp' => 'getTimestamp',
+        'last_price' => 'getLastPrice',
+        'last_value' => 'getLastValue'
     );
   
     
@@ -420,6 +432,12 @@ class Position implements ArrayAccess
     protected $symbol;
     
     /**
+      * $currency 
+      * @var string
+      */
+    protected $currency;
+    
+    /**
       * $underlying 
       * @var string
       */
@@ -432,16 +450,16 @@ class Position implements ArrayAccess
     protected $quote_currency;
     
     /**
-      * $currency 
-      * @var string
-      */
-    protected $currency;
-    
-    /**
       * $commission 
       * @var double
       */
     protected $commission;
+    
+    /**
+      * $leverage 
+      * @var double
+      */
+    protected $leverage;
     
     /**
       * $cross_margin 
@@ -905,6 +923,18 @@ class Position implements ArrayAccess
       */
     protected $timestamp;
     
+    /**
+      * $last_price 
+      * @var double
+      */
+    protected $last_price;
+    
+    /**
+      * $last_value 
+      * @var Number
+      */
+    protected $last_value;
+    
 
     /**
      * Constructor
@@ -915,10 +945,11 @@ class Position implements ArrayAccess
         if ($data != null) {
             $this->account = $data["account"];
             $this->symbol = $data["symbol"];
+            $this->currency = $data["currency"];
             $this->underlying = $data["underlying"];
             $this->quote_currency = $data["quote_currency"];
-            $this->currency = $data["currency"];
             $this->commission = $data["commission"];
+            $this->leverage = $data["leverage"];
             $this->cross_margin = $data["cross_margin"];
             $this->rebalanced_pnl = $data["rebalanced_pnl"];
             $this->prev_realised_pnl = $data["prev_realised_pnl"];
@@ -996,6 +1027,8 @@ class Position implements ArrayAccess
             $this->liquidation_price = $data["liquidation_price"];
             $this->bankrupt_price = $data["bankrupt_price"];
             $this->timestamp = $data["timestamp"];
+            $this->last_price = $data["last_price"];
+            $this->last_value = $data["last_value"];
         }
     }
     
@@ -1042,6 +1075,27 @@ class Position implements ArrayAccess
     }
     
     /**
+     * Gets currency
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+  
+    /**
+     * Sets currency
+     * @param string $currency 
+     * @return $this
+     */
+    public function setCurrency($currency)
+    {
+        
+        $this->currency = $currency;
+        return $this;
+    }
+    
+    /**
      * Gets underlying
      * @return string
      */
@@ -1084,27 +1138,6 @@ class Position implements ArrayAccess
     }
     
     /**
-     * Gets currency
-     * @return string
-     */
-    public function getCurrency()
-    {
-        return $this->currency;
-    }
-  
-    /**
-     * Sets currency
-     * @param string $currency 
-     * @return $this
-     */
-    public function setCurrency($currency)
-    {
-        
-        $this->currency = $currency;
-        return $this;
-    }
-    
-    /**
      * Gets commission
      * @return double
      */
@@ -1122,6 +1155,27 @@ class Position implements ArrayAccess
     {
         
         $this->commission = $commission;
+        return $this;
+    }
+    
+    /**
+     * Gets leverage
+     * @return double
+     */
+    public function getLeverage()
+    {
+        return $this->leverage;
+    }
+  
+    /**
+     * Sets leverage
+     * @param double $leverage 
+     * @return $this
+     */
+    public function setLeverage($leverage)
+    {
+        
+        $this->leverage = $leverage;
         return $this;
     }
     
@@ -2739,6 +2793,48 @@ class Position implements ArrayAccess
     {
         
         $this->timestamp = $timestamp;
+        return $this;
+    }
+    
+    /**
+     * Gets last_price
+     * @return double
+     */
+    public function getLastPrice()
+    {
+        return $this->last_price;
+    }
+  
+    /**
+     * Sets last_price
+     * @param double $last_price 
+     * @return $this
+     */
+    public function setLastPrice($last_price)
+    {
+        
+        $this->last_price = $last_price;
+        return $this;
+    }
+    
+    /**
+     * Gets last_value
+     * @return Number
+     */
+    public function getLastValue()
+    {
+        return $this->last_value;
+    }
+  
+    /**
+     * Sets last_value
+     * @param Number $last_value 
+     * @return $this
+     */
+    public function setLastValue($last_value)
+    {
+        
+        $this->last_value = $last_value;
         return $this;
     }
     

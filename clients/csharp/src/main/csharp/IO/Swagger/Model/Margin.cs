@@ -81,6 +81,13 @@ namespace IO.Swagger.Model
   
         
         /// <summary>
+        /// Gets or Sets ConfirmedDebit
+        /// </summary>
+        [DataMember(Name="confirmedDebit", EmitDefaultValue=false)]
+        public double? ConfirmedDebit { get; set; }
+  
+        
+        /// <summary>
         /// Gets or Sets PrevRealisedPnl
         /// </summary>
         [DataMember(Name="prevRealisedPnl", EmitDefaultValue=false)]
@@ -207,6 +214,13 @@ namespace IO.Swagger.Model
   
         
         /// <summary>
+        /// Gets or Sets SyntheticMargin
+        /// </summary>
+        [DataMember(Name="syntheticMargin", EmitDefaultValue=false)]
+        public double? SyntheticMargin { get; set; }
+  
+        
+        /// <summary>
         /// Gets or Sets WalletBalance
         /// </summary>
         [DataMember(Name="walletBalance", EmitDefaultValue=false)]
@@ -276,6 +290,20 @@ namespace IO.Swagger.Model
         public DateTime? Timestamp { get; set; }
   
         
+        /// <summary>
+        /// Gets or Sets GrossLastValue
+        /// </summary>
+        [DataMember(Name="grossLastValue", EmitDefaultValue=false)]
+        public double? GrossLastValue { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets Commission
+        /// </summary>
+        [DataMember(Name="commission", EmitDefaultValue=false)]
+        public double? Commission { get; set; }
+  
+        
   
         /// <summary>
         /// Returns the string presentation of the object
@@ -294,6 +322,7 @@ namespace IO.Swagger.Model
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  PendingCredit: ").Append(PendingCredit).Append("\n");
             sb.Append("  PendingDebit: ").Append(PendingDebit).Append("\n");
+            sb.Append("  ConfirmedDebit: ").Append(ConfirmedDebit).Append("\n");
             sb.Append("  PrevRealisedPnl: ").Append(PrevRealisedPnl).Append("\n");
             sb.Append("  PrevUnrealisedPnl: ").Append(PrevUnrealisedPnl).Append("\n");
             sb.Append("  GrossComm: ").Append(GrossComm).Append("\n");
@@ -312,6 +341,7 @@ namespace IO.Swagger.Model
             sb.Append("  UnrealisedPnl: ").Append(UnrealisedPnl).Append("\n");
             sb.Append("  IndicativeTax: ").Append(IndicativeTax).Append("\n");
             sb.Append("  UnrealisedProfit: ").Append(UnrealisedProfit).Append("\n");
+            sb.Append("  SyntheticMargin: ").Append(SyntheticMargin).Append("\n");
             sb.Append("  WalletBalance: ").Append(WalletBalance).Append("\n");
             sb.Append("  MarginBalance: ").Append(MarginBalance).Append("\n");
             sb.Append("  MarginBalancePcnt: ").Append(MarginBalancePcnt).Append("\n");
@@ -322,6 +352,8 @@ namespace IO.Swagger.Model
             sb.Append("  AvailableMargin: ").Append(AvailableMargin).Append("\n");
             sb.Append("  WithdrawableMargin: ").Append(WithdrawableMargin).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
+            sb.Append("  GrossLastValue: ").Append(GrossLastValue).Append("\n");
+            sb.Append("  Commission: ").Append(Commission).Append("\n");
             
             sb.Append("}\n");
             return sb.ToString();
@@ -403,6 +435,11 @@ namespace IO.Swagger.Model
                     this.PendingDebit == other.PendingDebit ||
                     this.PendingDebit != null &&
                     this.PendingDebit.Equals(other.PendingDebit)
+                ) && 
+                (
+                    this.ConfirmedDebit == other.ConfirmedDebit ||
+                    this.ConfirmedDebit != null &&
+                    this.ConfirmedDebit.Equals(other.ConfirmedDebit)
                 ) && 
                 (
                     this.PrevRealisedPnl == other.PrevRealisedPnl ||
@@ -495,6 +532,11 @@ namespace IO.Swagger.Model
                     this.UnrealisedProfit.Equals(other.UnrealisedProfit)
                 ) && 
                 (
+                    this.SyntheticMargin == other.SyntheticMargin ||
+                    this.SyntheticMargin != null &&
+                    this.SyntheticMargin.Equals(other.SyntheticMargin)
+                ) && 
+                (
                     this.WalletBalance == other.WalletBalance ||
                     this.WalletBalance != null &&
                     this.WalletBalance.Equals(other.WalletBalance)
@@ -543,6 +585,16 @@ namespace IO.Swagger.Model
                     this.Timestamp == other.Timestamp ||
                     this.Timestamp != null &&
                     this.Timestamp.Equals(other.Timestamp)
+                ) && 
+                (
+                    this.GrossLastValue == other.GrossLastValue ||
+                    this.GrossLastValue != null &&
+                    this.GrossLastValue.Equals(other.GrossLastValue)
+                ) && 
+                (
+                    this.Commission == other.Commission ||
+                    this.Commission != null &&
+                    this.Commission.Equals(other.Commission)
                 );
         }
 
@@ -584,6 +636,9 @@ namespace IO.Swagger.Model
                 
                 if (this.PendingDebit != null)
                     hash = hash * 57 + this.PendingDebit.GetHashCode();
+                
+                if (this.ConfirmedDebit != null)
+                    hash = hash * 57 + this.ConfirmedDebit.GetHashCode();
                 
                 if (this.PrevRealisedPnl != null)
                     hash = hash * 57 + this.PrevRealisedPnl.GetHashCode();
@@ -639,6 +694,9 @@ namespace IO.Swagger.Model
                 if (this.UnrealisedProfit != null)
                     hash = hash * 57 + this.UnrealisedProfit.GetHashCode();
                 
+                if (this.SyntheticMargin != null)
+                    hash = hash * 57 + this.SyntheticMargin.GetHashCode();
+                
                 if (this.WalletBalance != null)
                     hash = hash * 57 + this.WalletBalance.GetHashCode();
                 
@@ -668,6 +726,12 @@ namespace IO.Swagger.Model
                 
                 if (this.Timestamp != null)
                     hash = hash * 57 + this.Timestamp.GetHashCode();
+                
+                if (this.GrossLastValue != null)
+                    hash = hash * 57 + this.GrossLastValue.GetHashCode();
+                
+                if (this.Commission != null)
+                    hash = hash * 57 + this.Commission.GetHashCode();
                 
                 return hash;
             }

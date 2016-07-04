@@ -27,7 +27,7 @@ import javax.ws.rs.*;
 @Consumes({ "application/json", "application/x-www-form-urlencoded" })
 @Produces({ "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" })
 @io.swagger.annotations.Api(description = "the stats API")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-30T13:35:57.938-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2016-07-04T18:25:32.992-05:00")
 public class StatsApi  {
    private final StatsApiService delegate = StatsApiServiceFactory.getStatsApi();
 
@@ -45,9 +45,9 @@ public class StatsApi  {
         
         @io.swagger.annotations.ApiResponse(code = 404, message = "Not Found", response = Stats.class, responseContainer = "List") })
 
-    public Response statsFind()
+    public Response statsGet()
     throws NotFoundException {
-        return delegate.statsFind();
+        return delegate.statsGet();
     }
     @GET
     @Path("/history")

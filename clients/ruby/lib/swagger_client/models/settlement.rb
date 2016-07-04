@@ -1,16 +1,16 @@
 module SwaggerClient
   # 
   class Settlement < BaseObject
-    attr_accessor :symbol, :timestamp, :settlement_type, :settled_price, :bankrupt, :tax_base, :tax_rate
+    attr_accessor :timestamp, :symbol, :settlement_type, :settled_price, :bankrupt, :tax_base, :tax_rate
     # attribute mapping from ruby-style variable name to JSON key
     def self.attribute_map
       {
         
         # 
-        :'symbol' => :'symbol',
+        :'timestamp' => :'timestamp',
         
         # 
-        :'timestamp' => :'timestamp',
+        :'symbol' => :'symbol',
         
         # 
         :'settlement_type' => :'settlementType',
@@ -33,8 +33,8 @@ module SwaggerClient
     # attribute type
     def self.swagger_types
       {
-        :'symbol' => :'String',
         :'timestamp' => :'Date',
+        :'symbol' => :'String',
         :'settlement_type' => :'String',
         :'settled_price' => :'Float',
         :'bankrupt' => :'Float',
@@ -51,12 +51,12 @@ module SwaggerClient
       attributes = attributes.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
 
       
-      if attributes[:'symbol']
-        self.symbol = attributes[:'symbol']
-      end
-      
       if attributes[:'timestamp']
         self.timestamp = attributes[:'timestamp']
+      end
+      
+      if attributes[:'symbol']
+        self.symbol = attributes[:'symbol']
       end
       
       if attributes[:'settlementType']
@@ -84,8 +84,8 @@ module SwaggerClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          symbol == o.symbol &&
           timestamp == o.timestamp &&
+          symbol == o.symbol &&
           settlement_type == o.settlement_type &&
           settled_price == o.settled_price &&
           bankrupt == o.bankrupt &&
@@ -98,7 +98,7 @@ module SwaggerClient
     end
 
     def hash
-      [symbol, timestamp, settlement_type, settled_price, bankrupt, tax_base, tax_rate].hash
+      [timestamp, symbol, settlement_type, settled_price, bankrupt, tax_base, tax_rate].hash
     end
   end
 end

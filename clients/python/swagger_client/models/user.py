@@ -38,6 +38,7 @@ class User(object):
         """
         self.swagger_types = {
             'id': 'float',
+            'owner_id': 'float',
             'firstname': 'str',
             'lastname': 'str',
             'status': 'str',
@@ -48,7 +49,6 @@ class User(object):
             'created': 'date',
             'last_updated': 'date',
             'preferences': 'UserPreferences',
-            'role': 'str',
             'tfa_enabled': 'str',
             'affiliate_id': 'str',
             'pgp_pub_key': 'str',
@@ -58,6 +58,7 @@ class User(object):
 
         self.attribute_map = {
             'id': 'id',
+            'owner_id': 'ownerId',
             'firstname': 'firstname',
             'lastname': 'lastname',
             'status': 'status',
@@ -68,7 +69,6 @@ class User(object):
             'created': 'created',
             'last_updated': 'lastUpdated',
             'preferences': 'preferences',
-            'role': 'role',
             'tfa_enabled': 'TFAEnabled',
             'affiliate_id': 'affiliateID',
             'pgp_pub_key': 'pgpPubKey',
@@ -77,6 +77,7 @@ class User(object):
         }
 
         self._id = None
+        self._owner_id = None
         self._firstname = None
         self._lastname = None
         self._status = None
@@ -87,7 +88,6 @@ class User(object):
         self._created = None
         self._last_updated = None
         self._preferences = None
-        self._role = None
         self._tfa_enabled = None
         self._affiliate_id = None
         self._pgp_pub_key = None
@@ -115,6 +115,28 @@ class User(object):
         :type: float
         """
         self._id = id
+
+    @property
+    def owner_id(self):
+        """
+        Gets the owner_id of this User.
+
+
+        :return: The owner_id of this User.
+        :rtype: float
+        """
+        return self._owner_id
+
+    @owner_id.setter
+    def owner_id(self, owner_id):
+        """
+        Sets the owner_id of this User.
+
+
+        :param owner_id: The owner_id of this User.
+        :type: float
+        """
+        self._owner_id = owner_id
 
     @property
     def firstname(self):
@@ -335,28 +357,6 @@ class User(object):
         :type: UserPreferences
         """
         self._preferences = preferences
-
-    @property
-    def role(self):
-        """
-        Gets the role of this User.
-
-
-        :return: The role of this User.
-        :rtype: str
-        """
-        return self._role
-
-    @role.setter
-    def role(self, role):
-        """
-        Sets the role of this User.
-
-
-        :param role: The role of this User.
-        :type: str
-        """
-        self._role = role
 
     @property
     def tfa_enabled(self):

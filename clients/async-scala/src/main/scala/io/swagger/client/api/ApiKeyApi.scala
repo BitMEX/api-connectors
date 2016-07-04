@@ -11,7 +11,7 @@ import collection.mutable
 class ApiKeyApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
   
-  def apiKey.getKeys(reverse: Option[Boolean] = Some(false)
+  def apiKey.get(reverse: Option[Boolean] = Some(false)
       )(implicit reader: ClientResponseReader[List[ApiKey]]): Future[List[ApiKey]] = {
     // create path and map variables
     val path = (addFmt("/apiKey"))
@@ -33,7 +33,7 @@ class ApiKeyApi(client: TransportClient, config: SwaggerConfig) extends ApiClien
   }
 
   
-  def apiKey.createKey(name: Option[String] = None,
+  def apiKey.new(name: Option[String] = None,
       cidr: Option[String] = None,
       permissions: Option[String] = None,
       enabled: Option[Boolean] = Some(false),

@@ -45,7 +45,7 @@ class StatsApi(object):
                 config.api_client = ApiClient()
             self.api_client = config.api_client
 
-    def stats_find(self, **kwargs):
+    def stats_get(self, **kwargs):
         """
         Get exchange-wide and per-series turnover and volume statistics.
         
@@ -56,7 +56,7 @@ class StatsApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.stats_find(callback=callback_function)
+        >>> thread = api.stats_get(callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
@@ -73,7 +73,7 @@ class StatsApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method stats_find" % key
+                    " to method stats_get" % key
                 )
             params[key] = val
         del params['kwargs']

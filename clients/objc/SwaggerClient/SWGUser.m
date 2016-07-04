@@ -8,7 +8,7 @@
  */
 + (JSONKeyMapper *)keyMapper
 {
-  return [[JSONKeyMapper alloc] initWithDictionary:@{ @"id": @"_id", @"firstname": @"firstname", @"lastname": @"lastname", @"status": @"status", @"username": @"username", @"email": @"email", @"phone": @"phone", @"countryCode": @"countryCode", @"created": @"created", @"lastUpdated": @"lastUpdated", @"preferences": @"preferences", @"role": @"role", @"TFAEnabled": @"tFAEnabled", @"affiliateID": @"affiliateID", @"pgpPubKey": @"pgpPubKey", @"country": @"country", @"disabled": @"disabled" }];
+  return [[JSONKeyMapper alloc] initWithDictionary:@{ @"id": @"_id", @"ownerId": @"ownerId", @"firstname": @"firstname", @"lastname": @"lastname", @"status": @"status", @"username": @"username", @"email": @"email", @"phone": @"phone", @"countryCode": @"countryCode", @"created": @"created", @"lastUpdated": @"lastUpdated", @"preferences": @"preferences", @"TFAEnabled": @"tFAEnabled", @"affiliateID": @"affiliateID", @"pgpPubKey": @"pgpPubKey", @"country": @"country", @"disabled": @"disabled" }];
 }
 
 /**
@@ -18,7 +18,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName
 {
-  NSArray *optionalProperties = @[@"_id", @"firstname", @"lastname", @"status", @"phone", @"countryCode", @"created", @"lastUpdated", @"preferences", @"role", @"tFAEnabled", @"affiliateID", @"pgpPubKey", @"country", @"disabled"];
+  NSArray *optionalProperties = @[@"_id", @"ownerId", @"firstname", @"lastname", @"status", @"phone", @"countryCode", @"created", @"lastUpdated", @"preferences", @"tFAEnabled", @"affiliateID", @"pgpPubKey", @"country", @"disabled"];
 
   if ([optionalProperties containsObject:propertyName]) {
     return YES;

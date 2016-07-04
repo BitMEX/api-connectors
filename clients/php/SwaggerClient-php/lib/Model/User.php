@@ -52,6 +52,7 @@ class User implements ArrayAccess
       */
     static $swaggerTypes = array(
         'id' => 'Number',
+        'owner_id' => 'Number',
         'firstname' => 'string',
         'lastname' => 'string',
         'status' => 'string',
@@ -62,7 +63,6 @@ class User implements ArrayAccess
         'created' => '\DateTime',
         'last_updated' => '\DateTime',
         'preferences' => '\Swagger\Client\Model\UserPreferences',
-        'role' => 'string',
         'tfa_enabled' => 'string',
         'affiliate_id' => 'string',
         'pgp_pub_key' => 'string',
@@ -76,6 +76,7 @@ class User implements ArrayAccess
       */
     static $attributeMap = array(
         'id' => 'id',
+        'owner_id' => 'ownerId',
         'firstname' => 'firstname',
         'lastname' => 'lastname',
         'status' => 'status',
@@ -86,7 +87,6 @@ class User implements ArrayAccess
         'created' => 'created',
         'last_updated' => 'lastUpdated',
         'preferences' => 'preferences',
-        'role' => 'role',
         'tfa_enabled' => 'TFAEnabled',
         'affiliate_id' => 'affiliateID',
         'pgp_pub_key' => 'pgpPubKey',
@@ -100,6 +100,7 @@ class User implements ArrayAccess
       */
     static $setters = array(
         'id' => 'setId',
+        'owner_id' => 'setOwnerId',
         'firstname' => 'setFirstname',
         'lastname' => 'setLastname',
         'status' => 'setStatus',
@@ -110,7 +111,6 @@ class User implements ArrayAccess
         'created' => 'setCreated',
         'last_updated' => 'setLastUpdated',
         'preferences' => 'setPreferences',
-        'role' => 'setRole',
         'tfa_enabled' => 'setTfaEnabled',
         'affiliate_id' => 'setAffiliateId',
         'pgp_pub_key' => 'setPgpPubKey',
@@ -124,6 +124,7 @@ class User implements ArrayAccess
       */
     static $getters = array(
         'id' => 'getId',
+        'owner_id' => 'getOwnerId',
         'firstname' => 'getFirstname',
         'lastname' => 'getLastname',
         'status' => 'getStatus',
@@ -134,7 +135,6 @@ class User implements ArrayAccess
         'created' => 'getCreated',
         'last_updated' => 'getLastUpdated',
         'preferences' => 'getPreferences',
-        'role' => 'getRole',
         'tfa_enabled' => 'getTfaEnabled',
         'affiliate_id' => 'getAffiliateId',
         'pgp_pub_key' => 'getPgpPubKey',
@@ -148,6 +148,12 @@ class User implements ArrayAccess
       * @var Number
       */
     protected $id;
+    
+    /**
+      * $owner_id 
+      * @var Number
+      */
+    protected $owner_id;
     
     /**
       * $firstname 
@@ -210,12 +216,6 @@ class User implements ArrayAccess
     protected $preferences;
     
     /**
-      * $role 
-      * @var string
-      */
-    protected $role;
-    
-    /**
       * $tfa_enabled 
       * @var string
       */
@@ -254,6 +254,7 @@ class User implements ArrayAccess
     {
         if ($data != null) {
             $this->id = $data["id"];
+            $this->owner_id = $data["owner_id"];
             $this->firstname = $data["firstname"];
             $this->lastname = $data["lastname"];
             $this->status = $data["status"];
@@ -264,7 +265,6 @@ class User implements ArrayAccess
             $this->created = $data["created"];
             $this->last_updated = $data["last_updated"];
             $this->preferences = $data["preferences"];
-            $this->role = $data["role"];
             $this->tfa_enabled = $data["tfa_enabled"];
             $this->affiliate_id = $data["affiliate_id"];
             $this->pgp_pub_key = $data["pgp_pub_key"];
@@ -291,6 +291,27 @@ class User implements ArrayAccess
     {
         
         $this->id = $id;
+        return $this;
+    }
+    
+    /**
+     * Gets owner_id
+     * @return Number
+     */
+    public function getOwnerId()
+    {
+        return $this->owner_id;
+    }
+  
+    /**
+     * Sets owner_id
+     * @param Number $owner_id 
+     * @return $this
+     */
+    public function setOwnerId($owner_id)
+    {
+        
+        $this->owner_id = $owner_id;
         return $this;
     }
     
@@ -501,27 +522,6 @@ class User implements ArrayAccess
     {
         
         $this->preferences = $preferences;
-        return $this;
-    }
-    
-    /**
-     * Gets role
-     * @return string
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
-  
-    /**
-     * Sets role
-     * @param string $role 
-     * @return $this
-     */
-    public function setRole($role)
-    {
-        
-        $this->role = $role;
         return $this;
     }
     

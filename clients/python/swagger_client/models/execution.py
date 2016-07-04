@@ -40,6 +40,7 @@ class Execution(object):
             'exec_id': 'str',
             'order_id': 'str',
             'cl_ord_id': 'str',
+            'cl_ord_link_id': 'str',
             'account': 'float',
             'symbol': 'str',
             'side': 'str',
@@ -51,15 +52,20 @@ class Execution(object):
             'simple_order_qty': 'float',
             'order_qty': 'float',
             'price': 'float',
-            'min_qty': 'float',
+            'display_qty': 'float',
             'stop_px': 'float',
+            'peg_offset_value': 'float',
+            'peg_price_type': 'str',
             'currency': 'str',
             'settl_currency': 'str',
             'exec_type': 'str',
             'ord_type': 'str',
             'time_in_force': 'str',
+            'exec_inst': 'str',
+            'contingency_type': 'str',
             'ex_destination': 'str',
             'ord_status': 'str',
+            'triggered': 'str',
             'working_indicator': 'bool',
             'ord_rej_reason': 'str',
             'simple_leaves_qty': 'float',
@@ -68,7 +74,6 @@ class Execution(object):
             'cum_qty': 'float',
             'avg_px': 'float',
             'commission': 'float',
-            'comm_type': 'str',
             'trade_publish_indicator': 'str',
             'multi_leg_reporting_type': 'str',
             'text': 'str',
@@ -85,6 +90,7 @@ class Execution(object):
             'exec_id': 'execID',
             'order_id': 'orderID',
             'cl_ord_id': 'clOrdID',
+            'cl_ord_link_id': 'clOrdLinkID',
             'account': 'account',
             'symbol': 'symbol',
             'side': 'side',
@@ -96,15 +102,20 @@ class Execution(object):
             'simple_order_qty': 'simpleOrderQty',
             'order_qty': 'orderQty',
             'price': 'price',
-            'min_qty': 'minQty',
+            'display_qty': 'displayQty',
             'stop_px': 'stopPx',
+            'peg_offset_value': 'pegOffsetValue',
+            'peg_price_type': 'pegPriceType',
             'currency': 'currency',
             'settl_currency': 'settlCurrency',
             'exec_type': 'execType',
             'ord_type': 'ordType',
             'time_in_force': 'timeInForce',
+            'exec_inst': 'execInst',
+            'contingency_type': 'contingencyType',
             'ex_destination': 'exDestination',
             'ord_status': 'ordStatus',
+            'triggered': 'triggered',
             'working_indicator': 'workingIndicator',
             'ord_rej_reason': 'ordRejReason',
             'simple_leaves_qty': 'simpleLeavesQty',
@@ -113,7 +124,6 @@ class Execution(object):
             'cum_qty': 'cumQty',
             'avg_px': 'avgPx',
             'commission': 'commission',
-            'comm_type': 'commType',
             'trade_publish_indicator': 'tradePublishIndicator',
             'multi_leg_reporting_type': 'multiLegReportingType',
             'text': 'text',
@@ -129,6 +139,7 @@ class Execution(object):
         self._exec_id = None
         self._order_id = None
         self._cl_ord_id = None
+        self._cl_ord_link_id = None
         self._account = None
         self._symbol = None
         self._side = None
@@ -140,15 +151,20 @@ class Execution(object):
         self._simple_order_qty = None
         self._order_qty = None
         self._price = None
-        self._min_qty = None
+        self._display_qty = None
         self._stop_px = None
+        self._peg_offset_value = None
+        self._peg_price_type = None
         self._currency = None
         self._settl_currency = None
         self._exec_type = None
         self._ord_type = None
         self._time_in_force = None
+        self._exec_inst = None
+        self._contingency_type = None
         self._ex_destination = None
         self._ord_status = None
+        self._triggered = None
         self._working_indicator = None
         self._ord_rej_reason = None
         self._simple_leaves_qty = None
@@ -157,7 +173,6 @@ class Execution(object):
         self._cum_qty = None
         self._avg_px = None
         self._commission = None
-        self._comm_type = None
         self._trade_publish_indicator = None
         self._multi_leg_reporting_type = None
         self._text = None
@@ -234,6 +249,28 @@ class Execution(object):
         :type: str
         """
         self._cl_ord_id = cl_ord_id
+
+    @property
+    def cl_ord_link_id(self):
+        """
+        Gets the cl_ord_link_id of this Execution.
+
+
+        :return: The cl_ord_link_id of this Execution.
+        :rtype: str
+        """
+        return self._cl_ord_link_id
+
+    @cl_ord_link_id.setter
+    def cl_ord_link_id(self, cl_ord_link_id):
+        """
+        Sets the cl_ord_link_id of this Execution.
+
+
+        :param cl_ord_link_id: The cl_ord_link_id of this Execution.
+        :type: str
+        """
+        self._cl_ord_link_id = cl_ord_link_id
 
     @property
     def account(self):
@@ -478,26 +515,26 @@ class Execution(object):
         self._price = price
 
     @property
-    def min_qty(self):
+    def display_qty(self):
         """
-        Gets the min_qty of this Execution.
+        Gets the display_qty of this Execution.
 
 
-        :return: The min_qty of this Execution.
+        :return: The display_qty of this Execution.
         :rtype: float
         """
-        return self._min_qty
+        return self._display_qty
 
-    @min_qty.setter
-    def min_qty(self, min_qty):
+    @display_qty.setter
+    def display_qty(self, display_qty):
         """
-        Sets the min_qty of this Execution.
+        Sets the display_qty of this Execution.
 
 
-        :param min_qty: The min_qty of this Execution.
+        :param display_qty: The display_qty of this Execution.
         :type: float
         """
-        self._min_qty = min_qty
+        self._display_qty = display_qty
 
     @property
     def stop_px(self):
@@ -520,6 +557,50 @@ class Execution(object):
         :type: float
         """
         self._stop_px = stop_px
+
+    @property
+    def peg_offset_value(self):
+        """
+        Gets the peg_offset_value of this Execution.
+
+
+        :return: The peg_offset_value of this Execution.
+        :rtype: float
+        """
+        return self._peg_offset_value
+
+    @peg_offset_value.setter
+    def peg_offset_value(self, peg_offset_value):
+        """
+        Sets the peg_offset_value of this Execution.
+
+
+        :param peg_offset_value: The peg_offset_value of this Execution.
+        :type: float
+        """
+        self._peg_offset_value = peg_offset_value
+
+    @property
+    def peg_price_type(self):
+        """
+        Gets the peg_price_type of this Execution.
+
+
+        :return: The peg_price_type of this Execution.
+        :rtype: str
+        """
+        return self._peg_price_type
+
+    @peg_price_type.setter
+    def peg_price_type(self, peg_price_type):
+        """
+        Sets the peg_price_type of this Execution.
+
+
+        :param peg_price_type: The peg_price_type of this Execution.
+        :type: str
+        """
+        self._peg_price_type = peg_price_type
 
     @property
     def currency(self):
@@ -632,6 +713,50 @@ class Execution(object):
         self._time_in_force = time_in_force
 
     @property
+    def exec_inst(self):
+        """
+        Gets the exec_inst of this Execution.
+
+
+        :return: The exec_inst of this Execution.
+        :rtype: str
+        """
+        return self._exec_inst
+
+    @exec_inst.setter
+    def exec_inst(self, exec_inst):
+        """
+        Sets the exec_inst of this Execution.
+
+
+        :param exec_inst: The exec_inst of this Execution.
+        :type: str
+        """
+        self._exec_inst = exec_inst
+
+    @property
+    def contingency_type(self):
+        """
+        Gets the contingency_type of this Execution.
+
+
+        :return: The contingency_type of this Execution.
+        :rtype: str
+        """
+        return self._contingency_type
+
+    @contingency_type.setter
+    def contingency_type(self, contingency_type):
+        """
+        Sets the contingency_type of this Execution.
+
+
+        :param contingency_type: The contingency_type of this Execution.
+        :type: str
+        """
+        self._contingency_type = contingency_type
+
+    @property
     def ex_destination(self):
         """
         Gets the ex_destination of this Execution.
@@ -674,6 +799,28 @@ class Execution(object):
         :type: str
         """
         self._ord_status = ord_status
+
+    @property
+    def triggered(self):
+        """
+        Gets the triggered of this Execution.
+
+
+        :return: The triggered of this Execution.
+        :rtype: str
+        """
+        return self._triggered
+
+    @triggered.setter
+    def triggered(self, triggered):
+        """
+        Sets the triggered of this Execution.
+
+
+        :param triggered: The triggered of this Execution.
+        :type: str
+        """
+        self._triggered = triggered
 
     @property
     def working_indicator(self):
@@ -850,28 +997,6 @@ class Execution(object):
         :type: float
         """
         self._commission = commission
-
-    @property
-    def comm_type(self):
-        """
-        Gets the comm_type of this Execution.
-
-
-        :return: The comm_type of this Execution.
-        :rtype: str
-        """
-        return self._comm_type
-
-    @comm_type.setter
-    def comm_type(self, comm_type):
-        """
-        Sets the comm_type of this Execution.
-
-
-        :param comm_type: The comm_type of this Execution.
-        :type: str
-        """
-        self._comm_type = comm_type
 
     @property
     def trade_publish_indicator(self):

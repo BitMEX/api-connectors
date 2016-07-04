@@ -43,13 +43,19 @@ class UserPreferences(object):
             'debug': 'bool',
             'disable_emails': 'list[str]',
             'hide_confirm_dialogs': 'list[str]',
+            'hide_connection_modal': 'bool',
+            'hide_from_leaderboard': 'bool',
+            'hide_name_from_leaderboard': 'bool',
             'hide_notifications': 'list[str]',
             'hide_phone_confirm': 'bool',
+            'locale': 'str',
             'msgs_seen': 'list[str]',
             'order_book_binning': 'float',
+            'order_book_type': 'str',
             'order_controls_plus_minus': 'bool',
             'sounds': 'list[str]',
             'strict_ip_check': 'bool',
+            'strict_timeout': 'bool',
             'ticker_group': 'str',
             'ticker_pinned': 'bool',
             'trade_layout': 'str'
@@ -62,13 +68,19 @@ class UserPreferences(object):
             'debug': 'debug',
             'disable_emails': 'disableEmails',
             'hide_confirm_dialogs': 'hideConfirmDialogs',
+            'hide_connection_modal': 'hideConnectionModal',
+            'hide_from_leaderboard': 'hideFromLeaderboard',
+            'hide_name_from_leaderboard': 'hideNameFromLeaderboard',
             'hide_notifications': 'hideNotifications',
             'hide_phone_confirm': 'hidePhoneConfirm',
+            'locale': 'locale',
             'msgs_seen': 'msgsSeen',
             'order_book_binning': 'orderBookBinning',
+            'order_book_type': 'orderBookType',
             'order_controls_plus_minus': 'orderControlsPlusMinus',
             'sounds': 'sounds',
             'strict_ip_check': 'strictIPCheck',
+            'strict_timeout': 'strictTimeout',
             'ticker_group': 'tickerGroup',
             'ticker_pinned': 'tickerPinned',
             'trade_layout': 'tradeLayout'
@@ -80,13 +92,19 @@ class UserPreferences(object):
         self._debug = None
         self._disable_emails = None
         self._hide_confirm_dialogs = None
+        self._hide_connection_modal = None
+        self._hide_from_leaderboard = None
+        self._hide_name_from_leaderboard = None
         self._hide_notifications = None
         self._hide_phone_confirm = None
+        self._locale = None
         self._msgs_seen = None
         self._order_book_binning = None
+        self._order_book_type = None
         self._order_controls_plus_minus = None
         self._sounds = None
         self._strict_ip_check = None
+        self._strict_timeout = None
         self._ticker_group = None
         self._ticker_pinned = None
         self._trade_layout = None
@@ -224,6 +242,72 @@ class UserPreferences(object):
         self._hide_confirm_dialogs = hide_confirm_dialogs
 
     @property
+    def hide_connection_modal(self):
+        """
+        Gets the hide_connection_modal of this UserPreferences.
+
+
+        :return: The hide_connection_modal of this UserPreferences.
+        :rtype: bool
+        """
+        return self._hide_connection_modal
+
+    @hide_connection_modal.setter
+    def hide_connection_modal(self, hide_connection_modal):
+        """
+        Sets the hide_connection_modal of this UserPreferences.
+
+
+        :param hide_connection_modal: The hide_connection_modal of this UserPreferences.
+        :type: bool
+        """
+        self._hide_connection_modal = hide_connection_modal
+
+    @property
+    def hide_from_leaderboard(self):
+        """
+        Gets the hide_from_leaderboard of this UserPreferences.
+
+
+        :return: The hide_from_leaderboard of this UserPreferences.
+        :rtype: bool
+        """
+        return self._hide_from_leaderboard
+
+    @hide_from_leaderboard.setter
+    def hide_from_leaderboard(self, hide_from_leaderboard):
+        """
+        Sets the hide_from_leaderboard of this UserPreferences.
+
+
+        :param hide_from_leaderboard: The hide_from_leaderboard of this UserPreferences.
+        :type: bool
+        """
+        self._hide_from_leaderboard = hide_from_leaderboard
+
+    @property
+    def hide_name_from_leaderboard(self):
+        """
+        Gets the hide_name_from_leaderboard of this UserPreferences.
+
+
+        :return: The hide_name_from_leaderboard of this UserPreferences.
+        :rtype: bool
+        """
+        return self._hide_name_from_leaderboard
+
+    @hide_name_from_leaderboard.setter
+    def hide_name_from_leaderboard(self, hide_name_from_leaderboard):
+        """
+        Sets the hide_name_from_leaderboard of this UserPreferences.
+
+
+        :param hide_name_from_leaderboard: The hide_name_from_leaderboard of this UserPreferences.
+        :type: bool
+        """
+        self._hide_name_from_leaderboard = hide_name_from_leaderboard
+
+    @property
     def hide_notifications(self):
         """
         Gets the hide_notifications of this UserPreferences.
@@ -268,6 +352,28 @@ class UserPreferences(object):
         self._hide_phone_confirm = hide_phone_confirm
 
     @property
+    def locale(self):
+        """
+        Gets the locale of this UserPreferences.
+
+
+        :return: The locale of this UserPreferences.
+        :rtype: str
+        """
+        return self._locale
+
+    @locale.setter
+    def locale(self, locale):
+        """
+        Sets the locale of this UserPreferences.
+
+
+        :param locale: The locale of this UserPreferences.
+        :type: str
+        """
+        self._locale = locale
+
+    @property
     def msgs_seen(self):
         """
         Gets the msgs_seen of this UserPreferences.
@@ -310,6 +416,28 @@ class UserPreferences(object):
         :type: float
         """
         self._order_book_binning = order_book_binning
+
+    @property
+    def order_book_type(self):
+        """
+        Gets the order_book_type of this UserPreferences.
+
+
+        :return: The order_book_type of this UserPreferences.
+        :rtype: str
+        """
+        return self._order_book_type
+
+    @order_book_type.setter
+    def order_book_type(self, order_book_type):
+        """
+        Sets the order_book_type of this UserPreferences.
+
+
+        :param order_book_type: The order_book_type of this UserPreferences.
+        :type: str
+        """
+        self._order_book_type = order_book_type
 
     @property
     def order_controls_plus_minus(self):
@@ -376,6 +504,28 @@ class UserPreferences(object):
         :type: bool
         """
         self._strict_ip_check = strict_ip_check
+
+    @property
+    def strict_timeout(self):
+        """
+        Gets the strict_timeout of this UserPreferences.
+
+
+        :return: The strict_timeout of this UserPreferences.
+        :rtype: bool
+        """
+        return self._strict_timeout
+
+    @strict_timeout.setter
+    def strict_timeout(self, strict_timeout):
+        """
+        Sets the strict_timeout of this UserPreferences.
+
+
+        :param strict_timeout: The strict_timeout of this UserPreferences.
+        :type: bool
+        """
+        self._strict_timeout = strict_timeout
 
     @property
     def ticker_group(self):

@@ -15,7 +15,7 @@ class StatsApi {
   /// Get exchange-wide and per-series turnover and volume statistics.
   ///
   /// 
-  Future<List<Stats>> statsFind() {
+  Future<List<Stats>> statsGet() {
     Object postBody = null;
     
 

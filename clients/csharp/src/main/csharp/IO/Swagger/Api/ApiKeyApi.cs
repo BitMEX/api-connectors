@@ -22,7 +22,7 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <param name="reverse">If true, will sort results newest first.</param>
         /// <returns></returns>
-        List<ApiKey> ApiKeyGetKeys (bool? reverse = null);
+        List<ApiKey> ApiKeyGet (bool? reverse = null);
   
         /// <summary>
         /// Get your API Keys.
@@ -32,13 +32,13 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <param name="reverse">If true, will sort results newest first.</param>
         /// <returns></returns>
-        System.Threading.Tasks.Task<List<ApiKey>> ApiKeyGetKeysAsync (bool? reverse = null);
+        System.Threading.Tasks.Task<List<ApiKey>> ApiKeyGetAsync (bool? reverse = null);
         
         /// <summary>
         /// Create a new API Key.
         /// </summary>
         /// <remarks>
-        /// API Keys can also be created via &lt;a href=\&quot;https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py\&quot;&gt;this Python script&lt;/a&gt;. See the &lt;a href=\&quot;/app/apiKeys\&quot;&gt;API Key Documentation&lt;/a&gt; for more information on capabilities.
+        /// API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
         /// </remarks>
         /// <param name="name">Key name. This name is for reference only.</param>
         /// <param name="cidr">CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href=\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt;</param>
@@ -46,13 +46,13 @@ namespace IO.Swagger.Api
         /// <param name="enabled">Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.</param>
         /// <param name="token">OTP Token (YubiKey, Google Authenticator)</param>
         /// <returns>ApiKey</returns>
-        ApiKey ApiKeyCreateKey (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null);
+        ApiKey ApiKeyNew (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null);
   
         /// <summary>
         /// Create a new API Key.
         /// </summary>
         /// <remarks>
-        /// API Keys can also be created via &lt;a href=\&quot;https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py\&quot;&gt;this Python script&lt;/a&gt;. See the &lt;a href=\&quot;/app/apiKeys\&quot;&gt;API Key Documentation&lt;/a&gt; for more information on capabilities.
+        /// API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
         /// </remarks>
         /// <param name="name">Key name. This name is for reference only.</param>
         /// <param name="cidr">CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href=\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt;</param>
@@ -60,7 +60,7 @@ namespace IO.Swagger.Api
         /// <param name="enabled">Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.</param>
         /// <param name="token">OTP Token (YubiKey, Google Authenticator)</param>
         /// <returns>ApiKey</returns>
-        System.Threading.Tasks.Task<ApiKey> ApiKeyCreateKeyAsync (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null);
+        System.Threading.Tasks.Task<ApiKey> ApiKeyNewAsync (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null);
         
         /// <summary>
         /// Remove an API Key.
@@ -182,7 +182,7 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <param name="reverse">If true, will sort results newest first.</param> 
         /// <returns></returns>            
-        public List<ApiKey> ApiKeyGetKeys (bool? reverse = null)
+        public List<ApiKey> ApiKeyGet (bool? reverse = null)
         {
             
     
@@ -220,9 +220,9 @@ namespace IO.Swagger.Api
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path_, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling ApiKeyGetKeys: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling ApiKeyGet: " + response.Content, response.Content);
             else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling ApiKeyGetKeys: " + response.ErrorMessage, response.ErrorMessage);
+                throw new ApiException ((int)response.StatusCode, "Error calling ApiKeyGet: " + response.ErrorMessage, response.ErrorMessage);
     
             return (List<ApiKey>) ApiClient.Deserialize(response, typeof(List<ApiKey>));
         }
@@ -232,7 +232,7 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <param name="reverse">If true, will sort results newest first.</param>
         /// <returns></returns>
-        public async System.Threading.Tasks.Task<List<ApiKey>> ApiKeyGetKeysAsync (bool? reverse = null)
+        public async System.Threading.Tasks.Task<List<ApiKey>> ApiKeyGetAsync (bool? reverse = null)
         {
             
     
@@ -269,13 +269,13 @@ namespace IO.Swagger.Api
             // make the HTTP request
             IRestResponse response = (IRestResponse) await ApiClient.CallApiAsync(path_, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling ApiKeyGetKeys: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling ApiKeyGet: " + response.Content, response.Content);
 
             return (List<ApiKey>) ApiClient.Deserialize(response, typeof(List<ApiKey>));
         }
         
         /// <summary>
-        /// Create a new API Key. API Keys can also be created via &lt;a href=\&quot;https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py\&quot;&gt;this Python script&lt;/a&gt;. See the &lt;a href=\&quot;/app/apiKeys\&quot;&gt;API Key Documentation&lt;/a&gt; for more information on capabilities.
+        /// Create a new API Key. API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
         /// </summary>
         /// <param name="name">Key name. This name is for reference only.</param> 
         /// <param name="cidr">CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href=\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt;</param> 
@@ -283,7 +283,7 @@ namespace IO.Swagger.Api
         /// <param name="enabled">Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.</param> 
         /// <param name="token">OTP Token (YubiKey, Google Authenticator)</param> 
         /// <returns>ApiKey</returns>            
-        public ApiKey ApiKeyCreateKey (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null)
+        public ApiKey ApiKeyNew (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null)
         {
             
     
@@ -325,15 +325,15 @@ namespace IO.Swagger.Api
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path_, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling ApiKeyCreateKey: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling ApiKeyNew: " + response.Content, response.Content);
             else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling ApiKeyCreateKey: " + response.ErrorMessage, response.ErrorMessage);
+                throw new ApiException ((int)response.StatusCode, "Error calling ApiKeyNew: " + response.ErrorMessage, response.ErrorMessage);
     
             return (ApiKey) ApiClient.Deserialize(response, typeof(ApiKey));
         }
     
         /// <summary>
-        /// Create a new API Key. API Keys can also be created via &lt;a href=\&quot;https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py\&quot;&gt;this Python script&lt;/a&gt;. See the &lt;a href=\&quot;/app/apiKeys\&quot;&gt;API Key Documentation&lt;/a&gt; for more information on capabilities.
+        /// Create a new API Key. API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
         /// </summary>
         /// <param name="name">Key name. This name is for reference only.</param>
         /// <param name="cidr">CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href=\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt;</param>
@@ -341,7 +341,7 @@ namespace IO.Swagger.Api
         /// <param name="enabled">Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.</param>
         /// <param name="token">OTP Token (YubiKey, Google Authenticator)</param>
         /// <returns>ApiKey</returns>
-        public async System.Threading.Tasks.Task<ApiKey> ApiKeyCreateKeyAsync (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null)
+        public async System.Threading.Tasks.Task<ApiKey> ApiKeyNewAsync (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null)
         {
             
     
@@ -382,7 +382,7 @@ namespace IO.Swagger.Api
             // make the HTTP request
             IRestResponse response = (IRestResponse) await ApiClient.CallApiAsync(path_, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling ApiKeyCreateKey: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling ApiKeyNew: " + response.Content, response.Content);
 
             return (ApiKey) ApiClient.Deserialize(response, typeof(ApiKey));
         }

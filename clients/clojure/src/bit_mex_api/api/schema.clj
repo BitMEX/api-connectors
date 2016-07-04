@@ -2,9 +2,9 @@
   (:require [bit-mex-api.core :refer [call-api check-required-params]])
   (:import (java.io File)))
 
-(defn schema-find
+(defn schema-get
   "Get model schemata for data objects returned by this API."
-  ([] (schema-find nil))
+  ([] (schema-get nil))
   ([{:keys [model ]}]
    (call-api "/schema" :get
              {:path-params   {}

@@ -66,13 +66,13 @@ module SwaggerClient
     # @param message 
     # @param [Hash] opts the optional parameters
     # @return [Chat]
-    def chat_send(message, opts = {})
+    def chat_new(message, opts = {})
       if Configuration.debugging
-        Configuration.logger.debug "Calling API: ChatApi#chat_send ..."
+        Configuration.logger.debug "Calling API: ChatApi#chat_new ..."
       end
       
       # verify the required parameter 'message' is set
-      fail "Missing the required parameter 'message' when calling chat_send" if message.nil?
+      fail "Missing the required parameter 'message' when calling chat_new" if message.nil?
       
       # resource path
       path = "/chat".sub('{format}','json')
@@ -108,7 +108,7 @@ module SwaggerClient
         :auth_names => auth_names,
         :return_type => 'Chat')
       if Configuration.debugging
-        Configuration.logger.debug "API called: ChatApi#chat_send. Result: #{result.inspect}"
+        Configuration.logger.debug "API called: ChatApi#chat_new. Result: #{result.inspect}"
       end
       return result
     end

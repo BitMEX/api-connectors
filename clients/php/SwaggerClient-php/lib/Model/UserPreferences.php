@@ -57,13 +57,19 @@ class UserPreferences implements ArrayAccess
         'debug' => 'bool',
         'disable_emails' => 'string[]',
         'hide_confirm_dialogs' => 'string[]',
+        'hide_connection_modal' => 'bool',
+        'hide_from_leaderboard' => 'bool',
+        'hide_name_from_leaderboard' => 'bool',
         'hide_notifications' => 'string[]',
         'hide_phone_confirm' => 'bool',
+        'locale' => 'string',
         'msgs_seen' => 'string[]',
         'order_book_binning' => 'Number',
+        'order_book_type' => 'string',
         'order_controls_plus_minus' => 'bool',
         'sounds' => 'string[]',
         'strict_ip_check' => 'bool',
+        'strict_timeout' => 'bool',
         'ticker_group' => 'string',
         'ticker_pinned' => 'bool',
         'trade_layout' => 'string'
@@ -80,13 +86,19 @@ class UserPreferences implements ArrayAccess
         'debug' => 'debug',
         'disable_emails' => 'disableEmails',
         'hide_confirm_dialogs' => 'hideConfirmDialogs',
+        'hide_connection_modal' => 'hideConnectionModal',
+        'hide_from_leaderboard' => 'hideFromLeaderboard',
+        'hide_name_from_leaderboard' => 'hideNameFromLeaderboard',
         'hide_notifications' => 'hideNotifications',
         'hide_phone_confirm' => 'hidePhoneConfirm',
+        'locale' => 'locale',
         'msgs_seen' => 'msgsSeen',
         'order_book_binning' => 'orderBookBinning',
+        'order_book_type' => 'orderBookType',
         'order_controls_plus_minus' => 'orderControlsPlusMinus',
         'sounds' => 'sounds',
         'strict_ip_check' => 'strictIPCheck',
+        'strict_timeout' => 'strictTimeout',
         'ticker_group' => 'tickerGroup',
         'ticker_pinned' => 'tickerPinned',
         'trade_layout' => 'tradeLayout'
@@ -103,13 +115,19 @@ class UserPreferences implements ArrayAccess
         'debug' => 'setDebug',
         'disable_emails' => 'setDisableEmails',
         'hide_confirm_dialogs' => 'setHideConfirmDialogs',
+        'hide_connection_modal' => 'setHideConnectionModal',
+        'hide_from_leaderboard' => 'setHideFromLeaderboard',
+        'hide_name_from_leaderboard' => 'setHideNameFromLeaderboard',
         'hide_notifications' => 'setHideNotifications',
         'hide_phone_confirm' => 'setHidePhoneConfirm',
+        'locale' => 'setLocale',
         'msgs_seen' => 'setMsgsSeen',
         'order_book_binning' => 'setOrderBookBinning',
+        'order_book_type' => 'setOrderBookType',
         'order_controls_plus_minus' => 'setOrderControlsPlusMinus',
         'sounds' => 'setSounds',
         'strict_ip_check' => 'setStrictIpCheck',
+        'strict_timeout' => 'setStrictTimeout',
         'ticker_group' => 'setTickerGroup',
         'ticker_pinned' => 'setTickerPinned',
         'trade_layout' => 'setTradeLayout'
@@ -126,13 +144,19 @@ class UserPreferences implements ArrayAccess
         'debug' => 'getDebug',
         'disable_emails' => 'getDisableEmails',
         'hide_confirm_dialogs' => 'getHideConfirmDialogs',
+        'hide_connection_modal' => 'getHideConnectionModal',
+        'hide_from_leaderboard' => 'getHideFromLeaderboard',
+        'hide_name_from_leaderboard' => 'getHideNameFromLeaderboard',
         'hide_notifications' => 'getHideNotifications',
         'hide_phone_confirm' => 'getHidePhoneConfirm',
+        'locale' => 'getLocale',
         'msgs_seen' => 'getMsgsSeen',
         'order_book_binning' => 'getOrderBookBinning',
+        'order_book_type' => 'getOrderBookType',
         'order_controls_plus_minus' => 'getOrderControlsPlusMinus',
         'sounds' => 'getSounds',
         'strict_ip_check' => 'getStrictIpCheck',
+        'strict_timeout' => 'getStrictTimeout',
         'ticker_group' => 'getTickerGroup',
         'ticker_pinned' => 'getTickerPinned',
         'trade_layout' => 'getTradeLayout'
@@ -176,6 +200,24 @@ class UserPreferences implements ArrayAccess
     protected $hide_confirm_dialogs;
     
     /**
+      * $hide_connection_modal 
+      * @var bool
+      */
+    protected $hide_connection_modal;
+    
+    /**
+      * $hide_from_leaderboard 
+      * @var bool
+      */
+    protected $hide_from_leaderboard;
+    
+    /**
+      * $hide_name_from_leaderboard 
+      * @var bool
+      */
+    protected $hide_name_from_leaderboard;
+    
+    /**
       * $hide_notifications 
       * @var string[]
       */
@@ -188,6 +230,12 @@ class UserPreferences implements ArrayAccess
     protected $hide_phone_confirm;
     
     /**
+      * $locale 
+      * @var string
+      */
+    protected $locale;
+    
+    /**
       * $msgs_seen 
       * @var string[]
       */
@@ -198,6 +246,12 @@ class UserPreferences implements ArrayAccess
       * @var Number
       */
     protected $order_book_binning;
+    
+    /**
+      * $order_book_type 
+      * @var string
+      */
+    protected $order_book_type;
     
     /**
       * $order_controls_plus_minus 
@@ -216,6 +270,12 @@ class UserPreferences implements ArrayAccess
       * @var bool
       */
     protected $strict_ip_check;
+    
+    /**
+      * $strict_timeout 
+      * @var bool
+      */
+    protected $strict_timeout;
     
     /**
       * $ticker_group 
@@ -249,13 +309,19 @@ class UserPreferences implements ArrayAccess
             $this->debug = $data["debug"];
             $this->disable_emails = $data["disable_emails"];
             $this->hide_confirm_dialogs = $data["hide_confirm_dialogs"];
+            $this->hide_connection_modal = $data["hide_connection_modal"];
+            $this->hide_from_leaderboard = $data["hide_from_leaderboard"];
+            $this->hide_name_from_leaderboard = $data["hide_name_from_leaderboard"];
             $this->hide_notifications = $data["hide_notifications"];
             $this->hide_phone_confirm = $data["hide_phone_confirm"];
+            $this->locale = $data["locale"];
             $this->msgs_seen = $data["msgs_seen"];
             $this->order_book_binning = $data["order_book_binning"];
+            $this->order_book_type = $data["order_book_type"];
             $this->order_controls_plus_minus = $data["order_controls_plus_minus"];
             $this->sounds = $data["sounds"];
             $this->strict_ip_check = $data["strict_ip_check"];
+            $this->strict_timeout = $data["strict_timeout"];
             $this->ticker_group = $data["ticker_group"];
             $this->ticker_pinned = $data["ticker_pinned"];
             $this->trade_layout = $data["trade_layout"];
@@ -389,6 +455,69 @@ class UserPreferences implements ArrayAccess
     }
     
     /**
+     * Gets hide_connection_modal
+     * @return bool
+     */
+    public function getHideConnectionModal()
+    {
+        return $this->hide_connection_modal;
+    }
+  
+    /**
+     * Sets hide_connection_modal
+     * @param bool $hide_connection_modal 
+     * @return $this
+     */
+    public function setHideConnectionModal($hide_connection_modal)
+    {
+        
+        $this->hide_connection_modal = $hide_connection_modal;
+        return $this;
+    }
+    
+    /**
+     * Gets hide_from_leaderboard
+     * @return bool
+     */
+    public function getHideFromLeaderboard()
+    {
+        return $this->hide_from_leaderboard;
+    }
+  
+    /**
+     * Sets hide_from_leaderboard
+     * @param bool $hide_from_leaderboard 
+     * @return $this
+     */
+    public function setHideFromLeaderboard($hide_from_leaderboard)
+    {
+        
+        $this->hide_from_leaderboard = $hide_from_leaderboard;
+        return $this;
+    }
+    
+    /**
+     * Gets hide_name_from_leaderboard
+     * @return bool
+     */
+    public function getHideNameFromLeaderboard()
+    {
+        return $this->hide_name_from_leaderboard;
+    }
+  
+    /**
+     * Sets hide_name_from_leaderboard
+     * @param bool $hide_name_from_leaderboard 
+     * @return $this
+     */
+    public function setHideNameFromLeaderboard($hide_name_from_leaderboard)
+    {
+        
+        $this->hide_name_from_leaderboard = $hide_name_from_leaderboard;
+        return $this;
+    }
+    
+    /**
      * Gets hide_notifications
      * @return string[]
      */
@@ -431,6 +560,27 @@ class UserPreferences implements ArrayAccess
     }
     
     /**
+     * Gets locale
+     * @return string
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+  
+    /**
+     * Sets locale
+     * @param string $locale 
+     * @return $this
+     */
+    public function setLocale($locale)
+    {
+        
+        $this->locale = $locale;
+        return $this;
+    }
+    
+    /**
      * Gets msgs_seen
      * @return string[]
      */
@@ -469,6 +619,27 @@ class UserPreferences implements ArrayAccess
     {
         
         $this->order_book_binning = $order_book_binning;
+        return $this;
+    }
+    
+    /**
+     * Gets order_book_type
+     * @return string
+     */
+    public function getOrderBookType()
+    {
+        return $this->order_book_type;
+    }
+  
+    /**
+     * Sets order_book_type
+     * @param string $order_book_type 
+     * @return $this
+     */
+    public function setOrderBookType($order_book_type)
+    {
+        
+        $this->order_book_type = $order_book_type;
         return $this;
     }
     
@@ -532,6 +703,27 @@ class UserPreferences implements ArrayAccess
     {
         
         $this->strict_ip_check = $strict_ip_check;
+        return $this;
+    }
+    
+    /**
+     * Gets strict_timeout
+     * @return bool
+     */
+    public function getStrictTimeout()
+    {
+        return $this->strict_timeout;
+    }
+  
+    /**
+     * Sets strict_timeout
+     * @param bool $strict_timeout 
+     * @return $this
+     */
+    public function setStrictTimeout($strict_timeout)
+    {
+        
+        $this->strict_timeout = $strict_timeout;
         return $this;
     }
     

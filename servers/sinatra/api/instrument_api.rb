@@ -7,12 +7,12 @@ MyApp.add_route('GET', '/instrument', {
   "nickname" => "instrument/get", 
   "responseClass" => "array[Instrument]", 
   "endpoint" => "/instrument", 
-  "notes" => "This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use the endpoint /instrument/active to return active instruments, or use a filter like {\"state\": \"Open\"}.",
+  "notes" => "This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\"state\": \"Open\"}`.",
   "parameters" => [
     
     {
       "name" => "symbol",
-      "description" => "Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.",
+      "description" => "Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.",
       "dataType" => "string",
       "paramType" => "query",
       
@@ -22,7 +22,7 @@ MyApp.add_route('GET', '/instrument', {
     
     {
       "name" => "filter",
-      "description" => "Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.",
+      "description" => "Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.",
       "dataType" => "string",
       "paramType" => "query",
       
@@ -147,7 +147,7 @@ MyApp.add_route('GET', '/instrument/activeIntervals', {
   "nickname" => "instrument/get_active_intervals", 
   "responseClass" => "InstrumentInterval", 
   "endpoint" => "/instrument/activeIntervals", 
-  "notes" => "This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"BVOL:daily\", \"BVOL:weekly\", \"XBU:daily\", \"XBU:monthly\", ...]`. These identifiers are usable in any query's \"symbol\" param. The second array is the current resolution of these intervals. Results are mapped at the same index.",
+  "notes" => "This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"BVOL:daily\", \"BVOL:weekly\", \"XBU:daily\", \"XBU:monthly\", ...]`. These identifiers are usable in any query's `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.",
   "parameters" => [
     
     

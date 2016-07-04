@@ -21,8 +21,8 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <param name="model">Optional model filter. If omitted, will return all models.</param>
-        /// <returns>InlineResponse200</returns>
-        InlineResponse200 SchemaFind (string model = null);
+        /// <returns>InlineResponse2001</returns>
+        InlineResponse2001 SchemaGet (string model = null);
   
         /// <summary>
         /// Get model schemata for data objects returned by this API.
@@ -31,8 +31,8 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <param name="model">Optional model filter. If omitted, will return all models.</param>
-        /// <returns>InlineResponse200</returns>
-        System.Threading.Tasks.Task<InlineResponse200> SchemaFindAsync (string model = null);
+        /// <returns>InlineResponse2001</returns>
+        System.Threading.Tasks.Task<InlineResponse2001> SchemaGetAsync (string model = null);
         
         /// <summary>
         /// Returns help text &amp; subject list for websocket usage.
@@ -40,8 +40,8 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <returns>InlineResponse200</returns>
-        InlineResponse200 SchemaWebsocketHelp ();
+        /// <returns>InlineResponse2001</returns>
+        InlineResponse2001 SchemaWebsocketHelp ();
   
         /// <summary>
         /// Returns help text &amp; subject list for websocket usage.
@@ -49,8 +49,8 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <returns>InlineResponse200</returns>
-        System.Threading.Tasks.Task<InlineResponse200> SchemaWebsocketHelpAsync ();
+        /// <returns>InlineResponse2001</returns>
+        System.Threading.Tasks.Task<InlineResponse2001> SchemaWebsocketHelpAsync ();
         
     }
   
@@ -111,8 +111,8 @@ namespace IO.Swagger.Api
         /// Get model schemata for data objects returned by this API. 
         /// </summary>
         /// <param name="model">Optional model filter. If omitted, will return all models.</param> 
-        /// <returns>InlineResponse200</returns>            
-        public InlineResponse200 SchemaFind (string model = null)
+        /// <returns>InlineResponse2001</returns>            
+        public InlineResponse2001 SchemaGet (string model = null)
         {
             
     
@@ -150,19 +150,19 @@ namespace IO.Swagger.Api
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path_, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling SchemaFind: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling SchemaGet: " + response.Content, response.Content);
             else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling SchemaFind: " + response.ErrorMessage, response.ErrorMessage);
+                throw new ApiException ((int)response.StatusCode, "Error calling SchemaGet: " + response.ErrorMessage, response.ErrorMessage);
     
-            return (InlineResponse200) ApiClient.Deserialize(response, typeof(InlineResponse200));
+            return (InlineResponse2001) ApiClient.Deserialize(response, typeof(InlineResponse2001));
         }
     
         /// <summary>
         /// Get model schemata for data objects returned by this API. 
         /// </summary>
         /// <param name="model">Optional model filter. If omitted, will return all models.</param>
-        /// <returns>InlineResponse200</returns>
-        public async System.Threading.Tasks.Task<InlineResponse200> SchemaFindAsync (string model = null)
+        /// <returns>InlineResponse2001</returns>
+        public async System.Threading.Tasks.Task<InlineResponse2001> SchemaGetAsync (string model = null)
         {
             
     
@@ -199,16 +199,16 @@ namespace IO.Swagger.Api
             // make the HTTP request
             IRestResponse response = (IRestResponse) await ApiClient.CallApiAsync(path_, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling SchemaFind: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling SchemaGet: " + response.Content, response.Content);
 
-            return (InlineResponse200) ApiClient.Deserialize(response, typeof(InlineResponse200));
+            return (InlineResponse2001) ApiClient.Deserialize(response, typeof(InlineResponse2001));
         }
         
         /// <summary>
         /// Returns help text &amp; subject list for websocket usage. 
         /// </summary>
-        /// <returns>InlineResponse200</returns>            
-        public InlineResponse200 SchemaWebsocketHelp ()
+        /// <returns>InlineResponse2001</returns>            
+        public InlineResponse2001 SchemaWebsocketHelp ()
         {
             
     
@@ -249,14 +249,14 @@ namespace IO.Swagger.Api
             else if (((int)response.StatusCode) == 0)
                 throw new ApiException ((int)response.StatusCode, "Error calling SchemaWebsocketHelp: " + response.ErrorMessage, response.ErrorMessage);
     
-            return (InlineResponse200) ApiClient.Deserialize(response, typeof(InlineResponse200));
+            return (InlineResponse2001) ApiClient.Deserialize(response, typeof(InlineResponse2001));
         }
     
         /// <summary>
         /// Returns help text &amp; subject list for websocket usage. 
         /// </summary>
-        /// <returns>InlineResponse200</returns>
-        public async System.Threading.Tasks.Task<InlineResponse200> SchemaWebsocketHelpAsync ()
+        /// <returns>InlineResponse2001</returns>
+        public async System.Threading.Tasks.Task<InlineResponse2001> SchemaWebsocketHelpAsync ()
         {
             
     
@@ -294,7 +294,7 @@ namespace IO.Swagger.Api
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling SchemaWebsocketHelp: " + response.Content, response.Content);
 
-            return (InlineResponse200) ApiClient.Deserialize(response, typeof(InlineResponse200));
+            return (InlineResponse2001) ApiClient.Deserialize(response, typeof(InlineResponse2001));
         }
         
     }

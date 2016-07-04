@@ -14,7 +14,7 @@ class InstrumentApi {
   
   /// Get instruments.
   ///
-  /// This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use the endpoint /instrument/active to return active instruments, or use a filter like {\&quot;state\&quot;: \&quot;Open\&quot;}.
+  /// This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\&quot;state\&quot;: \&quot;Open\&quot;}`.
   Future<List<Instrument>> instrumentGet(String symbol, String filter, String columns, Number count, Number start, bool reverse, DateTime startTime, DateTime endTime) {
     Object postBody = null;
     
@@ -168,7 +168,7 @@ class InstrumentApi {
   
   /// Return all active contract series and interval pairs.
   ///
-  /// This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\&quot;BVOL:daily\&quot;, \&quot;BVOL:weekly\&quot;, \&quot;XBU:daily\&quot;, \&quot;XBU:monthly\&quot;, ...]`. These identifiers are usable in any query&#39;s \&quot;symbol\&quot; param. The second array is the current resolution of these intervals. Results are mapped at the same index.
+  /// This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\&quot;BVOL:daily\&quot;, \&quot;BVOL:weekly\&quot;, \&quot;XBU:daily\&quot;, \&quot;XBU:monthly\&quot;, ...]`. These identifiers are usable in any query&#39;s `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.
   Future<InstrumentInterval> instrumentGetActiveIntervals() {
     Object postBody = null;
     

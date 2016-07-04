@@ -60,6 +60,7 @@ class Margin implements ArrayAccess
         'amount' => 'Number',
         'pending_credit' => 'Number',
         'pending_debit' => 'Number',
+        'confirmed_debit' => 'Number',
         'prev_realised_pnl' => 'Number',
         'prev_unrealised_pnl' => 'Number',
         'gross_comm' => 'Number',
@@ -78,6 +79,7 @@ class Margin implements ArrayAccess
         'unrealised_pnl' => 'Number',
         'indicative_tax' => 'Number',
         'unrealised_profit' => 'Number',
+        'synthetic_margin' => 'Number',
         'wallet_balance' => 'Number',
         'margin_balance' => 'Number',
         'margin_balance_pcnt' => 'double',
@@ -87,7 +89,9 @@ class Margin implements ArrayAccess
         'excess_margin_pcnt' => 'double',
         'available_margin' => 'Number',
         'withdrawable_margin' => 'Number',
-        'timestamp' => '\DateTime'
+        'timestamp' => '\DateTime',
+        'gross_last_value' => 'Number',
+        'commission' => 'double'
     );
   
     /** 
@@ -104,6 +108,7 @@ class Margin implements ArrayAccess
         'amount' => 'amount',
         'pending_credit' => 'pendingCredit',
         'pending_debit' => 'pendingDebit',
+        'confirmed_debit' => 'confirmedDebit',
         'prev_realised_pnl' => 'prevRealisedPnl',
         'prev_unrealised_pnl' => 'prevUnrealisedPnl',
         'gross_comm' => 'grossComm',
@@ -122,6 +127,7 @@ class Margin implements ArrayAccess
         'unrealised_pnl' => 'unrealisedPnl',
         'indicative_tax' => 'indicativeTax',
         'unrealised_profit' => 'unrealisedProfit',
+        'synthetic_margin' => 'syntheticMargin',
         'wallet_balance' => 'walletBalance',
         'margin_balance' => 'marginBalance',
         'margin_balance_pcnt' => 'marginBalancePcnt',
@@ -131,7 +137,9 @@ class Margin implements ArrayAccess
         'excess_margin_pcnt' => 'excessMarginPcnt',
         'available_margin' => 'availableMargin',
         'withdrawable_margin' => 'withdrawableMargin',
-        'timestamp' => 'timestamp'
+        'timestamp' => 'timestamp',
+        'gross_last_value' => 'grossLastValue',
+        'commission' => 'commission'
     );
   
     /**
@@ -148,6 +156,7 @@ class Margin implements ArrayAccess
         'amount' => 'setAmount',
         'pending_credit' => 'setPendingCredit',
         'pending_debit' => 'setPendingDebit',
+        'confirmed_debit' => 'setConfirmedDebit',
         'prev_realised_pnl' => 'setPrevRealisedPnl',
         'prev_unrealised_pnl' => 'setPrevUnrealisedPnl',
         'gross_comm' => 'setGrossComm',
@@ -166,6 +175,7 @@ class Margin implements ArrayAccess
         'unrealised_pnl' => 'setUnrealisedPnl',
         'indicative_tax' => 'setIndicativeTax',
         'unrealised_profit' => 'setUnrealisedProfit',
+        'synthetic_margin' => 'setSyntheticMargin',
         'wallet_balance' => 'setWalletBalance',
         'margin_balance' => 'setMarginBalance',
         'margin_balance_pcnt' => 'setMarginBalancePcnt',
@@ -175,7 +185,9 @@ class Margin implements ArrayAccess
         'excess_margin_pcnt' => 'setExcessMarginPcnt',
         'available_margin' => 'setAvailableMargin',
         'withdrawable_margin' => 'setWithdrawableMargin',
-        'timestamp' => 'setTimestamp'
+        'timestamp' => 'setTimestamp',
+        'gross_last_value' => 'setGrossLastValue',
+        'commission' => 'setCommission'
     );
   
     /**
@@ -192,6 +204,7 @@ class Margin implements ArrayAccess
         'amount' => 'getAmount',
         'pending_credit' => 'getPendingCredit',
         'pending_debit' => 'getPendingDebit',
+        'confirmed_debit' => 'getConfirmedDebit',
         'prev_realised_pnl' => 'getPrevRealisedPnl',
         'prev_unrealised_pnl' => 'getPrevUnrealisedPnl',
         'gross_comm' => 'getGrossComm',
@@ -210,6 +223,7 @@ class Margin implements ArrayAccess
         'unrealised_pnl' => 'getUnrealisedPnl',
         'indicative_tax' => 'getIndicativeTax',
         'unrealised_profit' => 'getUnrealisedProfit',
+        'synthetic_margin' => 'getSyntheticMargin',
         'wallet_balance' => 'getWalletBalance',
         'margin_balance' => 'getMarginBalance',
         'margin_balance_pcnt' => 'getMarginBalancePcnt',
@@ -219,7 +233,9 @@ class Margin implements ArrayAccess
         'excess_margin_pcnt' => 'getExcessMarginPcnt',
         'available_margin' => 'getAvailableMargin',
         'withdrawable_margin' => 'getWithdrawableMargin',
-        'timestamp' => 'getTimestamp'
+        'timestamp' => 'getTimestamp',
+        'gross_last_value' => 'getGrossLastValue',
+        'commission' => 'getCommission'
     );
   
     
@@ -276,6 +292,12 @@ class Margin implements ArrayAccess
       * @var Number
       */
     protected $pending_debit;
+    
+    /**
+      * $confirmed_debit 
+      * @var Number
+      */
+    protected $confirmed_debit;
     
     /**
       * $prev_realised_pnl 
@@ -386,6 +408,12 @@ class Margin implements ArrayAccess
     protected $unrealised_profit;
     
     /**
+      * $synthetic_margin 
+      * @var Number
+      */
+    protected $synthetic_margin;
+    
+    /**
       * $wallet_balance 
       * @var Number
       */
@@ -445,6 +473,18 @@ class Margin implements ArrayAccess
       */
     protected $timestamp;
     
+    /**
+      * $gross_last_value 
+      * @var Number
+      */
+    protected $gross_last_value;
+    
+    /**
+      * $commission 
+      * @var double
+      */
+    protected $commission;
+    
 
     /**
      * Constructor
@@ -462,6 +502,7 @@ class Margin implements ArrayAccess
             $this->amount = $data["amount"];
             $this->pending_credit = $data["pending_credit"];
             $this->pending_debit = $data["pending_debit"];
+            $this->confirmed_debit = $data["confirmed_debit"];
             $this->prev_realised_pnl = $data["prev_realised_pnl"];
             $this->prev_unrealised_pnl = $data["prev_unrealised_pnl"];
             $this->gross_comm = $data["gross_comm"];
@@ -480,6 +521,7 @@ class Margin implements ArrayAccess
             $this->unrealised_pnl = $data["unrealised_pnl"];
             $this->indicative_tax = $data["indicative_tax"];
             $this->unrealised_profit = $data["unrealised_profit"];
+            $this->synthetic_margin = $data["synthetic_margin"];
             $this->wallet_balance = $data["wallet_balance"];
             $this->margin_balance = $data["margin_balance"];
             $this->margin_balance_pcnt = $data["margin_balance_pcnt"];
@@ -490,6 +532,8 @@ class Margin implements ArrayAccess
             $this->available_margin = $data["available_margin"];
             $this->withdrawable_margin = $data["withdrawable_margin"];
             $this->timestamp = $data["timestamp"];
+            $this->gross_last_value = $data["gross_last_value"];
+            $this->commission = $data["commission"];
         }
     }
     
@@ -679,6 +723,27 @@ class Margin implements ArrayAccess
     {
         
         $this->pending_debit = $pending_debit;
+        return $this;
+    }
+    
+    /**
+     * Gets confirmed_debit
+     * @return Number
+     */
+    public function getConfirmedDebit()
+    {
+        return $this->confirmed_debit;
+    }
+  
+    /**
+     * Sets confirmed_debit
+     * @param Number $confirmed_debit 
+     * @return $this
+     */
+    public function setConfirmedDebit($confirmed_debit)
+    {
+        
+        $this->confirmed_debit = $confirmed_debit;
         return $this;
     }
     
@@ -1061,6 +1126,27 @@ class Margin implements ArrayAccess
     }
     
     /**
+     * Gets synthetic_margin
+     * @return Number
+     */
+    public function getSyntheticMargin()
+    {
+        return $this->synthetic_margin;
+    }
+  
+    /**
+     * Sets synthetic_margin
+     * @param Number $synthetic_margin 
+     * @return $this
+     */
+    public function setSyntheticMargin($synthetic_margin)
+    {
+        
+        $this->synthetic_margin = $synthetic_margin;
+        return $this;
+    }
+    
+    /**
      * Gets wallet_balance
      * @return Number
      */
@@ -1267,6 +1353,48 @@ class Margin implements ArrayAccess
     {
         
         $this->timestamp = $timestamp;
+        return $this;
+    }
+    
+    /**
+     * Gets gross_last_value
+     * @return Number
+     */
+    public function getGrossLastValue()
+    {
+        return $this->gross_last_value;
+    }
+  
+    /**
+     * Sets gross_last_value
+     * @param Number $gross_last_value 
+     * @return $this
+     */
+    public function setGrossLastValue($gross_last_value)
+    {
+        
+        $this->gross_last_value = $gross_last_value;
+        return $this;
+    }
+    
+    /**
+     * Gets commission
+     * @return double
+     */
+    public function getCommission()
+    {
+        return $this->commission;
+    }
+  
+    /**
+     * Sets commission
+     * @param double $commission 
+     * @return $this
+     */
+    public function setCommission($commission)
+    {
+        
+        $this->commission = $commission;
         return $this;
     }
     

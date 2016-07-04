@@ -13,6 +13,9 @@ class Execution {
   String clOrdID = null;
   
   
+  String clOrdLinkID = null;
+  
+  
   Number account = null;
   
   
@@ -46,10 +49,16 @@ class Execution {
   num price = null;
   
   
-  Number minQty = null;
+  Number displayQty = null;
   
   
   num stopPx = null;
+  
+  
+  num pegOffsetValue = null;
+  
+  
+  String pegPriceType = null;
   
   
   String currency = null;
@@ -67,10 +76,19 @@ class Execution {
   String timeInForce = null;
   
   
+  String execInst = null;
+  
+  
+  String contingencyType = null;
+  
+  
   String exDestination = null;
   
   
   String ordStatus = null;
+  
+  
+  String triggered = null;
   
   
   bool workingIndicator = null;
@@ -95,9 +113,6 @@ class Execution {
   
   
   num commission = null;
-  
-  
-  String commType = null;
   
   
   String tradePublishIndicator = null;
@@ -134,7 +149,7 @@ class Execution {
 
   @override
   String toString()  {
-    return 'Execution[execID=$execID, orderID=$orderID, clOrdID=$clOrdID, account=$account, symbol=$symbol, side=$side, lastQty=$lastQty, lastPx=$lastPx, underlyingLastPx=$underlyingLastPx, lastMkt=$lastMkt, lastLiquidityInd=$lastLiquidityInd, simpleOrderQty=$simpleOrderQty, orderQty=$orderQty, price=$price, minQty=$minQty, stopPx=$stopPx, currency=$currency, settlCurrency=$settlCurrency, execType=$execType, ordType=$ordType, timeInForce=$timeInForce, exDestination=$exDestination, ordStatus=$ordStatus, workingIndicator=$workingIndicator, ordRejReason=$ordRejReason, simpleLeavesQty=$simpleLeavesQty, leavesQty=$leavesQty, simpleCumQty=$simpleCumQty, cumQty=$cumQty, avgPx=$avgPx, commission=$commission, commType=$commType, tradePublishIndicator=$tradePublishIndicator, multiLegReportingType=$multiLegReportingType, text=$text, trdMatchID=$trdMatchID, execCost=$execCost, execComm=$execComm, homeNotional=$homeNotional, foreignNotional=$foreignNotional, transactTime=$transactTime, timestamp=$timestamp, ]';
+    return 'Execution[execID=$execID, orderID=$orderID, clOrdID=$clOrdID, clOrdLinkID=$clOrdLinkID, account=$account, symbol=$symbol, side=$side, lastQty=$lastQty, lastPx=$lastPx, underlyingLastPx=$underlyingLastPx, lastMkt=$lastMkt, lastLiquidityInd=$lastLiquidityInd, simpleOrderQty=$simpleOrderQty, orderQty=$orderQty, price=$price, displayQty=$displayQty, stopPx=$stopPx, pegOffsetValue=$pegOffsetValue, pegPriceType=$pegPriceType, currency=$currency, settlCurrency=$settlCurrency, execType=$execType, ordType=$ordType, timeInForce=$timeInForce, execInst=$execInst, contingencyType=$contingencyType, exDestination=$exDestination, ordStatus=$ordStatus, triggered=$triggered, workingIndicator=$workingIndicator, ordRejReason=$ordRejReason, simpleLeavesQty=$simpleLeavesQty, leavesQty=$leavesQty, simpleCumQty=$simpleCumQty, cumQty=$cumQty, avgPx=$avgPx, commission=$commission, tradePublishIndicator=$tradePublishIndicator, multiLegReportingType=$multiLegReportingType, text=$text, trdMatchID=$trdMatchID, execCost=$execCost, execComm=$execComm, homeNotional=$homeNotional, foreignNotional=$foreignNotional, transactTime=$transactTime, timestamp=$timestamp, ]';
   }
 
 }

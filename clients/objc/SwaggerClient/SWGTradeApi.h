@@ -24,10 +24,10 @@
 ///
 ///
 /// Get Trades.
-/// 
+/// Please note that indices (symbols starting with `.`) post trades at intervals to the trade feed. These have a `size` of 0 and are used only to indicate a changing price.\n\nSee [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AE_6569.html) for explanations of these fields.
 ///
-/// @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.
-/// @param filter Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.
+/// @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+/// @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
 /// @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
 /// @param count Number of results to fetch.
 /// @param start Starting point for results.
@@ -56,8 +56,8 @@
 /// 
 ///
 /// @param binSize Time interval to bucket by. Available options: [&#39;1m&#39;, &#39;5m&#39;, &#39;1h&#39;, &#39;1d&#39;].
-/// @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.
-/// @param filter Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.
+/// @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+/// @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
 /// @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
 /// @param count Number of results to fetch.
 /// @param start Starting point for results.
@@ -78,42 +78,6 @@
      endTime:(NSDate*) endTime 
     
     completionHandler: (void (^)(NSArray<SWGTradeBin>* output, NSError* error))completionBlock;
-    
-
-
-///
-///
-/// Get trades between two dates. [Deprecated, use GET /trades]
-/// 
-///
-/// @param startTime Start date.
-/// @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
-/// @param endTime End Date.
-/// 
-///
-/// @return NSArray<SWGTrade>*
--(NSNumber*) tradeGetByDateWithCompletionBlock :(NSDate*) startTime 
-     symbol:(NSString*) symbol 
-     endTime:(NSDate*) endTime 
-    
-    completionHandler: (void (^)(NSArray<SWGTrade>* output, NSError* error))completionBlock;
-    
-
-
-///
-///
-/// Get recent trades. [Deprecated, use GET /trades]
-/// 
-///
-/// @param count Number of trades to fetch.
-/// @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
-/// 
-///
-/// @return NSArray<SWGTrade>*
--(NSNumber*) tradeGetRecentWithCompletionBlock :(NSNumber*) count 
-     symbol:(NSString*) symbol 
-    
-    completionHandler: (void (^)(NSArray<SWGTrade>* output, NSError* error))completionBlock;
     
 
 

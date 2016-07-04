@@ -7,6 +7,7 @@ import java.util.Date
 
 case class User (
   id: BigDecimal,
+  ownerId: BigDecimal,
   firstname: String,
   lastname: String,
   status: String,
@@ -17,7 +18,6 @@ case class User (
   created: Date,
   lastUpdated: Date,
   preferences: UserPreferences,
-  role: String,
   TFAEnabled: String,
   affiliateID: String,
   pgpPubKey: String,

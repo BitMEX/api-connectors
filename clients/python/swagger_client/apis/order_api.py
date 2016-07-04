@@ -48,7 +48,7 @@ class OrderApi(object):
     def order_get_orders(self, **kwargs):
         """
         Get your orders.
-        To get open orders only, send {\"open\": true} in the filter param.
+        To get open orders only, send {\"open\": true} in the filter param.\n\nSee <a href=\"http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_D_68.html\">the FIX Spec</a> for explanations of these fields.
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -60,8 +60,8 @@ class OrderApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param str symbol: Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly', 'quarterly', and 'biquarterly'.
-        :param str filter: Generic table filter. Send JSON key/value pairs, such as {\"key\": \"value\"}. You can key on individual fields, and do more advanced querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\">http://localhost:2001/app/restAPI#timestamp-filters</a> for more details.
+        :param str symbol: Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+        :param str filter: Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
         :param str columns: Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
         :param float count: Number of results to fetch.
         :param float start: Starting point for results.
@@ -142,10 +142,10 @@ class OrderApi(object):
                                             callback=params.get('callback'))
         return response
 
-    def order_new_order(self, symbol, quantity, price, **kwargs):
+    def order_amend(self, **kwargs):
         """
-        Create a new order.
-        This endpoint is used for placing orders. Valid order types are 'Limit' and 'StopLimit'. If none is provided, BitMEX will assume a Limit Order.\n\nA note on API tools: if you want to keep track of order IDs yourself, set a unique clOrdID per order. This ID will come back as a property on the order and any related executions (including on the WebSocket), and can be used to get or cancel the order. Max length is 36 characters.\n\nTo generate a clOrdID, consider setting a prefix, and incrementing a counter or generating a UUID. Some UUIDs are longer than 36 characters, so use a url-safe base64 encoding. For example, the prefix 'bmex_mm_' and the UUID '7fbd6545-bb0c-11e4-a273-6003088a7c04' creates 'bmex_mm_f71lRbsMEeSic2ADCIp8BA'.\n\nSee the BitMEX <a href='https://github.com/BitMEX/market-maker/blob/22c75a2b6db63e20212813e9afdb845db1b09b2a/bitmex.py#L152'>Reference Market Maker</a> for an example of how to use and generate clOrdIDs.
+        Amend the quantity or price of an open order.
+        <p>Send an <code>orderID</code> or <code>clOrdID</code> to identify the order you wish to amend.</p>\n<p>Both order quantity and price can be amended. Only one <code>qty</code> field can be used to amend.</p>\n<p>Use the <code>leavesQty</code> field to specify how much of the order you wish to remain open. This can be useful\nif you want to adjust your position&#39;s delta by a certain amount, regardless of how much of the order has\nalready filled.</p>\n<p>Use the <code>simpleOrderQty</code> and <code>simpleLeavesQty</code> fields to specify order size in Bitcoin, rather than contracts.\nThese fields will round up to the nearest contract.</p>\n<p>Like order placement, amending can be done in bulk. Simply send a request to <code>PUT /api/v1/order/bulk</code> with\na JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, each object containing the fields used in this endpoint.</p>
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -153,23 +153,26 @@ class OrderApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.order_new_order(symbol, quantity, price, callback=callback_function)
+        >>> thread = api.order_amend(callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param str symbol: Instrument symbol. (required)
-        :param float quantity: Quantity. Use positive numbers to buy, negative to sell. (required)
-        :param float price: Order price. (required)
-        :param str time_in_force: Time in force. Valid options: 'IOC' (Immediate-Or-Cancel), 'GTC' (Good-Till-Cancelled).
-        :param str type: Order type. Available: 'Limit', 'StopLimit'
-        :param float stop_price: If order type is 'StopLimit', this is the trigger/stop price.
-        :param str cl_ord_id: Optional Client Order ID to give this order. This ID will come back on any execution messages tied to this order.
+        :param str order_id: Order ID
+        :param str cl_ord_id: Client Order ID. See POST /order.
+        :param float simple_order_qty: Optional order quantity in units of the underlying instrument (i.e. Bitcoin).
+        :param float order_qty: Optional order quantity in units of the instrument (i.e. contracts).
+        :param float simple_leaves_qty: Optional leaves quantity in units of the underlying instrument (i.e. Bitcoin). Useful for amending partially filled orders.
+        :param float leaves_qty: Optional leaves quantity in units of the instrument (i.e. contracts). Useful for amending partially filled orders.
+        :param float price: Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders.
+        :param float stop_px: Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. Use a price below the current price for stop-sell orders and buy-if-touched orders.
+        :param float peg_offset_value: Optional trailing offset from the current price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for 'Pegged' orders.
+        :param str text: Optional amend annotation. e.g. 'Adjust skew'.
         :return: Order
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['symbol', 'quantity', 'price', 'time_in_force', 'type', 'stop_price', 'cl_ord_id']
+        all_params = ['order_id', 'cl_ord_id', 'simple_order_qty', 'order_qty', 'simple_leaves_qty', 'leaves_qty', 'price', 'stop_px', 'peg_offset_value', 'text']
         all_params.append('callback')
 
         params = locals()
@@ -177,23 +180,14 @@ class OrderApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method order_new_order" % key
+                    " to method order_amend" % key
                 )
             params[key] = val
         del params['kwargs']
 
-        # verify the required parameter 'symbol' is set
-        if ('symbol' not in params) or (params['symbol'] is None):
-            raise ValueError("Missing the required parameter `symbol` when calling `order_new_order`")
-        # verify the required parameter 'quantity' is set
-        if ('quantity' not in params) or (params['quantity'] is None):
-            raise ValueError("Missing the required parameter `quantity` when calling `order_new_order`")
-        # verify the required parameter 'price' is set
-        if ('price' not in params) or (params['price'] is None):
-            raise ValueError("Missing the required parameter `price` when calling `order_new_order`")
 
         resource_path = '/order'.replace('{format}', 'json')
-        method = 'POST'
+        method = 'PUT'
 
         path_params = {}
 
@@ -203,20 +197,26 @@ class OrderApi(object):
 
         form_params = {}
         files = {}
-        if 'symbol' in params:
-            form_params['symbol'] = params['symbol']
-        if 'quantity' in params:
-            form_params['quantity'] = params['quantity']
-        if 'price' in params:
-            form_params['price'] = params['price']
-        if 'time_in_force' in params:
-            form_params['timeInForce'] = params['time_in_force']
-        if 'type' in params:
-            form_params['type'] = params['type']
-        if 'stop_price' in params:
-            form_params['stopPrice'] = params['stop_price']
+        if 'order_id' in params:
+            form_params['orderID'] = params['order_id']
         if 'cl_ord_id' in params:
             form_params['clOrdID'] = params['cl_ord_id']
+        if 'simple_order_qty' in params:
+            form_params['simpleOrderQty'] = params['simple_order_qty']
+        if 'order_qty' in params:
+            form_params['orderQty'] = params['order_qty']
+        if 'simple_leaves_qty' in params:
+            form_params['simpleLeavesQty'] = params['simple_leaves_qty']
+        if 'leaves_qty' in params:
+            form_params['leavesQty'] = params['leaves_qty']
+        if 'price' in params:
+            form_params['price'] = params['price']
+        if 'stop_px' in params:
+            form_params['stopPx'] = params['stop_px']
+        if 'peg_offset_value' in params:
+            form_params['pegOffsetValue'] = params['peg_offset_value']
+        if 'text' in params:
+            form_params['text'] = params['text']
 
         body_params = None
 
@@ -245,7 +245,140 @@ class OrderApi(object):
                                             callback=params.get('callback'))
         return response
 
-    def order_cancel_order(self, **kwargs):
+    def order_new(self, symbol, **kwargs):
+        """
+        Create a new order.
+        This endpoint is used for placing orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, and Pegged.\n\nIf no order type is provided, BitMEX will assume 'Limit'.\nBe very careful with 'Market' and 'Stop' orders as you may be filled at an unfavourable price.\n\nYou can submit bulk orders by POSTing an array of orders to `/api/v1/order/bulk`. Send a JSON payload\nwith the shape: `{\"orders\": [{...}, {...}]}`, with each inner object containing the same fields that would be\nsent to this endpoint.\n\nA note on API tools: if you want to keep track of order IDs yourself, set a unique clOrdID per order.\nThis clOrdID will come back as a property on the order and any related executions (including on the WebSocket),\nand can be used to get or cancel the order. Max length is 36 characters.\n\nTo generate a clOrdID, consider setting a prefix, and incrementing a counter or generating a UUID.\nSome UUIDs are longer than 36 characters, so use a url-safe base64 encoding. For example, the prefix `'bmex_mm_'`\nand the UUID `'7fbd6545-bb0c-11e4-a273-6003088a7c04'` creates `'bmex_mm_f71lRbsMEeSic2ADCIp8BA'`.\n\nSee the [BitMEX Reference Market Maker](https://github.com/BitMEX/market-maker/blob/22c75a2b6db63e20212813e9afdb845db1b09b2a/bitmex.py#L152)\nfor an example of how to use and generate clOrdIDs.
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.order_new(symbol, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str symbol: Instrument symbol. e.g. 'XBT24H'. (required)
+        :param str side: Order side. Valid options: Buy, Sell. Defaults to 'Buy' unless `orderQty` or `simpleOrderQty` is negative.
+        :param float simple_order_qty: Order quantity in units of the underlying instrument (i.e. Bitcoin).
+        :param float quantity: Deprecated: use `orderQty`.
+        :param float order_qty: Order quantity in units of the instrument (i.e. contracts).
+        :param float price: Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders.
+        :param float display_qty: Optional quantity to display in the book. Use 0 for a hidden order.
+        :param float stop_price: Deprecated: use `stopPx`.
+        :param float stop_px: Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use `execInst` of 'MarkPrice' or 'LastPrice' to define the current price used for triggering.
+        :param str cl_ord_id: Optional Client Order ID. This clOrdID will come back on the order and any related executions.
+        :param str cl_ord_link_id: Optional Client Order Link ID for contingent orders.
+        :param float peg_offset_value: Optional trailing offset from the current price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for 'Pegged' orders.
+        :param str peg_price_type: Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg, TrailingStopPeg.
+        :param str type: Deprecated: use `ordType`.
+        :param str ord_type: Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to 'Limit' when `price` is specified. Defaults to 'Stop' when `stopPx` is specified. Defaults to 'StopLimit' when `price` and `stopPx` are specified.
+        :param str time_in_force: Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to 'GoodTillCancel' for 'Limit', 'StopLimit', 'LimitIfTouched', and 'MarketWithLeftOverAsLimit' orders.
+        :param str exec_inst: Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, LastPrice, Close, ReduceOnly. 'AllOrNone' instruction requires `displayQty` to be 0. 'MarkPrice' or 'LastPrice' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders.
+        :param str contingency_type: Optional contingency type for use with `clOrdLinkID`. Valid options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute, OneUpdatesTheOtherProportional.
+        :param str text: Optional order annotation. e.g. 'Take profit'.
+        :return: Order
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['symbol', 'side', 'simple_order_qty', 'quantity', 'order_qty', 'price', 'display_qty', 'stop_price', 'stop_px', 'cl_ord_id', 'cl_ord_link_id', 'peg_offset_value', 'peg_price_type', 'type', 'ord_type', 'time_in_force', 'exec_inst', 'contingency_type', 'text']
+        all_params.append('callback')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method order_new" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        # verify the required parameter 'symbol' is set
+        if ('symbol' not in params) or (params['symbol'] is None):
+            raise ValueError("Missing the required parameter `symbol` when calling `order_new`")
+
+        resource_path = '/order'.replace('{format}', 'json')
+        method = 'POST'
+
+        path_params = {}
+
+        query_params = {}
+
+        header_params = {}
+
+        form_params = {}
+        files = {}
+        if 'symbol' in params:
+            form_params['symbol'] = params['symbol']
+        if 'side' in params:
+            form_params['side'] = params['side']
+        if 'simple_order_qty' in params:
+            form_params['simpleOrderQty'] = params['simple_order_qty']
+        if 'quantity' in params:
+            form_params['quantity'] = params['quantity']
+        if 'order_qty' in params:
+            form_params['orderQty'] = params['order_qty']
+        if 'price' in params:
+            form_params['price'] = params['price']
+        if 'display_qty' in params:
+            form_params['displayQty'] = params['display_qty']
+        if 'stop_price' in params:
+            form_params['stopPrice'] = params['stop_price']
+        if 'stop_px' in params:
+            form_params['stopPx'] = params['stop_px']
+        if 'cl_ord_id' in params:
+            form_params['clOrdID'] = params['cl_ord_id']
+        if 'cl_ord_link_id' in params:
+            form_params['clOrdLinkID'] = params['cl_ord_link_id']
+        if 'peg_offset_value' in params:
+            form_params['pegOffsetValue'] = params['peg_offset_value']
+        if 'peg_price_type' in params:
+            form_params['pegPriceType'] = params['peg_price_type']
+        if 'type' in params:
+            form_params['type'] = params['type']
+        if 'ord_type' in params:
+            form_params['ordType'] = params['ord_type']
+        if 'time_in_force' in params:
+            form_params['timeInForce'] = params['time_in_force']
+        if 'exec_inst' in params:
+            form_params['execInst'] = params['exec_inst']
+        if 'contingency_type' in params:
+            form_params['contingencyType'] = params['contingency_type']
+        if 'text' in params:
+            form_params['text'] = params['text']
+
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
+
+        # Authentication setting
+        auth_settings = []
+
+        response = self.api_client.call_api(resource_path, method,
+                                            path_params,
+                                            query_params,
+                                            header_params,
+                                            body=body_params,
+                                            post_params=form_params,
+                                            files=files,
+                                            response_type='Order',
+                                            auth_settings=auth_settings,
+                                            callback=params.get('callback'))
+        return response
+
+    def order_cancel(self, **kwargs):
         """
         Cancel order(s). Send multiple order IDs to cancel in bulk.
         Either an orderID or a clOrdID must be provided.
@@ -256,13 +389,13 @@ class OrderApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.order_cancel_order(callback=callback_function)
+        >>> thread = api.order_cancel(callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str order_id: Order ID(s).
         :param str cl_ord_id: Client Order ID(s). See POST /order.
-        :param str text: Optional cancellation annotation. e.g. 'Spread Exceeded'
+        :param str text: Optional cancellation annotation. e.g. 'Spread Exceeded'.
         :return: list[Order]
                  If the method is called asynchronously,
                  returns the request thread.
@@ -276,7 +409,7 @@ class OrderApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method order_cancel_order" % key
+                    " to method order_cancel" % key
                 )
             params[key] = val
         del params['kwargs']
@@ -345,7 +478,7 @@ class OrderApi(object):
         :param str symbol: Optional symbol. If provided, only cancels orders for that symbol.
         :param str filter: Optional filter for cancellation. Use to only cancel some orders, e.g. `{\"side\": \"Buy\"}`.
         :param str text: Optional cancellation annotation. e.g. 'Spread Exceeded'
-        :return: InlineResponse200
+        :return: InlineResponse2001
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -404,7 +537,159 @@ class OrderApi(object):
                                             body=body_params,
                                             post_params=form_params,
                                             files=files,
-                                            response_type='InlineResponse200',
+                                            response_type='InlineResponse2001',
+                                            auth_settings=auth_settings,
+                                            callback=params.get('callback'))
+        return response
+
+    def order_amend_bulk(self, **kwargs):
+        """
+        Amend multiple orders.
+        Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 50%.
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.order_amend_bulk(callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str orders: An array of orders.
+        :return: list[Order]
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['orders']
+        all_params.append('callback')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method order_amend_bulk" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+
+        resource_path = '/order/bulk'.replace('{format}', 'json')
+        method = 'PUT'
+
+        path_params = {}
+
+        query_params = {}
+
+        header_params = {}
+
+        form_params = {}
+        files = {}
+        if 'orders' in params:
+            form_params['orders'] = params['orders']
+
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
+
+        # Authentication setting
+        auth_settings = []
+
+        response = self.api_client.call_api(resource_path, method,
+                                            path_params,
+                                            query_params,
+                                            header_params,
+                                            body=body_params,
+                                            post_params=form_params,
+                                            files=files,
+                                            response_type='list[Order]',
+                                            auth_settings=auth_settings,
+                                            callback=params.get('callback'))
+        return response
+
+    def order_new_bulk(self, **kwargs):
+        """
+        Create multiple new orders.
+        This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, and Pegged.\n\nEach individual order object in the array should have the same properties as an individual POST /order call.\n\nThis endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX\nsystems, this endpoint is ratelimited at `ceil(0.5 * orders)`. Submitting 10 orders via a bulk order call\nwill only count as 5 requests.\n\nFor now, only `application/json` is supported on this endpoint.
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.order_new_bulk(callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str orders: An array of orders.
+        :return: list[Order]
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['orders']
+        all_params.append('callback')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method order_new_bulk" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+
+        resource_path = '/order/bulk'.replace('{format}', 'json')
+        method = 'POST'
+
+        path_params = {}
+
+        query_params = {}
+
+        header_params = {}
+
+        form_params = {}
+        files = {}
+        if 'orders' in params:
+            form_params['orders'] = params['orders']
+
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
+
+        # Authentication setting
+        auth_settings = []
+
+        response = self.api_client.call_api(resource_path, method,
+                                            path_params,
+                                            query_params,
+                                            header_params,
+                                            body=body_params,
+                                            post_params=form_params,
+                                            files=files,
+                                            response_type='list[Order]',
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'))
         return response
@@ -412,7 +697,7 @@ class OrderApi(object):
     def order_cancel_all_after(self, timeout, **kwargs):
         """
         Automatically cancel all your orders after a specified timeout.
-        Useful as a dead-man's switch to ensure your orders are canceled in case of an outage. If called repeatedly, the existing offset will be canceled and a new one will be inserted in its place. <br><br>Example usage: call this route at 15s intervals with an offset of 60000 (60s). If this route is not called within 60 seconds, all your orders will be automatically canceled.<br><br>This is also available via <a href=\"https://www.bitmex.com/app/wsAPI#dead-man-s-switch-auto-cancel-\">WebSocket</a>.
+        Useful as a dead-man's switch to ensure your orders are canceled in case of an outage.\nIf called repeatedly, the existing offset will be canceled and a new one will be inserted in its place.\n\nExample usage: call this route at 15s intervals with an offset of 60000 (60s).\nIf this route is not called within 60 seconds, all your orders will be automatically canceled.\n\nThis is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#dead-man-s-switch-auto-cancel-).
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -425,7 +710,7 @@ class OrderApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param float timeout: Timeout in ms. Set to 0 to cancel this timer. (required)
-        :return: InlineResponse200
+        :return: InlineResponse2001
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -483,15 +768,15 @@ class OrderApi(object):
                                             body=body_params,
                                             post_params=form_params,
                                             files=files,
-                                            response_type='InlineResponse200',
+                                            response_type='InlineResponse2001',
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'))
         return response
 
     def order_close_position(self, symbol, **kwargs):
         """
-        Close a position with a market order.
-        If no price is specified, a market order will be submitted to close the entirety of your position. Be careful with market orders as you may not be filled at a favorable price.
+        Close a position. [Deprecated, use POST /order with execInst: 'Close']
+        If no `price` is specified, a market order will be submitted to close the whole of your position. + This will also close all other open orders in this symbol.
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -566,82 +851,6 @@ class OrderApi(object):
                                             post_params=form_params,
                                             files=files,
                                             response_type='Order',
-                                            auth_settings=auth_settings,
-                                            callback=params.get('callback'))
-        return response
-
-    def order_get_close_out_orders(self, **kwargs):
-        """
-        Get open liquidation orders.
-        
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please define a `callback` function
-        to be invoked when receiving the response.
-        >>> def callback_function(response):
-        >>>     pprint(response)
-        >>>
-        >>> thread = api.order_get_close_out_orders(callback=callback_function)
-
-        :param callback function: The callback function
-            for asynchronous request. (optional)
-        :param str filter: Filter. For example, send {\"symbol\": \"XBT24H\"}.
-        :return: list[LiquidationOrder]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        all_params = ['filter']
-        all_params.append('callback')
-
-        params = locals()
-        for key, val in iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method order_get_close_out_orders" % key
-                )
-            params[key] = val
-        del params['kwargs']
-
-
-        resource_path = '/order/liquidations'.replace('{format}', 'json')
-        method = 'GET'
-
-        path_params = {}
-
-        query_params = {}
-        if 'filter' in params:
-            query_params['filter'] = params['filter']
-
-        header_params = {}
-
-        form_params = {}
-        files = {}
-
-        body_params = None
-
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.\
-            select_header_accept(['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])
-        if not header_params['Accept']:
-            del header_params['Accept']
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.\
-            select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
-
-        # Authentication setting
-        auth_settings = []
-
-        response = self.api_client.call_api(resource_path, method,
-                                            path_params,
-                                            query_params,
-                                            header_params,
-                                            body=body_params,
-                                            post_params=form_params,
-                                            files=files,
-                                            response_type='list[LiquidationOrder]',
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'))
         return response

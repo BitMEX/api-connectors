@@ -96,8 +96,8 @@ class TradeApi
      *
      * Get Trades.
      *
-     * @param string $symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;. (optional)
-     * @param string $filter Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details. (optional)
+     * @param string $symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`. (optional)
+     * @param string $filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. (optional)
      * @param string $columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
      * @param Number $count Number of results to fetch. (optional)
      * @param Number $start Starting point for results. (optional)
@@ -210,8 +210,8 @@ class TradeApi
      * Get previous trades in time buckets.
      *
      * @param string $bin_size Time interval to bucket by. Available options: [&#39;1m&#39;, &#39;5m&#39;, &#39;1h&#39;, &#39;1d&#39;]. (optional)
-     * @param string $symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;. (optional)
-     * @param string $filter Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details. (optional)
+     * @param string $symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`. (optional)
+     * @param string $filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. (optional)
      * @param string $columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
      * @param Number $count Number of results to fetch. (optional)
      * @param Number $start Starting point for results. (optional)
@@ -298,196 +298,6 @@ class TradeApi
             switch ($e->getCode()) { 
             case 200:
                 $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\TradeBin[]', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            case 400:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            case 401:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            case 404:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-        
-        return null;
-        
-    }
-    
-    /**
-     * tradeGetByDate
-     *
-     * Get trades between two dates. [Deprecated, use GET /trades]
-     *
-     * @param \DateTime $start_time Start date. (required)
-     * @param string $symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
-     * @param \DateTime $end_time End Date. (optional)
-     * @return \Swagger\Client\Model\Trade[]
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function tradeGetByDate($start_time, $symbol=null, $end_time=null)
-    {
-        
-        // verify the required parameter 'start_time' is set
-        if ($start_time === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $start_time when calling tradeGetByDate');
-        }
-  
-        // parse inputs
-        $resourcePath = "/trade/byDate";
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "GET";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
-  
-        // query params
-        if ($symbol !== null) {
-            $queryParams['symbol'] = $this->apiClient->getSerializer()->toQueryValue($symbol);
-        }// query params
-        if ($start_time !== null) {
-            $queryParams['startTime'] = $this->apiClient->getSerializer()->toQueryValue($start_time);
-        }// query params
-        if ($end_time !== null) {
-            $queryParams['endTime'] = $this->apiClient->getSerializer()->toQueryValue($end_time);
-        }
-        
-        
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } else if (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try
-        {
-            list($response, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, $method,
-                $queryParams, $httpBody,
-                $headerParams, '\Swagger\Client\Model\Trade[]'
-            );
-            
-            if (!$response) {
-                return null;
-            }
-
-            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\Trade[]', $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Trade[]', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            case 400:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            case 401:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            case 404:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-        
-        return null;
-        
-    }
-    
-    /**
-     * tradeGetRecent
-     *
-     * Get recent trades. [Deprecated, use GET /trades]
-     *
-     * @param Number $count Number of trades to fetch. (required)
-     * @param string $symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (optional)
-     * @return \Swagger\Client\Model\Trade[]
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function tradeGetRecent($count, $symbol=null)
-    {
-        
-        // verify the required parameter 'count' is set
-        if ($count === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $count when calling tradeGetRecent');
-        }
-  
-        // parse inputs
-        $resourcePath = "/trade/recent";
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "GET";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
-  
-        // query params
-        if ($symbol !== null) {
-            $queryParams['symbol'] = $this->apiClient->getSerializer()->toQueryValue($symbol);
-        }// query params
-        if ($count !== null) {
-            $queryParams['count'] = $this->apiClient->getSerializer()->toQueryValue($count);
-        }
-        
-        
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } else if (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try
-        {
-            list($response, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, $method,
-                $queryParams, $httpBody,
-                $headerParams, '\Swagger\Client\Model\Trade[]'
-            );
-            
-            if (!$response) {
-                return null;
-            }
-
-            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\Trade[]', $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Trade[]', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             case 400:

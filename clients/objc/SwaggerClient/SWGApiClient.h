@@ -12,12 +12,6 @@
  * Do not edit the class manually.
  */
 
-#import "SWGAnonymousModel0.h"
-#import "SWGAnonymousModel5.h"
-#import "SWGUserPreferences.h"
-#import "SWGAccessToken.h"
-#import "SWGMargin.h"
-#import "SWGRoleMapping.h"
 #import "SWGChat.h"
 #import "SWGError.h"
 #import "SWGConnectedUsers.h"
@@ -26,21 +20,29 @@
 #import "SWGExecution.h"
 #import "SWGInstrument.h"
 #import "SWGInstrumentInterval.h"
+#import "SWGInsurance.h"
+#import "SWGLeaderboard.h"
+#import "SWGLiquidation.h"
 #import "SWGOrder.h"
-#import "SWGLiquidationOrder.h"
 #import "SWGOrderBook.h"
+#import "SWGOrderBookL2.h"
 #import "SWGPosition.h"
 #import "SWGQuote.h"
 #import "SWGSettlement.h"
+#import "SWGFunding.h"
 #import "SWGStats.h"
 #import "SWGStatsHistory.h"
 #import "SWGTrade.h"
 #import "SWGTradeBin.h"
 #import "SWGTransaction.h"
+#import "SWGAccessToken.h"
 #import "SWGAffiliate.h"
 #import "SWGUser.h"
 #import "SWGUserCommission.h"
+#import "SWGMargin.h"
+#import "SWGUserPreferences.h"
 #import "SWGInlineResponse200.h"
+#import "SWGInlineResponse2001.h"
 
 
 @class SWGConfiguration;

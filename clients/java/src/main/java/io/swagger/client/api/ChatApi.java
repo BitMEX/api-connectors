@@ -13,7 +13,7 @@ import io.swagger.client.model.ConnectedUsers;
 
 import java.util.*;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-30T13:35:44.556-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-04T18:25:18.235-05:00")
 public class ChatApi {
   private ApiClient apiClient;
 
@@ -96,13 +96,13 @@ public class ChatApi {
    * @param message 
    * @return Chat
    */
-  public Chat chatSend (String message) throws ApiException {
+  public Chat chatNew (String message) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
      // verify the required parameter 'message' is set
      if (message == null) {
-        throw new ApiException(400, "Missing the required parameter 'message' when calling chatSend");
+        throw new ApiException(400, "Missing the required parameter 'message' when calling chatNew");
      }
      
     // create path and map variables

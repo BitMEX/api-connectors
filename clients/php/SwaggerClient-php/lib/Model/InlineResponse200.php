@@ -51,7 +51,7 @@ class InlineResponse200 implements ArrayAccess
       * @var string[]
       */
     static $swaggerTypes = array(
-        
+        'success' => 'bool'
     );
   
     /** 
@@ -59,7 +59,7 @@ class InlineResponse200 implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        
+        'success' => 'success'
     );
   
     /**
@@ -67,7 +67,7 @@ class InlineResponse200 implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        
+        'success' => 'setSuccess'
     );
   
     /**
@@ -75,9 +75,15 @@ class InlineResponse200 implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        
+        'success' => 'getSuccess'
     );
   
+    
+    /**
+      * $success 
+      * @var bool
+      */
+    protected $success;
     
 
     /**
@@ -87,8 +93,29 @@ class InlineResponse200 implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            
+            $this->success = $data["success"];
         }
+    }
+    
+    /**
+     * Gets success
+     * @return bool
+     */
+    public function getSuccess()
+    {
+        return $this->success;
+    }
+  
+    /**
+     * Sets success
+     * @param bool $success 
+     * @return $this
+     */
+    public function setSuccess($success)
+    {
+        
+        $this->success = $success;
+        return $this;
     }
     
     /**

@@ -6,12 +6,12 @@ import io.swagger.client.Configuration;
 import io.swagger.client.Pair;
 import io.swagger.client.TypeRef;
 
-import io.swagger.client.model.InlineResponse200;
+import io.swagger.client.model.InlineResponse2001;
 import io.swagger.client.model.Error;
 
 import java.util.*;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-30T13:35:44.556-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-04T18:25:18.235-05:00")
 public class SchemaApi {
   private ApiClient apiClient;
 
@@ -36,9 +36,9 @@ public class SchemaApi {
    * Get model schemata for data objects returned by this API.
    * 
    * @param model Optional model filter. If omitted, will return all models.
-   * @return InlineResponse200
+   * @return InlineResponse2001
    */
-  public InlineResponse200 schemaFind (String model) throws ApiException {
+  public InlineResponse2001 schemaGet (String model) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -74,7 +74,7 @@ public class SchemaApi {
 
     
     
-    TypeRef returnType = new TypeRef<InlineResponse200>() {};
+    TypeRef returnType = new TypeRef<InlineResponse2001>() {};
     return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
     
     
@@ -85,9 +85,9 @@ public class SchemaApi {
   /**
    * Returns help text &amp; subject list for websocket usage.
    * 
-   * @return InlineResponse200
+   * @return InlineResponse2001
    */
-  public InlineResponse200 schemaWebsocketHelp () throws ApiException {
+  public InlineResponse2001 schemaWebsocketHelp () throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -121,7 +121,7 @@ public class SchemaApi {
 
     
     
-    TypeRef returnType = new TypeRef<InlineResponse200>() {};
+    TypeRef returnType = new TypeRef<InlineResponse2001>() {};
     return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
     
     

@@ -5,7 +5,7 @@ import io.swagger.model.*;
 
 import com.sun.jersey.multipart.FormDataParam;
 
-import io.swagger.model.InlineResponse200;
+import io.swagger.model.InlineResponse2001;
 import io.swagger.model.Error;
 
 import java.util.List;
@@ -18,10 +18,10 @@ import com.sun.jersey.multipart.FormDataParam;
 
 import javax.ws.rs.core.Response;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-30T13:35:57.938-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2016-07-04T18:25:32.992-05:00")
 public abstract class SchemaApiService {
   
-      public abstract Response schemaFind(String model)
+      public abstract Response schemaGet(String model)
       throws NotFoundException;
   
       public abstract Response schemaWebsocketHelp()

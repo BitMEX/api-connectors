@@ -23,16 +23,16 @@ import com.sun.jersey.multipart.FormDataParam;
 
 import javax.ws.rs.core.Response;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-30T13:35:57.938-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2016-07-04T18:25:32.992-05:00")
 public abstract class UserApiService {
   
-      public abstract Response userGetMe()
+      public abstract Response userGet()
       throws NotFoundException;
   
-      public abstract Response userUpdateMe(String firstname,String lastname,String oldPassword,String newPassword,String newPasswordConfirm,String country,String pgpPubKey)
+      public abstract Response userUpdate(String firstname,String lastname,String oldPassword,String newPassword,String newPasswordConfirm,String username,String country,String pgpPubKey)
       throws NotFoundException;
   
-      public abstract Response userNewUser(String email,String password,String username,String firstname,String lastname,String acceptsTOS,String referrerID,String country)
+      public abstract Response userNew(String email,String password,String country,String username,String firstname,String lastname,String acceptsTOS,String referrerID,String tfaType,String tfaToken)
       throws NotFoundException;
   
       public abstract Response userGetAffiliateStatus()
@@ -74,13 +74,13 @@ public abstract class UserApiService {
       public abstract Response userLogoutAll()
       throws NotFoundException;
   
-      public abstract Response userGetMargin()
+      public abstract Response userGetMargin(String currency)
       throws NotFoundException;
   
       public abstract Response userSavePreferences(String prefs,Boolean overwrite)
       throws NotFoundException;
   
-      public abstract Response userRequestEnableTFA(String type,String token)
+      public abstract Response userRequestEnableTFA(String type)
       throws NotFoundException;
   
       public abstract Response userRequestPasswordReset(String email)
@@ -92,7 +92,7 @@ public abstract class UserApiService {
       public abstract Response userSendVerificationEmail(String email)
       throws NotFoundException;
   
-      public abstract Response userGetWalletHistory()
+      public abstract Response userGetWalletHistory(String currency)
       throws NotFoundException;
   
 }

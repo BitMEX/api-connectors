@@ -1,7 +1,7 @@
 module SwaggerClient
   # 
   class Order < BaseObject
-    attr_accessor :order_id, :cl_ord_id, :account, :symbol, :side, :simple_order_qty, :order_qty, :price, :min_qty, :stop_px, :currency, :settl_currency, :ord_type, :time_in_force, :ex_destination, :ord_status, :working_indicator, :ord_rej_reason, :simple_leaves_qty, :leaves_qty, :simple_cum_qty, :cum_qty, :avg_px, :multi_leg_reporting_type, :text, :transact_time, :timestamp
+    attr_accessor :order_id, :cl_ord_id, :cl_ord_link_id, :account, :symbol, :side, :simple_order_qty, :order_qty, :price, :display_qty, :stop_px, :peg_offset_value, :peg_price_type, :currency, :settl_currency, :ord_type, :time_in_force, :exec_inst, :contingency_type, :ex_destination, :ord_status, :triggered, :working_indicator, :ord_rej_reason, :simple_leaves_qty, :leaves_qty, :simple_cum_qty, :cum_qty, :avg_px, :multi_leg_reporting_type, :text, :transact_time, :timestamp
     # attribute mapping from ruby-style variable name to JSON key
     def self.attribute_map
       {
@@ -11,6 +11,9 @@ module SwaggerClient
         
         # 
         :'cl_ord_id' => :'clOrdID',
+        
+        # 
+        :'cl_ord_link_id' => :'clOrdLinkID',
         
         # 
         :'account' => :'account',
@@ -31,10 +34,16 @@ module SwaggerClient
         :'price' => :'price',
         
         # 
-        :'min_qty' => :'minQty',
+        :'display_qty' => :'displayQty',
         
         # 
         :'stop_px' => :'stopPx',
+        
+        # 
+        :'peg_offset_value' => :'pegOffsetValue',
+        
+        # 
+        :'peg_price_type' => :'pegPriceType',
         
         # 
         :'currency' => :'currency',
@@ -49,10 +58,19 @@ module SwaggerClient
         :'time_in_force' => :'timeInForce',
         
         # 
+        :'exec_inst' => :'execInst',
+        
+        # 
+        :'contingency_type' => :'contingencyType',
+        
+        # 
         :'ex_destination' => :'exDestination',
         
         # 
         :'ord_status' => :'ordStatus',
+        
+        # 
+        :'triggered' => :'triggered',
         
         # 
         :'working_indicator' => :'workingIndicator',
@@ -95,20 +113,26 @@ module SwaggerClient
       {
         :'order_id' => :'String',
         :'cl_ord_id' => :'String',
+        :'cl_ord_link_id' => :'String',
         :'account' => :'Float',
         :'symbol' => :'String',
         :'side' => :'String',
         :'simple_order_qty' => :'Float',
         :'order_qty' => :'Float',
         :'price' => :'Float',
-        :'min_qty' => :'Float',
+        :'display_qty' => :'Float',
         :'stop_px' => :'Float',
+        :'peg_offset_value' => :'Float',
+        :'peg_price_type' => :'String',
         :'currency' => :'String',
         :'settl_currency' => :'String',
         :'ord_type' => :'String',
         :'time_in_force' => :'String',
+        :'exec_inst' => :'String',
+        :'contingency_type' => :'String',
         :'ex_destination' => :'String',
         :'ord_status' => :'String',
+        :'triggered' => :'String',
         :'working_indicator' => :'BOOLEAN',
         :'ord_rej_reason' => :'String',
         :'simple_leaves_qty' => :'Float',
@@ -139,6 +163,10 @@ module SwaggerClient
         self.cl_ord_id = attributes[:'clOrdID']
       end
       
+      if attributes[:'clOrdLinkID']
+        self.cl_ord_link_id = attributes[:'clOrdLinkID']
+      end
+      
       if attributes[:'account']
         self.account = attributes[:'account']
       end
@@ -163,12 +191,20 @@ module SwaggerClient
         self.price = attributes[:'price']
       end
       
-      if attributes[:'minQty']
-        self.min_qty = attributes[:'minQty']
+      if attributes[:'displayQty']
+        self.display_qty = attributes[:'displayQty']
       end
       
       if attributes[:'stopPx']
         self.stop_px = attributes[:'stopPx']
+      end
+      
+      if attributes[:'pegOffsetValue']
+        self.peg_offset_value = attributes[:'pegOffsetValue']
+      end
+      
+      if attributes[:'pegPriceType']
+        self.peg_price_type = attributes[:'pegPriceType']
       end
       
       if attributes[:'currency']
@@ -187,12 +223,24 @@ module SwaggerClient
         self.time_in_force = attributes[:'timeInForce']
       end
       
+      if attributes[:'execInst']
+        self.exec_inst = attributes[:'execInst']
+      end
+      
+      if attributes[:'contingencyType']
+        self.contingency_type = attributes[:'contingencyType']
+      end
+      
       if attributes[:'exDestination']
         self.ex_destination = attributes[:'exDestination']
       end
       
       if attributes[:'ordStatus']
         self.ord_status = attributes[:'ordStatus']
+      end
+      
+      if attributes[:'triggered']
+        self.triggered = attributes[:'triggered']
       end
       
       if attributes[:'workingIndicator']
@@ -246,20 +294,26 @@ module SwaggerClient
       self.class == o.class &&
           order_id == o.order_id &&
           cl_ord_id == o.cl_ord_id &&
+          cl_ord_link_id == o.cl_ord_link_id &&
           account == o.account &&
           symbol == o.symbol &&
           side == o.side &&
           simple_order_qty == o.simple_order_qty &&
           order_qty == o.order_qty &&
           price == o.price &&
-          min_qty == o.min_qty &&
+          display_qty == o.display_qty &&
           stop_px == o.stop_px &&
+          peg_offset_value == o.peg_offset_value &&
+          peg_price_type == o.peg_price_type &&
           currency == o.currency &&
           settl_currency == o.settl_currency &&
           ord_type == o.ord_type &&
           time_in_force == o.time_in_force &&
+          exec_inst == o.exec_inst &&
+          contingency_type == o.contingency_type &&
           ex_destination == o.ex_destination &&
           ord_status == o.ord_status &&
+          triggered == o.triggered &&
           working_indicator == o.working_indicator &&
           ord_rej_reason == o.ord_rej_reason &&
           simple_leaves_qty == o.simple_leaves_qty &&
@@ -278,7 +332,7 @@ module SwaggerClient
     end
 
     def hash
-      [order_id, cl_ord_id, account, symbol, side, simple_order_qty, order_qty, price, min_qty, stop_px, currency, settl_currency, ord_type, time_in_force, ex_destination, ord_status, working_indicator, ord_rej_reason, simple_leaves_qty, leaves_qty, simple_cum_qty, cum_qty, avg_px, multi_leg_reporting_type, text, transact_time, timestamp].hash
+      [order_id, cl_ord_id, cl_ord_link_id, account, symbol, side, simple_order_qty, order_qty, price, display_qty, stop_px, peg_offset_value, peg_price_type, currency, settl_currency, ord_type, time_in_force, exec_inst, contingency_type, ex_destination, ord_status, triggered, working_indicator, ord_rej_reason, simple_leaves_qty, leaves_qty, simple_cum_qty, cum_qty, avg_px, multi_leg_reporting_type, text, transact_time, timestamp].hash
     end
   end
 end

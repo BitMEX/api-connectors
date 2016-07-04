@@ -11,7 +11,7 @@ exports.chat.get = function(args, res, next) {
 var examples = {};
   
   examples['application/json'] = [ {
-  "date" : "2015-11-30T19:35:59.553+0000",
+  "date" : "2016-07-04T23:25:34.482+0000",
   "html" : "aeiou",
   "id" : 1.3579000000000001069366817318950779736042022705078125,
   "message" : "aeiou",
@@ -31,7 +31,7 @@ var examples = {};
   
   
 }
-exports.chat.send = function(args, res, next) {
+exports.chat.new = function(args, res, next) {
   /**
    * parameters expected in the args:
    * message (String)
@@ -40,7 +40,7 @@ exports.chat.send = function(args, res, next) {
 var examples = {};
   
   examples['application/json'] = {
-  "date" : "2015-11-30T19:35:59.554+0000",
+  "date" : "2016-07-04T23:25:34.484+0000",
   "html" : "aeiou",
   "id" : 1.3579000000000001069366817318950779736042022705078125,
   "message" : "aeiou",

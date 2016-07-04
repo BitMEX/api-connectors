@@ -185,7 +185,7 @@ class ChatApi
     }
     
     /**
-     * chatSend
+     * chatNew
      *
      * Send a chat message.
      *
@@ -193,12 +193,12 @@ class ChatApi
      * @return \Swagger\Client\Model\Chat
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function chatSend($message)
+    public function chatNew($message)
     {
         
         // verify the required parameter 'message' is set
         if ($message === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $message when calling chatSend');
+            throw new \InvalidArgumentException('Missing the required parameter $message when calling chatNew');
         }
   
         // parse inputs

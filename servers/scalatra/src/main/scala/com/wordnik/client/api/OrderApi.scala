@@ -4,8 +4,7 @@ import com.wordnik.client.model.Order
 import com.wordnik.client.model.Error
 import java.math.BigDecimal
 import java.util.Date
-import com.wordnik.client.model.Inline_response_200
-import com.wordnik.client.model.LiquidationOrder
+import com.wordnik.client.model.Inline_response_200_1
 
 import java.io.File
 
@@ -131,36 +130,75 @@ class OrderApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val order.newOrderOperation = (apiOperation[Order]("order.newOrder")
-      summary "Create a new order."
-      parameters(formParam[String]("symbol").description(""),
-        formParam[BigDecimal]("quantity").description(""),
-        formParam[Double]("price").description(""),
-        formParam[String]("timeInForce").description("").optional.defaultValue(GTC),
-        formParam[String]("type").description("").optional.defaultValue(Limit),
-        formParam[Double]("stopPrice").description("").optional,
-        formParam[String]("clOrdID").description("").optional)
+  val order.amendOperation = (apiOperation[Order]("order.amend")
+      summary "Amend the quantity or price of an open order."
+      parameters(formParam[String]("orderID").description("").optional,
+        formParam[String]("clOrdID").description("").optional,
+        formParam[Double]("simpleOrderQty").description("").optional,
+        formParam[BigDecimal]("orderQty").description("").optional,
+        formParam[Double]("simpleLeavesQty").description("").optional,
+        formParam[BigDecimal]("leavesQty").description("").optional,
+        formParam[Double]("price").description("").optional,
+        formParam[Double]("stopPx").description("").optional,
+        formParam[Double]("pegOffsetValue").description("").optional,
+        formParam[String]("text").description("").optional)
   )
 
-  post("/order",operation(order.newOrderOperation)) {
+  put("/order",operation(order.amendOperation)) {
     
     
     
                 
-      val symbol = params.getAs[String]("symbol")
+      val orderID = params.getAs[String]("orderID")
     
 
     
-    println("symbol: " + symbol)
+    println("orderID: " + orderID)
   
     
     
                 
-      val quantity = params.getAs[BigDecimal]("quantity")
+      val clOrdID = params.getAs[String]("clOrdID")
     
 
     
-    println("quantity: " + quantity)
+    println("clOrdID: " + clOrdID)
+  
+    
+    
+                
+      val simpleOrderQty = params.getAs[Double]("simpleOrderQty")
+    
+
+    
+    println("simpleOrderQty: " + simpleOrderQty)
+  
+    
+    
+                
+      val orderQty = params.getAs[BigDecimal]("orderQty")
+    
+
+    
+    println("orderQty: " + orderQty)
+  
+    
+    
+                
+      val simpleLeavesQty = params.getAs[Double]("simpleLeavesQty")
+    
+
+    
+    println("simpleLeavesQty: " + simpleLeavesQty)
+  
+    
+    
+                
+      val leavesQty = params.getAs[BigDecimal]("leavesQty")
+    
+
+    
+    println("leavesQty: " + leavesQty)
   
     
     
@@ -174,20 +212,121 @@ class OrderApi (implicit val swagger: Swagger) extends ScalatraServlet
     
     
                 
-      val timeInForce = params.getAs[String]("timeInForce")
+      val stopPx = params.getAs[Double]("stopPx")
     
 
     
-    println("timeInForce: " + timeInForce)
+    println("stopPx: " + stopPx)
   
     
     
                 
-      val type = params.getAs[String]("type")
+      val pegOffsetValue = params.getAs[Double]("pegOffsetValue")
     
 
     
-    println("type: " + type)
+    println("pegOffsetValue: " + pegOffsetValue)
+  
+    
+    
+                
+      val text = params.getAs[String]("text")
+    
+
+    
+    println("text: " + text)
+  
+  }
+
+  
+
+  val order.newOperation = (apiOperation[Order]("order.new")
+      summary "Create a new order."
+      parameters(formParam[String]("symbol").description(""),
+        formParam[String]("side").description("").optional,
+        formParam[Double]("simpleOrderQty").description("").optional,
+        formParam[BigDecimal]("quantity").description("").optional,
+        formParam[BigDecimal]("orderQty").description("").optional,
+        formParam[Double]("price").description("").optional,
+        formParam[BigDecimal]("displayQty").description("").optional,
+        formParam[Double]("stopPrice").description("").optional,
+        formParam[Double]("stopPx").description("").optional,
+        formParam[String]("clOrdID").description("").optional,
+        formParam[String]("clOrdLinkID").description("").optional,
+        formParam[Double]("pegOffsetValue").description("").optional,
+        formParam[String]("pegPriceType").description("").optional,
+        formParam[String]("type").description("").optional,
+        formParam[String]("ordType").description("").optional.defaultValue(Limit),
+        formParam[String]("timeInForce").description("").optional,
+        formParam[String]("execInst").description("").optional,
+        formParam[String]("contingencyType").description("").optional,
+        formParam[String]("text").description("").optional)
+  )
+
+  post("/order",operation(order.newOperation)) {
+    
+    
+    
+                
+      val symbol = params.getAs[String]("symbol")
+    
+
+    
+    println("symbol: " + symbol)
+  
+    
+    
+                
+      val side = params.getAs[String]("side")
+    
+
+    
+    println("side: " + side)
+  
+    
+    
+                
+      val simpleOrderQty = params.getAs[Double]("simpleOrderQty")
+    
+
+    
+    println("simpleOrderQty: " + simpleOrderQty)
+  
+    
+    
+                
+      val quantity = params.getAs[BigDecimal]("quantity")
+    
+
+    
+    println("quantity: " + quantity)
+  
+    
+    
+                
+      val orderQty = params.getAs[BigDecimal]("orderQty")
+    
+
+    
+    println("orderQty: " + orderQty)
+  
+    
+    
+                
+      val price = params.getAs[Double]("price")
+    
+
+    
+    println("price: " + price)
+  
+    
+    
+                
+      val displayQty = params.getAs[BigDecimal]("displayQty")
+    
+
+    
+    println("displayQty: " + displayQty)
   
     
     
@@ -201,24 +340,114 @@ class OrderApi (implicit val swagger: Swagger) extends ScalatraServlet
     
     
                 
+      val stopPx = params.getAs[Double]("stopPx")
+    
+
+    
+    println("stopPx: " + stopPx)
+  
+    
+    
+                
       val clOrdID = params.getAs[String]("clOrdID")
     
 
     
     println("clOrdID: " + clOrdID)
   
+    
+    
+                
+      val clOrdLinkID = params.getAs[String]("clOrdLinkID")
+    
+
+    
+    println("clOrdLinkID: " + clOrdLinkID)
+  
+    
+    
+                
+      val pegOffsetValue = params.getAs[Double]("pegOffsetValue")
+    
+
+    
+    println("pegOffsetValue: " + pegOffsetValue)
+  
+    
+    
+                
+      val pegPriceType = params.getAs[String]("pegPriceType")
+    
+
+    
+    println("pegPriceType: " + pegPriceType)
+  
+    
+    
+                
+      val type = params.getAs[String]("type")
+    
+
+    
+    println("type: " + type)
+  
+    
+    
+                
+      val ordType = params.getAs[String]("ordType")
+    
+
+    
+    println("ordType: " + ordType)
+  
+    
+    
+                
+      val timeInForce = params.getAs[String]("timeInForce")
+    
+
+    
+    println("timeInForce: " + timeInForce)
+  
+    
+    
+                
+      val execInst = params.getAs[String]("execInst")
+    
+
+    
+    println("execInst: " + execInst)
+  
+    
+    
+                
+      val contingencyType = params.getAs[String]("contingencyType")
+    
+
+    
+    println("contingencyType: " + contingencyType)
+  
+    
+    
+                
+      val text = params.getAs[String]("text")
+    
+
+    
+    println("text: " + text)
+  
   }
 
   
 
-  val order.cancelOrderOperation = (apiOperation[List[Order]]("order.cancelOrder")
+  val order.cancelOperation = (apiOperation[List[Order]]("order.cancel")
       summary "Cancel order(s). Send multiple order IDs to cancel in bulk."
       parameters(formParam[String]("orderID").description("").optional,
         formParam[String]("clOrdID").description("").optional,
         formParam[String]("text").description("").optional)
   )
 
-  delete("/order",operation(order.cancelOrderOperation)) {
+  delete("/order",operation(order.cancelOperation)) {
     
     
     
@@ -251,7 +480,7 @@ class OrderApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val order.cancelAllOperation = (apiOperation[Inline_response_200]("order.cancelAll")
+  val order.cancelAllOperation = (apiOperation[Inline_response_200_1]("order.cancelAll")
       summary "Cancels all of your orders."
       parameters(formParam[String]("symbol").description("").optional,
         formParam[String]("filter").description("").optional,
@@ -291,7 +520,47 @@ class OrderApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val order.cancelAllAfterOperation = (apiOperation[Inline_response_200]("order.cancelAllAfter")
+  val order.amendBulkOperation = (apiOperation[List[Order]]("order.amendBulk")
+      summary "Amend multiple orders."
+      parameters(formParam[String]("orders").description("").optional)
+  )
+
+  put("/order/bulk",operation(order.amendBulkOperation)) {
+    
+    
+    
+                
+      val orders = params.getAs[String]("orders")
+    
+
+    
+    println("orders: " + orders)
+  
+  }
+
+  
+
+  val order.newBulkOperation = (apiOperation[List[Order]]("order.newBulk")
+      summary "Create multiple new orders."
+      parameters(formParam[String]("orders").description("").optional)
+  )
+
+  post("/order/bulk",operation(order.newBulkOperation)) {
+    
+    
+    
+                
+      val orders = params.getAs[String]("orders")
+    
+
+    
+    println("orders: " + orders)
+  
+  }
+
+  
+
+  val order.cancelAllAfterOperation = (apiOperation[Inline_response_200_1]("order.cancelAllAfter")
       summary "Automatically cancel all your orders after a specified timeout."
       parameters(formParam[Double]("timeout").description(""))
   )
@@ -312,7 +581,7 @@ class OrderApi (implicit val swagger: Swagger) extends ScalatraServlet
   
 
   val order.closePositionOperation = (apiOperation[Order]("order.closePosition")
-      summary "Close a position with a market order."
+      summary "Close a position. [Deprecated, use POST /order with execInst: 'Close']"
       parameters(formParam[String]("symbol").description(""),
         formParam[Double]("price").description("").optional)
   )
@@ -336,27 +605,6 @@ class OrderApi (implicit val swagger: Swagger) extends ScalatraServlet
 
     
     println("price: " + price)
-  
-  }
-
-  
-
-  val order.getCloseOutOrdersOperation = (apiOperation[List[LiquidationOrder]]("order.getCloseOutOrders")
-      summary "Get open liquidation orders."
-      parameters(queryParam[String]("filter").description("").optional)
-  )
-
-  get("/order/liquidations",operation(order.getCloseOutOrdersOperation)) {
-    
-    
-    
-        
-      
-      val filter = params.getAs[String]("filter")
-            
-
-    
-    println("filter: " + filter)
   
   }
 

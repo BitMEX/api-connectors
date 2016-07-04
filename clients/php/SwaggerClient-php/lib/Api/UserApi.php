@@ -92,14 +92,14 @@ class UserApi
   
     
     /**
-     * userGetMe
+     * userGet
      *
      * Get your user model.
      *
      * @return \Swagger\Client\Model\User
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function userGetMe()
+    public function userGet()
     {
         
   
@@ -161,7 +161,7 @@ class UserApi
     }
     
     /**
-     * userUpdateMe
+     * userUpdate
      *
      * Update your password, name, and other attributes.
      *
@@ -170,12 +170,13 @@ class UserApi
      * @param string $old_password  (optional)
      * @param string $new_password  (optional)
      * @param string $new_password_confirm  (optional)
+     * @param string $username Username can only be set once. To reset, email support. (optional)
      * @param string $country Country of residence. (optional)
      * @param string $pgp_pub_key PGP Public Key. If specified, automated emails will be sentwith this key. (optional)
      * @return \Swagger\Client\Model\User
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function userUpdateMe($firstname=null, $lastname=null, $old_password=null, $new_password=null, $new_password_confirm=null, $country=null, $pgp_pub_key=null)
+    public function userUpdate($firstname=null, $lastname=null, $old_password=null, $new_password=null, $new_password_confirm=null, $username=null, $country=null, $pgp_pub_key=null)
     {
         
   
@@ -225,6 +226,12 @@ class UserApi
             
             
             $formParams['newPasswordConfirm'] = $this->apiClient->getSerializer()->toFormValue($new_password_confirm);
+            
+        }// form params
+        if ($username !== null) {
+            
+            
+            $formParams['username'] = $this->apiClient->getSerializer()->toFormValue($username);
             
         }// form params
         if ($country !== null) {
@@ -279,35 +286,37 @@ class UserApi
     }
     
     /**
-     * userNewUser
+     * userNew
      *
      * Register a new user.
      *
      * @param string $email Your email address. (required)
      * @param string $password Your password. (required)
-     * @param string $username Desired username. (required)
+     * @param string $country Country of residence. (required)
+     * @param string $username Desired username. (optional)
      * @param string $firstname First name. (optional)
      * @param string $lastname Last name. (optional)
-     * @param string $accepts_tos Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms). (optional)
+     * @param string $accepts_tos Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). (optional)
      * @param string $referrer_id Optional Referrer ID. (optional)
-     * @param string $country Country of residence. (optional)
+     * @param string $tfa_type Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef (optional)
+     * @param string $tfa_token Two-Factor Token. (optional)
      * @return \Swagger\Client\Model\User
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function userNewUser($email, $password, $username, $firstname=null, $lastname=null, $accepts_tos=null, $referrer_id=null, $country=null)
+    public function userNew($email, $password, $country, $username=null, $firstname=null, $lastname=null, $accepts_tos=null, $referrer_id=null, $tfa_type=null, $tfa_token=null)
     {
         
         // verify the required parameter 'email' is set
         if ($email === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $email when calling userNewUser');
+            throw new \InvalidArgumentException('Missing the required parameter $email when calling userNew');
         }
         // verify the required parameter 'password' is set
         if ($password === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $password when calling userNewUser');
+            throw new \InvalidArgumentException('Missing the required parameter $password when calling userNew');
         }
-        // verify the required parameter 'username' is set
-        if ($username === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $username when calling userNewUser');
+        // verify the required parameter 'country' is set
+        if ($country === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $country when calling userNew');
         }
   
         // parse inputs
@@ -374,6 +383,18 @@ class UserApi
             
             
             $formParams['country'] = $this->apiClient->getSerializer()->toFormValue($country);
+            
+        }// form params
+        if ($tfa_type !== null) {
+            
+            
+            $formParams['tfaType'] = $this->apiClient->getSerializer()->toFormValue($tfa_type);
+            
+        }// form params
+        if ($tfa_token !== null) {
+            
+            
+            $formParams['tfaToken'] = $this->apiClient->getSerializer()->toFormValue($tfa_token);
             
         }
         
@@ -1364,7 +1385,7 @@ class UserApi
      *
      * Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.
      *
-     * @return void
+     * @return double
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function userLogoutAll()
@@ -1404,27 +1425,40 @@ class UserApi
             list($response, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams
+                $headerParams, 'double'
             );
+            
+            if (!$response) {
+                return null;
+            }
+
+            return $this->apiClient->getSerializer()->deserialize($response, 'double', $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'double', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
             }
   
             throw $e;
         }
+        
+        return null;
         
     }
     
     /**
      * userGetMargin
      *
-     * Get your account's margin status.
+     * Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.
      *
+     * @param string $currency  (optional)
      * @return \Swagger\Client\Model\Margin
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function userGetMargin()
+    public function userGetMargin($currency=null)
     {
         
   
@@ -1442,7 +1476,10 @@ class UserApi
         }
         $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
   
-        
+        // query params
+        if ($currency !== null) {
+            $queryParams['currency'] = $this->apiClient->getSerializer()->toQueryValue($currency);
+        }
         
         
         
@@ -1488,7 +1525,7 @@ class UserApi
     /**
      * userSavePreferences
      *
-     * Save application preferences.
+     * Save user preferences.
      *
      * @param string $prefs  (required)
      * @param bool $overwrite If true, will overwrite all existing preferences. (optional)
@@ -1578,11 +1615,10 @@ class UserApi
      * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
      *
      * @param string $type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)
-     * @param string $token If Yubikey, send one output from the key. (optional)
      * @return bool
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function userRequestEnableTFA($type=null, $token=null)
+    public function userRequestEnableTFA($type=null)
     {
         
   
@@ -1608,12 +1644,6 @@ class UserApi
             
             
             $formParams['type'] = $this->apiClient->getSerializer()->toFormValue($type);
-            
-        }// form params
-        if ($token !== null) {
-            
-            
-            $formParams['token'] = $this->apiClient->getSerializer()->toFormValue($token);
             
         }
         
@@ -1740,7 +1770,7 @@ class UserApi
      *
      * Request a withdrawal to an external wallet.
      *
-     * @param string $currency Currency you&#39;re withdrawing. Options: \&quot;XBt\&quot; (required)
+     * @param string $currency Currency you&#39;re withdrawing. Options: `XBt` (required)
      * @param Number $amount Amount of withdrawal currency. (required)
      * @param string $address Destination Address. (required)
      * @param string $otp_token 2FA token. Required if 2FA is enabled on your account. (optional)
@@ -1871,7 +1901,7 @@ class UserApi
         // parse inputs
         $resourcePath = "/user/resendVerificationEmail";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "GET";
+        $method = "POST";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1882,13 +1912,16 @@ class UserApi
         }
         $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
   
-        // query params
+        
+        
+        
+        // form params
         if ($email !== null) {
-            $queryParams['email'] = $this->apiClient->getSerializer()->toQueryValue($email);
+            
+            
+            $formParams['email'] = $this->apiClient->getSerializer()->toFormValue($email);
+            
         }
-        
-        
-        
         
   
         // for model (json/xml)
@@ -1933,10 +1966,11 @@ class UserApi
      *
      * Get a history of all of your wallet transactions (deposits and withdrawals).
      *
+     * @param string $currency  (optional)
      * @return \Swagger\Client\Model\Transaction[]
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function userGetWalletHistory()
+    public function userGetWalletHistory($currency=null)
     {
         
   
@@ -1954,7 +1988,10 @@ class UserApi
         }
         $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
   
-        
+        // query params
+        if ($currency !== null) {
+            $queryParams['currency'] = $this->apiClient->getSerializer()->toQueryValue($currency);
+        }
         
         
         

@@ -21,6 +21,8 @@
 
 @property(nonatomic) NSString* clOrdID;
 
+@property(nonatomic) NSString* clOrdLinkID;
+
 @property(nonatomic) NSNumber* account;
 
 @property(nonatomic) NSString* symbol;
@@ -43,9 +45,13 @@
 
 @property(nonatomic) NSNumber* price;
 
-@property(nonatomic) NSNumber* minQty;
+@property(nonatomic) NSNumber* displayQty;
 
 @property(nonatomic) NSNumber* stopPx;
+
+@property(nonatomic) NSNumber* pegOffsetValue;
+
+@property(nonatomic) NSString* pegPriceType;
 
 @property(nonatomic) NSString* currency;
 
@@ -57,9 +63,15 @@
 
 @property(nonatomic) NSString* timeInForce;
 
+@property(nonatomic) NSString* execInst;
+
+@property(nonatomic) NSString* contingencyType;
+
 @property(nonatomic) NSString* exDestination;
 
 @property(nonatomic) NSString* ordStatus;
+
+@property(nonatomic) NSString* triggered;
 
 @property(nonatomic) NSNumber* workingIndicator;
 
@@ -76,8 +88,6 @@
 @property(nonatomic) NSNumber* avgPx;
 
 @property(nonatomic) NSNumber* commission;
-
-@property(nonatomic) NSString* commType;
 
 @property(nonatomic) NSString* tradePublishIndicator;
 

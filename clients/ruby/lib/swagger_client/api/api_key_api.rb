@@ -13,9 +13,9 @@ module SwaggerClient
     # @param [Hash] opts the optional parameters
     # @option opts [BOOLEAN] :reverse If true, will sort results newest first.
     # @return [Array<ApiKey>]
-    def api_key_get_keys(opts = {})
+    def api_key_get(opts = {})
       if Configuration.debugging
-        Configuration.logger.debug "Calling API: ApiKeyApi#api_key_get_keys ..."
+        Configuration.logger.debug "Calling API: ApiKeyApi#api_key_get ..."
       end
       
       # resource path
@@ -52,13 +52,13 @@ module SwaggerClient
         :auth_names => auth_names,
         :return_type => 'Array<ApiKey>')
       if Configuration.debugging
-        Configuration.logger.debug "API called: ApiKeyApi#api_key_get_keys. Result: #{result.inspect}"
+        Configuration.logger.debug "API called: ApiKeyApi#api_key_get. Result: #{result.inspect}"
       end
       return result
     end
 
     # Create a new API Key.
-    # API Keys can also be created via &lt;a href=\&quot;https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py\&quot;&gt;this Python script&lt;/a&gt;. See the &lt;a href=\&quot;/app/apiKeys\&quot;&gt;API Key Documentation&lt;/a&gt; for more information on capabilities.
+    # API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :name Key name. This name is for reference only.
     # @option opts [String] :cidr CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href=\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt;
@@ -66,9 +66,9 @@ module SwaggerClient
     # @option opts [BOOLEAN] :enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.
     # @option opts [String] :token OTP Token (YubiKey, Google Authenticator)
     # @return [ApiKey]
-    def api_key_create_key(opts = {})
+    def api_key_new(opts = {})
       if Configuration.debugging
-        Configuration.logger.debug "Calling API: ApiKeyApi#api_key_create_key ..."
+        Configuration.logger.debug "Calling API: ApiKeyApi#api_key_new ..."
       end
       
       # resource path
@@ -109,7 +109,7 @@ module SwaggerClient
         :auth_names => auth_names,
         :return_type => 'ApiKey')
       if Configuration.debugging
-        Configuration.logger.debug "API called: ApiKeyApi#api_key_create_key. Result: #{result.inspect}"
+        Configuration.logger.debug "API called: ApiKeyApi#api_key_new. Result: #{result.inspect}"
       end
       return result
     end

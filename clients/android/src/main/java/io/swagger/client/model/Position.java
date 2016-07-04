@@ -14,14 +14,16 @@ public class Position  {
   private BigDecimal account = null;
   @SerializedName("symbol")
   private String symbol = null;
+  @SerializedName("currency")
+  private String currency = null;
   @SerializedName("underlying")
   private String underlying = null;
   @SerializedName("quoteCurrency")
   private String quoteCurrency = null;
-  @SerializedName("currency")
-  private String currency = null;
   @SerializedName("commission")
   private Double commission = null;
+  @SerializedName("leverage")
+  private Double leverage = null;
   @SerializedName("crossMargin")
   private Boolean crossMargin = null;
   @SerializedName("rebalancedPnl")
@@ -176,6 +178,10 @@ public class Position  {
   private Double bankruptPrice = null;
   @SerializedName("timestamp")
   private Date timestamp = null;
+  @SerializedName("lastPrice")
+  private Double lastPrice = null;
+  @SerializedName("lastValue")
+  private BigDecimal lastValue = null;
 
   
   /**
@@ -197,6 +203,17 @@ public class Position  {
   }
   public void setSymbol(String symbol) {
     this.symbol = symbol;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = true, value = "")
+  public String getCurrency() {
+    return currency;
+  }
+  public void setCurrency(String currency) {
+    this.currency = currency;
   }
 
   
@@ -225,22 +242,22 @@ public class Position  {
   /**
    **/
   @ApiModelProperty(value = "")
-  public String getCurrency() {
-    return currency;
+  public Double getCommission() {
+    return commission;
   }
-  public void setCurrency(String currency) {
-    this.currency = currency;
+  public void setCommission(Double commission) {
+    this.commission = commission;
   }
 
   
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getCommission() {
-    return commission;
+  public Double getLeverage() {
+    return leverage;
   }
-  public void setCommission(Double commission) {
-    this.commission = commission;
+  public void setLeverage(Double leverage) {
+    this.leverage = leverage;
   }
 
   
@@ -1091,6 +1108,28 @@ public class Position  {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getLastPrice() {
+    return lastPrice;
+  }
+  public void setLastPrice(Double lastPrice) {
+    this.lastPrice = lastPrice;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getLastValue() {
+    return lastValue;
+  }
+  public void setLastValue(BigDecimal lastValue) {
+    this.lastValue = lastValue;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -1099,10 +1138,11 @@ public class Position  {
     
     sb.append("  account: ").append(account).append("\n");
     sb.append("  symbol: ").append(symbol).append("\n");
+    sb.append("  currency: ").append(currency).append("\n");
     sb.append("  underlying: ").append(underlying).append("\n");
     sb.append("  quoteCurrency: ").append(quoteCurrency).append("\n");
-    sb.append("  currency: ").append(currency).append("\n");
     sb.append("  commission: ").append(commission).append("\n");
+    sb.append("  leverage: ").append(leverage).append("\n");
     sb.append("  crossMargin: ").append(crossMargin).append("\n");
     sb.append("  rebalancedPnl: ").append(rebalancedPnl).append("\n");
     sb.append("  prevRealisedPnl: ").append(prevRealisedPnl).append("\n");
@@ -1180,6 +1220,8 @@ public class Position  {
     sb.append("  liquidationPrice: ").append(liquidationPrice).append("\n");
     sb.append("  bankruptPrice: ").append(bankruptPrice).append("\n");
     sb.append("  timestamp: ").append(timestamp).append("\n");
+    sb.append("  lastPrice: ").append(lastPrice).append("\n");
+    sb.append("  lastValue: ").append(lastValue).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -45,10 +45,10 @@ class PositionApi(object):
                 config.api_client = ApiClient()
             self.api_client = config.api_client
 
-    def position_find(self, **kwargs):
+    def position_get(self, **kwargs):
         """
         Get your positions.
-        
+        See <a href=\"http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html\">the FIX Spec</a> for explanations of these fields.
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -56,7 +56,7 @@ class PositionApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.position_find(callback=callback_function)
+        >>> thread = api.position_get(callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
@@ -76,7 +76,7 @@ class PositionApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method position_find" % key
+                    " to method position_get" % key
                 )
             params[key] = val
         del params['kwargs']
@@ -129,8 +129,8 @@ class PositionApi(object):
 
     def position_isolate_margin(self, symbol, **kwargs):
         """
-        Toggle isolated (fixed) margin per-position.
-        On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off. A position must be open to isolate it.
+        Enable isolated margin or cross margin per-position.
+        On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -143,7 +143,7 @@ class PositionApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str symbol: Position symbol to isolate. (required)
-        :param bool enabled: If true, will enable isolated margin.
+        :param bool enabled: True for isolated margin, false for cross margin.
         :return: Position
                  If the method is called asynchronously,
                  returns the request thread.
@@ -209,6 +209,91 @@ class PositionApi(object):
                                             callback=params.get('callback'))
         return response
 
+    def position_update_leverage(self, symbol, leverage, **kwargs):
+        """
+        Choose leverage for a position.
+        On Speculative (DPE-Enabled) contracts, users can choose an isolated leverage. This will automatically enable isolated margin.
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.position_update_leverage(symbol, leverage, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str symbol: Symbol of position to adjust. (required)
+        :param float leverage: Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin. (required)
+        :return: Position
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['symbol', 'leverage']
+        all_params.append('callback')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method position_update_leverage" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        # verify the required parameter 'symbol' is set
+        if ('symbol' not in params) or (params['symbol'] is None):
+            raise ValueError("Missing the required parameter `symbol` when calling `position_update_leverage`")
+        # verify the required parameter 'leverage' is set
+        if ('leverage' not in params) or (params['leverage'] is None):
+            raise ValueError("Missing the required parameter `leverage` when calling `position_update_leverage`")
+
+        resource_path = '/position/leverage'.replace('{format}', 'json')
+        method = 'POST'
+
+        path_params = {}
+
+        query_params = {}
+
+        header_params = {}
+
+        form_params = {}
+        files = {}
+        if 'symbol' in params:
+            form_params['symbol'] = params['symbol']
+        if 'leverage' in params:
+            form_params['leverage'] = params['leverage']
+
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
+
+        # Authentication setting
+        auth_settings = []
+
+        response = self.api_client.call_api(resource_path, method,
+                                            path_params,
+                                            query_params,
+                                            header_params,
+                                            body=body_params,
+                                            post_params=form_params,
+                                            files=files,
+                                            response_type='Position',
+                                            auth_settings=auth_settings,
+                                            callback=params.get('callback'))
+        return response
+
     def position_transfer_isolated_margin(self, symbol, amount, **kwargs):
         """
         Transfer equity in or out of a position.
@@ -224,8 +309,8 @@ class PositionApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param str symbol: Position symbol to isolate. (required)
-        :param float amount: Amount to transfer, in satoshis. May be negative. (required)
+        :param str symbol: Symbol of position to isolate. (required)
+        :param float amount: Amount to transfer, in Satoshis. May be negative. (required)
         :return: Position
                  If the method is called asynchronously,
                  returns the request thread.

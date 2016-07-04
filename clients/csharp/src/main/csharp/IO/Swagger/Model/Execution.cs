@@ -39,6 +39,13 @@ namespace IO.Swagger.Model
   
         
         /// <summary>
+        /// Gets or Sets ClOrdLinkID
+        /// </summary>
+        [DataMember(Name="clOrdLinkID", EmitDefaultValue=false)]
+        public string ClOrdLinkID { get; set; }
+  
+        
+        /// <summary>
         /// Gets or Sets Account
         /// </summary>
         [DataMember(Name="account", EmitDefaultValue=false)]
@@ -116,10 +123,10 @@ namespace IO.Swagger.Model
   
         
         /// <summary>
-        /// Gets or Sets MinQty
+        /// Gets or Sets DisplayQty
         /// </summary>
-        [DataMember(Name="minQty", EmitDefaultValue=false)]
-        public double? MinQty { get; set; }
+        [DataMember(Name="displayQty", EmitDefaultValue=false)]
+        public double? DisplayQty { get; set; }
   
         
         /// <summary>
@@ -127,6 +134,20 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="stopPx", EmitDefaultValue=false)]
         public double? StopPx { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets PegOffsetValue
+        /// </summary>
+        [DataMember(Name="pegOffsetValue", EmitDefaultValue=false)]
+        public double? PegOffsetValue { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets PegPriceType
+        /// </summary>
+        [DataMember(Name="pegPriceType", EmitDefaultValue=false)]
+        public string PegPriceType { get; set; }
   
         
         /// <summary>
@@ -165,6 +186,20 @@ namespace IO.Swagger.Model
   
         
         /// <summary>
+        /// Gets or Sets ExecInst
+        /// </summary>
+        [DataMember(Name="execInst", EmitDefaultValue=false)]
+        public string ExecInst { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets ContingencyType
+        /// </summary>
+        [DataMember(Name="contingencyType", EmitDefaultValue=false)]
+        public string ContingencyType { get; set; }
+  
+        
+        /// <summary>
         /// Gets or Sets ExDestination
         /// </summary>
         [DataMember(Name="exDestination", EmitDefaultValue=false)]
@@ -176,6 +211,13 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="ordStatus", EmitDefaultValue=false)]
         public string OrdStatus { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets Triggered
+        /// </summary>
+        [DataMember(Name="triggered", EmitDefaultValue=false)]
+        public string Triggered { get; set; }
   
         
         /// <summary>
@@ -232,13 +274,6 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="commission", EmitDefaultValue=false)]
         public double? Commission { get; set; }
-  
-        
-        /// <summary>
-        /// Gets or Sets CommType
-        /// </summary>
-        [DataMember(Name="commType", EmitDefaultValue=false)]
-        public string CommType { get; set; }
   
         
         /// <summary>
@@ -323,6 +358,7 @@ namespace IO.Swagger.Model
             sb.Append("  ExecID: ").Append(ExecID).Append("\n");
             sb.Append("  OrderID: ").Append(OrderID).Append("\n");
             sb.Append("  ClOrdID: ").Append(ClOrdID).Append("\n");
+            sb.Append("  ClOrdLinkID: ").Append(ClOrdLinkID).Append("\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  Symbol: ").Append(Symbol).Append("\n");
             sb.Append("  Side: ").Append(Side).Append("\n");
@@ -334,15 +370,20 @@ namespace IO.Swagger.Model
             sb.Append("  SimpleOrderQty: ").Append(SimpleOrderQty).Append("\n");
             sb.Append("  OrderQty: ").Append(OrderQty).Append("\n");
             sb.Append("  Price: ").Append(Price).Append("\n");
-            sb.Append("  MinQty: ").Append(MinQty).Append("\n");
+            sb.Append("  DisplayQty: ").Append(DisplayQty).Append("\n");
             sb.Append("  StopPx: ").Append(StopPx).Append("\n");
+            sb.Append("  PegOffsetValue: ").Append(PegOffsetValue).Append("\n");
+            sb.Append("  PegPriceType: ").Append(PegPriceType).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  SettlCurrency: ").Append(SettlCurrency).Append("\n");
             sb.Append("  ExecType: ").Append(ExecType).Append("\n");
             sb.Append("  OrdType: ").Append(OrdType).Append("\n");
             sb.Append("  TimeInForce: ").Append(TimeInForce).Append("\n");
+            sb.Append("  ExecInst: ").Append(ExecInst).Append("\n");
+            sb.Append("  ContingencyType: ").Append(ContingencyType).Append("\n");
             sb.Append("  ExDestination: ").Append(ExDestination).Append("\n");
             sb.Append("  OrdStatus: ").Append(OrdStatus).Append("\n");
+            sb.Append("  Triggered: ").Append(Triggered).Append("\n");
             sb.Append("  WorkingIndicator: ").Append(WorkingIndicator).Append("\n");
             sb.Append("  OrdRejReason: ").Append(OrdRejReason).Append("\n");
             sb.Append("  SimpleLeavesQty: ").Append(SimpleLeavesQty).Append("\n");
@@ -351,7 +392,6 @@ namespace IO.Swagger.Model
             sb.Append("  CumQty: ").Append(CumQty).Append("\n");
             sb.Append("  AvgPx: ").Append(AvgPx).Append("\n");
             sb.Append("  Commission: ").Append(Commission).Append("\n");
-            sb.Append("  CommType: ").Append(CommType).Append("\n");
             sb.Append("  TradePublishIndicator: ").Append(TradePublishIndicator).Append("\n");
             sb.Append("  MultiLegReportingType: ").Append(MultiLegReportingType).Append("\n");
             sb.Append("  Text: ").Append(Text).Append("\n");
@@ -415,6 +455,11 @@ namespace IO.Swagger.Model
                     this.ClOrdID.Equals(other.ClOrdID)
                 ) && 
                 (
+                    this.ClOrdLinkID == other.ClOrdLinkID ||
+                    this.ClOrdLinkID != null &&
+                    this.ClOrdLinkID.Equals(other.ClOrdLinkID)
+                ) && 
+                (
                     this.Account == other.Account ||
                     this.Account != null &&
                     this.Account.Equals(other.Account)
@@ -470,14 +515,24 @@ namespace IO.Swagger.Model
                     this.Price.Equals(other.Price)
                 ) && 
                 (
-                    this.MinQty == other.MinQty ||
-                    this.MinQty != null &&
-                    this.MinQty.Equals(other.MinQty)
+                    this.DisplayQty == other.DisplayQty ||
+                    this.DisplayQty != null &&
+                    this.DisplayQty.Equals(other.DisplayQty)
                 ) && 
                 (
                     this.StopPx == other.StopPx ||
                     this.StopPx != null &&
                     this.StopPx.Equals(other.StopPx)
+                ) && 
+                (
+                    this.PegOffsetValue == other.PegOffsetValue ||
+                    this.PegOffsetValue != null &&
+                    this.PegOffsetValue.Equals(other.PegOffsetValue)
+                ) && 
+                (
+                    this.PegPriceType == other.PegPriceType ||
+                    this.PegPriceType != null &&
+                    this.PegPriceType.Equals(other.PegPriceType)
                 ) && 
                 (
                     this.Currency == other.Currency ||
@@ -505,6 +560,16 @@ namespace IO.Swagger.Model
                     this.TimeInForce.Equals(other.TimeInForce)
                 ) && 
                 (
+                    this.ExecInst == other.ExecInst ||
+                    this.ExecInst != null &&
+                    this.ExecInst.Equals(other.ExecInst)
+                ) && 
+                (
+                    this.ContingencyType == other.ContingencyType ||
+                    this.ContingencyType != null &&
+                    this.ContingencyType.Equals(other.ContingencyType)
+                ) && 
+                (
                     this.ExDestination == other.ExDestination ||
                     this.ExDestination != null &&
                     this.ExDestination.Equals(other.ExDestination)
@@ -513,6 +578,11 @@ namespace IO.Swagger.Model
                     this.OrdStatus == other.OrdStatus ||
                     this.OrdStatus != null &&
                     this.OrdStatus.Equals(other.OrdStatus)
+                ) && 
+                (
+                    this.Triggered == other.Triggered ||
+                    this.Triggered != null &&
+                    this.Triggered.Equals(other.Triggered)
                 ) && 
                 (
                     this.WorkingIndicator == other.WorkingIndicator ||
@@ -553,11 +623,6 @@ namespace IO.Swagger.Model
                     this.Commission == other.Commission ||
                     this.Commission != null &&
                     this.Commission.Equals(other.Commission)
-                ) && 
-                (
-                    this.CommType == other.CommType ||
-                    this.CommType != null &&
-                    this.CommType.Equals(other.CommType)
                 ) && 
                 (
                     this.TradePublishIndicator == other.TradePublishIndicator ||
@@ -632,6 +697,9 @@ namespace IO.Swagger.Model
                 if (this.ClOrdID != null)
                     hash = hash * 57 + this.ClOrdID.GetHashCode();
                 
+                if (this.ClOrdLinkID != null)
+                    hash = hash * 57 + this.ClOrdLinkID.GetHashCode();
+                
                 if (this.Account != null)
                     hash = hash * 57 + this.Account.GetHashCode();
                 
@@ -665,11 +733,17 @@ namespace IO.Swagger.Model
                 if (this.Price != null)
                     hash = hash * 57 + this.Price.GetHashCode();
                 
-                if (this.MinQty != null)
-                    hash = hash * 57 + this.MinQty.GetHashCode();
+                if (this.DisplayQty != null)
+                    hash = hash * 57 + this.DisplayQty.GetHashCode();
                 
                 if (this.StopPx != null)
                     hash = hash * 57 + this.StopPx.GetHashCode();
+                
+                if (this.PegOffsetValue != null)
+                    hash = hash * 57 + this.PegOffsetValue.GetHashCode();
+                
+                if (this.PegPriceType != null)
+                    hash = hash * 57 + this.PegPriceType.GetHashCode();
                 
                 if (this.Currency != null)
                     hash = hash * 57 + this.Currency.GetHashCode();
@@ -686,11 +760,20 @@ namespace IO.Swagger.Model
                 if (this.TimeInForce != null)
                     hash = hash * 57 + this.TimeInForce.GetHashCode();
                 
+                if (this.ExecInst != null)
+                    hash = hash * 57 + this.ExecInst.GetHashCode();
+                
+                if (this.ContingencyType != null)
+                    hash = hash * 57 + this.ContingencyType.GetHashCode();
+                
                 if (this.ExDestination != null)
                     hash = hash * 57 + this.ExDestination.GetHashCode();
                 
                 if (this.OrdStatus != null)
                     hash = hash * 57 + this.OrdStatus.GetHashCode();
+                
+                if (this.Triggered != null)
+                    hash = hash * 57 + this.Triggered.GetHashCode();
                 
                 if (this.WorkingIndicator != null)
                     hash = hash * 57 + this.WorkingIndicator.GetHashCode();
@@ -715,9 +798,6 @@ namespace IO.Swagger.Model
                 
                 if (this.Commission != null)
                     hash = hash * 57 + this.Commission.GetHashCode();
-                
-                if (this.CommType != null)
-                    hash = hash * 57 + this.CommType.GetHashCode();
                 
                 if (this.TradePublishIndicator != null)
                     hash = hash * 57 + this.TradePublishIndicator.GetHashCode();

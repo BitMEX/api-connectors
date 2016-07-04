@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.*;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-30T13:35:44.556-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-04T18:25:18.235-05:00")
 public class Margin   {
   
   private BigDecimal account = null;
@@ -24,6 +24,7 @@ public class Margin   {
   private BigDecimal amount = null;
   private BigDecimal pendingCredit = null;
   private BigDecimal pendingDebit = null;
+  private BigDecimal confirmedDebit = null;
   private BigDecimal prevRealisedPnl = null;
   private BigDecimal prevUnrealisedPnl = null;
   private BigDecimal grossComm = null;
@@ -42,6 +43,7 @@ public class Margin   {
   private BigDecimal unrealisedPnl = null;
   private BigDecimal indicativeTax = null;
   private BigDecimal unrealisedProfit = null;
+  private BigDecimal syntheticMargin = null;
   private BigDecimal walletBalance = null;
   private BigDecimal marginBalance = null;
   private Double marginBalancePcnt = 0.0d;
@@ -52,6 +54,8 @@ public class Margin   {
   private BigDecimal availableMargin = null;
   private BigDecimal withdrawableMargin = null;
   private Date timestamp = null;
+  private BigDecimal grossLastValue = null;
+  private Double commission = 0.0d;
 
   
   /**
@@ -159,6 +163,18 @@ public class Margin   {
   }
   public void setPendingDebit(BigDecimal pendingDebit) {
     this.pendingDebit = pendingDebit;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("confirmedDebit")
+  public BigDecimal getConfirmedDebit() {
+    return confirmedDebit;
+  }
+  public void setConfirmedDebit(BigDecimal confirmedDebit) {
+    this.confirmedDebit = confirmedDebit;
   }
 
   
@@ -381,6 +397,18 @@ public class Margin   {
   /**
    **/
   @ApiModelProperty(value = "")
+  @JsonProperty("syntheticMargin")
+  public BigDecimal getSyntheticMargin() {
+    return syntheticMargin;
+  }
+  public void setSyntheticMargin(BigDecimal syntheticMargin) {
+    this.syntheticMargin = syntheticMargin;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
   @JsonProperty("walletBalance")
   public BigDecimal getWalletBalance() {
     return walletBalance;
@@ -498,6 +526,30 @@ public class Margin   {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("grossLastValue")
+  public BigDecimal getGrossLastValue() {
+    return grossLastValue;
+  }
+  public void setGrossLastValue(BigDecimal grossLastValue) {
+    this.grossLastValue = grossLastValue;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("commission")
+  public Double getCommission() {
+    return commission;
+  }
+  public void setCommission(Double commission) {
+    this.commission = commission;
+  }
+
+  
 
   @Override
   public boolean equals(Object o) {
@@ -517,6 +569,7 @@ public class Margin   {
         Objects.equals(amount, margin.amount) &&
         Objects.equals(pendingCredit, margin.pendingCredit) &&
         Objects.equals(pendingDebit, margin.pendingDebit) &&
+        Objects.equals(confirmedDebit, margin.confirmedDebit) &&
         Objects.equals(prevRealisedPnl, margin.prevRealisedPnl) &&
         Objects.equals(prevUnrealisedPnl, margin.prevUnrealisedPnl) &&
         Objects.equals(grossComm, margin.grossComm) &&
@@ -535,6 +588,7 @@ public class Margin   {
         Objects.equals(unrealisedPnl, margin.unrealisedPnl) &&
         Objects.equals(indicativeTax, margin.indicativeTax) &&
         Objects.equals(unrealisedProfit, margin.unrealisedProfit) &&
+        Objects.equals(syntheticMargin, margin.syntheticMargin) &&
         Objects.equals(walletBalance, margin.walletBalance) &&
         Objects.equals(marginBalance, margin.marginBalance) &&
         Objects.equals(marginBalancePcnt, margin.marginBalancePcnt) &&
@@ -544,12 +598,14 @@ public class Margin   {
         Objects.equals(excessMarginPcnt, margin.excessMarginPcnt) &&
         Objects.equals(availableMargin, margin.availableMargin) &&
         Objects.equals(withdrawableMargin, margin.withdrawableMargin) &&
-        Objects.equals(timestamp, margin.timestamp);
+        Objects.equals(timestamp, margin.timestamp) &&
+        Objects.equals(grossLastValue, margin.grossLastValue) &&
+        Objects.equals(commission, margin.commission);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(account, currency, riskLimit, prevState, state, action, amount, pendingCredit, pendingDebit, prevRealisedPnl, prevUnrealisedPnl, grossComm, grossOpenCost, grossOpenPremium, grossExecCost, grossMarkValue, riskValue, taxableMargin, initMargin, maintMargin, sessionMargin, targetExcessMargin, varMargin, realisedPnl, unrealisedPnl, indicativeTax, unrealisedProfit, walletBalance, marginBalance, marginBalancePcnt, marginLeverage, marginUsedPcnt, excessMargin, excessMarginPcnt, availableMargin, withdrawableMargin, timestamp);
+    return Objects.hash(account, currency, riskLimit, prevState, state, action, amount, pendingCredit, pendingDebit, confirmedDebit, prevRealisedPnl, prevUnrealisedPnl, grossComm, grossOpenCost, grossOpenPremium, grossExecCost, grossMarkValue, riskValue, taxableMargin, initMargin, maintMargin, sessionMargin, targetExcessMargin, varMargin, realisedPnl, unrealisedPnl, indicativeTax, unrealisedProfit, syntheticMargin, walletBalance, marginBalance, marginBalancePcnt, marginLeverage, marginUsedPcnt, excessMargin, excessMarginPcnt, availableMargin, withdrawableMargin, timestamp, grossLastValue, commission);
   }
 
   @Override
@@ -566,6 +622,7 @@ public class Margin   {
     sb.append("    amount: ").append(StringUtil.toIndentedString(amount)).append("\n");
     sb.append("    pendingCredit: ").append(StringUtil.toIndentedString(pendingCredit)).append("\n");
     sb.append("    pendingDebit: ").append(StringUtil.toIndentedString(pendingDebit)).append("\n");
+    sb.append("    confirmedDebit: ").append(StringUtil.toIndentedString(confirmedDebit)).append("\n");
     sb.append("    prevRealisedPnl: ").append(StringUtil.toIndentedString(prevRealisedPnl)).append("\n");
     sb.append("    prevUnrealisedPnl: ").append(StringUtil.toIndentedString(prevUnrealisedPnl)).append("\n");
     sb.append("    grossComm: ").append(StringUtil.toIndentedString(grossComm)).append("\n");
@@ -584,6 +641,7 @@ public class Margin   {
     sb.append("    unrealisedPnl: ").append(StringUtil.toIndentedString(unrealisedPnl)).append("\n");
     sb.append("    indicativeTax: ").append(StringUtil.toIndentedString(indicativeTax)).append("\n");
     sb.append("    unrealisedProfit: ").append(StringUtil.toIndentedString(unrealisedProfit)).append("\n");
+    sb.append("    syntheticMargin: ").append(StringUtil.toIndentedString(syntheticMargin)).append("\n");
     sb.append("    walletBalance: ").append(StringUtil.toIndentedString(walletBalance)).append("\n");
     sb.append("    marginBalance: ").append(StringUtil.toIndentedString(marginBalance)).append("\n");
     sb.append("    marginBalancePcnt: ").append(StringUtil.toIndentedString(marginBalancePcnt)).append("\n");
@@ -594,6 +652,8 @@ public class Margin   {
     sb.append("    availableMargin: ").append(StringUtil.toIndentedString(availableMargin)).append("\n");
     sb.append("    withdrawableMargin: ").append(StringUtil.toIndentedString(withdrawableMargin)).append("\n");
     sb.append("    timestamp: ").append(StringUtil.toIndentedString(timestamp)).append("\n");
+    sb.append("    grossLastValue: ").append(StringUtil.toIndentedString(grossLastValue)).append("\n");
+    sb.append("    commission: ").append(StringUtil.toIndentedString(commission)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -4,8 +4,8 @@ require 'json'
 MyApp.add_route('GET', '/schema', {
   "resourcePath" => "/Schema",
   "summary" => "Get model schemata for data objects returned by this API.",
-  "nickname" => "schema/find", 
-  "responseClass" => "inline_response_200", 
+  "nickname" => "schema/get", 
+  "responseClass" => "inline_response_200_1", 
   "endpoint" => "/schema", 
   "notes" => "",
   "parameters" => [
@@ -35,7 +35,7 @@ MyApp.add_route('GET', '/schema/websocketHelp', {
   "resourcePath" => "/Schema",
   "summary" => "Returns help text & subject list for websocket usage.",
   "nickname" => "schema/websocket_help", 
-  "responseClass" => "inline_response_200", 
+  "responseClass" => "inline_response_200_1", 
   "endpoint" => "/schema/websocketHelp", 
   "notes" => "",
   "parameters" => [

@@ -13,10 +13,11 @@ import com.fasterxml.jackson.annotation.*;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-30T13:35:44.556-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-04T18:25:18.235-05:00")
 public class User   {
   
   private BigDecimal id = null;
+  private BigDecimal ownerId = null;
   private String firstname = null;
   private String lastname = null;
   private String status = null;
@@ -27,7 +28,6 @@ public class User   {
   private Date created = null;
   private Date lastUpdated = null;
   private UserPreferences preferences = null;
-  private String role = "user";
   private String tFAEnabled = null;
   private String affiliateID = null;
   private String pgpPubKey = null;
@@ -44,6 +44,18 @@ public class User   {
   }
   public void setId(BigDecimal id) {
     this.id = id;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("ownerId")
+  public BigDecimal getOwnerId() {
+    return ownerId;
+  }
+  public void setOwnerId(BigDecimal ownerId) {
+    this.ownerId = ownerId;
   }
 
   
@@ -170,18 +182,6 @@ public class User   {
   /**
    **/
   @ApiModelProperty(value = "")
-  @JsonProperty("role")
-  public String getRole() {
-    return role;
-  }
-  public void setRole(String role) {
-    this.role = role;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(value = "")
   @JsonProperty("TFAEnabled")
   public String getTFAEnabled() {
     return tFAEnabled;
@@ -250,6 +250,7 @@ public class User   {
     }
     User user = (User) o;
     return Objects.equals(id, user.id) &&
+        Objects.equals(ownerId, user.ownerId) &&
         Objects.equals(firstname, user.firstname) &&
         Objects.equals(lastname, user.lastname) &&
         Objects.equals(status, user.status) &&
@@ -260,7 +261,6 @@ public class User   {
         Objects.equals(created, user.created) &&
         Objects.equals(lastUpdated, user.lastUpdated) &&
         Objects.equals(preferences, user.preferences) &&
-        Objects.equals(role, user.role) &&
         Objects.equals(tFAEnabled, user.tFAEnabled) &&
         Objects.equals(affiliateID, user.affiliateID) &&
         Objects.equals(pgpPubKey, user.pgpPubKey) &&
@@ -270,7 +270,7 @@ public class User   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, lastname, status, username, email, phone, countryCode, created, lastUpdated, preferences, role, tFAEnabled, affiliateID, pgpPubKey, country, disabled);
+    return Objects.hash(id, ownerId, firstname, lastname, status, username, email, phone, countryCode, created, lastUpdated, preferences, tFAEnabled, affiliateID, pgpPubKey, country, disabled);
   }
 
   @Override
@@ -279,6 +279,7 @@ public class User   {
     sb.append("class User {\n");
     
     sb.append("    id: ").append(StringUtil.toIndentedString(id)).append("\n");
+    sb.append("    ownerId: ").append(StringUtil.toIndentedString(ownerId)).append("\n");
     sb.append("    firstname: ").append(StringUtil.toIndentedString(firstname)).append("\n");
     sb.append("    lastname: ").append(StringUtil.toIndentedString(lastname)).append("\n");
     sb.append("    status: ").append(StringUtil.toIndentedString(status)).append("\n");
@@ -289,7 +290,6 @@ public class User   {
     sb.append("    created: ").append(StringUtil.toIndentedString(created)).append("\n");
     sb.append("    lastUpdated: ").append(StringUtil.toIndentedString(lastUpdated)).append("\n");
     sb.append("    preferences: ").append(StringUtil.toIndentedString(preferences)).append("\n");
-    sb.append("    role: ").append(StringUtil.toIndentedString(role)).append("\n");
     sb.append("    tFAEnabled: ").append(StringUtil.toIndentedString(tFAEnabled)).append("\n");
     sb.append("    affiliateID: ").append(StringUtil.toIndentedString(affiliateID)).append("\n");
     sb.append("    pgpPubKey: ").append(StringUtil.toIndentedString(pgpPubKey)).append("\n");

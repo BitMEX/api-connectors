@@ -30,12 +30,12 @@ class ApiKeyApi (implicit val swagger: Swagger) extends ScalatraServlet
   }
   
 
-  val apiKey.getKeysOperation = (apiOperation[List[ApiKey]]("apiKey.getKeys")
+  val apiKey.getOperation = (apiOperation[List[ApiKey]]("apiKey.get")
       summary "Get your API Keys."
       parameters(queryParam[Boolean]("reverse").description("").optional.defaultValue(false))
   )
 
-  get("/apiKey",operation(apiKey.getKeysOperation)) {
+  get("/apiKey",operation(apiKey.getOperation)) {
     
     
     
@@ -51,7 +51,7 @@ class ApiKeyApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val apiKey.createKeyOperation = (apiOperation[ApiKey]("apiKey.createKey")
+  val apiKey.newOperation = (apiOperation[ApiKey]("apiKey.new")
       summary "Create a new API Key."
       parameters(formParam[String]("name").description("").optional,
         formParam[String]("cidr").description("").optional,
@@ -60,7 +60,7 @@ class ApiKeyApi (implicit val swagger: Swagger) extends ScalatraServlet
         formParam[String]("token").description("").optional)
   )
 
-  post("/apiKey",operation(apiKey.createKeyOperation)) {
+  post("/apiKey",operation(apiKey.newOperation)) {
     
     
     

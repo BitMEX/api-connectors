@@ -27,7 +27,7 @@ import javax.ws.rs.*;
 @Consumes({ "application/json", "application/x-www-form-urlencoded" })
 @Produces({ "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" })
 @io.swagger.annotations.Api(description = "the apiKey API")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-30T13:35:57.938-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2016-07-04T18:25:32.992-05:00")
 public class ApiKeyApi  {
    private final ApiKeyApiService delegate = ApiKeyApiServiceFactory.getApiKeyApi();
 
@@ -45,15 +45,15 @@ public class ApiKeyApi  {
         
         @io.swagger.annotations.ApiResponse(code = 404, message = "Not Found", response = ApiKey.class, responseContainer = "List") })
 
-    public Response apiKeyGetKeys(@ApiParam(value = "If true, will sort results newest first.", defaultValue="false") @QueryParam("reverse") Boolean reverse)
+    public Response apiKeyGet(@ApiParam(value = "If true, will sort results newest first.", defaultValue="false") @QueryParam("reverse") Boolean reverse)
     throws NotFoundException {
-        return delegate.apiKeyGetKeys(reverse);
+        return delegate.apiKeyGet(reverse);
     }
     @POST
     
     @Consumes({ "application/json", "application/x-www-form-urlencoded" })
     @Produces({ "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" })
-    @io.swagger.annotations.ApiOperation(value = "Create a new API Key.", notes = "API Keys can also be created via <a href=\"https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py\">this Python script</a>. See the <a href=\"/app/apiKeys\">API Key Documentation</a> for more information on capabilities.", response = ApiKey.class, tags={ "ApiKey",  })
+    @io.swagger.annotations.ApiOperation(value = "Create a new API Key.", notes = "API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.", response = ApiKey.class, tags={ "ApiKey",  })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Request was successful", response = ApiKey.class),
         
@@ -63,13 +63,13 @@ public class ApiKeyApi  {
         
         @io.swagger.annotations.ApiResponse(code = 404, message = "Not Found", response = ApiKey.class) })
 
-    public Response apiKeyCreateKey(@ApiParam(value = "Key name. This name is for reference only.")@FormParam("name")  String name,
+    public Response apiKeyNew(@ApiParam(value = "Key name. This name is for reference only.")@FormParam("name")  String name,
     @ApiParam(value = "CIDR block to restrict this key to. To restrict to a single address, append \"/32\", e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. <a href=\"http://software77.net/cidr-101.html\">More on CIDR blocks</a>")@FormParam("cidr")  String cidr,
     @ApiParam(value = "Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\"order\", \"withdraw\"].")@FormParam("permissions")  String permissions,
     @ApiParam(value = "Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.", defaultValue="false")@FormParam("enabled")  Boolean enabled,
     @ApiParam(value = "OTP Token (YubiKey, Google Authenticator)")@FormParam("token")  String token)
     throws NotFoundException {
-        return delegate.apiKeyCreateKey(name,cidr,permissions,enabled,token);
+        return delegate.apiKeyNew(name,cidr,permissions,enabled,token);
     }
     @DELETE
     

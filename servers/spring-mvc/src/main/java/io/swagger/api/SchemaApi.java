@@ -2,7 +2,7 @@ package io.swagger.api;
 
 import io.swagger.model.*;
 
-import io.swagger.model.InlineResponse200;
+import io.swagger.model.InlineResponse2001;
 import io.swagger.model.Error;
 
 import io.swagger.annotations.Api;
@@ -32,11 +32,11 @@ import static org.springframework.http.MediaType.*;
 @Controller
 @RequestMapping(value = "/schema", produces = {APPLICATION_JSON_VALUE})
 @Api(value = "/schema", description = "the schema API")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2015-11-30T13:36:04.774-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2016-07-04T18:25:39.823-05:00")
 public class SchemaApi {
   
 
-  @ApiOperation(value = "Get model schemata for data objects returned by this API.", notes = "", response = InlineResponse200.class)
+  @ApiOperation(value = "Get model schemata for data objects returned by this API.", notes = "", response = InlineResponse2001.class)
   @ApiResponses(value = { 
     @ApiResponse(code = 200, message = "Request was successful"),
     @ApiResponse(code = 400, message = "Parameter Error"),
@@ -46,18 +46,18 @@ public class SchemaApi {
     produces = { "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" }, 
     consumes = { "application/json", "application/x-www-form-urlencoded" },
     method = RequestMethod.GET)
-  public ResponseEntity<InlineResponse200> schemaFind(@ApiParam(value = "Optional model filter. If omitted, will return all models.") @RequestParam(value = "model", required = false) String model
+  public ResponseEntity<InlineResponse2001> schemaGet(@ApiParam(value = "Optional model filter. If omitted, will return all models.") @RequestParam(value = "model", required = false) String model
 
 
 )
       throws NotFoundException {
       // do some magic!
-      return new ResponseEntity<InlineResponse200>(HttpStatus.OK);
+      return new ResponseEntity<InlineResponse2001>(HttpStatus.OK);
   }
 
   
 
-  @ApiOperation(value = "Returns help text & subject list for websocket usage.", notes = "", response = InlineResponse200.class)
+  @ApiOperation(value = "Returns help text & subject list for websocket usage.", notes = "", response = InlineResponse2001.class)
   @ApiResponses(value = { 
     @ApiResponse(code = 200, message = "Request was successful"),
     @ApiResponse(code = 400, message = "Parameter Error"),
@@ -67,10 +67,10 @@ public class SchemaApi {
     produces = { "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" }, 
     consumes = { "application/json", "application/x-www-form-urlencoded" },
     method = RequestMethod.GET)
-  public ResponseEntity<InlineResponse200> schemaWebsocketHelp()
+  public ResponseEntity<InlineResponse2001> schemaWebsocketHelp()
       throws NotFoundException {
       // do some magic!
-      return new ResponseEntity<InlineResponse200>(HttpStatus.OK);
+      return new ResponseEntity<InlineResponse2001>(HttpStatus.OK);
   }
 
   

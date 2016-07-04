@@ -34,7 +34,7 @@ import static org.springframework.http.MediaType.*;
 @Controller
 @RequestMapping(value = "/settlement", produces = {APPLICATION_JSON_VALUE})
 @Api(value = "/settlement", description = "the settlement API")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2015-11-30T13:36:04.774-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2016-07-04T18:25:39.823-05:00")
 public class SettlementApi {
   
 
@@ -48,11 +48,11 @@ public class SettlementApi {
     produces = { "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" }, 
     consumes = { "application/json", "application/x-www-form-urlencoded" },
     method = RequestMethod.GET)
-  public ResponseEntity<List<Settlement>> settlementGet(@ApiParam(value = "Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly', 'quarterly', and 'biquarterly'.") @RequestParam(value = "symbol", required = false) String symbol
+  public ResponseEntity<List<Settlement>> settlementGet(@ApiParam(value = "Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.") @RequestParam(value = "symbol", required = false) String symbol
 
 
 ,
-    @ApiParam(value = "Generic table filter. Send JSON key/value pairs, such as {\"key\": \"value\"}. You can key on individual fields, and do more advanced querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\">http://localhost:2001/app/restAPI#timestamp-filters</a> for more details.") @RequestParam(value = "filter", required = false) String filter
+    @ApiParam(value = "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.") @RequestParam(value = "filter", required = false) String filter
 
 
 ,

@@ -1,7 +1,7 @@
 module SwaggerClient
   # 
   class Execution < BaseObject
-    attr_accessor :exec_id, :order_id, :cl_ord_id, :account, :symbol, :side, :last_qty, :last_px, :underlying_last_px, :last_mkt, :last_liquidity_ind, :simple_order_qty, :order_qty, :price, :min_qty, :stop_px, :currency, :settl_currency, :exec_type, :ord_type, :time_in_force, :ex_destination, :ord_status, :working_indicator, :ord_rej_reason, :simple_leaves_qty, :leaves_qty, :simple_cum_qty, :cum_qty, :avg_px, :commission, :comm_type, :trade_publish_indicator, :multi_leg_reporting_type, :text, :trd_match_id, :exec_cost, :exec_comm, :home_notional, :foreign_notional, :transact_time, :timestamp
+    attr_accessor :exec_id, :order_id, :cl_ord_id, :cl_ord_link_id, :account, :symbol, :side, :last_qty, :last_px, :underlying_last_px, :last_mkt, :last_liquidity_ind, :simple_order_qty, :order_qty, :price, :display_qty, :stop_px, :peg_offset_value, :peg_price_type, :currency, :settl_currency, :exec_type, :ord_type, :time_in_force, :exec_inst, :contingency_type, :ex_destination, :ord_status, :triggered, :working_indicator, :ord_rej_reason, :simple_leaves_qty, :leaves_qty, :simple_cum_qty, :cum_qty, :avg_px, :commission, :trade_publish_indicator, :multi_leg_reporting_type, :text, :trd_match_id, :exec_cost, :exec_comm, :home_notional, :foreign_notional, :transact_time, :timestamp
     # attribute mapping from ruby-style variable name to JSON key
     def self.attribute_map
       {
@@ -14,6 +14,9 @@ module SwaggerClient
         
         # 
         :'cl_ord_id' => :'clOrdID',
+        
+        # 
+        :'cl_ord_link_id' => :'clOrdLinkID',
         
         # 
         :'account' => :'account',
@@ -49,10 +52,16 @@ module SwaggerClient
         :'price' => :'price',
         
         # 
-        :'min_qty' => :'minQty',
+        :'display_qty' => :'displayQty',
         
         # 
         :'stop_px' => :'stopPx',
+        
+        # 
+        :'peg_offset_value' => :'pegOffsetValue',
+        
+        # 
+        :'peg_price_type' => :'pegPriceType',
         
         # 
         :'currency' => :'currency',
@@ -70,10 +79,19 @@ module SwaggerClient
         :'time_in_force' => :'timeInForce',
         
         # 
+        :'exec_inst' => :'execInst',
+        
+        # 
+        :'contingency_type' => :'contingencyType',
+        
+        # 
         :'ex_destination' => :'exDestination',
         
         # 
         :'ord_status' => :'ordStatus',
+        
+        # 
+        :'triggered' => :'triggered',
         
         # 
         :'working_indicator' => :'workingIndicator',
@@ -98,9 +116,6 @@ module SwaggerClient
         
         # 
         :'commission' => :'commission',
-        
-        # 
-        :'comm_type' => :'commType',
         
         # 
         :'trade_publish_indicator' => :'tradePublishIndicator',
@@ -141,6 +156,7 @@ module SwaggerClient
         :'exec_id' => :'String',
         :'order_id' => :'String',
         :'cl_ord_id' => :'String',
+        :'cl_ord_link_id' => :'String',
         :'account' => :'Float',
         :'symbol' => :'String',
         :'side' => :'String',
@@ -152,15 +168,20 @@ module SwaggerClient
         :'simple_order_qty' => :'Float',
         :'order_qty' => :'Float',
         :'price' => :'Float',
-        :'min_qty' => :'Float',
+        :'display_qty' => :'Float',
         :'stop_px' => :'Float',
+        :'peg_offset_value' => :'Float',
+        :'peg_price_type' => :'String',
         :'currency' => :'String',
         :'settl_currency' => :'String',
         :'exec_type' => :'String',
         :'ord_type' => :'String',
         :'time_in_force' => :'String',
+        :'exec_inst' => :'String',
+        :'contingency_type' => :'String',
         :'ex_destination' => :'String',
         :'ord_status' => :'String',
+        :'triggered' => :'String',
         :'working_indicator' => :'BOOLEAN',
         :'ord_rej_reason' => :'String',
         :'simple_leaves_qty' => :'Float',
@@ -169,7 +190,6 @@ module SwaggerClient
         :'cum_qty' => :'Float',
         :'avg_px' => :'Float',
         :'commission' => :'Float',
-        :'comm_type' => :'String',
         :'trade_publish_indicator' => :'String',
         :'multi_leg_reporting_type' => :'String',
         :'text' => :'String',
@@ -201,6 +221,10 @@ module SwaggerClient
       
       if attributes[:'clOrdID']
         self.cl_ord_id = attributes[:'clOrdID']
+      end
+      
+      if attributes[:'clOrdLinkID']
+        self.cl_ord_link_id = attributes[:'clOrdLinkID']
       end
       
       if attributes[:'account']
@@ -247,12 +271,20 @@ module SwaggerClient
         self.price = attributes[:'price']
       end
       
-      if attributes[:'minQty']
-        self.min_qty = attributes[:'minQty']
+      if attributes[:'displayQty']
+        self.display_qty = attributes[:'displayQty']
       end
       
       if attributes[:'stopPx']
         self.stop_px = attributes[:'stopPx']
+      end
+      
+      if attributes[:'pegOffsetValue']
+        self.peg_offset_value = attributes[:'pegOffsetValue']
+      end
+      
+      if attributes[:'pegPriceType']
+        self.peg_price_type = attributes[:'pegPriceType']
       end
       
       if attributes[:'currency']
@@ -275,12 +307,24 @@ module SwaggerClient
         self.time_in_force = attributes[:'timeInForce']
       end
       
+      if attributes[:'execInst']
+        self.exec_inst = attributes[:'execInst']
+      end
+      
+      if attributes[:'contingencyType']
+        self.contingency_type = attributes[:'contingencyType']
+      end
+      
       if attributes[:'exDestination']
         self.ex_destination = attributes[:'exDestination']
       end
       
       if attributes[:'ordStatus']
         self.ord_status = attributes[:'ordStatus']
+      end
+      
+      if attributes[:'triggered']
+        self.triggered = attributes[:'triggered']
       end
       
       if attributes[:'workingIndicator']
@@ -313,10 +357,6 @@ module SwaggerClient
       
       if attributes[:'commission']
         self.commission = attributes[:'commission']
-      end
-      
-      if attributes[:'commType']
-        self.comm_type = attributes[:'commType']
       end
       
       if attributes[:'tradePublishIndicator']
@@ -367,6 +407,7 @@ module SwaggerClient
           exec_id == o.exec_id &&
           order_id == o.order_id &&
           cl_ord_id == o.cl_ord_id &&
+          cl_ord_link_id == o.cl_ord_link_id &&
           account == o.account &&
           symbol == o.symbol &&
           side == o.side &&
@@ -378,15 +419,20 @@ module SwaggerClient
           simple_order_qty == o.simple_order_qty &&
           order_qty == o.order_qty &&
           price == o.price &&
-          min_qty == o.min_qty &&
+          display_qty == o.display_qty &&
           stop_px == o.stop_px &&
+          peg_offset_value == o.peg_offset_value &&
+          peg_price_type == o.peg_price_type &&
           currency == o.currency &&
           settl_currency == o.settl_currency &&
           exec_type == o.exec_type &&
           ord_type == o.ord_type &&
           time_in_force == o.time_in_force &&
+          exec_inst == o.exec_inst &&
+          contingency_type == o.contingency_type &&
           ex_destination == o.ex_destination &&
           ord_status == o.ord_status &&
+          triggered == o.triggered &&
           working_indicator == o.working_indicator &&
           ord_rej_reason == o.ord_rej_reason &&
           simple_leaves_qty == o.simple_leaves_qty &&
@@ -395,7 +441,6 @@ module SwaggerClient
           cum_qty == o.cum_qty &&
           avg_px == o.avg_px &&
           commission == o.commission &&
-          comm_type == o.comm_type &&
           trade_publish_indicator == o.trade_publish_indicator &&
           multi_leg_reporting_type == o.multi_leg_reporting_type &&
           text == o.text &&
@@ -413,7 +458,7 @@ module SwaggerClient
     end
 
     def hash
-      [exec_id, order_id, cl_ord_id, account, symbol, side, last_qty, last_px, underlying_last_px, last_mkt, last_liquidity_ind, simple_order_qty, order_qty, price, min_qty, stop_px, currency, settl_currency, exec_type, ord_type, time_in_force, ex_destination, ord_status, working_indicator, ord_rej_reason, simple_leaves_qty, leaves_qty, simple_cum_qty, cum_qty, avg_px, commission, comm_type, trade_publish_indicator, multi_leg_reporting_type, text, trd_match_id, exec_cost, exec_comm, home_notional, foreign_notional, transact_time, timestamp].hash
+      [exec_id, order_id, cl_ord_id, cl_ord_link_id, account, symbol, side, last_qty, last_px, underlying_last_px, last_mkt, last_liquidity_ind, simple_order_qty, order_qty, price, display_qty, stop_px, peg_offset_value, peg_price_type, currency, settl_currency, exec_type, ord_type, time_in_force, exec_inst, contingency_type, ex_destination, ord_status, triggered, working_indicator, ord_rej_reason, simple_leaves_qty, leaves_qty, simple_cum_qty, cum_qty, avg_px, commission, trade_publish_indicator, multi_leg_reporting_type, text, trd_match_id, exec_cost, exec_comm, home_notional, foreign_notional, transact_time, timestamp].hash
     end
   end
 end

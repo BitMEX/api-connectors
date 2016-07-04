@@ -45,7 +45,7 @@ class ApiKeyApi(object):
                 config.api_client = ApiClient()
             self.api_client = config.api_client
 
-    def api_key_get_keys(self, **kwargs):
+    def api_key_get(self, **kwargs):
         """
         Get your API Keys.
         
@@ -56,7 +56,7 @@ class ApiKeyApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.api_key_get_keys(callback=callback_function)
+        >>> thread = api.api_key_get(callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
@@ -74,7 +74,7 @@ class ApiKeyApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method api_key_get_keys" % key
+                    " to method api_key_get" % key
                 )
             params[key] = val
         del params['kwargs']
@@ -121,10 +121,10 @@ class ApiKeyApi(object):
                                             callback=params.get('callback'))
         return response
 
-    def api_key_create_key(self, **kwargs):
+    def api_key_new(self, **kwargs):
         """
         Create a new API Key.
-        API Keys can also be created via <a href=\"https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py\">this Python script</a>. See the <a href=\"/app/apiKeys\">API Key Documentation</a> for more information on capabilities.
+        API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -132,7 +132,7 @@ class ApiKeyApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.api_key_create_key(callback=callback_function)
+        >>> thread = api.api_key_new(callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
@@ -154,7 +154,7 @@ class ApiKeyApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method api_key_create_key" % key
+                    " to method api_key_new" % key
                 )
             params[key] = val
         del params['kwargs']

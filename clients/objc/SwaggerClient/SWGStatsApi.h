@@ -29,7 +29,7 @@
 /// 
 ///
 /// @return NSArray<SWGStats>*
--(NSNumber*) statsFindWithCompletionBlock :
+-(NSNumber*) statsGetWithCompletionBlock :
     (void (^)(NSArray<SWGStats>* output, NSError* error))completionBlock;
     
 

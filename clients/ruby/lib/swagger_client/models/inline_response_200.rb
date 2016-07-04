@@ -1,10 +1,13 @@
 module SwaggerClient
   # 
   class InlineResponse200 < BaseObject
-    attr_accessor 
+    attr_accessor :success
     # attribute mapping from ruby-style variable name to JSON key
     def self.attribute_map
       {
+        
+        # 
+        :'success' => :'success'
         
       }
     end
@@ -12,6 +15,7 @@ module SwaggerClient
     # attribute type
     def self.swagger_types
       {
+        :'success' => :'BOOLEAN'
         
       }
     end
@@ -23,11 +27,16 @@ module SwaggerClient
       attributes = attributes.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
 
       
+      if attributes[:'success']
+        self.success = attributes[:'success']
+      end
+      
     end
 
     def ==(o)
       return true if self.equal?(o)
-      self.class == o.class
+      self.class == o.class &&
+          success == o.success
     end
 
     def eql?(o)
@@ -35,7 +44,7 @@ module SwaggerClient
     end
 
     def hash
-      [].hash
+      [success].hash
     end
   end
 end

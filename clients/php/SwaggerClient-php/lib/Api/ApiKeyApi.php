@@ -92,7 +92,7 @@ class ApiKeyApi
   
     
     /**
-     * apiKeyGetKeys
+     * apiKeyGet
      *
      * Get your API Keys.
      *
@@ -100,7 +100,7 @@ class ApiKeyApi
      * @return \Swagger\Client\Model\ApiKey[]
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function apiKeyGetKeys($reverse=null)
+    public function apiKeyGet($reverse=null)
     {
         
   
@@ -177,7 +177,7 @@ class ApiKeyApi
     }
     
     /**
-     * apiKeyCreateKey
+     * apiKeyNew
      *
      * Create a new API Key.
      *
@@ -189,7 +189,7 @@ class ApiKeyApi
      * @return \Swagger\Client\Model\ApiKey
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function apiKeyCreateKey($name=null, $cidr=null, $permissions=null, $enabled=null, $token=null)
+    public function apiKeyNew($name=null, $cidr=null, $permissions=null, $enabled=null, $token=null)
     {
         
   

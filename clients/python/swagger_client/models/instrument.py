@@ -44,18 +44,27 @@ class Instrument(object):
             'listing': 'date',
             'front': 'date',
             'expiry': 'date',
+            'settle': 'date',
             'relist_interval': 'date',
             'inverse_leg': 'str',
             'sell_leg': 'str',
             'buy_leg': 'str',
+            'position_currency': 'str',
             'underlying': 'str',
             'quote_currency': 'str',
             'underlying_symbol': 'str',
             'reference': 'str',
             'reference_symbol': 'str',
+            'calc_interval': 'date',
+            'publish_interval': 'date',
+            'publish_time': 'date',
+            'max_order_qty': 'float',
+            'max_price': 'float',
+            'lot_size': 'float',
             'tick_size': 'float',
             'multiplier': 'float',
             'settl_currency': 'str',
+            'underlying_to_position_multiplier': 'float',
             'underlying_to_settle_multiplier': 'float',
             'quote_to_settle_multiplier': 'float',
             'is_quanto': 'bool',
@@ -67,10 +76,17 @@ class Instrument(object):
             'taxed': 'bool',
             'maker_fee': 'float',
             'taker_fee': 'float',
+            'settlement_fee': 'float',
             'insurance_fee': 'float',
-            'hedger_maker_fee': 'float',
-            'hedger_taker_fee': 'float',
-            'hedger_insurance_fee': 'float',
+            'funding_base_symbol': 'str',
+            'funding_quote_symbol': 'str',
+            'funding_premium_symbol': 'str',
+            'funding_timestamp': 'date',
+            'funding_interval': 'date',
+            'funding_rate': 'float',
+            'indicative_funding_rate': 'float',
+            'rebalance_timestamp': 'date',
+            'rebalance_interval': 'date',
             'opening_timestamp': 'date',
             'closing_timestamp': 'date',
             'session_interval': 'date',
@@ -124,18 +140,27 @@ class Instrument(object):
             'listing': 'listing',
             'front': 'front',
             'expiry': 'expiry',
+            'settle': 'settle',
             'relist_interval': 'relistInterval',
             'inverse_leg': 'inverseLeg',
             'sell_leg': 'sellLeg',
             'buy_leg': 'buyLeg',
+            'position_currency': 'positionCurrency',
             'underlying': 'underlying',
             'quote_currency': 'quoteCurrency',
             'underlying_symbol': 'underlyingSymbol',
             'reference': 'reference',
             'reference_symbol': 'referenceSymbol',
+            'calc_interval': 'calcInterval',
+            'publish_interval': 'publishInterval',
+            'publish_time': 'publishTime',
+            'max_order_qty': 'maxOrderQty',
+            'max_price': 'maxPrice',
+            'lot_size': 'lotSize',
             'tick_size': 'tickSize',
             'multiplier': 'multiplier',
             'settl_currency': 'settlCurrency',
+            'underlying_to_position_multiplier': 'underlyingToPositionMultiplier',
             'underlying_to_settle_multiplier': 'underlyingToSettleMultiplier',
             'quote_to_settle_multiplier': 'quoteToSettleMultiplier',
             'is_quanto': 'isQuanto',
@@ -147,10 +172,17 @@ class Instrument(object):
             'taxed': 'taxed',
             'maker_fee': 'makerFee',
             'taker_fee': 'takerFee',
+            'settlement_fee': 'settlementFee',
             'insurance_fee': 'insuranceFee',
-            'hedger_maker_fee': 'hedgerMakerFee',
-            'hedger_taker_fee': 'hedgerTakerFee',
-            'hedger_insurance_fee': 'hedgerInsuranceFee',
+            'funding_base_symbol': 'fundingBaseSymbol',
+            'funding_quote_symbol': 'fundingQuoteSymbol',
+            'funding_premium_symbol': 'fundingPremiumSymbol',
+            'funding_timestamp': 'fundingTimestamp',
+            'funding_interval': 'fundingInterval',
+            'funding_rate': 'fundingRate',
+            'indicative_funding_rate': 'indicativeFundingRate',
+            'rebalance_timestamp': 'rebalanceTimestamp',
+            'rebalance_interval': 'rebalanceInterval',
             'opening_timestamp': 'openingTimestamp',
             'closing_timestamp': 'closingTimestamp',
             'session_interval': 'sessionInterval',
@@ -203,18 +235,27 @@ class Instrument(object):
         self._listing = None
         self._front = None
         self._expiry = None
+        self._settle = None
         self._relist_interval = None
         self._inverse_leg = None
         self._sell_leg = None
         self._buy_leg = None
+        self._position_currency = None
         self._underlying = None
         self._quote_currency = None
         self._underlying_symbol = None
         self._reference = None
         self._reference_symbol = None
+        self._calc_interval = None
+        self._publish_interval = None
+        self._publish_time = None
+        self._max_order_qty = None
+        self._max_price = None
+        self._lot_size = None
         self._tick_size = None
         self._multiplier = None
         self._settl_currency = None
+        self._underlying_to_position_multiplier = None
         self._underlying_to_settle_multiplier = None
         self._quote_to_settle_multiplier = None
         self._is_quanto = None
@@ -226,10 +267,17 @@ class Instrument(object):
         self._taxed = None
         self._maker_fee = None
         self._taker_fee = None
+        self._settlement_fee = None
         self._insurance_fee = None
-        self._hedger_maker_fee = None
-        self._hedger_taker_fee = None
-        self._hedger_insurance_fee = None
+        self._funding_base_symbol = None
+        self._funding_quote_symbol = None
+        self._funding_premium_symbol = None
+        self._funding_timestamp = None
+        self._funding_interval = None
+        self._funding_rate = None
+        self._indicative_funding_rate = None
+        self._rebalance_timestamp = None
+        self._rebalance_interval = None
         self._opening_timestamp = None
         self._closing_timestamp = None
         self._session_interval = None
@@ -429,6 +477,28 @@ class Instrument(object):
         self._expiry = expiry
 
     @property
+    def settle(self):
+        """
+        Gets the settle of this Instrument.
+
+
+        :return: The settle of this Instrument.
+        :rtype: date
+        """
+        return self._settle
+
+    @settle.setter
+    def settle(self, settle):
+        """
+        Sets the settle of this Instrument.
+
+
+        :param settle: The settle of this Instrument.
+        :type: date
+        """
+        self._settle = settle
+
+    @property
     def relist_interval(self):
         """
         Gets the relist_interval of this Instrument.
@@ -515,6 +585,28 @@ class Instrument(object):
         :type: str
         """
         self._buy_leg = buy_leg
+
+    @property
+    def position_currency(self):
+        """
+        Gets the position_currency of this Instrument.
+
+
+        :return: The position_currency of this Instrument.
+        :rtype: str
+        """
+        return self._position_currency
+
+    @position_currency.setter
+    def position_currency(self, position_currency):
+        """
+        Sets the position_currency of this Instrument.
+
+
+        :param position_currency: The position_currency of this Instrument.
+        :type: str
+        """
+        self._position_currency = position_currency
 
     @property
     def underlying(self):
@@ -627,6 +719,138 @@ class Instrument(object):
         self._reference_symbol = reference_symbol
 
     @property
+    def calc_interval(self):
+        """
+        Gets the calc_interval of this Instrument.
+
+
+        :return: The calc_interval of this Instrument.
+        :rtype: date
+        """
+        return self._calc_interval
+
+    @calc_interval.setter
+    def calc_interval(self, calc_interval):
+        """
+        Sets the calc_interval of this Instrument.
+
+
+        :param calc_interval: The calc_interval of this Instrument.
+        :type: date
+        """
+        self._calc_interval = calc_interval
+
+    @property
+    def publish_interval(self):
+        """
+        Gets the publish_interval of this Instrument.
+
+
+        :return: The publish_interval of this Instrument.
+        :rtype: date
+        """
+        return self._publish_interval
+
+    @publish_interval.setter
+    def publish_interval(self, publish_interval):
+        """
+        Sets the publish_interval of this Instrument.
+
+
+        :param publish_interval: The publish_interval of this Instrument.
+        :type: date
+        """
+        self._publish_interval = publish_interval
+
+    @property
+    def publish_time(self):
+        """
+        Gets the publish_time of this Instrument.
+
+
+        :return: The publish_time of this Instrument.
+        :rtype: date
+        """
+        return self._publish_time
+
+    @publish_time.setter
+    def publish_time(self, publish_time):
+        """
+        Sets the publish_time of this Instrument.
+
+
+        :param publish_time: The publish_time of this Instrument.
+        :type: date
+        """
+        self._publish_time = publish_time
+
+    @property
+    def max_order_qty(self):
+        """
+        Gets the max_order_qty of this Instrument.
+
+
+        :return: The max_order_qty of this Instrument.
+        :rtype: float
+        """
+        return self._max_order_qty
+
+    @max_order_qty.setter
+    def max_order_qty(self, max_order_qty):
+        """
+        Sets the max_order_qty of this Instrument.
+
+
+        :param max_order_qty: The max_order_qty of this Instrument.
+        :type: float
+        """
+        self._max_order_qty = max_order_qty
+
+    @property
+    def max_price(self):
+        """
+        Gets the max_price of this Instrument.
+
+
+        :return: The max_price of this Instrument.
+        :rtype: float
+        """
+        return self._max_price
+
+    @max_price.setter
+    def max_price(self, max_price):
+        """
+        Sets the max_price of this Instrument.
+
+
+        :param max_price: The max_price of this Instrument.
+        :type: float
+        """
+        self._max_price = max_price
+
+    @property
+    def lot_size(self):
+        """
+        Gets the lot_size of this Instrument.
+
+
+        :return: The lot_size of this Instrument.
+        :rtype: float
+        """
+        return self._lot_size
+
+    @lot_size.setter
+    def lot_size(self, lot_size):
+        """
+        Sets the lot_size of this Instrument.
+
+
+        :param lot_size: The lot_size of this Instrument.
+        :type: float
+        """
+        self._lot_size = lot_size
+
+    @property
     def tick_size(self):
         """
         Gets the tick_size of this Instrument.
@@ -691,6 +915,28 @@ class Instrument(object):
         :type: str
         """
         self._settl_currency = settl_currency
+
+    @property
+    def underlying_to_position_multiplier(self):
+        """
+        Gets the underlying_to_position_multiplier of this Instrument.
+
+
+        :return: The underlying_to_position_multiplier of this Instrument.
+        :rtype: float
+        """
+        return self._underlying_to_position_multiplier
+
+    @underlying_to_position_multiplier.setter
+    def underlying_to_position_multiplier(self, underlying_to_position_multiplier):
+        """
+        Sets the underlying_to_position_multiplier of this Instrument.
+
+
+        :param underlying_to_position_multiplier: The underlying_to_position_multiplier of this Instrument.
+        :type: float
+        """
+        self._underlying_to_position_multiplier = underlying_to_position_multiplier
 
     @property
     def underlying_to_settle_multiplier(self):
@@ -935,6 +1181,28 @@ class Instrument(object):
         self._taker_fee = taker_fee
 
     @property
+    def settlement_fee(self):
+        """
+        Gets the settlement_fee of this Instrument.
+
+
+        :return: The settlement_fee of this Instrument.
+        :rtype: float
+        """
+        return self._settlement_fee
+
+    @settlement_fee.setter
+    def settlement_fee(self, settlement_fee):
+        """
+        Sets the settlement_fee of this Instrument.
+
+
+        :param settlement_fee: The settlement_fee of this Instrument.
+        :type: float
+        """
+        self._settlement_fee = settlement_fee
+
+    @property
     def insurance_fee(self):
         """
         Gets the insurance_fee of this Instrument.
@@ -957,70 +1225,202 @@ class Instrument(object):
         self._insurance_fee = insurance_fee
 
     @property
-    def hedger_maker_fee(self):
+    def funding_base_symbol(self):
         """
-        Gets the hedger_maker_fee of this Instrument.
+        Gets the funding_base_symbol of this Instrument.
 
 
-        :return: The hedger_maker_fee of this Instrument.
-        :rtype: float
+        :return: The funding_base_symbol of this Instrument.
+        :rtype: str
         """
-        return self._hedger_maker_fee
+        return self._funding_base_symbol
 
-    @hedger_maker_fee.setter
-    def hedger_maker_fee(self, hedger_maker_fee):
+    @funding_base_symbol.setter
+    def funding_base_symbol(self, funding_base_symbol):
         """
-        Sets the hedger_maker_fee of this Instrument.
+        Sets the funding_base_symbol of this Instrument.
 
 
-        :param hedger_maker_fee: The hedger_maker_fee of this Instrument.
-        :type: float
+        :param funding_base_symbol: The funding_base_symbol of this Instrument.
+        :type: str
         """
-        self._hedger_maker_fee = hedger_maker_fee
+        self._funding_base_symbol = funding_base_symbol
 
     @property
-    def hedger_taker_fee(self):
+    def funding_quote_symbol(self):
         """
-        Gets the hedger_taker_fee of this Instrument.
+        Gets the funding_quote_symbol of this Instrument.
 
 
-        :return: The hedger_taker_fee of this Instrument.
-        :rtype: float
+        :return: The funding_quote_symbol of this Instrument.
+        :rtype: str
         """
-        return self._hedger_taker_fee
+        return self._funding_quote_symbol
 
-    @hedger_taker_fee.setter
-    def hedger_taker_fee(self, hedger_taker_fee):
+    @funding_quote_symbol.setter
+    def funding_quote_symbol(self, funding_quote_symbol):
         """
-        Sets the hedger_taker_fee of this Instrument.
+        Sets the funding_quote_symbol of this Instrument.
 
 
-        :param hedger_taker_fee: The hedger_taker_fee of this Instrument.
-        :type: float
+        :param funding_quote_symbol: The funding_quote_symbol of this Instrument.
+        :type: str
         """
-        self._hedger_taker_fee = hedger_taker_fee
+        self._funding_quote_symbol = funding_quote_symbol
 
     @property
-    def hedger_insurance_fee(self):
+    def funding_premium_symbol(self):
         """
-        Gets the hedger_insurance_fee of this Instrument.
+        Gets the funding_premium_symbol of this Instrument.
 
 
-        :return: The hedger_insurance_fee of this Instrument.
+        :return: The funding_premium_symbol of this Instrument.
+        :rtype: str
+        """
+        return self._funding_premium_symbol
+
+    @funding_premium_symbol.setter
+    def funding_premium_symbol(self, funding_premium_symbol):
+        """
+        Sets the funding_premium_symbol of this Instrument.
+
+
+        :param funding_premium_symbol: The funding_premium_symbol of this Instrument.
+        :type: str
+        """
+        self._funding_premium_symbol = funding_premium_symbol
+
+    @property
+    def funding_timestamp(self):
+        """
+        Gets the funding_timestamp of this Instrument.
+
+
+        :return: The funding_timestamp of this Instrument.
+        :rtype: date
+        """
+        return self._funding_timestamp
+
+    @funding_timestamp.setter
+    def funding_timestamp(self, funding_timestamp):
+        """
+        Sets the funding_timestamp of this Instrument.
+
+
+        :param funding_timestamp: The funding_timestamp of this Instrument.
+        :type: date
+        """
+        self._funding_timestamp = funding_timestamp
+
+    @property
+    def funding_interval(self):
+        """
+        Gets the funding_interval of this Instrument.
+
+
+        :return: The funding_interval of this Instrument.
+        :rtype: date
+        """
+        return self._funding_interval
+
+    @funding_interval.setter
+    def funding_interval(self, funding_interval):
+        """
+        Sets the funding_interval of this Instrument.
+
+
+        :param funding_interval: The funding_interval of this Instrument.
+        :type: date
+        """
+        self._funding_interval = funding_interval
+
+    @property
+    def funding_rate(self):
+        """
+        Gets the funding_rate of this Instrument.
+
+
+        :return: The funding_rate of this Instrument.
         :rtype: float
         """
-        return self._hedger_insurance_fee
+        return self._funding_rate
 
-    @hedger_insurance_fee.setter
-    def hedger_insurance_fee(self, hedger_insurance_fee):
+    @funding_rate.setter
+    def funding_rate(self, funding_rate):
         """
-        Sets the hedger_insurance_fee of this Instrument.
+        Sets the funding_rate of this Instrument.
 
 
-        :param hedger_insurance_fee: The hedger_insurance_fee of this Instrument.
+        :param funding_rate: The funding_rate of this Instrument.
         :type: float
         """
-        self._hedger_insurance_fee = hedger_insurance_fee
+        self._funding_rate = funding_rate
+
+    @property
+    def indicative_funding_rate(self):
+        """
+        Gets the indicative_funding_rate of this Instrument.
+
+
+        :return: The indicative_funding_rate of this Instrument.
+        :rtype: float
+        """
+        return self._indicative_funding_rate
+
+    @indicative_funding_rate.setter
+    def indicative_funding_rate(self, indicative_funding_rate):
+        """
+        Sets the indicative_funding_rate of this Instrument.
+
+
+        :param indicative_funding_rate: The indicative_funding_rate of this Instrument.
+        :type: float
+        """
+        self._indicative_funding_rate = indicative_funding_rate
+
+    @property
+    def rebalance_timestamp(self):
+        """
+        Gets the rebalance_timestamp of this Instrument.
+
+
+        :return: The rebalance_timestamp of this Instrument.
+        :rtype: date
+        """
+        return self._rebalance_timestamp
+
+    @rebalance_timestamp.setter
+    def rebalance_timestamp(self, rebalance_timestamp):
+        """
+        Sets the rebalance_timestamp of this Instrument.
+
+
+        :param rebalance_timestamp: The rebalance_timestamp of this Instrument.
+        :type: date
+        """
+        self._rebalance_timestamp = rebalance_timestamp
+
+    @property
+    def rebalance_interval(self):
+        """
+        Gets the rebalance_interval of this Instrument.
+
+
+        :return: The rebalance_interval of this Instrument.
+        :rtype: date
+        """
+        return self._rebalance_interval
+
+    @rebalance_interval.setter
+    def rebalance_interval(self, rebalance_interval):
+        """
+        Sets the rebalance_interval of this Instrument.
+
+
+        :param rebalance_interval: The rebalance_interval of this Instrument.
+        :type: date
+        """
+        self._rebalance_interval = rebalance_interval
 
     @property
     def opening_timestamp(self):

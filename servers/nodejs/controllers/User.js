@@ -6,16 +6,16 @@ var url = require('url');
 var User = require('./UserService');
 
 
-module.exports.user.getMe = function user.getMe (req, res, next) {
-  User.user.getMe(req.swagger.params, res, next);
+module.exports.user.get = function user.get (req, res, next) {
+  User.user.get(req.swagger.params, res, next);
 };
 
-module.exports.user.updateMe = function user.updateMe (req, res, next) {
-  User.user.updateMe(req.swagger.params, res, next);
+module.exports.user.update = function user.update (req, res, next) {
+  User.user.update(req.swagger.params, res, next);
 };
 
-module.exports.user.newUser = function user.newUser (req, res, next) {
-  User.user.newUser(req.swagger.params, res, next);
+module.exports.user.new = function user.new (req, res, next) {
+  User.user.new(req.swagger.params, res, next);
 };
 
 module.exports.user.getAffiliateStatus = function user.getAffiliateStatus (req, res, next) {

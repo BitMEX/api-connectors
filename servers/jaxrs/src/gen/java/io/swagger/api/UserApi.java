@@ -31,7 +31,7 @@ import javax.ws.rs.*;
 @Consumes({ "application/json", "application/x-www-form-urlencoded" })
 @Produces({ "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" })
 @io.swagger.annotations.Api(description = "the user API")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-30T13:35:57.938-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2016-07-04T18:25:32.992-05:00")
 public class UserApi  {
    private final UserApiService delegate = UserApiServiceFactory.getUserApi();
 
@@ -43,9 +43,9 @@ public class UserApi  {
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Request was successful", response = User.class) })
 
-    public Response userGetMe()
+    public Response userGet()
     throws NotFoundException {
-        return delegate.userGetMe();
+        return delegate.userGet();
     }
     @PUT
     
@@ -55,15 +55,16 @@ public class UserApi  {
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Request was successful", response = User.class) })
 
-    public Response userUpdateMe(@ApiParam(value = "")@FormParam("firstname")  String firstname,
+    public Response userUpdate(@ApiParam(value = "")@FormParam("firstname")  String firstname,
     @ApiParam(value = "")@FormParam("lastname")  String lastname,
     @ApiParam(value = "")@FormParam("oldPassword")  String oldPassword,
     @ApiParam(value = "")@FormParam("newPassword")  String newPassword,
     @ApiParam(value = "")@FormParam("newPasswordConfirm")  String newPasswordConfirm,
+    @ApiParam(value = "Username can only be set once. To reset, email support.")@FormParam("username")  String username,
     @ApiParam(value = "Country of residence.")@FormParam("country")  String country,
     @ApiParam(value = "PGP Public Key. If specified, automated emails will be sentwith this key.")@FormParam("pgpPubKey")  String pgpPubKey)
     throws NotFoundException {
-        return delegate.userUpdateMe(firstname,lastname,oldPassword,newPassword,newPasswordConfirm,country,pgpPubKey);
+        return delegate.userUpdate(firstname,lastname,oldPassword,newPassword,newPasswordConfirm,username,country,pgpPubKey);
     }
     @POST
     
@@ -73,16 +74,18 @@ public class UserApi  {
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Request was successful", response = User.class) })
 
-    public Response userNewUser(@ApiParam(value = "Your email address.", required=true)@FormParam("email")  String email,
+    public Response userNew(@ApiParam(value = "Your email address.", required=true)@FormParam("email")  String email,
     @ApiParam(value = "Your password.", required=true)@FormParam("password")  String password,
-    @ApiParam(value = "Desired username.", required=true)@FormParam("username")  String username,
+    @ApiParam(value = "Country of residence.", required=true)@FormParam("country")  String country,
+    @ApiParam(value = "Desired username.")@FormParam("username")  String username,
     @ApiParam(value = "First name.")@FormParam("firstname")  String firstname,
     @ApiParam(value = "Last name.")@FormParam("lastname")  String lastname,
-    @ApiParam(value = "Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms).")@FormParam("acceptsTOS")  String acceptsTOS,
+    @ApiParam(value = "Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).")@FormParam("acceptsTOS")  String acceptsTOS,
     @ApiParam(value = "Optional Referrer ID.")@FormParam("referrerID")  String referrerID,
-    @ApiParam(value = "Country of residence.")@FormParam("country")  String country)
+    @ApiParam(value = "Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef")@FormParam("tfaType")  String tfaType,
+    @ApiParam(value = "Two-Factor Token.")@FormParam("tfaToken")  String tfaToken)
     throws NotFoundException {
-        return delegate.userNewUser(email,password,username,firstname,lastname,acceptsTOS,referrerID,country);
+        return delegate.userNew(email,password,country,username,firstname,lastname,acceptsTOS,referrerID,tfaType,tfaToken);
     }
     @GET
     @Path("/affiliateStatus")
@@ -227,7 +230,7 @@ public class UserApi  {
     @Produces({ "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" })
     @io.swagger.annotations.ApiOperation(value = "Log out of BitMEX.", notes = "", response = Void.class, tags={ "User",  })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 204, message = "Request was successful", response = Void.class) })
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Request was successful", response = Void.class) })
 
     public Response userLogout()
     throws NotFoundException {
@@ -237,9 +240,9 @@ public class UserApi  {
     @Path("/logoutAll")
     @Consumes({ "application/json", "application/x-www-form-urlencoded" })
     @Produces({ "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" })
-    @io.swagger.annotations.ApiOperation(value = "Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.", notes = "", response = Void.class, tags={ "User",  })
+    @io.swagger.annotations.ApiOperation(value = "Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.", notes = "", response = Double.class, tags={ "User",  })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 204, message = "Request was successful", response = Void.class) })
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Request was successful", response = Double.class) })
 
     public Response userLogoutAll()
     throws NotFoundException {
@@ -249,19 +252,19 @@ public class UserApi  {
     @Path("/margin")
     @Consumes({ "application/json", "application/x-www-form-urlencoded" })
     @Produces({ "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" })
-    @io.swagger.annotations.ApiOperation(value = "Get your account's margin status.", notes = "", response = Margin.class, tags={ "User",  })
+    @io.swagger.annotations.ApiOperation(value = "Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.", notes = "", response = Margin.class, tags={ "User",  })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Request was successful", response = Margin.class) })
 
-    public Response userGetMargin()
+    public Response userGetMargin(@ApiParam(value = "", defaultValue="XBt") @QueryParam("currency") String currency)
     throws NotFoundException {
-        return delegate.userGetMargin();
+        return delegate.userGetMargin(currency);
     }
     @POST
     @Path("/preferences")
     @Consumes({ "application/json", "application/x-www-form-urlencoded" })
     @Produces({ "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" })
-    @io.swagger.annotations.ApiOperation(value = "Save application preferences.", notes = "", response = User.class, tags={ "User",  })
+    @io.swagger.annotations.ApiOperation(value = "Save user preferences.", notes = "", response = User.class, tags={ "User",  })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Request was successful", response = User.class) })
 
@@ -278,10 +281,9 @@ public class UserApi  {
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Request was successful", response = Boolean.class) })
 
-    public Response userRequestEnableTFA(@ApiParam(value = "Two-factor auth type. Supported types: 'GA' (Google Authenticator)")@FormParam("type")  String type,
-    @ApiParam(value = "If Yubikey, send one output from the key.")@FormParam("token")  String token)
+    public Response userRequestEnableTFA(@ApiParam(value = "Two-factor auth type. Supported types: 'GA' (Google Authenticator)")@FormParam("type")  String type)
     throws NotFoundException {
-        return delegate.userRequestEnableTFA(type,token);
+        return delegate.userRequestEnableTFA(type);
     }
     @POST
     @Path("/requestPasswordReset")
@@ -299,11 +301,11 @@ public class UserApi  {
     @Path("/requestWithdrawal")
     @Consumes({ "application/json", "application/x-www-form-urlencoded" })
     @Produces({ "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" })
-    @io.swagger.annotations.ApiOperation(value = "Request a withdrawal to an external wallet.", notes = "This will send a confirmation email to the email address on record, unless requested via an API Key with the \"withdraw\" permission.", response = Transaction.class, tags={ "User",  })
+    @io.swagger.annotations.ApiOperation(value = "Request a withdrawal to an external wallet.", notes = "This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission.", response = Transaction.class, tags={ "User",  })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Request was successful", response = Transaction.class) })
 
-    public Response userRequestWithdrawal(@ApiParam(value = "Currency you're withdrawing. Options: \"XBt\"", required=true, defaultValue="XBt")@FormParam("currency")  String currency,
+    public Response userRequestWithdrawal(@ApiParam(value = "Currency you're withdrawing. Options: `XBt`", required=true, defaultValue="XBt")@FormParam("currency")  String currency,
     @ApiParam(value = "Amount of withdrawal currency.", required=true)@FormParam("amount")  BigDecimal amount,
     @ApiParam(value = "Destination Address.", required=true)@FormParam("address")  String address,
     @ApiParam(value = "2FA token. Required if 2FA is enabled on your account.")@FormParam("otpToken")  String otpToken,
@@ -311,7 +313,7 @@ public class UserApi  {
     throws NotFoundException {
         return delegate.userRequestWithdrawal(currency,amount,address,otpToken,fee);
     }
-    @GET
+    @POST
     @Path("/resendVerificationEmail")
     @Consumes({ "application/json", "application/x-www-form-urlencoded" })
     @Produces({ "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" })
@@ -319,7 +321,7 @@ public class UserApi  {
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Request was successful", response = Boolean.class) })
 
-    public Response userSendVerificationEmail(@ApiParam(value = "",required=true) @QueryParam("email") String email)
+    public Response userSendVerificationEmail(@ApiParam(value = "", required=true)@FormParam("email")  String email)
     throws NotFoundException {
         return delegate.userSendVerificationEmail(email);
     }
@@ -331,9 +333,9 @@ public class UserApi  {
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Request was successful", response = Transaction.class, responseContainer = "List") })
 
-    public Response userGetWalletHistory()
+    public Response userGetWalletHistory(@ApiParam(value = "", defaultValue="XBt") @QueryParam("currency") String currency)
     throws NotFoundException {
-        return delegate.userGetWalletHistory();
+        return delegate.userGetWalletHistory(currency);
     }
 }
 

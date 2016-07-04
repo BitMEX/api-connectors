@@ -1,13 +1,16 @@
 module SwaggerClient
   # 
   class User < BaseObject
-    attr_accessor :id, :firstname, :lastname, :status, :username, :email, :phone, :country_code, :created, :last_updated, :preferences, :role, :tfa_enabled, :affiliate_id, :pgp_pub_key, :country, :disabled
+    attr_accessor :id, :owner_id, :firstname, :lastname, :status, :username, :email, :phone, :country_code, :created, :last_updated, :preferences, :tfa_enabled, :affiliate_id, :pgp_pub_key, :country, :disabled
     # attribute mapping from ruby-style variable name to JSON key
     def self.attribute_map
       {
         
         # 
         :'id' => :'id',
+        
+        # 
+        :'owner_id' => :'ownerId',
         
         # 
         :'firstname' => :'firstname',
@@ -40,9 +43,6 @@ module SwaggerClient
         :'preferences' => :'preferences',
         
         # 
-        :'role' => :'role',
-        
-        # 
         :'tfa_enabled' => :'TFAEnabled',
         
         # 
@@ -64,6 +64,7 @@ module SwaggerClient
     def self.swagger_types
       {
         :'id' => :'Float',
+        :'owner_id' => :'Float',
         :'firstname' => :'String',
         :'lastname' => :'String',
         :'status' => :'String',
@@ -74,7 +75,6 @@ module SwaggerClient
         :'created' => :'Date',
         :'last_updated' => :'Date',
         :'preferences' => :'UserPreferences',
-        :'role' => :'String',
         :'tfa_enabled' => :'String',
         :'affiliate_id' => :'String',
         :'pgp_pub_key' => :'String',
@@ -93,6 +93,10 @@ module SwaggerClient
       
       if attributes[:'id']
         self.id = attributes[:'id']
+      end
+      
+      if attributes[:'ownerId']
+        self.owner_id = attributes[:'ownerId']
       end
       
       if attributes[:'firstname']
@@ -135,10 +139,6 @@ module SwaggerClient
         self.preferences = attributes[:'preferences']
       end
       
-      if attributes[:'role']
-        self.role = attributes[:'role']
-      end
-      
       if attributes[:'TFAEnabled']
         self.tfa_enabled = attributes[:'TFAEnabled']
       end
@@ -165,6 +165,7 @@ module SwaggerClient
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
+          owner_id == o.owner_id &&
           firstname == o.firstname &&
           lastname == o.lastname &&
           status == o.status &&
@@ -175,7 +176,6 @@ module SwaggerClient
           created == o.created &&
           last_updated == o.last_updated &&
           preferences == o.preferences &&
-          role == o.role &&
           tfa_enabled == o.tfa_enabled &&
           affiliate_id == o.affiliate_id &&
           pgp_pub_key == o.pgp_pub_key &&
@@ -188,7 +188,7 @@ module SwaggerClient
     end
 
     def hash
-      [id, firstname, lastname, status, username, email, phone, country_code, created, last_updated, preferences, role, tfa_enabled, affiliate_id, pgp_pub_key, country, disabled].hash
+      [id, owner_id, firstname, lastname, status, username, email, phone, country_code, created, last_updated, preferences, tfa_enabled, affiliate_id, pgp_pub_key, country, disabled].hash
     end
   end
 end

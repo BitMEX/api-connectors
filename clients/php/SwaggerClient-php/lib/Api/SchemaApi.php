@@ -92,15 +92,15 @@ class SchemaApi
   
     
     /**
-     * schemaFind
+     * schemaGet
      *
      * Get model schemata for data objects returned by this API.
      *
      * @param string $model Optional model filter. If omitted, will return all models. (optional)
-     * @return \Swagger\Client\Model\InlineResponse200
+     * @return \Swagger\Client\Model\InlineResponse2001
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function schemaFind($model=null)
+    public function schemaGet($model=null)
     {
         
   
@@ -140,19 +140,19 @@ class SchemaApi
             list($response, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\Swagger\Client\Model\InlineResponse200'
+                $headerParams, '\Swagger\Client\Model\InlineResponse2001'
             );
             
             if (!$response) {
                 return null;
             }
 
-            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\InlineResponse200', $httpHeader);
+            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\InlineResponse2001', $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\InlineResponse200', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\InlineResponse2001', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             case 400:
@@ -181,7 +181,7 @@ class SchemaApi
      *
      * Returns help text & subject list for websocket usage.
      *
-     * @return \Swagger\Client\Model\InlineResponse200
+     * @return \Swagger\Client\Model\InlineResponse2001
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function schemaWebsocketHelp()
@@ -221,19 +221,19 @@ class SchemaApi
             list($response, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\Swagger\Client\Model\InlineResponse200'
+                $headerParams, '\Swagger\Client\Model\InlineResponse2001'
             );
             
             if (!$response) {
                 return null;
             }
 
-            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\InlineResponse200', $httpHeader);
+            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\InlineResponse2001', $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\InlineResponse200', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\InlineResponse2001', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             case 400:

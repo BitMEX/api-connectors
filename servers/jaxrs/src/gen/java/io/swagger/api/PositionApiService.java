@@ -19,13 +19,16 @@ import com.sun.jersey.multipart.FormDataParam;
 
 import javax.ws.rs.core.Response;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-30T13:35:57.938-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2016-07-04T18:25:32.992-05:00")
 public abstract class PositionApiService {
   
-      public abstract Response positionFind(String filter,String columns,BigDecimal count)
+      public abstract Response positionGet(String filter,String columns,BigDecimal count)
       throws NotFoundException;
   
       public abstract Response positionIsolateMargin(String symbol,Boolean enabled)
+      throws NotFoundException;
+  
+      public abstract Response positionUpdateLeverage(String symbol,Double leverage)
       throws NotFoundException;
   
       public abstract Response positionTransferIsolatedMargin(String symbol,BigDecimal amount)

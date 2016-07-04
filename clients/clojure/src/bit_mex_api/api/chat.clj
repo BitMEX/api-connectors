@@ -14,7 +14,7 @@
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]})))
 
-(defn chat-send
+(defn chat-new
   "Send a chat message."
   [message ]
   (call-api "/chat" :post

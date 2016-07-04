@@ -58,18 +58,27 @@ class Instrument implements ArrayAccess
         'listing' => '\DateTime',
         'front' => '\DateTime',
         'expiry' => '\DateTime',
+        'settle' => '\DateTime',
         'relist_interval' => '\DateTime',
         'inverse_leg' => 'string',
         'sell_leg' => 'string',
         'buy_leg' => 'string',
+        'position_currency' => 'string',
         'underlying' => 'string',
         'quote_currency' => 'string',
         'underlying_symbol' => 'string',
         'reference' => 'string',
         'reference_symbol' => 'string',
+        'calc_interval' => '\DateTime',
+        'publish_interval' => '\DateTime',
+        'publish_time' => '\DateTime',
+        'max_order_qty' => 'Number',
+        'max_price' => 'double',
+        'lot_size' => 'Number',
         'tick_size' => 'double',
         'multiplier' => 'Number',
         'settl_currency' => 'string',
+        'underlying_to_position_multiplier' => 'Number',
         'underlying_to_settle_multiplier' => 'Number',
         'quote_to_settle_multiplier' => 'Number',
         'is_quanto' => 'bool',
@@ -81,10 +90,17 @@ class Instrument implements ArrayAccess
         'taxed' => 'bool',
         'maker_fee' => 'double',
         'taker_fee' => 'double',
+        'settlement_fee' => 'double',
         'insurance_fee' => 'double',
-        'hedger_maker_fee' => 'double',
-        'hedger_taker_fee' => 'double',
-        'hedger_insurance_fee' => 'double',
+        'funding_base_symbol' => 'string',
+        'funding_quote_symbol' => 'string',
+        'funding_premium_symbol' => 'string',
+        'funding_timestamp' => '\DateTime',
+        'funding_interval' => '\DateTime',
+        'funding_rate' => 'double',
+        'indicative_funding_rate' => 'double',
+        'rebalance_timestamp' => '\DateTime',
+        'rebalance_interval' => '\DateTime',
         'opening_timestamp' => '\DateTime',
         'closing_timestamp' => '\DateTime',
         'session_interval' => '\DateTime',
@@ -142,18 +158,27 @@ class Instrument implements ArrayAccess
         'listing' => 'listing',
         'front' => 'front',
         'expiry' => 'expiry',
+        'settle' => 'settle',
         'relist_interval' => 'relistInterval',
         'inverse_leg' => 'inverseLeg',
         'sell_leg' => 'sellLeg',
         'buy_leg' => 'buyLeg',
+        'position_currency' => 'positionCurrency',
         'underlying' => 'underlying',
         'quote_currency' => 'quoteCurrency',
         'underlying_symbol' => 'underlyingSymbol',
         'reference' => 'reference',
         'reference_symbol' => 'referenceSymbol',
+        'calc_interval' => 'calcInterval',
+        'publish_interval' => 'publishInterval',
+        'publish_time' => 'publishTime',
+        'max_order_qty' => 'maxOrderQty',
+        'max_price' => 'maxPrice',
+        'lot_size' => 'lotSize',
         'tick_size' => 'tickSize',
         'multiplier' => 'multiplier',
         'settl_currency' => 'settlCurrency',
+        'underlying_to_position_multiplier' => 'underlyingToPositionMultiplier',
         'underlying_to_settle_multiplier' => 'underlyingToSettleMultiplier',
         'quote_to_settle_multiplier' => 'quoteToSettleMultiplier',
         'is_quanto' => 'isQuanto',
@@ -165,10 +190,17 @@ class Instrument implements ArrayAccess
         'taxed' => 'taxed',
         'maker_fee' => 'makerFee',
         'taker_fee' => 'takerFee',
+        'settlement_fee' => 'settlementFee',
         'insurance_fee' => 'insuranceFee',
-        'hedger_maker_fee' => 'hedgerMakerFee',
-        'hedger_taker_fee' => 'hedgerTakerFee',
-        'hedger_insurance_fee' => 'hedgerInsuranceFee',
+        'funding_base_symbol' => 'fundingBaseSymbol',
+        'funding_quote_symbol' => 'fundingQuoteSymbol',
+        'funding_premium_symbol' => 'fundingPremiumSymbol',
+        'funding_timestamp' => 'fundingTimestamp',
+        'funding_interval' => 'fundingInterval',
+        'funding_rate' => 'fundingRate',
+        'indicative_funding_rate' => 'indicativeFundingRate',
+        'rebalance_timestamp' => 'rebalanceTimestamp',
+        'rebalance_interval' => 'rebalanceInterval',
         'opening_timestamp' => 'openingTimestamp',
         'closing_timestamp' => 'closingTimestamp',
         'session_interval' => 'sessionInterval',
@@ -226,18 +258,27 @@ class Instrument implements ArrayAccess
         'listing' => 'setListing',
         'front' => 'setFront',
         'expiry' => 'setExpiry',
+        'settle' => 'setSettle',
         'relist_interval' => 'setRelistInterval',
         'inverse_leg' => 'setInverseLeg',
         'sell_leg' => 'setSellLeg',
         'buy_leg' => 'setBuyLeg',
+        'position_currency' => 'setPositionCurrency',
         'underlying' => 'setUnderlying',
         'quote_currency' => 'setQuoteCurrency',
         'underlying_symbol' => 'setUnderlyingSymbol',
         'reference' => 'setReference',
         'reference_symbol' => 'setReferenceSymbol',
+        'calc_interval' => 'setCalcInterval',
+        'publish_interval' => 'setPublishInterval',
+        'publish_time' => 'setPublishTime',
+        'max_order_qty' => 'setMaxOrderQty',
+        'max_price' => 'setMaxPrice',
+        'lot_size' => 'setLotSize',
         'tick_size' => 'setTickSize',
         'multiplier' => 'setMultiplier',
         'settl_currency' => 'setSettlCurrency',
+        'underlying_to_position_multiplier' => 'setUnderlyingToPositionMultiplier',
         'underlying_to_settle_multiplier' => 'setUnderlyingToSettleMultiplier',
         'quote_to_settle_multiplier' => 'setQuoteToSettleMultiplier',
         'is_quanto' => 'setIsQuanto',
@@ -249,10 +290,17 @@ class Instrument implements ArrayAccess
         'taxed' => 'setTaxed',
         'maker_fee' => 'setMakerFee',
         'taker_fee' => 'setTakerFee',
+        'settlement_fee' => 'setSettlementFee',
         'insurance_fee' => 'setInsuranceFee',
-        'hedger_maker_fee' => 'setHedgerMakerFee',
-        'hedger_taker_fee' => 'setHedgerTakerFee',
-        'hedger_insurance_fee' => 'setHedgerInsuranceFee',
+        'funding_base_symbol' => 'setFundingBaseSymbol',
+        'funding_quote_symbol' => 'setFundingQuoteSymbol',
+        'funding_premium_symbol' => 'setFundingPremiumSymbol',
+        'funding_timestamp' => 'setFundingTimestamp',
+        'funding_interval' => 'setFundingInterval',
+        'funding_rate' => 'setFundingRate',
+        'indicative_funding_rate' => 'setIndicativeFundingRate',
+        'rebalance_timestamp' => 'setRebalanceTimestamp',
+        'rebalance_interval' => 'setRebalanceInterval',
         'opening_timestamp' => 'setOpeningTimestamp',
         'closing_timestamp' => 'setClosingTimestamp',
         'session_interval' => 'setSessionInterval',
@@ -310,18 +358,27 @@ class Instrument implements ArrayAccess
         'listing' => 'getListing',
         'front' => 'getFront',
         'expiry' => 'getExpiry',
+        'settle' => 'getSettle',
         'relist_interval' => 'getRelistInterval',
         'inverse_leg' => 'getInverseLeg',
         'sell_leg' => 'getSellLeg',
         'buy_leg' => 'getBuyLeg',
+        'position_currency' => 'getPositionCurrency',
         'underlying' => 'getUnderlying',
         'quote_currency' => 'getQuoteCurrency',
         'underlying_symbol' => 'getUnderlyingSymbol',
         'reference' => 'getReference',
         'reference_symbol' => 'getReferenceSymbol',
+        'calc_interval' => 'getCalcInterval',
+        'publish_interval' => 'getPublishInterval',
+        'publish_time' => 'getPublishTime',
+        'max_order_qty' => 'getMaxOrderQty',
+        'max_price' => 'getMaxPrice',
+        'lot_size' => 'getLotSize',
         'tick_size' => 'getTickSize',
         'multiplier' => 'getMultiplier',
         'settl_currency' => 'getSettlCurrency',
+        'underlying_to_position_multiplier' => 'getUnderlyingToPositionMultiplier',
         'underlying_to_settle_multiplier' => 'getUnderlyingToSettleMultiplier',
         'quote_to_settle_multiplier' => 'getQuoteToSettleMultiplier',
         'is_quanto' => 'getIsQuanto',
@@ -333,10 +390,17 @@ class Instrument implements ArrayAccess
         'taxed' => 'getTaxed',
         'maker_fee' => 'getMakerFee',
         'taker_fee' => 'getTakerFee',
+        'settlement_fee' => 'getSettlementFee',
         'insurance_fee' => 'getInsuranceFee',
-        'hedger_maker_fee' => 'getHedgerMakerFee',
-        'hedger_taker_fee' => 'getHedgerTakerFee',
-        'hedger_insurance_fee' => 'getHedgerInsuranceFee',
+        'funding_base_symbol' => 'getFundingBaseSymbol',
+        'funding_quote_symbol' => 'getFundingQuoteSymbol',
+        'funding_premium_symbol' => 'getFundingPremiumSymbol',
+        'funding_timestamp' => 'getFundingTimestamp',
+        'funding_interval' => 'getFundingInterval',
+        'funding_rate' => 'getFundingRate',
+        'indicative_funding_rate' => 'getIndicativeFundingRate',
+        'rebalance_timestamp' => 'getRebalanceTimestamp',
+        'rebalance_interval' => 'getRebalanceInterval',
         'opening_timestamp' => 'getOpeningTimestamp',
         'closing_timestamp' => 'getClosingTimestamp',
         'session_interval' => 'getSessionInterval',
@@ -426,6 +490,12 @@ class Instrument implements ArrayAccess
     protected $expiry;
     
     /**
+      * $settle 
+      * @var \DateTime
+      */
+    protected $settle;
+    
+    /**
       * $relist_interval 
       * @var \DateTime
       */
@@ -448,6 +518,12 @@ class Instrument implements ArrayAccess
       * @var string
       */
     protected $buy_leg;
+    
+    /**
+      * $position_currency 
+      * @var string
+      */
+    protected $position_currency;
     
     /**
       * $underlying 
@@ -480,6 +556,42 @@ class Instrument implements ArrayAccess
     protected $reference_symbol;
     
     /**
+      * $calc_interval 
+      * @var \DateTime
+      */
+    protected $calc_interval;
+    
+    /**
+      * $publish_interval 
+      * @var \DateTime
+      */
+    protected $publish_interval;
+    
+    /**
+      * $publish_time 
+      * @var \DateTime
+      */
+    protected $publish_time;
+    
+    /**
+      * $max_order_qty 
+      * @var Number
+      */
+    protected $max_order_qty;
+    
+    /**
+      * $max_price 
+      * @var double
+      */
+    protected $max_price;
+    
+    /**
+      * $lot_size 
+      * @var Number
+      */
+    protected $lot_size;
+    
+    /**
       * $tick_size 
       * @var double
       */
@@ -496,6 +608,12 @@ class Instrument implements ArrayAccess
       * @var string
       */
     protected $settl_currency;
+    
+    /**
+      * $underlying_to_position_multiplier 
+      * @var Number
+      */
+    protected $underlying_to_position_multiplier;
     
     /**
       * $underlying_to_settle_multiplier 
@@ -564,28 +682,70 @@ class Instrument implements ArrayAccess
     protected $taker_fee;
     
     /**
+      * $settlement_fee 
+      * @var double
+      */
+    protected $settlement_fee;
+    
+    /**
       * $insurance_fee 
       * @var double
       */
     protected $insurance_fee;
     
     /**
-      * $hedger_maker_fee 
-      * @var double
+      * $funding_base_symbol 
+      * @var string
       */
-    protected $hedger_maker_fee;
+    protected $funding_base_symbol;
     
     /**
-      * $hedger_taker_fee 
-      * @var double
+      * $funding_quote_symbol 
+      * @var string
       */
-    protected $hedger_taker_fee;
+    protected $funding_quote_symbol;
     
     /**
-      * $hedger_insurance_fee 
+      * $funding_premium_symbol 
+      * @var string
+      */
+    protected $funding_premium_symbol;
+    
+    /**
+      * $funding_timestamp 
+      * @var \DateTime
+      */
+    protected $funding_timestamp;
+    
+    /**
+      * $funding_interval 
+      * @var \DateTime
+      */
+    protected $funding_interval;
+    
+    /**
+      * $funding_rate 
       * @var double
       */
-    protected $hedger_insurance_fee;
+    protected $funding_rate;
+    
+    /**
+      * $indicative_funding_rate 
+      * @var double
+      */
+    protected $indicative_funding_rate;
+    
+    /**
+      * $rebalance_timestamp 
+      * @var \DateTime
+      */
+    protected $rebalance_timestamp;
+    
+    /**
+      * $rebalance_interval 
+      * @var \DateTime
+      */
+    protected $rebalance_interval;
     
     /**
       * $opening_timestamp 
@@ -860,18 +1020,27 @@ class Instrument implements ArrayAccess
             $this->listing = $data["listing"];
             $this->front = $data["front"];
             $this->expiry = $data["expiry"];
+            $this->settle = $data["settle"];
             $this->relist_interval = $data["relist_interval"];
             $this->inverse_leg = $data["inverse_leg"];
             $this->sell_leg = $data["sell_leg"];
             $this->buy_leg = $data["buy_leg"];
+            $this->position_currency = $data["position_currency"];
             $this->underlying = $data["underlying"];
             $this->quote_currency = $data["quote_currency"];
             $this->underlying_symbol = $data["underlying_symbol"];
             $this->reference = $data["reference"];
             $this->reference_symbol = $data["reference_symbol"];
+            $this->calc_interval = $data["calc_interval"];
+            $this->publish_interval = $data["publish_interval"];
+            $this->publish_time = $data["publish_time"];
+            $this->max_order_qty = $data["max_order_qty"];
+            $this->max_price = $data["max_price"];
+            $this->lot_size = $data["lot_size"];
             $this->tick_size = $data["tick_size"];
             $this->multiplier = $data["multiplier"];
             $this->settl_currency = $data["settl_currency"];
+            $this->underlying_to_position_multiplier = $data["underlying_to_position_multiplier"];
             $this->underlying_to_settle_multiplier = $data["underlying_to_settle_multiplier"];
             $this->quote_to_settle_multiplier = $data["quote_to_settle_multiplier"];
             $this->is_quanto = $data["is_quanto"];
@@ -883,10 +1052,17 @@ class Instrument implements ArrayAccess
             $this->taxed = $data["taxed"];
             $this->maker_fee = $data["maker_fee"];
             $this->taker_fee = $data["taker_fee"];
+            $this->settlement_fee = $data["settlement_fee"];
             $this->insurance_fee = $data["insurance_fee"];
-            $this->hedger_maker_fee = $data["hedger_maker_fee"];
-            $this->hedger_taker_fee = $data["hedger_taker_fee"];
-            $this->hedger_insurance_fee = $data["hedger_insurance_fee"];
+            $this->funding_base_symbol = $data["funding_base_symbol"];
+            $this->funding_quote_symbol = $data["funding_quote_symbol"];
+            $this->funding_premium_symbol = $data["funding_premium_symbol"];
+            $this->funding_timestamp = $data["funding_timestamp"];
+            $this->funding_interval = $data["funding_interval"];
+            $this->funding_rate = $data["funding_rate"];
+            $this->indicative_funding_rate = $data["indicative_funding_rate"];
+            $this->rebalance_timestamp = $data["rebalance_timestamp"];
+            $this->rebalance_interval = $data["rebalance_interval"];
             $this->opening_timestamp = $data["opening_timestamp"];
             $this->closing_timestamp = $data["closing_timestamp"];
             $this->session_interval = $data["session_interval"];
@@ -1081,6 +1257,27 @@ class Instrument implements ArrayAccess
     }
     
     /**
+     * Gets settle
+     * @return \DateTime
+     */
+    public function getSettle()
+    {
+        return $this->settle;
+    }
+  
+    /**
+     * Sets settle
+     * @param \DateTime $settle 
+     * @return $this
+     */
+    public function setSettle($settle)
+    {
+        
+        $this->settle = $settle;
+        return $this;
+    }
+    
+    /**
      * Gets relist_interval
      * @return \DateTime
      */
@@ -1161,6 +1358,27 @@ class Instrument implements ArrayAccess
     {
         
         $this->buy_leg = $buy_leg;
+        return $this;
+    }
+    
+    /**
+     * Gets position_currency
+     * @return string
+     */
+    public function getPositionCurrency()
+    {
+        return $this->position_currency;
+    }
+  
+    /**
+     * Sets position_currency
+     * @param string $position_currency 
+     * @return $this
+     */
+    public function setPositionCurrency($position_currency)
+    {
+        
+        $this->position_currency = $position_currency;
         return $this;
     }
     
@@ -1270,6 +1488,132 @@ class Instrument implements ArrayAccess
     }
     
     /**
+     * Gets calc_interval
+     * @return \DateTime
+     */
+    public function getCalcInterval()
+    {
+        return $this->calc_interval;
+    }
+  
+    /**
+     * Sets calc_interval
+     * @param \DateTime $calc_interval 
+     * @return $this
+     */
+    public function setCalcInterval($calc_interval)
+    {
+        
+        $this->calc_interval = $calc_interval;
+        return $this;
+    }
+    
+    /**
+     * Gets publish_interval
+     * @return \DateTime
+     */
+    public function getPublishInterval()
+    {
+        return $this->publish_interval;
+    }
+  
+    /**
+     * Sets publish_interval
+     * @param \DateTime $publish_interval 
+     * @return $this
+     */
+    public function setPublishInterval($publish_interval)
+    {
+        
+        $this->publish_interval = $publish_interval;
+        return $this;
+    }
+    
+    /**
+     * Gets publish_time
+     * @return \DateTime
+     */
+    public function getPublishTime()
+    {
+        return $this->publish_time;
+    }
+  
+    /**
+     * Sets publish_time
+     * @param \DateTime $publish_time 
+     * @return $this
+     */
+    public function setPublishTime($publish_time)
+    {
+        
+        $this->publish_time = $publish_time;
+        return $this;
+    }
+    
+    /**
+     * Gets max_order_qty
+     * @return Number
+     */
+    public function getMaxOrderQty()
+    {
+        return $this->max_order_qty;
+    }
+  
+    /**
+     * Sets max_order_qty
+     * @param Number $max_order_qty 
+     * @return $this
+     */
+    public function setMaxOrderQty($max_order_qty)
+    {
+        
+        $this->max_order_qty = $max_order_qty;
+        return $this;
+    }
+    
+    /**
+     * Gets max_price
+     * @return double
+     */
+    public function getMaxPrice()
+    {
+        return $this->max_price;
+    }
+  
+    /**
+     * Sets max_price
+     * @param double $max_price 
+     * @return $this
+     */
+    public function setMaxPrice($max_price)
+    {
+        
+        $this->max_price = $max_price;
+        return $this;
+    }
+    
+    /**
+     * Gets lot_size
+     * @return Number
+     */
+    public function getLotSize()
+    {
+        return $this->lot_size;
+    }
+  
+    /**
+     * Sets lot_size
+     * @param Number $lot_size 
+     * @return $this
+     */
+    public function setLotSize($lot_size)
+    {
+        
+        $this->lot_size = $lot_size;
+        return $this;
+    }
+    
+    /**
      * Gets tick_size
      * @return double
      */
@@ -1329,6 +1673,27 @@ class Instrument implements ArrayAccess
     {
         
         $this->settl_currency = $settl_currency;
+        return $this;
+    }
+    
+    /**
+     * Gets underlying_to_position_multiplier
+     * @return Number
+     */
+    public function getUnderlyingToPositionMultiplier()
+    {
+        return $this->underlying_to_position_multiplier;
+    }
+  
+    /**
+     * Sets underlying_to_position_multiplier
+     * @param Number $underlying_to_position_multiplier 
+     * @return $this
+     */
+    public function setUnderlyingToPositionMultiplier($underlying_to_position_multiplier)
+    {
+        
+        $this->underlying_to_position_multiplier = $underlying_to_position_multiplier;
         return $this;
     }
     
@@ -1564,6 +1929,27 @@ class Instrument implements ArrayAccess
     }
     
     /**
+     * Gets settlement_fee
+     * @return double
+     */
+    public function getSettlementFee()
+    {
+        return $this->settlement_fee;
+    }
+  
+    /**
+     * Sets settlement_fee
+     * @param double $settlement_fee 
+     * @return $this
+     */
+    public function setSettlementFee($settlement_fee)
+    {
+        
+        $this->settlement_fee = $settlement_fee;
+        return $this;
+    }
+    
+    /**
      * Gets insurance_fee
      * @return double
      */
@@ -1585,65 +1971,191 @@ class Instrument implements ArrayAccess
     }
     
     /**
-     * Gets hedger_maker_fee
-     * @return double
+     * Gets funding_base_symbol
+     * @return string
      */
-    public function getHedgerMakerFee()
+    public function getFundingBaseSymbol()
     {
-        return $this->hedger_maker_fee;
+        return $this->funding_base_symbol;
     }
   
     /**
-     * Sets hedger_maker_fee
-     * @param double $hedger_maker_fee 
+     * Sets funding_base_symbol
+     * @param string $funding_base_symbol 
      * @return $this
      */
-    public function setHedgerMakerFee($hedger_maker_fee)
+    public function setFundingBaseSymbol($funding_base_symbol)
     {
         
-        $this->hedger_maker_fee = $hedger_maker_fee;
+        $this->funding_base_symbol = $funding_base_symbol;
         return $this;
     }
     
     /**
-     * Gets hedger_taker_fee
-     * @return double
+     * Gets funding_quote_symbol
+     * @return string
      */
-    public function getHedgerTakerFee()
+    public function getFundingQuoteSymbol()
     {
-        return $this->hedger_taker_fee;
+        return $this->funding_quote_symbol;
     }
   
     /**
-     * Sets hedger_taker_fee
-     * @param double $hedger_taker_fee 
+     * Sets funding_quote_symbol
+     * @param string $funding_quote_symbol 
      * @return $this
      */
-    public function setHedgerTakerFee($hedger_taker_fee)
+    public function setFundingQuoteSymbol($funding_quote_symbol)
     {
         
-        $this->hedger_taker_fee = $hedger_taker_fee;
+        $this->funding_quote_symbol = $funding_quote_symbol;
         return $this;
     }
     
     /**
-     * Gets hedger_insurance_fee
-     * @return double
+     * Gets funding_premium_symbol
+     * @return string
      */
-    public function getHedgerInsuranceFee()
+    public function getFundingPremiumSymbol()
     {
-        return $this->hedger_insurance_fee;
+        return $this->funding_premium_symbol;
     }
   
     /**
-     * Sets hedger_insurance_fee
-     * @param double $hedger_insurance_fee 
+     * Sets funding_premium_symbol
+     * @param string $funding_premium_symbol 
      * @return $this
      */
-    public function setHedgerInsuranceFee($hedger_insurance_fee)
+    public function setFundingPremiumSymbol($funding_premium_symbol)
     {
         
-        $this->hedger_insurance_fee = $hedger_insurance_fee;
+        $this->funding_premium_symbol = $funding_premium_symbol;
+        return $this;
+    }
+    
+    /**
+     * Gets funding_timestamp
+     * @return \DateTime
+     */
+    public function getFundingTimestamp()
+    {
+        return $this->funding_timestamp;
+    }
+  
+    /**
+     * Sets funding_timestamp
+     * @param \DateTime $funding_timestamp 
+     * @return $this
+     */
+    public function setFundingTimestamp($funding_timestamp)
+    {
+        
+        $this->funding_timestamp = $funding_timestamp;
+        return $this;
+    }
+    
+    /**
+     * Gets funding_interval
+     * @return \DateTime
+     */
+    public function getFundingInterval()
+    {
+        return $this->funding_interval;
+    }
+  
+    /**
+     * Sets funding_interval
+     * @param \DateTime $funding_interval 
+     * @return $this
+     */
+    public function setFundingInterval($funding_interval)
+    {
+        
+        $this->funding_interval = $funding_interval;
+        return $this;
+    }
+    
+    /**
+     * Gets funding_rate
+     * @return double
+     */
+    public function getFundingRate()
+    {
+        return $this->funding_rate;
+    }
+  
+    /**
+     * Sets funding_rate
+     * @param double $funding_rate 
+     * @return $this
+     */
+    public function setFundingRate($funding_rate)
+    {
+        
+        $this->funding_rate = $funding_rate;
+        return $this;
+    }
+    
+    /**
+     * Gets indicative_funding_rate
+     * @return double
+     */
+    public function getIndicativeFundingRate()
+    {
+        return $this->indicative_funding_rate;
+    }
+  
+    /**
+     * Sets indicative_funding_rate
+     * @param double $indicative_funding_rate 
+     * @return $this
+     */
+    public function setIndicativeFundingRate($indicative_funding_rate)
+    {
+        
+        $this->indicative_funding_rate = $indicative_funding_rate;
+        return $this;
+    }
+    
+    /**
+     * Gets rebalance_timestamp
+     * @return \DateTime
+     */
+    public function getRebalanceTimestamp()
+    {
+        return $this->rebalance_timestamp;
+    }
+  
+    /**
+     * Sets rebalance_timestamp
+     * @param \DateTime $rebalance_timestamp 
+     * @return $this
+     */
+    public function setRebalanceTimestamp($rebalance_timestamp)
+    {
+        
+        $this->rebalance_timestamp = $rebalance_timestamp;
+        return $this;
+    }
+    
+    /**
+     * Gets rebalance_interval
+     * @return \DateTime
+     */
+    public function getRebalanceInterval()
+    {
+        return $this->rebalance_interval;
+    }
+  
+    /**
+     * Sets rebalance_interval
+     * @param \DateTime $rebalance_interval 
+     * @return $this
+     */
+    public function setRebalanceInterval($rebalance_interval)
+    {
+        
+        $this->rebalance_interval = $rebalance_interval;
         return $this;
     }
     

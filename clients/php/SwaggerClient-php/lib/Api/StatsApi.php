@@ -92,14 +92,14 @@ class StatsApi
   
     
     /**
-     * statsFind
+     * statsGet
      *
      * Get exchange-wide and per-series turnover and volume statistics.
      *
      * @return \Swagger\Client\Model\Stats[]
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function statsFind()
+    public function statsGet()
     {
         
   

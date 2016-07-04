@@ -30,12 +30,12 @@ class StatsApi (implicit val swagger: Swagger) extends ScalatraServlet
   }
   
 
-  val stats.findOperation = (apiOperation[List[Stats]]("stats.find")
+  val stats.getOperation = (apiOperation[List[Stats]]("stats.get")
       summary "Get exchange-wide and per-series turnover and volume statistics."
       parameters()
   )
 
-  get("/stats",operation(stats.findOperation)) {
+  get("/stats",operation(stats.getOperation)) {
     
   }
 

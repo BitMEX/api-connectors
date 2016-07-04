@@ -36,7 +36,7 @@ class ChatApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(
   }
 
   
-  def chat.send(message: String)(implicit reader: ClientResponseReader[Chat]): Future[Chat] = {
+  def chat.new(message: String)(implicit reader: ClientResponseReader[Chat]): Future[Chat] = {
     // create path and map variables
     val path = (addFmt("/chat"))
 

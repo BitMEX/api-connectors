@@ -2,7 +2,7 @@
   (:require [bit-mex-api.core :refer [call-api check-required-params]])
   (:import (java.io File)))
 
-(defn user-get-me
+(defn user-get
   "Get your user model."
   []
   (call-api "/user" :get
@@ -13,27 +13,27 @@
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]}))
 
-(defn user-update-me
+(defn user-update
   "Update your password, name, and other attributes."
-  ([] (user-update-me nil))
-  ([{:keys [firstname lastname old-password new-password new-password-confirm country pgp-pub-key ]}]
+  ([] (user-update nil))
+  ([{:keys [firstname lastname old-password new-password new-password-confirm username country pgp-pub-key ]}]
    (call-api "/user" :put
              {:path-params   {}
               :header-params {}
               :query-params  {}
-              :form-params   {"firstname" firstname "lastname" lastname "oldPassword" old-password "newPassword" new-password "newPasswordConfirm" new-password-confirm "country" country "pgpPubKey" pgp-pub-key }
+              :form-params   {"firstname" firstname "lastname" lastname "oldPassword" old-password "newPassword" new-password "newPasswordConfirm" new-password-confirm "username" username "country" country "pgpPubKey" pgp-pub-key }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]})))
 
-(defn user-new-user
+(defn user-new
   "Register a new user."
-  ([email password username ] (user-new-user email password username nil))
-  ([email password username {:keys [firstname lastname accepts-tos referrer-id country ]}]
+  ([email password country ] (user-new email password country nil))
+  ([email password country {:keys [username firstname lastname accepts-tos referrer-id tfa-type tfa-token ]}]
    (call-api "/user" :post
              {:path-params   {}
               :header-params {}
               :query-params  {}
-              :form-params   {"email" email "password" password "username" username "firstname" firstname "lastname" lastname "acceptsTOS" accepts-tos "referrerID" referrer-id "country" country }
+              :form-params   {"email" email "password" password "username" username "firstname" firstname "lastname" lastname "acceptsTOS" accepts-tos "referrerID" referrer-id "country" country "tfaType" tfa-type "tfaToken" tfa-token }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]})))
 
@@ -187,18 +187,19 @@
              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]}))
 
 (defn user-get-margin
-  "Get your account's margin status."
-  []
-  (call-api "/user/margin" :get
-            {:path-params   {}
-             :header-params {}
-             :query-params  {}
-             :form-params   {}
-             :content-types ["application/json" "application/x-www-form-urlencoded"]
-             :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]}))
+  "Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies."
+  ([] (user-get-margin nil))
+  ([{:keys [currency ]}]
+   (call-api "/user/margin" :get
+             {:path-params   {}
+              :header-params {}
+              :query-params  {"currency" currency }
+              :form-params   {}
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]})))
 
 (defn user-save-preferences
-  "Save application preferences."
+  "Save user preferences."
   ([prefs ] (user-save-preferences prefs nil))
   ([prefs {:keys [overwrite ]}]
    (call-api "/user/preferences" :post
@@ -212,12 +213,12 @@
 (defn user-request-enable-tfa
   "Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys."
   ([] (user-request-enable-tfa nil))
-  ([{:keys [type token ]}]
+  ([{:keys [type ]}]
    (call-api "/user/requestEnableTFA" :post
              {:path-params   {}
               :header-params {}
               :query-params  {}
-              :form-params   {"type" type "token" token }
+              :form-params   {"type" type }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]})))
 
@@ -234,7 +235,7 @@
 
 (defn user-request-withdrawal
   "Request a withdrawal to an external wallet.
-  This will send a confirmation email to the email address on record, unless requested via an API Key with the \"withdraw\" permission."
+  This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission."
   ([currency amount address ] (user-request-withdrawal currency amount address nil))
   ([currency amount address {:keys [otp-token fee ]}]
    (call-api "/user/requestWithdrawal" :post
@@ -248,21 +249,22 @@
 (defn user-send-verification-email
   "Re-send verification email."
   [email ]
-  (call-api "/user/resendVerificationEmail" :get
+  (call-api "/user/resendVerificationEmail" :post
             {:path-params   {}
              :header-params {}
-             :query-params  {"email" email }
-             :form-params   {}
+             :query-params  {}
+             :form-params   {"email" email }
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]}))
 
 (defn user-get-wallet-history
   "Get a history of all of your wallet transactions (deposits and withdrawals)."
-  []
-  (call-api "/user/walletHistory" :get
-            {:path-params   {}
-             :header-params {}
-             :query-params  {}
-             :form-params   {}
-             :content-types ["application/json" "application/x-www-form-urlencoded"]
-             :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]}))
+  ([] (user-get-wallet-history nil))
+  ([{:keys [currency ]}]
+   (call-api "/user/walletHistory" :get
+             {:path-params   {}
+              :header-params {}
+              :query-params  {"currency" currency }
+              :form-params   {}
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]})))

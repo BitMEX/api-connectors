@@ -33,11 +33,11 @@ import static org.springframework.http.MediaType.*;
 @Controller
 @RequestMapping(value = "/position", produces = {APPLICATION_JSON_VALUE})
 @Api(value = "/position", description = "the position API")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2015-11-30T13:36:04.774-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2016-07-04T18:25:39.823-05:00")
 public class PositionApi {
   
 
-  @ApiOperation(value = "Get your positions.", notes = "", response = Position.class, responseContainer = "List")
+  @ApiOperation(value = "Get your positions.", notes = "See <a href=\"http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html\">the FIX Spec</a> for explanations of these fields.", response = Position.class, responseContainer = "List")
   @ApiResponses(value = { 
     @ApiResponse(code = 200, message = "Request was successful"),
     @ApiResponse(code = 400, message = "Parameter Error"),
@@ -47,7 +47,7 @@ public class PositionApi {
     produces = { "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" }, 
     consumes = { "application/json", "application/x-www-form-urlencoded" },
     method = RequestMethod.GET)
-  public ResponseEntity<List<Position>> positionFind(@ApiParam(value = "Table filter. For example, send {\"symbol\": \"XBT24H\"}.") @RequestParam(value = "filter", required = false) String filter
+  public ResponseEntity<List<Position>> positionGet(@ApiParam(value = "Table filter. For example, send {\"symbol\": \"XBT24H\"}.") @RequestParam(value = "filter", required = false) String filter
 
 
 ,
@@ -66,7 +66,7 @@ public class PositionApi {
 
   
 
-  @ApiOperation(value = "Toggle isolated (fixed) margin per-position.", notes = "On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off. A position must be open to isolate it.", response = Position.class)
+  @ApiOperation(value = "Enable isolated margin or cross margin per-position.", notes = "On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.", response = Position.class)
   @ApiResponses(value = { 
     @ApiResponse(code = 200, message = "Request was successful"),
     @ApiResponse(code = 400, message = "Parameter Error"),
@@ -84,7 +84,34 @@ public class PositionApi {
     
 
 
-@ApiParam(value = "If true, will enable isolated margin." , defaultValue="true") @RequestPart(value="enabled", required=false)  Boolean enabled
+@ApiParam(value = "True for isolated margin, false for cross margin." , defaultValue="true") @RequestPart(value="enabled", required=false)  Boolean enabled
+)
+      throws NotFoundException {
+      // do some magic!
+      return new ResponseEntity<Position>(HttpStatus.OK);
+  }
+
+  
+
+  @ApiOperation(value = "Choose leverage for a position.", notes = "On Speculative (DPE-Enabled) contracts, users can choose an isolated leverage. This will automatically enable isolated margin.", response = Position.class)
+  @ApiResponses(value = { 
+    @ApiResponse(code = 200, message = "Request was successful"),
+    @ApiResponse(code = 400, message = "Parameter Error"),
+    @ApiResponse(code = 401, message = "Unauthorized"),
+    @ApiResponse(code = 404, message = "Not Found") })
+  @RequestMapping(value = "/leverage", 
+    produces = { "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" }, 
+    consumes = { "application/json", "application/x-www-form-urlencoded" },
+    method = RequestMethod.POST)
+  public ResponseEntity<Position> positionUpdateLeverage(
+
+
+@ApiParam(value = "Symbol of position to adjust.", required=true ) @RequestPart(value="symbol", required=true)  String symbol
+,
+    
+
+
+@ApiParam(value = "Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.", required=true ) @RequestPart(value="leverage", required=true)  Double leverage
 )
       throws NotFoundException {
       // do some magic!
@@ -106,12 +133,12 @@ public class PositionApi {
   public ResponseEntity<Position> positionTransferIsolatedMargin(
 
 
-@ApiParam(value = "Position symbol to isolate.", required=true ) @RequestPart(value="symbol", required=true)  String symbol
+@ApiParam(value = "Symbol of position to isolate.", required=true ) @RequestPart(value="symbol", required=true)  String symbol
 ,
     
 
 
-@ApiParam(value = "Amount to transfer, in satoshis. May be negative.", required=true ) @RequestPart(value="amount", required=true)  BigDecimal amount
+@ApiParam(value = "Amount to transfer, in Satoshis. May be negative.", required=true ) @RequestPart(value="amount", required=true)  BigDecimal amount
 )
       throws NotFoundException {
       // do some magic!

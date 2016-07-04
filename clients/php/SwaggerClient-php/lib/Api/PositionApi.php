@@ -92,7 +92,7 @@ class PositionApi
   
     
     /**
-     * positionFind
+     * positionGet
      *
      * Get your positions.
      *
@@ -102,7 +102,7 @@ class PositionApi
      * @return \Swagger\Client\Model\Position[]
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function positionFind($filter=null, $columns=null, $count=null)
+    public function positionGet($filter=null, $columns=null, $count=null)
     {
         
   
@@ -187,10 +187,10 @@ class PositionApi
     /**
      * positionIsolateMargin
      *
-     * Toggle isolated (fixed) margin per-position.
+     * Enable isolated margin or cross margin per-position.
      *
      * @param string $symbol Position symbol to isolate. (required)
-     * @param bool $enabled If true, will enable isolated margin. (optional)
+     * @param bool $enabled True for isolated margin, false for cross margin. (optional)
      * @return \Swagger\Client\Model\Position
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
@@ -284,12 +284,115 @@ class PositionApi
     }
     
     /**
+     * positionUpdateLeverage
+     *
+     * Choose leverage for a position.
+     *
+     * @param string $symbol Symbol of position to adjust. (required)
+     * @param double $leverage Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin. (required)
+     * @return \Swagger\Client\Model\Position
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function positionUpdateLeverage($symbol, $leverage)
+    {
+        
+        // verify the required parameter 'symbol' is set
+        if ($symbol === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $symbol when calling positionUpdateLeverage');
+        }
+        // verify the required parameter 'leverage' is set
+        if ($leverage === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $leverage when calling positionUpdateLeverage');
+        }
+  
+        // parse inputs
+        $resourcePath = "/position/leverage";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "POST";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
+  
+        
+        
+        
+        // form params
+        if ($symbol !== null) {
+            
+            
+            $formParams['symbol'] = $this->apiClient->getSerializer()->toFormValue($symbol);
+            
+        }// form params
+        if ($leverage !== null) {
+            
+            
+            $formParams['leverage'] = $this->apiClient->getSerializer()->toFormValue($leverage);
+            
+        }
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } else if (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try
+        {
+            list($response, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\Swagger\Client\Model\Position'
+            );
+            
+            if (!$response) {
+                return null;
+            }
+
+            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\Position', $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Position', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 400:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 401:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 404:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+        
+        return null;
+        
+    }
+    
+    /**
      * positionTransferIsolatedMargin
      *
      * Transfer equity in or out of a position.
      *
-     * @param string $symbol Position symbol to isolate. (required)
-     * @param Number $amount Amount to transfer, in satoshis. May be negative. (required)
+     * @param string $symbol Symbol of position to isolate. (required)
+     * @param Number $amount Amount to transfer, in Satoshis. May be negative. (required)
      * @return \Swagger\Client\Model\Position
      * @throws \Swagger\Client\ApiException on non-2xx response
      */

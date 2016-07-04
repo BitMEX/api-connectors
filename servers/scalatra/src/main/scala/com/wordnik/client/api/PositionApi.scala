@@ -30,14 +30,14 @@ class PositionApi (implicit val swagger: Swagger) extends ScalatraServlet
   }
   
 
-  val position.findOperation = (apiOperation[List[Position]]("position.find")
+  val position.getOperation = (apiOperation[List[Position]]("position.get")
       summary "Get your positions."
       parameters(queryParam[String]("filter").description("").optional,
         queryParam[String]("columns").description("").optional,
         queryParam[BigDecimal]("count").description("").optional)
   )
 
-  get("/position",operation(position.findOperation)) {
+  get("/position",operation(position.getOperation)) {
     
     
     
@@ -74,7 +74,7 @@ class PositionApi (implicit val swagger: Swagger) extends ScalatraServlet
   
 
   val position.isolateMarginOperation = (apiOperation[Position]("position.isolateMargin")
-      summary "Toggle isolated (fixed) margin per-position."
+      summary "Enable isolated margin or cross margin per-position."
       parameters(formParam[String]("symbol").description(""),
         formParam[Boolean]("enabled").description("").optional.defaultValue(true))
   )
@@ -98,6 +98,36 @@ class PositionApi (implicit val swagger: Swagger) extends ScalatraServlet
 
     
     println("enabled: " + enabled)
+  
+  }
+
+  
+
+  val position.updateLeverageOperation = (apiOperation[Position]("position.updateLeverage")
+      summary "Choose leverage for a position."
+      parameters(formParam[String]("symbol").description(""),
+        formParam[Double]("leverage").description(""))
+  )
+
+  post("/position/leverage",operation(position.updateLeverageOperation)) {
+    
+    
+    
+                
+      val symbol = params.getAs[String]("symbol")
+    
+
+    
+    println("symbol: " + symbol)
+  
+    
+    
+                
+      val leverage = params.getAs[Double]("leverage")
+    
+
+    
+    println("leverage: " + leverage)
   
   }
 

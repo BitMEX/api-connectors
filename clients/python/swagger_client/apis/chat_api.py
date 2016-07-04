@@ -127,7 +127,7 @@ class ChatApi(object):
                                             callback=params.get('callback'))
         return response
 
-    def chat_send(self, message, **kwargs):
+    def chat_new(self, message, **kwargs):
         """
         Send a chat message.
         
@@ -138,7 +138,7 @@ class ChatApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.chat_send(message, callback=callback_function)
+        >>> thread = api.chat_new(message, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
@@ -156,14 +156,14 @@ class ChatApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method chat_send" % key
+                    " to method chat_new" % key
                 )
             params[key] = val
         del params['kwargs']
 
         # verify the required parameter 'message' is set
         if ('message' not in params) or (params['message'] is None):
-            raise ValueError("Missing the required parameter `message` when calling `chat_send`")
+            raise ValueError("Missing the required parameter `message` when calling `chat_new`")
 
         resource_path = '/chat'.replace('{format}', 'json')
         method = 'POST'

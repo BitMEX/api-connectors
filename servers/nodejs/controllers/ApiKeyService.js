@@ -1,6 +1,6 @@
 'use strict';
 
-exports.apiKey.getKeys = function(args, res, next) {
+exports.apiKey.get = function(args, res, next) {
   /**
    * parameters expected in the args:
    * reverse (Boolean)
@@ -10,7 +10,7 @@ var examples = {};
   
   examples['application/json'] = [ {
   "permissions" : [ "aeiou" ],
-  "created" : "2015-11-30T19:35:59.545+0000",
+  "created" : "2016-07-04T23:25:34.473+0000",
   "name" : "aeiou",
   "cidr" : "aeiou",
   "id" : "aeiou",
@@ -32,7 +32,7 @@ var examples = {};
   
   
 }
-exports.apiKey.createKey = function(args, res, next) {
+exports.apiKey.new = function(args, res, next) {
   /**
    * parameters expected in the args:
    * name (String)
@@ -46,7 +46,7 @@ var examples = {};
   
   examples['application/json'] = {
   "permissions" : [ "aeiou" ],
-  "created" : "2015-11-30T19:35:59.547+0000",
+  "created" : "2016-07-04T23:25:34.475+0000",
   "name" : "aeiou",
   "cidr" : "aeiou",
   "id" : "aeiou",
@@ -76,7 +76,9 @@ exports.apiKey.remove = function(args, res, next) {
 
 var examples = {};
   
-  examples['application/json'] = { };
+  examples['application/json'] = {
+  "success" : true
+};
   
 
   
@@ -100,7 +102,7 @@ var examples = {};
   
   examples['application/json'] = {
   "permissions" : [ "aeiou" ],
-  "created" : "2015-11-30T19:35:59.552+0000",
+  "created" : "2016-07-04T23:25:34.480+0000",
   "name" : "aeiou",
   "cidr" : "aeiou",
   "id" : "aeiou",
@@ -132,7 +134,7 @@ var examples = {};
   
   examples['application/json'] = {
   "permissions" : [ "aeiou" ],
-  "created" : "2015-11-30T19:35:59.553+0000",
+  "created" : "2016-07-04T23:25:34.481+0000",
   "name" : "aeiou",
   "cidr" : "aeiou",
   "id" : "aeiou",

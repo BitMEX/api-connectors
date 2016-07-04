@@ -1,6 +1,6 @@
 'use strict';
 
-exports.stats.find = function(args, res, next) {
+exports.stats.get = function(args, res, next) {
   /**
    * parameters expected in the args:
    **/
@@ -36,7 +36,7 @@ exports.stats.history = function(args, res, next) {
 var examples = {};
   
   examples['application/json'] = [ {
-  "date" : "2015-11-30T19:35:59.607+0000",
+  "date" : "2016-07-04T23:25:34.562+0000",
   "volume" : 1.3579000000000001069366817318950779736042022705078125,
   "currency" : "aeiou",
   "turnover" : 1.3579000000000001069366817318950779736042022705078125,

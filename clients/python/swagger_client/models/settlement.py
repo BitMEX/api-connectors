@@ -37,8 +37,8 @@ class Settlement(object):
                                   and the value is json key in definition.
         """
         self.swagger_types = {
-            'symbol': 'str',
             'timestamp': 'date',
+            'symbol': 'str',
             'settlement_type': 'str',
             'settled_price': 'float',
             'bankrupt': 'float',
@@ -47,8 +47,8 @@ class Settlement(object):
         }
 
         self.attribute_map = {
-            'symbol': 'symbol',
             'timestamp': 'timestamp',
+            'symbol': 'symbol',
             'settlement_type': 'settlementType',
             'settled_price': 'settledPrice',
             'bankrupt': 'bankrupt',
@@ -56,35 +56,13 @@ class Settlement(object):
             'tax_rate': 'taxRate'
         }
 
-        self._symbol = None
         self._timestamp = None
+        self._symbol = None
         self._settlement_type = None
         self._settled_price = None
         self._bankrupt = None
         self._tax_base = None
         self._tax_rate = None
-
-    @property
-    def symbol(self):
-        """
-        Gets the symbol of this Settlement.
-
-
-        :return: The symbol of this Settlement.
-        :rtype: str
-        """
-        return self._symbol
-
-    @symbol.setter
-    def symbol(self, symbol):
-        """
-        Sets the symbol of this Settlement.
-
-
-        :param symbol: The symbol of this Settlement.
-        :type: str
-        """
-        self._symbol = symbol
 
     @property
     def timestamp(self):
@@ -107,6 +85,28 @@ class Settlement(object):
         :type: date
         """
         self._timestamp = timestamp
+
+    @property
+    def symbol(self):
+        """
+        Gets the symbol of this Settlement.
+
+
+        :return: The symbol of this Settlement.
+        :rtype: str
+        """
+        return self._symbol
+
+    @symbol.setter
+    def symbol(self, symbol):
+        """
+        Sets the symbol of this Settlement.
+
+
+        :param symbol: The symbol of this Settlement.
+        :type: str
+        """
+        self._symbol = symbol
 
     @property
     def settlement_type(self):

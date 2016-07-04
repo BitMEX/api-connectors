@@ -7,10 +7,11 @@ import java.util.Date
 case class Position (
   account: Number,
   symbol: String,
+  currency: String,
   underlying: String,
   quoteCurrency: String,
-  currency: String,
   commission: Double,
+  leverage: Double,
   crossMargin: Boolean,
   rebalancedPnl: Number,
   prevRealisedPnl: Number,
@@ -87,5 +88,7 @@ case class Position (
   marginCallPrice: Double,
   liquidationPrice: Double,
   bankruptPrice: Double,
-  timestamp: Date)
+  timestamp: Date,
+  lastPrice: Double,
+  lastValue: Number)
   

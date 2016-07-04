@@ -22,6 +22,10 @@ class SwaggerClient(config: SwaggerConfig) extends Closeable {
   
   val announcement = new AnnouncementApi(client, config)
   
+  val leaderboard = new LeaderboardApi(client, config)
+  
+  val funding = new FundingApi(client, config)
+  
   val orderBook = new OrderBookApi(client, config)
   
   val position = new PositionApi(client, config)
@@ -36,11 +40,15 @@ class SwaggerClient(config: SwaggerConfig) extends Closeable {
   
   val execution = new ExecutionApi(client, config)
   
+  val insurance = new InsuranceApi(client, config)
+  
   val chat = new ChatApi(client, config)
   
   val instrument = new InstrumentApi(client, config)
   
   val stats = new StatsApi(client, config)
+  
+  val liquidation = new LiquidationApi(client, config)
   
 
   def close() {

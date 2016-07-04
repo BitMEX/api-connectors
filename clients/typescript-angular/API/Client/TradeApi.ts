@@ -28,9 +28,9 @@ namespace API.Client {
 
         /**
          * Get Trades.
-         * 
-         * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.
-         * @param filter Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.
+         * Please note that indices (symbols starting with `.`) post trades at intervals to the trade feed. These have a `size` of 0 and are used only to indicate a changing price.\n\nSee [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AE_6569.html) for explanations of these fields.
+         * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+         * @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
          * @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
          * @param count Number of results to fetch.
          * @param start Starting point for results.
@@ -95,8 +95,8 @@ namespace API.Client {
          * Get previous trades in time buckets.
          * 
          * @param binSize Time interval to bucket by. Available options: [&#39;1m&#39;, &#39;5m&#39;, &#39;1h&#39;, &#39;1d&#39;].
-         * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.
-         * @param filter Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.
+         * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+         * @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
          * @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
          * @param count Number of results to fetch.
          * @param start Starting point for results.
@@ -143,89 +143,6 @@ namespace API.Client {
 
             if (endTime !== undefined) {
                 queryParameters['endTime'] = endTime;
-            }
-
-            let httpRequestParams: any = {
-                method: 'GET',
-                url: path,
-                json: true,
-                
-                
-                params: queryParameters,
-                headers: headerParams
-            };
-
-            if (extraHttpRequestParams) {
-                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-            }
-
-            return this.$http(httpRequestParams);
-        }
-        /**
-         * Get trades between two dates. [Deprecated, use GET /trades]
-         * 
-         * @param startTime Start date.
-         * @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
-         * @param endTime End Date.
-         */
-        public tradeGetByDate (startTime: date, symbol?: string, endTime?: date, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<Trade>> {
-            const path = this.basePath + '/trade/byDate';
-
-            let queryParameters: any = {};
-            let headerParams: any = this.extendObj({}, this.defaultHeaders);
-            // verify required parameter 'startTime' is set
-            if (!startTime) {
-                throw new Error('Missing required parameter startTime when calling tradeGetByDate');
-            }
-            if (symbol !== undefined) {
-                queryParameters['symbol'] = symbol;
-            }
-
-            if (startTime !== undefined) {
-                queryParameters['startTime'] = startTime;
-            }
-
-            if (endTime !== undefined) {
-                queryParameters['endTime'] = endTime;
-            }
-
-            let httpRequestParams: any = {
-                method: 'GET',
-                url: path,
-                json: true,
-                
-                
-                params: queryParameters,
-                headers: headerParams
-            };
-
-            if (extraHttpRequestParams) {
-                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-            }
-
-            return this.$http(httpRequestParams);
-        }
-        /**
-         * Get recent trades. [Deprecated, use GET /trades]
-         * 
-         * @param count Number of trades to fetch.
-         * @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
-         */
-        public tradeGetRecent (count: number, symbol?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Array<Trade>> {
-            const path = this.basePath + '/trade/recent';
-
-            let queryParameters: any = {};
-            let headerParams: any = this.extendObj({}, this.defaultHeaders);
-            // verify required parameter 'count' is set
-            if (!count) {
-                throw new Error('Missing required parameter count when calling tradeGetRecent');
-            }
-            if (symbol !== undefined) {
-                queryParameters['symbol'] = symbol;
-            }
-
-            if (count !== undefined) {
-                queryParameters['count'] = count;
             }
 
             let httpRequestParams: any = {

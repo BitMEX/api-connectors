@@ -15,9 +15,9 @@
 @interface SWGSettlement : SWGObject
 
 
-@property(nonatomic) NSString* symbol;
-
 @property(nonatomic) NSDate* timestamp;
+
+@property(nonatomic) NSString* symbol;
 
 @property(nonatomic) NSString* settlementType;
 

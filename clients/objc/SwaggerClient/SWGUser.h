@@ -18,6 +18,8 @@
 
 @property(nonatomic) NSNumber* _id;
 
+@property(nonatomic) NSNumber* ownerId;
+
 @property(nonatomic) NSString* firstname;
 
 @property(nonatomic) NSString* lastname;
@@ -37,8 +39,6 @@
 @property(nonatomic) NSDate* lastUpdated;
 
 @property(nonatomic) SWGUserPreferences* preferences;
-
-@property(nonatomic) NSString* role;
 
 @property(nonatomic) NSString* tFAEnabled;
 

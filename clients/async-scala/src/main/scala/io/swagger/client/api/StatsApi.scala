@@ -11,7 +11,7 @@ import collection.mutable
 class StatsApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
   
-  def stats.find()(implicit reader: ClientResponseReader[List[Stats]]): Future[List[Stats]] = {
+  def stats.get()(implicit reader: ClientResponseReader[List[Stats]]): Future[List[Stats]] = {
     // create path and map variables
     val path = (addFmt("/stats"))
 

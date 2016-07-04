@@ -21,7 +21,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <returns></returns>
-        List<Stats> StatsFind ();
+        List<Stats> StatsGet ();
   
         /// <summary>
         /// Get exchange-wide and per-series turnover and volume statistics.
@@ -30,7 +30,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <returns></returns>
-        System.Threading.Tasks.Task<List<Stats>> StatsFindAsync ();
+        System.Threading.Tasks.Task<List<Stats>> StatsGetAsync ();
         
         /// <summary>
         /// Get historical exchange-wide and per-series turnover and volume statistics.
@@ -109,7 +109,7 @@ namespace IO.Swagger.Api
         /// Get exchange-wide and per-series turnover and volume statistics. 
         /// </summary>
         /// <returns></returns>            
-        public List<Stats> StatsFind ()
+        public List<Stats> StatsGet ()
         {
             
     
@@ -146,9 +146,9 @@ namespace IO.Swagger.Api
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path_, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling StatsFind: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling StatsGet: " + response.Content, response.Content);
             else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling StatsFind: " + response.ErrorMessage, response.ErrorMessage);
+                throw new ApiException ((int)response.StatusCode, "Error calling StatsGet: " + response.ErrorMessage, response.ErrorMessage);
     
             return (List<Stats>) ApiClient.Deserialize(response, typeof(List<Stats>));
         }
@@ -157,7 +157,7 @@ namespace IO.Swagger.Api
         /// Get exchange-wide and per-series turnover and volume statistics. 
         /// </summary>
         /// <returns></returns>
-        public async System.Threading.Tasks.Task<List<Stats>> StatsFindAsync ()
+        public async System.Threading.Tasks.Task<List<Stats>> StatsGetAsync ()
         {
             
     
@@ -193,7 +193,7 @@ namespace IO.Swagger.Api
             // make the HTTP request
             IRestResponse response = (IRestResponse) await ApiClient.CallApiAsync(path_, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling StatsFind: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling StatsGet: " + response.Content, response.Content);
 
             return (List<Stats>) ApiClient.Deserialize(response, typeof(List<Stats>));
         }

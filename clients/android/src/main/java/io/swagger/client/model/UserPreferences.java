@@ -23,20 +23,32 @@ public class UserPreferences  {
   private List<String> disableEmails = null;
   @SerializedName("hideConfirmDialogs")
   private List<String> hideConfirmDialogs = null;
+  @SerializedName("hideConnectionModal")
+  private Boolean hideConnectionModal = null;
+  @SerializedName("hideFromLeaderboard")
+  private Boolean hideFromLeaderboard = null;
+  @SerializedName("hideNameFromLeaderboard")
+  private Boolean hideNameFromLeaderboard = null;
   @SerializedName("hideNotifications")
   private List<String> hideNotifications = null;
   @SerializedName("hidePhoneConfirm")
   private Boolean hidePhoneConfirm = null;
+  @SerializedName("locale")
+  private String locale = null;
   @SerializedName("msgsSeen")
   private List<String> msgsSeen = null;
   @SerializedName("orderBookBinning")
   private BigDecimal orderBookBinning = null;
+  @SerializedName("orderBookType")
+  private String orderBookType = null;
   @SerializedName("orderControlsPlusMinus")
   private Boolean orderControlsPlusMinus = null;
   @SerializedName("sounds")
   private List<String> sounds = null;
   @SerializedName("strictIPCheck")
   private Boolean strictIPCheck = null;
+  @SerializedName("strictTimeout")
+  private Boolean strictTimeout = null;
   @SerializedName("tickerGroup")
   private String tickerGroup = null;
   @SerializedName("tickerPinned")
@@ -114,6 +126,39 @@ public class UserPreferences  {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Boolean getHideConnectionModal() {
+    return hideConnectionModal;
+  }
+  public void setHideConnectionModal(Boolean hideConnectionModal) {
+    this.hideConnectionModal = hideConnectionModal;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Boolean getHideFromLeaderboard() {
+    return hideFromLeaderboard;
+  }
+  public void setHideFromLeaderboard(Boolean hideFromLeaderboard) {
+    this.hideFromLeaderboard = hideFromLeaderboard;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Boolean getHideNameFromLeaderboard() {
+    return hideNameFromLeaderboard;
+  }
+  public void setHideNameFromLeaderboard(Boolean hideNameFromLeaderboard) {
+    this.hideNameFromLeaderboard = hideNameFromLeaderboard;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public List<String> getHideNotifications() {
     return hideNotifications;
   }
@@ -136,6 +181,17 @@ public class UserPreferences  {
   /**
    **/
   @ApiModelProperty(value = "")
+  public String getLocale() {
+    return locale;
+  }
+  public void setLocale(String locale) {
+    this.locale = locale;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public List<String> getMsgsSeen() {
     return msgsSeen;
   }
@@ -152,6 +208,17 @@ public class UserPreferences  {
   }
   public void setOrderBookBinning(BigDecimal orderBookBinning) {
     this.orderBookBinning = orderBookBinning;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public String getOrderBookType() {
+    return orderBookType;
+  }
+  public void setOrderBookType(String orderBookType) {
+    this.orderBookType = orderBookType;
   }
 
   
@@ -185,6 +252,17 @@ public class UserPreferences  {
   }
   public void setStrictIPCheck(Boolean strictIPCheck) {
     this.strictIPCheck = strictIPCheck;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Boolean getStrictTimeout() {
+    return strictTimeout;
+  }
+  public void setStrictTimeout(Boolean strictTimeout) {
+    this.strictTimeout = strictTimeout;
   }
 
   
@@ -233,13 +311,19 @@ public class UserPreferences  {
     sb.append("  debug: ").append(debug).append("\n");
     sb.append("  disableEmails: ").append(disableEmails).append("\n");
     sb.append("  hideConfirmDialogs: ").append(hideConfirmDialogs).append("\n");
+    sb.append("  hideConnectionModal: ").append(hideConnectionModal).append("\n");
+    sb.append("  hideFromLeaderboard: ").append(hideFromLeaderboard).append("\n");
+    sb.append("  hideNameFromLeaderboard: ").append(hideNameFromLeaderboard).append("\n");
     sb.append("  hideNotifications: ").append(hideNotifications).append("\n");
     sb.append("  hidePhoneConfirm: ").append(hidePhoneConfirm).append("\n");
+    sb.append("  locale: ").append(locale).append("\n");
     sb.append("  msgsSeen: ").append(msgsSeen).append("\n");
     sb.append("  orderBookBinning: ").append(orderBookBinning).append("\n");
+    sb.append("  orderBookType: ").append(orderBookType).append("\n");
     sb.append("  orderControlsPlusMinus: ").append(orderControlsPlusMinus).append("\n");
     sb.append("  sounds: ").append(sounds).append("\n");
     sb.append("  strictIPCheck: ").append(strictIPCheck).append("\n");
+    sb.append("  strictTimeout: ").append(strictTimeout).append("\n");
     sb.append("  tickerGroup: ").append(tickerGroup).append("\n");
     sb.append("  tickerPinned: ").append(tickerPinned).append("\n");
     sb.append("  tradeLayout: ").append(tradeLayout).append("\n");

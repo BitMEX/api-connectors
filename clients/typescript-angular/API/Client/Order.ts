@@ -9,6 +9,8 @@ namespace API.Client {
 
         clOrdID?: string;
 
+        clOrdLinkID?: string;
+
         account?: number;
 
         symbol?: string;
@@ -21,9 +23,13 @@ namespace API.Client {
 
         price?: number;
 
-        minQty?: number;
+        displayQty?: number;
 
         stopPx?: number;
+
+        pegOffsetValue?: number;
+
+        pegPriceType?: string;
 
         currency?: string;
 
@@ -33,9 +39,15 @@ namespace API.Client {
 
         timeInForce?: string;
 
+        execInst?: string;
+
+        contingencyType?: string;
+
         exDestination?: string;
 
         ordStatus?: string;
+
+        triggered?: string;
 
         workingIndicator?: boolean;
 

@@ -35,11 +35,11 @@ import static org.springframework.http.MediaType.*;
 @Controller
 @RequestMapping(value = "/instrument", produces = {APPLICATION_JSON_VALUE})
 @Api(value = "/instrument", description = "the instrument API")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2015-11-30T13:35:50.750-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2016-07-04T18:25:23.952-05:00")
 public class InstrumentApi {
   
 
-  @ApiOperation(value = "Get instruments.", notes = "This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use the endpoint /instrument/active to return active instruments, or use a filter like {\"state\": \"Open\"}.", response = Instrument.class, responseContainer = "List")
+  @ApiOperation(value = "Get instruments.", notes = "This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\"state\": \"Open\"}`.", response = Instrument.class, responseContainer = "List")
   @ApiResponses(value = { 
     @ApiResponse(code = 200, message = "Request was successful"),
     @ApiResponse(code = 400, message = "Parameter Error"),
@@ -49,11 +49,11 @@ public class InstrumentApi {
     produces = { "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" }, 
     consumes = { "application/json", "application/x-www-form-urlencoded" },
     method = RequestMethod.GET)
-  public ResponseEntity<List<Instrument>> instrumentGet(@ApiParam(value = "Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly', 'quarterly', and 'biquarterly'.") @RequestParam(value = "symbol", required = false) String symbol
+  public ResponseEntity<List<Instrument>> instrumentGet(@ApiParam(value = "Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.") @RequestParam(value = "symbol", required = false) String symbol
 
 
 ,
-    @ApiParam(value = "Generic table filter. Send JSON key/value pairs, such as {\"key\": \"value\"}. You can key on individual fields, and do more advanced querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\">http://localhost:2001/app/restAPI#timestamp-filters</a> for more details.") @RequestParam(value = "filter", required = false) String filter
+    @ApiParam(value = "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.") @RequestParam(value = "filter", required = false) String filter
 
 
 ,
@@ -124,7 +124,7 @@ public class InstrumentApi {
 
   
 
-  @ApiOperation(value = "Return all active contract series and interval pairs.", notes = "This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"BVOL:daily\", \"BVOL:weekly\", \"XBU:daily\", \"XBU:monthly\", ...]`. These identifiers are usable in any query's \"symbol\" param. The second array is the current resolution of these intervals. Results are mapped at the same index.", response = InstrumentInterval.class)
+  @ApiOperation(value = "Return all active contract series and interval pairs.", notes = "This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"BVOL:daily\", \"BVOL:weekly\", \"XBU:daily\", \"XBU:monthly\", ...]`. These identifiers are usable in any query's `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.", response = InstrumentInterval.class)
   @ApiResponses(value = { 
     @ApiResponse(code = 200, message = "Request was successful"),
     @ApiResponse(code = 400, message = "Parameter Error"),

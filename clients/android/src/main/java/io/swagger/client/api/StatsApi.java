@@ -45,7 +45,7 @@ public class StatsApi {
    * 
    * @return List<Stats>
    */
-  public List<Stats>  statsFind () throws ApiException {
+  public List<Stats>  statsGet () throws ApiException {
     Object postBody = null;
     
 

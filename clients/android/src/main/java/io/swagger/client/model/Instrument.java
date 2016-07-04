@@ -24,6 +24,8 @@ public class Instrument  {
   private Date front = null;
   @SerializedName("expiry")
   private Date expiry = null;
+  @SerializedName("settle")
+  private Date settle = null;
   @SerializedName("relistInterval")
   private Date relistInterval = null;
   @SerializedName("inverseLeg")
@@ -32,6 +34,8 @@ public class Instrument  {
   private String sellLeg = null;
   @SerializedName("buyLeg")
   private String buyLeg = null;
+  @SerializedName("positionCurrency")
+  private String positionCurrency = null;
   @SerializedName("underlying")
   private String underlying = null;
   @SerializedName("quoteCurrency")
@@ -42,12 +46,26 @@ public class Instrument  {
   private String reference = null;
   @SerializedName("referenceSymbol")
   private String referenceSymbol = null;
+  @SerializedName("calcInterval")
+  private Date calcInterval = null;
+  @SerializedName("publishInterval")
+  private Date publishInterval = null;
+  @SerializedName("publishTime")
+  private Date publishTime = null;
+  @SerializedName("maxOrderQty")
+  private BigDecimal maxOrderQty = null;
+  @SerializedName("maxPrice")
+  private Double maxPrice = null;
+  @SerializedName("lotSize")
+  private BigDecimal lotSize = null;
   @SerializedName("tickSize")
   private Double tickSize = null;
   @SerializedName("multiplier")
   private BigDecimal multiplier = null;
   @SerializedName("settlCurrency")
   private String settlCurrency = null;
+  @SerializedName("underlyingToPositionMultiplier")
+  private BigDecimal underlyingToPositionMultiplier = null;
   @SerializedName("underlyingToSettleMultiplier")
   private BigDecimal underlyingToSettleMultiplier = null;
   @SerializedName("quoteToSettleMultiplier")
@@ -70,14 +88,28 @@ public class Instrument  {
   private Double makerFee = null;
   @SerializedName("takerFee")
   private Double takerFee = null;
+  @SerializedName("settlementFee")
+  private Double settlementFee = null;
   @SerializedName("insuranceFee")
   private Double insuranceFee = null;
-  @SerializedName("hedgerMakerFee")
-  private Double hedgerMakerFee = null;
-  @SerializedName("hedgerTakerFee")
-  private Double hedgerTakerFee = null;
-  @SerializedName("hedgerInsuranceFee")
-  private Double hedgerInsuranceFee = null;
+  @SerializedName("fundingBaseSymbol")
+  private String fundingBaseSymbol = null;
+  @SerializedName("fundingQuoteSymbol")
+  private String fundingQuoteSymbol = null;
+  @SerializedName("fundingPremiumSymbol")
+  private String fundingPremiumSymbol = null;
+  @SerializedName("fundingTimestamp")
+  private Date fundingTimestamp = null;
+  @SerializedName("fundingInterval")
+  private Date fundingInterval = null;
+  @SerializedName("fundingRate")
+  private Double fundingRate = null;
+  @SerializedName("indicativeFundingRate")
+  private Double indicativeFundingRate = null;
+  @SerializedName("rebalanceTimestamp")
+  private Date rebalanceTimestamp = null;
+  @SerializedName("rebalanceInterval")
+  private Date rebalanceInterval = null;
   @SerializedName("openingTimestamp")
   private Date openingTimestamp = null;
   @SerializedName("closingTimestamp")
@@ -246,6 +278,17 @@ public class Instrument  {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Date getSettle() {
+    return settle;
+  }
+  public void setSettle(Date settle) {
+    this.settle = settle;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public Date getRelistInterval() {
     return relistInterval;
   }
@@ -284,6 +327,17 @@ public class Instrument  {
   }
   public void setBuyLeg(String buyLeg) {
     this.buyLeg = buyLeg;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public String getPositionCurrency() {
+    return positionCurrency;
+  }
+  public void setPositionCurrency(String positionCurrency) {
+    this.positionCurrency = positionCurrency;
   }
 
   
@@ -345,6 +399,72 @@ public class Instrument  {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Date getCalcInterval() {
+    return calcInterval;
+  }
+  public void setCalcInterval(Date calcInterval) {
+    this.calcInterval = calcInterval;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Date getPublishInterval() {
+    return publishInterval;
+  }
+  public void setPublishInterval(Date publishInterval) {
+    this.publishInterval = publishInterval;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Date getPublishTime() {
+    return publishTime;
+  }
+  public void setPublishTime(Date publishTime) {
+    this.publishTime = publishTime;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getMaxOrderQty() {
+    return maxOrderQty;
+  }
+  public void setMaxOrderQty(BigDecimal maxOrderQty) {
+    this.maxOrderQty = maxOrderQty;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getMaxPrice() {
+    return maxPrice;
+  }
+  public void setMaxPrice(Double maxPrice) {
+    this.maxPrice = maxPrice;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getLotSize() {
+    return lotSize;
+  }
+  public void setLotSize(BigDecimal lotSize) {
+    this.lotSize = lotSize;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public Double getTickSize() {
     return tickSize;
   }
@@ -372,6 +492,17 @@ public class Instrument  {
   }
   public void setSettlCurrency(String settlCurrency) {
     this.settlCurrency = settlCurrency;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getUnderlyingToPositionMultiplier() {
+    return underlyingToPositionMultiplier;
+  }
+  public void setUnderlyingToPositionMultiplier(BigDecimal underlyingToPositionMultiplier) {
+    this.underlyingToPositionMultiplier = underlyingToPositionMultiplier;
   }
 
   
@@ -499,6 +630,17 @@ public class Instrument  {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Double getSettlementFee() {
+    return settlementFee;
+  }
+  public void setSettlementFee(Double settlementFee) {
+    this.settlementFee = settlementFee;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public Double getInsuranceFee() {
     return insuranceFee;
   }
@@ -510,33 +652,99 @@ public class Instrument  {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getHedgerMakerFee() {
-    return hedgerMakerFee;
+  public String getFundingBaseSymbol() {
+    return fundingBaseSymbol;
   }
-  public void setHedgerMakerFee(Double hedgerMakerFee) {
-    this.hedgerMakerFee = hedgerMakerFee;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getHedgerTakerFee() {
-    return hedgerTakerFee;
-  }
-  public void setHedgerTakerFee(Double hedgerTakerFee) {
-    this.hedgerTakerFee = hedgerTakerFee;
+  public void setFundingBaseSymbol(String fundingBaseSymbol) {
+    this.fundingBaseSymbol = fundingBaseSymbol;
   }
 
   
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getHedgerInsuranceFee() {
-    return hedgerInsuranceFee;
+  public String getFundingQuoteSymbol() {
+    return fundingQuoteSymbol;
   }
-  public void setHedgerInsuranceFee(Double hedgerInsuranceFee) {
-    this.hedgerInsuranceFee = hedgerInsuranceFee;
+  public void setFundingQuoteSymbol(String fundingQuoteSymbol) {
+    this.fundingQuoteSymbol = fundingQuoteSymbol;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public String getFundingPremiumSymbol() {
+    return fundingPremiumSymbol;
+  }
+  public void setFundingPremiumSymbol(String fundingPremiumSymbol) {
+    this.fundingPremiumSymbol = fundingPremiumSymbol;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Date getFundingTimestamp() {
+    return fundingTimestamp;
+  }
+  public void setFundingTimestamp(Date fundingTimestamp) {
+    this.fundingTimestamp = fundingTimestamp;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Date getFundingInterval() {
+    return fundingInterval;
+  }
+  public void setFundingInterval(Date fundingInterval) {
+    this.fundingInterval = fundingInterval;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getFundingRate() {
+    return fundingRate;
+  }
+  public void setFundingRate(Double fundingRate) {
+    this.fundingRate = fundingRate;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getIndicativeFundingRate() {
+    return indicativeFundingRate;
+  }
+  public void setIndicativeFundingRate(Double indicativeFundingRate) {
+    this.indicativeFundingRate = indicativeFundingRate;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Date getRebalanceTimestamp() {
+    return rebalanceTimestamp;
+  }
+  public void setRebalanceTimestamp(Date rebalanceTimestamp) {
+    this.rebalanceTimestamp = rebalanceTimestamp;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Date getRebalanceInterval() {
+    return rebalanceInterval;
+  }
+  public void setRebalanceInterval(Date rebalanceInterval) {
+    this.rebalanceInterval = rebalanceInterval;
   }
 
   
@@ -1026,18 +1234,27 @@ public class Instrument  {
     sb.append("  listing: ").append(listing).append("\n");
     sb.append("  front: ").append(front).append("\n");
     sb.append("  expiry: ").append(expiry).append("\n");
+    sb.append("  settle: ").append(settle).append("\n");
     sb.append("  relistInterval: ").append(relistInterval).append("\n");
     sb.append("  inverseLeg: ").append(inverseLeg).append("\n");
     sb.append("  sellLeg: ").append(sellLeg).append("\n");
     sb.append("  buyLeg: ").append(buyLeg).append("\n");
+    sb.append("  positionCurrency: ").append(positionCurrency).append("\n");
     sb.append("  underlying: ").append(underlying).append("\n");
     sb.append("  quoteCurrency: ").append(quoteCurrency).append("\n");
     sb.append("  underlyingSymbol: ").append(underlyingSymbol).append("\n");
     sb.append("  reference: ").append(reference).append("\n");
     sb.append("  referenceSymbol: ").append(referenceSymbol).append("\n");
+    sb.append("  calcInterval: ").append(calcInterval).append("\n");
+    sb.append("  publishInterval: ").append(publishInterval).append("\n");
+    sb.append("  publishTime: ").append(publishTime).append("\n");
+    sb.append("  maxOrderQty: ").append(maxOrderQty).append("\n");
+    sb.append("  maxPrice: ").append(maxPrice).append("\n");
+    sb.append("  lotSize: ").append(lotSize).append("\n");
     sb.append("  tickSize: ").append(tickSize).append("\n");
     sb.append("  multiplier: ").append(multiplier).append("\n");
     sb.append("  settlCurrency: ").append(settlCurrency).append("\n");
+    sb.append("  underlyingToPositionMultiplier: ").append(underlyingToPositionMultiplier).append("\n");
     sb.append("  underlyingToSettleMultiplier: ").append(underlyingToSettleMultiplier).append("\n");
     sb.append("  quoteToSettleMultiplier: ").append(quoteToSettleMultiplier).append("\n");
     sb.append("  isQuanto: ").append(isQuanto).append("\n");
@@ -1049,10 +1266,17 @@ public class Instrument  {
     sb.append("  taxed: ").append(taxed).append("\n");
     sb.append("  makerFee: ").append(makerFee).append("\n");
     sb.append("  takerFee: ").append(takerFee).append("\n");
+    sb.append("  settlementFee: ").append(settlementFee).append("\n");
     sb.append("  insuranceFee: ").append(insuranceFee).append("\n");
-    sb.append("  hedgerMakerFee: ").append(hedgerMakerFee).append("\n");
-    sb.append("  hedgerTakerFee: ").append(hedgerTakerFee).append("\n");
-    sb.append("  hedgerInsuranceFee: ").append(hedgerInsuranceFee).append("\n");
+    sb.append("  fundingBaseSymbol: ").append(fundingBaseSymbol).append("\n");
+    sb.append("  fundingQuoteSymbol: ").append(fundingQuoteSymbol).append("\n");
+    sb.append("  fundingPremiumSymbol: ").append(fundingPremiumSymbol).append("\n");
+    sb.append("  fundingTimestamp: ").append(fundingTimestamp).append("\n");
+    sb.append("  fundingInterval: ").append(fundingInterval).append("\n");
+    sb.append("  fundingRate: ").append(fundingRate).append("\n");
+    sb.append("  indicativeFundingRate: ").append(indicativeFundingRate).append("\n");
+    sb.append("  rebalanceTimestamp: ").append(rebalanceTimestamp).append("\n");
+    sb.append("  rebalanceInterval: ").append(rebalanceInterval).append("\n");
     sb.append("  openingTimestamp: ").append(openingTimestamp).append("\n");
     sb.append("  closingTimestamp: ").append(closingTimestamp).append("\n");
     sb.append("  sessionInterval: ").append(sessionInterval).append("\n");

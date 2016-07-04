@@ -73,10 +73,10 @@ static SWGTradeApi* singletonAPI = nil;
 
 ///
 /// Get Trades.
-/// 
-///  @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly', 'quarterly', and 'biquarterly'.
+/// Please note that indices (symbols starting with `.`) post trades at intervals to the trade feed. These have a `size` of 0 and are used only to indicate a changing price.\n\nSee [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AE_6569.html) for explanations of these fields.
+///  @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
 ///
-///  @param filter Generic table filter. Send JSON key/value pairs, such as {\"key\": \"value\"}. You can key on individual fields, and do more advanced querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\">http://localhost:2001/app/restAPI#timestamp-filters</a> for more details.
+///  @param filter Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
 ///
 ///  @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
 ///
@@ -207,9 +207,9 @@ static SWGTradeApi* singletonAPI = nil;
 /// 
 ///  @param binSize Time interval to bucket by. Available options: ['1m', '5m', '1h', '1d'].
 ///
-///  @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly', 'quarterly', and 'biquarterly'.
+///  @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
 ///
-///  @param filter Generic table filter. Send JSON key/value pairs, such as {\"key\": \"value\"}. You can key on individual fields, and do more advanced querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\">http://localhost:2001/app/restAPI#timestamp-filters</a> for more details.
+///  @param filter Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
 ///
 ///  @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
 ///
@@ -336,201 +336,6 @@ static SWGTradeApi* singletonAPI = nil;
                                       completionBlock: ^(id data, NSError *error) {
                   
                   completionBlock((NSArray<SWGTradeBin>*)data, error);
-              }
-          ];
-}
-
-///
-/// Get trades between two dates. [Deprecated, use GET /trades]
-/// 
-///  @param startTime Start date.
-///
-///  @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
-///
-///  @param endTime End Date.
-///
-///  @returns NSArray<SWGTrade>*
-///
--(NSNumber*) tradeGetByDateWithCompletionBlock: (NSDate*) startTime
-         symbol: (NSString*) symbol
-         endTime: (NSDate*) endTime
-        
-        completionHandler: (void (^)(NSArray<SWGTrade>* output, NSError* error))completionBlock { 
-        
-
-    
-    // verify the required parameter 'startTime' is set
-    if (startTime == nil) {
-        [NSException raise:@"Invalid parameter" format:@"Missing the required parameter `startTime` when calling `tradeGetByDate`"];
-    }
-    
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/trade/byDate"];
-
-    // remove format in URL if needed
-    if ([resourcePath rangeOfString:@".{format}"].location != NSNotFound) {
-        [resourcePath replaceCharactersInRange: [resourcePath rangeOfString:@".{format}"] withString:@".json"];
-    }
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-    
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if(symbol != nil) {
-        
-        queryParams[@"symbol"] = symbol;
-    }
-    if(startTime != nil) {
-        
-        queryParams[@"startTime"] = startTime;
-    }
-    if(endTime != nil) {
-        
-        queryParams[@"endTime"] = endTime;
-    }
-    
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.defaultHeaders];
-
-    
-
-    // HTTP header `Accept`
-    headerParams[@"Accept"] = [SWGApiClient selectHeaderAccept:@[@"application/json", @"application/xml", @"text/xml", @"application/javascript", @"text/javascript"]];
-    if ([headerParams[@"Accept"] length] == 0) {
-        [headerParams removeObjectForKey:@"Accept"];
-    }
-
-    // response content type
-    NSString *responseContentType;
-    if ([headerParams objectForKey:@"Accept"]) {
-        responseContentType = [headerParams[@"Accept"] componentsSeparatedByString:@", "][0];
-    }
-    else {
-        responseContentType = @"";
-    }
-
-    // request content type
-    NSString *requestContentType = [SWGApiClient selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
-
-    // Authentication setting
-    NSArray *authSettings = @[];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *files = [[NSMutableDictionary alloc] init];
-    
-    
-    
-
-    
-    return [self.apiClient requestWithCompletionBlock: resourcePath
-                                               method: @"GET"
-                                           pathParams: pathParams
-                                          queryParams: queryParams
-                                           formParams: formParams
-                                                files: files
-                                                 body: bodyParam
-                                         headerParams: headerParams
-                                         authSettings: authSettings
-                                   requestContentType: requestContentType
-                                  responseContentType: responseContentType
-                                         responseType: @"NSArray<SWGTrade>*"
-                                      completionBlock: ^(id data, NSError *error) {
-                  
-                  completionBlock((NSArray<SWGTrade>*)data, error);
-              }
-          ];
-}
-
-///
-/// Get recent trades. [Deprecated, use GET /trades]
-/// 
-///  @param count Number of trades to fetch.
-///
-///  @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
-///
-///  @returns NSArray<SWGTrade>*
-///
--(NSNumber*) tradeGetRecentWithCompletionBlock: (NSNumber*) count
-         symbol: (NSString*) symbol
-        
-        completionHandler: (void (^)(NSArray<SWGTrade>* output, NSError* error))completionBlock { 
-        
-
-    
-    // verify the required parameter 'count' is set
-    if (count == nil) {
-        [NSException raise:@"Invalid parameter" format:@"Missing the required parameter `count` when calling `tradeGetRecent`"];
-    }
-    
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/trade/recent"];
-
-    // remove format in URL if needed
-    if ([resourcePath rangeOfString:@".{format}"].location != NSNotFound) {
-        [resourcePath replaceCharactersInRange: [resourcePath rangeOfString:@".{format}"] withString:@".json"];
-    }
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-    
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if(symbol != nil) {
-        
-        queryParams[@"symbol"] = symbol;
-    }
-    if(count != nil) {
-        
-        queryParams[@"count"] = count;
-    }
-    
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.defaultHeaders];
-
-    
-
-    // HTTP header `Accept`
-    headerParams[@"Accept"] = [SWGApiClient selectHeaderAccept:@[@"application/json", @"application/xml", @"text/xml", @"application/javascript", @"text/javascript"]];
-    if ([headerParams[@"Accept"] length] == 0) {
-        [headerParams removeObjectForKey:@"Accept"];
-    }
-
-    // response content type
-    NSString *responseContentType;
-    if ([headerParams objectForKey:@"Accept"]) {
-        responseContentType = [headerParams[@"Accept"] componentsSeparatedByString:@", "][0];
-    }
-    else {
-        responseContentType = @"";
-    }
-
-    // request content type
-    NSString *requestContentType = [SWGApiClient selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
-
-    // Authentication setting
-    NSArray *authSettings = @[];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *files = [[NSMutableDictionary alloc] init];
-    
-    
-    
-
-    
-    return [self.apiClient requestWithCompletionBlock: resourcePath
-                                               method: @"GET"
-                                           pathParams: pathParams
-                                          queryParams: queryParams
-                                           formParams: formParams
-                                                files: files
-                                                 body: bodyParam
-                                         headerParams: headerParams
-                                         authSettings: authSettings
-                                   requestContentType: requestContentType
-                                  responseContentType: responseContentType
-                                         responseType: @"NSArray<SWGTrade>*"
-                                      completionBlock: ^(id data, NSError *error) {
-                  
-                  completionBlock((NSArray<SWGTrade>*)data, error);
               }
           ];
 }

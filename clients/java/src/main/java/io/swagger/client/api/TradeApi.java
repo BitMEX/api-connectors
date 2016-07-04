@@ -14,7 +14,7 @@ import io.swagger.client.model.TradeBin;
 
 import java.util.*;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-30T13:35:44.556-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-04T18:25:18.235-05:00")
 public class TradeApi {
   private ApiClient apiClient;
 
@@ -37,9 +37,9 @@ public class TradeApi {
   
   /**
    * Get Trades.
-   * 
-   * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.
-   * @param filter Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.
+   * Please note that indices (symbols starting with `.`) post trades at intervals to the trade feed. These have a `size` of 0 and are used only to indicate a changing price.\n\nSee [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AE_6569.html) for explanations of these fields.
+   * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+   * @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
    * @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
    * @param count Number of results to fetch.
    * @param start Starting point for results.
@@ -110,8 +110,8 @@ public class TradeApi {
    * Get previous trades in time buckets.
    * 
    * @param binSize Time interval to bucket by. Available options: [&#39;1m&#39;, &#39;5m&#39;, &#39;1h&#39;, &#39;1d&#39;].
-   * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.
-   * @param filter Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.
+   * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+   * @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
    * @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
    * @param count Number of results to fetch.
    * @param start Starting point for results.
@@ -173,125 +173,6 @@ public class TradeApi {
     
     
     TypeRef returnType = new TypeRef<List<TradeBin>>() {};
-    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
-    
-    
-
-
-  }
-  
-  /**
-   * Get trades between two dates. [Deprecated, use GET /trades]
-   * 
-   * @param startTime Start date.
-   * @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
-   * @param endTime End Date.
-   * @return List<Trade>
-   */
-  public List<Trade> tradeGetByDate (Date startTime, String symbol, Date endTime) throws ApiException {
-    Object postBody = null;
-    byte[] postBinaryBody = null;
-    
-     // verify the required parameter 'startTime' is set
-     if (startTime == null) {
-        throw new ApiException(400, "Missing the required parameter 'startTime' when calling tradeGetByDate");
-     }
-     
-    // create path and map variables
-    String path = "/trade/byDate".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, Object> formParams = new HashMap<String, Object>();
-
-    
-    queryParams.addAll(apiClient.parameterToPairs("", "symbol", symbol));
-    
-    queryParams.addAll(apiClient.parameterToPairs("", "startTime", startTime));
-    
-    queryParams.addAll(apiClient.parameterToPairs("", "endTime", endTime));
-    
-
-    
-
-    
-
-    final String[] accepts = {
-      "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
-    };
-    final String accept = apiClient.selectHeaderAccept(accepts);
-
-    final String[] contentTypes = {
-      "application/json", "application/x-www-form-urlencoded"
-    };
-    final String contentType = apiClient.selectHeaderContentType(contentTypes);
-
-    String[] authNames = new String[] {  };
-
-    
-
-    
-    
-    TypeRef returnType = new TypeRef<List<Trade>>() {};
-    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
-    
-    
-
-
-  }
-  
-  /**
-   * Get recent trades. [Deprecated, use GET /trades]
-   * 
-   * @param count Number of trades to fetch.
-   * @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
-   * @return List<Trade>
-   */
-  public List<Trade> tradeGetRecent (BigDecimal count, String symbol) throws ApiException {
-    Object postBody = null;
-    byte[] postBinaryBody = null;
-    
-     // verify the required parameter 'count' is set
-     if (count == null) {
-        throw new ApiException(400, "Missing the required parameter 'count' when calling tradeGetRecent");
-     }
-     
-    // create path and map variables
-    String path = "/trade/recent".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, Object> formParams = new HashMap<String, Object>();
-
-    
-    queryParams.addAll(apiClient.parameterToPairs("", "symbol", symbol));
-    
-    queryParams.addAll(apiClient.parameterToPairs("", "count", count));
-    
-
-    
-
-    
-
-    final String[] accepts = {
-      "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
-    };
-    final String accept = apiClient.selectHeaderAccept(accepts);
-
-    final String[] contentTypes = {
-      "application/json", "application/x-www-form-urlencoded"
-    };
-    final String contentType = apiClient.selectHeaderContentType(contentTypes);
-
-    String[] authNames = new String[] {  };
-
-    
-
-    
-    
-    TypeRef returnType = new TypeRef<List<Trade>>() {};
     return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
     
     

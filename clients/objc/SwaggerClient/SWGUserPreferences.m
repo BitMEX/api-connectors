@@ -8,7 +8,7 @@
  */
 + (JSONKeyMapper *)keyMapper
 {
-  return [[JSONKeyMapper alloc] initWithDictionary:@{ @"announcementsLastSeen": @"announcementsLastSeen", @"colorTheme": @"colorTheme", @"currency": @"currency", @"debug": @"debug", @"disableEmails": @"disableEmails", @"hideConfirmDialogs": @"hideConfirmDialogs", @"hideNotifications": @"hideNotifications", @"hidePhoneConfirm": @"hidePhoneConfirm", @"msgsSeen": @"msgsSeen", @"orderBookBinning": @"orderBookBinning", @"orderControlsPlusMinus": @"orderControlsPlusMinus", @"sounds": @"sounds", @"strictIPCheck": @"strictIPCheck", @"tickerGroup": @"tickerGroup", @"tickerPinned": @"tickerPinned", @"tradeLayout": @"tradeLayout" }];
+  return [[JSONKeyMapper alloc] initWithDictionary:@{ @"announcementsLastSeen": @"announcementsLastSeen", @"colorTheme": @"colorTheme", @"currency": @"currency", @"debug": @"debug", @"disableEmails": @"disableEmails", @"hideConfirmDialogs": @"hideConfirmDialogs", @"hideConnectionModal": @"hideConnectionModal", @"hideFromLeaderboard": @"hideFromLeaderboard", @"hideNameFromLeaderboard": @"hideNameFromLeaderboard", @"hideNotifications": @"hideNotifications", @"hidePhoneConfirm": @"hidePhoneConfirm", @"locale": @"locale", @"msgsSeen": @"msgsSeen", @"orderBookBinning": @"orderBookBinning", @"orderBookType": @"orderBookType", @"orderControlsPlusMinus": @"orderControlsPlusMinus", @"sounds": @"sounds", @"strictIPCheck": @"strictIPCheck", @"strictTimeout": @"strictTimeout", @"tickerGroup": @"tickerGroup", @"tickerPinned": @"tickerPinned", @"tradeLayout": @"tradeLayout" }];
 }
 
 /**
@@ -18,7 +18,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName
 {
-  NSArray *optionalProperties = @[@"announcementsLastSeen", @"colorTheme", @"currency", @"debug", @"disableEmails", @"hideConfirmDialogs", @"hideNotifications", @"hidePhoneConfirm", @"msgsSeen", @"orderBookBinning", @"orderControlsPlusMinus", @"sounds", @"strictIPCheck", @"tickerGroup", @"tickerPinned", @"tradeLayout"];
+  NSArray *optionalProperties = @[@"announcementsLastSeen", @"colorTheme", @"currency", @"debug", @"disableEmails", @"hideConfirmDialogs", @"hideConnectionModal", @"hideFromLeaderboard", @"hideNameFromLeaderboard", @"hideNotifications", @"hidePhoneConfirm", @"locale", @"msgsSeen", @"orderBookBinning", @"orderBookType", @"orderControlsPlusMinus", @"sounds", @"strictIPCheck", @"strictTimeout", @"tickerGroup", @"tickerPinned", @"tradeLayout"];
 
   if ([optionalProperties containsObject:propertyName]) {
     return YES;

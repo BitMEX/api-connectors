@@ -13,6 +13,8 @@ public class User  {
   
   @SerializedName("id")
   private BigDecimal id = null;
+  @SerializedName("ownerId")
+  private BigDecimal ownerId = null;
   @SerializedName("firstname")
   private String firstname = null;
   @SerializedName("lastname")
@@ -33,8 +35,6 @@ public class User  {
   private Date lastUpdated = null;
   @SerializedName("preferences")
   private UserPreferences preferences = null;
-  @SerializedName("role")
-  private String role = null;
   @SerializedName("TFAEnabled")
   private String tFAEnabled = null;
   @SerializedName("affiliateID")
@@ -55,6 +55,17 @@ public class User  {
   }
   public void setId(BigDecimal id) {
     this.id = id;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getOwnerId() {
+    return ownerId;
+  }
+  public void setOwnerId(BigDecimal ownerId) {
+    this.ownerId = ownerId;
   }
 
   
@@ -171,17 +182,6 @@ public class User  {
   /**
    **/
   @ApiModelProperty(value = "")
-  public String getRole() {
-    return role;
-  }
-  public void setRole(String role) {
-    this.role = role;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public String getTFAEnabled() {
     return tFAEnabled;
   }
@@ -241,6 +241,7 @@ public class User  {
     sb.append("class User {\n");
     
     sb.append("  id: ").append(id).append("\n");
+    sb.append("  ownerId: ").append(ownerId).append("\n");
     sb.append("  firstname: ").append(firstname).append("\n");
     sb.append("  lastname: ").append(lastname).append("\n");
     sb.append("  status: ").append(status).append("\n");
@@ -251,7 +252,6 @@ public class User  {
     sb.append("  created: ").append(created).append("\n");
     sb.append("  lastUpdated: ").append(lastUpdated).append("\n");
     sb.append("  preferences: ").append(preferences).append("\n");
-    sb.append("  role: ").append(role).append("\n");
     sb.append("  tFAEnabled: ").append(tFAEnabled).append("\n");
     sb.append("  affiliateID: ").append(affiliateID).append("\n");
     sb.append("  pgpPubKey: ").append(pgpPubKey).append("\n");

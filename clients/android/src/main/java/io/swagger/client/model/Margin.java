@@ -28,6 +28,8 @@ public class Margin  {
   private BigDecimal pendingCredit = null;
   @SerializedName("pendingDebit")
   private BigDecimal pendingDebit = null;
+  @SerializedName("confirmedDebit")
+  private BigDecimal confirmedDebit = null;
   @SerializedName("prevRealisedPnl")
   private BigDecimal prevRealisedPnl = null;
   @SerializedName("prevUnrealisedPnl")
@@ -64,6 +66,8 @@ public class Margin  {
   private BigDecimal indicativeTax = null;
   @SerializedName("unrealisedProfit")
   private BigDecimal unrealisedProfit = null;
+  @SerializedName("syntheticMargin")
+  private BigDecimal syntheticMargin = null;
   @SerializedName("walletBalance")
   private BigDecimal walletBalance = null;
   @SerializedName("marginBalance")
@@ -84,6 +88,10 @@ public class Margin  {
   private BigDecimal withdrawableMargin = null;
   @SerializedName("timestamp")
   private Date timestamp = null;
+  @SerializedName("grossLastValue")
+  private BigDecimal grossLastValue = null;
+  @SerializedName("commission")
+  private Double commission = 0.0;
 
   
   /**
@@ -182,6 +190,17 @@ public class Margin  {
   }
   public void setPendingDebit(BigDecimal pendingDebit) {
     this.pendingDebit = pendingDebit;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getConfirmedDebit() {
+    return confirmedDebit;
+  }
+  public void setConfirmedDebit(BigDecimal confirmedDebit) {
+    this.confirmedDebit = confirmedDebit;
   }
 
   
@@ -386,6 +405,17 @@ public class Margin  {
   /**
    **/
   @ApiModelProperty(value = "")
+  public BigDecimal getSyntheticMargin() {
+    return syntheticMargin;
+  }
+  public void setSyntheticMargin(BigDecimal syntheticMargin) {
+    this.syntheticMargin = syntheticMargin;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public BigDecimal getWalletBalance() {
     return walletBalance;
   }
@@ -493,6 +523,28 @@ public class Margin  {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getGrossLastValue() {
+    return grossLastValue;
+  }
+  public void setGrossLastValue(BigDecimal grossLastValue) {
+    this.grossLastValue = grossLastValue;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getCommission() {
+    return commission;
+  }
+  public void setCommission(Double commission) {
+    this.commission = commission;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -508,6 +560,7 @@ public class Margin  {
     sb.append("  amount: ").append(amount).append("\n");
     sb.append("  pendingCredit: ").append(pendingCredit).append("\n");
     sb.append("  pendingDebit: ").append(pendingDebit).append("\n");
+    sb.append("  confirmedDebit: ").append(confirmedDebit).append("\n");
     sb.append("  prevRealisedPnl: ").append(prevRealisedPnl).append("\n");
     sb.append("  prevUnrealisedPnl: ").append(prevUnrealisedPnl).append("\n");
     sb.append("  grossComm: ").append(grossComm).append("\n");
@@ -526,6 +579,7 @@ public class Margin  {
     sb.append("  unrealisedPnl: ").append(unrealisedPnl).append("\n");
     sb.append("  indicativeTax: ").append(indicativeTax).append("\n");
     sb.append("  unrealisedProfit: ").append(unrealisedProfit).append("\n");
+    sb.append("  syntheticMargin: ").append(syntheticMargin).append("\n");
     sb.append("  walletBalance: ").append(walletBalance).append("\n");
     sb.append("  marginBalance: ").append(marginBalance).append("\n");
     sb.append("  marginBalancePcnt: ").append(marginBalancePcnt).append("\n");
@@ -536,6 +590,8 @@ public class Margin  {
     sb.append("  availableMargin: ").append(availableMargin).append("\n");
     sb.append("  withdrawableMargin: ").append(withdrawableMargin).append("\n");
     sb.append("  timestamp: ").append(timestamp).append("\n");
+    sb.append("  grossLastValue: ").append(grossLastValue).append("\n");
+    sb.append("  commission: ").append(commission).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

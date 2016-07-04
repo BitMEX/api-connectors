@@ -9,10 +9,10 @@ module SwaggerClient
     end
 
     # Get instruments.
-    # This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use the endpoint /instrument/active to return active instruments, or use a filter like {\&quot;state\&quot;: \&quot;Open\&quot;}.
+    # This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\&quot;state\&quot;: \&quot;Open\&quot;}`.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.
-    # @option opts [String] :filter Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.
+    # @option opts [String] :symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+    # @option opts [String] :filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
     # @option opts [String] :columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
     # @option opts [Float] :count Number of results to fetch.
     # @option opts [Float] :start Starting point for results.
@@ -166,7 +166,7 @@ module SwaggerClient
     end
 
     # Return all active contract series and interval pairs.
-    # This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\&quot;BVOL:daily\&quot;, \&quot;BVOL:weekly\&quot;, \&quot;XBU:daily\&quot;, \&quot;XBU:monthly\&quot;, ...]`. These identifiers are usable in any query&#39;s \&quot;symbol\&quot; param. The second array is the current resolution of these intervals. Results are mapped at the same index.
+    # This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\&quot;BVOL:daily\&quot;, \&quot;BVOL:weekly\&quot;, \&quot;XBU:daily\&quot;, \&quot;XBU:monthly\&quot;, ...]`. These identifiers are usable in any query&#39;s `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.
     # @param [Hash] opts the optional parameters
     # @return [InstrumentInterval]
     def instrument_get_active_intervals(opts = {})

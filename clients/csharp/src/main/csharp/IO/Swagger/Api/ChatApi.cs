@@ -46,7 +46,7 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <param name="message"></param>
         /// <returns>Chat</returns>
-        Chat ChatSend (string message);
+        Chat ChatNew (string message);
   
         /// <summary>
         /// Send a chat message.
@@ -56,7 +56,7 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <param name="message"></param>
         /// <returns>Chat</returns>
-        System.Threading.Tasks.Task<Chat> ChatSendAsync (string message);
+        System.Threading.Tasks.Task<Chat> ChatNewAsync (string message);
         
         /// <summary>
         /// Get connected users.
@@ -241,11 +241,11 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <param name="message"></param> 
         /// <returns>Chat</returns>            
-        public Chat ChatSend (string message)
+        public Chat ChatNew (string message)
         {
             
             // verify the required parameter 'message' is set
-            if (message == null) throw new ApiException(400, "Missing required parameter 'message' when calling ChatSend");
+            if (message == null) throw new ApiException(400, "Missing required parameter 'message' when calling ChatNew");
             
     
             var path_ = "/chat";
@@ -282,9 +282,9 @@ namespace IO.Swagger.Api
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path_, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling ChatSend: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling ChatNew: " + response.Content, response.Content);
             else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling ChatSend: " + response.ErrorMessage, response.ErrorMessage);
+                throw new ApiException ((int)response.StatusCode, "Error calling ChatNew: " + response.ErrorMessage, response.ErrorMessage);
     
             return (Chat) ApiClient.Deserialize(response, typeof(Chat));
         }
@@ -294,10 +294,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <param name="message"></param>
         /// <returns>Chat</returns>
-        public async System.Threading.Tasks.Task<Chat> ChatSendAsync (string message)
+        public async System.Threading.Tasks.Task<Chat> ChatNewAsync (string message)
         {
             // verify the required parameter 'message' is set
-            if (message == null) throw new ApiException(400, "Missing required parameter 'message' when calling ChatSend");
+            if (message == null) throw new ApiException(400, "Missing required parameter 'message' when calling ChatNew");
             
     
             var path_ = "/chat";
@@ -333,7 +333,7 @@ namespace IO.Swagger.Api
             // make the HTTP request
             IRestResponse response = (IRestResponse) await ApiClient.CallApiAsync(path_, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling ChatSend: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling ChatNew: " + response.Content, response.Content);
 
             return (Chat) ApiClient.Deserialize(response, typeof(Chat));
         }

@@ -1,7 +1,7 @@
 module SwaggerClient
   # 
   class Margin < BaseObject
-    attr_accessor :account, :currency, :risk_limit, :prev_state, :state, :action, :amount, :pending_credit, :pending_debit, :prev_realised_pnl, :prev_unrealised_pnl, :gross_comm, :gross_open_cost, :gross_open_premium, :gross_exec_cost, :gross_mark_value, :risk_value, :taxable_margin, :init_margin, :maint_margin, :session_margin, :target_excess_margin, :var_margin, :realised_pnl, :unrealised_pnl, :indicative_tax, :unrealised_profit, :wallet_balance, :margin_balance, :margin_balance_pcnt, :margin_leverage, :margin_used_pcnt, :excess_margin, :excess_margin_pcnt, :available_margin, :withdrawable_margin, :timestamp
+    attr_accessor :account, :currency, :risk_limit, :prev_state, :state, :action, :amount, :pending_credit, :pending_debit, :confirmed_debit, :prev_realised_pnl, :prev_unrealised_pnl, :gross_comm, :gross_open_cost, :gross_open_premium, :gross_exec_cost, :gross_mark_value, :risk_value, :taxable_margin, :init_margin, :maint_margin, :session_margin, :target_excess_margin, :var_margin, :realised_pnl, :unrealised_pnl, :indicative_tax, :unrealised_profit, :synthetic_margin, :wallet_balance, :margin_balance, :margin_balance_pcnt, :margin_leverage, :margin_used_pcnt, :excess_margin, :excess_margin_pcnt, :available_margin, :withdrawable_margin, :timestamp, :gross_last_value, :commission
     # attribute mapping from ruby-style variable name to JSON key
     def self.attribute_map
       {
@@ -32,6 +32,9 @@ module SwaggerClient
         
         # 
         :'pending_debit' => :'pendingDebit',
+        
+        # 
+        :'confirmed_debit' => :'confirmedDebit',
         
         # 
         :'prev_realised_pnl' => :'prevRealisedPnl',
@@ -88,6 +91,9 @@ module SwaggerClient
         :'unrealised_profit' => :'unrealisedProfit',
         
         # 
+        :'synthetic_margin' => :'syntheticMargin',
+        
+        # 
         :'wallet_balance' => :'walletBalance',
         
         # 
@@ -115,7 +121,13 @@ module SwaggerClient
         :'withdrawable_margin' => :'withdrawableMargin',
         
         # 
-        :'timestamp' => :'timestamp'
+        :'timestamp' => :'timestamp',
+        
+        # 
+        :'gross_last_value' => :'grossLastValue',
+        
+        # 
+        :'commission' => :'commission'
         
       }
     end
@@ -132,6 +144,7 @@ module SwaggerClient
         :'amount' => :'Float',
         :'pending_credit' => :'Float',
         :'pending_debit' => :'Float',
+        :'confirmed_debit' => :'Float',
         :'prev_realised_pnl' => :'Float',
         :'prev_unrealised_pnl' => :'Float',
         :'gross_comm' => :'Float',
@@ -150,6 +163,7 @@ module SwaggerClient
         :'unrealised_pnl' => :'Float',
         :'indicative_tax' => :'Float',
         :'unrealised_profit' => :'Float',
+        :'synthetic_margin' => :'Float',
         :'wallet_balance' => :'Float',
         :'margin_balance' => :'Float',
         :'margin_balance_pcnt' => :'Float',
@@ -159,7 +173,9 @@ module SwaggerClient
         :'excess_margin_pcnt' => :'Float',
         :'available_margin' => :'Float',
         :'withdrawable_margin' => :'Float',
-        :'timestamp' => :'Date'
+        :'timestamp' => :'Date',
+        :'gross_last_value' => :'Float',
+        :'commission' => :'Float'
         
       }
     end
@@ -205,6 +221,10 @@ module SwaggerClient
       
       if attributes[:'pendingDebit']
         self.pending_debit = attributes[:'pendingDebit']
+      end
+      
+      if attributes[:'confirmedDebit']
+        self.confirmed_debit = attributes[:'confirmedDebit']
       end
       
       if attributes[:'prevRealisedPnl']
@@ -279,6 +299,10 @@ module SwaggerClient
         self.unrealised_profit = attributes[:'unrealisedProfit']
       end
       
+      if attributes[:'syntheticMargin']
+        self.synthetic_margin = attributes[:'syntheticMargin']
+      end
+      
       if attributes[:'walletBalance']
         self.wallet_balance = attributes[:'walletBalance']
       end
@@ -319,6 +343,14 @@ module SwaggerClient
         self.timestamp = attributes[:'timestamp']
       end
       
+      if attributes[:'grossLastValue']
+        self.gross_last_value = attributes[:'grossLastValue']
+      end
+      
+      if attributes[:'commission']
+        self.commission = attributes[:'commission']
+      end
+      
     end
 
     def ==(o)
@@ -333,6 +365,7 @@ module SwaggerClient
           amount == o.amount &&
           pending_credit == o.pending_credit &&
           pending_debit == o.pending_debit &&
+          confirmed_debit == o.confirmed_debit &&
           prev_realised_pnl == o.prev_realised_pnl &&
           prev_unrealised_pnl == o.prev_unrealised_pnl &&
           gross_comm == o.gross_comm &&
@@ -351,6 +384,7 @@ module SwaggerClient
           unrealised_pnl == o.unrealised_pnl &&
           indicative_tax == o.indicative_tax &&
           unrealised_profit == o.unrealised_profit &&
+          synthetic_margin == o.synthetic_margin &&
           wallet_balance == o.wallet_balance &&
           margin_balance == o.margin_balance &&
           margin_balance_pcnt == o.margin_balance_pcnt &&
@@ -360,7 +394,9 @@ module SwaggerClient
           excess_margin_pcnt == o.excess_margin_pcnt &&
           available_margin == o.available_margin &&
           withdrawable_margin == o.withdrawable_margin &&
-          timestamp == o.timestamp
+          timestamp == o.timestamp &&
+          gross_last_value == o.gross_last_value &&
+          commission == o.commission
     end
 
     def eql?(o)
@@ -368,7 +404,7 @@ module SwaggerClient
     end
 
     def hash
-      [account, currency, risk_limit, prev_state, state, action, amount, pending_credit, pending_debit, prev_realised_pnl, prev_unrealised_pnl, gross_comm, gross_open_cost, gross_open_premium, gross_exec_cost, gross_mark_value, risk_value, taxable_margin, init_margin, maint_margin, session_margin, target_excess_margin, var_margin, realised_pnl, unrealised_pnl, indicative_tax, unrealised_profit, wallet_balance, margin_balance, margin_balance_pcnt, margin_leverage, margin_used_pcnt, excess_margin, excess_margin_pcnt, available_margin, withdrawable_margin, timestamp].hash
+      [account, currency, risk_limit, prev_state, state, action, amount, pending_credit, pending_debit, confirmed_debit, prev_realised_pnl, prev_unrealised_pnl, gross_comm, gross_open_cost, gross_open_premium, gross_exec_cost, gross_mark_value, risk_value, taxable_margin, init_margin, maint_margin, session_margin, target_excess_margin, var_margin, realised_pnl, unrealised_pnl, indicative_tax, unrealised_profit, synthetic_margin, wallet_balance, margin_balance, margin_balance_pcnt, margin_leverage, margin_used_pcnt, excess_margin, excess_margin_pcnt, available_margin, withdrawable_margin, timestamp, gross_last_value, commission].hash
     end
   end
 end

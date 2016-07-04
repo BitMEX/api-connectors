@@ -4,7 +4,7 @@ require 'json'
 MyApp.add_route('GET', '/apiKey', {
   "resourcePath" => "/ApiKey",
   "summary" => "Get your API Keys.",
-  "nickname" => "api_key/get_keys", 
+  "nickname" => "api_key/get", 
   "responseClass" => "array[ApiKey]", 
   "endpoint" => "/apiKey", 
   "notes" => "",
@@ -34,10 +34,10 @@ end
 MyApp.add_route('POST', '/apiKey', {
   "resourcePath" => "/ApiKey",
   "summary" => "Create a new API Key.",
-  "nickname" => "api_key/create_key", 
+  "nickname" => "api_key/new", 
   "responseClass" => "ApiKey", 
   "endpoint" => "/apiKey", 
-  "notes" => "API Keys can also be created via <a href=\"https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py\">this Python script</a>. See the <a href=\"/app/apiKeys\">API Key Documentation</a> for more information on capabilities.",
+  "notes" => "API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.",
   "parameters" => [
     
     

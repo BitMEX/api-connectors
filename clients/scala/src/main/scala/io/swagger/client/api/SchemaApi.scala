@@ -1,7 +1,7 @@
 package io.swagger.client.api
 
 import io.swagger.client.model.Error
-import io.swagger.client.model.Inline_response_200
+import io.swagger.client.model.Inline_response_200_1
 import io.swagger.client.ApiInvoker
 import io.swagger.client.ApiException
 
@@ -27,9 +27,9 @@ class SchemaApi(val defBasePath: String = "https://localhost/api/v1",
    * Get model schemata for data objects returned by this API.
    * 
    * @param model Optional model filter. If omitted, will return all models.
-   * @return Inline_response_200
+   * @return Inline_response_200_1
    */
-  def schemaFind (model: String) : Option[Inline_response_200] = {
+  def schemaGet (model: String) : Option[Inline_response_200_1] = {
     // create path and map variables
     val path = "/schema".replaceAll("\\{format\\}","json")
 
@@ -62,7 +62,7 @@ class SchemaApi(val defBasePath: String = "https://localhost/api/v1",
     try {
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
         case s: String =>
-           Some(ApiInvoker.deserialize(s, "", classOf[Inline_response_200]).asInstanceOf[Inline_response_200])
+           Some(ApiInvoker.deserialize(s, "", classOf[Inline_response_200_1]).asInstanceOf[Inline_response_200_1])
          
         case _ => None
       }
@@ -75,9 +75,9 @@ class SchemaApi(val defBasePath: String = "https://localhost/api/v1",
   /**
    * Returns help text &amp; subject list for websocket usage.
    * 
-   * @return Inline_response_200
+   * @return Inline_response_200_1
    */
-  def schemaWebsocketHelp () : Option[Inline_response_200] = {
+  def schemaWebsocketHelp () : Option[Inline_response_200_1] = {
     // create path and map variables
     val path = "/schema/websocketHelp".replaceAll("\\{format\\}","json")
 
@@ -109,7 +109,7 @@ class SchemaApi(val defBasePath: String = "https://localhost/api/v1",
     try {
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
         case s: String =>
-           Some(ApiInvoker.deserialize(s, "", classOf[Inline_response_200]).asInstanceOf[Inline_response_200])
+           Some(ApiInvoker.deserialize(s, "", classOf[Inline_response_200_1]).asInstanceOf[Inline_response_200_1])
          
         case _ => None
       }

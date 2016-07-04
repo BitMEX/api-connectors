@@ -32,6 +32,13 @@ namespace IO.Swagger.Model
   
         
         /// <summary>
+        /// Gets or Sets Currency
+        /// </summary>
+        [DataMember(Name="currency", EmitDefaultValue=false)]
+        public string Currency { get; set; }
+  
+        
+        /// <summary>
         /// Gets or Sets Underlying
         /// </summary>
         [DataMember(Name="underlying", EmitDefaultValue=false)]
@@ -46,17 +53,17 @@ namespace IO.Swagger.Model
   
         
         /// <summary>
-        /// Gets or Sets Currency
-        /// </summary>
-        [DataMember(Name="currency", EmitDefaultValue=false)]
-        public string Currency { get; set; }
-  
-        
-        /// <summary>
         /// Gets or Sets Commission
         /// </summary>
         [DataMember(Name="commission", EmitDefaultValue=false)]
         public double? Commission { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets Leverage
+        /// </summary>
+        [DataMember(Name="leverage", EmitDefaultValue=false)]
+        public double? Leverage { get; set; }
   
         
         /// <summary>
@@ -598,6 +605,20 @@ namespace IO.Swagger.Model
         public DateTime? Timestamp { get; set; }
   
         
+        /// <summary>
+        /// Gets or Sets LastPrice
+        /// </summary>
+        [DataMember(Name="lastPrice", EmitDefaultValue=false)]
+        public double? LastPrice { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets LastValue
+        /// </summary>
+        [DataMember(Name="lastValue", EmitDefaultValue=false)]
+        public double? LastValue { get; set; }
+  
+        
   
         /// <summary>
         /// Returns the string presentation of the object
@@ -609,10 +630,11 @@ namespace IO.Swagger.Model
             sb.Append("class Position {\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  Symbol: ").Append(Symbol).Append("\n");
+            sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  Underlying: ").Append(Underlying).Append("\n");
             sb.Append("  QuoteCurrency: ").Append(QuoteCurrency).Append("\n");
-            sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  Commission: ").Append(Commission).Append("\n");
+            sb.Append("  Leverage: ").Append(Leverage).Append("\n");
             sb.Append("  CrossMargin: ").Append(CrossMargin).Append("\n");
             sb.Append("  RebalancedPnl: ").Append(RebalancedPnl).Append("\n");
             sb.Append("  PrevRealisedPnl: ").Append(PrevRealisedPnl).Append("\n");
@@ -690,6 +712,8 @@ namespace IO.Swagger.Model
             sb.Append("  LiquidationPrice: ").Append(LiquidationPrice).Append("\n");
             sb.Append("  BankruptPrice: ").Append(BankruptPrice).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
+            sb.Append("  LastPrice: ").Append(LastPrice).Append("\n");
+            sb.Append("  LastValue: ").Append(LastValue).Append("\n");
             
             sb.Append("}\n");
             return sb.ToString();
@@ -738,6 +762,11 @@ namespace IO.Swagger.Model
                     this.Symbol.Equals(other.Symbol)
                 ) && 
                 (
+                    this.Currency == other.Currency ||
+                    this.Currency != null &&
+                    this.Currency.Equals(other.Currency)
+                ) && 
+                (
                     this.Underlying == other.Underlying ||
                     this.Underlying != null &&
                     this.Underlying.Equals(other.Underlying)
@@ -748,14 +777,14 @@ namespace IO.Swagger.Model
                     this.QuoteCurrency.Equals(other.QuoteCurrency)
                 ) && 
                 (
-                    this.Currency == other.Currency ||
-                    this.Currency != null &&
-                    this.Currency.Equals(other.Currency)
-                ) && 
-                (
                     this.Commission == other.Commission ||
                     this.Commission != null &&
                     this.Commission.Equals(other.Commission)
+                ) && 
+                (
+                    this.Leverage == other.Leverage ||
+                    this.Leverage != null &&
+                    this.Leverage.Equals(other.Leverage)
                 ) && 
                 (
                     this.CrossMargin == other.CrossMargin ||
@@ -1141,6 +1170,16 @@ namespace IO.Swagger.Model
                     this.Timestamp == other.Timestamp ||
                     this.Timestamp != null &&
                     this.Timestamp.Equals(other.Timestamp)
+                ) && 
+                (
+                    this.LastPrice == other.LastPrice ||
+                    this.LastPrice != null &&
+                    this.LastPrice.Equals(other.LastPrice)
+                ) && 
+                (
+                    this.LastValue == other.LastValue ||
+                    this.LastValue != null &&
+                    this.LastValue.Equals(other.LastValue)
                 );
         }
 
@@ -1162,17 +1201,20 @@ namespace IO.Swagger.Model
                 if (this.Symbol != null)
                     hash = hash * 57 + this.Symbol.GetHashCode();
                 
+                if (this.Currency != null)
+                    hash = hash * 57 + this.Currency.GetHashCode();
+                
                 if (this.Underlying != null)
                     hash = hash * 57 + this.Underlying.GetHashCode();
                 
                 if (this.QuoteCurrency != null)
                     hash = hash * 57 + this.QuoteCurrency.GetHashCode();
                 
-                if (this.Currency != null)
-                    hash = hash * 57 + this.Currency.GetHashCode();
-                
                 if (this.Commission != null)
                     hash = hash * 57 + this.Commission.GetHashCode();
+                
+                if (this.Leverage != null)
+                    hash = hash * 57 + this.Leverage.GetHashCode();
                 
                 if (this.CrossMargin != null)
                     hash = hash * 57 + this.CrossMargin.GetHashCode();
@@ -1404,6 +1446,12 @@ namespace IO.Swagger.Model
                 
                 if (this.Timestamp != null)
                     hash = hash * 57 + this.Timestamp.GetHashCode();
+                
+                if (this.LastPrice != null)
+                    hash = hash * 57 + this.LastPrice.GetHashCode();
+                
+                if (this.LastValue != null)
+                    hash = hash * 57 + this.LastValue.GetHashCode();
                 
                 return hash;
             }

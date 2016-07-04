@@ -2,9 +2,10 @@
   (:require [bit-mex-api.core :refer [call-api check-required-params]])
   (:import (java.io File)))
 
-(defn position-find
-  "Get your positions."
-  ([] (position-find nil))
+(defn position-get
+  "Get your positions.
+  See <a href=\"http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html\">the FIX Spec</a> for explanations of these fields."
+  ([] (position-get nil))
   ([{:keys [filter columns count ]}]
    (call-api "/position" :get
              {:path-params   {}
@@ -15,8 +16,8 @@
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]})))
 
 (defn position-isolate-margin
-  "Toggle isolated (fixed) margin per-position.
-  On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off. A position must be open to isolate it."
+  "Enable isolated margin or cross margin per-position.
+  On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off."
   ([symbol ] (position-isolate-margin symbol nil))
   ([symbol {:keys [enabled ]}]
    (call-api "/position/isolate" :post
@@ -26,6 +27,18 @@
               :form-params   {"symbol" symbol "enabled" enabled }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]})))
+
+(defn position-update-leverage
+  "Choose leverage for a position.
+  On Speculative (DPE-Enabled) contracts, users can choose an isolated leverage. This will automatically enable isolated margin."
+  [symbol leverage ]
+  (call-api "/position/leverage" :post
+            {:path-params   {}
+             :header-params {}
+             :query-params  {}
+             :form-params   {"symbol" symbol "leverage" leverage }
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]}))
 
 (defn position-transfer-isolated-margin
   "Transfer equity in or out of a position.

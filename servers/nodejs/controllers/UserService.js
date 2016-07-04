@@ -1,6 +1,6 @@
 'use strict';
 
-exports.user.getMe = function(args, res, next) {
+exports.user.get = function(args, res, next) {
   /**
    * parameters expected in the args:
    **/
@@ -12,6 +12,7 @@ var examples = {};
   "firstname" : "aeiou",
   "preferences" : {
     "tradeLayout" : "aeiou",
+    "strictTimeout" : true,
     "orderBookBinning" : 1.3579000000000001069366817318950779736042022705078125,
     "debug" : true,
     "hideNotifications" : [ "aeiou" ],
@@ -19,20 +20,25 @@ var examples = {};
     "tickerGroup" : "aeiou",
     "msgsSeen" : [ "aeiou" ],
     "orderControlsPlusMinus" : true,
+    "hideConnectionModal" : true,
     "tickerPinned" : true,
+    "locale" : "aeiou",
     "hideConfirmDialogs" : [ "aeiou" ],
     "disableEmails" : [ "aeiou" ],
+    "hideFromLeaderboard" : true,
     "sounds" : [ "aeiou" ],
     "hidePhoneConfirm" : true,
     "colorTheme" : "aeiou",
-    "announcementsLastSeen" : "2015-11-30T19:35:59.611+0000",
-    "currency" : "aeiou"
+    "announcementsLastSeen" : "2016-07-04T23:25:34.566+0000",
+    "currency" : "aeiou",
+    "orderBookType" : "aeiou",
+    "hideNameFromLeaderboard" : true
   },
-  "role" : "aeiou",
-  "created" : "2015-11-30T19:35:59.611+0000",
+  "created" : "2016-07-04T23:25:34.566+0000",
+  "ownerId" : 1.3579000000000001069366817318950779736042022705078125,
   "affiliateID" : "aeiou",
   "lastname" : "aeiou",
-  "lastUpdated" : "2015-11-30T19:35:59.611+0000",
+  "lastUpdated" : "2016-07-04T23:25:34.566+0000",
   "phone" : "aeiou",
   "countryCode" : 1.3579000000000001069366817318950779736042022705078125,
   "TFAEnabled" : "aeiou",
@@ -56,7 +62,7 @@ var examples = {};
   
   
 }
-exports.user.updateMe = function(args, res, next) {
+exports.user.update = function(args, res, next) {
   /**
    * parameters expected in the args:
    * firstname (String)
@@ -64,6 +70,7 @@ exports.user.updateMe = function(args, res, next) {
    * oldPassword (String)
    * newPassword (String)
    * newPasswordConfirm (String)
+   * username (String)
    * country (String)
    * pgpPubKey (String)
    **/
@@ -75,6 +82,7 @@ var examples = {};
   "firstname" : "aeiou",
   "preferences" : {
     "tradeLayout" : "aeiou",
+    "strictTimeout" : true,
     "orderBookBinning" : 1.3579000000000001069366817318950779736042022705078125,
     "debug" : true,
     "hideNotifications" : [ "aeiou" ],
@@ -82,20 +90,25 @@ var examples = {};
     "tickerGroup" : "aeiou",
     "msgsSeen" : [ "aeiou" ],
     "orderControlsPlusMinus" : true,
+    "hideConnectionModal" : true,
     "tickerPinned" : true,
+    "locale" : "aeiou",
     "hideConfirmDialogs" : [ "aeiou" ],
     "disableEmails" : [ "aeiou" ],
+    "hideFromLeaderboard" : true,
     "sounds" : [ "aeiou" ],
     "hidePhoneConfirm" : true,
     "colorTheme" : "aeiou",
-    "announcementsLastSeen" : "2015-11-30T19:35:59.612+0000",
-    "currency" : "aeiou"
+    "announcementsLastSeen" : "2016-07-04T23:25:34.567+0000",
+    "currency" : "aeiou",
+    "orderBookType" : "aeiou",
+    "hideNameFromLeaderboard" : true
   },
-  "role" : "aeiou",
-  "created" : "2015-11-30T19:35:59.612+0000",
+  "created" : "2016-07-04T23:25:34.567+0000",
+  "ownerId" : 1.3579000000000001069366817318950779736042022705078125,
   "affiliateID" : "aeiou",
   "lastname" : "aeiou",
-  "lastUpdated" : "2015-11-30T19:35:59.612+0000",
+  "lastUpdated" : "2016-07-04T23:25:34.567+0000",
   "phone" : "aeiou",
   "countryCode" : 1.3579000000000001069366817318950779736042022705078125,
   "TFAEnabled" : "aeiou",
@@ -119,17 +132,19 @@ var examples = {};
   
   
 }
-exports.user.newUser = function(args, res, next) {
+exports.user.new = function(args, res, next) {
   /**
    * parameters expected in the args:
    * email (String)
    * password (String)
+   * country (String)
    * username (String)
    * firstname (String)
    * lastname (String)
    * acceptsTOS (String)
    * referrerID (String)
-   * country (String)
+   * tfaType (String)
+   * tfaToken (String)
    **/
 
 var examples = {};
@@ -139,6 +154,7 @@ var examples = {};
   "firstname" : "aeiou",
   "preferences" : {
     "tradeLayout" : "aeiou",
+    "strictTimeout" : true,
     "orderBookBinning" : 1.3579000000000001069366817318950779736042022705078125,
     "debug" : true,
     "hideNotifications" : [ "aeiou" ],
@@ -146,20 +162,25 @@ var examples = {};
     "tickerGroup" : "aeiou",
     "msgsSeen" : [ "aeiou" ],
     "orderControlsPlusMinus" : true,
+    "hideConnectionModal" : true,
     "tickerPinned" : true,
+    "locale" : "aeiou",
     "hideConfirmDialogs" : [ "aeiou" ],
     "disableEmails" : [ "aeiou" ],
+    "hideFromLeaderboard" : true,
     "sounds" : [ "aeiou" ],
     "hidePhoneConfirm" : true,
     "colorTheme" : "aeiou",
-    "announcementsLastSeen" : "2015-11-30T19:35:59.613+0000",
-    "currency" : "aeiou"
+    "announcementsLastSeen" : "2016-07-04T23:25:34.568+0000",
+    "currency" : "aeiou",
+    "orderBookType" : "aeiou",
+    "hideNameFromLeaderboard" : true
   },
-  "role" : "aeiou",
-  "created" : "2015-11-30T19:35:59.613+0000",
+  "created" : "2016-07-04T23:25:34.568+0000",
+  "ownerId" : 1.3579000000000001069366817318950779736042022705078125,
   "affiliateID" : "aeiou",
   "lastname" : "aeiou",
-  "lastUpdated" : "2015-11-30T19:35:59.613+0000",
+  "lastUpdated" : "2016-07-04T23:25:34.568+0000",
   "phone" : "aeiou",
   "countryCode" : 1.3579000000000001069366817318950779736042022705078125,
   "TFAEnabled" : "aeiou",
@@ -199,12 +220,12 @@ var examples = {};
   "pendingPayout" : 1.3579000000000001069366817318950779736042022705078125,
   "prevPayout" : 1.3579000000000001069366817318950779736042022705078125,
   "prevComm" : 1.3579000000000001069366817318950779736042022705078125,
-  "prevTimestamp" : "2015-11-30T19:35:59.615+0000",
+  "prevTimestamp" : "2016-07-04T23:25:34.570+0000",
   "account" : 1.3579000000000001069366817318950779736042022705078125,
   "prevTurnover" : 1.3579000000000001069366817318950779736042022705078125,
   "totalComm" : 1.3579000000000001069366817318950779736042022705078125,
   "payoutPcnt" : 1.3579000000000001069366817318950779736042022705078125,
-  "timestamp" : "2015-11-30T19:35:59.615+0000"
+  "timestamp" : "2016-07-04T23:25:34.570+0000"
 } ];
   
 
@@ -234,12 +255,12 @@ var examples = {};
   "tx" : "aeiou",
   "transactID" : "aeiou",
   "fee" : 1.3579000000000001069366817318950779736042022705078125,
-  "transactTime" : "2015-11-30T19:35:59.616+0000",
+  "transactTime" : "2016-07-04T23:25:34.570+0000",
   "currency" : "aeiou",
   "text" : "aeiou",
   "account" : 1.3579000000000001069366817318950779736042022705078125,
   "transactStatus" : "aeiou",
-  "timestamp" : "2015-11-30T19:35:59.616+0000"
+  "timestamp" : "2016-07-04T23:25:34.570+0000"
 };
   
 
@@ -310,7 +331,7 @@ exports.user.confirmEmail = function(args, res, next) {
 var examples = {};
   
   examples['application/json'] = {
-  "created" : "2015-11-30T19:35:59.617+0000",
+  "created" : "2016-07-04T23:25:34.571+0000",
   "id" : "aeiou",
   "ttl" : 1.3579000000000001069366817318950779736042022705078125,
   "userId" : 1.3579000000000001069366817318950779736042022705078125
@@ -389,12 +410,12 @@ var examples = {};
   "tx" : "aeiou",
   "transactID" : "aeiou",
   "fee" : 1.3579000000000001069366817318950779736042022705078125,
-  "transactTime" : "2015-11-30T19:35:59.619+0000",
+  "transactTime" : "2016-07-04T23:25:34.573+0000",
   "currency" : "aeiou",
   "text" : "aeiou",
   "account" : 1.3579000000000001069366817318950779736042022705078125,
   "transactStatus" : "aeiou",
-  "timestamp" : "2015-11-30T19:35:59.619+0000"
+  "timestamp" : "2016-07-04T23:25:34.573+0000"
 };
   
 
@@ -465,7 +486,7 @@ exports.user.login = function(args, res, next) {
 var examples = {};
   
   examples['application/json'] = {
-  "created" : "2015-11-30T19:35:59.620+0000",
+  "created" : "2016-07-04T23:25:34.574+0000",
   "id" : "aeiou",
   "ttl" : 1.3579000000000001069366817318950779736042022705078125,
   "userId" : 1.3579000000000001069366817318950779736042022705078125
@@ -501,13 +522,24 @@ exports.user.logoutAll = function(args, res, next) {
 
 var examples = {};
   
+  examples['application/json'] = 1.3579000000000001069366817318950779736042022705078125;
+  
 
   
-  res.end();
+  if(Object.keys(examples).length > 0) {
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
+  }
+  else {
+    res.end();
+  }
+  
+  
 }
 exports.user.getMargin = function(args, res, next) {
   /**
    * parameters expected in the args:
+   * currency (String)
    **/
 
 var examples = {};
@@ -521,12 +553,14 @@ var examples = {};
   "riskLimit" : 1.3579000000000001069366817318950779736042022705078125,
   "prevUnrealisedPnl" : 1.3579000000000001069366817318950779736042022705078125,
   "walletBalance" : 1.3579000000000001069366817318950779736042022705078125,
+  "grossLastValue" : 1.3579000000000001069366817318950779736042022705078125,
   "action" : "aeiou",
   "currency" : "aeiou",
+  "commission" : 1.3579000000000001069366817318950779736042022705078125,
   "state" : "aeiou",
   "sessionMargin" : 1.3579000000000001069366817318950779736042022705078125,
   "marginBalance" : 1.3579000000000001069366817318950779736042022705078125,
-  "timestamp" : "2015-11-30T19:35:59.621+0000",
+  "timestamp" : "2016-07-04T23:25:34.575+0000",
   "grossExecCost" : 1.3579000000000001069366817318950779736042022705078125,
   "targetExcessMargin" : 1.3579000000000001069366817318950779736042022705078125,
   "realisedPnl" : 1.3579000000000001069366817318950779736042022705078125,
@@ -536,6 +570,7 @@ var examples = {};
   "maintMargin" : 1.3579000000000001069366817318950779736042022705078125,
   "pendingDebit" : 1.3579000000000001069366817318950779736042022705078125,
   "riskValue" : 1.3579000000000001069366817318950779736042022705078125,
+  "confirmedDebit" : 1.3579000000000001069366817318950779736042022705078125,
   "grossComm" : 1.3579000000000001069366817318950779736042022705078125,
   "grossOpenPremium" : 1.3579000000000001069366817318950779736042022705078125,
   "excessMarginPcnt" : 1.3579000000000001069366817318950779736042022705078125,
@@ -547,6 +582,7 @@ var examples = {};
   "excessMargin" : 1.3579000000000001069366817318950779736042022705078125,
   "unrealisedProfit" : 1.3579000000000001069366817318950779736042022705078125,
   "initMargin" : 1.3579000000000001069366817318950779736042022705078125,
+  "syntheticMargin" : 1.3579000000000001069366817318950779736042022705078125,
   "taxableMargin" : 1.3579000000000001069366817318950779736042022705078125,
   "account" : 1.3579000000000001069366817318950779736042022705078125,
   "availableMargin" : 1.3579000000000001069366817318950779736042022705078125
@@ -578,6 +614,7 @@ var examples = {};
   "firstname" : "aeiou",
   "preferences" : {
     "tradeLayout" : "aeiou",
+    "strictTimeout" : true,
     "orderBookBinning" : 1.3579000000000001069366817318950779736042022705078125,
     "debug" : true,
     "hideNotifications" : [ "aeiou" ],
@@ -585,20 +622,25 @@ var examples = {};
     "tickerGroup" : "aeiou",
     "msgsSeen" : [ "aeiou" ],
     "orderControlsPlusMinus" : true,
+    "hideConnectionModal" : true,
     "tickerPinned" : true,
+    "locale" : "aeiou",
     "hideConfirmDialogs" : [ "aeiou" ],
     "disableEmails" : [ "aeiou" ],
+    "hideFromLeaderboard" : true,
     "sounds" : [ "aeiou" ],
     "hidePhoneConfirm" : true,
     "colorTheme" : "aeiou",
-    "announcementsLastSeen" : "2015-11-30T19:35:59.621+0000",
-    "currency" : "aeiou"
+    "announcementsLastSeen" : "2016-07-04T23:25:34.576+0000",
+    "currency" : "aeiou",
+    "orderBookType" : "aeiou",
+    "hideNameFromLeaderboard" : true
   },
-  "role" : "aeiou",
-  "created" : "2015-11-30T19:35:59.621+0000",
+  "created" : "2016-07-04T23:25:34.576+0000",
+  "ownerId" : 1.3579000000000001069366817318950779736042022705078125,
   "affiliateID" : "aeiou",
   "lastname" : "aeiou",
-  "lastUpdated" : "2015-11-30T19:35:59.621+0000",
+  "lastUpdated" : "2016-07-04T23:25:34.576+0000",
   "phone" : "aeiou",
   "countryCode" : 1.3579000000000001069366817318950779736042022705078125,
   "TFAEnabled" : "aeiou",
@@ -626,7 +668,6 @@ exports.user.requestEnableTFA = function(args, res, next) {
   /**
    * parameters expected in the args:
    * type (String)
-   * token (String)
    **/
 
 var examples = {};
@@ -686,12 +727,12 @@ var examples = {};
   "tx" : "aeiou",
   "transactID" : "aeiou",
   "fee" : 1.3579000000000001069366817318950779736042022705078125,
-  "transactTime" : "2015-11-30T19:35:59.623+0000",
+  "transactTime" : "2016-07-04T23:25:34.577+0000",
   "currency" : "aeiou",
   "text" : "aeiou",
   "account" : 1.3579000000000001069366817318950779736042022705078125,
   "transactStatus" : "aeiou",
-  "timestamp" : "2015-11-30T19:35:59.623+0000"
+  "timestamp" : "2016-07-04T23:25:34.577+0000"
 };
   
 
@@ -731,6 +772,7 @@ var examples = {};
 exports.user.getWalletHistory = function(args, res, next) {
   /**
    * parameters expected in the args:
+   * currency (String)
    **/
 
 var examples = {};
@@ -742,12 +784,12 @@ var examples = {};
   "tx" : "aeiou",
   "transactID" : "aeiou",
   "fee" : 1.3579000000000001069366817318950779736042022705078125,
-  "transactTime" : "2015-11-30T19:35:59.624+0000",
+  "transactTime" : "2016-07-04T23:25:34.578+0000",
   "currency" : "aeiou",
   "text" : "aeiou",
   "account" : 1.3579000000000001069366817318950779736042022705078125,
   "transactStatus" : "aeiou",
-  "timestamp" : "2015-11-30T19:35:59.624+0000"
+  "timestamp" : "2016-07-04T23:25:34.578+0000"
 } ];
   
 

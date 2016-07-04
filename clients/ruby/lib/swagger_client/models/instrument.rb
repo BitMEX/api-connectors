@@ -1,7 +1,7 @@
 module SwaggerClient
   # 
   class Instrument < BaseObject
-    attr_accessor :symbol, :root_symbol, :state, :typ, :listing, :front, :expiry, :relist_interval, :inverse_leg, :sell_leg, :buy_leg, :underlying, :quote_currency, :underlying_symbol, :reference, :reference_symbol, :tick_size, :multiplier, :settl_currency, :underlying_to_settle_multiplier, :quote_to_settle_multiplier, :is_quanto, :is_inverse, :init_margin, :maint_margin, :limit, :capped, :taxed, :maker_fee, :taker_fee, :insurance_fee, :hedger_maker_fee, :hedger_taker_fee, :hedger_insurance_fee, :opening_timestamp, :closing_timestamp, :session_interval, :prev_close_price, :limit_down_price, :limit_up_price, :bankrupt_limit_down_price, :bankrupt_limit_up_price, :prev_total_volume, :total_volume, :volume, :volume24h, :prev_total_turnover, :total_turnover, :turnover, :turnover24h, :prev_price24h, :vwap, :high_price, :low_price, :last_price, :last_price_protected, :last_tick_direction, :last_change_pcnt, :bid_price, :mid_price, :ask_price, :impact_bid_price, :impact_mid_price, :impact_ask_price, :has_liquidity, :open_interest, :open_value, :fair_method, :fair_basis_rate, :fair_basis, :fair_price, :mark_method, :mark_price, :indicative_tax_rate, :indicative_settle_price, :settled_price, :timestamp
+    attr_accessor :symbol, :root_symbol, :state, :typ, :listing, :front, :expiry, :settle, :relist_interval, :inverse_leg, :sell_leg, :buy_leg, :position_currency, :underlying, :quote_currency, :underlying_symbol, :reference, :reference_symbol, :calc_interval, :publish_interval, :publish_time, :max_order_qty, :max_price, :lot_size, :tick_size, :multiplier, :settl_currency, :underlying_to_position_multiplier, :underlying_to_settle_multiplier, :quote_to_settle_multiplier, :is_quanto, :is_inverse, :init_margin, :maint_margin, :limit, :capped, :taxed, :maker_fee, :taker_fee, :settlement_fee, :insurance_fee, :funding_base_symbol, :funding_quote_symbol, :funding_premium_symbol, :funding_timestamp, :funding_interval, :funding_rate, :indicative_funding_rate, :rebalance_timestamp, :rebalance_interval, :opening_timestamp, :closing_timestamp, :session_interval, :prev_close_price, :limit_down_price, :limit_up_price, :bankrupt_limit_down_price, :bankrupt_limit_up_price, :prev_total_volume, :total_volume, :volume, :volume24h, :prev_total_turnover, :total_turnover, :turnover, :turnover24h, :prev_price24h, :vwap, :high_price, :low_price, :last_price, :last_price_protected, :last_tick_direction, :last_change_pcnt, :bid_price, :mid_price, :ask_price, :impact_bid_price, :impact_mid_price, :impact_ask_price, :has_liquidity, :open_interest, :open_value, :fair_method, :fair_basis_rate, :fair_basis, :fair_price, :mark_method, :mark_price, :indicative_tax_rate, :indicative_settle_price, :settled_price, :timestamp
     # attribute mapping from ruby-style variable name to JSON key
     def self.attribute_map
       {
@@ -28,6 +28,9 @@ module SwaggerClient
         :'expiry' => :'expiry',
         
         # 
+        :'settle' => :'settle',
+        
+        # 
         :'relist_interval' => :'relistInterval',
         
         # 
@@ -38,6 +41,9 @@ module SwaggerClient
         
         # 
         :'buy_leg' => :'buyLeg',
+        
+        # 
+        :'position_currency' => :'positionCurrency',
         
         # 
         :'underlying' => :'underlying',
@@ -55,6 +61,24 @@ module SwaggerClient
         :'reference_symbol' => :'referenceSymbol',
         
         # 
+        :'calc_interval' => :'calcInterval',
+        
+        # 
+        :'publish_interval' => :'publishInterval',
+        
+        # 
+        :'publish_time' => :'publishTime',
+        
+        # 
+        :'max_order_qty' => :'maxOrderQty',
+        
+        # 
+        :'max_price' => :'maxPrice',
+        
+        # 
+        :'lot_size' => :'lotSize',
+        
+        # 
         :'tick_size' => :'tickSize',
         
         # 
@@ -62,6 +86,9 @@ module SwaggerClient
         
         # 
         :'settl_currency' => :'settlCurrency',
+        
+        # 
+        :'underlying_to_position_multiplier' => :'underlyingToPositionMultiplier',
         
         # 
         :'underlying_to_settle_multiplier' => :'underlyingToSettleMultiplier',
@@ -97,16 +124,37 @@ module SwaggerClient
         :'taker_fee' => :'takerFee',
         
         # 
+        :'settlement_fee' => :'settlementFee',
+        
+        # 
         :'insurance_fee' => :'insuranceFee',
         
         # 
-        :'hedger_maker_fee' => :'hedgerMakerFee',
+        :'funding_base_symbol' => :'fundingBaseSymbol',
         
         # 
-        :'hedger_taker_fee' => :'hedgerTakerFee',
+        :'funding_quote_symbol' => :'fundingQuoteSymbol',
         
         # 
-        :'hedger_insurance_fee' => :'hedgerInsuranceFee',
+        :'funding_premium_symbol' => :'fundingPremiumSymbol',
+        
+        # 
+        :'funding_timestamp' => :'fundingTimestamp',
+        
+        # 
+        :'funding_interval' => :'fundingInterval',
+        
+        # 
+        :'funding_rate' => :'fundingRate',
+        
+        # 
+        :'indicative_funding_rate' => :'indicativeFundingRate',
+        
+        # 
+        :'rebalance_timestamp' => :'rebalanceTimestamp',
+        
+        # 
+        :'rebalance_interval' => :'rebalanceInterval',
         
         # 
         :'opening_timestamp' => :'openingTimestamp',
@@ -250,18 +298,27 @@ module SwaggerClient
         :'listing' => :'Date',
         :'front' => :'Date',
         :'expiry' => :'Date',
+        :'settle' => :'Date',
         :'relist_interval' => :'Date',
         :'inverse_leg' => :'String',
         :'sell_leg' => :'String',
         :'buy_leg' => :'String',
+        :'position_currency' => :'String',
         :'underlying' => :'String',
         :'quote_currency' => :'String',
         :'underlying_symbol' => :'String',
         :'reference' => :'String',
         :'reference_symbol' => :'String',
+        :'calc_interval' => :'Date',
+        :'publish_interval' => :'Date',
+        :'publish_time' => :'Date',
+        :'max_order_qty' => :'Float',
+        :'max_price' => :'Float',
+        :'lot_size' => :'Float',
         :'tick_size' => :'Float',
         :'multiplier' => :'Float',
         :'settl_currency' => :'String',
+        :'underlying_to_position_multiplier' => :'Float',
         :'underlying_to_settle_multiplier' => :'Float',
         :'quote_to_settle_multiplier' => :'Float',
         :'is_quanto' => :'BOOLEAN',
@@ -273,10 +330,17 @@ module SwaggerClient
         :'taxed' => :'BOOLEAN',
         :'maker_fee' => :'Float',
         :'taker_fee' => :'Float',
+        :'settlement_fee' => :'Float',
         :'insurance_fee' => :'Float',
-        :'hedger_maker_fee' => :'Float',
-        :'hedger_taker_fee' => :'Float',
-        :'hedger_insurance_fee' => :'Float',
+        :'funding_base_symbol' => :'String',
+        :'funding_quote_symbol' => :'String',
+        :'funding_premium_symbol' => :'String',
+        :'funding_timestamp' => :'Date',
+        :'funding_interval' => :'Date',
+        :'funding_rate' => :'Float',
+        :'indicative_funding_rate' => :'Float',
+        :'rebalance_timestamp' => :'Date',
+        :'rebalance_interval' => :'Date',
         :'opening_timestamp' => :'Date',
         :'closing_timestamp' => :'Date',
         :'session_interval' => :'Date',
@@ -359,6 +423,10 @@ module SwaggerClient
         self.expiry = attributes[:'expiry']
       end
       
+      if attributes[:'settle']
+        self.settle = attributes[:'settle']
+      end
+      
       if attributes[:'relistInterval']
         self.relist_interval = attributes[:'relistInterval']
       end
@@ -373,6 +441,10 @@ module SwaggerClient
       
       if attributes[:'buyLeg']
         self.buy_leg = attributes[:'buyLeg']
+      end
+      
+      if attributes[:'positionCurrency']
+        self.position_currency = attributes[:'positionCurrency']
       end
       
       if attributes[:'underlying']
@@ -395,6 +467,30 @@ module SwaggerClient
         self.reference_symbol = attributes[:'referenceSymbol']
       end
       
+      if attributes[:'calcInterval']
+        self.calc_interval = attributes[:'calcInterval']
+      end
+      
+      if attributes[:'publishInterval']
+        self.publish_interval = attributes[:'publishInterval']
+      end
+      
+      if attributes[:'publishTime']
+        self.publish_time = attributes[:'publishTime']
+      end
+      
+      if attributes[:'maxOrderQty']
+        self.max_order_qty = attributes[:'maxOrderQty']
+      end
+      
+      if attributes[:'maxPrice']
+        self.max_price = attributes[:'maxPrice']
+      end
+      
+      if attributes[:'lotSize']
+        self.lot_size = attributes[:'lotSize']
+      end
+      
       if attributes[:'tickSize']
         self.tick_size = attributes[:'tickSize']
       end
@@ -405,6 +501,10 @@ module SwaggerClient
       
       if attributes[:'settlCurrency']
         self.settl_currency = attributes[:'settlCurrency']
+      end
+      
+      if attributes[:'underlyingToPositionMultiplier']
+        self.underlying_to_position_multiplier = attributes[:'underlyingToPositionMultiplier']
       end
       
       if attributes[:'underlyingToSettleMultiplier']
@@ -451,20 +551,48 @@ module SwaggerClient
         self.taker_fee = attributes[:'takerFee']
       end
       
+      if attributes[:'settlementFee']
+        self.settlement_fee = attributes[:'settlementFee']
+      end
+      
       if attributes[:'insuranceFee']
         self.insurance_fee = attributes[:'insuranceFee']
       end
       
-      if attributes[:'hedgerMakerFee']
-        self.hedger_maker_fee = attributes[:'hedgerMakerFee']
+      if attributes[:'fundingBaseSymbol']
+        self.funding_base_symbol = attributes[:'fundingBaseSymbol']
       end
       
-      if attributes[:'hedgerTakerFee']
-        self.hedger_taker_fee = attributes[:'hedgerTakerFee']
+      if attributes[:'fundingQuoteSymbol']
+        self.funding_quote_symbol = attributes[:'fundingQuoteSymbol']
       end
       
-      if attributes[:'hedgerInsuranceFee']
-        self.hedger_insurance_fee = attributes[:'hedgerInsuranceFee']
+      if attributes[:'fundingPremiumSymbol']
+        self.funding_premium_symbol = attributes[:'fundingPremiumSymbol']
+      end
+      
+      if attributes[:'fundingTimestamp']
+        self.funding_timestamp = attributes[:'fundingTimestamp']
+      end
+      
+      if attributes[:'fundingInterval']
+        self.funding_interval = attributes[:'fundingInterval']
+      end
+      
+      if attributes[:'fundingRate']
+        self.funding_rate = attributes[:'fundingRate']
+      end
+      
+      if attributes[:'indicativeFundingRate']
+        self.indicative_funding_rate = attributes[:'indicativeFundingRate']
+      end
+      
+      if attributes[:'rebalanceTimestamp']
+        self.rebalance_timestamp = attributes[:'rebalanceTimestamp']
+      end
+      
+      if attributes[:'rebalanceInterval']
+        self.rebalance_interval = attributes[:'rebalanceInterval']
       end
       
       if attributes[:'openingTimestamp']
@@ -651,18 +779,27 @@ module SwaggerClient
           listing == o.listing &&
           front == o.front &&
           expiry == o.expiry &&
+          settle == o.settle &&
           relist_interval == o.relist_interval &&
           inverse_leg == o.inverse_leg &&
           sell_leg == o.sell_leg &&
           buy_leg == o.buy_leg &&
+          position_currency == o.position_currency &&
           underlying == o.underlying &&
           quote_currency == o.quote_currency &&
           underlying_symbol == o.underlying_symbol &&
           reference == o.reference &&
           reference_symbol == o.reference_symbol &&
+          calc_interval == o.calc_interval &&
+          publish_interval == o.publish_interval &&
+          publish_time == o.publish_time &&
+          max_order_qty == o.max_order_qty &&
+          max_price == o.max_price &&
+          lot_size == o.lot_size &&
           tick_size == o.tick_size &&
           multiplier == o.multiplier &&
           settl_currency == o.settl_currency &&
+          underlying_to_position_multiplier == o.underlying_to_position_multiplier &&
           underlying_to_settle_multiplier == o.underlying_to_settle_multiplier &&
           quote_to_settle_multiplier == o.quote_to_settle_multiplier &&
           is_quanto == o.is_quanto &&
@@ -674,10 +811,17 @@ module SwaggerClient
           taxed == o.taxed &&
           maker_fee == o.maker_fee &&
           taker_fee == o.taker_fee &&
+          settlement_fee == o.settlement_fee &&
           insurance_fee == o.insurance_fee &&
-          hedger_maker_fee == o.hedger_maker_fee &&
-          hedger_taker_fee == o.hedger_taker_fee &&
-          hedger_insurance_fee == o.hedger_insurance_fee &&
+          funding_base_symbol == o.funding_base_symbol &&
+          funding_quote_symbol == o.funding_quote_symbol &&
+          funding_premium_symbol == o.funding_premium_symbol &&
+          funding_timestamp == o.funding_timestamp &&
+          funding_interval == o.funding_interval &&
+          funding_rate == o.funding_rate &&
+          indicative_funding_rate == o.indicative_funding_rate &&
+          rebalance_timestamp == o.rebalance_timestamp &&
+          rebalance_interval == o.rebalance_interval &&
           opening_timestamp == o.opening_timestamp &&
           closing_timestamp == o.closing_timestamp &&
           session_interval == o.session_interval &&
@@ -728,7 +872,7 @@ module SwaggerClient
     end
 
     def hash
-      [symbol, root_symbol, state, typ, listing, front, expiry, relist_interval, inverse_leg, sell_leg, buy_leg, underlying, quote_currency, underlying_symbol, reference, reference_symbol, tick_size, multiplier, settl_currency, underlying_to_settle_multiplier, quote_to_settle_multiplier, is_quanto, is_inverse, init_margin, maint_margin, limit, capped, taxed, maker_fee, taker_fee, insurance_fee, hedger_maker_fee, hedger_taker_fee, hedger_insurance_fee, opening_timestamp, closing_timestamp, session_interval, prev_close_price, limit_down_price, limit_up_price, bankrupt_limit_down_price, bankrupt_limit_up_price, prev_total_volume, total_volume, volume, volume24h, prev_total_turnover, total_turnover, turnover, turnover24h, prev_price24h, vwap, high_price, low_price, last_price, last_price_protected, last_tick_direction, last_change_pcnt, bid_price, mid_price, ask_price, impact_bid_price, impact_mid_price, impact_ask_price, has_liquidity, open_interest, open_value, fair_method, fair_basis_rate, fair_basis, fair_price, mark_method, mark_price, indicative_tax_rate, indicative_settle_price, settled_price, timestamp].hash
+      [symbol, root_symbol, state, typ, listing, front, expiry, settle, relist_interval, inverse_leg, sell_leg, buy_leg, position_currency, underlying, quote_currency, underlying_symbol, reference, reference_symbol, calc_interval, publish_interval, publish_time, max_order_qty, max_price, lot_size, tick_size, multiplier, settl_currency, underlying_to_position_multiplier, underlying_to_settle_multiplier, quote_to_settle_multiplier, is_quanto, is_inverse, init_margin, maint_margin, limit, capped, taxed, maker_fee, taker_fee, settlement_fee, insurance_fee, funding_base_symbol, funding_quote_symbol, funding_premium_symbol, funding_timestamp, funding_interval, funding_rate, indicative_funding_rate, rebalance_timestamp, rebalance_interval, opening_timestamp, closing_timestamp, session_interval, prev_close_price, limit_down_price, limit_up_price, bankrupt_limit_down_price, bankrupt_limit_up_price, prev_total_volume, total_volume, volume, volume24h, prev_total_turnover, total_turnover, turnover, turnover24h, prev_price24h, vwap, high_price, low_price, last_price, last_price_protected, last_tick_direction, last_change_pcnt, bid_price, mid_price, ask_price, impact_bid_price, impact_mid_price, impact_ask_price, has_liquidity, open_interest, open_value, fair_method, fair_basis_rate, fair_basis, fair_price, mark_method, mark_price, indicative_tax_rate, indicative_settle_price, settled_price, timestamp].hash
     end
   end
 end

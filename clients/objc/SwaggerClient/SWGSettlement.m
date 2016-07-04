@@ -8,7 +8,7 @@
  */
 + (JSONKeyMapper *)keyMapper
 {
-  return [[JSONKeyMapper alloc] initWithDictionary:@{ @"symbol": @"symbol", @"timestamp": @"timestamp", @"settlementType": @"settlementType", @"settledPrice": @"settledPrice", @"bankrupt": @"bankrupt", @"taxBase": @"taxBase", @"taxRate": @"taxRate" }];
+  return [[JSONKeyMapper alloc] initWithDictionary:@{ @"timestamp": @"timestamp", @"symbol": @"symbol", @"settlementType": @"settlementType", @"settledPrice": @"settledPrice", @"bankrupt": @"bankrupt", @"taxBase": @"taxBase", @"taxRate": @"taxRate" }];
 }
 
 /**

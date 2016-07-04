@@ -1,6 +1,6 @@
 'use strict';
 
-exports.schema.find = function(args, res, next) {
+exports.schema.get = function(args, res, next) {
   /**
    * parameters expected in the args:
    * model (String)

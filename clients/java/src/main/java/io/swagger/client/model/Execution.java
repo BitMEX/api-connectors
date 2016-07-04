@@ -12,12 +12,13 @@ import com.fasterxml.jackson.annotation.*;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-30T13:35:44.556-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-04T18:25:18.235-05:00")
 public class Execution   {
   
   private String execID = null;
   private String orderID = null;
   private String clOrdID = null;
+  private String clOrdLinkID = null;
   private BigDecimal account = null;
   private String symbol = null;
   private String side = null;
@@ -29,15 +30,20 @@ public class Execution   {
   private Double simpleOrderQty = null;
   private BigDecimal orderQty = null;
   private Double price = null;
-  private BigDecimal minQty = null;
+  private BigDecimal displayQty = null;
   private Double stopPx = null;
+  private Double pegOffsetValue = null;
+  private String pegPriceType = null;
   private String currency = null;
   private String settlCurrency = null;
   private String execType = null;
   private String ordType = null;
   private String timeInForce = null;
+  private String execInst = null;
+  private String contingencyType = null;
   private String exDestination = null;
   private String ordStatus = null;
+  private String triggered = null;
   private Boolean workingIndicator = null;
   private String ordRejReason = null;
   private Double simpleLeavesQty = null;
@@ -46,7 +52,6 @@ public class Execution   {
   private BigDecimal cumQty = null;
   private Double avgPx = null;
   private Double commission = null;
-  private String commType = null;
   private String tradePublishIndicator = null;
   private String multiLegReportingType = null;
   private String text = null;
@@ -92,6 +97,18 @@ public class Execution   {
   }
   public void setClOrdID(String clOrdID) {
     this.clOrdID = clOrdID;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("clOrdLinkID")
+  public String getClOrdLinkID() {
+    return clOrdLinkID;
+  }
+  public void setClOrdLinkID(String clOrdLinkID) {
+    this.clOrdLinkID = clOrdLinkID;
   }
 
   
@@ -230,12 +247,12 @@ public class Execution   {
   /**
    **/
   @ApiModelProperty(value = "")
-  @JsonProperty("minQty")
-  public BigDecimal getMinQty() {
-    return minQty;
+  @JsonProperty("displayQty")
+  public BigDecimal getDisplayQty() {
+    return displayQty;
   }
-  public void setMinQty(BigDecimal minQty) {
-    this.minQty = minQty;
+  public void setDisplayQty(BigDecimal displayQty) {
+    this.displayQty = displayQty;
   }
 
   
@@ -248,6 +265,30 @@ public class Execution   {
   }
   public void setStopPx(Double stopPx) {
     this.stopPx = stopPx;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("pegOffsetValue")
+  public Double getPegOffsetValue() {
+    return pegOffsetValue;
+  }
+  public void setPegOffsetValue(Double pegOffsetValue) {
+    this.pegOffsetValue = pegOffsetValue;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("pegPriceType")
+  public String getPegPriceType() {
+    return pegPriceType;
+  }
+  public void setPegPriceType(String pegPriceType) {
+    this.pegPriceType = pegPriceType;
   }
 
   
@@ -314,6 +355,30 @@ public class Execution   {
   /**
    **/
   @ApiModelProperty(value = "")
+  @JsonProperty("execInst")
+  public String getExecInst() {
+    return execInst;
+  }
+  public void setExecInst(String execInst) {
+    this.execInst = execInst;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("contingencyType")
+  public String getContingencyType() {
+    return contingencyType;
+  }
+  public void setContingencyType(String contingencyType) {
+    this.contingencyType = contingencyType;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
   @JsonProperty("exDestination")
   public String getExDestination() {
     return exDestination;
@@ -332,6 +397,18 @@ public class Execution   {
   }
   public void setOrdStatus(String ordStatus) {
     this.ordStatus = ordStatus;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("triggered")
+  public String getTriggered() {
+    return triggered;
+  }
+  public void setTriggered(String triggered) {
+    this.triggered = triggered;
   }
 
   
@@ -428,18 +505,6 @@ public class Execution   {
   }
   public void setCommission(Double commission) {
     this.commission = commission;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  @JsonProperty("commType")
-  public String getCommType() {
-    return commType;
-  }
-  public void setCommType(String commType) {
-    this.commType = commType;
   }
 
   
@@ -576,6 +641,7 @@ public class Execution   {
     return Objects.equals(execID, execution.execID) &&
         Objects.equals(orderID, execution.orderID) &&
         Objects.equals(clOrdID, execution.clOrdID) &&
+        Objects.equals(clOrdLinkID, execution.clOrdLinkID) &&
         Objects.equals(account, execution.account) &&
         Objects.equals(symbol, execution.symbol) &&
         Objects.equals(side, execution.side) &&
@@ -587,15 +653,20 @@ public class Execution   {
         Objects.equals(simpleOrderQty, execution.simpleOrderQty) &&
         Objects.equals(orderQty, execution.orderQty) &&
         Objects.equals(price, execution.price) &&
-        Objects.equals(minQty, execution.minQty) &&
+        Objects.equals(displayQty, execution.displayQty) &&
         Objects.equals(stopPx, execution.stopPx) &&
+        Objects.equals(pegOffsetValue, execution.pegOffsetValue) &&
+        Objects.equals(pegPriceType, execution.pegPriceType) &&
         Objects.equals(currency, execution.currency) &&
         Objects.equals(settlCurrency, execution.settlCurrency) &&
         Objects.equals(execType, execution.execType) &&
         Objects.equals(ordType, execution.ordType) &&
         Objects.equals(timeInForce, execution.timeInForce) &&
+        Objects.equals(execInst, execution.execInst) &&
+        Objects.equals(contingencyType, execution.contingencyType) &&
         Objects.equals(exDestination, execution.exDestination) &&
         Objects.equals(ordStatus, execution.ordStatus) &&
+        Objects.equals(triggered, execution.triggered) &&
         Objects.equals(workingIndicator, execution.workingIndicator) &&
         Objects.equals(ordRejReason, execution.ordRejReason) &&
         Objects.equals(simpleLeavesQty, execution.simpleLeavesQty) &&
@@ -604,7 +675,6 @@ public class Execution   {
         Objects.equals(cumQty, execution.cumQty) &&
         Objects.equals(avgPx, execution.avgPx) &&
         Objects.equals(commission, execution.commission) &&
-        Objects.equals(commType, execution.commType) &&
         Objects.equals(tradePublishIndicator, execution.tradePublishIndicator) &&
         Objects.equals(multiLegReportingType, execution.multiLegReportingType) &&
         Objects.equals(text, execution.text) &&
@@ -619,7 +689,7 @@ public class Execution   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(execID, orderID, clOrdID, account, symbol, side, lastQty, lastPx, underlyingLastPx, lastMkt, lastLiquidityInd, simpleOrderQty, orderQty, price, minQty, stopPx, currency, settlCurrency, execType, ordType, timeInForce, exDestination, ordStatus, workingIndicator, ordRejReason, simpleLeavesQty, leavesQty, simpleCumQty, cumQty, avgPx, commission, commType, tradePublishIndicator, multiLegReportingType, text, trdMatchID, execCost, execComm, homeNotional, foreignNotional, transactTime, timestamp);
+    return Objects.hash(execID, orderID, clOrdID, clOrdLinkID, account, symbol, side, lastQty, lastPx, underlyingLastPx, lastMkt, lastLiquidityInd, simpleOrderQty, orderQty, price, displayQty, stopPx, pegOffsetValue, pegPriceType, currency, settlCurrency, execType, ordType, timeInForce, execInst, contingencyType, exDestination, ordStatus, triggered, workingIndicator, ordRejReason, simpleLeavesQty, leavesQty, simpleCumQty, cumQty, avgPx, commission, tradePublishIndicator, multiLegReportingType, text, trdMatchID, execCost, execComm, homeNotional, foreignNotional, transactTime, timestamp);
   }
 
   @Override
@@ -630,6 +700,7 @@ public class Execution   {
     sb.append("    execID: ").append(StringUtil.toIndentedString(execID)).append("\n");
     sb.append("    orderID: ").append(StringUtil.toIndentedString(orderID)).append("\n");
     sb.append("    clOrdID: ").append(StringUtil.toIndentedString(clOrdID)).append("\n");
+    sb.append("    clOrdLinkID: ").append(StringUtil.toIndentedString(clOrdLinkID)).append("\n");
     sb.append("    account: ").append(StringUtil.toIndentedString(account)).append("\n");
     sb.append("    symbol: ").append(StringUtil.toIndentedString(symbol)).append("\n");
     sb.append("    side: ").append(StringUtil.toIndentedString(side)).append("\n");
@@ -641,15 +712,20 @@ public class Execution   {
     sb.append("    simpleOrderQty: ").append(StringUtil.toIndentedString(simpleOrderQty)).append("\n");
     sb.append("    orderQty: ").append(StringUtil.toIndentedString(orderQty)).append("\n");
     sb.append("    price: ").append(StringUtil.toIndentedString(price)).append("\n");
-    sb.append("    minQty: ").append(StringUtil.toIndentedString(minQty)).append("\n");
+    sb.append("    displayQty: ").append(StringUtil.toIndentedString(displayQty)).append("\n");
     sb.append("    stopPx: ").append(StringUtil.toIndentedString(stopPx)).append("\n");
+    sb.append("    pegOffsetValue: ").append(StringUtil.toIndentedString(pegOffsetValue)).append("\n");
+    sb.append("    pegPriceType: ").append(StringUtil.toIndentedString(pegPriceType)).append("\n");
     sb.append("    currency: ").append(StringUtil.toIndentedString(currency)).append("\n");
     sb.append("    settlCurrency: ").append(StringUtil.toIndentedString(settlCurrency)).append("\n");
     sb.append("    execType: ").append(StringUtil.toIndentedString(execType)).append("\n");
     sb.append("    ordType: ").append(StringUtil.toIndentedString(ordType)).append("\n");
     sb.append("    timeInForce: ").append(StringUtil.toIndentedString(timeInForce)).append("\n");
+    sb.append("    execInst: ").append(StringUtil.toIndentedString(execInst)).append("\n");
+    sb.append("    contingencyType: ").append(StringUtil.toIndentedString(contingencyType)).append("\n");
     sb.append("    exDestination: ").append(StringUtil.toIndentedString(exDestination)).append("\n");
     sb.append("    ordStatus: ").append(StringUtil.toIndentedString(ordStatus)).append("\n");
+    sb.append("    triggered: ").append(StringUtil.toIndentedString(triggered)).append("\n");
     sb.append("    workingIndicator: ").append(StringUtil.toIndentedString(workingIndicator)).append("\n");
     sb.append("    ordRejReason: ").append(StringUtil.toIndentedString(ordRejReason)).append("\n");
     sb.append("    simpleLeavesQty: ").append(StringUtil.toIndentedString(simpleLeavesQty)).append("\n");
@@ -658,7 +734,6 @@ public class Execution   {
     sb.append("    cumQty: ").append(StringUtil.toIndentedString(cumQty)).append("\n");
     sb.append("    avgPx: ").append(StringUtil.toIndentedString(avgPx)).append("\n");
     sb.append("    commission: ").append(StringUtil.toIndentedString(commission)).append("\n");
-    sb.append("    commType: ").append(StringUtil.toIndentedString(commType)).append("\n");
     sb.append("    tradePublishIndicator: ").append(StringUtil.toIndentedString(tradePublishIndicator)).append("\n");
     sb.append("    multiLegReportingType: ").append(StringUtil.toIndentedString(multiLegReportingType)).append("\n");
     sb.append("    text: ").append(StringUtil.toIndentedString(text)).append("\n");

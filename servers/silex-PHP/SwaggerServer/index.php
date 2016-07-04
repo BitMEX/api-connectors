@@ -19,10 +19,18 @@ $app->GET('/order', function(Application $app, Request $request) {
 
             
 
+$app->PUT('/order', function(Application $app, Request $request) {
+            
+            $order_id = $request->get('order_id');    $cl_ord_id = $request->get('cl_ord_id');    $simple_order_qty = $request->get('simple_order_qty');    $order_qty = $request->get('order_qty');    $simple_leaves_qty = $request->get('simple_leaves_qty');    $leaves_qty = $request->get('leaves_qty');    $price = $request->get('price');    $stop_px = $request->get('stop_px');    $peg_offset_value = $request->get('peg_offset_value');    $text = $request->get('text');    
+            return new Response('How about implementing order.amend as a PUT method ?');
+            });
+
+            
+
 $app->POST('/order', function(Application $app, Request $request) {
             
-            $symbol = $request->get('symbol');    $quantity = $request->get('quantity');    $price = $request->get('price');    $time_in_force = $request->get('time_in_force');    $type = $request->get('type');    $stop_price = $request->get('stop_price');    $cl_ord_id = $request->get('cl_ord_id');    
-            return new Response('How about implementing order.newOrder as a POST method ?');
+            $symbol = $request->get('symbol');    $side = $request->get('side');    $simple_order_qty = $request->get('simple_order_qty');    $quantity = $request->get('quantity');    $order_qty = $request->get('order_qty');    $price = $request->get('price');    $display_qty = $request->get('display_qty');    $stop_price = $request->get('stop_price');    $stop_px = $request->get('stop_px');    $cl_ord_id = $request->get('cl_ord_id');    $cl_ord_link_id = $request->get('cl_ord_link_id');    $peg_offset_value = $request->get('peg_offset_value');    $peg_price_type = $request->get('peg_price_type');    $type = $request->get('type');    $ord_type = $request->get('ord_type');    $time_in_force = $request->get('time_in_force');    $exec_inst = $request->get('exec_inst');    $contingency_type = $request->get('contingency_type');    $text = $request->get('text');    
+            return new Response('How about implementing order.new as a POST method ?');
             });
 
             
@@ -30,7 +38,7 @@ $app->POST('/order', function(Application $app, Request $request) {
 $app->DELETE('/order', function(Application $app, Request $request) {
             
             $order_id = $request->get('order_id');    $cl_ord_id = $request->get('cl_ord_id');    $text = $request->get('text');    
-            return new Response('How about implementing order.cancelOrder as a DELETE method ?');
+            return new Response('How about implementing order.cancel as a DELETE method ?');
             });
 
             
@@ -39,6 +47,22 @@ $app->DELETE('/order/all', function(Application $app, Request $request) {
             
             $symbol = $request->get('symbol');    $filter = $request->get('filter');    $text = $request->get('text');    
             return new Response('How about implementing order.cancelAll as a DELETE method ?');
+            });
+
+            
+
+$app->PUT('/order/bulk', function(Application $app, Request $request) {
+            
+            $orders = $request->get('orders');    
+            return new Response('How about implementing order.amendBulk as a PUT method ?');
+            });
+
+            
+
+$app->POST('/order/bulk', function(Application $app, Request $request) {
+            
+            $orders = $request->get('orders');    
+            return new Response('How about implementing order.newBulk as a POST method ?');
             });
 
             
@@ -58,14 +82,6 @@ $app->POST('/order/closePosition', function(Application $app, Request $request) 
             });
 
             
-
-$app->GET('/order/liquidations', function(Application $app, Request $request) {
-            $filter = $request->get('filter');    
-            
-            return new Response('How about implementing order.getCloseOutOrders as a GET method ?');
-            });
-
-            
         
     
         
@@ -74,7 +90,7 @@ $app->GET('/order/liquidations', function(Application $app, Request $request) {
 $app->GET('/apiKey', function(Application $app, Request $request) {
             $reverse = $request->get('reverse');    
             
-            return new Response('How about implementing apiKey.getKeys as a GET method ?');
+            return new Response('How about implementing apiKey.get as a GET method ?');
             });
 
             
@@ -82,7 +98,7 @@ $app->GET('/apiKey', function(Application $app, Request $request) {
 $app->POST('/apiKey', function(Application $app, Request $request) {
             
             $name = $request->get('name');    $cidr = $request->get('cidr');    $permissions = $request->get('permissions');    $enabled = $request->get('enabled');    $token = $request->get('token');    
-            return new Response('How about implementing apiKey.createKey as a POST method ?');
+            return new Response('How about implementing apiKey.new as a POST method ?');
             });
 
             
@@ -118,23 +134,23 @@ $app->POST('/apiKey/enable', function(Application $app, Request $request) {
 $app->GET('/user', function(Application $app, Request $request) {
             
             
-            return new Response('How about implementing user.getMe as a GET method ?');
+            return new Response('How about implementing user.get as a GET method ?');
             });
 
             
 
 $app->PUT('/user', function(Application $app, Request $request) {
             
-            $firstname = $request->get('firstname');    $lastname = $request->get('lastname');    $old_password = $request->get('old_password');    $new_password = $request->get('new_password');    $new_password_confirm = $request->get('new_password_confirm');    $country = $request->get('country');    $pgp_pub_key = $request->get('pgp_pub_key');    
-            return new Response('How about implementing user.updateMe as a PUT method ?');
+            $firstname = $request->get('firstname');    $lastname = $request->get('lastname');    $old_password = $request->get('old_password');    $new_password = $request->get('new_password');    $new_password_confirm = $request->get('new_password_confirm');    $username = $request->get('username');    $country = $request->get('country');    $pgp_pub_key = $request->get('pgp_pub_key');    
+            return new Response('How about implementing user.update as a PUT method ?');
             });
 
             
 
 $app->POST('/user', function(Application $app, Request $request) {
             
-            $email = $request->get('email');    $password = $request->get('password');    $username = $request->get('username');    $firstname = $request->get('firstname');    $lastname = $request->get('lastname');    $accepts_tos = $request->get('accepts_tos');    $referrer_id = $request->get('referrer_id');    $country = $request->get('country');    
-            return new Response('How about implementing user.newUser as a POST method ?');
+            $email = $request->get('email');    $password = $request->get('password');    $username = $request->get('username');    $firstname = $request->get('firstname');    $lastname = $request->get('lastname');    $accepts_tos = $request->get('accepts_tos');    $referrer_id = $request->get('referrer_id');    $country = $request->get('country');    $tfa_type = $request->get('tfa_type');    $tfa_token = $request->get('tfa_token');    
+            return new Response('How about implementing user.new as a POST method ?');
             });
 
             
@@ -244,7 +260,7 @@ $app->POST('/user/logoutAll', function(Application $app, Request $request) {
             
 
 $app->GET('/user/margin', function(Application $app, Request $request) {
-            
+            $currency = $request->get('currency');    
             
             return new Response('How about implementing user.getMargin as a GET method ?');
             });
@@ -261,7 +277,7 @@ $app->POST('/user/preferences', function(Application $app, Request $request) {
 
 $app->POST('/user/requestEnableTFA', function(Application $app, Request $request) {
             
-            $type = $request->get('type');    $token = $request->get('token');    
+            $type = $request->get('type');    
             return new Response('How about implementing user.requestEnableTFA as a POST method ?');
             });
 
@@ -283,16 +299,16 @@ $app->POST('/user/requestWithdrawal', function(Application $app, Request $reques
 
             
 
-$app->GET('/user/resendVerificationEmail', function(Application $app, Request $request) {
-            $email = $request->get('email');    
+$app->POST('/user/resendVerificationEmail', function(Application $app, Request $request) {
             
-            return new Response('How about implementing user.sendVerificationEmail as a GET method ?');
+            $email = $request->get('email');    
+            return new Response('How about implementing user.sendVerificationEmail as a POST method ?');
             });
 
             
 
 $app->GET('/user/walletHistory', function(Application $app, Request $request) {
-            
+            $currency = $request->get('currency');    
             
             return new Response('How about implementing user.getWalletHistory as a GET method ?');
             });
@@ -323,10 +339,42 @@ $app->GET('/announcement/urgent', function(Application $app, Request $request) {
         
             
 
+$app->GET('/leaderboard', function(Application $app, Request $request) {
+            $method = $request->get('method');    
+            
+            return new Response('How about implementing leaderboard.get as a GET method ?');
+            });
+
+            
+        
+    
+        
+            
+
+$app->GET('/funding', function(Application $app, Request $request) {
+            $symbol = $request->get('symbol');    $filter = $request->get('filter');    $columns = $request->get('columns');    $count = $request->get('count');    $start = $request->get('start');    $reverse = $request->get('reverse');    $start_time = $request->get('start_time');    $end_time = $request->get('end_time');    
+            
+            return new Response('How about implementing funding.get as a GET method ?');
+            });
+
+            
+        
+    
+        
+            
+
 $app->GET('/orderBook', function(Application $app, Request $request) {
             $symbol = $request->get('symbol');    $depth = $request->get('depth');    
             
-            return new Response('How about implementing orderBook.getOrderBook as a GET method ?');
+            return new Response('How about implementing orderBook.get as a GET method ?');
+            });
+
+            
+
+$app->GET('/orderBook/L2', function(Application $app, Request $request) {
+            $symbol = $request->get('symbol');    $depth = $request->get('depth');    
+            
+            return new Response('How about implementing orderBook.getL2 as a GET method ?');
             });
 
             
@@ -338,7 +386,7 @@ $app->GET('/orderBook', function(Application $app, Request $request) {
 $app->GET('/position', function(Application $app, Request $request) {
             $filter = $request->get('filter');    $columns = $request->get('columns');    $count = $request->get('count');    
             
-            return new Response('How about implementing position.find as a GET method ?');
+            return new Response('How about implementing position.get as a GET method ?');
             });
 
             
@@ -347,6 +395,14 @@ $app->POST('/position/isolate', function(Application $app, Request $request) {
             
             $symbol = $request->get('symbol');    $enabled = $request->get('enabled');    
             return new Response('How about implementing position.isolateMargin as a POST method ?');
+            });
+
+            
+
+$app->POST('/position/leverage', function(Application $app, Request $request) {
+            
+            $symbol = $request->get('symbol');    $leverage = $request->get('leverage');    
+            return new Response('How about implementing position.updateLeverage as a POST method ?');
             });
 
             
@@ -366,7 +422,7 @@ $app->POST('/position/transferMargin', function(Application $app, Request $reque
 $app->GET('/schema', function(Application $app, Request $request) {
             $model = $request->get('model');    
             
-            return new Response('How about implementing schema.find as a GET method ?');
+            return new Response('How about implementing schema.get as a GET method ?');
             });
 
             
@@ -430,22 +486,6 @@ $app->GET('/trade/bucketed', function(Application $app, Request $request) {
             });
 
             
-
-$app->GET('/trade/byDate', function(Application $app, Request $request) {
-            $symbol = $request->get('symbol');    $start_time = $request->get('start_time');    $end_time = $request->get('end_time');    
-            
-            return new Response('How about implementing trade.getByDate as a GET method ?');
-            });
-
-            
-
-$app->GET('/trade/recent', function(Application $app, Request $request) {
-            $symbol = $request->get('symbol');    $count = $request->get('count');    
-            
-            return new Response('How about implementing trade.getRecent as a GET method ?');
-            });
-
-            
         
     
         
@@ -471,6 +511,18 @@ $app->GET('/execution/tradeHistory', function(Application $app, Request $request
         
             
 
+$app->GET('/insurance', function(Application $app, Request $request) {
+            $symbol = $request->get('symbol');    $filter = $request->get('filter');    $columns = $request->get('columns');    $count = $request->get('count');    $start = $request->get('start');    $reverse = $request->get('reverse');    $start_time = $request->get('start_time');    $end_time = $request->get('end_time');    
+            
+            return new Response('How about implementing insurance.get as a GET method ?');
+            });
+
+            
+        
+    
+        
+            
+
 $app->GET('/chat', function(Application $app, Request $request) {
             $count = $request->get('count');    $start = $request->get('start');    $reverse = $request->get('reverse');    
             
@@ -482,7 +534,7 @@ $app->GET('/chat', function(Application $app, Request $request) {
 $app->POST('/chat', function(Application $app, Request $request) {
             
             $message = $request->get('message');    
-            return new Response('How about implementing chat.send as a POST method ?');
+            return new Response('How about implementing chat.new as a POST method ?');
             });
 
             
@@ -546,7 +598,7 @@ $app->GET('/instrument/indices', function(Application $app, Request $request) {
 $app->GET('/stats', function(Application $app, Request $request) {
             
             
-            return new Response('How about implementing stats.find as a GET method ?');
+            return new Response('How about implementing stats.get as a GET method ?');
             });
 
             
@@ -555,6 +607,18 @@ $app->GET('/stats/history', function(Application $app, Request $request) {
             
             
             return new Response('How about implementing stats.history as a GET method ?');
+            });
+
+            
+        
+    
+        
+            
+
+$app->GET('/liquidation', function(Application $app, Request $request) {
+            $symbol = $request->get('symbol');    $filter = $request->get('filter');    $columns = $request->get('columns');    $count = $request->get('count');    $start = $request->get('start');    $reverse = $request->get('reverse');    $start_time = $request->get('start_time');    $end_time = $request->get('end_time');    
+            
+            return new Response('How about implementing liquidation.get as a GET method ?');
             });
 
             

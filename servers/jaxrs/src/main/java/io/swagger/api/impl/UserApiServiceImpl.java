@@ -23,25 +23,25 @@ import com.sun.jersey.multipart.FormDataParam;
 
 import javax.ws.rs.core.Response;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-30T13:35:57.938-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2016-07-04T18:25:32.992-05:00")
 public class UserApiServiceImpl extends UserApiService {
   
       @Override
-      public Response userGetMe()
+      public Response userGet()
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
   
       @Override
-      public Response userUpdateMe(String firstname,String lastname,String oldPassword,String newPassword,String newPasswordConfirm,String country,String pgpPubKey)
+      public Response userUpdate(String firstname,String lastname,String oldPassword,String newPassword,String newPasswordConfirm,String username,String country,String pgpPubKey)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
   
       @Override
-      public Response userNewUser(String email,String password,String username,String firstname,String lastname,String acceptsTOS,String referrerID,String country)
+      public Response userNew(String email,String password,String country,String username,String firstname,String lastname,String acceptsTOS,String referrerID,String tfaType,String tfaToken)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
@@ -139,7 +139,7 @@ public class UserApiServiceImpl extends UserApiService {
   }
   
       @Override
-      public Response userGetMargin()
+      public Response userGetMargin(String currency)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
@@ -153,7 +153,7 @@ public class UserApiServiceImpl extends UserApiService {
   }
   
       @Override
-      public Response userRequestEnableTFA(String type,String token)
+      public Response userRequestEnableTFA(String type)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
@@ -181,7 +181,7 @@ public class UserApiServiceImpl extends UserApiService {
   }
   
       @Override
-      public Response userGetWalletHistory()
+      public Response userGetWalletHistory(String currency)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();

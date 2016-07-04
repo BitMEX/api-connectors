@@ -60,6 +60,27 @@ namespace IO.Swagger.Model
   
         
         /// <summary>
+        /// Gets or Sets HideConnectionModal
+        /// </summary>
+        [DataMember(Name="hideConnectionModal", EmitDefaultValue=false)]
+        public bool? HideConnectionModal { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets HideFromLeaderboard
+        /// </summary>
+        [DataMember(Name="hideFromLeaderboard", EmitDefaultValue=false)]
+        public bool? HideFromLeaderboard { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets HideNameFromLeaderboard
+        /// </summary>
+        [DataMember(Name="hideNameFromLeaderboard", EmitDefaultValue=false)]
+        public bool? HideNameFromLeaderboard { get; set; }
+  
+        
+        /// <summary>
         /// Gets or Sets HideNotifications
         /// </summary>
         [DataMember(Name="hideNotifications", EmitDefaultValue=false)]
@@ -74,6 +95,13 @@ namespace IO.Swagger.Model
   
         
         /// <summary>
+        /// Gets or Sets Locale
+        /// </summary>
+        [DataMember(Name="locale", EmitDefaultValue=false)]
+        public string Locale { get; set; }
+  
+        
+        /// <summary>
         /// Gets or Sets MsgsSeen
         /// </summary>
         [DataMember(Name="msgsSeen", EmitDefaultValue=false)]
@@ -85,6 +113,13 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="orderBookBinning", EmitDefaultValue=false)]
         public double? OrderBookBinning { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets OrderBookType
+        /// </summary>
+        [DataMember(Name="orderBookType", EmitDefaultValue=false)]
+        public string OrderBookType { get; set; }
   
         
         /// <summary>
@@ -106,6 +141,13 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="strictIPCheck", EmitDefaultValue=false)]
         public bool? StrictIPCheck { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets StrictTimeout
+        /// </summary>
+        [DataMember(Name="strictTimeout", EmitDefaultValue=false)]
+        public bool? StrictTimeout { get; set; }
   
         
         /// <summary>
@@ -144,13 +186,19 @@ namespace IO.Swagger.Model
             sb.Append("  Debug: ").Append(Debug).Append("\n");
             sb.Append("  DisableEmails: ").Append(DisableEmails).Append("\n");
             sb.Append("  HideConfirmDialogs: ").Append(HideConfirmDialogs).Append("\n");
+            sb.Append("  HideConnectionModal: ").Append(HideConnectionModal).Append("\n");
+            sb.Append("  HideFromLeaderboard: ").Append(HideFromLeaderboard).Append("\n");
+            sb.Append("  HideNameFromLeaderboard: ").Append(HideNameFromLeaderboard).Append("\n");
             sb.Append("  HideNotifications: ").Append(HideNotifications).Append("\n");
             sb.Append("  HidePhoneConfirm: ").Append(HidePhoneConfirm).Append("\n");
+            sb.Append("  Locale: ").Append(Locale).Append("\n");
             sb.Append("  MsgsSeen: ").Append(MsgsSeen).Append("\n");
             sb.Append("  OrderBookBinning: ").Append(OrderBookBinning).Append("\n");
+            sb.Append("  OrderBookType: ").Append(OrderBookType).Append("\n");
             sb.Append("  OrderControlsPlusMinus: ").Append(OrderControlsPlusMinus).Append("\n");
             sb.Append("  Sounds: ").Append(Sounds).Append("\n");
             sb.Append("  StrictIPCheck: ").Append(StrictIPCheck).Append("\n");
+            sb.Append("  StrictTimeout: ").Append(StrictTimeout).Append("\n");
             sb.Append("  TickerGroup: ").Append(TickerGroup).Append("\n");
             sb.Append("  TickerPinned: ").Append(TickerPinned).Append("\n");
             sb.Append("  TradeLayout: ").Append(TradeLayout).Append("\n");
@@ -222,6 +270,21 @@ namespace IO.Swagger.Model
                     this.HideConfirmDialogs.SequenceEqual(other.HideConfirmDialogs)
                 ) && 
                 (
+                    this.HideConnectionModal == other.HideConnectionModal ||
+                    this.HideConnectionModal != null &&
+                    this.HideConnectionModal.Equals(other.HideConnectionModal)
+                ) && 
+                (
+                    this.HideFromLeaderboard == other.HideFromLeaderboard ||
+                    this.HideFromLeaderboard != null &&
+                    this.HideFromLeaderboard.Equals(other.HideFromLeaderboard)
+                ) && 
+                (
+                    this.HideNameFromLeaderboard == other.HideNameFromLeaderboard ||
+                    this.HideNameFromLeaderboard != null &&
+                    this.HideNameFromLeaderboard.Equals(other.HideNameFromLeaderboard)
+                ) && 
+                (
                     this.HideNotifications == other.HideNotifications ||
                     this.HideNotifications != null &&
                     this.HideNotifications.SequenceEqual(other.HideNotifications)
@@ -232,6 +295,11 @@ namespace IO.Swagger.Model
                     this.HidePhoneConfirm.Equals(other.HidePhoneConfirm)
                 ) && 
                 (
+                    this.Locale == other.Locale ||
+                    this.Locale != null &&
+                    this.Locale.Equals(other.Locale)
+                ) && 
+                (
                     this.MsgsSeen == other.MsgsSeen ||
                     this.MsgsSeen != null &&
                     this.MsgsSeen.SequenceEqual(other.MsgsSeen)
@@ -240,6 +308,11 @@ namespace IO.Swagger.Model
                     this.OrderBookBinning == other.OrderBookBinning ||
                     this.OrderBookBinning != null &&
                     this.OrderBookBinning.Equals(other.OrderBookBinning)
+                ) && 
+                (
+                    this.OrderBookType == other.OrderBookType ||
+                    this.OrderBookType != null &&
+                    this.OrderBookType.Equals(other.OrderBookType)
                 ) && 
                 (
                     this.OrderControlsPlusMinus == other.OrderControlsPlusMinus ||
@@ -255,6 +328,11 @@ namespace IO.Swagger.Model
                     this.StrictIPCheck == other.StrictIPCheck ||
                     this.StrictIPCheck != null &&
                     this.StrictIPCheck.Equals(other.StrictIPCheck)
+                ) && 
+                (
+                    this.StrictTimeout == other.StrictTimeout ||
+                    this.StrictTimeout != null &&
+                    this.StrictTimeout.Equals(other.StrictTimeout)
                 ) && 
                 (
                     this.TickerGroup == other.TickerGroup ||
@@ -303,17 +381,32 @@ namespace IO.Swagger.Model
                 if (this.HideConfirmDialogs != null)
                     hash = hash * 57 + this.HideConfirmDialogs.GetHashCode();
                 
+                if (this.HideConnectionModal != null)
+                    hash = hash * 57 + this.HideConnectionModal.GetHashCode();
+                
+                if (this.HideFromLeaderboard != null)
+                    hash = hash * 57 + this.HideFromLeaderboard.GetHashCode();
+                
+                if (this.HideNameFromLeaderboard != null)
+                    hash = hash * 57 + this.HideNameFromLeaderboard.GetHashCode();
+                
                 if (this.HideNotifications != null)
                     hash = hash * 57 + this.HideNotifications.GetHashCode();
                 
                 if (this.HidePhoneConfirm != null)
                     hash = hash * 57 + this.HidePhoneConfirm.GetHashCode();
                 
+                if (this.Locale != null)
+                    hash = hash * 57 + this.Locale.GetHashCode();
+                
                 if (this.MsgsSeen != null)
                     hash = hash * 57 + this.MsgsSeen.GetHashCode();
                 
                 if (this.OrderBookBinning != null)
                     hash = hash * 57 + this.OrderBookBinning.GetHashCode();
+                
+                if (this.OrderBookType != null)
+                    hash = hash * 57 + this.OrderBookType.GetHashCode();
                 
                 if (this.OrderControlsPlusMinus != null)
                     hash = hash * 57 + this.OrderControlsPlusMinus.GetHashCode();
@@ -323,6 +416,9 @@ namespace IO.Swagger.Model
                 
                 if (this.StrictIPCheck != null)
                     hash = hash * 57 + this.StrictIPCheck.GetHashCode();
+                
+                if (this.StrictTimeout != null)
+                    hash = hash * 57 + this.StrictTimeout.GetHashCode();
                 
                 if (this.TickerGroup != null)
                     hash = hash * 57 + this.TickerGroup.GetHashCode();

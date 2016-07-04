@@ -45,7 +45,7 @@ class UserApi(object):
                 config.api_client = ApiClient()
             self.api_client = config.api_client
 
-    def user_get_me(self, **kwargs):
+    def user_get(self, **kwargs):
         """
         Get your user model.
         
@@ -56,7 +56,7 @@ class UserApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.user_get_me(callback=callback_function)
+        >>> thread = api.user_get(callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
@@ -73,7 +73,7 @@ class UserApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method user_get_me" % key
+                    " to method user_get" % key
                 )
             params[key] = val
         del params['kwargs']
@@ -118,7 +118,7 @@ class UserApi(object):
                                             callback=params.get('callback'))
         return response
 
-    def user_update_me(self, **kwargs):
+    def user_update(self, **kwargs):
         """
         Update your password, name, and other attributes.
         
@@ -129,7 +129,7 @@ class UserApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.user_update_me(callback=callback_function)
+        >>> thread = api.user_update(callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
@@ -138,6 +138,7 @@ class UserApi(object):
         :param str old_password: 
         :param str new_password: 
         :param str new_password_confirm: 
+        :param str username: Username can only be set once. To reset, email support.
         :param str country: Country of residence.
         :param str pgp_pub_key: PGP Public Key. If specified, automated emails will be sentwith this key.
         :return: User
@@ -145,7 +146,7 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['firstname', 'lastname', 'old_password', 'new_password', 'new_password_confirm', 'country', 'pgp_pub_key']
+        all_params = ['firstname', 'lastname', 'old_password', 'new_password', 'new_password_confirm', 'username', 'country', 'pgp_pub_key']
         all_params.append('callback')
 
         params = locals()
@@ -153,7 +154,7 @@ class UserApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method user_update_me" % key
+                    " to method user_update" % key
                 )
             params[key] = val
         del params['kwargs']
@@ -180,6 +181,8 @@ class UserApi(object):
             form_params['newPassword'] = params['new_password']
         if 'new_password_confirm' in params:
             form_params['newPasswordConfirm'] = params['new_password_confirm']
+        if 'username' in params:
+            form_params['username'] = params['username']
         if 'country' in params:
             form_params['country'] = params['country']
         if 'pgp_pub_key' in params:
@@ -212,7 +215,7 @@ class UserApi(object):
                                             callback=params.get('callback'))
         return response
 
-    def user_new_user(self, email, password, username, **kwargs):
+    def user_new(self, email, password, country, **kwargs):
         """
         Register a new user.
         
@@ -223,24 +226,26 @@ class UserApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.user_new_user(email, password, username, callback=callback_function)
+        >>> thread = api.user_new(email, password, country, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str email: Your email address. (required)
         :param str password: Your password. (required)
-        :param str username: Desired username. (required)
+        :param str country: Country of residence. (required)
+        :param str username: Desired username.
         :param str firstname: First name.
         :param str lastname: Last name.
-        :param str accepts_tos: Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms).
+        :param str accepts_tos: Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).
         :param str referrer_id: Optional Referrer ID.
-        :param str country: Country of residence.
+        :param str tfa_type: Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef
+        :param str tfa_token: Two-Factor Token.
         :return: User
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['email', 'password', 'username', 'firstname', 'lastname', 'accepts_tos', 'referrer_id', 'country']
+        all_params = ['email', 'password', 'country', 'username', 'firstname', 'lastname', 'accepts_tos', 'referrer_id', 'tfa_type', 'tfa_token']
         all_params.append('callback')
 
         params = locals()
@@ -248,20 +253,20 @@ class UserApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method user_new_user" % key
+                    " to method user_new" % key
                 )
             params[key] = val
         del params['kwargs']
 
         # verify the required parameter 'email' is set
         if ('email' not in params) or (params['email'] is None):
-            raise ValueError("Missing the required parameter `email` when calling `user_new_user`")
+            raise ValueError("Missing the required parameter `email` when calling `user_new`")
         # verify the required parameter 'password' is set
         if ('password' not in params) or (params['password'] is None):
-            raise ValueError("Missing the required parameter `password` when calling `user_new_user`")
-        # verify the required parameter 'username' is set
-        if ('username' not in params) or (params['username'] is None):
-            raise ValueError("Missing the required parameter `username` when calling `user_new_user`")
+            raise ValueError("Missing the required parameter `password` when calling `user_new`")
+        # verify the required parameter 'country' is set
+        if ('country' not in params) or (params['country'] is None):
+            raise ValueError("Missing the required parameter `country` when calling `user_new`")
 
         resource_path = '/user'.replace('{format}', 'json')
         method = 'POST'
@@ -290,6 +295,10 @@ class UserApi(object):
             form_params['referrerID'] = params['referrer_id']
         if 'country' in params:
             form_params['country'] = params['country']
+        if 'tfa_type' in params:
+            form_params['tfaType'] = params['tfa_type']
+        if 'tfa_token' in params:
+            form_params['tfaToken'] = params['tfa_token']
 
         body_params = None
 
@@ -1278,7 +1287,7 @@ class UserApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :return: None
+        :return: float
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1331,14 +1340,14 @@ class UserApi(object):
                                             body=body_params,
                                             post_params=form_params,
                                             files=files,
-                                            response_type=None,
+                                            response_type='float',
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'))
         return response
 
     def user_get_margin(self, **kwargs):
         """
-        Get your account's margin status.
+        Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.
         
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1351,12 +1360,13 @@ class UserApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
+        :param str currency: 
         :return: Margin
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = []
+        all_params = ['currency']
         all_params.append('callback')
 
         params = locals()
@@ -1376,6 +1386,8 @@ class UserApi(object):
         path_params = {}
 
         query_params = {}
+        if 'currency' in params:
+            query_params['currency'] = params['currency']
 
         header_params = {}
 
@@ -1411,7 +1423,7 @@ class UserApi(object):
 
     def user_save_preferences(self, prefs, **kwargs):
         """
-        Save application preferences.
+        Save user preferences.
         
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1507,13 +1519,12 @@ class UserApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str type: Two-factor auth type. Supported types: 'GA' (Google Authenticator)
-        :param str token: If Yubikey, send one output from the key.
         :return: bool
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['type', 'token']
+        all_params = ['type']
         all_params.append('callback')
 
         params = locals()
@@ -1540,8 +1551,6 @@ class UserApi(object):
         files = {}
         if 'type' in params:
             form_params['type'] = params['type']
-        if 'token' in params:
-            form_params['token'] = params['token']
 
         body_params = None
 
@@ -1652,7 +1661,7 @@ class UserApi(object):
     def user_request_withdrawal(self, currency, amount, address, **kwargs):
         """
         Request a withdrawal to an external wallet.
-        This will send a confirmation email to the email address on record, unless requested via an API Key with the \"withdraw\" permission.
+        This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission.
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -1664,7 +1673,7 @@ class UserApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param str currency: Currency you're withdrawing. Options: \"XBt\" (required)
+        :param str currency: Currency you're withdrawing. Options: `XBt` (required)
         :param float amount: Amount of withdrawal currency. (required)
         :param str address: Destination Address. (required)
         :param str otp_token: 2FA token. Required if 2FA is enabled on your account.
@@ -1785,18 +1794,18 @@ class UserApi(object):
             raise ValueError("Missing the required parameter `email` when calling `user_send_verification_email`")
 
         resource_path = '/user/resendVerificationEmail'.replace('{format}', 'json')
-        method = 'GET'
+        method = 'POST'
 
         path_params = {}
 
         query_params = {}
-        if 'email' in params:
-            query_params['email'] = params['email']
 
         header_params = {}
 
         form_params = {}
         files = {}
+        if 'email' in params:
+            form_params['email'] = params['email']
 
         body_params = None
 
@@ -1840,12 +1849,13 @@ class UserApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
+        :param str currency: 
         :return: list[Transaction]
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = []
+        all_params = ['currency']
         all_params.append('callback')
 
         params = locals()
@@ -1865,6 +1875,8 @@ class UserApi(object):
         path_params = {}
 
         query_params = {}
+        if 'currency' in params:
+            query_params['currency'] = params['currency']
 
         header_params = {}
 

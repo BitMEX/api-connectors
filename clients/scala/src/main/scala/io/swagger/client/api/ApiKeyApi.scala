@@ -30,7 +30,7 @@ class ApiKeyApi(val defBasePath: String = "https://localhost/api/v1",
    * @param reverse If true, will sort results newest first.
    * @return List[ApiKey]
    */
-  def apiKeyGetKeys (reverse: Boolean /* = false */) : Option[List[ApiKey]] = {
+  def apiKeyGet (reverse: Boolean /* = false */) : Option[List[ApiKey]] = {
     // create path and map variables
     val path = "/apiKey".replaceAll("\\{format\\}","json")
 
@@ -75,7 +75,7 @@ class ApiKeyApi(val defBasePath: String = "https://localhost/api/v1",
   
   /**
    * Create a new API Key.
-   * API Keys can also be created via &lt;a href=\&quot;https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py\&quot;&gt;this Python script&lt;/a&gt;. See the &lt;a href=\&quot;/app/apiKeys\&quot;&gt;API Key Documentation&lt;/a&gt; for more information on capabilities.
+   * API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
    * @param name Key name. This name is for reference only.
    * @param cidr CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href=\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt;
    * @param permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;].
@@ -83,7 +83,7 @@ class ApiKeyApi(val defBasePath: String = "https://localhost/api/v1",
    * @param token OTP Token (YubiKey, Google Authenticator)
    * @return ApiKey
    */
-  def apiKeyCreateKey (name: String, cidr: String, permissions: String, enabled: Boolean /* = false */, token: String) : Option[ApiKey] = {
+  def apiKeyNew (name: String, cidr: String, permissions: String, enabled: Boolean /* = false */, token: String) : Option[ApiKey] = {
     // create path and map variables
     val path = "/apiKey".replaceAll("\\{format\\}","json")
 

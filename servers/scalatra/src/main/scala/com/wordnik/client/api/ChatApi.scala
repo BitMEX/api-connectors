@@ -74,12 +74,12 @@ class ChatApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val chat.sendOperation = (apiOperation[Chat]("chat.send")
+  val chat.newOperation = (apiOperation[Chat]("chat.new")
       summary "Send a chat message."
       parameters(formParam[String]("message").description(""))
   )
 
-  post("/chat",operation(chat.sendOperation)) {
+  post("/chat",operation(chat.newOperation)) {
     
     
     

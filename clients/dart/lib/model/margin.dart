@@ -31,6 +31,9 @@ class Margin {
   Number pendingDebit = null;
   
   
+  Number confirmedDebit = null;
+  
+  
   Number prevRealisedPnl = null;
   
   
@@ -85,6 +88,9 @@ class Margin {
   Number unrealisedProfit = null;
   
   
+  Number syntheticMargin = null;
+  
+  
   Number walletBalance = null;
   
   
@@ -115,11 +121,17 @@ class Margin {
   DateTime timestamp = null;
   
   
+  Number grossLastValue = null;
+  
+  
+  num commission = 0.0;
+  
+  
   Margin();
 
   @override
   String toString()  {
-    return 'Margin[account=$account, currency=$currency, riskLimit=$riskLimit, prevState=$prevState, state=$state, action=$action, amount=$amount, pendingCredit=$pendingCredit, pendingDebit=$pendingDebit, prevRealisedPnl=$prevRealisedPnl, prevUnrealisedPnl=$prevUnrealisedPnl, grossComm=$grossComm, grossOpenCost=$grossOpenCost, grossOpenPremium=$grossOpenPremium, grossExecCost=$grossExecCost, grossMarkValue=$grossMarkValue, riskValue=$riskValue, taxableMargin=$taxableMargin, initMargin=$initMargin, maintMargin=$maintMargin, sessionMargin=$sessionMargin, targetExcessMargin=$targetExcessMargin, varMargin=$varMargin, realisedPnl=$realisedPnl, unrealisedPnl=$unrealisedPnl, indicativeTax=$indicativeTax, unrealisedProfit=$unrealisedProfit, walletBalance=$walletBalance, marginBalance=$marginBalance, marginBalancePcnt=$marginBalancePcnt, marginLeverage=$marginLeverage, marginUsedPcnt=$marginUsedPcnt, excessMargin=$excessMargin, excessMarginPcnt=$excessMarginPcnt, availableMargin=$availableMargin, withdrawableMargin=$withdrawableMargin, timestamp=$timestamp, ]';
+    return 'Margin[account=$account, currency=$currency, riskLimit=$riskLimit, prevState=$prevState, state=$state, action=$action, amount=$amount, pendingCredit=$pendingCredit, pendingDebit=$pendingDebit, confirmedDebit=$confirmedDebit, prevRealisedPnl=$prevRealisedPnl, prevUnrealisedPnl=$prevUnrealisedPnl, grossComm=$grossComm, grossOpenCost=$grossOpenCost, grossOpenPremium=$grossOpenPremium, grossExecCost=$grossExecCost, grossMarkValue=$grossMarkValue, riskValue=$riskValue, taxableMargin=$taxableMargin, initMargin=$initMargin, maintMargin=$maintMargin, sessionMargin=$sessionMargin, targetExcessMargin=$targetExcessMargin, varMargin=$varMargin, realisedPnl=$realisedPnl, unrealisedPnl=$unrealisedPnl, indicativeTax=$indicativeTax, unrealisedProfit=$unrealisedProfit, syntheticMargin=$syntheticMargin, walletBalance=$walletBalance, marginBalance=$marginBalance, marginBalancePcnt=$marginBalancePcnt, marginLeverage=$marginLeverage, marginUsedPcnt=$marginUsedPcnt, excessMargin=$excessMargin, excessMarginPcnt=$excessMarginPcnt, availableMargin=$availableMargin, withdrawableMargin=$withdrawableMargin, timestamp=$timestamp, grossLastValue=$grossLastValue, commission=$commission, ]';
   }
 
 }

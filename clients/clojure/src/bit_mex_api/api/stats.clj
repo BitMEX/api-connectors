@@ -2,7 +2,7 @@
   (:require [bit-mex-api.core :refer [call-api check-required-params]])
   (:import (java.io File)))
 
-(defn stats-find
+(defn stats-get
   "Get exchange-wide and per-series turnover and volume statistics."
   []
   (call-api "/stats" :get

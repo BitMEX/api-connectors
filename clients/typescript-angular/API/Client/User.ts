@@ -7,6 +7,8 @@ namespace API.Client {
 
         id?: number;
 
+        ownerId?: number;
+
         firstname?: string;
 
         lastname?: string;
@@ -26,8 +28,6 @@ namespace API.Client {
         lastUpdated?: date;
 
         preferences?: UserPreferences;
-
-        role?: string;
 
         tFAEnabled?: string;
 

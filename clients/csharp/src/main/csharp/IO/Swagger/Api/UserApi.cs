@@ -21,7 +21,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <returns>User</returns>
-        User UserGetMe ();
+        User UserGet ();
   
         /// <summary>
         /// Get your user model.
@@ -30,7 +30,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <returns>User</returns>
-        System.Threading.Tasks.Task<User> UserGetMeAsync ();
+        System.Threading.Tasks.Task<User> UserGetAsync ();
         
         /// <summary>
         /// Update your password, name, and other attributes.
@@ -43,10 +43,11 @@ namespace IO.Swagger.Api
         /// <param name="oldPassword"></param>
         /// <param name="newPassword"></param>
         /// <param name="newPasswordConfirm"></param>
+        /// <param name="username">Username can only be set once. To reset, email support.</param>
         /// <param name="country">Country of residence.</param>
         /// <param name="pgpPubKey">PGP Public Key. If specified, automated emails will be sentwith this key.</param>
         /// <returns>User</returns>
-        User UserUpdateMe (string firstname = null, string lastname = null, string oldPassword = null, string newPassword = null, string newPasswordConfirm = null, string country = null, string pgpPubKey = null);
+        User UserUpdate (string firstname = null, string lastname = null, string oldPassword = null, string newPassword = null, string newPasswordConfirm = null, string username = null, string country = null, string pgpPubKey = null);
   
         /// <summary>
         /// Update your password, name, and other attributes.
@@ -59,10 +60,11 @@ namespace IO.Swagger.Api
         /// <param name="oldPassword"></param>
         /// <param name="newPassword"></param>
         /// <param name="newPasswordConfirm"></param>
+        /// <param name="username">Username can only be set once. To reset, email support.</param>
         /// <param name="country">Country of residence.</param>
         /// <param name="pgpPubKey">PGP Public Key. If specified, automated emails will be sentwith this key.</param>
         /// <returns>User</returns>
-        System.Threading.Tasks.Task<User> UserUpdateMeAsync (string firstname = null, string lastname = null, string oldPassword = null, string newPassword = null, string newPasswordConfirm = null, string country = null, string pgpPubKey = null);
+        System.Threading.Tasks.Task<User> UserUpdateAsync (string firstname = null, string lastname = null, string oldPassword = null, string newPassword = null, string newPasswordConfirm = null, string username = null, string country = null, string pgpPubKey = null);
         
         /// <summary>
         /// Register a new user.
@@ -72,14 +74,16 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <param name="email">Your email address.</param>
         /// <param name="password">Your password.</param>
+        /// <param name="country">Country of residence.</param>
         /// <param name="username">Desired username.</param>
         /// <param name="firstname">First name.</param>
         /// <param name="lastname">Last name.</param>
-        /// <param name="acceptsTOS">Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms).</param>
+        /// <param name="acceptsTOS">Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).</param>
         /// <param name="referrerID">Optional Referrer ID.</param>
-        /// <param name="country">Country of residence.</param>
+        /// <param name="tfaType">Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef</param>
+        /// <param name="tfaToken">Two-Factor Token.</param>
         /// <returns>User</returns>
-        User UserNewUser (string email, string password, string username, string firstname = null, string lastname = null, string acceptsTOS = null, string referrerID = null, string country = null);
+        User UserNew (string email, string password, string country, string username = null, string firstname = null, string lastname = null, string acceptsTOS = null, string referrerID = null, string tfaType = null, string tfaToken = null);
   
         /// <summary>
         /// Register a new user.
@@ -89,14 +93,16 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <param name="email">Your email address.</param>
         /// <param name="password">Your password.</param>
+        /// <param name="country">Country of residence.</param>
         /// <param name="username">Desired username.</param>
         /// <param name="firstname">First name.</param>
         /// <param name="lastname">Last name.</param>
-        /// <param name="acceptsTOS">Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms).</param>
+        /// <param name="acceptsTOS">Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).</param>
         /// <param name="referrerID">Optional Referrer ID.</param>
-        /// <param name="country">Country of residence.</param>
+        /// <param name="tfaType">Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef</param>
+        /// <param name="tfaToken">Two-Factor Token.</param>
         /// <returns>User</returns>
-        System.Threading.Tasks.Task<User> UserNewUserAsync (string email, string password, string username, string firstname = null, string lastname = null, string acceptsTOS = null, string referrerID = null, string country = null);
+        System.Threading.Tasks.Task<User> UserNewAsync (string email, string password, string country, string username = null, string firstname = null, string lastname = null, string acceptsTOS = null, string referrerID = null, string tfaType = null, string tfaToken = null);
         
         /// <summary>
         /// Get your current affiliate/referral status.
@@ -348,8 +354,8 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <returns></returns>
-        void UserLogoutAll ();
+        /// <returns>double?</returns>
+        double? UserLogoutAll ();
   
         /// <summary>
         /// Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
@@ -357,29 +363,31 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <returns></returns>
-        System.Threading.Tasks.Task UserLogoutAllAsync ();
+        /// <returns>double?</returns>
+        System.Threading.Tasks.Task<double?> UserLogoutAllAsync ();
         
         /// <summary>
-        /// Get your account&#39;s margin status.
+        /// Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
+        /// <param name="currency"></param>
         /// <returns>Margin</returns>
-        Margin UserGetMargin ();
+        Margin UserGetMargin (string currency = null);
   
         /// <summary>
-        /// Get your account&#39;s margin status.
+        /// Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
+        /// <param name="currency"></param>
         /// <returns>Margin</returns>
-        System.Threading.Tasks.Task<Margin> UserGetMarginAsync ();
+        System.Threading.Tasks.Task<Margin> UserGetMarginAsync (string currency = null);
         
         /// <summary>
-        /// Save application preferences.
+        /// Save user preferences.
         /// </summary>
         /// <remarks>
         /// 
@@ -390,7 +398,7 @@ namespace IO.Swagger.Api
         User UserSavePreferences (string prefs, bool? overwrite = null);
   
         /// <summary>
-        /// Save application preferences.
+        /// Save user preferences.
         /// </summary>
         /// <remarks>
         /// 
@@ -407,9 +415,8 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <param name="type">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)</param>
-        /// <param name="token">If Yubikey, send one output from the key.</param>
         /// <returns>bool?</returns>
-        bool? UserRequestEnableTFA (string type = null, string token = null);
+        bool? UserRequestEnableTFA (string type = null);
   
         /// <summary>
         /// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
@@ -418,9 +425,8 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <param name="type">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)</param>
-        /// <param name="token">If Yubikey, send one output from the key.</param>
         /// <returns>bool?</returns>
-        System.Threading.Tasks.Task<bool?> UserRequestEnableTFAAsync (string type = null, string token = null);
+        System.Threading.Tasks.Task<bool?> UserRequestEnableTFAAsync (string type = null);
         
         /// <summary>
         /// Request a password reset.
@@ -446,9 +452,9 @@ namespace IO.Swagger.Api
         /// Request a withdrawal to an external wallet.
         /// </summary>
         /// <remarks>
-        /// This will send a confirmation email to the email address on record, unless requested via an API Key with the \&quot;withdraw\&quot; permission.
+        /// This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission.
         /// </remarks>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: \&quot;XBt\&quot;</param>
+        /// <param name="currency">Currency you&#39;re withdrawing. Options: `XBt`</param>
         /// <param name="amount">Amount of withdrawal currency.</param>
         /// <param name="address">Destination Address.</param>
         /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account.</param>
@@ -460,9 +466,9 @@ namespace IO.Swagger.Api
         /// Request a withdrawal to an external wallet.
         /// </summary>
         /// <remarks>
-        /// This will send a confirmation email to the email address on record, unless requested via an API Key with the \&quot;withdraw\&quot; permission.
+        /// This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission.
         /// </remarks>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: \&quot;XBt\&quot;</param>
+        /// <param name="currency">Currency you&#39;re withdrawing. Options: `XBt`</param>
         /// <param name="amount">Amount of withdrawal currency.</param>
         /// <param name="address">Destination Address.</param>
         /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account.</param>
@@ -496,8 +502,9 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
+        /// <param name="currency"></param>
         /// <returns></returns>
-        List<Transaction> UserGetWalletHistory ();
+        List<Transaction> UserGetWalletHistory (string currency = null);
   
         /// <summary>
         /// Get a history of all of your wallet transactions (deposits and withdrawals).
@@ -505,8 +512,9 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
+        /// <param name="currency"></param>
         /// <returns></returns>
-        System.Threading.Tasks.Task<List<Transaction>> UserGetWalletHistoryAsync ();
+        System.Threading.Tasks.Task<List<Transaction>> UserGetWalletHistoryAsync (string currency = null);
         
     }
   
@@ -567,7 +575,7 @@ namespace IO.Swagger.Api
         /// Get your user model. 
         /// </summary>
         /// <returns>User</returns>            
-        public User UserGetMe ()
+        public User UserGet ()
         {
             
     
@@ -604,9 +612,9 @@ namespace IO.Swagger.Api
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path_, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling UserGetMe: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling UserGet: " + response.Content, response.Content);
             else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling UserGetMe: " + response.ErrorMessage, response.ErrorMessage);
+                throw new ApiException ((int)response.StatusCode, "Error calling UserGet: " + response.ErrorMessage, response.ErrorMessage);
     
             return (User) ApiClient.Deserialize(response, typeof(User));
         }
@@ -615,7 +623,7 @@ namespace IO.Swagger.Api
         /// Get your user model. 
         /// </summary>
         /// <returns>User</returns>
-        public async System.Threading.Tasks.Task<User> UserGetMeAsync ()
+        public async System.Threading.Tasks.Task<User> UserGetAsync ()
         {
             
     
@@ -651,7 +659,7 @@ namespace IO.Swagger.Api
             // make the HTTP request
             IRestResponse response = (IRestResponse) await ApiClient.CallApiAsync(path_, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling UserGetMe: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling UserGet: " + response.Content, response.Content);
 
             return (User) ApiClient.Deserialize(response, typeof(User));
         }
@@ -664,10 +672,11 @@ namespace IO.Swagger.Api
         /// <param name="oldPassword"></param> 
         /// <param name="newPassword"></param> 
         /// <param name="newPasswordConfirm"></param> 
+        /// <param name="username">Username can only be set once. To reset, email support.</param> 
         /// <param name="country">Country of residence.</param> 
         /// <param name="pgpPubKey">PGP Public Key. If specified, automated emails will be sentwith this key.</param> 
         /// <returns>User</returns>            
-        public User UserUpdateMe (string firstname = null, string lastname = null, string oldPassword = null, string newPassword = null, string newPasswordConfirm = null, string country = null, string pgpPubKey = null)
+        public User UserUpdate (string firstname = null, string lastname = null, string oldPassword = null, string newPassword = null, string newPasswordConfirm = null, string username = null, string country = null, string pgpPubKey = null)
         {
             
     
@@ -699,6 +708,7 @@ namespace IO.Swagger.Api
             if (oldPassword != null) formParams.Add("oldPassword", ApiClient.ParameterToString(oldPassword)); // form parameter
             if (newPassword != null) formParams.Add("newPassword", ApiClient.ParameterToString(newPassword)); // form parameter
             if (newPasswordConfirm != null) formParams.Add("newPasswordConfirm", ApiClient.ParameterToString(newPasswordConfirm)); // form parameter
+            if (username != null) formParams.Add("username", ApiClient.ParameterToString(username)); // form parameter
             if (country != null) formParams.Add("country", ApiClient.ParameterToString(country)); // form parameter
             if (pgpPubKey != null) formParams.Add("pgpPubKey", ApiClient.ParameterToString(pgpPubKey)); // form parameter
             
@@ -711,9 +721,9 @@ namespace IO.Swagger.Api
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path_, Method.PUT, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling UserUpdateMe: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling UserUpdate: " + response.Content, response.Content);
             else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling UserUpdateMe: " + response.ErrorMessage, response.ErrorMessage);
+                throw new ApiException ((int)response.StatusCode, "Error calling UserUpdate: " + response.ErrorMessage, response.ErrorMessage);
     
             return (User) ApiClient.Deserialize(response, typeof(User));
         }
@@ -726,10 +736,11 @@ namespace IO.Swagger.Api
         /// <param name="oldPassword"></param>
         /// <param name="newPassword"></param>
         /// <param name="newPasswordConfirm"></param>
+        /// <param name="username">Username can only be set once. To reset, email support.</param>
         /// <param name="country">Country of residence.</param>
         /// <param name="pgpPubKey">PGP Public Key. If specified, automated emails will be sentwith this key.</param>
         /// <returns>User</returns>
-        public async System.Threading.Tasks.Task<User> UserUpdateMeAsync (string firstname = null, string lastname = null, string oldPassword = null, string newPassword = null, string newPasswordConfirm = null, string country = null, string pgpPubKey = null)
+        public async System.Threading.Tasks.Task<User> UserUpdateAsync (string firstname = null, string lastname = null, string oldPassword = null, string newPassword = null, string newPasswordConfirm = null, string username = null, string country = null, string pgpPubKey = null)
         {
             
     
@@ -761,6 +772,7 @@ namespace IO.Swagger.Api
             if (oldPassword != null) formParams.Add("oldPassword", ApiClient.ParameterToString(oldPassword)); // form parameter
             if (newPassword != null) formParams.Add("newPassword", ApiClient.ParameterToString(newPassword)); // form parameter
             if (newPasswordConfirm != null) formParams.Add("newPasswordConfirm", ApiClient.ParameterToString(newPasswordConfirm)); // form parameter
+            if (username != null) formParams.Add("username", ApiClient.ParameterToString(username)); // form parameter
             if (country != null) formParams.Add("country", ApiClient.ParameterToString(country)); // form parameter
             if (pgpPubKey != null) formParams.Add("pgpPubKey", ApiClient.ParameterToString(pgpPubKey)); // form parameter
             
@@ -772,7 +784,7 @@ namespace IO.Swagger.Api
             // make the HTTP request
             IRestResponse response = (IRestResponse) await ApiClient.CallApiAsync(path_, Method.PUT, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling UserUpdateMe: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling UserUpdate: " + response.Content, response.Content);
 
             return (User) ApiClient.Deserialize(response, typeof(User));
         }
@@ -782,24 +794,26 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <param name="email">Your email address.</param> 
         /// <param name="password">Your password.</param> 
+        /// <param name="country">Country of residence.</param> 
         /// <param name="username">Desired username.</param> 
         /// <param name="firstname">First name.</param> 
         /// <param name="lastname">Last name.</param> 
-        /// <param name="acceptsTOS">Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms).</param> 
+        /// <param name="acceptsTOS">Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).</param> 
         /// <param name="referrerID">Optional Referrer ID.</param> 
-        /// <param name="country">Country of residence.</param> 
+        /// <param name="tfaType">Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef</param> 
+        /// <param name="tfaToken">Two-Factor Token.</param> 
         /// <returns>User</returns>            
-        public User UserNewUser (string email, string password, string username, string firstname = null, string lastname = null, string acceptsTOS = null, string referrerID = null, string country = null)
+        public User UserNew (string email, string password, string country, string username = null, string firstname = null, string lastname = null, string acceptsTOS = null, string referrerID = null, string tfaType = null, string tfaToken = null)
         {
             
             // verify the required parameter 'email' is set
-            if (email == null) throw new ApiException(400, "Missing required parameter 'email' when calling UserNewUser");
+            if (email == null) throw new ApiException(400, "Missing required parameter 'email' when calling UserNew");
             
             // verify the required parameter 'password' is set
-            if (password == null) throw new ApiException(400, "Missing required parameter 'password' when calling UserNewUser");
+            if (password == null) throw new ApiException(400, "Missing required parameter 'password' when calling UserNew");
             
-            // verify the required parameter 'username' is set
-            if (username == null) throw new ApiException(400, "Missing required parameter 'username' when calling UserNewUser");
+            // verify the required parameter 'country' is set
+            if (country == null) throw new ApiException(400, "Missing required parameter 'country' when calling UserNew");
             
     
             var path_ = "/user";
@@ -833,6 +847,8 @@ namespace IO.Swagger.Api
             if (acceptsTOS != null) formParams.Add("acceptsTOS", ApiClient.ParameterToString(acceptsTOS)); // form parameter
             if (referrerID != null) formParams.Add("referrerID", ApiClient.ParameterToString(referrerID)); // form parameter
             if (country != null) formParams.Add("country", ApiClient.ParameterToString(country)); // form parameter
+            if (tfaType != null) formParams.Add("tfaType", ApiClient.ParameterToString(tfaType)); // form parameter
+            if (tfaToken != null) formParams.Add("tfaToken", ApiClient.ParameterToString(tfaToken)); // form parameter
             
             
     
@@ -843,9 +859,9 @@ namespace IO.Swagger.Api
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path_, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling UserNewUser: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling UserNew: " + response.Content, response.Content);
             else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling UserNewUser: " + response.ErrorMessage, response.ErrorMessage);
+                throw new ApiException ((int)response.StatusCode, "Error calling UserNew: " + response.ErrorMessage, response.ErrorMessage);
     
             return (User) ApiClient.Deserialize(response, typeof(User));
         }
@@ -855,21 +871,23 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <param name="email">Your email address.</param>
         /// <param name="password">Your password.</param>
+        /// <param name="country">Country of residence.</param>
         /// <param name="username">Desired username.</param>
         /// <param name="firstname">First name.</param>
         /// <param name="lastname">Last name.</param>
-        /// <param name="acceptsTOS">Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms).</param>
+        /// <param name="acceptsTOS">Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).</param>
         /// <param name="referrerID">Optional Referrer ID.</param>
-        /// <param name="country">Country of residence.</param>
+        /// <param name="tfaType">Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef</param>
+        /// <param name="tfaToken">Two-Factor Token.</param>
         /// <returns>User</returns>
-        public async System.Threading.Tasks.Task<User> UserNewUserAsync (string email, string password, string username, string firstname = null, string lastname = null, string acceptsTOS = null, string referrerID = null, string country = null)
+        public async System.Threading.Tasks.Task<User> UserNewAsync (string email, string password, string country, string username = null, string firstname = null, string lastname = null, string acceptsTOS = null, string referrerID = null, string tfaType = null, string tfaToken = null)
         {
             // verify the required parameter 'email' is set
-            if (email == null) throw new ApiException(400, "Missing required parameter 'email' when calling UserNewUser");
+            if (email == null) throw new ApiException(400, "Missing required parameter 'email' when calling UserNew");
             // verify the required parameter 'password' is set
-            if (password == null) throw new ApiException(400, "Missing required parameter 'password' when calling UserNewUser");
-            // verify the required parameter 'username' is set
-            if (username == null) throw new ApiException(400, "Missing required parameter 'username' when calling UserNewUser");
+            if (password == null) throw new ApiException(400, "Missing required parameter 'password' when calling UserNew");
+            // verify the required parameter 'country' is set
+            if (country == null) throw new ApiException(400, "Missing required parameter 'country' when calling UserNew");
             
     
             var path_ = "/user";
@@ -903,6 +921,8 @@ namespace IO.Swagger.Api
             if (acceptsTOS != null) formParams.Add("acceptsTOS", ApiClient.ParameterToString(acceptsTOS)); // form parameter
             if (referrerID != null) formParams.Add("referrerID", ApiClient.ParameterToString(referrerID)); // form parameter
             if (country != null) formParams.Add("country", ApiClient.ParameterToString(country)); // form parameter
+            if (tfaType != null) formParams.Add("tfaType", ApiClient.ParameterToString(tfaType)); // form parameter
+            if (tfaToken != null) formParams.Add("tfaToken", ApiClient.ParameterToString(tfaToken)); // form parameter
             
             
     
@@ -912,7 +932,7 @@ namespace IO.Swagger.Api
             // make the HTTP request
             IRestResponse response = (IRestResponse) await ApiClient.CallApiAsync(path_, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling UserNewUser: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling UserNew: " + response.Content, response.Content);
 
             return (User) ApiClient.Deserialize(response, typeof(User));
         }
@@ -2138,8 +2158,8 @@ namespace IO.Swagger.Api
         /// <summary>
         /// Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices. 
         /// </summary>
-        /// <returns></returns>            
-        public void UserLogoutAll ()
+        /// <returns>double?</returns>            
+        public double? UserLogoutAll ()
         {
             
     
@@ -2180,14 +2200,14 @@ namespace IO.Swagger.Api
             else if (((int)response.StatusCode) == 0)
                 throw new ApiException ((int)response.StatusCode, "Error calling UserLogoutAll: " + response.ErrorMessage, response.ErrorMessage);
     
-            return;
+            return (double?) ApiClient.Deserialize(response, typeof(double?));
         }
     
         /// <summary>
         /// Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices. 
         /// </summary>
-        /// <returns></returns>
-        public async System.Threading.Tasks.Task UserLogoutAllAsync ()
+        /// <returns>double?</returns>
+        public async System.Threading.Tasks.Task<double?> UserLogoutAllAsync ()
         {
             
     
@@ -2225,15 +2245,15 @@ namespace IO.Swagger.Api
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling UserLogoutAll: " + response.Content, response.Content);
 
-            
-            return;
+            return (double?) ApiClient.Deserialize(response, typeof(double?));
         }
         
         /// <summary>
-        /// Get your account&#39;s margin status. 
+        /// Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies. 
         /// </summary>
+        /// <param name="currency"></param> 
         /// <returns>Margin</returns>            
-        public Margin UserGetMargin ()
+        public Margin UserGetMargin (string currency = null)
         {
             
     
@@ -2258,6 +2278,7 @@ namespace IO.Swagger.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             
+            if (currency != null) queryParams.Add("currency", ApiClient.ParameterToString(currency)); // query parameter
             
             
             
@@ -2278,10 +2299,11 @@ namespace IO.Swagger.Api
         }
     
         /// <summary>
-        /// Get your account&#39;s margin status. 
+        /// Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies. 
         /// </summary>
+        /// <param name="currency"></param>
         /// <returns>Margin</returns>
-        public async System.Threading.Tasks.Task<Margin> UserGetMarginAsync ()
+        public async System.Threading.Tasks.Task<Margin> UserGetMarginAsync (string currency = null)
         {
             
     
@@ -2306,6 +2328,7 @@ namespace IO.Swagger.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             
+            if (currency != null) queryParams.Add("currency", ApiClient.ParameterToString(currency)); // query parameter
             
             
             
@@ -2323,7 +2346,7 @@ namespace IO.Swagger.Api
         }
         
         /// <summary>
-        /// Save application preferences. 
+        /// Save user preferences. 
         /// </summary>
         /// <param name="prefs"></param> 
         /// <param name="overwrite">If true, will overwrite all existing preferences.</param> 
@@ -2378,7 +2401,7 @@ namespace IO.Swagger.Api
         }
     
         /// <summary>
-        /// Save application preferences. 
+        /// Save user preferences. 
         /// </summary>
         /// <param name="prefs"></param>
         /// <param name="overwrite">If true, will overwrite all existing preferences.</param>
@@ -2432,9 +2455,8 @@ namespace IO.Swagger.Api
         /// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys. 
         /// </summary>
         /// <param name="type">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)</param> 
-        /// <param name="token">If Yubikey, send one output from the key.</param> 
         /// <returns>bool?</returns>            
-        public bool? UserRequestEnableTFA (string type = null, string token = null)
+        public bool? UserRequestEnableTFA (string type = null)
         {
             
     
@@ -2462,7 +2484,6 @@ namespace IO.Swagger.Api
             
             
             if (type != null) formParams.Add("type", ApiClient.ParameterToString(type)); // form parameter
-            if (token != null) formParams.Add("token", ApiClient.ParameterToString(token)); // form parameter
             
             
     
@@ -2484,9 +2505,8 @@ namespace IO.Swagger.Api
         /// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys. 
         /// </summary>
         /// <param name="type">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)</param>
-        /// <param name="token">If Yubikey, send one output from the key.</param>
         /// <returns>bool?</returns>
-        public async System.Threading.Tasks.Task<bool?> UserRequestEnableTFAAsync (string type = null, string token = null)
+        public async System.Threading.Tasks.Task<bool?> UserRequestEnableTFAAsync (string type = null)
         {
             
     
@@ -2514,7 +2534,6 @@ namespace IO.Swagger.Api
             
             
             if (type != null) formParams.Add("type", ApiClient.ParameterToString(type)); // form parameter
-            if (token != null) formParams.Add("token", ApiClient.ParameterToString(token)); // form parameter
             
             
     
@@ -2632,9 +2651,9 @@ namespace IO.Swagger.Api
         }
         
         /// <summary>
-        /// Request a withdrawal to an external wallet. This will send a confirmation email to the email address on record, unless requested via an API Key with the \&quot;withdraw\&quot; permission.
+        /// Request a withdrawal to an external wallet. This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission.
         /// </summary>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: \&quot;XBt\&quot;</param> 
+        /// <param name="currency">Currency you&#39;re withdrawing. Options: `XBt`</param> 
         /// <param name="amount">Amount of withdrawal currency.</param> 
         /// <param name="address">Destination Address.</param> 
         /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account.</param> 
@@ -2699,9 +2718,9 @@ namespace IO.Swagger.Api
         }
     
         /// <summary>
-        /// Request a withdrawal to an external wallet. This will send a confirmation email to the email address on record, unless requested via an API Key with the \&quot;withdraw\&quot; permission.
+        /// Request a withdrawal to an external wallet. This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission.
         /// </summary>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: \&quot;XBt\&quot;</param>
+        /// <param name="currency">Currency you&#39;re withdrawing. Options: `XBt`</param>
         /// <param name="amount">Amount of withdrawal currency.</param>
         /// <param name="address">Destination Address.</param>
         /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account.</param>
@@ -2792,9 +2811,9 @@ namespace IO.Swagger.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             
-            if (email != null) queryParams.Add("email", ApiClient.ParameterToString(email)); // query parameter
             
             
+            if (email != null) formParams.Add("email", ApiClient.ParameterToString(email)); // form parameter
             
             
     
@@ -2802,7 +2821,7 @@ namespace IO.Swagger.Api
             String[] authSettings = new String[] {  };
     
             // make the HTTP request
-            IRestResponse response = (IRestResponse) ApiClient.CallApi(path_, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
+            IRestResponse response = (IRestResponse) ApiClient.CallApi(path_, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling UserSendVerificationEmail: " + response.Content, response.Content);
@@ -2844,9 +2863,9 @@ namespace IO.Swagger.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             
-            if (email != null) queryParams.Add("email", ApiClient.ParameterToString(email)); // query parameter
             
             
+            if (email != null) formParams.Add("email", ApiClient.ParameterToString(email)); // form parameter
             
             
     
@@ -2854,7 +2873,7 @@ namespace IO.Swagger.Api
             String[] authSettings = new String[] {  };
     
             // make the HTTP request
-            IRestResponse response = (IRestResponse) await ApiClient.CallApiAsync(path_, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
+            IRestResponse response = (IRestResponse) await ApiClient.CallApiAsync(path_, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, pathParams, authSettings);
             if (((int)response.StatusCode) >= 400)
                 throw new ApiException ((int)response.StatusCode, "Error calling UserSendVerificationEmail: " + response.Content, response.Content);
 
@@ -2864,8 +2883,9 @@ namespace IO.Swagger.Api
         /// <summary>
         /// Get a history of all of your wallet transactions (deposits and withdrawals). 
         /// </summary>
+        /// <param name="currency"></param> 
         /// <returns></returns>            
-        public List<Transaction> UserGetWalletHistory ()
+        public List<Transaction> UserGetWalletHistory (string currency = null)
         {
             
     
@@ -2890,6 +2910,7 @@ namespace IO.Swagger.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             
+            if (currency != null) queryParams.Add("currency", ApiClient.ParameterToString(currency)); // query parameter
             
             
             
@@ -2912,8 +2933,9 @@ namespace IO.Swagger.Api
         /// <summary>
         /// Get a history of all of your wallet transactions (deposits and withdrawals). 
         /// </summary>
+        /// <param name="currency"></param>
         /// <returns></returns>
-        public async System.Threading.Tasks.Task<List<Transaction>> UserGetWalletHistoryAsync ()
+        public async System.Threading.Tasks.Task<List<Transaction>> UserGetWalletHistoryAsync (string currency = null)
         {
             
     
@@ -2938,6 +2960,7 @@ namespace IO.Swagger.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             pathParams.Add("format", "json");
             
+            if (currency != null) queryParams.Add("currency", ApiClient.ParameterToString(currency)); // query parameter
             
             
             

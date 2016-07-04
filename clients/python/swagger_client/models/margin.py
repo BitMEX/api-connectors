@@ -46,6 +46,7 @@ class Margin(object):
             'amount': 'float',
             'pending_credit': 'float',
             'pending_debit': 'float',
+            'confirmed_debit': 'float',
             'prev_realised_pnl': 'float',
             'prev_unrealised_pnl': 'float',
             'gross_comm': 'float',
@@ -64,6 +65,7 @@ class Margin(object):
             'unrealised_pnl': 'float',
             'indicative_tax': 'float',
             'unrealised_profit': 'float',
+            'synthetic_margin': 'float',
             'wallet_balance': 'float',
             'margin_balance': 'float',
             'margin_balance_pcnt': 'float',
@@ -73,7 +75,9 @@ class Margin(object):
             'excess_margin_pcnt': 'float',
             'available_margin': 'float',
             'withdrawable_margin': 'float',
-            'timestamp': 'date'
+            'timestamp': 'date',
+            'gross_last_value': 'float',
+            'commission': 'float'
         }
 
         self.attribute_map = {
@@ -86,6 +90,7 @@ class Margin(object):
             'amount': 'amount',
             'pending_credit': 'pendingCredit',
             'pending_debit': 'pendingDebit',
+            'confirmed_debit': 'confirmedDebit',
             'prev_realised_pnl': 'prevRealisedPnl',
             'prev_unrealised_pnl': 'prevUnrealisedPnl',
             'gross_comm': 'grossComm',
@@ -104,6 +109,7 @@ class Margin(object):
             'unrealised_pnl': 'unrealisedPnl',
             'indicative_tax': 'indicativeTax',
             'unrealised_profit': 'unrealisedProfit',
+            'synthetic_margin': 'syntheticMargin',
             'wallet_balance': 'walletBalance',
             'margin_balance': 'marginBalance',
             'margin_balance_pcnt': 'marginBalancePcnt',
@@ -113,7 +119,9 @@ class Margin(object):
             'excess_margin_pcnt': 'excessMarginPcnt',
             'available_margin': 'availableMargin',
             'withdrawable_margin': 'withdrawableMargin',
-            'timestamp': 'timestamp'
+            'timestamp': 'timestamp',
+            'gross_last_value': 'grossLastValue',
+            'commission': 'commission'
         }
 
         self._account = None
@@ -125,6 +133,7 @@ class Margin(object):
         self._amount = None
         self._pending_credit = None
         self._pending_debit = None
+        self._confirmed_debit = None
         self._prev_realised_pnl = None
         self._prev_unrealised_pnl = None
         self._gross_comm = None
@@ -143,6 +152,7 @@ class Margin(object):
         self._unrealised_pnl = None
         self._indicative_tax = None
         self._unrealised_profit = None
+        self._synthetic_margin = None
         self._wallet_balance = None
         self._margin_balance = None
         self._margin_balance_pcnt = None
@@ -153,6 +163,8 @@ class Margin(object):
         self._available_margin = None
         self._withdrawable_margin = None
         self._timestamp = None
+        self._gross_last_value = None
+        self._commission = None
 
     @property
     def account(self):
@@ -351,6 +363,28 @@ class Margin(object):
         :type: float
         """
         self._pending_debit = pending_debit
+
+    @property
+    def confirmed_debit(self):
+        """
+        Gets the confirmed_debit of this Margin.
+
+
+        :return: The confirmed_debit of this Margin.
+        :rtype: float
+        """
+        return self._confirmed_debit
+
+    @confirmed_debit.setter
+    def confirmed_debit(self, confirmed_debit):
+        """
+        Sets the confirmed_debit of this Margin.
+
+
+        :param confirmed_debit: The confirmed_debit of this Margin.
+        :type: float
+        """
+        self._confirmed_debit = confirmed_debit
 
     @property
     def prev_realised_pnl(self):
@@ -749,6 +783,28 @@ class Margin(object):
         self._unrealised_profit = unrealised_profit
 
     @property
+    def synthetic_margin(self):
+        """
+        Gets the synthetic_margin of this Margin.
+
+
+        :return: The synthetic_margin of this Margin.
+        :rtype: float
+        """
+        return self._synthetic_margin
+
+    @synthetic_margin.setter
+    def synthetic_margin(self, synthetic_margin):
+        """
+        Sets the synthetic_margin of this Margin.
+
+
+        :param synthetic_margin: The synthetic_margin of this Margin.
+        :type: float
+        """
+        self._synthetic_margin = synthetic_margin
+
+    @property
     def wallet_balance(self):
         """
         Gets the wallet_balance of this Margin.
@@ -967,6 +1023,50 @@ class Margin(object):
         :type: date
         """
         self._timestamp = timestamp
+
+    @property
+    def gross_last_value(self):
+        """
+        Gets the gross_last_value of this Margin.
+
+
+        :return: The gross_last_value of this Margin.
+        :rtype: float
+        """
+        return self._gross_last_value
+
+    @gross_last_value.setter
+    def gross_last_value(self, gross_last_value):
+        """
+        Sets the gross_last_value of this Margin.
+
+
+        :param gross_last_value: The gross_last_value of this Margin.
+        :type: float
+        """
+        self._gross_last_value = gross_last_value
+
+    @property
+    def commission(self):
+        """
+        Gets the commission of this Margin.
+
+
+        :return: The commission of this Margin.
+        :rtype: float
+        """
+        return self._commission
+
+    @commission.setter
+    def commission(self, commission):
+        """
+        Sets the commission of this Margin.
+
+
+        :param commission: The commission of this Margin.
+        :type: float
+        """
+        self._commission = commission
 
     def to_dict(self):
         """

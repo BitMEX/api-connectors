@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "SWGOrderBook.h"
 #import "SWGError.h"
+#import "SWGOrderBookL2.h"
 #import "SWGObject.h"
 #import "SWGApiClient.h"
 
@@ -22,7 +23,7 @@
 +(SWGOrderBookApi*) sharedAPI;
 ///
 ///
-/// Get current orderbook.
+/// Get current orderbook [deprecated, use /orderBook/L2].
 /// 
 ///
 /// @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
@@ -30,10 +31,27 @@
 /// 
 ///
 /// @return NSArray<SWGOrderBook>*
--(NSNumber*) orderBookGetOrderBookWithCompletionBlock :(NSString*) symbol 
+-(NSNumber*) orderBookGetWithCompletionBlock :(NSString*) symbol 
      depth:(NSNumber*) depth 
     
     completionHandler: (void (^)(NSArray<SWGOrderBook>* output, NSError* error))completionBlock;
+    
+
+
+///
+///
+/// Get current orderbook in vertical format.
+/// 
+///
+/// @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
+/// @param depth Orderbook depth per side. Send 0 for full depth.
+/// 
+///
+/// @return NSArray<SWGOrderBookL2>*
+-(NSNumber*) orderBookGetL2WithCompletionBlock :(NSString*) symbol 
+     depth:(NSNumber*) depth 
+    
+    completionHandler: (void (^)(NSArray<SWGOrderBookL2>* output, NSError* error))completionBlock;
     
 
 

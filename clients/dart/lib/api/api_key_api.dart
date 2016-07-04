@@ -15,7 +15,7 @@ class ApiKeyApi {
   /// Get your API Keys.
   ///
   /// 
-  Future<List<ApiKey>> apiKeyGetKeys(bool reverse) {
+  Future<List<ApiKey>> apiKeyGet(bool reverse) {
     Object postBody = null;
     
 
@@ -62,8 +62,8 @@ class ApiKeyApi {
   
   /// Create a new API Key.
   ///
-  /// API Keys can also be created via &lt;a href=\&quot;https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py\&quot;&gt;this Python script&lt;/a&gt;. See the &lt;a href=\&quot;/app/apiKeys\&quot;&gt;API Key Documentation&lt;/a&gt; for more information on capabilities.
-  Future<ApiKey> apiKeyCreateKey(String name, String cidr, String permissions, bool enabled, String token) {
+  /// API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
+  Future<ApiKey> apiKeyNew(String name, String cidr, String permissions, bool enabled, String token) {
     Object postBody = null;
     
 

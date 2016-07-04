@@ -5,8 +5,8 @@ import java.math.BigDecimal
 
 
 case class Settlement (
-  symbol: String,
   timestamp: Date,
+  symbol: String,
   settlementType: String,
   settledPrice: Double,
   bankrupt: BigDecimal,

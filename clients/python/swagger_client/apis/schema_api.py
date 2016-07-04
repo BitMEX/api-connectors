@@ -45,7 +45,7 @@ class SchemaApi(object):
                 config.api_client = ApiClient()
             self.api_client = config.api_client
 
-    def schema_find(self, **kwargs):
+    def schema_get(self, **kwargs):
         """
         Get model schemata for data objects returned by this API.
         
@@ -56,12 +56,12 @@ class SchemaApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.schema_find(callback=callback_function)
+        >>> thread = api.schema_get(callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str model: Optional model filter. If omitted, will return all models.
-        :return: InlineResponse200
+        :return: InlineResponse2001
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -74,7 +74,7 @@ class SchemaApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method schema_find" % key
+                    " to method schema_get" % key
                 )
             params[key] = val
         del params['kwargs']
@@ -116,7 +116,7 @@ class SchemaApi(object):
                                             body=body_params,
                                             post_params=form_params,
                                             files=files,
-                                            response_type='InlineResponse200',
+                                            response_type='InlineResponse2001',
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'))
         return response
@@ -136,7 +136,7 @@ class SchemaApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :return: InlineResponse200
+        :return: InlineResponse2001
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -189,7 +189,7 @@ class SchemaApi(object):
                                             body=body_params,
                                             post_params=form_params,
                                             files=files,
-                                            response_type='InlineResponse200',
+                                            response_type='InlineResponse2001',
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'))
         return response

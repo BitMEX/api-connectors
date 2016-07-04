@@ -4,7 +4,7 @@ require 'json'
 MyApp.add_route('GET', '/stats', {
   "resourcePath" => "/Stats",
   "summary" => "Get exchange-wide and per-series turnover and volume statistics.",
-  "nickname" => "stats/find", 
+  "nickname" => "stats/get", 
   "responseClass" => "array[Stats]", 
   "endpoint" => "/stats", 
   "notes" => "",

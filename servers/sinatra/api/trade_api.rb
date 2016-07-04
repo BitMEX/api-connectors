@@ -7,12 +7,12 @@ MyApp.add_route('GET', '/trade', {
   "nickname" => "trade/get", 
   "responseClass" => "array[Trade]", 
   "endpoint" => "/trade", 
-  "notes" => "",
+  "notes" => "Please note that indices (symbols starting with `.`) post trades at intervals to the trade feed. These have a `size` of 0 and are used only to indicate a changing price.\n\nSee [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AE_6569.html) for explanations of these fields.",
   "parameters" => [
     
     {
       "name" => "symbol",
-      "description" => "Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.",
+      "description" => "Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.",
       "dataType" => "string",
       "paramType" => "query",
       
@@ -22,7 +22,7 @@ MyApp.add_route('GET', '/trade', {
     
     {
       "name" => "filter",
-      "description" => "Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.",
+      "description" => "Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.",
       "dataType" => "string",
       "paramType" => "query",
       
@@ -122,7 +122,7 @@ MyApp.add_route('GET', '/trade/bucketed', {
     
     {
       "name" => "symbol",
-      "description" => "Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.",
+      "description" => "Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.",
       "dataType" => "string",
       "paramType" => "query",
       
@@ -132,7 +132,7 @@ MyApp.add_route('GET', '/trade/bucketed', {
     
     {
       "name" => "filter",
-      "description" => "Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.",
+      "description" => "Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.",
       "dataType" => "string",
       "paramType" => "query",
       
@@ -198,96 +198,6 @@ MyApp.add_route('GET', '/trade/bucketed', {
       
       "allowableValues" => "",
       
-    },
-    
-    
-    
-    
-    ]}) do
-  cross_origin
-  # the guts live here
-
-  {"message" => "yes, it worked"}.to_json
-end
-
-
-MyApp.add_route('GET', '/trade/byDate', {
-  "resourcePath" => "/Trade",
-  "summary" => "Get trades between two dates. [Deprecated, use GET /trades]",
-  "nickname" => "trade/get_by_date", 
-  "responseClass" => "array[Trade]", 
-  "endpoint" => "/trade/byDate", 
-  "notes" => "",
-  "parameters" => [
-    
-    {
-      "name" => "symbol",
-      "description" => "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.",
-      "dataType" => "string",
-      "paramType" => "query",
-      
-      "allowableValues" => "",
-      
-    },
-    
-    {
-      "name" => "start_time",
-      "description" => "Start date.",
-      "dataType" => "date",
-      "paramType" => "query",
-      
-      "allowableValues" => "",
-      
-    },
-    
-    {
-      "name" => "end_time",
-      "description" => "End Date.",
-      "dataType" => "date",
-      "paramType" => "query",
-      
-      "allowableValues" => "",
-      
-    },
-    
-    
-    
-    
-    ]}) do
-  cross_origin
-  # the guts live here
-
-  {"message" => "yes, it worked"}.to_json
-end
-
-
-MyApp.add_route('GET', '/trade/recent', {
-  "resourcePath" => "/Trade",
-  "summary" => "Get recent trades. [Deprecated, use GET /trades]",
-  "nickname" => "trade/get_recent", 
-  "responseClass" => "array[Trade]", 
-  "endpoint" => "/trade/recent", 
-  "notes" => "",
-  "parameters" => [
-    
-    {
-      "name" => "symbol",
-      "description" => "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.",
-      "dataType" => "string",
-      "paramType" => "query",
-      
-      "allowableValues" => "",
-      
-    },
-    
-    {
-      "name" => "count",
-      "description" => "Number of trades to fetch.",
-      "dataType" => "number",
-      "paramType" => "query",
-      
-      "allowableValues" => "",
-      "defaultValue" => "100"
     },
     
     

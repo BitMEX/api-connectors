@@ -23,7 +23,7 @@
 ///
 ///
 /// Get your positions.
-/// 
+/// See <a href=\"http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html\">the FIX Spec</a> for explanations of these fields.
 ///
 /// @param filter Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBT24H\&quot;}.
 /// @param columns Which columns to fetch. For example, send [\&quot;columnName\&quot;].
@@ -31,7 +31,7 @@
 /// 
 ///
 /// @return NSArray<SWGPosition>*
--(NSNumber*) positionFindWithCompletionBlock :(NSString*) filter 
+-(NSNumber*) positionGetWithCompletionBlock :(NSString*) filter 
      columns:(NSString*) columns 
      count:(NSNumber*) count 
     
@@ -41,11 +41,11 @@
 
 ///
 ///
-/// Toggle isolated (fixed) margin per-position.
-/// On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off. A position must be open to isolate it.
+/// Enable isolated margin or cross margin per-position.
+/// On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
 ///
 /// @param symbol Position symbol to isolate.
-/// @param enabled If true, will enable isolated margin.
+/// @param enabled True for isolated margin, false for cross margin.
 /// 
 ///
 /// @return SWGPosition*
@@ -58,11 +58,28 @@
 
 ///
 ///
+/// Choose leverage for a position.
+/// On Speculative (DPE-Enabled) contracts, users can choose an isolated leverage. This will automatically enable isolated margin.
+///
+/// @param symbol Symbol of position to adjust.
+/// @param leverage Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.
+/// 
+///
+/// @return SWGPosition*
+-(NSNumber*) positionUpdateLeverageWithCompletionBlock :(NSString*) symbol 
+     leverage:(NSNumber*) leverage 
+    
+    completionHandler: (void (^)(SWGPosition* output, NSError* error))completionBlock;
+    
+
+
+///
+///
 /// Transfer equity in or out of a position.
 /// When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
 ///
-/// @param symbol Position symbol to isolate.
-/// @param amount Amount to transfer, in satoshis. May be negative.
+/// @param symbol Symbol of position to isolate.
+/// @param amount Amount to transfer, in Satoshis. May be negative.
 /// 
 ///
 /// @return SWGPosition*

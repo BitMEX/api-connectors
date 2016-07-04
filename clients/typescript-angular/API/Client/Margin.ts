@@ -23,6 +23,8 @@ namespace API.Client {
 
         pendingDebit?: number;
 
+        confirmedDebit?: number;
+
         prevRealisedPnl?: number;
 
         prevUnrealisedPnl?: number;
@@ -59,6 +61,8 @@ namespace API.Client {
 
         unrealisedProfit?: number;
 
+        syntheticMargin?: number;
+
         walletBalance?: number;
 
         marginBalance?: number;
@@ -78,6 +82,10 @@ namespace API.Client {
         withdrawableMargin?: number;
 
         timestamp?: date;
+
+        grossLastValue?: number;
+
+        commission?: number;
     }
 
 }

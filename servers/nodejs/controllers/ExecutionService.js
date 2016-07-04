@@ -17,8 +17,14 @@ var examples = {};
   
   examples['application/json'] = [ {
   "symbol" : "aeiou",
+  "triggered" : "aeiou",
+  "clOrdLinkID" : "aeiou",
+  "execInst" : "aeiou",
   "homeNotional" : 1.3579000000000001069366817318950779736042022705078125,
+  "pegOffsetValue" : 1.3579000000000001069366817318950779736042022705078125,
+  "pegPriceType" : "aeiou",
   "execID" : "aeiou",
+  "contingencyType" : "aeiou",
   "foreignNotional" : 1.3579000000000001069366817318950779736042022705078125,
   "lastMkt" : "aeiou",
   "simpleCumQty" : 1.3579000000000001069366817318950779736042022705078125,
@@ -34,7 +40,7 @@ var examples = {};
   "text" : "aeiou",
   "execType" : "aeiou",
   "timeInForce" : "aeiou",
-  "timestamp" : "2015-11-30T19:35:59.556+0000",
+  "timestamp" : "2016-07-04T23:25:34.487+0000",
   "ordStatus" : "aeiou",
   "side" : "aeiou",
   "simpleOrderQty" : 1.3579000000000001069366817318950779736042022705078125,
@@ -43,21 +49,20 @@ var examples = {};
   "leavesQty" : 1.3579000000000001069366817318950779736042022705078125,
   "cumQty" : 1.3579000000000001069366817318950779736042022705078125,
   "tradePublishIndicator" : "aeiou",
+  "displayQty" : 1.3579000000000001069366817318950779736042022705078125,
   "simpleLeavesQty" : 1.3579000000000001069366817318950779736042022705078125,
   "clOrdID" : "aeiou",
   "lastQty" : 1.3579000000000001069366817318950779736042022705078125,
   "avgPx" : 1.3579000000000001069366817318950779736042022705078125,
   "multiLegReportingType" : "aeiou",
   "workingIndicator" : true,
-  "commType" : "aeiou",
   "lastLiquidityInd" : "aeiou",
-  "transactTime" : "2015-11-30T19:35:59.556+0000",
+  "transactTime" : "2016-07-04T23:25:34.487+0000",
   "exDestination" : "aeiou",
   "account" : 1.3579000000000001069366817318950779736042022705078125,
   "underlyingLastPx" : 1.3579000000000001069366817318950779736042022705078125,
   "stopPx" : 1.3579000000000001069366817318950779736042022705078125,
-  "ordType" : "aeiou",
-  "minQty" : 1.3579000000000001069366817318950779736042022705078125
+  "ordType" : "aeiou"
 } ];
   
 
@@ -89,8 +94,14 @@ var examples = {};
   
   examples['application/json'] = [ {
   "symbol" : "aeiou",
+  "triggered" : "aeiou",
+  "clOrdLinkID" : "aeiou",
+  "execInst" : "aeiou",
   "homeNotional" : 1.3579000000000001069366817318950779736042022705078125,
+  "pegOffsetValue" : 1.3579000000000001069366817318950779736042022705078125,
+  "pegPriceType" : "aeiou",
   "execID" : "aeiou",
+  "contingencyType" : "aeiou",
   "foreignNotional" : 1.3579000000000001069366817318950779736042022705078125,
   "lastMkt" : "aeiou",
   "simpleCumQty" : 1.3579000000000001069366817318950779736042022705078125,
@@ -106,7 +117,7 @@ var examples = {};
   "text" : "aeiou",
   "execType" : "aeiou",
   "timeInForce" : "aeiou",
-  "timestamp" : "2015-11-30T19:35:59.563+0000",
+  "timestamp" : "2016-07-04T23:25:34.497+0000",
   "ordStatus" : "aeiou",
   "side" : "aeiou",
   "simpleOrderQty" : 1.3579000000000001069366817318950779736042022705078125,
@@ -115,21 +126,20 @@ var examples = {};
   "leavesQty" : 1.3579000000000001069366817318950779736042022705078125,
   "cumQty" : 1.3579000000000001069366817318950779736042022705078125,
   "tradePublishIndicator" : "aeiou",
+  "displayQty" : 1.3579000000000001069366817318950779736042022705078125,
   "simpleLeavesQty" : 1.3579000000000001069366817318950779736042022705078125,
   "clOrdID" : "aeiou",
   "lastQty" : 1.3579000000000001069366817318950779736042022705078125,
   "avgPx" : 1.3579000000000001069366817318950779736042022705078125,
   "multiLegReportingType" : "aeiou",
   "workingIndicator" : true,
-  "commType" : "aeiou",
   "lastLiquidityInd" : "aeiou",
-  "transactTime" : "2015-11-30T19:35:59.563+0000",
+  "transactTime" : "2016-07-04T23:25:34.497+0000",
   "exDestination" : "aeiou",
   "account" : 1.3579000000000001069366817318950779736042022705078125,
   "underlyingLastPx" : 1.3579000000000001069366817318950779736042022705078125,
   "stopPx" : 1.3579000000000001069366817318950779736042022705078125,
-  "ordType" : "aeiou",
-  "minQty" : 1.3579000000000001069366817318950779736042022705078125
+  "ordType" : "aeiou"
 } ];
   
 

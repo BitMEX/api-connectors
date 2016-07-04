@@ -37,7 +37,7 @@ import static org.springframework.http.MediaType.*;
 @Controller
 @RequestMapping(value = "/user", produces = {APPLICATION_JSON_VALUE})
 @Api(value = "/user", description = "the user API")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2015-11-30T13:35:50.750-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2016-07-04T18:25:23.952-05:00")
 public class UserApi {
   
 
@@ -48,7 +48,7 @@ public class UserApi {
     produces = { "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" }, 
     consumes = { "application/json", "application/x-www-form-urlencoded" },
     method = RequestMethod.GET)
-  public ResponseEntity<User> userGetMe()
+  public ResponseEntity<User> userGet()
       throws NotFoundException {
       // do some magic!
       return new ResponseEntity<User>(HttpStatus.OK);
@@ -63,7 +63,7 @@ public class UserApi {
     produces = { "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" }, 
     consumes = { "application/json", "application/x-www-form-urlencoded" },
     method = RequestMethod.PUT)
-  public ResponseEntity<User> userUpdateMe(
+  public ResponseEntity<User> userUpdate(
 
 
 @ApiParam(value = "" ) @RequestPart(value="firstname", required=false)  String firstname
@@ -91,6 +91,11 @@ public class UserApi {
     
 
 
+@ApiParam(value = "Username can only be set once. To reset, email support." ) @RequestPart(value="username", required=false)  String username
+,
+    
+
+
 @ApiParam(value = "Country of residence." ) @RequestPart(value="country", required=false)  String country
 ,
     
@@ -112,7 +117,7 @@ public class UserApi {
     produces = { "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" }, 
     consumes = { "application/json", "application/x-www-form-urlencoded" },
     method = RequestMethod.POST)
-  public ResponseEntity<User> userNewUser(
+  public ResponseEntity<User> userNew(
 
 
 @ApiParam(value = "Your email address.", required=true ) @RequestPart(value="email", required=true)  String email
@@ -125,7 +130,12 @@ public class UserApi {
     
 
 
-@ApiParam(value = "Desired username.", required=true ) @RequestPart(value="username", required=true)  String username
+@ApiParam(value = "Country of residence.", required=true ) @RequestPart(value="country", required=true)  String country
+,
+    
+
+
+@ApiParam(value = "Desired username." ) @RequestPart(value="username", required=false)  String username
 ,
     
 
@@ -140,7 +150,7 @@ public class UserApi {
     
 
 
-@ApiParam(value = "Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms)." ) @RequestPart(value="acceptsTOS", required=false)  String acceptsTOS
+@ApiParam(value = "Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms)." ) @RequestPart(value="acceptsTOS", required=false)  String acceptsTOS
 ,
     
 
@@ -150,7 +160,12 @@ public class UserApi {
     
 
 
-@ApiParam(value = "Country of residence." ) @RequestPart(value="country", required=false)  String country
+@ApiParam(value = "Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef" ) @RequestPart(value="tfaType", required=false)  String tfaType
+,
+    
+
+
+@ApiParam(value = "Two-Factor Token." ) @RequestPart(value="tfaToken", required=false)  String tfaToken
 )
       throws NotFoundException {
       // do some magic!
@@ -385,7 +400,7 @@ public class UserApi {
 
   @ApiOperation(value = "Log out of BitMEX.", notes = "", response = Void.class)
   @ApiResponses(value = { 
-    @ApiResponse(code = 204, message = "Request was successful") })
+    @ApiResponse(code = 200, message = "Request was successful") })
   @RequestMapping(value = "/logout", 
     produces = { "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" }, 
     consumes = { "application/json", "application/x-www-form-urlencoded" },
@@ -398,29 +413,32 @@ public class UserApi {
 
   
 
-  @ApiOperation(value = "Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.", notes = "", response = Void.class)
+  @ApiOperation(value = "Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.", notes = "", response = Double.class)
   @ApiResponses(value = { 
-    @ApiResponse(code = 204, message = "Request was successful") })
+    @ApiResponse(code = 200, message = "Request was successful") })
   @RequestMapping(value = "/logoutAll", 
     produces = { "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" }, 
     consumes = { "application/json", "application/x-www-form-urlencoded" },
     method = RequestMethod.POST)
-  public ResponseEntity<Void> userLogoutAll()
+  public ResponseEntity<Double> userLogoutAll()
       throws NotFoundException {
       // do some magic!
-      return new ResponseEntity<Void>(HttpStatus.OK);
+      return new ResponseEntity<Double>(HttpStatus.OK);
   }
 
   
 
-  @ApiOperation(value = "Get your account's margin status.", notes = "", response = Margin.class)
+  @ApiOperation(value = "Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.", notes = "", response = Margin.class)
   @ApiResponses(value = { 
     @ApiResponse(code = 200, message = "Request was successful") })
   @RequestMapping(value = "/margin", 
     produces = { "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" }, 
     consumes = { "application/json", "application/x-www-form-urlencoded" },
     method = RequestMethod.GET)
-  public ResponseEntity<Margin> userGetMargin()
+  public ResponseEntity<Margin> userGetMargin(@ApiParam(value = "", defaultValue = "XBt") @RequestParam(value = "currency", required = false, defaultValue="XBt") String currency
+
+
+)
       throws NotFoundException {
       // do some magic!
       return new ResponseEntity<Margin>(HttpStatus.OK);
@@ -428,7 +446,7 @@ public class UserApi {
 
   
 
-  @ApiOperation(value = "Save application preferences.", notes = "", response = User.class)
+  @ApiOperation(value = "Save user preferences.", notes = "", response = User.class)
   @ApiResponses(value = { 
     @ApiResponse(code = 200, message = "Request was successful") })
   @RequestMapping(value = "/preferences", 
@@ -463,11 +481,6 @@ public class UserApi {
 
 
 @ApiParam(value = "Two-factor auth type. Supported types: 'GA' (Google Authenticator)" ) @RequestPart(value="type", required=false)  String type
-,
-    
-
-
-@ApiParam(value = "If Yubikey, send one output from the key." ) @RequestPart(value="token", required=false)  String token
 )
       throws NotFoundException {
       // do some magic!
@@ -495,7 +508,7 @@ public class UserApi {
 
   
 
-  @ApiOperation(value = "Request a withdrawal to an external wallet.", notes = "This will send a confirmation email to the email address on record, unless requested via an API Key with the \"withdraw\" permission.", response = Transaction.class)
+  @ApiOperation(value = "Request a withdrawal to an external wallet.", notes = "This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission.", response = Transaction.class)
   @ApiResponses(value = { 
     @ApiResponse(code = 200, message = "Request was successful") })
   @RequestMapping(value = "/requestWithdrawal", 
@@ -505,7 +518,7 @@ public class UserApi {
   public ResponseEntity<Transaction> userRequestWithdrawal(
 
 
-@ApiParam(value = "Currency you're withdrawing. Options: \"XBt\"", required=true , defaultValue="XBt") @RequestPart(value="currency", required=true)  String currency
+@ApiParam(value = "Currency you're withdrawing. Options: `XBt`", required=true , defaultValue="XBt") @RequestPart(value="currency", required=true)  String currency
 ,
     
 
@@ -540,10 +553,11 @@ public class UserApi {
   @RequestMapping(value = "/resendVerificationEmail", 
     produces = { "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" }, 
     consumes = { "application/json", "application/x-www-form-urlencoded" },
-    method = RequestMethod.GET)
-  public ResponseEntity<Boolean> userSendVerificationEmail(@ApiParam(value = "", required = true) @RequestParam(value = "email", required = true) String email
+    method = RequestMethod.POST)
+  public ResponseEntity<Boolean> userSendVerificationEmail(
 
 
+@ApiParam(value = "", required=true ) @RequestPart(value="email", required=true)  String email
 )
       throws NotFoundException {
       // do some magic!
@@ -559,7 +573,10 @@ public class UserApi {
     produces = { "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" }, 
     consumes = { "application/json", "application/x-www-form-urlencoded" },
     method = RequestMethod.GET)
-  public ResponseEntity<List<Transaction>> userGetWalletHistory()
+  public ResponseEntity<List<Transaction>> userGetWalletHistory(@ApiParam(value = "", defaultValue = "XBt") @RequestParam(value = "currency", required = false, defaultValue="XBt") String currency
+
+
+)
       throws NotFoundException {
       // do some magic!
       return new ResponseEntity<List<Transaction>>(HttpStatus.OK);

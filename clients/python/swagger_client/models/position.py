@@ -39,10 +39,11 @@ class Position(object):
         self.swagger_types = {
             'account': 'float',
             'symbol': 'str',
+            'currency': 'str',
             'underlying': 'str',
             'quote_currency': 'str',
-            'currency': 'str',
             'commission': 'float',
+            'leverage': 'float',
             'cross_margin': 'bool',
             'rebalanced_pnl': 'float',
             'prev_realised_pnl': 'float',
@@ -119,16 +120,19 @@ class Position(object):
             'margin_call_price': 'float',
             'liquidation_price': 'float',
             'bankrupt_price': 'float',
-            'timestamp': 'date'
+            'timestamp': 'date',
+            'last_price': 'float',
+            'last_value': 'float'
         }
 
         self.attribute_map = {
             'account': 'account',
             'symbol': 'symbol',
+            'currency': 'currency',
             'underlying': 'underlying',
             'quote_currency': 'quoteCurrency',
-            'currency': 'currency',
             'commission': 'commission',
+            'leverage': 'leverage',
             'cross_margin': 'crossMargin',
             'rebalanced_pnl': 'rebalancedPnl',
             'prev_realised_pnl': 'prevRealisedPnl',
@@ -205,15 +209,18 @@ class Position(object):
             'margin_call_price': 'marginCallPrice',
             'liquidation_price': 'liquidationPrice',
             'bankrupt_price': 'bankruptPrice',
-            'timestamp': 'timestamp'
+            'timestamp': 'timestamp',
+            'last_price': 'lastPrice',
+            'last_value': 'lastValue'
         }
 
         self._account = None
         self._symbol = None
+        self._currency = None
         self._underlying = None
         self._quote_currency = None
-        self._currency = None
         self._commission = None
+        self._leverage = None
         self._cross_margin = None
         self._rebalanced_pnl = None
         self._prev_realised_pnl = None
@@ -291,6 +298,8 @@ class Position(object):
         self._liquidation_price = None
         self._bankrupt_price = None
         self._timestamp = None
+        self._last_price = None
+        self._last_value = None
 
     @property
     def account(self):
@@ -337,6 +346,28 @@ class Position(object):
         self._symbol = symbol
 
     @property
+    def currency(self):
+        """
+        Gets the currency of this Position.
+
+
+        :return: The currency of this Position.
+        :rtype: str
+        """
+        return self._currency
+
+    @currency.setter
+    def currency(self, currency):
+        """
+        Sets the currency of this Position.
+
+
+        :param currency: The currency of this Position.
+        :type: str
+        """
+        self._currency = currency
+
+    @property
     def underlying(self):
         """
         Gets the underlying of this Position.
@@ -381,28 +412,6 @@ class Position(object):
         self._quote_currency = quote_currency
 
     @property
-    def currency(self):
-        """
-        Gets the currency of this Position.
-
-
-        :return: The currency of this Position.
-        :rtype: str
-        """
-        return self._currency
-
-    @currency.setter
-    def currency(self, currency):
-        """
-        Sets the currency of this Position.
-
-
-        :param currency: The currency of this Position.
-        :type: str
-        """
-        self._currency = currency
-
-    @property
     def commission(self):
         """
         Gets the commission of this Position.
@@ -423,6 +432,28 @@ class Position(object):
         :type: float
         """
         self._commission = commission
+
+    @property
+    def leverage(self):
+        """
+        Gets the leverage of this Position.
+
+
+        :return: The leverage of this Position.
+        :rtype: float
+        """
+        return self._leverage
+
+    @leverage.setter
+    def leverage(self, leverage):
+        """
+        Sets the leverage of this Position.
+
+
+        :param leverage: The leverage of this Position.
+        :type: float
+        """
+        self._leverage = leverage
 
     @property
     def cross_margin(self):
@@ -2117,6 +2148,50 @@ class Position(object):
         :type: date
         """
         self._timestamp = timestamp
+
+    @property
+    def last_price(self):
+        """
+        Gets the last_price of this Position.
+
+
+        :return: The last_price of this Position.
+        :rtype: float
+        """
+        return self._last_price
+
+    @last_price.setter
+    def last_price(self, last_price):
+        """
+        Sets the last_price of this Position.
+
+
+        :param last_price: The last_price of this Position.
+        :type: float
+        """
+        self._last_price = last_price
+
+    @property
+    def last_value(self):
+        """
+        Gets the last_value of this Position.
+
+
+        :return: The last_value of this Position.
+        :rtype: float
+        """
+        return self._last_value
+
+    @last_value.setter
+    def last_value(self, last_value):
+        """
+        Sets the last_value of this Position.
+
+
+        :param last_value: The last_value of this Position.
+        :type: float
+        """
+        self._last_value = last_value
 
     def to_dict(self):
         """

@@ -19,18 +19,18 @@ import com.sun.jersey.multipart.FormDataParam;
 
 import javax.ws.rs.core.Response;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-30T13:35:57.938-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2016-07-04T18:25:32.992-05:00")
 public class ApiKeyApiServiceImpl extends ApiKeyApiService {
   
       @Override
-      public Response apiKeyGetKeys(Boolean reverse)
+      public Response apiKeyGet(Boolean reverse)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
   
       @Override
-      public Response apiKeyCreateKey(String name,String cidr,String permissions,Boolean enabled,String token)
+      public Response apiKeyNew(String name,String cidr,String permissions,Boolean enabled,String token)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();

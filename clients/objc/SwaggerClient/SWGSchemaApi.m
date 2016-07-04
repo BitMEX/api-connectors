@@ -1,6 +1,6 @@
 #import "SWGSchemaApi.h"
 #import "SWGQueryParamCollection.h"
-#import "SWGInlineResponse200.h"
+#import "SWGInlineResponse2001.h"
 #import "SWGError.h"
 
 
@@ -75,11 +75,11 @@ static SWGSchemaApi* singletonAPI = nil;
 /// 
 ///  @param model Optional model filter. If omitted, will return all models.
 ///
-///  @returns SWGInlineResponse200*
+///  @returns SWGInlineResponse2001*
 ///
--(NSNumber*) schemaFindWithCompletionBlock: (NSString*) model
+-(NSNumber*) schemaGetWithCompletionBlock: (NSString*) model
         
-        completionHandler: (void (^)(SWGInlineResponse200* output, NSError* error))completionBlock { 
+        completionHandler: (void (^)(SWGInlineResponse2001* output, NSError* error))completionBlock { 
         
 
     
@@ -144,10 +144,10 @@ static SWGSchemaApi* singletonAPI = nil;
                                          authSettings: authSettings
                                    requestContentType: requestContentType
                                   responseContentType: responseContentType
-                                         responseType: @"SWGInlineResponse200*"
+                                         responseType: @"SWGInlineResponse2001*"
                                       completionBlock: ^(id data, NSError *error) {
                   
-                  completionBlock((SWGInlineResponse200*)data, error);
+                  completionBlock((SWGInlineResponse2001*)data, error);
               }
           ];
 }
@@ -155,10 +155,10 @@ static SWGSchemaApi* singletonAPI = nil;
 ///
 /// Returns help text & subject list for websocket usage.
 /// 
-///  @returns SWGInlineResponse200*
+///  @returns SWGInlineResponse2001*
 ///
 -(NSNumber*) schemaWebsocketHelpWithCompletionBlock: 
-        (void (^)(SWGInlineResponse200* output, NSError* error))completionBlock { 
+        (void (^)(SWGInlineResponse2001* output, NSError* error))completionBlock { 
         
 
     
@@ -219,10 +219,10 @@ static SWGSchemaApi* singletonAPI = nil;
                                          authSettings: authSettings
                                    requestContentType: requestContentType
                                   responseContentType: responseContentType
-                                         responseType: @"SWGInlineResponse200*"
+                                         responseType: @"SWGInlineResponse2001*"
                                       completionBlock: ^(id data, NSError *error) {
                   
-                  completionBlock((SWGInlineResponse200*)data, error);
+                  completionBlock((SWGInlineResponse2001*)data, error);
               }
           ];
 }

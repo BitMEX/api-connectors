@@ -12,9 +12,9 @@ module SwaggerClient
     # 
     # @param [Hash] opts the optional parameters
     # @return [User]
-    def user_get_me(opts = {})
+    def user_get(opts = {})
       if Configuration.debugging
-        Configuration.logger.debug "Calling API: UserApi#user_get_me ..."
+        Configuration.logger.debug "Calling API: UserApi#user_get ..."
       end
       
       # resource path
@@ -50,7 +50,7 @@ module SwaggerClient
         :auth_names => auth_names,
         :return_type => 'User')
       if Configuration.debugging
-        Configuration.logger.debug "API called: UserApi#user_get_me. Result: #{result.inspect}"
+        Configuration.logger.debug "API called: UserApi#user_get. Result: #{result.inspect}"
       end
       return result
     end
@@ -63,12 +63,13 @@ module SwaggerClient
     # @option opts [String] :old_password 
     # @option opts [String] :new_password 
     # @option opts [String] :new_password_confirm 
+    # @option opts [String] :username Username can only be set once. To reset, email support.
     # @option opts [String] :country Country of residence.
     # @option opts [String] :pgp_pub_key PGP Public Key. If specified, automated emails will be sentwith this key.
     # @return [User]
-    def user_update_me(opts = {})
+    def user_update(opts = {})
       if Configuration.debugging
-        Configuration.logger.debug "Calling API: UserApi#user_update_me ..."
+        Configuration.logger.debug "Calling API: UserApi#user_update ..."
       end
       
       # resource path
@@ -95,6 +96,7 @@ module SwaggerClient
       form_params["oldPassword"] = opts[:'old_password'] if opts[:'old_password']
       form_params["newPassword"] = opts[:'new_password'] if opts[:'new_password']
       form_params["newPasswordConfirm"] = opts[:'new_password_confirm'] if opts[:'new_password_confirm']
+      form_params["username"] = opts[:'username'] if opts[:'username']
       form_params["country"] = opts[:'country'] if opts[:'country']
       form_params["pgpPubKey"] = opts[:'pgp_pub_key'] if opts[:'pgp_pub_key']
 
@@ -111,7 +113,7 @@ module SwaggerClient
         :auth_names => auth_names,
         :return_type => 'User')
       if Configuration.debugging
-        Configuration.logger.debug "API called: UserApi#user_update_me. Result: #{result.inspect}"
+        Configuration.logger.debug "API called: UserApi#user_update. Result: #{result.inspect}"
       end
       return result
     end
@@ -120,27 +122,29 @@ module SwaggerClient
     # 
     # @param email Your email address.
     # @param password Your password.
-    # @param username Desired username.
+    # @param country Country of residence.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :username Desired username.
     # @option opts [String] :firstname First name.
     # @option opts [String] :lastname Last name.
-    # @option opts [String] :accepts_tos Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms).
+    # @option opts [String] :accepts_tos Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).
     # @option opts [String] :referrer_id Optional Referrer ID.
-    # @option opts [String] :country Country of residence.
+    # @option opts [String] :tfa_type Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef
+    # @option opts [String] :tfa_token Two-Factor Token.
     # @return [User]
-    def user_new_user(email, password, username, opts = {})
+    def user_new(email, password, country, opts = {})
       if Configuration.debugging
-        Configuration.logger.debug "Calling API: UserApi#user_new_user ..."
+        Configuration.logger.debug "Calling API: UserApi#user_new ..."
       end
       
       # verify the required parameter 'email' is set
-      fail "Missing the required parameter 'email' when calling user_new_user" if email.nil?
+      fail "Missing the required parameter 'email' when calling user_new" if email.nil?
       
       # verify the required parameter 'password' is set
-      fail "Missing the required parameter 'password' when calling user_new_user" if password.nil?
+      fail "Missing the required parameter 'password' when calling user_new" if password.nil?
       
-      # verify the required parameter 'username' is set
-      fail "Missing the required parameter 'username' when calling user_new_user" if username.nil?
+      # verify the required parameter 'country' is set
+      fail "Missing the required parameter 'country' when calling user_new" if country.nil?
       
       # resource path
       path = "/user".sub('{format}','json')
@@ -163,12 +167,14 @@ module SwaggerClient
       form_params = {}
       form_params["email"] = email
       form_params["password"] = password
-      form_params["username"] = username
+      form_params["country"] = country
+      form_params["username"] = opts[:'username'] if opts[:'username']
       form_params["firstname"] = opts[:'firstname'] if opts[:'firstname']
       form_params["lastname"] = opts[:'lastname'] if opts[:'lastname']
       form_params["acceptsTOS"] = opts[:'accepts_tos'] if opts[:'accepts_tos']
       form_params["referrerID"] = opts[:'referrer_id'] if opts[:'referrer_id']
-      form_params["country"] = opts[:'country'] if opts[:'country']
+      form_params["tfaType"] = opts[:'tfa_type'] if opts[:'tfa_type']
+      form_params["tfaToken"] = opts[:'tfa_token'] if opts[:'tfa_token']
 
       # http body (model)
       post_body = nil
@@ -183,7 +189,7 @@ module SwaggerClient
         :auth_names => auth_names,
         :return_type => 'User')
       if Configuration.debugging
-        Configuration.logger.debug "API called: UserApi#user_new_user. Result: #{result.inspect}"
+        Configuration.logger.debug "API called: UserApi#user_new. Result: #{result.inspect}"
       end
       return result
     end
@@ -809,7 +815,7 @@ module SwaggerClient
     # Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
     # 
     # @param [Hash] opts the optional parameters
-    # @return [nil]
+    # @return [Float]
     def user_logout_all(opts = {})
       if Configuration.debugging
         Configuration.logger.debug "Calling API: UserApi#user_logout_all ..."
@@ -840,21 +846,23 @@ module SwaggerClient
       
 
       auth_names = []
-      @api_client.call_api(:POST, path,
+      result = @api_client.call_api(:POST, path,
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
         :body => post_body,
-        :auth_names => auth_names)
+        :auth_names => auth_names,
+        :return_type => 'Float')
       if Configuration.debugging
-        Configuration.logger.debug "API called: UserApi#user_logout_all"
+        Configuration.logger.debug "API called: UserApi#user_logout_all. Result: #{result.inspect}"
       end
-      return nil
+      return result
     end
 
-    # Get your account&#39;s margin status.
+    # Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
     # 
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :currency 
     # @return [Margin]
     def user_get_margin(opts = {})
       if Configuration.debugging
@@ -866,6 +874,7 @@ module SwaggerClient
 
       # query parameters
       query_params = {}
+      query_params[:'currency'] = opts[:'currency'] if opts[:'currency']
 
       # header parameters
       header_params = {}
@@ -899,7 +908,7 @@ module SwaggerClient
       return result
     end
 
-    # Save application preferences.
+    # Save user preferences.
     # 
     # @param prefs 
     # @param [Hash] opts the optional parameters
@@ -957,7 +966,6 @@ module SwaggerClient
     # 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
-    # @option opts [String] :token If Yubikey, send one output from the key.
     # @return [BOOLEAN]
     def user_request_enable_tfa(opts = {})
       if Configuration.debugging
@@ -984,7 +992,6 @@ module SwaggerClient
       # form parameters
       form_params = {}
       form_params["type"] = opts[:'type'] if opts[:'type']
-      form_params["token"] = opts[:'token'] if opts[:'token']
 
       # http body (model)
       post_body = nil
@@ -1057,8 +1064,8 @@ module SwaggerClient
     end
 
     # Request a withdrawal to an external wallet.
-    # This will send a confirmation email to the email address on record, unless requested via an API Key with the \&quot;withdraw\&quot; permission.
-    # @param currency Currency you&#39;re withdrawing. Options: \&quot;XBt\&quot;
+    # This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission.
+    # @param currency Currency you&#39;re withdrawing. Options: `XBt`
     # @param amount Amount of withdrawal currency.
     # @param address Destination Address.
     # @param [Hash] opts the optional parameters
@@ -1140,7 +1147,6 @@ module SwaggerClient
 
       # query parameters
       query_params = {}
-      query_params[:'email'] = email
 
       # header parameters
       header_params = {}
@@ -1155,13 +1161,14 @@ module SwaggerClient
 
       # form parameters
       form_params = {}
+      form_params["email"] = email
 
       # http body (model)
       post_body = nil
       
 
       auth_names = []
-      result = @api_client.call_api(:GET, path,
+      result = @api_client.call_api(:POST, path,
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -1177,6 +1184,7 @@ module SwaggerClient
     # Get a history of all of your wallet transactions (deposits and withdrawals).
     # 
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :currency 
     # @return [Array<Transaction>]
     def user_get_wallet_history(opts = {})
       if Configuration.debugging
@@ -1188,6 +1196,7 @@ module SwaggerClient
 
       # query parameters
       query_params = {}
+      query_params[:'currency'] = opts[:'currency'] if opts[:'currency']
 
       # header parameters
       header_params = {}

@@ -1,7 +1,7 @@
 package io.swagger.client.api
 
 import io.swagger.client.model.Error
-import io.swagger.client.model.Inline_response_200
+import io.swagger.client.model.Inline_response_200_1
 import io.swagger.client._
 import scala.concurrent.{ Future, Await }
 import scala.concurrent.duration._
@@ -10,8 +10,8 @@ import collection.mutable
 class SchemaApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
   
-  def schema.find(model: Option[String] = None
-      )(implicit reader: ClientResponseReader[Inline_response_200]): Future[Inline_response_200] = {
+  def schema.get(model: Option[String] = None
+      )(implicit reader: ClientResponseReader[Inline_response_200_1]): Future[Inline_response_200_1] = {
     // create path and map variables
     val path = (addFmt("/schema"))
 
@@ -32,7 +32,7 @@ class SchemaApi(client: TransportClient, config: SwaggerConfig) extends ApiClien
   }
 
   
-  def schema.websocketHelp()(implicit reader: ClientResponseReader[Inline_response_200]): Future[Inline_response_200] = {
+  def schema.websocketHelp()(implicit reader: ClientResponseReader[Inline_response_200_1]): Future[Inline_response_200_1] = {
     // create path and map variables
     val path = (addFmt("/schema/websocketHelp"))
 

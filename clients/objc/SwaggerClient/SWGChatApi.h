@@ -49,7 +49,7 @@
 /// 
 ///
 /// @return SWGChat*
--(NSNumber*) chatSendWithCompletionBlock :(NSString*) message 
+-(NSNumber*) chatNewWithCompletionBlock :(NSString*) message 
     
     completionHandler: (void (^)(SWGChat* output, NSError* error))completionBlock;
     

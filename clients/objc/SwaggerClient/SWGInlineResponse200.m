@@ -8,7 +8,7 @@
  */
 + (JSONKeyMapper *)keyMapper
 {
-  return [[JSONKeyMapper alloc] initWithDictionary:@{  }];
+  return [[JSONKeyMapper alloc] initWithDictionary:@{ @"success": @"success" }];
 }
 
 /**
@@ -18,7 +18,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName
 {
-  NSArray *optionalProperties = @[];
+  NSArray *optionalProperties = @[@"success"];
 
   if ([optionalProperties containsObject:propertyName]) {
     return YES;

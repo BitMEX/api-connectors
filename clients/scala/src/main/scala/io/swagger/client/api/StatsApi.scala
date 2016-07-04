@@ -29,7 +29,7 @@ class StatsApi(val defBasePath: String = "https://localhost/api/v1",
    * 
    * @return List[Stats]
    */
-  def statsFind () : Option[List[Stats]] = {
+  def statsGet () : Option[List[Stats]] = {
     // create path and map variables
     val path = "/stats".replaceAll("\\{format\\}","json")
 

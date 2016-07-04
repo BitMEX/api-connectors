@@ -84,7 +84,7 @@ class ChatApi(val defBasePath: String = "https://localhost/api/v1",
    * @param message 
    * @return Chat
    */
-  def chatSend (message: String) : Option[Chat] = {
+  def chatNew (message: String) : Option[Chat] = {
     // create path and map variables
     val path = "/chat".replaceAll("\\{format\\}","json")
 

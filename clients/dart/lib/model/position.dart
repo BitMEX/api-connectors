@@ -10,16 +10,19 @@ class Position {
   String symbol = null;
   
   
+  String currency = null;
+  
+  
   String underlying = null;
   
   
   String quoteCurrency = null;
   
   
-  String currency = null;
-  
-  
   num commission = null;
+  
+  
+  num leverage = null;
   
   
   bool crossMargin = null;
@@ -253,11 +256,17 @@ class Position {
   DateTime timestamp = null;
   
   
+  num lastPrice = null;
+  
+  
+  Number lastValue = null;
+  
+  
   Position();
 
   @override
   String toString()  {
-    return 'Position[account=$account, symbol=$symbol, underlying=$underlying, quoteCurrency=$quoteCurrency, currency=$currency, commission=$commission, crossMargin=$crossMargin, rebalancedPnl=$rebalancedPnl, prevRealisedPnl=$prevRealisedPnl, prevUnrealisedPnl=$prevUnrealisedPnl, prevClosePrice=$prevClosePrice, openingTimestamp=$openingTimestamp, openingQty=$openingQty, openingCost=$openingCost, openingComm=$openingComm, openOrderBuyQty=$openOrderBuyQty, openOrderBuyCost=$openOrderBuyCost, openOrderBuyPremium=$openOrderBuyPremium, openOrderSellQty=$openOrderSellQty, openOrderSellCost=$openOrderSellCost, openOrderSellPremium=$openOrderSellPremium, execBuyQty=$execBuyQty, execBuyCost=$execBuyCost, execSellQty=$execSellQty, execSellCost=$execSellCost, execQty=$execQty, execCost=$execCost, execComm=$execComm, currentTimestamp=$currentTimestamp, currentQty=$currentQty, currentCost=$currentCost, currentComm=$currentComm, realisedCost=$realisedCost, unrealisedCost=$unrealisedCost, grossOpenCost=$grossOpenCost, grossOpenPremium=$grossOpenPremium, grossExecCost=$grossExecCost, isOpen=$isOpen, markPrice=$markPrice, markValue=$markValue, homeNotional=$homeNotional, foreignNotional=$foreignNotional, posState=$posState, posCost=$posCost, posCost2=$posCost2, posCross=$posCross, posInit=$posInit, posComm=$posComm, posLoss=$posLoss, posMargin=$posMargin, posMaint=$posMaint, posAllowance=$posAllowance, taxableMargin=$taxableMargin, initMargin=$initMargin, maintMargin=$maintMargin, sessionMargin=$sessionMargin, targetExcessMargin=$targetExcessMargin, varMargin=$varMargin, realisedGrossPnl=$realisedGrossPnl, realisedTax=$realisedTax, realisedPnl=$realisedPnl, unrealisedGrossPnl=$unrealisedGrossPnl, longBankrupt=$longBankrupt, shortBankrupt=$shortBankrupt, taxBase=$taxBase, indicativeTaxRate=$indicativeTaxRate, indicativeTax=$indicativeTax, unrealisedTax=$unrealisedTax, unrealisedPnl=$unrealisedPnl, unrealisedPnlPcnt=$unrealisedPnlPcnt, unrealisedRoePcnt=$unrealisedRoePcnt, simpleQty=$simpleQty, simpleCost=$simpleCost, simpleValue=$simpleValue, simplePnl=$simplePnl, simplePnlPcnt=$simplePnlPcnt, avgCostPrice=$avgCostPrice, avgEntryPrice=$avgEntryPrice, breakEvenPrice=$breakEvenPrice, marginCallPrice=$marginCallPrice, liquidationPrice=$liquidationPrice, bankruptPrice=$bankruptPrice, timestamp=$timestamp, ]';
+    return 'Position[account=$account, symbol=$symbol, currency=$currency, underlying=$underlying, quoteCurrency=$quoteCurrency, commission=$commission, leverage=$leverage, crossMargin=$crossMargin, rebalancedPnl=$rebalancedPnl, prevRealisedPnl=$prevRealisedPnl, prevUnrealisedPnl=$prevUnrealisedPnl, prevClosePrice=$prevClosePrice, openingTimestamp=$openingTimestamp, openingQty=$openingQty, openingCost=$openingCost, openingComm=$openingComm, openOrderBuyQty=$openOrderBuyQty, openOrderBuyCost=$openOrderBuyCost, openOrderBuyPremium=$openOrderBuyPremium, openOrderSellQty=$openOrderSellQty, openOrderSellCost=$openOrderSellCost, openOrderSellPremium=$openOrderSellPremium, execBuyQty=$execBuyQty, execBuyCost=$execBuyCost, execSellQty=$execSellQty, execSellCost=$execSellCost, execQty=$execQty, execCost=$execCost, execComm=$execComm, currentTimestamp=$currentTimestamp, currentQty=$currentQty, currentCost=$currentCost, currentComm=$currentComm, realisedCost=$realisedCost, unrealisedCost=$unrealisedCost, grossOpenCost=$grossOpenCost, grossOpenPremium=$grossOpenPremium, grossExecCost=$grossExecCost, isOpen=$isOpen, markPrice=$markPrice, markValue=$markValue, homeNotional=$homeNotional, foreignNotional=$foreignNotional, posState=$posState, posCost=$posCost, posCost2=$posCost2, posCross=$posCross, posInit=$posInit, posComm=$posComm, posLoss=$posLoss, posMargin=$posMargin, posMaint=$posMaint, posAllowance=$posAllowance, taxableMargin=$taxableMargin, initMargin=$initMargin, maintMargin=$maintMargin, sessionMargin=$sessionMargin, targetExcessMargin=$targetExcessMargin, varMargin=$varMargin, realisedGrossPnl=$realisedGrossPnl, realisedTax=$realisedTax, realisedPnl=$realisedPnl, unrealisedGrossPnl=$unrealisedGrossPnl, longBankrupt=$longBankrupt, shortBankrupt=$shortBankrupt, taxBase=$taxBase, indicativeTaxRate=$indicativeTaxRate, indicativeTax=$indicativeTax, unrealisedTax=$unrealisedTax, unrealisedPnl=$unrealisedPnl, unrealisedPnlPcnt=$unrealisedPnlPcnt, unrealisedRoePcnt=$unrealisedRoePcnt, simpleQty=$simpleQty, simpleCost=$simpleCost, simpleValue=$simpleValue, simplePnl=$simplePnl, simplePnlPcnt=$simplePnlPcnt, avgCostPrice=$avgCostPrice, avgEntryPrice=$avgEntryPrice, breakEvenPrice=$breakEvenPrice, marginCallPrice=$marginCallPrice, liquidationPrice=$liquidationPrice, bankruptPrice=$bankruptPrice, timestamp=$timestamp, lastPrice=$lastPrice, lastValue=$lastValue, ]';
   }
 
 }

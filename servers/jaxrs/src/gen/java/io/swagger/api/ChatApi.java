@@ -28,7 +28,7 @@ import javax.ws.rs.*;
 @Consumes({ "application/json", "application/x-www-form-urlencoded" })
 @Produces({ "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" })
 @io.swagger.annotations.Api(description = "the chat API")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-30T13:35:57.938-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2016-07-04T18:25:32.992-05:00")
 public class ChatApi  {
    private final ChatApiService delegate = ChatApiServiceFactory.getChatApi();
 
@@ -66,9 +66,9 @@ public class ChatApi  {
         
         @io.swagger.annotations.ApiResponse(code = 404, message = "Not Found", response = Chat.class) })
 
-    public Response chatSend(@ApiParam(value = "", required=true)@FormParam("message")  String message)
+    public Response chatNew(@ApiParam(value = "", required=true)@FormParam("message")  String message)
     throws NotFoundException {
-        return delegate.chatSend(message);
+        return delegate.chatNew(message);
     }
     @GET
     @Path("/connected")

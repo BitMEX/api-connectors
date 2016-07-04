@@ -67,6 +67,13 @@ namespace IO.Swagger.Model
   
         
         /// <summary>
+        /// Gets or Sets Settle
+        /// </summary>
+        [DataMember(Name="settle", EmitDefaultValue=false)]
+        public DateTime? Settle { get; set; }
+  
+        
+        /// <summary>
         /// Gets or Sets RelistInterval
         /// </summary>
         [DataMember(Name="relistInterval", EmitDefaultValue=false)]
@@ -92,6 +99,13 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="buyLeg", EmitDefaultValue=false)]
         public string BuyLeg { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets PositionCurrency
+        /// </summary>
+        [DataMember(Name="positionCurrency", EmitDefaultValue=false)]
+        public string PositionCurrency { get; set; }
   
         
         /// <summary>
@@ -130,6 +144,48 @@ namespace IO.Swagger.Model
   
         
         /// <summary>
+        /// Gets or Sets CalcInterval
+        /// </summary>
+        [DataMember(Name="calcInterval", EmitDefaultValue=false)]
+        public DateTime? CalcInterval { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets PublishInterval
+        /// </summary>
+        [DataMember(Name="publishInterval", EmitDefaultValue=false)]
+        public DateTime? PublishInterval { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets PublishTime
+        /// </summary>
+        [DataMember(Name="publishTime", EmitDefaultValue=false)]
+        public DateTime? PublishTime { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets MaxOrderQty
+        /// </summary>
+        [DataMember(Name="maxOrderQty", EmitDefaultValue=false)]
+        public double? MaxOrderQty { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets MaxPrice
+        /// </summary>
+        [DataMember(Name="maxPrice", EmitDefaultValue=false)]
+        public double? MaxPrice { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets LotSize
+        /// </summary>
+        [DataMember(Name="lotSize", EmitDefaultValue=false)]
+        public double? LotSize { get; set; }
+  
+        
+        /// <summary>
         /// Gets or Sets TickSize
         /// </summary>
         [DataMember(Name="tickSize", EmitDefaultValue=false)]
@@ -148,6 +204,13 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="settlCurrency", EmitDefaultValue=false)]
         public string SettlCurrency { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets UnderlyingToPositionMultiplier
+        /// </summary>
+        [DataMember(Name="underlyingToPositionMultiplier", EmitDefaultValue=false)]
+        public double? UnderlyingToPositionMultiplier { get; set; }
   
         
         /// <summary>
@@ -228,6 +291,13 @@ namespace IO.Swagger.Model
   
         
         /// <summary>
+        /// Gets or Sets SettlementFee
+        /// </summary>
+        [DataMember(Name="settlementFee", EmitDefaultValue=false)]
+        public double? SettlementFee { get; set; }
+  
+        
+        /// <summary>
         /// Gets or Sets InsuranceFee
         /// </summary>
         [DataMember(Name="insuranceFee", EmitDefaultValue=false)]
@@ -235,24 +305,66 @@ namespace IO.Swagger.Model
   
         
         /// <summary>
-        /// Gets or Sets HedgerMakerFee
+        /// Gets or Sets FundingBaseSymbol
         /// </summary>
-        [DataMember(Name="hedgerMakerFee", EmitDefaultValue=false)]
-        public double? HedgerMakerFee { get; set; }
+        [DataMember(Name="fundingBaseSymbol", EmitDefaultValue=false)]
+        public string FundingBaseSymbol { get; set; }
   
         
         /// <summary>
-        /// Gets or Sets HedgerTakerFee
+        /// Gets or Sets FundingQuoteSymbol
         /// </summary>
-        [DataMember(Name="hedgerTakerFee", EmitDefaultValue=false)]
-        public double? HedgerTakerFee { get; set; }
+        [DataMember(Name="fundingQuoteSymbol", EmitDefaultValue=false)]
+        public string FundingQuoteSymbol { get; set; }
   
         
         /// <summary>
-        /// Gets or Sets HedgerInsuranceFee
+        /// Gets or Sets FundingPremiumSymbol
         /// </summary>
-        [DataMember(Name="hedgerInsuranceFee", EmitDefaultValue=false)]
-        public double? HedgerInsuranceFee { get; set; }
+        [DataMember(Name="fundingPremiumSymbol", EmitDefaultValue=false)]
+        public string FundingPremiumSymbol { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets FundingTimestamp
+        /// </summary>
+        [DataMember(Name="fundingTimestamp", EmitDefaultValue=false)]
+        public DateTime? FundingTimestamp { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets FundingInterval
+        /// </summary>
+        [DataMember(Name="fundingInterval", EmitDefaultValue=false)]
+        public DateTime? FundingInterval { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets FundingRate
+        /// </summary>
+        [DataMember(Name="fundingRate", EmitDefaultValue=false)]
+        public double? FundingRate { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets IndicativeFundingRate
+        /// </summary>
+        [DataMember(Name="indicativeFundingRate", EmitDefaultValue=false)]
+        public double? IndicativeFundingRate { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets RebalanceTimestamp
+        /// </summary>
+        [DataMember(Name="rebalanceTimestamp", EmitDefaultValue=false)]
+        public DateTime? RebalanceTimestamp { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets RebalanceInterval
+        /// </summary>
+        [DataMember(Name="rebalanceInterval", EmitDefaultValue=false)]
+        public DateTime? RebalanceInterval { get; set; }
   
         
         /// <summary>
@@ -572,18 +684,27 @@ namespace IO.Swagger.Model
             sb.Append("  Listing: ").Append(Listing).Append("\n");
             sb.Append("  Front: ").Append(Front).Append("\n");
             sb.Append("  Expiry: ").Append(Expiry).Append("\n");
+            sb.Append("  Settle: ").Append(Settle).Append("\n");
             sb.Append("  RelistInterval: ").Append(RelistInterval).Append("\n");
             sb.Append("  InverseLeg: ").Append(InverseLeg).Append("\n");
             sb.Append("  SellLeg: ").Append(SellLeg).Append("\n");
             sb.Append("  BuyLeg: ").Append(BuyLeg).Append("\n");
+            sb.Append("  PositionCurrency: ").Append(PositionCurrency).Append("\n");
             sb.Append("  Underlying: ").Append(Underlying).Append("\n");
             sb.Append("  QuoteCurrency: ").Append(QuoteCurrency).Append("\n");
             sb.Append("  UnderlyingSymbol: ").Append(UnderlyingSymbol).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  ReferenceSymbol: ").Append(ReferenceSymbol).Append("\n");
+            sb.Append("  CalcInterval: ").Append(CalcInterval).Append("\n");
+            sb.Append("  PublishInterval: ").Append(PublishInterval).Append("\n");
+            sb.Append("  PublishTime: ").Append(PublishTime).Append("\n");
+            sb.Append("  MaxOrderQty: ").Append(MaxOrderQty).Append("\n");
+            sb.Append("  MaxPrice: ").Append(MaxPrice).Append("\n");
+            sb.Append("  LotSize: ").Append(LotSize).Append("\n");
             sb.Append("  TickSize: ").Append(TickSize).Append("\n");
             sb.Append("  Multiplier: ").Append(Multiplier).Append("\n");
             sb.Append("  SettlCurrency: ").Append(SettlCurrency).Append("\n");
+            sb.Append("  UnderlyingToPositionMultiplier: ").Append(UnderlyingToPositionMultiplier).Append("\n");
             sb.Append("  UnderlyingToSettleMultiplier: ").Append(UnderlyingToSettleMultiplier).Append("\n");
             sb.Append("  QuoteToSettleMultiplier: ").Append(QuoteToSettleMultiplier).Append("\n");
             sb.Append("  IsQuanto: ").Append(IsQuanto).Append("\n");
@@ -595,10 +716,17 @@ namespace IO.Swagger.Model
             sb.Append("  Taxed: ").Append(Taxed).Append("\n");
             sb.Append("  MakerFee: ").Append(MakerFee).Append("\n");
             sb.Append("  TakerFee: ").Append(TakerFee).Append("\n");
+            sb.Append("  SettlementFee: ").Append(SettlementFee).Append("\n");
             sb.Append("  InsuranceFee: ").Append(InsuranceFee).Append("\n");
-            sb.Append("  HedgerMakerFee: ").Append(HedgerMakerFee).Append("\n");
-            sb.Append("  HedgerTakerFee: ").Append(HedgerTakerFee).Append("\n");
-            sb.Append("  HedgerInsuranceFee: ").Append(HedgerInsuranceFee).Append("\n");
+            sb.Append("  FundingBaseSymbol: ").Append(FundingBaseSymbol).Append("\n");
+            sb.Append("  FundingQuoteSymbol: ").Append(FundingQuoteSymbol).Append("\n");
+            sb.Append("  FundingPremiumSymbol: ").Append(FundingPremiumSymbol).Append("\n");
+            sb.Append("  FundingTimestamp: ").Append(FundingTimestamp).Append("\n");
+            sb.Append("  FundingInterval: ").Append(FundingInterval).Append("\n");
+            sb.Append("  FundingRate: ").Append(FundingRate).Append("\n");
+            sb.Append("  IndicativeFundingRate: ").Append(IndicativeFundingRate).Append("\n");
+            sb.Append("  RebalanceTimestamp: ").Append(RebalanceTimestamp).Append("\n");
+            sb.Append("  RebalanceInterval: ").Append(RebalanceInterval).Append("\n");
             sb.Append("  OpeningTimestamp: ").Append(OpeningTimestamp).Append("\n");
             sb.Append("  ClosingTimestamp: ").Append(ClosingTimestamp).Append("\n");
             sb.Append("  SessionInterval: ").Append(SessionInterval).Append("\n");
@@ -715,6 +843,11 @@ namespace IO.Swagger.Model
                     this.Expiry.Equals(other.Expiry)
                 ) && 
                 (
+                    this.Settle == other.Settle ||
+                    this.Settle != null &&
+                    this.Settle.Equals(other.Settle)
+                ) && 
+                (
                     this.RelistInterval == other.RelistInterval ||
                     this.RelistInterval != null &&
                     this.RelistInterval.Equals(other.RelistInterval)
@@ -733,6 +866,11 @@ namespace IO.Swagger.Model
                     this.BuyLeg == other.BuyLeg ||
                     this.BuyLeg != null &&
                     this.BuyLeg.Equals(other.BuyLeg)
+                ) && 
+                (
+                    this.PositionCurrency == other.PositionCurrency ||
+                    this.PositionCurrency != null &&
+                    this.PositionCurrency.Equals(other.PositionCurrency)
                 ) && 
                 (
                     this.Underlying == other.Underlying ||
@@ -760,6 +898,36 @@ namespace IO.Swagger.Model
                     this.ReferenceSymbol.Equals(other.ReferenceSymbol)
                 ) && 
                 (
+                    this.CalcInterval == other.CalcInterval ||
+                    this.CalcInterval != null &&
+                    this.CalcInterval.Equals(other.CalcInterval)
+                ) && 
+                (
+                    this.PublishInterval == other.PublishInterval ||
+                    this.PublishInterval != null &&
+                    this.PublishInterval.Equals(other.PublishInterval)
+                ) && 
+                (
+                    this.PublishTime == other.PublishTime ||
+                    this.PublishTime != null &&
+                    this.PublishTime.Equals(other.PublishTime)
+                ) && 
+                (
+                    this.MaxOrderQty == other.MaxOrderQty ||
+                    this.MaxOrderQty != null &&
+                    this.MaxOrderQty.Equals(other.MaxOrderQty)
+                ) && 
+                (
+                    this.MaxPrice == other.MaxPrice ||
+                    this.MaxPrice != null &&
+                    this.MaxPrice.Equals(other.MaxPrice)
+                ) && 
+                (
+                    this.LotSize == other.LotSize ||
+                    this.LotSize != null &&
+                    this.LotSize.Equals(other.LotSize)
+                ) && 
+                (
                     this.TickSize == other.TickSize ||
                     this.TickSize != null &&
                     this.TickSize.Equals(other.TickSize)
@@ -773,6 +941,11 @@ namespace IO.Swagger.Model
                     this.SettlCurrency == other.SettlCurrency ||
                     this.SettlCurrency != null &&
                     this.SettlCurrency.Equals(other.SettlCurrency)
+                ) && 
+                (
+                    this.UnderlyingToPositionMultiplier == other.UnderlyingToPositionMultiplier ||
+                    this.UnderlyingToPositionMultiplier != null &&
+                    this.UnderlyingToPositionMultiplier.Equals(other.UnderlyingToPositionMultiplier)
                 ) && 
                 (
                     this.UnderlyingToSettleMultiplier == other.UnderlyingToSettleMultiplier ||
@@ -830,24 +1003,59 @@ namespace IO.Swagger.Model
                     this.TakerFee.Equals(other.TakerFee)
                 ) && 
                 (
+                    this.SettlementFee == other.SettlementFee ||
+                    this.SettlementFee != null &&
+                    this.SettlementFee.Equals(other.SettlementFee)
+                ) && 
+                (
                     this.InsuranceFee == other.InsuranceFee ||
                     this.InsuranceFee != null &&
                     this.InsuranceFee.Equals(other.InsuranceFee)
                 ) && 
                 (
-                    this.HedgerMakerFee == other.HedgerMakerFee ||
-                    this.HedgerMakerFee != null &&
-                    this.HedgerMakerFee.Equals(other.HedgerMakerFee)
+                    this.FundingBaseSymbol == other.FundingBaseSymbol ||
+                    this.FundingBaseSymbol != null &&
+                    this.FundingBaseSymbol.Equals(other.FundingBaseSymbol)
                 ) && 
                 (
-                    this.HedgerTakerFee == other.HedgerTakerFee ||
-                    this.HedgerTakerFee != null &&
-                    this.HedgerTakerFee.Equals(other.HedgerTakerFee)
+                    this.FundingQuoteSymbol == other.FundingQuoteSymbol ||
+                    this.FundingQuoteSymbol != null &&
+                    this.FundingQuoteSymbol.Equals(other.FundingQuoteSymbol)
                 ) && 
                 (
-                    this.HedgerInsuranceFee == other.HedgerInsuranceFee ||
-                    this.HedgerInsuranceFee != null &&
-                    this.HedgerInsuranceFee.Equals(other.HedgerInsuranceFee)
+                    this.FundingPremiumSymbol == other.FundingPremiumSymbol ||
+                    this.FundingPremiumSymbol != null &&
+                    this.FundingPremiumSymbol.Equals(other.FundingPremiumSymbol)
+                ) && 
+                (
+                    this.FundingTimestamp == other.FundingTimestamp ||
+                    this.FundingTimestamp != null &&
+                    this.FundingTimestamp.Equals(other.FundingTimestamp)
+                ) && 
+                (
+                    this.FundingInterval == other.FundingInterval ||
+                    this.FundingInterval != null &&
+                    this.FundingInterval.Equals(other.FundingInterval)
+                ) && 
+                (
+                    this.FundingRate == other.FundingRate ||
+                    this.FundingRate != null &&
+                    this.FundingRate.Equals(other.FundingRate)
+                ) && 
+                (
+                    this.IndicativeFundingRate == other.IndicativeFundingRate ||
+                    this.IndicativeFundingRate != null &&
+                    this.IndicativeFundingRate.Equals(other.IndicativeFundingRate)
+                ) && 
+                (
+                    this.RebalanceTimestamp == other.RebalanceTimestamp ||
+                    this.RebalanceTimestamp != null &&
+                    this.RebalanceTimestamp.Equals(other.RebalanceTimestamp)
+                ) && 
+                (
+                    this.RebalanceInterval == other.RebalanceInterval ||
+                    this.RebalanceInterval != null &&
+                    this.RebalanceInterval.Equals(other.RebalanceInterval)
                 ) && 
                 (
                     this.OpeningTimestamp == other.OpeningTimestamp ||
@@ -1099,6 +1307,9 @@ namespace IO.Swagger.Model
                 if (this.Expiry != null)
                     hash = hash * 57 + this.Expiry.GetHashCode();
                 
+                if (this.Settle != null)
+                    hash = hash * 57 + this.Settle.GetHashCode();
+                
                 if (this.RelistInterval != null)
                     hash = hash * 57 + this.RelistInterval.GetHashCode();
                 
@@ -1110,6 +1321,9 @@ namespace IO.Swagger.Model
                 
                 if (this.BuyLeg != null)
                     hash = hash * 57 + this.BuyLeg.GetHashCode();
+                
+                if (this.PositionCurrency != null)
+                    hash = hash * 57 + this.PositionCurrency.GetHashCode();
                 
                 if (this.Underlying != null)
                     hash = hash * 57 + this.Underlying.GetHashCode();
@@ -1126,6 +1340,24 @@ namespace IO.Swagger.Model
                 if (this.ReferenceSymbol != null)
                     hash = hash * 57 + this.ReferenceSymbol.GetHashCode();
                 
+                if (this.CalcInterval != null)
+                    hash = hash * 57 + this.CalcInterval.GetHashCode();
+                
+                if (this.PublishInterval != null)
+                    hash = hash * 57 + this.PublishInterval.GetHashCode();
+                
+                if (this.PublishTime != null)
+                    hash = hash * 57 + this.PublishTime.GetHashCode();
+                
+                if (this.MaxOrderQty != null)
+                    hash = hash * 57 + this.MaxOrderQty.GetHashCode();
+                
+                if (this.MaxPrice != null)
+                    hash = hash * 57 + this.MaxPrice.GetHashCode();
+                
+                if (this.LotSize != null)
+                    hash = hash * 57 + this.LotSize.GetHashCode();
+                
                 if (this.TickSize != null)
                     hash = hash * 57 + this.TickSize.GetHashCode();
                 
@@ -1134,6 +1366,9 @@ namespace IO.Swagger.Model
                 
                 if (this.SettlCurrency != null)
                     hash = hash * 57 + this.SettlCurrency.GetHashCode();
+                
+                if (this.UnderlyingToPositionMultiplier != null)
+                    hash = hash * 57 + this.UnderlyingToPositionMultiplier.GetHashCode();
                 
                 if (this.UnderlyingToSettleMultiplier != null)
                     hash = hash * 57 + this.UnderlyingToSettleMultiplier.GetHashCode();
@@ -1168,17 +1403,38 @@ namespace IO.Swagger.Model
                 if (this.TakerFee != null)
                     hash = hash * 57 + this.TakerFee.GetHashCode();
                 
+                if (this.SettlementFee != null)
+                    hash = hash * 57 + this.SettlementFee.GetHashCode();
+                
                 if (this.InsuranceFee != null)
                     hash = hash * 57 + this.InsuranceFee.GetHashCode();
                 
-                if (this.HedgerMakerFee != null)
-                    hash = hash * 57 + this.HedgerMakerFee.GetHashCode();
+                if (this.FundingBaseSymbol != null)
+                    hash = hash * 57 + this.FundingBaseSymbol.GetHashCode();
                 
-                if (this.HedgerTakerFee != null)
-                    hash = hash * 57 + this.HedgerTakerFee.GetHashCode();
+                if (this.FundingQuoteSymbol != null)
+                    hash = hash * 57 + this.FundingQuoteSymbol.GetHashCode();
                 
-                if (this.HedgerInsuranceFee != null)
-                    hash = hash * 57 + this.HedgerInsuranceFee.GetHashCode();
+                if (this.FundingPremiumSymbol != null)
+                    hash = hash * 57 + this.FundingPremiumSymbol.GetHashCode();
+                
+                if (this.FundingTimestamp != null)
+                    hash = hash * 57 + this.FundingTimestamp.GetHashCode();
+                
+                if (this.FundingInterval != null)
+                    hash = hash * 57 + this.FundingInterval.GetHashCode();
+                
+                if (this.FundingRate != null)
+                    hash = hash * 57 + this.FundingRate.GetHashCode();
+                
+                if (this.IndicativeFundingRate != null)
+                    hash = hash * 57 + this.IndicativeFundingRate.GetHashCode();
+                
+                if (this.RebalanceTimestamp != null)
+                    hash = hash * 57 + this.RebalanceTimestamp.GetHashCode();
+                
+                if (this.RebalanceInterval != null)
+                    hash = hash * 57 + this.RebalanceInterval.GetHashCode();
                 
                 if (this.OpeningTimestamp != null)
                     hash = hash * 57 + this.OpeningTimestamp.GetHashCode();

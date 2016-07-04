@@ -10,6 +10,9 @@ class Order {
   String clOrdID = null;
   
   
+  String clOrdLinkID = null;
+  
+  
   Number account = null;
   
   
@@ -28,10 +31,16 @@ class Order {
   num price = null;
   
   
-  Number minQty = null;
+  Number displayQty = null;
   
   
   num stopPx = null;
+  
+  
+  num pegOffsetValue = null;
+  
+  
+  String pegPriceType = null;
   
   
   String currency = null;
@@ -46,10 +55,19 @@ class Order {
   String timeInForce = null;
   
   
+  String execInst = null;
+  
+  
+  String contingencyType = null;
+  
+  
   String exDestination = null;
   
   
   String ordStatus = null;
+  
+  
+  String triggered = null;
   
   
   bool workingIndicator = null;
@@ -89,7 +107,7 @@ class Order {
 
   @override
   String toString()  {
-    return 'Order[orderID=$orderID, clOrdID=$clOrdID, account=$account, symbol=$symbol, side=$side, simpleOrderQty=$simpleOrderQty, orderQty=$orderQty, price=$price, minQty=$minQty, stopPx=$stopPx, currency=$currency, settlCurrency=$settlCurrency, ordType=$ordType, timeInForce=$timeInForce, exDestination=$exDestination, ordStatus=$ordStatus, workingIndicator=$workingIndicator, ordRejReason=$ordRejReason, simpleLeavesQty=$simpleLeavesQty, leavesQty=$leavesQty, simpleCumQty=$simpleCumQty, cumQty=$cumQty, avgPx=$avgPx, multiLegReportingType=$multiLegReportingType, text=$text, transactTime=$transactTime, timestamp=$timestamp, ]';
+    return 'Order[orderID=$orderID, clOrdID=$clOrdID, clOrdLinkID=$clOrdLinkID, account=$account, symbol=$symbol, side=$side, simpleOrderQty=$simpleOrderQty, orderQty=$orderQty, price=$price, displayQty=$displayQty, stopPx=$stopPx, pegOffsetValue=$pegOffsetValue, pegPriceType=$pegPriceType, currency=$currency, settlCurrency=$settlCurrency, ordType=$ordType, timeInForce=$timeInForce, execInst=$execInst, contingencyType=$contingencyType, exDestination=$exDestination, ordStatus=$ordStatus, triggered=$triggered, workingIndicator=$workingIndicator, ordRejReason=$ordRejReason, simpleLeavesQty=$simpleLeavesQty, leavesQty=$leavesQty, simpleCumQty=$simpleCumQty, cumQty=$cumQty, avgPx=$avgPx, multiLegReportingType=$multiLegReportingType, text=$text, transactTime=$transactTime, timestamp=$timestamp, ]';
   }
 
 }

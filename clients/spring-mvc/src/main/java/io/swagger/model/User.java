@@ -11,10 +11,11 @@ import java.util.Objects;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2015-11-30T13:35:50.750-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2016-07-04T18:25:23.952-05:00")
 public class User  {
   
   private BigDecimal id = null;
+  private BigDecimal ownerId = null;
   private String firstname = null;
   private String lastname = null;
   private String status = null;
@@ -25,7 +26,6 @@ public class User  {
   private Date created = null;
   private Date lastUpdated = null;
   private UserPreferences preferences = null;
-  private String role = "user";
   private String tFAEnabled = null;
   private String affiliateID = null;
   private String pgpPubKey = null;
@@ -42,6 +42,18 @@ public class User  {
   }
   public void setId(BigDecimal id) {
     this.id = id;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("ownerId")
+  public BigDecimal getOwnerId() {
+    return ownerId;
+  }
+  public void setOwnerId(BigDecimal ownerId) {
+    this.ownerId = ownerId;
   }
 
   
@@ -168,18 +180,6 @@ public class User  {
   /**
    **/
   @ApiModelProperty(value = "")
-  @JsonProperty("role")
-  public String getRole() {
-    return role;
-  }
-  public void setRole(String role) {
-    this.role = role;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(value = "")
   @JsonProperty("TFAEnabled")
   public String getTFAEnabled() {
     return tFAEnabled;
@@ -248,6 +248,7 @@ public class User  {
     }
     User user = (User) o;
     return Objects.equals(id, user.id) &&
+        Objects.equals(ownerId, user.ownerId) &&
         Objects.equals(firstname, user.firstname) &&
         Objects.equals(lastname, user.lastname) &&
         Objects.equals(status, user.status) &&
@@ -258,7 +259,6 @@ public class User  {
         Objects.equals(created, user.created) &&
         Objects.equals(lastUpdated, user.lastUpdated) &&
         Objects.equals(preferences, user.preferences) &&
-        Objects.equals(role, user.role) &&
         Objects.equals(tFAEnabled, user.tFAEnabled) &&
         Objects.equals(affiliateID, user.affiliateID) &&
         Objects.equals(pgpPubKey, user.pgpPubKey) &&
@@ -268,7 +268,7 @@ public class User  {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, lastname, status, username, email, phone, countryCode, created, lastUpdated, preferences, role, tFAEnabled, affiliateID, pgpPubKey, country, disabled);
+    return Objects.hash(id, ownerId, firstname, lastname, status, username, email, phone, countryCode, created, lastUpdated, preferences, tFAEnabled, affiliateID, pgpPubKey, country, disabled);
   }
 
   @Override
@@ -277,6 +277,7 @@ public class User  {
     sb.append("class User {\n");
     
     sb.append("  id: ").append(id).append("\n");
+    sb.append("  ownerId: ").append(ownerId).append("\n");
     sb.append("  firstname: ").append(firstname).append("\n");
     sb.append("  lastname: ").append(lastname).append("\n");
     sb.append("  status: ").append(status).append("\n");
@@ -287,7 +288,6 @@ public class User  {
     sb.append("  created: ").append(created).append("\n");
     sb.append("  lastUpdated: ").append(lastUpdated).append("\n");
     sb.append("  preferences: ").append(preferences).append("\n");
-    sb.append("  role: ").append(role).append("\n");
     sb.append("  tFAEnabled: ").append(tFAEnabled).append("\n");
     sb.append("  affiliateID: ").append(affiliateID).append("\n");
     sb.append("  pgpPubKey: ").append(pgpPubKey).append("\n");

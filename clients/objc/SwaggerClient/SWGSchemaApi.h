@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "SWGInlineResponse200.h"
+#import "SWGInlineResponse2001.h"
 #import "SWGError.h"
 #import "SWGObject.h"
 #import "SWGApiClient.h"
@@ -28,10 +28,10 @@
 /// @param model Optional model filter. If omitted, will return all models.
 /// 
 ///
-/// @return SWGInlineResponse200*
--(NSNumber*) schemaFindWithCompletionBlock :(NSString*) model 
+/// @return SWGInlineResponse2001*
+-(NSNumber*) schemaGetWithCompletionBlock :(NSString*) model 
     
-    completionHandler: (void (^)(SWGInlineResponse200* output, NSError* error))completionBlock;
+    completionHandler: (void (^)(SWGInlineResponse2001* output, NSError* error))completionBlock;
     
 
 
@@ -42,9 +42,9 @@
 ///
 /// 
 ///
-/// @return SWGInlineResponse200*
+/// @return SWGInlineResponse2001*
 -(NSNumber*) schemaWebsocketHelpWithCompletionBlock :
-    (void (^)(SWGInlineResponse200* output, NSError* error))completionBlock;
+    (void (^)(SWGInlineResponse2001* output, NSError* error))completionBlock;
     
 
 

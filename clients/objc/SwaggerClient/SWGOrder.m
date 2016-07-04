@@ -8,7 +8,7 @@
  */
 + (JSONKeyMapper *)keyMapper
 {
-  return [[JSONKeyMapper alloc] initWithDictionary:@{ @"orderID": @"orderID", @"clOrdID": @"clOrdID", @"account": @"account", @"symbol": @"symbol", @"side": @"side", @"simpleOrderQty": @"simpleOrderQty", @"orderQty": @"orderQty", @"price": @"price", @"minQty": @"minQty", @"stopPx": @"stopPx", @"currency": @"currency", @"settlCurrency": @"settlCurrency", @"ordType": @"ordType", @"timeInForce": @"timeInForce", @"exDestination": @"exDestination", @"ordStatus": @"ordStatus", @"workingIndicator": @"workingIndicator", @"ordRejReason": @"ordRejReason", @"simpleLeavesQty": @"simpleLeavesQty", @"leavesQty": @"leavesQty", @"simpleCumQty": @"simpleCumQty", @"cumQty": @"cumQty", @"avgPx": @"avgPx", @"multiLegReportingType": @"multiLegReportingType", @"text": @"text", @"transactTime": @"transactTime", @"timestamp": @"timestamp" }];
+  return [[JSONKeyMapper alloc] initWithDictionary:@{ @"orderID": @"orderID", @"clOrdID": @"clOrdID", @"clOrdLinkID": @"clOrdLinkID", @"account": @"account", @"symbol": @"symbol", @"side": @"side", @"simpleOrderQty": @"simpleOrderQty", @"orderQty": @"orderQty", @"price": @"price", @"displayQty": @"displayQty", @"stopPx": @"stopPx", @"pegOffsetValue": @"pegOffsetValue", @"pegPriceType": @"pegPriceType", @"currency": @"currency", @"settlCurrency": @"settlCurrency", @"ordType": @"ordType", @"timeInForce": @"timeInForce", @"execInst": @"execInst", @"contingencyType": @"contingencyType", @"exDestination": @"exDestination", @"ordStatus": @"ordStatus", @"triggered": @"triggered", @"workingIndicator": @"workingIndicator", @"ordRejReason": @"ordRejReason", @"simpleLeavesQty": @"simpleLeavesQty", @"leavesQty": @"leavesQty", @"simpleCumQty": @"simpleCumQty", @"cumQty": @"cumQty", @"avgPx": @"avgPx", @"multiLegReportingType": @"multiLegReportingType", @"text": @"text", @"transactTime": @"transactTime", @"timestamp": @"timestamp" }];
 }
 
 /**
@@ -18,7 +18,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName
 {
-  NSArray *optionalProperties = @[@"clOrdID", @"account", @"symbol", @"side", @"simpleOrderQty", @"orderQty", @"price", @"minQty", @"stopPx", @"currency", @"settlCurrency", @"ordType", @"timeInForce", @"exDestination", @"ordStatus", @"workingIndicator", @"ordRejReason", @"simpleLeavesQty", @"leavesQty", @"simpleCumQty", @"cumQty", @"avgPx", @"multiLegReportingType", @"text", @"transactTime", @"timestamp"];
+  NSArray *optionalProperties = @[@"clOrdID", @"clOrdLinkID", @"account", @"symbol", @"side", @"simpleOrderQty", @"orderQty", @"price", @"displayQty", @"stopPx", @"pegOffsetValue", @"pegPriceType", @"currency", @"settlCurrency", @"ordType", @"timeInForce", @"execInst", @"contingencyType", @"exDestination", @"ordStatus", @"triggered", @"workingIndicator", @"ordRejReason", @"simpleLeavesQty", @"leavesQty", @"simpleCumQty", @"cumQty", @"avgPx", @"multiLegReportingType", @"text", @"transactTime", @"timestamp"];
 
   if ([optionalProperties containsObject:propertyName]) {
     return YES;

@@ -3,6 +3,7 @@ package com.wordnik.client.api
 import com.wordnik.client.model.OrderBook
 import com.wordnik.client.model.Error
 import java.math.BigDecimal
+import com.wordnik.client.model.OrderBookL2
 
 import java.io.File
 
@@ -30,13 +31,45 @@ class OrderBookApi (implicit val swagger: Swagger) extends ScalatraServlet
   }
   
 
-  val orderBook.getOrderBookOperation = (apiOperation[List[OrderBook]]("orderBook.getOrderBook")
-      summary "Get current orderbook."
+  val orderBook.getOperation = (apiOperation[List[OrderBook]]("orderBook.get")
+      summary "Get current orderbook [deprecated, use /orderBook/L2]."
       parameters(queryParam[String]("symbol").description(""),
-        queryParam[BigDecimal]("depth").description("").optional)
+        queryParam[BigDecimal]("depth").description("").optional.defaultValue(25))
   )
 
-  get("/orderBook",operation(orderBook.getOrderBookOperation)) {
+  get("/orderBook",operation(orderBook.getOperation)) {
+    
+    
+    
+        
+      
+      val symbol = params.getAs[String]("symbol")
+            
+
+    
+    println("symbol: " + symbol)
+  
+    
+    
+        
+      
+      val depth = params.getAs[BigDecimal]("depth")
+            
+
+    
+    println("depth: " + depth)
+  
+  }
+
+  
+
+  val orderBook.getL2Operation = (apiOperation[List[OrderBookL2]]("orderBook.getL2")
+      summary "Get current orderbook in vertical format."
+      parameters(queryParam[String]("symbol").description(""),
+        queryParam[BigDecimal]("depth").description("").optional.defaultValue(25))
+  )
+
+  get("/orderBook/L2",operation(orderBook.getL2Operation)) {
     
     
     

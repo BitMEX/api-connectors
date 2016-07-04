@@ -48,7 +48,7 @@ class TradeApi(object):
     def trade_get(self, **kwargs):
         """
         Get Trades.
-        
+        Please note that indices (symbols starting with `.`) post trades at intervals to the trade feed. These have a `size` of 0 and are used only to indicate a changing price.\n\nSee [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AE_6569.html) for explanations of these fields.
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -60,8 +60,8 @@ class TradeApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param str symbol: Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly', 'quarterly', and 'biquarterly'.
-        :param str filter: Generic table filter. Send JSON key/value pairs, such as {\"key\": \"value\"}. You can key on individual fields, and do more advanced querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\">http://localhost:2001/app/restAPI#timestamp-filters</a> for more details.
+        :param str symbol: Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+        :param str filter: Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
         :param str columns: Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
         :param float count: Number of results to fetch.
         :param float start: Starting point for results.
@@ -158,8 +158,8 @@ class TradeApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str bin_size: Time interval to bucket by. Available options: ['1m', '5m', '1h', '1d'].
-        :param str symbol: Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly', 'quarterly', and 'biquarterly'.
-        :param str filter: Generic table filter. Send JSON key/value pairs, such as {\"key\": \"value\"}. You can key on individual fields, and do more advanced querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\">http://localhost:2001/app/restAPI#timestamp-filters</a> for more details.
+        :param str symbol: Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+        :param str filter: Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
         :param str columns: Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
         :param float count: Number of results to fetch.
         :param float start: Starting point for results.
@@ -238,173 +238,6 @@ class TradeApi(object):
                                             post_params=form_params,
                                             files=files,
                                             response_type='list[TradeBin]',
-                                            auth_settings=auth_settings,
-                                            callback=params.get('callback'))
-        return response
-
-    def trade_get_by_date(self, start_time, **kwargs):
-        """
-        Get trades between two dates. [Deprecated, use GET /trades]
-        
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please define a `callback` function
-        to be invoked when receiving the response.
-        >>> def callback_function(response):
-        >>>     pprint(response)
-        >>>
-        >>> thread = api.trade_get_by_date(start_time, callback=callback_function)
-
-        :param callback function: The callback function
-            for asynchronous request. (optional)
-        :param date start_time: Start date. (required)
-        :param str symbol: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
-        :param date end_time: End Date.
-        :return: list[Trade]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        all_params = ['start_time', 'symbol', 'end_time']
-        all_params.append('callback')
-
-        params = locals()
-        for key, val in iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method trade_get_by_date" % key
-                )
-            params[key] = val
-        del params['kwargs']
-
-        # verify the required parameter 'start_time' is set
-        if ('start_time' not in params) or (params['start_time'] is None):
-            raise ValueError("Missing the required parameter `start_time` when calling `trade_get_by_date`")
-
-        resource_path = '/trade/byDate'.replace('{format}', 'json')
-        method = 'GET'
-
-        path_params = {}
-
-        query_params = {}
-        if 'symbol' in params:
-            query_params['symbol'] = params['symbol']
-        if 'start_time' in params:
-            query_params['startTime'] = params['start_time']
-        if 'end_time' in params:
-            query_params['endTime'] = params['end_time']
-
-        header_params = {}
-
-        form_params = {}
-        files = {}
-
-        body_params = None
-
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.\
-            select_header_accept(['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])
-        if not header_params['Accept']:
-            del header_params['Accept']
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.\
-            select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
-
-        # Authentication setting
-        auth_settings = []
-
-        response = self.api_client.call_api(resource_path, method,
-                                            path_params,
-                                            query_params,
-                                            header_params,
-                                            body=body_params,
-                                            post_params=form_params,
-                                            files=files,
-                                            response_type='list[Trade]',
-                                            auth_settings=auth_settings,
-                                            callback=params.get('callback'))
-        return response
-
-    def trade_get_recent(self, count, **kwargs):
-        """
-        Get recent trades. [Deprecated, use GET /trades]
-        
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please define a `callback` function
-        to be invoked when receiving the response.
-        >>> def callback_function(response):
-        >>>     pprint(response)
-        >>>
-        >>> thread = api.trade_get_recent(count, callback=callback_function)
-
-        :param callback function: The callback function
-            for asynchronous request. (optional)
-        :param float count: Number of trades to fetch. (required)
-        :param str symbol: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
-        :return: list[Trade]
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        all_params = ['count', 'symbol']
-        all_params.append('callback')
-
-        params = locals()
-        for key, val in iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method trade_get_recent" % key
-                )
-            params[key] = val
-        del params['kwargs']
-
-        # verify the required parameter 'count' is set
-        if ('count' not in params) or (params['count'] is None):
-            raise ValueError("Missing the required parameter `count` when calling `trade_get_recent`")
-
-        resource_path = '/trade/recent'.replace('{format}', 'json')
-        method = 'GET'
-
-        path_params = {}
-
-        query_params = {}
-        if 'symbol' in params:
-            query_params['symbol'] = params['symbol']
-        if 'count' in params:
-            query_params['count'] = params['count']
-
-        header_params = {}
-
-        form_params = {}
-        files = {}
-
-        body_params = None
-
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.\
-            select_header_accept(['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])
-        if not header_params['Accept']:
-            del header_params['Accept']
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.\
-            select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
-
-        # Authentication setting
-        auth_settings = []
-
-        response = self.api_client.call_api(resource_path, method,
-                                            path_params,
-                                            query_params,
-                                            header_params,
-                                            body=body_params,
-                                            post_params=form_params,
-                                            files=files,
-                                            response_type='list[Trade]',
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'))
         return response

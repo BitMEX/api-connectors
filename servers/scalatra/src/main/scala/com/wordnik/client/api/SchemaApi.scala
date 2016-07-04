@@ -1,7 +1,7 @@
 package com.wordnik.client.api
 
 import com.wordnik.client.model.Error
-import com.wordnik.client.model.Inline_response_200
+import com.wordnik.client.model.Inline_response_200_1
 
 import java.io.File
 
@@ -29,12 +29,12 @@ class SchemaApi (implicit val swagger: Swagger) extends ScalatraServlet
   }
   
 
-  val schema.findOperation = (apiOperation[Inline_response_200]("schema.find")
+  val schema.getOperation = (apiOperation[Inline_response_200_1]("schema.get")
       summary "Get model schemata for data objects returned by this API."
       parameters(queryParam[String]("model").description("").optional)
   )
 
-  get("/schema",operation(schema.findOperation)) {
+  get("/schema",operation(schema.getOperation)) {
     
     
     
@@ -50,7 +50,7 @@ class SchemaApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val schema.websocketHelpOperation = (apiOperation[Inline_response_200]("schema.websocketHelp")
+  val schema.websocketHelpOperation = (apiOperation[Inline_response_200_1]("schema.websocketHelp")
       summary "Returns help text & subject list for websocket usage."
       parameters()
   )

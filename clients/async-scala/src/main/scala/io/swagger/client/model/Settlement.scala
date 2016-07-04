@@ -4,8 +4,8 @@ import org.joda.time.DateTime
 
 
 case class Settlement (
-  symbol: String,
   timestamp: Date,
+  symbol: String,
   settlementType: String,
   settledPrice: Double,
   bankrupt: Number,

@@ -33,6 +33,8 @@
 
 @property(nonatomic) NSNumber* pendingDebit;
 
+@property(nonatomic) NSNumber* confirmedDebit;
+
 @property(nonatomic) NSNumber* prevRealisedPnl;
 
 @property(nonatomic) NSNumber* prevUnrealisedPnl;
@@ -69,6 +71,8 @@
 
 @property(nonatomic) NSNumber* unrealisedProfit;
 
+@property(nonatomic) NSNumber* syntheticMargin;
+
 @property(nonatomic) NSNumber* walletBalance;
 
 @property(nonatomic) NSNumber* marginBalance;
@@ -88,5 +92,9 @@
 @property(nonatomic) NSNumber* withdrawableMargin;
 
 @property(nonatomic) NSDate* timestamp;
+
+@property(nonatomic) NSNumber* grossLastValue;
+
+@property(nonatomic) NSNumber* commission;
 
 @end

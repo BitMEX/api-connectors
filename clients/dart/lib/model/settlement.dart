@@ -4,10 +4,10 @@ part of api;
 @Entity()
 class Settlement {
   
-  String symbol = null;
-  
-  
   DateTime timestamp = null;
+  
+  
+  String symbol = null;
   
   
   String settlementType = null;
@@ -29,7 +29,7 @@ class Settlement {
 
   @override
   String toString()  {
-    return 'Settlement[symbol=$symbol, timestamp=$timestamp, settlementType=$settlementType, settledPrice=$settledPrice, bankrupt=$bankrupt, taxBase=$taxBase, taxRate=$taxRate, ]';
+    return 'Settlement[timestamp=$timestamp, symbol=$symbol, settlementType=$settlementType, settledPrice=$settledPrice, bankrupt=$bankrupt, taxBase=$taxBase, taxRate=$taxRate, ]';
   }
 
 }

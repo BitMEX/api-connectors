@@ -1,7 +1,7 @@
 module SwaggerClient
   # 
   class Position < BaseObject
-    attr_accessor :account, :symbol, :underlying, :quote_currency, :currency, :commission, :cross_margin, :rebalanced_pnl, :prev_realised_pnl, :prev_unrealised_pnl, :prev_close_price, :opening_timestamp, :opening_qty, :opening_cost, :opening_comm, :open_order_buy_qty, :open_order_buy_cost, :open_order_buy_premium, :open_order_sell_qty, :open_order_sell_cost, :open_order_sell_premium, :exec_buy_qty, :exec_buy_cost, :exec_sell_qty, :exec_sell_cost, :exec_qty, :exec_cost, :exec_comm, :current_timestamp, :current_qty, :current_cost, :current_comm, :realised_cost, :unrealised_cost, :gross_open_cost, :gross_open_premium, :gross_exec_cost, :is_open, :mark_price, :mark_value, :home_notional, :foreign_notional, :pos_state, :pos_cost, :pos_cost2, :pos_cross, :pos_init, :pos_comm, :pos_loss, :pos_margin, :pos_maint, :pos_allowance, :taxable_margin, :init_margin, :maint_margin, :session_margin, :target_excess_margin, :var_margin, :realised_gross_pnl, :realised_tax, :realised_pnl, :unrealised_gross_pnl, :long_bankrupt, :short_bankrupt, :tax_base, :indicative_tax_rate, :indicative_tax, :unrealised_tax, :unrealised_pnl, :unrealised_pnl_pcnt, :unrealised_roe_pcnt, :simple_qty, :simple_cost, :simple_value, :simple_pnl, :simple_pnl_pcnt, :avg_cost_price, :avg_entry_price, :break_even_price, :margin_call_price, :liquidation_price, :bankrupt_price, :timestamp
+    attr_accessor :account, :symbol, :currency, :underlying, :quote_currency, :commission, :leverage, :cross_margin, :rebalanced_pnl, :prev_realised_pnl, :prev_unrealised_pnl, :prev_close_price, :opening_timestamp, :opening_qty, :opening_cost, :opening_comm, :open_order_buy_qty, :open_order_buy_cost, :open_order_buy_premium, :open_order_sell_qty, :open_order_sell_cost, :open_order_sell_premium, :exec_buy_qty, :exec_buy_cost, :exec_sell_qty, :exec_sell_cost, :exec_qty, :exec_cost, :exec_comm, :current_timestamp, :current_qty, :current_cost, :current_comm, :realised_cost, :unrealised_cost, :gross_open_cost, :gross_open_premium, :gross_exec_cost, :is_open, :mark_price, :mark_value, :home_notional, :foreign_notional, :pos_state, :pos_cost, :pos_cost2, :pos_cross, :pos_init, :pos_comm, :pos_loss, :pos_margin, :pos_maint, :pos_allowance, :taxable_margin, :init_margin, :maint_margin, :session_margin, :target_excess_margin, :var_margin, :realised_gross_pnl, :realised_tax, :realised_pnl, :unrealised_gross_pnl, :long_bankrupt, :short_bankrupt, :tax_base, :indicative_tax_rate, :indicative_tax, :unrealised_tax, :unrealised_pnl, :unrealised_pnl_pcnt, :unrealised_roe_pcnt, :simple_qty, :simple_cost, :simple_value, :simple_pnl, :simple_pnl_pcnt, :avg_cost_price, :avg_entry_price, :break_even_price, :margin_call_price, :liquidation_price, :bankrupt_price, :timestamp, :last_price, :last_value
     # attribute mapping from ruby-style variable name to JSON key
     def self.attribute_map
       {
@@ -13,16 +13,19 @@ module SwaggerClient
         :'symbol' => :'symbol',
         
         # 
+        :'currency' => :'currency',
+        
+        # 
         :'underlying' => :'underlying',
         
         # 
         :'quote_currency' => :'quoteCurrency',
         
         # 
-        :'currency' => :'currency',
+        :'commission' => :'commission',
         
         # 
-        :'commission' => :'commission',
+        :'leverage' => :'leverage',
         
         # 
         :'cross_margin' => :'crossMargin',
@@ -253,7 +256,13 @@ module SwaggerClient
         :'bankrupt_price' => :'bankruptPrice',
         
         # 
-        :'timestamp' => :'timestamp'
+        :'timestamp' => :'timestamp',
+        
+        # 
+        :'last_price' => :'lastPrice',
+        
+        # 
+        :'last_value' => :'lastValue'
         
       }
     end
@@ -263,10 +272,11 @@ module SwaggerClient
       {
         :'account' => :'Float',
         :'symbol' => :'String',
+        :'currency' => :'String',
         :'underlying' => :'String',
         :'quote_currency' => :'String',
-        :'currency' => :'String',
         :'commission' => :'Float',
+        :'leverage' => :'Float',
         :'cross_margin' => :'BOOLEAN',
         :'rebalanced_pnl' => :'Float',
         :'prev_realised_pnl' => :'Float',
@@ -343,7 +353,9 @@ module SwaggerClient
         :'margin_call_price' => :'Float',
         :'liquidation_price' => :'Float',
         :'bankrupt_price' => :'Float',
-        :'timestamp' => :'Date'
+        :'timestamp' => :'Date',
+        :'last_price' => :'Float',
+        :'last_value' => :'Float'
         
       }
     end
@@ -363,6 +375,10 @@ module SwaggerClient
         self.symbol = attributes[:'symbol']
       end
       
+      if attributes[:'currency']
+        self.currency = attributes[:'currency']
+      end
+      
       if attributes[:'underlying']
         self.underlying = attributes[:'underlying']
       end
@@ -371,12 +387,12 @@ module SwaggerClient
         self.quote_currency = attributes[:'quoteCurrency']
       end
       
-      if attributes[:'currency']
-        self.currency = attributes[:'currency']
-      end
-      
       if attributes[:'commission']
         self.commission = attributes[:'commission']
+      end
+      
+      if attributes[:'leverage']
+        self.leverage = attributes[:'leverage']
       end
       
       if attributes[:'crossMargin']
@@ -687,6 +703,14 @@ module SwaggerClient
         self.timestamp = attributes[:'timestamp']
       end
       
+      if attributes[:'lastPrice']
+        self.last_price = attributes[:'lastPrice']
+      end
+      
+      if attributes[:'lastValue']
+        self.last_value = attributes[:'lastValue']
+      end
+      
     end
 
     def ==(o)
@@ -694,10 +718,11 @@ module SwaggerClient
       self.class == o.class &&
           account == o.account &&
           symbol == o.symbol &&
+          currency == o.currency &&
           underlying == o.underlying &&
           quote_currency == o.quote_currency &&
-          currency == o.currency &&
           commission == o.commission &&
+          leverage == o.leverage &&
           cross_margin == o.cross_margin &&
           rebalanced_pnl == o.rebalanced_pnl &&
           prev_realised_pnl == o.prev_realised_pnl &&
@@ -774,7 +799,9 @@ module SwaggerClient
           margin_call_price == o.margin_call_price &&
           liquidation_price == o.liquidation_price &&
           bankrupt_price == o.bankrupt_price &&
-          timestamp == o.timestamp
+          timestamp == o.timestamp &&
+          last_price == o.last_price &&
+          last_value == o.last_value
     end
 
     def eql?(o)
@@ -782,7 +809,7 @@ module SwaggerClient
     end
 
     def hash
-      [account, symbol, underlying, quote_currency, currency, commission, cross_margin, rebalanced_pnl, prev_realised_pnl, prev_unrealised_pnl, prev_close_price, opening_timestamp, opening_qty, opening_cost, opening_comm, open_order_buy_qty, open_order_buy_cost, open_order_buy_premium, open_order_sell_qty, open_order_sell_cost, open_order_sell_premium, exec_buy_qty, exec_buy_cost, exec_sell_qty, exec_sell_cost, exec_qty, exec_cost, exec_comm, current_timestamp, current_qty, current_cost, current_comm, realised_cost, unrealised_cost, gross_open_cost, gross_open_premium, gross_exec_cost, is_open, mark_price, mark_value, home_notional, foreign_notional, pos_state, pos_cost, pos_cost2, pos_cross, pos_init, pos_comm, pos_loss, pos_margin, pos_maint, pos_allowance, taxable_margin, init_margin, maint_margin, session_margin, target_excess_margin, var_margin, realised_gross_pnl, realised_tax, realised_pnl, unrealised_gross_pnl, long_bankrupt, short_bankrupt, tax_base, indicative_tax_rate, indicative_tax, unrealised_tax, unrealised_pnl, unrealised_pnl_pcnt, unrealised_roe_pcnt, simple_qty, simple_cost, simple_value, simple_pnl, simple_pnl_pcnt, avg_cost_price, avg_entry_price, break_even_price, margin_call_price, liquidation_price, bankrupt_price, timestamp].hash
+      [account, symbol, currency, underlying, quote_currency, commission, leverage, cross_margin, rebalanced_pnl, prev_realised_pnl, prev_unrealised_pnl, prev_close_price, opening_timestamp, opening_qty, opening_cost, opening_comm, open_order_buy_qty, open_order_buy_cost, open_order_buy_premium, open_order_sell_qty, open_order_sell_cost, open_order_sell_premium, exec_buy_qty, exec_buy_cost, exec_sell_qty, exec_sell_cost, exec_qty, exec_cost, exec_comm, current_timestamp, current_qty, current_cost, current_comm, realised_cost, unrealised_cost, gross_open_cost, gross_open_premium, gross_exec_cost, is_open, mark_price, mark_value, home_notional, foreign_notional, pos_state, pos_cost, pos_cost2, pos_cross, pos_init, pos_comm, pos_loss, pos_margin, pos_maint, pos_allowance, taxable_margin, init_margin, maint_margin, session_margin, target_excess_margin, var_margin, realised_gross_pnl, realised_tax, realised_pnl, unrealised_gross_pnl, long_bankrupt, short_bankrupt, tax_base, indicative_tax_rate, indicative_tax, unrealised_tax, unrealised_pnl, unrealised_pnl_pcnt, unrealised_roe_pcnt, simple_qty, simple_cost, simple_value, simple_pnl, simple_pnl_pcnt, avg_cost_price, avg_entry_price, break_even_price, margin_call_price, liquidation_price, bankrupt_price, timestamp, last_price, last_value].hash
     end
   end
 end

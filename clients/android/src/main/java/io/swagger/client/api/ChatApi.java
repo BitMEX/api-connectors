@@ -109,12 +109,12 @@ public class ChatApi {
    * @param message 
    * @return Chat
    */
-  public Chat  chatSend (String message) throws ApiException {
+  public Chat  chatNew (String message) throws ApiException {
     Object postBody = null;
     
     // verify the required parameter 'message' is set
     if (message == null) {
-       throw new ApiException(400, "Missing the required parameter 'message' when calling chatSend");
+       throw new ApiException(400, "Missing the required parameter 'message' when calling chatNew");
     }
     
 

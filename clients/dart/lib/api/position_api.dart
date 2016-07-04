@@ -14,8 +14,8 @@ class PositionApi {
   
   /// Get your positions.
   ///
-  /// 
-  Future<List<Position>> positionFind(String filter, String columns, Number count) {
+  /// See &lt;a href=\&quot;http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html\&quot;&gt;the FIX Spec&lt;/a&gt; for explanations of these fields.
+  Future<List<Position>> positionGet(String filter, String columns, Number count) {
     Object postBody = null;
     
 
@@ -64,9 +64,9 @@ class PositionApi {
     });
   }
   
-  /// Toggle isolated (fixed) margin per-position.
+  /// Enable isolated margin or cross margin per-position.
   ///
-  /// On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off. A position must be open to isolate it.
+  /// On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
   Future<Position> positionIsolateMargin(String symbol, bool enabled) {
     Object postBody = null;
     
@@ -108,6 +108,66 @@ class PositionApi {
         formParams['symbol'] = apiClient.parameterToString(symbol);
       if (enabled != null)
         formParams['enabled'] = apiClient.parameterToString(enabled);
+      
+    }
+
+    return apiClient.invokeAPI(basePath, path, 'POST', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
+      if(response.statusCode >= 400) {
+        throw new ApiException(response.statusCode, response.body);
+      }
+      else if(response.body != null){
+        return ApiClient.deserialize(response.body, Position);
+      }
+      else {
+        return null;
+      }
+    });
+  }
+  
+  /// Choose leverage for a position.
+  ///
+  /// On Speculative (DPE-Enabled) contracts, users can choose an isolated leverage. This will automatically enable isolated margin.
+  Future<Position> positionUpdateLeverage(String symbol, num leverage) {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/position/leverage".replaceAll("{format}","json");
+
+    // query params
+    Map<String, String> queryParams = {};
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+    
+    
+
+    List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    List<String> authNames = [];
+
+    if(contentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = new MultipartRequest(null, null);
+      
+      if (symbol != null) {
+        hasFields = true;
+        mp.fields['symbol'] = apiClient.parameterToString(symbol);
+      }
+      
+      if (leverage != null) {
+        hasFields = true;
+        mp.fields['leverage'] = apiClient.parameterToString(leverage);
+      }
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      if (symbol != null)
+        formParams['symbol'] = apiClient.parameterToString(symbol);
+      if (leverage != null)
+        formParams['leverage'] = apiClient.parameterToString(leverage);
       
     }
 

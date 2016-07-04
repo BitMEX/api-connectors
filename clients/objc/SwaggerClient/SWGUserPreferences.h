@@ -27,19 +27,31 @@
 
 @property(nonatomic) NSArray* /* NSString */ hideConfirmDialogs;
 
+@property(nonatomic) NSNumber* hideConnectionModal;
+
+@property(nonatomic) NSNumber* hideFromLeaderboard;
+
+@property(nonatomic) NSNumber* hideNameFromLeaderboard;
+
 @property(nonatomic) NSArray* /* NSString */ hideNotifications;
 
 @property(nonatomic) NSNumber* hidePhoneConfirm;
 
+@property(nonatomic) NSString* locale;
+
 @property(nonatomic) NSArray* /* NSString */ msgsSeen;
 
 @property(nonatomic) NSNumber* orderBookBinning;
+
+@property(nonatomic) NSString* orderBookType;
 
 @property(nonatomic) NSNumber* orderControlsPlusMinus;
 
 @property(nonatomic) NSArray* /* NSString */ sounds;
 
 @property(nonatomic) NSNumber* strictIPCheck;
+
+@property(nonatomic) NSNumber* strictTimeout;
 
 @property(nonatomic) NSString* tickerGroup;
 

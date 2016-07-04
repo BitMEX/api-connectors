@@ -12,7 +12,7 @@ import io.swagger.client.model.InlineResponse200;
 
 import java.util.*;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-30T13:35:44.556-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-04T18:25:18.235-05:00")
 public class ApiKeyApi {
   private ApiClient apiClient;
 
@@ -39,7 +39,7 @@ public class ApiKeyApi {
    * @param reverse If true, will sort results newest first.
    * @return List<ApiKey>
    */
-  public List<ApiKey> apiKeyGetKeys (Boolean reverse) throws ApiException {
+  public List<ApiKey> apiKeyGet (Boolean reverse) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -85,7 +85,7 @@ public class ApiKeyApi {
   
   /**
    * Create a new API Key.
-   * API Keys can also be created via &lt;a href=\&quot;https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py\&quot;&gt;this Python script&lt;/a&gt;. See the &lt;a href=\&quot;/app/apiKeys\&quot;&gt;API Key Documentation&lt;/a&gt; for more information on capabilities.
+   * API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
    * @param name Key name. This name is for reference only.
    * @param cidr CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href=\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt;
    * @param permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;].
@@ -93,7 +93,7 @@ public class ApiKeyApi {
    * @param token OTP Token (YubiKey, Google Authenticator)
    * @return ApiKey
    */
-  public ApiKey apiKeyCreateKey (String name, String cidr, String permissions, Boolean enabled, String token) throws ApiException {
+  public ApiKey apiKeyNew (String name, String cidr, String permissions, Boolean enabled, String token) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     

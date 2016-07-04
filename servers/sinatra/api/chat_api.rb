@@ -54,7 +54,7 @@ end
 MyApp.add_route('POST', '/chat', {
   "resourcePath" => "/Chat",
   "summary" => "Send a chat message.",
-  "nickname" => "chat/send", 
+  "nickname" => "chat/new", 
   "responseClass" => "Chat", 
   "endpoint" => "/chat", 
   "notes" => "",

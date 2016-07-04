@@ -7,6 +7,9 @@ class User {
   Number id = null;
   
   
+  Number ownerId = null;
+  
+  
   String firstname = null;
   
   
@@ -37,9 +40,6 @@ class User {
   UserPreferences preferences = null;
   
   
-  String role = null;
-  
-  
   String tFAEnabled = null;
   
   
@@ -59,7 +59,7 @@ class User {
 
   @override
   String toString()  {
-    return 'User[id=$id, firstname=$firstname, lastname=$lastname, status=$status, username=$username, email=$email, phone=$phone, countryCode=$countryCode, created=$created, lastUpdated=$lastUpdated, preferences=$preferences, role=$role, tFAEnabled=$tFAEnabled, affiliateID=$affiliateID, pgpPubKey=$pgpPubKey, country=$country, disabled=$disabled, ]';
+    return 'User[id=$id, ownerId=$ownerId, firstname=$firstname, lastname=$lastname, status=$status, username=$username, email=$email, phone=$phone, countryCode=$countryCode, created=$created, lastUpdated=$lastUpdated, preferences=$preferences, tFAEnabled=$tFAEnabled, affiliateID=$affiliateID, pgpPubKey=$pgpPubKey, country=$country, disabled=$disabled, ]';
   }
 
 }

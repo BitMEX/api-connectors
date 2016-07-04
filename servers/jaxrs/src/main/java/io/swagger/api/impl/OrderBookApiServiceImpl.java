@@ -8,6 +8,7 @@ import com.sun.jersey.multipart.FormDataParam;
 import io.swagger.model.OrderBook;
 import io.swagger.model.Error;
 import java.math.BigDecimal;
+import io.swagger.model.OrderBookL2;
 
 import java.util.List;
 import io.swagger.api.NotFoundException;
@@ -19,11 +20,18 @@ import com.sun.jersey.multipart.FormDataParam;
 
 import javax.ws.rs.core.Response;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-30T13:35:57.938-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2016-07-04T18:25:32.992-05:00")
 public class OrderBookApiServiceImpl extends OrderBookApiService {
   
       @Override
-      public Response orderBookGetOrderBook(String symbol,BigDecimal depth)
+      public Response orderBookGet(String symbol,BigDecimal depth)
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+  }
+  
+      @Override
+      public Response orderBookGetL2(String symbol,BigDecimal depth)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();

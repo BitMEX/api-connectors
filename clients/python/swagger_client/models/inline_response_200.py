@@ -37,13 +37,36 @@ class InlineResponse200(object):
                                   and the value is json key in definition.
         """
         self.swagger_types = {
-            
+            'success': 'bool'
         }
 
         self.attribute_map = {
-            
+            'success': 'success'
         }
 
+        self._success = None
+
+    @property
+    def success(self):
+        """
+        Gets the success of this InlineResponse200.
+
+
+        :return: The success of this InlineResponse200.
+        :rtype: bool
+        """
+        return self._success
+
+    @success.setter
+    def success(self, success):
+        """
+        Sets the success of this InlineResponse200.
+
+
+        :param success: The success of this InlineResponse200.
+        :type: bool
+        """
+        self._success = success
 
     def to_dict(self):
         """

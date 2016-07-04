@@ -67,7 +67,7 @@ class ChatApi {
   /// Send a chat message.
   ///
   /// 
-  Future<Chat> chatSend(String message) {
+  Future<Chat> chatNew(String message) {
     Object postBody = null;
     
 

@@ -11,7 +11,7 @@ import collection.mutable
 class PositionApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
   
-  def position.find(filter: Option[String] = None,
+  def position.get(filter: Option[String] = None,
       columns: Option[String] = None,
       count: Option[Number] = None
       )(implicit reader: ClientResponseReader[List[Position]]): Future[List[Position]] = {
@@ -40,6 +40,28 @@ class PositionApi(client: TransportClient, config: SwaggerConfig) extends ApiCli
       )(implicit reader: ClientResponseReader[Position]): Future[Position] = {
     // create path and map variables
     val path = (addFmt("/position/isolate"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    
+
+    
+
+    
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  
+  def position.updateLeverage(symbol: String,
+      leverage: Double)(implicit reader: ClientResponseReader[Position]): Future[Position] = {
+    // create path and map variables
+    val path = (addFmt("/position/leverage"))
 
     // query params
     val queryParams = new mutable.HashMap[String, String]

@@ -15,4 +15,6 @@
 @interface SWGInlineResponse200 : SWGObject
 
 
+@property(nonatomic) NSNumber* success;
+
 @end

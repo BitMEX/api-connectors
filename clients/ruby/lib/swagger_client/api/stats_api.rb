@@ -12,9 +12,9 @@ module SwaggerClient
     # 
     # @param [Hash] opts the optional parameters
     # @return [Array<Stats>]
-    def stats_find(opts = {})
+    def stats_get(opts = {})
       if Configuration.debugging
-        Configuration.logger.debug "Calling API: StatsApi#stats_find ..."
+        Configuration.logger.debug "Calling API: StatsApi#stats_get ..."
       end
       
       # resource path
@@ -50,7 +50,7 @@ module SwaggerClient
         :auth_names => auth_names,
         :return_type => 'Array<Stats>')
       if Configuration.debugging
-        Configuration.logger.debug "API called: StatsApi#stats_find. Result: #{result.inspect}"
+        Configuration.logger.debug "API called: StatsApi#stats_get. Result: #{result.inspect}"
       end
       return result
     end

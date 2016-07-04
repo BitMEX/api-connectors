@@ -51,8 +51,8 @@ class Settlement implements ArrayAccess
       * @var string[]
       */
     static $swaggerTypes = array(
-        'symbol' => 'string',
         'timestamp' => '\DateTime',
+        'symbol' => 'string',
         'settlement_type' => 'string',
         'settled_price' => 'double',
         'bankrupt' => 'Number',
@@ -65,8 +65,8 @@ class Settlement implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'symbol' => 'symbol',
         'timestamp' => 'timestamp',
+        'symbol' => 'symbol',
         'settlement_type' => 'settlementType',
         'settled_price' => 'settledPrice',
         'bankrupt' => 'bankrupt',
@@ -79,8 +79,8 @@ class Settlement implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'symbol' => 'setSymbol',
         'timestamp' => 'setTimestamp',
+        'symbol' => 'setSymbol',
         'settlement_type' => 'setSettlementType',
         'settled_price' => 'setSettledPrice',
         'bankrupt' => 'setBankrupt',
@@ -93,8 +93,8 @@ class Settlement implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'symbol' => 'getSymbol',
         'timestamp' => 'getTimestamp',
+        'symbol' => 'getSymbol',
         'settlement_type' => 'getSettlementType',
         'settled_price' => 'getSettledPrice',
         'bankrupt' => 'getBankrupt',
@@ -104,16 +104,16 @@ class Settlement implements ArrayAccess
   
     
     /**
-      * $symbol 
-      * @var string
-      */
-    protected $symbol;
-    
-    /**
       * $timestamp 
       * @var \DateTime
       */
     protected $timestamp;
+    
+    /**
+      * $symbol 
+      * @var string
+      */
+    protected $symbol;
     
     /**
       * $settlement_type 
@@ -153,35 +153,14 @@ class Settlement implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->symbol = $data["symbol"];
             $this->timestamp = $data["timestamp"];
+            $this->symbol = $data["symbol"];
             $this->settlement_type = $data["settlement_type"];
             $this->settled_price = $data["settled_price"];
             $this->bankrupt = $data["bankrupt"];
             $this->tax_base = $data["tax_base"];
             $this->tax_rate = $data["tax_rate"];
         }
-    }
-    
-    /**
-     * Gets symbol
-     * @return string
-     */
-    public function getSymbol()
-    {
-        return $this->symbol;
-    }
-  
-    /**
-     * Sets symbol
-     * @param string $symbol 
-     * @return $this
-     */
-    public function setSymbol($symbol)
-    {
-        
-        $this->symbol = $symbol;
-        return $this;
     }
     
     /**
@@ -202,6 +181,27 @@ class Settlement implements ArrayAccess
     {
         
         $this->timestamp = $timestamp;
+        return $this;
+    }
+    
+    /**
+     * Gets symbol
+     * @return string
+     */
+    public function getSymbol()
+    {
+        return $this->symbol;
+    }
+  
+    /**
+     * Sets symbol
+     * @param string $symbol 
+     * @return $this
+     */
+    public function setSymbol($symbol)
+    {
+        
+        $this->symbol = $symbol;
         return $this;
     }
     

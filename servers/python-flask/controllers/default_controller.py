@@ -2,7 +2,10 @@
 def (symbol, filter, columns, count, start, reverse, startTime, endTime) -> str:
     return 'do some magic!'
 
-def (symbol, quantity, price, timeInForce, type, stopPrice, clOrdID) -> str:
+def (orderID, clOrdID, simpleOrderQty, orderQty, simpleLeavesQty, leavesQty, price, stopPx, pegOffsetValue, text) -> str:
+    return 'do some magic!'
+
+def (symbol, side, simpleOrderQty, quantity, orderQty, price, displayQty, stopPrice, stopPx, clOrdID, clOrdLinkID, pegOffsetValue, pegPriceType, type, ordType, timeInForce, execInst, contingencyType, text) -> str:
     return 'do some magic!'
 
 def (orderID, clOrdID, text) -> str:
@@ -11,13 +14,16 @@ def (orderID, clOrdID, text) -> str:
 def (symbol, filter, text) -> str:
     return 'do some magic!'
 
+def (orders) -> str:
+    return 'do some magic!'
+
+def (orders) -> str:
+    return 'do some magic!'
+
 def (timeout) -> str:
     return 'do some magic!'
 
 def (symbol, price) -> str:
-    return 'do some magic!'
-
-def (filter) -> str:
     return 'do some magic!'
 
 def (reverse) -> str:
@@ -38,10 +44,10 @@ def (apiKeyID) -> str:
 def () -> str:
     return 'do some magic!'
 
-def (firstname, lastname, oldPassword, newPassword, newPasswordConfirm, country, pgpPubKey) -> str:
+def (firstname, lastname, oldPassword, newPassword, newPasswordConfirm, username, country, pgpPubKey) -> str:
     return 'do some magic!'
 
-def (email, password, username, firstname, lastname, acceptsTOS, referrerID, country) -> str:
+def (email, password, country, username, firstname, lastname, acceptsTOS, referrerID, tfaType, tfaToken) -> str:
     return 'do some magic!'
 
 def () -> str:
@@ -83,13 +89,13 @@ def () -> str:
 def () -> str:
     return 'do some magic!'
 
-def () -> str:
+def (currency) -> str:
     return 'do some magic!'
 
 def (prefs, overwrite) -> str:
     return 'do some magic!'
 
-def (type, token) -> str:
+def (type) -> str:
     return 'do some magic!'
 
 def (email) -> str:
@@ -101,13 +107,22 @@ def (currency, amount, address, otpToken, fee) -> str:
 def (email) -> str:
     return 'do some magic!'
 
-def () -> str:
+def (currency) -> str:
     return 'do some magic!'
 
 def (columns) -> str:
     return 'do some magic!'
 
 def () -> str:
+    return 'do some magic!'
+
+def (method) -> str:
+    return 'do some magic!'
+
+def (symbol, filter, columns, count, start, reverse, startTime, endTime) -> str:
+    return 'do some magic!'
+
+def (symbol, depth) -> str:
     return 'do some magic!'
 
 def (symbol, depth) -> str:
@@ -117,6 +132,9 @@ def (filter, columns, count) -> str:
     return 'do some magic!'
 
 def (symbol, enabled) -> str:
+    return 'do some magic!'
+
+def (symbol, leverage) -> str:
     return 'do some magic!'
 
 def (symbol, amount) -> str:
@@ -143,10 +161,7 @@ def (symbol, filter, columns, count, start, reverse, startTime, endTime) -> str:
 def (binSize, symbol, filter, columns, count, start, reverse, startTime, endTime) -> str:
     return 'do some magic!'
 
-def (startTime, symbol, endTime) -> str:
-    return 'do some magic!'
-
-def (count, symbol) -> str:
+def (symbol, filter, columns, count, start, reverse, startTime, endTime) -> str:
     return 'do some magic!'
 
 def (symbol, filter, columns, count, start, reverse, startTime, endTime) -> str:
@@ -183,4 +198,7 @@ def () -> str:
     return 'do some magic!'
 
 def () -> str:
+    return 'do some magic!'
+
+def (symbol, filter, columns, count, start, reverse, startTime, endTime) -> str:
     return 'do some magic!'

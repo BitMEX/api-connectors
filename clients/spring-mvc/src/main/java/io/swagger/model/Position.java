@@ -10,15 +10,16 @@ import java.util.Objects;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2015-11-30T13:35:50.750-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2016-07-04T18:25:23.952-05:00")
 public class Position  {
   
   private BigDecimal account = null;
   private String symbol = null;
+  private String currency = null;
   private String underlying = null;
   private String quoteCurrency = null;
-  private String currency = null;
   private Double commission = null;
+  private Double leverage = null;
   private Boolean crossMargin = null;
   private BigDecimal rebalancedPnl = null;
   private BigDecimal prevRealisedPnl = null;
@@ -96,6 +97,8 @@ public class Position  {
   private Double liquidationPrice = null;
   private Double bankruptPrice = null;
   private Date timestamp = null;
+  private Double lastPrice = null;
+  private BigDecimal lastValue = null;
 
   
   /**
@@ -119,6 +122,18 @@ public class Position  {
   }
   public void setSymbol(String symbol) {
     this.symbol = symbol;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty("currency")
+  public String getCurrency() {
+    return currency;
+  }
+  public void setCurrency(String currency) {
+    this.currency = currency;
   }
 
   
@@ -149,24 +164,24 @@ public class Position  {
   /**
    **/
   @ApiModelProperty(value = "")
-  @JsonProperty("currency")
-  public String getCurrency() {
-    return currency;
-  }
-  public void setCurrency(String currency) {
-    this.currency = currency;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(value = "")
   @JsonProperty("commission")
   public Double getCommission() {
     return commission;
   }
   public void setCommission(Double commission) {
     this.commission = commission;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("leverage")
+  public Double getLeverage() {
+    return leverage;
+  }
+  public void setLeverage(Double leverage) {
+    this.leverage = leverage;
   }
 
   
@@ -1094,6 +1109,30 @@ public class Position  {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("lastPrice")
+  public Double getLastPrice() {
+    return lastPrice;
+  }
+  public void setLastPrice(Double lastPrice) {
+    this.lastPrice = lastPrice;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("lastValue")
+  public BigDecimal getLastValue() {
+    return lastValue;
+  }
+  public void setLastValue(BigDecimal lastValue) {
+    this.lastValue = lastValue;
+  }
+
+  
 
   @Override
   public boolean equals(Object o) {
@@ -1106,10 +1145,11 @@ public class Position  {
     Position position = (Position) o;
     return Objects.equals(account, position.account) &&
         Objects.equals(symbol, position.symbol) &&
+        Objects.equals(currency, position.currency) &&
         Objects.equals(underlying, position.underlying) &&
         Objects.equals(quoteCurrency, position.quoteCurrency) &&
-        Objects.equals(currency, position.currency) &&
         Objects.equals(commission, position.commission) &&
+        Objects.equals(leverage, position.leverage) &&
         Objects.equals(crossMargin, position.crossMargin) &&
         Objects.equals(rebalancedPnl, position.rebalancedPnl) &&
         Objects.equals(prevRealisedPnl, position.prevRealisedPnl) &&
@@ -1186,12 +1226,14 @@ public class Position  {
         Objects.equals(marginCallPrice, position.marginCallPrice) &&
         Objects.equals(liquidationPrice, position.liquidationPrice) &&
         Objects.equals(bankruptPrice, position.bankruptPrice) &&
-        Objects.equals(timestamp, position.timestamp);
+        Objects.equals(timestamp, position.timestamp) &&
+        Objects.equals(lastPrice, position.lastPrice) &&
+        Objects.equals(lastValue, position.lastValue);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(account, symbol, underlying, quoteCurrency, currency, commission, crossMargin, rebalancedPnl, prevRealisedPnl, prevUnrealisedPnl, prevClosePrice, openingTimestamp, openingQty, openingCost, openingComm, openOrderBuyQty, openOrderBuyCost, openOrderBuyPremium, openOrderSellQty, openOrderSellCost, openOrderSellPremium, execBuyQty, execBuyCost, execSellQty, execSellCost, execQty, execCost, execComm, currentTimestamp, currentQty, currentCost, currentComm, realisedCost, unrealisedCost, grossOpenCost, grossOpenPremium, grossExecCost, isOpen, markPrice, markValue, homeNotional, foreignNotional, posState, posCost, posCost2, posCross, posInit, posComm, posLoss, posMargin, posMaint, posAllowance, taxableMargin, initMargin, maintMargin, sessionMargin, targetExcessMargin, varMargin, realisedGrossPnl, realisedTax, realisedPnl, unrealisedGrossPnl, longBankrupt, shortBankrupt, taxBase, indicativeTaxRate, indicativeTax, unrealisedTax, unrealisedPnl, unrealisedPnlPcnt, unrealisedRoePcnt, simpleQty, simpleCost, simpleValue, simplePnl, simplePnlPcnt, avgCostPrice, avgEntryPrice, breakEvenPrice, marginCallPrice, liquidationPrice, bankruptPrice, timestamp);
+    return Objects.hash(account, symbol, currency, underlying, quoteCurrency, commission, leverage, crossMargin, rebalancedPnl, prevRealisedPnl, prevUnrealisedPnl, prevClosePrice, openingTimestamp, openingQty, openingCost, openingComm, openOrderBuyQty, openOrderBuyCost, openOrderBuyPremium, openOrderSellQty, openOrderSellCost, openOrderSellPremium, execBuyQty, execBuyCost, execSellQty, execSellCost, execQty, execCost, execComm, currentTimestamp, currentQty, currentCost, currentComm, realisedCost, unrealisedCost, grossOpenCost, grossOpenPremium, grossExecCost, isOpen, markPrice, markValue, homeNotional, foreignNotional, posState, posCost, posCost2, posCross, posInit, posComm, posLoss, posMargin, posMaint, posAllowance, taxableMargin, initMargin, maintMargin, sessionMargin, targetExcessMargin, varMargin, realisedGrossPnl, realisedTax, realisedPnl, unrealisedGrossPnl, longBankrupt, shortBankrupt, taxBase, indicativeTaxRate, indicativeTax, unrealisedTax, unrealisedPnl, unrealisedPnlPcnt, unrealisedRoePcnt, simpleQty, simpleCost, simpleValue, simplePnl, simplePnlPcnt, avgCostPrice, avgEntryPrice, breakEvenPrice, marginCallPrice, liquidationPrice, bankruptPrice, timestamp, lastPrice, lastValue);
   }
 
   @Override
@@ -1201,10 +1243,11 @@ public class Position  {
     
     sb.append("  account: ").append(account).append("\n");
     sb.append("  symbol: ").append(symbol).append("\n");
+    sb.append("  currency: ").append(currency).append("\n");
     sb.append("  underlying: ").append(underlying).append("\n");
     sb.append("  quoteCurrency: ").append(quoteCurrency).append("\n");
-    sb.append("  currency: ").append(currency).append("\n");
     sb.append("  commission: ").append(commission).append("\n");
+    sb.append("  leverage: ").append(leverage).append("\n");
     sb.append("  crossMargin: ").append(crossMargin).append("\n");
     sb.append("  rebalancedPnl: ").append(rebalancedPnl).append("\n");
     sb.append("  prevRealisedPnl: ").append(prevRealisedPnl).append("\n");
@@ -1282,6 +1325,8 @@ public class Position  {
     sb.append("  liquidationPrice: ").append(liquidationPrice).append("\n");
     sb.append("  bankruptPrice: ").append(bankruptPrice).append("\n");
     sb.append("  timestamp: ").append(timestamp).append("\n");
+    sb.append("  lastPrice: ").append(lastPrice).append("\n");
+    sb.append("  lastValue: ").append(lastValue).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

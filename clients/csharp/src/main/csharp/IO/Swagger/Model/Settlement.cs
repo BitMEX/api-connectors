@@ -18,17 +18,17 @@ namespace IO.Swagger.Model
     {
         
         /// <summary>
-        /// Gets or Sets Symbol
-        /// </summary>
-        [DataMember(Name="symbol", EmitDefaultValue=false)]
-        public string Symbol { get; set; }
-  
-        
-        /// <summary>
         /// Gets or Sets Timestamp
         /// </summary>
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
         public DateTime? Timestamp { get; set; }
+  
+        
+        /// <summary>
+        /// Gets or Sets Symbol
+        /// </summary>
+        [DataMember(Name="symbol", EmitDefaultValue=false)]
+        public string Symbol { get; set; }
   
         
         /// <summary>
@@ -75,8 +75,8 @@ namespace IO.Swagger.Model
         {
             var sb = new StringBuilder();
             sb.Append("class Settlement {\n");
-            sb.Append("  Symbol: ").Append(Symbol).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
+            sb.Append("  Symbol: ").Append(Symbol).Append("\n");
             sb.Append("  SettlementType: ").Append(SettlementType).Append("\n");
             sb.Append("  SettledPrice: ").Append(SettledPrice).Append("\n");
             sb.Append("  Bankrupt: ").Append(Bankrupt).Append("\n");
@@ -120,14 +120,14 @@ namespace IO.Swagger.Model
 
             return 
                 (
-                    this.Symbol == other.Symbol ||
-                    this.Symbol != null &&
-                    this.Symbol.Equals(other.Symbol)
-                ) && 
-                (
                     this.Timestamp == other.Timestamp ||
                     this.Timestamp != null &&
                     this.Timestamp.Equals(other.Timestamp)
+                ) && 
+                (
+                    this.Symbol == other.Symbol ||
+                    this.Symbol != null &&
+                    this.Symbol.Equals(other.Symbol)
                 ) && 
                 (
                     this.SettlementType == other.SettlementType ||
@@ -168,11 +168,11 @@ namespace IO.Swagger.Model
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
                 
-                if (this.Symbol != null)
-                    hash = hash * 57 + this.Symbol.GetHashCode();
-                
                 if (this.Timestamp != null)
                     hash = hash * 57 + this.Timestamp.GetHashCode();
+                
+                if (this.Symbol != null)
+                    hash = hash * 57 + this.Symbol.GetHashCode();
                 
                 if (this.SettlementType != null)
                     hash = hash * 57 + this.SettlementType.GetHashCode();

@@ -174,7 +174,7 @@ static SWGChatApi* singletonAPI = nil;
 ///
 ///  @returns SWGChat*
 ///
--(NSNumber*) chatSendWithCompletionBlock: (NSString*) message
+-(NSNumber*) chatNewWithCompletionBlock: (NSString*) message
         
         completionHandler: (void (^)(SWGChat* output, NSError* error))completionBlock { 
         
@@ -182,7 +182,7 @@ static SWGChatApi* singletonAPI = nil;
     
     // verify the required parameter 'message' is set
     if (message == nil) {
-        [NSException raise:@"Invalid parameter" format:@"Missing the required parameter `message` when calling `chatSend`"];
+        [NSException raise:@"Invalid parameter" format:@"Missing the required parameter `message` when calling `chatNew`"];
     }
     
 

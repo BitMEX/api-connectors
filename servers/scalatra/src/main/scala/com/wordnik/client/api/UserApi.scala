@@ -34,29 +34,30 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
   }
   
 
-  val user.getMeOperation = (apiOperation[User]("user.getMe")
+  val user.getOperation = (apiOperation[User]("user.get")
       summary "Get your user model."
       parameters()
   )
 
-  get("/user",operation(user.getMeOperation)) {
+  get("/user",operation(user.getOperation)) {
     
   }
 
   
 
-  val user.updateMeOperation = (apiOperation[User]("user.updateMe")
+  val user.updateOperation = (apiOperation[User]("user.update")
       summary "Update your password, name, and other attributes."
       parameters(formParam[String]("firstname").description("").optional,
         formParam[String]("lastname").description("").optional,
         formParam[String]("oldPassword").description("").optional,
         formParam[String]("newPassword").description("").optional,
         formParam[String]("newPasswordConfirm").description("").optional,
+        formParam[String]("username").description("").optional,
         formParam[String]("country").description("").optional,
         formParam[String]("pgpPubKey").description("").optional)
   )
 
-  put("/user",operation(user.updateMeOperation)) {
+  put("/user",operation(user.updateOperation)) {
     
     
     
@@ -106,6 +107,15 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
     
     
                 
+      val username = params.getAs[String]("username")
+    
+
+    
+    println("username: " + username)
+  
+    
+    
+                
       val country = params.getAs[String]("country")
     
 
@@ -125,19 +135,21 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val user.newUserOperation = (apiOperation[User]("user.newUser")
+  val user.newOperation = (apiOperation[User]("user.new")
       summary "Register a new user."
       parameters(formParam[String]("email").description(""),
         formParam[String]("password").description(""),
-        formParam[String]("username").description(""),
+        formParam[String]("country").description(""),
+        formParam[String]("username").description("").optional,
         formParam[String]("firstname").description("").optional,
         formParam[String]("lastname").description("").optional,
         formParam[String]("acceptsTOS").description("").optional,
         formParam[String]("referrerID").description("").optional,
-        formParam[String]("country").description("").optional)
+        formParam[String]("tfaType").description("").optional,
+        formParam[String]("tfaToken").description("").optional)
   )
 
-  post("/user",operation(user.newUserOperation)) {
+  post("/user",operation(user.newOperation)) {
     
     
     
@@ -156,6 +168,15 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
 
     
     println("password: " + password)
+  
+    
+    
+                
+      val country = params.getAs[String]("country")
+    
+
+    
+    println("country: " + country)
   
     
     
@@ -205,11 +226,20 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
     
     
                 
-      val country = params.getAs[String]("country")
+      val tfaType = params.getAs[String]("tfaType")
     
 
     
-    println("country: " + country)
+    println("tfaType: " + tfaType)
+  
+    
+    
+                
+      val tfaToken = params.getAs[String]("tfaToken")
+    
+
+    
+    println("tfaToken: " + tfaToken)
   
   }
 
@@ -480,7 +510,7 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   
 
-  val user.logoutAllOperation = (apiOperation[Unit]("user.logoutAll")
+  val user.logoutAllOperation = (apiOperation[Double]("user.logoutAll")
       summary "Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices."
       parameters()
   )
@@ -492,18 +522,28 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
   
 
   val user.getMarginOperation = (apiOperation[Margin]("user.getMargin")
-      summary "Get your account's margin status."
-      parameters()
+      summary "Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies."
+      parameters(queryParam[String]("currency").description("").optional.defaultValue(XBt))
   )
 
   get("/user/margin",operation(user.getMarginOperation)) {
     
+    
+    
+        
+      
+      val currency = params.getAs[String]("currency")
+            
+
+    
+    println("currency: " + currency)
+  
   }
 
   
 
   val user.savePreferencesOperation = (apiOperation[User]("user.savePreferences")
-      summary "Save application preferences."
+      summary "Save user preferences."
       parameters(formParam[String]("prefs").description(""),
         formParam[Boolean]("overwrite").description("").optional.defaultValue(false))
   )
@@ -534,8 +574,7 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   val user.requestEnableTFAOperation = (apiOperation[Boolean]("user.requestEnableTFA")
       summary "Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys."
-      parameters(formParam[String]("type").description("").optional,
-        formParam[String]("token").description("").optional)
+      parameters(formParam[String]("type").description("").optional)
   )
 
   post("/user/requestEnableTFA",operation(user.requestEnableTFAOperation)) {
@@ -548,15 +587,6 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
 
     
     println("type: " + type)
-  
-    
-    
-                
-      val token = params.getAs[String]("token")
-    
-
-    
-    println("token: " + token)
   
   }
 
@@ -644,17 +674,16 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   val user.sendVerificationEmailOperation = (apiOperation[Boolean]("user.sendVerificationEmail")
       summary "Re-send verification email."
-      parameters(queryParam[String]("email").description(""))
+      parameters(formParam[String]("email").description(""))
   )
 
-  get("/user/resendVerificationEmail",operation(user.sendVerificationEmailOperation)) {
+  post("/user/resendVerificationEmail",operation(user.sendVerificationEmailOperation)) {
     
     
     
-        
-      
+                
       val email = params.getAs[String]("email")
-            
+    
 
     
     println("email: " + email)
@@ -665,11 +694,21 @@ class UserApi (implicit val swagger: Swagger) extends ScalatraServlet
 
   val user.getWalletHistoryOperation = (apiOperation[List[Transaction]]("user.getWalletHistory")
       summary "Get a history of all of your wallet transactions (deposits and withdrawals)."
-      parameters()
+      parameters(queryParam[String]("currency").description("").optional.defaultValue(XBt))
   )
 
   get("/user/walletHistory",operation(user.getWalletHistoryOperation)) {
     
+    
+    
+        
+      
+      val currency = params.getAs[String]("currency")
+            
+
+    
+    println("currency: " + currency)
+  
   }
 
 }

@@ -72,54 +72,5 @@ class TradeApi(client: TransportClient, config: SwaggerConfig) extends ApiClient
   }
 
   
-  def trade.getByDate(startTime: Date,
-      symbol: Option[String] = None,
-      endTime: Option[Date] = None
-      )(implicit reader: ClientResponseReader[List[Trade]]): Future[List[Trade]] = {
-    // create path and map variables
-    val path = (addFmt("/trade/byDate"))
-
-    // query params
-    val queryParams = new mutable.HashMap[String, String]
-    val headerParams = new mutable.HashMap[String, String]
-
-    
-
-    if(symbol != null) symbol.foreach { v => queryParams += "symbol" -> v.toString }
-    if(startTime != null)   queryParams += "startTime" -> startTime.toStringif(endTime != null) endTime.foreach { v => queryParams += "endTime" -> v.toString }
-
-    
-
-    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
-    resFuture flatMap { resp =>
-      process(reader.read(resp))
-    }
-  }
-
-  
-  def trade.getRecent(count: Number = 100,
-      symbol: Option[String] = None
-      )(implicit reader: ClientResponseReader[List[Trade]]): Future[List[Trade]] = {
-    // create path and map variables
-    val path = (addFmt("/trade/recent"))
-
-    // query params
-    val queryParams = new mutable.HashMap[String, String]
-    val headerParams = new mutable.HashMap[String, String]
-
-    
-
-    if(symbol != null) symbol.foreach { v => queryParams += "symbol" -> v.toString }
-    if(count != null)   queryParams += "count" -> count.toString
-
-    
-
-    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
-    resFuture flatMap { resp =>
-      process(reader.read(resp))
-    }
-  }
-
-  
 
 }

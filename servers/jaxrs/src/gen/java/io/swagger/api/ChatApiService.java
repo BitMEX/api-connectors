@@ -20,13 +20,13 @@ import com.sun.jersey.multipart.FormDataParam;
 
 import javax.ws.rs.core.Response;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-30T13:35:57.938-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2016-07-04T18:25:32.992-05:00")
 public abstract class ChatApiService {
   
       public abstract Response chatGet(BigDecimal count,BigDecimal start,Boolean reverse)
       throws NotFoundException;
   
-      public abstract Response chatSend(String message)
+      public abstract Response chatNew(String message)
       throws NotFoundException;
   
       public abstract Response chatGetConnected()

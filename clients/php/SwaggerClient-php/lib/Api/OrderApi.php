@@ -96,8 +96,8 @@ class OrderApi
      *
      * Get your orders.
      *
-     * @param string $symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;. (optional)
-     * @param string $filter Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details. (optional)
+     * @param string $symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`. (optional)
+     * @param string $filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. (optional)
      * @param string $columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
      * @param Number $count Number of results to fetch. (optional)
      * @param Number $start Starting point for results. (optional)
@@ -205,40 +205,31 @@ class OrderApi
     }
     
     /**
-     * orderNewOrder
+     * orderAmend
      *
-     * Create a new order.
+     * Amend the quantity or price of an open order.
      *
-     * @param string $symbol Instrument symbol. (required)
-     * @param Number $quantity Quantity. Use positive numbers to buy, negative to sell. (required)
-     * @param double $price Order price. (required)
-     * @param string $time_in_force Time in force. Valid options: &#39;IOC&#39; (Immediate-Or-Cancel), &#39;GTC&#39; (Good-Till-Cancelled). (optional)
-     * @param string $type Order type. Available: &#39;Limit&#39;, &#39;StopLimit&#39; (optional)
-     * @param double $stop_price If order type is &#39;StopLimit&#39;, this is the trigger/stop price. (optional)
-     * @param string $cl_ord_id Optional Client Order ID to give this order. This ID will come back on any execution messages tied to this order. (optional)
+     * @param string $order_id Order ID (optional)
+     * @param string $cl_ord_id Client Order ID. See POST /order. (optional)
+     * @param double $simple_order_qty Optional order quantity in units of the underlying instrument (i.e. Bitcoin). (optional)
+     * @param Number $order_qty Optional order quantity in units of the instrument (i.e. contracts). (optional)
+     * @param double $simple_leaves_qty Optional leaves quantity in units of the underlying instrument (i.e. Bitcoin). Useful for amending partially filled orders. (optional)
+     * @param Number $leaves_qty Optional leaves quantity in units of the instrument (i.e. contracts). Useful for amending partially filled orders. (optional)
+     * @param double $price Optional limit price for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders. (optional)
+     * @param double $stop_px Optional trigger price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. (optional)
+     * @param double $peg_offset_value Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders. (optional)
+     * @param string $text Optional amend annotation. e.g. &#39;Adjust skew&#39;. (optional)
      * @return \Swagger\Client\Model\Order
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function orderNewOrder($symbol, $quantity, $price, $time_in_force=null, $type=null, $stop_price=null, $cl_ord_id=null)
+    public function orderAmend($order_id=null, $cl_ord_id=null, $simple_order_qty=null, $order_qty=null, $simple_leaves_qty=null, $leaves_qty=null, $price=null, $stop_px=null, $peg_offset_value=null, $text=null)
     {
         
-        // verify the required parameter 'symbol' is set
-        if ($symbol === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $symbol when calling orderNewOrder');
-        }
-        // verify the required parameter 'quantity' is set
-        if ($quantity === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $quantity when calling orderNewOrder');
-        }
-        // verify the required parameter 'price' is set
-        if ($price === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $price when calling orderNewOrder');
-        }
   
         // parse inputs
         $resourcePath = "/order";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "POST";
+        $method = "PUT";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -253,16 +244,40 @@ class OrderApi
         
         
         // form params
-        if ($symbol !== null) {
+        if ($order_id !== null) {
             
             
-            $formParams['symbol'] = $this->apiClient->getSerializer()->toFormValue($symbol);
+            $formParams['orderID'] = $this->apiClient->getSerializer()->toFormValue($order_id);
             
         }// form params
-        if ($quantity !== null) {
+        if ($cl_ord_id !== null) {
             
             
-            $formParams['quantity'] = $this->apiClient->getSerializer()->toFormValue($quantity);
+            $formParams['clOrdID'] = $this->apiClient->getSerializer()->toFormValue($cl_ord_id);
+            
+        }// form params
+        if ($simple_order_qty !== null) {
+            
+            
+            $formParams['simpleOrderQty'] = $this->apiClient->getSerializer()->toFormValue($simple_order_qty);
+            
+        }// form params
+        if ($order_qty !== null) {
+            
+            
+            $formParams['orderQty'] = $this->apiClient->getSerializer()->toFormValue($order_qty);
+            
+        }// form params
+        if ($simple_leaves_qty !== null) {
+            
+            
+            $formParams['simpleLeavesQty'] = $this->apiClient->getSerializer()->toFormValue($simple_leaves_qty);
+            
+        }// form params
+        if ($leaves_qty !== null) {
+            
+            
+            $formParams['leavesQty'] = $this->apiClient->getSerializer()->toFormValue($leaves_qty);
             
         }// form params
         if ($price !== null) {
@@ -271,28 +286,22 @@ class OrderApi
             $formParams['price'] = $this->apiClient->getSerializer()->toFormValue($price);
             
         }// form params
-        if ($time_in_force !== null) {
+        if ($stop_px !== null) {
             
             
-            $formParams['timeInForce'] = $this->apiClient->getSerializer()->toFormValue($time_in_force);
-            
-        }// form params
-        if ($type !== null) {
-            
-            
-            $formParams['type'] = $this->apiClient->getSerializer()->toFormValue($type);
+            $formParams['stopPx'] = $this->apiClient->getSerializer()->toFormValue($stop_px);
             
         }// form params
-        if ($stop_price !== null) {
+        if ($peg_offset_value !== null) {
             
             
-            $formParams['stopPrice'] = $this->apiClient->getSerializer()->toFormValue($stop_price);
+            $formParams['pegOffsetValue'] = $this->apiClient->getSerializer()->toFormValue($peg_offset_value);
             
         }// form params
-        if ($cl_ord_id !== null) {
+        if ($text !== null) {
             
             
-            $formParams['clOrdID'] = $this->apiClient->getSerializer()->toFormValue($cl_ord_id);
+            $formParams['text'] = $this->apiClient->getSerializer()->toFormValue($text);
             
         }
         
@@ -347,17 +356,235 @@ class OrderApi
     }
     
     /**
-     * orderCancelOrder
+     * orderNew
+     *
+     * Create a new order.
+     *
+     * @param string $symbol Instrument symbol. e.g. &#39;XBT24H&#39;. (required)
+     * @param string $side Order side. Valid options: Buy, Sell. Defaults to &#39;Buy&#39; unless `orderQty` or `simpleOrderQty` is negative. (optional)
+     * @param double $simple_order_qty Order quantity in units of the underlying instrument (i.e. Bitcoin). (optional)
+     * @param Number $quantity Deprecated: use `orderQty`. (optional)
+     * @param Number $order_qty Order quantity in units of the instrument (i.e. contracts). (optional)
+     * @param double $price Optional limit price for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders. (optional)
+     * @param Number $display_qty Optional quantity to display in the book. Use 0 for a hidden order. (optional)
+     * @param double $stop_price Deprecated: use `stopPx`. (optional)
+     * @param double $stop_px Optional trigger price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use `execInst` of &#39;MarkPrice&#39; or &#39;LastPrice&#39; to define the current price used for triggering. (optional)
+     * @param string $cl_ord_id Optional Client Order ID. This clOrdID will come back on the order and any related executions. (optional)
+     * @param string $cl_ord_link_id Optional Client Order Link ID for contingent orders. (optional)
+     * @param double $peg_offset_value Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders. (optional)
+     * @param string $peg_price_type Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg, TrailingStopPeg. (optional)
+     * @param string $type Deprecated: use `ordType`. (optional)
+     * @param string $ord_type Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to &#39;Limit&#39; when `price` is specified. Defaults to &#39;Stop&#39; when `stopPx` is specified. Defaults to &#39;StopLimit&#39; when `price` and `stopPx` are specified. (optional)
+     * @param string $time_in_force Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to &#39;GoodTillCancel&#39; for &#39;Limit&#39;, &#39;StopLimit&#39;, &#39;LimitIfTouched&#39;, and &#39;MarketWithLeftOverAsLimit&#39; orders. (optional)
+     * @param string $exec_inst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, LastPrice, Close, ReduceOnly. &#39;AllOrNone&#39; instruction requires `displayQty` to be 0. &#39;MarkPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. (optional)
+     * @param string $contingency_type Optional contingency type for use with `clOrdLinkID`. Valid options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute, OneUpdatesTheOtherProportional. (optional)
+     * @param string $text Optional order annotation. e.g. &#39;Take profit&#39;. (optional)
+     * @return \Swagger\Client\Model\Order
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function orderNew($symbol, $side=null, $simple_order_qty=null, $quantity=null, $order_qty=null, $price=null, $display_qty=null, $stop_price=null, $stop_px=null, $cl_ord_id=null, $cl_ord_link_id=null, $peg_offset_value=null, $peg_price_type=null, $type=null, $ord_type=null, $time_in_force=null, $exec_inst=null, $contingency_type=null, $text=null)
+    {
+        
+        // verify the required parameter 'symbol' is set
+        if ($symbol === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $symbol when calling orderNew');
+        }
+  
+        // parse inputs
+        $resourcePath = "/order";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "POST";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
+  
+        
+        
+        
+        // form params
+        if ($symbol !== null) {
+            
+            
+            $formParams['symbol'] = $this->apiClient->getSerializer()->toFormValue($symbol);
+            
+        }// form params
+        if ($side !== null) {
+            
+            
+            $formParams['side'] = $this->apiClient->getSerializer()->toFormValue($side);
+            
+        }// form params
+        if ($simple_order_qty !== null) {
+            
+            
+            $formParams['simpleOrderQty'] = $this->apiClient->getSerializer()->toFormValue($simple_order_qty);
+            
+        }// form params
+        if ($quantity !== null) {
+            
+            
+            $formParams['quantity'] = $this->apiClient->getSerializer()->toFormValue($quantity);
+            
+        }// form params
+        if ($order_qty !== null) {
+            
+            
+            $formParams['orderQty'] = $this->apiClient->getSerializer()->toFormValue($order_qty);
+            
+        }// form params
+        if ($price !== null) {
+            
+            
+            $formParams['price'] = $this->apiClient->getSerializer()->toFormValue($price);
+            
+        }// form params
+        if ($display_qty !== null) {
+            
+            
+            $formParams['displayQty'] = $this->apiClient->getSerializer()->toFormValue($display_qty);
+            
+        }// form params
+        if ($stop_price !== null) {
+            
+            
+            $formParams['stopPrice'] = $this->apiClient->getSerializer()->toFormValue($stop_price);
+            
+        }// form params
+        if ($stop_px !== null) {
+            
+            
+            $formParams['stopPx'] = $this->apiClient->getSerializer()->toFormValue($stop_px);
+            
+        }// form params
+        if ($cl_ord_id !== null) {
+            
+            
+            $formParams['clOrdID'] = $this->apiClient->getSerializer()->toFormValue($cl_ord_id);
+            
+        }// form params
+        if ($cl_ord_link_id !== null) {
+            
+            
+            $formParams['clOrdLinkID'] = $this->apiClient->getSerializer()->toFormValue($cl_ord_link_id);
+            
+        }// form params
+        if ($peg_offset_value !== null) {
+            
+            
+            $formParams['pegOffsetValue'] = $this->apiClient->getSerializer()->toFormValue($peg_offset_value);
+            
+        }// form params
+        if ($peg_price_type !== null) {
+            
+            
+            $formParams['pegPriceType'] = $this->apiClient->getSerializer()->toFormValue($peg_price_type);
+            
+        }// form params
+        if ($type !== null) {
+            
+            
+            $formParams['type'] = $this->apiClient->getSerializer()->toFormValue($type);
+            
+        }// form params
+        if ($ord_type !== null) {
+            
+            
+            $formParams['ordType'] = $this->apiClient->getSerializer()->toFormValue($ord_type);
+            
+        }// form params
+        if ($time_in_force !== null) {
+            
+            
+            $formParams['timeInForce'] = $this->apiClient->getSerializer()->toFormValue($time_in_force);
+            
+        }// form params
+        if ($exec_inst !== null) {
+            
+            
+            $formParams['execInst'] = $this->apiClient->getSerializer()->toFormValue($exec_inst);
+            
+        }// form params
+        if ($contingency_type !== null) {
+            
+            
+            $formParams['contingencyType'] = $this->apiClient->getSerializer()->toFormValue($contingency_type);
+            
+        }// form params
+        if ($text !== null) {
+            
+            
+            $formParams['text'] = $this->apiClient->getSerializer()->toFormValue($text);
+            
+        }
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } else if (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try
+        {
+            list($response, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\Swagger\Client\Model\Order'
+            );
+            
+            if (!$response) {
+                return null;
+            }
+
+            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\Order', $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Order', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 400:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 401:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 404:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+        
+        return null;
+        
+    }
+    
+    /**
+     * orderCancel
      *
      * Cancel order(s). Send multiple order IDs to cancel in bulk.
      *
      * @param string $order_id Order ID(s). (optional)
      * @param string $cl_ord_id Client Order ID(s). See POST /order. (optional)
-     * @param string $text Optional cancellation annotation. e.g. &#39;Spread Exceeded&#39; (optional)
+     * @param string $text Optional cancellation annotation. e.g. &#39;Spread Exceeded&#39;. (optional)
      * @return \Swagger\Client\Model\Order[]
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function orderCancelOrder($order_id=null, $cl_ord_id=null, $text=null)
+    public function orderCancel($order_id=null, $cl_ord_id=null, $text=null)
     {
         
   
@@ -456,7 +683,7 @@ class OrderApi
      * @param string $symbol Optional symbol. If provided, only cancels orders for that symbol. (optional)
      * @param string $filter Optional filter for cancellation. Use to only cancel some orders, e.g. `{\&quot;side\&quot;: \&quot;Buy\&quot;}`. (optional)
      * @param string $text Optional cancellation annotation. e.g. &#39;Spread Exceeded&#39; (optional)
-     * @return \Swagger\Client\Model\InlineResponse200
+     * @return \Swagger\Client\Model\InlineResponse2001
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function orderCancelAll($symbol=null, $filter=null, $text=null)
@@ -514,19 +741,195 @@ class OrderApi
             list($response, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\Swagger\Client\Model\InlineResponse200'
+                $headerParams, '\Swagger\Client\Model\InlineResponse2001'
             );
             
             if (!$response) {
                 return null;
             }
 
-            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\InlineResponse200', $httpHeader);
+            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\InlineResponse2001', $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\InlineResponse200', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\InlineResponse2001', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 400:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 401:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 404:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+        
+        return null;
+        
+    }
+    
+    /**
+     * orderAmendBulk
+     *
+     * Amend multiple orders.
+     *
+     * @param string $orders An array of orders. (optional)
+     * @return \Swagger\Client\Model\Order[]
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function orderAmendBulk($orders=null)
+    {
+        
+  
+        // parse inputs
+        $resourcePath = "/order/bulk";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "PUT";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
+  
+        
+        
+        
+        // form params
+        if ($orders !== null) {
+            
+            
+            $formParams['orders'] = $this->apiClient->getSerializer()->toFormValue($orders);
+            
+        }
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } else if (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try
+        {
+            list($response, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\Swagger\Client\Model\Order[]'
+            );
+            
+            if (!$response) {
+                return null;
+            }
+
+            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\Order[]', $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Order[]', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 400:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 401:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 404:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+        
+        return null;
+        
+    }
+    
+    /**
+     * orderNewBulk
+     *
+     * Create multiple new orders.
+     *
+     * @param string $orders An array of orders. (optional)
+     * @return \Swagger\Client\Model\Order[]
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function orderNewBulk($orders=null)
+    {
+        
+  
+        // parse inputs
+        $resourcePath = "/order/bulk";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "POST";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
+  
+        
+        
+        
+        // form params
+        if ($orders !== null) {
+            
+            
+            $formParams['orders'] = $this->apiClient->getSerializer()->toFormValue($orders);
+            
+        }
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } else if (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try
+        {
+            list($response, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\Swagger\Client\Model\Order[]'
+            );
+            
+            if (!$response) {
+                return null;
+            }
+
+            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\Order[]', $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Order[]', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             case 400:
@@ -556,7 +959,7 @@ class OrderApi
      * Automatically cancel all your orders after a specified timeout.
      *
      * @param double $timeout Timeout in ms. Set to 0 to cancel this timer. (required)
-     * @return \Swagger\Client\Model\InlineResponse200
+     * @return \Swagger\Client\Model\InlineResponse2001
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
     public function orderCancelAllAfter($timeout)
@@ -606,19 +1009,19 @@ class OrderApi
             list($response, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\Swagger\Client\Model\InlineResponse200'
+                $headerParams, '\Swagger\Client\Model\InlineResponse2001'
             );
             
             if (!$response) {
                 return null;
             }
 
-            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\InlineResponse200', $httpHeader);
+            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\InlineResponse2001', $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\InlineResponse200', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\InlineResponse2001', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             case 400:
@@ -645,7 +1048,7 @@ class OrderApi
     /**
      * orderClosePosition
      *
-     * Close a position with a market order.
+     * Close a position. [Deprecated, use POST /order with execInst: 'Close']
      *
      * @param string $symbol Symbol of position to close. (required)
      * @param double $price Optional limit price. (optional)
@@ -718,91 +1121,6 @@ class OrderApi
             switch ($e->getCode()) { 
             case 200:
                 $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Order', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            case 400:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            case 401:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            case 404:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-        
-        return null;
-        
-    }
-    
-    /**
-     * orderGetCloseOutOrders
-     *
-     * Get open liquidation orders.
-     *
-     * @param string $filter Filter. For example, send {\&quot;symbol\&quot;: \&quot;XBT24H\&quot;}. (optional)
-     * @return \Swagger\Client\Model\LiquidationOrder[]
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function orderGetCloseOutOrders($filter=null)
-    {
-        
-  
-        // parse inputs
-        $resourcePath = "/order/liquidations";
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "GET";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
-  
-        // query params
-        if ($filter !== null) {
-            $queryParams['filter'] = $this->apiClient->getSerializer()->toQueryValue($filter);
-        }
-        
-        
-        
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } else if (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try
-        {
-            list($response, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, $method,
-                $queryParams, $httpBody,
-                $headerParams, '\Swagger\Client\Model\LiquidationOrder[]'
-            );
-            
-            if (!$response) {
-                return null;
-            }
-
-            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\LiquidationOrder[]', $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\LiquidationOrder[]', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             case 400:

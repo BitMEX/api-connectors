@@ -53,20 +53,26 @@ class Order implements ArrayAccess
     static $swaggerTypes = array(
         'order_id' => 'string',
         'cl_ord_id' => 'string',
+        'cl_ord_link_id' => 'string',
         'account' => 'Number',
         'symbol' => 'string',
         'side' => 'string',
         'simple_order_qty' => 'double',
         'order_qty' => 'Number',
         'price' => 'double',
-        'min_qty' => 'Number',
+        'display_qty' => 'Number',
         'stop_px' => 'double',
+        'peg_offset_value' => 'double',
+        'peg_price_type' => 'string',
         'currency' => 'string',
         'settl_currency' => 'string',
         'ord_type' => 'string',
         'time_in_force' => 'string',
+        'exec_inst' => 'string',
+        'contingency_type' => 'string',
         'ex_destination' => 'string',
         'ord_status' => 'string',
+        'triggered' => 'string',
         'working_indicator' => 'bool',
         'ord_rej_reason' => 'string',
         'simple_leaves_qty' => 'double',
@@ -87,20 +93,26 @@ class Order implements ArrayAccess
     static $attributeMap = array(
         'order_id' => 'orderID',
         'cl_ord_id' => 'clOrdID',
+        'cl_ord_link_id' => 'clOrdLinkID',
         'account' => 'account',
         'symbol' => 'symbol',
         'side' => 'side',
         'simple_order_qty' => 'simpleOrderQty',
         'order_qty' => 'orderQty',
         'price' => 'price',
-        'min_qty' => 'minQty',
+        'display_qty' => 'displayQty',
         'stop_px' => 'stopPx',
+        'peg_offset_value' => 'pegOffsetValue',
+        'peg_price_type' => 'pegPriceType',
         'currency' => 'currency',
         'settl_currency' => 'settlCurrency',
         'ord_type' => 'ordType',
         'time_in_force' => 'timeInForce',
+        'exec_inst' => 'execInst',
+        'contingency_type' => 'contingencyType',
         'ex_destination' => 'exDestination',
         'ord_status' => 'ordStatus',
+        'triggered' => 'triggered',
         'working_indicator' => 'workingIndicator',
         'ord_rej_reason' => 'ordRejReason',
         'simple_leaves_qty' => 'simpleLeavesQty',
@@ -121,20 +133,26 @@ class Order implements ArrayAccess
     static $setters = array(
         'order_id' => 'setOrderId',
         'cl_ord_id' => 'setClOrdId',
+        'cl_ord_link_id' => 'setClOrdLinkId',
         'account' => 'setAccount',
         'symbol' => 'setSymbol',
         'side' => 'setSide',
         'simple_order_qty' => 'setSimpleOrderQty',
         'order_qty' => 'setOrderQty',
         'price' => 'setPrice',
-        'min_qty' => 'setMinQty',
+        'display_qty' => 'setDisplayQty',
         'stop_px' => 'setStopPx',
+        'peg_offset_value' => 'setPegOffsetValue',
+        'peg_price_type' => 'setPegPriceType',
         'currency' => 'setCurrency',
         'settl_currency' => 'setSettlCurrency',
         'ord_type' => 'setOrdType',
         'time_in_force' => 'setTimeInForce',
+        'exec_inst' => 'setExecInst',
+        'contingency_type' => 'setContingencyType',
         'ex_destination' => 'setExDestination',
         'ord_status' => 'setOrdStatus',
+        'triggered' => 'setTriggered',
         'working_indicator' => 'setWorkingIndicator',
         'ord_rej_reason' => 'setOrdRejReason',
         'simple_leaves_qty' => 'setSimpleLeavesQty',
@@ -155,20 +173,26 @@ class Order implements ArrayAccess
     static $getters = array(
         'order_id' => 'getOrderId',
         'cl_ord_id' => 'getClOrdId',
+        'cl_ord_link_id' => 'getClOrdLinkId',
         'account' => 'getAccount',
         'symbol' => 'getSymbol',
         'side' => 'getSide',
         'simple_order_qty' => 'getSimpleOrderQty',
         'order_qty' => 'getOrderQty',
         'price' => 'getPrice',
-        'min_qty' => 'getMinQty',
+        'display_qty' => 'getDisplayQty',
         'stop_px' => 'getStopPx',
+        'peg_offset_value' => 'getPegOffsetValue',
+        'peg_price_type' => 'getPegPriceType',
         'currency' => 'getCurrency',
         'settl_currency' => 'getSettlCurrency',
         'ord_type' => 'getOrdType',
         'time_in_force' => 'getTimeInForce',
+        'exec_inst' => 'getExecInst',
+        'contingency_type' => 'getContingencyType',
         'ex_destination' => 'getExDestination',
         'ord_status' => 'getOrdStatus',
+        'triggered' => 'getTriggered',
         'working_indicator' => 'getWorkingIndicator',
         'ord_rej_reason' => 'getOrdRejReason',
         'simple_leaves_qty' => 'getSimpleLeavesQty',
@@ -194,6 +218,12 @@ class Order implements ArrayAccess
       * @var string
       */
     protected $cl_ord_id;
+    
+    /**
+      * $cl_ord_link_id 
+      * @var string
+      */
+    protected $cl_ord_link_id;
     
     /**
       * $account 
@@ -232,16 +262,28 @@ class Order implements ArrayAccess
     protected $price;
     
     /**
-      * $min_qty 
+      * $display_qty 
       * @var Number
       */
-    protected $min_qty;
+    protected $display_qty;
     
     /**
       * $stop_px 
       * @var double
       */
     protected $stop_px;
+    
+    /**
+      * $peg_offset_value 
+      * @var double
+      */
+    protected $peg_offset_value;
+    
+    /**
+      * $peg_price_type 
+      * @var string
+      */
+    protected $peg_price_type;
     
     /**
       * $currency 
@@ -268,6 +310,18 @@ class Order implements ArrayAccess
     protected $time_in_force;
     
     /**
+      * $exec_inst 
+      * @var string
+      */
+    protected $exec_inst;
+    
+    /**
+      * $contingency_type 
+      * @var string
+      */
+    protected $contingency_type;
+    
+    /**
       * $ex_destination 
       * @var string
       */
@@ -278,6 +332,12 @@ class Order implements ArrayAccess
       * @var string
       */
     protected $ord_status;
+    
+    /**
+      * $triggered 
+      * @var string
+      */
+    protected $triggered;
     
     /**
       * $working_indicator 
@@ -355,20 +415,26 @@ class Order implements ArrayAccess
         if ($data != null) {
             $this->order_id = $data["order_id"];
             $this->cl_ord_id = $data["cl_ord_id"];
+            $this->cl_ord_link_id = $data["cl_ord_link_id"];
             $this->account = $data["account"];
             $this->symbol = $data["symbol"];
             $this->side = $data["side"];
             $this->simple_order_qty = $data["simple_order_qty"];
             $this->order_qty = $data["order_qty"];
             $this->price = $data["price"];
-            $this->min_qty = $data["min_qty"];
+            $this->display_qty = $data["display_qty"];
             $this->stop_px = $data["stop_px"];
+            $this->peg_offset_value = $data["peg_offset_value"];
+            $this->peg_price_type = $data["peg_price_type"];
             $this->currency = $data["currency"];
             $this->settl_currency = $data["settl_currency"];
             $this->ord_type = $data["ord_type"];
             $this->time_in_force = $data["time_in_force"];
+            $this->exec_inst = $data["exec_inst"];
+            $this->contingency_type = $data["contingency_type"];
             $this->ex_destination = $data["ex_destination"];
             $this->ord_status = $data["ord_status"];
+            $this->triggered = $data["triggered"];
             $this->working_indicator = $data["working_indicator"];
             $this->ord_rej_reason = $data["ord_rej_reason"];
             $this->simple_leaves_qty = $data["simple_leaves_qty"];
@@ -422,6 +488,27 @@ class Order implements ArrayAccess
     {
         
         $this->cl_ord_id = $cl_ord_id;
+        return $this;
+    }
+    
+    /**
+     * Gets cl_ord_link_id
+     * @return string
+     */
+    public function getClOrdLinkId()
+    {
+        return $this->cl_ord_link_id;
+    }
+  
+    /**
+     * Sets cl_ord_link_id
+     * @param string $cl_ord_link_id 
+     * @return $this
+     */
+    public function setClOrdLinkId($cl_ord_link_id)
+    {
+        
+        $this->cl_ord_link_id = $cl_ord_link_id;
         return $this;
     }
     
@@ -552,23 +639,23 @@ class Order implements ArrayAccess
     }
     
     /**
-     * Gets min_qty
+     * Gets display_qty
      * @return Number
      */
-    public function getMinQty()
+    public function getDisplayQty()
     {
-        return $this->min_qty;
+        return $this->display_qty;
     }
   
     /**
-     * Sets min_qty
-     * @param Number $min_qty 
+     * Sets display_qty
+     * @param Number $display_qty 
      * @return $this
      */
-    public function setMinQty($min_qty)
+    public function setDisplayQty($display_qty)
     {
         
-        $this->min_qty = $min_qty;
+        $this->display_qty = $display_qty;
         return $this;
     }
     
@@ -590,6 +677,48 @@ class Order implements ArrayAccess
     {
         
         $this->stop_px = $stop_px;
+        return $this;
+    }
+    
+    /**
+     * Gets peg_offset_value
+     * @return double
+     */
+    public function getPegOffsetValue()
+    {
+        return $this->peg_offset_value;
+    }
+  
+    /**
+     * Sets peg_offset_value
+     * @param double $peg_offset_value 
+     * @return $this
+     */
+    public function setPegOffsetValue($peg_offset_value)
+    {
+        
+        $this->peg_offset_value = $peg_offset_value;
+        return $this;
+    }
+    
+    /**
+     * Gets peg_price_type
+     * @return string
+     */
+    public function getPegPriceType()
+    {
+        return $this->peg_price_type;
+    }
+  
+    /**
+     * Sets peg_price_type
+     * @param string $peg_price_type 
+     * @return $this
+     */
+    public function setPegPriceType($peg_price_type)
+    {
+        
+        $this->peg_price_type = $peg_price_type;
         return $this;
     }
     
@@ -678,6 +807,48 @@ class Order implements ArrayAccess
     }
     
     /**
+     * Gets exec_inst
+     * @return string
+     */
+    public function getExecInst()
+    {
+        return $this->exec_inst;
+    }
+  
+    /**
+     * Sets exec_inst
+     * @param string $exec_inst 
+     * @return $this
+     */
+    public function setExecInst($exec_inst)
+    {
+        
+        $this->exec_inst = $exec_inst;
+        return $this;
+    }
+    
+    /**
+     * Gets contingency_type
+     * @return string
+     */
+    public function getContingencyType()
+    {
+        return $this->contingency_type;
+    }
+  
+    /**
+     * Sets contingency_type
+     * @param string $contingency_type 
+     * @return $this
+     */
+    public function setContingencyType($contingency_type)
+    {
+        
+        $this->contingency_type = $contingency_type;
+        return $this;
+    }
+    
+    /**
      * Gets ex_destination
      * @return string
      */
@@ -716,6 +887,27 @@ class Order implements ArrayAccess
     {
         
         $this->ord_status = $ord_status;
+        return $this;
+    }
+    
+    /**
+     * Gets triggered
+     * @return string
+     */
+    public function getTriggered()
+    {
+        return $this->triggered;
+    }
+  
+    /**
+     * Sets triggered
+     * @param string $triggered 
+     * @return $this
+     */
+    public function setTriggered($triggered)
+    {
+        
+        $this->triggered = $triggered;
         return $this;
     }
     

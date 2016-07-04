@@ -17,6 +17,13 @@ namespace IO.Swagger.Model
     public class InlineResponse200 : IEquatable<InlineResponse200>
     {
         
+        /// <summary>
+        /// Gets or Sets Success
+        /// </summary>
+        [DataMember(Name="success", EmitDefaultValue=false)]
+        public bool? Success { get; set; }
+  
+        
   
         /// <summary>
         /// Returns the string presentation of the object
@@ -26,6 +33,7 @@ namespace IO.Swagger.Model
         {
             var sb = new StringBuilder();
             sb.Append("class InlineResponse200 {\n");
+            sb.Append("  Success: ").Append(Success).Append("\n");
             
             sb.Append("}\n");
             return sb.ToString();
@@ -62,7 +70,12 @@ namespace IO.Swagger.Model
             if (other == null)
                 return false;
 
-            return ;
+            return 
+                (
+                    this.Success == other.Success ||
+                    this.Success != null &&
+                    this.Success.Equals(other.Success)
+                );
         }
 
         /// <summary>
@@ -76,6 +89,9 @@ namespace IO.Swagger.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
+                
+                if (this.Success != null)
+                    hash = hash * 57 + this.Success.GetHashCode();
                 
                 return hash;
             }

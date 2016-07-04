@@ -29,7 +29,7 @@ import javax.ws.rs.*;
 @Consumes({ "application/json", "application/x-www-form-urlencoded" })
 @Produces({ "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" })
 @io.swagger.annotations.Api(description = "the instrument API")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-30T13:35:57.938-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2016-07-04T18:25:32.992-05:00")
 public class InstrumentApi  {
    private final InstrumentApiService delegate = InstrumentApiServiceFactory.getInstrumentApi();
 
@@ -37,7 +37,7 @@ public class InstrumentApi  {
     
     @Consumes({ "application/json", "application/x-www-form-urlencoded" })
     @Produces({ "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" })
-    @io.swagger.annotations.ApiOperation(value = "Get instruments.", notes = "This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use the endpoint /instrument/active to return active instruments, or use a filter like {\"state\": \"Open\"}.", response = Instrument.class, responseContainer = "List", tags={ "Instrument",  })
+    @io.swagger.annotations.ApiOperation(value = "Get instruments.", notes = "This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\"state\": \"Open\"}`.", response = Instrument.class, responseContainer = "List", tags={ "Instrument",  })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Request was successful", response = Instrument.class, responseContainer = "List"),
         
@@ -47,8 +47,8 @@ public class InstrumentApi  {
         
         @io.swagger.annotations.ApiResponse(code = 404, message = "Not Found", response = Instrument.class, responseContainer = "List") })
 
-    public Response instrumentGet(@ApiParam(value = "Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly', 'quarterly', and 'biquarterly'.") @QueryParam("symbol") String symbol,
-    @ApiParam(value = "Generic table filter. Send JSON key/value pairs, such as {\"key\": \"value\"}. You can key on individual fields, and do more advanced querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\">http://localhost:2001/app/restAPI#timestamp-filters</a> for more details.") @QueryParam("filter") String filter,
+    public Response instrumentGet(@ApiParam(value = "Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.") @QueryParam("symbol") String symbol,
+    @ApiParam(value = "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.") @QueryParam("filter") String filter,
     @ApiParam(value = "Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.") @QueryParam("columns") String columns,
     @ApiParam(value = "Number of results to fetch.", defaultValue="100") @QueryParam("count") BigDecimal count,
     @ApiParam(value = "Starting point for results.", defaultValue="0") @QueryParam("start") BigDecimal start,
@@ -98,7 +98,7 @@ public class InstrumentApi  {
     @Path("/activeIntervals")
     @Consumes({ "application/json", "application/x-www-form-urlencoded" })
     @Produces({ "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" })
-    @io.swagger.annotations.ApiOperation(value = "Return all active contract series and interval pairs.", notes = "This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"BVOL:daily\", \"BVOL:weekly\", \"XBU:daily\", \"XBU:monthly\", ...]`. These identifiers are usable in any query's \"symbol\" param. The second array is the current resolution of these intervals. Results are mapped at the same index.", response = InstrumentInterval.class, tags={ "Instrument",  })
+    @io.swagger.annotations.ApiOperation(value = "Return all active contract series and interval pairs.", notes = "This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"BVOL:daily\", \"BVOL:weekly\", \"XBU:daily\", \"XBU:monthly\", ...]`. These identifiers are usable in any query's `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.", response = InstrumentInterval.class, tags={ "Instrument",  })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Request was successful", response = InstrumentInterval.class),
         

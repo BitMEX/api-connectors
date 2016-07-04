@@ -45,9 +45,9 @@ class OrderBookApi(object):
                 config.api_client = ApiClient()
             self.api_client = config.api_client
 
-    def order_book_get_order_book(self, symbol, **kwargs):
+    def order_book_get(self, symbol, **kwargs):
         """
-        Get current orderbook.
+        Get current orderbook [deprecated, use /orderBook/L2].
         
 
         This method makes a synchronous HTTP request by default. To make an
@@ -56,7 +56,7 @@ class OrderBookApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.order_book_get_order_book(symbol, callback=callback_function)
+        >>> thread = api.order_book_get(symbol, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
@@ -75,14 +75,14 @@ class OrderBookApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method order_book_get_order_book" % key
+                    " to method order_book_get" % key
                 )
             params[key] = val
         del params['kwargs']
 
         # verify the required parameter 'symbol' is set
         if ('symbol' not in params) or (params['symbol'] is None):
-            raise ValueError("Missing the required parameter `symbol` when calling `order_book_get_order_book`")
+            raise ValueError("Missing the required parameter `symbol` when calling `order_book_get`")
 
         resource_path = '/orderBook'.replace('{format}', 'json')
         method = 'GET'
@@ -123,6 +123,88 @@ class OrderBookApi(object):
                                             post_params=form_params,
                                             files=files,
                                             response_type='list[OrderBook]',
+                                            auth_settings=auth_settings,
+                                            callback=params.get('callback'))
+        return response
+
+    def order_book_get_l2(self, symbol, **kwargs):
+        """
+        Get current orderbook in vertical format.
+        
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.order_book_get_l2(symbol, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str symbol: Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (required)
+        :param float depth: Orderbook depth per side. Send 0 for full depth.
+        :return: list[OrderBookL2]
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['symbol', 'depth']
+        all_params.append('callback')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method order_book_get_l2" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        # verify the required parameter 'symbol' is set
+        if ('symbol' not in params) or (params['symbol'] is None):
+            raise ValueError("Missing the required parameter `symbol` when calling `order_book_get_l2`")
+
+        resource_path = '/orderBook/L2'.replace('{format}', 'json')
+        method = 'GET'
+
+        path_params = {}
+
+        query_params = {}
+        if 'symbol' in params:
+            query_params['symbol'] = params['symbol']
+        if 'depth' in params:
+            query_params['depth'] = params['depth']
+
+        header_params = {}
+
+        form_params = {}
+        files = {}
+
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
+
+        # Authentication setting
+        auth_settings = []
+
+        response = self.api_client.call_api(resource_path, method,
+                                            path_params,
+                                            query_params,
+                                            header_params,
+                                            body=body_params,
+                                            post_params=form_params,
+                                            files=files,
+                                            response_type='list[OrderBookL2]',
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'))
         return response

@@ -29,6 +29,8 @@
 
 @property(nonatomic) NSDate* expiry;
 
+@property(nonatomic) NSDate* settle;
+
 @property(nonatomic) NSDate* relistInterval;
 
 @property(nonatomic) NSString* inverseLeg;
@@ -36,6 +38,8 @@
 @property(nonatomic) NSString* sellLeg;
 
 @property(nonatomic) NSString* buyLeg;
+
+@property(nonatomic) NSString* positionCurrency;
 
 @property(nonatomic) NSString* underlying;
 
@@ -47,11 +51,25 @@
 
 @property(nonatomic) NSString* referenceSymbol;
 
+@property(nonatomic) NSDate* calcInterval;
+
+@property(nonatomic) NSDate* publishInterval;
+
+@property(nonatomic) NSDate* publishTime;
+
+@property(nonatomic) NSNumber* maxOrderQty;
+
+@property(nonatomic) NSNumber* maxPrice;
+
+@property(nonatomic) NSNumber* lotSize;
+
 @property(nonatomic) NSNumber* tickSize;
 
 @property(nonatomic) NSNumber* multiplier;
 
 @property(nonatomic) NSString* settlCurrency;
+
+@property(nonatomic) NSNumber* underlyingToPositionMultiplier;
 
 @property(nonatomic) NSNumber* underlyingToSettleMultiplier;
 
@@ -75,13 +93,27 @@
 
 @property(nonatomic) NSNumber* takerFee;
 
+@property(nonatomic) NSNumber* settlementFee;
+
 @property(nonatomic) NSNumber* insuranceFee;
 
-@property(nonatomic) NSNumber* hedgerMakerFee;
+@property(nonatomic) NSString* fundingBaseSymbol;
 
-@property(nonatomic) NSNumber* hedgerTakerFee;
+@property(nonatomic) NSString* fundingQuoteSymbol;
 
-@property(nonatomic) NSNumber* hedgerInsuranceFee;
+@property(nonatomic) NSString* fundingPremiumSymbol;
+
+@property(nonatomic) NSDate* fundingTimestamp;
+
+@property(nonatomic) NSDate* fundingInterval;
+
+@property(nonatomic) NSNumber* fundingRate;
+
+@property(nonatomic) NSNumber* indicativeFundingRate;
+
+@property(nonatomic) NSDate* rebalanceTimestamp;
+
+@property(nonatomic) NSDate* rebalanceInterval;
 
 @property(nonatomic) NSDate* openingTimestamp;
 

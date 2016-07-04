@@ -2,8 +2,7 @@
 #import "SWGQueryParamCollection.h"
 #import "SWGError.h"
 #import "SWGOrder.h"
-#import "SWGInlineResponse200.h"
-#import "SWGLiquidationOrder.h"
+#import "SWGInlineResponse2001.h"
 
 
 @interface SWGOrderApi ()
@@ -74,10 +73,10 @@ static SWGOrderApi* singletonAPI = nil;
 
 ///
 /// Get your orders.
-/// To get open orders only, send {\"open\": true} in the filter param.
-///  @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly', 'quarterly', and 'biquarterly'.
+/// To get open orders only, send {\"open\": true} in the filter param.\n\nSee <a href=\"http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_D_68.html\">the FIX Spec</a> for explanations of these fields.
+///  @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
 ///
-///  @param filter Generic table filter. Send JSON key/value pairs, such as {\"key\": \"value\"}. You can key on individual fields, and do more advanced querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\">http://localhost:2001/app/restAPI#timestamp-filters</a> for more details.
+///  @param filter Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
 ///
 ///  @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
 ///
@@ -204,31 +203,232 @@ static SWGOrderApi* singletonAPI = nil;
 }
 
 ///
-/// Create a new order.
-/// This endpoint is used for placing orders. Valid order types are 'Limit' and 'StopLimit'. If none is provided, BitMEX will assume a Limit Order.\n\nA note on API tools: if you want to keep track of order IDs yourself, set a unique clOrdID per order. This ID will come back as a property on the order and any related executions (including on the WebSocket), and can be used to get or cancel the order. Max length is 36 characters.\n\nTo generate a clOrdID, consider setting a prefix, and incrementing a counter or generating a UUID. Some UUIDs are longer than 36 characters, so use a url-safe base64 encoding. For example, the prefix 'bmex_mm_' and the UUID '7fbd6545-bb0c-11e4-a273-6003088a7c04' creates 'bmex_mm_f71lRbsMEeSic2ADCIp8BA'.\n\nSee the BitMEX <a href='https://github.com/BitMEX/market-maker/blob/22c75a2b6db63e20212813e9afdb845db1b09b2a/bitmex.py#L152'>Reference Market Maker</a> for an example of how to use and generate clOrdIDs.
-///  @param symbol Instrument symbol.
+/// Amend the quantity or price of an open order.
+/// <p>Send an <code>orderID</code> or <code>clOrdID</code> to identify the order you wish to amend.</p>\n<p>Both order quantity and price can be amended. Only one <code>qty</code> field can be used to amend.</p>\n<p>Use the <code>leavesQty</code> field to specify how much of the order you wish to remain open. This can be useful\nif you want to adjust your position&#39;s delta by a certain amount, regardless of how much of the order has\nalready filled.</p>\n<p>Use the <code>simpleOrderQty</code> and <code>simpleLeavesQty</code> fields to specify order size in Bitcoin, rather than contracts.\nThese fields will round up to the nearest contract.</p>\n<p>Like order placement, amending can be done in bulk. Simply send a request to <code>PUT /api/v1/order/bulk</code> with\na JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, each object containing the fields used in this endpoint.</p>
+///  @param orderID Order ID
 ///
-///  @param quantity Quantity. Use positive numbers to buy, negative to sell.
+///  @param clOrdID Client Order ID. See POST /order.
 ///
-///  @param price Order price.
+///  @param simpleOrderQty Optional order quantity in units of the underlying instrument (i.e. Bitcoin).
 ///
-///  @param timeInForce Time in force. Valid options: 'IOC' (Immediate-Or-Cancel), 'GTC' (Good-Till-Cancelled).
+///  @param orderQty Optional order quantity in units of the instrument (i.e. contracts).
 ///
-///  @param type Order type. Available: 'Limit', 'StopLimit'
+///  @param simpleLeavesQty Optional leaves quantity in units of the underlying instrument (i.e. Bitcoin). Useful for amending partially filled orders.
 ///
-///  @param stopPrice If order type is 'StopLimit', this is the trigger/stop price.
+///  @param leavesQty Optional leaves quantity in units of the instrument (i.e. contracts). Useful for amending partially filled orders.
 ///
-///  @param clOrdID Optional Client Order ID to give this order. This ID will come back on any execution messages tied to this order.
+///  @param price Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders.
+///
+///  @param stopPx Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. Use a price below the current price for stop-sell orders and buy-if-touched orders.
+///
+///  @param pegOffsetValue Optional trailing offset from the current price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for 'Pegged' orders.
+///
+///  @param text Optional amend annotation. e.g. 'Adjust skew'.
 ///
 ///  @returns SWGOrder*
 ///
--(NSNumber*) orderNewOrderWithCompletionBlock: (NSString*) symbol
-         quantity: (NSNumber*) quantity
-         price: (NSNumber*) price
-         timeInForce: (NSString*) timeInForce
-         type: (NSString*) type
-         stopPrice: (NSNumber*) stopPrice
+-(NSNumber*) orderAmendWithCompletionBlock: (NSString*) orderID
          clOrdID: (NSString*) clOrdID
+         simpleOrderQty: (NSNumber*) simpleOrderQty
+         orderQty: (NSNumber*) orderQty
+         simpleLeavesQty: (NSNumber*) simpleLeavesQty
+         leavesQty: (NSNumber*) leavesQty
+         price: (NSNumber*) price
+         stopPx: (NSNumber*) stopPx
+         pegOffsetValue: (NSNumber*) pegOffsetValue
+         text: (NSString*) text
+        
+        completionHandler: (void (^)(SWGOrder* output, NSError* error))completionBlock { 
+        
+
+    
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/order"];
+
+    // remove format in URL if needed
+    if ([resourcePath rangeOfString:@".{format}"].location != NSNotFound) {
+        [resourcePath replaceCharactersInRange: [resourcePath rangeOfString:@".{format}"] withString:@".json"];
+    }
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+    
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.defaultHeaders];
+
+    
+
+    // HTTP header `Accept`
+    headerParams[@"Accept"] = [SWGApiClient selectHeaderAccept:@[@"application/json", @"application/xml", @"text/xml", @"application/javascript", @"text/javascript"]];
+    if ([headerParams[@"Accept"] length] == 0) {
+        [headerParams removeObjectForKey:@"Accept"];
+    }
+
+    // response content type
+    NSString *responseContentType;
+    if ([headerParams objectForKey:@"Accept"]) {
+        responseContentType = [headerParams[@"Accept"] componentsSeparatedByString:@", "][0];
+    }
+    else {
+        responseContentType = @"";
+    }
+
+    // request content type
+    NSString *requestContentType = [SWGApiClient selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *files = [[NSMutableDictionary alloc] init];
+    
+    
+    
+    if (orderID) {
+        formParams[@"orderID"] = orderID;
+    }
+    
+    
+    
+    if (clOrdID) {
+        formParams[@"clOrdID"] = clOrdID;
+    }
+    
+    
+    
+    if (simpleOrderQty) {
+        formParams[@"simpleOrderQty"] = simpleOrderQty;
+    }
+    
+    
+    
+    if (orderQty) {
+        formParams[@"orderQty"] = orderQty;
+    }
+    
+    
+    
+    if (simpleLeavesQty) {
+        formParams[@"simpleLeavesQty"] = simpleLeavesQty;
+    }
+    
+    
+    
+    if (leavesQty) {
+        formParams[@"leavesQty"] = leavesQty;
+    }
+    
+    
+    
+    if (price) {
+        formParams[@"price"] = price;
+    }
+    
+    
+    
+    if (stopPx) {
+        formParams[@"stopPx"] = stopPx;
+    }
+    
+    
+    
+    if (pegOffsetValue) {
+        formParams[@"pegOffsetValue"] = pegOffsetValue;
+    }
+    
+    
+    
+    if (text) {
+        formParams[@"text"] = text;
+    }
+    
+    
+    
+
+    
+    return [self.apiClient requestWithCompletionBlock: resourcePath
+                                               method: @"PUT"
+                                           pathParams: pathParams
+                                          queryParams: queryParams
+                                           formParams: formParams
+                                                files: files
+                                                 body: bodyParam
+                                         headerParams: headerParams
+                                         authSettings: authSettings
+                                   requestContentType: requestContentType
+                                  responseContentType: responseContentType
+                                         responseType: @"SWGOrder*"
+                                      completionBlock: ^(id data, NSError *error) {
+                  
+                  completionBlock((SWGOrder*)data, error);
+              }
+          ];
+}
+
+///
+/// Create a new order.
+/// This endpoint is used for placing orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, and Pegged.\n\nIf no order type is provided, BitMEX will assume 'Limit'.\nBe very careful with 'Market' and 'Stop' orders as you may be filled at an unfavourable price.\n\nYou can submit bulk orders by POSTing an array of orders to `/api/v1/order/bulk`. Send a JSON payload\nwith the shape: `{\"orders\": [{...}, {...}]}`, with each inner object containing the same fields that would be\nsent to this endpoint.\n\nA note on API tools: if you want to keep track of order IDs yourself, set a unique clOrdID per order.\nThis clOrdID will come back as a property on the order and any related executions (including on the WebSocket),\nand can be used to get or cancel the order. Max length is 36 characters.\n\nTo generate a clOrdID, consider setting a prefix, and incrementing a counter or generating a UUID.\nSome UUIDs are longer than 36 characters, so use a url-safe base64 encoding. For example, the prefix `'bmex_mm_'`\nand the UUID `'7fbd6545-bb0c-11e4-a273-6003088a7c04'` creates `'bmex_mm_f71lRbsMEeSic2ADCIp8BA'`.\n\nSee the [BitMEX Reference Market Maker](https://github.com/BitMEX/market-maker/blob/22c75a2b6db63e20212813e9afdb845db1b09b2a/bitmex.py#L152)\nfor an example of how to use and generate clOrdIDs.
+///  @param symbol Instrument symbol. e.g. 'XBT24H'.
+///
+///  @param side Order side. Valid options: Buy, Sell. Defaults to 'Buy' unless `orderQty` or `simpleOrderQty` is negative.
+///
+///  @param simpleOrderQty Order quantity in units of the underlying instrument (i.e. Bitcoin).
+///
+///  @param quantity Deprecated: use `orderQty`.
+///
+///  @param orderQty Order quantity in units of the instrument (i.e. contracts).
+///
+///  @param price Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders.
+///
+///  @param displayQty Optional quantity to display in the book. Use 0 for a hidden order.
+///
+///  @param stopPrice Deprecated: use `stopPx`.
+///
+///  @param stopPx Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use `execInst` of 'MarkPrice' or 'LastPrice' to define the current price used for triggering.
+///
+///  @param clOrdID Optional Client Order ID. This clOrdID will come back on the order and any related executions.
+///
+///  @param clOrdLinkID Optional Client Order Link ID for contingent orders.
+///
+///  @param pegOffsetValue Optional trailing offset from the current price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for 'Pegged' orders.
+///
+///  @param pegPriceType Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg, TrailingStopPeg.
+///
+///  @param type Deprecated: use `ordType`.
+///
+///  @param ordType Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to 'Limit' when `price` is specified. Defaults to 'Stop' when `stopPx` is specified. Defaults to 'StopLimit' when `price` and `stopPx` are specified.
+///
+///  @param timeInForce Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to 'GoodTillCancel' for 'Limit', 'StopLimit', 'LimitIfTouched', and 'MarketWithLeftOverAsLimit' orders.
+///
+///  @param execInst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, LastPrice, Close, ReduceOnly. 'AllOrNone' instruction requires `displayQty` to be 0. 'MarkPrice' or 'LastPrice' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders.
+///
+///  @param contingencyType Optional contingency type for use with `clOrdLinkID`. Valid options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute, OneUpdatesTheOtherProportional.
+///
+///  @param text Optional order annotation. e.g. 'Take profit'.
+///
+///  @returns SWGOrder*
+///
+-(NSNumber*) orderNewWithCompletionBlock: (NSString*) symbol
+         side: (NSString*) side
+         simpleOrderQty: (NSNumber*) simpleOrderQty
+         quantity: (NSNumber*) quantity
+         orderQty: (NSNumber*) orderQty
+         price: (NSNumber*) price
+         displayQty: (NSNumber*) displayQty
+         stopPrice: (NSNumber*) stopPrice
+         stopPx: (NSNumber*) stopPx
+         clOrdID: (NSString*) clOrdID
+         clOrdLinkID: (NSString*) clOrdLinkID
+         pegOffsetValue: (NSNumber*) pegOffsetValue
+         pegPriceType: (NSString*) pegPriceType
+         type: (NSString*) type
+         ordType: (NSString*) ordType
+         timeInForce: (NSString*) timeInForce
+         execInst: (NSString*) execInst
+         contingencyType: (NSString*) contingencyType
+         text: (NSString*) text
         
         completionHandler: (void (^)(SWGOrder* output, NSError* error))completionBlock { 
         
@@ -236,17 +436,7 @@ static SWGOrderApi* singletonAPI = nil;
     
     // verify the required parameter 'symbol' is set
     if (symbol == nil) {
-        [NSException raise:@"Invalid parameter" format:@"Missing the required parameter `symbol` when calling `orderNewOrder`"];
-    }
-    
-    // verify the required parameter 'quantity' is set
-    if (quantity == nil) {
-        [NSException raise:@"Invalid parameter" format:@"Missing the required parameter `quantity` when calling `orderNewOrder`"];
-    }
-    
-    // verify the required parameter 'price' is set
-    if (price == nil) {
-        [NSException raise:@"Invalid parameter" format:@"Missing the required parameter `price` when calling `orderNewOrder`"];
+        [NSException raise:@"Invalid parameter" format:@"Missing the required parameter `symbol` when calling `orderNew`"];
     }
     
 
@@ -299,8 +489,26 @@ static SWGOrderApi* singletonAPI = nil;
     
     
     
+    if (side) {
+        formParams[@"side"] = side;
+    }
+    
+    
+    
+    if (simpleOrderQty) {
+        formParams[@"simpleOrderQty"] = simpleOrderQty;
+    }
+    
+    
+    
     if (quantity) {
         formParams[@"quantity"] = quantity;
+    }
+    
+    
+    
+    if (orderQty) {
+        formParams[@"orderQty"] = orderQty;
     }
     
     
@@ -311,14 +519,8 @@ static SWGOrderApi* singletonAPI = nil;
     
     
     
-    if (timeInForce) {
-        formParams[@"timeInForce"] = timeInForce;
-    }
-    
-    
-    
-    if (type) {
-        formParams[@"type"] = type;
+    if (displayQty) {
+        formParams[@"displayQty"] = displayQty;
     }
     
     
@@ -329,8 +531,68 @@ static SWGOrderApi* singletonAPI = nil;
     
     
     
+    if (stopPx) {
+        formParams[@"stopPx"] = stopPx;
+    }
+    
+    
+    
     if (clOrdID) {
         formParams[@"clOrdID"] = clOrdID;
+    }
+    
+    
+    
+    if (clOrdLinkID) {
+        formParams[@"clOrdLinkID"] = clOrdLinkID;
+    }
+    
+    
+    
+    if (pegOffsetValue) {
+        formParams[@"pegOffsetValue"] = pegOffsetValue;
+    }
+    
+    
+    
+    if (pegPriceType) {
+        formParams[@"pegPriceType"] = pegPriceType;
+    }
+    
+    
+    
+    if (type) {
+        formParams[@"type"] = type;
+    }
+    
+    
+    
+    if (ordType) {
+        formParams[@"ordType"] = ordType;
+    }
+    
+    
+    
+    if (timeInForce) {
+        formParams[@"timeInForce"] = timeInForce;
+    }
+    
+    
+    
+    if (execInst) {
+        formParams[@"execInst"] = execInst;
+    }
+    
+    
+    
+    if (contingencyType) {
+        formParams[@"contingencyType"] = contingencyType;
+    }
+    
+    
+    
+    if (text) {
+        formParams[@"text"] = text;
     }
     
     
@@ -363,11 +625,11 @@ static SWGOrderApi* singletonAPI = nil;
 ///
 ///  @param clOrdID Client Order ID(s). See POST /order.
 ///
-///  @param text Optional cancellation annotation. e.g. 'Spread Exceeded'
+///  @param text Optional cancellation annotation. e.g. 'Spread Exceeded'.
 ///
 ///  @returns NSArray<SWGOrder>*
 ///
--(NSNumber*) orderCancelOrderWithCompletionBlock: (NSString*) orderID
+-(NSNumber*) orderCancelWithCompletionBlock: (NSString*) orderID
          clOrdID: (NSString*) clOrdID
          text: (NSString*) text
         
@@ -467,13 +729,13 @@ static SWGOrderApi* singletonAPI = nil;
 ///
 ///  @param text Optional cancellation annotation. e.g. 'Spread Exceeded'
 ///
-///  @returns SWGInlineResponse200*
+///  @returns SWGInlineResponse2001*
 ///
 -(NSNumber*) orderCancelAllWithCompletionBlock: (NSString*) symbol
          filter: (NSString*) filter
          text: (NSString*) text
         
-        completionHandler: (void (^)(SWGInlineResponse200* output, NSError* error))completionBlock { 
+        completionHandler: (void (^)(SWGInlineResponse2001* output, NSError* error))completionBlock { 
         
 
     
@@ -552,24 +814,192 @@ static SWGOrderApi* singletonAPI = nil;
                                          authSettings: authSettings
                                    requestContentType: requestContentType
                                   responseContentType: responseContentType
-                                         responseType: @"SWGInlineResponse200*"
+                                         responseType: @"SWGInlineResponse2001*"
                                       completionBlock: ^(id data, NSError *error) {
                   
-                  completionBlock((SWGInlineResponse200*)data, error);
+                  completionBlock((SWGInlineResponse2001*)data, error);
+              }
+          ];
+}
+
+///
+/// Amend multiple orders.
+/// Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 50%.
+///  @param orders An array of orders.
+///
+///  @returns NSArray<SWGOrder>*
+///
+-(NSNumber*) orderAmendBulkWithCompletionBlock: (NSString*) orders
+        
+        completionHandler: (void (^)(NSArray<SWGOrder>* output, NSError* error))completionBlock { 
+        
+
+    
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/order/bulk"];
+
+    // remove format in URL if needed
+    if ([resourcePath rangeOfString:@".{format}"].location != NSNotFound) {
+        [resourcePath replaceCharactersInRange: [resourcePath rangeOfString:@".{format}"] withString:@".json"];
+    }
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+    
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.defaultHeaders];
+
+    
+
+    // HTTP header `Accept`
+    headerParams[@"Accept"] = [SWGApiClient selectHeaderAccept:@[@"application/json", @"application/xml", @"text/xml", @"application/javascript", @"text/javascript"]];
+    if ([headerParams[@"Accept"] length] == 0) {
+        [headerParams removeObjectForKey:@"Accept"];
+    }
+
+    // response content type
+    NSString *responseContentType;
+    if ([headerParams objectForKey:@"Accept"]) {
+        responseContentType = [headerParams[@"Accept"] componentsSeparatedByString:@", "][0];
+    }
+    else {
+        responseContentType = @"";
+    }
+
+    // request content type
+    NSString *requestContentType = [SWGApiClient selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *files = [[NSMutableDictionary alloc] init];
+    
+    
+    
+    if (orders) {
+        formParams[@"orders"] = orders;
+    }
+    
+    
+    
+
+    
+    return [self.apiClient requestWithCompletionBlock: resourcePath
+                                               method: @"PUT"
+                                           pathParams: pathParams
+                                          queryParams: queryParams
+                                           formParams: formParams
+                                                files: files
+                                                 body: bodyParam
+                                         headerParams: headerParams
+                                         authSettings: authSettings
+                                   requestContentType: requestContentType
+                                  responseContentType: responseContentType
+                                         responseType: @"NSArray<SWGOrder>*"
+                                      completionBlock: ^(id data, NSError *error) {
+                  
+                  completionBlock((NSArray<SWGOrder>*)data, error);
+              }
+          ];
+}
+
+///
+/// Create multiple new orders.
+/// This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, and Pegged.\n\nEach individual order object in the array should have the same properties as an individual POST /order call.\n\nThis endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX\nsystems, this endpoint is ratelimited at `ceil(0.5 * orders)`. Submitting 10 orders via a bulk order call\nwill only count as 5 requests.\n\nFor now, only `application/json` is supported on this endpoint.
+///  @param orders An array of orders.
+///
+///  @returns NSArray<SWGOrder>*
+///
+-(NSNumber*) orderNewBulkWithCompletionBlock: (NSString*) orders
+        
+        completionHandler: (void (^)(NSArray<SWGOrder>* output, NSError* error))completionBlock { 
+        
+
+    
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/order/bulk"];
+
+    // remove format in URL if needed
+    if ([resourcePath rangeOfString:@".{format}"].location != NSNotFound) {
+        [resourcePath replaceCharactersInRange: [resourcePath rangeOfString:@".{format}"] withString:@".json"];
+    }
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+    
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.defaultHeaders];
+
+    
+
+    // HTTP header `Accept`
+    headerParams[@"Accept"] = [SWGApiClient selectHeaderAccept:@[@"application/json", @"application/xml", @"text/xml", @"application/javascript", @"text/javascript"]];
+    if ([headerParams[@"Accept"] length] == 0) {
+        [headerParams removeObjectForKey:@"Accept"];
+    }
+
+    // response content type
+    NSString *responseContentType;
+    if ([headerParams objectForKey:@"Accept"]) {
+        responseContentType = [headerParams[@"Accept"] componentsSeparatedByString:@", "][0];
+    }
+    else {
+        responseContentType = @"";
+    }
+
+    // request content type
+    NSString *requestContentType = [SWGApiClient selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *files = [[NSMutableDictionary alloc] init];
+    
+    
+    
+    if (orders) {
+        formParams[@"orders"] = orders;
+    }
+    
+    
+    
+
+    
+    return [self.apiClient requestWithCompletionBlock: resourcePath
+                                               method: @"POST"
+                                           pathParams: pathParams
+                                          queryParams: queryParams
+                                           formParams: formParams
+                                                files: files
+                                                 body: bodyParam
+                                         headerParams: headerParams
+                                         authSettings: authSettings
+                                   requestContentType: requestContentType
+                                  responseContentType: responseContentType
+                                         responseType: @"NSArray<SWGOrder>*"
+                                      completionBlock: ^(id data, NSError *error) {
+                  
+                  completionBlock((NSArray<SWGOrder>*)data, error);
               }
           ];
 }
 
 ///
 /// Automatically cancel all your orders after a specified timeout.
-/// Useful as a dead-man's switch to ensure your orders are canceled in case of an outage. If called repeatedly, the existing offset will be canceled and a new one will be inserted in its place. <br><br>Example usage: call this route at 15s intervals with an offset of 60000 (60s). If this route is not called within 60 seconds, all your orders will be automatically canceled.<br><br>This is also available via <a href=\"https://www.bitmex.com/app/wsAPI#dead-man-s-switch-auto-cancel-\">WebSocket</a>.
+/// Useful as a dead-man's switch to ensure your orders are canceled in case of an outage.\nIf called repeatedly, the existing offset will be canceled and a new one will be inserted in its place.\n\nExample usage: call this route at 15s intervals with an offset of 60000 (60s).\nIf this route is not called within 60 seconds, all your orders will be automatically canceled.\n\nThis is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#dead-man-s-switch-auto-cancel-).
 ///  @param timeout Timeout in ms. Set to 0 to cancel this timer.
 ///
-///  @returns SWGInlineResponse200*
+///  @returns SWGInlineResponse2001*
 ///
 -(NSNumber*) orderCancelAllAfterWithCompletionBlock: (NSNumber*) timeout
         
-        completionHandler: (void (^)(SWGInlineResponse200* output, NSError* error))completionBlock { 
+        completionHandler: (void (^)(SWGInlineResponse2001* output, NSError* error))completionBlock { 
         
 
     
@@ -641,17 +1071,17 @@ static SWGOrderApi* singletonAPI = nil;
                                          authSettings: authSettings
                                    requestContentType: requestContentType
                                   responseContentType: responseContentType
-                                         responseType: @"SWGInlineResponse200*"
+                                         responseType: @"SWGInlineResponse2001*"
                                       completionBlock: ^(id data, NSError *error) {
                   
-                  completionBlock((SWGInlineResponse200*)data, error);
+                  completionBlock((SWGInlineResponse2001*)data, error);
               }
           ];
 }
 
 ///
-/// Close a position with a market order.
-/// If no price is specified, a market order will be submitted to close the entirety of your position. Be careful with market orders as you may not be filled at a favorable price.
+/// Close a position. [Deprecated, use POST /order with execInst: 'Close']
+/// If no `price` is specified, a market order will be submitted to close the whole of your position. + This will also close all other open orders in this symbol.
 ///  @param symbol Symbol of position to close.
 ///
 ///  @param price Optional limit price.
@@ -743,88 +1173,6 @@ static SWGOrderApi* singletonAPI = nil;
                                       completionBlock: ^(id data, NSError *error) {
                   
                   completionBlock((SWGOrder*)data, error);
-              }
-          ];
-}
-
-///
-/// Get open liquidation orders.
-/// 
-///  @param filter Filter. For example, send {\"symbol\": \"XBT24H\"}.
-///
-///  @returns NSArray<SWGLiquidationOrder>*
-///
--(NSNumber*) orderGetCloseOutOrdersWithCompletionBlock: (NSString*) filter
-        
-        completionHandler: (void (^)(NSArray<SWGLiquidationOrder>* output, NSError* error))completionBlock { 
-        
-
-    
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/order/liquidations"];
-
-    // remove format in URL if needed
-    if ([resourcePath rangeOfString:@".{format}"].location != NSNotFound) {
-        [resourcePath replaceCharactersInRange: [resourcePath rangeOfString:@".{format}"] withString:@".json"];
-    }
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-    
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if(filter != nil) {
-        
-        queryParams[@"filter"] = filter;
-    }
-    
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.defaultHeaders];
-
-    
-
-    // HTTP header `Accept`
-    headerParams[@"Accept"] = [SWGApiClient selectHeaderAccept:@[@"application/json", @"application/xml", @"text/xml", @"application/javascript", @"text/javascript"]];
-    if ([headerParams[@"Accept"] length] == 0) {
-        [headerParams removeObjectForKey:@"Accept"];
-    }
-
-    // response content type
-    NSString *responseContentType;
-    if ([headerParams objectForKey:@"Accept"]) {
-        responseContentType = [headerParams[@"Accept"] componentsSeparatedByString:@", "][0];
-    }
-    else {
-        responseContentType = @"";
-    }
-
-    // request content type
-    NSString *requestContentType = [SWGApiClient selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
-
-    // Authentication setting
-    NSArray *authSettings = @[];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *files = [[NSMutableDictionary alloc] init];
-    
-    
-    
-
-    
-    return [self.apiClient requestWithCompletionBlock: resourcePath
-                                               method: @"GET"
-                                           pathParams: pathParams
-                                          queryParams: queryParams
-                                           formParams: formParams
-                                                files: files
-                                                 body: bodyParam
-                                         headerParams: headerParams
-                                         authSettings: authSettings
-                                   requestContentType: requestContentType
-                                  responseContentType: responseContentType
-                                         responseType: @"NSArray<SWGLiquidationOrder>*"
-                                      completionBlock: ^(id data, NSError *error) {
-                  
-                  completionBlock((NSArray<SWGLiquidationOrder>*)data, error);
               }
           ];
 }

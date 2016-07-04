@@ -15,7 +15,7 @@ class SchemaApi {
   /// Get model schemata for data objects returned by this API.
   ///
   /// 
-  Future<InlineResponse200> schemaFind(String model) {
+  Future<InlineResponse2001> schemaGet(String model) {
     Object postBody = null;
     
 
@@ -52,7 +52,7 @@ class SchemaApi {
         throw new ApiException(response.statusCode, response.body);
       }
       else if(response.body != null){
-        return ApiClient.deserialize(response.body, InlineResponse200);
+        return ApiClient.deserialize(response.body, InlineResponse2001);
       }
       else {
         return null;
@@ -63,7 +63,7 @@ class SchemaApi {
   /// Returns help text &amp; subject list for websocket usage.
   ///
   /// 
-  Future<InlineResponse200> schemaWebsocketHelp() {
+  Future<InlineResponse2001> schemaWebsocketHelp() {
     Object postBody = null;
     
 
@@ -98,7 +98,7 @@ class SchemaApi {
         throw new ApiException(response.statusCode, response.body);
       }
       else if(response.body != null){
-        return ApiClient.deserialize(response.body, InlineResponse200);
+        return ApiClient.deserialize(response.body, InlineResponse2001);
       }
       else {
         return null;

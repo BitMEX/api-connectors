@@ -8,7 +8,7 @@ import io.swagger.client.model.*;
 
 import java.util.*;
 
-import io.swagger.client.model.InlineResponse200;
+import io.swagger.client.model.InlineResponse2001;
 import io.swagger.client.model.Error;
 
 import org.apache.http.HttpEntity;
@@ -43,9 +43,9 @@ public class SchemaApi {
    * Get model schemata for data objects returned by this API.
    * 
    * @param model Optional model filter. If omitted, will return all models.
-   * @return InlineResponse200
+   * @return InlineResponse2001
    */
-  public InlineResponse200  schemaFind (String model) throws ApiException {
+  public InlineResponse2001  schemaGet (String model) throws ApiException {
     Object postBody = null;
     
 
@@ -85,7 +85,7 @@ public class SchemaApi {
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return (InlineResponse200) ApiInvoker.deserialize(response, "", InlineResponse200.class);
+        return (InlineResponse2001) ApiInvoker.deserialize(response, "", InlineResponse2001.class);
       }
       else {
         return null;
@@ -98,9 +98,9 @@ public class SchemaApi {
   /**
    * Returns help text &amp; subject list for websocket usage.
    * 
-   * @return InlineResponse200
+   * @return InlineResponse2001
    */
-  public InlineResponse200  schemaWebsocketHelp () throws ApiException {
+  public InlineResponse2001  schemaWebsocketHelp () throws ApiException {
     Object postBody = null;
     
 
@@ -138,7 +138,7 @@ public class SchemaApi {
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return (InlineResponse200) ApiInvoker.deserialize(response, "", InlineResponse200.class);
+        return (InlineResponse2001) ApiInvoker.deserialize(response, "", InlineResponse2001.class);
       }
       else {
         return null;

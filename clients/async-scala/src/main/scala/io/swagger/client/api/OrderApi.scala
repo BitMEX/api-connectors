@@ -4,8 +4,7 @@ import io.swagger.client.model.Order
 import io.swagger.client.model.Number
 import io.swagger.client.model.Error
 import java.util.Date
-import io.swagger.client.model.Inline_response_200
-import io.swagger.client.model.LiquidationOrder
+import io.swagger.client.model.Inline_response_200_1
 import io.swagger.client._
 import scala.concurrent.{ Future, Await }
 import scala.concurrent.duration._
@@ -43,13 +42,56 @@ class OrderApi(client: TransportClient, config: SwaggerConfig) extends ApiClient
   }
 
   
-  def order.newOrder(symbol: String,
-      quantity: Number,
-      price: Double,
-      timeInForce: Option[String] = Some(GTC),
-      _type: Option[String] = Some(Limit),
+  def order.amend(orderID: Option[String] = None,
+      clOrdID: Option[String] = None,
+      simpleOrderQty: Option[Double] = None,
+      orderQty: Option[Number] = None,
+      simpleLeavesQty: Option[Double] = None,
+      leavesQty: Option[Number] = None,
+      price: Option[Double] = None,
+      stopPx: Option[Double] = None,
+      pegOffsetValue: Option[Double] = None,
+      text: Option[String] = None
+      )(implicit reader: ClientResponseReader[Order]): Future[Order] = {
+    // create path and map variables
+    val path = (addFmt("/order"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    
+
+    
+
+    
+
+    val resFuture = client.submit("PUT", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  
+  def order.new(symbol: String,
+      side: Option[String] = None,
+      simpleOrderQty: Option[Double] = None,
+      quantity: Option[Number] = None,
+      orderQty: Option[Number] = None,
+      price: Option[Double] = None,
+      displayQty: Option[Number] = None,
       stopPrice: Option[Double] = None,
-      clOrdID: Option[String] = None
+      stopPx: Option[Double] = None,
+      clOrdID: Option[String] = None,
+      clOrdLinkID: Option[String] = None,
+      pegOffsetValue: Option[Double] = None,
+      pegPriceType: Option[String] = None,
+      _type: Option[String] = None,
+      ordType: Option[String] = Some(Limit),
+      timeInForce: Option[String] = None,
+      execInst: Option[String] = None,
+      contingencyType: Option[String] = None,
+      text: Option[String] = None
       )(implicit reader: ClientResponseReader[Order]): Future[Order] = {
     // create path and map variables
     val path = (addFmt("/order"))
@@ -71,7 +113,7 @@ class OrderApi(client: TransportClient, config: SwaggerConfig) extends ApiClient
   }
 
   
-  def order.cancelOrder(orderID: Option[String] = None,
+  def order.cancel(orderID: Option[String] = None,
       clOrdID: Option[String] = None,
       text: Option[String] = None
       )(implicit reader: ClientResponseReader[List[Order]]): Future[List[Order]] = {
@@ -98,7 +140,7 @@ class OrderApi(client: TransportClient, config: SwaggerConfig) extends ApiClient
   def order.cancelAll(symbol: Option[String] = None,
       filter: Option[String] = None,
       text: Option[String] = None
-      )(implicit reader: ClientResponseReader[Inline_response_200]): Future[Inline_response_200] = {
+      )(implicit reader: ClientResponseReader[Inline_response_200_1]): Future[Inline_response_200_1] = {
     // create path and map variables
     val path = (addFmt("/order/all"))
 
@@ -119,7 +161,51 @@ class OrderApi(client: TransportClient, config: SwaggerConfig) extends ApiClient
   }
 
   
-  def order.cancelAllAfter(timeout: Double)(implicit reader: ClientResponseReader[Inline_response_200]): Future[Inline_response_200] = {
+  def order.amendBulk(orders: Option[String] = None
+      )(implicit reader: ClientResponseReader[List[Order]]): Future[List[Order]] = {
+    // create path and map variables
+    val path = (addFmt("/order/bulk"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    
+
+    
+
+    
+
+    val resFuture = client.submit("PUT", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  
+  def order.newBulk(orders: Option[String] = None
+      )(implicit reader: ClientResponseReader[List[Order]]): Future[List[Order]] = {
+    // create path and map variables
+    val path = (addFmt("/order/bulk"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    
+
+    
+
+    
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  
+  def order.cancelAllAfter(timeout: Double)(implicit reader: ClientResponseReader[Inline_response_200_1]): Future[Inline_response_200_1] = {
     // create path and map variables
     val path = (addFmt("/order/cancelAllAfter"))
 
@@ -157,28 +243,6 @@ class OrderApi(client: TransportClient, config: SwaggerConfig) extends ApiClient
     
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
-    resFuture flatMap { resp =>
-      process(reader.read(resp))
-    }
-  }
-
-  
-  def order.getCloseOutOrders(filter: Option[String] = None
-      )(implicit reader: ClientResponseReader[List[LiquidationOrder]]): Future[List[LiquidationOrder]] = {
-    // create path and map variables
-    val path = (addFmt("/order/liquidations"))
-
-    // query params
-    val queryParams = new mutable.HashMap[String, String]
-    val headerParams = new mutable.HashMap[String, String]
-
-    
-
-    if(filter != null) filter.foreach { v => queryParams += "filter" -> v.toString }
-
-    
-
-    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>
       process(reader.read(resp))
     }

@@ -19,13 +19,15 @@
 
 @property(nonatomic) NSString* symbol;
 
+@property(nonatomic) NSString* currency;
+
 @property(nonatomic) NSString* underlying;
 
 @property(nonatomic) NSString* quoteCurrency;
 
-@property(nonatomic) NSString* currency;
-
 @property(nonatomic) NSNumber* commission;
+
+@property(nonatomic) NSNumber* leverage;
 
 @property(nonatomic) NSNumber* crossMargin;
 
@@ -180,5 +182,9 @@
 @property(nonatomic) NSNumber* bankruptPrice;
 
 @property(nonatomic) NSDate* timestamp;
+
+@property(nonatomic) NSNumber* lastPrice;
+
+@property(nonatomic) NSNumber* lastValue;
 
 @end

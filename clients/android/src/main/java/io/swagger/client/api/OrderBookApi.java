@@ -11,6 +11,7 @@ import java.util.*;
 import io.swagger.client.model.OrderBook;
 import io.swagger.client.model.Error;
 import java.math.BigDecimal;
+import io.swagger.client.model.OrderBookL2;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
@@ -41,18 +42,18 @@ public class OrderBookApi {
 
   
   /**
-   * Get current orderbook.
+   * Get current orderbook [deprecated, use /orderBook/L2].
    * 
    * @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
    * @param depth Orderbook depth.
    * @return List<OrderBook>
    */
-  public List<OrderBook>  orderBookGetOrderBook (String symbol, BigDecimal depth) throws ApiException {
+  public List<OrderBook>  orderBookGet (String symbol, BigDecimal depth) throws ApiException {
     Object postBody = null;
     
     // verify the required parameter 'symbol' is set
     if (symbol == null) {
-       throw new ApiException(400, "Missing the required parameter 'symbol' when calling orderBookGetOrderBook");
+       throw new ApiException(400, "Missing the required parameter 'symbol' when calling orderBookGet");
     }
     
 
@@ -95,6 +96,70 @@ public class OrderBookApi {
       String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (List<OrderBook>) ApiInvoker.deserialize(response, "array", OrderBook.class);
+      }
+      else {
+        return null;
+      }
+    } catch (ApiException ex) {
+      throw ex;
+    }
+  }
+  
+  /**
+   * Get current orderbook in vertical format.
+   * 
+   * @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
+   * @param depth Orderbook depth per side. Send 0 for full depth.
+   * @return List<OrderBookL2>
+   */
+  public List<OrderBookL2>  orderBookGetL2 (String symbol, BigDecimal depth) throws ApiException {
+    Object postBody = null;
+    
+    // verify the required parameter 'symbol' is set
+    if (symbol == null) {
+       throw new ApiException(400, "Missing the required parameter 'symbol' when calling orderBookGetL2");
+    }
+    
+
+    // create path and map variables
+    String path = "/orderBook/L2".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
+    
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "depth", depth));
+    
+
+    
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = builder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      
+    }
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (List<OrderBookL2>) ApiInvoker.deserialize(response, "array", OrderBookL2.class);
       }
       else {
         return null;

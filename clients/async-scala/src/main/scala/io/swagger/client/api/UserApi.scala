@@ -15,7 +15,7 @@ import collection.mutable
 class UserApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
   
-  def user.getMe()(implicit reader: ClientResponseReader[User]): Future[User] = {
+  def user.get()(implicit reader: ClientResponseReader[User]): Future[User] = {
     // create path and map variables
     val path = (addFmt("/user"))
 
@@ -36,11 +36,12 @@ class UserApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(
   }
 
   
-  def user.updateMe(firstname: Option[String] = None,
+  def user.update(firstname: Option[String] = None,
       lastname: Option[String] = None,
       oldPassword: Option[String] = None,
       newPassword: Option[String] = None,
       newPasswordConfirm: Option[String] = None,
+      username: Option[String] = None,
       country: Option[String] = None,
       pgpPubKey: Option[String] = None
       )(implicit reader: ClientResponseReader[User]): Future[User] = {
@@ -64,14 +65,16 @@ class UserApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(
   }
 
   
-  def user.newUser(email: String,
+  def user.new(email: String,
       password: String,
-      username: String,
+      country: String,
+      username: Option[String] = None,
       firstname: Option[String] = None,
       lastname: Option[String] = None,
       acceptsTOS: Option[String] = None,
       referrerID: Option[String] = None,
-      country: Option[String] = None
+      tfaType: Option[String] = None,
+      tfaToken: Option[String] = None
       )(implicit reader: ClientResponseReader[User]): Future[User] = {
     // create path and map variables
     val path = (addFmt("/user"))
@@ -355,7 +358,7 @@ class UserApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(
   }
 
   
-  def user.logoutAll()(implicit reader: ClientResponseReader[Unit]): Future[Unit] = {
+  def user.logoutAll()(implicit reader: ClientResponseReader[Double]): Future[Double] = {
     // create path and map variables
     val path = (addFmt("/user/logoutAll"))
 
@@ -376,7 +379,8 @@ class UserApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(
   }
 
   
-  def user.getMargin()(implicit reader: ClientResponseReader[Margin]): Future[Margin] = {
+  def user.getMargin(currency: Option[String] = Some(XBt)
+      )(implicit reader: ClientResponseReader[Margin]): Future[Margin] = {
     // create path and map variables
     val path = (addFmt("/user/margin"))
 
@@ -386,7 +390,7 @@ class UserApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(
 
     
 
-    
+    if(currency != null) currency.foreach { v => queryParams += "currency" -> v.toString }
 
     
 
@@ -420,8 +424,7 @@ class UserApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(
   }
 
   
-  def user.requestEnableTFA(_type: Option[String] = None,
-      token: Option[String] = None
+  def user.requestEnableTFA(_type: Option[String] = None
       )(implicit reader: ClientResponseReader[Boolean]): Future[Boolean] = {
     // create path and map variables
     val path = (addFmt("/user/requestEnableTFA"))
@@ -501,18 +504,18 @@ class UserApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(
     
 
     
-    if(email != null)   queryParams += "email" -> email.toString
 
     
 
-    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>
       process(reader.read(resp))
     }
   }
 
   
-  def user.getWalletHistory()(implicit reader: ClientResponseReader[List[Transaction]]): Future[List[Transaction]] = {
+  def user.getWalletHistory(currency: Option[String] = Some(XBt)
+      )(implicit reader: ClientResponseReader[List[Transaction]]): Future[List[Transaction]] = {
     // create path and map variables
     val path = (addFmt("/user/walletHistory"))
 
@@ -522,7 +525,7 @@ class UserApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(
 
     
 
-    
+    if(currency != null) currency.foreach { v => queryParams += "currency" -> v.toString }
 
     
 

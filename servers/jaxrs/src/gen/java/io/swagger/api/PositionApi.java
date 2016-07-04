@@ -27,7 +27,7 @@ import javax.ws.rs.*;
 @Consumes({ "application/json", "application/x-www-form-urlencoded" })
 @Produces({ "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" })
 @io.swagger.annotations.Api(description = "the position API")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-30T13:35:57.938-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2016-07-04T18:25:32.992-05:00")
 public class PositionApi  {
    private final PositionApiService delegate = PositionApiServiceFactory.getPositionApi();
 
@@ -35,7 +35,7 @@ public class PositionApi  {
     
     @Consumes({ "application/json", "application/x-www-form-urlencoded" })
     @Produces({ "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" })
-    @io.swagger.annotations.ApiOperation(value = "Get your positions.", notes = "", response = Position.class, responseContainer = "List", tags={ "Position",  })
+    @io.swagger.annotations.ApiOperation(value = "Get your positions.", notes = "See <a href=\"http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html\">the FIX Spec</a> for explanations of these fields.", response = Position.class, responseContainer = "List", tags={ "Position",  })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Request was successful", response = Position.class, responseContainer = "List"),
         
@@ -45,17 +45,17 @@ public class PositionApi  {
         
         @io.swagger.annotations.ApiResponse(code = 404, message = "Not Found", response = Position.class, responseContainer = "List") })
 
-    public Response positionFind(@ApiParam(value = "Table filter. For example, send {\"symbol\": \"XBT24H\"}.") @QueryParam("filter") String filter,
+    public Response positionGet(@ApiParam(value = "Table filter. For example, send {\"symbol\": \"XBT24H\"}.") @QueryParam("filter") String filter,
     @ApiParam(value = "Which columns to fetch. For example, send [\"columnName\"].") @QueryParam("columns") String columns,
     @ApiParam(value = "Number of rows to fetch.") @QueryParam("count") BigDecimal count)
     throws NotFoundException {
-        return delegate.positionFind(filter,columns,count);
+        return delegate.positionGet(filter,columns,count);
     }
     @POST
     @Path("/isolate")
     @Consumes({ "application/json", "application/x-www-form-urlencoded" })
     @Produces({ "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" })
-    @io.swagger.annotations.ApiOperation(value = "Toggle isolated (fixed) margin per-position.", notes = "On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off. A position must be open to isolate it.", response = Position.class, tags={ "Position",  })
+    @io.swagger.annotations.ApiOperation(value = "Enable isolated margin or cross margin per-position.", notes = "On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.", response = Position.class, tags={ "Position",  })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Request was successful", response = Position.class),
         
@@ -66,9 +66,28 @@ public class PositionApi  {
         @io.swagger.annotations.ApiResponse(code = 404, message = "Not Found", response = Position.class) })
 
     public Response positionIsolateMargin(@ApiParam(value = "Position symbol to isolate.", required=true)@FormParam("symbol")  String symbol,
-    @ApiParam(value = "If true, will enable isolated margin.", defaultValue="true")@FormParam("enabled")  Boolean enabled)
+    @ApiParam(value = "True for isolated margin, false for cross margin.", defaultValue="true")@FormParam("enabled")  Boolean enabled)
     throws NotFoundException {
         return delegate.positionIsolateMargin(symbol,enabled);
+    }
+    @POST
+    @Path("/leverage")
+    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
+    @Produces({ "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" })
+    @io.swagger.annotations.ApiOperation(value = "Choose leverage for a position.", notes = "On Speculative (DPE-Enabled) contracts, users can choose an isolated leverage. This will automatically enable isolated margin.", response = Position.class, tags={ "Position",  })
+    @io.swagger.annotations.ApiResponses(value = { 
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Request was successful", response = Position.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 400, message = "Parameter Error", response = Position.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Unauthorized", response = Position.class),
+        
+        @io.swagger.annotations.ApiResponse(code = 404, message = "Not Found", response = Position.class) })
+
+    public Response positionUpdateLeverage(@ApiParam(value = "Symbol of position to adjust.", required=true)@FormParam("symbol")  String symbol,
+    @ApiParam(value = "Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.", required=true)@FormParam("leverage")  Double leverage)
+    throws NotFoundException {
+        return delegate.positionUpdateLeverage(symbol,leverage);
     }
     @POST
     @Path("/transferMargin")
@@ -84,8 +103,8 @@ public class PositionApi  {
         
         @io.swagger.annotations.ApiResponse(code = 404, message = "Not Found", response = Position.class) })
 
-    public Response positionTransferIsolatedMargin(@ApiParam(value = "Position symbol to isolate.", required=true)@FormParam("symbol")  String symbol,
-    @ApiParam(value = "Amount to transfer, in satoshis. May be negative.", required=true)@FormParam("amount")  BigDecimal amount)
+    public Response positionTransferIsolatedMargin(@ApiParam(value = "Symbol of position to isolate.", required=true)@FormParam("symbol")  String symbol,
+    @ApiParam(value = "Amount to transfer, in Satoshis. May be negative.", required=true)@FormParam("amount")  BigDecimal amount)
     throws NotFoundException {
         return delegate.positionTransferIsolatedMargin(symbol,amount);
     }

@@ -30,7 +30,7 @@
 /// 
 ///
 /// @return NSArray<SWGApiKey>*
--(NSNumber*) apiKeyGetKeysWithCompletionBlock :(NSNumber*) reverse 
+-(NSNumber*) apiKeyGetWithCompletionBlock :(NSNumber*) reverse 
     
     completionHandler: (void (^)(NSArray<SWGApiKey>* output, NSError* error))completionBlock;
     
@@ -39,7 +39,7 @@
 ///
 ///
 /// Create a new API Key.
-/// API Keys can also be created via <a href=\"https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py\">this Python script</a>. See the <a href=\"/app/apiKeys\">API Key Documentation</a> for more information on capabilities.
+/// API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
 ///
 /// @param name Key name. This name is for reference only.
 /// @param cidr CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href=\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt;
@@ -49,7 +49,7 @@
 /// 
 ///
 /// @return SWGApiKey*
--(NSNumber*) apiKeyCreateKeyWithCompletionBlock :(NSString*) name 
+-(NSNumber*) apiKeyNewWithCompletionBlock :(NSString*) name 
      cidr:(NSString*) cidr 
      permissions:(NSString*) permissions 
      enabled:(NSNumber*) enabled 

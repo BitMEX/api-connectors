@@ -5,9 +5,9 @@ namespace API.Client {
 
     export interface Settlement {
 
-        symbol: string;
-
         timestamp: date;
+
+        symbol: string;
 
         settlementType?: string;
 

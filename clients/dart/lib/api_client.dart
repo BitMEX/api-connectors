@@ -61,36 +61,6 @@ class ApiClient {
     switch(clazz) {
       
       
-      case AnonymousModel0:
-        return isMap ? dson.map(json, new AnonymousModel0()) : dson.decode(json, new AnonymousModel0());
-      
-      
-      
-      case AnonymousModel5:
-        return isMap ? dson.map(json, new AnonymousModel5()) : dson.decode(json, new AnonymousModel5());
-      
-      
-      
-      case UserPreferences:
-        return isMap ? dson.map(json, new UserPreferences()) : dson.decode(json, new UserPreferences());
-      
-      
-      
-      case AccessToken:
-        return isMap ? dson.map(json, new AccessToken()) : dson.decode(json, new AccessToken());
-      
-      
-      
-      case Margin:
-        return isMap ? dson.map(json, new Margin()) : dson.decode(json, new Margin());
-      
-      
-      
-      case RoleMapping:
-        return isMap ? dson.map(json, new RoleMapping()) : dson.decode(json, new RoleMapping());
-      
-      
-      
       case Chat:
         return isMap ? dson.map(json, new Chat()) : dson.decode(json, new Chat());
       
@@ -131,18 +101,33 @@ class ApiClient {
       
       
       
+      case Insurance:
+        return isMap ? dson.map(json, new Insurance()) : dson.decode(json, new Insurance());
+      
+      
+      
+      case Leaderboard:
+        return isMap ? dson.map(json, new Leaderboard()) : dson.decode(json, new Leaderboard());
+      
+      
+      
+      case Liquidation:
+        return isMap ? dson.map(json, new Liquidation()) : dson.decode(json, new Liquidation());
+      
+      
+      
       case Order:
         return isMap ? dson.map(json, new Order()) : dson.decode(json, new Order());
       
       
       
-      case LiquidationOrder:
-        return isMap ? dson.map(json, new LiquidationOrder()) : dson.decode(json, new LiquidationOrder());
-      
-      
-      
       case OrderBook:
         return isMap ? dson.map(json, new OrderBook()) : dson.decode(json, new OrderBook());
+      
+      
+      
+      case OrderBookL2:
+        return isMap ? dson.map(json, new OrderBookL2()) : dson.decode(json, new OrderBookL2());
       
       
       
@@ -158,6 +143,11 @@ class ApiClient {
       
       case Settlement:
         return isMap ? dson.map(json, new Settlement()) : dson.decode(json, new Settlement());
+      
+      
+      
+      case Funding:
+        return isMap ? dson.map(json, new Funding()) : dson.decode(json, new Funding());
       
       
       
@@ -186,6 +176,11 @@ class ApiClient {
       
       
       
+      case AccessToken:
+        return isMap ? dson.map(json, new AccessToken()) : dson.decode(json, new AccessToken());
+      
+      
+      
       case Affiliate:
         return isMap ? dson.map(json, new Affiliate()) : dson.decode(json, new Affiliate());
       
@@ -201,8 +196,23 @@ class ApiClient {
       
       
       
+      case Margin:
+        return isMap ? dson.map(json, new Margin()) : dson.decode(json, new Margin());
+      
+      
+      
+      case UserPreferences:
+        return isMap ? dson.map(json, new UserPreferences()) : dson.decode(json, new UserPreferences());
+      
+      
+      
       case InlineResponse200:
         return isMap ? dson.map(json, new InlineResponse200()) : dson.decode(json, new InlineResponse200());
+      
+      
+      
+      case InlineResponse2001:
+        return isMap ? dson.map(json, new InlineResponse2001()) : dson.decode(json, new InlineResponse2001());
       
       
       default:

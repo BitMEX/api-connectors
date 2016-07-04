@@ -35,11 +35,11 @@ import static org.springframework.http.MediaType.*;
 @Controller
 @RequestMapping(value = "/trade", produces = {APPLICATION_JSON_VALUE})
 @Api(value = "/trade", description = "the trade API")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2015-11-30T13:35:50.750-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringMVCServerCodegen", date = "2016-07-04T18:25:23.952-05:00")
 public class TradeApi {
   
 
-  @ApiOperation(value = "Get Trades.", notes = "", response = Trade.class, responseContainer = "List")
+  @ApiOperation(value = "Get Trades.", notes = "Please note that indices (symbols starting with `.`) post trades at intervals to the trade feed. These have a `size` of 0 and are used only to indicate a changing price.\n\nSee [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AE_6569.html) for explanations of these fields.", response = Trade.class, responseContainer = "List")
   @ApiResponses(value = { 
     @ApiResponse(code = 200, message = "Request was successful"),
     @ApiResponse(code = 400, message = "Parameter Error"),
@@ -49,11 +49,11 @@ public class TradeApi {
     produces = { "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" }, 
     consumes = { "application/json", "application/x-www-form-urlencoded" },
     method = RequestMethod.GET)
-  public ResponseEntity<List<Trade>> tradeGet(@ApiParam(value = "Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly', 'quarterly', and 'biquarterly'.") @RequestParam(value = "symbol", required = false) String symbol
+  public ResponseEntity<List<Trade>> tradeGet(@ApiParam(value = "Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.") @RequestParam(value = "symbol", required = false) String symbol
 
 
 ,
-    @ApiParam(value = "Generic table filter. Send JSON key/value pairs, such as {\"key\": \"value\"}. You can key on individual fields, and do more advanced querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\">http://localhost:2001/app/restAPI#timestamp-filters</a> for more details.") @RequestParam(value = "filter", required = false) String filter
+    @ApiParam(value = "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.") @RequestParam(value = "filter", required = false) String filter
 
 
 ,
@@ -102,11 +102,11 @@ public class TradeApi {
 
 
 ,
-    @ApiParam(value = "Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. 'XBU:monthly'. Timeframes are 'daily', 'weekly', 'monthly', 'quarterly', and 'biquarterly'.") @RequestParam(value = "symbol", required = false) String symbol
+    @ApiParam(value = "Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.") @RequestParam(value = "symbol", required = false) String symbol
 
 
 ,
-    @ApiParam(value = "Generic table filter. Send JSON key/value pairs, such as {\"key\": \"value\"}. You can key on individual fields, and do more advanced querying on timestamps. See <a href=\"http://localhost:2001/app/restAPI#timestamp-filters\">http://localhost:2001/app/restAPI#timestamp-filters</a> for more details.") @RequestParam(value = "filter", required = false) String filter
+    @ApiParam(value = "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.") @RequestParam(value = "filter", required = false) String filter
 
 
 ,
@@ -137,60 +137,6 @@ public class TradeApi {
       throws NotFoundException {
       // do some magic!
       return new ResponseEntity<List<TradeBin>>(HttpStatus.OK);
-  }
-
-  
-
-  @ApiOperation(value = "Get trades between two dates. [Deprecated, use GET /trades]", notes = "", response = Trade.class, responseContainer = "List")
-  @ApiResponses(value = { 
-    @ApiResponse(code = 200, message = "Request was successful"),
-    @ApiResponse(code = 400, message = "Parameter Error"),
-    @ApiResponse(code = 401, message = "Unauthorized"),
-    @ApiResponse(code = 404, message = "Not Found") })
-  @RequestMapping(value = "/byDate", 
-    produces = { "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" }, 
-    consumes = { "application/json", "application/x-www-form-urlencoded" },
-    method = RequestMethod.GET)
-  public ResponseEntity<List<Trade>> tradeGetByDate(@ApiParam(value = "Start date.", required = true) @RequestParam(value = "startTime", required = true) Date startTime
-
-
-,
-    @ApiParam(value = "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.") @RequestParam(value = "symbol", required = false) String symbol
-
-
-,
-    @ApiParam(value = "End Date.") @RequestParam(value = "endTime", required = false) Date endTime
-
-
-)
-      throws NotFoundException {
-      // do some magic!
-      return new ResponseEntity<List<Trade>>(HttpStatus.OK);
-  }
-
-  
-
-  @ApiOperation(value = "Get recent trades. [Deprecated, use GET /trades]", notes = "", response = Trade.class, responseContainer = "List")
-  @ApiResponses(value = { 
-    @ApiResponse(code = 200, message = "Request was successful"),
-    @ApiResponse(code = 400, message = "Parameter Error"),
-    @ApiResponse(code = 401, message = "Unauthorized"),
-    @ApiResponse(code = 404, message = "Not Found") })
-  @RequestMapping(value = "/recent", 
-    produces = { "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript" }, 
-    consumes = { "application/json", "application/x-www-form-urlencoded" },
-    method = RequestMethod.GET)
-  public ResponseEntity<List<Trade>> tradeGetRecent(@ApiParam(value = "Number of trades to fetch.", required = true, defaultValue = "100") @RequestParam(value = "count", required = true, defaultValue="100") BigDecimal count
-
-
-,
-    @ApiParam(value = "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.") @RequestParam(value = "symbol", required = false) String symbol
-
-
-)
-      throws NotFoundException {
-      // do some magic!
-      return new ResponseEntity<List<Trade>>(HttpStatus.OK);
   }
 
   

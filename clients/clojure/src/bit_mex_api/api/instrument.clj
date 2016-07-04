@@ -4,7 +4,7 @@
 
 (defn instrument-get
   "Get instruments.
-  This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use the endpoint /instrument/active to return active instruments, or use a filter like {\"state\": \"Open\"}."
+  This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\"state\": \"Open\"}`."
   ([] (instrument-get nil))
   ([{:keys [symbol filter columns count start reverse start-time end-time ]}]
    (call-api "/instrument" :get
@@ -39,7 +39,7 @@
 
 (defn instrument-get-active-intervals
   "Return all active contract series and interval pairs.
-  This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"BVOL:daily\", \"BVOL:weekly\", \"XBU:daily\", \"XBU:monthly\", ...]`. These identifiers are usable in any query's \"symbol\" param. The second array is the current resolution of these intervals. Results are mapped at the same index."
+  This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"BVOL:daily\", \"BVOL:weekly\", \"XBU:daily\", \"XBU:monthly\", ...]`. These identifiers are usable in any query's `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index."
   []
   (call-api "/instrument/activeIntervals" :get
             {:path-params   {}

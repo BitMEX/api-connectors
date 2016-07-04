@@ -18,10 +18,10 @@ namespace IO.Swagger.Api
         /// Get instruments.
         /// </summary>
         /// <remarks>
-        /// This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use the endpoint /instrument/active to return active instruments, or use a filter like {\&quot;state\&quot;: \&quot;Open\&quot;}.
+        /// This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\&quot;state\&quot;: \&quot;Open\&quot;}`.
         /// </remarks>
-        /// <param name="symbol">Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.</param>
-        /// <param name="filter">Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.</param>
+        /// <param name="symbol">Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.</param>
+        /// <param name="filter">Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.</param>
         /// <param name="columns">Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.</param>
         /// <param name="count">Number of results to fetch.</param>
         /// <param name="start">Starting point for results.</param>
@@ -35,10 +35,10 @@ namespace IO.Swagger.Api
         /// Get instruments.
         /// </summary>
         /// <remarks>
-        /// This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use the endpoint /instrument/active to return active instruments, or use a filter like {\&quot;state\&quot;: \&quot;Open\&quot;}.
+        /// This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\&quot;state\&quot;: \&quot;Open\&quot;}`.
         /// </remarks>
-        /// <param name="symbol">Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.</param>
-        /// <param name="filter">Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.</param>
+        /// <param name="symbol">Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.</param>
+        /// <param name="filter">Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.</param>
         /// <param name="columns">Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.</param>
         /// <param name="count">Number of results to fetch.</param>
         /// <param name="start">Starting point for results.</param>
@@ -88,7 +88,7 @@ namespace IO.Swagger.Api
         /// Return all active contract series and interval pairs.
         /// </summary>
         /// <remarks>
-        /// This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\&quot;BVOL:daily\&quot;, \&quot;BVOL:weekly\&quot;, \&quot;XBU:daily\&quot;, \&quot;XBU:monthly\&quot;, ...]`. These identifiers are usable in any query&#39;s \&quot;symbol\&quot; param. The second array is the current resolution of these intervals. Results are mapped at the same index.
+        /// This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\&quot;BVOL:daily\&quot;, \&quot;BVOL:weekly\&quot;, \&quot;XBU:daily\&quot;, \&quot;XBU:monthly\&quot;, ...]`. These identifiers are usable in any query&#39;s `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.
         /// </remarks>
         /// <returns>InstrumentInterval</returns>
         InstrumentInterval InstrumentGetActiveIntervals ();
@@ -97,7 +97,7 @@ namespace IO.Swagger.Api
         /// Return all active contract series and interval pairs.
         /// </summary>
         /// <remarks>
-        /// This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\&quot;BVOL:daily\&quot;, \&quot;BVOL:weekly\&quot;, \&quot;XBU:daily\&quot;, \&quot;XBU:monthly\&quot;, ...]`. These identifiers are usable in any query&#39;s \&quot;symbol\&quot; param. The second array is the current resolution of these intervals. Results are mapped at the same index.
+        /// This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\&quot;BVOL:daily\&quot;, \&quot;BVOL:weekly\&quot;, \&quot;XBU:daily\&quot;, \&quot;XBU:monthly\&quot;, ...]`. These identifiers are usable in any query&#39;s `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.
         /// </remarks>
         /// <returns>InstrumentInterval</returns>
         System.Threading.Tasks.Task<InstrumentInterval> InstrumentGetActiveIntervalsAsync ();
@@ -176,10 +176,10 @@ namespace IO.Swagger.Api
     
         
         /// <summary>
-        /// Get instruments. This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use the endpoint /instrument/active to return active instruments, or use a filter like {\&quot;state\&quot;: \&quot;Open\&quot;}.
+        /// Get instruments. This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\&quot;state\&quot;: \&quot;Open\&quot;}`.
         /// </summary>
-        /// <param name="symbol">Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.</param> 
-        /// <param name="filter">Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.</param> 
+        /// <param name="symbol">Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.</param> 
+        /// <param name="filter">Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.</param> 
         /// <param name="columns">Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.</param> 
         /// <param name="count">Number of results to fetch.</param> 
         /// <param name="start">Starting point for results.</param> 
@@ -240,10 +240,10 @@ namespace IO.Swagger.Api
         }
     
         /// <summary>
-        /// Get instruments. This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use the endpoint /instrument/active to return active instruments, or use a filter like {\&quot;state\&quot;: \&quot;Open\&quot;}.
+        /// Get instruments. This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\&quot;state\&quot;: \&quot;Open\&quot;}`.
         /// </summary>
-        /// <param name="symbol">Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.</param>
-        /// <param name="filter">Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.</param>
+        /// <param name="symbol">Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.</param>
+        /// <param name="filter">Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.</param>
         /// <param name="columns">Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.</param>
         /// <param name="count">Number of results to fetch.</param>
         /// <param name="start">Starting point for results.</param>
@@ -487,7 +487,7 @@ namespace IO.Swagger.Api
         }
         
         /// <summary>
-        /// Return all active contract series and interval pairs. This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\&quot;BVOL:daily\&quot;, \&quot;BVOL:weekly\&quot;, \&quot;XBU:daily\&quot;, \&quot;XBU:monthly\&quot;, ...]`. These identifiers are usable in any query&#39;s \&quot;symbol\&quot; param. The second array is the current resolution of these intervals. Results are mapped at the same index.
+        /// Return all active contract series and interval pairs. This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\&quot;BVOL:daily\&quot;, \&quot;BVOL:weekly\&quot;, \&quot;XBU:daily\&quot;, \&quot;XBU:monthly\&quot;, ...]`. These identifiers are usable in any query&#39;s `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.
         /// </summary>
         /// <returns>InstrumentInterval</returns>            
         public InstrumentInterval InstrumentGetActiveIntervals ()
@@ -535,7 +535,7 @@ namespace IO.Swagger.Api
         }
     
         /// <summary>
-        /// Return all active contract series and interval pairs. This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\&quot;BVOL:daily\&quot;, \&quot;BVOL:weekly\&quot;, \&quot;XBU:daily\&quot;, \&quot;XBU:monthly\&quot;, ...]`. These identifiers are usable in any query&#39;s \&quot;symbol\&quot; param. The second array is the current resolution of these intervals. Results are mapped at the same index.
+        /// Return all active contract series and interval pairs. This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\&quot;BVOL:daily\&quot;, \&quot;BVOL:weekly\&quot;, \&quot;XBU:daily\&quot;, \&quot;XBU:monthly\&quot;, ...]`. These identifiers are usable in any query&#39;s `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.
         /// </summary>
         /// <returns>InstrumentInterval</returns>
         public async System.Threading.Tasks.Task<InstrumentInterval> InstrumentGetActiveIntervalsAsync ()

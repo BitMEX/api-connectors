@@ -32,7 +32,7 @@
 /// 
 ///
 /// @return SWGUser*
--(NSNumber*) userGetMeWithCompletionBlock :
+-(NSNumber*) userGetWithCompletionBlock :
     (void (^)(SWGUser* output, NSError* error))completionBlock;
     
 
@@ -47,16 +47,18 @@
 /// @param oldPassword 
 /// @param newPassword 
 /// @param newPasswordConfirm 
+/// @param username Username can only be set once. To reset, email support.
 /// @param country Country of residence.
 /// @param pgpPubKey PGP Public Key. If specified, automated emails will be sentwith this key.
 /// 
 ///
 /// @return SWGUser*
--(NSNumber*) userUpdateMeWithCompletionBlock :(NSString*) firstname 
+-(NSNumber*) userUpdateWithCompletionBlock :(NSString*) firstname 
      lastname:(NSString*) lastname 
      oldPassword:(NSString*) oldPassword 
      newPassword:(NSString*) newPassword 
      newPasswordConfirm:(NSString*) newPasswordConfirm 
+     username:(NSString*) username 
      country:(NSString*) country 
      pgpPubKey:(NSString*) pgpPubKey 
     
@@ -71,23 +73,27 @@
 ///
 /// @param email Your email address.
 /// @param password Your password.
+/// @param country Country of residence.
 /// @param username Desired username.
 /// @param firstname First name.
 /// @param lastname Last name.
-/// @param acceptsTOS Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms).
+/// @param acceptsTOS Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).
 /// @param referrerID Optional Referrer ID.
-/// @param country Country of residence.
+/// @param tfaType Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef
+/// @param tfaToken Two-Factor Token.
 /// 
 ///
 /// @return SWGUser*
--(NSNumber*) userNewUserWithCompletionBlock :(NSString*) email 
+-(NSNumber*) userNewWithCompletionBlock :(NSString*) email 
      password:(NSString*) password 
+     country:(NSString*) country 
      username:(NSString*) username 
      firstname:(NSString*) firstname 
      lastname:(NSString*) lastname 
      acceptsTOS:(NSString*) acceptsTOS 
      referrerID:(NSString*) referrerID 
-     country:(NSString*) country 
+     tfaType:(NSString*) tfaType 
+     tfaToken:(NSString*) tfaToken 
     
     completionHandler: (void (^)(SWGUser* output, NSError* error))completionBlock;
     
@@ -284,28 +290,30 @@
 ///
 /// 
 ///
-/// @return 
+/// @return NSNumber*
 -(NSNumber*) userLogoutAllWithCompletionBlock :
+    (void (^)(NSNumber* output, NSError* error))completionBlock;
     
-    (void (^)(NSError* error))completionBlock;
 
 
 ///
 ///
-/// Get your account's margin status.
+/// Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.
 /// 
 ///
+/// @param currency 
 /// 
 ///
 /// @return SWGMargin*
--(NSNumber*) userGetMarginWithCompletionBlock :
-    (void (^)(SWGMargin* output, NSError* error))completionBlock;
+-(NSNumber*) userGetMarginWithCompletionBlock :(NSString*) currency 
+    
+    completionHandler: (void (^)(SWGMargin* output, NSError* error))completionBlock;
     
 
 
 ///
 ///
-/// Save application preferences.
+/// Save user preferences.
 /// 
 ///
 /// @param prefs 
@@ -326,12 +334,10 @@
 /// 
 ///
 /// @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
-/// @param token If Yubikey, send one output from the key.
 /// 
 ///
 /// @return NSNumber*
 -(NSNumber*) userRequestEnableTFAWithCompletionBlock :(NSString*) type 
-     token:(NSString*) token 
     
     completionHandler: (void (^)(NSNumber* output, NSError* error))completionBlock;
     
@@ -355,9 +361,9 @@
 ///
 ///
 /// Request a withdrawal to an external wallet.
-/// This will send a confirmation email to the email address on record, unless requested via an API Key with the \"withdraw\" permission.
+/// This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission.
 ///
-/// @param currency Currency you&#39;re withdrawing. Options: \&quot;XBt\&quot;
+/// @param currency Currency you&#39;re withdrawing. Options: `XBt`
 /// @param amount Amount of withdrawal currency.
 /// @param address Destination Address.
 /// @param otpToken 2FA token. Required if 2FA is enabled on your account.
@@ -395,11 +401,13 @@
 /// Get a history of all of your wallet transactions (deposits and withdrawals).
 /// 
 ///
+/// @param currency 
 /// 
 ///
 /// @return NSArray<SWGTransaction>*
--(NSNumber*) userGetWalletHistoryWithCompletionBlock :
-    (void (^)(NSArray<SWGTransaction>* output, NSError* error))completionBlock;
+-(NSNumber*) userGetWalletHistoryWithCompletionBlock :(NSString*) currency 
+    
+    completionHandler: (void (^)(NSArray<SWGTransaction>* output, NSError* error))completionBlock;
     
 
 

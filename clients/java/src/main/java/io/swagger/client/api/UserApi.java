@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 
 import java.util.*;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-30T13:35:44.556-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-04T18:25:18.235-05:00")
 public class UserApi {
   private ApiClient apiClient;
 
@@ -42,7 +42,7 @@ public class UserApi {
    * 
    * @return User
    */
-  public User userGetMe () throws ApiException {
+  public User userGet () throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -92,11 +92,12 @@ public class UserApi {
    * @param oldPassword 
    * @param newPassword 
    * @param newPasswordConfirm 
+   * @param username Username can only be set once. To reset, email support.
    * @param country Country of residence.
    * @param pgpPubKey PGP Public Key. If specified, automated emails will be sentwith this key.
    * @return User
    */
-  public User userUpdateMe (String firstname, String lastname, String oldPassword, String newPassword, String newPasswordConfirm, String country, String pgpPubKey) throws ApiException {
+  public User userUpdate (String firstname, String lastname, String oldPassword, String newPassword, String newPasswordConfirm, String username, String country, String pgpPubKey) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -122,6 +123,8 @@ public class UserApi {
       formParams.put("newPassword", newPassword);
     if (newPasswordConfirm != null)
       formParams.put("newPasswordConfirm", newPasswordConfirm);
+    if (username != null)
+      formParams.put("username", username);
     if (country != null)
       formParams.put("country", country);
     if (pgpPubKey != null)
@@ -157,31 +160,33 @@ public class UserApi {
    * 
    * @param email Your email address.
    * @param password Your password.
+   * @param country Country of residence.
    * @param username Desired username.
    * @param firstname First name.
    * @param lastname Last name.
-   * @param acceptsTOS Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms).
+   * @param acceptsTOS Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).
    * @param referrerID Optional Referrer ID.
-   * @param country Country of residence.
+   * @param tfaType Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef
+   * @param tfaToken Two-Factor Token.
    * @return User
    */
-  public User userNewUser (String email, String password, String username, String firstname, String lastname, String acceptsTOS, String referrerID, String country) throws ApiException {
+  public User userNew (String email, String password, String country, String username, String firstname, String lastname, String acceptsTOS, String referrerID, String tfaType, String tfaToken) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
      // verify the required parameter 'email' is set
      if (email == null) {
-        throw new ApiException(400, "Missing the required parameter 'email' when calling userNewUser");
+        throw new ApiException(400, "Missing the required parameter 'email' when calling userNew");
      }
      
      // verify the required parameter 'password' is set
      if (password == null) {
-        throw new ApiException(400, "Missing the required parameter 'password' when calling userNewUser");
+        throw new ApiException(400, "Missing the required parameter 'password' when calling userNew");
      }
      
-     // verify the required parameter 'username' is set
-     if (username == null) {
-        throw new ApiException(400, "Missing the required parameter 'username' when calling userNewUser");
+     // verify the required parameter 'country' is set
+     if (country == null) {
+        throw new ApiException(400, "Missing the required parameter 'country' when calling userNew");
      }
      
     // create path and map variables
@@ -212,6 +217,10 @@ public class UserApi {
       formParams.put("referrerID", referrerID);
     if (country != null)
       formParams.put("country", country);
+    if (tfaType != null)
+      formParams.put("tfaType", tfaType);
+    if (tfaToken != null)
+      formParams.put("tfaToken", tfaToken);
     
 
     final String[] accepts = {
@@ -891,9 +900,9 @@ public class UserApi {
   /**
    * Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
    * 
-   * @return void
+   * @return Double
    */
-  public void userLogoutAll () throws ApiException {
+  public Double userLogoutAll () throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -927,7 +936,8 @@ public class UserApi {
 
     
     
-    apiClient.invokeAPI(path, "POST", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, null);
+    TypeRef returnType = new TypeRef<Double>() {};
+    return apiClient.invokeAPI(path, "POST", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
     
     
 
@@ -935,11 +945,12 @@ public class UserApi {
   }
   
   /**
-   * Get your account&#39;s margin status.
+   * Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
    * 
+   * @param currency 
    * @return Margin
    */
-  public Margin userGetMargin () throws ApiException {
+  public Margin userGetMargin (String currency) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -951,6 +962,8 @@ public class UserApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, Object> formParams = new HashMap<String, Object>();
 
+    
+    queryParams.addAll(apiClient.parameterToPairs("", "currency", currency));
     
 
     
@@ -982,7 +995,7 @@ public class UserApi {
   }
   
   /**
-   * Save application preferences.
+   * Save user preferences.
    * 
    * @param prefs 
    * @param overwrite If true, will overwrite all existing preferences.
@@ -1043,10 +1056,9 @@ public class UserApi {
    * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
    * 
    * @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
-   * @param token If Yubikey, send one output from the key.
    * @return Boolean
    */
-  public Boolean userRequestEnableTFA (String type, String token) throws ApiException {
+  public Boolean userRequestEnableTFA (String type) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -1064,8 +1076,6 @@ public class UserApi {
 
     if (type != null)
       formParams.put("type", type);
-    if (token != null)
-      formParams.put("token", token);
     
 
     final String[] accepts = {
@@ -1149,8 +1159,8 @@ public class UserApi {
   
   /**
    * Request a withdrawal to an external wallet.
-   * This will send a confirmation email to the email address on record, unless requested via an API Key with the \&quot;withdraw\&quot; permission.
-   * @param currency Currency you&#39;re withdrawing. Options: \&quot;XBt\&quot;
+   * This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission.
+   * @param currency Currency you&#39;re withdrawing. Options: `XBt`
    * @param amount Amount of withdrawal currency.
    * @param address Destination Address.
    * @param otpToken 2FA token. Required if 2FA is enabled on your account.
@@ -1248,11 +1258,11 @@ public class UserApi {
     Map<String, Object> formParams = new HashMap<String, Object>();
 
     
-    queryParams.addAll(apiClient.parameterToPairs("", "email", email));
-    
 
     
 
+    if (email != null)
+      formParams.put("email", email);
     
 
     final String[] accepts = {
@@ -1272,7 +1282,7 @@ public class UserApi {
     
     
     TypeRef returnType = new TypeRef<Boolean>() {};
-    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
+    return apiClient.invokeAPI(path, "POST", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
     
     
 
@@ -1282,9 +1292,10 @@ public class UserApi {
   /**
    * Get a history of all of your wallet transactions (deposits and withdrawals).
    * 
+   * @param currency 
    * @return List<Transaction>
    */
-  public List<Transaction> userGetWalletHistory () throws ApiException {
+  public List<Transaction> userGetWalletHistory (String currency) throws ApiException {
     Object postBody = null;
     byte[] postBinaryBody = null;
     
@@ -1296,6 +1307,8 @@ public class UserApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, Object> formParams = new HashMap<String, Object>();
 
+    
+    queryParams.addAll(apiClient.parameterToPairs("", "currency", currency));
     
 
     

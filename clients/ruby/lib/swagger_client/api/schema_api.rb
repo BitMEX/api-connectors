@@ -12,10 +12,10 @@ module SwaggerClient
     # 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :model Optional model filter. If omitted, will return all models.
-    # @return [inline_response_200]
-    def schema_find(opts = {})
+    # @return [inline_response_200_1]
+    def schema_get(opts = {})
       if Configuration.debugging
-        Configuration.logger.debug "Calling API: SchemaApi#schema_find ..."
+        Configuration.logger.debug "Calling API: SchemaApi#schema_get ..."
       end
       
       # resource path
@@ -50,9 +50,9 @@ module SwaggerClient
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'inline_response_200')
+        :return_type => 'inline_response_200_1')
       if Configuration.debugging
-        Configuration.logger.debug "API called: SchemaApi#schema_find. Result: #{result.inspect}"
+        Configuration.logger.debug "API called: SchemaApi#schema_get. Result: #{result.inspect}"
       end
       return result
     end
@@ -60,7 +60,7 @@ module SwaggerClient
     # Returns help text &amp; subject list for websocket usage.
     # 
     # @param [Hash] opts the optional parameters
-    # @return [inline_response_200]
+    # @return [inline_response_200_1]
     def schema_websocket_help(opts = {})
       if Configuration.debugging
         Configuration.logger.debug "Calling API: SchemaApi#schema_websocket_help ..."
@@ -97,7 +97,7 @@ module SwaggerClient
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'inline_response_200')
+        :return_type => 'inline_response_200_1')
       if Configuration.debugging
         Configuration.logger.debug "API called: SchemaApi#schema_websocket_help. Result: #{result.inspect}"
       end

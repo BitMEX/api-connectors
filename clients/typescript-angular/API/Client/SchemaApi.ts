@@ -31,7 +31,7 @@ namespace API.Client {
          * 
          * @param model Optional model filter. If omitted, will return all models.
          */
-        public schemaFind (model?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<inline_response_200> {
+        public schemaGet (model?: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<inline_response_200_1> {
             const path = this.basePath + '/schema';
 
             let queryParameters: any = {};
@@ -60,7 +60,7 @@ namespace API.Client {
          * Returns help text &amp; subject list for websocket usage.
          * 
          */
-        public schemaWebsocketHelp (extraHttpRequestParams?: any ) : ng.IHttpPromise<inline_response_200> {
+        public schemaWebsocketHelp (extraHttpRequestParams?: any ) : ng.IHttpPromise<inline_response_200_1> {
             const path = this.basePath + '/schema/websocketHelp';
 
             let queryParameters: any = {};

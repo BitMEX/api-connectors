@@ -14,6 +14,7 @@ case class Margin (
   amount: Number,
   pendingCredit: Number,
   pendingDebit: Number,
+  confirmedDebit: Number,
   prevRealisedPnl: Number,
   prevUnrealisedPnl: Number,
   grossComm: Number,
@@ -32,6 +33,7 @@ case class Margin (
   unrealisedPnl: Number,
   indicativeTax: Number,
   unrealisedProfit: Number,
+  syntheticMargin: Number,
   walletBalance: Number,
   marginBalance: Number,
   marginBalancePcnt: Double,
@@ -41,5 +43,7 @@ case class Margin (
   excessMarginPcnt: Double,
   availableMargin: Number,
   withdrawableMargin: Number,
-  timestamp: Date)
+  timestamp: Date,
+  grossLastValue: Number,
+  commission: Double)
   

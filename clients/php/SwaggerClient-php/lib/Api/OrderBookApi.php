@@ -92,21 +92,21 @@ class OrderBookApi
   
     
     /**
-     * orderBookGetOrderBook
+     * orderBookGet
      *
-     * Get current orderbook.
+     * Get current orderbook [deprecated, use /orderBook/L2].
      *
      * @param string $symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (required)
      * @param Number $depth Orderbook depth. (optional)
      * @return \Swagger\Client\Model\OrderBook[]
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function orderBookGetOrderBook($symbol, $depth=null)
+    public function orderBookGet($symbol, $depth=null)
     {
         
         // verify the required parameter 'symbol' is set
         if ($symbol === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $symbol when calling orderBookGetOrderBook');
+            throw new \InvalidArgumentException('Missing the required parameter $symbol when calling orderBookGet');
         }
   
         // parse inputs
@@ -161,6 +161,99 @@ class OrderBookApi
             switch ($e->getCode()) { 
             case 200:
                 $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\OrderBook[]', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 400:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 401:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 404:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+        
+        return null;
+        
+    }
+    
+    /**
+     * orderBookGetL2
+     *
+     * Get current orderbook in vertical format.
+     *
+     * @param string $symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. (required)
+     * @param Number $depth Orderbook depth per side. Send 0 for full depth. (optional)
+     * @return \Swagger\Client\Model\OrderBookL2[]
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function orderBookGetL2($symbol, $depth=null)
+    {
+        
+        // verify the required parameter 'symbol' is set
+        if ($symbol === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $symbol when calling orderBookGetL2');
+        }
+  
+        // parse inputs
+        $resourcePath = "/orderBook/L2";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "GET";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
+  
+        // query params
+        if ($symbol !== null) {
+            $queryParams['symbol'] = $this->apiClient->getSerializer()->toQueryValue($symbol);
+        }// query params
+        if ($depth !== null) {
+            $queryParams['depth'] = $this->apiClient->getSerializer()->toQueryValue($depth);
+        }
+        
+        
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } else if (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try
+        {
+            list($response, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\Swagger\Client\Model\OrderBookL2[]'
+            );
+            
+            if (!$response) {
+                return null;
+            }
+
+            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\OrderBookL2[]', $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\OrderBookL2[]', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             case 400:

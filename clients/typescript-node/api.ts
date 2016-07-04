@@ -8,104 +8,6 @@ import http = require('http');
 
 /* tslint:disable:no-unused-variable */
 
-export class AnonymousModel0 {
-    apns: x-any;
-    gcm: x-any;
-}
-
-export class AnonymousModel5 {
-    /**
-    * See the API docs for the list of supported values.
-    */
-    scheme: string;
-    /**
-    * Scheme-specific credentials
-    */
-    credential: any;
-}
-
-export class UserPreferences {
-    announcementsLastSeen: date;
-    colorTheme: string;
-    currency: string;
-    debug: boolean;
-    disableEmails: Array<string>;
-    hideConfirmDialogs: Array<string>;
-    hideNotifications: Array<string>;
-    hidePhoneConfirm: boolean;
-    msgsSeen: Array<string>;
-    orderBookBinning: number;
-    orderControlsPlusMinus: boolean;
-    sounds: Array<string>;
-    strictIPCheck: boolean;
-    tickerGroup: string;
-    tickerPinned: boolean;
-    tradeLayout: string;
-}
-
-export class AccessToken {
-    id: string;
-    /**
-    * time to live in seconds (2 weeks by default)
-    */
-    ttl: number;
-    created: date;
-    userId: number;
-}
-
-export class Margin {
-    account: number;
-    currency: string;
-    riskLimit: number;
-    prevState: string;
-    state: string;
-    action: string;
-    amount: number;
-    pendingCredit: number;
-    pendingDebit: number;
-    prevRealisedPnl: number;
-    prevUnrealisedPnl: number;
-    grossComm: number;
-    grossOpenCost: number;
-    grossOpenPremium: number;
-    grossExecCost: number;
-    grossMarkValue: number;
-    riskValue: number;
-    taxableMargin: number;
-    initMargin: number;
-    maintMargin: number;
-    sessionMargin: number;
-    targetExcessMargin: number;
-    varMargin: number;
-    realisedPnl: number;
-    unrealisedPnl: number;
-    indicativeTax: number;
-    unrealisedProfit: number;
-    walletBalance: number;
-    marginBalance: number;
-    marginBalancePcnt: number;
-    marginLeverage: number;
-    marginUsedPcnt: number;
-    excessMargin: number;
-    excessMarginPcnt: number;
-    availableMargin: number;
-    withdrawableMargin: number;
-    timestamp: date;
-}
-
-/**
-* Map principals to roles
-*/
-export class RoleMapping {
-    id: number;
-    /**
-    * The principal type, such as user, application, or role
-    */
-    principalType: string;
-    principalId: string;
-    roleId: number;
-}
-
 export class Chat {
     id: number;
     date: date;
@@ -149,6 +51,7 @@ export class Execution {
     execID: string;
     orderID: string;
     clOrdID: string;
+    clOrdLinkID: string;
     account: number;
     symbol: string;
     side: string;
@@ -160,15 +63,20 @@ export class Execution {
     simpleOrderQty: number;
     orderQty: number;
     price: number;
-    minQty: number;
+    displayQty: number;
     stopPx: number;
+    pegOffsetValue: number;
+    pegPriceType: string;
     currency: string;
     settlCurrency: string;
     execType: string;
     ordType: string;
     timeInForce: string;
+    execInst: string;
+    contingencyType: string;
     exDestination: string;
     ordStatus: string;
+    triggered: string;
     workingIndicator: boolean;
     ordRejReason: string;
     simpleLeavesQty: number;
@@ -177,7 +85,6 @@ export class Execution {
     cumQty: number;
     avgPx: number;
     commission: number;
-    commType: string;
     tradePublishIndicator: string;
     multiLegReportingType: string;
     text: string;
@@ -198,18 +105,27 @@ export class Instrument {
     listing: date;
     front: date;
     expiry: date;
+    settle: date;
     relistInterval: date;
     inverseLeg: string;
     sellLeg: string;
     buyLeg: string;
+    positionCurrency: string;
     underlying: string;
     quoteCurrency: string;
     underlyingSymbol: string;
     reference: string;
     referenceSymbol: string;
+    calcInterval: date;
+    publishInterval: date;
+    publishTime: date;
+    maxOrderQty: number;
+    maxPrice: number;
+    lotSize: number;
     tickSize: number;
     multiplier: number;
     settlCurrency: string;
+    underlyingToPositionMultiplier: number;
     underlyingToSettleMultiplier: number;
     quoteToSettleMultiplier: number;
     isQuanto: boolean;
@@ -221,10 +137,17 @@ export class Instrument {
     taxed: boolean;
     makerFee: number;
     takerFee: number;
+    settlementFee: number;
     insuranceFee: number;
-    hedgerMakerFee: number;
-    hedgerTakerFee: number;
-    hedgerInsuranceFee: number;
+    fundingBaseSymbol: string;
+    fundingQuoteSymbol: string;
+    fundingPremiumSymbol: string;
+    fundingTimestamp: date;
+    fundingInterval: date;
+    fundingRate: number;
+    indicativeFundingRate: number;
+    rebalanceTimestamp: date;
+    rebalanceInterval: date;
     openingTimestamp: date;
     closingTimestamp: date;
     sessionInterval: date;
@@ -275,23 +198,50 @@ export class InstrumentInterval {
     symbols: Array<string>;
 }
 
+export class Insurance {
+    currency: string;
+    timestamp: date;
+    walletBalance: number;
+}
+
+export class Leaderboard {
+    name: string;
+    isRealName: boolean;
+    isMe: boolean;
+    profit: number;
+}
+
+export class Liquidation {
+    orderID: string;
+    symbol: string;
+    side: string;
+    price: number;
+    leavesQty: number;
+}
+
 export class Order {
     orderID: string;
     clOrdID: string;
+    clOrdLinkID: string;
     account: number;
     symbol: string;
     side: string;
     simpleOrderQty: number;
     orderQty: number;
     price: number;
-    minQty: number;
+    displayQty: number;
     stopPx: number;
+    pegOffsetValue: number;
+    pegPriceType: string;
     currency: string;
     settlCurrency: string;
     ordType: string;
     timeInForce: string;
+    execInst: string;
+    contingencyType: string;
     exDestination: string;
     ordStatus: string;
+    triggered: string;
     workingIndicator: boolean;
     ordRejReason: string;
     simpleLeavesQty: number;
@@ -305,13 +255,6 @@ export class Order {
     timestamp: date;
 }
 
-export class LiquidationOrder {
-    symbol: string;
-    side: string;
-    qty: number;
-    price: number;
-}
-
 export class OrderBook {
     symbol: string;
     level: number;
@@ -322,13 +265,22 @@ export class OrderBook {
     timestamp: date;
 }
 
+export class OrderBookL2 {
+    symbol: string;
+    id: number;
+    side: string;
+    size: number;
+    price: number;
+}
+
 export class Position {
     account: number;
     symbol: string;
+    currency: string;
     underlying: string;
     quoteCurrency: string;
-    currency: string;
     commission: number;
+    leverage: number;
     crossMargin: boolean;
     rebalancedPnl: number;
     prevRealisedPnl: number;
@@ -406,6 +358,8 @@ export class Position {
     liquidationPrice: number;
     bankruptPrice: number;
     timestamp: date;
+    lastPrice: number;
+    lastValue: number;
 }
 
 export class Quote {
@@ -419,13 +373,21 @@ export class Quote {
 }
 
 export class Settlement {
-    symbol: string;
     timestamp: date;
+    symbol: string;
     settlementType: string;
     settledPrice: number;
     bankrupt: number;
     taxBase: number;
     taxRate: number;
+}
+
+export class Funding {
+    timestamp: date;
+    symbol: string;
+    fundingInterval: date;
+    fundingRate: number;
+    fundingRateDaily: number;
 }
 
 export class Stats {
@@ -491,6 +453,16 @@ export class Transaction {
     timestamp: date;
 }
 
+export class AccessToken {
+    id: string;
+    /**
+    * time to live in seconds (2 weeks by default)
+    */
+    ttl: number;
+    created: date;
+    userId: number;
+}
+
 export class Affiliate {
     account: number;
     currency: string;
@@ -510,6 +482,7 @@ export class Affiliate {
 
 export class User {
     id: number;
+    ownerId: number;
     firstname: string;
     lastname: string;
     status: string;
@@ -520,7 +493,6 @@ export class User {
     created: date;
     lastUpdated: date;
     preferences: UserPreferences;
-    role: string;
     tFAEnabled: string;
     affiliateID: string;
     pgpPubKey: string;
@@ -534,7 +506,80 @@ export class UserCommission {
     insuranceFee: string;
 }
 
+export class Margin {
+    account: number;
+    currency: string;
+    riskLimit: number;
+    prevState: string;
+    state: string;
+    action: string;
+    amount: number;
+    pendingCredit: number;
+    pendingDebit: number;
+    confirmedDebit: number;
+    prevRealisedPnl: number;
+    prevUnrealisedPnl: number;
+    grossComm: number;
+    grossOpenCost: number;
+    grossOpenPremium: number;
+    grossExecCost: number;
+    grossMarkValue: number;
+    riskValue: number;
+    taxableMargin: number;
+    initMargin: number;
+    maintMargin: number;
+    sessionMargin: number;
+    targetExcessMargin: number;
+    varMargin: number;
+    realisedPnl: number;
+    unrealisedPnl: number;
+    indicativeTax: number;
+    unrealisedProfit: number;
+    syntheticMargin: number;
+    walletBalance: number;
+    marginBalance: number;
+    marginBalancePcnt: number;
+    marginLeverage: number;
+    marginUsedPcnt: number;
+    excessMargin: number;
+    excessMarginPcnt: number;
+    availableMargin: number;
+    withdrawableMargin: number;
+    timestamp: date;
+    grossLastValue: number;
+    commission: number;
+}
+
+export class UserPreferences {
+    announcementsLastSeen: date;
+    colorTheme: string;
+    currency: string;
+    debug: boolean;
+    disableEmails: Array<string>;
+    hideConfirmDialogs: Array<string>;
+    hideConnectionModal: boolean;
+    hideFromLeaderboard: boolean;
+    hideNameFromLeaderboard: boolean;
+    hideNotifications: Array<string>;
+    hidePhoneConfirm: boolean;
+    locale: string;
+    msgsSeen: Array<string>;
+    orderBookBinning: number;
+    orderBookType: string;
+    orderControlsPlusMinus: boolean;
+    sounds: Array<string>;
+    strictIPCheck: boolean;
+    strictTimeout: boolean;
+    tickerGroup: string;
+    tickerPinned: boolean;
+    tradeLayout: string;
+}
+
 export class InlineResponse200 {
+    success: boolean;
+}
+
+export class InlineResponse2001 {
 }
 
 
@@ -616,9 +661,9 @@ export class OrderApi {
     }
     /**
      * Get your orders.
-     * To get open orders only, send {\&quot;open\&quot;: true} in the filter param.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.
-     * @param filter Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.
+     * To get open orders only, send {\&quot;open\&quot;: true} in the filter param.\n\nSee &lt;a href=\&quot;http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_D_68.html\&quot;&gt;the FIX Spec&lt;/a&gt; for explanations of these fields.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+     * @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
      * @param count Number of results to fetch.
      * @param start Starting point for results.
@@ -702,17 +747,126 @@ export class OrderApi {
         return deferred.promise;
     }
     /**
-     * Create a new order.
-     * This endpoint is used for placing orders. Valid order types are &#39;Limit&#39; and &#39;StopLimit&#39;. If none is provided, BitMEX will assume a Limit Order.\n\nA note on API tools: if you want to keep track of order IDs yourself, set a unique clOrdID per order. This ID will come back as a property on the order and any related executions (including on the WebSocket), and can be used to get or cancel the order. Max length is 36 characters.\n\nTo generate a clOrdID, consider setting a prefix, and incrementing a counter or generating a UUID. Some UUIDs are longer than 36 characters, so use a url-safe base64 encoding. For example, the prefix &#39;bmex_mm_&#39; and the UUID &#39;7fbd6545-bb0c-11e4-a273-6003088a7c04&#39; creates &#39;bmex_mm_f71lRbsMEeSic2ADCIp8BA&#39;.\n\nSee the BitMEX &lt;a href=&#39;https://github.com/BitMEX/market-maker/blob/22c75a2b6db63e20212813e9afdb845db1b09b2a/bitmex.py#L152&#39;&gt;Reference Market Maker&lt;/a&gt; for an example of how to use and generate clOrdIDs.
-     * @param symbol Instrument symbol.
-     * @param quantity Quantity. Use positive numbers to buy, negative to sell.
-     * @param price Order price.
-     * @param timeInForce Time in force. Valid options: &#39;IOC&#39; (Immediate-Or-Cancel), &#39;GTC&#39; (Good-Till-Cancelled).
-     * @param type Order type. Available: &#39;Limit&#39;, &#39;StopLimit&#39;
-     * @param stopPrice If order type is &#39;StopLimit&#39;, this is the trigger/stop price.
-     * @param clOrdID Optional Client Order ID to give this order. This ID will come back on any execution messages tied to this order.
+     * Amend the quantity or price of an open order.
+     * &lt;p&gt;Send an &lt;code&gt;orderID&lt;/code&gt; or &lt;code&gt;clOrdID&lt;/code&gt; to identify the order you wish to amend.&lt;/p&gt;\n&lt;p&gt;Both order quantity and price can be amended. Only one &lt;code&gt;qty&lt;/code&gt; field can be used to amend.&lt;/p&gt;\n&lt;p&gt;Use the &lt;code&gt;leavesQty&lt;/code&gt; field to specify how much of the order you wish to remain open. This can be useful\nif you want to adjust your position&amp;#39;s delta by a certain amount, regardless of how much of the order has\nalready filled.&lt;/p&gt;\n&lt;p&gt;Use the &lt;code&gt;simpleOrderQty&lt;/code&gt; and &lt;code&gt;simpleLeavesQty&lt;/code&gt; fields to specify order size in Bitcoin, rather than contracts.\nThese fields will round up to the nearest contract.&lt;/p&gt;\n&lt;p&gt;Like order placement, amending can be done in bulk. Simply send a request to &lt;code&gt;PUT /api/v1/order/bulk&lt;/code&gt; with\na JSON body of the shape: &lt;code&gt;{&amp;quot;orders&amp;quot;: [{...}, {...}]}&lt;/code&gt;, each object containing the fields used in this endpoint.&lt;/p&gt;
+     * @param orderID Order ID
+     * @param clOrdID Client Order ID. See POST /order.
+     * @param simpleOrderQty Optional order quantity in units of the underlying instrument (i.e. Bitcoin).
+     * @param orderQty Optional order quantity in units of the instrument (i.e. contracts).
+     * @param simpleLeavesQty Optional leaves quantity in units of the underlying instrument (i.e. Bitcoin). Useful for amending partially filled orders.
+     * @param leavesQty Optional leaves quantity in units of the instrument (i.e. contracts). Useful for amending partially filled orders.
+     * @param price Optional limit price for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders.
+     * @param stopPx Optional trigger price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. Use a price below the current price for stop-sell orders and buy-if-touched orders.
+     * @param pegOffsetValue Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders.
+     * @param text Optional amend annotation. e.g. &#39;Adjust skew&#39;.
      */
-    public orderNewOrder (symbol: string, quantity: number, price: number, timeInForce?: string, type?: string, stopPrice?: number, clOrdID?: string) : Promise<{ response: http.ClientResponse; body: Order;  }> {
+    public orderAmend (orderID?: string, clOrdID?: string, simpleOrderQty?: number, orderQty?: number, simpleLeavesQty?: number, leavesQty?: number, price?: number, stopPx?: number, pegOffsetValue?: number, text?: string) : Promise<{ response: http.ClientResponse; body: Order;  }> {
+        const path = this.url + this.basePath + '/order';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        let useFormData = false;
+
+        if (orderID !== undefined) {
+            formParams['orderID'] = orderID;
+        }
+
+        if (clOrdID !== undefined) {
+            formParams['clOrdID'] = clOrdID;
+        }
+
+        if (simpleOrderQty !== undefined) {
+            formParams['simpleOrderQty'] = simpleOrderQty;
+        }
+
+        if (orderQty !== undefined) {
+            formParams['orderQty'] = orderQty;
+        }
+
+        if (simpleLeavesQty !== undefined) {
+            formParams['simpleLeavesQty'] = simpleLeavesQty;
+        }
+
+        if (leavesQty !== undefined) {
+            formParams['leavesQty'] = leavesQty;
+        }
+
+        if (price !== undefined) {
+            formParams['price'] = price;
+        }
+
+        if (stopPx !== undefined) {
+            formParams['stopPx'] = stopPx;
+        }
+
+        if (pegOffsetValue !== undefined) {
+            formParams['pegOffsetValue'] = pegOffsetValue;
+        }
+
+        if (text !== undefined) {
+            formParams['text'] = text;
+        }
+
+        let deferred = promise.defer<{ response: http.ClientResponse; body: Order;  }>();
+
+        let requestOptions: request.Options = {
+            method: 'PUT',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: path,
+            json: true,
+        }
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+
+        request(requestOptions, (error, response, body) => {
+            if (error) {
+                deferred.reject(error);
+            } else {
+                if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    deferred.resolve({ response: response, body: body });
+                } else {
+                    deferred.reject({ response: response, body: body });
+                }
+            }
+        });
+
+        return deferred.promise;
+    }
+    /**
+     * Create a new order.
+     * This endpoint is used for placing orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, and Pegged.\n\nIf no order type is provided, BitMEX will assume &#39;Limit&#39;.\nBe very careful with &#39;Market&#39; and &#39;Stop&#39; orders as you may be filled at an unfavourable price.\n\nYou can submit bulk orders by POSTing an array of orders to `/api/v1/order/bulk`. Send a JSON payload\nwith the shape: `{\&quot;orders\&quot;: [{...}, {...}]}`, with each inner object containing the same fields that would be\nsent to this endpoint.\n\nA note on API tools: if you want to keep track of order IDs yourself, set a unique clOrdID per order.\nThis clOrdID will come back as a property on the order and any related executions (including on the WebSocket),\nand can be used to get or cancel the order. Max length is 36 characters.\n\nTo generate a clOrdID, consider setting a prefix, and incrementing a counter or generating a UUID.\nSome UUIDs are longer than 36 characters, so use a url-safe base64 encoding. For example, the prefix `&#39;bmex_mm_&#39;`\nand the UUID `&#39;7fbd6545-bb0c-11e4-a273-6003088a7c04&#39;` creates `&#39;bmex_mm_f71lRbsMEeSic2ADCIp8BA&#39;`.\n\nSee the [BitMEX Reference Market Maker](https://github.com/BitMEX/market-maker/blob/22c75a2b6db63e20212813e9afdb845db1b09b2a/bitmex.py#L152)\nfor an example of how to use and generate clOrdIDs.
+     * @param symbol Instrument symbol. e.g. &#39;XBT24H&#39;.
+     * @param side Order side. Valid options: Buy, Sell. Defaults to &#39;Buy&#39; unless `orderQty` or `simpleOrderQty` is negative.
+     * @param simpleOrderQty Order quantity in units of the underlying instrument (i.e. Bitcoin).
+     * @param quantity Deprecated: use `orderQty`.
+     * @param orderQty Order quantity in units of the instrument (i.e. contracts).
+     * @param price Optional limit price for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders.
+     * @param displayQty Optional quantity to display in the book. Use 0 for a hidden order.
+     * @param stopPrice Deprecated: use `stopPx`.
+     * @param stopPx Optional trigger price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use `execInst` of &#39;MarkPrice&#39; or &#39;LastPrice&#39; to define the current price used for triggering.
+     * @param clOrdID Optional Client Order ID. This clOrdID will come back on the order and any related executions.
+     * @param clOrdLinkID Optional Client Order Link ID for contingent orders.
+     * @param pegOffsetValue Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders.
+     * @param pegPriceType Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg, TrailingStopPeg.
+     * @param type Deprecated: use `ordType`.
+     * @param ordType Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to &#39;Limit&#39; when `price` is specified. Defaults to &#39;Stop&#39; when `stopPx` is specified. Defaults to &#39;StopLimit&#39; when `price` and `stopPx` are specified.
+     * @param timeInForce Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to &#39;GoodTillCancel&#39; for &#39;Limit&#39;, &#39;StopLimit&#39;, &#39;LimitIfTouched&#39;, and &#39;MarketWithLeftOverAsLimit&#39; orders.
+     * @param execInst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, LastPrice, Close, ReduceOnly. &#39;AllOrNone&#39; instruction requires `displayQty` to be 0. &#39;MarkPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders.
+     * @param contingencyType Optional contingency type for use with `clOrdLinkID`. Valid options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute, OneUpdatesTheOtherProportional.
+     * @param text Optional order annotation. e.g. &#39;Take profit&#39;.
+     */
+    public orderNew (symbol: string, side?: string, simpleOrderQty?: number, quantity?: number, orderQty?: number, price?: number, displayQty?: number, stopPrice?: number, stopPx?: number, clOrdID?: string, clOrdLinkID?: string, pegOffsetValue?: number, pegPriceType?: string, type?: string, ordType?: string, timeInForce?: string, execInst?: string, contingencyType?: string, text?: string) : Promise<{ response: http.ClientResponse; body: Order;  }> {
         const path = this.url + this.basePath + '/order';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -721,17 +875,7 @@ export class OrderApi {
 
         // verify required parameter 'symbol' is set
         if (!symbol) {
-            throw new Error('Missing required parameter symbol when calling orderNewOrder');
-        }
-
-        // verify required parameter 'quantity' is set
-        if (!quantity) {
-            throw new Error('Missing required parameter quantity when calling orderNewOrder');
-        }
-
-        // verify required parameter 'price' is set
-        if (!price) {
-            throw new Error('Missing required parameter price when calling orderNewOrder');
+            throw new Error('Missing required parameter symbol when calling orderNew');
         }
 
         let useFormData = false;
@@ -740,28 +884,76 @@ export class OrderApi {
             formParams['symbol'] = symbol;
         }
 
+        if (side !== undefined) {
+            formParams['side'] = side;
+        }
+
+        if (simpleOrderQty !== undefined) {
+            formParams['simpleOrderQty'] = simpleOrderQty;
+        }
+
         if (quantity !== undefined) {
             formParams['quantity'] = quantity;
+        }
+
+        if (orderQty !== undefined) {
+            formParams['orderQty'] = orderQty;
         }
 
         if (price !== undefined) {
             formParams['price'] = price;
         }
 
-        if (timeInForce !== undefined) {
-            formParams['timeInForce'] = timeInForce;
-        }
-
-        if (type !== undefined) {
-            formParams['type'] = type;
+        if (displayQty !== undefined) {
+            formParams['displayQty'] = displayQty;
         }
 
         if (stopPrice !== undefined) {
             formParams['stopPrice'] = stopPrice;
         }
 
+        if (stopPx !== undefined) {
+            formParams['stopPx'] = stopPx;
+        }
+
         if (clOrdID !== undefined) {
             formParams['clOrdID'] = clOrdID;
+        }
+
+        if (clOrdLinkID !== undefined) {
+            formParams['clOrdLinkID'] = clOrdLinkID;
+        }
+
+        if (pegOffsetValue !== undefined) {
+            formParams['pegOffsetValue'] = pegOffsetValue;
+        }
+
+        if (pegPriceType !== undefined) {
+            formParams['pegPriceType'] = pegPriceType;
+        }
+
+        if (type !== undefined) {
+            formParams['type'] = type;
+        }
+
+        if (ordType !== undefined) {
+            formParams['ordType'] = ordType;
+        }
+
+        if (timeInForce !== undefined) {
+            formParams['timeInForce'] = timeInForce;
+        }
+
+        if (execInst !== undefined) {
+            formParams['execInst'] = execInst;
+        }
+
+        if (contingencyType !== undefined) {
+            formParams['contingencyType'] = contingencyType;
+        }
+
+        if (text !== undefined) {
+            formParams['text'] = text;
         }
 
         let deferred = promise.defer<{ response: http.ClientResponse; body: Order;  }>();
@@ -803,9 +995,9 @@ export class OrderApi {
      * Either an orderID or a clOrdID must be provided.
      * @param orderID Order ID(s).
      * @param clOrdID Client Order ID(s). See POST /order.
-     * @param text Optional cancellation annotation. e.g. &#39;Spread Exceeded&#39;
+     * @param text Optional cancellation annotation. e.g. &#39;Spread Exceeded&#39;.
      */
-    public orderCancelOrder (orderID?: string, clOrdID?: string, text?: string) : Promise<{ response: http.ClientResponse; body: Array<Order>;  }> {
+    public orderCancel (orderID?: string, clOrdID?: string, text?: string) : Promise<{ response: http.ClientResponse; body: Array<Order>;  }> {
         const path = this.url + this.basePath + '/order';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -867,7 +1059,7 @@ export class OrderApi {
      * @param filter Optional filter for cancellation. Use to only cancel some orders, e.g. `{\&quot;side\&quot;: \&quot;Buy\&quot;}`.
      * @param text Optional cancellation annotation. e.g. &#39;Spread Exceeded&#39;
      */
-    public orderCancelAll (symbol?: string, filter?: string, text?: string) : Promise<{ response: http.ClientResponse; body: inline_response_200;  }> {
+    public orderCancelAll (symbol?: string, filter?: string, text?: string) : Promise<{ response: http.ClientResponse; body: inline_response_200_1;  }> {
         const path = this.url + this.basePath + '/order/all';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -888,7 +1080,7 @@ export class OrderApi {
             formParams['text'] = text;
         }
 
-        let deferred = promise.defer<{ response: http.ClientResponse; body: inline_response_200;  }>();
+        let deferred = promise.defer<{ response: http.ClientResponse; body: inline_response_200_1;  }>();
 
         let requestOptions: request.Options = {
             method: 'DELETE',
@@ -923,29 +1115,76 @@ export class OrderApi {
         return deferred.promise;
     }
     /**
-     * Automatically cancel all your orders after a specified timeout.
-     * Useful as a dead-man&#39;s switch to ensure your orders are canceled in case of an outage. If called repeatedly, the existing offset will be canceled and a new one will be inserted in its place. &lt;br&gt;&lt;br&gt;Example usage: call this route at 15s intervals with an offset of 60000 (60s). If this route is not called within 60 seconds, all your orders will be automatically canceled.&lt;br&gt;&lt;br&gt;This is also available via &lt;a href=\&quot;https://www.bitmex.com/app/wsAPI#dead-man-s-switch-auto-cancel-\&quot;&gt;WebSocket&lt;/a&gt;.
-     * @param timeout Timeout in ms. Set to 0 to cancel this timer.
+     * Amend multiple orders.
+     * Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 50%.
+     * @param orders An array of orders.
      */
-    public orderCancelAllAfter (timeout: number) : Promise<{ response: http.ClientResponse; body: inline_response_200;  }> {
-        const path = this.url + this.basePath + '/order/cancelAllAfter';
+    public orderAmendBulk (orders?: string) : Promise<{ response: http.ClientResponse; body: Array<Order>;  }> {
+        const path = this.url + this.basePath + '/order/bulk';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
         let formParams: any = {};
 
 
-        // verify required parameter 'timeout' is set
-        if (!timeout) {
-            throw new Error('Missing required parameter timeout when calling orderCancelAllAfter');
+        let useFormData = false;
+
+        if (orders !== undefined) {
+            formParams['orders'] = orders;
         }
+
+        let deferred = promise.defer<{ response: http.ClientResponse; body: Array<Order>;  }>();
+
+        let requestOptions: request.Options = {
+            method: 'PUT',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: path,
+            json: true,
+        }
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+
+        request(requestOptions, (error, response, body) => {
+            if (error) {
+                deferred.reject(error);
+            } else {
+                if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    deferred.resolve({ response: response, body: body });
+                } else {
+                    deferred.reject({ response: response, body: body });
+                }
+            }
+        });
+
+        return deferred.promise;
+    }
+    /**
+     * Create multiple new orders.
+     * This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, and Pegged.\n\nEach individual order object in the array should have the same properties as an individual POST /order call.\n\nThis endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX\nsystems, this endpoint is ratelimited at `ceil(0.5 * orders)`. Submitting 10 orders via a bulk order call\nwill only count as 5 requests.\n\nFor now, only `application/json` is supported on this endpoint.
+     * @param orders An array of orders.
+     */
+    public orderNewBulk (orders?: string) : Promise<{ response: http.ClientResponse; body: Array<Order>;  }> {
+        const path = this.url + this.basePath + '/order/bulk';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
 
         let useFormData = false;
 
-        if (timeout !== undefined) {
-            formParams['timeout'] = timeout;
+        if (orders !== undefined) {
+            formParams['orders'] = orders;
         }
 
-        let deferred = promise.defer<{ response: http.ClientResponse; body: inline_response_200;  }>();
+        let deferred = promise.defer<{ response: http.ClientResponse; body: Array<Order>;  }>();
 
         let requestOptions: request.Options = {
             method: 'POST',
@@ -980,8 +1219,65 @@ export class OrderApi {
         return deferred.promise;
     }
     /**
-     * Close a position with a market order.
-     * If no price is specified, a market order will be submitted to close the entirety of your position. Be careful with market orders as you may not be filled at a favorable price.
+     * Automatically cancel all your orders after a specified timeout.
+     * Useful as a dead-man&#39;s switch to ensure your orders are canceled in case of an outage.\nIf called repeatedly, the existing offset will be canceled and a new one will be inserted in its place.\n\nExample usage: call this route at 15s intervals with an offset of 60000 (60s).\nIf this route is not called within 60 seconds, all your orders will be automatically canceled.\n\nThis is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#dead-man-s-switch-auto-cancel-).
+     * @param timeout Timeout in ms. Set to 0 to cancel this timer.
+     */
+    public orderCancelAllAfter (timeout: number) : Promise<{ response: http.ClientResponse; body: inline_response_200_1;  }> {
+        const path = this.url + this.basePath + '/order/cancelAllAfter';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'timeout' is set
+        if (!timeout) {
+            throw new Error('Missing required parameter timeout when calling orderCancelAllAfter');
+        }
+
+        let useFormData = false;
+
+        if (timeout !== undefined) {
+            formParams['timeout'] = timeout;
+        }
+
+        let deferred = promise.defer<{ response: http.ClientResponse; body: inline_response_200_1;  }>();
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: path,
+            json: true,
+        }
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+
+        request(requestOptions, (error, response, body) => {
+            if (error) {
+                deferred.reject(error);
+            } else {
+                if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    deferred.resolve({ response: response, body: body });
+                } else {
+                    deferred.reject({ response: response, body: body });
+                }
+            }
+        });
+
+        return deferred.promise;
+    }
+    /**
+     * Close a position. [Deprecated, use POST /order with execInst: &#39;Close&#39;]
+     * If no `price` is specified, a market order will be submitted to close the whole of your position. + This will also close all other open orders in this symbol.
      * @param symbol Symbol of position to close.
      * @param price Optional limit price.
      */
@@ -1011,58 +1307,6 @@ export class OrderApi {
 
         let requestOptions: request.Options = {
             method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
-            uri: path,
-            json: true,
-        }
-
-        this.authentications.default.applyToRequest(requestOptions);
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
-
-        request(requestOptions, (error, response, body) => {
-            if (error) {
-                deferred.reject(error);
-            } else {
-                if (response.statusCode >= 200 && response.statusCode <= 299) {
-                    deferred.resolve({ response: response, body: body });
-                } else {
-                    deferred.reject({ response: response, body: body });
-                }
-            }
-        });
-
-        return deferred.promise;
-    }
-    /**
-     * Get open liquidation orders.
-     * 
-     * @param filter Filter. For example, send {\&quot;symbol\&quot;: \&quot;XBT24H\&quot;}.
-     */
-    public orderGetCloseOutOrders (filter?: string) : Promise<{ response: http.ClientResponse; body: Array<LiquidationOrder>;  }> {
-        const path = this.url + this.basePath + '/order/liquidations';
-        let queryParameters: any = {};
-        let headerParams: any = this.extendObj({}, this.defaultHeaders);
-        let formParams: any = {};
-
-
-        if (filter !== undefined) {
-            queryParameters['filter'] = filter;
-        }
-
-        let useFormData = false;
-
-        let deferred = promise.defer<{ response: http.ClientResponse; body: Array<LiquidationOrder>;  }>();
-
-        let requestOptions: request.Options = {
-            method: 'GET',
             qs: queryParameters,
             headers: headerParams,
             uri: path,
@@ -1129,7 +1373,7 @@ export class ApiKeyApi {
      * 
      * @param reverse If true, will sort results newest first.
      */
-    public apiKeyGetKeys (reverse?: boolean) : Promise<{ response: http.ClientResponse; body: Array<ApiKey>;  }> {
+    public apiKeyGet (reverse?: boolean) : Promise<{ response: http.ClientResponse; body: Array<ApiKey>;  }> {
         const path = this.url + this.basePath + '/apiKey';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -1178,14 +1422,14 @@ export class ApiKeyApi {
     }
     /**
      * Create a new API Key.
-     * API Keys can also be created via &lt;a href=\&quot;https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py\&quot;&gt;this Python script&lt;/a&gt;. See the &lt;a href=\&quot;/app/apiKeys\&quot;&gt;API Key Documentation&lt;/a&gt; for more information on capabilities.
+     * API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
      * @param name Key name. This name is for reference only.
      * @param cidr CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href=\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt;
      * @param permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;].
      * @param enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.
      * @param token OTP Token (YubiKey, Google Authenticator)
      */
-    public apiKeyCreateKey (name?: string, cidr?: string, permissions?: string, enabled?: boolean, token?: string) : Promise<{ response: http.ClientResponse; body: ApiKey;  }> {
+    public apiKeyNew (name?: string, cidr?: string, permissions?: string, enabled?: boolean, token?: string) : Promise<{ response: http.ClientResponse; body: ApiKey;  }> {
         const path = this.url + this.basePath + '/apiKey';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -1454,7 +1698,7 @@ export class UserApi {
      * Get your user model.
      * 
      */
-    public userGetMe () : Promise<{ response: http.ClientResponse; body: User;  }> {
+    public userGet () : Promise<{ response: http.ClientResponse; body: User;  }> {
         const path = this.url + this.basePath + '/user';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -1505,10 +1749,11 @@ export class UserApi {
      * @param oldPassword 
      * @param newPassword 
      * @param newPasswordConfirm 
+     * @param username Username can only be set once. To reset, email support.
      * @param country Country of residence.
      * @param pgpPubKey PGP Public Key. If specified, automated emails will be sentwith this key.
      */
-    public userUpdateMe (firstname?: string, lastname?: string, oldPassword?: string, newPassword?: string, newPasswordConfirm?: string, country?: string, pgpPubKey?: string) : Promise<{ response: http.ClientResponse; body: User;  }> {
+    public userUpdate (firstname?: string, lastname?: string, oldPassword?: string, newPassword?: string, newPasswordConfirm?: string, username?: string, country?: string, pgpPubKey?: string) : Promise<{ response: http.ClientResponse; body: User;  }> {
         const path = this.url + this.basePath + '/user';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -1535,6 +1780,10 @@ export class UserApi {
 
         if (newPasswordConfirm !== undefined) {
             formParams['newPasswordConfirm'] = newPasswordConfirm;
+        }
+
+        if (username !== undefined) {
+            formParams['username'] = username;
         }
 
         if (country !== undefined) {
@@ -1584,14 +1833,16 @@ export class UserApi {
      * 
      * @param email Your email address.
      * @param password Your password.
+     * @param country Country of residence.
      * @param username Desired username.
      * @param firstname First name.
      * @param lastname Last name.
-     * @param acceptsTOS Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/app/terms).
+     * @param acceptsTOS Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).
      * @param referrerID Optional Referrer ID.
-     * @param country Country of residence.
+     * @param tfaType Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef
+     * @param tfaToken Two-Factor Token.
      */
-    public userNewUser (email: string, password: string, username: string, firstname?: string, lastname?: string, acceptsTOS?: string, referrerID?: string, country?: string) : Promise<{ response: http.ClientResponse; body: User;  }> {
+    public userNew (email: string, password: string, country: string, username?: string, firstname?: string, lastname?: string, acceptsTOS?: string, referrerID?: string, tfaType?: string, tfaToken?: string) : Promise<{ response: http.ClientResponse; body: User;  }> {
         const path = this.url + this.basePath + '/user';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -1600,17 +1851,17 @@ export class UserApi {
 
         // verify required parameter 'email' is set
         if (!email) {
-            throw new Error('Missing required parameter email when calling userNewUser');
+            throw new Error('Missing required parameter email when calling userNew');
         }
 
         // verify required parameter 'password' is set
         if (!password) {
-            throw new Error('Missing required parameter password when calling userNewUser');
+            throw new Error('Missing required parameter password when calling userNew');
         }
 
-        // verify required parameter 'username' is set
-        if (!username) {
-            throw new Error('Missing required parameter username when calling userNewUser');
+        // verify required parameter 'country' is set
+        if (!country) {
+            throw new Error('Missing required parameter country when calling userNew');
         }
 
         let useFormData = false;
@@ -1645,6 +1896,14 @@ export class UserApi {
 
         if (country !== undefined) {
             formParams['country'] = country;
+        }
+
+        if (tfaType !== undefined) {
+            formParams['tfaType'] = tfaType;
+        }
+
+        if (tfaToken !== undefined) {
+            formParams['tfaToken'] = tfaToken;
         }
 
         let deferred = promise.defer<{ response: http.ClientResponse; body: User;  }>();
@@ -2364,7 +2623,7 @@ export class UserApi {
      * Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
      * 
      */
-    public userLogoutAll () : Promise<{ response: http.ClientResponse; body?: any;  }> {
+    public userLogoutAll () : Promise<{ response: http.ClientResponse; body: number;  }> {
         const path = this.url + this.basePath + '/user/logoutAll';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -2373,7 +2632,7 @@ export class UserApi {
 
         let useFormData = false;
 
-        let deferred = promise.defer<{ response: http.ClientResponse; body?: any;  }>();
+        let deferred = promise.defer<{ response: http.ClientResponse; body: number;  }>();
 
         let requestOptions: request.Options = {
             method: 'POST',
@@ -2408,15 +2667,20 @@ export class UserApi {
         return deferred.promise;
     }
     /**
-     * Get your account&#39;s margin status.
+     * Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
      * 
+     * @param currency 
      */
-    public userGetMargin () : Promise<{ response: http.ClientResponse; body: Margin;  }> {
+    public userGetMargin (currency?: string) : Promise<{ response: http.ClientResponse; body: Margin;  }> {
         const path = this.url + this.basePath + '/user/margin';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
         let formParams: any = {};
 
+
+        if (currency !== undefined) {
+            queryParameters['currency'] = currency;
+        }
 
         let useFormData = false;
 
@@ -2455,7 +2719,7 @@ export class UserApi {
         return deferred.promise;
     }
     /**
-     * Save application preferences.
+     * Save user preferences.
      * 
      * @param prefs 
      * @param overwrite If true, will overwrite all existing preferences.
@@ -2520,9 +2784,8 @@ export class UserApi {
      * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
      * 
      * @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
-     * @param token If Yubikey, send one output from the key.
      */
-    public userRequestEnableTFA (type?: string, token?: string) : Promise<{ response: http.ClientResponse; body: boolean;  }> {
+    public userRequestEnableTFA (type?: string) : Promise<{ response: http.ClientResponse; body: boolean;  }> {
         const path = this.url + this.basePath + '/user/requestEnableTFA';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -2533,10 +2796,6 @@ export class UserApi {
 
         if (type !== undefined) {
             formParams['type'] = type;
-        }
-
-        if (token !== undefined) {
-            formParams['token'] = token;
         }
 
         let deferred = promise.defer<{ response: http.ClientResponse; body: boolean;  }>();
@@ -2632,8 +2891,8 @@ export class UserApi {
     }
     /**
      * Request a withdrawal to an external wallet.
-     * This will send a confirmation email to the email address on record, unless requested via an API Key with the \&quot;withdraw\&quot; permission.
-     * @param currency Currency you&#39;re withdrawing. Options: \&quot;XBt\&quot;
+     * This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission.
+     * @param currency Currency you&#39;re withdrawing. Options: `XBt`
      * @param amount Amount of withdrawal currency.
      * @param address Destination Address.
      * @param otpToken 2FA token. Required if 2FA is enabled on your account.
@@ -2734,16 +2993,16 @@ export class UserApi {
             throw new Error('Missing required parameter email when calling userSendVerificationEmail');
         }
 
-        if (email !== undefined) {
-            queryParameters['email'] = email;
-        }
-
         let useFormData = false;
+
+        if (email !== undefined) {
+            formParams['email'] = email;
+        }
 
         let deferred = promise.defer<{ response: http.ClientResponse; body: boolean;  }>();
 
         let requestOptions: request.Options = {
-            method: 'GET',
+            method: 'POST',
             qs: queryParameters,
             headers: headerParams,
             uri: path,
@@ -2777,13 +3036,18 @@ export class UserApi {
     /**
      * Get a history of all of your wallet transactions (deposits and withdrawals).
      * 
+     * @param currency 
      */
-    public userGetWalletHistory () : Promise<{ response: http.ClientResponse; body: Array<Transaction>;  }> {
+    public userGetWalletHistory (currency?: string) : Promise<{ response: http.ClientResponse; body: Array<Transaction>;  }> {
         const path = this.url + this.basePath + '/user/walletHistory';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
         let formParams: any = {};
 
+
+        if (currency !== undefined) {
+            queryParameters['currency'] = currency;
+        }
 
         let useFormData = false;
 
@@ -2952,6 +3216,207 @@ export class AnnouncementApi {
         return deferred.promise;
     }
 }
+export class LeaderboardApi {
+    protected basePath = 'https://localhost/api/v1';
+    protected defaultHeaders : any = {};
+
+
+
+    public authentications = {
+        'default': <Authentication>new VoidAuth(),
+    }
+
+    constructor(url: string, basePath?: string);
+    constructor(private url: string, basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+    private extendObj<T1,T2>(objA: T1, objB: T2) {
+        for(let key in objB){
+            if(objB.hasOwnProperty(key)){
+                objA[key] = objB[key];
+            }
+        }
+        return <T1&T2>objA;
+    }
+    /**
+     * Get current leaderboard.
+     * 
+     * @param method Ranking type. Options: \&quot;notional\&quot;, \&quot;ROE\&quot;
+     */
+    public leaderboardGet (method?: string) : Promise<{ response: http.ClientResponse; body: Array<Leaderboard>;  }> {
+        const path = this.url + this.basePath + '/leaderboard';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        if (method !== undefined) {
+            queryParameters['method'] = method;
+        }
+
+        let useFormData = false;
+
+        let deferred = promise.defer<{ response: http.ClientResponse; body: Array<Leaderboard>;  }>();
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: path,
+            json: true,
+        }
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+
+        request(requestOptions, (error, response, body) => {
+            if (error) {
+                deferred.reject(error);
+            } else {
+                if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    deferred.resolve({ response: response, body: body });
+                } else {
+                    deferred.reject({ response: response, body: body });
+                }
+            }
+        });
+
+        return deferred.promise;
+    }
+}
+export class FundingApi {
+    protected basePath = 'https://localhost/api/v1';
+    protected defaultHeaders : any = {};
+
+
+
+    public authentications = {
+        'default': <Authentication>new VoidAuth(),
+    }
+
+    constructor(url: string, basePath?: string);
+    constructor(private url: string, basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+    private extendObj<T1,T2>(objA: T1, objB: T2) {
+        for(let key in objB){
+            if(objB.hasOwnProperty(key)){
+                objA[key] = objB[key];
+            }
+        }
+        return <T1&T2>objA;
+    }
+    /**
+     * Get funding history.
+     * 
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+     * @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
+     * @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
+     * @param count Number of results to fetch.
+     * @param start Starting point for results.
+     * @param reverse If true, will sort results newest first.
+     * @param startTime Starting date filter for results.
+     * @param endTime Ending date filter for results.
+     */
+    public fundingGet (symbol?: string, filter?: string, columns?: string, count?: number, start?: number, reverse?: boolean, startTime?: date, endTime?: date) : Promise<{ response: http.ClientResponse; body: Array<Funding>;  }> {
+        const path = this.url + this.basePath + '/funding';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        if (symbol !== undefined) {
+            queryParameters['symbol'] = symbol;
+        }
+
+        if (filter !== undefined) {
+            queryParameters['filter'] = filter;
+        }
+
+        if (columns !== undefined) {
+            queryParameters['columns'] = columns;
+        }
+
+        if (count !== undefined) {
+            queryParameters['count'] = count;
+        }
+
+        if (start !== undefined) {
+            queryParameters['start'] = start;
+        }
+
+        if (reverse !== undefined) {
+            queryParameters['reverse'] = reverse;
+        }
+
+        if (startTime !== undefined) {
+            queryParameters['startTime'] = startTime;
+        }
+
+        if (endTime !== undefined) {
+            queryParameters['endTime'] = endTime;
+        }
+
+        let useFormData = false;
+
+        let deferred = promise.defer<{ response: http.ClientResponse; body: Array<Funding>;  }>();
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: path,
+            json: true,
+        }
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+
+        request(requestOptions, (error, response, body) => {
+            if (error) {
+                deferred.reject(error);
+            } else {
+                if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    deferred.resolve({ response: response, body: body });
+                } else {
+                    deferred.reject({ response: response, body: body });
+                }
+            }
+        });
+
+        return deferred.promise;
+    }
+}
 export class OrderBookApi {
     protected basePath = 'https://localhost/api/v1';
     protected defaultHeaders : any = {};
@@ -2983,12 +3448,12 @@ export class OrderBookApi {
         return <T1&T2>objA;
     }
     /**
-     * Get current orderbook.
+     * Get current orderbook [deprecated, use /orderBook/L2].
      * 
      * @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
      * @param depth Orderbook depth.
      */
-    public orderBookGetOrderBook (symbol: string, depth?: number) : Promise<{ response: http.ClientResponse; body: Array<OrderBook>;  }> {
+    public orderBookGet (symbol: string, depth?: number) : Promise<{ response: http.ClientResponse; body: Array<OrderBook>;  }> {
         const path = this.url + this.basePath + '/orderBook';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -2997,7 +3462,7 @@ export class OrderBookApi {
 
         // verify required parameter 'symbol' is set
         if (!symbol) {
-            throw new Error('Missing required parameter symbol when calling orderBookGetOrderBook');
+            throw new Error('Missing required parameter symbol when calling orderBookGet');
         }
 
         if (symbol !== undefined) {
@@ -3011,6 +3476,68 @@ export class OrderBookApi {
         let useFormData = false;
 
         let deferred = promise.defer<{ response: http.ClientResponse; body: Array<OrderBook>;  }>();
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: path,
+            json: true,
+        }
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+
+        request(requestOptions, (error, response, body) => {
+            if (error) {
+                deferred.reject(error);
+            } else {
+                if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    deferred.resolve({ response: response, body: body });
+                } else {
+                    deferred.reject({ response: response, body: body });
+                }
+            }
+        });
+
+        return deferred.promise;
+    }
+    /**
+     * Get current orderbook in vertical format.
+     * 
+     * @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
+     * @param depth Orderbook depth per side. Send 0 for full depth.
+     */
+    public orderBookGetL2 (symbol: string, depth?: number) : Promise<{ response: http.ClientResponse; body: Array<OrderBookL2>;  }> {
+        const path = this.url + this.basePath + '/orderBook/L2';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'symbol' is set
+        if (!symbol) {
+            throw new Error('Missing required parameter symbol when calling orderBookGetL2');
+        }
+
+        if (symbol !== undefined) {
+            queryParameters['symbol'] = symbol;
+        }
+
+        if (depth !== undefined) {
+            queryParameters['depth'] = depth;
+        }
+
+        let useFormData = false;
+
+        let deferred = promise.defer<{ response: http.ClientResponse; body: Array<OrderBookL2>;  }>();
 
         let requestOptions: request.Options = {
             method: 'GET',
@@ -3077,12 +3604,12 @@ export class PositionApi {
     }
     /**
      * Get your positions.
-     * 
+     * See &lt;a href=\&quot;http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html\&quot;&gt;the FIX Spec&lt;/a&gt; for explanations of these fields.
      * @param filter Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBT24H\&quot;}.
      * @param columns Which columns to fetch. For example, send [\&quot;columnName\&quot;].
      * @param count Number of rows to fetch.
      */
-    public positionFind (filter?: string, columns?: string, count?: number) : Promise<{ response: http.ClientResponse; body: Array<Position>;  }> {
+    public positionGet (filter?: string, columns?: string, count?: number) : Promise<{ response: http.ClientResponse; body: Array<Position>;  }> {
         const path = this.url + this.basePath + '/position';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -3138,10 +3665,10 @@ export class PositionApi {
         return deferred.promise;
     }
     /**
-     * Toggle isolated (fixed) margin per-position.
-     * On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off. A position must be open to isolate it.
+     * Enable isolated margin or cross margin per-position.
+     * On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
      * @param symbol Position symbol to isolate.
-     * @param enabled If true, will enable isolated margin.
+     * @param enabled True for isolated margin, false for cross margin.
      */
     public positionIsolateMargin (symbol: string, enabled?: boolean) : Promise<{ response: http.ClientResponse; body: Position;  }> {
         const path = this.url + this.basePath + '/position/isolate';
@@ -3200,10 +3727,77 @@ export class PositionApi {
         return deferred.promise;
     }
     /**
+     * Choose leverage for a position.
+     * On Speculative (DPE-Enabled) contracts, users can choose an isolated leverage. This will automatically enable isolated margin.
+     * @param symbol Symbol of position to adjust.
+     * @param leverage Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.
+     */
+    public positionUpdateLeverage (symbol: string, leverage: number) : Promise<{ response: http.ClientResponse; body: Position;  }> {
+        const path = this.url + this.basePath + '/position/leverage';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'symbol' is set
+        if (!symbol) {
+            throw new Error('Missing required parameter symbol when calling positionUpdateLeverage');
+        }
+
+        // verify required parameter 'leverage' is set
+        if (!leverage) {
+            throw new Error('Missing required parameter leverage when calling positionUpdateLeverage');
+        }
+
+        let useFormData = false;
+
+        if (symbol !== undefined) {
+            formParams['symbol'] = symbol;
+        }
+
+        if (leverage !== undefined) {
+            formParams['leverage'] = leverage;
+        }
+
+        let deferred = promise.defer<{ response: http.ClientResponse; body: Position;  }>();
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: path,
+            json: true,
+        }
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+
+        request(requestOptions, (error, response, body) => {
+            if (error) {
+                deferred.reject(error);
+            } else {
+                if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    deferred.resolve({ response: response, body: body });
+                } else {
+                    deferred.reject({ response: response, body: body });
+                }
+            }
+        });
+
+        return deferred.promise;
+    }
+    /**
      * Transfer equity in or out of a position.
      * When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
-     * @param symbol Position symbol to isolate.
-     * @param amount Amount to transfer, in satoshis. May be negative.
+     * @param symbol Symbol of position to isolate.
+     * @param amount Amount to transfer, in Satoshis. May be negative.
      */
     public positionTransferIsolatedMargin (symbol: string, amount: number) : Promise<{ response: http.ClientResponse; body: Position;  }> {
         const path = this.url + this.basePath + '/position/transferMargin';
@@ -3302,7 +3896,7 @@ export class SchemaApi {
      * 
      * @param model Optional model filter. If omitted, will return all models.
      */
-    public schemaFind (model?: string) : Promise<{ response: http.ClientResponse; body: inline_response_200;  }> {
+    public schemaGet (model?: string) : Promise<{ response: http.ClientResponse; body: inline_response_200_1;  }> {
         const path = this.url + this.basePath + '/schema';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -3315,7 +3909,7 @@ export class SchemaApi {
 
         let useFormData = false;
 
-        let deferred = promise.defer<{ response: http.ClientResponse; body: inline_response_200;  }>();
+        let deferred = promise.defer<{ response: http.ClientResponse; body: inline_response_200_1;  }>();
 
         let requestOptions: request.Options = {
             method: 'GET',
@@ -3353,7 +3947,7 @@ export class SchemaApi {
      * Returns help text &amp; subject list for websocket usage.
      * 
      */
-    public schemaWebsocketHelp () : Promise<{ response: http.ClientResponse; body: inline_response_200;  }> {
+    public schemaWebsocketHelp () : Promise<{ response: http.ClientResponse; body: inline_response_200_1;  }> {
         const path = this.url + this.basePath + '/schema/websocketHelp';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -3362,7 +3956,7 @@ export class SchemaApi {
 
         let useFormData = false;
 
-        let deferred = promise.defer<{ response: http.ClientResponse; body: inline_response_200;  }>();
+        let deferred = promise.defer<{ response: http.ClientResponse; body: inline_response_200_1;  }>();
 
         let requestOptions: request.Options = {
             method: 'GET',
@@ -3430,8 +4024,8 @@ export class QuoteApi {
     /**
      * Get Quotes.
      * 
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.
-     * @param filter Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+     * @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
      * @param count Number of results to fetch.
      * @param start Starting point for results.
@@ -3518,8 +4112,8 @@ export class QuoteApi {
      * Get previous quotes in time buckets.
      * 
      * @param binSize Time interval to bucket by. Available options: [&#39;1m&#39;, &#39;5m&#39;, &#39;1h&#39;, &#39;1d&#39;].
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.
-     * @param filter Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+     * @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
      * @param count Number of results to fetch.
      * @param start Starting point for results.
@@ -3640,8 +4234,8 @@ export class SettlementApi {
     /**
      * Get settlement history.
      * 
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.
-     * @param filter Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+     * @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
      * @param count Number of results to fetch.
      * @param start Starting point for results.
@@ -3757,9 +4351,9 @@ export class TradeApi {
     }
     /**
      * Get Trades.
-     * 
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.
-     * @param filter Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.
+     * Please note that indices (symbols starting with `.`) post trades at intervals to the trade feed. These have a `size` of 0 and are used only to indicate a changing price.\n\nSee [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AE_6569.html) for explanations of these fields.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+     * @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
      * @param count Number of results to fetch.
      * @param start Starting point for results.
@@ -3846,8 +4440,8 @@ export class TradeApi {
      * Get previous trades in time buckets.
      * 
      * @param binSize Time interval to bucket by. Available options: [&#39;1m&#39;, &#39;5m&#39;, &#39;1h&#39;, &#39;1d&#39;].
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.
-     * @param filter Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+     * @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
      * @param count Number of results to fetch.
      * @param start Starting point for results.
@@ -3934,135 +4528,6 @@ export class TradeApi {
 
         return deferred.promise;
     }
-    /**
-     * Get trades between two dates. [Deprecated, use GET /trades]
-     * 
-     * @param startTime Start date.
-     * @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
-     * @param endTime End Date.
-     */
-    public tradeGetByDate (startTime: date, symbol?: string, endTime?: date) : Promise<{ response: http.ClientResponse; body: Array<Trade>;  }> {
-        const path = this.url + this.basePath + '/trade/byDate';
-        let queryParameters: any = {};
-        let headerParams: any = this.extendObj({}, this.defaultHeaders);
-        let formParams: any = {};
-
-
-        // verify required parameter 'startTime' is set
-        if (!startTime) {
-            throw new Error('Missing required parameter startTime when calling tradeGetByDate');
-        }
-
-        if (symbol !== undefined) {
-            queryParameters['symbol'] = symbol;
-        }
-
-        if (startTime !== undefined) {
-            queryParameters['startTime'] = startTime;
-        }
-
-        if (endTime !== undefined) {
-            queryParameters['endTime'] = endTime;
-        }
-
-        let useFormData = false;
-
-        let deferred = promise.defer<{ response: http.ClientResponse; body: Array<Trade>;  }>();
-
-        let requestOptions: request.Options = {
-            method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
-            uri: path,
-            json: true,
-        }
-
-        this.authentications.default.applyToRequest(requestOptions);
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
-
-        request(requestOptions, (error, response, body) => {
-            if (error) {
-                deferred.reject(error);
-            } else {
-                if (response.statusCode >= 200 && response.statusCode <= 299) {
-                    deferred.resolve({ response: response, body: body });
-                } else {
-                    deferred.reject({ response: response, body: body });
-                }
-            }
-        });
-
-        return deferred.promise;
-    }
-    /**
-     * Get recent trades. [Deprecated, use GET /trades]
-     * 
-     * @param count Number of trades to fetch.
-     * @param symbol Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
-     */
-    public tradeGetRecent (count: number, symbol?: string) : Promise<{ response: http.ClientResponse; body: Array<Trade>;  }> {
-        const path = this.url + this.basePath + '/trade/recent';
-        let queryParameters: any = {};
-        let headerParams: any = this.extendObj({}, this.defaultHeaders);
-        let formParams: any = {};
-
-
-        // verify required parameter 'count' is set
-        if (!count) {
-            throw new Error('Missing required parameter count when calling tradeGetRecent');
-        }
-
-        if (symbol !== undefined) {
-            queryParameters['symbol'] = symbol;
-        }
-
-        if (count !== undefined) {
-            queryParameters['count'] = count;
-        }
-
-        let useFormData = false;
-
-        let deferred = promise.defer<{ response: http.ClientResponse; body: Array<Trade>;  }>();
-
-        let requestOptions: request.Options = {
-            method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
-            uri: path,
-            json: true,
-        }
-
-        this.authentications.default.applyToRequest(requestOptions);
-
-        if (Object.keys(formParams).length) {
-            if (useFormData) {
-                (<any>requestOptions).formData = formParams;
-            } else {
-                requestOptions.form = formParams;
-            }
-        }
-
-        request(requestOptions, (error, response, body) => {
-            if (error) {
-                deferred.reject(error);
-            } else {
-                if (response.statusCode >= 200 && response.statusCode <= 299) {
-                    deferred.resolve({ response: response, body: body });
-                } else {
-                    deferred.reject({ response: response, body: body });
-                }
-            }
-        });
-
-        return deferred.promise;
-    }
 }
 export class ExecutionApi {
     protected basePath = 'https://localhost/api/v1';
@@ -4096,9 +4561,9 @@ export class ExecutionApi {
     }
     /**
      * Get all raw executions for your account.
-     * This returns all raw transactions, which includes order opening and cancelation, and order status changes. It can be quite noisy. More focused information is available at /execution/tradeHistory. You may also use the `filter` param to target your query. Specify an array as a filter value, such as {\&quot;execType\&quot;: [\&quot;Settlement\&quot;, \&quot;Trade\&quot;]} to filter on multiple values.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.
-     * @param filter Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.
+     * This returns all raw transactions, which includes order opening and cancelation, and order status\nchanges. It can be quite noisy. More focused information is available at `/execution/tradeHistory`.\n\nYou may also use the `filter` param to target your query. Specify an array as a filter value, such as\n`{\&quot;execType\&quot;: [\&quot;Settlement\&quot;, \&quot;Trade\&quot;]}` to filter on multiple values.\n\nSee [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_8_8.html) for explanations of these fields.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+     * @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
      * @param count Number of results to fetch.
      * @param start Starting point for results.
@@ -4184,8 +4649,8 @@ export class ExecutionApi {
     /**
      * Get all balance-affecting executions. This includes each trade, insurance charge, and settlement.
      * 
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.
-     * @param filter Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+     * @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
      * @param count Number of results to fetch.
      * @param start Starting point for results.
@@ -4235,6 +4700,124 @@ export class ExecutionApi {
         let useFormData = false;
 
         let deferred = promise.defer<{ response: http.ClientResponse; body: Array<Execution>;  }>();
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: path,
+            json: true,
+        }
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+
+        request(requestOptions, (error, response, body) => {
+            if (error) {
+                deferred.reject(error);
+            } else {
+                if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    deferred.resolve({ response: response, body: body });
+                } else {
+                    deferred.reject({ response: response, body: body });
+                }
+            }
+        });
+
+        return deferred.promise;
+    }
+}
+export class InsuranceApi {
+    protected basePath = 'https://localhost/api/v1';
+    protected defaultHeaders : any = {};
+
+
+
+    public authentications = {
+        'default': <Authentication>new VoidAuth(),
+    }
+
+    constructor(url: string, basePath?: string);
+    constructor(private url: string, basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+    private extendObj<T1,T2>(objA: T1, objB: T2) {
+        for(let key in objB){
+            if(objB.hasOwnProperty(key)){
+                objA[key] = objB[key];
+            }
+        }
+        return <T1&T2>objA;
+    }
+    /**
+     * Get insurance fund history.
+     * 
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+     * @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
+     * @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
+     * @param count Number of results to fetch.
+     * @param start Starting point for results.
+     * @param reverse If true, will sort results newest first.
+     * @param startTime Starting date filter for results.
+     * @param endTime Ending date filter for results.
+     */
+    public insuranceGet (symbol?: string, filter?: string, columns?: string, count?: number, start?: number, reverse?: boolean, startTime?: date, endTime?: date) : Promise<{ response: http.ClientResponse; body: Array<Insurance>;  }> {
+        const path = this.url + this.basePath + '/insurance';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        if (symbol !== undefined) {
+            queryParameters['symbol'] = symbol;
+        }
+
+        if (filter !== undefined) {
+            queryParameters['filter'] = filter;
+        }
+
+        if (columns !== undefined) {
+            queryParameters['columns'] = columns;
+        }
+
+        if (count !== undefined) {
+            queryParameters['count'] = count;
+        }
+
+        if (start !== undefined) {
+            queryParameters['start'] = start;
+        }
+
+        if (reverse !== undefined) {
+            queryParameters['reverse'] = reverse;
+        }
+
+        if (startTime !== undefined) {
+            queryParameters['startTime'] = startTime;
+        }
+
+        if (endTime !== undefined) {
+            queryParameters['endTime'] = endTime;
+        }
+
+        let useFormData = false;
+
+        let deferred = promise.defer<{ response: http.ClientResponse; body: Array<Insurance>;  }>();
 
         let requestOptions: request.Options = {
             method: 'GET',
@@ -4366,7 +4949,7 @@ export class ChatApi {
      * 
      * @param message 
      */
-    public chatSend (message: string) : Promise<{ response: http.ClientResponse; body: Chat;  }> {
+    public chatNew (message: string) : Promise<{ response: http.ClientResponse; body: Chat;  }> {
         const path = this.url + this.basePath + '/chat';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -4375,7 +4958,7 @@ export class ChatApi {
 
         // verify required parameter 'message' is set
         if (!message) {
-            throw new Error('Missing required parameter message when calling chatSend');
+            throw new Error('Missing required parameter message when calling chatNew');
         }
 
         let useFormData = false;
@@ -4498,9 +5081,9 @@ export class InstrumentApi {
     }
     /**
      * Get instruments.
-     * This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use the endpoint /instrument/active to return active instruments, or use a filter like {\&quot;state\&quot;: \&quot;Open\&quot;}.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. &#39;XBU:monthly&#39;. Timeframes are &#39;daily&#39;, &#39;weekly&#39;, &#39;monthly&#39;, &#39;quarterly&#39;, and &#39;biquarterly&#39;.
-     * @param filter Generic table filter. Send JSON key/value pairs, such as {\&quot;key\&quot;: \&quot;value\&quot;}. You can key on individual fields, and do more advanced querying on timestamps. See &lt;a href=\&quot;http://localhost:2001/app/restAPI#timestamp-filters\&quot;&gt;http://localhost:2001/app/restAPI#timestamp-filters&lt;/a&gt; for more details.
+     * This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\&quot;state\&quot;: \&quot;Open\&quot;}`.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+     * @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
      * @param count Number of results to fetch.
      * @param start Starting point for results.
@@ -4679,7 +5262,7 @@ export class InstrumentApi {
     }
     /**
      * Return all active contract series and interval pairs.
-     * This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\&quot;BVOL:daily\&quot;, \&quot;BVOL:weekly\&quot;, \&quot;XBU:daily\&quot;, \&quot;XBU:monthly\&quot;, ...]`. These identifiers are usable in any query&#39;s \&quot;symbol\&quot; param. The second array is the current resolution of these intervals. Results are mapped at the same index.
+     * This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\&quot;BVOL:daily\&quot;, \&quot;BVOL:weekly\&quot;, \&quot;XBU:daily\&quot;, \&quot;XBU:monthly\&quot;, ...]`. These identifiers are usable in any query&#39;s `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.
      */
     public instrumentGetActiveIntervals () : Promise<{ response: http.ClientResponse; body: InstrumentInterval;  }> {
         const path = this.url + this.basePath + '/instrument/activeIntervals';
@@ -4806,7 +5389,7 @@ export class StatsApi {
      * Get exchange-wide and per-series turnover and volume statistics.
      * 
      */
-    public statsFind () : Promise<{ response: http.ClientResponse; body: Array<Stats>;  }> {
+    public statsGet () : Promise<{ response: http.ClientResponse; body: Array<Stats>;  }> {
         const path = this.url + this.basePath + '/stats';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -4863,6 +5446,124 @@ export class StatsApi {
         let useFormData = false;
 
         let deferred = promise.defer<{ response: http.ClientResponse; body: Array<StatsHistory>;  }>();
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: path,
+            json: true,
+        }
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+
+        request(requestOptions, (error, response, body) => {
+            if (error) {
+                deferred.reject(error);
+            } else {
+                if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    deferred.resolve({ response: response, body: body });
+                } else {
+                    deferred.reject({ response: response, body: body });
+                }
+            }
+        });
+
+        return deferred.promise;
+    }
+}
+export class LiquidationApi {
+    protected basePath = 'https://localhost/api/v1';
+    protected defaultHeaders : any = {};
+
+
+
+    public authentications = {
+        'default': <Authentication>new VoidAuth(),
+    }
+
+    constructor(url: string, basePath?: string);
+    constructor(private url: string, basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+    private extendObj<T1,T2>(objA: T1, objB: T2) {
+        for(let key in objB){
+            if(objB.hasOwnProperty(key)){
+                objA[key] = objB[key];
+            }
+        }
+        return <T1&T2>objA;
+    }
+    /**
+     * Get liquidation orders.
+     * 
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
+     * @param filter Generic table filter. Send JSON key/value pairs, such as `{\&quot;key\&quot;: \&quot;value\&quot;}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
+     * @param columns Array of column names to fetch. If omitted, will return all columns.\n\nNote that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
+     * @param count Number of results to fetch.
+     * @param start Starting point for results.
+     * @param reverse If true, will sort results newest first.
+     * @param startTime Starting date filter for results.
+     * @param endTime Ending date filter for results.
+     */
+    public liquidationGet (symbol?: string, filter?: string, columns?: string, count?: number, start?: number, reverse?: boolean, startTime?: date, endTime?: date) : Promise<{ response: http.ClientResponse; body: Array<Liquidation>;  }> {
+        const path = this.url + this.basePath + '/liquidation';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        if (symbol !== undefined) {
+            queryParameters['symbol'] = symbol;
+        }
+
+        if (filter !== undefined) {
+            queryParameters['filter'] = filter;
+        }
+
+        if (columns !== undefined) {
+            queryParameters['columns'] = columns;
+        }
+
+        if (count !== undefined) {
+            queryParameters['count'] = count;
+        }
+
+        if (start !== undefined) {
+            queryParameters['start'] = start;
+        }
+
+        if (reverse !== undefined) {
+            queryParameters['reverse'] = reverse;
+        }
+
+        if (startTime !== undefined) {
+            queryParameters['startTime'] = startTime;
+        }
+
+        if (endTime !== undefined) {
+            queryParameters['endTime'] = endTime;
+        }
+
+        let useFormData = false;
+
+        let deferred = promise.defer<{ response: http.ClientResponse; body: Array<Liquidation>;  }>();
 
         let requestOptions: request.Options = {
             method: 'GET',

@@ -71,7 +71,7 @@ namespace API.Client {
          * 
          * @param message 
          */
-        public chatSend (message: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Chat> {
+        public chatNew (message: string, extraHttpRequestParams?: any ) : ng.IHttpPromise<Chat> {
             const path = this.basePath + '/chat';
 
             let queryParameters: any = {};
@@ -80,7 +80,7 @@ namespace API.Client {
 
             // verify required parameter 'message' is set
             if (!message) {
-                throw new Error('Missing required parameter message when calling chatSend');
+                throw new Error('Missing required parameter message when calling chatNew');
             }
             headerParams['Content-Type'] = 'application/x-www-form-urlencoded';
 

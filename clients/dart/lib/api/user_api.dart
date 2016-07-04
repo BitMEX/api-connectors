@@ -15,7 +15,7 @@ class UserApi {
   /// Get your user model.
   ///
   /// 
-  Future<User> userGetMe() {
+  Future<User> userGet() {
     Object postBody = null;
     
 
@@ -61,7 +61,7 @@ class UserApi {
   /// Update your password, name, and other attributes.
   ///
   /// 
-  Future<User> userUpdateMe(String firstname, String lastname, String oldPassword, String newPassword, String newPasswordConfirm, String country, String pgpPubKey) {
+  Future<User> userUpdate(String firstname, String lastname, String oldPassword, String newPassword, String newPasswordConfirm, String username, String country, String pgpPubKey) {
     Object postBody = null;
     
 
@@ -109,6 +109,11 @@ class UserApi {
         mp.fields['newPasswordConfirm'] = apiClient.parameterToString(newPasswordConfirm);
       }
       
+      if (username != null) {
+        hasFields = true;
+        mp.fields['username'] = apiClient.parameterToString(username);
+      }
+      
       if (country != null) {
         hasFields = true;
         mp.fields['country'] = apiClient.parameterToString(country);
@@ -133,6 +138,8 @@ class UserApi {
         formParams['newPassword'] = apiClient.parameterToString(newPassword);
       if (newPasswordConfirm != null)
         formParams['newPasswordConfirm'] = apiClient.parameterToString(newPasswordConfirm);
+      if (username != null)
+        formParams['username'] = apiClient.parameterToString(username);
       if (country != null)
         formParams['country'] = apiClient.parameterToString(country);
       if (pgpPubKey != null)
@@ -156,7 +163,7 @@ class UserApi {
   /// Register a new user.
   ///
   /// 
-  Future<User> userNewUser(String email, String password, String username, String firstname, String lastname, String acceptsTOS, String referrerID, String country) {
+  Future<User> userNew(String email, String password, String country, String username, String firstname, String lastname, String acceptsTOS, String referrerID, String tfaType, String tfaToken) {
     Object postBody = null;
     
 
@@ -219,6 +226,16 @@ class UserApi {
         mp.fields['country'] = apiClient.parameterToString(country);
       }
       
+      if (tfaType != null) {
+        hasFields = true;
+        mp.fields['tfaType'] = apiClient.parameterToString(tfaType);
+      }
+      
+      if (tfaToken != null) {
+        hasFields = true;
+        mp.fields['tfaToken'] = apiClient.parameterToString(tfaToken);
+      }
+      
       if(hasFields)
         postBody = mp;
     }
@@ -239,6 +256,10 @@ class UserApi {
         formParams['referrerID'] = apiClient.parameterToString(referrerID);
       if (country != null)
         formParams['country'] = apiClient.parameterToString(country);
+      if (tfaType != null)
+        formParams['tfaType'] = apiClient.parameterToString(tfaType);
+      if (tfaToken != null)
+        formParams['tfaToken'] = apiClient.parameterToString(tfaToken);
       
     }
 
@@ -898,7 +919,7 @@ class UserApi {
   /// Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
   ///
   /// 
-  Future userLogoutAll() {
+  Future<num> userLogoutAll() {
     Object postBody = null;
     
 
@@ -933,18 +954,18 @@ class UserApi {
         throw new ApiException(response.statusCode, response.body);
       }
       else if(response.body != null){
-        return ;
+        return ApiClient.deserialize(response.body, num);
       }
       else {
-        return ;
+        return null;
       }
     });
   }
   
-  /// Get your account&#39;s margin status.
+  /// Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
   ///
   /// 
-  Future<Margin> userGetMargin() {
+  Future<Margin> userGetMargin(String currency) {
     Object postBody = null;
     
 
@@ -955,6 +976,8 @@ class UserApi {
     Map<String, String> queryParams = {};
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
+    if("null" != currency)
+      queryParams["currency"] = currency is List ? currency.join(',') : currency;
     
     
 
@@ -987,7 +1010,7 @@ class UserApi {
     });
   }
   
-  /// Save application preferences.
+  /// Save user preferences.
   ///
   /// 
   Future<User> userSavePreferences(String prefs, bool overwrite) {
@@ -1050,7 +1073,7 @@ class UserApi {
   /// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
   ///
   /// 
-  Future<bool> userRequestEnableTFA(String type, String token) {
+  Future<bool> userRequestEnableTFA(String type) {
     Object postBody = null;
     
 
@@ -1078,19 +1101,12 @@ class UserApi {
         mp.fields['type'] = apiClient.parameterToString(type);
       }
       
-      if (token != null) {
-        hasFields = true;
-        mp.fields['token'] = apiClient.parameterToString(token);
-      }
-      
       if(hasFields)
         postBody = mp;
     }
     else {
       if (type != null)
         formParams['type'] = apiClient.parameterToString(type);
-      if (token != null)
-        formParams['token'] = apiClient.parameterToString(token);
       
     }
 
@@ -1162,7 +1178,7 @@ class UserApi {
   
   /// Request a withdrawal to an external wallet.
   ///
-  /// This will send a confirmation email to the email address on record, unless requested via an API Key with the \&quot;withdraw\&quot; permission.
+  /// This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission.
   Future<Transaction> userRequestWithdrawal(String currency, Number amount, String address, String otpToken, num fee) {
     Object postBody = null;
     
@@ -1255,8 +1271,6 @@ class UserApi {
     Map<String, String> queryParams = {};
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
-    if("null" != email)
-      queryParams["email"] = email is List ? email.join(',') : email;
     
     
 
@@ -1269,14 +1283,21 @@ class UserApi {
       bool hasFields = false;
       MultipartRequest mp = new MultipartRequest(null, null);
       
+      if (email != null) {
+        hasFields = true;
+        mp.fields['email'] = apiClient.parameterToString(email);
+      }
+      
       if(hasFields)
         postBody = mp;
     }
     else {
+      if (email != null)
+        formParams['email'] = apiClient.parameterToString(email);
       
     }
 
-    return apiClient.invokeAPI(basePath, path, 'GET', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
+    return apiClient.invokeAPI(basePath, path, 'POST', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
       if(response.statusCode >= 400) {
         throw new ApiException(response.statusCode, response.body);
       }
@@ -1292,7 +1313,7 @@ class UserApi {
   /// Get a history of all of your wallet transactions (deposits and withdrawals).
   ///
   /// 
-  Future<List<Transaction>> userGetWalletHistory() {
+  Future<List<Transaction>> userGetWalletHistory(String currency) {
     Object postBody = null;
     
 
@@ -1303,6 +1324,8 @@ class UserApi {
     Map<String, String> queryParams = {};
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
+    if("null" != currency)
+      queryParams["currency"] = currency is List ? currency.join(',') : currency;
     
     
 
