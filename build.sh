@@ -8,8 +8,8 @@ SERVERS=$DIR/servers
 DOCS=$DIR/docs
 CLI=$DIR/swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar
 RESOURCES="https://www.bitmex.com/api/explorer/swagger.json"
-declare -a CLIENTLANGS=(android async-scala clojure csharp dart java objc php python scala spring-mvc swagger swagger-yaml typescript-angular typescript-node ruby)
-declare -a SERVERLANGS=(jaxrs nodejs python-flask silex-PHP sinatra scalatra spring-mvc)
+declare -a CLIENTLANGS=(android async-scala clojure csharp dart java javascript go objc php python ruby scala swagger swagger-yaml typescript-fetch)
+declare -a SERVERLANGS=(go-server jaxrs nodejs-server python-flask silex-PHP sinatra scalatra spring)
 declare -a DOCLANGS=(html dynamic-html)
 
 echo "Getting swagger json..."

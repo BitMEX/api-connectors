@@ -36,7 +36,7 @@ import org.joda.time.LocalDate;
 /**
  * Quote
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-04T18:27:59.355-05:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-05T09:40:48.217-05:00")
 public class Quote   {
   @JsonProperty("timestamp")
   private LocalDate timestamp = null;

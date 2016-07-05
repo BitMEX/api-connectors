@@ -1,0 +1,50 @@
+# Margin
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Account** | **float32** |  | [default to null]
+**Currency** | **string** |  | [default to null]
+**RiskLimit** | **float32** |  | [optional] [default to null]
+**PrevState** | **string** |  | [optional] [default to null]
+**State** | **string** |  | [optional] [default to null]
+**Action** | **string** |  | [optional] [default to null]
+**Amount** | **float32** |  | [optional] [default to null]
+**PendingCredit** | **float32** |  | [optional] [default to null]
+**PendingDebit** | **float32** |  | [optional] [default to null]
+**ConfirmedDebit** | **float32** |  | [optional] [default to null]
+**PrevRealisedPnl** | **float32** |  | [optional] [default to null]
+**PrevUnrealisedPnl** | **float32** |  | [optional] [default to null]
+**GrossComm** | **float32** |  | [optional] [default to null]
+**GrossOpenCost** | **float32** |  | [optional] [default to null]
+**GrossOpenPremium** | **float32** |  | [optional] [default to null]
+**GrossExecCost** | **float32** |  | [optional] [default to null]
+**GrossMarkValue** | **float32** |  | [optional] [default to null]
+**RiskValue** | **float32** |  | [optional] [default to null]
+**TaxableMargin** | **float32** |  | [optional] [default to null]
+**InitMargin** | **float32** |  | [optional] [default to null]
+**MaintMargin** | **float32** |  | [optional] [default to null]
+**SessionMargin** | **float32** |  | [optional] [default to null]
+**TargetExcessMargin** | **float32** |  | [optional] [default to null]
+**VarMargin** | **float32** |  | [optional] [default to null]
+**RealisedPnl** | **float32** |  | [optional] [default to null]
+**UnrealisedPnl** | **float32** |  | [optional] [default to null]
+**IndicativeTax** | **float32** |  | [optional] [default to null]
+**UnrealisedProfit** | **float32** |  | [optional] [default to null]
+**SyntheticMargin** | **float32** |  | [optional] [default to null]
+**WalletBalance** | **float32** |  | [optional] [default to null]
+**MarginBalance** | **float32** |  | [optional] [default to null]
+**MarginBalancePcnt** | **float64** |  | [optional] [default to 0.0]
+**MarginLeverage** | **float64** |  | [optional] [default to 0.0]
+**MarginUsedPcnt** | **float64** |  | [optional] [default to 0.0]
+**ExcessMargin** | **float32** |  | [optional] [default to null]
+**ExcessMarginPcnt** | **float64** |  | [optional] [default to 0.0]
+**AvailableMargin** | **float32** |  | [optional] [default to null]
+**WithdrawableMargin** | **float32** |  | [optional] [default to null]
+**Timestamp** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
+**GrossLastValue** | **float32** |  | [optional] [default to null]
+**Commission** | **float64** |  | [optional] [default to 0.0]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
