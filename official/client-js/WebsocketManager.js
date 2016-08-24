@@ -1,7 +1,6 @@
 // @flow
 var debug = require('debug')('WebsocketManager');
 
-type EnumType = 'a' | 'b';
 module.exports = {
   streams: {},
   websocket: null,
@@ -13,7 +12,6 @@ module.exports = {
     // Require Primus here so it doesn't attempt to get loaded on the server.
     // This is a standard primus engine.io build with primus-multiplex plugin.
     var Primus = require('primus');
-    var a:EnumType = 'b';
 
     var url = '/realtimemd';
     if (accessToken) url += '?accessToken=' + accessToken;

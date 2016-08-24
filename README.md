@@ -32,3 +32,12 @@ REST Server Examples:
 * [Ruby (Sinatra)](/servers/sinatra)
 * [Scala (Scalatra)](/servers/scalatra)
 
+WebSocket Adapters
+------------------
+
+The easiest way to get real-time data from BitMEX is via the
+[BitMEX Delta Server](https://github.com/BitMEX/websocket-adapters/tree/master/server), a locally-runnable
+HTTP server that subscribes to live data on your behalf. You can poll this local server as often as you want.
+
+Other [WebSocket Adapters](https://github.com/BitMEX/websocket-adapters) are available in a separate repo.
+
