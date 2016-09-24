@@ -22,7 +22,7 @@ namespace BitMEX
 
     public class BitMEXApi
     {
-        private const string domain = "http://localhost:3000";
+        private const string domain = "https://testnet.bitmex.com";
         private string apiKey;
         private string apiSecret;
         private int rateLimit;
@@ -124,7 +124,7 @@ namespace BitMEX
         public string GetOrders()
         {
             var param = new Dictionary<string, string>();
-            param["symbol"] = "XBT24H";
+            param["symbol"] = "XBTUSD";
             //param["filter"] = "{\"orderId\":\"123\"}";
             //param["columns"] = "";
             //param["count"] = 100.ToString();

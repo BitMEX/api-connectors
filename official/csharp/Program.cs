@@ -5,8 +5,8 @@ namespace Test
 {
     internal class Program
     {
-        private static string bitmexKey = "6t0mnAJbqEAmCdkJkFQPjeEc";
-        private static string bitmexSecret = "sB-QNM5_SaY81hE9mOFCthEiXP-1D4jZKV5JIDp7m4omHC4G";
+        private static string bitmexKey = "API_KEY";
+        private static string bitmexSecret = "API_SECRET";
 
         private static void Main(string[] args)
         {
@@ -17,7 +17,7 @@ namespace Test
         private void Run(string[] args)
         {
             BitMEXApi bitmex = new BitMEXApi(bitmexKey, bitmexSecret);
-            // var orderBook = bitmex.GetOrderBook("XBT24H", 3);
+            // var orderBook = bitmex.GetOrderBook("XBTUSD", 3);
             var orders = bitmex.GetOrders();
             Console.WriteLine(orders);
         }

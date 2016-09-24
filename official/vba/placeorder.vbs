@@ -7,7 +7,7 @@
 ' Usage:
 ' In VBA go to Tools -> References -> and check "Microsoft Scripting Runtime" and "Microsoft VB Reg Expressions"
 ' In "H" Column put in: Row 1: Symbol, Row 2: Price, Row 3: Qty
-' For example: BVOL24 , 1.2 , 10
+' For example: XBTUSD , 590.10 , 10
 ' Then run placeorder()
 
 Sub placeorder()
@@ -40,7 +40,7 @@ Signature = HexHash(verb + url + nonceStr + postdata, apiSecret, "SHA256")
 
 ' Set up HTTP req with headers
 Set httpObject = CreateObject("MSXML2.XMLHTTP")
-httpObject.Open "POST", "https://www.bitmex.com" & url, False
+httpObject.Open "POST", "https://testnet.bitmex.com" & url, False
 httpObject.setRequestHeader "Content-Type", "application/x-www-form-urlencoded"
 httpObject.setRequestHeader "api-nonce", nonceStr
 httpObject.setRequestHeader "api-key", apiKey

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Samuel Reed <sam@tixelated.com> (http://strml.net/)",
+  "private": true,
+  "author": "Samuel Reed <sam@bitmex.com>",
   "license": "MIT",
   "dependencies": {
     "lodash": "^3.10.1",

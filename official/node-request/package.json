@@ -1,0 +1,23 @@
+{
+  "name": "node-request",
+  "version": "0.0.1-unreleased",
+  "description": "An example of using node-request for BitMEX API Key Authentication.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/BitMEX/api-connectors.git"
+  },
+  "private": true,
+  "author": "Samuel Reed <sam@bitmex.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BitMEX/api-connectors/issues"
+  },
+  "homepage": "https://github.com/BitMEX/api-connectors#readme",
+  "dependencies": {
+    "request": "^2.75.0"
+  }
+}

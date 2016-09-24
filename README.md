@@ -9,8 +9,20 @@ are written by BitMEX employees to showcase various features.
 
 See the `swagger.*` file in the root directory or src directory of each client to start.
 
-Supported Languages
--------------------
+Official Examples
+-----------------
+
+* [Client-side JS](/official/client-js)
+* [C#](/official/csharp)
+* [mIRC](/official/mirc)
+* [Node-Request](/official/node-request)
+* [Node-Swagger](/official/node-swagger)
+* [Node-WS (Websockets)](/official/node-ws)
+* [Python-SwaggerPy](/official/python-swaggerpy)
+* [VBA](/official/vba)
+
+Auto-Generated Languages
+------------------------
 
 Clients:
 
