@@ -1,0 +1,24 @@
+// Sample configuration for BitMEX-Delta-Server.
+// Copy me to config.js to use custom settings.
+
+module.exports = {
+  port: 4444,
+
+  // If false, will connect to live exchange.
+  // Testnet is https://testnet.bitmex.com
+  testnet: true,
+
+  // Symbols to watch. Add any/all symbols you are going to poll here.
+  symbols: ['XBT24H', 'XBU7D', 'ETH7D'],
+
+  // Available streams:
+  // Public:
+  // ["instrument","orderBook","quote","trade"]
+  // Private:
+  // ["execution","margin","order","position"]
+  streams: ["instrument","orderBook","quote","trade"],
+
+  // If you want to use any of the above "private" streams, you must authenticate with an API Key.
+  apiKeyID: '',
+  apiKeySecret: ''
+};
