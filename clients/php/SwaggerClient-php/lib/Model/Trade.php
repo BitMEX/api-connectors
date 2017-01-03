@@ -14,7 +14,7 @@
 /**
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section.
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -75,8 +75,7 @@ class Trade implements ArrayAccess
         'trd_match_id' => 'string',
         'gross_value' => 'float',
         'home_notional' => 'double',
-        'foreign_notional' => 'double',
-        'id' => 'double'
+        'foreign_notional' => 'double'
     );
 
     public static function swaggerTypes()
@@ -98,8 +97,7 @@ class Trade implements ArrayAccess
         'trd_match_id' => 'trdMatchID',
         'gross_value' => 'grossValue',
         'home_notional' => 'homeNotional',
-        'foreign_notional' => 'foreignNotional',
-        'id' => 'id'
+        'foreign_notional' => 'foreignNotional'
     );
 
     public static function attributeMap()
@@ -121,8 +119,7 @@ class Trade implements ArrayAccess
         'trd_match_id' => 'setTrdMatchId',
         'gross_value' => 'setGrossValue',
         'home_notional' => 'setHomeNotional',
-        'foreign_notional' => 'setForeignNotional',
-        'id' => 'setId'
+        'foreign_notional' => 'setForeignNotional'
     );
 
     public static function setters()
@@ -144,8 +141,7 @@ class Trade implements ArrayAccess
         'trd_match_id' => 'getTrdMatchId',
         'gross_value' => 'getGrossValue',
         'home_notional' => 'getHomeNotional',
-        'foreign_notional' => 'getForeignNotional',
-        'id' => 'getId'
+        'foreign_notional' => 'getForeignNotional'
     );
 
     public static function getters()
@@ -179,7 +175,6 @@ class Trade implements ArrayAccess
         $this->container['gross_value'] = isset($data['gross_value']) ? $data['gross_value'] : null;
         $this->container['home_notional'] = isset($data['home_notional']) ? $data['home_notional'] : null;
         $this->container['foreign_notional'] = isset($data['foreign_notional']) ? $data['foreign_notional'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
     }
 
     /**
@@ -190,6 +185,12 @@ class Trade implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = array();
+        if ($this->container['timestamp'] === null) {
+            $invalid_properties[] = "'timestamp' can't be null";
+        }
+        if ($this->container['symbol'] === null) {
+            $invalid_properties[] = "'symbol' can't be null";
+        }
         return $invalid_properties;
     }
 
@@ -201,6 +202,12 @@ class Trade implements ArrayAccess
      */
     public function valid()
     {
+        if ($this->container['timestamp'] === null) {
+            return false;
+        }
+        if ($this->container['symbol'] === null) {
+            return false;
+        }
         return true;
     }
 
@@ -411,27 +418,6 @@ class Trade implements ArrayAccess
     public function setForeignNotional($foreign_notional)
     {
         $this->container['foreign_notional'] = $foreign_notional;
-
-        return $this;
-    }
-
-    /**
-     * Gets id
-     * @return double
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     * @param double $id
-     * @return $this
-     */
-    public function setId($id)
-    {
-        $this->container['id'] = $id;
 
         return $this;
     }

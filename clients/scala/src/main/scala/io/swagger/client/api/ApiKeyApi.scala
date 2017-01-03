@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -24,7 +24,7 @@
 
 package io.swagger.client.api
 
-import io.swagger.client.model.ApiKey
+import io.swagger.client.model.APIKey
 import io.swagger.client.model.Error
 import io.swagger.client.model.InlineResponse200
 import io.swagger.client.ApiInvoker
@@ -40,7 +40,7 @@ import java.util.Date
 
 import scala.collection.mutable.HashMap
 
-class ApiKeyApi(val defBasePath: String = "https://localhost/api/v1",
+class APIKeyApi(val defBasePath: String = "https://localhost/api/v1",
                         defApiInvoker: ApiInvoker = ApiInvoker) {
   var basePath = defBasePath
   var apiInvoker = defApiInvoker
@@ -51,9 +51,9 @@ class ApiKeyApi(val defBasePath: String = "https://localhost/api/v1",
    * Disable an API Key.
    * 
    * @param apiKeyID API Key ID (public component). 
-   * @return ApiKey
+   * @return APIKey
    */
-  def apiKeyDisable (apiKeyID: String) : Option[ApiKey] = {
+  def aPIKeyDisable (apiKeyID: String) : Option[APIKey] = {
     // create path and map variables
     val path = "/apiKey/disable".replaceAll("\\{format\\}","json")
     val contentTypes = List("application/json", "application/x-www-form-urlencoded", "application/json")
@@ -82,7 +82,7 @@ class ApiKeyApi(val defBasePath: String = "https://localhost/api/v1",
     try {
       apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
         case s: String =>
-           Some(ApiInvoker.deserialize(s, "", classOf[ApiKey]).asInstanceOf[ApiKey])
+           Some(ApiInvoker.deserialize(s, "", classOf[APIKey]).asInstanceOf[APIKey])
         case _ => None
       }
     } catch {
@@ -95,9 +95,9 @@ class ApiKeyApi(val defBasePath: String = "https://localhost/api/v1",
    * Enable an API Key.
    * 
    * @param apiKeyID API Key ID (public component). 
-   * @return ApiKey
+   * @return APIKey
    */
-  def apiKeyEnable (apiKeyID: String) : Option[ApiKey] = {
+  def aPIKeyEnable (apiKeyID: String) : Option[APIKey] = {
     // create path and map variables
     val path = "/apiKey/enable".replaceAll("\\{format\\}","json")
     val contentTypes = List("application/json", "application/x-www-form-urlencoded", "application/json")
@@ -126,7 +126,7 @@ class ApiKeyApi(val defBasePath: String = "https://localhost/api/v1",
     try {
       apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
         case s: String =>
-           Some(ApiInvoker.deserialize(s, "", classOf[ApiKey]).asInstanceOf[ApiKey])
+           Some(ApiInvoker.deserialize(s, "", classOf[APIKey]).asInstanceOf[APIKey])
         case _ => None
       }
     } catch {
@@ -139,9 +139,9 @@ class ApiKeyApi(val defBasePath: String = "https://localhost/api/v1",
    * Get your API Keys.
    * 
    * @param reverse If true, will sort results newest first. (optional, default to false)
-   * @return List[ApiKey]
+   * @return List[APIKey]
    */
-  def apiKeyGet (reverse: Boolean /* = false */) : Option[List[ApiKey]] = {
+  def aPIKeyGet (reverse: Boolean /* = false */) : Option[List[APIKey]] = {
     // create path and map variables
     val path = "/apiKey".replaceAll("\\{format\\}","json")
     val contentTypes = List("application/json", "application/x-www-form-urlencoded", "application/json")
@@ -168,7 +168,7 @@ class ApiKeyApi(val defBasePath: String = "https://localhost/api/v1",
     try {
       apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
         case s: String =>
-           Some(ApiInvoker.deserialize(s, "array", classOf[ApiKey]).asInstanceOf[List[ApiKey]])
+           Some(ApiInvoker.deserialize(s, "array", classOf[APIKey]).asInstanceOf[List[APIKey]])
         case _ => None
       }
     } catch {
@@ -185,9 +185,9 @@ class ApiKeyApi(val defBasePath: String = "https://localhost/api/v1",
    * @param permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;]. (optional)
    * @param enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (optional, default to false)
    * @param token OTP Token (YubiKey, Google Authenticator) (optional)
-   * @return ApiKey
+   * @return APIKey
    */
-  def apiKeyNew (name: String, cidr: String, permissions: String, enabled: Boolean /* = false */, token: String) : Option[ApiKey] = {
+  def aPIKeyNew (name: String, cidr: String, permissions: String, enabled: Boolean /* = false */, token: String) : Option[APIKey] = {
     // create path and map variables
     val path = "/apiKey".replaceAll("\\{format\\}","json")
     val contentTypes = List("application/json", "application/x-www-form-urlencoded", "application/json")
@@ -228,7 +228,7 @@ class ApiKeyApi(val defBasePath: String = "https://localhost/api/v1",
     try {
       apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
         case s: String =>
-           Some(ApiInvoker.deserialize(s, "", classOf[ApiKey]).asInstanceOf[ApiKey])
+           Some(ApiInvoker.deserialize(s, "", classOf[APIKey]).asInstanceOf[APIKey])
         case _ => None
       }
     } catch {
@@ -243,7 +243,7 @@ class ApiKeyApi(val defBasePath: String = "https://localhost/api/v1",
    * @param apiKeyID API Key ID (public component). 
    * @return InlineResponse200
    */
-  def apiKeyRemove (apiKeyID: String) : Option[InlineResponse200] = {
+  def aPIKeyRemove (apiKeyID: String) : Option[InlineResponse200] = {
     // create path and map variables
     val path = "/apiKey".replaceAll("\\{format\\}","json")
     val contentTypes = List("application/json", "application/x-www-form-urlencoded", "application/json")

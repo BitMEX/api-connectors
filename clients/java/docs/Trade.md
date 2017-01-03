@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**timestamp** | [**LocalDate**](LocalDate.md) |  |  [optional]
-**symbol** | **String** |  |  [optional]
+**timestamp** | [**LocalDate**](LocalDate.md) |  | 
+**symbol** | **String** |  | 
 **side** | **String** |  |  [optional]
 **size** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **price** | **Double** |  |  [optional]
@@ -14,7 +14,6 @@ Name | Type | Description | Notes
 **grossValue** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **homeNotional** | **Double** |  |  [optional]
 **foreignNotional** | **Double** |  |  [optional]
-**id** | **Double** |  |  [optional]
 
 
 

@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**timestamp** | **Date** |  | [optional] 
-**symbol** | **String** |  | [optional] 
+**timestamp** | **Date** |  | 
+**symbol** | **String** |  | 
 **side** | **String** |  | [optional] 
 **size** | **Number** |  | [optional] 
 **price** | **Number** |  | [optional] 
@@ -13,6 +13,5 @@ Name | Type | Description | Notes
 **grossValue** | **Number** |  | [optional] 
 **homeNotional** | **Number** |  | [optional] 
 **foreignNotional** | **Number** |  | [optional] 
-**id** | **Number** |  | [optional] 
 
 

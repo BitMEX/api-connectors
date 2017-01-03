@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **message** | **String** |  | 
 **html** | **String** |  | 
 **fromBot** | **Boolean** |  |  [optional]
+**channelID** | **Double** |  |  [optional]
 
 
 

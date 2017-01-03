@@ -254,4 +254,66 @@ if (leverage != null)
       }
     });
   }
+  /// Update your risk limit.
+  ///
+  /// Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+  Future<Position> positionUpdateRiskLimit(String symbol, Number riskLimit) {
+    Object postBody = null;
+    // verify required params are set
+    if(    // verify required params are set
+    if() {
+       throw new ApiException(400, "missing required params");
+    }) {
+       throw new ApiException(400, "missing required params");
+    }
+
+    // create path and map variables
+    String path = "/position/riskLimit".replaceAll("{format}","json");
+
+    // query params
+    Map<String, String> queryParams = {};
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+        
+    List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    List<String> authNames = [];
+
+    if(contentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = new MultipartRequest(null, null);
+      
+      if (symbol != null) {
+        hasFields = true;
+        mp.fields['symbol'] = apiClient.parameterToString(symbol);
+      }
+      
+      if (riskLimit != null) {
+        hasFields = true;
+        mp.fields['riskLimit'] = apiClient.parameterToString(riskLimit);
+      }
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      if (symbol != null)
+        formParams['symbol'] = apiClient.parameterToString(symbol);
+if (riskLimit != null)
+        formParams['riskLimit'] = apiClient.parameterToString(riskLimit);
+    }
+
+    return apiClient.invokeAPI(basePath, path, 'POST', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
+      if(response.statusCode >= 400) {
+        throw new ApiException(response.statusCode, response.body);
+      }
+      else if(response.body != null){
+        return ApiClient.deserialize(response.body, Position);
+      }
+      else {
+        return null;
+      }
+    });
+  }
 }

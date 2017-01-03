@@ -14,7 +14,7 @@
 /**
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section.
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -67,6 +67,7 @@ class UserPreferences implements ArrayAccess
       */
     protected static $swaggerTypes = array(
         'announcements_last_seen' => '\DateTime',
+        'chat_channel_id' => 'double',
         'color_theme' => 'string',
         'currency' => 'string',
         'debug' => 'bool',
@@ -76,10 +77,9 @@ class UserPreferences implements ArrayAccess
         'hide_from_leaderboard' => 'bool',
         'hide_name_from_leaderboard' => 'bool',
         'hide_notifications' => 'string[]',
-        'hide_phone_confirm' => 'bool',
         'locale' => 'string',
         'msgs_seen' => 'string[]',
-        'order_book_binning' => 'float',
+        'order_book_binning' => '\Swagger\Client\Model\XAny',
         'order_book_type' => 'string',
         'order_controls_plus_minus' => 'bool',
         'sounds' => 'string[]',
@@ -101,6 +101,7 @@ class UserPreferences implements ArrayAccess
      */
     protected static $attributeMap = array(
         'announcements_last_seen' => 'announcementsLastSeen',
+        'chat_channel_id' => 'chatChannelID',
         'color_theme' => 'colorTheme',
         'currency' => 'currency',
         'debug' => 'debug',
@@ -110,7 +111,6 @@ class UserPreferences implements ArrayAccess
         'hide_from_leaderboard' => 'hideFromLeaderboard',
         'hide_name_from_leaderboard' => 'hideNameFromLeaderboard',
         'hide_notifications' => 'hideNotifications',
-        'hide_phone_confirm' => 'hidePhoneConfirm',
         'locale' => 'locale',
         'msgs_seen' => 'msgsSeen',
         'order_book_binning' => 'orderBookBinning',
@@ -135,6 +135,7 @@ class UserPreferences implements ArrayAccess
      */
     protected static $setters = array(
         'announcements_last_seen' => 'setAnnouncementsLastSeen',
+        'chat_channel_id' => 'setChatChannelId',
         'color_theme' => 'setColorTheme',
         'currency' => 'setCurrency',
         'debug' => 'setDebug',
@@ -144,7 +145,6 @@ class UserPreferences implements ArrayAccess
         'hide_from_leaderboard' => 'setHideFromLeaderboard',
         'hide_name_from_leaderboard' => 'setHideNameFromLeaderboard',
         'hide_notifications' => 'setHideNotifications',
-        'hide_phone_confirm' => 'setHidePhoneConfirm',
         'locale' => 'setLocale',
         'msgs_seen' => 'setMsgsSeen',
         'order_book_binning' => 'setOrderBookBinning',
@@ -169,6 +169,7 @@ class UserPreferences implements ArrayAccess
      */
     protected static $getters = array(
         'announcements_last_seen' => 'getAnnouncementsLastSeen',
+        'chat_channel_id' => 'getChatChannelId',
         'color_theme' => 'getColorTheme',
         'currency' => 'getCurrency',
         'debug' => 'getDebug',
@@ -178,7 +179,6 @@ class UserPreferences implements ArrayAccess
         'hide_from_leaderboard' => 'getHideFromLeaderboard',
         'hide_name_from_leaderboard' => 'getHideNameFromLeaderboard',
         'hide_notifications' => 'getHideNotifications',
-        'hide_phone_confirm' => 'getHidePhoneConfirm',
         'locale' => 'getLocale',
         'msgs_seen' => 'getMsgsSeen',
         'order_book_binning' => 'getOrderBookBinning',
@@ -214,6 +214,7 @@ class UserPreferences implements ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['announcements_last_seen'] = isset($data['announcements_last_seen']) ? $data['announcements_last_seen'] : null;
+        $this->container['chat_channel_id'] = isset($data['chat_channel_id']) ? $data['chat_channel_id'] : null;
         $this->container['color_theme'] = isset($data['color_theme']) ? $data['color_theme'] : null;
         $this->container['currency'] = isset($data['currency']) ? $data['currency'] : null;
         $this->container['debug'] = isset($data['debug']) ? $data['debug'] : null;
@@ -223,8 +224,7 @@ class UserPreferences implements ArrayAccess
         $this->container['hide_from_leaderboard'] = isset($data['hide_from_leaderboard']) ? $data['hide_from_leaderboard'] : false;
         $this->container['hide_name_from_leaderboard'] = isset($data['hide_name_from_leaderboard']) ? $data['hide_name_from_leaderboard'] : true;
         $this->container['hide_notifications'] = isset($data['hide_notifications']) ? $data['hide_notifications'] : null;
-        $this->container['hide_phone_confirm'] = isset($data['hide_phone_confirm']) ? $data['hide_phone_confirm'] : null;
-        $this->container['locale'] = isset($data['locale']) ? $data['locale'] : null;
+        $this->container['locale'] = isset($data['locale']) ? $data['locale'] : 'en-US';
         $this->container['msgs_seen'] = isset($data['msgs_seen']) ? $data['msgs_seen'] : null;
         $this->container['order_book_binning'] = isset($data['order_book_binning']) ? $data['order_book_binning'] : null;
         $this->container['order_book_type'] = isset($data['order_book_type']) ? $data['order_book_type'] : null;
@@ -277,6 +277,27 @@ class UserPreferences implements ArrayAccess
     public function setAnnouncementsLastSeen($announcements_last_seen)
     {
         $this->container['announcements_last_seen'] = $announcements_last_seen;
+
+        return $this;
+    }
+
+    /**
+     * Gets chat_channel_id
+     * @return double
+     */
+    public function getChatChannelId()
+    {
+        return $this->container['chat_channel_id'];
+    }
+
+    /**
+     * Sets chat_channel_id
+     * @param double $chat_channel_id
+     * @return $this
+     */
+    public function setChatChannelId($chat_channel_id)
+    {
+        $this->container['chat_channel_id'] = $chat_channel_id;
 
         return $this;
     }
@@ -471,27 +492,6 @@ class UserPreferences implements ArrayAccess
     }
 
     /**
-     * Gets hide_phone_confirm
-     * @return bool
-     */
-    public function getHidePhoneConfirm()
-    {
-        return $this->container['hide_phone_confirm'];
-    }
-
-    /**
-     * Sets hide_phone_confirm
-     * @param bool $hide_phone_confirm
-     * @return $this
-     */
-    public function setHidePhoneConfirm($hide_phone_confirm)
-    {
-        $this->container['hide_phone_confirm'] = $hide_phone_confirm;
-
-        return $this;
-    }
-
-    /**
      * Gets locale
      * @return string
      */
@@ -535,7 +535,7 @@ class UserPreferences implements ArrayAccess
 
     /**
      * Gets order_book_binning
-     * @return float
+     * @return \Swagger\Client\Model\XAny
      */
     public function getOrderBookBinning()
     {
@@ -544,7 +544,7 @@ class UserPreferences implements ArrayAccess
 
     /**
      * Sets order_book_binning
-     * @param float $order_book_binning
+     * @param \Swagger\Client\Model\XAny $order_book_binning
      * @return $this
      */
     public function setOrderBookBinning($order_book_binning)

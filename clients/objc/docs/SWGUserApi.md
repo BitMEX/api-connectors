@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**userCheckReferralCode**](SWGUserApi.md#usercheckreferralcode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
 [**userConfirmEmail**](SWGUserApi.md#userconfirmemail) | **POST** /user/confirmEmail | Confirm your email address with a token.
 [**userConfirmEnableTFA**](SWGUserApi.md#userconfirmenabletfa) | **POST** /user/confirmEnableTFA | Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
-[**userConfirmPasswordReset**](SWGUserApi.md#userconfirmpasswordreset) | **POST** /user/confirmPasswordReset | Confirm a password reset.
 [**userConfirmWithdrawal**](SWGUserApi.md#userconfirmwithdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
 [**userDisableTFA**](SWGUserApi.md#userdisabletfa) | **POST** /user/disableTFA | Disable two-factor auth for this account.
 [**userGet**](SWGUserApi.md#userget) | **GET** /user | Get your user model.
@@ -16,16 +15,14 @@ Method | HTTP request | Description
 [**userGetCommission**](SWGUserApi.md#usergetcommission) | **GET** /user/commission | Get your account&#39;s commission status.
 [**userGetDepositAddress**](SWGUserApi.md#usergetdepositaddress) | **GET** /user/depositAddress | Get a deposit address.
 [**userGetMargin**](SWGUserApi.md#usergetmargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
-[**userGetWalletHistory**](SWGUserApi.md#usergetwallethistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits and withdrawals).
-[**userLogin**](SWGUserApi.md#userlogin) | **POST** /user/login | Log in to BitMEX.
+[**userGetWallet**](SWGUserApi.md#usergetwallet) | **GET** /user/wallet | Get your current wallet information.
+[**userGetWalletHistory**](SWGUserApi.md#usergetwallethistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
+[**userGetWalletSummary**](SWGUserApi.md#usergetwalletsummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**userLogout**](SWGUserApi.md#userlogout) | **POST** /user/logout | Log out of BitMEX.
 [**userLogoutAll**](SWGUserApi.md#userlogoutall) | **POST** /user/logoutAll | Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
-[**userNew**](SWGUserApi.md#usernew) | **POST** /user | Register a new user.
 [**userRequestEnableTFA**](SWGUserApi.md#userrequestenabletfa) | **POST** /user/requestEnableTFA | Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
-[**userRequestPasswordReset**](SWGUserApi.md#userrequestpasswordreset) | **POST** /user/requestPasswordReset | Request a password reset.
 [**userRequestWithdrawal**](SWGUserApi.md#userrequestwithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**userSavePreferences**](SWGUserApi.md#usersavepreferences) | **POST** /user/preferences | Save user preferences.
-[**userSendVerificationEmail**](SWGUserApi.md#usersendverificationemail) | **POST** /user/resendVerificationEmail | Re-send verification email.
 [**userUpdate**](SWGUserApi.md#userupdate) | **PUT** /user | Update your password, name, and other attributes.
 
 
@@ -211,58 +208,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **NSString***| Token from your selected TFA type. | 
  **type** | **NSString***| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39; | [optional] 
-
-### Return type
-
-**NSNumber***
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **userConfirmPasswordReset**
-```objc
--(NSNumber*) userConfirmPasswordResetWithToken: (NSString*) token
-    varNewPassword: (NSString*) varNewPassword
-        completionHandler: (void (^)(NSNumber* output, NSError* error)) handler;
-```
-
-Confirm a password reset.
-
-### Example 
-```objc
-
-NSString* token = @"token_example"; // 
-NSString* varNewPassword = @"varNewPassword_example"; // 
-
-SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
-
-// Confirm a password reset.
-[apiInstance userConfirmPasswordResetWithToken:token
-              varNewPassword:varNewPassword
-          completionHandler: ^(NSNumber* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling SWGUserApi->userConfirmPasswordReset: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **NSString***|  | 
- **varNewPassword** | **NSString***|  | 
 
 ### Return type
 
@@ -607,13 +552,13 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **userGetWalletHistory**
+# **userGetWallet**
 ```objc
--(NSNumber*) userGetWalletHistoryWithCurrency: (NSString*) currency
-        completionHandler: (void (^)(NSArray<SWGTransaction>* output, NSError* error)) handler;
+-(NSNumber*) userGetWalletWithCurrency: (NSString*) currency
+        completionHandler: (void (^)(SWGWallet* output, NSError* error)) handler;
 ```
 
-Get a history of all of your wallet transactions (deposits and withdrawals).
+Get your current wallet information.
 
 ### Example 
 ```objc
@@ -622,7 +567,55 @@ NSString* currency = @"XBt"; //  (optional) (default to XBt)
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
-// Get a history of all of your wallet transactions (deposits and withdrawals).
+// Get your current wallet information.
+[apiInstance userGetWalletWithCurrency:currency
+          completionHandler: ^(SWGWallet* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userGetWallet: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **NSString***|  | [optional] [default to XBt]
+
+### Return type
+
+[**SWGWallet***](SWGWallet.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **userGetWalletHistory**
+```objc
+-(NSNumber*) userGetWalletHistoryWithCurrency: (NSString*) currency
+        completionHandler: (void (^)(NSArray<SWGTransaction>* output, NSError* error)) handler;
+```
+
+Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
+
+### Example 
+```objc
+
+NSString* currency = @"XBt"; //  (optional) (default to XBt)
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 [apiInstance userGetWalletHistoryWithCurrency:currency
           completionHandler: ^(NSArray<SWGTransaction>* output, NSError* error) {
                         if (output) {
@@ -655,35 +648,29 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **userLogin**
+# **userGetWalletSummary**
 ```objc
--(NSNumber*) userLoginWithEmail: (NSString*) email
-    password: (NSString*) password
-    token: (NSString*) token
-        completionHandler: (void (^)(SWGAccessToken* output, NSError* error)) handler;
+-(NSNumber*) userGetWalletSummaryWithCurrency: (NSString*) currency
+        completionHandler: (void (^)(NSArray<SWGTransaction>* output, NSError* error)) handler;
 ```
 
-Log in to BitMEX.
+Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 
 ### Example 
 ```objc
 
-NSString* email = @"email_example"; // Your email address.
-NSString* password = @"password_example"; // Your password.
-NSString* token = @"token_example"; // OTP Token (YubiKey, Google Authenticator) (optional)
+NSString* currency = @"XBt"; //  (optional) (default to XBt)
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
-// Log in to BitMEX.
-[apiInstance userLoginWithEmail:email
-              password:password
-              token:token
-          completionHandler: ^(SWGAccessToken* output, NSError* error) {
+// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+[apiInstance userGetWalletSummaryWithCurrency:currency
+          completionHandler: ^(NSArray<SWGTransaction>* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
                         if (error) {
-                            NSLog(@"Error calling SWGUserApi->userLogin: %@", error);
+                            NSLog(@"Error calling SWGUserApi->userGetWalletSummary: %@", error);
                         }
                     }];
 ```
@@ -692,13 +679,11 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **NSString***| Your email address. | 
- **password** | **NSString***| Your password. | 
- **token** | **NSString***| OTP Token (YubiKey, Google Authenticator) | [optional] 
+ **currency** | **NSString***|  | [optional] [default to XBt]
 
 ### Return type
 
-[**SWGAccessToken***](SWGAccessToken.md)
+[**NSArray<SWGTransaction>***](SWGTransaction.md)
 
 ### Authorization
 
@@ -796,90 +781,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **userNew**
-```objc
--(NSNumber*) userNewWithEmail: (NSString*) email
-    password: (NSString*) password
-    country: (NSString*) country
-    username: (NSString*) username
-    firstname: (NSString*) firstname
-    lastname: (NSString*) lastname
-    acceptsTOS: (NSString*) acceptsTOS
-    referrerID: (NSString*) referrerID
-    tfaType: (NSString*) tfaType
-    tfaToken: (NSString*) tfaToken
-        completionHandler: (void (^)(SWGUser* output, NSError* error)) handler;
-```
-
-Register a new user.
-
-### Example 
-```objc
-
-NSString* email = @"email_example"; // Your email address.
-NSString* password = @"password_example"; // Your password.
-NSString* country = @"country_example"; // Country of residence.
-NSString* username = @"username_example"; // Desired username. (optional)
-NSString* firstname = @"firstname_example"; // First name. (optional)
-NSString* lastname = @"lastname_example"; // Last name. (optional)
-NSString* acceptsTOS = @"acceptsTOS_example"; // Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). (optional)
-NSString* referrerID = @"referrerID_example"; // Optional Referrer ID. (optional)
-NSString* tfaType = @"tfaType_example"; // Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef (optional)
-NSString* tfaToken = @"tfaToken_example"; // Two-Factor Token. (optional)
-
-SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
-
-// Register a new user.
-[apiInstance userNewWithEmail:email
-              password:password
-              country:country
-              username:username
-              firstname:firstname
-              lastname:lastname
-              acceptsTOS:acceptsTOS
-              referrerID:referrerID
-              tfaType:tfaType
-              tfaToken:tfaToken
-          completionHandler: ^(SWGUser* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling SWGUserApi->userNew: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **NSString***| Your email address. | 
- **password** | **NSString***| Your password. | 
- **country** | **NSString***| Country of residence. | 
- **username** | **NSString***| Desired username. | [optional] 
- **firstname** | **NSString***| First name. | [optional] 
- **lastname** | **NSString***| Last name. | [optional] 
- **acceptsTOS** | **NSString***| Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). | [optional] 
- **referrerID** | **NSString***| Optional Referrer ID. | [optional] 
- **tfaType** | **NSString***| Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef | [optional] 
- **tfaToken** | **NSString***| Two-Factor Token. | [optional] 
-
-### Return type
-
-[**SWGUser***](SWGUser.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **userRequestEnableTFA**
 ```objc
 -(NSNumber*) userRequestEnableTFAWithType: (NSString*) type
@@ -912,54 +813,6 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **type** | **NSString***| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) | [optional] 
-
-### Return type
-
-**NSNumber***
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **userRequestPasswordReset**
-```objc
--(NSNumber*) userRequestPasswordResetWithEmail: (NSString*) email
-        completionHandler: (void (^)(NSNumber* output, NSError* error)) handler;
-```
-
-Request a password reset.
-
-### Example 
-```objc
-
-NSString* email = @"email_example"; // 
-
-SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
-
-// Request a password reset.
-[apiInstance userRequestPasswordResetWithEmail:email
-          completionHandler: ^(NSNumber* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling SWGUserApi->userRequestPasswordReset: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **NSString***|  | 
 
 ### Return type
 
@@ -1082,54 +935,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SWGUser***](SWGUser.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **userSendVerificationEmail**
-```objc
--(NSNumber*) userSendVerificationEmailWithEmail: (NSString*) email
-        completionHandler: (void (^)(NSNumber* output, NSError* error)) handler;
-```
-
-Re-send verification email.
-
-### Example 
-```objc
-
-NSString* email = @"email_example"; // 
-
-SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
-
-// Re-send verification email.
-[apiInstance userSendVerificationEmailWithEmail:email
-          completionHandler: ^(NSNumber* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling SWGUserApi->userSendVerificationEmail: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **NSString***|  | 
-
-### Return type
-
-**NSNumber***
 
 ### Authorization
 

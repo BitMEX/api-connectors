@@ -55,15 +55,11 @@ class TradeBin {
   @Property(name: 'foreignNotional')
   double foreignNotional = null;
   
-
-  @Property(name: 'id')
-  double id = null;
-  
   TradeBin();
 
   @override
   String toString()  {
-    return 'TradeBin[timestamp=$timestamp, symbol=$symbol, open=$open, high=$high, low=$low, close=$close, trades=$trades, volume=$volume, vwap=$vwap, lastSize=$lastSize, turnover=$turnover, homeNotional=$homeNotional, foreignNotional=$foreignNotional, id=$id, ]';
+    return 'TradeBin[timestamp=$timestamp, symbol=$symbol, open=$open, high=$high, low=$low, close=$close, trades=$trades, volume=$volume, vwap=$vwap, lastSize=$lastSize, turnover=$turnover, homeNotional=$homeNotional, foreignNotional=$foreignNotional, ]';
   }
 
 }

@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**positionIsolateMargin**](PositionApi.md#positionIsolateMargin) | **POST** /position/isolate | Enable isolated margin or cross margin per-position.
 [**positionTransferIsolatedMargin**](PositionApi.md#positionTransferIsolatedMargin) | **POST** /position/transferMargin | Transfer equity in or out of a position.
 [**positionUpdateLeverage**](PositionApi.md#positionUpdateLeverage) | **POST** /position/leverage | Choose leverage for a position.
+[**positionUpdateRiskLimit**](PositionApi.md#positionUpdateRiskLimit) | **POST** /position/riskLimit | Update your risk limit.
 
 
 # **positionGet**
@@ -184,6 +185,53 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string**| Symbol of position to adjust. |
  **leverage** | **double**| Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin. |
+
+### Return type
+
+[**\Swagger\Client\Model\Position**](../Model/Position.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **positionUpdateRiskLimit**
+> \Swagger\Client\Model\Position positionUpdateRiskLimit($symbol, $risk_limit)
+
+Update your risk limit.
+
+Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\PositionApi();
+$symbol = "symbol_example"; // string | Symbol of position to isolate.
+$risk_limit = 3.4; // float | New Risk Limit, in Satoshis.
+
+try {
+    $result = $api_instance->positionUpdateRiskLimit($symbol, $risk_limit);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PositionApi->positionUpdateRiskLimit: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string**| Symbol of position to isolate. |
+ **risk_limit** | **float**| New Risk Limit, in Satoshis. |
 
 ### Return type
 

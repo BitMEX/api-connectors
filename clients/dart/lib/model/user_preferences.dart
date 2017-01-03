@@ -8,6 +8,10 @@ class UserPreferences {
   DateTime announcementsLastSeen = null;
   
 
+  @Property(name: 'chatChannelID')
+  double chatChannelID = null;
+  
+
   @Property(name: 'colorTheme')
   String colorTheme = null;
   
@@ -44,10 +48,6 @@ class UserPreferences {
   List<String> hideNotifications = [];
   
 
-  @Property(name: 'hidePhoneConfirm')
-  bool hidePhoneConfirm = null;
-  
-
   @Property(name: 'locale')
   String locale = null;
   
@@ -57,7 +57,7 @@ class UserPreferences {
   
 
   @Property(name: 'orderBookBinning')
-  Number orderBookBinning = null;
+  X-any orderBookBinning = null;
   
 
   @Property(name: 'orderBookType')
@@ -95,7 +95,7 @@ class UserPreferences {
 
   @override
   String toString()  {
-    return 'UserPreferences[announcementsLastSeen=$announcementsLastSeen, colorTheme=$colorTheme, currency=$currency, debug=$debug, disableEmails=$disableEmails, hideConfirmDialogs=$hideConfirmDialogs, hideConnectionModal=$hideConnectionModal, hideFromLeaderboard=$hideFromLeaderboard, hideNameFromLeaderboard=$hideNameFromLeaderboard, hideNotifications=$hideNotifications, hidePhoneConfirm=$hidePhoneConfirm, locale=$locale, msgsSeen=$msgsSeen, orderBookBinning=$orderBookBinning, orderBookType=$orderBookType, orderControlsPlusMinus=$orderControlsPlusMinus, sounds=$sounds, strictIPCheck=$strictIPCheck, strictTimeout=$strictTimeout, tickerGroup=$tickerGroup, tickerPinned=$tickerPinned, tradeLayout=$tradeLayout, ]';
+    return 'UserPreferences[announcementsLastSeen=$announcementsLastSeen, chatChannelID=$chatChannelID, colorTheme=$colorTheme, currency=$currency, debug=$debug, disableEmails=$disableEmails, hideConfirmDialogs=$hideConfirmDialogs, hideConnectionModal=$hideConnectionModal, hideFromLeaderboard=$hideFromLeaderboard, hideNameFromLeaderboard=$hideNameFromLeaderboard, hideNotifications=$hideNotifications, locale=$locale, msgsSeen=$msgsSeen, orderBookBinning=$orderBookBinning, orderBookType=$orderBookType, orderControlsPlusMinus=$orderControlsPlusMinus, sounds=$sounds, strictIPCheck=$strictIPCheck, strictTimeout=$strictTimeout, tickerGroup=$tickerGroup, tickerPinned=$tickerPinned, tradeLayout=$tradeLayout, ]';
   }
 
 }

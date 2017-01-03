@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -25,18 +25,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Transaction', 'model/AccessToken', 'model/User', 'model/Affiliate', 'model/UserCommission', 'model/Margin'], factory);
+    define(['ApiClient', 'model/Transaction', 'model/AccessToken', 'model/User', 'model/Affiliate', 'model/UserCommission', 'model/Margin', 'model/Wallet'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/Transaction'), require('../model/AccessToken'), require('../model/User'), require('../model/Affiliate'), require('../model/UserCommission'), require('../model/Margin'));
+    module.exports = factory(require('../ApiClient'), require('../model/Transaction'), require('../model/AccessToken'), require('../model/User'), require('../model/Affiliate'), require('../model/UserCommission'), require('../model/Margin'), require('../model/Wallet'));
   } else {
     // Browser globals (root is window)
     if (!root.BitMexApi) {
       root.BitMexApi = {};
     }
-    root.BitMexApi.UserApi = factory(root.BitMexApi.ApiClient, root.BitMexApi.Transaction, root.BitMexApi.AccessToken, root.BitMexApi.User, root.BitMexApi.Affiliate, root.BitMexApi.UserCommission, root.BitMexApi.Margin);
+    root.BitMexApi.UserApi = factory(root.BitMexApi.ApiClient, root.BitMexApi.Transaction, root.BitMexApi.AccessToken, root.BitMexApi.User, root.BitMexApi.Affiliate, root.BitMexApi.UserCommission, root.BitMexApi.Margin, root.BitMexApi.Wallet);
   }
-}(this, function(ApiClient, Transaction, AccessToken, User, Affiliate, UserCommission, Margin) {
+}(this, function(ApiClient, Transaction, AccessToken, User, Affiliate, UserCommission, Margin, Wallet) {
   'use strict';
 
   /**
@@ -233,58 +233,6 @@
 
       return this.apiClient.callApi(
         '/user/confirmEnableTFA', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the userConfirmPasswordReset operation.
-     * @callback module:api/UserApi~userConfirmPasswordResetCallback
-     * @param {String} error Error message, if any.
-     * @param {'Boolean'} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Confirm a password reset.
-     * @param {String} token 
-     * @param {String} newPassword 
-     * @param {module:api/UserApi~userConfirmPasswordResetCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {'Boolean'}
-     */
-    this.userConfirmPasswordReset = function(token, newPassword, callback) {
-      var postBody = null;
-
-      // verify the required parameter 'token' is set
-      if (token == undefined || token == null) {
-        throw "Missing the required parameter 'token' when calling userConfirmPasswordReset";
-      }
-
-      // verify the required parameter 'newPassword' is set
-      if (newPassword == undefined || newPassword == null) {
-        throw "Missing the required parameter 'newPassword' when calling userConfirmPasswordReset";
-      }
-
-
-      var pathParams = {
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-        'token': token,
-        'newPassword': newPassword
-      };
-
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = 'Boolean';
-
-      return this.apiClient.callApi(
-        '/user/confirmPasswordReset', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -583,6 +531,48 @@
     }
 
     /**
+     * Callback function to receive the result of the userGetWallet operation.
+     * @callback module:api/UserApi~userGetWalletCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/Wallet} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get your current wallet information.
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.currency  (default to XBt)
+     * @param {module:api/UserApi~userGetWalletCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {module:model/Wallet}
+     */
+    this.userGetWallet = function(opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+        'currency': opts['currency']
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      var returnType = Wallet;
+
+      return this.apiClient.callApi(
+        '/user/wallet', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the userGetWalletHistory operation.
      * @callback module:api/UserApi~userGetWalletHistoryCallback
      * @param {String} error Error message, if any.
@@ -591,7 +581,7 @@
      */
 
     /**
-     * Get a history of all of your wallet transactions (deposits and withdrawals).
+     * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
      * @param {Object} opts Optional parameters
      * @param {String} opts.currency  (default to XBt)
      * @param {module:api/UserApi~userGetWalletHistoryCallback} callback The callback function, accepting three arguments: error, data, response
@@ -625,56 +615,42 @@
     }
 
     /**
-     * Callback function to receive the result of the userLogin operation.
-     * @callback module:api/UserApi~userLoginCallback
+     * Callback function to receive the result of the userGetWalletSummary operation.
+     * @callback module:api/UserApi~userGetWalletSummaryCallback
      * @param {String} error Error message, if any.
-     * @param {module:model/AccessToken} data The data returned by the service call.
+     * @param {Array.<module:model/Transaction>} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * Log in to BitMEX.
-     * @param {String} email Your email address.
-     * @param {String} password Your password.
+     * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
      * @param {Object} opts Optional parameters
-     * @param {String} opts.token OTP Token (YubiKey, Google Authenticator)
-     * @param {module:api/UserApi~userLoginCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/AccessToken}
+     * @param {String} opts.currency  (default to XBt)
+     * @param {module:api/UserApi~userGetWalletSummaryCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {Array.<module:model/Transaction>}
      */
-    this.userLogin = function(email, password, opts, callback) {
+    this.userGetWalletSummary = function(opts, callback) {
       opts = opts || {};
       var postBody = null;
-
-      // verify the required parameter 'email' is set
-      if (email == undefined || email == null) {
-        throw "Missing the required parameter 'email' when calling userLogin";
-      }
-
-      // verify the required parameter 'password' is set
-      if (password == undefined || password == null) {
-        throw "Missing the required parameter 'password' when calling userLogin";
-      }
 
 
       var pathParams = {
       };
       var queryParams = {
+        'currency': opts['currency']
       };
       var headerParams = {
       };
       var formParams = {
-        'email': email,
-        'password': password,
-        'token': opts['token']
       };
 
       var authNames = [];
       var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
       var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = AccessToken;
+      var returnType = [Transaction];
 
       return this.apiClient.callApi(
-        '/user/login', 'POST',
+        '/user/walletSummary', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -756,81 +732,6 @@
     }
 
     /**
-     * Callback function to receive the result of the userNew operation.
-     * @callback module:api/UserApi~userNewCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/User} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Register a new user.
-     * @param {String} email Your email address.
-     * @param {String} password Your password.
-     * @param {String} country Country of residence.
-     * @param {Object} opts Optional parameters
-     * @param {String} opts.username Desired username.
-     * @param {String} opts.firstname First name.
-     * @param {String} opts.lastname Last name.
-     * @param {String} opts.acceptsTOS Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).
-     * @param {String} opts.referrerID Optional Referrer ID.
-     * @param {String} opts.tfaType Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef
-     * @param {String} opts.tfaToken Two-Factor Token.
-     * @param {module:api/UserApi~userNewCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/User}
-     */
-    this.userNew = function(email, password, country, opts, callback) {
-      opts = opts || {};
-      var postBody = null;
-
-      // verify the required parameter 'email' is set
-      if (email == undefined || email == null) {
-        throw "Missing the required parameter 'email' when calling userNew";
-      }
-
-      // verify the required parameter 'password' is set
-      if (password == undefined || password == null) {
-        throw "Missing the required parameter 'password' when calling userNew";
-      }
-
-      // verify the required parameter 'country' is set
-      if (country == undefined || country == null) {
-        throw "Missing the required parameter 'country' when calling userNew";
-      }
-
-
-      var pathParams = {
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-        'email': email,
-        'password': password,
-        'username': opts['username'],
-        'firstname': opts['firstname'],
-        'lastname': opts['lastname'],
-        'acceptsTOS': opts['acceptsTOS'],
-        'referrerID': opts['referrerID'],
-        'country': country,
-        'tfaType': opts['tfaType'],
-        'tfaToken': opts['tfaToken']
-      };
-
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = User;
-
-      return this.apiClient.callApi(
-        '/user', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-
-    /**
      * Callback function to receive the result of the userRequestEnableTFA operation.
      * @callback module:api/UserApi~userRequestEnableTFACallback
      * @param {String} error Error message, if any.
@@ -867,51 +768,6 @@
 
       return this.apiClient.callApi(
         '/user/requestEnableTFA', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the userRequestPasswordReset operation.
-     * @callback module:api/UserApi~userRequestPasswordResetCallback
-     * @param {String} error Error message, if any.
-     * @param {'Boolean'} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Request a password reset.
-     * @param {String} email 
-     * @param {module:api/UserApi~userRequestPasswordResetCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {'Boolean'}
-     */
-    this.userRequestPasswordReset = function(email, callback) {
-      var postBody = null;
-
-      // verify the required parameter 'email' is set
-      if (email == undefined || email == null) {
-        throw "Missing the required parameter 'email' when calling userRequestPasswordReset";
-      }
-
-
-      var pathParams = {
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-        'email': email
-      };
-
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = 'Boolean';
-
-      return this.apiClient.callApi(
-        '/user/requestPasswordReset', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -1027,51 +883,6 @@
 
       return this.apiClient.callApi(
         '/user/preferences', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the userSendVerificationEmail operation.
-     * @callback module:api/UserApi~userSendVerificationEmailCallback
-     * @param {String} error Error message, if any.
-     * @param {'Boolean'} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Re-send verification email.
-     * @param {String} email 
-     * @param {module:api/UserApi~userSendVerificationEmailCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {'Boolean'}
-     */
-    this.userSendVerificationEmail = function(email, callback) {
-      var postBody = null;
-
-      // verify the required parameter 'email' is set
-      if (email == undefined || email == null) {
-        throw "Missing the required parameter 'email' when calling userSendVerificationEmail";
-      }
-
-
-      var pathParams = {
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-        'email': email
-      };
-
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = 'Boolean';
-
-      return this.apiClient.callApi(
-        '/user/resendVerificationEmail', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**timestamp** | [**Date**](Date.md) |  |  [optional]
-**symbol** | **String** |  |  [optional]
+**timestamp** | [**Date**](Date.md) |  | 
+**symbol** | **String** |  | 
 **open** | **Double** |  |  [optional]
 **high** | **Double** |  |  [optional]
 **low** | **Double** |  |  [optional]
@@ -17,7 +17,6 @@ Name | Type | Description | Notes
 **turnover** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **homeNotional** | **Double** |  |  [optional]
 **foreignNotional** | **Double** |  |  [optional]
-**id** | **Double** |  |  [optional]
 
 
 

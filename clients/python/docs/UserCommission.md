@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**maker_fee** | **str** |  | [optional] 
-**taker_fee** | **str** |  | [optional] 
-**insurance_fee** | **str** |  | [optional] 
+**maker_fee** | **float** |  | [optional] 
+**taker_fee** | **float** |  | [optional] 
+**settlement_fee** | **float** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

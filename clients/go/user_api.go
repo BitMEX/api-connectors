@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -291,75 +291,6 @@ func (a UserApi) UserConfirmEnableTFA(token string, type_ string) (*bool, *APIRe
 
 	formParams["type_"] = type_
 	formParams["token"] = token
-	var successPayload = new(bool)
-	httpResponse, err := a.Configuration.APIClient.CallAPI(path, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
-	if err != nil {
-		return successPayload, NewAPIResponse(httpResponse.RawResponse), err
-	}
-	err = json.Unmarshal(httpResponse.Body(), &successPayload)
-	return successPayload, NewAPIResponse(httpResponse.RawResponse), err
-}
-
-/**
- * Confirm a password reset.
- *
- * @param token 
- * @param newPassword 
- * @return *bool
- */
-func (a UserApi) UserConfirmPasswordReset(token string, newPassword string) (*bool, *APIResponse, error) {
-
-	var httpMethod = "Post"
-	// create path and map variables
-	path := a.Configuration.BasePath + "/user/confirmPasswordReset"
-
-	// verify the required parameter 'token' is set
-	if &token == nil {
-		return new(bool), nil, errors.New("Missing required parameter 'token' when calling UserApi->UserConfirmPasswordReset")
-	}
-	// verify the required parameter 'newPassword' is set
-	if &newPassword == nil {
-		return new(bool), nil, errors.New("Missing required parameter 'newPassword' when calling UserApi->UserConfirmPasswordReset")
-	}
-
-	headerParams := make(map[string]string)
-	queryParams := url.Values{}
-	formParams := make(map[string]string)
-	var postBody interface{}
-	var fileName string
-	var fileBytes []byte
-
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		headerParams[key] = a.Configuration.DefaultHeader[key]
-	}
-
-
-	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{ "application/json", "application/x-www-form-urlencoded",  }
-
-	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
-	if localVarHttpContentType != "" {
-		headerParams["Content-Type"] = localVarHttpContentType
-	}
-	// to determine the Accept header
-	localVarHttpHeaderAccepts := []string{
-		"application/json",
-"application/xml",
-"text/xml",
-"application/javascript",
-"text/javascript",
-	}
-
-	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
-	if localVarHttpHeaderAccept != "" {
-		headerParams["Accept"] = localVarHttpHeaderAccept
-	}
-
-	formParams["token"] = token
-	formParams["newPassword"] = newPassword
 	var successPayload = new(bool)
 	httpResponse, err := a.Configuration.APIClient.CallAPI(path, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
 	if err != nil {
@@ -782,7 +713,65 @@ func (a UserApi) UserGetMargin(currency string) (*Margin, *APIResponse, error) {
 }
 
 /**
- * Get a history of all of your wallet transactions (deposits and withdrawals).
+ * Get your current wallet information.
+ *
+ * @param currency 
+ * @return *Wallet
+ */
+func (a UserApi) UserGetWallet(currency string) (*Wallet, *APIResponse, error) {
+
+	var httpMethod = "Get"
+	// create path and map variables
+	path := a.Configuration.BasePath + "/user/wallet"
+
+
+	headerParams := make(map[string]string)
+	queryParams := url.Values{}
+	formParams := make(map[string]string)
+	var postBody interface{}
+	var fileName string
+	var fileBytes []byte
+
+	// add default headers if any
+	for key := range a.Configuration.DefaultHeader {
+		headerParams[key] = a.Configuration.DefaultHeader[key]
+	}
+		queryParams.Add("currency", a.Configuration.APIClient.ParameterToString(currency, ""))
+	
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{ "application/json", "application/x-www-form-urlencoded",  }
+
+	// set Content-Type header
+	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		headerParams["Content-Type"] = localVarHttpContentType
+	}
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+"application/xml",
+"text/xml",
+"application/javascript",
+"text/javascript",
+	}
+
+	// set Accept header
+	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		headerParams["Accept"] = localVarHttpHeaderAccept
+	}
+	var successPayload = new(Wallet)
+	httpResponse, err := a.Configuration.APIClient.CallAPI(path, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	if err != nil {
+		return successPayload, NewAPIResponse(httpResponse.RawResponse), err
+	}
+	err = json.Unmarshal(httpResponse.Body(), &successPayload)
+	return successPayload, NewAPIResponse(httpResponse.RawResponse), err
+}
+
+/**
+ * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
  *
  * @param currency 
  * @return []Transaction
@@ -840,27 +829,17 @@ func (a UserApi) UserGetWalletHistory(currency string) ([]Transaction, *APIRespo
 }
 
 /**
- * Log in to BitMEX.
+ * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
  *
- * @param email Your email address.
- * @param password Your password.
- * @param token OTP Token (YubiKey, Google Authenticator)
- * @return *AccessToken
+ * @param currency 
+ * @return []Transaction
  */
-func (a UserApi) UserLogin(email string, password string, token string) (*AccessToken, *APIResponse, error) {
+func (a UserApi) UserGetWalletSummary(currency string) ([]Transaction, *APIResponse, error) {
 
-	var httpMethod = "Post"
+	var httpMethod = "Get"
 	// create path and map variables
-	path := a.Configuration.BasePath + "/user/login"
+	path := a.Configuration.BasePath + "/user/walletSummary"
 
-	// verify the required parameter 'email' is set
-	if &email == nil {
-		return new(AccessToken), nil, errors.New("Missing required parameter 'email' when calling UserApi->UserLogin")
-	}
-	// verify the required parameter 'password' is set
-	if &password == nil {
-		return new(AccessToken), nil, errors.New("Missing required parameter 'password' when calling UserApi->UserLogin")
-	}
 
 	headerParams := make(map[string]string)
 	queryParams := url.Values{}
@@ -873,7 +852,8 @@ func (a UserApi) UserLogin(email string, password string, token string) (*Access
 	for key := range a.Configuration.DefaultHeader {
 		headerParams[key] = a.Configuration.DefaultHeader[key]
 	}
-
+		queryParams.Add("currency", a.Configuration.APIClient.ParameterToString(currency, ""))
+	
 
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{ "application/json", "application/x-www-form-urlencoded",  }
@@ -897,17 +877,13 @@ func (a UserApi) UserLogin(email string, password string, token string) (*Access
 	if localVarHttpHeaderAccept != "" {
 		headerParams["Accept"] = localVarHttpHeaderAccept
 	}
-
-	formParams["email"] = email
-	formParams["password"] = password
-	formParams["token"] = token
-	var successPayload = new(AccessToken)
+	var successPayload = new([]Transaction)
 	httpResponse, err := a.Configuration.APIClient.CallAPI(path, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
 	if err != nil {
-		return successPayload, NewAPIResponse(httpResponse.RawResponse), err
+		return *successPayload, NewAPIResponse(httpResponse.RawResponse), err
 	}
 	err = json.Unmarshal(httpResponse.Body(), &successPayload)
-	return successPayload, NewAPIResponse(httpResponse.RawResponse), err
+	return *successPayload, NewAPIResponse(httpResponse.RawResponse), err
 }
 
 /**
@@ -1023,95 +999,6 @@ func (a UserApi) UserLogoutAll() (*float64, *APIResponse, error) {
 }
 
 /**
- * Register a new user.
- *
- * @param email Your email address.
- * @param password Your password.
- * @param country Country of residence.
- * @param username Desired username.
- * @param firstname First name.
- * @param lastname Last name.
- * @param acceptsTOS Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).
- * @param referrerID Optional Referrer ID.
- * @param tfaType Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef
- * @param tfaToken Two-Factor Token.
- * @return *User
- */
-func (a UserApi) UserNew(email string, password string, country string, username string, firstname string, lastname string, acceptsTOS string, referrerID string, tfaType string, tfaToken string) (*User, *APIResponse, error) {
-
-	var httpMethod = "Post"
-	// create path and map variables
-	path := a.Configuration.BasePath + "/user"
-
-	// verify the required parameter 'email' is set
-	if &email == nil {
-		return new(User), nil, errors.New("Missing required parameter 'email' when calling UserApi->UserNew")
-	}
-	// verify the required parameter 'password' is set
-	if &password == nil {
-		return new(User), nil, errors.New("Missing required parameter 'password' when calling UserApi->UserNew")
-	}
-	// verify the required parameter 'country' is set
-	if &country == nil {
-		return new(User), nil, errors.New("Missing required parameter 'country' when calling UserApi->UserNew")
-	}
-
-	headerParams := make(map[string]string)
-	queryParams := url.Values{}
-	formParams := make(map[string]string)
-	var postBody interface{}
-	var fileName string
-	var fileBytes []byte
-
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		headerParams[key] = a.Configuration.DefaultHeader[key]
-	}
-
-
-	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{ "application/json", "application/x-www-form-urlencoded",  }
-
-	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
-	if localVarHttpContentType != "" {
-		headerParams["Content-Type"] = localVarHttpContentType
-	}
-	// to determine the Accept header
-	localVarHttpHeaderAccepts := []string{
-		"application/json",
-"application/xml",
-"text/xml",
-"application/javascript",
-"text/javascript",
-	}
-
-	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
-	if localVarHttpHeaderAccept != "" {
-		headerParams["Accept"] = localVarHttpHeaderAccept
-	}
-
-	formParams["email"] = email
-	formParams["password"] = password
-	formParams["username"] = username
-	formParams["firstname"] = firstname
-	formParams["lastname"] = lastname
-	formParams["acceptsTOS"] = acceptsTOS
-	formParams["referrerID"] = referrerID
-	formParams["country"] = country
-	formParams["tfaType"] = tfaType
-	formParams["tfaToken"] = tfaToken
-	var successPayload = new(User)
-	httpResponse, err := a.Configuration.APIClient.CallAPI(path, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
-	if err != nil {
-		return successPayload, NewAPIResponse(httpResponse.RawResponse), err
-	}
-	err = json.Unmarshal(httpResponse.Body(), &successPayload)
-	return successPayload, NewAPIResponse(httpResponse.RawResponse), err
-}
-
-/**
  * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
  *
  * @param type_ Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
@@ -1161,69 +1048,6 @@ func (a UserApi) UserRequestEnableTFA(type_ string) (*bool, *APIResponse, error)
 	}
 
 	formParams["type_"] = type_
-	var successPayload = new(bool)
-	httpResponse, err := a.Configuration.APIClient.CallAPI(path, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
-	if err != nil {
-		return successPayload, NewAPIResponse(httpResponse.RawResponse), err
-	}
-	err = json.Unmarshal(httpResponse.Body(), &successPayload)
-	return successPayload, NewAPIResponse(httpResponse.RawResponse), err
-}
-
-/**
- * Request a password reset.
- *
- * @param email 
- * @return *bool
- */
-func (a UserApi) UserRequestPasswordReset(email string) (*bool, *APIResponse, error) {
-
-	var httpMethod = "Post"
-	// create path and map variables
-	path := a.Configuration.BasePath + "/user/requestPasswordReset"
-
-	// verify the required parameter 'email' is set
-	if &email == nil {
-		return new(bool), nil, errors.New("Missing required parameter 'email' when calling UserApi->UserRequestPasswordReset")
-	}
-
-	headerParams := make(map[string]string)
-	queryParams := url.Values{}
-	formParams := make(map[string]string)
-	var postBody interface{}
-	var fileName string
-	var fileBytes []byte
-
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		headerParams[key] = a.Configuration.DefaultHeader[key]
-	}
-
-
-	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{ "application/json", "application/x-www-form-urlencoded",  }
-
-	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
-	if localVarHttpContentType != "" {
-		headerParams["Content-Type"] = localVarHttpContentType
-	}
-	// to determine the Accept header
-	localVarHttpHeaderAccepts := []string{
-		"application/json",
-"application/xml",
-"text/xml",
-"application/javascript",
-"text/javascript",
-	}
-
-	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
-	if localVarHttpHeaderAccept != "" {
-		headerParams["Accept"] = localVarHttpHeaderAccept
-	}
-
-	formParams["email"] = email
 	var successPayload = new(bool)
 	httpResponse, err := a.Configuration.APIClient.CallAPI(path, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
 	if err != nil {
@@ -1370,69 +1194,6 @@ func (a UserApi) UserSavePreferences(prefs string, overwrite bool) (*User, *APIR
 	formParams["prefs"] = prefs
 	formParams["overwrite"] = overwrite
 	var successPayload = new(User)
-	httpResponse, err := a.Configuration.APIClient.CallAPI(path, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
-	if err != nil {
-		return successPayload, NewAPIResponse(httpResponse.RawResponse), err
-	}
-	err = json.Unmarshal(httpResponse.Body(), &successPayload)
-	return successPayload, NewAPIResponse(httpResponse.RawResponse), err
-}
-
-/**
- * Re-send verification email.
- *
- * @param email 
- * @return *bool
- */
-func (a UserApi) UserSendVerificationEmail(email string) (*bool, *APIResponse, error) {
-
-	var httpMethod = "Post"
-	// create path and map variables
-	path := a.Configuration.BasePath + "/user/resendVerificationEmail"
-
-	// verify the required parameter 'email' is set
-	if &email == nil {
-		return new(bool), nil, errors.New("Missing required parameter 'email' when calling UserApi->UserSendVerificationEmail")
-	}
-
-	headerParams := make(map[string]string)
-	queryParams := url.Values{}
-	formParams := make(map[string]string)
-	var postBody interface{}
-	var fileName string
-	var fileBytes []byte
-
-	// add default headers if any
-	for key := range a.Configuration.DefaultHeader {
-		headerParams[key] = a.Configuration.DefaultHeader[key]
-	}
-
-
-	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{ "application/json", "application/x-www-form-urlencoded",  }
-
-	// set Content-Type header
-	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
-	if localVarHttpContentType != "" {
-		headerParams["Content-Type"] = localVarHttpContentType
-	}
-	// to determine the Accept header
-	localVarHttpHeaderAccepts := []string{
-		"application/json",
-"application/xml",
-"text/xml",
-"application/javascript",
-"text/javascript",
-	}
-
-	// set Accept header
-	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
-	if localVarHttpHeaderAccept != "" {
-		headerParams["Accept"] = localVarHttpHeaderAccept
-	}
-
-	formParams["email"] = email
-	var successPayload = new(bool)
 	httpResponse, err := a.Configuration.APIClient.CallAPI(path, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
 	if err != nil {
 		return successPayload, NewAPIResponse(httpResponse.RawResponse), err

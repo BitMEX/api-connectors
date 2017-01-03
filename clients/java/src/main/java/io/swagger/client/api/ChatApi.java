@@ -11,6 +11,7 @@ import io.swagger.client.Pair;
 import io.swagger.client.model.Chat;
 import io.swagger.client.model.Error;
 import java.math.BigDecimal;
+import io.swagger.client.model.ChatChannel;
 import io.swagger.client.model.ConnectedUsers;
 
 
@@ -19,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-05T09:40:48.217-05:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-01-03T10:34:33.567-06:00")
 public class ChatApi {
   private ApiClient apiClient;
 
@@ -45,10 +46,11 @@ public class ChatApi {
    * @param count Number of results to fetch. (optional, default to 100)
    * @param start Starting point for results. (optional, default to 0)
    * @param reverse If true, will sort results newest first. (optional, default to true)
+   * @param channelID Channel id. GET /chat/channels for ids. Leave blank for all. (optional)
    * @return List<Chat>
    * @throws ApiException if fails to make API call
    */
-  public List<Chat> chatGet(BigDecimal count, BigDecimal start, Boolean reverse) throws ApiException {
+  public List<Chat> chatGet(BigDecimal count, BigDecimal start, Boolean reverse, Double channelID) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -62,6 +64,7 @@ public class ChatApi {
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "count", count));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "start", start));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "reverse", reverse));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "channelID", channelID));
 
     
     
@@ -78,6 +81,41 @@ public class ChatApi {
     String[] localVarAuthNames = new String[] {  };
 
     GenericType<List<Chat>> localVarReturnType = new GenericType<List<Chat>>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * Get available channels.
+   * 
+   * @return List<ChatChannel>
+   * @throws ApiException if fails to make API call
+   */
+  public List<ChatChannel> chatGetChannels() throws ApiException {
+    Object localVarPostBody = null;
+    
+    // create path and map variables
+    String localVarPath = "/chat/channels".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json", "application/x-www-form-urlencoded"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] {  };
+
+    GenericType<List<ChatChannel>> localVarReturnType = new GenericType<List<ChatChannel>>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
@@ -119,10 +157,11 @@ public class ChatApi {
    * Send a chat message.
    * 
    * @param message  (required)
+   * @param channelID Channel to post to. Default 1 (English). (optional, default to 1)
    * @return Chat
    * @throws ApiException if fails to make API call
    */
-  public Chat chatNew(String message) throws ApiException {
+  public Chat chatNew(String message, Double channelID) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'message' is set
@@ -142,6 +181,8 @@ public class ChatApi {
     
     if (message != null)
       localVarFormParams.put("message", message);
+if (channelID != null)
+      localVarFormParams.put("channelID", channelID);
 
     final String[] localVarAccepts = {
       "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -37,7 +37,7 @@ import org.joda.time.LocalDate;
 /**
  * User
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-05T09:40:48.217-05:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-01-03T10:34:33.567-06:00")
 public class User   {
   @JsonProperty("id")
   private BigDecimal id = null;
@@ -51,9 +51,6 @@ public class User   {
   @JsonProperty("lastname")
   private String lastname = null;
 
-  @JsonProperty("status")
-  private String status = null;
-
   @JsonProperty("username")
   private String username = null;
 
@@ -62,9 +59,6 @@ public class User   {
 
   @JsonProperty("phone")
   private String phone = null;
-
-  @JsonProperty("countryCode")
-  private BigDecimal countryCode = null;
 
   @JsonProperty("created")
   private LocalDate created = null;
@@ -86,9 +80,6 @@ public class User   {
 
   @JsonProperty("country")
   private String country = null;
-
-  @JsonProperty("disabled")
-  private Boolean disabled = false;
 
   public User id(BigDecimal id) {
     this.id = id;
@@ -162,24 +153,6 @@ public class User   {
     this.lastname = lastname;
   }
 
-  public User status(String status) {
-    this.status = status;
-    return this;
-  }
-
-   /**
-   * Get status
-   * @return status
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public String getStatus() {
-    return status;
-  }
-
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
   public User username(String username) {
     this.username = username;
     return this;
@@ -232,24 +205,6 @@ public class User   {
 
   public void setPhone(String phone) {
     this.phone = phone;
-  }
-
-  public User countryCode(BigDecimal countryCode) {
-    this.countryCode = countryCode;
-    return this;
-  }
-
-   /**
-   * Get countryCode
-   * @return countryCode
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public BigDecimal getCountryCode() {
-    return countryCode;
-  }
-
-  public void setCountryCode(BigDecimal countryCode) {
-    this.countryCode = countryCode;
   }
 
   public User created(LocalDate created) {
@@ -378,24 +333,6 @@ public class User   {
     this.country = country;
   }
 
-  public User disabled(Boolean disabled) {
-    this.disabled = disabled;
-    return this;
-  }
-
-   /**
-   * Get disabled
-   * @return disabled
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public Boolean getDisabled() {
-    return disabled;
-  }
-
-  public void setDisabled(Boolean disabled) {
-    this.disabled = disabled;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -410,24 +347,21 @@ public class User   {
         Objects.equals(this.ownerId, user.ownerId) &&
         Objects.equals(this.firstname, user.firstname) &&
         Objects.equals(this.lastname, user.lastname) &&
-        Objects.equals(this.status, user.status) &&
         Objects.equals(this.username, user.username) &&
         Objects.equals(this.email, user.email) &&
         Objects.equals(this.phone, user.phone) &&
-        Objects.equals(this.countryCode, user.countryCode) &&
         Objects.equals(this.created, user.created) &&
         Objects.equals(this.lastUpdated, user.lastUpdated) &&
         Objects.equals(this.preferences, user.preferences) &&
         Objects.equals(this.tFAEnabled, user.tFAEnabled) &&
         Objects.equals(this.affiliateID, user.affiliateID) &&
         Objects.equals(this.pgpPubKey, user.pgpPubKey) &&
-        Objects.equals(this.country, user.country) &&
-        Objects.equals(this.disabled, user.disabled);
+        Objects.equals(this.country, user.country);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, ownerId, firstname, lastname, status, username, email, phone, countryCode, created, lastUpdated, preferences, tFAEnabled, affiliateID, pgpPubKey, country, disabled);
+    return Objects.hash(id, ownerId, firstname, lastname, username, email, phone, created, lastUpdated, preferences, tFAEnabled, affiliateID, pgpPubKey, country);
   }
 
   @Override
@@ -439,11 +373,9 @@ public class User   {
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    firstname: ").append(toIndentedString(firstname)).append("\n");
     sb.append("    lastname: ").append(toIndentedString(lastname)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
-    sb.append("    countryCode: ").append(toIndentedString(countryCode)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    lastUpdated: ").append(toIndentedString(lastUpdated)).append("\n");
     sb.append("    preferences: ").append(toIndentedString(preferences)).append("\n");
@@ -451,7 +383,6 @@ public class User   {
     sb.append("    affiliateID: ").append(toIndentedString(affiliateID)).append("\n");
     sb.append("    pgpPubKey: ").append(toIndentedString(pgpPubKey)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
-    sb.append("    disabled: ").append(toIndentedString(disabled)).append("\n");
     sb.append("}");
     return sb.toString();
   }

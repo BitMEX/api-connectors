@@ -7,11 +7,9 @@ Name | Type | Description | Notes
 **owner_id** | **Float** |  | [optional] 
 **firstname** | **String** |  | [optional] 
 **lastname** | **String** |  | [optional] 
-**status** | **String** |  | [optional] 
 **username** | **String** |  | 
 **email** | **String** |  | 
 **phone** | **String** |  | [optional] 
-**country_code** | **Float** |  | [optional] 
 **created** | **Date** |  | [optional] 
 **last_updated** | **Date** |  | [optional] 
 **preferences** | [**UserPreferences**](UserPreferences.md) |  | [optional] 
@@ -19,6 +17,5 @@ Name | Type | Description | Notes
 **affiliate_id** | **String** |  | [optional] 
 **pgp_pub_key** | **String** |  | [optional] 
 **country** | **String** |  | [optional] 
-**disabled** | **BOOLEAN** |  | [optional] [default to false]
 
 

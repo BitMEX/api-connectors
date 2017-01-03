@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -310,6 +310,76 @@ func (a PositionApi) PositionUpdateLeverage(symbol string, leverage float64) (*P
 
 	formParams["symbol"] = symbol
 	formParams["leverage"] = leverage
+	var successPayload = new(Position)
+	httpResponse, err := a.Configuration.APIClient.CallAPI(path, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	if err != nil {
+		return successPayload, NewAPIResponse(httpResponse.RawResponse), err
+	}
+	err = json.Unmarshal(httpResponse.Body(), &successPayload)
+	return successPayload, NewAPIResponse(httpResponse.RawResponse), err
+}
+
+/**
+ * Update your risk limit.
+ * Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+ *
+ * @param symbol Symbol of position to isolate.
+ * @param riskLimit New Risk Limit, in Satoshis.
+ * @return *Position
+ */
+func (a PositionApi) PositionUpdateRiskLimit(symbol string, riskLimit float32) (*Position, *APIResponse, error) {
+
+	var httpMethod = "Post"
+	// create path and map variables
+	path := a.Configuration.BasePath + "/position/riskLimit"
+
+	// verify the required parameter 'symbol' is set
+	if &symbol == nil {
+		return new(Position), nil, errors.New("Missing required parameter 'symbol' when calling PositionApi->PositionUpdateRiskLimit")
+	}
+	// verify the required parameter 'riskLimit' is set
+	if &riskLimit == nil {
+		return new(Position), nil, errors.New("Missing required parameter 'riskLimit' when calling PositionApi->PositionUpdateRiskLimit")
+	}
+
+	headerParams := make(map[string]string)
+	queryParams := url.Values{}
+	formParams := make(map[string]string)
+	var postBody interface{}
+	var fileName string
+	var fileBytes []byte
+
+	// add default headers if any
+	for key := range a.Configuration.DefaultHeader {
+		headerParams[key] = a.Configuration.DefaultHeader[key]
+	}
+
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{ "application/json", "application/x-www-form-urlencoded",  }
+
+	// set Content-Type header
+	localVarHttpContentType := a.Configuration.APIClient.SelectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		headerParams["Content-Type"] = localVarHttpContentType
+	}
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{
+		"application/json",
+"application/xml",
+"text/xml",
+"application/javascript",
+"text/javascript",
+	}
+
+	// set Accept header
+	localVarHttpHeaderAccept := a.Configuration.APIClient.SelectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		headerParams["Accept"] = localVarHttpHeaderAccept
+	}
+
+	formParams["symbol"] = symbol
+	formParams["riskLimit"] = riskLimit
 	var successPayload = new(Position)
 	httpResponse, err := a.Configuration.APIClient.CallAPI(path, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
 	if err != nil {

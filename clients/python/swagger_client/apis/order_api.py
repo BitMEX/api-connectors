@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+    ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -54,7 +54,7 @@ class OrderApi(object):
     def order_amend(self, **kwargs):
         """
         Amend the quantity or price of an open order.
-        <p>Send an <code>orderID</code> or <code>clOrdID</code> to identify the order you wish to amend.</p> <p>Both order quantity and price can be amended. Only one <code>qty</code> field can be used to amend.</p> <p>Use the <code>leavesQty</code> field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position&#39;s delta by a certain amount, regardless of how much of the order has already filled.</p> <p>Use the <code>simpleOrderQty</code> and <code>simpleLeavesQty</code> fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.</p> <p>Like order placement, amending can be done in bulk. Simply send a request to <code>PUT /api/v1/order/bulk</code> with a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, each object containing the fields used in this endpoint.</p> 
+        Send an `orderID` or `origClOrdID` to identify the order you wish to amend.  Both order quantity and price can be amended. Only one `qty` field can be used to amend.  Use the `leavesQty` field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position's delta by a certain amount, regardless of how much of the order has already filled.  Use the `simpleOrderQty` and `simpleLeavesQty` fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.  Like order placement, amending can be done in bulk. Simply send a request to `PUT /api/v1/order/bulk` with a JSON body of the shape: `{\"orders\": [{...}, {...}]}`, each object containing the fields used in this endpoint. 
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -67,7 +67,8 @@ class OrderApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str order_id: Order ID
-        :param str cl_ord_id: Client Order ID. See POST /order.
+        :param str orig_cl_ord_id: Client Order ID. See POST /order.
+        :param str cl_ord_id: Optional new Client Order ID, requires `origClOrdID`.
         :param float simple_order_qty: Optional order quantity in units of the underlying instrument (i.e. Bitcoin).
         :param float order_qty: Optional order quantity in units of the instrument (i.e. contracts).
         :param float simple_leaves_qty: Optional leaves quantity in units of the underlying instrument (i.e. Bitcoin). Useful for amending partially filled orders.
@@ -90,7 +91,7 @@ class OrderApi(object):
     def order_amend_with_http_info(self, **kwargs):
         """
         Amend the quantity or price of an open order.
-        <p>Send an <code>orderID</code> or <code>clOrdID</code> to identify the order you wish to amend.</p> <p>Both order quantity and price can be amended. Only one <code>qty</code> field can be used to amend.</p> <p>Use the <code>leavesQty</code> field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position&#39;s delta by a certain amount, regardless of how much of the order has already filled.</p> <p>Use the <code>simpleOrderQty</code> and <code>simpleLeavesQty</code> fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.</p> <p>Like order placement, amending can be done in bulk. Simply send a request to <code>PUT /api/v1/order/bulk</code> with a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, each object containing the fields used in this endpoint.</p> 
+        Send an `orderID` or `origClOrdID` to identify the order you wish to amend.  Both order quantity and price can be amended. Only one `qty` field can be used to amend.  Use the `leavesQty` field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position's delta by a certain amount, regardless of how much of the order has already filled.  Use the `simpleOrderQty` and `simpleLeavesQty` fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.  Like order placement, amending can be done in bulk. Simply send a request to `PUT /api/v1/order/bulk` with a JSON body of the shape: `{\"orders\": [{...}, {...}]}`, each object containing the fields used in this endpoint. 
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -103,7 +104,8 @@ class OrderApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str order_id: Order ID
-        :param str cl_ord_id: Client Order ID. See POST /order.
+        :param str orig_cl_ord_id: Client Order ID. See POST /order.
+        :param str cl_ord_id: Optional new Client Order ID, requires `origClOrdID`.
         :param float simple_order_qty: Optional order quantity in units of the underlying instrument (i.e. Bitcoin).
         :param float order_qty: Optional order quantity in units of the instrument (i.e. contracts).
         :param float simple_leaves_qty: Optional leaves quantity in units of the underlying instrument (i.e. Bitcoin). Useful for amending partially filled orders.
@@ -117,7 +119,7 @@ class OrderApi(object):
                  returns the request thread.
         """
 
-        all_params = ['order_id', 'cl_ord_id', 'simple_order_qty', 'order_qty', 'simple_leaves_qty', 'leaves_qty', 'price', 'stop_px', 'peg_offset_value', 'text']
+        all_params = ['order_id', 'orig_cl_ord_id', 'cl_ord_id', 'simple_order_qty', 'order_qty', 'simple_leaves_qty', 'leaves_qty', 'price', 'stop_px', 'peg_offset_value', 'text']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
 
@@ -142,6 +144,8 @@ class OrderApi(object):
         local_var_files = {}
         if 'order_id' in params:
             form_params.append(('orderID', params['order_id']))
+        if 'orig_cl_ord_id' in params:
+            form_params.append(('origClOrdID', params['orig_cl_ord_id']))
         if 'cl_ord_id' in params:
             form_params.append(('clOrdID', params['cl_ord_id']))
         if 'simple_order_qty' in params:
@@ -614,7 +618,7 @@ class OrderApi(object):
     def order_close_position(self, symbol, **kwargs):
         """
         Close a position. [Deprecated, use POST /order with execInst: 'Close']
-        If no `price` is specified, a market order will be submitted to close the whole of your position. + This will also close all other open orders in this symbol.
+        If no `price` is specified, a market order will be submitted to close the whole of your position. This will also close all other open orders in this symbol.
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -642,7 +646,7 @@ class OrderApi(object):
     def order_close_position_with_http_info(self, symbol, **kwargs):
         """
         Close a position. [Deprecated, use POST /order with execInst: 'Close']
-        If no `price` is specified, a market order will be submitted to close the whole of your position. + This will also close all other open orders in this symbol.
+        If no `price` is specified, a market order will be submitted to close the whole of your position. This will also close all other open orders in this symbol.
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -879,7 +883,7 @@ class OrderApi(object):
         :param str type: Deprecated: use `ordType`.
         :param str ord_type: Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to 'Limit' when `price` is specified. Defaults to 'Stop' when `stopPx` is specified. Defaults to 'StopLimit' when `price` and `stopPx` are specified.
         :param str time_in_force: Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to 'GoodTillCancel' for 'Limit', 'StopLimit', 'LimitIfTouched', and 'MarketWithLeftOverAsLimit' orders.
-        :param str exec_inst: Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, LastPrice, Close, ReduceOnly. 'AllOrNone' instruction requires `displayQty` to be 0. 'MarkPrice' or 'LastPrice' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders.
+        :param str exec_inst: Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. 'AllOrNone' instruction requires `displayQty` to be 0. 'MarkPrice' or 'LastPrice' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders.
         :param str contingency_type: Optional contingency type for use with `clOrdLinkID`. Valid options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute, OneUpdatesTheOtherProportional.
         :param str text: Optional order annotation. e.g. 'Take profit'.
         :return: Order
@@ -924,7 +928,7 @@ class OrderApi(object):
         :param str type: Deprecated: use `ordType`.
         :param str ord_type: Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to 'Limit' when `price` is specified. Defaults to 'Stop' when `stopPx` is specified. Defaults to 'StopLimit' when `price` and `stopPx` are specified.
         :param str time_in_force: Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to 'GoodTillCancel' for 'Limit', 'StopLimit', 'LimitIfTouched', and 'MarketWithLeftOverAsLimit' orders.
-        :param str exec_inst: Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, LastPrice, Close, ReduceOnly. 'AllOrNone' instruction requires `displayQty` to be 0. 'MarkPrice' or 'LastPrice' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders.
+        :param str exec_inst: Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. 'AllOrNone' instruction requires `displayQty` to be 0. 'MarkPrice' or 'LastPrice' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders.
         :param str contingency_type: Optional contingency type for use with `clOrdLinkID`. Valid options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute, OneUpdatesTheOtherProportional.
         :param str text: Optional order annotation. e.g. 'Take profit'.
         :return: Order

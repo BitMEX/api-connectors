@@ -13,7 +13,7 @@
 /**
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section.
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -481,6 +481,109 @@ class PositionApi
                 $headerParams,
                 '\Swagger\Client\Model\Position',
                 '/position/leverage'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\Position', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Position', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation positionUpdateRiskLimit
+     *
+     * Update your risk limit.
+     *
+     * @param string $symbol Symbol of position to isolate. (required)
+     * @param float $risk_limit New Risk Limit, in Satoshis. (required)
+     * @return \Swagger\Client\Model\Position
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function positionUpdateRiskLimit($symbol, $risk_limit)
+    {
+        list($response) = $this->positionUpdateRiskLimitWithHttpInfo($symbol, $risk_limit);
+        return $response;
+    }
+
+    /**
+     * Operation positionUpdateRiskLimitWithHttpInfo
+     *
+     * Update your risk limit.
+     *
+     * @param string $symbol Symbol of position to isolate. (required)
+     * @param float $risk_limit New Risk Limit, in Satoshis. (required)
+     * @return Array of \Swagger\Client\Model\Position, HTTP status code, HTTP response headers (array of strings)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function positionUpdateRiskLimitWithHttpInfo($symbol, $risk_limit)
+    {
+        // verify the required parameter 'symbol' is set
+        if ($symbol === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $symbol when calling positionUpdateRiskLimit');
+        }
+        // verify the required parameter 'risk_limit' is set
+        if ($risk_limit === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $risk_limit when calling positionUpdateRiskLimit');
+        }
+        // parse inputs
+        $resourcePath = "/position/riskLimit";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
+
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // form params
+        if ($symbol !== null) {
+            $formParams['symbol'] = $this->apiClient->getSerializer()->toFormValue($symbol);
+        }
+        // form params
+        if ($risk_limit !== null) {
+            $formParams['riskLimit'] = $this->apiClient->getSerializer()->toFormValue($risk_limit);
+        }
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'POST',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\Swagger\Client\Model\Position',
+                '/position/riskLimit'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\Position', $httpHeader), $statusCode, $httpHeader);

@@ -9,40 +9,40 @@ import com.google.gson.annotations.SerializedName;
 public class UserCommission  {
   
   @SerializedName("makerFee")
-  private String makerFee = null;
+  private Double makerFee = null;
   @SerializedName("takerFee")
-  private String takerFee = null;
-  @SerializedName("insuranceFee")
-  private String insuranceFee = null;
+  private Double takerFee = null;
+  @SerializedName("settlementFee")
+  private Double settlementFee = null;
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public String getMakerFee() {
+  public Double getMakerFee() {
     return makerFee;
   }
-  public void setMakerFee(String makerFee) {
+  public void setMakerFee(Double makerFee) {
     this.makerFee = makerFee;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public String getTakerFee() {
+  public Double getTakerFee() {
     return takerFee;
   }
-  public void setTakerFee(String takerFee) {
+  public void setTakerFee(Double takerFee) {
     this.takerFee = takerFee;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public String getInsuranceFee() {
-    return insuranceFee;
+  public Double getSettlementFee() {
+    return settlementFee;
   }
-  public void setInsuranceFee(String insuranceFee) {
-    this.insuranceFee = insuranceFee;
+  public void setSettlementFee(Double settlementFee) {
+    this.settlementFee = settlementFee;
   }
 
 
@@ -57,7 +57,7 @@ public class UserCommission  {
     UserCommission userCommission = (UserCommission) o;
     return (makerFee == null ? userCommission.makerFee == null : makerFee.equals(userCommission.makerFee)) &&
         (takerFee == null ? userCommission.takerFee == null : takerFee.equals(userCommission.takerFee)) &&
-        (insuranceFee == null ? userCommission.insuranceFee == null : insuranceFee.equals(userCommission.insuranceFee));
+        (settlementFee == null ? userCommission.settlementFee == null : settlementFee.equals(userCommission.settlementFee));
   }
 
   @Override
@@ -65,7 +65,7 @@ public class UserCommission  {
     int result = 17;
     result = 31 * result + (makerFee == null ? 0: makerFee.hashCode());
     result = 31 * result + (takerFee == null ? 0: takerFee.hashCode());
-    result = 31 * result + (insuranceFee == null ? 0: insuranceFee.hashCode());
+    result = 31 * result + (settlementFee == null ? 0: settlementFee.hashCode());
     return result;
   }
 
@@ -76,7 +76,7 @@ public class UserCommission  {
     
     sb.append("  makerFee: ").append(makerFee).append("\n");
     sb.append("  takerFee: ").append(takerFee).append("\n");
-    sb.append("  insuranceFee: ").append(insuranceFee).append("\n");
+    sb.append("  settlementFee: ").append(settlementFee).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

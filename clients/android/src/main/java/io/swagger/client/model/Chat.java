@@ -22,6 +22,8 @@ public class Chat  {
   private String html = null;
   @SerializedName("fromBot")
   private Boolean fromBot = null;
+  @SerializedName("channelID")
+  private Double channelID = null;
 
   /**
    **/
@@ -83,6 +85,16 @@ public class Chat  {
     this.fromBot = fromBot;
   }
 
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getChannelID() {
+    return channelID;
+  }
+  public void setChannelID(Double channelID) {
+    this.channelID = channelID;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -98,7 +110,8 @@ public class Chat  {
         (user == null ? chat.user == null : user.equals(chat.user)) &&
         (message == null ? chat.message == null : message.equals(chat.message)) &&
         (html == null ? chat.html == null : html.equals(chat.html)) &&
-        (fromBot == null ? chat.fromBot == null : fromBot.equals(chat.fromBot));
+        (fromBot == null ? chat.fromBot == null : fromBot.equals(chat.fromBot)) &&
+        (channelID == null ? chat.channelID == null : channelID.equals(chat.channelID));
   }
 
   @Override
@@ -110,6 +123,7 @@ public class Chat  {
     result = 31 * result + (message == null ? 0: message.hashCode());
     result = 31 * result + (html == null ? 0: html.hashCode());
     result = 31 * result + (fromBot == null ? 0: fromBot.hashCode());
+    result = 31 * result + (channelID == null ? 0: channelID.hashCode());
     return result;
   }
 
@@ -124,6 +138,7 @@ public class Chat  {
     sb.append("  message: ").append(message).append("\n");
     sb.append("  html: ").append(html).append("\n");
     sb.append("  fromBot: ").append(fromBot).append("\n");
+    sb.append("  channelID: ").append(channelID).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

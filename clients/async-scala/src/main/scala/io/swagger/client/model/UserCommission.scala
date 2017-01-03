@@ -5,7 +5,7 @@ import java.util.UUID
 
 
 case class UserCommission (
-  makerFee: Option[String],
-takerFee: Option[String],
-insuranceFee: Option[String]
+  makerFee: Option[Double],
+takerFee: Option[Double],
+settlementFee: Option[Double]
 )

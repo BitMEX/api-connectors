@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -122,29 +122,6 @@ namespace IO.Swagger.Api
         /// <param name="type">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39; (optional)</param>
         /// <returns>ApiResponse of bool?</returns>
         ApiResponse<bool?> UserConfirmEnableTFAWithHttpInfo (string token, string type = null);
-        /// <summary>
-        /// Confirm a password reset.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="token"></param>
-        /// <param name="newPassword"></param>
-        /// <returns>bool?</returns>
-        bool? UserConfirmPasswordReset (string token, string newPassword);
-
-        /// <summary>
-        /// Confirm a password reset.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="token"></param>
-        /// <param name="newPassword"></param>
-        /// <returns>ApiResponse of bool?</returns>
-        ApiResponse<bool?> UserConfirmPasswordResetWithHttpInfo (string token, string newPassword);
         /// <summary>
         /// Confirm a withdrawal.
         /// </summary>
@@ -289,7 +266,28 @@ namespace IO.Swagger.Api
         /// <returns>ApiResponse of Margin</returns>
         ApiResponse<Margin> UserGetMarginWithHttpInfo (string currency = null);
         /// <summary>
-        /// Get a history of all of your wallet transactions (deposits and withdrawals).
+        /// Get your current wallet information.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>Wallet</returns>
+        Wallet UserGetWallet (string currency = null);
+
+        /// <summary>
+        /// Get your current wallet information.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>ApiResponse of Wallet</returns>
+        ApiResponse<Wallet> UserGetWalletWithHttpInfo (string currency = null);
+        /// <summary>
+        /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
         /// </summary>
         /// <remarks>
         /// 
@@ -300,7 +298,7 @@ namespace IO.Swagger.Api
         List<Transaction> UserGetWalletHistory (string currency = null);
 
         /// <summary>
-        /// Get a history of all of your wallet transactions (deposits and withdrawals).
+        /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
         /// </summary>
         /// <remarks>
         /// 
@@ -310,30 +308,26 @@ namespace IO.Swagger.Api
         /// <returns>ApiResponse of List&lt;Transaction&gt;</returns>
         ApiResponse<List<Transaction>> UserGetWalletHistoryWithHttpInfo (string currency = null);
         /// <summary>
-        /// Log in to BitMEX.
+        /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email">Your email address.</param>
-        /// <param name="password">Your password.</param>
-        /// <param name="token">OTP Token (YubiKey, Google Authenticator) (optional)</param>
-        /// <returns>AccessToken</returns>
-        AccessToken UserLogin (string email, string password, string token = null);
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>List&lt;Transaction&gt;</returns>
+        List<Transaction> UserGetWalletSummary (string currency = null);
 
         /// <summary>
-        /// Log in to BitMEX.
+        /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email">Your email address.</param>
-        /// <param name="password">Your password.</param>
-        /// <param name="token">OTP Token (YubiKey, Google Authenticator) (optional)</param>
-        /// <returns>ApiResponse of AccessToken</returns>
-        ApiResponse<AccessToken> UserLoginWithHttpInfo (string email, string password, string token = null);
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>ApiResponse of List&lt;Transaction&gt;</returns>
+        ApiResponse<List<Transaction>> UserGetWalletSummaryWithHttpInfo (string currency = null);
         /// <summary>
         /// Log out of BitMEX.
         /// </summary>
@@ -373,45 +367,6 @@ namespace IO.Swagger.Api
         /// <returns>ApiResponse of double?</returns>
         ApiResponse<double?> UserLogoutAllWithHttpInfo ();
         /// <summary>
-        /// Register a new user.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email">Your email address.</param>
-        /// <param name="password">Your password.</param>
-        /// <param name="country">Country of residence.</param>
-        /// <param name="username">Desired username. (optional)</param>
-        /// <param name="firstname">First name. (optional)</param>
-        /// <param name="lastname">Last name. (optional)</param>
-        /// <param name="acceptsTOS">Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). (optional)</param>
-        /// <param name="referrerID">Optional Referrer ID. (optional)</param>
-        /// <param name="tfaType">Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef (optional)</param>
-        /// <param name="tfaToken">Two-Factor Token. (optional)</param>
-        /// <returns>User</returns>
-        User UserNew (string email, string password, string country, string username = null, string firstname = null, string lastname = null, string acceptsTOS = null, string referrerID = null, string tfaType = null, string tfaToken = null);
-
-        /// <summary>
-        /// Register a new user.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email">Your email address.</param>
-        /// <param name="password">Your password.</param>
-        /// <param name="country">Country of residence.</param>
-        /// <param name="username">Desired username. (optional)</param>
-        /// <param name="firstname">First name. (optional)</param>
-        /// <param name="lastname">Last name. (optional)</param>
-        /// <param name="acceptsTOS">Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). (optional)</param>
-        /// <param name="referrerID">Optional Referrer ID. (optional)</param>
-        /// <param name="tfaType">Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef (optional)</param>
-        /// <param name="tfaToken">Two-Factor Token. (optional)</param>
-        /// <returns>ApiResponse of User</returns>
-        ApiResponse<User> UserNewWithHttpInfo (string email, string password, string country, string username = null, string firstname = null, string lastname = null, string acceptsTOS = null, string referrerID = null, string tfaType = null, string tfaToken = null);
-        /// <summary>
         /// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
         /// </summary>
         /// <remarks>
@@ -432,27 +387,6 @@ namespace IO.Swagger.Api
         /// <param name="type">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)</param>
         /// <returns>ApiResponse of bool?</returns>
         ApiResponse<bool?> UserRequestEnableTFAWithHttpInfo (string type = null);
-        /// <summary>
-        /// Request a password reset.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <returns>bool?</returns>
-        bool? UserRequestPasswordReset (string email);
-
-        /// <summary>
-        /// Request a password reset.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <returns>ApiResponse of bool?</returns>
-        ApiResponse<bool?> UserRequestPasswordResetWithHttpInfo (string email);
         /// <summary>
         /// Request a withdrawal to an external wallet.
         /// </summary>
@@ -505,27 +439,6 @@ namespace IO.Swagger.Api
         /// <param name="overwrite">If true, will overwrite all existing preferences. (optional, default to false)</param>
         /// <returns>ApiResponse of User</returns>
         ApiResponse<User> UserSavePreferencesWithHttpInfo (string prefs, bool? overwrite = null);
-        /// <summary>
-        /// Re-send verification email.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <returns>bool?</returns>
-        bool? UserSendVerificationEmail (string email);
-
-        /// <summary>
-        /// Re-send verification email.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <returns>ApiResponse of bool?</returns>
-        ApiResponse<bool?> UserSendVerificationEmailWithHttpInfo (string email);
         /// <summary>
         /// Update your password, name, and other attributes.
         /// </summary>
@@ -649,29 +562,6 @@ namespace IO.Swagger.Api
         /// <param name="type">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39; (optional)</param>
         /// <returns>Task of ApiResponse (bool?)</returns>
         System.Threading.Tasks.Task<ApiResponse<bool?>> UserConfirmEnableTFAAsyncWithHttpInfo (string token, string type = null);
-        /// <summary>
-        /// Confirm a password reset.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="token"></param>
-        /// <param name="newPassword"></param>
-        /// <returns>Task of bool?</returns>
-        System.Threading.Tasks.Task<bool?> UserConfirmPasswordResetAsync (string token, string newPassword);
-
-        /// <summary>
-        /// Confirm a password reset.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="token"></param>
-        /// <param name="newPassword"></param>
-        /// <returns>Task of ApiResponse (bool?)</returns>
-        System.Threading.Tasks.Task<ApiResponse<bool?>> UserConfirmPasswordResetAsyncWithHttpInfo (string token, string newPassword);
         /// <summary>
         /// Confirm a withdrawal.
         /// </summary>
@@ -816,7 +706,28 @@ namespace IO.Swagger.Api
         /// <returns>Task of ApiResponse (Margin)</returns>
         System.Threading.Tasks.Task<ApiResponse<Margin>> UserGetMarginAsyncWithHttpInfo (string currency = null);
         /// <summary>
-        /// Get a history of all of your wallet transactions (deposits and withdrawals).
+        /// Get your current wallet information.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>Task of Wallet</returns>
+        System.Threading.Tasks.Task<Wallet> UserGetWalletAsync (string currency = null);
+
+        /// <summary>
+        /// Get your current wallet information.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>Task of ApiResponse (Wallet)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Wallet>> UserGetWalletAsyncWithHttpInfo (string currency = null);
+        /// <summary>
+        /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
         /// </summary>
         /// <remarks>
         /// 
@@ -827,7 +738,7 @@ namespace IO.Swagger.Api
         System.Threading.Tasks.Task<List<Transaction>> UserGetWalletHistoryAsync (string currency = null);
 
         /// <summary>
-        /// Get a history of all of your wallet transactions (deposits and withdrawals).
+        /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
         /// </summary>
         /// <remarks>
         /// 
@@ -837,30 +748,26 @@ namespace IO.Swagger.Api
         /// <returns>Task of ApiResponse (List&lt;Transaction&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<List<Transaction>>> UserGetWalletHistoryAsyncWithHttpInfo (string currency = null);
         /// <summary>
-        /// Log in to BitMEX.
+        /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email">Your email address.</param>
-        /// <param name="password">Your password.</param>
-        /// <param name="token">OTP Token (YubiKey, Google Authenticator) (optional)</param>
-        /// <returns>Task of AccessToken</returns>
-        System.Threading.Tasks.Task<AccessToken> UserLoginAsync (string email, string password, string token = null);
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>Task of List&lt;Transaction&gt;</returns>
+        System.Threading.Tasks.Task<List<Transaction>> UserGetWalletSummaryAsync (string currency = null);
 
         /// <summary>
-        /// Log in to BitMEX.
+        /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email">Your email address.</param>
-        /// <param name="password">Your password.</param>
-        /// <param name="token">OTP Token (YubiKey, Google Authenticator) (optional)</param>
-        /// <returns>Task of ApiResponse (AccessToken)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccessToken>> UserLoginAsyncWithHttpInfo (string email, string password, string token = null);
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>Task of ApiResponse (List&lt;Transaction&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<Transaction>>> UserGetWalletSummaryAsyncWithHttpInfo (string currency = null);
         /// <summary>
         /// Log out of BitMEX.
         /// </summary>
@@ -900,45 +807,6 @@ namespace IO.Swagger.Api
         /// <returns>Task of ApiResponse (double?)</returns>
         System.Threading.Tasks.Task<ApiResponse<double?>> UserLogoutAllAsyncWithHttpInfo ();
         /// <summary>
-        /// Register a new user.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email">Your email address.</param>
-        /// <param name="password">Your password.</param>
-        /// <param name="country">Country of residence.</param>
-        /// <param name="username">Desired username. (optional)</param>
-        /// <param name="firstname">First name. (optional)</param>
-        /// <param name="lastname">Last name. (optional)</param>
-        /// <param name="acceptsTOS">Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). (optional)</param>
-        /// <param name="referrerID">Optional Referrer ID. (optional)</param>
-        /// <param name="tfaType">Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef (optional)</param>
-        /// <param name="tfaToken">Two-Factor Token. (optional)</param>
-        /// <returns>Task of User</returns>
-        System.Threading.Tasks.Task<User> UserNewAsync (string email, string password, string country, string username = null, string firstname = null, string lastname = null, string acceptsTOS = null, string referrerID = null, string tfaType = null, string tfaToken = null);
-
-        /// <summary>
-        /// Register a new user.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email">Your email address.</param>
-        /// <param name="password">Your password.</param>
-        /// <param name="country">Country of residence.</param>
-        /// <param name="username">Desired username. (optional)</param>
-        /// <param name="firstname">First name. (optional)</param>
-        /// <param name="lastname">Last name. (optional)</param>
-        /// <param name="acceptsTOS">Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). (optional)</param>
-        /// <param name="referrerID">Optional Referrer ID. (optional)</param>
-        /// <param name="tfaType">Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef (optional)</param>
-        /// <param name="tfaToken">Two-Factor Token. (optional)</param>
-        /// <returns>Task of ApiResponse (User)</returns>
-        System.Threading.Tasks.Task<ApiResponse<User>> UserNewAsyncWithHttpInfo (string email, string password, string country, string username = null, string firstname = null, string lastname = null, string acceptsTOS = null, string referrerID = null, string tfaType = null, string tfaToken = null);
-        /// <summary>
         /// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
         /// </summary>
         /// <remarks>
@@ -959,27 +827,6 @@ namespace IO.Swagger.Api
         /// <param name="type">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)</param>
         /// <returns>Task of ApiResponse (bool?)</returns>
         System.Threading.Tasks.Task<ApiResponse<bool?>> UserRequestEnableTFAAsyncWithHttpInfo (string type = null);
-        /// <summary>
-        /// Request a password reset.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <returns>Task of bool?</returns>
-        System.Threading.Tasks.Task<bool?> UserRequestPasswordResetAsync (string email);
-
-        /// <summary>
-        /// Request a password reset.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <returns>Task of ApiResponse (bool?)</returns>
-        System.Threading.Tasks.Task<ApiResponse<bool?>> UserRequestPasswordResetAsyncWithHttpInfo (string email);
         /// <summary>
         /// Request a withdrawal to an external wallet.
         /// </summary>
@@ -1032,27 +879,6 @@ namespace IO.Swagger.Api
         /// <param name="overwrite">If true, will overwrite all existing preferences. (optional, default to false)</param>
         /// <returns>Task of ApiResponse (User)</returns>
         System.Threading.Tasks.Task<ApiResponse<User>> UserSavePreferencesAsyncWithHttpInfo (string prefs, bool? overwrite = null);
-        /// <summary>
-        /// Re-send verification email.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <returns>Task of bool?</returns>
-        System.Threading.Tasks.Task<bool?> UserSendVerificationEmailAsync (string email);
-
-        /// <summary>
-        /// Re-send verification email.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <returns>Task of ApiResponse (bool?)</returns>
-        System.Threading.Tasks.Task<ApiResponse<bool?>> UserSendVerificationEmailAsyncWithHttpInfo (string email);
         /// <summary>
         /// Update your password, name, and other attributes.
         /// </summary>
@@ -1803,171 +1629,6 @@ namespace IO.Swagger.Api
             if (ExceptionFactory != null)
             {
                 Exception exception = ExceptionFactory("UserConfirmEnableTFA", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<bool?>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (bool?) Configuration.ApiClient.Deserialize(localVarResponse, typeof(bool?)));
-            
-        }
-
-        /// <summary>
-        /// Confirm a password reset. 
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="token"></param>
-        /// <param name="newPassword"></param>
-        /// <returns>bool?</returns>
-        public bool? UserConfirmPasswordReset (string token, string newPassword)
-        {
-             ApiResponse<bool?> localVarResponse = UserConfirmPasswordResetWithHttpInfo(token, newPassword);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Confirm a password reset. 
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="token"></param>
-        /// <param name="newPassword"></param>
-        /// <returns>ApiResponse of bool?</returns>
-        public ApiResponse< bool? > UserConfirmPasswordResetWithHttpInfo (string token, string newPassword)
-        {
-            // verify the required parameter 'token' is set
-            if (token == null)
-                throw new ApiException(400, "Missing required parameter 'token' when calling UserApi->UserConfirmPasswordReset");
-            // verify the required parameter 'newPassword' is set
-            if (newPassword == null)
-                throw new ApiException(400, "Missing required parameter 'newPassword' when calling UserApi->UserConfirmPasswordReset");
-
-            var localVarPath = "/user/confirmPasswordReset";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json", 
-                "application/xml", 
-                "text/xml", 
-                "application/javascript", 
-                "text/javascript"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (token != null) localVarFormParams.Add("token", Configuration.ApiClient.ParameterToString(token)); // form parameter
-            if (newPassword != null) localVarFormParams.Add("newPassword", Configuration.ApiClient.ParameterToString(newPassword)); // form parameter
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UserConfirmPasswordReset", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<bool?>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (bool?) Configuration.ApiClient.Deserialize(localVarResponse, typeof(bool?)));
-            
-        }
-
-        /// <summary>
-        /// Confirm a password reset. 
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="token"></param>
-        /// <param name="newPassword"></param>
-        /// <returns>Task of bool?</returns>
-        public async System.Threading.Tasks.Task<bool?> UserConfirmPasswordResetAsync (string token, string newPassword)
-        {
-             ApiResponse<bool?> localVarResponse = await UserConfirmPasswordResetAsyncWithHttpInfo(token, newPassword);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Confirm a password reset. 
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="token"></param>
-        /// <param name="newPassword"></param>
-        /// <returns>Task of ApiResponse (bool?)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<bool?>> UserConfirmPasswordResetAsyncWithHttpInfo (string token, string newPassword)
-        {
-            // verify the required parameter 'token' is set
-            if (token == null)
-                throw new ApiException(400, "Missing required parameter 'token' when calling UserApi->UserConfirmPasswordReset");
-            // verify the required parameter 'newPassword' is set
-            if (newPassword == null)
-                throw new ApiException(400, "Missing required parameter 'newPassword' when calling UserApi->UserConfirmPasswordReset");
-
-            var localVarPath = "/user/confirmPasswordReset";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json", 
-                "application/xml", 
-                "text/xml", 
-                "application/javascript", 
-                "text/javascript"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (token != null) localVarFormParams.Add("token", Configuration.ApiClient.ParameterToString(token)); // form parameter
-            if (newPassword != null) localVarFormParams.Add("newPassword", Configuration.ApiClient.ParameterToString(newPassword)); // form parameter
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UserConfirmPasswordReset", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -3007,7 +2668,154 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Get a history of all of your wallet transactions (deposits and withdrawals). 
+        /// Get your current wallet information. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>Wallet</returns>
+        public Wallet UserGetWallet (string currency = null)
+        {
+             ApiResponse<Wallet> localVarResponse = UserGetWalletWithHttpInfo(currency);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get your current wallet information. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>ApiResponse of Wallet</returns>
+        public ApiResponse< Wallet > UserGetWalletWithHttpInfo (string currency = null)
+        {
+
+            var localVarPath = "/user/wallet";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json", 
+                "application/xml", 
+                "text/xml", 
+                "application/javascript", 
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (currency != null) localVarQueryParams.Add("currency", Configuration.ApiClient.ParameterToString(currency)); // query parameter
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetWallet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Wallet>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Wallet) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Wallet)));
+            
+        }
+
+        /// <summary>
+        /// Get your current wallet information. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>Task of Wallet</returns>
+        public async System.Threading.Tasks.Task<Wallet> UserGetWalletAsync (string currency = null)
+        {
+             ApiResponse<Wallet> localVarResponse = await UserGetWalletAsyncWithHttpInfo(currency);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get your current wallet information. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>Task of ApiResponse (Wallet)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Wallet>> UserGetWalletAsyncWithHttpInfo (string currency = null)
+        {
+
+            var localVarPath = "/user/wallet";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json", 
+                "application/xml", 
+                "text/xml", 
+                "application/javascript", 
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (currency != null) localVarQueryParams.Add("currency", Configuration.ApiClient.ParameterToString(currency)); // query parameter
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetWallet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Wallet>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Wallet) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Wallet)));
+            
+        }
+
+        /// <summary>
+        /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency"> (optional, default to XBt)</param>
@@ -3019,7 +2827,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Get a history of all of your wallet transactions (deposits and withdrawals). 
+        /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency"> (optional, default to XBt)</param>
@@ -3080,7 +2888,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Get a history of all of your wallet transactions (deposits and withdrawals). 
+        /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency"> (optional, default to XBt)</param>
@@ -3093,7 +2901,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Get a history of all of your wallet transactions (deposits and withdrawals). 
+        /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="currency"> (optional, default to XBt)</param>
@@ -3154,37 +2962,27 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Log in to BitMEX. 
+        /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email">Your email address.</param>
-        /// <param name="password">Your password.</param>
-        /// <param name="token">OTP Token (YubiKey, Google Authenticator) (optional)</param>
-        /// <returns>AccessToken</returns>
-        public AccessToken UserLogin (string email, string password, string token = null)
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>List&lt;Transaction&gt;</returns>
+        public List<Transaction> UserGetWalletSummary (string currency = null)
         {
-             ApiResponse<AccessToken> localVarResponse = UserLoginWithHttpInfo(email, password, token);
+             ApiResponse<List<Transaction>> localVarResponse = UserGetWalletSummaryWithHttpInfo(currency);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Log in to BitMEX. 
+        /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email">Your email address.</param>
-        /// <param name="password">Your password.</param>
-        /// <param name="token">OTP Token (YubiKey, Google Authenticator) (optional)</param>
-        /// <returns>ApiResponse of AccessToken</returns>
-        public ApiResponse< AccessToken > UserLoginWithHttpInfo (string email, string password, string token = null)
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>ApiResponse of List&lt;Transaction&gt;</returns>
+        public ApiResponse< List<Transaction> > UserGetWalletSummaryWithHttpInfo (string currency = null)
         {
-            // verify the required parameter 'email' is set
-            if (email == null)
-                throw new ApiException(400, "Missing required parameter 'email' when calling UserApi->UserLogin");
-            // verify the required parameter 'password' is set
-            if (password == null)
-                throw new ApiException(400, "Missing required parameter 'password' when calling UserApi->UserLogin");
 
-            var localVarPath = "/user/login";
+            var localVarPath = "/user/walletSummary";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3214,63 +3012,51 @@ namespace IO.Swagger.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (email != null) localVarFormParams.Add("email", Configuration.ApiClient.ParameterToString(email)); // form parameter
-            if (password != null) localVarFormParams.Add("password", Configuration.ApiClient.ParameterToString(password)); // form parameter
-            if (token != null) localVarFormParams.Add("token", Configuration.ApiClient.ParameterToString(token)); // form parameter
+            if (currency != null) localVarQueryParams.Add("currency", Configuration.ApiClient.ParameterToString(currency)); // query parameter
 
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("UserLogin", localVarResponse);
+                Exception exception = ExceptionFactory("UserGetWalletSummary", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<AccessToken>(localVarStatusCode,
+            return new ApiResponse<List<Transaction>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (AccessToken) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccessToken)));
+                (List<Transaction>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Transaction>)));
             
         }
 
         /// <summary>
-        /// Log in to BitMEX. 
+        /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email">Your email address.</param>
-        /// <param name="password">Your password.</param>
-        /// <param name="token">OTP Token (YubiKey, Google Authenticator) (optional)</param>
-        /// <returns>Task of AccessToken</returns>
-        public async System.Threading.Tasks.Task<AccessToken> UserLoginAsync (string email, string password, string token = null)
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>Task of List&lt;Transaction&gt;</returns>
+        public async System.Threading.Tasks.Task<List<Transaction>> UserGetWalletSummaryAsync (string currency = null)
         {
-             ApiResponse<AccessToken> localVarResponse = await UserLoginAsyncWithHttpInfo(email, password, token);
+             ApiResponse<List<Transaction>> localVarResponse = await UserGetWalletSummaryAsyncWithHttpInfo(currency);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Log in to BitMEX. 
+        /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email">Your email address.</param>
-        /// <param name="password">Your password.</param>
-        /// <param name="token">OTP Token (YubiKey, Google Authenticator) (optional)</param>
-        /// <returns>Task of ApiResponse (AccessToken)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AccessToken>> UserLoginAsyncWithHttpInfo (string email, string password, string token = null)
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>Task of ApiResponse (List&lt;Transaction&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<Transaction>>> UserGetWalletSummaryAsyncWithHttpInfo (string currency = null)
         {
-            // verify the required parameter 'email' is set
-            if (email == null)
-                throw new ApiException(400, "Missing required parameter 'email' when calling UserApi->UserLogin");
-            // verify the required parameter 'password' is set
-            if (password == null)
-                throw new ApiException(400, "Missing required parameter 'password' when calling UserApi->UserLogin");
 
-            var localVarPath = "/user/login";
+            var localVarPath = "/user/walletSummary";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3300,27 +3086,25 @@ namespace IO.Swagger.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (email != null) localVarFormParams.Add("email", Configuration.ApiClient.ParameterToString(email)); // form parameter
-            if (password != null) localVarFormParams.Add("password", Configuration.ApiClient.ParameterToString(password)); // form parameter
-            if (token != null) localVarFormParams.Add("token", Configuration.ApiClient.ParameterToString(token)); // form parameter
+            if (currency != null) localVarQueryParams.Add("currency", Configuration.ApiClient.ParameterToString(currency)); // query parameter
 
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("UserLogin", localVarResponse);
+                Exception exception = ExceptionFactory("UserGetWalletSummary", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<AccessToken>(localVarStatusCode,
+            return new ApiResponse<List<Transaction>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (AccessToken) Configuration.ApiClient.Deserialize(localVarResponse, typeof(AccessToken)));
+                (List<Transaction>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Transaction>)));
             
         }
 
@@ -3605,225 +3389,6 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Register a new user. 
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email">Your email address.</param>
-        /// <param name="password">Your password.</param>
-        /// <param name="country">Country of residence.</param>
-        /// <param name="username">Desired username. (optional)</param>
-        /// <param name="firstname">First name. (optional)</param>
-        /// <param name="lastname">Last name. (optional)</param>
-        /// <param name="acceptsTOS">Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). (optional)</param>
-        /// <param name="referrerID">Optional Referrer ID. (optional)</param>
-        /// <param name="tfaType">Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef (optional)</param>
-        /// <param name="tfaToken">Two-Factor Token. (optional)</param>
-        /// <returns>User</returns>
-        public User UserNew (string email, string password, string country, string username = null, string firstname = null, string lastname = null, string acceptsTOS = null, string referrerID = null, string tfaType = null, string tfaToken = null)
-        {
-             ApiResponse<User> localVarResponse = UserNewWithHttpInfo(email, password, country, username, firstname, lastname, acceptsTOS, referrerID, tfaType, tfaToken);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Register a new user. 
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email">Your email address.</param>
-        /// <param name="password">Your password.</param>
-        /// <param name="country">Country of residence.</param>
-        /// <param name="username">Desired username. (optional)</param>
-        /// <param name="firstname">First name. (optional)</param>
-        /// <param name="lastname">Last name. (optional)</param>
-        /// <param name="acceptsTOS">Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). (optional)</param>
-        /// <param name="referrerID">Optional Referrer ID. (optional)</param>
-        /// <param name="tfaType">Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef (optional)</param>
-        /// <param name="tfaToken">Two-Factor Token. (optional)</param>
-        /// <returns>ApiResponse of User</returns>
-        public ApiResponse< User > UserNewWithHttpInfo (string email, string password, string country, string username = null, string firstname = null, string lastname = null, string acceptsTOS = null, string referrerID = null, string tfaType = null, string tfaToken = null)
-        {
-            // verify the required parameter 'email' is set
-            if (email == null)
-                throw new ApiException(400, "Missing required parameter 'email' when calling UserApi->UserNew");
-            // verify the required parameter 'password' is set
-            if (password == null)
-                throw new ApiException(400, "Missing required parameter 'password' when calling UserApi->UserNew");
-            // verify the required parameter 'country' is set
-            if (country == null)
-                throw new ApiException(400, "Missing required parameter 'country' when calling UserApi->UserNew");
-
-            var localVarPath = "/user";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json", 
-                "application/xml", 
-                "text/xml", 
-                "application/javascript", 
-                "text/javascript"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (email != null) localVarFormParams.Add("email", Configuration.ApiClient.ParameterToString(email)); // form parameter
-            if (password != null) localVarFormParams.Add("password", Configuration.ApiClient.ParameterToString(password)); // form parameter
-            if (username != null) localVarFormParams.Add("username", Configuration.ApiClient.ParameterToString(username)); // form parameter
-            if (firstname != null) localVarFormParams.Add("firstname", Configuration.ApiClient.ParameterToString(firstname)); // form parameter
-            if (lastname != null) localVarFormParams.Add("lastname", Configuration.ApiClient.ParameterToString(lastname)); // form parameter
-            if (acceptsTOS != null) localVarFormParams.Add("acceptsTOS", Configuration.ApiClient.ParameterToString(acceptsTOS)); // form parameter
-            if (referrerID != null) localVarFormParams.Add("referrerID", Configuration.ApiClient.ParameterToString(referrerID)); // form parameter
-            if (country != null) localVarFormParams.Add("country", Configuration.ApiClient.ParameterToString(country)); // form parameter
-            if (tfaType != null) localVarFormParams.Add("tfaType", Configuration.ApiClient.ParameterToString(tfaType)); // form parameter
-            if (tfaToken != null) localVarFormParams.Add("tfaToken", Configuration.ApiClient.ParameterToString(tfaToken)); // form parameter
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UserNew", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<User>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (User) Configuration.ApiClient.Deserialize(localVarResponse, typeof(User)));
-            
-        }
-
-        /// <summary>
-        /// Register a new user. 
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email">Your email address.</param>
-        /// <param name="password">Your password.</param>
-        /// <param name="country">Country of residence.</param>
-        /// <param name="username">Desired username. (optional)</param>
-        /// <param name="firstname">First name. (optional)</param>
-        /// <param name="lastname">Last name. (optional)</param>
-        /// <param name="acceptsTOS">Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). (optional)</param>
-        /// <param name="referrerID">Optional Referrer ID. (optional)</param>
-        /// <param name="tfaType">Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef (optional)</param>
-        /// <param name="tfaToken">Two-Factor Token. (optional)</param>
-        /// <returns>Task of User</returns>
-        public async System.Threading.Tasks.Task<User> UserNewAsync (string email, string password, string country, string username = null, string firstname = null, string lastname = null, string acceptsTOS = null, string referrerID = null, string tfaType = null, string tfaToken = null)
-        {
-             ApiResponse<User> localVarResponse = await UserNewAsyncWithHttpInfo(email, password, country, username, firstname, lastname, acceptsTOS, referrerID, tfaType, tfaToken);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Register a new user. 
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email">Your email address.</param>
-        /// <param name="password">Your password.</param>
-        /// <param name="country">Country of residence.</param>
-        /// <param name="username">Desired username. (optional)</param>
-        /// <param name="firstname">First name. (optional)</param>
-        /// <param name="lastname">Last name. (optional)</param>
-        /// <param name="acceptsTOS">Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). (optional)</param>
-        /// <param name="referrerID">Optional Referrer ID. (optional)</param>
-        /// <param name="tfaType">Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef (optional)</param>
-        /// <param name="tfaToken">Two-Factor Token. (optional)</param>
-        /// <returns>Task of ApiResponse (User)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<User>> UserNewAsyncWithHttpInfo (string email, string password, string country, string username = null, string firstname = null, string lastname = null, string acceptsTOS = null, string referrerID = null, string tfaType = null, string tfaToken = null)
-        {
-            // verify the required parameter 'email' is set
-            if (email == null)
-                throw new ApiException(400, "Missing required parameter 'email' when calling UserApi->UserNew");
-            // verify the required parameter 'password' is set
-            if (password == null)
-                throw new ApiException(400, "Missing required parameter 'password' when calling UserApi->UserNew");
-            // verify the required parameter 'country' is set
-            if (country == null)
-                throw new ApiException(400, "Missing required parameter 'country' when calling UserApi->UserNew");
-
-            var localVarPath = "/user";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json", 
-                "application/xml", 
-                "text/xml", 
-                "application/javascript", 
-                "text/javascript"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (email != null) localVarFormParams.Add("email", Configuration.ApiClient.ParameterToString(email)); // form parameter
-            if (password != null) localVarFormParams.Add("password", Configuration.ApiClient.ParameterToString(password)); // form parameter
-            if (username != null) localVarFormParams.Add("username", Configuration.ApiClient.ParameterToString(username)); // form parameter
-            if (firstname != null) localVarFormParams.Add("firstname", Configuration.ApiClient.ParameterToString(firstname)); // form parameter
-            if (lastname != null) localVarFormParams.Add("lastname", Configuration.ApiClient.ParameterToString(lastname)); // form parameter
-            if (acceptsTOS != null) localVarFormParams.Add("acceptsTOS", Configuration.ApiClient.ParameterToString(acceptsTOS)); // form parameter
-            if (referrerID != null) localVarFormParams.Add("referrerID", Configuration.ApiClient.ParameterToString(referrerID)); // form parameter
-            if (country != null) localVarFormParams.Add("country", Configuration.ApiClient.ParameterToString(country)); // form parameter
-            if (tfaType != null) localVarFormParams.Add("tfaType", Configuration.ApiClient.ParameterToString(tfaType)); // form parameter
-            if (tfaToken != null) localVarFormParams.Add("tfaToken", Configuration.ApiClient.ParameterToString(tfaToken)); // form parameter
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UserNew", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<User>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (User) Configuration.ApiClient.Deserialize(localVarResponse, typeof(User)));
-            
-        }
-
-        /// <summary>
         /// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
@@ -3961,159 +3526,6 @@ namespace IO.Swagger.Api
             if (ExceptionFactory != null)
             {
                 Exception exception = ExceptionFactory("UserRequestEnableTFA", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<bool?>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (bool?) Configuration.ApiClient.Deserialize(localVarResponse, typeof(bool?)));
-            
-        }
-
-        /// <summary>
-        /// Request a password reset. 
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <returns>bool?</returns>
-        public bool? UserRequestPasswordReset (string email)
-        {
-             ApiResponse<bool?> localVarResponse = UserRequestPasswordResetWithHttpInfo(email);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Request a password reset. 
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <returns>ApiResponse of bool?</returns>
-        public ApiResponse< bool? > UserRequestPasswordResetWithHttpInfo (string email)
-        {
-            // verify the required parameter 'email' is set
-            if (email == null)
-                throw new ApiException(400, "Missing required parameter 'email' when calling UserApi->UserRequestPasswordReset");
-
-            var localVarPath = "/user/requestPasswordReset";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json", 
-                "application/xml", 
-                "text/xml", 
-                "application/javascript", 
-                "text/javascript"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (email != null) localVarFormParams.Add("email", Configuration.ApiClient.ParameterToString(email)); // form parameter
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UserRequestPasswordReset", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<bool?>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (bool?) Configuration.ApiClient.Deserialize(localVarResponse, typeof(bool?)));
-            
-        }
-
-        /// <summary>
-        /// Request a password reset. 
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <returns>Task of bool?</returns>
-        public async System.Threading.Tasks.Task<bool?> UserRequestPasswordResetAsync (string email)
-        {
-             ApiResponse<bool?> localVarResponse = await UserRequestPasswordResetAsyncWithHttpInfo(email);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Request a password reset. 
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <returns>Task of ApiResponse (bool?)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<bool?>> UserRequestPasswordResetAsyncWithHttpInfo (string email)
-        {
-            // verify the required parameter 'email' is set
-            if (email == null)
-                throw new ApiException(400, "Missing required parameter 'email' when calling UserApi->UserRequestPasswordReset");
-
-            var localVarPath = "/user/requestPasswordReset";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json", 
-                "application/xml", 
-                "text/xml", 
-                "application/javascript", 
-                "text/javascript"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (email != null) localVarFormParams.Add("email", Configuration.ApiClient.ParameterToString(email)); // form parameter
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UserRequestPasswordReset", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -4468,159 +3880,6 @@ namespace IO.Swagger.Api
             return new ApiResponse<User>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (User) Configuration.ApiClient.Deserialize(localVarResponse, typeof(User)));
-            
-        }
-
-        /// <summary>
-        /// Re-send verification email. 
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <returns>bool?</returns>
-        public bool? UserSendVerificationEmail (string email)
-        {
-             ApiResponse<bool?> localVarResponse = UserSendVerificationEmailWithHttpInfo(email);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Re-send verification email. 
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <returns>ApiResponse of bool?</returns>
-        public ApiResponse< bool? > UserSendVerificationEmailWithHttpInfo (string email)
-        {
-            // verify the required parameter 'email' is set
-            if (email == null)
-                throw new ApiException(400, "Missing required parameter 'email' when calling UserApi->UserSendVerificationEmail");
-
-            var localVarPath = "/user/resendVerificationEmail";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json", 
-                "application/xml", 
-                "text/xml", 
-                "application/javascript", 
-                "text/javascript"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (email != null) localVarFormParams.Add("email", Configuration.ApiClient.ParameterToString(email)); // form parameter
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UserSendVerificationEmail", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<bool?>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (bool?) Configuration.ApiClient.Deserialize(localVarResponse, typeof(bool?)));
-            
-        }
-
-        /// <summary>
-        /// Re-send verification email. 
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <returns>Task of bool?</returns>
-        public async System.Threading.Tasks.Task<bool?> UserSendVerificationEmailAsync (string email)
-        {
-             ApiResponse<bool?> localVarResponse = await UserSendVerificationEmailAsyncWithHttpInfo(email);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Re-send verification email. 
-        /// </summary>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="email"></param>
-        /// <returns>Task of ApiResponse (bool?)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<bool?>> UserSendVerificationEmailAsyncWithHttpInfo (string email)
-        {
-            // verify the required parameter 'email' is set
-            if (email == null)
-                throw new ApiException(400, "Missing required parameter 'email' when calling UserApi->UserSendVerificationEmail");
-
-            var localVarPath = "/user/resendVerificationEmail";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json", 
-                "application/xml", 
-                "text/xml", 
-                "application/javascript", 
-                "text/javascript"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (email != null) localVarFormParams.Add("email", Configuration.ApiClient.ParameterToString(email)); // form parameter
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UserSendVerificationEmail", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<bool?>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (bool?) Configuration.ApiClient.Deserialize(localVarResponse, typeof(bool?)));
             
         }
 

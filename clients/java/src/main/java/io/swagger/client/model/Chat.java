@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -36,7 +36,7 @@ import org.joda.time.LocalDate;
 /**
  * Chat
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-05T09:40:48.217-05:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-01-03T10:34:33.567-06:00")
 public class Chat   {
   @JsonProperty("id")
   private BigDecimal id = null;
@@ -55,6 +55,9 @@ public class Chat   {
 
   @JsonProperty("fromBot")
   private Boolean fromBot = false;
+
+  @JsonProperty("channelID")
+  private Double channelID = null;
 
   public Chat id(BigDecimal id) {
     this.id = id;
@@ -164,6 +167,24 @@ public class Chat   {
     this.fromBot = fromBot;
   }
 
+  public Chat channelID(Double channelID) {
+    this.channelID = channelID;
+    return this;
+  }
+
+   /**
+   * Get channelID
+   * @return channelID
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public Double getChannelID() {
+    return channelID;
+  }
+
+  public void setChannelID(Double channelID) {
+    this.channelID = channelID;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -179,12 +200,13 @@ public class Chat   {
         Objects.equals(this.user, chat.user) &&
         Objects.equals(this.message, chat.message) &&
         Objects.equals(this.html, chat.html) &&
-        Objects.equals(this.fromBot, chat.fromBot);
+        Objects.equals(this.fromBot, chat.fromBot) &&
+        Objects.equals(this.channelID, chat.channelID);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, date, user, message, html, fromBot);
+    return Objects.hash(id, date, user, message, html, fromBot, channelID);
   }
 
   @Override
@@ -198,6 +220,7 @@ public class Chat   {
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    html: ").append(toIndentedString(html)).append("\n");
     sb.append("    fromBot: ").append(toIndentedString(fromBot)).append("\n");
+    sb.append("    channelID: ").append(toIndentedString(channelID)).append("\n");
     sb.append("}");
     return sb.toString();
   }

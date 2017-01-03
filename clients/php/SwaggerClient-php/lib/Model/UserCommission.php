@@ -14,7 +14,7 @@
 /**
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section.
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -66,9 +66,9 @@ class UserCommission implements ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = array(
-        'maker_fee' => 'string',
-        'taker_fee' => 'string',
-        'insurance_fee' => 'string'
+        'maker_fee' => 'double',
+        'taker_fee' => 'double',
+        'settlement_fee' => 'double'
     );
 
     public static function swaggerTypes()
@@ -83,7 +83,7 @@ class UserCommission implements ArrayAccess
     protected static $attributeMap = array(
         'maker_fee' => 'makerFee',
         'taker_fee' => 'takerFee',
-        'insurance_fee' => 'insuranceFee'
+        'settlement_fee' => 'settlementFee'
     );
 
     public static function attributeMap()
@@ -98,7 +98,7 @@ class UserCommission implements ArrayAccess
     protected static $setters = array(
         'maker_fee' => 'setMakerFee',
         'taker_fee' => 'setTakerFee',
-        'insurance_fee' => 'setInsuranceFee'
+        'settlement_fee' => 'setSettlementFee'
     );
 
     public static function setters()
@@ -113,7 +113,7 @@ class UserCommission implements ArrayAccess
     protected static $getters = array(
         'maker_fee' => 'getMakerFee',
         'taker_fee' => 'getTakerFee',
-        'insurance_fee' => 'getInsuranceFee'
+        'settlement_fee' => 'getSettlementFee'
     );
 
     public static function getters()
@@ -139,7 +139,7 @@ class UserCommission implements ArrayAccess
     {
         $this->container['maker_fee'] = isset($data['maker_fee']) ? $data['maker_fee'] : null;
         $this->container['taker_fee'] = isset($data['taker_fee']) ? $data['taker_fee'] : null;
-        $this->container['insurance_fee'] = isset($data['insurance_fee']) ? $data['insurance_fee'] : null;
+        $this->container['settlement_fee'] = isset($data['settlement_fee']) ? $data['settlement_fee'] : null;
     }
 
     /**
@@ -167,7 +167,7 @@ class UserCommission implements ArrayAccess
 
     /**
      * Gets maker_fee
-     * @return string
+     * @return double
      */
     public function getMakerFee()
     {
@@ -176,7 +176,7 @@ class UserCommission implements ArrayAccess
 
     /**
      * Sets maker_fee
-     * @param string $maker_fee
+     * @param double $maker_fee
      * @return $this
      */
     public function setMakerFee($maker_fee)
@@ -188,7 +188,7 @@ class UserCommission implements ArrayAccess
 
     /**
      * Gets taker_fee
-     * @return string
+     * @return double
      */
     public function getTakerFee()
     {
@@ -197,7 +197,7 @@ class UserCommission implements ArrayAccess
 
     /**
      * Sets taker_fee
-     * @param string $taker_fee
+     * @param double $taker_fee
      * @return $this
      */
     public function setTakerFee($taker_fee)
@@ -208,22 +208,22 @@ class UserCommission implements ArrayAccess
     }
 
     /**
-     * Gets insurance_fee
-     * @return string
+     * Gets settlement_fee
+     * @return double
      */
-    public function getInsuranceFee()
+    public function getSettlementFee()
     {
-        return $this->container['insurance_fee'];
+        return $this->container['settlement_fee'];
     }
 
     /**
-     * Sets insurance_fee
-     * @param string $insurance_fee
+     * Sets settlement_fee
+     * @param double $settlement_fee
      * @return $this
      */
-    public function setInsuranceFee($insurance_fee)
+    public function setSettlementFee($settlement_fee)
     {
-        $this->container['insurance_fee'] = $insurance_fee;
+        $this->container['settlement_fee'] = $settlement_fee;
 
         return $this;
     }

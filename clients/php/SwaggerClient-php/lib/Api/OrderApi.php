@@ -13,7 +13,7 @@
 /**
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section.
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -108,7 +108,8 @@ class OrderApi
      * Amend the quantity or price of an open order.
      *
      * @param string $order_id Order ID (optional)
-     * @param string $cl_ord_id Client Order ID. See POST /order. (optional)
+     * @param string $orig_cl_ord_id Client Order ID. See POST /order. (optional)
+     * @param string $cl_ord_id Optional new Client Order ID, requires &#x60;origClOrdID&#x60;. (optional)
      * @param double $simple_order_qty Optional order quantity in units of the underlying instrument (i.e. Bitcoin). (optional)
      * @param float $order_qty Optional order quantity in units of the instrument (i.e. contracts). (optional)
      * @param double $simple_leaves_qty Optional leaves quantity in units of the underlying instrument (i.e. Bitcoin). Useful for amending partially filled orders. (optional)
@@ -120,9 +121,9 @@ class OrderApi
      * @return \Swagger\Client\Model\Order
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function orderAmend($order_id = null, $cl_ord_id = null, $simple_order_qty = null, $order_qty = null, $simple_leaves_qty = null, $leaves_qty = null, $price = null, $stop_px = null, $peg_offset_value = null, $text = null)
+    public function orderAmend($order_id = null, $orig_cl_ord_id = null, $cl_ord_id = null, $simple_order_qty = null, $order_qty = null, $simple_leaves_qty = null, $leaves_qty = null, $price = null, $stop_px = null, $peg_offset_value = null, $text = null)
     {
-        list($response) = $this->orderAmendWithHttpInfo($order_id, $cl_ord_id, $simple_order_qty, $order_qty, $simple_leaves_qty, $leaves_qty, $price, $stop_px, $peg_offset_value, $text);
+        list($response) = $this->orderAmendWithHttpInfo($order_id, $orig_cl_ord_id, $cl_ord_id, $simple_order_qty, $order_qty, $simple_leaves_qty, $leaves_qty, $price, $stop_px, $peg_offset_value, $text);
         return $response;
     }
 
@@ -132,7 +133,8 @@ class OrderApi
      * Amend the quantity or price of an open order.
      *
      * @param string $order_id Order ID (optional)
-     * @param string $cl_ord_id Client Order ID. See POST /order. (optional)
+     * @param string $orig_cl_ord_id Client Order ID. See POST /order. (optional)
+     * @param string $cl_ord_id Optional new Client Order ID, requires &#x60;origClOrdID&#x60;. (optional)
      * @param double $simple_order_qty Optional order quantity in units of the underlying instrument (i.e. Bitcoin). (optional)
      * @param float $order_qty Optional order quantity in units of the instrument (i.e. contracts). (optional)
      * @param double $simple_leaves_qty Optional leaves quantity in units of the underlying instrument (i.e. Bitcoin). Useful for amending partially filled orders. (optional)
@@ -144,7 +146,7 @@ class OrderApi
      * @return Array of \Swagger\Client\Model\Order, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function orderAmendWithHttpInfo($order_id = null, $cl_ord_id = null, $simple_order_qty = null, $order_qty = null, $simple_leaves_qty = null, $leaves_qty = null, $price = null, $stop_px = null, $peg_offset_value = null, $text = null)
+    public function orderAmendWithHttpInfo($order_id = null, $orig_cl_ord_id = null, $cl_ord_id = null, $simple_order_qty = null, $order_qty = null, $simple_leaves_qty = null, $leaves_qty = null, $price = null, $stop_px = null, $peg_offset_value = null, $text = null)
     {
         // parse inputs
         $resourcePath = "/order";
@@ -164,6 +166,10 @@ class OrderApi
         // form params
         if ($order_id !== null) {
             $formParams['orderID'] = $this->apiClient->getSerializer()->toFormValue($order_id);
+        }
+        // form params
+        if ($orig_cl_ord_id !== null) {
+            $formParams['origClOrdID'] = $this->apiClient->getSerializer()->toFormValue($orig_cl_ord_id);
         }
         // form params
         if ($cl_ord_id !== null) {
@@ -880,7 +886,7 @@ class OrderApi
      * @param string $type Deprecated: use &#x60;ordType&#x60;. (optional)
      * @param string $ord_type Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to &#39;Limit&#39; when &#x60;price&#x60; is specified. Defaults to &#39;Stop&#39; when &#x60;stopPx&#x60; is specified. Defaults to &#39;StopLimit&#39; when &#x60;price&#x60; and &#x60;stopPx&#x60; are specified. (optional, default to Limit)
      * @param string $time_in_force Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to &#39;GoodTillCancel&#39; for &#39;Limit&#39;, &#39;StopLimit&#39;, &#39;LimitIfTouched&#39;, and &#39;MarketWithLeftOverAsLimit&#39; orders. (optional)
-     * @param string $exec_inst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, LastPrice, Close, ReduceOnly. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. (optional)
+     * @param string $exec_inst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. (optional)
      * @param string $contingency_type Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute, OneUpdatesTheOtherProportional. (optional)
      * @param string $text Optional order annotation. e.g. &#39;Take profit&#39;. (optional)
      * @return \Swagger\Client\Model\Order
@@ -913,7 +919,7 @@ class OrderApi
      * @param string $type Deprecated: use &#x60;ordType&#x60;. (optional)
      * @param string $ord_type Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to &#39;Limit&#39; when &#x60;price&#x60; is specified. Defaults to &#39;Stop&#39; when &#x60;stopPx&#x60; is specified. Defaults to &#39;StopLimit&#39; when &#x60;price&#x60; and &#x60;stopPx&#x60; are specified. (optional, default to Limit)
      * @param string $time_in_force Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to &#39;GoodTillCancel&#39; for &#39;Limit&#39;, &#39;StopLimit&#39;, &#39;LimitIfTouched&#39;, and &#39;MarketWithLeftOverAsLimit&#39; orders. (optional)
-     * @param string $exec_inst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, LastPrice, Close, ReduceOnly. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. (optional)
+     * @param string $exec_inst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. (optional)
      * @param string $contingency_type Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute, OneUpdatesTheOtherProportional. (optional)
      * @param string $text Optional order annotation. e.g. &#39;Take profit&#39;. (optional)
      * @return Array of \Swagger\Client\Model\Order, HTTP status code, HTTP response headers (array of strings)

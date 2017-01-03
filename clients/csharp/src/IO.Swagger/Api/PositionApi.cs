@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -130,6 +130,29 @@ namespace IO.Swagger.Api
         /// <param name="leverage">Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.</param>
         /// <returns>ApiResponse of Position</returns>
         ApiResponse<Position> PositionUpdateLeverageWithHttpInfo (string symbol, double? leverage);
+        /// <summary>
+        /// Update your risk limit.
+        /// </summary>
+        /// <remarks>
+        /// Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol">Symbol of position to isolate.</param>
+        /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
+        /// <returns>Position</returns>
+        Position PositionUpdateRiskLimit (string symbol, decimal? riskLimit);
+
+        /// <summary>
+        /// Update your risk limit.
+        /// </summary>
+        /// <remarks>
+        /// Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol">Symbol of position to isolate.</param>
+        /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
+        /// <returns>ApiResponse of Position</returns>
+        ApiResponse<Position> PositionUpdateRiskLimitWithHttpInfo (string symbol, decimal? riskLimit);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -226,6 +249,29 @@ namespace IO.Swagger.Api
         /// <param name="leverage">Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.</param>
         /// <returns>Task of ApiResponse (Position)</returns>
         System.Threading.Tasks.Task<ApiResponse<Position>> PositionUpdateLeverageAsyncWithHttpInfo (string symbol, double? leverage);
+        /// <summary>
+        /// Update your risk limit.
+        /// </summary>
+        /// <remarks>
+        /// Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol">Symbol of position to isolate.</param>
+        /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
+        /// <returns>Task of Position</returns>
+        System.Threading.Tasks.Task<Position> PositionUpdateRiskLimitAsync (string symbol, decimal? riskLimit);
+
+        /// <summary>
+        /// Update your risk limit.
+        /// </summary>
+        /// <remarks>
+        /// Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol">Symbol of position to isolate.</param>
+        /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
+        /// <returns>Task of ApiResponse (Position)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Position>> PositionUpdateRiskLimitAsyncWithHttpInfo (string symbol, decimal? riskLimit);
         #endregion Asynchronous Operations
     }
 
@@ -977,6 +1023,171 @@ namespace IO.Swagger.Api
             if (ExceptionFactory != null)
             {
                 Exception exception = ExceptionFactory("PositionUpdateLeverage", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Position>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Position) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Position)));
+            
+        }
+
+        /// <summary>
+        /// Update your risk limit. Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol">Symbol of position to isolate.</param>
+        /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
+        /// <returns>Position</returns>
+        public Position PositionUpdateRiskLimit (string symbol, decimal? riskLimit)
+        {
+             ApiResponse<Position> localVarResponse = PositionUpdateRiskLimitWithHttpInfo(symbol, riskLimit);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update your risk limit. Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol">Symbol of position to isolate.</param>
+        /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
+        /// <returns>ApiResponse of Position</returns>
+        public ApiResponse< Position > PositionUpdateRiskLimitWithHttpInfo (string symbol, decimal? riskLimit)
+        {
+            // verify the required parameter 'symbol' is set
+            if (symbol == null)
+                throw new ApiException(400, "Missing required parameter 'symbol' when calling PositionApi->PositionUpdateRiskLimit");
+            // verify the required parameter 'riskLimit' is set
+            if (riskLimit == null)
+                throw new ApiException(400, "Missing required parameter 'riskLimit' when calling PositionApi->PositionUpdateRiskLimit");
+
+            var localVarPath = "/position/riskLimit";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json", 
+                "application/xml", 
+                "text/xml", 
+                "application/javascript", 
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (symbol != null) localVarFormParams.Add("symbol", Configuration.ApiClient.ParameterToString(symbol)); // form parameter
+            if (riskLimit != null) localVarFormParams.Add("riskLimit", Configuration.ApiClient.ParameterToString(riskLimit)); // form parameter
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PositionUpdateRiskLimit", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Position>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Position) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Position)));
+            
+        }
+
+        /// <summary>
+        /// Update your risk limit. Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol">Symbol of position to isolate.</param>
+        /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
+        /// <returns>Task of Position</returns>
+        public async System.Threading.Tasks.Task<Position> PositionUpdateRiskLimitAsync (string symbol, decimal? riskLimit)
+        {
+             ApiResponse<Position> localVarResponse = await PositionUpdateRiskLimitAsyncWithHttpInfo(symbol, riskLimit);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Update your risk limit. Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="symbol">Symbol of position to isolate.</param>
+        /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
+        /// <returns>Task of ApiResponse (Position)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Position>> PositionUpdateRiskLimitAsyncWithHttpInfo (string symbol, decimal? riskLimit)
+        {
+            // verify the required parameter 'symbol' is set
+            if (symbol == null)
+                throw new ApiException(400, "Missing required parameter 'symbol' when calling PositionApi->PositionUpdateRiskLimit");
+            // verify the required parameter 'riskLimit' is set
+            if (riskLimit == null)
+                throw new ApiException(400, "Missing required parameter 'riskLimit' when calling PositionApi->PositionUpdateRiskLimit");
+
+            var localVarPath = "/position/riskLimit";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json", 
+                "application/xml", 
+                "text/xml", 
+                "application/javascript", 
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (symbol != null) localVarFormParams.Add("symbol", Configuration.ApiClient.ParameterToString(symbol)); // form parameter
+            if (riskLimit != null) localVarFormParams.Add("riskLimit", Configuration.ApiClient.ParameterToString(riskLimit)); // form parameter
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PositionUpdateRiskLimit", localVarResponse);
                 if (exception != null) throw exception;
             }
 

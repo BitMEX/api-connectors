@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**user_check_referral_code**](UserApi.md#user_check_referral_code) | **GET** /user/checkReferralCode | Check if a referral code is valid.
 [**user_confirm_email**](UserApi.md#user_confirm_email) | **POST** /user/confirmEmail | Confirm your email address with a token.
 [**user_confirm_enable_tfa**](UserApi.md#user_confirm_enable_tfa) | **POST** /user/confirmEnableTFA | Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
-[**user_confirm_password_reset**](UserApi.md#user_confirm_password_reset) | **POST** /user/confirmPasswordReset | Confirm a password reset.
 [**user_confirm_withdrawal**](UserApi.md#user_confirm_withdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
 [**user_disable_tfa**](UserApi.md#user_disable_tfa) | **POST** /user/disableTFA | Disable two-factor auth for this account.
 [**user_get**](UserApi.md#user_get) | **GET** /user | Get your user model.
@@ -16,16 +15,14 @@ Method | HTTP request | Description
 [**user_get_commission**](UserApi.md#user_get_commission) | **GET** /user/commission | Get your account&#39;s commission status.
 [**user_get_deposit_address**](UserApi.md#user_get_deposit_address) | **GET** /user/depositAddress | Get a deposit address.
 [**user_get_margin**](UserApi.md#user_get_margin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
-[**user_get_wallet_history**](UserApi.md#user_get_wallet_history) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits and withdrawals).
-[**user_login**](UserApi.md#user_login) | **POST** /user/login | Log in to BitMEX.
+[**user_get_wallet**](UserApi.md#user_get_wallet) | **GET** /user/wallet | Get your current wallet information.
+[**user_get_wallet_history**](UserApi.md#user_get_wallet_history) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
+[**user_get_wallet_summary**](UserApi.md#user_get_wallet_summary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**user_logout**](UserApi.md#user_logout) | **POST** /user/logout | Log out of BitMEX.
 [**user_logout_all**](UserApi.md#user_logout_all) | **POST** /user/logoutAll | Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
-[**user_new**](UserApi.md#user_new) | **POST** /user | Register a new user.
 [**user_request_enable_tfa**](UserApi.md#user_request_enable_tfa) | **POST** /user/requestEnableTFA | Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
-[**user_request_password_reset**](UserApi.md#user_request_password_reset) | **POST** /user/requestPasswordReset | Request a password reset.
 [**user_request_withdrawal**](UserApi.md#user_request_withdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**user_save_preferences**](UserApi.md#user_save_preferences) | **POST** /user/preferences | Save user preferences.
-[**user_send_verification_email**](UserApi.md#user_send_verification_email) | **POST** /user/resendVerificationEmail | Re-send verification email.
 [**user_update**](UserApi.md#user_update) | **PUT** /user | Update your password, name, and other attributes.
 
 
@@ -200,54 +197,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **String**| Token from your selected TFA type. | 
  **type** | **String**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39; | [optional] 
-
-### Return type
-
-**BOOLEAN**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-
-
-# **user_confirm_password_reset**
-> BOOLEAN user_confirm_password_reset(token, new_password)
-
-Confirm a password reset.
-
-### Example
-```ruby
-# load the gem
-require 'swagger_client'
-
-api_instance = SwaggerClient::UserApi.new
-
-token = "token_example" # String | 
-
-new_password = "new_password_example" # String | 
-
-
-begin
-  #Confirm a password reset.
-  result = api_instance.user_confirm_password_reset(token, new_password)
-  p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling UserApi->user_confirm_password_reset: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **String**|  | 
- **new_password** | **String**|  | 
 
 ### Return type
 
@@ -567,10 +516,10 @@ No authorization required
 
 
 
-# **user_get_wallet_history**
-> Array&lt;Transaction&gt; user_get_wallet_history(opts)
+# **user_get_wallet**
+> Wallet user_get_wallet(opts)
 
-Get a history of all of your wallet transactions (deposits and withdrawals).
+Get your current wallet information.
 
 ### Example
 ```ruby
@@ -584,7 +533,53 @@ opts = {
 }
 
 begin
-  #Get a history of all of your wallet transactions (deposits and withdrawals).
+  #Get your current wallet information.
+  result = api_instance.user_get_wallet(opts)
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling UserApi->user_get_wallet: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **String**|  | [optional] [default to XBt]
+
+### Return type
+
+[**Wallet**](Wallet.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+
+
+# **user_get_wallet_history**
+> Array&lt;Transaction&gt; user_get_wallet_history(opts)
+
+Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+
+api_instance = SwaggerClient::UserApi.new
+
+opts = { 
+  currency: "XBt" # String | 
+}
+
+begin
+  #Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
   result = api_instance.user_get_wallet_history(opts)
   p result
 rescue SwaggerClient::ApiError => e
@@ -613,10 +608,10 @@ No authorization required
 
 
 
-# **user_login**
-> AccessToken user_login(email, password, opts)
+# **user_get_wallet_summary**
+> Array&lt;Transaction&gt; user_get_wallet_summary(opts)
 
-Log in to BitMEX.
+Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 
 ### Example
 ```ruby
@@ -625,20 +620,16 @@ require 'swagger_client'
 
 api_instance = SwaggerClient::UserApi.new
 
-email = "email_example" # String | Your email address.
-
-password = "password_example" # String | Your password.
-
 opts = { 
-  token: "token_example" # String | OTP Token (YubiKey, Google Authenticator)
+  currency: "XBt" # String | 
 }
 
 begin
-  #Log in to BitMEX.
-  result = api_instance.user_login(email, password, opts)
+  #Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+  result = api_instance.user_get_wallet_summary(opts)
   p result
 rescue SwaggerClient::ApiError => e
-  puts "Exception when calling UserApi->user_login: #{e}"
+  puts "Exception when calling UserApi->user_get_wallet_summary: #{e}"
 end
 ```
 
@@ -646,13 +637,11 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **String**| Your email address. | 
- **password** | **String**| Your password. | 
- **token** | **String**| OTP Token (YubiKey, Google Authenticator) | [optional] 
+ **currency** | **String**|  | [optional] [default to XBt]
 
 ### Return type
 
-[**AccessToken**](AccessToken.md)
+[**Array&lt;Transaction&gt;**](Transaction.md)
 
 ### Authorization
 
@@ -742,73 +731,6 @@ No authorization required
 
 
 
-# **user_new**
-> User user_new(email, password, country, opts)
-
-Register a new user.
-
-### Example
-```ruby
-# load the gem
-require 'swagger_client'
-
-api_instance = SwaggerClient::UserApi.new
-
-email = "email_example" # String | Your email address.
-
-password = "password_example" # String | Your password.
-
-country = "country_example" # String | Country of residence.
-
-opts = { 
-  username: "username_example", # String | Desired username.
-  firstname: "firstname_example", # String | First name.
-  lastname: "lastname_example", # String | Last name.
-  accepts_tos: "accepts_tos_example", # String | Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).
-  referrer_id: "referrer_id_example", # String | Optional Referrer ID.
-  tfa_type: "tfa_type_example", # String | Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef
-  tfa_token: "tfa_token_example" # String | Two-Factor Token.
-}
-
-begin
-  #Register a new user.
-  result = api_instance.user_new(email, password, country, opts)
-  p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling UserApi->user_new: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **String**| Your email address. | 
- **password** | **String**| Your password. | 
- **country** | **String**| Country of residence. | 
- **username** | **String**| Desired username. | [optional] 
- **firstname** | **String**| First name. | [optional] 
- **lastname** | **String**| Last name. | [optional] 
- **accepts_tos** | **String**| Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). | [optional] 
- **referrer_id** | **String**| Optional Referrer ID. | [optional] 
- **tfa_type** | **String**| Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef | [optional] 
- **tfa_token** | **String**| Two-Factor Token. | [optional] 
-
-### Return type
-
-[**User**](User.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-
-
 # **user_request_enable_tfa**
 > BOOLEAN user_request_enable_tfa(opts)
 
@@ -839,51 +761,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **type** | **String**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) | [optional] 
-
-### Return type
-
-**BOOLEAN**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-
-
-# **user_request_password_reset**
-> BOOLEAN user_request_password_reset(email)
-
-Request a password reset.
-
-### Example
-```ruby
-# load the gem
-require 'swagger_client'
-
-api_instance = SwaggerClient::UserApi.new
-
-email = "email_example" # String | 
-
-
-begin
-  #Request a password reset.
-  result = api_instance.user_request_password_reset(email)
-  p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling UserApi->user_request_password_reset: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **String**|  | 
 
 ### Return type
 
@@ -996,51 +873,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**User**](User.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-
-
-# **user_send_verification_email**
-> BOOLEAN user_send_verification_email(email)
-
-Re-send verification email.
-
-### Example
-```ruby
-# load the gem
-require 'swagger_client'
-
-api_instance = SwaggerClient::UserApi.new
-
-email = "email_example" # String | 
-
-
-begin
-  #Re-send verification email.
-  result = api_instance.user_send_verification_email(email)
-  p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling UserApi->user_send_verification_email: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **String**|  | 
-
-### Return type
-
-**BOOLEAN**
 
 ### Authorization
 

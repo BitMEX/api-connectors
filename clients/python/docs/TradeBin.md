@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**timestamp** | **date** |  | [optional] 
-**symbol** | **str** |  | [optional] 
+**timestamp** | **date** |  | 
+**symbol** | **str** |  | 
 **open** | **float** |  | [optional] 
 **high** | **float** |  | [optional] 
 **low** | **float** |  | [optional] 
@@ -16,7 +16,6 @@ Name | Type | Description | Notes
 **turnover** | **float** |  | [optional] 
 **home_notional** | **float** |  | [optional] 
 **foreign_notional** | **float** |  | [optional] 
-**id** | **float** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

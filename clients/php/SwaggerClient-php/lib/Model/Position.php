@@ -14,7 +14,7 @@
 /**
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section.
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -72,8 +72,12 @@ class Position implements ArrayAccess
         'underlying' => 'string',
         'quote_currency' => 'string',
         'commission' => 'double',
+        'init_margin_req' => 'double',
+        'maint_margin_req' => 'double',
+        'risk_limit' => 'float',
         'leverage' => 'double',
         'cross_margin' => 'bool',
+        'deleverage_percentile' => 'double',
         'rebalanced_pnl' => 'float',
         'prev_realised_pnl' => 'float',
         'prev_unrealised_pnl' => 'float',
@@ -107,6 +111,7 @@ class Position implements ArrayAccess
         'is_open' => 'bool',
         'mark_price' => 'double',
         'mark_value' => 'float',
+        'risk_value' => 'float',
         'home_notional' => 'double',
         'foreign_notional' => 'double',
         'pos_state' => 'string',
@@ -170,8 +175,12 @@ class Position implements ArrayAccess
         'underlying' => 'underlying',
         'quote_currency' => 'quoteCurrency',
         'commission' => 'commission',
+        'init_margin_req' => 'initMarginReq',
+        'maint_margin_req' => 'maintMarginReq',
+        'risk_limit' => 'riskLimit',
         'leverage' => 'leverage',
         'cross_margin' => 'crossMargin',
+        'deleverage_percentile' => 'deleveragePercentile',
         'rebalanced_pnl' => 'rebalancedPnl',
         'prev_realised_pnl' => 'prevRealisedPnl',
         'prev_unrealised_pnl' => 'prevUnrealisedPnl',
@@ -205,6 +214,7 @@ class Position implements ArrayAccess
         'is_open' => 'isOpen',
         'mark_price' => 'markPrice',
         'mark_value' => 'markValue',
+        'risk_value' => 'riskValue',
         'home_notional' => 'homeNotional',
         'foreign_notional' => 'foreignNotional',
         'pos_state' => 'posState',
@@ -268,8 +278,12 @@ class Position implements ArrayAccess
         'underlying' => 'setUnderlying',
         'quote_currency' => 'setQuoteCurrency',
         'commission' => 'setCommission',
+        'init_margin_req' => 'setInitMarginReq',
+        'maint_margin_req' => 'setMaintMarginReq',
+        'risk_limit' => 'setRiskLimit',
         'leverage' => 'setLeverage',
         'cross_margin' => 'setCrossMargin',
+        'deleverage_percentile' => 'setDeleveragePercentile',
         'rebalanced_pnl' => 'setRebalancedPnl',
         'prev_realised_pnl' => 'setPrevRealisedPnl',
         'prev_unrealised_pnl' => 'setPrevUnrealisedPnl',
@@ -303,6 +317,7 @@ class Position implements ArrayAccess
         'is_open' => 'setIsOpen',
         'mark_price' => 'setMarkPrice',
         'mark_value' => 'setMarkValue',
+        'risk_value' => 'setRiskValue',
         'home_notional' => 'setHomeNotional',
         'foreign_notional' => 'setForeignNotional',
         'pos_state' => 'setPosState',
@@ -366,8 +381,12 @@ class Position implements ArrayAccess
         'underlying' => 'getUnderlying',
         'quote_currency' => 'getQuoteCurrency',
         'commission' => 'getCommission',
+        'init_margin_req' => 'getInitMarginReq',
+        'maint_margin_req' => 'getMaintMarginReq',
+        'risk_limit' => 'getRiskLimit',
         'leverage' => 'getLeverage',
         'cross_margin' => 'getCrossMargin',
+        'deleverage_percentile' => 'getDeleveragePercentile',
         'rebalanced_pnl' => 'getRebalancedPnl',
         'prev_realised_pnl' => 'getPrevRealisedPnl',
         'prev_unrealised_pnl' => 'getPrevUnrealisedPnl',
@@ -401,6 +420,7 @@ class Position implements ArrayAccess
         'is_open' => 'getIsOpen',
         'mark_price' => 'getMarkPrice',
         'mark_value' => 'getMarkValue',
+        'risk_value' => 'getRiskValue',
         'home_notional' => 'getHomeNotional',
         'foreign_notional' => 'getForeignNotional',
         'pos_state' => 'getPosState',
@@ -475,8 +495,12 @@ class Position implements ArrayAccess
         $this->container['underlying'] = isset($data['underlying']) ? $data['underlying'] : null;
         $this->container['quote_currency'] = isset($data['quote_currency']) ? $data['quote_currency'] : null;
         $this->container['commission'] = isset($data['commission']) ? $data['commission'] : null;
+        $this->container['init_margin_req'] = isset($data['init_margin_req']) ? $data['init_margin_req'] : null;
+        $this->container['maint_margin_req'] = isset($data['maint_margin_req']) ? $data['maint_margin_req'] : null;
+        $this->container['risk_limit'] = isset($data['risk_limit']) ? $data['risk_limit'] : null;
         $this->container['leverage'] = isset($data['leverage']) ? $data['leverage'] : null;
         $this->container['cross_margin'] = isset($data['cross_margin']) ? $data['cross_margin'] : null;
+        $this->container['deleverage_percentile'] = isset($data['deleverage_percentile']) ? $data['deleverage_percentile'] : null;
         $this->container['rebalanced_pnl'] = isset($data['rebalanced_pnl']) ? $data['rebalanced_pnl'] : null;
         $this->container['prev_realised_pnl'] = isset($data['prev_realised_pnl']) ? $data['prev_realised_pnl'] : null;
         $this->container['prev_unrealised_pnl'] = isset($data['prev_unrealised_pnl']) ? $data['prev_unrealised_pnl'] : null;
@@ -510,6 +534,7 @@ class Position implements ArrayAccess
         $this->container['is_open'] = isset($data['is_open']) ? $data['is_open'] : null;
         $this->container['mark_price'] = isset($data['mark_price']) ? $data['mark_price'] : null;
         $this->container['mark_value'] = isset($data['mark_value']) ? $data['mark_value'] : null;
+        $this->container['risk_value'] = isset($data['risk_value']) ? $data['risk_value'] : null;
         $this->container['home_notional'] = isset($data['home_notional']) ? $data['home_notional'] : null;
         $this->container['foreign_notional'] = isset($data['foreign_notional']) ? $data['foreign_notional'] : null;
         $this->container['pos_state'] = isset($data['pos_state']) ? $data['pos_state'] : null;
@@ -725,6 +750,69 @@ class Position implements ArrayAccess
     }
 
     /**
+     * Gets init_margin_req
+     * @return double
+     */
+    public function getInitMarginReq()
+    {
+        return $this->container['init_margin_req'];
+    }
+
+    /**
+     * Sets init_margin_req
+     * @param double $init_margin_req
+     * @return $this
+     */
+    public function setInitMarginReq($init_margin_req)
+    {
+        $this->container['init_margin_req'] = $init_margin_req;
+
+        return $this;
+    }
+
+    /**
+     * Gets maint_margin_req
+     * @return double
+     */
+    public function getMaintMarginReq()
+    {
+        return $this->container['maint_margin_req'];
+    }
+
+    /**
+     * Sets maint_margin_req
+     * @param double $maint_margin_req
+     * @return $this
+     */
+    public function setMaintMarginReq($maint_margin_req)
+    {
+        $this->container['maint_margin_req'] = $maint_margin_req;
+
+        return $this;
+    }
+
+    /**
+     * Gets risk_limit
+     * @return float
+     */
+    public function getRiskLimit()
+    {
+        return $this->container['risk_limit'];
+    }
+
+    /**
+     * Sets risk_limit
+     * @param float $risk_limit
+     * @return $this
+     */
+    public function setRiskLimit($risk_limit)
+    {
+        $this->container['risk_limit'] = $risk_limit;
+
+        return $this;
+    }
+
+    /**
      * Gets leverage
      * @return double
      */
@@ -762,6 +850,27 @@ class Position implements ArrayAccess
     public function setCrossMargin($cross_margin)
     {
         $this->container['cross_margin'] = $cross_margin;
+
+        return $this;
+    }
+
+    /**
+     * Gets deleverage_percentile
+     * @return double
+     */
+    public function getDeleveragePercentile()
+    {
+        return $this->container['deleverage_percentile'];
+    }
+
+    /**
+     * Sets deleverage_percentile
+     * @param double $deleverage_percentile
+     * @return $this
+     */
+    public function setDeleveragePercentile($deleverage_percentile)
+    {
+        $this->container['deleverage_percentile'] = $deleverage_percentile;
 
         return $this;
     }
@@ -1455,6 +1564,27 @@ class Position implements ArrayAccess
     public function setMarkValue($mark_value)
     {
         $this->container['mark_value'] = $mark_value;
+
+        return $this;
+    }
+
+    /**
+     * Gets risk_value
+     * @return float
+     */
+    public function getRiskValue()
+    {
+        return $this->container['risk_value'];
+    }
+
+    /**
+     * Sets risk_value
+     * @param float $risk_value
+     * @return $this
+     */
+    public function setRiskValue($risk_value)
+    {
+        $this->container['risk_value'] = $risk_value;
 
         return $this;
     }

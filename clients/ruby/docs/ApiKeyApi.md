@@ -1,18 +1,18 @@
-# SwaggerClient::ApiKeyApi
+# SwaggerClient::APIKeyApi
 
 All URIs are relative to *https://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_key_disable**](ApiKeyApi.md#api_key_disable) | **POST** /apiKey/disable | Disable an API Key.
-[**api_key_enable**](ApiKeyApi.md#api_key_enable) | **POST** /apiKey/enable | Enable an API Key.
-[**api_key_get**](ApiKeyApi.md#api_key_get) | **GET** /apiKey | Get your API Keys.
-[**api_key_new**](ApiKeyApi.md#api_key_new) | **POST** /apiKey | Create a new API Key.
-[**api_key_remove**](ApiKeyApi.md#api_key_remove) | **DELETE** /apiKey | Remove an API Key.
+[**a_pi_key_disable**](APIKeyApi.md#a_pi_key_disable) | **POST** /apiKey/disable | Disable an API Key.
+[**a_pi_key_enable**](APIKeyApi.md#a_pi_key_enable) | **POST** /apiKey/enable | Enable an API Key.
+[**a_pi_key_get**](APIKeyApi.md#a_pi_key_get) | **GET** /apiKey | Get your API Keys.
+[**a_pi_key_new**](APIKeyApi.md#a_pi_key_new) | **POST** /apiKey | Create a new API Key.
+[**a_pi_key_remove**](APIKeyApi.md#a_pi_key_remove) | **DELETE** /apiKey | Remove an API Key.
 
 
-# **api_key_disable**
-> ApiKey api_key_disable(api_key_id)
+# **a_pi_key_disable**
+> APIKey a_pi_key_disable(api_key_id)
 
 Disable an API Key.
 
@@ -21,17 +21,17 @@ Disable an API Key.
 # load the gem
 require 'swagger_client'
 
-api_instance = SwaggerClient::ApiKeyApi.new
+api_instance = SwaggerClient::APIKeyApi.new
 
 api_key_id = "api_key_id_example" # String | API Key ID (public component).
 
 
 begin
   #Disable an API Key.
-  result = api_instance.api_key_disable(api_key_id)
+  result = api_instance.a_pi_key_disable(api_key_id)
   p result
 rescue SwaggerClient::ApiError => e
-  puts "Exception when calling ApiKeyApi->api_key_disable: #{e}"
+  puts "Exception when calling APIKeyApi->a_pi_key_disable: #{e}"
 end
 ```
 
@@ -43,7 +43,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**APIKey**](APIKey.md)
 
 ### Authorization
 
@@ -56,8 +56,8 @@ No authorization required
 
 
 
-# **api_key_enable**
-> ApiKey api_key_enable(api_key_id)
+# **a_pi_key_enable**
+> APIKey a_pi_key_enable(api_key_id)
 
 Enable an API Key.
 
@@ -66,17 +66,17 @@ Enable an API Key.
 # load the gem
 require 'swagger_client'
 
-api_instance = SwaggerClient::ApiKeyApi.new
+api_instance = SwaggerClient::APIKeyApi.new
 
 api_key_id = "api_key_id_example" # String | API Key ID (public component).
 
 
 begin
   #Enable an API Key.
-  result = api_instance.api_key_enable(api_key_id)
+  result = api_instance.a_pi_key_enable(api_key_id)
   p result
 rescue SwaggerClient::ApiError => e
-  puts "Exception when calling ApiKeyApi->api_key_enable: #{e}"
+  puts "Exception when calling APIKeyApi->a_pi_key_enable: #{e}"
 end
 ```
 
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**APIKey**](APIKey.md)
 
 ### Authorization
 
@@ -101,8 +101,8 @@ No authorization required
 
 
 
-# **api_key_get**
-> Array&lt;ApiKey&gt; api_key_get(opts)
+# **a_pi_key_get**
+> Array&lt;APIKey&gt; a_pi_key_get(opts)
 
 Get your API Keys.
 
@@ -111,7 +111,7 @@ Get your API Keys.
 # load the gem
 require 'swagger_client'
 
-api_instance = SwaggerClient::ApiKeyApi.new
+api_instance = SwaggerClient::APIKeyApi.new
 
 opts = { 
   reverse: false # BOOLEAN | If true, will sort results newest first.
@@ -119,10 +119,10 @@ opts = {
 
 begin
   #Get your API Keys.
-  result = api_instance.api_key_get(opts)
+  result = api_instance.a_pi_key_get(opts)
   p result
 rescue SwaggerClient::ApiError => e
-  puts "Exception when calling ApiKeyApi->api_key_get: #{e}"
+  puts "Exception when calling APIKeyApi->a_pi_key_get: #{e}"
 end
 ```
 
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Array&lt;ApiKey&gt;**](ApiKey.md)
+[**Array&lt;APIKey&gt;**](APIKey.md)
 
 ### Authorization
 
@@ -147,8 +147,8 @@ No authorization required
 
 
 
-# **api_key_new**
-> ApiKey api_key_new(opts)
+# **a_pi_key_new**
+> APIKey a_pi_key_new(opts)
 
 Create a new API Key.
 
@@ -159,7 +159,7 @@ API Keys can also be created via [this Python script](https://github.com/BitMEX/
 # load the gem
 require 'swagger_client'
 
-api_instance = SwaggerClient::ApiKeyApi.new
+api_instance = SwaggerClient::APIKeyApi.new
 
 opts = { 
   name: "name_example", # String | Key name. This name is for reference only.
@@ -171,10 +171,10 @@ opts = {
 
 begin
   #Create a new API Key.
-  result = api_instance.api_key_new(opts)
+  result = api_instance.a_pi_key_new(opts)
   p result
 rescue SwaggerClient::ApiError => e
-  puts "Exception when calling ApiKeyApi->api_key_new: #{e}"
+  puts "Exception when calling APIKeyApi->a_pi_key_new: #{e}"
 end
 ```
 
@@ -190,7 +190,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**APIKey**](APIKey.md)
 
 ### Authorization
 
@@ -203,8 +203,8 @@ No authorization required
 
 
 
-# **api_key_remove**
-> InlineResponse200 api_key_remove(api_key_id)
+# **a_pi_key_remove**
+> InlineResponse200 a_pi_key_remove(api_key_id)
 
 Remove an API Key.
 
@@ -213,17 +213,17 @@ Remove an API Key.
 # load the gem
 require 'swagger_client'
 
-api_instance = SwaggerClient::ApiKeyApi.new
+api_instance = SwaggerClient::APIKeyApi.new
 
 api_key_id = "api_key_id_example" # String | API Key ID (public component).
 
 
 begin
   #Remove an API Key.
-  result = api_instance.api_key_remove(api_key_id)
+  result = api_instance.a_pi_key_remove(api_key_id)
   p result
 rescue SwaggerClient::ApiError => e
-  puts "Exception when calling ApiKeyApi->api_key_remove: #{e}"
+  puts "Exception when calling APIKeyApi->a_pi_key_remove: #{e}"
 end
 ```
 

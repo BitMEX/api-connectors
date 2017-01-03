@@ -14,6 +14,7 @@ import com.android.volley.VolleyError;
 import io.swagger.client.model.Chat;
 import io.swagger.client.model.Error;
 import java.math.BigDecimal;
+import io.swagger.client.model.ChatChannel;
 import io.swagger.client.model.ConnectedUsers;
 
 import org.apache.http.HttpEntity;
@@ -52,9 +53,10 @@ public class ChatApi {
    * @param count Number of results to fetch.
    * @param start Starting point for results.
    * @param reverse If true, will sort results newest first.
+   * @param channelID Channel id. GET /chat/channels for ids. Leave blank for all.
    * @return List<Chat>
   */
-  public List<Chat> chatGet (BigDecimal count, BigDecimal start, Boolean reverse) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public List<Chat> chatGet (BigDecimal count, BigDecimal start, Boolean reverse, Double channelID) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
      Object postBody = null;
   
 
@@ -71,6 +73,7 @@ public class ChatApi {
           queryParams.addAll(ApiInvoker.parameterToPairs("", "count", count));
           queryParams.addAll(ApiInvoker.parameterToPairs("", "start", start));
           queryParams.addAll(ApiInvoker.parameterToPairs("", "reverse", reverse));
+          queryParams.addAll(ApiInvoker.parameterToPairs("", "channelID", channelID));
 
 
       String[] contentTypes = {
@@ -118,9 +121,9 @@ public class ChatApi {
       /**
    * Get chat messages.
    * 
-   * @param count Number of results to fetch.   * @param start Starting point for results.   * @param reverse If true, will sort results newest first.
+   * @param count Number of results to fetch.   * @param start Starting point for results.   * @param reverse If true, will sort results newest first.   * @param channelID Channel id. GET /chat/channels for ids. Leave blank for all.
   */
-  public void chatGet (BigDecimal count, BigDecimal start, Boolean reverse, final Response.Listener<List<Chat>> responseListener, final Response.ErrorListener errorListener) {
+  public void chatGet (BigDecimal count, BigDecimal start, Boolean reverse, Double channelID, final Response.Listener<List<Chat>> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
   
@@ -138,6 +141,7 @@ public class ChatApi {
     queryParams.addAll(ApiInvoker.parameterToPairs("", "count", count));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "start", start));
     queryParams.addAll(ApiInvoker.parameterToPairs("", "reverse", reverse));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "channelID", channelID));
 
 
     String[] contentTypes = {
@@ -165,6 +169,130 @@ public class ChatApi {
           public void onResponse(String localVarResponse) {
             try {
               responseListener.onResponse((List<Chat>) ApiInvoker.deserialize(localVarResponse,  "array", Chat.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Get available channels.
+  * 
+   * @return List<ChatChannel>
+  */
+  public List<ChatChannel> chatGetChannels () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+     Object postBody = null;
+  
+
+  // create path and map variables
+  String path = "/chat/channels".replaceAll("\\{format\\}","json");
+
+  // query params
+  List<Pair> queryParams = new ArrayList<Pair>();
+      // header params
+      Map<String, String> headerParams = new HashMap<String, String>();
+      // form params
+      Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+      String[] contentTypes = {
+  "application/json","application/x-www-form-urlencoded"
+      };
+      String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+      if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+  
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+      } else {
+      // normal form params
+        }
+
+      String[] authNames = new String[] {  };
+
+      try {
+        String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+        if(localVarResponse != null){
+           return (List<ChatChannel>) ApiInvoker.deserialize(localVarResponse, "array", ChatChannel.class);
+        } else {
+           return null;
+        }
+      } catch (ApiException ex) {
+         throw ex;
+      } catch (InterruptedException ex) {
+         throw ex;
+      } catch (ExecutionException ex) {
+         if(ex.getCause() instanceof VolleyError) {
+	    VolleyError volleyError = (VolleyError)ex.getCause();
+	    if (volleyError.networkResponse != null) {
+	       throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+	    }
+         }
+         throw ex;
+      } catch (TimeoutException ex) {
+         throw ex;
+      }
+  }
+
+      /**
+   * Get available channels.
+   * 
+
+  */
+  public void chatGetChannels (final Response.Listener<List<ChatChannel>> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+  
+
+    // create path and map variables
+    String path = "/chat/channels".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+      String[] authNames = new String[] {  };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((List<ChatChannel>) ApiInvoker.deserialize(localVarResponse,  "array", ChatChannel.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -307,9 +435,10 @@ public class ChatApi {
   * Send a chat message.
   * 
    * @param message 
+   * @param channelID Channel to post to. Default 1 (English).
    * @return Chat
   */
-  public Chat chatNew (String message) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Chat chatNew (String message, Double channelID) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
      Object postBody = null;
   
       // verify the required parameter 'message' is set
@@ -344,12 +473,17 @@ public class ChatApi {
           localVarBuilder.addTextBody("message", ApiInvoker.parameterToString(message), ApiInvoker.TEXT_PLAIN_UTF8);
           }
   
+          if (channelID != null) {
+          localVarBuilder.addTextBody("channelID", ApiInvoker.parameterToString(channelID), ApiInvoker.TEXT_PLAIN_UTF8);
+          }
+  
 
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
       } else {
       // normal form params
   formParams.put("message", ApiInvoker.parameterToString(message));
+formParams.put("channelID", ApiInvoker.parameterToString(channelID));
       }
 
       String[] authNames = new String[] {  };
@@ -381,9 +515,9 @@ public class ChatApi {
       /**
    * Send a chat message.
    * 
-   * @param message 
+   * @param message    * @param channelID Channel to post to. Default 1 (English).
   */
-  public void chatNew (String message, final Response.Listener<Chat> responseListener, final Response.ErrorListener errorListener) {
+  public void chatNew (String message, Double channelID, final Response.Listener<Chat> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
   
@@ -419,12 +553,17 @@ public class ChatApi {
         localVarBuilder.addTextBody("message", ApiInvoker.parameterToString(message), ApiInvoker.TEXT_PLAIN_UTF8);
       }
       
+      if (channelID != null) {
+        localVarBuilder.addTextBody("channelID", ApiInvoker.parameterToString(channelID), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
 
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
     } else {
       // normal form params
       formParams.put("message", ApiInvoker.parameterToString(message));
+formParams.put("channelID", ApiInvoker.parameterToString(channelID));
     }
 
       String[] authNames = new String[] {  };

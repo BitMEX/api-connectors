@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -51,11 +51,9 @@ namespace IO.Swagger.Model
         /// <param name="OwnerId">OwnerId.</param>
         /// <param name="Firstname">Firstname.</param>
         /// <param name="Lastname">Lastname.</param>
-        /// <param name="Status">Status.</param>
         /// <param name="Username">Username (required).</param>
         /// <param name="Email">Email (required).</param>
         /// <param name="Phone">Phone.</param>
-        /// <param name="CountryCode">CountryCode.</param>
         /// <param name="Created">Created.</param>
         /// <param name="LastUpdated">LastUpdated.</param>
         /// <param name="Preferences">Preferences.</param>
@@ -63,8 +61,7 @@ namespace IO.Swagger.Model
         /// <param name="AffiliateID">AffiliateID.</param>
         /// <param name="PgpPubKey">PgpPubKey.</param>
         /// <param name="Country">Country.</param>
-        /// <param name="Disabled">Disabled (default to false).</param>
-        public User(decimal? Id = null, decimal? OwnerId = null, string Firstname = null, string Lastname = null, string Status = null, string Username = null, string Email = null, string Phone = null, decimal? CountryCode = null, DateTime? Created = null, DateTime? LastUpdated = null, UserPreferences Preferences = null, string TFAEnabled = null, string AffiliateID = null, string PgpPubKey = null, string Country = null, bool? Disabled = null)
+        public User(decimal? Id = null, decimal? OwnerId = null, string Firstname = null, string Lastname = null, string Username = null, string Email = null, string Phone = null, DateTime? Created = null, DateTime? LastUpdated = null, UserPreferences Preferences = null, string TFAEnabled = null, string AffiliateID = null, string PgpPubKey = null, string Country = null)
         {
             // to ensure "Username" is required (not null)
             if (Username == null)
@@ -88,9 +85,7 @@ namespace IO.Swagger.Model
             this.OwnerId = OwnerId;
             this.Firstname = Firstname;
             this.Lastname = Lastname;
-            this.Status = Status;
             this.Phone = Phone;
-            this.CountryCode = CountryCode;
             this.Created = Created;
             this.LastUpdated = LastUpdated;
             this.Preferences = Preferences;
@@ -98,15 +93,6 @@ namespace IO.Swagger.Model
             this.AffiliateID = AffiliateID;
             this.PgpPubKey = PgpPubKey;
             this.Country = Country;
-            // use default value if no "Disabled" provided
-            if (Disabled == null)
-            {
-                this.Disabled = false;
-            }
-            else
-            {
-                this.Disabled = Disabled;
-            }
         }
         
         /// <summary>
@@ -130,11 +116,6 @@ namespace IO.Swagger.Model
         [DataMember(Name="lastname", EmitDefaultValue=false)]
         public string Lastname { get; set; }
         /// <summary>
-        /// Gets or Sets Status
-        /// </summary>
-        [DataMember(Name="status", EmitDefaultValue=false)]
-        public string Status { get; set; }
-        /// <summary>
         /// Gets or Sets Username
         /// </summary>
         [DataMember(Name="username", EmitDefaultValue=false)]
@@ -149,11 +130,6 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="phone", EmitDefaultValue=false)]
         public string Phone { get; set; }
-        /// <summary>
-        /// Gets or Sets CountryCode
-        /// </summary>
-        [DataMember(Name="countryCode", EmitDefaultValue=false)]
-        public decimal? CountryCode { get; set; }
         /// <summary>
         /// Gets or Sets Created
         /// </summary>
@@ -190,11 +166,6 @@ namespace IO.Swagger.Model
         [DataMember(Name="country", EmitDefaultValue=false)]
         public string Country { get; set; }
         /// <summary>
-        /// Gets or Sets Disabled
-        /// </summary>
-        [DataMember(Name="disabled", EmitDefaultValue=false)]
-        public bool? Disabled { get; set; }
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -206,11 +177,9 @@ namespace IO.Swagger.Model
             sb.Append("  OwnerId: ").Append(OwnerId).Append("\n");
             sb.Append("  Firstname: ").Append(Firstname).Append("\n");
             sb.Append("  Lastname: ").Append(Lastname).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  Phone: ").Append(Phone).Append("\n");
-            sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  LastUpdated: ").Append(LastUpdated).Append("\n");
             sb.Append("  Preferences: ").Append(Preferences).Append("\n");
@@ -218,7 +187,6 @@ namespace IO.Swagger.Model
             sb.Append("  AffiliateID: ").Append(AffiliateID).Append("\n");
             sb.Append("  PgpPubKey: ").Append(PgpPubKey).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
-            sb.Append("  Disabled: ").Append(Disabled).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -276,11 +244,6 @@ namespace IO.Swagger.Model
                     this.Lastname.Equals(other.Lastname)
                 ) && 
                 (
-                    this.Status == other.Status ||
-                    this.Status != null &&
-                    this.Status.Equals(other.Status)
-                ) && 
-                (
                     this.Username == other.Username ||
                     this.Username != null &&
                     this.Username.Equals(other.Username)
@@ -294,11 +257,6 @@ namespace IO.Swagger.Model
                     this.Phone == other.Phone ||
                     this.Phone != null &&
                     this.Phone.Equals(other.Phone)
-                ) && 
-                (
-                    this.CountryCode == other.CountryCode ||
-                    this.CountryCode != null &&
-                    this.CountryCode.Equals(other.CountryCode)
                 ) && 
                 (
                     this.Created == other.Created ||
@@ -334,11 +292,6 @@ namespace IO.Swagger.Model
                     this.Country == other.Country ||
                     this.Country != null &&
                     this.Country.Equals(other.Country)
-                ) && 
-                (
-                    this.Disabled == other.Disabled ||
-                    this.Disabled != null &&
-                    this.Disabled.Equals(other.Disabled)
                 );
         }
 
@@ -361,16 +314,12 @@ namespace IO.Swagger.Model
                     hash = hash * 59 + this.Firstname.GetHashCode();
                 if (this.Lastname != null)
                     hash = hash * 59 + this.Lastname.GetHashCode();
-                if (this.Status != null)
-                    hash = hash * 59 + this.Status.GetHashCode();
                 if (this.Username != null)
                     hash = hash * 59 + this.Username.GetHashCode();
                 if (this.Email != null)
                     hash = hash * 59 + this.Email.GetHashCode();
                 if (this.Phone != null)
                     hash = hash * 59 + this.Phone.GetHashCode();
-                if (this.CountryCode != null)
-                    hash = hash * 59 + this.CountryCode.GetHashCode();
                 if (this.Created != null)
                     hash = hash * 59 + this.Created.GetHashCode();
                 if (this.LastUpdated != null)
@@ -385,8 +334,6 @@ namespace IO.Swagger.Model
                     hash = hash * 59 + this.PgpPubKey.GetHashCode();
                 if (this.Country != null)
                     hash = hash * 59 + this.Country.GetHashCode();
-                if (this.Disabled != null)
-                    hash = hash * 59 + this.Disabled.GetHashCode();
                 return hash;
             }
         }

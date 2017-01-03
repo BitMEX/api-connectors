@@ -78,12 +78,18 @@ public class Instrument  {
   private Double initMargin = null;
   @SerializedName("maintMargin")
   private Double maintMargin = null;
+  @SerializedName("riskLimit")
+  private BigDecimal riskLimit = null;
+  @SerializedName("riskStep")
+  private BigDecimal riskStep = null;
   @SerializedName("limit")
   private Double limit = null;
   @SerializedName("capped")
   private Boolean capped = null;
   @SerializedName("taxed")
   private Boolean taxed = null;
+  @SerializedName("deleverage")
+  private Boolean deleverage = null;
   @SerializedName("makerFee")
   private Double makerFee = null;
   @SerializedName("takerFee")
@@ -540,6 +546,26 @@ public class Instrument  {
   /**
    **/
   @ApiModelProperty(value = "")
+  public BigDecimal getRiskLimit() {
+    return riskLimit;
+  }
+  public void setRiskLimit(BigDecimal riskLimit) {
+    this.riskLimit = riskLimit;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getRiskStep() {
+    return riskStep;
+  }
+  public void setRiskStep(BigDecimal riskStep) {
+    this.riskStep = riskStep;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public Double getLimit() {
     return limit;
   }
@@ -565,6 +591,16 @@ public class Instrument  {
   }
   public void setTaxed(Boolean taxed) {
     this.taxed = taxed;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Boolean getDeleverage() {
+    return deleverage;
+  }
+  public void setDeleverage(Boolean deleverage) {
+    this.deleverage = deleverage;
   }
 
   /**
@@ -1171,9 +1207,12 @@ public class Instrument  {
         (isInverse == null ? instrument.isInverse == null : isInverse.equals(instrument.isInverse)) &&
         (initMargin == null ? instrument.initMargin == null : initMargin.equals(instrument.initMargin)) &&
         (maintMargin == null ? instrument.maintMargin == null : maintMargin.equals(instrument.maintMargin)) &&
+        (riskLimit == null ? instrument.riskLimit == null : riskLimit.equals(instrument.riskLimit)) &&
+        (riskStep == null ? instrument.riskStep == null : riskStep.equals(instrument.riskStep)) &&
         (limit == null ? instrument.limit == null : limit.equals(instrument.limit)) &&
         (capped == null ? instrument.capped == null : capped.equals(instrument.capped)) &&
         (taxed == null ? instrument.taxed == null : taxed.equals(instrument.taxed)) &&
+        (deleverage == null ? instrument.deleverage == null : deleverage.equals(instrument.deleverage)) &&
         (makerFee == null ? instrument.makerFee == null : makerFee.equals(instrument.makerFee)) &&
         (takerFee == null ? instrument.takerFee == null : takerFee.equals(instrument.takerFee)) &&
         (settlementFee == null ? instrument.settlementFee == null : settlementFee.equals(instrument.settlementFee)) &&
@@ -1269,9 +1308,12 @@ public class Instrument  {
     result = 31 * result + (isInverse == null ? 0: isInverse.hashCode());
     result = 31 * result + (initMargin == null ? 0: initMargin.hashCode());
     result = 31 * result + (maintMargin == null ? 0: maintMargin.hashCode());
+    result = 31 * result + (riskLimit == null ? 0: riskLimit.hashCode());
+    result = 31 * result + (riskStep == null ? 0: riskStep.hashCode());
     result = 31 * result + (limit == null ? 0: limit.hashCode());
     result = 31 * result + (capped == null ? 0: capped.hashCode());
     result = 31 * result + (taxed == null ? 0: taxed.hashCode());
+    result = 31 * result + (deleverage == null ? 0: deleverage.hashCode());
     result = 31 * result + (makerFee == null ? 0: makerFee.hashCode());
     result = 31 * result + (takerFee == null ? 0: takerFee.hashCode());
     result = 31 * result + (settlementFee == null ? 0: settlementFee.hashCode());
@@ -1370,9 +1412,12 @@ public class Instrument  {
     sb.append("  isInverse: ").append(isInverse).append("\n");
     sb.append("  initMargin: ").append(initMargin).append("\n");
     sb.append("  maintMargin: ").append(maintMargin).append("\n");
+    sb.append("  riskLimit: ").append(riskLimit).append("\n");
+    sb.append("  riskStep: ").append(riskStep).append("\n");
     sb.append("  limit: ").append(limit).append("\n");
     sb.append("  capped: ").append(capped).append("\n");
     sb.append("  taxed: ").append(taxed).append("\n");
+    sb.append("  deleverage: ").append(deleverage).append("\n");
     sb.append("  makerFee: ").append(makerFee).append("\n");
     sb.append("  takerFee: ").append(takerFee).append("\n");
     sb.append("  settlementFee: ").append(settlementFee).append("\n");

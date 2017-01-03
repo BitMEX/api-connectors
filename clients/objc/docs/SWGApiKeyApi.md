@@ -1,20 +1,20 @@
-# SWGApiKeyApi
+# SWGAPIKeyApi
 
 All URIs are relative to *https://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**apiKeyDisable**](SWGApiKeyApi.md#apikeydisable) | **POST** /apiKey/disable | Disable an API Key.
-[**apiKeyEnable**](SWGApiKeyApi.md#apikeyenable) | **POST** /apiKey/enable | Enable an API Key.
-[**apiKeyGet**](SWGApiKeyApi.md#apikeyget) | **GET** /apiKey | Get your API Keys.
-[**apiKeyNew**](SWGApiKeyApi.md#apikeynew) | **POST** /apiKey | Create a new API Key.
-[**apiKeyRemove**](SWGApiKeyApi.md#apikeyremove) | **DELETE** /apiKey | Remove an API Key.
+[**aPIKeyDisable**](SWGAPIKeyApi.md#apikeydisable) | **POST** /apiKey/disable | Disable an API Key.
+[**aPIKeyEnable**](SWGAPIKeyApi.md#apikeyenable) | **POST** /apiKey/enable | Enable an API Key.
+[**aPIKeyGet**](SWGAPIKeyApi.md#apikeyget) | **GET** /apiKey | Get your API Keys.
+[**aPIKeyNew**](SWGAPIKeyApi.md#apikeynew) | **POST** /apiKey | Create a new API Key.
+[**aPIKeyRemove**](SWGAPIKeyApi.md#apikeyremove) | **DELETE** /apiKey | Remove an API Key.
 
 
-# **apiKeyDisable**
+# **aPIKeyDisable**
 ```objc
--(NSNumber*) apiKeyDisableWithApiKeyID: (NSString*) apiKeyID
-        completionHandler: (void (^)(SWGApiKey* output, NSError* error)) handler;
+-(NSNumber*) aPIKeyDisableWithApiKeyID: (NSString*) apiKeyID
+        completionHandler: (void (^)(SWGAPIKey* output, NSError* error)) handler;
 ```
 
 Disable an API Key.
@@ -24,16 +24,16 @@ Disable an API Key.
 
 NSString* apiKeyID = @"apiKeyID_example"; // API Key ID (public component).
 
-SWGApiKeyApi*apiInstance = [[SWGApiKeyApi alloc] init];
+SWGAPIKeyApi*apiInstance = [[SWGAPIKeyApi alloc] init];
 
 // Disable an API Key.
-[apiInstance apiKeyDisableWithApiKeyID:apiKeyID
-          completionHandler: ^(SWGApiKey* output, NSError* error) {
+[apiInstance aPIKeyDisableWithApiKeyID:apiKeyID
+          completionHandler: ^(SWGAPIKey* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
                         if (error) {
-                            NSLog(@"Error calling SWGApiKeyApi->apiKeyDisable: %@", error);
+                            NSLog(@"Error calling SWGAPIKeyApi->aPIKeyDisable: %@", error);
                         }
                     }];
 ```
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGApiKey***](SWGApiKey.md)
+[**SWGAPIKey***](SWGAPIKey.md)
 
 ### Authorization
 
@@ -59,10 +59,10 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiKeyEnable**
+# **aPIKeyEnable**
 ```objc
--(NSNumber*) apiKeyEnableWithApiKeyID: (NSString*) apiKeyID
-        completionHandler: (void (^)(SWGApiKey* output, NSError* error)) handler;
+-(NSNumber*) aPIKeyEnableWithApiKeyID: (NSString*) apiKeyID
+        completionHandler: (void (^)(SWGAPIKey* output, NSError* error)) handler;
 ```
 
 Enable an API Key.
@@ -72,16 +72,16 @@ Enable an API Key.
 
 NSString* apiKeyID = @"apiKeyID_example"; // API Key ID (public component).
 
-SWGApiKeyApi*apiInstance = [[SWGApiKeyApi alloc] init];
+SWGAPIKeyApi*apiInstance = [[SWGAPIKeyApi alloc] init];
 
 // Enable an API Key.
-[apiInstance apiKeyEnableWithApiKeyID:apiKeyID
-          completionHandler: ^(SWGApiKey* output, NSError* error) {
+[apiInstance aPIKeyEnableWithApiKeyID:apiKeyID
+          completionHandler: ^(SWGAPIKey* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
                         if (error) {
-                            NSLog(@"Error calling SWGApiKeyApi->apiKeyEnable: %@", error);
+                            NSLog(@"Error calling SWGAPIKeyApi->aPIKeyEnable: %@", error);
                         }
                     }];
 ```
@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGApiKey***](SWGApiKey.md)
+[**SWGAPIKey***](SWGAPIKey.md)
 
 ### Authorization
 
@@ -107,10 +107,10 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiKeyGet**
+# **aPIKeyGet**
 ```objc
--(NSNumber*) apiKeyGetWithReverse: (NSNumber*) reverse
-        completionHandler: (void (^)(NSArray<SWGApiKey>* output, NSError* error)) handler;
+-(NSNumber*) aPIKeyGetWithReverse: (NSNumber*) reverse
+        completionHandler: (void (^)(NSArray<SWGAPIKey>* output, NSError* error)) handler;
 ```
 
 Get your API Keys.
@@ -120,16 +120,16 @@ Get your API Keys.
 
 NSNumber* reverse = @false; // If true, will sort results newest first. (optional) (default to false)
 
-SWGApiKeyApi*apiInstance = [[SWGApiKeyApi alloc] init];
+SWGAPIKeyApi*apiInstance = [[SWGAPIKeyApi alloc] init];
 
 // Get your API Keys.
-[apiInstance apiKeyGetWithReverse:reverse
-          completionHandler: ^(NSArray<SWGApiKey>* output, NSError* error) {
+[apiInstance aPIKeyGetWithReverse:reverse
+          completionHandler: ^(NSArray<SWGAPIKey>* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
                         if (error) {
-                            NSLog(@"Error calling SWGApiKeyApi->apiKeyGet: %@", error);
+                            NSLog(@"Error calling SWGAPIKeyApi->aPIKeyGet: %@", error);
                         }
                     }];
 ```
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NSArray<SWGApiKey>***](SWGApiKey.md)
+[**NSArray<SWGAPIKey>***](SWGAPIKey.md)
 
 ### Authorization
 
@@ -155,14 +155,14 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiKeyNew**
+# **aPIKeyNew**
 ```objc
--(NSNumber*) apiKeyNewWithName: (NSString*) name
+-(NSNumber*) aPIKeyNewWithName: (NSString*) name
     cidr: (NSString*) cidr
     permissions: (NSString*) permissions
     enabled: (NSNumber*) enabled
     token: (NSString*) token
-        completionHandler: (void (^)(SWGApiKey* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGAPIKey* output, NSError* error)) handler;
 ```
 
 Create a new API Key.
@@ -178,20 +178,20 @@ NSString* permissions = @"permissions_example"; // Key Permissions. All keys can
 NSNumber* enabled = @false; // Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (optional) (default to false)
 NSString* token = @"token_example"; // OTP Token (YubiKey, Google Authenticator) (optional)
 
-SWGApiKeyApi*apiInstance = [[SWGApiKeyApi alloc] init];
+SWGAPIKeyApi*apiInstance = [[SWGAPIKeyApi alloc] init];
 
 // Create a new API Key.
-[apiInstance apiKeyNewWithName:name
+[apiInstance aPIKeyNewWithName:name
               cidr:cidr
               permissions:permissions
               enabled:enabled
               token:token
-          completionHandler: ^(SWGApiKey* output, NSError* error) {
+          completionHandler: ^(SWGAPIKey* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
                         if (error) {
-                            NSLog(@"Error calling SWGApiKeyApi->apiKeyNew: %@", error);
+                            NSLog(@"Error calling SWGAPIKeyApi->aPIKeyNew: %@", error);
                         }
                     }];
 ```
@@ -208,7 +208,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGApiKey***](SWGApiKey.md)
+[**SWGAPIKey***](SWGAPIKey.md)
 
 ### Authorization
 
@@ -221,9 +221,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiKeyRemove**
+# **aPIKeyRemove**
 ```objc
--(NSNumber*) apiKeyRemoveWithApiKeyID: (NSString*) apiKeyID
+-(NSNumber*) aPIKeyRemoveWithApiKeyID: (NSString*) apiKeyID
         completionHandler: (void (^)(SWGInlineResponse200* output, NSError* error)) handler;
 ```
 
@@ -234,16 +234,16 @@ Remove an API Key.
 
 NSString* apiKeyID = @"apiKeyID_example"; // API Key ID (public component).
 
-SWGApiKeyApi*apiInstance = [[SWGApiKeyApi alloc] init];
+SWGAPIKeyApi*apiInstance = [[SWGAPIKeyApi alloc] init];
 
 // Remove an API Key.
-[apiInstance apiKeyRemoveWithApiKeyID:apiKeyID
+[apiInstance aPIKeyRemoveWithApiKeyID:apiKeyID
           completionHandler: ^(SWGInlineResponse200* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
                         if (error) {
-                            NSLog(@"Error calling SWGApiKeyApi->apiKeyRemove: %@", error);
+                            NSLog(@"Error calling SWGAPIKeyApi->aPIKeyRemove: %@", error);
                         }
                     }];
 ```

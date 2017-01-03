@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**positionIsolateMargin**](PositionApi.md#positionIsolateMargin) | **POST** /position/isolate | Enable isolated margin or cross margin per-position.
 [**positionTransferIsolatedMargin**](PositionApi.md#positionTransferIsolatedMargin) | **POST** /position/transferMargin | Transfer equity in or out of a position.
 [**positionUpdateLeverage**](PositionApi.md#positionUpdateLeverage) | **POST** /position/leverage | Choose leverage for a position.
+[**positionUpdateRiskLimit**](PositionApi.md#positionUpdateRiskLimit) | **POST** /position/riskLimit | Update your risk limit.
 
 
 <a name="positionGet"></a>
@@ -195,6 +196,55 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **String**| Symbol of position to adjust. | 
  **leverage** | **Number**| Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin. | 
+
+### Return type
+
+[**Position**](Position.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+<a name="positionUpdateRiskLimit"></a>
+# **positionUpdateRiskLimit**
+> Position positionUpdateRiskLimit(symbol, riskLimit)
+
+Update your risk limit.
+
+Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+
+### Example
+```javascript
+var BitMexApi = require('bit_mex_api');
+
+var apiInstance = new BitMexApi.PositionApi();
+
+var symbol = "symbol_example"; // String | Symbol of position to isolate.
+
+var riskLimit = 3.4; // Number | New Risk Limit, in Satoshis.
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.positionUpdateRiskLimit(symbol, riskLimit, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Symbol of position to isolate. | 
+ **riskLimit** | **Number**| New Risk Limit, in Satoshis. | 
 
 ### Return type
 

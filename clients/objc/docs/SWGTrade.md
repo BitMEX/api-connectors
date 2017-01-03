@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**timestamp** | **NSDate*** |  | [optional] 
-**symbol** | **NSString*** |  | [optional] 
+**timestamp** | **NSDate*** |  | 
+**symbol** | **NSString*** |  | 
 **side** | **NSString*** |  | [optional] 
 **size** | **NSNumber*** |  | [optional] 
 **price** | **NSNumber*** |  | [optional] 
@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **grossValue** | **NSNumber*** |  | [optional] 
 **homeNotional** | **NSNumber*** |  | [optional] 
 **foreignNotional** | **NSNumber*** |  | [optional] 
-**_id** | **NSNumber*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

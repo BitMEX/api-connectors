@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -29,6 +29,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.client.model.XAny;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +37,10 @@ import org.joda.time.LocalDate;
 
 
 /**
- * ApiKey
+ * APIKey
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-05T09:40:48.217-05:00")
-public class ApiKey   {
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-01-03T10:34:33.567-06:00")
+public class APIKey   {
   @JsonProperty("id")
   private String id = null;
 
@@ -56,7 +57,7 @@ public class ApiKey   {
   private String cidr = null;
 
   @JsonProperty("permissions")
-  private List<String> permissions = new ArrayList<String>();
+  private List<XAny> permissions = new ArrayList<XAny>();
 
   @JsonProperty("enabled")
   private Boolean enabled = false;
@@ -67,7 +68,7 @@ public class ApiKey   {
   @JsonProperty("created")
   private LocalDate created = null;
 
-  public ApiKey id(String id) {
+  public APIKey id(String id) {
     this.id = id;
     return this;
   }
@@ -85,7 +86,7 @@ public class ApiKey   {
     this.id = id;
   }
 
-  public ApiKey secret(String secret) {
+  public APIKey secret(String secret) {
     this.secret = secret;
     return this;
   }
@@ -103,7 +104,7 @@ public class ApiKey   {
     this.secret = secret;
   }
 
-  public ApiKey name(String name) {
+  public APIKey name(String name) {
     this.name = name;
     return this;
   }
@@ -121,7 +122,7 @@ public class ApiKey   {
     this.name = name;
   }
 
-  public ApiKey nonce(BigDecimal nonce) {
+  public APIKey nonce(BigDecimal nonce) {
     this.nonce = nonce;
     return this;
   }
@@ -139,7 +140,7 @@ public class ApiKey   {
     this.nonce = nonce;
   }
 
-  public ApiKey cidr(String cidr) {
+  public APIKey cidr(String cidr) {
     this.cidr = cidr;
     return this;
   }
@@ -157,7 +158,7 @@ public class ApiKey   {
     this.cidr = cidr;
   }
 
-  public ApiKey permissions(List<String> permissions) {
+  public APIKey permissions(List<XAny> permissions) {
     this.permissions = permissions;
     return this;
   }
@@ -167,15 +168,15 @@ public class ApiKey   {
    * @return permissions
   **/
   @ApiModelProperty(example = "null", value = "")
-  public List<String> getPermissions() {
+  public List<XAny> getPermissions() {
     return permissions;
   }
 
-  public void setPermissions(List<String> permissions) {
+  public void setPermissions(List<XAny> permissions) {
     this.permissions = permissions;
   }
 
-  public ApiKey enabled(Boolean enabled) {
+  public APIKey enabled(Boolean enabled) {
     this.enabled = enabled;
     return this;
   }
@@ -193,7 +194,7 @@ public class ApiKey   {
     this.enabled = enabled;
   }
 
-  public ApiKey userId(BigDecimal userId) {
+  public APIKey userId(BigDecimal userId) {
     this.userId = userId;
     return this;
   }
@@ -211,7 +212,7 @@ public class ApiKey   {
     this.userId = userId;
   }
 
-  public ApiKey created(LocalDate created) {
+  public APIKey created(LocalDate created) {
     this.created = created;
     return this;
   }
@@ -238,16 +239,16 @@ public class ApiKey   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ApiKey apiKey = (ApiKey) o;
-    return Objects.equals(this.id, apiKey.id) &&
-        Objects.equals(this.secret, apiKey.secret) &&
-        Objects.equals(this.name, apiKey.name) &&
-        Objects.equals(this.nonce, apiKey.nonce) &&
-        Objects.equals(this.cidr, apiKey.cidr) &&
-        Objects.equals(this.permissions, apiKey.permissions) &&
-        Objects.equals(this.enabled, apiKey.enabled) &&
-        Objects.equals(this.userId, apiKey.userId) &&
-        Objects.equals(this.created, apiKey.created);
+    APIKey aPIKey = (APIKey) o;
+    return Objects.equals(this.id, aPIKey.id) &&
+        Objects.equals(this.secret, aPIKey.secret) &&
+        Objects.equals(this.name, aPIKey.name) &&
+        Objects.equals(this.nonce, aPIKey.nonce) &&
+        Objects.equals(this.cidr, aPIKey.cidr) &&
+        Objects.equals(this.permissions, aPIKey.permissions) &&
+        Objects.equals(this.enabled, aPIKey.enabled) &&
+        Objects.equals(this.userId, aPIKey.userId) &&
+        Objects.equals(this.created, aPIKey.created);
   }
 
   @Override
@@ -258,7 +259,7 @@ public class ApiKey   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ApiKey {\n");
+    sb.append("class APIKey {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    secret: ").append(toIndentedString(secret)).append("\n");

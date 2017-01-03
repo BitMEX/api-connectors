@@ -6,7 +6,6 @@
   self = [super init];
   if (self) {
     // initialize property's default value, if any
-    self.disabled = @0;
     
   }
   return self;
@@ -18,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithDictionary:@{ @"id": @"_id", @"ownerId": @"ownerId", @"firstname": @"firstname", @"lastname": @"lastname", @"status": @"status", @"username": @"username", @"email": @"email", @"phone": @"phone", @"countryCode": @"countryCode", @"created": @"created", @"lastUpdated": @"lastUpdated", @"preferences": @"preferences", @"TFAEnabled": @"tFAEnabled", @"affiliateID": @"affiliateID", @"pgpPubKey": @"pgpPubKey", @"country": @"country", @"disabled": @"disabled" }];
+  return [[JSONKeyMapper alloc] initWithDictionary:@{ @"id": @"_id", @"ownerId": @"ownerId", @"firstname": @"firstname", @"lastname": @"lastname", @"username": @"username", @"email": @"email", @"phone": @"phone", @"created": @"created", @"lastUpdated": @"lastUpdated", @"preferences": @"preferences", @"TFAEnabled": @"tFAEnabled", @"affiliateID": @"affiliateID", @"pgpPubKey": @"pgpPubKey", @"country": @"country" }];
 }
 
 /**
@@ -28,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"_id", @"ownerId", @"firstname", @"lastname", @"status", @"phone", @"countryCode", @"created", @"lastUpdated", @"preferences", @"tFAEnabled", @"affiliateID", @"pgpPubKey", @"country", @"disabled"];
+  NSArray *optionalProperties = @[@"_id", @"ownerId", @"firstname", @"lastname", @"phone", @"created", @"lastUpdated", @"preferences", @"tFAEnabled", @"affiliateID", @"pgpPubKey", @"country"];
   return [optionalProperties containsObject:propertyName];
 }
 

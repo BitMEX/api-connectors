@@ -1,7 +1,7 @@
 =begin
 #BitMEX API
 
-#REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+### REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
 
 OpenAPI spec version: 1.2.0
 Contact: support@bitmex.com
@@ -94,11 +94,17 @@ module SwaggerClient
 
     attr_accessor :maint_margin
 
+    attr_accessor :risk_limit
+
+    attr_accessor :risk_step
+
     attr_accessor :limit
 
     attr_accessor :capped
 
     attr_accessor :taxed
+
+    attr_accessor :deleverage
 
     attr_accessor :maker_fee
 
@@ -250,9 +256,12 @@ module SwaggerClient
         :'is_inverse' => :'isInverse',
         :'init_margin' => :'initMargin',
         :'maint_margin' => :'maintMargin',
+        :'risk_limit' => :'riskLimit',
+        :'risk_step' => :'riskStep',
         :'limit' => :'limit',
         :'capped' => :'capped',
         :'taxed' => :'taxed',
+        :'deleverage' => :'deleverage',
         :'maker_fee' => :'makerFee',
         :'taker_fee' => :'takerFee',
         :'settlement_fee' => :'settlementFee',
@@ -349,9 +358,12 @@ module SwaggerClient
         :'is_inverse' => :'BOOLEAN',
         :'init_margin' => :'Float',
         :'maint_margin' => :'Float',
+        :'risk_limit' => :'Float',
+        :'risk_step' => :'Float',
         :'limit' => :'Float',
         :'capped' => :'BOOLEAN',
         :'taxed' => :'BOOLEAN',
+        :'deleverage' => :'BOOLEAN',
         :'maker_fee' => :'Float',
         :'taker_fee' => :'Float',
         :'settlement_fee' => :'Float',
@@ -555,6 +567,14 @@ module SwaggerClient
         self.maint_margin = attributes[:'maintMargin']
       end
 
+      if attributes.has_key?(:'riskLimit')
+        self.risk_limit = attributes[:'riskLimit']
+      end
+
+      if attributes.has_key?(:'riskStep')
+        self.risk_step = attributes[:'riskStep']
+      end
+
       if attributes.has_key?(:'limit')
         self.limit = attributes[:'limit']
       end
@@ -565,6 +585,10 @@ module SwaggerClient
 
       if attributes.has_key?(:'taxed')
         self.taxed = attributes[:'taxed']
+      end
+
+      if attributes.has_key?(:'deleverage')
+        self.deleverage = attributes[:'deleverage']
       end
 
       if attributes.has_key?(:'makerFee')
@@ -846,9 +870,12 @@ module SwaggerClient
           is_inverse == o.is_inverse &&
           init_margin == o.init_margin &&
           maint_margin == o.maint_margin &&
+          risk_limit == o.risk_limit &&
+          risk_step == o.risk_step &&
           limit == o.limit &&
           capped == o.capped &&
           taxed == o.taxed &&
+          deleverage == o.deleverage &&
           maker_fee == o.maker_fee &&
           taker_fee == o.taker_fee &&
           settlement_fee == o.settlement_fee &&
@@ -916,7 +943,7 @@ module SwaggerClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [symbol, root_symbol, state, typ, listing, front, expiry, settle, relist_interval, inverse_leg, sell_leg, buy_leg, position_currency, underlying, quote_currency, underlying_symbol, reference, reference_symbol, calc_interval, publish_interval, publish_time, max_order_qty, max_price, lot_size, tick_size, multiplier, settl_currency, underlying_to_position_multiplier, underlying_to_settle_multiplier, quote_to_settle_multiplier, is_quanto, is_inverse, init_margin, maint_margin, limit, capped, taxed, maker_fee, taker_fee, settlement_fee, insurance_fee, funding_base_symbol, funding_quote_symbol, funding_premium_symbol, funding_timestamp, funding_interval, funding_rate, indicative_funding_rate, rebalance_timestamp, rebalance_interval, opening_timestamp, closing_timestamp, session_interval, prev_close_price, limit_down_price, limit_up_price, bankrupt_limit_down_price, bankrupt_limit_up_price, prev_total_volume, total_volume, volume, volume24h, prev_total_turnover, total_turnover, turnover, turnover24h, prev_price24h, vwap, high_price, low_price, last_price, last_price_protected, last_tick_direction, last_change_pcnt, bid_price, mid_price, ask_price, impact_bid_price, impact_mid_price, impact_ask_price, has_liquidity, open_interest, open_value, fair_method, fair_basis_rate, fair_basis, fair_price, mark_method, mark_price, indicative_tax_rate, indicative_settle_price, settled_price, timestamp].hash
+      [symbol, root_symbol, state, typ, listing, front, expiry, settle, relist_interval, inverse_leg, sell_leg, buy_leg, position_currency, underlying, quote_currency, underlying_symbol, reference, reference_symbol, calc_interval, publish_interval, publish_time, max_order_qty, max_price, lot_size, tick_size, multiplier, settl_currency, underlying_to_position_multiplier, underlying_to_settle_multiplier, quote_to_settle_multiplier, is_quanto, is_inverse, init_margin, maint_margin, risk_limit, risk_step, limit, capped, taxed, deleverage, maker_fee, taker_fee, settlement_fee, insurance_fee, funding_base_symbol, funding_quote_symbol, funding_premium_symbol, funding_timestamp, funding_interval, funding_rate, indicative_funding_rate, rebalance_timestamp, rebalance_interval, opening_timestamp, closing_timestamp, session_interval, prev_close_price, limit_down_price, limit_up_price, bankrupt_limit_down_price, bankrupt_limit_up_price, prev_total_volume, total_volume, volume, volume24h, prev_total_turnover, total_turnover, turnover, turnover24h, prev_price24h, vwap, high_price, low_price, last_price, last_price_protected, last_tick_direction, last_change_pcnt, bid_price, mid_price, ask_price, impact_bid_price, impact_mid_price, impact_ask_price, has_liquidity, open_interest, open_value, fair_method, fair_basis_rate, fair_basis, fair_price, mark_method, mark_price, indicative_tax_rate, indicative_settle_price, settled_price, timestamp].hash
     end
 
     # Builds the object from hash

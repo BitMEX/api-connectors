@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiKeyApiTest
+ * APIKeyApiTest
  * PHP version 5
  *
  * @category Class
@@ -13,7 +13,7 @@
 /**
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section.
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -46,7 +46,7 @@ use \Swagger\Client\ApiException;
 use \Swagger\Client\ObjectSerializer;
 
 /**
- * ApiKeyApiTest Class Doc Comment
+ * APIKeyApiTest Class Doc Comment
  *
  * @category Class
  * @package  Swagger\Client
@@ -54,7 +54,7 @@ use \Swagger\Client\ObjectSerializer;
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ApiKeyApiTest extends \PHPUnit_Framework_TestCase
+class APIKeyApiTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -90,56 +90,56 @@ class ApiKeyApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for apiKeyDisable
+     * Test case for aPIKeyDisable
      *
      * Disable an API Key..
      *
      */
-    public function testApiKeyDisable()
+    public function testAPIKeyDisable()
     {
 
     }
 
     /**
-     * Test case for apiKeyEnable
+     * Test case for aPIKeyEnable
      *
      * Enable an API Key..
      *
      */
-    public function testApiKeyEnable()
+    public function testAPIKeyEnable()
     {
 
     }
 
     /**
-     * Test case for apiKeyGet
+     * Test case for aPIKeyGet
      *
      * Get your API Keys..
      *
      */
-    public function testApiKeyGet()
+    public function testAPIKeyGet()
     {
 
     }
 
     /**
-     * Test case for apiKeyNew
+     * Test case for aPIKeyNew
      *
      * Create a new API Key..
      *
      */
-    public function testApiKeyNew()
+    public function testAPIKeyNew()
     {
 
     }
 
     /**
-     * Test case for apiKeyRemove
+     * Test case for aPIKeyRemove
      *
      * Remove an API Key..
      *
      */
-    public function testApiKeyRemove()
+    public function testAPIKeyRemove()
     {
 
     }

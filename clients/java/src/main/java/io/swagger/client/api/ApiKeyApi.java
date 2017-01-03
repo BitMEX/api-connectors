@@ -8,7 +8,7 @@ import io.swagger.client.Configuration;
 import io.swagger.client.model.*;
 import io.swagger.client.Pair;
 
-import io.swagger.client.model.ApiKey;
+import io.swagger.client.model.APIKey;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.InlineResponse200;
 
@@ -18,15 +18,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-05T09:40:48.217-05:00")
-public class ApiKeyApi {
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-01-03T10:34:33.567-06:00")
+public class APIKeyApi {
   private ApiClient apiClient;
 
-  public ApiKeyApi() {
+  public APIKeyApi() {
     this(Configuration.getDefaultApiClient());
   }
 
-  public ApiKeyApi(ApiClient apiClient) {
+  public APIKeyApi(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
 
@@ -42,15 +42,15 @@ public class ApiKeyApi {
    * Disable an API Key.
    * 
    * @param apiKeyID API Key ID (public component). (required)
-   * @return ApiKey
+   * @return APIKey
    * @throws ApiException if fails to make API call
    */
-  public ApiKey apiKeyDisable(String apiKeyID) throws ApiException {
+  public APIKey aPIKeyDisable(String apiKeyID) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'apiKeyID' is set
     if (apiKeyID == null) {
-      throw new ApiException(400, "Missing the required parameter 'apiKeyID' when calling apiKeyDisable");
+      throw new ApiException(400, "Missing the required parameter 'apiKeyID' when calling aPIKeyDisable");
     }
     
     // create path and map variables
@@ -78,22 +78,22 @@ public class ApiKeyApi {
 
     String[] localVarAuthNames = new String[] {  };
 
-    GenericType<ApiKey> localVarReturnType = new GenericType<ApiKey>() {};
+    GenericType<APIKey> localVarReturnType = new GenericType<APIKey>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
    * Enable an API Key.
    * 
    * @param apiKeyID API Key ID (public component). (required)
-   * @return ApiKey
+   * @return APIKey
    * @throws ApiException if fails to make API call
    */
-  public ApiKey apiKeyEnable(String apiKeyID) throws ApiException {
+  public APIKey aPIKeyEnable(String apiKeyID) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'apiKeyID' is set
     if (apiKeyID == null) {
-      throw new ApiException(400, "Missing the required parameter 'apiKeyID' when calling apiKeyEnable");
+      throw new ApiException(400, "Missing the required parameter 'apiKeyID' when calling aPIKeyEnable");
     }
     
     // create path and map variables
@@ -121,17 +121,17 @@ public class ApiKeyApi {
 
     String[] localVarAuthNames = new String[] {  };
 
-    GenericType<ApiKey> localVarReturnType = new GenericType<ApiKey>() {};
+    GenericType<APIKey> localVarReturnType = new GenericType<APIKey>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
    * Get your API Keys.
    * 
    * @param reverse If true, will sort results newest first. (optional, default to false)
-   * @return List<ApiKey>
+   * @return List<APIKey>
    * @throws ApiException if fails to make API call
    */
-  public List<ApiKey> apiKeyGet(Boolean reverse) throws ApiException {
+  public List<APIKey> aPIKeyGet(Boolean reverse) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -158,7 +158,7 @@ public class ApiKeyApi {
 
     String[] localVarAuthNames = new String[] {  };
 
-    GenericType<List<ApiKey>> localVarReturnType = new GenericType<List<ApiKey>>() {};
+    GenericType<List<APIKey>> localVarReturnType = new GenericType<List<APIKey>>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
@@ -169,10 +169,10 @@ public class ApiKeyApi {
    * @param permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;]. (optional)
    * @param enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (optional, default to false)
    * @param token OTP Token (YubiKey, Google Authenticator) (optional)
-   * @return ApiKey
+   * @return APIKey
    * @throws ApiException if fails to make API call
    */
-  public ApiKey apiKeyNew(String name, String cidr, String permissions, Boolean enabled, String token) throws ApiException {
+  public APIKey aPIKeyNew(String name, String cidr, String permissions, Boolean enabled, String token) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -208,7 +208,7 @@ if (token != null)
 
     String[] localVarAuthNames = new String[] {  };
 
-    GenericType<ApiKey> localVarReturnType = new GenericType<ApiKey>() {};
+    GenericType<APIKey> localVarReturnType = new GenericType<APIKey>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
@@ -218,12 +218,12 @@ if (token != null)
    * @return InlineResponse200
    * @throws ApiException if fails to make API call
    */
-  public InlineResponse200 apiKeyRemove(String apiKeyID) throws ApiException {
+  public InlineResponse200 aPIKeyRemove(String apiKeyID) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'apiKeyID' is set
     if (apiKeyID == null) {
-      throw new ApiException(400, "Missing the required parameter 'apiKeyID' when calling apiKeyRemove");
+      throw new ApiException(400, "Missing the required parameter 'apiKeyID' when calling aPIKeyRemove");
     }
     
     // create path and map variables

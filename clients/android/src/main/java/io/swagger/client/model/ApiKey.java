@@ -1,5 +1,6 @@
 package io.swagger.client.model;
 
+import io.swagger.client.model.XAny;
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.Date;
@@ -9,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
 
 
 @ApiModel(description = "")
-public class ApiKey  {
+public class APIKey  {
   
   @SerializedName("id")
   private String id = null;
@@ -22,7 +23,7 @@ public class ApiKey  {
   @SerializedName("cidr")
   private String cidr = null;
   @SerializedName("permissions")
-  private List<String> permissions = null;
+  private List<XAny> permissions = null;
   @SerializedName("enabled")
   private Boolean enabled = null;
   @SerializedName("userId")
@@ -83,10 +84,10 @@ public class ApiKey  {
   /**
    **/
   @ApiModelProperty(value = "")
-  public List<String> getPermissions() {
+  public List<XAny> getPermissions() {
     return permissions;
   }
-  public void setPermissions(List<String> permissions) {
+  public void setPermissions(List<XAny> permissions) {
     this.permissions = permissions;
   }
 
@@ -129,16 +130,16 @@ public class ApiKey  {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ApiKey apiKey = (ApiKey) o;
-    return (id == null ? apiKey.id == null : id.equals(apiKey.id)) &&
-        (secret == null ? apiKey.secret == null : secret.equals(apiKey.secret)) &&
-        (name == null ? apiKey.name == null : name.equals(apiKey.name)) &&
-        (nonce == null ? apiKey.nonce == null : nonce.equals(apiKey.nonce)) &&
-        (cidr == null ? apiKey.cidr == null : cidr.equals(apiKey.cidr)) &&
-        (permissions == null ? apiKey.permissions == null : permissions.equals(apiKey.permissions)) &&
-        (enabled == null ? apiKey.enabled == null : enabled.equals(apiKey.enabled)) &&
-        (userId == null ? apiKey.userId == null : userId.equals(apiKey.userId)) &&
-        (created == null ? apiKey.created == null : created.equals(apiKey.created));
+    APIKey aPIKey = (APIKey) o;
+    return (id == null ? aPIKey.id == null : id.equals(aPIKey.id)) &&
+        (secret == null ? aPIKey.secret == null : secret.equals(aPIKey.secret)) &&
+        (name == null ? aPIKey.name == null : name.equals(aPIKey.name)) &&
+        (nonce == null ? aPIKey.nonce == null : nonce.equals(aPIKey.nonce)) &&
+        (cidr == null ? aPIKey.cidr == null : cidr.equals(aPIKey.cidr)) &&
+        (permissions == null ? aPIKey.permissions == null : permissions.equals(aPIKey.permissions)) &&
+        (enabled == null ? aPIKey.enabled == null : enabled.equals(aPIKey.enabled)) &&
+        (userId == null ? aPIKey.userId == null : userId.equals(aPIKey.userId)) &&
+        (created == null ? aPIKey.created == null : created.equals(aPIKey.created));
   }
 
   @Override
@@ -159,7 +160,7 @@ public class ApiKey  {
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ApiKey {\n");
+    sb.append("class APIKey {\n");
     
     sb.append("  id: ").append(id).append("\n");
     sb.append("  secret: ").append(secret).append("\n");

@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithDictionary:@{ @"timestamp": @"timestamp", @"symbol": @"symbol", @"open": @"open", @"high": @"high", @"low": @"low", @"close": @"close", @"trades": @"trades", @"volume": @"volume", @"vwap": @"vwap", @"lastSize": @"lastSize", @"turnover": @"turnover", @"homeNotional": @"homeNotional", @"foreignNotional": @"foreignNotional", @"id": @"_id" }];
+  return [[JSONKeyMapper alloc] initWithDictionary:@{ @"timestamp": @"timestamp", @"symbol": @"symbol", @"open": @"open", @"high": @"high", @"low": @"low", @"close": @"close", @"trades": @"trades", @"volume": @"volume", @"vwap": @"vwap", @"lastSize": @"lastSize", @"turnover": @"turnover", @"homeNotional": @"homeNotional", @"foreignNotional": @"foreignNotional" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"timestamp", @"symbol", @"open", @"high", @"low", @"close", @"trades", @"volume", @"vwap", @"lastSize", @"turnover", @"homeNotional", @"foreignNotional", @"_id"];
+  NSArray *optionalProperties = @[@"open", @"high", @"low", @"close", @"trades", @"volume", @"vwap", @"lastSize", @"turnover", @"homeNotional", @"foreignNotional"];
   return [optionalProperties containsObject:propertyName];
 }
 

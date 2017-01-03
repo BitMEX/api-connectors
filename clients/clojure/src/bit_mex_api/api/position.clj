@@ -82,3 +82,22 @@
   [symbol leverage ]
   (:data (position-update-leverage-with-http-info symbol leverage)))
 
+(defn position-update-risk-limit-with-http-info
+  "Update your risk limit.
+  Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details."
+  [symbol risk-limit ]
+  (call-api "/position/riskLimit" :post
+            {:path-params   {}
+             :header-params {}
+             :query-params  {}
+             :form-params   {"symbol" symbol "riskLimit" risk-limit }
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
+             :auth-names    []}))
+
+(defn position-update-risk-limit
+  "Update your risk limit.
+  Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details."
+  [symbol risk-limit ]
+  (:data (position-update-risk-limit-with-http-info symbol risk-limit)))
+

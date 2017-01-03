@@ -9,5 +9,6 @@ Name | Type | Description | Notes
 **message** | **String** |  | 
 **html** | **String** |  | 
 **fromBot** | **Boolean** |  | [optional] [default to false]
+**channelID** | **Number** |  | [optional] 
 
 

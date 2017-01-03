@@ -12,6 +12,7 @@ import collection.mutable
 class OrderApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
   def order.amend(orderID: Option[String] = None,
+      origClOrdID: Option[String] = None,
       clOrdID: Option[String] = None,
       simpleOrderQty: Option[Double] = None,
       orderQty: Option[Number] = None,

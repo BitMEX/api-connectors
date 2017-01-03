@@ -1,8 +1,8 @@
 from __future__ import absolute_import
 
 # import apis into api package
+from .api_key_api import APIKeyApi
 from .announcement_api import AnnouncementApi
-from .api_key_api import ApiKeyApi
 from .chat_api import ChatApi
 from .execution_api import ExecutionApi
 from .funding_api import FundingApi

@@ -224,68 +224,6 @@ if (token != null)
       }
     });
   }
-  /// Confirm a password reset.
-  ///
-  /// 
-  Future<bool> userConfirmPasswordReset(String token, String newPassword) {
-    Object postBody = null;
-    // verify required params are set
-    if(    // verify required params are set
-    if() {
-       throw new ApiException(400, "missing required params");
-    }) {
-       throw new ApiException(400, "missing required params");
-    }
-
-    // create path and map variables
-    String path = "/user/confirmPasswordReset".replaceAll("{format}","json");
-
-    // query params
-    Map<String, String> queryParams = {};
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-        
-    List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if (token != null) {
-        hasFields = true;
-        mp.fields['token'] = apiClient.parameterToString(token);
-      }
-      
-      if (newPassword != null) {
-        hasFields = true;
-        mp.fields['newPassword'] = apiClient.parameterToString(newPassword);
-      }
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      if (token != null)
-        formParams['token'] = apiClient.parameterToString(token);
-if (newPassword != null)
-        formParams['newPassword'] = apiClient.parameterToString(newPassword);
-    }
-
-    return apiClient.invokeAPI(basePath, path, 'POST', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
-      if(response.statusCode >= 400) {
-        throw new ApiException(response.statusCode, response.body);
-      }
-      else if(response.body != null){
-        return ApiClient.deserialize(response.body, bool);
-      }
-      else {
-        return null;
-      }
-    });
-  }
   /// Confirm a withdrawal.
   ///
   /// 
@@ -620,7 +558,54 @@ if (token != null)
       }
     });
   }
-  /// Get a history of all of your wallet transactions (deposits and withdrawals).
+  /// Get your current wallet information.
+  ///
+  /// 
+  Future<Wallet> userGetWallet(String currency) {
+    Object postBody = null;
+    // verify required params are set
+    if() {
+       throw new ApiException(400, "missing required params");
+    }
+
+    // create path and map variables
+    String path = "/user/wallet".replaceAll("{format}","json");
+
+    // query params
+    Map<String, String> queryParams = {};
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+    if("null" != currency)
+      queryParams["currency"] = currency is List ? currency.join(',') : currency;
+    
+    List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    List<String> authNames = [];
+
+    if(contentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = new MultipartRequest(null, null);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+          }
+
+    return apiClient.invokeAPI(basePath, path, 'GET', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
+      if(response.statusCode >= 400) {
+        throw new ApiException(response.statusCode, response.body);
+      }
+      else if(response.body != null){
+        return ApiClient.deserialize(response.body, Wallet);
+      }
+      else {
+        return null;
+      }
+    });
+  }
+  /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
   ///
   /// 
   Future<List<Transaction>> userGetWalletHistory(String currency) {
@@ -667,30 +652,26 @@ if (token != null)
       }
     });
   }
-  /// Log in to BitMEX.
+  /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
   ///
   /// 
-  Future<AccessToken> userLogin(String email, String password, String token) {
+  Future<List<Transaction>> userGetWalletSummary(String currency) {
     Object postBody = null;
     // verify required params are set
-    if(    // verify required params are set
-    if(    // verify required params are set
     if() {
-       throw new ApiException(400, "missing required params");
-    }) {
-       throw new ApiException(400, "missing required params");
-    }) {
        throw new ApiException(400, "missing required params");
     }
 
     // create path and map variables
-    String path = "/user/login".replaceAll("{format}","json");
+    String path = "/user/walletSummary".replaceAll("{format}","json");
 
     // query params
     Map<String, String> queryParams = {};
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
-        
+    if("null" != currency)
+      queryParams["currency"] = currency is List ? currency.join(',') : currency;
+    
     List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -700,39 +681,18 @@ if (token != null)
       bool hasFields = false;
       MultipartRequest mp = new MultipartRequest(null, null);
       
-      if (email != null) {
-        hasFields = true;
-        mp.fields['email'] = apiClient.parameterToString(email);
-      }
-      
-      if (password != null) {
-        hasFields = true;
-        mp.fields['password'] = apiClient.parameterToString(password);
-      }
-      
-      if (token != null) {
-        hasFields = true;
-        mp.fields['token'] = apiClient.parameterToString(token);
-      }
-      
       if(hasFields)
         postBody = mp;
     }
     else {
-      if (email != null)
-        formParams['email'] = apiClient.parameterToString(email);
-if (password != null)
-        formParams['password'] = apiClient.parameterToString(password);
-if (token != null)
-        formParams['token'] = apiClient.parameterToString(token);
-    }
+          }
 
-    return apiClient.invokeAPI(basePath, path, 'POST', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
+    return apiClient.invokeAPI(basePath, path, 'GET', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
       if(response.statusCode >= 400) {
         throw new ApiException(response.statusCode, response.body);
       }
       else if(response.body != null){
-        return ApiClient.deserialize(response.body, AccessToken);
+        return ApiClient.deserialize(response.body, Transaction);
       }
       else {
         return null;
@@ -823,148 +783,6 @@ if (token != null)
       }
     });
   }
-  /// Register a new user.
-  ///
-  /// 
-  Future<User> userNew(String email, String password, String country, String username, String firstname, String lastname, String acceptsTOS, String referrerID, String tfaType, String tfaToken) {
-    Object postBody = null;
-    // verify required params are set
-    if(    // verify required params are set
-    if(    // verify required params are set
-    if(    // verify required params are set
-    if(    // verify required params are set
-    if(    // verify required params are set
-    if(    // verify required params are set
-    if(    // verify required params are set
-    if(    // verify required params are set
-    if(    // verify required params are set
-    if() {
-       throw new ApiException(400, "missing required params");
-    }) {
-       throw new ApiException(400, "missing required params");
-    }) {
-       throw new ApiException(400, "missing required params");
-    }) {
-       throw new ApiException(400, "missing required params");
-    }) {
-       throw new ApiException(400, "missing required params");
-    }) {
-       throw new ApiException(400, "missing required params");
-    }) {
-       throw new ApiException(400, "missing required params");
-    }) {
-       throw new ApiException(400, "missing required params");
-    }) {
-       throw new ApiException(400, "missing required params");
-    }) {
-       throw new ApiException(400, "missing required params");
-    }
-
-    // create path and map variables
-    String path = "/user".replaceAll("{format}","json");
-
-    // query params
-    Map<String, String> queryParams = {};
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-        
-    List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if (email != null) {
-        hasFields = true;
-        mp.fields['email'] = apiClient.parameterToString(email);
-      }
-      
-      if (password != null) {
-        hasFields = true;
-        mp.fields['password'] = apiClient.parameterToString(password);
-      }
-      
-      if (username != null) {
-        hasFields = true;
-        mp.fields['username'] = apiClient.parameterToString(username);
-      }
-      
-      if (firstname != null) {
-        hasFields = true;
-        mp.fields['firstname'] = apiClient.parameterToString(firstname);
-      }
-      
-      if (lastname != null) {
-        hasFields = true;
-        mp.fields['lastname'] = apiClient.parameterToString(lastname);
-      }
-      
-      if (acceptsTOS != null) {
-        hasFields = true;
-        mp.fields['acceptsTOS'] = apiClient.parameterToString(acceptsTOS);
-      }
-      
-      if (referrerID != null) {
-        hasFields = true;
-        mp.fields['referrerID'] = apiClient.parameterToString(referrerID);
-      }
-      
-      if (country != null) {
-        hasFields = true;
-        mp.fields['country'] = apiClient.parameterToString(country);
-      }
-      
-      if (tfaType != null) {
-        hasFields = true;
-        mp.fields['tfaType'] = apiClient.parameterToString(tfaType);
-      }
-      
-      if (tfaToken != null) {
-        hasFields = true;
-        mp.fields['tfaToken'] = apiClient.parameterToString(tfaToken);
-      }
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      if (email != null)
-        formParams['email'] = apiClient.parameterToString(email);
-if (password != null)
-        formParams['password'] = apiClient.parameterToString(password);
-if (username != null)
-        formParams['username'] = apiClient.parameterToString(username);
-if (firstname != null)
-        formParams['firstname'] = apiClient.parameterToString(firstname);
-if (lastname != null)
-        formParams['lastname'] = apiClient.parameterToString(lastname);
-if (acceptsTOS != null)
-        formParams['acceptsTOS'] = apiClient.parameterToString(acceptsTOS);
-if (referrerID != null)
-        formParams['referrerID'] = apiClient.parameterToString(referrerID);
-if (country != null)
-        formParams['country'] = apiClient.parameterToString(country);
-if (tfaType != null)
-        formParams['tfaType'] = apiClient.parameterToString(tfaType);
-if (tfaToken != null)
-        formParams['tfaToken'] = apiClient.parameterToString(tfaToken);
-    }
-
-    return apiClient.invokeAPI(basePath, path, 'POST', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
-      if(response.statusCode >= 400) {
-        throw new ApiException(response.statusCode, response.body);
-      }
-      else if(response.body != null){
-        return ApiClient.deserialize(response.body, User);
-      }
-      else {
-        return null;
-      }
-    });
-  }
   /// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
   ///
   /// 
@@ -1003,58 +821,6 @@ if (tfaToken != null)
     else {
       if (type != null)
         formParams['type'] = apiClient.parameterToString(type);
-    }
-
-    return apiClient.invokeAPI(basePath, path, 'POST', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
-      if(response.statusCode >= 400) {
-        throw new ApiException(response.statusCode, response.body);
-      }
-      else if(response.body != null){
-        return ApiClient.deserialize(response.body, bool);
-      }
-      else {
-        return null;
-      }
-    });
-  }
-  /// Request a password reset.
-  ///
-  /// 
-  Future<bool> userRequestPasswordReset(String email) {
-    Object postBody = null;
-    // verify required params are set
-    if() {
-       throw new ApiException(400, "missing required params");
-    }
-
-    // create path and map variables
-    String path = "/user/requestPasswordReset".replaceAll("{format}","json");
-
-    // query params
-    Map<String, String> queryParams = {};
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-        
-    List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if (email != null) {
-        hasFields = true;
-        mp.fields['email'] = apiClient.parameterToString(email);
-      }
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      if (email != null)
-        formParams['email'] = apiClient.parameterToString(email);
     }
 
     return apiClient.invokeAPI(basePath, path, 'POST', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
@@ -1217,58 +983,6 @@ if (overwrite != null)
       }
       else if(response.body != null){
         return ApiClient.deserialize(response.body, User);
-      }
-      else {
-        return null;
-      }
-    });
-  }
-  /// Re-send verification email.
-  ///
-  /// 
-  Future<bool> userSendVerificationEmail(String email) {
-    Object postBody = null;
-    // verify required params are set
-    if() {
-       throw new ApiException(400, "missing required params");
-    }
-
-    // create path and map variables
-    String path = "/user/resendVerificationEmail".replaceAll("{format}","json");
-
-    // query params
-    Map<String, String> queryParams = {};
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-        
-    List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      
-      if (email != null) {
-        hasFields = true;
-        mp.fields['email'] = apiClient.parameterToString(email);
-      }
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      if (email != null)
-        formParams['email'] = apiClient.parameterToString(email);
-    }
-
-    return apiClient.invokeAPI(basePath, path, 'POST', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
-      if(response.statusCode >= 400) {
-        throw new ApiException(response.statusCode, response.body);
-      }
-      else if(response.body != null){
-        return ApiClient.deserialize(response.body, bool);
       }
       else {
         return null;

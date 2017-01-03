@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **announcements_last_seen** | [**\DateTime**](Date.md) |  | [optional] 
+**chat_channel_id** | **double** |  | [optional] 
 **color_theme** | **string** |  | [optional] 
 **currency** | **string** |  | [optional] 
 **debug** | **bool** |  | [optional] 
@@ -13,10 +14,9 @@ Name | Type | Description | Notes
 **hide_from_leaderboard** | **bool** |  | [optional] [default to false]
 **hide_name_from_leaderboard** | **bool** |  | [optional] [default to true]
 **hide_notifications** | **string[]** |  | [optional] 
-**hide_phone_confirm** | **bool** |  | [optional] 
-**locale** | **string** |  | [optional] 
+**locale** | **string** |  | [optional] [default to 'en-US']
 **msgs_seen** | **string[]** |  | [optional] 
-**order_book_binning** | **float** |  | [optional] 
+**order_book_binning** | [**\Swagger\Client\Model\XAny**](XAny.md) |  | [optional] 
 **order_book_type** | **string** |  | [optional] 
 **order_controls_plus_minus** | **bool** |  | [optional] 
 **sounds** | **string[]** |  | [optional] 

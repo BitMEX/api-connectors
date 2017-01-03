@@ -11,7 +11,7 @@ import java.util.*;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
-import io.swagger.client.model.ApiKey;
+import io.swagger.client.model.APIKey;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.InlineResponse200;
 
@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
-public class ApiKeyApi {
+public class APIKeyApi {
   String basePath = "https://localhost/api/v1";
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
 
@@ -49,15 +49,15 @@ public class ApiKeyApi {
   * Disable an API Key.
   * 
    * @param apiKeyID API Key ID (public component).
-   * @return ApiKey
+   * @return APIKey
   */
-  public ApiKey apiKeyDisable (String apiKeyID) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public APIKey aPIKeyDisable (String apiKeyID) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
      Object postBody = null;
   
       // verify the required parameter 'apiKeyID' is set
       if (apiKeyID == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'apiKeyID' when calling apiKeyDisable",
-      new ApiException(400, "Missing the required parameter 'apiKeyID' when calling apiKeyDisable"));
+      VolleyError error = new VolleyError("Missing the required parameter 'apiKeyID' when calling aPIKeyDisable",
+      new ApiException(400, "Missing the required parameter 'apiKeyID' when calling aPIKeyDisable"));
       }
   
 
@@ -99,7 +99,7 @@ public class ApiKeyApi {
       try {
         String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
         if(localVarResponse != null){
-           return (ApiKey) ApiInvoker.deserialize(localVarResponse, "", ApiKey.class);
+           return (APIKey) ApiInvoker.deserialize(localVarResponse, "", APIKey.class);
         } else {
            return null;
         }
@@ -125,14 +125,14 @@ public class ApiKeyApi {
    * 
    * @param apiKeyID API Key ID (public component).
   */
-  public void apiKeyDisable (String apiKeyID, final Response.Listener<ApiKey> responseListener, final Response.ErrorListener errorListener) {
+  public void aPIKeyDisable (String apiKeyID, final Response.Listener<APIKey> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
   
     // verify the required parameter 'apiKeyID' is set
     if (apiKeyID == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'apiKeyID' when calling apiKeyDisable",
-         new ApiException(400, "Missing the required parameter 'apiKeyID' when calling apiKeyDisable"));
+       VolleyError error = new VolleyError("Missing the required parameter 'apiKeyID' when calling aPIKeyDisable",
+         new ApiException(400, "Missing the required parameter 'apiKeyID' when calling aPIKeyDisable"));
     }
     
 
@@ -177,7 +177,7 @@ public class ApiKeyApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((ApiKey) ApiInvoker.deserialize(localVarResponse,  "", ApiKey.class));
+              responseListener.onResponse((APIKey) ApiInvoker.deserialize(localVarResponse,  "", APIKey.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -196,15 +196,15 @@ public class ApiKeyApi {
   * Enable an API Key.
   * 
    * @param apiKeyID API Key ID (public component).
-   * @return ApiKey
+   * @return APIKey
   */
-  public ApiKey apiKeyEnable (String apiKeyID) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public APIKey aPIKeyEnable (String apiKeyID) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
      Object postBody = null;
   
       // verify the required parameter 'apiKeyID' is set
       if (apiKeyID == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'apiKeyID' when calling apiKeyEnable",
-      new ApiException(400, "Missing the required parameter 'apiKeyID' when calling apiKeyEnable"));
+      VolleyError error = new VolleyError("Missing the required parameter 'apiKeyID' when calling aPIKeyEnable",
+      new ApiException(400, "Missing the required parameter 'apiKeyID' when calling aPIKeyEnable"));
       }
   
 
@@ -246,7 +246,7 @@ public class ApiKeyApi {
       try {
         String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
         if(localVarResponse != null){
-           return (ApiKey) ApiInvoker.deserialize(localVarResponse, "", ApiKey.class);
+           return (APIKey) ApiInvoker.deserialize(localVarResponse, "", APIKey.class);
         } else {
            return null;
         }
@@ -272,14 +272,14 @@ public class ApiKeyApi {
    * 
    * @param apiKeyID API Key ID (public component).
   */
-  public void apiKeyEnable (String apiKeyID, final Response.Listener<ApiKey> responseListener, final Response.ErrorListener errorListener) {
+  public void aPIKeyEnable (String apiKeyID, final Response.Listener<APIKey> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
   
     // verify the required parameter 'apiKeyID' is set
     if (apiKeyID == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'apiKeyID' when calling apiKeyEnable",
-         new ApiException(400, "Missing the required parameter 'apiKeyID' when calling apiKeyEnable"));
+       VolleyError error = new VolleyError("Missing the required parameter 'apiKeyID' when calling aPIKeyEnable",
+         new ApiException(400, "Missing the required parameter 'apiKeyID' when calling aPIKeyEnable"));
     }
     
 
@@ -324,7 +324,7 @@ public class ApiKeyApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((ApiKey) ApiInvoker.deserialize(localVarResponse,  "", ApiKey.class));
+              responseListener.onResponse((APIKey) ApiInvoker.deserialize(localVarResponse,  "", APIKey.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -343,9 +343,9 @@ public class ApiKeyApi {
   * Get your API Keys.
   * 
    * @param reverse If true, will sort results newest first.
-   * @return List<ApiKey>
+   * @return List<APIKey>
   */
-  public List<ApiKey> apiKeyGet (Boolean reverse) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public List<APIKey> aPIKeyGet (Boolean reverse) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
      Object postBody = null;
   
 
@@ -383,7 +383,7 @@ public class ApiKeyApi {
       try {
         String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
         if(localVarResponse != null){
-           return (List<ApiKey>) ApiInvoker.deserialize(localVarResponse, "array", ApiKey.class);
+           return (List<APIKey>) ApiInvoker.deserialize(localVarResponse, "array", APIKey.class);
         } else {
            return null;
         }
@@ -409,7 +409,7 @@ public class ApiKeyApi {
    * 
    * @param reverse If true, will sort results newest first.
   */
-  public void apiKeyGet (Boolean reverse, final Response.Listener<List<ApiKey>> responseListener, final Response.ErrorListener errorListener) {
+  public void aPIKeyGet (Boolean reverse, final Response.Listener<List<APIKey>> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
   
@@ -451,7 +451,7 @@ public class ApiKeyApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((List<ApiKey>) ApiInvoker.deserialize(localVarResponse,  "array", ApiKey.class));
+              responseListener.onResponse((List<APIKey>) ApiInvoker.deserialize(localVarResponse,  "array", APIKey.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -474,9 +474,9 @@ public class ApiKeyApi {
    * @param permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;].
    * @param enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.
    * @param token OTP Token (YubiKey, Google Authenticator)
-   * @return ApiKey
+   * @return APIKey
   */
-  public ApiKey apiKeyNew (String name, String cidr, String permissions, Boolean enabled, String token) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public APIKey aPIKeyNew (String name, String cidr, String permissions, Boolean enabled, String token) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
      Object postBody = null;
   
 
@@ -538,7 +538,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       try {
         String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
         if(localVarResponse != null){
-           return (ApiKey) ApiInvoker.deserialize(localVarResponse, "", ApiKey.class);
+           return (APIKey) ApiInvoker.deserialize(localVarResponse, "", APIKey.class);
         } else {
            return null;
         }
@@ -564,7 +564,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
    * API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
    * @param name Key name. This name is for reference only.   * @param cidr CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href&#x3D;\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt;   * @param permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;].   * @param enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.   * @param token OTP Token (YubiKey, Google Authenticator)
   */
-  public void apiKeyNew (String name, String cidr, String permissions, Boolean enabled, String token, final Response.Listener<ApiKey> responseListener, final Response.ErrorListener errorListener) {
+  public void aPIKeyNew (String name, String cidr, String permissions, Boolean enabled, String token, final Response.Listener<APIKey> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
   
@@ -630,7 +630,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((ApiKey) ApiInvoker.deserialize(localVarResponse,  "", ApiKey.class));
+              responseListener.onResponse((APIKey) ApiInvoker.deserialize(localVarResponse,  "", APIKey.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -651,13 +651,13 @@ formParams.put("token", ApiInvoker.parameterToString(token));
    * @param apiKeyID API Key ID (public component).
    * @return InlineResponse200
   */
-  public InlineResponse200 apiKeyRemove (String apiKeyID) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public InlineResponse200 aPIKeyRemove (String apiKeyID) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
      Object postBody = null;
   
       // verify the required parameter 'apiKeyID' is set
       if (apiKeyID == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'apiKeyID' when calling apiKeyRemove",
-      new ApiException(400, "Missing the required parameter 'apiKeyID' when calling apiKeyRemove"));
+      VolleyError error = new VolleyError("Missing the required parameter 'apiKeyID' when calling aPIKeyRemove",
+      new ApiException(400, "Missing the required parameter 'apiKeyID' when calling aPIKeyRemove"));
       }
   
 
@@ -725,14 +725,14 @@ formParams.put("token", ApiInvoker.parameterToString(token));
    * 
    * @param apiKeyID API Key ID (public component).
   */
-  public void apiKeyRemove (String apiKeyID, final Response.Listener<InlineResponse200> responseListener, final Response.ErrorListener errorListener) {
+  public void aPIKeyRemove (String apiKeyID, final Response.Listener<InlineResponse200> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
   
     // verify the required parameter 'apiKeyID' is set
     if (apiKeyID == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'apiKeyID' when calling apiKeyRemove",
-         new ApiException(400, "Missing the required parameter 'apiKeyID' when calling apiKeyRemove"));
+       VolleyError error = new VolleyError("Missing the required parameter 'apiKeyID' when calling aPIKeyRemove",
+         new ApiException(400, "Missing the required parameter 'apiKeyID' when calling aPIKeyRemove"));
     }
     
 

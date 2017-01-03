@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**timestamp** | **Date** |  | [optional] 
-**symbol** | **String** |  | [optional] 
+**timestamp** | **Date** |  | 
+**symbol** | **String** |  | 
 **open** | **Number** |  | [optional] 
 **high** | **Number** |  | [optional] 
 **low** | **Number** |  | [optional] 
@@ -16,6 +16,5 @@ Name | Type | Description | Notes
 **turnover** | **Number** |  | [optional] 
 **homeNotional** | **Number** |  | [optional] 
 **foreignNotional** | **Number** |  | [optional] 
-**id** | **Number** |  | [optional] 
 
 

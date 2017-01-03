@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -34,18 +34,18 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * UserCommission
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-05T09:40:48.217-05:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-01-03T10:34:33.567-06:00")
 public class UserCommission   {
   @JsonProperty("makerFee")
-  private String makerFee = null;
+  private Double makerFee = null;
 
   @JsonProperty("takerFee")
-  private String takerFee = null;
+  private Double takerFee = null;
 
-  @JsonProperty("insuranceFee")
-  private String insuranceFee = null;
+  @JsonProperty("settlementFee")
+  private Double settlementFee = null;
 
-  public UserCommission makerFee(String makerFee) {
+  public UserCommission makerFee(Double makerFee) {
     this.makerFee = makerFee;
     return this;
   }
@@ -55,15 +55,15 @@ public class UserCommission   {
    * @return makerFee
   **/
   @ApiModelProperty(example = "null", value = "")
-  public String getMakerFee() {
+  public Double getMakerFee() {
     return makerFee;
   }
 
-  public void setMakerFee(String makerFee) {
+  public void setMakerFee(Double makerFee) {
     this.makerFee = makerFee;
   }
 
-  public UserCommission takerFee(String takerFee) {
+  public UserCommission takerFee(Double takerFee) {
     this.takerFee = takerFee;
     return this;
   }
@@ -73,30 +73,30 @@ public class UserCommission   {
    * @return takerFee
   **/
   @ApiModelProperty(example = "null", value = "")
-  public String getTakerFee() {
+  public Double getTakerFee() {
     return takerFee;
   }
 
-  public void setTakerFee(String takerFee) {
+  public void setTakerFee(Double takerFee) {
     this.takerFee = takerFee;
   }
 
-  public UserCommission insuranceFee(String insuranceFee) {
-    this.insuranceFee = insuranceFee;
+  public UserCommission settlementFee(Double settlementFee) {
+    this.settlementFee = settlementFee;
     return this;
   }
 
    /**
-   * Get insuranceFee
-   * @return insuranceFee
+   * Get settlementFee
+   * @return settlementFee
   **/
   @ApiModelProperty(example = "null", value = "")
-  public String getInsuranceFee() {
-    return insuranceFee;
+  public Double getSettlementFee() {
+    return settlementFee;
   }
 
-  public void setInsuranceFee(String insuranceFee) {
-    this.insuranceFee = insuranceFee;
+  public void setSettlementFee(Double settlementFee) {
+    this.settlementFee = settlementFee;
   }
 
 
@@ -111,12 +111,12 @@ public class UserCommission   {
     UserCommission userCommission = (UserCommission) o;
     return Objects.equals(this.makerFee, userCommission.makerFee) &&
         Objects.equals(this.takerFee, userCommission.takerFee) &&
-        Objects.equals(this.insuranceFee, userCommission.insuranceFee);
+        Objects.equals(this.settlementFee, userCommission.settlementFee);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(makerFee, takerFee, insuranceFee);
+    return Objects.hash(makerFee, takerFee, settlementFee);
   }
 
   @Override
@@ -126,7 +126,7 @@ public class UserCommission   {
     
     sb.append("    makerFee: ").append(toIndentedString(makerFee)).append("\n");
     sb.append("    takerFee: ").append(toIndentedString(takerFee)).append("\n");
-    sb.append("    insuranceFee: ").append(toIndentedString(insuranceFee)).append("\n");
+    sb.append("    settlementFee: ").append(toIndentedString(settlementFee)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -61,22 +61,22 @@ Please follow the [installation](#installation) instruction and execute the foll
 import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
-import io.swagger.client.api.AnnouncementApi;
+import io.swagger.client.api.APIKeyApi;
 
 import java.io.File;
 import java.util.*;
 
-public class AnnouncementApiExample {
+public class APIKeyApiExample {
 
     public static void main(String[] args) {
         
-        AnnouncementApi apiInstance = new AnnouncementApi();
-        String columns = "columns_example"; // String | Array of column names to fetch. If omitted, will return all columns.
+        APIKeyApi apiInstance = new APIKeyApi();
+        String apiKeyID = "apiKeyID_example"; // String | API Key ID (public component).
         try {
-            List<Announcement> result = apiInstance.announcementGet(columns);
+            APIKey result = apiInstance.aPIKeyDisable(apiKeyID);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling AnnouncementApi#announcementGet");
+            System.err.println("Exception when calling APIKeyApi#aPIKeyDisable");
             e.printStackTrace();
         }
     }
@@ -90,14 +90,15 @@ All URIs are relative to *https://localhost/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*APIKeyApi* | [**aPIKeyDisable**](docs/APIKeyApi.md#aPIKeyDisable) | **POST** /apiKey/disable | Disable an API Key.
+*APIKeyApi* | [**aPIKeyEnable**](docs/APIKeyApi.md#aPIKeyEnable) | **POST** /apiKey/enable | Enable an API Key.
+*APIKeyApi* | [**aPIKeyGet**](docs/APIKeyApi.md#aPIKeyGet) | **GET** /apiKey | Get your API Keys.
+*APIKeyApi* | [**aPIKeyNew**](docs/APIKeyApi.md#aPIKeyNew) | **POST** /apiKey | Create a new API Key.
+*APIKeyApi* | [**aPIKeyRemove**](docs/APIKeyApi.md#aPIKeyRemove) | **DELETE** /apiKey | Remove an API Key.
 *AnnouncementApi* | [**announcementGet**](docs/AnnouncementApi.md#announcementGet) | **GET** /announcement | Get site announcements.
 *AnnouncementApi* | [**announcementGetUrgent**](docs/AnnouncementApi.md#announcementGetUrgent) | **GET** /announcement/urgent | Get urgent (banner) announcements.
-*ApiKeyApi* | [**apiKeyDisable**](docs/ApiKeyApi.md#apiKeyDisable) | **POST** /apiKey/disable | Disable an API Key.
-*ApiKeyApi* | [**apiKeyEnable**](docs/ApiKeyApi.md#apiKeyEnable) | **POST** /apiKey/enable | Enable an API Key.
-*ApiKeyApi* | [**apiKeyGet**](docs/ApiKeyApi.md#apiKeyGet) | **GET** /apiKey | Get your API Keys.
-*ApiKeyApi* | [**apiKeyNew**](docs/ApiKeyApi.md#apiKeyNew) | **POST** /apiKey | Create a new API Key.
-*ApiKeyApi* | [**apiKeyRemove**](docs/ApiKeyApi.md#apiKeyRemove) | **DELETE** /apiKey | Remove an API Key.
 *ChatApi* | [**chatGet**](docs/ChatApi.md#chatGet) | **GET** /chat | Get chat messages.
+*ChatApi* | [**chatGetChannels**](docs/ChatApi.md#chatGetChannels) | **GET** /chat/channels | Get available channels.
 *ChatApi* | [**chatGetConnected**](docs/ChatApi.md#chatGetConnected) | **GET** /chat/connected | Get connected users.
 *ChatApi* | [**chatNew**](docs/ChatApi.md#chatNew) | **POST** /chat | Send a chat message.
 *ExecutionApi* | [**executionGet**](docs/ExecutionApi.md#executionGet) | **GET** /execution | Get all raw executions for your account.
@@ -126,6 +127,7 @@ Class | Method | HTTP request | Description
 *PositionApi* | [**positionIsolateMargin**](docs/PositionApi.md#positionIsolateMargin) | **POST** /position/isolate | Enable isolated margin or cross margin per-position.
 *PositionApi* | [**positionTransferIsolatedMargin**](docs/PositionApi.md#positionTransferIsolatedMargin) | **POST** /position/transferMargin | Transfer equity in or out of a position.
 *PositionApi* | [**positionUpdateLeverage**](docs/PositionApi.md#positionUpdateLeverage) | **POST** /position/leverage | Choose leverage for a position.
+*PositionApi* | [**positionUpdateRiskLimit**](docs/PositionApi.md#positionUpdateRiskLimit) | **POST** /position/riskLimit | Update your risk limit.
 *QuoteApi* | [**quoteGet**](docs/QuoteApi.md#quoteGet) | **GET** /quote | Get Quotes.
 *QuoteApi* | [**quoteGetBucketed**](docs/QuoteApi.md#quoteGetBucketed) | **GET** /quote/bucketed | Get previous quotes in time buckets.
 *SchemaApi* | [**schemaGet**](docs/SchemaApi.md#schemaGet) | **GET** /schema | Get model schemata for data objects returned by this API.
@@ -139,7 +141,6 @@ Class | Method | HTTP request | Description
 *UserApi* | [**userCheckReferralCode**](docs/UserApi.md#userCheckReferralCode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
 *UserApi* | [**userConfirmEmail**](docs/UserApi.md#userConfirmEmail) | **POST** /user/confirmEmail | Confirm your email address with a token.
 *UserApi* | [**userConfirmEnableTFA**](docs/UserApi.md#userConfirmEnableTFA) | **POST** /user/confirmEnableTFA | Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
-*UserApi* | [**userConfirmPasswordReset**](docs/UserApi.md#userConfirmPasswordReset) | **POST** /user/confirmPasswordReset | Confirm a password reset.
 *UserApi* | [**userConfirmWithdrawal**](docs/UserApi.md#userConfirmWithdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
 *UserApi* | [**userDisableTFA**](docs/UserApi.md#userDisableTFA) | **POST** /user/disableTFA | Disable two-factor auth for this account.
 *UserApi* | [**userGet**](docs/UserApi.md#userGet) | **GET** /user | Get your user model.
@@ -147,26 +148,25 @@ Class | Method | HTTP request | Description
 *UserApi* | [**userGetCommission**](docs/UserApi.md#userGetCommission) | **GET** /user/commission | Get your account&#39;s commission status.
 *UserApi* | [**userGetDepositAddress**](docs/UserApi.md#userGetDepositAddress) | **GET** /user/depositAddress | Get a deposit address.
 *UserApi* | [**userGetMargin**](docs/UserApi.md#userGetMargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
-*UserApi* | [**userGetWalletHistory**](docs/UserApi.md#userGetWalletHistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits and withdrawals).
-*UserApi* | [**userLogin**](docs/UserApi.md#userLogin) | **POST** /user/login | Log in to BitMEX.
+*UserApi* | [**userGetWallet**](docs/UserApi.md#userGetWallet) | **GET** /user/wallet | Get your current wallet information.
+*UserApi* | [**userGetWalletHistory**](docs/UserApi.md#userGetWalletHistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
+*UserApi* | [**userGetWalletSummary**](docs/UserApi.md#userGetWalletSummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 *UserApi* | [**userLogout**](docs/UserApi.md#userLogout) | **POST** /user/logout | Log out of BitMEX.
 *UserApi* | [**userLogoutAll**](docs/UserApi.md#userLogoutAll) | **POST** /user/logoutAll | Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
-*UserApi* | [**userNew**](docs/UserApi.md#userNew) | **POST** /user | Register a new user.
 *UserApi* | [**userRequestEnableTFA**](docs/UserApi.md#userRequestEnableTFA) | **POST** /user/requestEnableTFA | Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
-*UserApi* | [**userRequestPasswordReset**](docs/UserApi.md#userRequestPasswordReset) | **POST** /user/requestPasswordReset | Request a password reset.
 *UserApi* | [**userRequestWithdrawal**](docs/UserApi.md#userRequestWithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 *UserApi* | [**userSavePreferences**](docs/UserApi.md#userSavePreferences) | **POST** /user/preferences | Save user preferences.
-*UserApi* | [**userSendVerificationEmail**](docs/UserApi.md#userSendVerificationEmail) | **POST** /user/resendVerificationEmail | Re-send verification email.
 *UserApi* | [**userUpdate**](docs/UserApi.md#userUpdate) | **PUT** /user | Update your password, name, and other attributes.
 
 
 ## Documentation for Models
 
+ - [APIKey](docs/APIKey.md)
  - [AccessToken](docs/AccessToken.md)
  - [Affiliate](docs/Affiliate.md)
  - [Announcement](docs/Announcement.md)
- - [ApiKey](docs/ApiKey.md)
  - [Chat](docs/Chat.md)
+ - [ChatChannel](docs/ChatChannel.md)
  - [ConnectedUsers](docs/ConnectedUsers.md)
  - [Error](docs/Error.md)
  - [Execution](docs/Execution.md)
@@ -192,6 +192,7 @@ Class | Method | HTTP request | Description
  - [User](docs/User.md)
  - [UserCommission](docs/UserCommission.md)
  - [UserPreferences](docs/UserPreferences.md)
+ - [Wallet](docs/Wallet.md)
 
 
 ## Documentation for Authorization

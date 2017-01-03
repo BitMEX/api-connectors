@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -25,32 +25,32 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
+    define(['ApiClient', 'model/XAny'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('./XAny'));
   } else {
     // Browser globals (root is window)
     if (!root.BitMexApi) {
       root.BitMexApi = {};
     }
-    root.BitMexApi.ApiKey = factory(root.BitMexApi.ApiClient);
+    root.BitMexApi.APIKey = factory(root.BitMexApi.ApiClient, root.BitMexApi.XAny);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, XAny) {
   'use strict';
 
 
 
 
   /**
-   * The ApiKey model module.
-   * @module model/ApiKey
+   * The APIKey model module.
+   * @module model/APIKey
    * @version 1.2.0
    */
 
   /**
-   * Constructs a new <code>ApiKey</code>.
-   * @alias module:model/ApiKey
+   * Constructs a new <code>APIKey</code>.
+   * @alias module:model/APIKey
    * @class
    * @param id {String} 
    * @param secret {String} 
@@ -73,11 +73,11 @@
   };
 
   /**
-   * Constructs a <code>ApiKey</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>APIKey</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/ApiKey} obj Optional instance to populate.
-   * @return {module:model/ApiKey} The populated <code>ApiKey</code> instance.
+   * @param {module:model/APIKey} obj Optional instance to populate.
+   * @return {module:model/APIKey} The populated <code>APIKey</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
@@ -99,7 +99,7 @@
         obj['cidr'] = ApiClient.convertToType(data['cidr'], 'String');
       }
       if (data.hasOwnProperty('permissions')) {
-        obj['permissions'] = ApiClient.convertToType(data['permissions'], ['String']);
+        obj['permissions'] = ApiClient.convertToType(data['permissions'], [XAny]);
       }
       if (data.hasOwnProperty('enabled')) {
         obj['enabled'] = ApiClient.convertToType(data['enabled'], 'Boolean');
@@ -135,7 +135,7 @@
    */
   exports.prototype['cidr'] = undefined;
   /**
-   * @member {Array.<String>} permissions
+   * @member {Array.<module:model/XAny>} permissions
    */
   exports.prototype['permissions'] = undefined;
   /**

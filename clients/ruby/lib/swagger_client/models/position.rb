@@ -1,7 +1,7 @@
 =begin
 #BitMEX API
 
-#REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+### REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
 
 OpenAPI spec version: 1.2.0
 Contact: support@bitmex.com
@@ -38,9 +38,17 @@ module SwaggerClient
 
     attr_accessor :commission
 
+    attr_accessor :init_margin_req
+
+    attr_accessor :maint_margin_req
+
+    attr_accessor :risk_limit
+
     attr_accessor :leverage
 
     attr_accessor :cross_margin
+
+    attr_accessor :deleverage_percentile
 
     attr_accessor :rebalanced_pnl
 
@@ -107,6 +115,8 @@ module SwaggerClient
     attr_accessor :mark_price
 
     attr_accessor :mark_value
+
+    attr_accessor :risk_value
 
     attr_accessor :home_notional
 
@@ -208,8 +218,12 @@ module SwaggerClient
         :'underlying' => :'underlying',
         :'quote_currency' => :'quoteCurrency',
         :'commission' => :'commission',
+        :'init_margin_req' => :'initMarginReq',
+        :'maint_margin_req' => :'maintMarginReq',
+        :'risk_limit' => :'riskLimit',
         :'leverage' => :'leverage',
         :'cross_margin' => :'crossMargin',
+        :'deleverage_percentile' => :'deleveragePercentile',
         :'rebalanced_pnl' => :'rebalancedPnl',
         :'prev_realised_pnl' => :'prevRealisedPnl',
         :'prev_unrealised_pnl' => :'prevUnrealisedPnl',
@@ -243,6 +257,7 @@ module SwaggerClient
         :'is_open' => :'isOpen',
         :'mark_price' => :'markPrice',
         :'mark_value' => :'markValue',
+        :'risk_value' => :'riskValue',
         :'home_notional' => :'homeNotional',
         :'foreign_notional' => :'foreignNotional',
         :'pos_state' => :'posState',
@@ -300,8 +315,12 @@ module SwaggerClient
         :'underlying' => :'String',
         :'quote_currency' => :'String',
         :'commission' => :'Float',
+        :'init_margin_req' => :'Float',
+        :'maint_margin_req' => :'Float',
+        :'risk_limit' => :'Float',
         :'leverage' => :'Float',
         :'cross_margin' => :'BOOLEAN',
+        :'deleverage_percentile' => :'Float',
         :'rebalanced_pnl' => :'Float',
         :'prev_realised_pnl' => :'Float',
         :'prev_unrealised_pnl' => :'Float',
@@ -335,6 +354,7 @@ module SwaggerClient
         :'is_open' => :'BOOLEAN',
         :'mark_price' => :'Float',
         :'mark_value' => :'Float',
+        :'risk_value' => :'Float',
         :'home_notional' => :'Float',
         :'foreign_notional' => :'Float',
         :'pos_state' => :'String',
@@ -415,12 +435,28 @@ module SwaggerClient
         self.commission = attributes[:'commission']
       end
 
+      if attributes.has_key?(:'initMarginReq')
+        self.init_margin_req = attributes[:'initMarginReq']
+      end
+
+      if attributes.has_key?(:'maintMarginReq')
+        self.maint_margin_req = attributes[:'maintMarginReq']
+      end
+
+      if attributes.has_key?(:'riskLimit')
+        self.risk_limit = attributes[:'riskLimit']
+      end
+
       if attributes.has_key?(:'leverage')
         self.leverage = attributes[:'leverage']
       end
 
       if attributes.has_key?(:'crossMargin')
         self.cross_margin = attributes[:'crossMargin']
+      end
+
+      if attributes.has_key?(:'deleveragePercentile')
+        self.deleverage_percentile = attributes[:'deleveragePercentile']
       end
 
       if attributes.has_key?(:'rebalancedPnl')
@@ -553,6 +589,10 @@ module SwaggerClient
 
       if attributes.has_key?(:'markValue')
         self.mark_value = attributes[:'markValue']
+      end
+
+      if attributes.has_key?(:'riskValue')
+        self.risk_value = attributes[:'riskValue']
       end
 
       if attributes.has_key?(:'homeNotional')
@@ -764,8 +804,12 @@ module SwaggerClient
           underlying == o.underlying &&
           quote_currency == o.quote_currency &&
           commission == o.commission &&
+          init_margin_req == o.init_margin_req &&
+          maint_margin_req == o.maint_margin_req &&
+          risk_limit == o.risk_limit &&
           leverage == o.leverage &&
           cross_margin == o.cross_margin &&
+          deleverage_percentile == o.deleverage_percentile &&
           rebalanced_pnl == o.rebalanced_pnl &&
           prev_realised_pnl == o.prev_realised_pnl &&
           prev_unrealised_pnl == o.prev_unrealised_pnl &&
@@ -799,6 +843,7 @@ module SwaggerClient
           is_open == o.is_open &&
           mark_price == o.mark_price &&
           mark_value == o.mark_value &&
+          risk_value == o.risk_value &&
           home_notional == o.home_notional &&
           foreign_notional == o.foreign_notional &&
           pos_state == o.pos_state &&
@@ -855,7 +900,7 @@ module SwaggerClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account, symbol, currency, underlying, quote_currency, commission, leverage, cross_margin, rebalanced_pnl, prev_realised_pnl, prev_unrealised_pnl, prev_close_price, opening_timestamp, opening_qty, opening_cost, opening_comm, open_order_buy_qty, open_order_buy_cost, open_order_buy_premium, open_order_sell_qty, open_order_sell_cost, open_order_sell_premium, exec_buy_qty, exec_buy_cost, exec_sell_qty, exec_sell_cost, exec_qty, exec_cost, exec_comm, current_timestamp, current_qty, current_cost, current_comm, realised_cost, unrealised_cost, gross_open_cost, gross_open_premium, gross_exec_cost, is_open, mark_price, mark_value, home_notional, foreign_notional, pos_state, pos_cost, pos_cost2, pos_cross, pos_init, pos_comm, pos_loss, pos_margin, pos_maint, pos_allowance, taxable_margin, init_margin, maint_margin, session_margin, target_excess_margin, var_margin, realised_gross_pnl, realised_tax, realised_pnl, unrealised_gross_pnl, long_bankrupt, short_bankrupt, tax_base, indicative_tax_rate, indicative_tax, unrealised_tax, unrealised_pnl, unrealised_pnl_pcnt, unrealised_roe_pcnt, simple_qty, simple_cost, simple_value, simple_pnl, simple_pnl_pcnt, avg_cost_price, avg_entry_price, break_even_price, margin_call_price, liquidation_price, bankrupt_price, timestamp, last_price, last_value].hash
+      [account, symbol, currency, underlying, quote_currency, commission, init_margin_req, maint_margin_req, risk_limit, leverage, cross_margin, deleverage_percentile, rebalanced_pnl, prev_realised_pnl, prev_unrealised_pnl, prev_close_price, opening_timestamp, opening_qty, opening_cost, opening_comm, open_order_buy_qty, open_order_buy_cost, open_order_buy_premium, open_order_sell_qty, open_order_sell_cost, open_order_sell_premium, exec_buy_qty, exec_buy_cost, exec_sell_qty, exec_sell_cost, exec_qty, exec_cost, exec_comm, current_timestamp, current_qty, current_cost, current_comm, realised_cost, unrealised_cost, gross_open_cost, gross_open_premium, gross_exec_cost, is_open, mark_price, mark_value, risk_value, home_notional, foreign_notional, pos_state, pos_cost, pos_cost2, pos_cross, pos_init, pos_comm, pos_loss, pos_margin, pos_maint, pos_allowance, taxable_margin, init_margin, maint_margin, session_margin, target_excess_margin, var_margin, realised_gross_pnl, realised_tax, realised_pnl, unrealised_gross_pnl, long_bankrupt, short_bankrupt, tax_base, indicative_tax_rate, indicative_tax, unrealised_tax, unrealised_pnl, unrealised_pnl_pcnt, unrealised_roe_pcnt, simple_qty, simple_cost, simple_value, simple_pnl, simple_pnl_pcnt, avg_cost_price, avg_entry_price, break_even_price, margin_call_price, liquidation_price, bankrupt_price, timestamp, last_price, last_value].hash
     end
 
     # Builds the object from hash

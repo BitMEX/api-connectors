@@ -1,7 +1,7 @@
 =begin
 #BitMEX API
 
-#REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+### REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
 
 OpenAPI spec version: 1.2.0
 Contact: support@bitmex.com
@@ -260,69 +260,6 @@ module SwaggerClient
         :return_type => 'BOOLEAN')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: UserApi#user_confirm_enable_tfa\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Confirm a password reset.
-    # 
-    # @param token 
-    # @param new_password 
-    # @param [Hash] opts the optional parameters
-    # @return [BOOLEAN]
-    def user_confirm_password_reset(token, new_password, opts = {})
-      data, _status_code, _headers = user_confirm_password_reset_with_http_info(token, new_password, opts)
-      return data
-    end
-
-    # Confirm a password reset.
-    # 
-    # @param token 
-    # @param new_password 
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(BOOLEAN, Fixnum, Hash)>] BOOLEAN data, response status code and response headers
-    def user_confirm_password_reset_with_http_info(token, new_password, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: UserApi.user_confirm_password_reset ..."
-      end
-      # verify the required parameter 'token' is set
-      fail ArgumentError, "Missing the required parameter 'token' when calling UserApi.user_confirm_password_reset" if token.nil?
-      # verify the required parameter 'new_password' is set
-      fail ArgumentError, "Missing the required parameter 'new_password' when calling UserApi.user_confirm_password_reset" if new_password.nil?
-      # resource path
-      local_var_path = "/user/confirmPasswordReset".sub('{format}','json')
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-
-      # HTTP header 'Accept' (if needed)
-      local_header_accept = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript']
-      local_header_accept_result = @api_client.select_header_accept(local_header_accept) and header_params['Accept'] = local_header_accept_result
-
-      # HTTP header 'Content-Type'
-      local_header_content_type = ['application/json', 'application/x-www-form-urlencoded']
-      header_params['Content-Type'] = @api_client.select_header_content_type(local_header_content_type)
-
-      # form parameters
-      form_params = {}
-      form_params["token"] = token
-      form_params["newPassword"] = new_password
-
-      # http body (model)
-      post_body = nil
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'BOOLEAN')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserApi#user_confirm_password_reset\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -717,7 +654,63 @@ module SwaggerClient
       return data, status_code, headers
     end
 
-    # Get a history of all of your wallet transactions (deposits and withdrawals).
+    # Get your current wallet information.
+    # 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :currency  (default to XBt)
+    # @return [Wallet]
+    def user_get_wallet(opts = {})
+      data, _status_code, _headers = user_get_wallet_with_http_info(opts)
+      return data
+    end
+
+    # Get your current wallet information.
+    # 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :currency 
+    # @return [Array<(Wallet, Fixnum, Hash)>] Wallet data, response status code and response headers
+    def user_get_wallet_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: UserApi.user_get_wallet ..."
+      end
+      # resource path
+      local_var_path = "/user/wallet".sub('{format}','json')
+
+      # query parameters
+      query_params = {}
+      query_params[:'currency'] = opts[:'currency'] if !opts[:'currency'].nil?
+
+      # header parameters
+      header_params = {}
+
+      # HTTP header 'Accept' (if needed)
+      local_header_accept = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript']
+      local_header_accept_result = @api_client.select_header_accept(local_header_accept) and header_params['Accept'] = local_header_accept_result
+
+      # HTTP header 'Content-Type'
+      local_header_content_type = ['application/json', 'application/x-www-form-urlencoded']
+      header_params['Content-Type'] = @api_client.select_header_content_type(local_header_content_type)
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Wallet')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: UserApi#user_get_wallet\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
     # 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :currency  (default to XBt)
@@ -727,7 +720,7 @@ module SwaggerClient
       return data
     end
 
-    # Get a history of all of your wallet transactions (deposits and withdrawals).
+    # Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
     # 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :currency 
@@ -773,38 +766,31 @@ module SwaggerClient
       return data, status_code, headers
     end
 
-    # Log in to BitMEX.
+    # Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
     # 
-    # @param email Your email address.
-    # @param password Your password.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :token OTP Token (YubiKey, Google Authenticator)
-    # @return [AccessToken]
-    def user_login(email, password, opts = {})
-      data, _status_code, _headers = user_login_with_http_info(email, password, opts)
+    # @option opts [String] :currency  (default to XBt)
+    # @return [Array<Transaction>]
+    def user_get_wallet_summary(opts = {})
+      data, _status_code, _headers = user_get_wallet_summary_with_http_info(opts)
       return data
     end
 
-    # Log in to BitMEX.
+    # Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
     # 
-    # @param email Your email address.
-    # @param password Your password.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :token OTP Token (YubiKey, Google Authenticator)
-    # @return [Array<(AccessToken, Fixnum, Hash)>] AccessToken data, response status code and response headers
-    def user_login_with_http_info(email, password, opts = {})
+    # @option opts [String] :currency 
+    # @return [Array<(Array<Transaction>, Fixnum, Hash)>] Array<Transaction> data, response status code and response headers
+    def user_get_wallet_summary_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: UserApi.user_login ..."
+        @api_client.config.logger.debug "Calling API: UserApi.user_get_wallet_summary ..."
       end
-      # verify the required parameter 'email' is set
-      fail ArgumentError, "Missing the required parameter 'email' when calling UserApi.user_login" if email.nil?
-      # verify the required parameter 'password' is set
-      fail ArgumentError, "Missing the required parameter 'password' when calling UserApi.user_login" if password.nil?
       # resource path
-      local_var_path = "/user/login".sub('{format}','json')
+      local_var_path = "/user/walletSummary".sub('{format}','json')
 
       # query parameters
       query_params = {}
+      query_params[:'currency'] = opts[:'currency'] if !opts[:'currency'].nil?
 
       # header parameters
       header_params = {}
@@ -819,22 +805,19 @@ module SwaggerClient
 
       # form parameters
       form_params = {}
-      form_params["email"] = email
-      form_params["password"] = password
-      form_params["token"] = opts[:'token'] if !opts[:'token'].nil?
 
       # http body (model)
       post_body = nil
       auth_names = []
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'AccessToken')
+        :return_type => 'Array<Transaction>')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserApi#user_login\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserApi#user_get_wallet_summary\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -944,95 +927,6 @@ module SwaggerClient
       return data, status_code, headers
     end
 
-    # Register a new user.
-    # 
-    # @param email Your email address.
-    # @param password Your password.
-    # @param country Country of residence.
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :username Desired username.
-    # @option opts [String] :firstname First name.
-    # @option opts [String] :lastname Last name.
-    # @option opts [String] :accepts_tos Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).
-    # @option opts [String] :referrer_id Optional Referrer ID.
-    # @option opts [String] :tfa_type Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef
-    # @option opts [String] :tfa_token Two-Factor Token.
-    # @return [User]
-    def user_new(email, password, country, opts = {})
-      data, _status_code, _headers = user_new_with_http_info(email, password, country, opts)
-      return data
-    end
-
-    # Register a new user.
-    # 
-    # @param email Your email address.
-    # @param password Your password.
-    # @param country Country of residence.
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :username Desired username.
-    # @option opts [String] :firstname First name.
-    # @option opts [String] :lastname Last name.
-    # @option opts [String] :accepts_tos Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).
-    # @option opts [String] :referrer_id Optional Referrer ID.
-    # @option opts [String] :tfa_type Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef
-    # @option opts [String] :tfa_token Two-Factor Token.
-    # @return [Array<(User, Fixnum, Hash)>] User data, response status code and response headers
-    def user_new_with_http_info(email, password, country, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: UserApi.user_new ..."
-      end
-      # verify the required parameter 'email' is set
-      fail ArgumentError, "Missing the required parameter 'email' when calling UserApi.user_new" if email.nil?
-      # verify the required parameter 'password' is set
-      fail ArgumentError, "Missing the required parameter 'password' when calling UserApi.user_new" if password.nil?
-      # verify the required parameter 'country' is set
-      fail ArgumentError, "Missing the required parameter 'country' when calling UserApi.user_new" if country.nil?
-      # resource path
-      local_var_path = "/user".sub('{format}','json')
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-
-      # HTTP header 'Accept' (if needed)
-      local_header_accept = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript']
-      local_header_accept_result = @api_client.select_header_accept(local_header_accept) and header_params['Accept'] = local_header_accept_result
-
-      # HTTP header 'Content-Type'
-      local_header_content_type = ['application/json', 'application/x-www-form-urlencoded']
-      header_params['Content-Type'] = @api_client.select_header_content_type(local_header_content_type)
-
-      # form parameters
-      form_params = {}
-      form_params["email"] = email
-      form_params["password"] = password
-      form_params["country"] = country
-      form_params["username"] = opts[:'username'] if !opts[:'username'].nil?
-      form_params["firstname"] = opts[:'firstname'] if !opts[:'firstname'].nil?
-      form_params["lastname"] = opts[:'lastname'] if !opts[:'lastname'].nil?
-      form_params["acceptsTOS"] = opts[:'accepts_tos'] if !opts[:'accepts_tos'].nil?
-      form_params["referrerID"] = opts[:'referrer_id'] if !opts[:'referrer_id'].nil?
-      form_params["tfaType"] = opts[:'tfa_type'] if !opts[:'tfa_type'].nil?
-      form_params["tfaToken"] = opts[:'tfa_token'] if !opts[:'tfa_token'].nil?
-
-      # http body (model)
-      post_body = nil
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'User')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserApi#user_new\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
     # Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
     # 
     # @param [Hash] opts the optional parameters
@@ -1085,64 +979,6 @@ module SwaggerClient
         :return_type => 'BOOLEAN')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: UserApi#user_request_enable_tfa\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Request a password reset.
-    # 
-    # @param email 
-    # @param [Hash] opts the optional parameters
-    # @return [BOOLEAN]
-    def user_request_password_reset(email, opts = {})
-      data, _status_code, _headers = user_request_password_reset_with_http_info(email, opts)
-      return data
-    end
-
-    # Request a password reset.
-    # 
-    # @param email 
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(BOOLEAN, Fixnum, Hash)>] BOOLEAN data, response status code and response headers
-    def user_request_password_reset_with_http_info(email, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: UserApi.user_request_password_reset ..."
-      end
-      # verify the required parameter 'email' is set
-      fail ArgumentError, "Missing the required parameter 'email' when calling UserApi.user_request_password_reset" if email.nil?
-      # resource path
-      local_var_path = "/user/requestPasswordReset".sub('{format}','json')
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-
-      # HTTP header 'Accept' (if needed)
-      local_header_accept = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript']
-      local_header_accept_result = @api_client.select_header_accept(local_header_accept) and header_params['Accept'] = local_header_accept_result
-
-      # HTTP header 'Content-Type'
-      local_header_content_type = ['application/json', 'application/x-www-form-urlencoded']
-      header_params['Content-Type'] = @api_client.select_header_content_type(local_header_content_type)
-
-      # form parameters
-      form_params = {}
-      form_params["email"] = email
-
-      # http body (model)
-      post_body = nil
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'BOOLEAN')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserApi#user_request_password_reset\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -1278,64 +1114,6 @@ module SwaggerClient
         :return_type => 'User')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: UserApi#user_save_preferences\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Re-send verification email.
-    # 
-    # @param email 
-    # @param [Hash] opts the optional parameters
-    # @return [BOOLEAN]
-    def user_send_verification_email(email, opts = {})
-      data, _status_code, _headers = user_send_verification_email_with_http_info(email, opts)
-      return data
-    end
-
-    # Re-send verification email.
-    # 
-    # @param email 
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(BOOLEAN, Fixnum, Hash)>] BOOLEAN data, response status code and response headers
-    def user_send_verification_email_with_http_info(email, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: UserApi.user_send_verification_email ..."
-      end
-      # verify the required parameter 'email' is set
-      fail ArgumentError, "Missing the required parameter 'email' when calling UserApi.user_send_verification_email" if email.nil?
-      # resource path
-      local_var_path = "/user/resendVerificationEmail".sub('{format}','json')
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-
-      # HTTP header 'Accept' (if needed)
-      local_header_accept = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript']
-      local_header_accept_result = @api_client.select_header_accept(local_header_accept) and header_params['Accept'] = local_header_accept_result
-
-      # HTTP header 'Content-Type'
-      local_header_content_type = ['application/json', 'application/x-www-form-urlencoded']
-      header_params['Content-Type'] = @api_client.select_header_content_type(local_header_content_type)
-
-      # form parameters
-      form_params = {}
-      form_params["email"] = email
-
-      # http body (model)
-      post_body = nil
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'BOOLEAN')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserApi#user_send_verification_email\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

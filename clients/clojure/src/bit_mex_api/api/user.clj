@@ -76,23 +76,6 @@
   ([token optional-params]
    (:data (user-confirm-enable-tfa-with-http-info token optional-params))))
 
-(defn user-confirm-password-reset-with-http-info
-  "Confirm a password reset."
-  [token new-password ]
-  (call-api "/user/confirmPasswordReset" :post
-            {:path-params   {}
-             :header-params {}
-             :query-params  {}
-             :form-params   {"token" token "newPassword" new-password }
-             :content-types ["application/json" "application/x-www-form-urlencoded"]
-             :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-             :auth-names    []}))
-
-(defn user-confirm-password-reset
-  "Confirm a password reset."
-  [token new-password ]
-  (:data (user-confirm-password-reset-with-http-info token new-password)))
-
 (defn user-confirm-withdrawal-with-http-info
   "Confirm a withdrawal."
   [token ]
@@ -218,8 +201,27 @@
   ([optional-params]
    (:data (user-get-margin-with-http-info optional-params))))
 
+(defn user-get-wallet-with-http-info
+  "Get your current wallet information."
+  ([] (user-get-wallet-with-http-info nil))
+  ([{:keys [currency ]}]
+   (call-api "/user/wallet" :get
+             {:path-params   {}
+              :header-params {}
+              :query-params  {"currency" currency }
+              :form-params   {}
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
+              :auth-names    []})))
+
+(defn user-get-wallet
+  "Get your current wallet information."
+  ([] (user-get-wallet nil))
+  ([optional-params]
+   (:data (user-get-wallet-with-http-info optional-params))))
+
 (defn user-get-wallet-history-with-http-info
-  "Get a history of all of your wallet transactions (deposits and withdrawals)."
+  "Get a history of all of your wallet transactions (deposits, withdrawals, PNL)."
   ([] (user-get-wallet-history-with-http-info nil))
   ([{:keys [currency ]}]
    (call-api "/user/walletHistory" :get
@@ -232,29 +234,29 @@
               :auth-names    []})))
 
 (defn user-get-wallet-history
-  "Get a history of all of your wallet transactions (deposits and withdrawals)."
+  "Get a history of all of your wallet transactions (deposits, withdrawals, PNL)."
   ([] (user-get-wallet-history nil))
   ([optional-params]
    (:data (user-get-wallet-history-with-http-info optional-params))))
 
-(defn user-login-with-http-info
-  "Log in to BitMEX."
-  ([email password ] (user-login-with-http-info email password nil))
-  ([email password {:keys [token ]}]
-   (call-api "/user/login" :post
+(defn user-get-wallet-summary-with-http-info
+  "Get a summary of all of your wallet transactions (deposits, withdrawals, PNL)."
+  ([] (user-get-wallet-summary-with-http-info nil))
+  ([{:keys [currency ]}]
+   (call-api "/user/walletSummary" :get
              {:path-params   {}
               :header-params {}
-              :query-params  {}
-              :form-params   {"email" email "password" password "token" token }
+              :query-params  {"currency" currency }
+              :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
               :auth-names    []})))
 
-(defn user-login
-  "Log in to BitMEX."
-  ([email password ] (user-login email password nil))
-  ([email password optional-params]
-   (:data (user-login-with-http-info email password optional-params))))
+(defn user-get-wallet-summary
+  "Get a summary of all of your wallet transactions (deposits, withdrawals, PNL)."
+  ([] (user-get-wallet-summary nil))
+  ([optional-params]
+   (:data (user-get-wallet-summary-with-http-info optional-params))))
 
 (defn user-logout-with-http-info
   "Log out of BitMEX."
@@ -290,25 +292,6 @@
   []
   (:data (user-logout-all-with-http-info)))
 
-(defn user-new-with-http-info
-  "Register a new user."
-  ([email password country ] (user-new-with-http-info email password country nil))
-  ([email password country {:keys [username firstname lastname accepts-tos referrer-id tfa-type tfa-token ]}]
-   (call-api "/user" :post
-             {:path-params   {}
-              :header-params {}
-              :query-params  {}
-              :form-params   {"email" email "password" password "username" username "firstname" firstname "lastname" lastname "acceptsTOS" accepts-tos "referrerID" referrer-id "country" country "tfaType" tfa-type "tfaToken" tfa-token }
-              :content-types ["application/json" "application/x-www-form-urlencoded"]
-              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    []})))
-
-(defn user-new
-  "Register a new user."
-  ([email password country ] (user-new email password country nil))
-  ([email password country optional-params]
-   (:data (user-new-with-http-info email password country optional-params))))
-
 (defn user-request-enable-tfa-with-http-info
   "Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys."
   ([] (user-request-enable-tfa-with-http-info nil))
@@ -327,23 +310,6 @@
   ([] (user-request-enable-tfa nil))
   ([optional-params]
    (:data (user-request-enable-tfa-with-http-info optional-params))))
-
-(defn user-request-password-reset-with-http-info
-  "Request a password reset."
-  [email ]
-  (call-api "/user/requestPasswordReset" :post
-            {:path-params   {}
-             :header-params {}
-             :query-params  {}
-             :form-params   {"email" email }
-             :content-types ["application/json" "application/x-www-form-urlencoded"]
-             :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-             :auth-names    []}))
-
-(defn user-request-password-reset
-  "Request a password reset."
-  [email ]
-  (:data (user-request-password-reset-with-http-info email)))
 
 (defn user-request-withdrawal-with-http-info
   "Request a withdrawal to an external wallet.
@@ -384,23 +350,6 @@
   ([prefs ] (user-save-preferences prefs nil))
   ([prefs optional-params]
    (:data (user-save-preferences-with-http-info prefs optional-params))))
-
-(defn user-send-verification-email-with-http-info
-  "Re-send verification email."
-  [email ]
-  (call-api "/user/resendVerificationEmail" :post
-            {:path-params   {}
-             :header-params {}
-             :query-params  {}
-             :form-params   {"email" email }
-             :content-types ["application/json" "application/x-www-form-urlencoded"]
-             :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-             :auth-names    []}))
-
-(defn user-send-verification-email
-  "Re-send verification email."
-  [email ]
-  (:data (user-send-verification-email-with-http-info email)))
 
 (defn user-update-with-http-info
   "Update your password, name, and other attributes."

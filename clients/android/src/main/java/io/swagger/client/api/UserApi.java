@@ -17,6 +17,7 @@ import io.swagger.client.model.User;
 import io.swagger.client.model.Affiliate;
 import io.swagger.client.model.UserCommission;
 import io.swagger.client.model.Margin;
+import io.swagger.client.model.Wallet;
 import java.math.BigDecimal;
 
 import org.apache.http.HttpEntity;
@@ -603,176 +604,6 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // normal form params
       formParams.put("type", ApiInvoker.parameterToString(type));
 formParams.put("token", ApiInvoker.parameterToString(token));
-    }
-
-      String[] authNames = new String[] {  };
-
-    try {
-      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
-        new Response.Listener<String>() {
-          @Override
-          public void onResponse(String localVarResponse) {
-            try {
-              responseListener.onResponse((Boolean) ApiInvoker.deserialize(localVarResponse,  "", Boolean.class));
-            } catch (ApiException exception) {
-               errorListener.onErrorResponse(new VolleyError(exception));
-            }
-          }
-      }, new Response.ErrorListener() {
-          @Override
-          public void onErrorResponse(VolleyError error) {
-            errorListener.onErrorResponse(error);
-          }
-      });
-    } catch (ApiException ex) {
-      errorListener.onErrorResponse(new VolleyError(ex));
-    }
-  }
-  /**
-  * Confirm a password reset.
-  * 
-   * @param token 
-   * @param newPassword 
-   * @return Boolean
-  */
-  public Boolean userConfirmPasswordReset (String token, String newPassword) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
-     Object postBody = null;
-  
-      // verify the required parameter 'token' is set
-      if (token == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'token' when calling userConfirmPasswordReset",
-      new ApiException(400, "Missing the required parameter 'token' when calling userConfirmPasswordReset"));
-      }
-  
-      // verify the required parameter 'newPassword' is set
-      if (newPassword == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'newPassword' when calling userConfirmPasswordReset",
-      new ApiException(400, "Missing the required parameter 'newPassword' when calling userConfirmPasswordReset"));
-      }
-  
-
-  // create path and map variables
-  String path = "/user/confirmPasswordReset".replaceAll("\\{format\\}","json");
-
-  // query params
-  List<Pair> queryParams = new ArrayList<Pair>();
-      // header params
-      Map<String, String> headerParams = new HashMap<String, String>();
-      // form params
-      Map<String, String> formParams = new HashMap<String, String>();
-
-
-
-      String[] contentTypes = {
-  "application/json","application/x-www-form-urlencoded"
-      };
-      String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-      if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-  
-          if (token != null) {
-          localVarBuilder.addTextBody("token", ApiInvoker.parameterToString(token), ApiInvoker.TEXT_PLAIN_UTF8);
-          }
-  
-          if (newPassword != null) {
-          localVarBuilder.addTextBody("newPassword", ApiInvoker.parameterToString(newPassword), ApiInvoker.TEXT_PLAIN_UTF8);
-          }
-  
-
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-      } else {
-      // normal form params
-  formParams.put("token", ApiInvoker.parameterToString(token));
-formParams.put("newPassword", ApiInvoker.parameterToString(newPassword));
-      }
-
-      String[] authNames = new String[] {  };
-
-      try {
-        String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
-        if(localVarResponse != null){
-           return (Boolean) ApiInvoker.deserialize(localVarResponse, "", Boolean.class);
-        } else {
-           return null;
-        }
-      } catch (ApiException ex) {
-         throw ex;
-      } catch (InterruptedException ex) {
-         throw ex;
-      } catch (ExecutionException ex) {
-         if(ex.getCause() instanceof VolleyError) {
-	    VolleyError volleyError = (VolleyError)ex.getCause();
-	    if (volleyError.networkResponse != null) {
-	       throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-	    }
-         }
-         throw ex;
-      } catch (TimeoutException ex) {
-         throw ex;
-      }
-  }
-
-      /**
-   * Confirm a password reset.
-   * 
-   * @param token    * @param newPassword 
-  */
-  public void userConfirmPasswordReset (String token, String newPassword, final Response.Listener<Boolean> responseListener, final Response.ErrorListener errorListener) {
-    Object postBody = null;
-
-  
-    // verify the required parameter 'token' is set
-    if (token == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'token' when calling userConfirmPasswordReset",
-         new ApiException(400, "Missing the required parameter 'token' when calling userConfirmPasswordReset"));
-    }
-    
-    // verify the required parameter 'newPassword' is set
-    if (newPassword == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'newPassword' when calling userConfirmPasswordReset",
-         new ApiException(400, "Missing the required parameter 'newPassword' when calling userConfirmPasswordReset"));
-    }
-    
-
-    // create path and map variables
-    String path = "/user/confirmPasswordReset".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> headerParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> formParams = new HashMap<String, String>();
-
-
-
-    String[] contentTypes = {
-      "application/json","application/x-www-form-urlencoded"
-    };
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      
-      if (token != null) {
-        localVarBuilder.addTextBody("token", ApiInvoker.parameterToString(token), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (newPassword != null) {
-        localVarBuilder.addTextBody("newPassword", ApiInvoker.parameterToString(newPassword), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-    } else {
-      // normal form params
-      formParams.put("token", ApiInvoker.parameterToString(token));
-formParams.put("newPassword", ApiInvoker.parameterToString(newPassword));
     }
 
       String[] authNames = new String[] {  };
@@ -1730,7 +1561,134 @@ formParams.put("token", ApiInvoker.parameterToString(token));
     }
   }
   /**
-  * Get a history of all of your wallet transactions (deposits and withdrawals).
+  * Get your current wallet information.
+  * 
+   * @param currency 
+   * @return Wallet
+  */
+  public Wallet userGetWallet (String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+     Object postBody = null;
+  
+
+  // create path and map variables
+  String path = "/user/wallet".replaceAll("\\{format\\}","json");
+
+  // query params
+  List<Pair> queryParams = new ArrayList<Pair>();
+      // header params
+      Map<String, String> headerParams = new HashMap<String, String>();
+      // form params
+      Map<String, String> formParams = new HashMap<String, String>();
+
+          queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+
+
+      String[] contentTypes = {
+  "application/json","application/x-www-form-urlencoded"
+      };
+      String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+      if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+  
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+      } else {
+      // normal form params
+        }
+
+      String[] authNames = new String[] {  };
+
+      try {
+        String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+        if(localVarResponse != null){
+           return (Wallet) ApiInvoker.deserialize(localVarResponse, "", Wallet.class);
+        } else {
+           return null;
+        }
+      } catch (ApiException ex) {
+         throw ex;
+      } catch (InterruptedException ex) {
+         throw ex;
+      } catch (ExecutionException ex) {
+         if(ex.getCause() instanceof VolleyError) {
+	    VolleyError volleyError = (VolleyError)ex.getCause();
+	    if (volleyError.networkResponse != null) {
+	       throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+	    }
+         }
+         throw ex;
+      } catch (TimeoutException ex) {
+         throw ex;
+      }
+  }
+
+      /**
+   * Get your current wallet information.
+   * 
+   * @param currency 
+  */
+  public void userGetWallet (String currency, final Response.Listener<Wallet> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+  
+
+    // create path and map variables
+    String path = "/user/wallet".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+      String[] authNames = new String[] {  };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((Wallet) ApiInvoker.deserialize(localVarResponse,  "", Wallet.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
   * 
    * @param currency 
    * @return List<Transaction>
@@ -1795,7 +1753,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
   }
 
       /**
-   * Get a history of all of your wallet transactions (deposits and withdrawals).
+   * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
    * 
    * @param currency 
   */
@@ -1857,31 +1815,17 @@ formParams.put("token", ApiInvoker.parameterToString(token));
     }
   }
   /**
-  * Log in to BitMEX.
+  * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
   * 
-   * @param email Your email address.
-   * @param password Your password.
-   * @param token OTP Token (YubiKey, Google Authenticator)
-   * @return AccessToken
+   * @param currency 
+   * @return List<Transaction>
   */
-  public AccessToken userLogin (String email, String password, String token) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public List<Transaction> userGetWalletSummary (String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
      Object postBody = null;
-  
-      // verify the required parameter 'email' is set
-      if (email == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'email' when calling userLogin",
-      new ApiException(400, "Missing the required parameter 'email' when calling userLogin"));
-      }
-  
-      // verify the required parameter 'password' is set
-      if (password == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'password' when calling userLogin",
-      new ApiException(400, "Missing the required parameter 'password' when calling userLogin"));
-      }
   
 
   // create path and map variables
-  String path = "/user/login".replaceAll("\\{format\\}","json");
+  String path = "/user/walletSummary".replaceAll("\\{format\\}","json");
 
   // query params
   List<Pair> queryParams = new ArrayList<Pair>();
@@ -1890,6 +1834,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // form params
       Map<String, String> formParams = new HashMap<String, String>();
 
+          queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
 
 
       String[] contentTypes = {
@@ -1901,34 +1846,19 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // file uploading
       MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
   
-          if (email != null) {
-          localVarBuilder.addTextBody("email", ApiInvoker.parameterToString(email), ApiInvoker.TEXT_PLAIN_UTF8);
-          }
-  
-          if (password != null) {
-          localVarBuilder.addTextBody("password", ApiInvoker.parameterToString(password), ApiInvoker.TEXT_PLAIN_UTF8);
-          }
-  
-          if (token != null) {
-          localVarBuilder.addTextBody("token", ApiInvoker.parameterToString(token), ApiInvoker.TEXT_PLAIN_UTF8);
-          }
-  
 
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
       } else {
       // normal form params
-  formParams.put("email", ApiInvoker.parameterToString(email));
-formParams.put("password", ApiInvoker.parameterToString(password));
-formParams.put("token", ApiInvoker.parameterToString(token));
-      }
+        }
 
       String[] authNames = new String[] {  };
 
       try {
-        String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
+        String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
         if(localVarResponse != null){
-           return (AccessToken) ApiInvoker.deserialize(localVarResponse, "", AccessToken.class);
+           return (List<Transaction>) ApiInvoker.deserialize(localVarResponse, "array", Transaction.class);
         } else {
            return null;
         }
@@ -1950,29 +1880,17 @@ formParams.put("token", ApiInvoker.parameterToString(token));
   }
 
       /**
-   * Log in to BitMEX.
+   * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
    * 
-   * @param email Your email address.   * @param password Your password.   * @param token OTP Token (YubiKey, Google Authenticator)
+   * @param currency 
   */
-  public void userLogin (String email, String password, String token, final Response.Listener<AccessToken> responseListener, final Response.ErrorListener errorListener) {
+  public void userGetWalletSummary (String currency, final Response.Listener<List<Transaction>> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
   
-    // verify the required parameter 'email' is set
-    if (email == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'email' when calling userLogin",
-         new ApiException(400, "Missing the required parameter 'email' when calling userLogin"));
-    }
-    
-    // verify the required parameter 'password' is set
-    if (password == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'password' when calling userLogin",
-         new ApiException(400, "Missing the required parameter 'password' when calling userLogin"));
-    }
-    
 
     // create path and map variables
-    String path = "/user/login".replaceAll("\\{format\\}","json");
+    String path = "/user/walletSummary".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -1981,6 +1899,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
 
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
 
 
     String[] contentTypes = {
@@ -1992,37 +1911,22 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // file uploading
       MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
       
-      if (email != null) {
-        localVarBuilder.addTextBody("email", ApiInvoker.parameterToString(email), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (password != null) {
-        localVarBuilder.addTextBody("password", ApiInvoker.parameterToString(password), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (token != null) {
-        localVarBuilder.addTextBody("token", ApiInvoker.parameterToString(token), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
 
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
     } else {
       // normal form params
-      formParams.put("email", ApiInvoker.parameterToString(email));
-formParams.put("password", ApiInvoker.parameterToString(password));
-formParams.put("token", ApiInvoker.parameterToString(token));
-    }
+          }
 
       String[] authNames = new String[] {  };
 
     try {
-      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
         new Response.Listener<String>() {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((AccessToken) ApiInvoker.deserialize(localVarResponse,  "", AccessToken.class));
+              responseListener.onResponse((List<Transaction>) ApiInvoker.deserialize(localVarResponse,  "array", Transaction.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -2282,276 +2186,6 @@ formParams.put("token", ApiInvoker.parameterToString(token));
     }
   }
   /**
-  * Register a new user.
-  * 
-   * @param email Your email address.
-   * @param password Your password.
-   * @param country Country of residence.
-   * @param username Desired username.
-   * @param firstname First name.
-   * @param lastname Last name.
-   * @param acceptsTOS Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).
-   * @param referrerID Optional Referrer ID.
-   * @param tfaType Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef
-   * @param tfaToken Two-Factor Token.
-   * @return User
-  */
-  public User userNew (String email, String password, String country, String username, String firstname, String lastname, String acceptsTOS, String referrerID, String tfaType, String tfaToken) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
-     Object postBody = null;
-  
-      // verify the required parameter 'email' is set
-      if (email == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'email' when calling userNew",
-      new ApiException(400, "Missing the required parameter 'email' when calling userNew"));
-      }
-  
-      // verify the required parameter 'password' is set
-      if (password == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'password' when calling userNew",
-      new ApiException(400, "Missing the required parameter 'password' when calling userNew"));
-      }
-  
-      // verify the required parameter 'country' is set
-      if (country == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'country' when calling userNew",
-      new ApiException(400, "Missing the required parameter 'country' when calling userNew"));
-      }
-  
-
-  // create path and map variables
-  String path = "/user".replaceAll("\\{format\\}","json");
-
-  // query params
-  List<Pair> queryParams = new ArrayList<Pair>();
-      // header params
-      Map<String, String> headerParams = new HashMap<String, String>();
-      // form params
-      Map<String, String> formParams = new HashMap<String, String>();
-
-
-
-      String[] contentTypes = {
-  "application/json","application/x-www-form-urlencoded"
-      };
-      String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-      if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-  
-          if (email != null) {
-          localVarBuilder.addTextBody("email", ApiInvoker.parameterToString(email), ApiInvoker.TEXT_PLAIN_UTF8);
-          }
-  
-          if (password != null) {
-          localVarBuilder.addTextBody("password", ApiInvoker.parameterToString(password), ApiInvoker.TEXT_PLAIN_UTF8);
-          }
-  
-          if (username != null) {
-          localVarBuilder.addTextBody("username", ApiInvoker.parameterToString(username), ApiInvoker.TEXT_PLAIN_UTF8);
-          }
-  
-          if (firstname != null) {
-          localVarBuilder.addTextBody("firstname", ApiInvoker.parameterToString(firstname), ApiInvoker.TEXT_PLAIN_UTF8);
-          }
-  
-          if (lastname != null) {
-          localVarBuilder.addTextBody("lastname", ApiInvoker.parameterToString(lastname), ApiInvoker.TEXT_PLAIN_UTF8);
-          }
-  
-          if (acceptsTOS != null) {
-          localVarBuilder.addTextBody("acceptsTOS", ApiInvoker.parameterToString(acceptsTOS), ApiInvoker.TEXT_PLAIN_UTF8);
-          }
-  
-          if (referrerID != null) {
-          localVarBuilder.addTextBody("referrerID", ApiInvoker.parameterToString(referrerID), ApiInvoker.TEXT_PLAIN_UTF8);
-          }
-  
-          if (country != null) {
-          localVarBuilder.addTextBody("country", ApiInvoker.parameterToString(country), ApiInvoker.TEXT_PLAIN_UTF8);
-          }
-  
-          if (tfaType != null) {
-          localVarBuilder.addTextBody("tfaType", ApiInvoker.parameterToString(tfaType), ApiInvoker.TEXT_PLAIN_UTF8);
-          }
-  
-          if (tfaToken != null) {
-          localVarBuilder.addTextBody("tfaToken", ApiInvoker.parameterToString(tfaToken), ApiInvoker.TEXT_PLAIN_UTF8);
-          }
-  
-
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-      } else {
-      // normal form params
-  formParams.put("email", ApiInvoker.parameterToString(email));
-formParams.put("password", ApiInvoker.parameterToString(password));
-formParams.put("username", ApiInvoker.parameterToString(username));
-formParams.put("firstname", ApiInvoker.parameterToString(firstname));
-formParams.put("lastname", ApiInvoker.parameterToString(lastname));
-formParams.put("acceptsTOS", ApiInvoker.parameterToString(acceptsTOS));
-formParams.put("referrerID", ApiInvoker.parameterToString(referrerID));
-formParams.put("country", ApiInvoker.parameterToString(country));
-formParams.put("tfaType", ApiInvoker.parameterToString(tfaType));
-formParams.put("tfaToken", ApiInvoker.parameterToString(tfaToken));
-      }
-
-      String[] authNames = new String[] {  };
-
-      try {
-        String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
-        if(localVarResponse != null){
-           return (User) ApiInvoker.deserialize(localVarResponse, "", User.class);
-        } else {
-           return null;
-        }
-      } catch (ApiException ex) {
-         throw ex;
-      } catch (InterruptedException ex) {
-         throw ex;
-      } catch (ExecutionException ex) {
-         if(ex.getCause() instanceof VolleyError) {
-	    VolleyError volleyError = (VolleyError)ex.getCause();
-	    if (volleyError.networkResponse != null) {
-	       throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-	    }
-         }
-         throw ex;
-      } catch (TimeoutException ex) {
-         throw ex;
-      }
-  }
-
-      /**
-   * Register a new user.
-   * 
-   * @param email Your email address.   * @param password Your password.   * @param country Country of residence.   * @param username Desired username.   * @param firstname First name.   * @param lastname Last name.   * @param acceptsTOS Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).   * @param referrerID Optional Referrer ID.   * @param tfaType Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef   * @param tfaToken Two-Factor Token.
-  */
-  public void userNew (String email, String password, String country, String username, String firstname, String lastname, String acceptsTOS, String referrerID, String tfaType, String tfaToken, final Response.Listener<User> responseListener, final Response.ErrorListener errorListener) {
-    Object postBody = null;
-
-  
-    // verify the required parameter 'email' is set
-    if (email == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'email' when calling userNew",
-         new ApiException(400, "Missing the required parameter 'email' when calling userNew"));
-    }
-    
-    // verify the required parameter 'password' is set
-    if (password == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'password' when calling userNew",
-         new ApiException(400, "Missing the required parameter 'password' when calling userNew"));
-    }
-    
-    // verify the required parameter 'country' is set
-    if (country == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'country' when calling userNew",
-         new ApiException(400, "Missing the required parameter 'country' when calling userNew"));
-    }
-    
-
-    // create path and map variables
-    String path = "/user".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> headerParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> formParams = new HashMap<String, String>();
-
-
-
-    String[] contentTypes = {
-      "application/json","application/x-www-form-urlencoded"
-    };
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      
-      if (email != null) {
-        localVarBuilder.addTextBody("email", ApiInvoker.parameterToString(email), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (password != null) {
-        localVarBuilder.addTextBody("password", ApiInvoker.parameterToString(password), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (username != null) {
-        localVarBuilder.addTextBody("username", ApiInvoker.parameterToString(username), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (firstname != null) {
-        localVarBuilder.addTextBody("firstname", ApiInvoker.parameterToString(firstname), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (lastname != null) {
-        localVarBuilder.addTextBody("lastname", ApiInvoker.parameterToString(lastname), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (acceptsTOS != null) {
-        localVarBuilder.addTextBody("acceptsTOS", ApiInvoker.parameterToString(acceptsTOS), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (referrerID != null) {
-        localVarBuilder.addTextBody("referrerID", ApiInvoker.parameterToString(referrerID), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (country != null) {
-        localVarBuilder.addTextBody("country", ApiInvoker.parameterToString(country), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (tfaType != null) {
-        localVarBuilder.addTextBody("tfaType", ApiInvoker.parameterToString(tfaType), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (tfaToken != null) {
-        localVarBuilder.addTextBody("tfaToken", ApiInvoker.parameterToString(tfaToken), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-    } else {
-      // normal form params
-      formParams.put("email", ApiInvoker.parameterToString(email));
-formParams.put("password", ApiInvoker.parameterToString(password));
-formParams.put("username", ApiInvoker.parameterToString(username));
-formParams.put("firstname", ApiInvoker.parameterToString(firstname));
-formParams.put("lastname", ApiInvoker.parameterToString(lastname));
-formParams.put("acceptsTOS", ApiInvoker.parameterToString(acceptsTOS));
-formParams.put("referrerID", ApiInvoker.parameterToString(referrerID));
-formParams.put("country", ApiInvoker.parameterToString(country));
-formParams.put("tfaType", ApiInvoker.parameterToString(tfaType));
-formParams.put("tfaToken", ApiInvoker.parameterToString(tfaToken));
-    }
-
-      String[] authNames = new String[] {  };
-
-    try {
-      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
-        new Response.Listener<String>() {
-          @Override
-          public void onResponse(String localVarResponse) {
-            try {
-              responseListener.onResponse((User) ApiInvoker.deserialize(localVarResponse,  "", User.class));
-            } catch (ApiException exception) {
-               errorListener.onErrorResponse(new VolleyError(exception));
-            }
-          }
-      }, new Response.ErrorListener() {
-          @Override
-          public void onErrorResponse(VolleyError error) {
-            errorListener.onErrorResponse(error);
-          }
-      });
-    } catch (ApiException ex) {
-      errorListener.onErrorResponse(new VolleyError(ex));
-    }
-  }
-  /**
   * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
   * 
    * @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
@@ -2661,153 +2295,6 @@ formParams.put("tfaToken", ApiInvoker.parameterToString(tfaToken));
     } else {
       // normal form params
       formParams.put("type", ApiInvoker.parameterToString(type));
-    }
-
-      String[] authNames = new String[] {  };
-
-    try {
-      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
-        new Response.Listener<String>() {
-          @Override
-          public void onResponse(String localVarResponse) {
-            try {
-              responseListener.onResponse((Boolean) ApiInvoker.deserialize(localVarResponse,  "", Boolean.class));
-            } catch (ApiException exception) {
-               errorListener.onErrorResponse(new VolleyError(exception));
-            }
-          }
-      }, new Response.ErrorListener() {
-          @Override
-          public void onErrorResponse(VolleyError error) {
-            errorListener.onErrorResponse(error);
-          }
-      });
-    } catch (ApiException ex) {
-      errorListener.onErrorResponse(new VolleyError(ex));
-    }
-  }
-  /**
-  * Request a password reset.
-  * 
-   * @param email 
-   * @return Boolean
-  */
-  public Boolean userRequestPasswordReset (String email) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
-     Object postBody = null;
-  
-      // verify the required parameter 'email' is set
-      if (email == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'email' when calling userRequestPasswordReset",
-      new ApiException(400, "Missing the required parameter 'email' when calling userRequestPasswordReset"));
-      }
-  
-
-  // create path and map variables
-  String path = "/user/requestPasswordReset".replaceAll("\\{format\\}","json");
-
-  // query params
-  List<Pair> queryParams = new ArrayList<Pair>();
-      // header params
-      Map<String, String> headerParams = new HashMap<String, String>();
-      // form params
-      Map<String, String> formParams = new HashMap<String, String>();
-
-
-
-      String[] contentTypes = {
-  "application/json","application/x-www-form-urlencoded"
-      };
-      String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-      if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-  
-          if (email != null) {
-          localVarBuilder.addTextBody("email", ApiInvoker.parameterToString(email), ApiInvoker.TEXT_PLAIN_UTF8);
-          }
-  
-
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-      } else {
-      // normal form params
-  formParams.put("email", ApiInvoker.parameterToString(email));
-      }
-
-      String[] authNames = new String[] {  };
-
-      try {
-        String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
-        if(localVarResponse != null){
-           return (Boolean) ApiInvoker.deserialize(localVarResponse, "", Boolean.class);
-        } else {
-           return null;
-        }
-      } catch (ApiException ex) {
-         throw ex;
-      } catch (InterruptedException ex) {
-         throw ex;
-      } catch (ExecutionException ex) {
-         if(ex.getCause() instanceof VolleyError) {
-	    VolleyError volleyError = (VolleyError)ex.getCause();
-	    if (volleyError.networkResponse != null) {
-	       throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-	    }
-         }
-         throw ex;
-      } catch (TimeoutException ex) {
-         throw ex;
-      }
-  }
-
-      /**
-   * Request a password reset.
-   * 
-   * @param email 
-  */
-  public void userRequestPasswordReset (String email, final Response.Listener<Boolean> responseListener, final Response.ErrorListener errorListener) {
-    Object postBody = null;
-
-  
-    // verify the required parameter 'email' is set
-    if (email == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'email' when calling userRequestPasswordReset",
-         new ApiException(400, "Missing the required parameter 'email' when calling userRequestPasswordReset"));
-    }
-    
-
-    // create path and map variables
-    String path = "/user/requestPasswordReset".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> headerParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> formParams = new HashMap<String, String>();
-
-
-
-    String[] contentTypes = {
-      "application/json","application/x-www-form-urlencoded"
-    };
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      
-      if (email != null) {
-        localVarBuilder.addTextBody("email", ApiInvoker.parameterToString(email), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-    } else {
-      // normal form params
-      formParams.put("email", ApiInvoker.parameterToString(email));
     }
 
       String[] authNames = new String[] {  };
@@ -3192,153 +2679,6 @@ formParams.put("overwrite", ApiInvoker.parameterToString(overwrite));
           public void onResponse(String localVarResponse) {
             try {
               responseListener.onResponse((User) ApiInvoker.deserialize(localVarResponse,  "", User.class));
-            } catch (ApiException exception) {
-               errorListener.onErrorResponse(new VolleyError(exception));
-            }
-          }
-      }, new Response.ErrorListener() {
-          @Override
-          public void onErrorResponse(VolleyError error) {
-            errorListener.onErrorResponse(error);
-          }
-      });
-    } catch (ApiException ex) {
-      errorListener.onErrorResponse(new VolleyError(ex));
-    }
-  }
-  /**
-  * Re-send verification email.
-  * 
-   * @param email 
-   * @return Boolean
-  */
-  public Boolean userSendVerificationEmail (String email) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
-     Object postBody = null;
-  
-      // verify the required parameter 'email' is set
-      if (email == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'email' when calling userSendVerificationEmail",
-      new ApiException(400, "Missing the required parameter 'email' when calling userSendVerificationEmail"));
-      }
-  
-
-  // create path and map variables
-  String path = "/user/resendVerificationEmail".replaceAll("\\{format\\}","json");
-
-  // query params
-  List<Pair> queryParams = new ArrayList<Pair>();
-      // header params
-      Map<String, String> headerParams = new HashMap<String, String>();
-      // form params
-      Map<String, String> formParams = new HashMap<String, String>();
-
-
-
-      String[] contentTypes = {
-  "application/json","application/x-www-form-urlencoded"
-      };
-      String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-      if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-  
-          if (email != null) {
-          localVarBuilder.addTextBody("email", ApiInvoker.parameterToString(email), ApiInvoker.TEXT_PLAIN_UTF8);
-          }
-  
-
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-      } else {
-      // normal form params
-  formParams.put("email", ApiInvoker.parameterToString(email));
-      }
-
-      String[] authNames = new String[] {  };
-
-      try {
-        String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
-        if(localVarResponse != null){
-           return (Boolean) ApiInvoker.deserialize(localVarResponse, "", Boolean.class);
-        } else {
-           return null;
-        }
-      } catch (ApiException ex) {
-         throw ex;
-      } catch (InterruptedException ex) {
-         throw ex;
-      } catch (ExecutionException ex) {
-         if(ex.getCause() instanceof VolleyError) {
-	    VolleyError volleyError = (VolleyError)ex.getCause();
-	    if (volleyError.networkResponse != null) {
-	       throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-	    }
-         }
-         throw ex;
-      } catch (TimeoutException ex) {
-         throw ex;
-      }
-  }
-
-      /**
-   * Re-send verification email.
-   * 
-   * @param email 
-  */
-  public void userSendVerificationEmail (String email, final Response.Listener<Boolean> responseListener, final Response.ErrorListener errorListener) {
-    Object postBody = null;
-
-  
-    // verify the required parameter 'email' is set
-    if (email == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'email' when calling userSendVerificationEmail",
-         new ApiException(400, "Missing the required parameter 'email' when calling userSendVerificationEmail"));
-    }
-    
-
-    // create path and map variables
-    String path = "/user/resendVerificationEmail".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> headerParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> formParams = new HashMap<String, String>();
-
-
-
-    String[] contentTypes = {
-      "application/json","application/x-www-form-urlencoded"
-    };
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      
-      if (email != null) {
-        localVarBuilder.addTextBody("email", ApiInvoker.parameterToString(email), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-    } else {
-      // normal form params
-      formParams.put("email", ApiInvoker.parameterToString(email));
-    }
-
-      String[] authNames = new String[] {  };
-
-    try {
-      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
-        new Response.Listener<String>() {
-          @Override
-          public void onResponse(String localVarResponse) {
-            try {
-              responseListener.onResponse((Boolean) ApiInvoker.deserialize(localVarResponse,  "", Boolean.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }

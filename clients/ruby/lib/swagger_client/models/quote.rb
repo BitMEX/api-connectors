@@ -1,7 +1,7 @@
 =begin
 #BitMEX API
 
-#REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+### REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
 
 OpenAPI spec version: 1.2.0
 Contact: support@bitmex.com
@@ -38,8 +38,6 @@ module SwaggerClient
 
     attr_accessor :ask_size
 
-    attr_accessor :id
-
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -49,8 +47,7 @@ module SwaggerClient
         :'bid_size' => :'bidSize',
         :'bid_price' => :'bidPrice',
         :'ask_price' => :'askPrice',
-        :'ask_size' => :'askSize',
-        :'id' => :'id'
+        :'ask_size' => :'askSize'
       }
     end
 
@@ -62,8 +59,7 @@ module SwaggerClient
         :'bid_size' => :'Float',
         :'bid_price' => :'Float',
         :'ask_price' => :'Float',
-        :'ask_size' => :'Float',
-        :'id' => :'Float'
+        :'ask_size' => :'Float'
       }
     end
 
@@ -99,10 +95,6 @@ module SwaggerClient
         self.ask_size = attributes[:'askSize']
       end
 
-      if attributes.has_key?(:'id')
-        self.id = attributes[:'id']
-      end
-
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -115,6 +107,8 @@ module SwaggerClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @timestamp.nil?
+      return false if @symbol.nil?
       return true
     end
 
@@ -128,8 +122,7 @@ module SwaggerClient
           bid_size == o.bid_size &&
           bid_price == o.bid_price &&
           ask_price == o.ask_price &&
-          ask_size == o.ask_size &&
-          id == o.id
+          ask_size == o.ask_size
     end
 
     # @see the `==` method
@@ -141,7 +134,7 @@ module SwaggerClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [timestamp, symbol, bid_size, bid_price, ask_price, ask_size, id].hash
+      [timestamp, symbol, bid_size, bid_price, ask_price, ask_size].hash
     end
 
     # Builds the object from hash

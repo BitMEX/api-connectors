@@ -1,5 +1,5 @@
 
-# ApiKey
+# APIKey
 
 ## Properties
 Name | Type | Description | Notes
@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **name** | **String** |  | 
 **nonce** | [**BigDecimal**](BigDecimal.md) |  | 
 **cidr** | **String** |  |  [optional]
-**permissions** | **List&lt;String&gt;** |  |  [optional]
+**permissions** | [**List&lt;XAny&gt;**](XAny.md) |  |  [optional]
 **enabled** | **Boolean** |  |  [optional]
 **userId** | [**BigDecimal**](BigDecimal.md) |  | 
 **created** | [**LocalDate**](LocalDate.md) |  |  [optional]

@@ -13,8 +13,8 @@ class OrderApi {
 
   /// Amend the quantity or price of an open order.
   ///
-  /// &lt;p&gt;Send an &lt;code&gt;orderID&lt;/code&gt; or &lt;code&gt;clOrdID&lt;/code&gt; to identify the order you wish to amend.&lt;/p&gt; &lt;p&gt;Both order quantity and price can be amended. Only one &lt;code&gt;qty&lt;/code&gt; field can be used to amend.&lt;/p&gt; &lt;p&gt;Use the &lt;code&gt;leavesQty&lt;/code&gt; field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position&amp;#39;s delta by a certain amount, regardless of how much of the order has already filled.&lt;/p&gt; &lt;p&gt;Use the &lt;code&gt;simpleOrderQty&lt;/code&gt; and &lt;code&gt;simpleLeavesQty&lt;/code&gt; fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.&lt;/p&gt; &lt;p&gt;Like order placement, amending can be done in bulk. Simply send a request to &lt;code&gt;PUT /api/v1/order/bulk&lt;/code&gt; with a JSON body of the shape: &lt;code&gt;{&amp;quot;orders&amp;quot;: [{...}, {...}]}&lt;/code&gt;, each object containing the fields used in this endpoint.&lt;/p&gt; 
-  Future<Order> orderAmend(String orderID, String clOrdID, double simpleOrderQty, Number orderQty, double simpleLeavesQty, Number leavesQty, double price, double stopPx, double pegOffsetValue, String text) {
+  /// Send an &#x60;orderID&#x60; or &#x60;origClOrdID&#x60; to identify the order you wish to amend.  Both order quantity and price can be amended. Only one &#x60;qty&#x60; field can be used to amend.  Use the &#x60;leavesQty&#x60; field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position&#39;s delta by a certain amount, regardless of how much of the order has already filled.  Use the &#x60;simpleOrderQty&#x60; and &#x60;simpleLeavesQty&#x60; fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.  Like order placement, amending can be done in bulk. Simply send a request to &#x60;PUT /api/v1/order/bulk&#x60; with a JSON body of the shape: &#x60;{\&quot;orders\&quot;: [{...}, {...}]}&#x60;, each object containing the fields used in this endpoint. 
+  Future<Order> orderAmend(String orderID, String origClOrdID, String clOrdID, double simpleOrderQty, Number orderQty, double simpleLeavesQty, Number leavesQty, double price, double stopPx, double pegOffsetValue, String text) {
     Object postBody = null;
     // verify required params are set
     if(    // verify required params are set
@@ -26,7 +26,10 @@ class OrderApi {
     if(    // verify required params are set
     if(    // verify required params are set
     if(    // verify required params are set
+    if(    // verify required params are set
     if() {
+       throw new ApiException(400, "missing required params");
+    }) {
        throw new ApiException(400, "missing required params");
     }) {
        throw new ApiException(400, "missing required params");
@@ -68,6 +71,11 @@ class OrderApi {
       if (orderID != null) {
         hasFields = true;
         mp.fields['orderID'] = apiClient.parameterToString(orderID);
+      }
+      
+      if (origClOrdID != null) {
+        hasFields = true;
+        mp.fields['origClOrdID'] = apiClient.parameterToString(origClOrdID);
       }
       
       if (clOrdID != null) {
@@ -121,6 +129,8 @@ class OrderApi {
     else {
       if (orderID != null)
         formParams['orderID'] = apiClient.parameterToString(orderID);
+if (origClOrdID != null)
+        formParams['origClOrdID'] = apiClient.parameterToString(origClOrdID);
 if (clOrdID != null)
         formParams['clOrdID'] = apiClient.parameterToString(clOrdID);
 if (simpleOrderQty != null)
@@ -403,7 +413,7 @@ if (text != null)
   }
   /// Close a position. [Deprecated, use POST /order with execInst: &#39;Close&#39;]
   ///
-  /// If no &#x60;price&#x60; is specified, a market order will be submitted to close the whole of your position. + This will also close all other open orders in this symbol.
+  /// If no &#x60;price&#x60; is specified, a market order will be submitted to close the whole of your position. This will also close all other open orders in this symbol.
   Future<Order> orderClosePosition(String symbol, double price) {
     Object postBody = null;
     // verify required params are set

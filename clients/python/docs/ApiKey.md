@@ -1,4 +1,4 @@
-# ApiKey
+# APIKey
 
 ## Properties
 Name | Type | Description | Notes
@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **name** | **str** |  | 
 **nonce** | **float** |  | 
 **cidr** | **str** |  | [optional] 
-**permissions** | **list[str]** |  | [optional] 
+**permissions** | [**list[XAny]**](XAny.md) |  | [optional] 
 **enabled** | **bool** |  | [optional] [default to False]
 **user_id** | **float** |  | 
 **created** | **date** |  | [optional] 

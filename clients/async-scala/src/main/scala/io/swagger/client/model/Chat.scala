@@ -10,5 +10,6 @@ date: Date,
 user: String,
 message: String,
 html: String,
-fromBot: Option[Boolean]
+fromBot: Option[Boolean],
+channelID: Option[Double]
 )

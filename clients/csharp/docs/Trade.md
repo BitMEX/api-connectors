@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Timestamp** | **DateTime?** |  | [optional] 
-**Symbol** | **string** |  | [optional] 
+**Timestamp** | **DateTime?** |  | 
+**Symbol** | **string** |  | 
 **Side** | **string** |  | [optional] 
 **Size** | **decimal?** |  | [optional] 
 **Price** | **double?** |  | [optional] 
@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **GrossValue** | **decimal?** |  | [optional] 
 **HomeNotional** | **double?** |  | [optional] 
 **ForeignNotional** | **double?** |  | [optional] 
-**Id** | **double?** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

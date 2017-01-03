@@ -27,11 +27,15 @@ class Chat {
   @Property(name: 'fromBot')
   bool fromBot = null;
   
+
+  @Property(name: 'channelID')
+  double channelID = null;
+  
   Chat();
 
   @override
   String toString()  {
-    return 'Chat[id=$id, date=$date, user=$user, message=$message, html=$html, fromBot=$fromBot, ]';
+    return 'Chat[id=$id, date=$date, user=$user, message=$message, html=$html, fromBot=$fromBot, channelID=$channelID, ]';
   }
 
 }

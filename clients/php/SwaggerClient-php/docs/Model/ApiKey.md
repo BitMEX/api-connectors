@@ -1,4 +1,4 @@
-# ApiKey
+# APIKey
 
 ## Properties
 Name | Type | Description | Notes
@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **name** | **string** |  | 
 **nonce** | **float** |  | 
 **cidr** | **string** |  | [optional] 
-**permissions** | **string[]** |  | [optional] 
+**permissions** | [**\Swagger\Client\Model\XAny[]**](XAny.md) |  | [optional] 
 **enabled** | **bool** |  | [optional] [default to false]
 **user_id** | **float** |  | 
 **created** | [**\DateTime**](Date.md) |  | [optional] 

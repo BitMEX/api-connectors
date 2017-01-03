@@ -14,7 +14,7 @@
 /**
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section.
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -70,19 +70,16 @@ class User implements ArrayAccess
         'owner_id' => 'float',
         'firstname' => 'string',
         'lastname' => 'string',
-        'status' => 'string',
         'username' => 'string',
         'email' => 'string',
         'phone' => 'string',
-        'country_code' => 'float',
         'created' => '\DateTime',
         'last_updated' => '\DateTime',
         'preferences' => '\Swagger\Client\Model\UserPreferences',
         'tfa_enabled' => 'string',
         'affiliate_id' => 'string',
         'pgp_pub_key' => 'string',
-        'country' => 'string',
-        'disabled' => 'bool'
+        'country' => 'string'
     );
 
     public static function swaggerTypes()
@@ -99,19 +96,16 @@ class User implements ArrayAccess
         'owner_id' => 'ownerId',
         'firstname' => 'firstname',
         'lastname' => 'lastname',
-        'status' => 'status',
         'username' => 'username',
         'email' => 'email',
         'phone' => 'phone',
-        'country_code' => 'countryCode',
         'created' => 'created',
         'last_updated' => 'lastUpdated',
         'preferences' => 'preferences',
         'tfa_enabled' => 'TFAEnabled',
         'affiliate_id' => 'affiliateID',
         'pgp_pub_key' => 'pgpPubKey',
-        'country' => 'country',
-        'disabled' => 'disabled'
+        'country' => 'country'
     );
 
     public static function attributeMap()
@@ -128,19 +122,16 @@ class User implements ArrayAccess
         'owner_id' => 'setOwnerId',
         'firstname' => 'setFirstname',
         'lastname' => 'setLastname',
-        'status' => 'setStatus',
         'username' => 'setUsername',
         'email' => 'setEmail',
         'phone' => 'setPhone',
-        'country_code' => 'setCountryCode',
         'created' => 'setCreated',
         'last_updated' => 'setLastUpdated',
         'preferences' => 'setPreferences',
         'tfa_enabled' => 'setTfaEnabled',
         'affiliate_id' => 'setAffiliateId',
         'pgp_pub_key' => 'setPgpPubKey',
-        'country' => 'setCountry',
-        'disabled' => 'setDisabled'
+        'country' => 'setCountry'
     );
 
     public static function setters()
@@ -157,19 +148,16 @@ class User implements ArrayAccess
         'owner_id' => 'getOwnerId',
         'firstname' => 'getFirstname',
         'lastname' => 'getLastname',
-        'status' => 'getStatus',
         'username' => 'getUsername',
         'email' => 'getEmail',
         'phone' => 'getPhone',
-        'country_code' => 'getCountryCode',
         'created' => 'getCreated',
         'last_updated' => 'getLastUpdated',
         'preferences' => 'getPreferences',
         'tfa_enabled' => 'getTfaEnabled',
         'affiliate_id' => 'getAffiliateId',
         'pgp_pub_key' => 'getPgpPubKey',
-        'country' => 'getCountry',
-        'disabled' => 'getDisabled'
+        'country' => 'getCountry'
     );
 
     public static function getters()
@@ -197,11 +185,9 @@ class User implements ArrayAccess
         $this->container['owner_id'] = isset($data['owner_id']) ? $data['owner_id'] : null;
         $this->container['firstname'] = isset($data['firstname']) ? $data['firstname'] : null;
         $this->container['lastname'] = isset($data['lastname']) ? $data['lastname'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['username'] = isset($data['username']) ? $data['username'] : null;
         $this->container['email'] = isset($data['email']) ? $data['email'] : null;
         $this->container['phone'] = isset($data['phone']) ? $data['phone'] : null;
-        $this->container['country_code'] = isset($data['country_code']) ? $data['country_code'] : null;
         $this->container['created'] = isset($data['created']) ? $data['created'] : null;
         $this->container['last_updated'] = isset($data['last_updated']) ? $data['last_updated'] : null;
         $this->container['preferences'] = isset($data['preferences']) ? $data['preferences'] : null;
@@ -209,7 +195,6 @@ class User implements ArrayAccess
         $this->container['affiliate_id'] = isset($data['affiliate_id']) ? $data['affiliate_id'] : null;
         $this->container['pgp_pub_key'] = isset($data['pgp_pub_key']) ? $data['pgp_pub_key'] : null;
         $this->container['country'] = isset($data['country']) ? $data['country'] : null;
-        $this->container['disabled'] = isset($data['disabled']) ? $data['disabled'] : false;
     }
 
     /**
@@ -350,27 +335,6 @@ class User implements ArrayAccess
     }
 
     /**
-     * Gets status
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     * @param string $status
-     * @return $this
-     */
-    public function setStatus($status)
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
      * Gets username
      * @return string
      */
@@ -429,27 +393,6 @@ class User implements ArrayAccess
     public function setPhone($phone)
     {
         $this->container['phone'] = $phone;
-
-        return $this;
-    }
-
-    /**
-     * Gets country_code
-     * @return float
-     */
-    public function getCountryCode()
-    {
-        return $this->container['country_code'];
-    }
-
-    /**
-     * Sets country_code
-     * @param float $country_code
-     * @return $this
-     */
-    public function setCountryCode($country_code)
-    {
-        $this->container['country_code'] = $country_code;
 
         return $this;
     }
@@ -606,27 +549,6 @@ class User implements ArrayAccess
             throw new \InvalidArgumentException('invalid length for $country when calling User., must be smaller than or equal to 3.');
         }
         $this->container['country'] = $country;
-
-        return $this;
-    }
-
-    /**
-     * Gets disabled
-     * @return bool
-     */
-    public function getDisabled()
-    {
-        return $this->container['disabled'];
-    }
-
-    /**
-     * Sets disabled
-     * @param bool $disabled
-     * @return $this
-     */
-    public function setDisabled($disabled)
-    {
-        $this->container['disabled'] = $disabled;
 
         return $this;
     }

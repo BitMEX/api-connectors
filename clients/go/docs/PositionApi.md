@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**PositionIsolateMargin**](PositionApi.md#PositionIsolateMargin) | **Post** /position/isolate | Enable isolated margin or cross margin per-position.
 [**PositionTransferIsolatedMargin**](PositionApi.md#PositionTransferIsolatedMargin) | **Post** /position/transferMargin | Transfer equity in or out of a position.
 [**PositionUpdateLeverage**](PositionApi.md#PositionUpdateLeverage) | **Post** /position/leverage | Choose leverage for a position.
+[**PositionUpdateRiskLimit**](PositionApi.md#PositionUpdateRiskLimit) | **Post** /position/riskLimit | Update your risk limit.
 
 
 # **PositionGet**
@@ -115,6 +116,36 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string**| Symbol of position to adjust. | 
  **leverage** | **float64**| Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin. | 
+
+### Return type
+
+[**Position**](Position.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **PositionUpdateRiskLimit**
+> Position PositionUpdateRiskLimit($symbol, $riskLimit)
+
+Update your risk limit.
+
+Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string**| Symbol of position to isolate. | 
+ **riskLimit** | **float32**| New Risk Limit, in Satoshis. | 
 
 ### Return type
 

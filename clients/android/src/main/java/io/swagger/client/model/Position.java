@@ -22,10 +22,18 @@ public class Position  {
   private String quoteCurrency = null;
   @SerializedName("commission")
   private Double commission = null;
+  @SerializedName("initMarginReq")
+  private Double initMarginReq = null;
+  @SerializedName("maintMarginReq")
+  private Double maintMarginReq = null;
+  @SerializedName("riskLimit")
+  private BigDecimal riskLimit = null;
   @SerializedName("leverage")
   private Double leverage = null;
   @SerializedName("crossMargin")
   private Boolean crossMargin = null;
+  @SerializedName("deleveragePercentile")
+  private Double deleveragePercentile = null;
   @SerializedName("rebalancedPnl")
   private BigDecimal rebalancedPnl = null;
   @SerializedName("prevRealisedPnl")
@@ -92,6 +100,8 @@ public class Position  {
   private Double markPrice = null;
   @SerializedName("markValue")
   private BigDecimal markValue = null;
+  @SerializedName("riskValue")
+  private BigDecimal riskValue = null;
   @SerializedName("homeNotional")
   private Double homeNotional = null;
   @SerializedName("foreignNotional")
@@ -246,6 +256,36 @@ public class Position  {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Double getInitMarginReq() {
+    return initMarginReq;
+  }
+  public void setInitMarginReq(Double initMarginReq) {
+    this.initMarginReq = initMarginReq;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getMaintMarginReq() {
+    return maintMarginReq;
+  }
+  public void setMaintMarginReq(Double maintMarginReq) {
+    this.maintMarginReq = maintMarginReq;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getRiskLimit() {
+    return riskLimit;
+  }
+  public void setRiskLimit(BigDecimal riskLimit) {
+    this.riskLimit = riskLimit;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public Double getLeverage() {
     return leverage;
   }
@@ -261,6 +301,16 @@ public class Position  {
   }
   public void setCrossMargin(Boolean crossMargin) {
     this.crossMargin = crossMargin;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getDeleveragePercentile() {
+    return deleveragePercentile;
+  }
+  public void setDeleveragePercentile(Double deleveragePercentile) {
+    this.deleveragePercentile = deleveragePercentile;
   }
 
   /**
@@ -591,6 +641,16 @@ public class Position  {
   }
   public void setMarkValue(BigDecimal markValue) {
     this.markValue = markValue;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getRiskValue() {
+    return riskValue;
+  }
+  public void setRiskValue(BigDecimal riskValue) {
+    this.riskValue = riskValue;
   }
 
   /**
@@ -1059,8 +1119,12 @@ public class Position  {
         (underlying == null ? position.underlying == null : underlying.equals(position.underlying)) &&
         (quoteCurrency == null ? position.quoteCurrency == null : quoteCurrency.equals(position.quoteCurrency)) &&
         (commission == null ? position.commission == null : commission.equals(position.commission)) &&
+        (initMarginReq == null ? position.initMarginReq == null : initMarginReq.equals(position.initMarginReq)) &&
+        (maintMarginReq == null ? position.maintMarginReq == null : maintMarginReq.equals(position.maintMarginReq)) &&
+        (riskLimit == null ? position.riskLimit == null : riskLimit.equals(position.riskLimit)) &&
         (leverage == null ? position.leverage == null : leverage.equals(position.leverage)) &&
         (crossMargin == null ? position.crossMargin == null : crossMargin.equals(position.crossMargin)) &&
+        (deleveragePercentile == null ? position.deleveragePercentile == null : deleveragePercentile.equals(position.deleveragePercentile)) &&
         (rebalancedPnl == null ? position.rebalancedPnl == null : rebalancedPnl.equals(position.rebalancedPnl)) &&
         (prevRealisedPnl == null ? position.prevRealisedPnl == null : prevRealisedPnl.equals(position.prevRealisedPnl)) &&
         (prevUnrealisedPnl == null ? position.prevUnrealisedPnl == null : prevUnrealisedPnl.equals(position.prevUnrealisedPnl)) &&
@@ -1094,6 +1158,7 @@ public class Position  {
         (isOpen == null ? position.isOpen == null : isOpen.equals(position.isOpen)) &&
         (markPrice == null ? position.markPrice == null : markPrice.equals(position.markPrice)) &&
         (markValue == null ? position.markValue == null : markValue.equals(position.markValue)) &&
+        (riskValue == null ? position.riskValue == null : riskValue.equals(position.riskValue)) &&
         (homeNotional == null ? position.homeNotional == null : homeNotional.equals(position.homeNotional)) &&
         (foreignNotional == null ? position.foreignNotional == null : foreignNotional.equals(position.foreignNotional)) &&
         (posState == null ? position.posState == null : posState.equals(position.posState)) &&
@@ -1150,8 +1215,12 @@ public class Position  {
     result = 31 * result + (underlying == null ? 0: underlying.hashCode());
     result = 31 * result + (quoteCurrency == null ? 0: quoteCurrency.hashCode());
     result = 31 * result + (commission == null ? 0: commission.hashCode());
+    result = 31 * result + (initMarginReq == null ? 0: initMarginReq.hashCode());
+    result = 31 * result + (maintMarginReq == null ? 0: maintMarginReq.hashCode());
+    result = 31 * result + (riskLimit == null ? 0: riskLimit.hashCode());
     result = 31 * result + (leverage == null ? 0: leverage.hashCode());
     result = 31 * result + (crossMargin == null ? 0: crossMargin.hashCode());
+    result = 31 * result + (deleveragePercentile == null ? 0: deleveragePercentile.hashCode());
     result = 31 * result + (rebalancedPnl == null ? 0: rebalancedPnl.hashCode());
     result = 31 * result + (prevRealisedPnl == null ? 0: prevRealisedPnl.hashCode());
     result = 31 * result + (prevUnrealisedPnl == null ? 0: prevUnrealisedPnl.hashCode());
@@ -1185,6 +1254,7 @@ public class Position  {
     result = 31 * result + (isOpen == null ? 0: isOpen.hashCode());
     result = 31 * result + (markPrice == null ? 0: markPrice.hashCode());
     result = 31 * result + (markValue == null ? 0: markValue.hashCode());
+    result = 31 * result + (riskValue == null ? 0: riskValue.hashCode());
     result = 31 * result + (homeNotional == null ? 0: homeNotional.hashCode());
     result = 31 * result + (foreignNotional == null ? 0: foreignNotional.hashCode());
     result = 31 * result + (posState == null ? 0: posState.hashCode());
@@ -1244,8 +1314,12 @@ public class Position  {
     sb.append("  underlying: ").append(underlying).append("\n");
     sb.append("  quoteCurrency: ").append(quoteCurrency).append("\n");
     sb.append("  commission: ").append(commission).append("\n");
+    sb.append("  initMarginReq: ").append(initMarginReq).append("\n");
+    sb.append("  maintMarginReq: ").append(maintMarginReq).append("\n");
+    sb.append("  riskLimit: ").append(riskLimit).append("\n");
     sb.append("  leverage: ").append(leverage).append("\n");
     sb.append("  crossMargin: ").append(crossMargin).append("\n");
+    sb.append("  deleveragePercentile: ").append(deleveragePercentile).append("\n");
     sb.append("  rebalancedPnl: ").append(rebalancedPnl).append("\n");
     sb.append("  prevRealisedPnl: ").append(prevRealisedPnl).append("\n");
     sb.append("  prevUnrealisedPnl: ").append(prevUnrealisedPnl).append("\n");
@@ -1279,6 +1353,7 @@ public class Position  {
     sb.append("  isOpen: ").append(isOpen).append("\n");
     sb.append("  markPrice: ").append(markPrice).append("\n");
     sb.append("  markValue: ").append(markValue).append("\n");
+    sb.append("  riskValue: ").append(riskValue).append("\n");
     sb.append("  homeNotional: ").append(homeNotional).append("\n");
     sb.append("  foreignNotional: ").append(foreignNotional).append("\n");
     sb.append("  posState: ").append(posState).append("\n");

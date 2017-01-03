@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -29,7 +29,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.math.BigDecimal;
+import io.swagger.client.model.XAny;
 import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.LocalDate;
@@ -38,10 +38,13 @@ import org.joda.time.LocalDate;
 /**
  * UserPreferences
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-05T09:40:48.217-05:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-01-03T10:34:33.567-06:00")
 public class UserPreferences   {
   @JsonProperty("announcementsLastSeen")
   private LocalDate announcementsLastSeen = null;
+
+  @JsonProperty("chatChannelID")
+  private Double chatChannelID = null;
 
   @JsonProperty("colorTheme")
   private String colorTheme = null;
@@ -70,17 +73,14 @@ public class UserPreferences   {
   @JsonProperty("hideNotifications")
   private List<String> hideNotifications = new ArrayList<String>();
 
-  @JsonProperty("hidePhoneConfirm")
-  private Boolean hidePhoneConfirm = null;
-
   @JsonProperty("locale")
-  private String locale = null;
+  private String locale = "en-US";
 
   @JsonProperty("msgsSeen")
   private List<String> msgsSeen = new ArrayList<String>();
 
   @JsonProperty("orderBookBinning")
-  private BigDecimal orderBookBinning = null;
+  private XAny orderBookBinning = null;
 
   @JsonProperty("orderBookType")
   private String orderBookType = null;
@@ -122,6 +122,24 @@ public class UserPreferences   {
 
   public void setAnnouncementsLastSeen(LocalDate announcementsLastSeen) {
     this.announcementsLastSeen = announcementsLastSeen;
+  }
+
+  public UserPreferences chatChannelID(Double chatChannelID) {
+    this.chatChannelID = chatChannelID;
+    return this;
+  }
+
+   /**
+   * Get chatChannelID
+   * @return chatChannelID
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public Double getChatChannelID() {
+    return chatChannelID;
+  }
+
+  public void setChatChannelID(Double chatChannelID) {
+    this.chatChannelID = chatChannelID;
   }
 
   public UserPreferences colorTheme(String colorTheme) {
@@ -286,24 +304,6 @@ public class UserPreferences   {
     this.hideNotifications = hideNotifications;
   }
 
-  public UserPreferences hidePhoneConfirm(Boolean hidePhoneConfirm) {
-    this.hidePhoneConfirm = hidePhoneConfirm;
-    return this;
-  }
-
-   /**
-   * Get hidePhoneConfirm
-   * @return hidePhoneConfirm
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public Boolean getHidePhoneConfirm() {
-    return hidePhoneConfirm;
-  }
-
-  public void setHidePhoneConfirm(Boolean hidePhoneConfirm) {
-    this.hidePhoneConfirm = hidePhoneConfirm;
-  }
-
   public UserPreferences locale(String locale) {
     this.locale = locale;
     return this;
@@ -340,7 +340,7 @@ public class UserPreferences   {
     this.msgsSeen = msgsSeen;
   }
 
-  public UserPreferences orderBookBinning(BigDecimal orderBookBinning) {
+  public UserPreferences orderBookBinning(XAny orderBookBinning) {
     this.orderBookBinning = orderBookBinning;
     return this;
   }
@@ -350,11 +350,11 @@ public class UserPreferences   {
    * @return orderBookBinning
   **/
   @ApiModelProperty(example = "null", value = "")
-  public BigDecimal getOrderBookBinning() {
+  public XAny getOrderBookBinning() {
     return orderBookBinning;
   }
 
-  public void setOrderBookBinning(BigDecimal orderBookBinning) {
+  public void setOrderBookBinning(XAny orderBookBinning) {
     this.orderBookBinning = orderBookBinning;
   }
 
@@ -513,6 +513,7 @@ public class UserPreferences   {
     }
     UserPreferences userPreferences = (UserPreferences) o;
     return Objects.equals(this.announcementsLastSeen, userPreferences.announcementsLastSeen) &&
+        Objects.equals(this.chatChannelID, userPreferences.chatChannelID) &&
         Objects.equals(this.colorTheme, userPreferences.colorTheme) &&
         Objects.equals(this.currency, userPreferences.currency) &&
         Objects.equals(this.debug, userPreferences.debug) &&
@@ -522,7 +523,6 @@ public class UserPreferences   {
         Objects.equals(this.hideFromLeaderboard, userPreferences.hideFromLeaderboard) &&
         Objects.equals(this.hideNameFromLeaderboard, userPreferences.hideNameFromLeaderboard) &&
         Objects.equals(this.hideNotifications, userPreferences.hideNotifications) &&
-        Objects.equals(this.hidePhoneConfirm, userPreferences.hidePhoneConfirm) &&
         Objects.equals(this.locale, userPreferences.locale) &&
         Objects.equals(this.msgsSeen, userPreferences.msgsSeen) &&
         Objects.equals(this.orderBookBinning, userPreferences.orderBookBinning) &&
@@ -538,7 +538,7 @@ public class UserPreferences   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(announcementsLastSeen, colorTheme, currency, debug, disableEmails, hideConfirmDialogs, hideConnectionModal, hideFromLeaderboard, hideNameFromLeaderboard, hideNotifications, hidePhoneConfirm, locale, msgsSeen, orderBookBinning, orderBookType, orderControlsPlusMinus, sounds, strictIPCheck, strictTimeout, tickerGroup, tickerPinned, tradeLayout);
+    return Objects.hash(announcementsLastSeen, chatChannelID, colorTheme, currency, debug, disableEmails, hideConfirmDialogs, hideConnectionModal, hideFromLeaderboard, hideNameFromLeaderboard, hideNotifications, locale, msgsSeen, orderBookBinning, orderBookType, orderControlsPlusMinus, sounds, strictIPCheck, strictTimeout, tickerGroup, tickerPinned, tradeLayout);
   }
 
   @Override
@@ -547,6 +547,7 @@ public class UserPreferences   {
     sb.append("class UserPreferences {\n");
     
     sb.append("    announcementsLastSeen: ").append(toIndentedString(announcementsLastSeen)).append("\n");
+    sb.append("    chatChannelID: ").append(toIndentedString(chatChannelID)).append("\n");
     sb.append("    colorTheme: ").append(toIndentedString(colorTheme)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    debug: ").append(toIndentedString(debug)).append("\n");
@@ -556,7 +557,6 @@ public class UserPreferences   {
     sb.append("    hideFromLeaderboard: ").append(toIndentedString(hideFromLeaderboard)).append("\n");
     sb.append("    hideNameFromLeaderboard: ").append(toIndentedString(hideNameFromLeaderboard)).append("\n");
     sb.append("    hideNotifications: ").append(toIndentedString(hideNotifications)).append("\n");
-    sb.append("    hidePhoneConfirm: ").append(toIndentedString(hidePhoneConfirm)).append("\n");
     sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
     sb.append("    msgsSeen: ").append(toIndentedString(msgsSeen)).append("\n");
     sb.append("    orderBookBinning: ").append(toIndentedString(orderBookBinning)).append("\n");

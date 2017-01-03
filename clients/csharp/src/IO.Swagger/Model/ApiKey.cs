@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -34,18 +34,18 @@ using Newtonsoft.Json.Converters;
 namespace IO.Swagger.Model
 {
     /// <summary>
-    /// ApiKey
+    /// APIKey
     /// </summary>
     [DataContract]
-    public partial class ApiKey :  IEquatable<ApiKey>
+    public partial class APIKey :  IEquatable<APIKey>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiKey" /> class.
+        /// Initializes a new instance of the <see cref="APIKey" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected ApiKey() { }
+        protected APIKey() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiKey" /> class.
+        /// Initializes a new instance of the <see cref="APIKey" /> class.
         /// </summary>
         /// <param name="Id">Id (required).</param>
         /// <param name="Secret">Secret (required).</param>
@@ -56,12 +56,12 @@ namespace IO.Swagger.Model
         /// <param name="Enabled">Enabled (default to false).</param>
         /// <param name="UserId">UserId (required).</param>
         /// <param name="Created">Created.</param>
-        public ApiKey(string Id = null, string Secret = null, string Name = null, decimal? Nonce = null, string Cidr = null, List<string> Permissions = null, bool? Enabled = null, decimal? UserId = null, DateTime? Created = null)
+        public APIKey(string Id = null, string Secret = null, string Name = null, decimal? Nonce = null, string Cidr = null, List<XAny> Permissions = null, bool? Enabled = null, decimal? UserId = null, DateTime? Created = null)
         {
             // to ensure "Id" is required (not null)
             if (Id == null)
             {
-                throw new InvalidDataException("Id is a required property for ApiKey and cannot be null");
+                throw new InvalidDataException("Id is a required property for APIKey and cannot be null");
             }
             else
             {
@@ -70,7 +70,7 @@ namespace IO.Swagger.Model
             // to ensure "Secret" is required (not null)
             if (Secret == null)
             {
-                throw new InvalidDataException("Secret is a required property for ApiKey and cannot be null");
+                throw new InvalidDataException("Secret is a required property for APIKey and cannot be null");
             }
             else
             {
@@ -79,7 +79,7 @@ namespace IO.Swagger.Model
             // to ensure "Name" is required (not null)
             if (Name == null)
             {
-                throw new InvalidDataException("Name is a required property for ApiKey and cannot be null");
+                throw new InvalidDataException("Name is a required property for APIKey and cannot be null");
             }
             else
             {
@@ -88,7 +88,7 @@ namespace IO.Swagger.Model
             // to ensure "Nonce" is required (not null)
             if (Nonce == null)
             {
-                throw new InvalidDataException("Nonce is a required property for ApiKey and cannot be null");
+                throw new InvalidDataException("Nonce is a required property for APIKey and cannot be null");
             }
             else
             {
@@ -97,7 +97,7 @@ namespace IO.Swagger.Model
             // to ensure "UserId" is required (not null)
             if (UserId == null)
             {
-                throw new InvalidDataException("UserId is a required property for ApiKey and cannot be null");
+                throw new InvalidDataException("UserId is a required property for APIKey and cannot be null");
             }
             else
             {
@@ -146,7 +146,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Permissions
         /// </summary>
         [DataMember(Name="permissions", EmitDefaultValue=false)]
-        public List<string> Permissions { get; set; }
+        public List<XAny> Permissions { get; set; }
         /// <summary>
         /// Gets or Sets Enabled
         /// </summary>
@@ -169,7 +169,7 @@ namespace IO.Swagger.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ApiKey {\n");
+            sb.Append("class APIKey {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Secret: ").Append(Secret).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -200,15 +200,15 @@ namespace IO.Swagger.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as ApiKey);
+            return this.Equals(obj as APIKey);
         }
 
         /// <summary>
-        /// Returns true if ApiKey instances are equal
+        /// Returns true if APIKey instances are equal
         /// </summary>
-        /// <param name="other">Instance of ApiKey to be compared</param>
+        /// <param name="other">Instance of APIKey to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ApiKey other)
+        public bool Equals(APIKey other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)

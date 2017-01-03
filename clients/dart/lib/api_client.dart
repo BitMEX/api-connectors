@@ -59,16 +59,18 @@ class ApiClient {
     bool isMap = json is Map;
 
     switch(clazz) {
+      case APIKey:
+        return isMap ? dson.map(json, new APIKey()) : dson.decode(json, new APIKey());
       case AccessToken:
         return isMap ? dson.map(json, new AccessToken()) : dson.decode(json, new AccessToken());
       case Affiliate:
         return isMap ? dson.map(json, new Affiliate()) : dson.decode(json, new Affiliate());
       case Announcement:
         return isMap ? dson.map(json, new Announcement()) : dson.decode(json, new Announcement());
-      case ApiKey:
-        return isMap ? dson.map(json, new ApiKey()) : dson.decode(json, new ApiKey());
       case Chat:
         return isMap ? dson.map(json, new Chat()) : dson.decode(json, new Chat());
+      case ChatChannel:
+        return isMap ? dson.map(json, new ChatChannel()) : dson.decode(json, new ChatChannel());
       case ConnectedUsers:
         return isMap ? dson.map(json, new ConnectedUsers()) : dson.decode(json, new ConnectedUsers());
       case Error:
@@ -119,6 +121,8 @@ class ApiClient {
         return isMap ? dson.map(json, new UserCommission()) : dson.decode(json, new UserCommission());
       case UserPreferences:
         return isMap ? dson.map(json, new UserPreferences()) : dson.decode(json, new UserPreferences());
+      case Wallet:
+        return isMap ? dson.map(json, new Wallet()) : dson.decode(json, new Wallet());
       default:
         throw new ApiException(500, 'Could not find a suitable class for deserialization');
     }

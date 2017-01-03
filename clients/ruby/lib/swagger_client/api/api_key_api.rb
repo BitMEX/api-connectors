@@ -1,7 +1,7 @@
 =begin
 #BitMEX API
 
-#REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+### REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
 
 OpenAPI spec version: 1.2.0
 Contact: support@bitmex.com
@@ -24,7 +24,7 @@ limitations under the License.
 require "uri"
 
 module SwaggerClient
-  class ApiKeyApi
+  class APIKeyApi
     attr_accessor :api_client
 
     def initialize(api_client = ApiClient.default)
@@ -35,9 +35,9 @@ module SwaggerClient
     # 
     # @param api_key_id API Key ID (public component).
     # @param [Hash] opts the optional parameters
-    # @return [ApiKey]
-    def api_key_disable(api_key_id, opts = {})
-      data, _status_code, _headers = api_key_disable_with_http_info(api_key_id, opts)
+    # @return [APIKey]
+    def a_pi_key_disable(api_key_id, opts = {})
+      data, _status_code, _headers = a_pi_key_disable_with_http_info(api_key_id, opts)
       return data
     end
 
@@ -45,13 +45,13 @@ module SwaggerClient
     # 
     # @param api_key_id API Key ID (public component).
     # @param [Hash] opts the optional parameters
-    # @return [Array<(ApiKey, Fixnum, Hash)>] ApiKey data, response status code and response headers
-    def api_key_disable_with_http_info(api_key_id, opts = {})
+    # @return [Array<(APIKey, Fixnum, Hash)>] APIKey data, response status code and response headers
+    def a_pi_key_disable_with_http_info(api_key_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ApiKeyApi.api_key_disable ..."
+        @api_client.config.logger.debug "Calling API: APIKeyApi.a_pi_key_disable ..."
       end
       # verify the required parameter 'api_key_id' is set
-      fail ArgumentError, "Missing the required parameter 'api_key_id' when calling ApiKeyApi.api_key_disable" if api_key_id.nil?
+      fail ArgumentError, "Missing the required parameter 'api_key_id' when calling APIKeyApi.a_pi_key_disable" if api_key_id.nil?
       # resource path
       local_var_path = "/apiKey/disable".sub('{format}','json')
 
@@ -82,9 +82,9 @@ module SwaggerClient
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'ApiKey')
+        :return_type => 'APIKey')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ApiKeyApi#api_key_disable\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: APIKeyApi#a_pi_key_disable\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -93,9 +93,9 @@ module SwaggerClient
     # 
     # @param api_key_id API Key ID (public component).
     # @param [Hash] opts the optional parameters
-    # @return [ApiKey]
-    def api_key_enable(api_key_id, opts = {})
-      data, _status_code, _headers = api_key_enable_with_http_info(api_key_id, opts)
+    # @return [APIKey]
+    def a_pi_key_enable(api_key_id, opts = {})
+      data, _status_code, _headers = a_pi_key_enable_with_http_info(api_key_id, opts)
       return data
     end
 
@@ -103,13 +103,13 @@ module SwaggerClient
     # 
     # @param api_key_id API Key ID (public component).
     # @param [Hash] opts the optional parameters
-    # @return [Array<(ApiKey, Fixnum, Hash)>] ApiKey data, response status code and response headers
-    def api_key_enable_with_http_info(api_key_id, opts = {})
+    # @return [Array<(APIKey, Fixnum, Hash)>] APIKey data, response status code and response headers
+    def a_pi_key_enable_with_http_info(api_key_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ApiKeyApi.api_key_enable ..."
+        @api_client.config.logger.debug "Calling API: APIKeyApi.a_pi_key_enable ..."
       end
       # verify the required parameter 'api_key_id' is set
-      fail ArgumentError, "Missing the required parameter 'api_key_id' when calling ApiKeyApi.api_key_enable" if api_key_id.nil?
+      fail ArgumentError, "Missing the required parameter 'api_key_id' when calling APIKeyApi.a_pi_key_enable" if api_key_id.nil?
       # resource path
       local_var_path = "/apiKey/enable".sub('{format}','json')
 
@@ -140,9 +140,9 @@ module SwaggerClient
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'ApiKey')
+        :return_type => 'APIKey')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ApiKeyApi#api_key_enable\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: APIKeyApi#a_pi_key_enable\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -151,9 +151,9 @@ module SwaggerClient
     # 
     # @param [Hash] opts the optional parameters
     # @option opts [BOOLEAN] :reverse If true, will sort results newest first. (default to false)
-    # @return [Array<ApiKey>]
-    def api_key_get(opts = {})
-      data, _status_code, _headers = api_key_get_with_http_info(opts)
+    # @return [Array<APIKey>]
+    def a_pi_key_get(opts = {})
+      data, _status_code, _headers = a_pi_key_get_with_http_info(opts)
       return data
     end
 
@@ -161,10 +161,10 @@ module SwaggerClient
     # 
     # @param [Hash] opts the optional parameters
     # @option opts [BOOLEAN] :reverse If true, will sort results newest first.
-    # @return [Array<(Array<ApiKey>, Fixnum, Hash)>] Array<ApiKey> data, response status code and response headers
-    def api_key_get_with_http_info(opts = {})
+    # @return [Array<(Array<APIKey>, Fixnum, Hash)>] Array<APIKey> data, response status code and response headers
+    def a_pi_key_get_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ApiKeyApi.api_key_get ..."
+        @api_client.config.logger.debug "Calling API: APIKeyApi.a_pi_key_get ..."
       end
       # resource path
       local_var_path = "/apiKey".sub('{format}','json')
@@ -196,9 +196,9 @@ module SwaggerClient
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<ApiKey>')
+        :return_type => 'Array<APIKey>')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ApiKeyApi#api_key_get\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: APIKeyApi#a_pi_key_get\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -211,9 +211,9 @@ module SwaggerClient
     # @option opts [String] :permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;].
     # @option opts [BOOLEAN] :enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (default to false)
     # @option opts [String] :token OTP Token (YubiKey, Google Authenticator)
-    # @return [ApiKey]
-    def api_key_new(opts = {})
-      data, _status_code, _headers = api_key_new_with_http_info(opts)
+    # @return [APIKey]
+    def a_pi_key_new(opts = {})
+      data, _status_code, _headers = a_pi_key_new_with_http_info(opts)
       return data
     end
 
@@ -225,10 +225,10 @@ module SwaggerClient
     # @option opts [String] :permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;].
     # @option opts [BOOLEAN] :enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.
     # @option opts [String] :token OTP Token (YubiKey, Google Authenticator)
-    # @return [Array<(ApiKey, Fixnum, Hash)>] ApiKey data, response status code and response headers
-    def api_key_new_with_http_info(opts = {})
+    # @return [Array<(APIKey, Fixnum, Hash)>] APIKey data, response status code and response headers
+    def a_pi_key_new_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ApiKeyApi.api_key_new ..."
+        @api_client.config.logger.debug "Calling API: APIKeyApi.a_pi_key_new ..."
       end
       # resource path
       local_var_path = "/apiKey".sub('{format}','json')
@@ -264,9 +264,9 @@ module SwaggerClient
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'ApiKey')
+        :return_type => 'APIKey')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ApiKeyApi#api_key_new\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: APIKeyApi#a_pi_key_new\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -276,8 +276,8 @@ module SwaggerClient
     # @param api_key_id API Key ID (public component).
     # @param [Hash] opts the optional parameters
     # @return [InlineResponse200]
-    def api_key_remove(api_key_id, opts = {})
-      data, _status_code, _headers = api_key_remove_with_http_info(api_key_id, opts)
+    def a_pi_key_remove(api_key_id, opts = {})
+      data, _status_code, _headers = a_pi_key_remove_with_http_info(api_key_id, opts)
       return data
     end
 
@@ -286,12 +286,12 @@ module SwaggerClient
     # @param api_key_id API Key ID (public component).
     # @param [Hash] opts the optional parameters
     # @return [Array<(InlineResponse200, Fixnum, Hash)>] InlineResponse200 data, response status code and response headers
-    def api_key_remove_with_http_info(api_key_id, opts = {})
+    def a_pi_key_remove_with_http_info(api_key_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ApiKeyApi.api_key_remove ..."
+        @api_client.config.logger.debug "Calling API: APIKeyApi.a_pi_key_remove ..."
       end
       # verify the required parameter 'api_key_id' is set
-      fail ArgumentError, "Missing the required parameter 'api_key_id' when calling ApiKeyApi.api_key_remove" if api_key_id.nil?
+      fail ArgumentError, "Missing the required parameter 'api_key_id' when calling APIKeyApi.a_pi_key_remove" if api_key_id.nil?
       # resource path
       local_var_path = "/apiKey".sub('{format}','json')
 
@@ -324,7 +324,7 @@ module SwaggerClient
         :auth_names => auth_names,
         :return_type => 'InlineResponse200')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ApiKeyApi#api_key_remove\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: APIKeyApi#a_pi_key_remove\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

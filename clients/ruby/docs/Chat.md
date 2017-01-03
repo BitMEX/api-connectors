@@ -9,5 +9,6 @@ Name | Type | Description | Notes
 **message** | **String** |  | 
 **html** | **String** |  | 
 **from_bot** | **BOOLEAN** |  | [optional] [default to false]
+**channel_id** | **Float** |  | [optional] 
 
 

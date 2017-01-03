@@ -16,11 +16,11 @@ Method | HTTP request | Description
 
 
 # **OrderAmend**
-> Order OrderAmend($orderID, $clOrdID, $simpleOrderQty, $orderQty, $simpleLeavesQty, $leavesQty, $price, $stopPx, $pegOffsetValue, $text)
+> Order OrderAmend($orderID, $origClOrdID, $clOrdID, $simpleOrderQty, $orderQty, $simpleLeavesQty, $leavesQty, $price, $stopPx, $pegOffsetValue, $text)
 
 Amend the quantity or price of an open order.
 
-<p>Send an <code>orderID</code> or <code>clOrdID</code> to identify the order you wish to amend.</p> <p>Both order quantity and price can be amended. Only one <code>qty</code> field can be used to amend.</p> <p>Use the <code>leavesQty</code> field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position&#39;s delta by a certain amount, regardless of how much of the order has already filled.</p> <p>Use the <code>simpleOrderQty</code> and <code>simpleLeavesQty</code> fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.</p> <p>Like order placement, amending can be done in bulk. Simply send a request to <code>PUT /api/v1/order/bulk</code> with a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, each object containing the fields used in this endpoint.</p> 
+Send an `orderID` or `origClOrdID` to identify the order you wish to amend.  Both order quantity and price can be amended. Only one `qty` field can be used to amend.  Use the `leavesQty` field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position's delta by a certain amount, regardless of how much of the order has already filled.  Use the `simpleOrderQty` and `simpleLeavesQty` fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.  Like order placement, amending can be done in bulk. Simply send a request to `PUT /api/v1/order/bulk` with a JSON body of the shape: `{\"orders\": [{...}, {...}]}`, each object containing the fields used in this endpoint. 
 
 
 ### Parameters
@@ -28,7 +28,8 @@ Amend the quantity or price of an open order.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderID** | **string**| Order ID | [optional] 
- **clOrdID** | **string**| Client Order ID. See POST /order. | [optional] 
+ **origClOrdID** | **string**| Client Order ID. See POST /order. | [optional] 
+ **clOrdID** | **string**| Optional new Client Order ID, requires &#x60;origClOrdID&#x60;. | [optional] 
  **simpleOrderQty** | **float64**| Optional order quantity in units of the underlying instrument (i.e. Bitcoin). | [optional] 
  **orderQty** | **float32**| Optional order quantity in units of the instrument (i.e. contracts). | [optional] 
  **simpleLeavesQty** | **float64**| Optional leaves quantity in units of the underlying instrument (i.e. Bitcoin). Useful for amending partially filled orders. | [optional] 
@@ -176,7 +177,7 @@ No authorization required
 
 Close a position. [Deprecated, use POST /order with execInst: 'Close']
 
-If no `price` is specified, a market order will be submitted to close the whole of your position. + This will also close all other open orders in this symbol.
+If no `price` is specified, a market order will be submitted to close the whole of your position. This will also close all other open orders in this symbol.
 
 
 ### Parameters
@@ -265,7 +266,7 @@ Name | Type | Description  | Notes
  **type_** | **string**| Deprecated: use &#x60;ordType&#x60;. | [optional] 
  **ordType** | **string**| Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to &#39;Limit&#39; when &#x60;price&#x60; is specified. Defaults to &#39;Stop&#39; when &#x60;stopPx&#x60; is specified. Defaults to &#39;StopLimit&#39; when &#x60;price&#x60; and &#x60;stopPx&#x60; are specified. | [optional] [default to Limit]
  **timeInForce** | **string**| Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to &#39;GoodTillCancel&#39; for &#39;Limit&#39;, &#39;StopLimit&#39;, &#39;LimitIfTouched&#39;, and &#39;MarketWithLeftOverAsLimit&#39; orders. | [optional] 
- **execInst** | **string**| Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, LastPrice, Close, ReduceOnly. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. | [optional] 
+ **execInst** | **string**| Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. | [optional] 
  **contingencyType** | **string**| Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute, OneUpdatesTheOtherProportional. | [optional] 
  **text** | **string**| Optional order annotation. e.g. &#39;Take profit&#39;. | [optional] 
 

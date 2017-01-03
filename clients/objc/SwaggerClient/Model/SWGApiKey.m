@@ -1,6 +1,6 @@
-#import "SWGApiKey.h"
+#import "SWGAPIKey.h"
 
-@implementation SWGApiKey
+@implementation SWGAPIKey
 
 - (instancetype)init {
   self = [super init];

@@ -2,7 +2,7 @@
   (:require [bit-mex-api.core :refer [call-api check-required-params with-collection-format]])
   (:import (java.io File)))
 
-(defn api-key-disable-with-http-info
+(defn a-pi-key-disable-with-http-info
   "Disable an API Key."
   [api-key-id ]
   (call-api "/apiKey/disable" :post
@@ -14,12 +14,12 @@
              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
              :auth-names    []}))
 
-(defn api-key-disable
+(defn a-pi-key-disable
   "Disable an API Key."
   [api-key-id ]
-  (:data (api-key-disable-with-http-info api-key-id)))
+  (:data (a-pi-key-disable-with-http-info api-key-id)))
 
-(defn api-key-enable-with-http-info
+(defn a-pi-key-enable-with-http-info
   "Enable an API Key."
   [api-key-id ]
   (call-api "/apiKey/enable" :post
@@ -31,14 +31,14 @@
              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
              :auth-names    []}))
 
-(defn api-key-enable
+(defn a-pi-key-enable
   "Enable an API Key."
   [api-key-id ]
-  (:data (api-key-enable-with-http-info api-key-id)))
+  (:data (a-pi-key-enable-with-http-info api-key-id)))
 
-(defn api-key-get-with-http-info
+(defn a-pi-key-get-with-http-info
   "Get your API Keys."
-  ([] (api-key-get-with-http-info nil))
+  ([] (a-pi-key-get-with-http-info nil))
   ([{:keys [reverse ]}]
    (call-api "/apiKey" :get
              {:path-params   {}
@@ -49,16 +49,16 @@
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
               :auth-names    []})))
 
-(defn api-key-get
+(defn a-pi-key-get
   "Get your API Keys."
-  ([] (api-key-get nil))
+  ([] (a-pi-key-get nil))
   ([optional-params]
-   (:data (api-key-get-with-http-info optional-params))))
+   (:data (a-pi-key-get-with-http-info optional-params))))
 
-(defn api-key-new-with-http-info
+(defn a-pi-key-new-with-http-info
   "Create a new API Key.
   API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities."
-  ([] (api-key-new-with-http-info nil))
+  ([] (a-pi-key-new-with-http-info nil))
   ([{:keys [name cidr permissions enabled token ]}]
    (call-api "/apiKey" :post
              {:path-params   {}
@@ -69,14 +69,14 @@
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
               :auth-names    []})))
 
-(defn api-key-new
+(defn a-pi-key-new
   "Create a new API Key.
   API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities."
-  ([] (api-key-new nil))
+  ([] (a-pi-key-new nil))
   ([optional-params]
-   (:data (api-key-new-with-http-info optional-params))))
+   (:data (a-pi-key-new-with-http-info optional-params))))
 
-(defn api-key-remove-with-http-info
+(defn a-pi-key-remove-with-http-info
   "Remove an API Key."
   [api-key-id ]
   (call-api "/apiKey" :delete
@@ -88,8 +88,8 @@
              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
              :auth-names    []}))
 
-(defn api-key-remove
+(defn a-pi-key-remove
   "Remove an API Key."
   [api-key-id ]
-  (:data (api-key-remove-with-http-info api-key-id)))
+  (:data (a-pi-key-remove-with-http-info api-key-id)))
 

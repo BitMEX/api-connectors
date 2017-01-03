@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -25,18 +25,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Chat', 'model/Error', 'model/ConnectedUsers'], factory);
+    define(['ApiClient', 'model/Chat', 'model/Error', 'model/ChatChannel', 'model/ConnectedUsers'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/Chat'), require('../model/Error'), require('../model/ConnectedUsers'));
+    module.exports = factory(require('../ApiClient'), require('../model/Chat'), require('../model/Error'), require('../model/ChatChannel'), require('../model/ConnectedUsers'));
   } else {
     // Browser globals (root is window)
     if (!root.BitMexApi) {
       root.BitMexApi = {};
     }
-    root.BitMexApi.ChatApi = factory(root.BitMexApi.ApiClient, root.BitMexApi.Chat, root.BitMexApi.Error, root.BitMexApi.ConnectedUsers);
+    root.BitMexApi.ChatApi = factory(root.BitMexApi.ApiClient, root.BitMexApi.Chat, root.BitMexApi.Error, root.BitMexApi.ChatChannel, root.BitMexApi.ConnectedUsers);
   }
-}(this, function(ApiClient, Chat, Error, ConnectedUsers) {
+}(this, function(ApiClient, Chat, Error, ChatChannel, ConnectedUsers) {
   'use strict';
 
   /**
@@ -70,6 +70,7 @@
      * @param {Number} opts.count Number of results to fetch. (default to 100)
      * @param {Number} opts.start Starting point for results. (default to 0)
      * @param {Boolean} opts.reverse If true, will sort results newest first. (default to true)
+     * @param {Number} opts.channelID Channel id. GET /chat/channels for ids. Leave blank for all.
      * @param {module:api/ChatApi~chatGetCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {Array.<module:model/Chat>}
      */
@@ -83,7 +84,8 @@
       var queryParams = {
         'count': opts['count'],
         'start': opts['start'],
-        'reverse': opts['reverse']
+        'reverse': opts['reverse'],
+        'channelID': opts['channelID']
       };
       var headerParams = {
       };
@@ -97,6 +99,44 @@
 
       return this.apiClient.callApi(
         '/chat', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the chatGetChannels operation.
+     * @callback module:api/ChatApi~chatGetChannelsCallback
+     * @param {String} error Error message, if any.
+     * @param {Array.<module:model/ChatChannel>} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get available channels.
+     * @param {module:api/ChatApi~chatGetChannelsCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {Array.<module:model/ChatChannel>}
+     */
+    this.chatGetChannels = function(callback) {
+      var postBody = null;
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      var returnType = [ChatChannel];
+
+      return this.apiClient.callApi(
+        '/chat/channels', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -152,10 +192,13 @@
     /**
      * Send a chat message.
      * @param {String} message 
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.channelID Channel to post to. Default 1 (English). (default to 1)
      * @param {module:api/ChatApi~chatNewCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {module:model/Chat}
      */
-    this.chatNew = function(message, callback) {
+    this.chatNew = function(message, opts, callback) {
+      opts = opts || {};
       var postBody = null;
 
       // verify the required parameter 'message' is set
@@ -171,7 +214,8 @@
       var headerParams = {
       };
       var formParams = {
-        'message': message
+        'message': message,
+        'channelID': opts['channelID']
       };
 
       var authNames = [];

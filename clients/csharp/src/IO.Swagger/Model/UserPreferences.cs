@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -43,6 +43,7 @@ namespace IO.Swagger.Model
         /// Initializes a new instance of the <see cref="UserPreferences" /> class.
         /// </summary>
         /// <param name="AnnouncementsLastSeen">AnnouncementsLastSeen.</param>
+        /// <param name="ChatChannelID">ChatChannelID.</param>
         /// <param name="ColorTheme">ColorTheme.</param>
         /// <param name="Currency">Currency.</param>
         /// <param name="Debug">Debug.</param>
@@ -52,8 +53,7 @@ namespace IO.Swagger.Model
         /// <param name="HideFromLeaderboard">HideFromLeaderboard (default to false).</param>
         /// <param name="HideNameFromLeaderboard">HideNameFromLeaderboard (default to true).</param>
         /// <param name="HideNotifications">HideNotifications.</param>
-        /// <param name="HidePhoneConfirm">HidePhoneConfirm.</param>
-        /// <param name="Locale">Locale.</param>
+        /// <param name="Locale">Locale (default to &quot;en-US&quot;).</param>
         /// <param name="MsgsSeen">MsgsSeen.</param>
         /// <param name="OrderBookBinning">OrderBookBinning.</param>
         /// <param name="OrderBookType">OrderBookType.</param>
@@ -64,9 +64,10 @@ namespace IO.Swagger.Model
         /// <param name="TickerGroup">TickerGroup.</param>
         /// <param name="TickerPinned">TickerPinned.</param>
         /// <param name="TradeLayout">TradeLayout.</param>
-        public UserPreferences(DateTime? AnnouncementsLastSeen = null, string ColorTheme = null, string Currency = null, bool? Debug = null, List<string> DisableEmails = null, List<string> HideConfirmDialogs = null, bool? HideConnectionModal = null, bool? HideFromLeaderboard = null, bool? HideNameFromLeaderboard = null, List<string> HideNotifications = null, bool? HidePhoneConfirm = null, string Locale = null, List<string> MsgsSeen = null, decimal? OrderBookBinning = null, string OrderBookType = null, bool? OrderControlsPlusMinus = null, List<string> Sounds = null, bool? StrictIPCheck = null, bool? StrictTimeout = null, string TickerGroup = null, bool? TickerPinned = null, string TradeLayout = null)
+        public UserPreferences(DateTime? AnnouncementsLastSeen = null, double? ChatChannelID = null, string ColorTheme = null, string Currency = null, bool? Debug = null, List<string> DisableEmails = null, List<string> HideConfirmDialogs = null, bool? HideConnectionModal = null, bool? HideFromLeaderboard = null, bool? HideNameFromLeaderboard = null, List<string> HideNotifications = null, string Locale = null, List<string> MsgsSeen = null, XAny OrderBookBinning = null, string OrderBookType = null, bool? OrderControlsPlusMinus = null, List<string> Sounds = null, bool? StrictIPCheck = null, bool? StrictTimeout = null, string TickerGroup = null, bool? TickerPinned = null, string TradeLayout = null)
         {
             this.AnnouncementsLastSeen = AnnouncementsLastSeen;
+            this.ChatChannelID = ChatChannelID;
             this.ColorTheme = ColorTheme;
             this.Currency = Currency;
             this.Debug = Debug;
@@ -92,8 +93,15 @@ namespace IO.Swagger.Model
                 this.HideNameFromLeaderboard = HideNameFromLeaderboard;
             }
             this.HideNotifications = HideNotifications;
-            this.HidePhoneConfirm = HidePhoneConfirm;
-            this.Locale = Locale;
+            // use default value if no "Locale" provided
+            if (Locale == null)
+            {
+                this.Locale = "en-US";
+            }
+            else
+            {
+                this.Locale = Locale;
+            }
             this.MsgsSeen = MsgsSeen;
             this.OrderBookBinning = OrderBookBinning;
             this.OrderBookType = OrderBookType;
@@ -127,6 +135,11 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="announcementsLastSeen", EmitDefaultValue=false)]
         public DateTime? AnnouncementsLastSeen { get; set; }
+        /// <summary>
+        /// Gets or Sets ChatChannelID
+        /// </summary>
+        [DataMember(Name="chatChannelID", EmitDefaultValue=false)]
+        public double? ChatChannelID { get; set; }
         /// <summary>
         /// Gets or Sets ColorTheme
         /// </summary>
@@ -173,11 +186,6 @@ namespace IO.Swagger.Model
         [DataMember(Name="hideNotifications", EmitDefaultValue=false)]
         public List<string> HideNotifications { get; set; }
         /// <summary>
-        /// Gets or Sets HidePhoneConfirm
-        /// </summary>
-        [DataMember(Name="hidePhoneConfirm", EmitDefaultValue=false)]
-        public bool? HidePhoneConfirm { get; set; }
-        /// <summary>
         /// Gets or Sets Locale
         /// </summary>
         [DataMember(Name="locale", EmitDefaultValue=false)]
@@ -191,7 +199,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets OrderBookBinning
         /// </summary>
         [DataMember(Name="orderBookBinning", EmitDefaultValue=false)]
-        public decimal? OrderBookBinning { get; set; }
+        public XAny OrderBookBinning { get; set; }
         /// <summary>
         /// Gets or Sets OrderBookType
         /// </summary>
@@ -241,6 +249,7 @@ namespace IO.Swagger.Model
             var sb = new StringBuilder();
             sb.Append("class UserPreferences {\n");
             sb.Append("  AnnouncementsLastSeen: ").Append(AnnouncementsLastSeen).Append("\n");
+            sb.Append("  ChatChannelID: ").Append(ChatChannelID).Append("\n");
             sb.Append("  ColorTheme: ").Append(ColorTheme).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  Debug: ").Append(Debug).Append("\n");
@@ -250,7 +259,6 @@ namespace IO.Swagger.Model
             sb.Append("  HideFromLeaderboard: ").Append(HideFromLeaderboard).Append("\n");
             sb.Append("  HideNameFromLeaderboard: ").Append(HideNameFromLeaderboard).Append("\n");
             sb.Append("  HideNotifications: ").Append(HideNotifications).Append("\n");
-            sb.Append("  HidePhoneConfirm: ").Append(HidePhoneConfirm).Append("\n");
             sb.Append("  Locale: ").Append(Locale).Append("\n");
             sb.Append("  MsgsSeen: ").Append(MsgsSeen).Append("\n");
             sb.Append("  OrderBookBinning: ").Append(OrderBookBinning).Append("\n");
@@ -304,6 +312,11 @@ namespace IO.Swagger.Model
                     this.AnnouncementsLastSeen.Equals(other.AnnouncementsLastSeen)
                 ) && 
                 (
+                    this.ChatChannelID == other.ChatChannelID ||
+                    this.ChatChannelID != null &&
+                    this.ChatChannelID.Equals(other.ChatChannelID)
+                ) && 
+                (
                     this.ColorTheme == other.ColorTheme ||
                     this.ColorTheme != null &&
                     this.ColorTheme.Equals(other.ColorTheme)
@@ -347,11 +360,6 @@ namespace IO.Swagger.Model
                     this.HideNotifications == other.HideNotifications ||
                     this.HideNotifications != null &&
                     this.HideNotifications.SequenceEqual(other.HideNotifications)
-                ) && 
-                (
-                    this.HidePhoneConfirm == other.HidePhoneConfirm ||
-                    this.HidePhoneConfirm != null &&
-                    this.HidePhoneConfirm.Equals(other.HidePhoneConfirm)
                 ) && 
                 (
                     this.Locale == other.Locale ||
@@ -423,6 +431,8 @@ namespace IO.Swagger.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.AnnouncementsLastSeen != null)
                     hash = hash * 59 + this.AnnouncementsLastSeen.GetHashCode();
+                if (this.ChatChannelID != null)
+                    hash = hash * 59 + this.ChatChannelID.GetHashCode();
                 if (this.ColorTheme != null)
                     hash = hash * 59 + this.ColorTheme.GetHashCode();
                 if (this.Currency != null)
@@ -441,8 +451,6 @@ namespace IO.Swagger.Model
                     hash = hash * 59 + this.HideNameFromLeaderboard.GetHashCode();
                 if (this.HideNotifications != null)
                     hash = hash * 59 + this.HideNotifications.GetHashCode();
-                if (this.HidePhoneConfirm != null)
-                    hash = hash * 59 + this.HidePhoneConfirm.GetHashCode();
                 if (this.Locale != null)
                     hash = hash * 59 + this.Locale.GetHashCode();
                 if (this.MsgsSeen != null)

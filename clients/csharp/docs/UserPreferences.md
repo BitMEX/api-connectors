@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AnnouncementsLastSeen** | **DateTime?** |  | [optional] 
+**ChatChannelID** | **double?** |  | [optional] 
 **ColorTheme** | **string** |  | [optional] 
 **Currency** | **string** |  | [optional] 
 **Debug** | **bool?** |  | [optional] 
@@ -13,10 +14,9 @@ Name | Type | Description | Notes
 **HideFromLeaderboard** | **bool?** |  | [optional] [default to false]
 **HideNameFromLeaderboard** | **bool?** |  | [optional] [default to true]
 **HideNotifications** | **List&lt;string&gt;** |  | [optional] 
-**HidePhoneConfirm** | **bool?** |  | [optional] 
-**Locale** | **string** |  | [optional] 
+**Locale** | **string** |  | [optional] [default to "en-US"]
 **MsgsSeen** | **List&lt;string&gt;** |  | [optional] 
-**OrderBookBinning** | **decimal?** |  | [optional] 
+**OrderBookBinning** | [**XAny**](XAny.md) |  | [optional] 
 **OrderBookType** | **string** |  | [optional] 
 **OrderControlsPlusMinus** | **bool?** |  | [optional] 
 **Sounds** | **List&lt;string&gt;** |  | [optional] 

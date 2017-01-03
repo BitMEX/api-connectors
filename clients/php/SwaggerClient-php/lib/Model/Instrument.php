@@ -14,7 +14,7 @@
 /**
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section.
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -100,9 +100,12 @@ class Instrument implements ArrayAccess
         'is_inverse' => 'bool',
         'init_margin' => 'double',
         'maint_margin' => 'double',
+        'risk_limit' => 'float',
+        'risk_step' => 'float',
         'limit' => 'double',
         'capped' => 'bool',
         'taxed' => 'bool',
+        'deleverage' => 'bool',
         'maker_fee' => 'double',
         'taker_fee' => 'double',
         'settlement_fee' => 'double',
@@ -205,9 +208,12 @@ class Instrument implements ArrayAccess
         'is_inverse' => 'isInverse',
         'init_margin' => 'initMargin',
         'maint_margin' => 'maintMargin',
+        'risk_limit' => 'riskLimit',
+        'risk_step' => 'riskStep',
         'limit' => 'limit',
         'capped' => 'capped',
         'taxed' => 'taxed',
+        'deleverage' => 'deleverage',
         'maker_fee' => 'makerFee',
         'taker_fee' => 'takerFee',
         'settlement_fee' => 'settlementFee',
@@ -310,9 +316,12 @@ class Instrument implements ArrayAccess
         'is_inverse' => 'setIsInverse',
         'init_margin' => 'setInitMargin',
         'maint_margin' => 'setMaintMargin',
+        'risk_limit' => 'setRiskLimit',
+        'risk_step' => 'setRiskStep',
         'limit' => 'setLimit',
         'capped' => 'setCapped',
         'taxed' => 'setTaxed',
+        'deleverage' => 'setDeleverage',
         'maker_fee' => 'setMakerFee',
         'taker_fee' => 'setTakerFee',
         'settlement_fee' => 'setSettlementFee',
@@ -415,9 +424,12 @@ class Instrument implements ArrayAccess
         'is_inverse' => 'getIsInverse',
         'init_margin' => 'getInitMargin',
         'maint_margin' => 'getMaintMargin',
+        'risk_limit' => 'getRiskLimit',
+        'risk_step' => 'getRiskStep',
         'limit' => 'getLimit',
         'capped' => 'getCapped',
         'taxed' => 'getTaxed',
+        'deleverage' => 'getDeleverage',
         'maker_fee' => 'getMakerFee',
         'taker_fee' => 'getTakerFee',
         'settlement_fee' => 'getSettlementFee',
@@ -531,9 +543,12 @@ class Instrument implements ArrayAccess
         $this->container['is_inverse'] = isset($data['is_inverse']) ? $data['is_inverse'] : null;
         $this->container['init_margin'] = isset($data['init_margin']) ? $data['init_margin'] : null;
         $this->container['maint_margin'] = isset($data['maint_margin']) ? $data['maint_margin'] : null;
+        $this->container['risk_limit'] = isset($data['risk_limit']) ? $data['risk_limit'] : null;
+        $this->container['risk_step'] = isset($data['risk_step']) ? $data['risk_step'] : null;
         $this->container['limit'] = isset($data['limit']) ? $data['limit'] : null;
         $this->container['capped'] = isset($data['capped']) ? $data['capped'] : null;
         $this->container['taxed'] = isset($data['taxed']) ? $data['taxed'] : null;
+        $this->container['deleverage'] = isset($data['deleverage']) ? $data['deleverage'] : null;
         $this->container['maker_fee'] = isset($data['maker_fee']) ? $data['maker_fee'] : null;
         $this->container['taker_fee'] = isset($data['taker_fee']) ? $data['taker_fee'] : null;
         $this->container['settlement_fee'] = isset($data['settlement_fee']) ? $data['settlement_fee'] : null;
@@ -1336,6 +1351,48 @@ class Instrument implements ArrayAccess
     }
 
     /**
+     * Gets risk_limit
+     * @return float
+     */
+    public function getRiskLimit()
+    {
+        return $this->container['risk_limit'];
+    }
+
+    /**
+     * Sets risk_limit
+     * @param float $risk_limit
+     * @return $this
+     */
+    public function setRiskLimit($risk_limit)
+    {
+        $this->container['risk_limit'] = $risk_limit;
+
+        return $this;
+    }
+
+    /**
+     * Gets risk_step
+     * @return float
+     */
+    public function getRiskStep()
+    {
+        return $this->container['risk_step'];
+    }
+
+    /**
+     * Sets risk_step
+     * @param float $risk_step
+     * @return $this
+     */
+    public function setRiskStep($risk_step)
+    {
+        $this->container['risk_step'] = $risk_step;
+
+        return $this;
+    }
+
+    /**
      * Gets limit
      * @return double
      */
@@ -1394,6 +1451,27 @@ class Instrument implements ArrayAccess
     public function setTaxed($taxed)
     {
         $this->container['taxed'] = $taxed;
+
+        return $this;
+    }
+
+    /**
+     * Gets deleverage
+     * @return bool
+     */
+    public function getDeleverage()
+    {
+        return $this->container['deleverage'];
+    }
+
+    /**
+     * Sets deleverage
+     * @param bool $deleverage
+     * @return $this
+     */
+    public function setDeleverage($deleverage)
+    {
+        $this->container['deleverage'] = $deleverage;
 
         return $this;
     }

@@ -3,8 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Timestamp** | **DateTime?** |  | [optional] 
-**Symbol** | **string** |  | [optional] 
+**Timestamp** | **DateTime?** |  | 
+**Symbol** | **string** |  | 
 **Open** | **double?** |  | [optional] 
 **High** | **double?** |  | [optional] 
 **Low** | **double?** |  | [optional] 
@@ -16,7 +16,6 @@ Name | Type | Description | Notes
 **Turnover** | **decimal?** |  | [optional] 
 **HomeNotional** | **double?** |  | [optional] 
 **ForeignNotional** | **double?** |  | [optional] 
-**Id** | **double?** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

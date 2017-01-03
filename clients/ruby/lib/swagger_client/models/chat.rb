@@ -1,7 +1,7 @@
 =begin
 #BitMEX API
 
-#REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+### REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
 
 OpenAPI spec version: 1.2.0
 Contact: support@bitmex.com
@@ -38,6 +38,8 @@ module SwaggerClient
 
     attr_accessor :from_bot
 
+    attr_accessor :channel_id
+
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -47,7 +49,8 @@ module SwaggerClient
         :'user' => :'user',
         :'message' => :'message',
         :'html' => :'html',
-        :'from_bot' => :'fromBot'
+        :'from_bot' => :'fromBot',
+        :'channel_id' => :'channelID'
       }
     end
 
@@ -59,7 +62,8 @@ module SwaggerClient
         :'user' => :'String',
         :'message' => :'String',
         :'html' => :'String',
-        :'from_bot' => :'BOOLEAN'
+        :'from_bot' => :'BOOLEAN',
+        :'channel_id' => :'Float'
       }
     end
 
@@ -97,6 +101,10 @@ module SwaggerClient
         self.from_bot = false
       end
 
+      if attributes.has_key?(:'channelID')
+        self.channel_id = attributes[:'channelID']
+      end
+
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -126,7 +134,8 @@ module SwaggerClient
           user == o.user &&
           message == o.message &&
           html == o.html &&
-          from_bot == o.from_bot
+          from_bot == o.from_bot &&
+          channel_id == o.channel_id
     end
 
     # @see the `==` method
@@ -138,7 +147,7 @@ module SwaggerClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, date, user, message, html, from_bot].hash
+      [id, date, user, message, html, from_bot, channel_id].hash
     end
 
     # Builds the object from hash

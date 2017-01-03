@@ -5,21 +5,21 @@ part of api;
 class UserCommission {
   
   @Property(name: 'makerFee')
-  String makerFee = null;
+  double makerFee = null;
   
 
   @Property(name: 'takerFee')
-  String takerFee = null;
+  double takerFee = null;
   
 
-  @Property(name: 'insuranceFee')
-  String insuranceFee = null;
+  @Property(name: 'settlementFee')
+  double settlementFee = null;
   
   UserCommission();
 
   @override
   String toString()  {
-    return 'UserCommission[makerFee=$makerFee, takerFee=$takerFee, insuranceFee=$insuranceFee, ]';
+    return 'UserCommission[makerFee=$makerFee, takerFee=$takerFee, settlementFee=$settlementFee, ]';
   }
 
 }

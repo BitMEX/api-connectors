@@ -27,15 +27,11 @@ class Quote {
   @Property(name: 'askSize')
   Number askSize = null;
   
-
-  @Property(name: 'id')
-  double id = null;
-  
   Quote();
 
   @override
   String toString()  {
-    return 'Quote[timestamp=$timestamp, symbol=$symbol, bidSize=$bidSize, bidPrice=$bidPrice, askPrice=$askPrice, askSize=$askSize, id=$id, ]';
+    return 'Quote[timestamp=$timestamp, symbol=$symbol, bidSize=$bidSize, bidPrice=$bidPrice, askPrice=$askPrice, askSize=$askSize, ]';
   }
 
 }

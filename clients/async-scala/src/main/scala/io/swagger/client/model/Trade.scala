@@ -5,8 +5,8 @@ import java.util.UUID
 
 
 case class Trade (
-  timestamp: Option[Date],
-symbol: Option[String],
+  timestamp: Date,
+symbol: String,
 side: Option[String],
 size: Option[Number],
 price: Option[Double],
@@ -14,6 +14,5 @@ tickDirection: Option[String],
 trdMatchID: Option[String],
 grossValue: Option[Number],
 homeNotional: Option[Double],
-foreignNotional: Option[Double],
-id: Option[Double]
+foreignNotional: Option[Double]
 )

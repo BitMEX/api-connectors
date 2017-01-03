@@ -1,4 +1,4 @@
-# SWGApiKey
+# SWGAPIKey
 
 ## Properties
 Name | Type | Description | Notes
@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **name** | **NSString*** |  | 
 **nonce** | **NSNumber*** |  | 
 **cidr** | **NSString*** |  | [optional] 
-**permissions** | **NSArray&lt;NSString*&gt;*** |  | [optional] 
+**permissions** | [**NSArray&lt;SWGXAny&gt;***](SWGXAny.md) |  | [optional] 
 **enabled** | **NSNumber*** |  | [optional] [default to @0]
 **userId** | **NSNumber*** |  | 
 **created** | **NSDate*** |  | [optional] 

@@ -16,11 +16,11 @@ Method | HTTP request | Description
 
 
 # **OrderAmend**
-> Order OrderAmend (string orderID = null, string clOrdID = null, double? simpleOrderQty = null, decimal? orderQty = null, double? simpleLeavesQty = null, decimal? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null)
+> Order OrderAmend (string orderID = null, string origClOrdID = null, string clOrdID = null, double? simpleOrderQty = null, decimal? orderQty = null, double? simpleLeavesQty = null, decimal? leavesQty = null, double? price = null, double? stopPx = null, double? pegOffsetValue = null, string text = null)
 
 Amend the quantity or price of an open order.
 
-<p>Send an <code>orderID</code> or <code>clOrdID</code> to identify the order you wish to amend.</p> <p>Both order quantity and price can be amended. Only one <code>qty</code> field can be used to amend.</p> <p>Use the <code>leavesQty</code> field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position&#39;s delta by a certain amount, regardless of how much of the order has already filled.</p> <p>Use the <code>simpleOrderQty</code> and <code>simpleLeavesQty</code> fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.</p> <p>Like order placement, amending can be done in bulk. Simply send a request to <code>PUT /api/v1/order/bulk</code> with a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, each object containing the fields used in this endpoint.</p> 
+Send an `orderID` or `origClOrdID` to identify the order you wish to amend.  Both order quantity and price can be amended. Only one `qty` field can be used to amend.  Use the `leavesQty` field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position's delta by a certain amount, regardless of how much of the order has already filled.  Use the `simpleOrderQty` and `simpleLeavesQty` fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.  Like order placement, amending can be done in bulk. Simply send a request to `PUT /api/v1/order/bulk` with a JSON body of the shape: `{\"orders\": [{...}, {...}]}`, each object containing the fields used in this endpoint. 
 
 ### Example
 ```csharp
@@ -39,7 +39,8 @@ namespace Example
             
             var apiInstance = new OrderApi();
             var orderID = orderID_example;  // string | Order ID (optional) 
-            var clOrdID = clOrdID_example;  // string | Client Order ID. See POST /order. (optional) 
+            var origClOrdID = origClOrdID_example;  // string | Client Order ID. See POST /order. (optional) 
+            var clOrdID = clOrdID_example;  // string | Optional new Client Order ID, requires `origClOrdID`. (optional) 
             var simpleOrderQty = 1.2;  // double? | Optional order quantity in units of the underlying instrument (i.e. Bitcoin). (optional) 
             var orderQty = 3.4;  // decimal? | Optional order quantity in units of the instrument (i.e. contracts). (optional) 
             var simpleLeavesQty = 1.2;  // double? | Optional leaves quantity in units of the underlying instrument (i.e. Bitcoin). Useful for amending partially filled orders. (optional) 
@@ -52,7 +53,7 @@ namespace Example
             try
             {
                 // Amend the quantity or price of an open order.
-                Order result = apiInstance.OrderAmend(orderID, clOrdID, simpleOrderQty, orderQty, simpleLeavesQty, leavesQty, price, stopPx, pegOffsetValue, text);
+                Order result = apiInstance.OrderAmend(orderID, origClOrdID, clOrdID, simpleOrderQty, orderQty, simpleLeavesQty, leavesQty, price, stopPx, pegOffsetValue, text);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -69,7 +70,8 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderID** | **string**| Order ID | [optional] 
- **clOrdID** | **string**| Client Order ID. See POST /order. | [optional] 
+ **origClOrdID** | **string**| Client Order ID. See POST /order. | [optional] 
+ **clOrdID** | **string**| Optional new Client Order ID, requires &#x60;origClOrdID&#x60;. | [optional] 
  **simpleOrderQty** | **double?**| Optional order quantity in units of the underlying instrument (i.e. Bitcoin). | [optional] 
  **orderQty** | **decimal?**| Optional order quantity in units of the instrument (i.e. contracts). | [optional] 
  **simpleLeavesQty** | **double?**| Optional leaves quantity in units of the underlying instrument (i.e. Bitcoin). Useful for amending partially filled orders. | [optional] 
@@ -349,7 +351,7 @@ No authorization required
 
 Close a position. [Deprecated, use POST /order with execInst: 'Close']
 
-If no `price` is specified, a market order will be submitted to close the whole of your position. + This will also close all other open orders in this symbol.
+If no `price` is specified, a market order will be submitted to close the whole of your position. This will also close all other open orders in this symbol.
 
 ### Example
 ```csharp
@@ -521,7 +523,7 @@ namespace Example
             var type = type_example;  // string | Deprecated: use `ordType`. (optional) 
             var ordType = ordType_example;  // string | Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to 'Limit' when `price` is specified. Defaults to 'Stop' when `stopPx` is specified. Defaults to 'StopLimit' when `price` and `stopPx` are specified. (optional)  (default to Limit)
             var timeInForce = timeInForce_example;  // string | Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to 'GoodTillCancel' for 'Limit', 'StopLimit', 'LimitIfTouched', and 'MarketWithLeftOverAsLimit' orders. (optional) 
-            var execInst = execInst_example;  // string | Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, LastPrice, Close, ReduceOnly. 'AllOrNone' instruction requires `displayQty` to be 0. 'MarkPrice' or 'LastPrice' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. (optional) 
+            var execInst = execInst_example;  // string | Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. 'AllOrNone' instruction requires `displayQty` to be 0. 'MarkPrice' or 'LastPrice' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. (optional) 
             var contingencyType = contingencyType_example;  // string | Optional contingency type for use with `clOrdLinkID`. Valid options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute, OneUpdatesTheOtherProportional. (optional) 
             var text = text_example;  // string | Optional order annotation. e.g. 'Take profit'. (optional) 
 
@@ -560,7 +562,7 @@ Name | Type | Description  | Notes
  **type** | **string**| Deprecated: use &#x60;ordType&#x60;. | [optional] 
  **ordType** | **string**| Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to &#39;Limit&#39; when &#x60;price&#x60; is specified. Defaults to &#39;Stop&#39; when &#x60;stopPx&#x60; is specified. Defaults to &#39;StopLimit&#39; when &#x60;price&#x60; and &#x60;stopPx&#x60; are specified. | [optional] [default to Limit]
  **timeInForce** | **string**| Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to &#39;GoodTillCancel&#39; for &#39;Limit&#39;, &#39;StopLimit&#39;, &#39;LimitIfTouched&#39;, and &#39;MarketWithLeftOverAsLimit&#39; orders. | [optional] 
- **execInst** | **string**| Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, LastPrice, Close, ReduceOnly. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. | [optional] 
+ **execInst** | **string**| Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. | [optional] 
  **contingencyType** | **string**| Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute, OneUpdatesTheOtherProportional. | [optional] 
  **text** | **string**| Optional order annotation. e.g. &#39;Take profit&#39;. | [optional] 
 

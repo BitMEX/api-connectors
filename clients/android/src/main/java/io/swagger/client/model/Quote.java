@@ -22,12 +22,10 @@ public class Quote  {
   private Double askPrice = null;
   @SerializedName("askSize")
   private BigDecimal askSize = null;
-  @SerializedName("id")
-  private Double id = null;
 
   /**
    **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public Date getTimestamp() {
     return timestamp;
   }
@@ -37,7 +35,7 @@ public class Quote  {
 
   /**
    **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public String getSymbol() {
     return symbol;
   }
@@ -85,16 +83,6 @@ public class Quote  {
     this.askSize = askSize;
   }
 
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getId() {
-    return id;
-  }
-  public void setId(Double id) {
-    this.id = id;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -110,8 +98,7 @@ public class Quote  {
         (bidSize == null ? quote.bidSize == null : bidSize.equals(quote.bidSize)) &&
         (bidPrice == null ? quote.bidPrice == null : bidPrice.equals(quote.bidPrice)) &&
         (askPrice == null ? quote.askPrice == null : askPrice.equals(quote.askPrice)) &&
-        (askSize == null ? quote.askSize == null : askSize.equals(quote.askSize)) &&
-        (id == null ? quote.id == null : id.equals(quote.id));
+        (askSize == null ? quote.askSize == null : askSize.equals(quote.askSize));
   }
 
   @Override
@@ -123,7 +110,6 @@ public class Quote  {
     result = 31 * result + (bidPrice == null ? 0: bidPrice.hashCode());
     result = 31 * result + (askPrice == null ? 0: askPrice.hashCode());
     result = 31 * result + (askSize == null ? 0: askSize.hashCode());
-    result = 31 * result + (id == null ? 0: id.hashCode());
     return result;
   }
 
@@ -138,7 +124,6 @@ public class Quote  {
     sb.append("  bidPrice: ").append(bidPrice).append("\n");
     sb.append("  askPrice: ").append(askPrice).append("\n");
     sb.append("  askSize: ").append(askSize).append("\n");
-    sb.append("  id: ").append(id).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

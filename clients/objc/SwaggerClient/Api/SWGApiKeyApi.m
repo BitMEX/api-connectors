@@ -1,20 +1,20 @@
-#import "SWGApiKeyApi.h"
+#import "SWGAPIKeyApi.h"
 #import "SWGQueryParamCollection.h"
 #import "SWGError.h"
-#import "SWGApiKey.h"
+#import "SWGAPIKey.h"
 #import "SWGInlineResponse200.h"
 
 
-@interface SWGApiKeyApi ()
+@interface SWGAPIKeyApi ()
 
 @property (nonatomic, strong) NSMutableDictionary *defaultHeaders;
 
 @end
 
-@implementation SWGApiKeyApi
+@implementation SWGAPIKeyApi
 
-NSString* kSWGApiKeyApiErrorDomain = @"SWGApiKeyApiErrorDomain";
-NSInteger kSWGApiKeyApiMissingParamErrorCode = 234513;
+NSString* kSWGAPIKeyApiErrorDomain = @"SWGAPIKeyApiErrorDomain";
+NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
 
 @synthesize apiClient = _apiClient;
 
@@ -45,7 +45,7 @@ NSInteger kSWGApiKeyApiMissingParamErrorCode = 234513;
 #pragma mark -
 
 + (instancetype)sharedAPI {
-    static SWGApiKeyApi *sharedAPI;
+    static SWGAPIKeyApi *sharedAPI;
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         sharedAPI = [[self alloc] init];
@@ -76,16 +76,16 @@ NSInteger kSWGApiKeyApiMissingParamErrorCode = 234513;
 /// 
 ///  @param apiKeyID API Key ID (public component). 
 ///
-///  @returns SWGApiKey*
+///  @returns SWGAPIKey*
 ///
--(NSNumber*) apiKeyDisableWithApiKeyID: (NSString*) apiKeyID
-    completionHandler: (void (^)(SWGApiKey* output, NSError* error)) handler {
+-(NSNumber*) aPIKeyDisableWithApiKeyID: (NSString*) apiKeyID
+    completionHandler: (void (^)(SWGAPIKey* output, NSError* error)) handler {
     // verify the required parameter 'apiKeyID' is set
     if (apiKeyID == nil) {
         NSParameterAssert(apiKeyID);
         if(handler) {
             NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"apiKeyID"] };
-            NSError* error = [NSError errorWithDomain:kSWGApiKeyApiErrorDomain code:kSWGApiKeyApiMissingParamErrorCode userInfo:userInfo];
+            NSError* error = [NSError errorWithDomain:kSWGAPIKeyApiErrorDomain code:kSWGAPIKeyApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }
         return nil;
@@ -134,10 +134,10 @@ NSInteger kSWGApiKeyApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGApiKey*"
+                              responseType: @"SWGAPIKey*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGApiKey*)data, error);
+                                    handler((SWGAPIKey*)data, error);
                                 }
                            }
           ];
@@ -148,16 +148,16 @@ NSInteger kSWGApiKeyApiMissingParamErrorCode = 234513;
 /// 
 ///  @param apiKeyID API Key ID (public component). 
 ///
-///  @returns SWGApiKey*
+///  @returns SWGAPIKey*
 ///
--(NSNumber*) apiKeyEnableWithApiKeyID: (NSString*) apiKeyID
-    completionHandler: (void (^)(SWGApiKey* output, NSError* error)) handler {
+-(NSNumber*) aPIKeyEnableWithApiKeyID: (NSString*) apiKeyID
+    completionHandler: (void (^)(SWGAPIKey* output, NSError* error)) handler {
     // verify the required parameter 'apiKeyID' is set
     if (apiKeyID == nil) {
         NSParameterAssert(apiKeyID);
         if(handler) {
             NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"apiKeyID"] };
-            NSError* error = [NSError errorWithDomain:kSWGApiKeyApiErrorDomain code:kSWGApiKeyApiMissingParamErrorCode userInfo:userInfo];
+            NSError* error = [NSError errorWithDomain:kSWGAPIKeyApiErrorDomain code:kSWGAPIKeyApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }
         return nil;
@@ -206,10 +206,10 @@ NSInteger kSWGApiKeyApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGApiKey*"
+                              responseType: @"SWGAPIKey*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGApiKey*)data, error);
+                                    handler((SWGAPIKey*)data, error);
                                 }
                            }
           ];
@@ -220,10 +220,10 @@ NSInteger kSWGApiKeyApiMissingParamErrorCode = 234513;
 /// 
 ///  @param reverse If true, will sort results newest first. (optional, default to false)
 ///
-///  @returns NSArray<SWGApiKey>*
+///  @returns NSArray<SWGAPIKey>*
 ///
--(NSNumber*) apiKeyGetWithReverse: (NSNumber*) reverse
-    completionHandler: (void (^)(NSArray<SWGApiKey>* output, NSError* error)) handler {
+-(NSNumber*) aPIKeyGetWithReverse: (NSNumber*) reverse
+    completionHandler: (void (^)(NSArray<SWGAPIKey>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/apiKey"];
 
     // remove format in URL if needed
@@ -267,10 +267,10 @@ NSInteger kSWGApiKeyApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"NSArray<SWGApiKey>*"
+                              responseType: @"NSArray<SWGAPIKey>*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((NSArray<SWGApiKey>*)data, error);
+                                    handler((NSArray<SWGAPIKey>*)data, error);
                                 }
                            }
           ];
@@ -289,14 +289,14 @@ NSInteger kSWGApiKeyApiMissingParamErrorCode = 234513;
 ///
 ///  @param token OTP Token (YubiKey, Google Authenticator) (optional)
 ///
-///  @returns SWGApiKey*
+///  @returns SWGAPIKey*
 ///
--(NSNumber*) apiKeyNewWithName: (NSString*) name
+-(NSNumber*) aPIKeyNewWithName: (NSString*) name
     cidr: (NSString*) cidr
     permissions: (NSString*) permissions
     enabled: (NSNumber*) enabled
     token: (NSString*) token
-    completionHandler: (void (^)(SWGApiKey* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGAPIKey* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/apiKey"];
 
     // remove format in URL if needed
@@ -352,10 +352,10 @@ NSInteger kSWGApiKeyApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGApiKey*"
+                              responseType: @"SWGAPIKey*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGApiKey*)data, error);
+                                    handler((SWGAPIKey*)data, error);
                                 }
                            }
           ];
@@ -368,14 +368,14 @@ NSInteger kSWGApiKeyApiMissingParamErrorCode = 234513;
 ///
 ///  @returns SWGInlineResponse200*
 ///
--(NSNumber*) apiKeyRemoveWithApiKeyID: (NSString*) apiKeyID
+-(NSNumber*) aPIKeyRemoveWithApiKeyID: (NSString*) apiKeyID
     completionHandler: (void (^)(SWGInlineResponse200* output, NSError* error)) handler {
     // verify the required parameter 'apiKeyID' is set
     if (apiKeyID == nil) {
         NSParameterAssert(apiKeyID);
         if(handler) {
             NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"apiKeyID"] };
-            NSError* error = [NSError errorWithDomain:kSWGApiKeyApiErrorDomain code:kSWGApiKeyApiMissingParamErrorCode userInfo:userInfo];
+            NSError* error = [NSError errorWithDomain:kSWGAPIKeyApiErrorDomain code:kSWGAPIKeyApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }
         return nil;

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -254,6 +254,59 @@
 
       return this.apiClient.callApi(
         '/position/leverage', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the positionUpdateRiskLimit operation.
+     * @callback module:api/PositionApi~positionUpdateRiskLimitCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/Position} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Update your risk limit.
+     * Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+     * @param {String} symbol Symbol of position to isolate.
+     * @param {Number} riskLimit New Risk Limit, in Satoshis.
+     * @param {module:api/PositionApi~positionUpdateRiskLimitCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {module:model/Position}
+     */
+    this.positionUpdateRiskLimit = function(symbol, riskLimit, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'symbol' is set
+      if (symbol == undefined || symbol == null) {
+        throw "Missing the required parameter 'symbol' when calling positionUpdateRiskLimit";
+      }
+
+      // verify the required parameter 'riskLimit' is set
+      if (riskLimit == undefined || riskLimit == null) {
+        throw "Missing the required parameter 'riskLimit' when calling positionUpdateRiskLimit";
+      }
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+        'symbol': symbol,
+        'riskLimit': riskLimit
+      };
+
+      var authNames = [];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      var returnType = Position;
+
+      return this.apiClient.callApi(
+        '/position/riskLimit', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

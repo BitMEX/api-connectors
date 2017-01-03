@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**userCheckReferralCode**](UserApi.md#userCheckReferralCode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
 [**userConfirmEmail**](UserApi.md#userConfirmEmail) | **POST** /user/confirmEmail | Confirm your email address with a token.
 [**userConfirmEnableTFA**](UserApi.md#userConfirmEnableTFA) | **POST** /user/confirmEnableTFA | Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
-[**userConfirmPasswordReset**](UserApi.md#userConfirmPasswordReset) | **POST** /user/confirmPasswordReset | Confirm a password reset.
 [**userConfirmWithdrawal**](UserApi.md#userConfirmWithdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
 [**userDisableTFA**](UserApi.md#userDisableTFA) | **POST** /user/disableTFA | Disable two-factor auth for this account.
 [**userGet**](UserApi.md#userGet) | **GET** /user | Get your user model.
@@ -16,16 +15,14 @@ Method | HTTP request | Description
 [**userGetCommission**](UserApi.md#userGetCommission) | **GET** /user/commission | Get your account&#39;s commission status.
 [**userGetDepositAddress**](UserApi.md#userGetDepositAddress) | **GET** /user/depositAddress | Get a deposit address.
 [**userGetMargin**](UserApi.md#userGetMargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
-[**userGetWalletHistory**](UserApi.md#userGetWalletHistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits and withdrawals).
-[**userLogin**](UserApi.md#userLogin) | **POST** /user/login | Log in to BitMEX.
+[**userGetWallet**](UserApi.md#userGetWallet) | **GET** /user/wallet | Get your current wallet information.
+[**userGetWalletHistory**](UserApi.md#userGetWalletHistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
+[**userGetWalletSummary**](UserApi.md#userGetWalletSummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**userLogout**](UserApi.md#userLogout) | **POST** /user/logout | Log out of BitMEX.
 [**userLogoutAll**](UserApi.md#userLogoutAll) | **POST** /user/logoutAll | Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
-[**userNew**](UserApi.md#userNew) | **POST** /user | Register a new user.
 [**userRequestEnableTFA**](UserApi.md#userRequestEnableTFA) | **POST** /user/requestEnableTFA | Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
-[**userRequestPasswordReset**](UserApi.md#userRequestPasswordReset) | **POST** /user/requestPasswordReset | Request a password reset.
 [**userRequestWithdrawal**](UserApi.md#userRequestWithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**userSavePreferences**](UserApi.md#userSavePreferences) | **POST** /user/preferences | Save user preferences.
-[**userSendVerificationEmail**](UserApi.md#userSendVerificationEmail) | **POST** /user/resendVerificationEmail | Re-send verification email.
 [**userUpdate**](UserApi.md#userUpdate) | **PUT** /user | Update your password, name, and other attributes.
 
 
@@ -191,51 +188,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **String**| Token from your selected TFA type. |
  **type** | **String**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39; | [optional]
-
-### Return type
-
-**Boolean**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-<a name="userConfirmPasswordReset"></a>
-# **userConfirmPasswordReset**
-> Boolean userConfirmPasswordReset(token, newPassword)
-
-Confirm a password reset.
-
-### Example
-```java
-// Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.UserApi;
-
-
-UserApi apiInstance = new UserApi();
-String token = "token_example"; // String | 
-String newPassword = "newPassword_example"; // String | 
-try {
-    Boolean result = apiInstance.userConfirmPasswordReset(token, newPassword);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling UserApi#userConfirmPasswordReset");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **String**|  |
- **newPassword** | **String**|  |
 
 ### Return type
 
@@ -541,11 +493,54 @@ No authorization required
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
+<a name="userGetWallet"></a>
+# **userGetWallet**
+> Wallet userGetWallet(currency)
+
+Get your current wallet information.
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiException;
+//import io.swagger.client.api.UserApi;
+
+
+UserApi apiInstance = new UserApi();
+String currency = "XBt"; // String | 
+try {
+    Wallet result = apiInstance.userGetWallet(currency);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling UserApi#userGetWallet");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **String**|  | [optional] [default to XBt]
+
+### Return type
+
+[**Wallet**](Wallet.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
 <a name="userGetWalletHistory"></a>
 # **userGetWalletHistory**
 > List&lt;Transaction&gt; userGetWalletHistory(currency)
 
-Get a history of all of your wallet transactions (deposits and withdrawals).
+Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 
 ### Example
 ```java
@@ -584,11 +579,11 @@ No authorization required
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
-<a name="userLogin"></a>
-# **userLogin**
-> AccessToken userLogin(email, password, token)
+<a name="userGetWalletSummary"></a>
+# **userGetWalletSummary**
+> List&lt;Transaction&gt; userGetWalletSummary(currency)
 
-Log in to BitMEX.
+Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 
 ### Example
 ```java
@@ -598,14 +593,12 @@ Log in to BitMEX.
 
 
 UserApi apiInstance = new UserApi();
-String email = "email_example"; // String | Your email address.
-String password = "password_example"; // String | Your password.
-String token = "token_example"; // String | OTP Token (YubiKey, Google Authenticator)
+String currency = "XBt"; // String | 
 try {
-    AccessToken result = apiInstance.userLogin(email, password, token);
+    List<Transaction> result = apiInstance.userGetWalletSummary(currency);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling UserApi#userLogin");
+    System.err.println("Exception when calling UserApi#userGetWalletSummary");
     e.printStackTrace();
 }
 ```
@@ -614,13 +607,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **String**| Your email address. |
- **password** | **String**| Your password. |
- **token** | **String**| OTP Token (YubiKey, Google Authenticator) | [optional]
+ **currency** | **String**|  | [optional] [default to XBt]
 
 ### Return type
 
-[**AccessToken**](AccessToken.md)
+[**List&lt;Transaction&gt;**](Transaction.md)
 
 ### Authorization
 
@@ -708,67 +699,6 @@ No authorization required
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
-<a name="userNew"></a>
-# **userNew**
-> User userNew(email, password, country, username, firstname, lastname, acceptsTOS, referrerID, tfaType, tfaToken)
-
-Register a new user.
-
-### Example
-```java
-// Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.UserApi;
-
-
-UserApi apiInstance = new UserApi();
-String email = "email_example"; // String | Your email address.
-String password = "password_example"; // String | Your password.
-String country = "country_example"; // String | Country of residence.
-String username = "username_example"; // String | Desired username.
-String firstname = "firstname_example"; // String | First name.
-String lastname = "lastname_example"; // String | Last name.
-String acceptsTOS = "acceptsTOS_example"; // String | Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).
-String referrerID = "referrerID_example"; // String | Optional Referrer ID.
-String tfaType = "tfaType_example"; // String | Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef
-String tfaToken = "tfaToken_example"; // String | Two-Factor Token.
-try {
-    User result = apiInstance.userNew(email, password, country, username, firstname, lastname, acceptsTOS, referrerID, tfaType, tfaToken);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling UserApi#userNew");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **String**| Your email address. |
- **password** | **String**| Your password. |
- **country** | **String**| Country of residence. |
- **username** | **String**| Desired username. | [optional]
- **firstname** | **String**| First name. | [optional]
- **lastname** | **String**| Last name. | [optional]
- **acceptsTOS** | **String**| Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). | [optional]
- **referrerID** | **String**| Optional Referrer ID. | [optional]
- **tfaType** | **String**| Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef | [optional]
- **tfaToken** | **String**| Two-Factor Token. | [optional]
-
-### Return type
-
-[**User**](User.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
 <a name="userRequestEnableTFA"></a>
 # **userRequestEnableTFA**
 > Boolean userRequestEnableTFA(type)
@@ -798,49 +728,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **type** | **String**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) | [optional]
-
-### Return type
-
-**Boolean**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-<a name="userRequestPasswordReset"></a>
-# **userRequestPasswordReset**
-> Boolean userRequestPasswordReset(email)
-
-Request a password reset.
-
-### Example
-```java
-// Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.UserApi;
-
-
-UserApi apiInstance = new UserApi();
-String email = "email_example"; // String | 
-try {
-    Boolean result = apiInstance.userRequestPasswordReset(email);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling UserApi#userRequestPasswordReset");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **String**|  |
 
 ### Return type
 
@@ -943,49 +830,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**User**](User.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-<a name="userSendVerificationEmail"></a>
-# **userSendVerificationEmail**
-> Boolean userSendVerificationEmail(email)
-
-Re-send verification email.
-
-### Example
-```java
-// Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.UserApi;
-
-
-UserApi apiInstance = new UserApi();
-String email = "email_example"; // String | 
-try {
-    Boolean result = apiInstance.userSendVerificationEmail(email);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling UserApi#userSendVerificationEmail");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **String**|  |
-
-### Return type
-
-**Boolean**
 
 ### Authorization
 

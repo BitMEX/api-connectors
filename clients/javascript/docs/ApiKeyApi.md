@@ -1,19 +1,19 @@
-# BitMexApi.ApiKeyApi
+# BitMexApi.APIKeyApi
 
 All URIs are relative to *https://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**apiKeyDisable**](ApiKeyApi.md#apiKeyDisable) | **POST** /apiKey/disable | Disable an API Key.
-[**apiKeyEnable**](ApiKeyApi.md#apiKeyEnable) | **POST** /apiKey/enable | Enable an API Key.
-[**apiKeyGet**](ApiKeyApi.md#apiKeyGet) | **GET** /apiKey | Get your API Keys.
-[**apiKeyNew**](ApiKeyApi.md#apiKeyNew) | **POST** /apiKey | Create a new API Key.
-[**apiKeyRemove**](ApiKeyApi.md#apiKeyRemove) | **DELETE** /apiKey | Remove an API Key.
+[**aPIKeyDisable**](APIKeyApi.md#aPIKeyDisable) | **POST** /apiKey/disable | Disable an API Key.
+[**aPIKeyEnable**](APIKeyApi.md#aPIKeyEnable) | **POST** /apiKey/enable | Enable an API Key.
+[**aPIKeyGet**](APIKeyApi.md#aPIKeyGet) | **GET** /apiKey | Get your API Keys.
+[**aPIKeyNew**](APIKeyApi.md#aPIKeyNew) | **POST** /apiKey | Create a new API Key.
+[**aPIKeyRemove**](APIKeyApi.md#aPIKeyRemove) | **DELETE** /apiKey | Remove an API Key.
 
 
-<a name="apiKeyDisable"></a>
-# **apiKeyDisable**
-> ApiKey apiKeyDisable(apiKeyID)
+<a name="aPIKeyDisable"></a>
+# **aPIKeyDisable**
+> APIKey aPIKeyDisable(apiKeyID)
 
 Disable an API Key.
 
@@ -21,7 +21,7 @@ Disable an API Key.
 ```javascript
 var BitMexApi = require('bit_mex_api');
 
-var apiInstance = new BitMexApi.ApiKeyApi();
+var apiInstance = new BitMexApi.APIKeyApi();
 
 var apiKeyID = "apiKeyID_example"; // String | API Key ID (public component).
 
@@ -33,7 +33,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.apiKeyDisable(apiKeyID, callback);
+apiInstance.aPIKeyDisable(apiKeyID, callback);
 ```
 
 ### Parameters
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**APIKey**](APIKey.md)
 
 ### Authorization
 
@@ -55,9 +55,9 @@ No authorization required
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
-<a name="apiKeyEnable"></a>
-# **apiKeyEnable**
-> ApiKey apiKeyEnable(apiKeyID)
+<a name="aPIKeyEnable"></a>
+# **aPIKeyEnable**
+> APIKey aPIKeyEnable(apiKeyID)
 
 Enable an API Key.
 
@@ -65,7 +65,7 @@ Enable an API Key.
 ```javascript
 var BitMexApi = require('bit_mex_api');
 
-var apiInstance = new BitMexApi.ApiKeyApi();
+var apiInstance = new BitMexApi.APIKeyApi();
 
 var apiKeyID = "apiKeyID_example"; // String | API Key ID (public component).
 
@@ -77,7 +77,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.apiKeyEnable(apiKeyID, callback);
+apiInstance.aPIKeyEnable(apiKeyID, callback);
 ```
 
 ### Parameters
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**APIKey**](APIKey.md)
 
 ### Authorization
 
@@ -99,9 +99,9 @@ No authorization required
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
-<a name="apiKeyGet"></a>
-# **apiKeyGet**
-> [ApiKey] apiKeyGet(opts)
+<a name="aPIKeyGet"></a>
+# **aPIKeyGet**
+> [APIKey] aPIKeyGet(opts)
 
 Get your API Keys.
 
@@ -109,7 +109,7 @@ Get your API Keys.
 ```javascript
 var BitMexApi = require('bit_mex_api');
 
-var apiInstance = new BitMexApi.ApiKeyApi();
+var apiInstance = new BitMexApi.APIKeyApi();
 
 var opts = { 
   'reverse': false // Boolean | If true, will sort results newest first.
@@ -122,7 +122,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.apiKeyGet(opts, callback);
+apiInstance.aPIKeyGet(opts, callback);
 ```
 
 ### Parameters
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[ApiKey]**](ApiKey.md)
+[**[APIKey]**](APIKey.md)
 
 ### Authorization
 
@@ -144,9 +144,9 @@ No authorization required
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
-<a name="apiKeyNew"></a>
-# **apiKeyNew**
-> ApiKey apiKeyNew(opts)
+<a name="aPIKeyNew"></a>
+# **aPIKeyNew**
+> APIKey aPIKeyNew(opts)
 
 Create a new API Key.
 
@@ -156,7 +156,7 @@ API Keys can also be created via [this Python script](https://github.com/BitMEX/
 ```javascript
 var BitMexApi = require('bit_mex_api');
 
-var apiInstance = new BitMexApi.ApiKeyApi();
+var apiInstance = new BitMexApi.APIKeyApi();
 
 var opts = { 
   'name': "name_example", // String | Key name. This name is for reference only.
@@ -173,7 +173,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.apiKeyNew(opts, callback);
+apiInstance.aPIKeyNew(opts, callback);
 ```
 
 ### Parameters
@@ -188,7 +188,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**APIKey**](APIKey.md)
 
 ### Authorization
 
@@ -199,9 +199,9 @@ No authorization required
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
-<a name="apiKeyRemove"></a>
-# **apiKeyRemove**
-> InlineResponse200 apiKeyRemove(apiKeyID)
+<a name="aPIKeyRemove"></a>
+# **aPIKeyRemove**
+> InlineResponse200 aPIKeyRemove(apiKeyID)
 
 Remove an API Key.
 
@@ -209,7 +209,7 @@ Remove an API Key.
 ```javascript
 var BitMexApi = require('bit_mex_api');
 
-var apiInstance = new BitMexApi.ApiKeyApi();
+var apiInstance = new BitMexApi.APIKeyApi();
 
 var apiKeyID = "apiKeyID_example"; // String | API Key ID (public component).
 
@@ -221,7 +221,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.apiKeyRemove(apiKeyID, callback);
+apiInstance.aPIKeyRemove(apiKeyID, callback);
 ```
 
 ### Parameters

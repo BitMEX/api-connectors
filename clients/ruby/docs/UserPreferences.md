@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **announcements_last_seen** | **Date** |  | [optional] 
+**chat_channel_id** | **Float** |  | [optional] 
 **color_theme** | **String** |  | [optional] 
 **currency** | **String** |  | [optional] 
 **debug** | **BOOLEAN** |  | [optional] 
@@ -13,10 +14,9 @@ Name | Type | Description | Notes
 **hide_from_leaderboard** | **BOOLEAN** |  | [optional] [default to false]
 **hide_name_from_leaderboard** | **BOOLEAN** |  | [optional] [default to true]
 **hide_notifications** | **Array&lt;String&gt;** |  | [optional] 
-**hide_phone_confirm** | **BOOLEAN** |  | [optional] 
-**locale** | **String** |  | [optional] 
+**locale** | **String** |  | [optional] [default to &quot;en-US&quot;]
 **msgs_seen** | **Array&lt;String&gt;** |  | [optional] 
-**order_book_binning** | **Float** |  | [optional] 
+**order_book_binning** | [**XAny**](XAny.md) |  | [optional] 
 **order_book_type** | **String** |  | [optional] 
 **order_controls_plus_minus** | **BOOLEAN** |  | [optional] 
 **sounds** | **Array&lt;String&gt;** |  | [optional] 

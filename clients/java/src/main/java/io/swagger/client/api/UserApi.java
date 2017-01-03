@@ -14,6 +14,7 @@ import io.swagger.client.model.User;
 import io.swagger.client.model.Affiliate;
 import io.swagger.client.model.UserCommission;
 import io.swagger.client.model.Margin;
+import io.swagger.client.model.Wallet;
 import java.math.BigDecimal;
 
 
@@ -22,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-05T09:40:48.217-05:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-01-03T10:34:33.567-06:00")
 public class UserApi {
   private ApiClient apiClient;
 
@@ -195,57 +196,6 @@ public class UserApi {
       localVarFormParams.put("type", type);
 if (token != null)
       localVarFormParams.put("token", token);
-
-    final String[] localVarAccepts = {
-      "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-
-    final String[] localVarContentTypes = {
-      "application/json", "application/x-www-form-urlencoded"
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-
-    String[] localVarAuthNames = new String[] {  };
-
-    GenericType<Boolean> localVarReturnType = new GenericType<Boolean>() {};
-    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-      }
-  /**
-   * Confirm a password reset.
-   * 
-   * @param token  (required)
-   * @param newPassword  (required)
-   * @return Boolean
-   * @throws ApiException if fails to make API call
-   */
-  public Boolean userConfirmPasswordReset(String token, String newPassword) throws ApiException {
-    Object localVarPostBody = null;
-    
-    // verify the required parameter 'token' is set
-    if (token == null) {
-      throw new ApiException(400, "Missing the required parameter 'token' when calling userConfirmPasswordReset");
-    }
-    
-    // verify the required parameter 'newPassword' is set
-    if (newPassword == null) {
-      throw new ApiException(400, "Missing the required parameter 'newPassword' when calling userConfirmPasswordReset");
-    }
-    
-    // create path and map variables
-    String localVarPath = "/user/confirmPasswordReset".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-
-    
-    if (token != null)
-      localVarFormParams.put("token", token);
-if (newPassword != null)
-      localVarFormParams.put("newPassword", newPassword);
 
     final String[] localVarAccepts = {
       "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
@@ -531,7 +481,44 @@ if (token != null)
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Get a history of all of your wallet transactions (deposits and withdrawals).
+   * Get your current wallet information.
+   * 
+   * @param currency  (optional, default to XBt)
+   * @return Wallet
+   * @throws ApiException if fails to make API call
+   */
+  public Wallet userGetWallet(String currency) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // create path and map variables
+    String localVarPath = "/user/wallet".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "currency", currency));
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json", "application/x-www-form-urlencoded"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] {  };
+
+    GenericType<Wallet> localVarReturnType = new GenericType<Wallet>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
    * 
    * @param currency  (optional, default to XBt)
    * @return List<Transaction>
@@ -568,44 +555,27 @@ if (token != null)
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Log in to BitMEX.
+   * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
    * 
-   * @param email Your email address. (required)
-   * @param password Your password. (required)
-   * @param token OTP Token (YubiKey, Google Authenticator) (optional)
-   * @return AccessToken
+   * @param currency  (optional, default to XBt)
+   * @return List<Transaction>
    * @throws ApiException if fails to make API call
    */
-  public AccessToken userLogin(String email, String password, String token) throws ApiException {
+  public List<Transaction> userGetWalletSummary(String currency) throws ApiException {
     Object localVarPostBody = null;
     
-    // verify the required parameter 'email' is set
-    if (email == null) {
-      throw new ApiException(400, "Missing the required parameter 'email' when calling userLogin");
-    }
-    
-    // verify the required parameter 'password' is set
-    if (password == null) {
-      throw new ApiException(400, "Missing the required parameter 'password' when calling userLogin");
-    }
-    
     // create path and map variables
-    String localVarPath = "/user/login".replaceAll("\\{format\\}","json");
+    String localVarPath = "/user/walletSummary".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
     Map<String, String> localVarHeaderParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "currency", currency));
 
     
-    if (email != null)
-      localVarFormParams.put("email", email);
-if (password != null)
-      localVarFormParams.put("password", password);
-if (token != null)
-      localVarFormParams.put("token", token);
-
+    
     final String[] localVarAccepts = {
       "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
     };
@@ -618,8 +588,8 @@ if (token != null)
 
     String[] localVarAuthNames = new String[] {  };
 
-    GenericType<AccessToken> localVarReturnType = new GenericType<AccessToken>() {};
-    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+    GenericType<List<Transaction>> localVarReturnType = new GenericType<List<Transaction>>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
    * Log out of BitMEX.
@@ -691,86 +661,6 @@ if (token != null)
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Register a new user.
-   * 
-   * @param email Your email address. (required)
-   * @param password Your password. (required)
-   * @param country Country of residence. (required)
-   * @param username Desired username. (optional)
-   * @param firstname First name. (optional)
-   * @param lastname Last name. (optional)
-   * @param acceptsTOS Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). (optional)
-   * @param referrerID Optional Referrer ID. (optional)
-   * @param tfaType Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef (optional)
-   * @param tfaToken Two-Factor Token. (optional)
-   * @return User
-   * @throws ApiException if fails to make API call
-   */
-  public User userNew(String email, String password, String country, String username, String firstname, String lastname, String acceptsTOS, String referrerID, String tfaType, String tfaToken) throws ApiException {
-    Object localVarPostBody = null;
-    
-    // verify the required parameter 'email' is set
-    if (email == null) {
-      throw new ApiException(400, "Missing the required parameter 'email' when calling userNew");
-    }
-    
-    // verify the required parameter 'password' is set
-    if (password == null) {
-      throw new ApiException(400, "Missing the required parameter 'password' when calling userNew");
-    }
-    
-    // verify the required parameter 'country' is set
-    if (country == null) {
-      throw new ApiException(400, "Missing the required parameter 'country' when calling userNew");
-    }
-    
-    // create path and map variables
-    String localVarPath = "/user".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-
-    
-    if (email != null)
-      localVarFormParams.put("email", email);
-if (password != null)
-      localVarFormParams.put("password", password);
-if (username != null)
-      localVarFormParams.put("username", username);
-if (firstname != null)
-      localVarFormParams.put("firstname", firstname);
-if (lastname != null)
-      localVarFormParams.put("lastname", lastname);
-if (acceptsTOS != null)
-      localVarFormParams.put("acceptsTOS", acceptsTOS);
-if (referrerID != null)
-      localVarFormParams.put("referrerID", referrerID);
-if (country != null)
-      localVarFormParams.put("country", country);
-if (tfaType != null)
-      localVarFormParams.put("tfaType", tfaType);
-if (tfaToken != null)
-      localVarFormParams.put("tfaToken", tfaToken);
-
-    final String[] localVarAccepts = {
-      "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-
-    final String[] localVarContentTypes = {
-      "application/json", "application/x-www-form-urlencoded"
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-
-    String[] localVarAuthNames = new String[] {  };
-
-    GenericType<User> localVarReturnType = new GenericType<User>() {};
-    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-      }
-  /**
    * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
    * 
    * @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)
@@ -792,49 +682,6 @@ if (tfaToken != null)
     
     if (type != null)
       localVarFormParams.put("type", type);
-
-    final String[] localVarAccepts = {
-      "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-
-    final String[] localVarContentTypes = {
-      "application/json", "application/x-www-form-urlencoded"
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-
-    String[] localVarAuthNames = new String[] {  };
-
-    GenericType<Boolean> localVarReturnType = new GenericType<Boolean>() {};
-    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-      }
-  /**
-   * Request a password reset.
-   * 
-   * @param email  (required)
-   * @return Boolean
-   * @throws ApiException if fails to make API call
-   */
-  public Boolean userRequestPasswordReset(String email) throws ApiException {
-    Object localVarPostBody = null;
-    
-    // verify the required parameter 'email' is set
-    if (email == null) {
-      throw new ApiException(400, "Missing the required parameter 'email' when calling userRequestPasswordReset");
-    }
-    
-    // create path and map variables
-    String localVarPath = "/user/requestPasswordReset".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-
-    
-    if (email != null)
-      localVarFormParams.put("email", email);
 
     final String[] localVarAccepts = {
       "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
@@ -960,49 +807,6 @@ if (overwrite != null)
     String[] localVarAuthNames = new String[] {  };
 
     GenericType<User> localVarReturnType = new GenericType<User>() {};
-    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-      }
-  /**
-   * Re-send verification email.
-   * 
-   * @param email  (required)
-   * @return Boolean
-   * @throws ApiException if fails to make API call
-   */
-  public Boolean userSendVerificationEmail(String email) throws ApiException {
-    Object localVarPostBody = null;
-    
-    // verify the required parameter 'email' is set
-    if (email == null) {
-      throw new ApiException(400, "Missing the required parameter 'email' when calling userSendVerificationEmail");
-    }
-    
-    // create path and map variables
-    String localVarPath = "/user/resendVerificationEmail".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-
-    
-    if (email != null)
-      localVarFormParams.put("email", email);
-
-    final String[] localVarAccepts = {
-      "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-
-    final String[] localVarContentTypes = {
-      "application/json", "application/x-www-form-urlencoded"
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-
-    String[] localVarAuthNames = new String[] {  };
-
-    GenericType<Boolean> localVarReturnType = new GenericType<Boolean>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**

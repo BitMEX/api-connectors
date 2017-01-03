@@ -1,18 +1,18 @@
-# Swagger\Client\ApiKeyApi
+# Swagger\Client\APIKeyApi
 
 All URIs are relative to *https://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**apiKeyDisable**](ApiKeyApi.md#apiKeyDisable) | **POST** /apiKey/disable | Disable an API Key.
-[**apiKeyEnable**](ApiKeyApi.md#apiKeyEnable) | **POST** /apiKey/enable | Enable an API Key.
-[**apiKeyGet**](ApiKeyApi.md#apiKeyGet) | **GET** /apiKey | Get your API Keys.
-[**apiKeyNew**](ApiKeyApi.md#apiKeyNew) | **POST** /apiKey | Create a new API Key.
-[**apiKeyRemove**](ApiKeyApi.md#apiKeyRemove) | **DELETE** /apiKey | Remove an API Key.
+[**aPIKeyDisable**](APIKeyApi.md#aPIKeyDisable) | **POST** /apiKey/disable | Disable an API Key.
+[**aPIKeyEnable**](APIKeyApi.md#aPIKeyEnable) | **POST** /apiKey/enable | Enable an API Key.
+[**aPIKeyGet**](APIKeyApi.md#aPIKeyGet) | **GET** /apiKey | Get your API Keys.
+[**aPIKeyNew**](APIKeyApi.md#aPIKeyNew) | **POST** /apiKey | Create a new API Key.
+[**aPIKeyRemove**](APIKeyApi.md#aPIKeyRemove) | **DELETE** /apiKey | Remove an API Key.
 
 
-# **apiKeyDisable**
-> \Swagger\Client\Model\ApiKey apiKeyDisable($api_key_id)
+# **aPIKeyDisable**
+> \Swagger\Client\Model\APIKey aPIKeyDisable($api_key_id)
 
 Disable an API Key.
 
@@ -21,14 +21,14 @@ Disable an API Key.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\ApiKeyApi();
+$api_instance = new Swagger\Client\Api\APIKeyApi();
 $api_key_id = "api_key_id_example"; // string | API Key ID (public component).
 
 try {
-    $result = $api_instance->apiKeyDisable($api_key_id);
+    $result = $api_instance->aPIKeyDisable($api_key_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ApiKeyApi->apiKeyDisable: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling APIKeyApi->aPIKeyDisable: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -41,7 +41,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\ApiKey**](../Model/ApiKey.md)
+[**\Swagger\Client\Model\APIKey**](../Model/APIKey.md)
 
 ### Authorization
 
@@ -54,8 +54,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **apiKeyEnable**
-> \Swagger\Client\Model\ApiKey apiKeyEnable($api_key_id)
+# **aPIKeyEnable**
+> \Swagger\Client\Model\APIKey aPIKeyEnable($api_key_id)
 
 Enable an API Key.
 
@@ -64,14 +64,14 @@ Enable an API Key.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\ApiKeyApi();
+$api_instance = new Swagger\Client\Api\APIKeyApi();
 $api_key_id = "api_key_id_example"; // string | API Key ID (public component).
 
 try {
-    $result = $api_instance->apiKeyEnable($api_key_id);
+    $result = $api_instance->aPIKeyEnable($api_key_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ApiKeyApi->apiKeyEnable: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling APIKeyApi->aPIKeyEnable: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\ApiKey**](../Model/ApiKey.md)
+[**\Swagger\Client\Model\APIKey**](../Model/APIKey.md)
 
 ### Authorization
 
@@ -97,8 +97,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **apiKeyGet**
-> \Swagger\Client\Model\ApiKey[] apiKeyGet($reverse)
+# **aPIKeyGet**
+> \Swagger\Client\Model\APIKey[] aPIKeyGet($reverse)
 
 Get your API Keys.
 
@@ -107,14 +107,14 @@ Get your API Keys.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\ApiKeyApi();
+$api_instance = new Swagger\Client\Api\APIKeyApi();
 $reverse = false; // bool | If true, will sort results newest first.
 
 try {
-    $result = $api_instance->apiKeyGet($reverse);
+    $result = $api_instance->aPIKeyGet($reverse);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ApiKeyApi->apiKeyGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling APIKeyApi->aPIKeyGet: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\ApiKey[]**](../Model/ApiKey.md)
+[**\Swagger\Client\Model\APIKey[]**](../Model/APIKey.md)
 
 ### Authorization
 
@@ -140,8 +140,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **apiKeyNew**
-> \Swagger\Client\Model\ApiKey apiKeyNew($name, $cidr, $permissions, $enabled, $token)
+# **aPIKeyNew**
+> \Swagger\Client\Model\APIKey aPIKeyNew($name, $cidr, $permissions, $enabled, $token)
 
 Create a new API Key.
 
@@ -152,7 +152,7 @@ API Keys can also be created via [this Python script](https://github.com/BitMEX/
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\ApiKeyApi();
+$api_instance = new Swagger\Client\Api\APIKeyApi();
 $name = "name_example"; // string | Key name. This name is for reference only.
 $cidr = "cidr_example"; // string | CIDR block to restrict this key to. To restrict to a single address, append \"/32\", e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. <a href=\"http://software77.net/cidr-101.html\">More on CIDR blocks</a>
 $permissions = "permissions_example"; // string | Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\"order\", \"withdraw\"].
@@ -160,10 +160,10 @@ $enabled = false; // bool | Set to true to enable this key on creation. Otherwis
 $token = "token_example"; // string | OTP Token (YubiKey, Google Authenticator)
 
 try {
-    $result = $api_instance->apiKeyNew($name, $cidr, $permissions, $enabled, $token);
+    $result = $api_instance->aPIKeyNew($name, $cidr, $permissions, $enabled, $token);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ApiKeyApi->apiKeyNew: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling APIKeyApi->aPIKeyNew: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -180,7 +180,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Swagger\Client\Model\ApiKey**](../Model/ApiKey.md)
+[**\Swagger\Client\Model\APIKey**](../Model/APIKey.md)
 
 ### Authorization
 
@@ -193,8 +193,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **apiKeyRemove**
-> \Swagger\Client\Model\InlineResponse200 apiKeyRemove($api_key_id)
+# **aPIKeyRemove**
+> \Swagger\Client\Model\InlineResponse200 aPIKeyRemove($api_key_id)
 
 Remove an API Key.
 
@@ -203,14 +203,14 @@ Remove an API Key.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\ApiKeyApi();
+$api_instance = new Swagger\Client\Api\APIKeyApi();
 $api_key_id = "api_key_id_example"; // string | API Key ID (public component).
 
 try {
-    $result = $api_instance->apiKeyRemove($api_key_id);
+    $result = $api_instance->aPIKeyRemove($api_key_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ApiKeyApi->apiKeyRemove: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling APIKeyApi->aPIKeyRemove: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```

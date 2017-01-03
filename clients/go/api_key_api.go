@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -30,22 +30,22 @@ import (
 	"encoding/json"
 )
 
-type ApiKeyApi struct {
+type APIKeyApi struct {
 	Configuration Configuration
 }
 
-func NewApiKeyApi() *ApiKeyApi {
+func NewAPIKeyApi() *APIKeyApi {
 	configuration := NewConfiguration()
-	return &ApiKeyApi{
+	return &APIKeyApi{
 		Configuration: *configuration,
 	}
 }
 
-func NewApiKeyApiWithBasePath(basePath string) *ApiKeyApi {
+func NewAPIKeyApiWithBasePath(basePath string) *APIKeyApi {
 	configuration := NewConfiguration()
 	configuration.BasePath = basePath
 
-	return &ApiKeyApi{
+	return &APIKeyApi{
 		Configuration: *configuration,
 	}
 }
@@ -56,7 +56,7 @@ func NewApiKeyApiWithBasePath(basePath string) *ApiKeyApi {
  * @param apiKeyID API Key ID (public component).
  * @return *ApiKey
  */
-func (a ApiKeyApi) ApiKeyDisable(apiKeyID string) (*ApiKey, *APIResponse, error) {
+func (a APIKeyApi) APIKeyDisable(apiKeyID string) (*ApiKey, *APIResponse, error) {
 
 	var httpMethod = "Post"
 	// create path and map variables
@@ -64,7 +64,7 @@ func (a ApiKeyApi) ApiKeyDisable(apiKeyID string) (*ApiKey, *APIResponse, error)
 
 	// verify the required parameter 'apiKeyID' is set
 	if &apiKeyID == nil {
-		return new(ApiKey), nil, errors.New("Missing required parameter 'apiKeyID' when calling ApiKeyApi->ApiKeyDisable")
+		return new(ApiKey), nil, errors.New("Missing required parameter 'apiKeyID' when calling APIKeyApi->APIKeyDisable")
 	}
 
 	headerParams := make(map[string]string)
@@ -119,7 +119,7 @@ func (a ApiKeyApi) ApiKeyDisable(apiKeyID string) (*ApiKey, *APIResponse, error)
  * @param apiKeyID API Key ID (public component).
  * @return *ApiKey
  */
-func (a ApiKeyApi) ApiKeyEnable(apiKeyID string) (*ApiKey, *APIResponse, error) {
+func (a APIKeyApi) APIKeyEnable(apiKeyID string) (*ApiKey, *APIResponse, error) {
 
 	var httpMethod = "Post"
 	// create path and map variables
@@ -127,7 +127,7 @@ func (a ApiKeyApi) ApiKeyEnable(apiKeyID string) (*ApiKey, *APIResponse, error) 
 
 	// verify the required parameter 'apiKeyID' is set
 	if &apiKeyID == nil {
-		return new(ApiKey), nil, errors.New("Missing required parameter 'apiKeyID' when calling ApiKeyApi->ApiKeyEnable")
+		return new(ApiKey), nil, errors.New("Missing required parameter 'apiKeyID' when calling APIKeyApi->APIKeyEnable")
 	}
 
 	headerParams := make(map[string]string)
@@ -182,7 +182,7 @@ func (a ApiKeyApi) ApiKeyEnable(apiKeyID string) (*ApiKey, *APIResponse, error) 
  * @param reverse If true, will sort results newest first.
  * @return []ApiKey
  */
-func (a ApiKeyApi) ApiKeyGet(reverse bool) ([]ApiKey, *APIResponse, error) {
+func (a APIKeyApi) APIKeyGet(reverse bool) ([]ApiKey, *APIResponse, error) {
 
 	var httpMethod = "Get"
 	// create path and map variables
@@ -245,7 +245,7 @@ func (a ApiKeyApi) ApiKeyGet(reverse bool) ([]ApiKey, *APIResponse, error) {
  * @param token OTP Token (YubiKey, Google Authenticator)
  * @return *ApiKey
  */
-func (a ApiKeyApi) ApiKeyNew(name string, cidr string, permissions string, enabled bool, token string) (*ApiKey, *APIResponse, error) {
+func (a APIKeyApi) APIKeyNew(name string, cidr string, permissions string, enabled bool, token string) (*ApiKey, *APIResponse, error) {
 
 	var httpMethod = "Post"
 	// create path and map variables
@@ -308,7 +308,7 @@ func (a ApiKeyApi) ApiKeyNew(name string, cidr string, permissions string, enabl
  * @param apiKeyID API Key ID (public component).
  * @return *InlineResponse200
  */
-func (a ApiKeyApi) ApiKeyRemove(apiKeyID string) (*InlineResponse200, *APIResponse, error) {
+func (a APIKeyApi) APIKeyRemove(apiKeyID string) (*InlineResponse200, *APIResponse, error) {
 
 	var httpMethod = "Delete"
 	// create path and map variables
@@ -316,7 +316,7 @@ func (a ApiKeyApi) ApiKeyRemove(apiKeyID string) (*InlineResponse200, *APIRespon
 
 	// verify the required parameter 'apiKeyID' is set
 	if &apiKeyID == nil {
-		return new(InlineResponse200), nil, errors.New("Missing required parameter 'apiKeyID' when calling ApiKeyApi->ApiKeyRemove")
+		return new(InlineResponse200), nil, errors.New("Missing required parameter 'apiKeyID' when calling APIKeyApi->APIKeyRemove")
 	}
 
 	headerParams := make(map[string]string)

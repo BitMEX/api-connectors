@@ -1,7 +1,7 @@
 =begin
 #BitMEX API
 
-#REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+### REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
 
 OpenAPI spec version: 1.2.0
 Contact: support@bitmex.com
@@ -28,6 +28,8 @@ module SwaggerClient
   class UserPreferences
     attr_accessor :announcements_last_seen
 
+    attr_accessor :chat_channel_id
+
     attr_accessor :color_theme
 
     attr_accessor :currency
@@ -45,8 +47,6 @@ module SwaggerClient
     attr_accessor :hide_name_from_leaderboard
 
     attr_accessor :hide_notifications
-
-    attr_accessor :hide_phone_confirm
 
     attr_accessor :locale
 
@@ -75,6 +75,7 @@ module SwaggerClient
     def self.attribute_map
       {
         :'announcements_last_seen' => :'announcementsLastSeen',
+        :'chat_channel_id' => :'chatChannelID',
         :'color_theme' => :'colorTheme',
         :'currency' => :'currency',
         :'debug' => :'debug',
@@ -84,7 +85,6 @@ module SwaggerClient
         :'hide_from_leaderboard' => :'hideFromLeaderboard',
         :'hide_name_from_leaderboard' => :'hideNameFromLeaderboard',
         :'hide_notifications' => :'hideNotifications',
-        :'hide_phone_confirm' => :'hidePhoneConfirm',
         :'locale' => :'locale',
         :'msgs_seen' => :'msgsSeen',
         :'order_book_binning' => :'orderBookBinning',
@@ -103,6 +103,7 @@ module SwaggerClient
     def self.swagger_types
       {
         :'announcements_last_seen' => :'Date',
+        :'chat_channel_id' => :'Float',
         :'color_theme' => :'String',
         :'currency' => :'String',
         :'debug' => :'BOOLEAN',
@@ -112,10 +113,9 @@ module SwaggerClient
         :'hide_from_leaderboard' => :'BOOLEAN',
         :'hide_name_from_leaderboard' => :'BOOLEAN',
         :'hide_notifications' => :'Array<String>',
-        :'hide_phone_confirm' => :'BOOLEAN',
         :'locale' => :'String',
         :'msgs_seen' => :'Array<String>',
-        :'order_book_binning' => :'Float',
+        :'order_book_binning' => :'XAny',
         :'order_book_type' => :'String',
         :'order_controls_plus_minus' => :'BOOLEAN',
         :'sounds' => :'Array<String>',
@@ -137,6 +137,10 @@ module SwaggerClient
 
       if attributes.has_key?(:'announcementsLastSeen')
         self.announcements_last_seen = attributes[:'announcementsLastSeen']
+      end
+
+      if attributes.has_key?(:'chatChannelID')
+        self.chat_channel_id = attributes[:'chatChannelID']
       end
 
       if attributes.has_key?(:'colorTheme')
@@ -185,12 +189,10 @@ module SwaggerClient
         end
       end
 
-      if attributes.has_key?(:'hidePhoneConfirm')
-        self.hide_phone_confirm = attributes[:'hidePhoneConfirm']
-      end
-
       if attributes.has_key?(:'locale')
         self.locale = attributes[:'locale']
+      else
+        self.locale = "en-US"
       end
 
       if attributes.has_key?(:'msgsSeen')
@@ -262,6 +264,7 @@ module SwaggerClient
       return true if self.equal?(o)
       self.class == o.class &&
           announcements_last_seen == o.announcements_last_seen &&
+          chat_channel_id == o.chat_channel_id &&
           color_theme == o.color_theme &&
           currency == o.currency &&
           debug == o.debug &&
@@ -271,7 +274,6 @@ module SwaggerClient
           hide_from_leaderboard == o.hide_from_leaderboard &&
           hide_name_from_leaderboard == o.hide_name_from_leaderboard &&
           hide_notifications == o.hide_notifications &&
-          hide_phone_confirm == o.hide_phone_confirm &&
           locale == o.locale &&
           msgs_seen == o.msgs_seen &&
           order_book_binning == o.order_book_binning &&
@@ -294,7 +296,7 @@ module SwaggerClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [announcements_last_seen, color_theme, currency, debug, disable_emails, hide_confirm_dialogs, hide_connection_modal, hide_from_leaderboard, hide_name_from_leaderboard, hide_notifications, hide_phone_confirm, locale, msgs_seen, order_book_binning, order_book_type, order_controls_plus_minus, sounds, strict_ip_check, strict_timeout, ticker_group, ticker_pinned, trade_layout].hash
+      [announcements_last_seen, chat_channel_id, color_theme, currency, debug, disable_emails, hide_confirm_dialogs, hide_connection_modal, hide_from_leaderboard, hide_name_from_leaderboard, hide_notifications, locale, msgs_seen, order_book_binning, order_book_type, order_controls_plus_minus, sounds, strict_ip_check, strict_timeout, ticker_group, ticker_pinned, trade_layout].hash
     end
 
     # Builds the object from hash

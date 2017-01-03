@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **message** | **NSString*** |  | 
 **html** | **NSString*** |  | 
 **fromBot** | **NSNumber*** |  | [optional] [default to @0]
+**channelID** | **NSNumber*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

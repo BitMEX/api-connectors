@@ -35,6 +35,10 @@ public class JsonUtil {
   public static Type getListTypeForDeserialization(Class cls) {
     String className = cls.getSimpleName();
     
+    if ("APIKey".equalsIgnoreCase(className)) {
+      return new TypeToken<List<APIKey>>(){}.getType();
+    }
+    
     if ("AccessToken".equalsIgnoreCase(className)) {
       return new TypeToken<List<AccessToken>>(){}.getType();
     }
@@ -47,12 +51,12 @@ public class JsonUtil {
       return new TypeToken<List<Announcement>>(){}.getType();
     }
     
-    if ("ApiKey".equalsIgnoreCase(className)) {
-      return new TypeToken<List<ApiKey>>(){}.getType();
-    }
-    
     if ("Chat".equalsIgnoreCase(className)) {
       return new TypeToken<List<Chat>>(){}.getType();
+    }
+    
+    if ("ChatChannel".equalsIgnoreCase(className)) {
+      return new TypeToken<List<ChatChannel>>(){}.getType();
     }
     
     if ("ConnectedUsers".equalsIgnoreCase(className)) {
@@ -155,11 +159,19 @@ public class JsonUtil {
       return new TypeToken<List<UserPreferences>>(){}.getType();
     }
     
+    if ("Wallet".equalsIgnoreCase(className)) {
+      return new TypeToken<List<Wallet>>(){}.getType();
+    }
+    
     return new TypeToken<List<Object>>(){}.getType();
   }
 
   public static Type getTypeForDeserialization(Class cls) {
     String className = cls.getSimpleName();
+    
+    if ("APIKey".equalsIgnoreCase(className)) {
+      return new TypeToken<APIKey>(){}.getType();
+    }
     
     if ("AccessToken".equalsIgnoreCase(className)) {
       return new TypeToken<AccessToken>(){}.getType();
@@ -173,12 +185,12 @@ public class JsonUtil {
       return new TypeToken<Announcement>(){}.getType();
     }
     
-    if ("ApiKey".equalsIgnoreCase(className)) {
-      return new TypeToken<ApiKey>(){}.getType();
-    }
-    
     if ("Chat".equalsIgnoreCase(className)) {
       return new TypeToken<Chat>(){}.getType();
+    }
+    
+    if ("ChatChannel".equalsIgnoreCase(className)) {
+      return new TypeToken<ChatChannel>(){}.getType();
     }
     
     if ("ConnectedUsers".equalsIgnoreCase(className)) {
@@ -279,6 +291,10 @@ public class JsonUtil {
     
     if ("UserPreferences".equalsIgnoreCase(className)) {
       return new TypeToken<UserPreferences>(){}.getType();
+    }
+    
+    if ("Wallet".equalsIgnoreCase(className)) {
+      return new TypeToken<Wallet>(){}.getType();
     }
     
     return new TypeToken<Object>(){}.getType();

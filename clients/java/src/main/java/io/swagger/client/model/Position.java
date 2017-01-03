@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -36,7 +36,7 @@ import org.joda.time.LocalDate;
 /**
  * Position
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-05T09:40:48.217-05:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-01-03T10:34:33.567-06:00")
 public class Position   {
   @JsonProperty("account")
   private BigDecimal account = null;
@@ -56,11 +56,23 @@ public class Position   {
   @JsonProperty("commission")
   private Double commission = null;
 
+  @JsonProperty("initMarginReq")
+  private Double initMarginReq = null;
+
+  @JsonProperty("maintMarginReq")
+  private Double maintMarginReq = null;
+
+  @JsonProperty("riskLimit")
+  private BigDecimal riskLimit = null;
+
   @JsonProperty("leverage")
   private Double leverage = null;
 
   @JsonProperty("crossMargin")
   private Boolean crossMargin = null;
+
+  @JsonProperty("deleveragePercentile")
+  private Double deleveragePercentile = null;
 
   @JsonProperty("rebalancedPnl")
   private BigDecimal rebalancedPnl = null;
@@ -160,6 +172,9 @@ public class Position   {
 
   @JsonProperty("markValue")
   private BigDecimal markValue = null;
+
+  @JsonProperty("riskValue")
+  private BigDecimal riskValue = null;
 
   @JsonProperty("homeNotional")
   private Double homeNotional = null;
@@ -404,6 +419,60 @@ public class Position   {
     this.commission = commission;
   }
 
+  public Position initMarginReq(Double initMarginReq) {
+    this.initMarginReq = initMarginReq;
+    return this;
+  }
+
+   /**
+   * Get initMarginReq
+   * @return initMarginReq
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public Double getInitMarginReq() {
+    return initMarginReq;
+  }
+
+  public void setInitMarginReq(Double initMarginReq) {
+    this.initMarginReq = initMarginReq;
+  }
+
+  public Position maintMarginReq(Double maintMarginReq) {
+    this.maintMarginReq = maintMarginReq;
+    return this;
+  }
+
+   /**
+   * Get maintMarginReq
+   * @return maintMarginReq
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public Double getMaintMarginReq() {
+    return maintMarginReq;
+  }
+
+  public void setMaintMarginReq(Double maintMarginReq) {
+    this.maintMarginReq = maintMarginReq;
+  }
+
+  public Position riskLimit(BigDecimal riskLimit) {
+    this.riskLimit = riskLimit;
+    return this;
+  }
+
+   /**
+   * Get riskLimit
+   * @return riskLimit
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public BigDecimal getRiskLimit() {
+    return riskLimit;
+  }
+
+  public void setRiskLimit(BigDecimal riskLimit) {
+    this.riskLimit = riskLimit;
+  }
+
   public Position leverage(Double leverage) {
     this.leverage = leverage;
     return this;
@@ -438,6 +507,24 @@ public class Position   {
 
   public void setCrossMargin(Boolean crossMargin) {
     this.crossMargin = crossMargin;
+  }
+
+  public Position deleveragePercentile(Double deleveragePercentile) {
+    this.deleveragePercentile = deleveragePercentile;
+    return this;
+  }
+
+   /**
+   * Get deleveragePercentile
+   * @return deleveragePercentile
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public Double getDeleveragePercentile() {
+    return deleveragePercentile;
+  }
+
+  public void setDeleveragePercentile(Double deleveragePercentile) {
+    this.deleveragePercentile = deleveragePercentile;
   }
 
   public Position rebalancedPnl(BigDecimal rebalancedPnl) {
@@ -1032,6 +1119,24 @@ public class Position   {
 
   public void setMarkValue(BigDecimal markValue) {
     this.markValue = markValue;
+  }
+
+  public Position riskValue(BigDecimal riskValue) {
+    this.riskValue = riskValue;
+    return this;
+  }
+
+   /**
+   * Get riskValue
+   * @return riskValue
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public BigDecimal getRiskValue() {
+    return riskValue;
+  }
+
+  public void setRiskValue(BigDecimal riskValue) {
+    this.riskValue = riskValue;
   }
 
   public Position homeNotional(Double homeNotional) {
@@ -1860,8 +1965,12 @@ public class Position   {
         Objects.equals(this.underlying, position.underlying) &&
         Objects.equals(this.quoteCurrency, position.quoteCurrency) &&
         Objects.equals(this.commission, position.commission) &&
+        Objects.equals(this.initMarginReq, position.initMarginReq) &&
+        Objects.equals(this.maintMarginReq, position.maintMarginReq) &&
+        Objects.equals(this.riskLimit, position.riskLimit) &&
         Objects.equals(this.leverage, position.leverage) &&
         Objects.equals(this.crossMargin, position.crossMargin) &&
+        Objects.equals(this.deleveragePercentile, position.deleveragePercentile) &&
         Objects.equals(this.rebalancedPnl, position.rebalancedPnl) &&
         Objects.equals(this.prevRealisedPnl, position.prevRealisedPnl) &&
         Objects.equals(this.prevUnrealisedPnl, position.prevUnrealisedPnl) &&
@@ -1895,6 +2004,7 @@ public class Position   {
         Objects.equals(this.isOpen, position.isOpen) &&
         Objects.equals(this.markPrice, position.markPrice) &&
         Objects.equals(this.markValue, position.markValue) &&
+        Objects.equals(this.riskValue, position.riskValue) &&
         Objects.equals(this.homeNotional, position.homeNotional) &&
         Objects.equals(this.foreignNotional, position.foreignNotional) &&
         Objects.equals(this.posState, position.posState) &&
@@ -1944,7 +2054,7 @@ public class Position   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(account, symbol, currency, underlying, quoteCurrency, commission, leverage, crossMargin, rebalancedPnl, prevRealisedPnl, prevUnrealisedPnl, prevClosePrice, openingTimestamp, openingQty, openingCost, openingComm, openOrderBuyQty, openOrderBuyCost, openOrderBuyPremium, openOrderSellQty, openOrderSellCost, openOrderSellPremium, execBuyQty, execBuyCost, execSellQty, execSellCost, execQty, execCost, execComm, currentTimestamp, currentQty, currentCost, currentComm, realisedCost, unrealisedCost, grossOpenCost, grossOpenPremium, grossExecCost, isOpen, markPrice, markValue, homeNotional, foreignNotional, posState, posCost, posCost2, posCross, posInit, posComm, posLoss, posMargin, posMaint, posAllowance, taxableMargin, initMargin, maintMargin, sessionMargin, targetExcessMargin, varMargin, realisedGrossPnl, realisedTax, realisedPnl, unrealisedGrossPnl, longBankrupt, shortBankrupt, taxBase, indicativeTaxRate, indicativeTax, unrealisedTax, unrealisedPnl, unrealisedPnlPcnt, unrealisedRoePcnt, simpleQty, simpleCost, simpleValue, simplePnl, simplePnlPcnt, avgCostPrice, avgEntryPrice, breakEvenPrice, marginCallPrice, liquidationPrice, bankruptPrice, timestamp, lastPrice, lastValue);
+    return Objects.hash(account, symbol, currency, underlying, quoteCurrency, commission, initMarginReq, maintMarginReq, riskLimit, leverage, crossMargin, deleveragePercentile, rebalancedPnl, prevRealisedPnl, prevUnrealisedPnl, prevClosePrice, openingTimestamp, openingQty, openingCost, openingComm, openOrderBuyQty, openOrderBuyCost, openOrderBuyPremium, openOrderSellQty, openOrderSellCost, openOrderSellPremium, execBuyQty, execBuyCost, execSellQty, execSellCost, execQty, execCost, execComm, currentTimestamp, currentQty, currentCost, currentComm, realisedCost, unrealisedCost, grossOpenCost, grossOpenPremium, grossExecCost, isOpen, markPrice, markValue, riskValue, homeNotional, foreignNotional, posState, posCost, posCost2, posCross, posInit, posComm, posLoss, posMargin, posMaint, posAllowance, taxableMargin, initMargin, maintMargin, sessionMargin, targetExcessMargin, varMargin, realisedGrossPnl, realisedTax, realisedPnl, unrealisedGrossPnl, longBankrupt, shortBankrupt, taxBase, indicativeTaxRate, indicativeTax, unrealisedTax, unrealisedPnl, unrealisedPnlPcnt, unrealisedRoePcnt, simpleQty, simpleCost, simpleValue, simplePnl, simplePnlPcnt, avgCostPrice, avgEntryPrice, breakEvenPrice, marginCallPrice, liquidationPrice, bankruptPrice, timestamp, lastPrice, lastValue);
   }
 
   @Override
@@ -1958,8 +2068,12 @@ public class Position   {
     sb.append("    underlying: ").append(toIndentedString(underlying)).append("\n");
     sb.append("    quoteCurrency: ").append(toIndentedString(quoteCurrency)).append("\n");
     sb.append("    commission: ").append(toIndentedString(commission)).append("\n");
+    sb.append("    initMarginReq: ").append(toIndentedString(initMarginReq)).append("\n");
+    sb.append("    maintMarginReq: ").append(toIndentedString(maintMarginReq)).append("\n");
+    sb.append("    riskLimit: ").append(toIndentedString(riskLimit)).append("\n");
     sb.append("    leverage: ").append(toIndentedString(leverage)).append("\n");
     sb.append("    crossMargin: ").append(toIndentedString(crossMargin)).append("\n");
+    sb.append("    deleveragePercentile: ").append(toIndentedString(deleveragePercentile)).append("\n");
     sb.append("    rebalancedPnl: ").append(toIndentedString(rebalancedPnl)).append("\n");
     sb.append("    prevRealisedPnl: ").append(toIndentedString(prevRealisedPnl)).append("\n");
     sb.append("    prevUnrealisedPnl: ").append(toIndentedString(prevUnrealisedPnl)).append("\n");
@@ -1993,6 +2107,7 @@ public class Position   {
     sb.append("    isOpen: ").append(toIndentedString(isOpen)).append("\n");
     sb.append("    markPrice: ").append(toIndentedString(markPrice)).append("\n");
     sb.append("    markValue: ").append(toIndentedString(markValue)).append("\n");
+    sb.append("    riskValue: ").append(toIndentedString(riskValue)).append("\n");
     sb.append("    homeNotional: ").append(toIndentedString(homeNotional)).append("\n");
     sb.append("    foreignNotional: ").append(toIndentedString(foreignNotional)).append("\n");
     sb.append("    posState: ").append(toIndentedString(posState)).append("\n");

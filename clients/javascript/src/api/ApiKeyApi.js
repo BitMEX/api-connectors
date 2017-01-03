@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -25,29 +25,29 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/ApiKey', 'model/Error', 'model/InlineResponse200'], factory);
+    define(['ApiClient', 'model/APIKey', 'model/Error', 'model/InlineResponse200'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/ApiKey'), require('../model/Error'), require('../model/InlineResponse200'));
+    module.exports = factory(require('../ApiClient'), require('../model/APIKey'), require('../model/Error'), require('../model/InlineResponse200'));
   } else {
     // Browser globals (root is window)
     if (!root.BitMexApi) {
       root.BitMexApi = {};
     }
-    root.BitMexApi.ApiKeyApi = factory(root.BitMexApi.ApiClient, root.BitMexApi.ApiKey, root.BitMexApi.Error, root.BitMexApi.InlineResponse200);
+    root.BitMexApi.APIKeyApi = factory(root.BitMexApi.ApiClient, root.BitMexApi.APIKey, root.BitMexApi.Error, root.BitMexApi.InlineResponse200);
   }
-}(this, function(ApiClient, ApiKey, Error, InlineResponse200) {
+}(this, function(ApiClient, APIKey, Error, InlineResponse200) {
   'use strict';
 
   /**
-   * ApiKey service.
-   * @module api/ApiKeyApi
+   * APIKey service.
+   * @module api/APIKeyApi
    * @version 1.2.0
    */
 
   /**
-   * Constructs a new ApiKeyApi. 
-   * @alias module:api/ApiKeyApi
+   * Constructs a new APIKeyApi. 
+   * @alias module:api/APIKeyApi
    * @class
    * @param {module:ApiClient} apiClient Optional API client implementation to use,
    * default to {@link module:ApiClient#instance} if unspecified.
@@ -57,25 +57,25 @@
 
 
     /**
-     * Callback function to receive the result of the apiKeyDisable operation.
-     * @callback module:api/ApiKeyApi~apiKeyDisableCallback
+     * Callback function to receive the result of the aPIKeyDisable operation.
+     * @callback module:api/APIKeyApi~aPIKeyDisableCallback
      * @param {String} error Error message, if any.
-     * @param {module:model/ApiKey} data The data returned by the service call.
+     * @param {module:model/APIKey} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
      * Disable an API Key.
      * @param {String} apiKeyID API Key ID (public component).
-     * @param {module:api/ApiKeyApi~apiKeyDisableCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/ApiKey}
+     * @param {module:api/APIKeyApi~aPIKeyDisableCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {module:model/APIKey}
      */
-    this.apiKeyDisable = function(apiKeyID, callback) {
+    this.aPIKeyDisable = function(apiKeyID, callback) {
       var postBody = null;
 
       // verify the required parameter 'apiKeyID' is set
       if (apiKeyID == undefined || apiKeyID == null) {
-        throw "Missing the required parameter 'apiKeyID' when calling apiKeyDisable";
+        throw "Missing the required parameter 'apiKeyID' when calling aPIKeyDisable";
       }
 
 
@@ -92,7 +92,7 @@
       var authNames = [];
       var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
       var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = ApiKey;
+      var returnType = APIKey;
 
       return this.apiClient.callApi(
         '/apiKey/disable', 'POST',
@@ -102,25 +102,25 @@
     }
 
     /**
-     * Callback function to receive the result of the apiKeyEnable operation.
-     * @callback module:api/ApiKeyApi~apiKeyEnableCallback
+     * Callback function to receive the result of the aPIKeyEnable operation.
+     * @callback module:api/APIKeyApi~aPIKeyEnableCallback
      * @param {String} error Error message, if any.
-     * @param {module:model/ApiKey} data The data returned by the service call.
+     * @param {module:model/APIKey} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
      * Enable an API Key.
      * @param {String} apiKeyID API Key ID (public component).
-     * @param {module:api/ApiKeyApi~apiKeyEnableCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/ApiKey}
+     * @param {module:api/APIKeyApi~aPIKeyEnableCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {module:model/APIKey}
      */
-    this.apiKeyEnable = function(apiKeyID, callback) {
+    this.aPIKeyEnable = function(apiKeyID, callback) {
       var postBody = null;
 
       // verify the required parameter 'apiKeyID' is set
       if (apiKeyID == undefined || apiKeyID == null) {
-        throw "Missing the required parameter 'apiKeyID' when calling apiKeyEnable";
+        throw "Missing the required parameter 'apiKeyID' when calling aPIKeyEnable";
       }
 
 
@@ -137,7 +137,7 @@
       var authNames = [];
       var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
       var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = ApiKey;
+      var returnType = APIKey;
 
       return this.apiClient.callApi(
         '/apiKey/enable', 'POST',
@@ -147,10 +147,10 @@
     }
 
     /**
-     * Callback function to receive the result of the apiKeyGet operation.
-     * @callback module:api/ApiKeyApi~apiKeyGetCallback
+     * Callback function to receive the result of the aPIKeyGet operation.
+     * @callback module:api/APIKeyApi~aPIKeyGetCallback
      * @param {String} error Error message, if any.
-     * @param {Array.<module:model/ApiKey>} data The data returned by the service call.
+     * @param {Array.<module:model/APIKey>} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -158,10 +158,10 @@
      * Get your API Keys.
      * @param {Object} opts Optional parameters
      * @param {Boolean} opts.reverse If true, will sort results newest first. (default to false)
-     * @param {module:api/ApiKeyApi~apiKeyGetCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Array.<module:model/ApiKey>}
+     * @param {module:api/APIKeyApi~aPIKeyGetCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {Array.<module:model/APIKey>}
      */
-    this.apiKeyGet = function(opts, callback) {
+    this.aPIKeyGet = function(opts, callback) {
       opts = opts || {};
       var postBody = null;
 
@@ -179,7 +179,7 @@
       var authNames = [];
       var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
       var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [ApiKey];
+      var returnType = [APIKey];
 
       return this.apiClient.callApi(
         '/apiKey', 'GET',
@@ -189,10 +189,10 @@
     }
 
     /**
-     * Callback function to receive the result of the apiKeyNew operation.
-     * @callback module:api/ApiKeyApi~apiKeyNewCallback
+     * Callback function to receive the result of the aPIKeyNew operation.
+     * @callback module:api/APIKeyApi~aPIKeyNewCallback
      * @param {String} error Error message, if any.
-     * @param {module:model/ApiKey} data The data returned by the service call.
+     * @param {module:model/APIKey} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -205,10 +205,10 @@
      * @param {String} opts.permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;].
      * @param {Boolean} opts.enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (default to false)
      * @param {String} opts.token OTP Token (YubiKey, Google Authenticator)
-     * @param {module:api/ApiKeyApi~apiKeyNewCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/ApiKey}
+     * @param {module:api/APIKeyApi~aPIKeyNewCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {module:model/APIKey}
      */
-    this.apiKeyNew = function(opts, callback) {
+    this.aPIKeyNew = function(opts, callback) {
       opts = opts || {};
       var postBody = null;
 
@@ -230,7 +230,7 @@
       var authNames = [];
       var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
       var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = ApiKey;
+      var returnType = APIKey;
 
       return this.apiClient.callApi(
         '/apiKey', 'POST',
@@ -240,8 +240,8 @@
     }
 
     /**
-     * Callback function to receive the result of the apiKeyRemove operation.
-     * @callback module:api/ApiKeyApi~apiKeyRemoveCallback
+     * Callback function to receive the result of the aPIKeyRemove operation.
+     * @callback module:api/APIKeyApi~aPIKeyRemoveCallback
      * @param {String} error Error message, if any.
      * @param {module:model/InlineResponse200} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -250,15 +250,15 @@
     /**
      * Remove an API Key.
      * @param {String} apiKeyID API Key ID (public component).
-     * @param {module:api/ApiKeyApi~apiKeyRemoveCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/APIKeyApi~aPIKeyRemoveCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {module:model/InlineResponse200}
      */
-    this.apiKeyRemove = function(apiKeyID, callback) {
+    this.aPIKeyRemove = function(apiKeyID, callback) {
       var postBody = null;
 
       // verify the required parameter 'apiKeyID' is set
       if (apiKeyID == undefined || apiKeyID == null) {
-        throw "Missing the required parameter 'apiKeyID' when calling apiKeyRemove";
+        throw "Missing the required parameter 'apiKeyID' when calling aPIKeyRemove";
       }
 
 

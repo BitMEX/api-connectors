@@ -13,7 +13,7 @@
 /**
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section.
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -413,97 +413,6 @@ class UserApi
                 $headerParams,
                 'bool',
                 '/user/confirmEnableTFA'
-            );
-
-            return array($this->apiClient->getSerializer()->deserialize($response, 'bool', $httpHeader), $statusCode, $httpHeader);
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'bool', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-            }
-
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation userConfirmPasswordReset
-     *
-     * Confirm a password reset.
-     *
-     * @param string $token  (required)
-     * @param string $new_password  (required)
-     * @return bool
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function userConfirmPasswordReset($token, $new_password)
-    {
-        list($response) = $this->userConfirmPasswordResetWithHttpInfo($token, $new_password);
-        return $response;
-    }
-
-    /**
-     * Operation userConfirmPasswordResetWithHttpInfo
-     *
-     * Confirm a password reset.
-     *
-     * @param string $token  (required)
-     * @param string $new_password  (required)
-     * @return Array of bool, HTTP status code, HTTP response headers (array of strings)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function userConfirmPasswordResetWithHttpInfo($token, $new_password)
-    {
-        // verify the required parameter 'token' is set
-        if ($token === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $token when calling userConfirmPasswordReset');
-        }
-        // verify the required parameter 'new_password' is set
-        if ($new_password === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $new_password when calling userConfirmPasswordReset');
-        }
-        // parse inputs
-        $resourcePath = "/user/confirmPasswordReset";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
-
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        // form params
-        if ($token !== null) {
-            $formParams['token'] = $this->apiClient->getSerializer()->toFormValue($token);
-        }
-        // form params
-        if ($new_password !== null) {
-            $formParams['newPassword'] = $this->apiClient->getSerializer()->toFormValue($new_password);
-        }
-        
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'POST',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                'bool',
-                '/user/confirmPasswordReset'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, 'bool', $httpHeader), $statusCode, $httpHeader);
@@ -1055,9 +964,86 @@ class UserApi
     }
 
     /**
+     * Operation userGetWallet
+     *
+     * Get your current wallet information.
+     *
+     * @param string $currency  (optional, default to XBt)
+     * @return \Swagger\Client\Model\Wallet
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function userGetWallet($currency = null)
+    {
+        list($response) = $this->userGetWalletWithHttpInfo($currency);
+        return $response;
+    }
+
+    /**
+     * Operation userGetWalletWithHttpInfo
+     *
+     * Get your current wallet information.
+     *
+     * @param string $currency  (optional, default to XBt)
+     * @return Array of \Swagger\Client\Model\Wallet, HTTP status code, HTTP response headers (array of strings)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function userGetWalletWithHttpInfo($currency = null)
+    {
+        // parse inputs
+        $resourcePath = "/user/wallet";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
+
+        // query params
+        if ($currency !== null) {
+            $queryParams['currency'] = $this->apiClient->getSerializer()->toQueryValue($currency);
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'GET',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\Swagger\Client\Model\Wallet',
+                '/user/wallet'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\Wallet', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Wallet', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
      * Operation userGetWalletHistory
      *
-     * Get a history of all of your wallet transactions (deposits and withdrawals).
+     * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
      *
      * @param string $currency  (optional, default to XBt)
      * @return \Swagger\Client\Model\Transaction[]
@@ -1072,7 +1058,7 @@ class UserApi
     /**
      * Operation userGetWalletHistoryWithHttpInfo
      *
-     * Get a history of all of your wallet transactions (deposits and withdrawals).
+     * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
      *
      * @param string $currency  (optional, default to XBt)
      * @return Array of \Swagger\Client\Model\Transaction[], HTTP status code, HTTP response headers (array of strings)
@@ -1132,45 +1118,33 @@ class UserApi
     }
 
     /**
-     * Operation userLogin
+     * Operation userGetWalletSummary
      *
-     * Log in to BitMEX.
+     * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
      *
-     * @param string $email Your email address. (required)
-     * @param string $password Your password. (required)
-     * @param string $token OTP Token (YubiKey, Google Authenticator) (optional)
-     * @return \Swagger\Client\Model\AccessToken
+     * @param string $currency  (optional, default to XBt)
+     * @return \Swagger\Client\Model\Transaction[]
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function userLogin($email, $password, $token = null)
+    public function userGetWalletSummary($currency = null)
     {
-        list($response) = $this->userLoginWithHttpInfo($email, $password, $token);
+        list($response) = $this->userGetWalletSummaryWithHttpInfo($currency);
         return $response;
     }
 
     /**
-     * Operation userLoginWithHttpInfo
+     * Operation userGetWalletSummaryWithHttpInfo
      *
-     * Log in to BitMEX.
+     * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
      *
-     * @param string $email Your email address. (required)
-     * @param string $password Your password. (required)
-     * @param string $token OTP Token (YubiKey, Google Authenticator) (optional)
-     * @return Array of \Swagger\Client\Model\AccessToken, HTTP status code, HTTP response headers (array of strings)
+     * @param string $currency  (optional, default to XBt)
+     * @return Array of \Swagger\Client\Model\Transaction[], HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function userLoginWithHttpInfo($email, $password, $token = null)
+    public function userGetWalletSummaryWithHttpInfo($currency = null)
     {
-        // verify the required parameter 'email' is set
-        if ($email === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $email when calling userLogin');
-        }
-        // verify the required parameter 'password' is set
-        if ($password === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $password when calling userLogin');
-        }
         // parse inputs
-        $resourcePath = "/user/login";
+        $resourcePath = "/user/walletSummary";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
@@ -1181,21 +1155,13 @@ class UserApi
         }
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
 
+        // query params
+        if ($currency !== null) {
+            $queryParams['currency'] = $this->apiClient->getSerializer()->toQueryValue($currency);
+        }
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
 
-        // form params
-        if ($email !== null) {
-            $formParams['email'] = $this->apiClient->getSerializer()->toFormValue($email);
-        }
-        // form params
-        if ($password !== null) {
-            $formParams['password'] = $this->apiClient->getSerializer()->toFormValue($password);
-        }
-        // form params
-        if ($token !== null) {
-            $formParams['token'] = $this->apiClient->getSerializer()->toFormValue($token);
-        }
         
         // for model (json/xml)
         if (isset($_tempBody)) {
@@ -1207,19 +1173,19 @@ class UserApi
         try {
             list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath,
-                'POST',
+                'GET',
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\AccessToken',
-                '/user/login'
+                '\Swagger\Client\Model\Transaction[]',
+                '/user/walletSummary'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\AccessToken', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\Transaction[]', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\AccessToken', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Transaction[]', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -1367,149 +1333,6 @@ class UserApi
     }
 
     /**
-     * Operation userNew
-     *
-     * Register a new user.
-     *
-     * @param string $email Your email address. (required)
-     * @param string $password Your password. (required)
-     * @param string $country Country of residence. (required)
-     * @param string $username Desired username. (optional)
-     * @param string $firstname First name. (optional)
-     * @param string $lastname Last name. (optional)
-     * @param string $accepts_tos Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). (optional)
-     * @param string $referrer_id Optional Referrer ID. (optional)
-     * @param string $tfa_type Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef (optional)
-     * @param string $tfa_token Two-Factor Token. (optional)
-     * @return \Swagger\Client\Model\User
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function userNew($email, $password, $country, $username = null, $firstname = null, $lastname = null, $accepts_tos = null, $referrer_id = null, $tfa_type = null, $tfa_token = null)
-    {
-        list($response) = $this->userNewWithHttpInfo($email, $password, $country, $username, $firstname, $lastname, $accepts_tos, $referrer_id, $tfa_type, $tfa_token);
-        return $response;
-    }
-
-    /**
-     * Operation userNewWithHttpInfo
-     *
-     * Register a new user.
-     *
-     * @param string $email Your email address. (required)
-     * @param string $password Your password. (required)
-     * @param string $country Country of residence. (required)
-     * @param string $username Desired username. (optional)
-     * @param string $firstname First name. (optional)
-     * @param string $lastname Last name. (optional)
-     * @param string $accepts_tos Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). (optional)
-     * @param string $referrer_id Optional Referrer ID. (optional)
-     * @param string $tfa_type Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef (optional)
-     * @param string $tfa_token Two-Factor Token. (optional)
-     * @return Array of \Swagger\Client\Model\User, HTTP status code, HTTP response headers (array of strings)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function userNewWithHttpInfo($email, $password, $country, $username = null, $firstname = null, $lastname = null, $accepts_tos = null, $referrer_id = null, $tfa_type = null, $tfa_token = null)
-    {
-        // verify the required parameter 'email' is set
-        if ($email === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $email when calling userNew');
-        }
-        // verify the required parameter 'password' is set
-        if ($password === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $password when calling userNew');
-        }
-        // verify the required parameter 'country' is set
-        if ($country === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $country when calling userNew');
-        }
-        // parse inputs
-        $resourcePath = "/user";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
-
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        // form params
-        if ($email !== null) {
-            $formParams['email'] = $this->apiClient->getSerializer()->toFormValue($email);
-        }
-        // form params
-        if ($password !== null) {
-            $formParams['password'] = $this->apiClient->getSerializer()->toFormValue($password);
-        }
-        // form params
-        if ($username !== null) {
-            $formParams['username'] = $this->apiClient->getSerializer()->toFormValue($username);
-        }
-        // form params
-        if ($firstname !== null) {
-            $formParams['firstname'] = $this->apiClient->getSerializer()->toFormValue($firstname);
-        }
-        // form params
-        if ($lastname !== null) {
-            $formParams['lastname'] = $this->apiClient->getSerializer()->toFormValue($lastname);
-        }
-        // form params
-        if ($accepts_tos !== null) {
-            $formParams['acceptsTOS'] = $this->apiClient->getSerializer()->toFormValue($accepts_tos);
-        }
-        // form params
-        if ($referrer_id !== null) {
-            $formParams['referrerID'] = $this->apiClient->getSerializer()->toFormValue($referrer_id);
-        }
-        // form params
-        if ($country !== null) {
-            $formParams['country'] = $this->apiClient->getSerializer()->toFormValue($country);
-        }
-        // form params
-        if ($tfa_type !== null) {
-            $formParams['tfaType'] = $this->apiClient->getSerializer()->toFormValue($tfa_type);
-        }
-        // form params
-        if ($tfa_token !== null) {
-            $formParams['tfaToken'] = $this->apiClient->getSerializer()->toFormValue($tfa_token);
-        }
-        
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'POST',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                '\Swagger\Client\Model\User',
-                '/user'
-            );
-
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\User', $httpHeader), $statusCode, $httpHeader);
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\User', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-            }
-
-            throw $e;
-        }
-    }
-
-    /**
      * Operation userRequestEnableTFA
      *
      * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
@@ -1571,87 +1394,6 @@ class UserApi
                 $headerParams,
                 'bool',
                 '/user/requestEnableTFA'
-            );
-
-            return array($this->apiClient->getSerializer()->deserialize($response, 'bool', $httpHeader), $statusCode, $httpHeader);
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'bool', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-            }
-
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation userRequestPasswordReset
-     *
-     * Request a password reset.
-     *
-     * @param string $email  (required)
-     * @return bool
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function userRequestPasswordReset($email)
-    {
-        list($response) = $this->userRequestPasswordResetWithHttpInfo($email);
-        return $response;
-    }
-
-    /**
-     * Operation userRequestPasswordResetWithHttpInfo
-     *
-     * Request a password reset.
-     *
-     * @param string $email  (required)
-     * @return Array of bool, HTTP status code, HTTP response headers (array of strings)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function userRequestPasswordResetWithHttpInfo($email)
-    {
-        // verify the required parameter 'email' is set
-        if ($email === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $email when calling userRequestPasswordReset');
-        }
-        // parse inputs
-        $resourcePath = "/user/requestPasswordReset";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
-
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        // form params
-        if ($email !== null) {
-            $formParams['email'] = $this->apiClient->getSerializer()->toFormValue($email);
-        }
-        
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'POST',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                'bool',
-                '/user/requestPasswordReset'
             );
 
             return array($this->apiClient->getSerializer()->deserialize($response, 'bool', $httpHeader), $statusCode, $httpHeader);
@@ -1859,87 +1601,6 @@ class UserApi
             switch ($e->getCode()) {
                 case 200:
                     $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\User', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-            }
-
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation userSendVerificationEmail
-     *
-     * Re-send verification email.
-     *
-     * @param string $email  (required)
-     * @return bool
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function userSendVerificationEmail($email)
-    {
-        list($response) = $this->userSendVerificationEmailWithHttpInfo($email);
-        return $response;
-    }
-
-    /**
-     * Operation userSendVerificationEmailWithHttpInfo
-     *
-     * Re-send verification email.
-     *
-     * @param string $email  (required)
-     * @return Array of bool, HTTP status code, HTTP response headers (array of strings)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function userSendVerificationEmailWithHttpInfo($email)
-    {
-        // verify the required parameter 'email' is set
-        if ($email === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $email when calling userSendVerificationEmail');
-        }
-        // parse inputs
-        $resourcePath = "/user/resendVerificationEmail";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
-
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        // form params
-        if ($email !== null) {
-            $formParams['email'] = $this->apiClient->getSerializer()->toFormValue($email);
-        }
-        
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'POST',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                'bool',
-                '/user/resendVerificationEmail'
-            );
-
-            return array($this->apiClient->getSerializer()->deserialize($response, 'bool', $httpHeader), $statusCode, $httpHeader);
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'bool', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }

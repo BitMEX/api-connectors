@@ -399,6 +399,95 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
           ];
 }
 
+///
+/// Update your risk limit.
+/// Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+///  @param symbol Symbol of position to isolate. 
+///
+///  @param riskLimit New Risk Limit, in Satoshis. 
+///
+///  @returns SWGPosition*
+///
+-(NSNumber*) positionUpdateRiskLimitWithSymbol: (NSString*) symbol
+    riskLimit: (NSNumber*) riskLimit
+    completionHandler: (void (^)(SWGPosition* output, NSError* error)) handler {
+    // verify the required parameter 'symbol' is set
+    if (symbol == nil) {
+        NSParameterAssert(symbol);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"symbol"] };
+            NSError* error = [NSError errorWithDomain:kSWGPositionApiErrorDomain code:kSWGPositionApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    // verify the required parameter 'riskLimit' is set
+    if (riskLimit == nil) {
+        NSParameterAssert(riskLimit);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"riskLimit"] };
+            NSError* error = [NSError errorWithDomain:kSWGPositionApiErrorDomain code:kSWGPositionApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/position/riskLimit"];
+
+    // remove format in URL if needed
+    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"application/xml", @"text/xml", @"application/javascript", @"text/javascript"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    if (symbol) {
+        formParams[@"symbol"] = symbol;
+    }
+    if (riskLimit) {
+        formParams[@"riskLimit"] = riskLimit;
+    }
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"SWGPosition*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((SWGPosition*)data, error);
+                                }
+                           }
+          ];
+}
+
 
 
 @end

@@ -1,4 +1,4 @@
-# IO.Swagger.Model.ApiKey
+# IO.Swagger.Model.APIKey
 ## Properties
 
 Name | Type | Description | Notes
@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **Nonce** | **decimal?** |  | 
 **Cidr** | **string** |  | [optional] 
-**Permissions** | **List&lt;string&gt;** |  | [optional] 
+**Permissions** | [**List&lt;XAny&gt;**](XAny.md) |  | [optional] 
 **Enabled** | **bool?** |  | [optional] [default to false]
 **UserId** | **decimal?** |  | 
 **Created** | **DateTime?** |  | [optional] 

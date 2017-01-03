@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>",
+    "description" : "## REST API for the BitMEX Trading Platform\n\n[Changelog](/app/apiChangelog)\n\n----\n\n#### Getting Started\n\n\n##### Fetching Data\n\nAll REST endpoints are documented below. You can try out any query right from this interface.\n\nMost table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.\n\nAdditional documentation regarding filters, timestamps, and authentication\nis available in [the main API documentation](https://www.bitmex.com/app/restAPI).\n\n*All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want\nto have the quickest possible data without being subject to ratelimits.\n\n##### Return Types\n\nBy default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.\n\n##### Trade Data Queries\n\n*This is only a small subset of what is available, to get you started.*\n\nFill in the parameters and click the `Try it out!` button to try any of these queries.\n\n* [Pricing Data](#!/Quote/Quote_get)\n\n* [Trade Data](#!/Trade/Trade_get)\n\n* [OrderBook Data](#!/OrderBook/OrderBook_getL2)\n\n* [Settlement Data](#!/Settlement/Settlement_get)\n\n* [Exchange Statistics](#!/Stats/Stats_history)\n\nEvery function of the BitMEX.com platform is exposed here and documented. Many more functions are available.\n\n---\n\n## All API Endpoints\n\nClick to expand a section.\n",
     "version" : "1.2.0",
     "title" : "BitMEX API",
     "termsOfService" : "https://www.bitmex.com/app/terms",
@@ -15,7 +15,7 @@
   }, {
     "name" : "Announcement"
   }, {
-    "name" : "ApiKey"
+    "name" : "APIKey"
   }, {
     "name" : "Execution"
   }, {
@@ -133,9 +133,9 @@
     },
     "/apiKey" : {
       "get" : {
-        "tags" : [ "ApiKey" ],
+        "tags" : [ "APIKey" ],
         "summary" : "Get your API Keys.",
-        "operationId" : "ApiKey.get",
+        "operationId" : "APIKey.get",
         "parameters" : [ {
           "name" : "reverse",
           "in" : "query",
@@ -150,7 +150,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/ApiKey"
+                "$ref" : "#/definitions/APIKey"
               }
             }
           },
@@ -175,10 +175,10 @@
         }
       },
       "post" : {
-        "tags" : [ "ApiKey" ],
+        "tags" : [ "APIKey" ],
         "summary" : "Create a new API Key.",
         "description" : "API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.",
-        "operationId" : "ApiKey.new",
+        "operationId" : "APIKey.new",
         "parameters" : [ {
           "name" : "name",
           "in" : "formData",
@@ -216,7 +216,7 @@
           "200" : {
             "description" : "Request was successful",
             "schema" : {
-              "$ref" : "#/definitions/ApiKey"
+              "$ref" : "#/definitions/APIKey"
             }
           },
           "400" : {
@@ -240,9 +240,9 @@
         }
       },
       "delete" : {
-        "tags" : [ "ApiKey" ],
+        "tags" : [ "APIKey" ],
         "summary" : "Remove an API Key.",
-        "operationId" : "ApiKey.remove",
+        "operationId" : "APIKey.remove",
         "parameters" : [ {
           "name" : "apiKeyID",
           "in" : "formData",
@@ -280,9 +280,9 @@
     },
     "/apiKey/disable" : {
       "post" : {
-        "tags" : [ "ApiKey" ],
+        "tags" : [ "APIKey" ],
         "summary" : "Disable an API Key.",
-        "operationId" : "ApiKey.disable",
+        "operationId" : "APIKey.disable",
         "parameters" : [ {
           "name" : "apiKeyID",
           "in" : "formData",
@@ -294,7 +294,7 @@
           "200" : {
             "description" : "Request was successful",
             "schema" : {
-              "$ref" : "#/definitions/ApiKey"
+              "$ref" : "#/definitions/APIKey"
             }
           },
           "400" : {
@@ -320,9 +320,9 @@
     },
     "/apiKey/enable" : {
       "post" : {
-        "tags" : [ "ApiKey" ],
+        "tags" : [ "APIKey" ],
         "summary" : "Enable an API Key.",
-        "operationId" : "ApiKey.enable",
+        "operationId" : "APIKey.enable",
         "parameters" : [ {
           "name" : "apiKeyID",
           "in" : "formData",
@@ -334,7 +334,7 @@
           "200" : {
             "description" : "Request was successful",
             "schema" : {
-              "$ref" : "#/definitions/ApiKey"
+              "$ref" : "#/definitions/APIKey"
             }
           },
           "400" : {
@@ -386,6 +386,13 @@
           "required" : false,
           "type" : "boolean",
           "default" : true
+        }, {
+          "name" : "channelID",
+          "in" : "query",
+          "description" : "Channel id. GET /chat/channels for ids. Leave blank for all.",
+          "required" : false,
+          "type" : "number",
+          "format" : "double"
         } ],
         "responses" : {
           "200" : {
@@ -427,12 +434,57 @@
           "required" : true,
           "type" : "string",
           "maximum" : 500.0
+        }, {
+          "name" : "channelID",
+          "in" : "formData",
+          "description" : "Channel to post to. Default 1 (English).",
+          "required" : false,
+          "type" : "number",
+          "default" : 1.0,
+          "format" : "double"
         } ],
         "responses" : {
           "200" : {
             "description" : "Request was successful",
             "schema" : {
               "$ref" : "#/definitions/Chat"
+            }
+          },
+          "400" : {
+            "description" : "Parameter Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/chat/channels" : {
+      "get" : {
+        "tags" : [ "Chat" ],
+        "summary" : "Get available channels.",
+        "operationId" : "Chat.getChannels",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Request was successful",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/ChatChannel"
+              }
             }
           },
           "400" : {
@@ -1436,7 +1488,7 @@
         }, {
           "name" : "execInst",
           "in" : "formData",
-          "description" : "Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, LastPrice, Close, ReduceOnly. 'AllOrNone' instruction requires `displayQty` to be 0. 'MarkPrice' or 'LastPrice' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders.",
+          "description" : "Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. 'AllOrNone' instruction requires `displayQty` to be 0. 'MarkPrice' or 'LastPrice' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders.",
           "required" : false,
           "type" : "string"
         }, {
@@ -1482,7 +1534,7 @@
       "put" : {
         "tags" : [ "Order" ],
         "summary" : "Amend the quantity or price of an open order.",
-        "description" : "<p>Send an <code>orderID</code> or <code>clOrdID</code> to identify the order you wish to amend.</p>\n<p>Both order quantity and price can be amended. Only one <code>qty</code> field can be used to amend.</p>\n<p>Use the <code>leavesQty</code> field to specify how much of the order you wish to remain open. This can be useful\nif you want to adjust your position&#39;s delta by a certain amount, regardless of how much of the order has\nalready filled.</p>\n<p>Use the <code>simpleOrderQty</code> and <code>simpleLeavesQty</code> fields to specify order size in Bitcoin, rather than contracts.\nThese fields will round up to the nearest contract.</p>\n<p>Like order placement, amending can be done in bulk. Simply send a request to <code>PUT /api/v1/order/bulk</code> with\na JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, each object containing the fields used in this endpoint.</p>\n",
+        "description" : "Send an `orderID` or `origClOrdID` to identify the order you wish to amend.\n\nBoth order quantity and price can be amended. Only one `qty` field can be used to amend.\n\nUse the `leavesQty` field to specify how much of the order you wish to remain open. This can be useful\nif you want to adjust your position's delta by a certain amount, regardless of how much of the order has\nalready filled.\n\nUse the `simpleOrderQty` and `simpleLeavesQty` fields to specify order size in Bitcoin, rather than contracts.\nThese fields will round up to the nearest contract.\n\nLike order placement, amending can be done in bulk. Simply send a request to `PUT /api/v1/order/bulk` with\na JSON body of the shape: `{\"orders\": [{...}, {...}]}`, each object containing the fields used in this endpoint.\n",
         "operationId" : "Order.amend",
         "parameters" : [ {
           "name" : "orderID",
@@ -1491,9 +1543,15 @@
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "clOrdID",
+          "name" : "origClOrdID",
           "in" : "formData",
           "description" : "Client Order ID. See POST /order.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "clOrdID",
+          "in" : "formData",
+          "description" : "Optional new Client Order ID, requires `origClOrdID`.",
           "required" : false,
           "type" : "string"
         }, {
@@ -1825,7 +1883,7 @@
       "post" : {
         "tags" : [ "Order" ],
         "summary" : "Close a position. [Deprecated, use POST /order with execInst: 'Close']",
-        "description" : "If no `price` is specified, a market order will be submitted to close the whole of your position. + This will also close all other open orders in this symbol.",
+        "description" : "If no `price` is specified, a market order will be submitted to close the whole of your position. This will also close all other open orders in this symbol.",
         "operationId" : "Order.closePosition",
         "parameters" : [ {
           "name" : "symbol",
@@ -2101,6 +2159,55 @@
           "required" : true,
           "type" : "number",
           "format" : "double"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request was successful",
+            "schema" : {
+              "description" : "Affected position.",
+              "$ref" : "#/definitions/Position"
+            }
+          },
+          "400" : {
+            "description" : "Parameter Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/position/riskLimit" : {
+      "post" : {
+        "tags" : [ "Position" ],
+        "summary" : "Update your risk limit.",
+        "description" : "Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.",
+        "operationId" : "Position.updateRiskLimit",
+        "parameters" : [ {
+          "name" : "symbol",
+          "in" : "formData",
+          "description" : "Symbol of position to isolate.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "riskLimit",
+          "in" : "formData",
+          "description" : "New Risk Limit, in Satoshis.",
+          "required" : true,
+          "type" : "number",
+          "format" : "int64"
         } ],
         "responses" : {
           "200" : {
@@ -2828,81 +2935,6 @@
           }
         }
       },
-      "post" : {
-        "tags" : [ "User" ],
-        "summary" : "Register a new user.",
-        "operationId" : "User.new",
-        "parameters" : [ {
-          "name" : "email",
-          "in" : "formData",
-          "description" : "Your email address.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "password",
-          "in" : "formData",
-          "description" : "Your password.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "username",
-          "in" : "formData",
-          "description" : "Desired username.",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "firstname",
-          "in" : "formData",
-          "description" : "First name.",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "lastname",
-          "in" : "formData",
-          "description" : "Last name.",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "acceptsTOS",
-          "in" : "formData",
-          "description" : "Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "referrerID",
-          "in" : "formData",
-          "description" : "Optional Referrer ID.",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "country",
-          "in" : "formData",
-          "description" : "Country of residence.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "tfaType",
-          "in" : "formData",
-          "description" : "Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "tfaToken",
-          "in" : "formData",
-          "description" : "Two-Factor Token.",
-          "required" : false,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Request was successful",
-            "schema" : {
-              "description" : "New User.",
-              "$ref" : "#/definitions/User"
-            }
-          }
-        }
-      },
       "put" : {
         "tags" : [ "User" ],
         "summary" : "Update your password, name, and other attributes.",
@@ -3092,32 +3124,6 @@
         }
       }
     },
-    "/user/confirmPasswordReset" : {
-      "post" : {
-        "tags" : [ "User" ],
-        "summary" : "Confirm a password reset.",
-        "operationId" : "User.confirmPasswordReset",
-        "parameters" : [ {
-          "name" : "token",
-          "in" : "formData",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "newPassword",
-          "in" : "formData",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Request was successful",
-            "schema" : {
-              "type" : "boolean"
-            }
-          }
-        }
-      }
-    },
     "/user/confirmWithdrawal" : {
       "post" : {
         "tags" : [ "User" ],
@@ -3184,40 +3190,6 @@
             "description" : "Request was successful",
             "schema" : {
               "type" : "boolean"
-            }
-          }
-        }
-      }
-    },
-    "/user/login" : {
-      "post" : {
-        "tags" : [ "User" ],
-        "summary" : "Log in to BitMEX.",
-        "operationId" : "User.login",
-        "parameters" : [ {
-          "name" : "email",
-          "in" : "formData",
-          "description" : "Your email address.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "password",
-          "in" : "formData",
-          "description" : "Your password.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "token",
-          "in" : "formData",
-          "description" : "OTP Token (YubiKey, Google Authenticator)",
-          "required" : false,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Request was successful",
-            "schema" : {
-              "$ref" : "#/definitions/AccessToken"
             }
           }
         }
@@ -3326,27 +3298,6 @@
         }
       }
     },
-    "/user/requestPasswordReset" : {
-      "post" : {
-        "tags" : [ "User" ],
-        "summary" : "Request a password reset.",
-        "operationId" : "User.requestPasswordReset",
-        "parameters" : [ {
-          "name" : "email",
-          "in" : "formData",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Request was successful",
-            "schema" : {
-              "type" : "boolean"
-            }
-          }
-        }
-      }
-    },
     "/user/requestWithdrawal" : {
       "post" : {
         "tags" : [ "User" ],
@@ -3397,22 +3348,23 @@
         }
       }
     },
-    "/user/resendVerificationEmail" : {
-      "post" : {
+    "/user/wallet" : {
+      "get" : {
         "tags" : [ "User" ],
-        "summary" : "Re-send verification email.",
-        "operationId" : "User.sendVerificationEmail",
+        "summary" : "Get your current wallet information.",
+        "operationId" : "User.getWallet",
         "parameters" : [ {
-          "name" : "email",
-          "in" : "formData",
-          "required" : true,
-          "type" : "string"
+          "name" : "currency",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "default" : "XBt"
         } ],
         "responses" : {
           "200" : {
             "description" : "Request was successful",
             "schema" : {
-              "type" : "boolean"
+              "$ref" : "#/definitions/Wallet"
             }
           }
         }
@@ -3421,8 +3373,33 @@
     "/user/walletHistory" : {
       "get" : {
         "tags" : [ "User" ],
-        "summary" : "Get a history of all of your wallet transactions (deposits and withdrawals).",
+        "summary" : "Get a history of all of your wallet transactions (deposits, withdrawals, PNL).",
         "operationId" : "User.getWalletHistory",
+        "parameters" : [ {
+          "name" : "currency",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "default" : "XBt"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request was successful",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Transaction"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/walletSummary" : {
+      "get" : {
+        "tags" : [ "User" ],
+        "summary" : "Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).",
+        "operationId" : "User.getWalletSummary",
         "parameters" : [ {
           "name" : "currency",
           "in" : "query",
@@ -3468,6 +3445,10 @@
         "fromBot" : {
           "type" : "boolean",
           "default" : false
+        },
+        "channelID" : {
+          "type" : "number",
+          "format" : "double"
         }
       }
     },
@@ -3480,6 +3461,18 @@
         "code" : {
           "type" : "number",
           "format" : "int32"
+        }
+      }
+    },
+    "ChatChannel" : {
+      "required" : [ "name" ],
+      "properties" : {
+        "id" : {
+          "type" : "number",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
         }
       }
     },
@@ -3517,7 +3510,7 @@
         }
       }
     },
-    "ApiKey" : {
+    "APIKey" : {
       "required" : [ "id", "name", "nonce", "secret", "userId" ],
       "properties" : {
         "id" : {
@@ -3543,7 +3536,7 @@
         "permissions" : {
           "type" : "array",
           "items" : {
-            "type" : "string"
+            "$ref" : "#/definitions/x-any"
           }
         },
         "enabled" : {
@@ -3564,10 +3557,12 @@
       "required" : [ "execID" ],
       "properties" : {
         "execID" : {
-          "type" : "string"
+          "type" : "string",
+          "format" : "guid"
         },
         "orderID" : {
-          "type" : "string"
+          "type" : "string",
+          "format" : "guid"
         },
         "clOrdID" : {
           "type" : "string"
@@ -3700,7 +3695,8 @@
           "type" : "string"
         },
         "trdMatchID" : {
-          "type" : "string"
+          "type" : "string",
+          "format" : "guid"
         },
         "execCost" : {
           "type" : "number",
@@ -3851,6 +3847,14 @@
           "type" : "number",
           "format" : "double"
         },
+        "riskLimit" : {
+          "type" : "number",
+          "format" : "int64"
+        },
+        "riskStep" : {
+          "type" : "number",
+          "format" : "int64"
+        },
         "limit" : {
           "type" : "number",
           "format" : "double"
@@ -3859,6 +3863,9 @@
           "type" : "boolean"
         },
         "taxed" : {
+          "type" : "boolean"
+        },
+        "deleverage" : {
           "type" : "boolean"
         },
         "makerFee" : {
@@ -4135,7 +4142,8 @@
       "required" : [ "orderID" ],
       "properties" : {
         "orderID" : {
-          "type" : "string"
+          "type" : "string",
+          "format" : "guid"
         },
         "symbol" : {
           "type" : "string"
@@ -4157,7 +4165,8 @@
       "required" : [ "orderID" ],
       "properties" : {
         "orderID" : {
-          "type" : "string"
+          "type" : "string",
+          "format" : "guid"
         },
         "clOrdID" : {
           "type" : "string"
@@ -4349,12 +4358,28 @@
           "type" : "number",
           "format" : "double"
         },
+        "initMarginReq" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "maintMarginReq" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "riskLimit" : {
+          "type" : "number",
+          "format" : "int64"
+        },
         "leverage" : {
           "type" : "number",
           "format" : "double"
         },
         "crossMargin" : {
           "type" : "boolean"
+        },
+        "deleveragePercentile" : {
+          "type" : "number",
+          "format" : "double"
         },
         "rebalancedPnl" : {
           "type" : "number",
@@ -4484,6 +4509,10 @@
           "format" : "double"
         },
         "markValue" : {
+          "type" : "number",
+          "format" : "int64"
+        },
+        "riskValue" : {
           "type" : "number",
           "format" : "int64"
         },
@@ -4669,6 +4698,7 @@
       }
     },
     "Quote" : {
+      "required" : [ "symbol", "timestamp" ],
       "properties" : {
         "timestamp" : {
           "type" : "string",
@@ -4692,10 +4722,6 @@
         "askSize" : {
           "type" : "number",
           "format" : "int64"
-        },
-        "id" : {
-          "type" : "number",
-          "format" : "double"
         }
       }
     },
@@ -4805,6 +4831,7 @@
       }
     },
     "Trade" : {
+      "required" : [ "symbol", "timestamp" ],
       "properties" : {
         "timestamp" : {
           "type" : "string",
@@ -4828,7 +4855,8 @@
           "type" : "string"
         },
         "trdMatchID" : {
-          "type" : "string"
+          "type" : "string",
+          "format" : "guid"
         },
         "grossValue" : {
           "type" : "number",
@@ -4841,14 +4869,11 @@
         "foreignNotional" : {
           "type" : "number",
           "format" : "double"
-        },
-        "id" : {
-          "type" : "number",
-          "format" : "double"
         }
       }
     },
     "TradeBin" : {
+      "required" : [ "symbol", "timestamp" ],
       "properties" : {
         "timestamp" : {
           "type" : "string",
@@ -4900,10 +4925,77 @@
         "foreignNotional" : {
           "type" : "number",
           "format" : "double"
-        },
-        "id" : {
+        }
+      }
+    },
+    "Wallet" : {
+      "required" : [ "account", "currency" ],
+      "properties" : {
+        "account" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "int64"
+        },
+        "currency" : {
+          "type" : "string"
+        },
+        "prevDeposited" : {
+          "type" : "number",
+          "format" : "int64"
+        },
+        "prevWithdrawn" : {
+          "type" : "number",
+          "format" : "int64"
+        },
+        "prevAmount" : {
+          "type" : "number",
+          "format" : "int64"
+        },
+        "prevTimestamp" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "deltaDeposited" : {
+          "type" : "number",
+          "format" : "int64"
+        },
+        "deltaWithdrawn" : {
+          "type" : "number",
+          "format" : "int64"
+        },
+        "deltaAmount" : {
+          "type" : "number",
+          "format" : "int64"
+        },
+        "deposited" : {
+          "type" : "number",
+          "format" : "int64"
+        },
+        "withdrawn" : {
+          "type" : "number",
+          "format" : "int64"
+        },
+        "amount" : {
+          "type" : "number",
+          "format" : "int64"
+        },
+        "pendingCredit" : {
+          "type" : "number",
+          "format" : "int64"
+        },
+        "pendingDebit" : {
+          "type" : "number",
+          "format" : "int64"
+        },
+        "confirmedDebit" : {
+          "type" : "number",
+          "format" : "int64"
+        },
+        "timestamp" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "addr" : {
+          "type" : "string"
         }
       }
     },
@@ -4911,7 +5003,8 @@
       "required" : [ "transactID" ],
       "properties" : {
         "transactID" : {
-          "type" : "string"
+          "type" : "string",
+          "format" : "guid"
         },
         "account" : {
           "type" : "number",
@@ -5052,9 +5145,6 @@
         "lastname" : {
           "type" : "string"
         },
-        "status" : {
-          "type" : "string"
-        },
         "username" : {
           "type" : "string"
         },
@@ -5063,10 +5153,6 @@
         },
         "phone" : {
           "type" : "string"
-        },
-        "countryCode" : {
-          "type" : "number",
-          "format" : "int32"
         },
         "created" : {
           "type" : "string",
@@ -5093,23 +5179,22 @@
         "country" : {
           "type" : "string",
           "maxLength" : 3
-        },
-        "disabled" : {
-          "type" : "boolean",
-          "default" : false
         }
       }
     },
     "UserCommission" : {
       "properties" : {
         "makerFee" : {
-          "type" : "string"
+          "type" : "number",
+          "format" : "double"
         },
         "takerFee" : {
-          "type" : "string"
+          "type" : "number",
+          "format" : "double"
         },
-        "insuranceFee" : {
-          "type" : "string"
+        "settlementFee" : {
+          "type" : "number",
+          "format" : "double"
         }
       }
     },
@@ -5289,6 +5374,10 @@
           "type" : "string",
           "format" : "date"
         },
+        "chatChannelID" : {
+          "type" : "number",
+          "format" : "double"
+        },
         "colorTheme" : {
           "type" : "string"
         },
@@ -5327,11 +5416,9 @@
             "type" : "string"
           }
         },
-        "hidePhoneConfirm" : {
-          "type" : "boolean"
-        },
         "locale" : {
-          "type" : "string"
+          "type" : "string",
+          "default" : "en-US"
         },
         "msgsSeen" : {
           "type" : "array",
@@ -5340,8 +5427,7 @@
           }
         },
         "orderBookBinning" : {
-          "type" : "number",
-          "format" : "int32"
+          "$ref" : "#/definitions/x-any"
         },
         "orderBookType" : {
           "type" : "string"

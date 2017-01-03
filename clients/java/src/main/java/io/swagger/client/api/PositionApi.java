@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-05T09:40:48.217-05:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-01-03T10:34:33.567-06:00")
 public class PositionApi {
   private ApiClient apiClient;
 
@@ -211,6 +211,57 @@ if (amount != null)
       localVarFormParams.put("symbol", symbol);
 if (leverage != null)
       localVarFormParams.put("leverage", leverage);
+
+    final String[] localVarAccepts = {
+      "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json", "application/x-www-form-urlencoded"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] {  };
+
+    GenericType<Position> localVarReturnType = new GenericType<Position>() {};
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * Update your risk limit.
+   * Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+   * @param symbol Symbol of position to isolate. (required)
+   * @param riskLimit New Risk Limit, in Satoshis. (required)
+   * @return Position
+   * @throws ApiException if fails to make API call
+   */
+  public Position positionUpdateRiskLimit(String symbol, BigDecimal riskLimit) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'symbol' is set
+    if (symbol == null) {
+      throw new ApiException(400, "Missing the required parameter 'symbol' when calling positionUpdateRiskLimit");
+    }
+    
+    // verify the required parameter 'riskLimit' is set
+    if (riskLimit == null) {
+      throw new ApiException(400, "Missing the required parameter 'riskLimit' when calling positionUpdateRiskLimit");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/position/riskLimit".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    if (symbol != null)
+      localVarFormParams.put("symbol", symbol);
+if (riskLimit != null)
+      localVarFormParams.put("riskLimit", riskLimit);
 
     final String[] localVarAccepts = {
       "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"

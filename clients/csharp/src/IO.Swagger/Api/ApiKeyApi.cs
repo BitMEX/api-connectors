@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -33,7 +33,7 @@ namespace IO.Swagger.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IApiKeyApi : IApiAccessor
+    public interface IAPIKeyApi : IApiAccessor
     {
         #region Synchronous Operations
         /// <summary>
@@ -44,8 +44,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
-        /// <returns>ApiKey</returns>
-        ApiKey ApiKeyDisable (string apiKeyID);
+        /// <returns>APIKey</returns>
+        APIKey APIKeyDisable (string apiKeyID);
 
         /// <summary>
         /// Disable an API Key.
@@ -55,8 +55,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
-        /// <returns>ApiResponse of ApiKey</returns>
-        ApiResponse<ApiKey> ApiKeyDisableWithHttpInfo (string apiKeyID);
+        /// <returns>ApiResponse of APIKey</returns>
+        ApiResponse<APIKey> APIKeyDisableWithHttpInfo (string apiKeyID);
         /// <summary>
         /// Enable an API Key.
         /// </summary>
@@ -65,8 +65,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
-        /// <returns>ApiKey</returns>
-        ApiKey ApiKeyEnable (string apiKeyID);
+        /// <returns>APIKey</returns>
+        APIKey APIKeyEnable (string apiKeyID);
 
         /// <summary>
         /// Enable an API Key.
@@ -76,8 +76,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
-        /// <returns>ApiResponse of ApiKey</returns>
-        ApiResponse<ApiKey> ApiKeyEnableWithHttpInfo (string apiKeyID);
+        /// <returns>ApiResponse of APIKey</returns>
+        ApiResponse<APIKey> APIKeyEnableWithHttpInfo (string apiKeyID);
         /// <summary>
         /// Get your API Keys.
         /// </summary>
@@ -86,8 +86,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to false)</param>
-        /// <returns>List&lt;ApiKey&gt;</returns>
-        List<ApiKey> ApiKeyGet (bool? reverse = null);
+        /// <returns>List&lt;APIKey&gt;</returns>
+        List<APIKey> APIKeyGet (bool? reverse = null);
 
         /// <summary>
         /// Get your API Keys.
@@ -97,8 +97,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to false)</param>
-        /// <returns>ApiResponse of List&lt;ApiKey&gt;</returns>
-        ApiResponse<List<ApiKey>> ApiKeyGetWithHttpInfo (bool? reverse = null);
+        /// <returns>ApiResponse of List&lt;APIKey&gt;</returns>
+        ApiResponse<List<APIKey>> APIKeyGetWithHttpInfo (bool? reverse = null);
         /// <summary>
         /// Create a new API Key.
         /// </summary>
@@ -111,8 +111,8 @@ namespace IO.Swagger.Api
         /// <param name="permissions">Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;]. (optional)</param>
         /// <param name="enabled">Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (optional, default to false)</param>
         /// <param name="token">OTP Token (YubiKey, Google Authenticator) (optional)</param>
-        /// <returns>ApiKey</returns>
-        ApiKey ApiKeyNew (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null);
+        /// <returns>APIKey</returns>
+        APIKey APIKeyNew (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null);
 
         /// <summary>
         /// Create a new API Key.
@@ -126,8 +126,8 @@ namespace IO.Swagger.Api
         /// <param name="permissions">Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;]. (optional)</param>
         /// <param name="enabled">Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (optional, default to false)</param>
         /// <param name="token">OTP Token (YubiKey, Google Authenticator) (optional)</param>
-        /// <returns>ApiResponse of ApiKey</returns>
-        ApiResponse<ApiKey> ApiKeyNewWithHttpInfo (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null);
+        /// <returns>ApiResponse of APIKey</returns>
+        ApiResponse<APIKey> APIKeyNewWithHttpInfo (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null);
         /// <summary>
         /// Remove an API Key.
         /// </summary>
@@ -137,7 +137,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
         /// <returns>InlineResponse200</returns>
-        InlineResponse200 ApiKeyRemove (string apiKeyID);
+        InlineResponse200 APIKeyRemove (string apiKeyID);
 
         /// <summary>
         /// Remove an API Key.
@@ -148,7 +148,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
         /// <returns>ApiResponse of InlineResponse200</returns>
-        ApiResponse<InlineResponse200> ApiKeyRemoveWithHttpInfo (string apiKeyID);
+        ApiResponse<InlineResponse200> APIKeyRemoveWithHttpInfo (string apiKeyID);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -159,8 +159,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
-        /// <returns>Task of ApiKey</returns>
-        System.Threading.Tasks.Task<ApiKey> ApiKeyDisableAsync (string apiKeyID);
+        /// <returns>Task of APIKey</returns>
+        System.Threading.Tasks.Task<APIKey> APIKeyDisableAsync (string apiKeyID);
 
         /// <summary>
         /// Disable an API Key.
@@ -170,8 +170,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
-        /// <returns>Task of ApiResponse (ApiKey)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiKey>> ApiKeyDisableAsyncWithHttpInfo (string apiKeyID);
+        /// <returns>Task of ApiResponse (APIKey)</returns>
+        System.Threading.Tasks.Task<ApiResponse<APIKey>> APIKeyDisableAsyncWithHttpInfo (string apiKeyID);
         /// <summary>
         /// Enable an API Key.
         /// </summary>
@@ -180,8 +180,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
-        /// <returns>Task of ApiKey</returns>
-        System.Threading.Tasks.Task<ApiKey> ApiKeyEnableAsync (string apiKeyID);
+        /// <returns>Task of APIKey</returns>
+        System.Threading.Tasks.Task<APIKey> APIKeyEnableAsync (string apiKeyID);
 
         /// <summary>
         /// Enable an API Key.
@@ -191,8 +191,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
-        /// <returns>Task of ApiResponse (ApiKey)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiKey>> ApiKeyEnableAsyncWithHttpInfo (string apiKeyID);
+        /// <returns>Task of ApiResponse (APIKey)</returns>
+        System.Threading.Tasks.Task<ApiResponse<APIKey>> APIKeyEnableAsyncWithHttpInfo (string apiKeyID);
         /// <summary>
         /// Get your API Keys.
         /// </summary>
@@ -201,8 +201,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to false)</param>
-        /// <returns>Task of List&lt;ApiKey&gt;</returns>
-        System.Threading.Tasks.Task<List<ApiKey>> ApiKeyGetAsync (bool? reverse = null);
+        /// <returns>Task of List&lt;APIKey&gt;</returns>
+        System.Threading.Tasks.Task<List<APIKey>> APIKeyGetAsync (bool? reverse = null);
 
         /// <summary>
         /// Get your API Keys.
@@ -212,8 +212,8 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to false)</param>
-        /// <returns>Task of ApiResponse (List&lt;ApiKey&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<ApiKey>>> ApiKeyGetAsyncWithHttpInfo (bool? reverse = null);
+        /// <returns>Task of ApiResponse (List&lt;APIKey&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<APIKey>>> APIKeyGetAsyncWithHttpInfo (bool? reverse = null);
         /// <summary>
         /// Create a new API Key.
         /// </summary>
@@ -226,8 +226,8 @@ namespace IO.Swagger.Api
         /// <param name="permissions">Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;]. (optional)</param>
         /// <param name="enabled">Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (optional, default to false)</param>
         /// <param name="token">OTP Token (YubiKey, Google Authenticator) (optional)</param>
-        /// <returns>Task of ApiKey</returns>
-        System.Threading.Tasks.Task<ApiKey> ApiKeyNewAsync (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null);
+        /// <returns>Task of APIKey</returns>
+        System.Threading.Tasks.Task<APIKey> APIKeyNewAsync (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null);
 
         /// <summary>
         /// Create a new API Key.
@@ -241,8 +241,8 @@ namespace IO.Swagger.Api
         /// <param name="permissions">Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;]. (optional)</param>
         /// <param name="enabled">Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (optional, default to false)</param>
         /// <param name="token">OTP Token (YubiKey, Google Authenticator) (optional)</param>
-        /// <returns>Task of ApiResponse (ApiKey)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiKey>> ApiKeyNewAsyncWithHttpInfo (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null);
+        /// <returns>Task of ApiResponse (APIKey)</returns>
+        System.Threading.Tasks.Task<ApiResponse<APIKey>> APIKeyNewAsyncWithHttpInfo (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null);
         /// <summary>
         /// Remove an API Key.
         /// </summary>
@@ -252,7 +252,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
         /// <returns>Task of InlineResponse200</returns>
-        System.Threading.Tasks.Task<InlineResponse200> ApiKeyRemoveAsync (string apiKeyID);
+        System.Threading.Tasks.Task<InlineResponse200> APIKeyRemoveAsync (string apiKeyID);
 
         /// <summary>
         /// Remove an API Key.
@@ -263,22 +263,22 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
         /// <returns>Task of ApiResponse (InlineResponse200)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> ApiKeyRemoveAsyncWithHttpInfo (string apiKeyID);
+        System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> APIKeyRemoveAsyncWithHttpInfo (string apiKeyID);
         #endregion Asynchronous Operations
     }
 
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class ApiKeyApi : IApiKeyApi
+    public partial class APIKeyApi : IAPIKeyApi
     {
         private IO.Swagger.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiKeyApi"/> class.
+        /// Initializes a new instance of the <see cref="APIKeyApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public ApiKeyApi(String basePath)
+        public APIKeyApi(String basePath)
         {
             this.Configuration = new Configuration(new ApiClient(basePath));
 
@@ -292,12 +292,12 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiKeyApi"/> class
+        /// Initializes a new instance of the <see cref="APIKeyApi"/> class
         /// using Configuration object
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public ApiKeyApi(Configuration configuration = null)
+        public APIKeyApi(Configuration configuration = null)
         {
             if (configuration == null) // use the default one in Configuration
                 this.Configuration = Configuration.Default;
@@ -381,10 +381,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
-        /// <returns>ApiKey</returns>
-        public ApiKey ApiKeyDisable (string apiKeyID)
+        /// <returns>APIKey</returns>
+        public APIKey APIKeyDisable (string apiKeyID)
         {
-             ApiResponse<ApiKey> localVarResponse = ApiKeyDisableWithHttpInfo(apiKeyID);
+             ApiResponse<APIKey> localVarResponse = APIKeyDisableWithHttpInfo(apiKeyID);
              return localVarResponse.Data;
         }
 
@@ -393,12 +393,12 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
-        /// <returns>ApiResponse of ApiKey</returns>
-        public ApiResponse< ApiKey > ApiKeyDisableWithHttpInfo (string apiKeyID)
+        /// <returns>ApiResponse of APIKey</returns>
+        public ApiResponse< APIKey > APIKeyDisableWithHttpInfo (string apiKeyID)
         {
             // verify the required parameter 'apiKeyID' is set
             if (apiKeyID == null)
-                throw new ApiException(400, "Missing required parameter 'apiKeyID' when calling ApiKeyApi->ApiKeyDisable");
+                throw new ApiException(400, "Missing required parameter 'apiKeyID' when calling APIKeyApi->APIKeyDisable");
 
             var localVarPath = "/apiKey/disable";
             var localVarPathParams = new Dictionary<String, String>();
@@ -442,13 +442,13 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ApiKeyDisable", localVarResponse);
+                Exception exception = ExceptionFactory("APIKeyDisable", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ApiKey>(localVarStatusCode,
+            return new ApiResponse<APIKey>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ApiKey) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKey)));
+                (APIKey) Configuration.ApiClient.Deserialize(localVarResponse, typeof(APIKey)));
             
         }
 
@@ -457,10 +457,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
-        /// <returns>Task of ApiKey</returns>
-        public async System.Threading.Tasks.Task<ApiKey> ApiKeyDisableAsync (string apiKeyID)
+        /// <returns>Task of APIKey</returns>
+        public async System.Threading.Tasks.Task<APIKey> APIKeyDisableAsync (string apiKeyID)
         {
-             ApiResponse<ApiKey> localVarResponse = await ApiKeyDisableAsyncWithHttpInfo(apiKeyID);
+             ApiResponse<APIKey> localVarResponse = await APIKeyDisableAsyncWithHttpInfo(apiKeyID);
              return localVarResponse.Data;
 
         }
@@ -470,12 +470,12 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
-        /// <returns>Task of ApiResponse (ApiKey)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiKey>> ApiKeyDisableAsyncWithHttpInfo (string apiKeyID)
+        /// <returns>Task of ApiResponse (APIKey)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<APIKey>> APIKeyDisableAsyncWithHttpInfo (string apiKeyID)
         {
             // verify the required parameter 'apiKeyID' is set
             if (apiKeyID == null)
-                throw new ApiException(400, "Missing required parameter 'apiKeyID' when calling ApiKeyApi->ApiKeyDisable");
+                throw new ApiException(400, "Missing required parameter 'apiKeyID' when calling APIKeyApi->APIKeyDisable");
 
             var localVarPath = "/apiKey/disable";
             var localVarPathParams = new Dictionary<String, String>();
@@ -519,13 +519,13 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ApiKeyDisable", localVarResponse);
+                Exception exception = ExceptionFactory("APIKeyDisable", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ApiKey>(localVarStatusCode,
+            return new ApiResponse<APIKey>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ApiKey) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKey)));
+                (APIKey) Configuration.ApiClient.Deserialize(localVarResponse, typeof(APIKey)));
             
         }
 
@@ -534,10 +534,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
-        /// <returns>ApiKey</returns>
-        public ApiKey ApiKeyEnable (string apiKeyID)
+        /// <returns>APIKey</returns>
+        public APIKey APIKeyEnable (string apiKeyID)
         {
-             ApiResponse<ApiKey> localVarResponse = ApiKeyEnableWithHttpInfo(apiKeyID);
+             ApiResponse<APIKey> localVarResponse = APIKeyEnableWithHttpInfo(apiKeyID);
              return localVarResponse.Data;
         }
 
@@ -546,12 +546,12 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
-        /// <returns>ApiResponse of ApiKey</returns>
-        public ApiResponse< ApiKey > ApiKeyEnableWithHttpInfo (string apiKeyID)
+        /// <returns>ApiResponse of APIKey</returns>
+        public ApiResponse< APIKey > APIKeyEnableWithHttpInfo (string apiKeyID)
         {
             // verify the required parameter 'apiKeyID' is set
             if (apiKeyID == null)
-                throw new ApiException(400, "Missing required parameter 'apiKeyID' when calling ApiKeyApi->ApiKeyEnable");
+                throw new ApiException(400, "Missing required parameter 'apiKeyID' when calling APIKeyApi->APIKeyEnable");
 
             var localVarPath = "/apiKey/enable";
             var localVarPathParams = new Dictionary<String, String>();
@@ -595,13 +595,13 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ApiKeyEnable", localVarResponse);
+                Exception exception = ExceptionFactory("APIKeyEnable", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ApiKey>(localVarStatusCode,
+            return new ApiResponse<APIKey>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ApiKey) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKey)));
+                (APIKey) Configuration.ApiClient.Deserialize(localVarResponse, typeof(APIKey)));
             
         }
 
@@ -610,10 +610,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
-        /// <returns>Task of ApiKey</returns>
-        public async System.Threading.Tasks.Task<ApiKey> ApiKeyEnableAsync (string apiKeyID)
+        /// <returns>Task of APIKey</returns>
+        public async System.Threading.Tasks.Task<APIKey> APIKeyEnableAsync (string apiKeyID)
         {
-             ApiResponse<ApiKey> localVarResponse = await ApiKeyEnableAsyncWithHttpInfo(apiKeyID);
+             ApiResponse<APIKey> localVarResponse = await APIKeyEnableAsyncWithHttpInfo(apiKeyID);
              return localVarResponse.Data;
 
         }
@@ -623,12 +623,12 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
-        /// <returns>Task of ApiResponse (ApiKey)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiKey>> ApiKeyEnableAsyncWithHttpInfo (string apiKeyID)
+        /// <returns>Task of ApiResponse (APIKey)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<APIKey>> APIKeyEnableAsyncWithHttpInfo (string apiKeyID)
         {
             // verify the required parameter 'apiKeyID' is set
             if (apiKeyID == null)
-                throw new ApiException(400, "Missing required parameter 'apiKeyID' when calling ApiKeyApi->ApiKeyEnable");
+                throw new ApiException(400, "Missing required parameter 'apiKeyID' when calling APIKeyApi->APIKeyEnable");
 
             var localVarPath = "/apiKey/enable";
             var localVarPathParams = new Dictionary<String, String>();
@@ -672,13 +672,13 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ApiKeyEnable", localVarResponse);
+                Exception exception = ExceptionFactory("APIKeyEnable", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ApiKey>(localVarStatusCode,
+            return new ApiResponse<APIKey>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ApiKey) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKey)));
+                (APIKey) Configuration.ApiClient.Deserialize(localVarResponse, typeof(APIKey)));
             
         }
 
@@ -687,10 +687,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to false)</param>
-        /// <returns>List&lt;ApiKey&gt;</returns>
-        public List<ApiKey> ApiKeyGet (bool? reverse = null)
+        /// <returns>List&lt;APIKey&gt;</returns>
+        public List<APIKey> APIKeyGet (bool? reverse = null)
         {
-             ApiResponse<List<ApiKey>> localVarResponse = ApiKeyGetWithHttpInfo(reverse);
+             ApiResponse<List<APIKey>> localVarResponse = APIKeyGetWithHttpInfo(reverse);
              return localVarResponse.Data;
         }
 
@@ -699,8 +699,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to false)</param>
-        /// <returns>ApiResponse of List&lt;ApiKey&gt;</returns>
-        public ApiResponse< List<ApiKey> > ApiKeyGetWithHttpInfo (bool? reverse = null)
+        /// <returns>ApiResponse of List&lt;APIKey&gt;</returns>
+        public ApiResponse< List<APIKey> > APIKeyGetWithHttpInfo (bool? reverse = null)
         {
 
             var localVarPath = "/apiKey";
@@ -745,13 +745,13 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ApiKeyGet", localVarResponse);
+                Exception exception = ExceptionFactory("APIKeyGet", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<List<ApiKey>>(localVarStatusCode,
+            return new ApiResponse<List<APIKey>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<ApiKey>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<ApiKey>)));
+                (List<APIKey>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<APIKey>)));
             
         }
 
@@ -760,10 +760,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to false)</param>
-        /// <returns>Task of List&lt;ApiKey&gt;</returns>
-        public async System.Threading.Tasks.Task<List<ApiKey>> ApiKeyGetAsync (bool? reverse = null)
+        /// <returns>Task of List&lt;APIKey&gt;</returns>
+        public async System.Threading.Tasks.Task<List<APIKey>> APIKeyGetAsync (bool? reverse = null)
         {
-             ApiResponse<List<ApiKey>> localVarResponse = await ApiKeyGetAsyncWithHttpInfo(reverse);
+             ApiResponse<List<APIKey>> localVarResponse = await APIKeyGetAsyncWithHttpInfo(reverse);
              return localVarResponse.Data;
 
         }
@@ -773,8 +773,8 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to false)</param>
-        /// <returns>Task of ApiResponse (List&lt;ApiKey&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<ApiKey>>> ApiKeyGetAsyncWithHttpInfo (bool? reverse = null)
+        /// <returns>Task of ApiResponse (List&lt;APIKey&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<APIKey>>> APIKeyGetAsyncWithHttpInfo (bool? reverse = null)
         {
 
             var localVarPath = "/apiKey";
@@ -819,13 +819,13 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ApiKeyGet", localVarResponse);
+                Exception exception = ExceptionFactory("APIKeyGet", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<List<ApiKey>>(localVarStatusCode,
+            return new ApiResponse<List<APIKey>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<ApiKey>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<ApiKey>)));
+                (List<APIKey>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<APIKey>)));
             
         }
 
@@ -838,10 +838,10 @@ namespace IO.Swagger.Api
         /// <param name="permissions">Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;]. (optional)</param>
         /// <param name="enabled">Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (optional, default to false)</param>
         /// <param name="token">OTP Token (YubiKey, Google Authenticator) (optional)</param>
-        /// <returns>ApiKey</returns>
-        public ApiKey ApiKeyNew (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null)
+        /// <returns>APIKey</returns>
+        public APIKey APIKeyNew (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null)
         {
-             ApiResponse<ApiKey> localVarResponse = ApiKeyNewWithHttpInfo(name, cidr, permissions, enabled, token);
+             ApiResponse<APIKey> localVarResponse = APIKeyNewWithHttpInfo(name, cidr, permissions, enabled, token);
              return localVarResponse.Data;
         }
 
@@ -854,8 +854,8 @@ namespace IO.Swagger.Api
         /// <param name="permissions">Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;]. (optional)</param>
         /// <param name="enabled">Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (optional, default to false)</param>
         /// <param name="token">OTP Token (YubiKey, Google Authenticator) (optional)</param>
-        /// <returns>ApiResponse of ApiKey</returns>
-        public ApiResponse< ApiKey > ApiKeyNewWithHttpInfo (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null)
+        /// <returns>ApiResponse of APIKey</returns>
+        public ApiResponse< APIKey > APIKeyNewWithHttpInfo (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null)
         {
 
             var localVarPath = "/apiKey";
@@ -904,13 +904,13 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ApiKeyNew", localVarResponse);
+                Exception exception = ExceptionFactory("APIKeyNew", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ApiKey>(localVarStatusCode,
+            return new ApiResponse<APIKey>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ApiKey) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKey)));
+                (APIKey) Configuration.ApiClient.Deserialize(localVarResponse, typeof(APIKey)));
             
         }
 
@@ -923,10 +923,10 @@ namespace IO.Swagger.Api
         /// <param name="permissions">Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;]. (optional)</param>
         /// <param name="enabled">Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (optional, default to false)</param>
         /// <param name="token">OTP Token (YubiKey, Google Authenticator) (optional)</param>
-        /// <returns>Task of ApiKey</returns>
-        public async System.Threading.Tasks.Task<ApiKey> ApiKeyNewAsync (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null)
+        /// <returns>Task of APIKey</returns>
+        public async System.Threading.Tasks.Task<APIKey> APIKeyNewAsync (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null)
         {
-             ApiResponse<ApiKey> localVarResponse = await ApiKeyNewAsyncWithHttpInfo(name, cidr, permissions, enabled, token);
+             ApiResponse<APIKey> localVarResponse = await APIKeyNewAsyncWithHttpInfo(name, cidr, permissions, enabled, token);
              return localVarResponse.Data;
 
         }
@@ -940,8 +940,8 @@ namespace IO.Swagger.Api
         /// <param name="permissions">Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;]. (optional)</param>
         /// <param name="enabled">Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (optional, default to false)</param>
         /// <param name="token">OTP Token (YubiKey, Google Authenticator) (optional)</param>
-        /// <returns>Task of ApiResponse (ApiKey)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiKey>> ApiKeyNewAsyncWithHttpInfo (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null)
+        /// <returns>Task of ApiResponse (APIKey)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<APIKey>> APIKeyNewAsyncWithHttpInfo (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null)
         {
 
             var localVarPath = "/apiKey";
@@ -990,13 +990,13 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ApiKeyNew", localVarResponse);
+                Exception exception = ExceptionFactory("APIKeyNew", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ApiKey>(localVarStatusCode,
+            return new ApiResponse<APIKey>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ApiKey) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKey)));
+                (APIKey) Configuration.ApiClient.Deserialize(localVarResponse, typeof(APIKey)));
             
         }
 
@@ -1006,9 +1006,9 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
         /// <returns>InlineResponse200</returns>
-        public InlineResponse200 ApiKeyRemove (string apiKeyID)
+        public InlineResponse200 APIKeyRemove (string apiKeyID)
         {
-             ApiResponse<InlineResponse200> localVarResponse = ApiKeyRemoveWithHttpInfo(apiKeyID);
+             ApiResponse<InlineResponse200> localVarResponse = APIKeyRemoveWithHttpInfo(apiKeyID);
              return localVarResponse.Data;
         }
 
@@ -1018,11 +1018,11 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
         /// <returns>ApiResponse of InlineResponse200</returns>
-        public ApiResponse< InlineResponse200 > ApiKeyRemoveWithHttpInfo (string apiKeyID)
+        public ApiResponse< InlineResponse200 > APIKeyRemoveWithHttpInfo (string apiKeyID)
         {
             // verify the required parameter 'apiKeyID' is set
             if (apiKeyID == null)
-                throw new ApiException(400, "Missing required parameter 'apiKeyID' when calling ApiKeyApi->ApiKeyRemove");
+                throw new ApiException(400, "Missing required parameter 'apiKeyID' when calling APIKeyApi->APIKeyRemove");
 
             var localVarPath = "/apiKey";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1066,7 +1066,7 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ApiKeyRemove", localVarResponse);
+                Exception exception = ExceptionFactory("APIKeyRemove", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1082,9 +1082,9 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
         /// <returns>Task of InlineResponse200</returns>
-        public async System.Threading.Tasks.Task<InlineResponse200> ApiKeyRemoveAsync (string apiKeyID)
+        public async System.Threading.Tasks.Task<InlineResponse200> APIKeyRemoveAsync (string apiKeyID)
         {
-             ApiResponse<InlineResponse200> localVarResponse = await ApiKeyRemoveAsyncWithHttpInfo(apiKeyID);
+             ApiResponse<InlineResponse200> localVarResponse = await APIKeyRemoveAsyncWithHttpInfo(apiKeyID);
              return localVarResponse.Data;
 
         }
@@ -1095,11 +1095,11 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKeyID">API Key ID (public component).</param>
         /// <returns>Task of ApiResponse (InlineResponse200)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> ApiKeyRemoveAsyncWithHttpInfo (string apiKeyID)
+        public async System.Threading.Tasks.Task<ApiResponse<InlineResponse200>> APIKeyRemoveAsyncWithHttpInfo (string apiKeyID)
         {
             // verify the required parameter 'apiKeyID' is set
             if (apiKeyID == null)
-                throw new ApiException(400, "Missing required parameter 'apiKeyID' when calling ApiKeyApi->ApiKeyRemove");
+                throw new ApiException(400, "Missing required parameter 'apiKeyID' when calling APIKeyApi->APIKeyRemove");
 
             var localVarPath = "/apiKey";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1143,7 +1143,7 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ApiKeyRemove", localVarResponse);
+                Exception exception = ExceptionFactory("APIKeyRemove", localVarResponse);
                 if (exception != null) throw exception;
             }
 

@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**position_isolate_margin**](PositionApi.md#position_isolate_margin) | **POST** /position/isolate | Enable isolated margin or cross margin per-position.
 [**position_transfer_isolated_margin**](PositionApi.md#position_transfer_isolated_margin) | **POST** /position/transferMargin | Transfer equity in or out of a position.
 [**position_update_leverage**](PositionApi.md#position_update_leverage) | **POST** /position/leverage | Choose leverage for a position.
+[**position_update_risk_limit**](PositionApi.md#position_update_risk_limit) | **POST** /position/riskLimit | Update your risk limit.
 
 
 # **position_get**
@@ -197,6 +198,56 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **String**| Symbol of position to adjust. | 
  **leverage** | **Float**| Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin. | 
+
+### Return type
+
+[**Position**](Position.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+
+
+# **position_update_risk_limit**
+> Position position_update_risk_limit(symbol, risk_limit)
+
+Update your risk limit.
+
+Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+
+api_instance = SwaggerClient::PositionApi.new
+
+symbol = "symbol_example" # String | Symbol of position to isolate.
+
+risk_limit = 3.4 # Float | New Risk Limit, in Satoshis.
+
+
+begin
+  #Update your risk limit.
+  result = api_instance.position_update_risk_limit(symbol, risk_limit)
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling PositionApi->position_update_risk_limit: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Symbol of position to isolate. | 
+ **risk_limit** | **Float**| New Risk Limit, in Satoshis. | 
 
 ### Return type
 

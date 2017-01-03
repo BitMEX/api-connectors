@@ -1,18 +1,18 @@
-# IO.Swagger.Api.ApiKeyApi
+# IO.Swagger.Api.APIKeyApi
 
 All URIs are relative to *https://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ApiKeyDisable**](ApiKeyApi.md#apikeydisable) | **POST** /apiKey/disable | Disable an API Key.
-[**ApiKeyEnable**](ApiKeyApi.md#apikeyenable) | **POST** /apiKey/enable | Enable an API Key.
-[**ApiKeyGet**](ApiKeyApi.md#apikeyget) | **GET** /apiKey | Get your API Keys.
-[**ApiKeyNew**](ApiKeyApi.md#apikeynew) | **POST** /apiKey | Create a new API Key.
-[**ApiKeyRemove**](ApiKeyApi.md#apikeyremove) | **DELETE** /apiKey | Remove an API Key.
+[**APIKeyDisable**](APIKeyApi.md#apikeydisable) | **POST** /apiKey/disable | Disable an API Key.
+[**APIKeyEnable**](APIKeyApi.md#apikeyenable) | **POST** /apiKey/enable | Enable an API Key.
+[**APIKeyGet**](APIKeyApi.md#apikeyget) | **GET** /apiKey | Get your API Keys.
+[**APIKeyNew**](APIKeyApi.md#apikeynew) | **POST** /apiKey | Create a new API Key.
+[**APIKeyRemove**](APIKeyApi.md#apikeyremove) | **DELETE** /apiKey | Remove an API Key.
 
 
-# **ApiKeyDisable**
-> ApiKey ApiKeyDisable (string apiKeyID)
+# **APIKeyDisable**
+> APIKey APIKeyDisable (string apiKeyID)
 
 Disable an API Key.
 
@@ -26,23 +26,23 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class ApiKeyDisableExample
+    public class APIKeyDisableExample
     {
         public void main()
         {
             
-            var apiInstance = new ApiKeyApi();
+            var apiInstance = new APIKeyApi();
             var apiKeyID = apiKeyID_example;  // string | API Key ID (public component).
 
             try
             {
                 // Disable an API Key.
-                ApiKey result = apiInstance.ApiKeyDisable(apiKeyID);
+                APIKey result = apiInstance.APIKeyDisable(apiKeyID);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling ApiKeyApi.ApiKeyDisable: " + e.Message );
+                Debug.Print("Exception when calling APIKeyApi.APIKeyDisable: " + e.Message );
             }
         }
     }
@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**APIKey**](APIKey.md)
 
 ### Authorization
 
@@ -70,8 +70,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **ApiKeyEnable**
-> ApiKey ApiKeyEnable (string apiKeyID)
+# **APIKeyEnable**
+> APIKey APIKeyEnable (string apiKeyID)
 
 Enable an API Key.
 
@@ -85,23 +85,23 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class ApiKeyEnableExample
+    public class APIKeyEnableExample
     {
         public void main()
         {
             
-            var apiInstance = new ApiKeyApi();
+            var apiInstance = new APIKeyApi();
             var apiKeyID = apiKeyID_example;  // string | API Key ID (public component).
 
             try
             {
                 // Enable an API Key.
-                ApiKey result = apiInstance.ApiKeyEnable(apiKeyID);
+                APIKey result = apiInstance.APIKeyEnable(apiKeyID);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling ApiKeyApi.ApiKeyEnable: " + e.Message );
+                Debug.Print("Exception when calling APIKeyApi.APIKeyEnable: " + e.Message );
             }
         }
     }
@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**APIKey**](APIKey.md)
 
 ### Authorization
 
@@ -129,8 +129,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **ApiKeyGet**
-> List<ApiKey> ApiKeyGet (bool? reverse = null)
+# **APIKeyGet**
+> List<APIKey> APIKeyGet (bool? reverse = null)
 
 Get your API Keys.
 
@@ -144,23 +144,23 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class ApiKeyGetExample
+    public class APIKeyGetExample
     {
         public void main()
         {
             
-            var apiInstance = new ApiKeyApi();
+            var apiInstance = new APIKeyApi();
             var reverse = true;  // bool? | If true, will sort results newest first. (optional)  (default to false)
 
             try
             {
                 // Get your API Keys.
-                List&lt;ApiKey&gt; result = apiInstance.ApiKeyGet(reverse);
+                List&lt;APIKey&gt; result = apiInstance.APIKeyGet(reverse);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling ApiKeyApi.ApiKeyGet: " + e.Message );
+                Debug.Print("Exception when calling APIKeyApi.APIKeyGet: " + e.Message );
             }
         }
     }
@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List<ApiKey>**](ApiKey.md)
+[**List<APIKey>**](APIKey.md)
 
 ### Authorization
 
@@ -188,8 +188,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **ApiKeyNew**
-> ApiKey ApiKeyNew (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null)
+# **APIKeyNew**
+> APIKey APIKeyNew (string name = null, string cidr = null, string permissions = null, bool? enabled = null, string token = null)
 
 Create a new API Key.
 
@@ -205,12 +205,12 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class ApiKeyNewExample
+    public class APIKeyNewExample
     {
         public void main()
         {
             
-            var apiInstance = new ApiKeyApi();
+            var apiInstance = new APIKeyApi();
             var name = name_example;  // string | Key name. This name is for reference only. (optional) 
             var cidr = cidr_example;  // string | CIDR block to restrict this key to. To restrict to a single address, append \"/32\", e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. <a href=\"http://software77.net/cidr-101.html\">More on CIDR blocks</a> (optional) 
             var permissions = permissions_example;  // string | Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\"order\", \"withdraw\"]. (optional) 
@@ -220,12 +220,12 @@ namespace Example
             try
             {
                 // Create a new API Key.
-                ApiKey result = apiInstance.ApiKeyNew(name, cidr, permissions, enabled, token);
+                APIKey result = apiInstance.APIKeyNew(name, cidr, permissions, enabled, token);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling ApiKeyApi.ApiKeyNew: " + e.Message );
+                Debug.Print("Exception when calling APIKeyApi.APIKeyNew: " + e.Message );
             }
         }
     }
@@ -244,7 +244,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**APIKey**](APIKey.md)
 
 ### Authorization
 
@@ -257,8 +257,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **ApiKeyRemove**
-> InlineResponse200 ApiKeyRemove (string apiKeyID)
+# **APIKeyRemove**
+> InlineResponse200 APIKeyRemove (string apiKeyID)
 
 Remove an API Key.
 
@@ -272,23 +272,23 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class ApiKeyRemoveExample
+    public class APIKeyRemoveExample
     {
         public void main()
         {
             
-            var apiInstance = new ApiKeyApi();
+            var apiInstance = new APIKeyApi();
             var apiKeyID = apiKeyID_example;  // string | API Key ID (public component).
 
             try
             {
                 // Remove an API Key.
-                InlineResponse200 result = apiInstance.ApiKeyRemove(apiKeyID);
+                InlineResponse200 result = apiInstance.APIKeyRemove(apiKeyID);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling ApiKeyApi.ApiKeyRemove: " + e.Message );
+                Debug.Print("Exception when calling APIKeyApi.APIKeyRemove: " + e.Message );
             }
         }
     }

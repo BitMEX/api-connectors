@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**user_check_referral_code**](UserApi.md#user_check_referral_code) | **GET** /user/checkReferralCode | Check if a referral code is valid.
 [**user_confirm_email**](UserApi.md#user_confirm_email) | **POST** /user/confirmEmail | Confirm your email address with a token.
 [**user_confirm_enable_tfa**](UserApi.md#user_confirm_enable_tfa) | **POST** /user/confirmEnableTFA | Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
-[**user_confirm_password_reset**](UserApi.md#user_confirm_password_reset) | **POST** /user/confirmPasswordReset | Confirm a password reset.
 [**user_confirm_withdrawal**](UserApi.md#user_confirm_withdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
 [**user_disable_tfa**](UserApi.md#user_disable_tfa) | **POST** /user/disableTFA | Disable two-factor auth for this account.
 [**user_get**](UserApi.md#user_get) | **GET** /user | Get your user model.
@@ -16,16 +15,14 @@ Method | HTTP request | Description
 [**user_get_commission**](UserApi.md#user_get_commission) | **GET** /user/commission | Get your account&#39;s commission status.
 [**user_get_deposit_address**](UserApi.md#user_get_deposit_address) | **GET** /user/depositAddress | Get a deposit address.
 [**user_get_margin**](UserApi.md#user_get_margin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
-[**user_get_wallet_history**](UserApi.md#user_get_wallet_history) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits and withdrawals).
-[**user_login**](UserApi.md#user_login) | **POST** /user/login | Log in to BitMEX.
+[**user_get_wallet**](UserApi.md#user_get_wallet) | **GET** /user/wallet | Get your current wallet information.
+[**user_get_wallet_history**](UserApi.md#user_get_wallet_history) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
+[**user_get_wallet_summary**](UserApi.md#user_get_wallet_summary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**user_logout**](UserApi.md#user_logout) | **POST** /user/logout | Log out of BitMEX.
 [**user_logout_all**](UserApi.md#user_logout_all) | **POST** /user/logoutAll | Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
-[**user_new**](UserApi.md#user_new) | **POST** /user | Register a new user.
 [**user_request_enable_tfa**](UserApi.md#user_request_enable_tfa) | **POST** /user/requestEnableTFA | Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
-[**user_request_password_reset**](UserApi.md#user_request_password_reset) | **POST** /user/requestPasswordReset | Request a password reset.
 [**user_request_withdrawal**](UserApi.md#user_request_withdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**user_save_preferences**](UserApi.md#user_save_preferences) | **POST** /user/preferences | Save user preferences.
-[**user_send_verification_email**](UserApi.md#user_send_verification_email) | **POST** /user/resendVerificationEmail | Re-send verification email.
 [**user_update**](UserApi.md#user_update) | **PUT** /user | Update your password, name, and other attributes.
 
 
@@ -197,53 +194,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **str**| Token from your selected TFA type. | 
  **type** | **str**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39; | [optional] 
-
-### Return type
-
-**bool**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **user_confirm_password_reset**
-> bool user_confirm_password_reset(token, new_password)
-
-Confirm a password reset.
-
-### Example 
-```python
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.UserApi()
-token = 'token_example' # str | 
-new_password = 'new_password_example' # str | 
-
-try: 
-    # Confirm a password reset.
-    api_response = api_instance.user_confirm_password_reset(token, new_password)
-    pprint(api_response)
-except ApiException as e:
-    print "Exception when calling UserApi->user_confirm_password_reset: %s\n" % e
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **str**|  | 
- **new_password** | **str**|  | 
 
 ### Return type
 
@@ -565,10 +515,10 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **user_get_wallet_history**
-> list[Transaction] user_get_wallet_history(currency=currency)
+# **user_get_wallet**
+> Wallet user_get_wallet(currency=currency)
 
-Get a history of all of your wallet transactions (deposits and withdrawals).
+Get your current wallet information.
 
 ### Example 
 ```python
@@ -582,7 +532,52 @@ api_instance = swagger_client.UserApi()
 currency = 'XBt' # str |  (optional) (default to XBt)
 
 try: 
-    # Get a history of all of your wallet transactions (deposits and withdrawals).
+    # Get your current wallet information.
+    api_response = api_instance.user_get_wallet(currency=currency)
+    pprint(api_response)
+except ApiException as e:
+    print "Exception when calling UserApi->user_get_wallet: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **str**|  | [optional] [default to XBt]
+
+### Return type
+
+[**Wallet**](Wallet.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_get_wallet_history**
+> list[Transaction] user_get_wallet_history(currency=currency)
+
+Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
+
+### Example 
+```python
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.UserApi()
+currency = 'XBt' # str |  (optional) (default to XBt)
+
+try: 
+    # Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
     api_response = api_instance.user_get_wallet_history(currency=currency)
     pprint(api_response)
 except ApiException as e:
@@ -610,10 +605,10 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **user_login**
-> AccessToken user_login(email, password, token=token)
+# **user_get_wallet_summary**
+> list[Transaction] user_get_wallet_summary(currency=currency)
 
-Log in to BitMEX.
+Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 
 ### Example 
 ```python
@@ -624,29 +619,25 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.UserApi()
-email = 'email_example' # str | Your email address.
-password = 'password_example' # str | Your password.
-token = 'token_example' # str | OTP Token (YubiKey, Google Authenticator) (optional)
+currency = 'XBt' # str |  (optional) (default to XBt)
 
 try: 
-    # Log in to BitMEX.
-    api_response = api_instance.user_login(email, password, token=token)
+    # Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+    api_response = api_instance.user_get_wallet_summary(currency=currency)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_login: %s\n" % e
+    print "Exception when calling UserApi->user_get_wallet_summary: %s\n" % e
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **str**| Your email address. | 
- **password** | **str**| Your password. | 
- **token** | **str**| OTP Token (YubiKey, Google Authenticator) | [optional] 
+ **currency** | **str**|  | [optional] [default to XBt]
 
 ### Return type
 
-[**AccessToken**](AccessToken.md)
+[**list[Transaction]**](Transaction.md)
 
 ### Authorization
 
@@ -740,69 +731,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **user_new**
-> User user_new(email, password, country, username=username, firstname=firstname, lastname=lastname, accepts_tos=accepts_tos, referrer_id=referrer_id, tfa_type=tfa_type, tfa_token=tfa_token)
-
-Register a new user.
-
-### Example 
-```python
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.UserApi()
-email = 'email_example' # str | Your email address.
-password = 'password_example' # str | Your password.
-country = 'country_example' # str | Country of residence.
-username = 'username_example' # str | Desired username. (optional)
-firstname = 'firstname_example' # str | First name. (optional)
-lastname = 'lastname_example' # str | Last name. (optional)
-accepts_tos = 'accepts_tos_example' # str | Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). (optional)
-referrer_id = 'referrer_id_example' # str | Optional Referrer ID. (optional)
-tfa_type = 'tfa_type_example' # str | Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef (optional)
-tfa_token = 'tfa_token_example' # str | Two-Factor Token. (optional)
-
-try: 
-    # Register a new user.
-    api_response = api_instance.user_new(email, password, country, username=username, firstname=firstname, lastname=lastname, accepts_tos=accepts_tos, referrer_id=referrer_id, tfa_type=tfa_type, tfa_token=tfa_token)
-    pprint(api_response)
-except ApiException as e:
-    print "Exception when calling UserApi->user_new: %s\n" % e
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **str**| Your email address. | 
- **password** | **str**| Your password. | 
- **country** | **str**| Country of residence. | 
- **username** | **str**| Desired username. | [optional] 
- **firstname** | **str**| First name. | [optional] 
- **lastname** | **str**| Last name. | [optional] 
- **accepts_tos** | **str**| Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). | [optional] 
- **referrer_id** | **str**| Optional Referrer ID. | [optional] 
- **tfa_type** | **str**| Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef | [optional] 
- **tfa_token** | **str**| Two-Factor Token. | [optional] 
-
-### Return type
-
-[**User**](User.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **user_request_enable_tfa**
 > bool user_request_enable_tfa(type=type)
 
@@ -832,51 +760,6 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **type** | **str**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) | [optional] 
-
-### Return type
-
-**bool**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **user_request_password_reset**
-> bool user_request_password_reset(email)
-
-Request a password reset.
-
-### Example 
-```python
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.UserApi()
-email = 'email_example' # str | 
-
-try: 
-    # Request a password reset.
-    api_response = api_instance.user_request_password_reset(email)
-    pprint(api_response)
-except ApiException as e:
-    print "Exception when calling UserApi->user_request_password_reset: %s\n" % e
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **str**|  | 
 
 ### Return type
 
@@ -983,51 +866,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**User**](User.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **user_send_verification_email**
-> bool user_send_verification_email(email)
-
-Re-send verification email.
-
-### Example 
-```python
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.UserApi()
-email = 'email_example' # str | 
-
-try: 
-    # Re-send verification email.
-    api_response = api_instance.user_send_verification_email(email)
-    pprint(api_response)
-except ApiException as e:
-    print "Exception when calling UserApi->user_send_verification_email: %s\n" % e
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **str**|  | 
-
-### Return type
-
-**bool**
 
 ### Authorization
 

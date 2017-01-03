@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | [default to null]
 **Nonce** | **float32** |  | [default to null]
 **Cidr** | **string** |  | [optional] [default to null]
-**Permissions** | **[]string** |  | [optional] [default to null]
+**Permissions** | [**[]XAny**](x-any.md) |  | [optional] [default to null]
 **Enabled** | **bool** |  | [optional] [default to null]
 **UserId** | **float32** |  | [default to null]
 **Created** | [**time.Time**](time.Time.md) |  | [optional] [default to null]

@@ -13,7 +13,7 @@
 /**
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section.
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -110,12 +110,13 @@ class ChatApi
      * @param float $count Number of results to fetch. (optional, default to 100)
      * @param float $start Starting point for results. (optional, default to 0)
      * @param bool $reverse If true, will sort results newest first. (optional, default to true)
+     * @param double $channel_id Channel id. GET /chat/channels for ids. Leave blank for all. (optional)
      * @return \Swagger\Client\Model\Chat[]
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function chatGet($count = null, $start = null, $reverse = null)
+    public function chatGet($count = null, $start = null, $reverse = null, $channel_id = null)
     {
-        list($response) = $this->chatGetWithHttpInfo($count, $start, $reverse);
+        list($response) = $this->chatGetWithHttpInfo($count, $start, $reverse, $channel_id);
         return $response;
     }
 
@@ -127,10 +128,11 @@ class ChatApi
      * @param float $count Number of results to fetch. (optional, default to 100)
      * @param float $start Starting point for results. (optional, default to 0)
      * @param bool $reverse If true, will sort results newest first. (optional, default to true)
+     * @param double $channel_id Channel id. GET /chat/channels for ids. Leave blank for all. (optional)
      * @return Array of \Swagger\Client\Model\Chat[], HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function chatGetWithHttpInfo($count = null, $start = null, $reverse = null)
+    public function chatGetWithHttpInfo($count = null, $start = null, $reverse = null, $channel_id = null)
     {
         // parse inputs
         $resourcePath = "/chat";
@@ -155,6 +157,10 @@ class ChatApi
         // query params
         if ($reverse !== null) {
             $queryParams['reverse'] = $this->apiClient->getSerializer()->toQueryValue($reverse);
+        }
+        // query params
+        if ($channel_id !== null) {
+            $queryParams['channelID'] = $this->apiClient->getSerializer()->toQueryValue($channel_id);
         }
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
@@ -183,6 +189,89 @@ class ChatApi
             switch ($e->getCode()) {
                 case 200:
                     $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Chat[]', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\Error', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation chatGetChannels
+     *
+     * Get available channels.
+     *
+     * @return \Swagger\Client\Model\ChatChannel[]
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function chatGetChannels()
+    {
+        list($response) = $this->chatGetChannelsWithHttpInfo();
+        return $response;
+    }
+
+    /**
+     * Operation chatGetChannelsWithHttpInfo
+     *
+     * Get available channels.
+     *
+     * @return Array of \Swagger\Client\Model\ChatChannel[], HTTP status code, HTTP response headers (array of strings)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function chatGetChannelsWithHttpInfo()
+    {
+        // parse inputs
+        $resourcePath = "/chat/channels";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
+
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'GET',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\Swagger\Client\Model\ChatChannel[]',
+                '/chat/channels'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\ChatChannel[]', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ChatChannel[]', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 400:
@@ -292,12 +381,13 @@ class ChatApi
      * Send a chat message.
      *
      * @param string $message  (required)
+     * @param double $channel_id Channel to post to. Default 1 (English). (optional, default to 1)
      * @return \Swagger\Client\Model\Chat
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function chatNew($message)
+    public function chatNew($message, $channel_id = null)
     {
-        list($response) = $this->chatNewWithHttpInfo($message);
+        list($response) = $this->chatNewWithHttpInfo($message, $channel_id);
         return $response;
     }
 
@@ -307,10 +397,11 @@ class ChatApi
      * Send a chat message.
      *
      * @param string $message  (required)
+     * @param double $channel_id Channel to post to. Default 1 (English). (optional, default to 1)
      * @return Array of \Swagger\Client\Model\Chat, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function chatNewWithHttpInfo($message)
+    public function chatNewWithHttpInfo($message, $channel_id = null)
     {
         // verify the required parameter 'message' is set
         if ($message === null) {
@@ -338,6 +429,10 @@ class ChatApi
         // form params
         if ($message !== null) {
             $formParams['message'] = $this->apiClient->getSerializer()->toFormValue($message);
+        }
+        // form params
+        if ($channel_id !== null) {
+            $formParams['channelID'] = $this->apiClient->getSerializer()->toFormValue($channel_id);
         }
         
         // for model (json/xml)

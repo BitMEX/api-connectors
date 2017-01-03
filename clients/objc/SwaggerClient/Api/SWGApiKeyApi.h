@@ -1,12 +1,12 @@
 #import <Foundation/Foundation.h>
 #import "SWGError.h"
-#import "SWGApiKey.h"
+#import "SWGAPIKey.h"
 #import "SWGInlineResponse200.h"
 #import "SWGApi.h"
 
 /**
 * BitMEX API
-* REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+* ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
 *
 * OpenAPI spec version: 1.2.0
 * Contact: support@bitmex.com
@@ -29,10 +29,10 @@
 */
 
 
-@interface SWGApiKeyApi: NSObject <SWGApi>
+@interface SWGAPIKeyApi: NSObject <SWGApi>
 
-extern NSString* kSWGApiKeyApiErrorDomain;
-extern NSInteger kSWGApiKeyApiMissingParamErrorCode;
+extern NSString* kSWGAPIKeyApiErrorDomain;
+extern NSInteger kSWGAPIKeyApiMissingParamErrorCode;
 
 +(instancetype) sharedAPI;
 
@@ -46,9 +46,9 @@ extern NSInteger kSWGApiKeyApiMissingParamErrorCode;
 ///  code:401 message:"Unauthorized",
 ///  code:404 message:"Not Found"
 ///
-/// @return SWGApiKey*
--(NSNumber*) apiKeyDisableWithApiKeyID: (NSString*) apiKeyID
-    completionHandler: (void (^)(SWGApiKey* output, NSError* error)) handler;
+/// @return SWGAPIKey*
+-(NSNumber*) aPIKeyDisableWithApiKeyID: (NSString*) apiKeyID
+    completionHandler: (void (^)(SWGAPIKey* output, NSError* error)) handler;
 
 
 /// Enable an API Key.
@@ -61,9 +61,9 @@ extern NSInteger kSWGApiKeyApiMissingParamErrorCode;
 ///  code:401 message:"Unauthorized",
 ///  code:404 message:"Not Found"
 ///
-/// @return SWGApiKey*
--(NSNumber*) apiKeyEnableWithApiKeyID: (NSString*) apiKeyID
-    completionHandler: (void (^)(SWGApiKey* output, NSError* error)) handler;
+/// @return SWGAPIKey*
+-(NSNumber*) aPIKeyEnableWithApiKeyID: (NSString*) apiKeyID
+    completionHandler: (void (^)(SWGAPIKey* output, NSError* error)) handler;
 
 
 /// Get your API Keys.
@@ -76,9 +76,9 @@ extern NSInteger kSWGApiKeyApiMissingParamErrorCode;
 ///  code:401 message:"Unauthorized",
 ///  code:404 message:"Not Found"
 ///
-/// @return NSArray<SWGApiKey>*
--(NSNumber*) apiKeyGetWithReverse: (NSNumber*) reverse
-    completionHandler: (void (^)(NSArray<SWGApiKey>* output, NSError* error)) handler;
+/// @return NSArray<SWGAPIKey>*
+-(NSNumber*) aPIKeyGetWithReverse: (NSNumber*) reverse
+    completionHandler: (void (^)(NSArray<SWGAPIKey>* output, NSError* error)) handler;
 
 
 /// Create a new API Key.
@@ -95,13 +95,13 @@ extern NSInteger kSWGApiKeyApiMissingParamErrorCode;
 ///  code:401 message:"Unauthorized",
 ///  code:404 message:"Not Found"
 ///
-/// @return SWGApiKey*
--(NSNumber*) apiKeyNewWithName: (NSString*) name
+/// @return SWGAPIKey*
+-(NSNumber*) aPIKeyNewWithName: (NSString*) name
     cidr: (NSString*) cidr
     permissions: (NSString*) permissions
     enabled: (NSNumber*) enabled
     token: (NSString*) token
-    completionHandler: (void (^)(SWGApiKey* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGAPIKey* output, NSError* error)) handler;
 
 
 /// Remove an API Key.
@@ -115,7 +115,7 @@ extern NSInteger kSWGApiKeyApiMissingParamErrorCode;
 ///  code:404 message:"Not Found"
 ///
 /// @return SWGInlineResponse200*
--(NSNumber*) apiKeyRemoveWithApiKeyID: (NSString*) apiKeyID
+-(NSNumber*) aPIKeyRemoveWithApiKeyID: (NSString*) apiKeyID
     completionHandler: (void (^)(SWGInlineResponse200* output, NSError* error)) handler;
 
 

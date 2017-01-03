@@ -43,15 +43,11 @@ class Trade {
   @Property(name: 'foreignNotional')
   double foreignNotional = null;
   
-
-  @Property(name: 'id')
-  double id = null;
-  
   Trade();
 
   @override
   String toString()  {
-    return 'Trade[timestamp=$timestamp, symbol=$symbol, side=$side, size=$size, price=$price, tickDirection=$tickDirection, trdMatchID=$trdMatchID, grossValue=$grossValue, homeNotional=$homeNotional, foreignNotional=$foreignNotional, id=$id, ]';
+    return 'Trade[timestamp=$timestamp, symbol=$symbol, side=$side, size=$size, price=$price, tickDirection=$tickDirection, trdMatchID=$trdMatchID, grossValue=$grossValue, homeNotional=$homeNotional, foreignNotional=$foreignNotional, ]';
   }
 
 }

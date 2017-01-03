@@ -6,6 +6,7 @@ import io.swagger.client.model.User
 import io.swagger.client.model.Affiliate
 import io.swagger.client.model.UserCommission
 import io.swagger.client.model.Margin
+import io.swagger.client.model.Wallet
 import io.swagger.client.model.Number
 import com.wordnik.swagger.client._
 import scala.concurrent.Future
@@ -69,23 +70,6 @@ class UserApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(
       )(implicit reader: ClientResponseReader[Boolean]): Future[Boolean] = {
     // create path and map variables
     val path = (addFmt("/user/confirmEnableTFA"))
-
-    // query params
-    val queryParams = new mutable.HashMap[String, String]
-    val headerParams = new mutable.HashMap[String, String]
-
-
-
-    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
-    resFuture flatMap { resp =>
-      process(reader.read(resp))
-    }
-  }
-
-  def user.confirmPasswordReset(token: String,
-      newPassword: String)(implicit reader: ClientResponseReader[Boolean]): Future[Boolean] = {
-    // create path and map variables
-    val path = (addFmt("/user/confirmPasswordReset"))
 
     // query params
     val queryParams = new mutable.HashMap[String, String]
@@ -219,6 +203,25 @@ class UserApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(
     }
   }
 
+  def user.getWallet(currency: Option[String] = Some(XBt)
+      )(implicit reader: ClientResponseReader[Wallet]): Future[Wallet] = {
+    // create path and map variables
+    val path = (addFmt("/user/wallet"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (currency != null) currency.foreach { v => queryParams += "currency" -> v.toString }
+
+
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
   def user.getWalletHistory(currency: Option[String] = Some(XBt)
       )(implicit reader: ClientResponseReader[List[Transaction]]): Future[List[Transaction]] = {
     // create path and map variables
@@ -238,20 +241,20 @@ class UserApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(
     }
   }
 
-  def user.login(email: String,
-      password: String,
-      token: Option[String] = None
-      )(implicit reader: ClientResponseReader[AccessToken]): Future[AccessToken] = {
+  def user.getWalletSummary(currency: Option[String] = Some(XBt)
+      )(implicit reader: ClientResponseReader[List[Transaction]]): Future[List[Transaction]] = {
     // create path and map variables
-    val path = (addFmt("/user/login"))
+    val path = (addFmt("/user/walletSummary"))
 
     // query params
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
+    if (currency != null) currency.foreach { v => queryParams += "currency" -> v.toString }
 
 
-    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>
       process(reader.read(resp))
     }
@@ -289,52 +292,10 @@ class UserApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(
     }
   }
 
-  def user.new(email: String,
-      password: String,
-      country: String,
-      username: Option[String] = None,
-      firstname: Option[String] = None,
-      lastname: Option[String] = None,
-      acceptsTOS: Option[String] = None,
-      referrerID: Option[String] = None,
-      tfaType: Option[String] = None,
-      tfaToken: Option[String] = None
-      )(implicit reader: ClientResponseReader[User]): Future[User] = {
-    // create path and map variables
-    val path = (addFmt("/user"))
-
-    // query params
-    val queryParams = new mutable.HashMap[String, String]
-    val headerParams = new mutable.HashMap[String, String]
-
-
-
-    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
-    resFuture flatMap { resp =>
-      process(reader.read(resp))
-    }
-  }
-
   def user.requestEnableTFA(_type: Option[String] = None
       )(implicit reader: ClientResponseReader[Boolean]): Future[Boolean] = {
     // create path and map variables
     val path = (addFmt("/user/requestEnableTFA"))
-
-    // query params
-    val queryParams = new mutable.HashMap[String, String]
-    val headerParams = new mutable.HashMap[String, String]
-
-
-
-    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
-    resFuture flatMap { resp =>
-      process(reader.read(resp))
-    }
-  }
-
-  def user.requestPasswordReset(email: String)(implicit reader: ClientResponseReader[Boolean]): Future[Boolean] = {
-    // create path and map variables
-    val path = (addFmt("/user/requestPasswordReset"))
 
     // query params
     val queryParams = new mutable.HashMap[String, String]
@@ -374,22 +335,6 @@ class UserApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(
       )(implicit reader: ClientResponseReader[User]): Future[User] = {
     // create path and map variables
     val path = (addFmt("/user/preferences"))
-
-    // query params
-    val queryParams = new mutable.HashMap[String, String]
-    val headerParams = new mutable.HashMap[String, String]
-
-
-
-    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
-    resFuture flatMap { resp =>
-      process(reader.read(resp))
-    }
-  }
-
-  def user.sendVerificationEmail(email: String)(implicit reader: ClientResponseReader[Boolean]): Future[Boolean] = {
-    // create path and map variables
-    val path = (addFmt("/user/resendVerificationEmail"))
 
     // query params
     val queryParams = new mutable.HashMap[String, String]

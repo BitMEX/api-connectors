@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **announcementsLastSeen** | [**LocalDate**](LocalDate.md) |  |  [optional]
+**chatChannelID** | **Double** |  |  [optional]
 **colorTheme** | **String** |  |  [optional]
 **currency** | **String** |  |  [optional]
 **debug** | **Boolean** |  |  [optional]
@@ -14,10 +15,9 @@ Name | Type | Description | Notes
 **hideFromLeaderboard** | **Boolean** |  |  [optional]
 **hideNameFromLeaderboard** | **Boolean** |  |  [optional]
 **hideNotifications** | **List&lt;String&gt;** |  |  [optional]
-**hidePhoneConfirm** | **Boolean** |  |  [optional]
 **locale** | **String** |  |  [optional]
 **msgsSeen** | **List&lt;String&gt;** |  |  [optional]
-**orderBookBinning** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**orderBookBinning** | [**XAny**](XAny.md) |  |  [optional]
 **orderBookType** | **String** |  |  [optional]
 **orderControlsPlusMinus** | **Boolean** |  |  [optional]
 **sounds** | **List&lt;String&gt;** |  |  [optional]

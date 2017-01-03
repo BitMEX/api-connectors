@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **announcementsLastSeen** | **NSDate*** |  | [optional] 
+**chatChannelID** | **NSNumber*** |  | [optional] 
 **colorTheme** | **NSString*** |  | [optional] 
 **currency** | **NSString*** |  | [optional] 
 **debug** | **NSNumber*** |  | [optional] 
@@ -13,10 +14,9 @@ Name | Type | Description | Notes
 **hideFromLeaderboard** | **NSNumber*** |  | [optional] [default to @0]
 **hideNameFromLeaderboard** | **NSNumber*** |  | [optional] [default to @1]
 **hideNotifications** | **NSArray&lt;NSString*&gt;*** |  | [optional] 
-**hidePhoneConfirm** | **NSNumber*** |  | [optional] 
-**locale** | **NSString*** |  | [optional] 
+**locale** | **NSString*** |  | [optional] [default to @"en-US"]
 **msgsSeen** | **NSArray&lt;NSString*&gt;*** |  | [optional] 
-**orderBookBinning** | **NSNumber*** |  | [optional] 
+**orderBookBinning** | [**SWGXAny***](SWGXAny.md) |  | [optional] 
 **orderBookType** | **NSString*** |  | [optional] 
 **orderControlsPlusMinus** | **NSNumber*** |  | [optional] 
 **sounds** | **NSArray&lt;NSString*&gt;*** |  | [optional] 

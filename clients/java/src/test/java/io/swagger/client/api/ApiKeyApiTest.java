@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -26,7 +26,7 @@
 package io.swagger.client.api;
 
 import io.swagger.client.ApiException;
-import io.swagger.client.model.ApiKey;
+import io.swagger.client.model.APIKey;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.InlineResponse200;
 import org.junit.Test;
@@ -37,11 +37,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * API tests for ApiKeyApi
+ * API tests for APIKeyApi
  */
-public class ApiKeyApiTest {
+public class APIKeyApiTest {
 
-    private final ApiKeyApi api = new ApiKeyApi();
+    private final APIKeyApi api = new APIKeyApi();
 
     
     /**
@@ -53,9 +53,9 @@ public class ApiKeyApiTest {
      *          if the Api call fails
      */
     @Test
-    public void apiKeyDisableTest() throws ApiException {
+    public void aPIKeyDisableTest() throws ApiException {
         String apiKeyID = null;
-        // ApiKey response = api.apiKeyDisable(apiKeyID);
+        // APIKey response = api.aPIKeyDisable(apiKeyID);
 
         // TODO: test validations
     }
@@ -69,9 +69,9 @@ public class ApiKeyApiTest {
      *          if the Api call fails
      */
     @Test
-    public void apiKeyEnableTest() throws ApiException {
+    public void aPIKeyEnableTest() throws ApiException {
         String apiKeyID = null;
-        // ApiKey response = api.apiKeyEnable(apiKeyID);
+        // APIKey response = api.aPIKeyEnable(apiKeyID);
 
         // TODO: test validations
     }
@@ -85,9 +85,9 @@ public class ApiKeyApiTest {
      *          if the Api call fails
      */
     @Test
-    public void apiKeyGetTest() throws ApiException {
+    public void aPIKeyGetTest() throws ApiException {
         Boolean reverse = null;
-        // List<ApiKey> response = api.apiKeyGet(reverse);
+        // List<APIKey> response = api.aPIKeyGet(reverse);
 
         // TODO: test validations
     }
@@ -101,13 +101,13 @@ public class ApiKeyApiTest {
      *          if the Api call fails
      */
     @Test
-    public void apiKeyNewTest() throws ApiException {
+    public void aPIKeyNewTest() throws ApiException {
         String name = null;
         String cidr = null;
         String permissions = null;
         Boolean enabled = null;
         String token = null;
-        // ApiKey response = api.apiKeyNew(name, cidr, permissions, enabled, token);
+        // APIKey response = api.aPIKeyNew(name, cidr, permissions, enabled, token);
 
         // TODO: test validations
     }
@@ -121,9 +121,9 @@ public class ApiKeyApiTest {
      *          if the Api call fails
      */
     @Test
-    public void apiKeyRemoveTest() throws ApiException {
+    public void aPIKeyRemoveTest() throws ApiException {
         String apiKeyID = null;
-        // InlineResponse200 response = api.apiKeyRemove(apiKeyID);
+        // InlineResponse200 response = api.aPIKeyRemove(apiKeyID);
 
         // TODO: test validations
     }

@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**userCheckReferralCode**](UserApi.md#userCheckReferralCode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
 [**userConfirmEmail**](UserApi.md#userConfirmEmail) | **POST** /user/confirmEmail | Confirm your email address with a token.
 [**userConfirmEnableTFA**](UserApi.md#userConfirmEnableTFA) | **POST** /user/confirmEnableTFA | Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
-[**userConfirmPasswordReset**](UserApi.md#userConfirmPasswordReset) | **POST** /user/confirmPasswordReset | Confirm a password reset.
 [**userConfirmWithdrawal**](UserApi.md#userConfirmWithdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
 [**userDisableTFA**](UserApi.md#userDisableTFA) | **POST** /user/disableTFA | Disable two-factor auth for this account.
 [**userGet**](UserApi.md#userGet) | **GET** /user | Get your user model.
@@ -16,16 +15,14 @@ Method | HTTP request | Description
 [**userGetCommission**](UserApi.md#userGetCommission) | **GET** /user/commission | Get your account&#39;s commission status.
 [**userGetDepositAddress**](UserApi.md#userGetDepositAddress) | **GET** /user/depositAddress | Get a deposit address.
 [**userGetMargin**](UserApi.md#userGetMargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
-[**userGetWalletHistory**](UserApi.md#userGetWalletHistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits and withdrawals).
-[**userLogin**](UserApi.md#userLogin) | **POST** /user/login | Log in to BitMEX.
+[**userGetWallet**](UserApi.md#userGetWallet) | **GET** /user/wallet | Get your current wallet information.
+[**userGetWalletHistory**](UserApi.md#userGetWalletHistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
+[**userGetWalletSummary**](UserApi.md#userGetWalletSummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**userLogout**](UserApi.md#userLogout) | **POST** /user/logout | Log out of BitMEX.
 [**userLogoutAll**](UserApi.md#userLogoutAll) | **POST** /user/logoutAll | Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
-[**userNew**](UserApi.md#userNew) | **POST** /user | Register a new user.
 [**userRequestEnableTFA**](UserApi.md#userRequestEnableTFA) | **POST** /user/requestEnableTFA | Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
-[**userRequestPasswordReset**](UserApi.md#userRequestPasswordReset) | **POST** /user/requestPasswordReset | Request a password reset.
 [**userRequestWithdrawal**](UserApi.md#userRequestWithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**userSavePreferences**](UserApi.md#userSavePreferences) | **POST** /user/preferences | Save user preferences.
-[**userSendVerificationEmail**](UserApi.md#userSendVerificationEmail) | **POST** /user/resendVerificationEmail | Re-send verification email.
 [**userUpdate**](UserApi.md#userUpdate) | **PUT** /user | Update your password, name, and other attributes.
 
 
@@ -189,51 +186,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **string**| Token from your selected TFA type. |
  **type** | **string**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39; | [optional]
-
-### Return type
-
-**bool**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-# **userConfirmPasswordReset**
-> bool userConfirmPasswordReset($token, $new_password)
-
-Confirm a password reset.
-
-### Example
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\Api\UserApi();
-$token = "token_example"; // string | 
-$new_password = "new_password_example"; // string | 
-
-try {
-    $result = $api_instance->userConfirmPasswordReset($token, $new_password);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling UserApi->userConfirmPasswordReset: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **string**|  |
- **new_password** | **string**|  |
 
 ### Return type
 
@@ -541,10 +493,53 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **userGetWallet**
+> \Swagger\Client\Model\Wallet userGetWallet($currency)
+
+Get your current wallet information.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\UserApi();
+$currency = "XBt"; // string | 
+
+try {
+    $result = $api_instance->userGetWallet($currency);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling UserApi->userGetWallet: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **string**|  | [optional] [default to XBt]
+
+### Return type
+
+[**\Swagger\Client\Model\Wallet**](../Model/Wallet.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **userGetWalletHistory**
 > \Swagger\Client\Model\Transaction[] userGetWalletHistory($currency)
 
-Get a history of all of your wallet transactions (deposits and withdrawals).
+Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 
 ### Example
 ```php
@@ -584,10 +579,10 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **userLogin**
-> \Swagger\Client\Model\AccessToken userLogin($email, $password, $token)
+# **userGetWalletSummary**
+> \Swagger\Client\Model\Transaction[] userGetWalletSummary($currency)
 
-Log in to BitMEX.
+Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 
 ### Example
 ```php
@@ -595,15 +590,13 @@ Log in to BitMEX.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\Api\UserApi();
-$email = "email_example"; // string | Your email address.
-$password = "password_example"; // string | Your password.
-$token = "token_example"; // string | OTP Token (YubiKey, Google Authenticator)
+$currency = "XBt"; // string | 
 
 try {
-    $result = $api_instance->userLogin($email, $password, $token);
+    $result = $api_instance->userGetWalletSummary($currency);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling UserApi->userLogin: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling UserApi->userGetWalletSummary: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -612,13 +605,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **string**| Your email address. |
- **password** | **string**| Your password. |
- **token** | **string**| OTP Token (YubiKey, Google Authenticator) | [optional]
+ **currency** | **string**|  | [optional] [default to XBt]
 
 ### Return type
 
-[**\Swagger\Client\Model\AccessToken**](../Model/AccessToken.md)
+[**\Swagger\Client\Model\Transaction[]**](../Model/Transaction.md)
 
 ### Authorization
 
@@ -708,67 +699,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **userNew**
-> \Swagger\Client\Model\User userNew($email, $password, $country, $username, $firstname, $lastname, $accepts_tos, $referrer_id, $tfa_type, $tfa_token)
-
-Register a new user.
-
-### Example
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\Api\UserApi();
-$email = "email_example"; // string | Your email address.
-$password = "password_example"; // string | Your password.
-$country = "country_example"; // string | Country of residence.
-$username = "username_example"; // string | Desired username.
-$firstname = "firstname_example"; // string | First name.
-$lastname = "lastname_example"; // string | Last name.
-$accepts_tos = "accepts_tos_example"; // string | Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).
-$referrer_id = "referrer_id_example"; // string | Optional Referrer ID.
-$tfa_type = "tfa_type_example"; // string | Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef
-$tfa_token = "tfa_token_example"; // string | Two-Factor Token.
-
-try {
-    $result = $api_instance->userNew($email, $password, $country, $username, $firstname, $lastname, $accepts_tos, $referrer_id, $tfa_type, $tfa_token);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling UserApi->userNew: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **string**| Your email address. |
- **password** | **string**| Your password. |
- **country** | **string**| Country of residence. |
- **username** | **string**| Desired username. | [optional]
- **firstname** | **string**| First name. | [optional]
- **lastname** | **string**| Last name. | [optional]
- **accepts_tos** | **string**| Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). | [optional]
- **referrer_id** | **string**| Optional Referrer ID. | [optional]
- **tfa_type** | **string**| Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef | [optional]
- **tfa_token** | **string**| Two-Factor Token. | [optional]
-
-### Return type
-
-[**\Swagger\Client\Model\User**](../Model/User.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
 # **userRequestEnableTFA**
 > bool userRequestEnableTFA($type)
 
@@ -796,49 +726,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **type** | **string**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) | [optional]
-
-### Return type
-
-**bool**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-# **userRequestPasswordReset**
-> bool userRequestPasswordReset($email)
-
-Request a password reset.
-
-### Example
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\Api\UserApi();
-$email = "email_example"; // string | 
-
-try {
-    $result = $api_instance->userRequestPasswordReset($email);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling UserApi->userRequestPasswordReset: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **string**|  |
 
 ### Return type
 
@@ -941,49 +828,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Swagger\Client\Model\User**](../Model/User.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-# **userSendVerificationEmail**
-> bool userSendVerificationEmail($email)
-
-Re-send verification email.
-
-### Example
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\Api\UserApi();
-$email = "email_example"; // string | 
-
-try {
-    $result = $api_instance->userSendVerificationEmail($email);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling UserApi->userSendVerificationEmail: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **string**|  |
-
-### Return type
-
-**bool**
 
 ### Authorization
 

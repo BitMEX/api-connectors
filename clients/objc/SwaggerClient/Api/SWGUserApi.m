@@ -6,6 +6,7 @@
 #import "SWGAffiliate.h"
 #import "SWGUserCommission.h"
 #import "SWGMargin.h"
+#import "SWGWallet.h"
 
 
 @interface SWGUserApi ()
@@ -335,95 +336,6 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     }
     if (token) {
         formParams[@"token"] = token;
-    }
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"POST"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"NSNumber*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((NSNumber*)data, error);
-                                }
-                           }
-          ];
-}
-
-///
-/// Confirm a password reset.
-/// 
-///  @param token  
-///
-///  @param varNewPassword  
-///
-///  @returns NSNumber*
-///
--(NSNumber*) userConfirmPasswordResetWithToken: (NSString*) token
-    varNewPassword: (NSString*) varNewPassword
-    completionHandler: (void (^)(NSNumber* output, NSError* error)) handler {
-    // verify the required parameter 'token' is set
-    if (token == nil) {
-        NSParameterAssert(token);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"token"] };
-            NSError* error = [NSError errorWithDomain:kSWGUserApiErrorDomain code:kSWGUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'varNewPassword' is set
-    if (varNewPassword == nil) {
-        NSParameterAssert(varNewPassword);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"varNewPassword"] };
-            NSError* error = [NSError errorWithDomain:kSWGUserApiErrorDomain code:kSWGUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/confirmPasswordReset"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"application/xml", @"text/xml", @"application/javascript", @"text/javascript"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
-
-    // Authentication setting
-    NSArray *authSettings = @[];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-    if (token) {
-        formParams[@"token"] = token;
-    }
-    if (varNewPassword) {
-        formParams[@"newPassword"] = varNewPassword;
     }
 
     return [self.apiClient requestWithPath: resourcePath
@@ -887,7 +799,68 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 }
 
 ///
-/// Get a history of all of your wallet transactions (deposits and withdrawals).
+/// Get your current wallet information.
+/// 
+///  @param currency  (optional, default to XBt)
+///
+///  @returns SWGWallet*
+///
+-(NSNumber*) userGetWalletWithCurrency: (NSString*) currency
+    completionHandler: (void (^)(SWGWallet* output, NSError* error)) handler {
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/wallet"];
+
+    // remove format in URL if needed
+    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (currency != nil) {
+        queryParams[@"currency"] = currency;
+    }
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"application/xml", @"text/xml", @"application/javascript", @"text/javascript"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"GET"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"SWGWallet*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((SWGWallet*)data, error);
+                                }
+                           }
+          ];
+}
+
+///
+/// Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 /// 
 ///  @param currency  (optional, default to XBt)
 ///
@@ -948,43 +921,15 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 }
 
 ///
-/// Log in to BitMEX.
+/// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 /// 
-///  @param email Your email address. 
+///  @param currency  (optional, default to XBt)
 ///
-///  @param password Your password. 
+///  @returns NSArray<SWGTransaction>*
 ///
-///  @param token OTP Token (YubiKey, Google Authenticator) (optional)
-///
-///  @returns SWGAccessToken*
-///
--(NSNumber*) userLoginWithEmail: (NSString*) email
-    password: (NSString*) password
-    token: (NSString*) token
-    completionHandler: (void (^)(SWGAccessToken* output, NSError* error)) handler {
-    // verify the required parameter 'email' is set
-    if (email == nil) {
-        NSParameterAssert(email);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"email"] };
-            NSError* error = [NSError errorWithDomain:kSWGUserApiErrorDomain code:kSWGUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'password' is set
-    if (password == nil) {
-        NSParameterAssert(password);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"password"] };
-            NSError* error = [NSError errorWithDomain:kSWGUserApiErrorDomain code:kSWGUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/login"];
+-(NSNumber*) userGetWalletSummaryWithCurrency: (NSString*) currency
+    completionHandler: (void (^)(NSArray<SWGTransaction>* output, NSError* error)) handler {
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/walletSummary"];
 
     // remove format in URL if needed
     [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
@@ -992,6 +937,9 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (currency != nil) {
+        queryParams[@"currency"] = currency;
+    }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
@@ -1012,18 +960,9 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-    if (email) {
-        formParams[@"email"] = email;
-    }
-    if (password) {
-        formParams[@"password"] = password;
-    }
-    if (token) {
-        formParams[@"token"] = token;
-    }
 
     return [self.apiClient requestWithPath: resourcePath
-                                    method: @"POST"
+                                    method: @"GET"
                                 pathParams: pathParams
                                queryParams: queryParams
                                 formParams: formParams
@@ -1033,10 +972,10 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGAccessToken*"
+                              responseType: @"NSArray<SWGTransaction>*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGAccessToken*)data, error);
+                                    handler((NSArray<SWGTransaction>*)data, error);
                                 }
                            }
           ];
@@ -1155,154 +1094,6 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 }
 
 ///
-/// Register a new user.
-/// 
-///  @param email Your email address. 
-///
-///  @param password Your password. 
-///
-///  @param country Country of residence. 
-///
-///  @param username Desired username. (optional)
-///
-///  @param firstname First name. (optional)
-///
-///  @param lastname Last name. (optional)
-///
-///  @param acceptsTOS Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). (optional)
-///
-///  @param referrerID Optional Referrer ID. (optional)
-///
-///  @param tfaType Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef (optional)
-///
-///  @param tfaToken Two-Factor Token. (optional)
-///
-///  @returns SWGUser*
-///
--(NSNumber*) userNewWithEmail: (NSString*) email
-    password: (NSString*) password
-    country: (NSString*) country
-    username: (NSString*) username
-    firstname: (NSString*) firstname
-    lastname: (NSString*) lastname
-    acceptsTOS: (NSString*) acceptsTOS
-    referrerID: (NSString*) referrerID
-    tfaType: (NSString*) tfaType
-    tfaToken: (NSString*) tfaToken
-    completionHandler: (void (^)(SWGUser* output, NSError* error)) handler {
-    // verify the required parameter 'email' is set
-    if (email == nil) {
-        NSParameterAssert(email);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"email"] };
-            NSError* error = [NSError errorWithDomain:kSWGUserApiErrorDomain code:kSWGUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'password' is set
-    if (password == nil) {
-        NSParameterAssert(password);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"password"] };
-            NSError* error = [NSError errorWithDomain:kSWGUserApiErrorDomain code:kSWGUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'country' is set
-    if (country == nil) {
-        NSParameterAssert(country);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"country"] };
-            NSError* error = [NSError errorWithDomain:kSWGUserApiErrorDomain code:kSWGUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"application/xml", @"text/xml", @"application/javascript", @"text/javascript"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
-
-    // Authentication setting
-    NSArray *authSettings = @[];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-    if (email) {
-        formParams[@"email"] = email;
-    }
-    if (password) {
-        formParams[@"password"] = password;
-    }
-    if (username) {
-        formParams[@"username"] = username;
-    }
-    if (firstname) {
-        formParams[@"firstname"] = firstname;
-    }
-    if (lastname) {
-        formParams[@"lastname"] = lastname;
-    }
-    if (acceptsTOS) {
-        formParams[@"acceptsTOS"] = acceptsTOS;
-    }
-    if (referrerID) {
-        formParams[@"referrerID"] = referrerID;
-    }
-    if (country) {
-        formParams[@"country"] = country;
-    }
-    if (tfaType) {
-        formParams[@"tfaType"] = tfaType;
-    }
-    if (tfaToken) {
-        formParams[@"tfaToken"] = tfaToken;
-    }
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"POST"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"SWGUser*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((SWGUser*)data, error);
-                                }
-                           }
-          ];
-}
-
-///
 /// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
 /// 
 ///  @param type Two-factor auth type. Supported types: 'GA' (Google Authenticator) (optional)
@@ -1341,78 +1132,6 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
     if (type) {
         formParams[@"type"] = type;
-    }
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"POST"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"NSNumber*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((NSNumber*)data, error);
-                                }
-                           }
-          ];
-}
-
-///
-/// Request a password reset.
-/// 
-///  @param email  
-///
-///  @returns NSNumber*
-///
--(NSNumber*) userRequestPasswordResetWithEmail: (NSString*) email
-    completionHandler: (void (^)(NSNumber* output, NSError* error)) handler {
-    // verify the required parameter 'email' is set
-    if (email == nil) {
-        NSParameterAssert(email);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"email"] };
-            NSError* error = [NSError errorWithDomain:kSWGUserApiErrorDomain code:kSWGUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/requestPasswordReset"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"application/xml", @"text/xml", @"application/javascript", @"text/javascript"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
-
-    // Authentication setting
-    NSArray *authSettings = @[];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-    if (email) {
-        formParams[@"email"] = email;
     }
 
     return [self.apiClient requestWithPath: resourcePath
@@ -1626,78 +1345,6 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
                                     handler((SWGUser*)data, error);
-                                }
-                           }
-          ];
-}
-
-///
-/// Re-send verification email.
-/// 
-///  @param email  
-///
-///  @returns NSNumber*
-///
--(NSNumber*) userSendVerificationEmailWithEmail: (NSString*) email
-    completionHandler: (void (^)(NSNumber* output, NSError* error)) handler {
-    // verify the required parameter 'email' is set
-    if (email == nil) {
-        NSParameterAssert(email);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"email"] };
-            NSError* error = [NSError errorWithDomain:kSWGUserApiErrorDomain code:kSWGUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/resendVerificationEmail"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"application/xml", @"text/xml", @"application/javascript", @"text/javascript"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
-
-    // Authentication setting
-    NSArray *authSettings = @[];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-    if (email) {
-        formParams[@"email"] = email;
-    }
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"POST"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"NSNumber*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((NSNumber*)data, error);
                                 }
                            }
           ];

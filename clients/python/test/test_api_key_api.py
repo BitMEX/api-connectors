@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+    ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -30,53 +30,53 @@ import unittest
 
 import swagger_client
 from swagger_client.rest import ApiException
-from swagger_client.apis.api_key_api import ApiKeyApi
+from swagger_client.apis.api_key_api import APIKeyApi
 
 
-class TestApiKeyApi(unittest.TestCase):
-    """ ApiKeyApi unit test stubs """
+class TestAPIKeyApi(unittest.TestCase):
+    """ APIKeyApi unit test stubs """
 
     def setUp(self):
-        self.api = swagger_client.apis.api_key_api.ApiKeyApi()
+        self.api = swagger_client.apis.api_key_api.APIKeyApi()
 
     def tearDown(self):
         pass
 
-    def test_api_key_disable(self):
+    def test_a_pi_key_disable(self):
         """
-        Test case for api_key_disable
+        Test case for a_pi_key_disable
 
         Disable an API Key.
         """
         pass
 
-    def test_api_key_enable(self):
+    def test_a_pi_key_enable(self):
         """
-        Test case for api_key_enable
+        Test case for a_pi_key_enable
 
         Enable an API Key.
         """
         pass
 
-    def test_api_key_get(self):
+    def test_a_pi_key_get(self):
         """
-        Test case for api_key_get
+        Test case for a_pi_key_get
 
         Get your API Keys.
         """
         pass
 
-    def test_api_key_new(self):
+    def test_a_pi_key_new(self):
         """
-        Test case for api_key_new
+        Test case for a_pi_key_new
 
         Create a new API Key.
         """
         pass
 
-    def test_api_key_remove(self):
+    def test_a_pi_key_remove(self):
         """
-        Test case for api_key_remove
+        Test case for a_pi_key_remove
 
         Remove an API Key.
         """

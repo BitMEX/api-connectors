@@ -1,19 +1,19 @@
-# ApiKeyApi
+# APIKeyApi
 
 All URIs are relative to *https://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**apiKeyDisable**](ApiKeyApi.md#apiKeyDisable) | **POST** /apiKey/disable | Disable an API Key.
-[**apiKeyEnable**](ApiKeyApi.md#apiKeyEnable) | **POST** /apiKey/enable | Enable an API Key.
-[**apiKeyGet**](ApiKeyApi.md#apiKeyGet) | **GET** /apiKey | Get your API Keys.
-[**apiKeyNew**](ApiKeyApi.md#apiKeyNew) | **POST** /apiKey | Create a new API Key.
-[**apiKeyRemove**](ApiKeyApi.md#apiKeyRemove) | **DELETE** /apiKey | Remove an API Key.
+[**aPIKeyDisable**](APIKeyApi.md#aPIKeyDisable) | **POST** /apiKey/disable | Disable an API Key.
+[**aPIKeyEnable**](APIKeyApi.md#aPIKeyEnable) | **POST** /apiKey/enable | Enable an API Key.
+[**aPIKeyGet**](APIKeyApi.md#aPIKeyGet) | **GET** /apiKey | Get your API Keys.
+[**aPIKeyNew**](APIKeyApi.md#aPIKeyNew) | **POST** /apiKey | Create a new API Key.
+[**aPIKeyRemove**](APIKeyApi.md#aPIKeyRemove) | **DELETE** /apiKey | Remove an API Key.
 
 
-<a name="apiKeyDisable"></a>
-# **apiKeyDisable**
-> ApiKey apiKeyDisable(apiKeyID)
+<a name="aPIKeyDisable"></a>
+# **aPIKeyDisable**
+> APIKey aPIKeyDisable(apiKeyID)
 
 Disable an API Key.
 
@@ -21,16 +21,16 @@ Disable an API Key.
 ```java
 // Import classes:
 //import io.swagger.client.ApiException;
-//import io.swagger.client.api.ApiKeyApi;
+//import io.swagger.client.api.APIKeyApi;
 
 
-ApiKeyApi apiInstance = new ApiKeyApi();
+APIKeyApi apiInstance = new APIKeyApi();
 String apiKeyID = "apiKeyID_example"; // String | API Key ID (public component).
 try {
-    ApiKey result = apiInstance.apiKeyDisable(apiKeyID);
+    APIKey result = apiInstance.aPIKeyDisable(apiKeyID);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling ApiKeyApi#apiKeyDisable");
+    System.err.println("Exception when calling APIKeyApi#aPIKeyDisable");
     e.printStackTrace();
 }
 ```
@@ -43,7 +43,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**APIKey**](APIKey.md)
 
 ### Authorization
 
@@ -54,9 +54,9 @@ No authorization required
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
-<a name="apiKeyEnable"></a>
-# **apiKeyEnable**
-> ApiKey apiKeyEnable(apiKeyID)
+<a name="aPIKeyEnable"></a>
+# **aPIKeyEnable**
+> APIKey aPIKeyEnable(apiKeyID)
 
 Enable an API Key.
 
@@ -64,16 +64,16 @@ Enable an API Key.
 ```java
 // Import classes:
 //import io.swagger.client.ApiException;
-//import io.swagger.client.api.ApiKeyApi;
+//import io.swagger.client.api.APIKeyApi;
 
 
-ApiKeyApi apiInstance = new ApiKeyApi();
+APIKeyApi apiInstance = new APIKeyApi();
 String apiKeyID = "apiKeyID_example"; // String | API Key ID (public component).
 try {
-    ApiKey result = apiInstance.apiKeyEnable(apiKeyID);
+    APIKey result = apiInstance.aPIKeyEnable(apiKeyID);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling ApiKeyApi#apiKeyEnable");
+    System.err.println("Exception when calling APIKeyApi#aPIKeyEnable");
     e.printStackTrace();
 }
 ```
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**APIKey**](APIKey.md)
 
 ### Authorization
 
@@ -97,9 +97,9 @@ No authorization required
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
-<a name="apiKeyGet"></a>
-# **apiKeyGet**
-> List&lt;ApiKey&gt; apiKeyGet(reverse)
+<a name="aPIKeyGet"></a>
+# **aPIKeyGet**
+> List&lt;APIKey&gt; aPIKeyGet(reverse)
 
 Get your API Keys.
 
@@ -107,16 +107,16 @@ Get your API Keys.
 ```java
 // Import classes:
 //import io.swagger.client.ApiException;
-//import io.swagger.client.api.ApiKeyApi;
+//import io.swagger.client.api.APIKeyApi;
 
 
-ApiKeyApi apiInstance = new ApiKeyApi();
+APIKeyApi apiInstance = new APIKeyApi();
 Boolean reverse = false; // Boolean | If true, will sort results newest first.
 try {
-    List<ApiKey> result = apiInstance.apiKeyGet(reverse);
+    List<APIKey> result = apiInstance.aPIKeyGet(reverse);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling ApiKeyApi#apiKeyGet");
+    System.err.println("Exception when calling APIKeyApi#aPIKeyGet");
     e.printStackTrace();
 }
 ```
@@ -129,7 +129,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List&lt;ApiKey&gt;**](ApiKey.md)
+[**List&lt;APIKey&gt;**](APIKey.md)
 
 ### Authorization
 
@@ -140,9 +140,9 @@ No authorization required
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
-<a name="apiKeyNew"></a>
-# **apiKeyNew**
-> ApiKey apiKeyNew(name, cidr, permissions, enabled, token)
+<a name="aPIKeyNew"></a>
+# **aPIKeyNew**
+> APIKey aPIKeyNew(name, cidr, permissions, enabled, token)
 
 Create a new API Key.
 
@@ -152,20 +152,20 @@ API Keys can also be created via [this Python script](https://github.com/BitMEX/
 ```java
 // Import classes:
 //import io.swagger.client.ApiException;
-//import io.swagger.client.api.ApiKeyApi;
+//import io.swagger.client.api.APIKeyApi;
 
 
-ApiKeyApi apiInstance = new ApiKeyApi();
+APIKeyApi apiInstance = new APIKeyApi();
 String name = "name_example"; // String | Key name. This name is for reference only.
 String cidr = "cidr_example"; // String | CIDR block to restrict this key to. To restrict to a single address, append \"/32\", e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. <a href=\"http://software77.net/cidr-101.html\">More on CIDR blocks</a>
 String permissions = "permissions_example"; // String | Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\"order\", \"withdraw\"].
 Boolean enabled = false; // Boolean | Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.
 String token = "token_example"; // String | OTP Token (YubiKey, Google Authenticator)
 try {
-    ApiKey result = apiInstance.apiKeyNew(name, cidr, permissions, enabled, token);
+    APIKey result = apiInstance.aPIKeyNew(name, cidr, permissions, enabled, token);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling ApiKeyApi#apiKeyNew");
+    System.err.println("Exception when calling APIKeyApi#aPIKeyNew");
     e.printStackTrace();
 }
 ```
@@ -182,7 +182,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**APIKey**](APIKey.md)
 
 ### Authorization
 
@@ -193,9 +193,9 @@ No authorization required
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
-<a name="apiKeyRemove"></a>
-# **apiKeyRemove**
-> InlineResponse200 apiKeyRemove(apiKeyID)
+<a name="aPIKeyRemove"></a>
+# **aPIKeyRemove**
+> InlineResponse200 aPIKeyRemove(apiKeyID)
 
 Remove an API Key.
 
@@ -203,16 +203,16 @@ Remove an API Key.
 ```java
 // Import classes:
 //import io.swagger.client.ApiException;
-//import io.swagger.client.api.ApiKeyApi;
+//import io.swagger.client.api.APIKeyApi;
 
 
-ApiKeyApi apiInstance = new ApiKeyApi();
+APIKeyApi apiInstance = new APIKeyApi();
 String apiKeyID = "apiKeyID_example"; // String | API Key ID (public component).
 try {
-    InlineResponse200 result = apiInstance.apiKeyRemove(apiKeyID);
+    InlineResponse200 result = apiInstance.aPIKeyRemove(apiKeyID);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling ApiKeyApi#apiKeyRemove");
+    System.err.println("Exception when calling APIKeyApi#aPIKeyRemove");
     e.printStackTrace();
 }
 ```

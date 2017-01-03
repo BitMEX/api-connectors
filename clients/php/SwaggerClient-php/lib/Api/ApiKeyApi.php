@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiKeyApi
+ * APIKeyApi
  * PHP version 5
  *
  * @category Class
@@ -13,7 +13,7 @@
 /**
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section.
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -46,7 +46,7 @@ use \Swagger\Client\ApiException;
 use \Swagger\Client\ObjectSerializer;
 
 /**
- * ApiKeyApi Class Doc Comment
+ * APIKeyApi Class Doc Comment
  *
  * @category Class
  * @package  Swagger\Client
@@ -54,7 +54,7 @@ use \Swagger\Client\ObjectSerializer;
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ApiKeyApi
+class APIKeyApi
 {
 
     /**
@@ -94,7 +94,7 @@ class ApiKeyApi
      *
      * @param \Swagger\Client\ApiClient $apiClient set the API client
      *
-     * @return ApiKeyApi
+     * @return APIKeyApi
      */
     public function setApiClient(\Swagger\Client\ApiClient $apiClient)
     {
@@ -103,34 +103,34 @@ class ApiKeyApi
     }
 
     /**
-     * Operation apiKeyDisable
+     * Operation aPIKeyDisable
      *
      * Disable an API Key.
      *
      * @param string $api_key_id API Key ID (public component). (required)
-     * @return \Swagger\Client\Model\ApiKey
+     * @return \Swagger\Client\Model\APIKey
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function apiKeyDisable($api_key_id)
+    public function aPIKeyDisable($api_key_id)
     {
-        list($response) = $this->apiKeyDisableWithHttpInfo($api_key_id);
+        list($response) = $this->aPIKeyDisableWithHttpInfo($api_key_id);
         return $response;
     }
 
     /**
-     * Operation apiKeyDisableWithHttpInfo
+     * Operation aPIKeyDisableWithHttpInfo
      *
      * Disable an API Key.
      *
      * @param string $api_key_id API Key ID (public component). (required)
-     * @return Array of \Swagger\Client\Model\ApiKey, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \Swagger\Client\Model\APIKey, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function apiKeyDisableWithHttpInfo($api_key_id)
+    public function aPIKeyDisableWithHttpInfo($api_key_id)
     {
         // verify the required parameter 'api_key_id' is set
         if ($api_key_id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $api_key_id when calling apiKeyDisable');
+            throw new \InvalidArgumentException('Missing the required parameter $api_key_id when calling aPIKeyDisable');
         }
         // parse inputs
         $resourcePath = "/apiKey/disable";
@@ -166,15 +166,15 @@ class ApiKeyApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\ApiKey',
+                '\Swagger\Client\Model\APIKey',
                 '/apiKey/disable'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\ApiKey', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\APIKey', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ApiKey', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\APIKey', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 400:
@@ -196,34 +196,34 @@ class ApiKeyApi
     }
 
     /**
-     * Operation apiKeyEnable
+     * Operation aPIKeyEnable
      *
      * Enable an API Key.
      *
      * @param string $api_key_id API Key ID (public component). (required)
-     * @return \Swagger\Client\Model\ApiKey
+     * @return \Swagger\Client\Model\APIKey
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function apiKeyEnable($api_key_id)
+    public function aPIKeyEnable($api_key_id)
     {
-        list($response) = $this->apiKeyEnableWithHttpInfo($api_key_id);
+        list($response) = $this->aPIKeyEnableWithHttpInfo($api_key_id);
         return $response;
     }
 
     /**
-     * Operation apiKeyEnableWithHttpInfo
+     * Operation aPIKeyEnableWithHttpInfo
      *
      * Enable an API Key.
      *
      * @param string $api_key_id API Key ID (public component). (required)
-     * @return Array of \Swagger\Client\Model\ApiKey, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \Swagger\Client\Model\APIKey, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function apiKeyEnableWithHttpInfo($api_key_id)
+    public function aPIKeyEnableWithHttpInfo($api_key_id)
     {
         // verify the required parameter 'api_key_id' is set
         if ($api_key_id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $api_key_id when calling apiKeyEnable');
+            throw new \InvalidArgumentException('Missing the required parameter $api_key_id when calling aPIKeyEnable');
         }
         // parse inputs
         $resourcePath = "/apiKey/enable";
@@ -259,15 +259,15 @@ class ApiKeyApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\ApiKey',
+                '\Swagger\Client\Model\APIKey',
                 '/apiKey/enable'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\ApiKey', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\APIKey', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ApiKey', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\APIKey', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 400:
@@ -289,30 +289,30 @@ class ApiKeyApi
     }
 
     /**
-     * Operation apiKeyGet
+     * Operation aPIKeyGet
      *
      * Get your API Keys.
      *
      * @param bool $reverse If true, will sort results newest first. (optional, default to false)
-     * @return \Swagger\Client\Model\ApiKey[]
+     * @return \Swagger\Client\Model\APIKey[]
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function apiKeyGet($reverse = null)
+    public function aPIKeyGet($reverse = null)
     {
-        list($response) = $this->apiKeyGetWithHttpInfo($reverse);
+        list($response) = $this->aPIKeyGetWithHttpInfo($reverse);
         return $response;
     }
 
     /**
-     * Operation apiKeyGetWithHttpInfo
+     * Operation aPIKeyGetWithHttpInfo
      *
      * Get your API Keys.
      *
      * @param bool $reverse If true, will sort results newest first. (optional, default to false)
-     * @return Array of \Swagger\Client\Model\ApiKey[], HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \Swagger\Client\Model\APIKey[], HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function apiKeyGetWithHttpInfo($reverse = null)
+    public function aPIKeyGetWithHttpInfo($reverse = null)
     {
         // parse inputs
         $resourcePath = "/apiKey";
@@ -348,15 +348,15 @@ class ApiKeyApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\ApiKey[]',
+                '\Swagger\Client\Model\APIKey[]',
                 '/apiKey'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\ApiKey[]', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\APIKey[]', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ApiKey[]', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\APIKey[]', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 400:
@@ -378,7 +378,7 @@ class ApiKeyApi
     }
 
     /**
-     * Operation apiKeyNew
+     * Operation aPIKeyNew
      *
      * Create a new API Key.
      *
@@ -387,17 +387,17 @@ class ApiKeyApi
      * @param string $permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;]. (optional)
      * @param bool $enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (optional, default to false)
      * @param string $token OTP Token (YubiKey, Google Authenticator) (optional)
-     * @return \Swagger\Client\Model\ApiKey
+     * @return \Swagger\Client\Model\APIKey
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function apiKeyNew($name = null, $cidr = null, $permissions = null, $enabled = null, $token = null)
+    public function aPIKeyNew($name = null, $cidr = null, $permissions = null, $enabled = null, $token = null)
     {
-        list($response) = $this->apiKeyNewWithHttpInfo($name, $cidr, $permissions, $enabled, $token);
+        list($response) = $this->aPIKeyNewWithHttpInfo($name, $cidr, $permissions, $enabled, $token);
         return $response;
     }
 
     /**
-     * Operation apiKeyNewWithHttpInfo
+     * Operation aPIKeyNewWithHttpInfo
      *
      * Create a new API Key.
      *
@@ -406,10 +406,10 @@ class ApiKeyApi
      * @param string $permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;]. (optional)
      * @param bool $enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (optional, default to false)
      * @param string $token OTP Token (YubiKey, Google Authenticator) (optional)
-     * @return Array of \Swagger\Client\Model\ApiKey, HTTP status code, HTTP response headers (array of strings)
+     * @return Array of \Swagger\Client\Model\APIKey, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function apiKeyNewWithHttpInfo($name = null, $cidr = null, $permissions = null, $enabled = null, $token = null)
+    public function aPIKeyNewWithHttpInfo($name = null, $cidr = null, $permissions = null, $enabled = null, $token = null)
     {
         // parse inputs
         $resourcePath = "/apiKey";
@@ -461,15 +461,15 @@ class ApiKeyApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\Swagger\Client\Model\ApiKey',
+                '\Swagger\Client\Model\APIKey',
                 '/apiKey'
             );
 
-            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\ApiKey', $httpHeader), $statusCode, $httpHeader);
+            return array($this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\APIKey', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\ApiKey', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\APIKey', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
                 case 400:
@@ -491,7 +491,7 @@ class ApiKeyApi
     }
 
     /**
-     * Operation apiKeyRemove
+     * Operation aPIKeyRemove
      *
      * Remove an API Key.
      *
@@ -499,14 +499,14 @@ class ApiKeyApi
      * @return \Swagger\Client\Model\InlineResponse200
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function apiKeyRemove($api_key_id)
+    public function aPIKeyRemove($api_key_id)
     {
-        list($response) = $this->apiKeyRemoveWithHttpInfo($api_key_id);
+        list($response) = $this->aPIKeyRemoveWithHttpInfo($api_key_id);
         return $response;
     }
 
     /**
-     * Operation apiKeyRemoveWithHttpInfo
+     * Operation aPIKeyRemoveWithHttpInfo
      *
      * Remove an API Key.
      *
@@ -514,11 +514,11 @@ class ApiKeyApi
      * @return Array of \Swagger\Client\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function apiKeyRemoveWithHttpInfo($api_key_id)
+    public function aPIKeyRemoveWithHttpInfo($api_key_id)
     {
         // verify the required parameter 'api_key_id' is set
         if ($api_key_id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $api_key_id when calling apiKeyRemove');
+            throw new \InvalidArgumentException('Missing the required parameter $api_key_id when calling aPIKeyRemove');
         }
         // parse inputs
         $resourcePath = "/apiKey";

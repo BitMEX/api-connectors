@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**maker_fee** | **String** |  | [optional] 
-**taker_fee** | **String** |  | [optional] 
-**insurance_fee** | **String** |  | [optional] 
+**maker_fee** | **Float** |  | [optional] 
+**taker_fee** | **Float** |  | [optional] 
+**settlement_fee** | **Float** |  | [optional] 
 
 

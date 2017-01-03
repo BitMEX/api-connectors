@@ -1,4 +1,4 @@
-# BitMexApi.ApiKey
+# BitMexApi.APIKey
 
 ## Properties
 Name | Type | Description | Notes
@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **name** | **String** |  | 
 **nonce** | **Number** |  | 
 **cidr** | **String** |  | [optional] 
-**permissions** | **[String]** |  | [optional] 
+**permissions** | [**[XAny]**](XAny.md) |  | [optional] 
 **enabled** | **Boolean** |  | [optional] [default to false]
 **userId** | **Number** |  | 
 **created** | **Date** |  | [optional] 

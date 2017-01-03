@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -81,9 +81,12 @@ namespace IO.Swagger.Model
         /// <param name="IsInverse">IsInverse.</param>
         /// <param name="InitMargin">InitMargin.</param>
         /// <param name="MaintMargin">MaintMargin.</param>
+        /// <param name="RiskLimit">RiskLimit.</param>
+        /// <param name="RiskStep">RiskStep.</param>
         /// <param name="Limit">Limit.</param>
         /// <param name="Capped">Capped.</param>
         /// <param name="Taxed">Taxed.</param>
+        /// <param name="Deleverage">Deleverage.</param>
         /// <param name="MakerFee">MakerFee.</param>
         /// <param name="TakerFee">TakerFee.</param>
         /// <param name="SettlementFee">SettlementFee.</param>
@@ -140,7 +143,7 @@ namespace IO.Swagger.Model
         /// <param name="IndicativeSettlePrice">IndicativeSettlePrice.</param>
         /// <param name="SettledPrice">SettledPrice.</param>
         /// <param name="Timestamp">Timestamp.</param>
-        public Instrument(string Symbol = null, string RootSymbol = null, string State = null, string Typ = null, DateTime? Listing = null, DateTime? Front = null, DateTime? Expiry = null, DateTime? Settle = null, DateTime? RelistInterval = null, string InverseLeg = null, string SellLeg = null, string BuyLeg = null, string PositionCurrency = null, string Underlying = null, string QuoteCurrency = null, string UnderlyingSymbol = null, string Reference = null, string ReferenceSymbol = null, DateTime? CalcInterval = null, DateTime? PublishInterval = null, DateTime? PublishTime = null, decimal? MaxOrderQty = null, double? MaxPrice = null, decimal? LotSize = null, double? TickSize = null, decimal? Multiplier = null, string SettlCurrency = null, decimal? UnderlyingToPositionMultiplier = null, decimal? UnderlyingToSettleMultiplier = null, decimal? QuoteToSettleMultiplier = null, bool? IsQuanto = null, bool? IsInverse = null, double? InitMargin = null, double? MaintMargin = null, double? Limit = null, bool? Capped = null, bool? Taxed = null, double? MakerFee = null, double? TakerFee = null, double? SettlementFee = null, double? InsuranceFee = null, string FundingBaseSymbol = null, string FundingQuoteSymbol = null, string FundingPremiumSymbol = null, DateTime? FundingTimestamp = null, DateTime? FundingInterval = null, double? FundingRate = null, double? IndicativeFundingRate = null, DateTime? RebalanceTimestamp = null, DateTime? RebalanceInterval = null, DateTime? OpeningTimestamp = null, DateTime? ClosingTimestamp = null, DateTime? SessionInterval = null, double? PrevClosePrice = null, double? LimitDownPrice = null, double? LimitUpPrice = null, double? BankruptLimitDownPrice = null, double? BankruptLimitUpPrice = null, decimal? PrevTotalVolume = null, decimal? TotalVolume = null, decimal? Volume = null, decimal? Volume24h = null, decimal? PrevTotalTurnover = null, decimal? TotalTurnover = null, decimal? Turnover = null, decimal? Turnover24h = null, double? PrevPrice24h = null, double? Vwap = null, double? HighPrice = null, double? LowPrice = null, double? LastPrice = null, double? LastPriceProtected = null, string LastTickDirection = null, double? LastChangePcnt = null, double? BidPrice = null, double? MidPrice = null, double? AskPrice = null, double? ImpactBidPrice = null, double? ImpactMidPrice = null, double? ImpactAskPrice = null, bool? HasLiquidity = null, decimal? OpenInterest = null, decimal? OpenValue = null, string FairMethod = null, double? FairBasisRate = null, double? FairBasis = null, double? FairPrice = null, string MarkMethod = null, double? MarkPrice = null, double? IndicativeTaxRate = null, double? IndicativeSettlePrice = null, double? SettledPrice = null, DateTime? Timestamp = null)
+        public Instrument(string Symbol = null, string RootSymbol = null, string State = null, string Typ = null, DateTime? Listing = null, DateTime? Front = null, DateTime? Expiry = null, DateTime? Settle = null, DateTime? RelistInterval = null, string InverseLeg = null, string SellLeg = null, string BuyLeg = null, string PositionCurrency = null, string Underlying = null, string QuoteCurrency = null, string UnderlyingSymbol = null, string Reference = null, string ReferenceSymbol = null, DateTime? CalcInterval = null, DateTime? PublishInterval = null, DateTime? PublishTime = null, decimal? MaxOrderQty = null, double? MaxPrice = null, decimal? LotSize = null, double? TickSize = null, decimal? Multiplier = null, string SettlCurrency = null, decimal? UnderlyingToPositionMultiplier = null, decimal? UnderlyingToSettleMultiplier = null, decimal? QuoteToSettleMultiplier = null, bool? IsQuanto = null, bool? IsInverse = null, double? InitMargin = null, double? MaintMargin = null, decimal? RiskLimit = null, decimal? RiskStep = null, double? Limit = null, bool? Capped = null, bool? Taxed = null, bool? Deleverage = null, double? MakerFee = null, double? TakerFee = null, double? SettlementFee = null, double? InsuranceFee = null, string FundingBaseSymbol = null, string FundingQuoteSymbol = null, string FundingPremiumSymbol = null, DateTime? FundingTimestamp = null, DateTime? FundingInterval = null, double? FundingRate = null, double? IndicativeFundingRate = null, DateTime? RebalanceTimestamp = null, DateTime? RebalanceInterval = null, DateTime? OpeningTimestamp = null, DateTime? ClosingTimestamp = null, DateTime? SessionInterval = null, double? PrevClosePrice = null, double? LimitDownPrice = null, double? LimitUpPrice = null, double? BankruptLimitDownPrice = null, double? BankruptLimitUpPrice = null, decimal? PrevTotalVolume = null, decimal? TotalVolume = null, decimal? Volume = null, decimal? Volume24h = null, decimal? PrevTotalTurnover = null, decimal? TotalTurnover = null, decimal? Turnover = null, decimal? Turnover24h = null, double? PrevPrice24h = null, double? Vwap = null, double? HighPrice = null, double? LowPrice = null, double? LastPrice = null, double? LastPriceProtected = null, string LastTickDirection = null, double? LastChangePcnt = null, double? BidPrice = null, double? MidPrice = null, double? AskPrice = null, double? ImpactBidPrice = null, double? ImpactMidPrice = null, double? ImpactAskPrice = null, bool? HasLiquidity = null, decimal? OpenInterest = null, decimal? OpenValue = null, string FairMethod = null, double? FairBasisRate = null, double? FairBasis = null, double? FairPrice = null, string MarkMethod = null, double? MarkPrice = null, double? IndicativeTaxRate = null, double? IndicativeSettlePrice = null, double? SettledPrice = null, DateTime? Timestamp = null)
         {
             // to ensure "Symbol" is required (not null)
             if (Symbol == null)
@@ -184,9 +187,12 @@ namespace IO.Swagger.Model
             this.IsInverse = IsInverse;
             this.InitMargin = InitMargin;
             this.MaintMargin = MaintMargin;
+            this.RiskLimit = RiskLimit;
+            this.RiskStep = RiskStep;
             this.Limit = Limit;
             this.Capped = Capped;
             this.Taxed = Taxed;
+            this.Deleverage = Deleverage;
             this.MakerFee = MakerFee;
             this.TakerFee = TakerFee;
             this.SettlementFee = SettlementFee;
@@ -416,6 +422,16 @@ namespace IO.Swagger.Model
         [DataMember(Name="maintMargin", EmitDefaultValue=false)]
         public double? MaintMargin { get; set; }
         /// <summary>
+        /// Gets or Sets RiskLimit
+        /// </summary>
+        [DataMember(Name="riskLimit", EmitDefaultValue=false)]
+        public decimal? RiskLimit { get; set; }
+        /// <summary>
+        /// Gets or Sets RiskStep
+        /// </summary>
+        [DataMember(Name="riskStep", EmitDefaultValue=false)]
+        public decimal? RiskStep { get; set; }
+        /// <summary>
         /// Gets or Sets Limit
         /// </summary>
         [DataMember(Name="limit", EmitDefaultValue=false)]
@@ -430,6 +446,11 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="taxed", EmitDefaultValue=false)]
         public bool? Taxed { get; set; }
+        /// <summary>
+        /// Gets or Sets Deleverage
+        /// </summary>
+        [DataMember(Name="deleverage", EmitDefaultValue=false)]
+        public bool? Deleverage { get; set; }
         /// <summary>
         /// Gets or Sets MakerFee
         /// </summary>
@@ -752,9 +773,12 @@ namespace IO.Swagger.Model
             sb.Append("  IsInverse: ").Append(IsInverse).Append("\n");
             sb.Append("  InitMargin: ").Append(InitMargin).Append("\n");
             sb.Append("  MaintMargin: ").Append(MaintMargin).Append("\n");
+            sb.Append("  RiskLimit: ").Append(RiskLimit).Append("\n");
+            sb.Append("  RiskStep: ").Append(RiskStep).Append("\n");
             sb.Append("  Limit: ").Append(Limit).Append("\n");
             sb.Append("  Capped: ").Append(Capped).Append("\n");
             sb.Append("  Taxed: ").Append(Taxed).Append("\n");
+            sb.Append("  Deleverage: ").Append(Deleverage).Append("\n");
             sb.Append("  MakerFee: ").Append(MakerFee).Append("\n");
             sb.Append("  TakerFee: ").Append(TakerFee).Append("\n");
             sb.Append("  SettlementFee: ").Append(SettlementFee).Append("\n");
@@ -1018,6 +1042,16 @@ namespace IO.Swagger.Model
                     this.MaintMargin.Equals(other.MaintMargin)
                 ) && 
                 (
+                    this.RiskLimit == other.RiskLimit ||
+                    this.RiskLimit != null &&
+                    this.RiskLimit.Equals(other.RiskLimit)
+                ) && 
+                (
+                    this.RiskStep == other.RiskStep ||
+                    this.RiskStep != null &&
+                    this.RiskStep.Equals(other.RiskStep)
+                ) && 
+                (
                     this.Limit == other.Limit ||
                     this.Limit != null &&
                     this.Limit.Equals(other.Limit)
@@ -1031,6 +1065,11 @@ namespace IO.Swagger.Model
                     this.Taxed == other.Taxed ||
                     this.Taxed != null &&
                     this.Taxed.Equals(other.Taxed)
+                ) && 
+                (
+                    this.Deleverage == other.Deleverage ||
+                    this.Deleverage != null &&
+                    this.Deleverage.Equals(other.Deleverage)
                 ) && 
                 (
                     this.MakerFee == other.MakerFee ||
@@ -1393,12 +1432,18 @@ namespace IO.Swagger.Model
                     hash = hash * 59 + this.InitMargin.GetHashCode();
                 if (this.MaintMargin != null)
                     hash = hash * 59 + this.MaintMargin.GetHashCode();
+                if (this.RiskLimit != null)
+                    hash = hash * 59 + this.RiskLimit.GetHashCode();
+                if (this.RiskStep != null)
+                    hash = hash * 59 + this.RiskStep.GetHashCode();
                 if (this.Limit != null)
                     hash = hash * 59 + this.Limit.GetHashCode();
                 if (this.Capped != null)
                     hash = hash * 59 + this.Capped.GetHashCode();
                 if (this.Taxed != null)
                     hash = hash * 59 + this.Taxed.GetHashCode();
+                if (this.Deleverage != null)
+                    hash = hash * 59 + this.Deleverage.GetHashCode();
                 if (this.MakerFee != null)
                     hash = hash * 59 + this.MakerFee.GetHashCode();
                 if (this.TakerFee != null)

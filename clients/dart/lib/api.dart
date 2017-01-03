@@ -16,8 +16,8 @@ part 'auth/api_key_auth.dart';
 part 'auth/oauth.dart';
 part 'auth/http_basic_auth.dart';
 
+part 'api/aPIKey_api.dart';
 part 'api/announcement_api.dart';
-part 'api/apiKey_api.dart';
 part 'api/chat_api.dart';
 part 'api/execution_api.dart';
 part 'api/funding_api.dart';
@@ -35,11 +35,12 @@ part 'api/stats_api.dart';
 part 'api/trade_api.dart';
 part 'api/user_api.dart';
 
+part 'model/api_key.dart';
 part 'model/access_token.dart';
 part 'model/affiliate.dart';
 part 'model/announcement.dart';
-part 'model/api_key.dart';
 part 'model/chat.dart';
+part 'model/chat_channel.dart';
 part 'model/connected_users.dart';
 part 'model/error.dart';
 part 'model/execution.dart';
@@ -65,4 +66,5 @@ part 'model/transaction.dart';
 part 'model/user.dart';
 part 'model/user_commission.dart';
 part 'model/user_preferences.dart';
+part 'model/wallet.dart';
 

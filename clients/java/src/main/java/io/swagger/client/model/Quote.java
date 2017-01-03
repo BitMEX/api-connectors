@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -36,7 +36,7 @@ import org.joda.time.LocalDate;
 /**
  * Quote
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-05T09:40:48.217-05:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-01-03T10:34:33.567-06:00")
 public class Quote   {
   @JsonProperty("timestamp")
   private LocalDate timestamp = null;
@@ -56,9 +56,6 @@ public class Quote   {
   @JsonProperty("askSize")
   private BigDecimal askSize = null;
 
-  @JsonProperty("id")
-  private Double id = null;
-
   public Quote timestamp(LocalDate timestamp) {
     this.timestamp = timestamp;
     return this;
@@ -68,7 +65,7 @@ public class Quote   {
    * Get timestamp
    * @return timestamp
   **/
-  @ApiModelProperty(example = "null", value = "")
+  @ApiModelProperty(example = "null", required = true, value = "")
   public LocalDate getTimestamp() {
     return timestamp;
   }
@@ -86,7 +83,7 @@ public class Quote   {
    * Get symbol
    * @return symbol
   **/
-  @ApiModelProperty(example = "null", value = "")
+  @ApiModelProperty(example = "null", required = true, value = "")
   public String getSymbol() {
     return symbol;
   }
@@ -167,24 +164,6 @@ public class Quote   {
     this.askSize = askSize;
   }
 
-  public Quote id(Double id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public Double getId() {
-    return id;
-  }
-
-  public void setId(Double id) {
-    this.id = id;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -200,13 +179,12 @@ public class Quote   {
         Objects.equals(this.bidSize, quote.bidSize) &&
         Objects.equals(this.bidPrice, quote.bidPrice) &&
         Objects.equals(this.askPrice, quote.askPrice) &&
-        Objects.equals(this.askSize, quote.askSize) &&
-        Objects.equals(this.id, quote.id);
+        Objects.equals(this.askSize, quote.askSize);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(timestamp, symbol, bidSize, bidPrice, askPrice, askSize, id);
+    return Objects.hash(timestamp, symbol, bidSize, bidPrice, askPrice, askSize);
   }
 
   @Override
@@ -220,7 +198,6 @@ public class Quote   {
     sb.append("    bidPrice: ").append(toIndentedString(bidPrice)).append("\n");
     sb.append("    askPrice: ").append(toIndentedString(askPrice)).append("\n");
     sb.append("    askSize: ").append(toIndentedString(askSize)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,6 +1,6 @@
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
+import io.swagger.client.model.XAny;
 import java.util.*;
 import java.util.Date;
 
@@ -13,6 +13,8 @@ public class UserPreferences  {
   
   @SerializedName("announcementsLastSeen")
   private Date announcementsLastSeen = null;
+  @SerializedName("chatChannelID")
+  private Double chatChannelID = null;
   @SerializedName("colorTheme")
   private String colorTheme = null;
   @SerializedName("currency")
@@ -31,14 +33,12 @@ public class UserPreferences  {
   private Boolean hideNameFromLeaderboard = null;
   @SerializedName("hideNotifications")
   private List<String> hideNotifications = null;
-  @SerializedName("hidePhoneConfirm")
-  private Boolean hidePhoneConfirm = null;
   @SerializedName("locale")
   private String locale = null;
   @SerializedName("msgsSeen")
   private List<String> msgsSeen = null;
   @SerializedName("orderBookBinning")
-  private BigDecimal orderBookBinning = null;
+  private XAny orderBookBinning = null;
   @SerializedName("orderBookType")
   private String orderBookType = null;
   @SerializedName("orderControlsPlusMinus")
@@ -64,6 +64,16 @@ public class UserPreferences  {
   }
   public void setAnnouncementsLastSeen(Date announcementsLastSeen) {
     this.announcementsLastSeen = announcementsLastSeen;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getChatChannelID() {
+    return chatChannelID;
+  }
+  public void setChatChannelID(Double chatChannelID) {
+    this.chatChannelID = chatChannelID;
   }
 
   /**
@@ -159,16 +169,6 @@ public class UserPreferences  {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Boolean getHidePhoneConfirm() {
-    return hidePhoneConfirm;
-  }
-  public void setHidePhoneConfirm(Boolean hidePhoneConfirm) {
-    this.hidePhoneConfirm = hidePhoneConfirm;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public String getLocale() {
     return locale;
   }
@@ -189,10 +189,10 @@ public class UserPreferences  {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getOrderBookBinning() {
+  public XAny getOrderBookBinning() {
     return orderBookBinning;
   }
-  public void setOrderBookBinning(BigDecimal orderBookBinning) {
+  public void setOrderBookBinning(XAny orderBookBinning) {
     this.orderBookBinning = orderBookBinning;
   }
 
@@ -287,6 +287,7 @@ public class UserPreferences  {
     }
     UserPreferences userPreferences = (UserPreferences) o;
     return (announcementsLastSeen == null ? userPreferences.announcementsLastSeen == null : announcementsLastSeen.equals(userPreferences.announcementsLastSeen)) &&
+        (chatChannelID == null ? userPreferences.chatChannelID == null : chatChannelID.equals(userPreferences.chatChannelID)) &&
         (colorTheme == null ? userPreferences.colorTheme == null : colorTheme.equals(userPreferences.colorTheme)) &&
         (currency == null ? userPreferences.currency == null : currency.equals(userPreferences.currency)) &&
         (debug == null ? userPreferences.debug == null : debug.equals(userPreferences.debug)) &&
@@ -296,7 +297,6 @@ public class UserPreferences  {
         (hideFromLeaderboard == null ? userPreferences.hideFromLeaderboard == null : hideFromLeaderboard.equals(userPreferences.hideFromLeaderboard)) &&
         (hideNameFromLeaderboard == null ? userPreferences.hideNameFromLeaderboard == null : hideNameFromLeaderboard.equals(userPreferences.hideNameFromLeaderboard)) &&
         (hideNotifications == null ? userPreferences.hideNotifications == null : hideNotifications.equals(userPreferences.hideNotifications)) &&
-        (hidePhoneConfirm == null ? userPreferences.hidePhoneConfirm == null : hidePhoneConfirm.equals(userPreferences.hidePhoneConfirm)) &&
         (locale == null ? userPreferences.locale == null : locale.equals(userPreferences.locale)) &&
         (msgsSeen == null ? userPreferences.msgsSeen == null : msgsSeen.equals(userPreferences.msgsSeen)) &&
         (orderBookBinning == null ? userPreferences.orderBookBinning == null : orderBookBinning.equals(userPreferences.orderBookBinning)) &&
@@ -314,6 +314,7 @@ public class UserPreferences  {
   public int hashCode() {
     int result = 17;
     result = 31 * result + (announcementsLastSeen == null ? 0: announcementsLastSeen.hashCode());
+    result = 31 * result + (chatChannelID == null ? 0: chatChannelID.hashCode());
     result = 31 * result + (colorTheme == null ? 0: colorTheme.hashCode());
     result = 31 * result + (currency == null ? 0: currency.hashCode());
     result = 31 * result + (debug == null ? 0: debug.hashCode());
@@ -323,7 +324,6 @@ public class UserPreferences  {
     result = 31 * result + (hideFromLeaderboard == null ? 0: hideFromLeaderboard.hashCode());
     result = 31 * result + (hideNameFromLeaderboard == null ? 0: hideNameFromLeaderboard.hashCode());
     result = 31 * result + (hideNotifications == null ? 0: hideNotifications.hashCode());
-    result = 31 * result + (hidePhoneConfirm == null ? 0: hidePhoneConfirm.hashCode());
     result = 31 * result + (locale == null ? 0: locale.hashCode());
     result = 31 * result + (msgsSeen == null ? 0: msgsSeen.hashCode());
     result = 31 * result + (orderBookBinning == null ? 0: orderBookBinning.hashCode());
@@ -344,6 +344,7 @@ public class UserPreferences  {
     sb.append("class UserPreferences {\n");
     
     sb.append("  announcementsLastSeen: ").append(announcementsLastSeen).append("\n");
+    sb.append("  chatChannelID: ").append(chatChannelID).append("\n");
     sb.append("  colorTheme: ").append(colorTheme).append("\n");
     sb.append("  currency: ").append(currency).append("\n");
     sb.append("  debug: ").append(debug).append("\n");
@@ -353,7 +354,6 @@ public class UserPreferences  {
     sb.append("  hideFromLeaderboard: ").append(hideFromLeaderboard).append("\n");
     sb.append("  hideNameFromLeaderboard: ").append(hideNameFromLeaderboard).append("\n");
     sb.append("  hideNotifications: ").append(hideNotifications).append("\n");
-    sb.append("  hidePhoneConfirm: ").append(hidePhoneConfirm).append("\n");
     sb.append("  locale: ").append(locale).append("\n");
     sb.append("  msgsSeen: ").append(msgsSeen).append("\n");
     sb.append("  orderBookBinning: ").append(orderBookBinning).append("\n");

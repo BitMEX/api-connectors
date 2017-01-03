@@ -2,7 +2,7 @@ part of api;
 
 
 @Entity()
-class ApiKey {
+class APIKey {
   
   @Property(name: 'id')
   String id = null;
@@ -25,7 +25,7 @@ class ApiKey {
   
 
   @Property(name: 'permissions')
-  List<String> permissions = [];
+  List<X-any> permissions = [];
   
 
   @Property(name: 'enabled')
@@ -39,11 +39,11 @@ class ApiKey {
   @Property(name: 'created')
   DateTime created = null;
   
-  ApiKey();
+  APIKey();
 
   @override
   String toString()  {
-    return 'ApiKey[id=$id, secret=$secret, name=$name, nonce=$nonce, cidr=$cidr, permissions=$permissions, enabled=$enabled, userId=$userId, created=$created, ]';
+    return 'APIKey[id=$id, secret=$secret, name=$name, nonce=$nonce, cidr=$cidr, permissions=$permissions, enabled=$enabled, userId=$userId, created=$created, ]';
   }
 
 }

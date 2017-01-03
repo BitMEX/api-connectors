@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -53,8 +53,12 @@ namespace IO.Swagger.Model
         /// <param name="Underlying">Underlying.</param>
         /// <param name="QuoteCurrency">QuoteCurrency.</param>
         /// <param name="Commission">Commission.</param>
+        /// <param name="InitMarginReq">InitMarginReq.</param>
+        /// <param name="MaintMarginReq">MaintMarginReq.</param>
+        /// <param name="RiskLimit">RiskLimit.</param>
         /// <param name="Leverage">Leverage.</param>
         /// <param name="CrossMargin">CrossMargin.</param>
+        /// <param name="DeleveragePercentile">DeleveragePercentile.</param>
         /// <param name="RebalancedPnl">RebalancedPnl.</param>
         /// <param name="PrevRealisedPnl">PrevRealisedPnl.</param>
         /// <param name="PrevUnrealisedPnl">PrevUnrealisedPnl.</param>
@@ -88,6 +92,7 @@ namespace IO.Swagger.Model
         /// <param name="IsOpen">IsOpen.</param>
         /// <param name="MarkPrice">MarkPrice.</param>
         /// <param name="MarkValue">MarkValue.</param>
+        /// <param name="RiskValue">RiskValue.</param>
         /// <param name="HomeNotional">HomeNotional.</param>
         /// <param name="ForeignNotional">ForeignNotional.</param>
         /// <param name="PosState">PosState.</param>
@@ -133,7 +138,7 @@ namespace IO.Swagger.Model
         /// <param name="Timestamp">Timestamp.</param>
         /// <param name="LastPrice">LastPrice.</param>
         /// <param name="LastValue">LastValue.</param>
-        public Position(decimal? Account = null, string Symbol = null, string Currency = null, string Underlying = null, string QuoteCurrency = null, double? Commission = null, double? Leverage = null, bool? CrossMargin = null, decimal? RebalancedPnl = null, decimal? PrevRealisedPnl = null, decimal? PrevUnrealisedPnl = null, double? PrevClosePrice = null, DateTime? OpeningTimestamp = null, decimal? OpeningQty = null, decimal? OpeningCost = null, decimal? OpeningComm = null, decimal? OpenOrderBuyQty = null, decimal? OpenOrderBuyCost = null, decimal? OpenOrderBuyPremium = null, decimal? OpenOrderSellQty = null, decimal? OpenOrderSellCost = null, decimal? OpenOrderSellPremium = null, decimal? ExecBuyQty = null, decimal? ExecBuyCost = null, decimal? ExecSellQty = null, decimal? ExecSellCost = null, decimal? ExecQty = null, decimal? ExecCost = null, decimal? ExecComm = null, DateTime? CurrentTimestamp = null, decimal? CurrentQty = null, decimal? CurrentCost = null, decimal? CurrentComm = null, decimal? RealisedCost = null, decimal? UnrealisedCost = null, decimal? GrossOpenCost = null, decimal? GrossOpenPremium = null, decimal? GrossExecCost = null, bool? IsOpen = null, double? MarkPrice = null, decimal? MarkValue = null, double? HomeNotional = null, double? ForeignNotional = null, string PosState = null, decimal? PosCost = null, decimal? PosCost2 = null, decimal? PosCross = null, decimal? PosInit = null, decimal? PosComm = null, decimal? PosLoss = null, decimal? PosMargin = null, decimal? PosMaint = null, decimal? PosAllowance = null, decimal? TaxableMargin = null, decimal? InitMargin = null, decimal? MaintMargin = null, decimal? SessionMargin = null, decimal? TargetExcessMargin = null, decimal? VarMargin = null, decimal? RealisedGrossPnl = null, decimal? RealisedTax = null, decimal? RealisedPnl = null, decimal? UnrealisedGrossPnl = null, decimal? LongBankrupt = null, decimal? ShortBankrupt = null, decimal? TaxBase = null, double? IndicativeTaxRate = null, decimal? IndicativeTax = null, decimal? UnrealisedTax = null, decimal? UnrealisedPnl = null, double? UnrealisedPnlPcnt = null, double? UnrealisedRoePcnt = null, double? SimpleQty = null, double? SimpleCost = null, double? SimpleValue = null, double? SimplePnl = null, double? SimplePnlPcnt = null, double? AvgCostPrice = null, double? AvgEntryPrice = null, double? BreakEvenPrice = null, double? MarginCallPrice = null, double? LiquidationPrice = null, double? BankruptPrice = null, DateTime? Timestamp = null, double? LastPrice = null, decimal? LastValue = null)
+        public Position(decimal? Account = null, string Symbol = null, string Currency = null, string Underlying = null, string QuoteCurrency = null, double? Commission = null, double? InitMarginReq = null, double? MaintMarginReq = null, decimal? RiskLimit = null, double? Leverage = null, bool? CrossMargin = null, double? DeleveragePercentile = null, decimal? RebalancedPnl = null, decimal? PrevRealisedPnl = null, decimal? PrevUnrealisedPnl = null, double? PrevClosePrice = null, DateTime? OpeningTimestamp = null, decimal? OpeningQty = null, decimal? OpeningCost = null, decimal? OpeningComm = null, decimal? OpenOrderBuyQty = null, decimal? OpenOrderBuyCost = null, decimal? OpenOrderBuyPremium = null, decimal? OpenOrderSellQty = null, decimal? OpenOrderSellCost = null, decimal? OpenOrderSellPremium = null, decimal? ExecBuyQty = null, decimal? ExecBuyCost = null, decimal? ExecSellQty = null, decimal? ExecSellCost = null, decimal? ExecQty = null, decimal? ExecCost = null, decimal? ExecComm = null, DateTime? CurrentTimestamp = null, decimal? CurrentQty = null, decimal? CurrentCost = null, decimal? CurrentComm = null, decimal? RealisedCost = null, decimal? UnrealisedCost = null, decimal? GrossOpenCost = null, decimal? GrossOpenPremium = null, decimal? GrossExecCost = null, bool? IsOpen = null, double? MarkPrice = null, decimal? MarkValue = null, decimal? RiskValue = null, double? HomeNotional = null, double? ForeignNotional = null, string PosState = null, decimal? PosCost = null, decimal? PosCost2 = null, decimal? PosCross = null, decimal? PosInit = null, decimal? PosComm = null, decimal? PosLoss = null, decimal? PosMargin = null, decimal? PosMaint = null, decimal? PosAllowance = null, decimal? TaxableMargin = null, decimal? InitMargin = null, decimal? MaintMargin = null, decimal? SessionMargin = null, decimal? TargetExcessMargin = null, decimal? VarMargin = null, decimal? RealisedGrossPnl = null, decimal? RealisedTax = null, decimal? RealisedPnl = null, decimal? UnrealisedGrossPnl = null, decimal? LongBankrupt = null, decimal? ShortBankrupt = null, decimal? TaxBase = null, double? IndicativeTaxRate = null, decimal? IndicativeTax = null, decimal? UnrealisedTax = null, decimal? UnrealisedPnl = null, double? UnrealisedPnlPcnt = null, double? UnrealisedRoePcnt = null, double? SimpleQty = null, double? SimpleCost = null, double? SimpleValue = null, double? SimplePnl = null, double? SimplePnlPcnt = null, double? AvgCostPrice = null, double? AvgEntryPrice = null, double? BreakEvenPrice = null, double? MarginCallPrice = null, double? LiquidationPrice = null, double? BankruptPrice = null, DateTime? Timestamp = null, double? LastPrice = null, decimal? LastValue = null)
         {
             // to ensure "Account" is required (not null)
             if (Account == null)
@@ -165,8 +170,12 @@ namespace IO.Swagger.Model
             this.Underlying = Underlying;
             this.QuoteCurrency = QuoteCurrency;
             this.Commission = Commission;
+            this.InitMarginReq = InitMarginReq;
+            this.MaintMarginReq = MaintMarginReq;
+            this.RiskLimit = RiskLimit;
             this.Leverage = Leverage;
             this.CrossMargin = CrossMargin;
+            this.DeleveragePercentile = DeleveragePercentile;
             this.RebalancedPnl = RebalancedPnl;
             this.PrevRealisedPnl = PrevRealisedPnl;
             this.PrevUnrealisedPnl = PrevUnrealisedPnl;
@@ -200,6 +209,7 @@ namespace IO.Swagger.Model
             this.IsOpen = IsOpen;
             this.MarkPrice = MarkPrice;
             this.MarkValue = MarkValue;
+            this.RiskValue = RiskValue;
             this.HomeNotional = HomeNotional;
             this.ForeignNotional = ForeignNotional;
             this.PosState = PosState;
@@ -278,6 +288,21 @@ namespace IO.Swagger.Model
         [DataMember(Name="commission", EmitDefaultValue=false)]
         public double? Commission { get; set; }
         /// <summary>
+        /// Gets or Sets InitMarginReq
+        /// </summary>
+        [DataMember(Name="initMarginReq", EmitDefaultValue=false)]
+        public double? InitMarginReq { get; set; }
+        /// <summary>
+        /// Gets or Sets MaintMarginReq
+        /// </summary>
+        [DataMember(Name="maintMarginReq", EmitDefaultValue=false)]
+        public double? MaintMarginReq { get; set; }
+        /// <summary>
+        /// Gets or Sets RiskLimit
+        /// </summary>
+        [DataMember(Name="riskLimit", EmitDefaultValue=false)]
+        public decimal? RiskLimit { get; set; }
+        /// <summary>
         /// Gets or Sets Leverage
         /// </summary>
         [DataMember(Name="leverage", EmitDefaultValue=false)]
@@ -287,6 +312,11 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="crossMargin", EmitDefaultValue=false)]
         public bool? CrossMargin { get; set; }
+        /// <summary>
+        /// Gets or Sets DeleveragePercentile
+        /// </summary>
+        [DataMember(Name="deleveragePercentile", EmitDefaultValue=false)]
+        public double? DeleveragePercentile { get; set; }
         /// <summary>
         /// Gets or Sets RebalancedPnl
         /// </summary>
@@ -452,6 +482,11 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="markValue", EmitDefaultValue=false)]
         public decimal? MarkValue { get; set; }
+        /// <summary>
+        /// Gets or Sets RiskValue
+        /// </summary>
+        [DataMember(Name="riskValue", EmitDefaultValue=false)]
+        public decimal? RiskValue { get; set; }
         /// <summary>
         /// Gets or Sets HomeNotional
         /// </summary>
@@ -691,8 +726,12 @@ namespace IO.Swagger.Model
             sb.Append("  Underlying: ").Append(Underlying).Append("\n");
             sb.Append("  QuoteCurrency: ").Append(QuoteCurrency).Append("\n");
             sb.Append("  Commission: ").Append(Commission).Append("\n");
+            sb.Append("  InitMarginReq: ").Append(InitMarginReq).Append("\n");
+            sb.Append("  MaintMarginReq: ").Append(MaintMarginReq).Append("\n");
+            sb.Append("  RiskLimit: ").Append(RiskLimit).Append("\n");
             sb.Append("  Leverage: ").Append(Leverage).Append("\n");
             sb.Append("  CrossMargin: ").Append(CrossMargin).Append("\n");
+            sb.Append("  DeleveragePercentile: ").Append(DeleveragePercentile).Append("\n");
             sb.Append("  RebalancedPnl: ").Append(RebalancedPnl).Append("\n");
             sb.Append("  PrevRealisedPnl: ").Append(PrevRealisedPnl).Append("\n");
             sb.Append("  PrevUnrealisedPnl: ").Append(PrevUnrealisedPnl).Append("\n");
@@ -726,6 +765,7 @@ namespace IO.Swagger.Model
             sb.Append("  IsOpen: ").Append(IsOpen).Append("\n");
             sb.Append("  MarkPrice: ").Append(MarkPrice).Append("\n");
             sb.Append("  MarkValue: ").Append(MarkValue).Append("\n");
+            sb.Append("  RiskValue: ").Append(RiskValue).Append("\n");
             sb.Append("  HomeNotional: ").Append(HomeNotional).Append("\n");
             sb.Append("  ForeignNotional: ").Append(ForeignNotional).Append("\n");
             sb.Append("  PosState: ").Append(PosState).Append("\n");
@@ -838,6 +878,21 @@ namespace IO.Swagger.Model
                     this.Commission.Equals(other.Commission)
                 ) && 
                 (
+                    this.InitMarginReq == other.InitMarginReq ||
+                    this.InitMarginReq != null &&
+                    this.InitMarginReq.Equals(other.InitMarginReq)
+                ) && 
+                (
+                    this.MaintMarginReq == other.MaintMarginReq ||
+                    this.MaintMarginReq != null &&
+                    this.MaintMarginReq.Equals(other.MaintMarginReq)
+                ) && 
+                (
+                    this.RiskLimit == other.RiskLimit ||
+                    this.RiskLimit != null &&
+                    this.RiskLimit.Equals(other.RiskLimit)
+                ) && 
+                (
                     this.Leverage == other.Leverage ||
                     this.Leverage != null &&
                     this.Leverage.Equals(other.Leverage)
@@ -846,6 +901,11 @@ namespace IO.Swagger.Model
                     this.CrossMargin == other.CrossMargin ||
                     this.CrossMargin != null &&
                     this.CrossMargin.Equals(other.CrossMargin)
+                ) && 
+                (
+                    this.DeleveragePercentile == other.DeleveragePercentile ||
+                    this.DeleveragePercentile != null &&
+                    this.DeleveragePercentile.Equals(other.DeleveragePercentile)
                 ) && 
                 (
                     this.RebalancedPnl == other.RebalancedPnl ||
@@ -1011,6 +1071,11 @@ namespace IO.Swagger.Model
                     this.MarkValue == other.MarkValue ||
                     this.MarkValue != null &&
                     this.MarkValue.Equals(other.MarkValue)
+                ) && 
+                (
+                    this.RiskValue == other.RiskValue ||
+                    this.RiskValue != null &&
+                    this.RiskValue.Equals(other.RiskValue)
                 ) && 
                 (
                     this.HomeNotional == other.HomeNotional ||
@@ -1262,10 +1327,18 @@ namespace IO.Swagger.Model
                     hash = hash * 59 + this.QuoteCurrency.GetHashCode();
                 if (this.Commission != null)
                     hash = hash * 59 + this.Commission.GetHashCode();
+                if (this.InitMarginReq != null)
+                    hash = hash * 59 + this.InitMarginReq.GetHashCode();
+                if (this.MaintMarginReq != null)
+                    hash = hash * 59 + this.MaintMarginReq.GetHashCode();
+                if (this.RiskLimit != null)
+                    hash = hash * 59 + this.RiskLimit.GetHashCode();
                 if (this.Leverage != null)
                     hash = hash * 59 + this.Leverage.GetHashCode();
                 if (this.CrossMargin != null)
                     hash = hash * 59 + this.CrossMargin.GetHashCode();
+                if (this.DeleveragePercentile != null)
+                    hash = hash * 59 + this.DeleveragePercentile.GetHashCode();
                 if (this.RebalancedPnl != null)
                     hash = hash * 59 + this.RebalancedPnl.GetHashCode();
                 if (this.PrevRealisedPnl != null)
@@ -1332,6 +1405,8 @@ namespace IO.Swagger.Model
                     hash = hash * 59 + this.MarkPrice.GetHashCode();
                 if (this.MarkValue != null)
                     hash = hash * 59 + this.MarkValue.GetHashCode();
+                if (this.RiskValue != null)
+                    hash = hash * 59 + this.RiskValue.GetHashCode();
                 if (this.HomeNotional != null)
                     hash = hash * 59 + this.HomeNotional.GetHashCode();
                 if (this.ForeignNotional != null)

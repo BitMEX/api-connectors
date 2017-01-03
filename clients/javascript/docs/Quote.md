@@ -3,12 +3,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**timestamp** | **Date** |  | [optional] 
-**symbol** | **String** |  | [optional] 
+**timestamp** | **Date** |  | 
+**symbol** | **String** |  | 
 **bidSize** | **Number** |  | [optional] 
 **bidPrice** | **Number** |  | [optional] 
 **askPrice** | **Number** |  | [optional] 
 **askSize** | **Number** |  | [optional] 
-**id** | **Number** |  | [optional] 
 
 

@@ -1,7 +1,7 @@
 =begin
 #BitMEX API
 
-#REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+### REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
 
 OpenAPI spec version: 1.2.0
 Contact: support@bitmex.com
@@ -34,15 +34,11 @@ module SwaggerClient
 
     attr_accessor :lastname
 
-    attr_accessor :status
-
     attr_accessor :username
 
     attr_accessor :email
 
     attr_accessor :phone
-
-    attr_accessor :country_code
 
     attr_accessor :created
 
@@ -58,8 +54,6 @@ module SwaggerClient
 
     attr_accessor :country
 
-    attr_accessor :disabled
-
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -68,19 +62,16 @@ module SwaggerClient
         :'owner_id' => :'ownerId',
         :'firstname' => :'firstname',
         :'lastname' => :'lastname',
-        :'status' => :'status',
         :'username' => :'username',
         :'email' => :'email',
         :'phone' => :'phone',
-        :'country_code' => :'countryCode',
         :'created' => :'created',
         :'last_updated' => :'lastUpdated',
         :'preferences' => :'preferences',
         :'tfa_enabled' => :'TFAEnabled',
         :'affiliate_id' => :'affiliateID',
         :'pgp_pub_key' => :'pgpPubKey',
-        :'country' => :'country',
-        :'disabled' => :'disabled'
+        :'country' => :'country'
       }
     end
 
@@ -91,19 +82,16 @@ module SwaggerClient
         :'owner_id' => :'Float',
         :'firstname' => :'String',
         :'lastname' => :'String',
-        :'status' => :'String',
         :'username' => :'String',
         :'email' => :'String',
         :'phone' => :'String',
-        :'country_code' => :'Float',
         :'created' => :'Date',
         :'last_updated' => :'Date',
         :'preferences' => :'UserPreferences',
         :'tfa_enabled' => :'String',
         :'affiliate_id' => :'String',
         :'pgp_pub_key' => :'String',
-        :'country' => :'String',
-        :'disabled' => :'BOOLEAN'
+        :'country' => :'String'
       }
     end
 
@@ -131,10 +119,6 @@ module SwaggerClient
         self.lastname = attributes[:'lastname']
       end
 
-      if attributes.has_key?(:'status')
-        self.status = attributes[:'status']
-      end
-
       if attributes.has_key?(:'username')
         self.username = attributes[:'username']
       end
@@ -145,10 +129,6 @@ module SwaggerClient
 
       if attributes.has_key?(:'phone')
         self.phone = attributes[:'phone']
-      end
-
-      if attributes.has_key?(:'countryCode')
-        self.country_code = attributes[:'countryCode']
       end
 
       if attributes.has_key?(:'created')
@@ -177,12 +157,6 @@ module SwaggerClient
 
       if attributes.has_key?(:'country')
         self.country = attributes[:'country']
-      end
-
-      if attributes.has_key?(:'disabled')
-        self.disabled = attributes[:'disabled']
-      else
-        self.disabled = false
       end
 
     end
@@ -256,19 +230,16 @@ module SwaggerClient
           owner_id == o.owner_id &&
           firstname == o.firstname &&
           lastname == o.lastname &&
-          status == o.status &&
           username == o.username &&
           email == o.email &&
           phone == o.phone &&
-          country_code == o.country_code &&
           created == o.created &&
           last_updated == o.last_updated &&
           preferences == o.preferences &&
           tfa_enabled == o.tfa_enabled &&
           affiliate_id == o.affiliate_id &&
           pgp_pub_key == o.pgp_pub_key &&
-          country == o.country &&
-          disabled == o.disabled
+          country == o.country
     end
 
     # @see the `==` method
@@ -280,7 +251,7 @@ module SwaggerClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, owner_id, firstname, lastname, status, username, email, phone, country_code, created, last_updated, preferences, tfa_enabled, affiliate_id, pgp_pub_key, country, disabled].hash
+      [id, owner_id, firstname, lastname, username, email, phone, created, last_updated, preferences, tfa_enabled, affiliate_id, pgp_pub_key, country].hash
     end
 
     # Builds the object from hash

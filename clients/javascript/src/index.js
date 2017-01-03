@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -25,16 +25,16 @@
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/AccessToken', 'model/Affiliate', 'model/Announcement', 'model/ApiKey', 'model/Chat', 'model/ConnectedUsers', 'model/Error', 'model/Execution', 'model/Funding', 'model/InlineResponse200', 'model/Instrument', 'model/InstrumentInterval', 'model/Insurance', 'model/Leaderboard', 'model/Liquidation', 'model/Margin', 'model/Order', 'model/OrderBook', 'model/OrderBookL2', 'model/Position', 'model/Quote', 'model/Settlement', 'model/Stats', 'model/StatsHistory', 'model/Trade', 'model/TradeBin', 'model/Transaction', 'model/User', 'model/UserCommission', 'model/UserPreferences', 'api/AnnouncementApi', 'api/ApiKeyApi', 'api/ChatApi', 'api/ExecutionApi', 'api/FundingApi', 'api/InstrumentApi', 'api/InsuranceApi', 'api/LeaderboardApi', 'api/LiquidationApi', 'api/OrderApi', 'api/OrderBookApi', 'api/PositionApi', 'api/QuoteApi', 'api/SchemaApi', 'api/SettlementApi', 'api/StatsApi', 'api/TradeApi', 'api/UserApi'], factory);
+    define(['ApiClient', 'model/APIKey', 'model/AccessToken', 'model/Affiliate', 'model/Announcement', 'model/Chat', 'model/ChatChannel', 'model/ConnectedUsers', 'model/Error', 'model/Execution', 'model/Funding', 'model/InlineResponse200', 'model/Instrument', 'model/InstrumentInterval', 'model/Insurance', 'model/Leaderboard', 'model/Liquidation', 'model/Margin', 'model/Order', 'model/OrderBook', 'model/OrderBookL2', 'model/Position', 'model/Quote', 'model/Settlement', 'model/Stats', 'model/StatsHistory', 'model/Trade', 'model/TradeBin', 'model/Transaction', 'model/User', 'model/UserCommission', 'model/UserPreferences', 'model/Wallet', 'api/APIKeyApi', 'api/AnnouncementApi', 'api/ChatApi', 'api/ExecutionApi', 'api/FundingApi', 'api/InstrumentApi', 'api/InsuranceApi', 'api/LeaderboardApi', 'api/LiquidationApi', 'api/OrderApi', 'api/OrderBookApi', 'api/PositionApi', 'api/QuoteApi', 'api/SchemaApi', 'api/SettlementApi', 'api/StatsApi', 'api/TradeApi', 'api/UserApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/AccessToken'), require('./model/Affiliate'), require('./model/Announcement'), require('./model/ApiKey'), require('./model/Chat'), require('./model/ConnectedUsers'), require('./model/Error'), require('./model/Execution'), require('./model/Funding'), require('./model/InlineResponse200'), require('./model/Instrument'), require('./model/InstrumentInterval'), require('./model/Insurance'), require('./model/Leaderboard'), require('./model/Liquidation'), require('./model/Margin'), require('./model/Order'), require('./model/OrderBook'), require('./model/OrderBookL2'), require('./model/Position'), require('./model/Quote'), require('./model/Settlement'), require('./model/Stats'), require('./model/StatsHistory'), require('./model/Trade'), require('./model/TradeBin'), require('./model/Transaction'), require('./model/User'), require('./model/UserCommission'), require('./model/UserPreferences'), require('./api/AnnouncementApi'), require('./api/ApiKeyApi'), require('./api/ChatApi'), require('./api/ExecutionApi'), require('./api/FundingApi'), require('./api/InstrumentApi'), require('./api/InsuranceApi'), require('./api/LeaderboardApi'), require('./api/LiquidationApi'), require('./api/OrderApi'), require('./api/OrderBookApi'), require('./api/PositionApi'), require('./api/QuoteApi'), require('./api/SchemaApi'), require('./api/SettlementApi'), require('./api/StatsApi'), require('./api/TradeApi'), require('./api/UserApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/APIKey'), require('./model/AccessToken'), require('./model/Affiliate'), require('./model/Announcement'), require('./model/Chat'), require('./model/ChatChannel'), require('./model/ConnectedUsers'), require('./model/Error'), require('./model/Execution'), require('./model/Funding'), require('./model/InlineResponse200'), require('./model/Instrument'), require('./model/InstrumentInterval'), require('./model/Insurance'), require('./model/Leaderboard'), require('./model/Liquidation'), require('./model/Margin'), require('./model/Order'), require('./model/OrderBook'), require('./model/OrderBookL2'), require('./model/Position'), require('./model/Quote'), require('./model/Settlement'), require('./model/Stats'), require('./model/StatsHistory'), require('./model/Trade'), require('./model/TradeBin'), require('./model/Transaction'), require('./model/User'), require('./model/UserCommission'), require('./model/UserPreferences'), require('./model/Wallet'), require('./api/APIKeyApi'), require('./api/AnnouncementApi'), require('./api/ChatApi'), require('./api/ExecutionApi'), require('./api/FundingApi'), require('./api/InstrumentApi'), require('./api/InsuranceApi'), require('./api/LeaderboardApi'), require('./api/LiquidationApi'), require('./api/OrderApi'), require('./api/OrderBookApi'), require('./api/PositionApi'), require('./api/QuoteApi'), require('./api/SchemaApi'), require('./api/SettlementApi'), require('./api/StatsApi'), require('./api/TradeApi'), require('./api/UserApi'));
   }
-}(function(ApiClient, AccessToken, Affiliate, Announcement, ApiKey, Chat, ConnectedUsers, Error, Execution, Funding, InlineResponse200, Instrument, InstrumentInterval, Insurance, Leaderboard, Liquidation, Margin, Order, OrderBook, OrderBookL2, Position, Quote, Settlement, Stats, StatsHistory, Trade, TradeBin, Transaction, User, UserCommission, UserPreferences, AnnouncementApi, ApiKeyApi, ChatApi, ExecutionApi, FundingApi, InstrumentApi, InsuranceApi, LeaderboardApi, LiquidationApi, OrderApi, OrderBookApi, PositionApi, QuoteApi, SchemaApi, SettlementApi, StatsApi, TradeApi, UserApi) {
+}(function(ApiClient, APIKey, AccessToken, Affiliate, Announcement, Chat, ChatChannel, ConnectedUsers, Error, Execution, Funding, InlineResponse200, Instrument, InstrumentInterval, Insurance, Leaderboard, Liquidation, Margin, Order, OrderBook, OrderBookL2, Position, Quote, Settlement, Stats, StatsHistory, Trade, TradeBin, Transaction, User, UserCommission, UserPreferences, Wallet, APIKeyApi, AnnouncementApi, ChatApi, ExecutionApi, FundingApi, InstrumentApi, InsuranceApi, LeaderboardApi, LiquidationApi, OrderApi, OrderBookApi, PositionApi, QuoteApi, SchemaApi, SettlementApi, StatsApi, TradeApi, UserApi) {
   'use strict';
 
   /**
-   * REST_API_for_the_BitMEX_com_trading_platform_brbra_hrefapprestAPIREST_Documentationabra_hrefappwsAPIWebsocket_Documentationa.<br>
+   * _REST_API_for_the_BitMEX_Trading_Platform_Changelog_appapiChangelog_____Getting_Started_Fetching_DataAll_REST_endpoints_are_documented_below__You_can_try_out_any_query_right_from_this_interface_Most_table_queries_accept_count_start_and_reverse_params__Set_reversetrue_to_get_rows_newest_first_Additional_documentation_regarding_filters_timestamps_and_authenticationis_available_in__the_main_API_documentation_httpswww_bitmex_comapprestAPI_All_table_data_is_available_via_the__Websocket_appwsAPI__We_highly_recommend_using_the_socket_if_you_wantto_have_the_quickest_possible_data_without_being_subject_to_ratelimits__Return_TypesBy_default_all_data_is_returned_as_JSON__Send__formatcsv_to_get_CSV_data_or__formatxml_to_get_XML_data__Trade_Data_QueriesThis_is_only_a_small_subset_of_what_is_available_to_get_you_started_Fill_in_the_parameters_and_click_the_Try_it_out_button_to_try_any_of_these_queries___Pricing_Data_QuoteQuote_get__Trade_Data_TradeTrade_get__OrderBook_Data_OrderBookOrderBook_getL2__Settlement_Data_SettlementSettlement_get__Exchange_Statistics_StatsStats_historyEvery_function_of_the_BitMEX_com_platform_is_exposed_here_and_documented__Many_more_functions_are_available_____All_API_EndpointsClick_to_expand_a_section_.<br>
    * The <code>index</code> module provides access to constructors for all the classes which comprise the public API.
    * <p>
    * An AMD (recommended!) or CommonJS application will generally do something equivalent to the following:
@@ -71,6 +71,11 @@
      */
     ApiClient: ApiClient,
     /**
+     * The APIKey model constructor.
+     * @property {module:model/APIKey}
+     */
+    APIKey: APIKey,
+    /**
      * The AccessToken model constructor.
      * @property {module:model/AccessToken}
      */
@@ -86,15 +91,15 @@
      */
     Announcement: Announcement,
     /**
-     * The ApiKey model constructor.
-     * @property {module:model/ApiKey}
-     */
-    ApiKey: ApiKey,
-    /**
      * The Chat model constructor.
      * @property {module:model/Chat}
      */
     Chat: Chat,
+    /**
+     * The ChatChannel model constructor.
+     * @property {module:model/ChatChannel}
+     */
+    ChatChannel: ChatChannel,
     /**
      * The ConnectedUsers model constructor.
      * @property {module:model/ConnectedUsers}
@@ -221,15 +226,20 @@
      */
     UserPreferences: UserPreferences,
     /**
+     * The Wallet model constructor.
+     * @property {module:model/Wallet}
+     */
+    Wallet: Wallet,
+    /**
+     * The APIKeyApi service constructor.
+     * @property {module:api/APIKeyApi}
+     */
+    APIKeyApi: APIKeyApi,
+    /**
      * The AnnouncementApi service constructor.
      * @property {module:api/AnnouncementApi}
      */
     AnnouncementApi: AnnouncementApi,
-    /**
-     * The ApiKeyApi service constructor.
-     * @property {module:api/ApiKeyApi}
-     */
-    ApiKeyApi: ApiKeyApi,
     /**
      * The ChatApi service constructor.
      * @property {module:api/ChatApi}

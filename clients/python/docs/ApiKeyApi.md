@@ -1,18 +1,18 @@
-# swagger_client.ApiKeyApi
+# swagger_client.APIKeyApi
 
 All URIs are relative to *https://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_key_disable**](ApiKeyApi.md#api_key_disable) | **POST** /apiKey/disable | Disable an API Key.
-[**api_key_enable**](ApiKeyApi.md#api_key_enable) | **POST** /apiKey/enable | Enable an API Key.
-[**api_key_get**](ApiKeyApi.md#api_key_get) | **GET** /apiKey | Get your API Keys.
-[**api_key_new**](ApiKeyApi.md#api_key_new) | **POST** /apiKey | Create a new API Key.
-[**api_key_remove**](ApiKeyApi.md#api_key_remove) | **DELETE** /apiKey | Remove an API Key.
+[**a_pi_key_disable**](APIKeyApi.md#a_pi_key_disable) | **POST** /apiKey/disable | Disable an API Key.
+[**a_pi_key_enable**](APIKeyApi.md#a_pi_key_enable) | **POST** /apiKey/enable | Enable an API Key.
+[**a_pi_key_get**](APIKeyApi.md#a_pi_key_get) | **GET** /apiKey | Get your API Keys.
+[**a_pi_key_new**](APIKeyApi.md#a_pi_key_new) | **POST** /apiKey | Create a new API Key.
+[**a_pi_key_remove**](APIKeyApi.md#a_pi_key_remove) | **DELETE** /apiKey | Remove an API Key.
 
 
-# **api_key_disable**
-> ApiKey api_key_disable(api_key_id)
+# **a_pi_key_disable**
+> APIKey a_pi_key_disable(api_key_id)
 
 Disable an API Key.
 
@@ -24,15 +24,15 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.ApiKeyApi()
+api_instance = swagger_client.APIKeyApi()
 api_key_id = 'api_key_id_example' # str | API Key ID (public component).
 
 try: 
     # Disable an API Key.
-    api_response = api_instance.api_key_disable(api_key_id)
+    api_response = api_instance.a_pi_key_disable(api_key_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling ApiKeyApi->api_key_disable: %s\n" % e
+    print "Exception when calling APIKeyApi->a_pi_key_disable: %s\n" % e
 ```
 
 ### Parameters
@@ -43,7 +43,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**APIKey**](APIKey.md)
 
 ### Authorization
 
@@ -56,8 +56,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_key_enable**
-> ApiKey api_key_enable(api_key_id)
+# **a_pi_key_enable**
+> APIKey a_pi_key_enable(api_key_id)
 
 Enable an API Key.
 
@@ -69,15 +69,15 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.ApiKeyApi()
+api_instance = swagger_client.APIKeyApi()
 api_key_id = 'api_key_id_example' # str | API Key ID (public component).
 
 try: 
     # Enable an API Key.
-    api_response = api_instance.api_key_enable(api_key_id)
+    api_response = api_instance.a_pi_key_enable(api_key_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling ApiKeyApi->api_key_enable: %s\n" % e
+    print "Exception when calling APIKeyApi->a_pi_key_enable: %s\n" % e
 ```
 
 ### Parameters
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**APIKey**](APIKey.md)
 
 ### Authorization
 
@@ -101,8 +101,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_key_get**
-> list[ApiKey] api_key_get(reverse=reverse)
+# **a_pi_key_get**
+> list[APIKey] a_pi_key_get(reverse=reverse)
 
 Get your API Keys.
 
@@ -114,15 +114,15 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.ApiKeyApi()
+api_instance = swagger_client.APIKeyApi()
 reverse = false # bool | If true, will sort results newest first. (optional) (default to false)
 
 try: 
     # Get your API Keys.
-    api_response = api_instance.api_key_get(reverse=reverse)
+    api_response = api_instance.a_pi_key_get(reverse=reverse)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling ApiKeyApi->api_key_get: %s\n" % e
+    print "Exception when calling APIKeyApi->a_pi_key_get: %s\n" % e
 ```
 
 ### Parameters
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**list[ApiKey]**](ApiKey.md)
+[**list[APIKey]**](APIKey.md)
 
 ### Authorization
 
@@ -146,8 +146,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_key_new**
-> ApiKey api_key_new(name=name, cidr=cidr, permissions=permissions, enabled=enabled, token=token)
+# **a_pi_key_new**
+> APIKey a_pi_key_new(name=name, cidr=cidr, permissions=permissions, enabled=enabled, token=token)
 
 Create a new API Key.
 
@@ -161,7 +161,7 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.ApiKeyApi()
+api_instance = swagger_client.APIKeyApi()
 name = 'name_example' # str | Key name. This name is for reference only. (optional)
 cidr = 'cidr_example' # str | CIDR block to restrict this key to. To restrict to a single address, append \"/32\", e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. <a href=\"http://software77.net/cidr-101.html\">More on CIDR blocks</a> (optional)
 permissions = 'permissions_example' # str | Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\"order\", \"withdraw\"]. (optional)
@@ -170,10 +170,10 @@ token = 'token_example' # str | OTP Token (YubiKey, Google Authenticator) (optio
 
 try: 
     # Create a new API Key.
-    api_response = api_instance.api_key_new(name=name, cidr=cidr, permissions=permissions, enabled=enabled, token=token)
+    api_response = api_instance.a_pi_key_new(name=name, cidr=cidr, permissions=permissions, enabled=enabled, token=token)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling ApiKeyApi->api_key_new: %s\n" % e
+    print "Exception when calling APIKeyApi->a_pi_key_new: %s\n" % e
 ```
 
 ### Parameters
@@ -188,7 +188,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**APIKey**](APIKey.md)
 
 ### Authorization
 
@@ -201,8 +201,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_key_remove**
-> InlineResponse200 api_key_remove(api_key_id)
+# **a_pi_key_remove**
+> InlineResponse200 a_pi_key_remove(api_key_id)
 
 Remove an API Key.
 
@@ -214,15 +214,15 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.ApiKeyApi()
+api_instance = swagger_client.APIKeyApi()
 api_key_id = 'api_key_id_example' # str | API Key ID (public component).
 
 try: 
     # Remove an API Key.
-    api_response = api_instance.api_key_remove(api_key_id)
+    api_response = api_instance.a_pi_key_remove(api_key_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling ApiKeyApi->api_key_remove: %s\n" % e
+    print "Exception when calling APIKeyApi->a_pi_key_remove: %s\n" % e
 ```
 
 ### Parameters

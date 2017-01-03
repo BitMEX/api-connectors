@@ -1,7 +1,7 @@
 =begin
 #BitMEX API
 
-#REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+### REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
 
 OpenAPI spec version: 1.2.0
 Contact: support@bitmex.com
@@ -92,19 +92,6 @@ describe 'UserApi' do
     end
   end
 
-  # unit tests for user_confirm_password_reset
-  # Confirm a password reset.
-  # 
-  # @param token 
-  # @param new_password 
-  # @param [Hash] opts the optional parameters
-  # @return [BOOLEAN]
-  describe 'user_confirm_password_reset test' do
-    it "should work" do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for user_confirm_withdrawal
   # Confirm a withdrawal.
   # 
@@ -187,8 +174,20 @@ describe 'UserApi' do
     end
   end
 
+  # unit tests for user_get_wallet
+  # Get your current wallet information.
+  # 
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :currency 
+  # @return [Wallet]
+  describe 'user_get_wallet test' do
+    it "should work" do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for user_get_wallet_history
-  # Get a history of all of your wallet transactions (deposits and withdrawals).
+  # Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
   # 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :currency 
@@ -199,15 +198,13 @@ describe 'UserApi' do
     end
   end
 
-  # unit tests for user_login
-  # Log in to BitMEX.
+  # unit tests for user_get_wallet_summary
+  # Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
   # 
-  # @param email Your email address.
-  # @param password Your password.
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :token OTP Token (YubiKey, Google Authenticator)
-  # @return [AccessToken]
-  describe 'user_login test' do
+  # @option opts [String] :currency 
+  # @return [Array<Transaction>]
+  describe 'user_get_wallet_summary test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -235,27 +232,6 @@ describe 'UserApi' do
     end
   end
 
-  # unit tests for user_new
-  # Register a new user.
-  # 
-  # @param email Your email address.
-  # @param password Your password.
-  # @param country Country of residence.
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :username Desired username.
-  # @option opts [String] :firstname First name.
-  # @option opts [String] :lastname Last name.
-  # @option opts [String] :accepts_tos Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).
-  # @option opts [String] :referrer_id Optional Referrer ID.
-  # @option opts [String] :tfa_type Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef
-  # @option opts [String] :tfa_token Two-Factor Token.
-  # @return [User]
-  describe 'user_new test' do
-    it "should work" do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for user_request_enable_tfa
   # Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
   # 
@@ -263,18 +239,6 @@ describe 'UserApi' do
   # @option opts [String] :type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
   # @return [BOOLEAN]
   describe 'user_request_enable_tfa test' do
-    it "should work" do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for user_request_password_reset
-  # Request a password reset.
-  # 
-  # @param email 
-  # @param [Hash] opts the optional parameters
-  # @return [BOOLEAN]
-  describe 'user_request_password_reset test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -304,18 +268,6 @@ describe 'UserApi' do
   # @option opts [BOOLEAN] :overwrite If true, will overwrite all existing preferences.
   # @return [User]
   describe 'user_save_preferences test' do
-    it "should work" do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for user_send_verification_email
-  # Re-send verification email.
-  # 
-  # @param email 
-  # @param [Hash] opts the optional parameters
-  # @return [BOOLEAN]
-  describe 'user_send_verification_email test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

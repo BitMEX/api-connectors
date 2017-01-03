@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -32,6 +32,7 @@ import io.swagger.client.model.User;
 import io.swagger.client.model.Affiliate;
 import io.swagger.client.model.UserCommission;
 import io.swagger.client.model.Margin;
+import io.swagger.client.model.Wallet;
 import java.math.BigDecimal;
 import org.junit.Test;
 
@@ -109,23 +110,6 @@ public class UserApiTest {
         String token = null;
         String type = null;
         // Boolean response = api.userConfirmEnableTFA(token, type);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Confirm a password reset.
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void userConfirmPasswordResetTest() throws ApiException {
-        String token = null;
-        String newPassword = null;
-        // Boolean response = api.userConfirmPasswordReset(token, newPassword);
 
         // TODO: test validations
     }
@@ -241,7 +225,23 @@ public class UserApiTest {
     }
     
     /**
-     * Get a history of all of your wallet transactions (deposits and withdrawals).
+     * Get your current wallet information.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void userGetWalletTest() throws ApiException {
+        String currency = null;
+        // Wallet response = api.userGetWallet(currency);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
      *
      * 
      *
@@ -257,7 +257,7 @@ public class UserApiTest {
     }
     
     /**
-     * Log in to BitMEX.
+     * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
      *
      * 
      *
@@ -265,11 +265,9 @@ public class UserApiTest {
      *          if the Api call fails
      */
     @Test
-    public void userLoginTest() throws ApiException {
-        String email = null;
-        String password = null;
-        String token = null;
-        // AccessToken response = api.userLogin(email, password, token);
+    public void userGetWalletSummaryTest() throws ApiException {
+        String currency = null;
+        // List<Transaction> response = api.userGetWalletSummary(currency);
 
         // TODO: test validations
     }
@@ -305,31 +303,6 @@ public class UserApiTest {
     }
     
     /**
-     * Register a new user.
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void userNewTest() throws ApiException {
-        String email = null;
-        String password = null;
-        String country = null;
-        String username = null;
-        String firstname = null;
-        String lastname = null;
-        String acceptsTOS = null;
-        String referrerID = null;
-        String tfaType = null;
-        String tfaToken = null;
-        // User response = api.userNew(email, password, country, username, firstname, lastname, acceptsTOS, referrerID, tfaType, tfaToken);
-
-        // TODO: test validations
-    }
-    
-    /**
      * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
      *
      * 
@@ -341,22 +314,6 @@ public class UserApiTest {
     public void userRequestEnableTFATest() throws ApiException {
         String type = null;
         // Boolean response = api.userRequestEnableTFA(type);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Request a password reset.
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void userRequestPasswordResetTest() throws ApiException {
-        String email = null;
-        // Boolean response = api.userRequestPasswordReset(email);
 
         // TODO: test validations
     }
@@ -394,22 +351,6 @@ public class UserApiTest {
         String prefs = null;
         Boolean overwrite = null;
         // User response = api.userSavePreferences(prefs, overwrite);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Re-send verification email.
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void userSendVerificationEmailTest() throws ApiException {
-        String email = null;
-        // Boolean response = api.userSendVerificationEmail(email);
 
         // TODO: test validations
     }

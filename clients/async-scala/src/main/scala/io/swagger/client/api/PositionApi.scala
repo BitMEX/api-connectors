@@ -86,5 +86,22 @@ class PositionApi(client: TransportClient, config: SwaggerConfig) extends ApiCli
     }
   }
 
+  def position.updateRiskLimit(symbol: String,
+      riskLimit: Number)(implicit reader: ClientResponseReader[Position]): Future[Position] = {
+    // create path and map variables
+    val path = (addFmt("/position/riskLimit"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+
+
+    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
 
 }

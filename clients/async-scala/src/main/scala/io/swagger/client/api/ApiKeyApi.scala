@@ -1,15 +1,15 @@
 package io.swagger.client.api
 
-import io.swagger.client.model.ApiKey
+import io.swagger.client.model.APIKey
 import io.swagger.client.model.Error
 import io.swagger.client.model.Inline_response_200
 import com.wordnik.swagger.client._
 import scala.concurrent.Future
 import collection.mutable
 
-class ApiKeyApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
+class APIKeyApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
-  def apiKey.disable(apiKeyID: String)(implicit reader: ClientResponseReader[ApiKey]): Future[ApiKey] = {
+  def aPIKey.disable(apiKeyID: String)(implicit reader: ClientResponseReader[APIKey]): Future[APIKey] = {
     // create path and map variables
     val path = (addFmt("/apiKey/disable"))
 
@@ -25,7 +25,7 @@ class ApiKeyApi(client: TransportClient, config: SwaggerConfig) extends ApiClien
     }
   }
 
-  def apiKey.enable(apiKeyID: String)(implicit reader: ClientResponseReader[ApiKey]): Future[ApiKey] = {
+  def aPIKey.enable(apiKeyID: String)(implicit reader: ClientResponseReader[APIKey]): Future[APIKey] = {
     // create path and map variables
     val path = (addFmt("/apiKey/enable"))
 
@@ -41,8 +41,8 @@ class ApiKeyApi(client: TransportClient, config: SwaggerConfig) extends ApiClien
     }
   }
 
-  def apiKey.get(reverse: Option[Boolean] = Some(false)
-      )(implicit reader: ClientResponseReader[List[ApiKey]]): Future[List[ApiKey]] = {
+  def aPIKey.get(reverse: Option[Boolean] = Some(false)
+      )(implicit reader: ClientResponseReader[List[APIKey]]): Future[List[APIKey]] = {
     // create path and map variables
     val path = (addFmt("/apiKey"))
 
@@ -60,12 +60,12 @@ class ApiKeyApi(client: TransportClient, config: SwaggerConfig) extends ApiClien
     }
   }
 
-  def apiKey.new(name: Option[String] = None,
+  def aPIKey.new(name: Option[String] = None,
       cidr: Option[String] = None,
       permissions: Option[String] = None,
       enabled: Option[Boolean] = Some(false),
       token: Option[String] = None
-      )(implicit reader: ClientResponseReader[ApiKey]): Future[ApiKey] = {
+      )(implicit reader: ClientResponseReader[APIKey]): Future[APIKey] = {
     // create path and map variables
     val path = (addFmt("/apiKey"))
 
@@ -81,7 +81,7 @@ class ApiKeyApi(client: TransportClient, config: SwaggerConfig) extends ApiClien
     }
   }
 
-  def apiKey.remove(apiKeyID: String)(implicit reader: ClientResponseReader[Inline_response_200]): Future[Inline_response_200] = {
+  def aPIKey.remove(apiKeyID: String)(implicit reader: ClientResponseReader[Inline_response_200]): Future[Inline_response_200] = {
     // create path and map variables
     val path = (addFmt("/apiKey"))
 

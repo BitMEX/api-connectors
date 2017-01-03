@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+    ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -462,6 +462,117 @@ class PositionApi(object):
             form_params.append(('symbol', params['symbol']))
         if 'leverage' in params:
             form_params.append(('leverage', params['leverage']))
+
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
+
+        # Authentication setting
+        auth_settings = []
+
+        return self.api_client.call_api(resource_path, 'POST',
+                                            path_params,
+                                            query_params,
+                                            header_params,
+                                            body=body_params,
+                                            post_params=form_params,
+                                            files=local_var_files,
+                                            response_type='Position',
+                                            auth_settings=auth_settings,
+                                            callback=params.get('callback'),
+                                            _return_http_data_only=params.get('_return_http_data_only'))
+
+    def position_update_risk_limit(self, symbol, risk_limit, **kwargs):
+        """
+        Update your risk limit.
+        Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.position_update_risk_limit(symbol, risk_limit, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str symbol: Symbol of position to isolate. (required)
+        :param float risk_limit: New Risk Limit, in Satoshis. (required)
+        :return: Position
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('callback'):
+            return self.position_update_risk_limit_with_http_info(symbol, risk_limit, **kwargs)
+        else:
+            (data) = self.position_update_risk_limit_with_http_info(symbol, risk_limit, **kwargs)
+            return data
+
+    def position_update_risk_limit_with_http_info(self, symbol, risk_limit, **kwargs):
+        """
+        Update your risk limit.
+        Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.position_update_risk_limit_with_http_info(symbol, risk_limit, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str symbol: Symbol of position to isolate. (required)
+        :param float risk_limit: New Risk Limit, in Satoshis. (required)
+        :return: Position
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['symbol', 'risk_limit']
+        all_params.append('callback')
+        all_params.append('_return_http_data_only')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method position_update_risk_limit" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'symbol' is set
+        if ('symbol' not in params) or (params['symbol'] is None):
+            raise ValueError("Missing the required parameter `symbol` when calling `position_update_risk_limit`")
+        # verify the required parameter 'risk_limit' is set
+        if ('risk_limit' not in params) or (params['risk_limit'] is None):
+            raise ValueError("Missing the required parameter `risk_limit` when calling `position_update_risk_limit`")
+
+        resource_path = '/position/riskLimit'.replace('{format}', 'json')
+        path_params = {}
+
+        query_params = {}
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+        if 'symbol' in params:
+            form_params.append(('symbol', params['symbol']))
+        if 'risk_limit' in params:
+            form_params.append(('riskLimit', params['risk_limit']))
 
         body_params = None
 

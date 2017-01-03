@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -99,16 +99,6 @@
         done();
       });
     });
-    describe('userConfirmPasswordReset', function() {
-      it('should call userConfirmPasswordReset successfully', function(done) {
-        //uncomment below and update the code to test userConfirmPasswordReset
-        //instance.userConfirmPasswordReset(pet, function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
     describe('userConfirmWithdrawal', function() {
       it('should call userConfirmWithdrawal successfully', function(done) {
         //uncomment below and update the code to test userConfirmWithdrawal
@@ -179,6 +169,16 @@
         done();
       });
     });
+    describe('userGetWallet', function() {
+      it('should call userGetWallet successfully', function(done) {
+        //uncomment below and update the code to test userGetWallet
+        //instance.userGetWallet(pet, function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
     describe('userGetWalletHistory', function() {
       it('should call userGetWalletHistory successfully', function(done) {
         //uncomment below and update the code to test userGetWalletHistory
@@ -189,10 +189,10 @@
         done();
       });
     });
-    describe('userLogin', function() {
-      it('should call userLogin successfully', function(done) {
-        //uncomment below and update the code to test userLogin
-        //instance.userLogin(pet, function(error) {
+    describe('userGetWalletSummary', function() {
+      it('should call userGetWalletSummary successfully', function(done) {
+        //uncomment below and update the code to test userGetWalletSummary
+        //instance.userGetWalletSummary(pet, function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -219,30 +219,10 @@
         done();
       });
     });
-    describe('userNew', function() {
-      it('should call userNew successfully', function(done) {
-        //uncomment below and update the code to test userNew
-        //instance.userNew(pet, function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
     describe('userRequestEnableTFA', function() {
       it('should call userRequestEnableTFA successfully', function(done) {
         //uncomment below and update the code to test userRequestEnableTFA
         //instance.userRequestEnableTFA(pet, function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('userRequestPasswordReset', function() {
-      it('should call userRequestPasswordReset successfully', function(done) {
-        //uncomment below and update the code to test userRequestPasswordReset
-        //instance.userRequestPasswordReset(pet, function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -263,16 +243,6 @@
       it('should call userSavePreferences successfully', function(done) {
         //uncomment below and update the code to test userSavePreferences
         //instance.userSavePreferences(pet, function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('userSendVerificationEmail', function() {
-      it('should call userSendVerificationEmail successfully', function(done) {
-        //uncomment below and update the code to test userSendVerificationEmail
-        //instance.userSendVerificationEmail(pet, function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

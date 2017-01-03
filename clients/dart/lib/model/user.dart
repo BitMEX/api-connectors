@@ -20,10 +20,6 @@ class User {
   String lastname = null;
   
 
-  @Property(name: 'status')
-  String status = null;
-  
-
   @Property(name: 'username')
   String username = null;
   
@@ -34,10 +30,6 @@ class User {
 
   @Property(name: 'phone')
   String phone = null;
-  
-
-  @Property(name: 'countryCode')
-  Number countryCode = null;
   
 
   @Property(name: 'created')
@@ -67,15 +59,11 @@ class User {
   @Property(name: 'country')
   String country = null;
   
-
-  @Property(name: 'disabled')
-  bool disabled = null;
-  
   User();
 
   @override
   String toString()  {
-    return 'User[id=$id, ownerId=$ownerId, firstname=$firstname, lastname=$lastname, status=$status, username=$username, email=$email, phone=$phone, countryCode=$countryCode, created=$created, lastUpdated=$lastUpdated, preferences=$preferences, tFAEnabled=$tFAEnabled, affiliateID=$affiliateID, pgpPubKey=$pgpPubKey, country=$country, disabled=$disabled, ]';
+    return 'User[id=$id, ownerId=$ownerId, firstname=$firstname, lastname=$lastname, username=$username, email=$email, phone=$phone, created=$created, lastUpdated=$lastUpdated, preferences=$preferences, tFAEnabled=$tFAEnabled, affiliateID=$affiliateID, pgpPubKey=$pgpPubKey, country=$country, ]';
   }
 
 }

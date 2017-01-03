@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**positionIsolateMargin**](SWGPositionApi.md#positionisolatemargin) | **POST** /position/isolate | Enable isolated margin or cross margin per-position.
 [**positionTransferIsolatedMargin**](SWGPositionApi.md#positiontransferisolatedmargin) | **POST** /position/transferMargin | Transfer equity in or out of a position.
 [**positionUpdateLeverage**](SWGPositionApi.md#positionupdateleverage) | **POST** /position/leverage | Choose leverage for a position.
+[**positionUpdateRiskLimit**](SWGPositionApi.md#positionupdaterisklimit) | **POST** /position/riskLimit | Update your risk limit.
 
 
 # **positionGet**
@@ -214,6 +215,60 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **NSString***| Symbol of position to adjust. | 
  **leverage** | **NSNumber***| Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin. | 
+
+### Return type
+
+[**SWGPosition***](SWGPosition.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **positionUpdateRiskLimit**
+```objc
+-(NSNumber*) positionUpdateRiskLimitWithSymbol: (NSString*) symbol
+    riskLimit: (NSNumber*) riskLimit
+        completionHandler: (void (^)(SWGPosition* output, NSError* error)) handler;
+```
+
+Update your risk limit.
+
+Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+
+### Example 
+```objc
+
+NSString* symbol = @"symbol_example"; // Symbol of position to isolate.
+NSNumber* riskLimit = @3.4; // New Risk Limit, in Satoshis.
+
+SWGPositionApi*apiInstance = [[SWGPositionApi alloc] init];
+
+// Update your risk limit.
+[apiInstance positionUpdateRiskLimitWithSymbol:symbol
+              riskLimit:riskLimit
+          completionHandler: ^(SWGPosition* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGPositionApi->positionUpdateRiskLimit: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **NSString***| Symbol of position to isolate. | 
+ **riskLimit** | **NSNumber***| New Risk Limit, in Satoshis. | 
 
 ### Return type
 

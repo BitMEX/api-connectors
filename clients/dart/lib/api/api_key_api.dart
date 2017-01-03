@@ -1,11 +1,11 @@
 part of api;
 
 
-class ApiKeyApi {
+class APIKeyApi {
   String basePath = "https://localhost/api/v1";
   ApiClient apiClient = ApiClient.defaultApiClient;
 
-  ApiKeyApi([ApiClient apiClient]) {
+  APIKeyApi([ApiClient apiClient]) {
     if (apiClient != null) {
       this.apiClient = apiClient;
     }
@@ -14,7 +14,7 @@ class ApiKeyApi {
   /// Disable an API Key.
   ///
   /// 
-  Future<ApiKey> apiKeyDisable(String apiKeyID) {
+  Future<APIKey> aPIKeyDisable(String apiKeyID) {
     Object postBody = null;
     // verify required params are set
     if() {
@@ -56,7 +56,7 @@ class ApiKeyApi {
         throw new ApiException(response.statusCode, response.body);
       }
       else if(response.body != null){
-        return ApiClient.deserialize(response.body, ApiKey);
+        return ApiClient.deserialize(response.body, APIKey);
       }
       else {
         return null;
@@ -66,7 +66,7 @@ class ApiKeyApi {
   /// Enable an API Key.
   ///
   /// 
-  Future<ApiKey> apiKeyEnable(String apiKeyID) {
+  Future<APIKey> aPIKeyEnable(String apiKeyID) {
     Object postBody = null;
     // verify required params are set
     if() {
@@ -108,7 +108,7 @@ class ApiKeyApi {
         throw new ApiException(response.statusCode, response.body);
       }
       else if(response.body != null){
-        return ApiClient.deserialize(response.body, ApiKey);
+        return ApiClient.deserialize(response.body, APIKey);
       }
       else {
         return null;
@@ -118,7 +118,7 @@ class ApiKeyApi {
   /// Get your API Keys.
   ///
   /// 
-  Future<List<ApiKey>> apiKeyGet(bool reverse) {
+  Future<List<APIKey>> aPIKeyGet(bool reverse) {
     Object postBody = null;
     // verify required params are set
     if() {
@@ -155,7 +155,7 @@ class ApiKeyApi {
         throw new ApiException(response.statusCode, response.body);
       }
       else if(response.body != null){
-        return ApiClient.deserialize(response.body, ApiKey);
+        return ApiClient.deserialize(response.body, APIKey);
       }
       else {
         return null;
@@ -165,7 +165,7 @@ class ApiKeyApi {
   /// Create a new API Key.
   ///
   /// API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
-  Future<ApiKey> apiKeyNew(String name, String cidr, String permissions, bool enabled, String token) {
+  Future<APIKey> aPIKeyNew(String name, String cidr, String permissions, bool enabled, String token) {
     Object postBody = null;
     // verify required params are set
     if(    // verify required params are set
@@ -247,7 +247,7 @@ if (token != null)
         throw new ApiException(response.statusCode, response.body);
       }
       else if(response.body != null){
-        return ApiClient.deserialize(response.body, ApiKey);
+        return ApiClient.deserialize(response.body, APIKey);
       }
       else {
         return null;
@@ -257,7 +257,7 @@ if (token != null)
   /// Remove an API Key.
   ///
   /// 
-  Future<InlineResponse200> apiKeyRemove(String apiKeyID) {
+  Future<InlineResponse200> aPIKeyRemove(String apiKeyID) {
     Object postBody = null;
     // verify required params are set
     if() {

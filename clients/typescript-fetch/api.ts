@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -48,6 +48,18 @@ export class BaseAPI {
     }
 }
 
+export interface APIKey {
+    "id": string;
+    "secret": string;
+    "name": string;
+    "nonce": number;
+    "cidr"?: string;
+    "permissions"?: Array<XAny>;
+    "enabled"?: boolean;
+    "userId": number;
+    "created"?: Date;
+}
+
 export interface AccessToken {
     "id": string;
     /**
@@ -83,18 +95,6 @@ export interface Announcement {
     "date"?: Date;
 }
 
-export interface ApiKey {
-    "id": string;
-    "secret": string;
-    "name": string;
-    "nonce": number;
-    "cidr"?: string;
-    "permissions"?: Array<string>;
-    "enabled"?: boolean;
-    "userId": number;
-    "created"?: Date;
-}
-
 export interface Chat {
     "id"?: number;
     "date": Date;
@@ -102,6 +102,12 @@ export interface Chat {
     "message": string;
     "html": string;
     "fromBot"?: boolean;
+    "channelID"?: number;
+}
+
+export interface ChatChannel {
+    "id"?: number;
+    "name": string;
 }
 
 export interface ConnectedUsers {
@@ -211,9 +217,12 @@ export interface Instrument {
     "isInverse"?: boolean;
     "initMargin"?: number;
     "maintMargin"?: number;
+    "riskLimit"?: number;
+    "riskStep"?: number;
     "limit"?: number;
     "capped"?: boolean;
     "taxed"?: boolean;
+    "deleverage"?: boolean;
     "makerFee"?: number;
     "takerFee"?: number;
     "settlementFee"?: number;
@@ -403,8 +412,12 @@ export interface Position {
     "underlying"?: string;
     "quoteCurrency"?: string;
     "commission"?: number;
+    "initMarginReq"?: number;
+    "maintMarginReq"?: number;
+    "riskLimit"?: number;
     "leverage"?: number;
     "crossMargin"?: boolean;
+    "deleveragePercentile"?: number;
     "rebalancedPnl"?: number;
     "prevRealisedPnl"?: number;
     "prevUnrealisedPnl"?: number;
@@ -438,6 +451,7 @@ export interface Position {
     "isOpen"?: boolean;
     "markPrice"?: number;
     "markValue"?: number;
+    "riskValue"?: number;
     "homeNotional"?: number;
     "foreignNotional"?: number;
     "posState"?: string;
@@ -486,13 +500,12 @@ export interface Position {
 }
 
 export interface Quote {
-    "timestamp"?: Date;
-    "symbol"?: string;
+    "timestamp": Date;
+    "symbol": string;
     "bidSize"?: number;
     "bidPrice"?: number;
     "askPrice"?: number;
     "askSize"?: number;
-    "id"?: number;
 }
 
 export interface Settlement {
@@ -523,8 +536,8 @@ export interface StatsHistory {
 }
 
 export interface Trade {
-    "timestamp"?: Date;
-    "symbol"?: string;
+    "timestamp": Date;
+    "symbol": string;
     "side"?: string;
     "size"?: number;
     "price"?: number;
@@ -533,12 +546,11 @@ export interface Trade {
     "grossValue"?: number;
     "homeNotional"?: number;
     "foreignNotional"?: number;
-    "id"?: number;
 }
 
 export interface TradeBin {
-    "timestamp"?: Date;
-    "symbol"?: string;
+    "timestamp": Date;
+    "symbol": string;
     "open"?: number;
     "high"?: number;
     "low"?: number;
@@ -550,7 +562,6 @@ export interface TradeBin {
     "turnover"?: number;
     "homeNotional"?: number;
     "foreignNotional"?: number;
-    "id"?: number;
 }
 
 export interface Transaction {
@@ -573,11 +584,9 @@ export interface User {
     "ownerId"?: number;
     "firstname"?: string;
     "lastname"?: string;
-    "status"?: string;
     "username": string;
     "email": string;
     "phone"?: string;
-    "countryCode"?: number;
     "created"?: Date;
     "lastUpdated"?: Date;
     "preferences"?: UserPreferences;
@@ -585,17 +594,17 @@ export interface User {
     "affiliateID"?: string;
     "pgpPubKey"?: string;
     "country"?: string;
-    "disabled"?: boolean;
 }
 
 export interface UserCommission {
-    "makerFee"?: string;
-    "takerFee"?: string;
-    "insuranceFee"?: string;
+    "makerFee"?: number;
+    "takerFee"?: number;
+    "settlementFee"?: number;
 }
 
 export interface UserPreferences {
     "announcementsLastSeen"?: Date;
+    "chatChannelID"?: number;
     "colorTheme"?: string;
     "currency"?: string;
     "debug"?: boolean;
@@ -605,10 +614,9 @@ export interface UserPreferences {
     "hideFromLeaderboard"?: boolean;
     "hideNameFromLeaderboard"?: boolean;
     "hideNotifications"?: Array<string>;
-    "hidePhoneConfirm"?: boolean;
     "locale"?: string;
     "msgsSeen"?: Array<string>;
-    "orderBookBinning"?: number;
+    "orderBookBinning"?: XAny;
     "orderBookType"?: string;
     "orderControlsPlusMinus"?: boolean;
     "sounds"?: Array<string>;
@@ -619,6 +627,300 @@ export interface UserPreferences {
     "tradeLayout"?: string;
 }
 
+export interface Wallet {
+    "account": number;
+    "currency": string;
+    "prevDeposited"?: number;
+    "prevWithdrawn"?: number;
+    "prevAmount"?: number;
+    "prevTimestamp"?: Date;
+    "deltaDeposited"?: number;
+    "deltaWithdrawn"?: number;
+    "deltaAmount"?: number;
+    "deposited"?: number;
+    "withdrawn"?: number;
+    "amount"?: number;
+    "pendingCredit"?: number;
+    "pendingDebit"?: number;
+    "confirmedDebit"?: number;
+    "timestamp"?: Date;
+    "addr"?: string;
+}
+
+
+
+/**
+ * APIKeyApi - fetch parameter creator
+ */
+export const APIKeyApiFetchParamCreactor = {
+    /** 
+     * Disable an API Key.
+     * @param apiKeyID API Key ID (public component).
+     */
+    aPIKeyDisable(params: {  apiKeyID: string; }): FetchArgs {
+        // verify required parameter "apiKeyID" is set
+        if (params["apiKeyID"] == null) {
+            throw new Error("Missing required parameter apiKeyID when calling aPIKeyDisable");
+        }
+        const baseUrl = `/apiKey/disable`;
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = { method: "POST" };
+
+        let contentTypeHeader: Dictionary<string>;
+        contentTypeHeader = { "Content-Type": "application/x-www-form-urlencoded" };
+        fetchOptions.body = querystring.stringify({ 
+            "apiKeyID": params.apiKeyID,
+        });
+        if (contentTypeHeader) {
+            fetchOptions.headers = contentTypeHeader;
+        }
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /** 
+     * Enable an API Key.
+     * @param apiKeyID API Key ID (public component).
+     */
+    aPIKeyEnable(params: {  apiKeyID: string; }): FetchArgs {
+        // verify required parameter "apiKeyID" is set
+        if (params["apiKeyID"] == null) {
+            throw new Error("Missing required parameter apiKeyID when calling aPIKeyEnable");
+        }
+        const baseUrl = `/apiKey/enable`;
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = { method: "POST" };
+
+        let contentTypeHeader: Dictionary<string>;
+        contentTypeHeader = { "Content-Type": "application/x-www-form-urlencoded" };
+        fetchOptions.body = querystring.stringify({ 
+            "apiKeyID": params.apiKeyID,
+        });
+        if (contentTypeHeader) {
+            fetchOptions.headers = contentTypeHeader;
+        }
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /** 
+     * Get your API Keys.
+     * @param reverse If true, will sort results newest first.
+     */
+    aPIKeyGet(params: {  reverse?: boolean; }): FetchArgs {
+        const baseUrl = `/apiKey`;
+        let urlObj = url.parse(baseUrl, true);
+        urlObj.query = assign({}, urlObj.query, { 
+            "reverse": params.reverse,
+        });
+        let fetchOptions: RequestInit = { method: "GET" };
+
+        let contentTypeHeader: Dictionary<string>;
+        if (contentTypeHeader) {
+            fetchOptions.headers = contentTypeHeader;
+        }
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /** 
+     * Create a new API Key.
+     * API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
+     * @param name Key name. This name is for reference only.
+     * @param cidr CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href&#x3D;\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt;
+     * @param permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;].
+     * @param enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.
+     * @param token OTP Token (YubiKey, Google Authenticator)
+     */
+    aPIKeyNew(params: {  name?: string; cidr?: string; permissions?: string; enabled?: boolean; token?: string; }): FetchArgs {
+        const baseUrl = `/apiKey`;
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = { method: "POST" };
+
+        let contentTypeHeader: Dictionary<string>;
+        contentTypeHeader = { "Content-Type": "application/x-www-form-urlencoded" };
+        fetchOptions.body = querystring.stringify({ 
+            "name": params.name,
+            "cidr": params.cidr,
+            "permissions": params.permissions,
+            "enabled": params.enabled,
+            "token": params.token,
+        });
+        if (contentTypeHeader) {
+            fetchOptions.headers = contentTypeHeader;
+        }
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /** 
+     * Remove an API Key.
+     * @param apiKeyID API Key ID (public component).
+     */
+    aPIKeyRemove(params: {  apiKeyID: string; }): FetchArgs {
+        // verify required parameter "apiKeyID" is set
+        if (params["apiKeyID"] == null) {
+            throw new Error("Missing required parameter apiKeyID when calling aPIKeyRemove");
+        }
+        const baseUrl = `/apiKey`;
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = { method: "DELETE" };
+
+        let contentTypeHeader: Dictionary<string>;
+        contentTypeHeader = { "Content-Type": "application/x-www-form-urlencoded" };
+        fetchOptions.body = querystring.stringify({ 
+            "apiKeyID": params.apiKeyID,
+        });
+        if (contentTypeHeader) {
+            fetchOptions.headers = contentTypeHeader;
+        }
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+}
+
+/**
+ * APIKeyApi - functional programming interface
+ */
+export const APIKeyApiFp = {
+    /** 
+     * Disable an API Key.
+     * @param apiKeyID API Key ID (public component).
+     */
+    aPIKeyDisable(params: { apiKeyID: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<APIKey> {
+        const fetchArgs = APIKeyApiFetchParamCreactor.aPIKeyDisable(params);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /** 
+     * Enable an API Key.
+     * @param apiKeyID API Key ID (public component).
+     */
+    aPIKeyEnable(params: { apiKeyID: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<APIKey> {
+        const fetchArgs = APIKeyApiFetchParamCreactor.aPIKeyEnable(params);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /** 
+     * Get your API Keys.
+     * @param reverse If true, will sort results newest first.
+     */
+    aPIKeyGet(params: { reverse?: boolean;  }): (fetch: FetchAPI, basePath?: string) => Promise<Array<APIKey>> {
+        const fetchArgs = APIKeyApiFetchParamCreactor.aPIKeyGet(params);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /** 
+     * Create a new API Key.
+     * API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
+     * @param name Key name. This name is for reference only.
+     * @param cidr CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href&#x3D;\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt;
+     * @param permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;].
+     * @param enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.
+     * @param token OTP Token (YubiKey, Google Authenticator)
+     */
+    aPIKeyNew(params: { name?: string; cidr?: string; permissions?: string; enabled?: boolean; token?: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<APIKey> {
+        const fetchArgs = APIKeyApiFetchParamCreactor.aPIKeyNew(params);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /** 
+     * Remove an API Key.
+     * @param apiKeyID API Key ID (public component).
+     */
+    aPIKeyRemove(params: { apiKeyID: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<InlineResponse200> {
+        const fetchArgs = APIKeyApiFetchParamCreactor.aPIKeyRemove(params);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+};
+
+/**
+ * APIKeyApi - object-oriented interface
+ */
+export class APIKeyApi extends BaseAPI {
+    /** 
+     * Disable an API Key.
+     * @param apiKeyID API Key ID (public component).
+     */
+    aPIKeyDisable(params: {  apiKeyID: string; }) {
+        return APIKeyApiFp.aPIKeyDisable(params)(this.fetch, this.basePath);
+    }
+    /** 
+     * Enable an API Key.
+     * @param apiKeyID API Key ID (public component).
+     */
+    aPIKeyEnable(params: {  apiKeyID: string; }) {
+        return APIKeyApiFp.aPIKeyEnable(params)(this.fetch, this.basePath);
+    }
+    /** 
+     * Get your API Keys.
+     * @param reverse If true, will sort results newest first.
+     */
+    aPIKeyGet(params: {  reverse?: boolean; }) {
+        return APIKeyApiFp.aPIKeyGet(params)(this.fetch, this.basePath);
+    }
+    /** 
+     * Create a new API Key.
+     * API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
+     * @param name Key name. This name is for reference only.
+     * @param cidr CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href&#x3D;\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt;
+     * @param permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;].
+     * @param enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.
+     * @param token OTP Token (YubiKey, Google Authenticator)
+     */
+    aPIKeyNew(params: {  name?: string; cidr?: string; permissions?: string; enabled?: boolean; token?: string; }) {
+        return APIKeyApiFp.aPIKeyNew(params)(this.fetch, this.basePath);
+    }
+    /** 
+     * Remove an API Key.
+     * @param apiKeyID API Key ID (public component).
+     */
+    aPIKeyRemove(params: {  apiKeyID: string; }) {
+        return APIKeyApiFp.aPIKeyRemove(params)(this.fetch, this.basePath);
+    }
+}
 
 
 /**
@@ -723,70 +1025,24 @@ export class AnnouncementApi extends BaseAPI {
 
 
 /**
- * ApiKeyApi - fetch parameter creator
+ * ChatApi - fetch parameter creator
  */
-export const ApiKeyApiFetchParamCreactor = {
+export const ChatApiFetchParamCreactor = {
     /** 
-     * Disable an API Key.
-     * @param apiKeyID API Key ID (public component).
-     */
-    apiKeyDisable(params: {  apiKeyID: string; }): FetchArgs {
-        // verify required parameter "apiKeyID" is set
-        if (params["apiKeyID"] == null) {
-            throw new Error("Missing required parameter apiKeyID when calling apiKeyDisable");
-        }
-        const baseUrl = `/apiKey/disable`;
-        let urlObj = url.parse(baseUrl, true);
-        let fetchOptions: RequestInit = { method: "POST" };
-
-        let contentTypeHeader: Dictionary<string>;
-        contentTypeHeader = { "Content-Type": "application/x-www-form-urlencoded" };
-        fetchOptions.body = querystring.stringify({ 
-            "apiKeyID": params.apiKeyID,
-        });
-        if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
-        }
-        return {
-            url: url.format(urlObj),
-            options: fetchOptions,
-        };
-    },
-    /** 
-     * Enable an API Key.
-     * @param apiKeyID API Key ID (public component).
-     */
-    apiKeyEnable(params: {  apiKeyID: string; }): FetchArgs {
-        // verify required parameter "apiKeyID" is set
-        if (params["apiKeyID"] == null) {
-            throw new Error("Missing required parameter apiKeyID when calling apiKeyEnable");
-        }
-        const baseUrl = `/apiKey/enable`;
-        let urlObj = url.parse(baseUrl, true);
-        let fetchOptions: RequestInit = { method: "POST" };
-
-        let contentTypeHeader: Dictionary<string>;
-        contentTypeHeader = { "Content-Type": "application/x-www-form-urlencoded" };
-        fetchOptions.body = querystring.stringify({ 
-            "apiKeyID": params.apiKeyID,
-        });
-        if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
-        }
-        return {
-            url: url.format(urlObj),
-            options: fetchOptions,
-        };
-    },
-    /** 
-     * Get your API Keys.
+     * Get chat messages.
+     * @param count Number of results to fetch.
+     * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
+     * @param channelID Channel id. GET /chat/channels for ids. Leave blank for all.
      */
-    apiKeyGet(params: {  reverse?: boolean; }): FetchArgs {
-        const baseUrl = `/apiKey`;
+    chatGet(params: {  count?: number; start?: number; reverse?: boolean; channelID?: number; }): FetchArgs {
+        const baseUrl = `/chat`;
         let urlObj = url.parse(baseUrl, true);
         urlObj.query = assign({}, urlObj.query, { 
+            "count": params.count,
+            "start": params.start,
             "reverse": params.reverse,
+            "channelID": params.channelID,
         });
         let fetchOptions: RequestInit = { method: "GET" };
 
@@ -800,220 +1056,11 @@ export const ApiKeyApiFetchParamCreactor = {
         };
     },
     /** 
-     * Create a new API Key.
-     * API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
-     * @param name Key name. This name is for reference only.
-     * @param cidr CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href&#x3D;\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt;
-     * @param permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;].
-     * @param enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.
-     * @param token OTP Token (YubiKey, Google Authenticator)
+     * Get available channels.
      */
-    apiKeyNew(params: {  name?: string; cidr?: string; permissions?: string; enabled?: boolean; token?: string; }): FetchArgs {
-        const baseUrl = `/apiKey`;
+    chatGetChannels(): FetchArgs {
+        const baseUrl = `/chat/channels`;
         let urlObj = url.parse(baseUrl, true);
-        let fetchOptions: RequestInit = { method: "POST" };
-
-        let contentTypeHeader: Dictionary<string>;
-        contentTypeHeader = { "Content-Type": "application/x-www-form-urlencoded" };
-        fetchOptions.body = querystring.stringify({ 
-            "name": params.name,
-            "cidr": params.cidr,
-            "permissions": params.permissions,
-            "enabled": params.enabled,
-            "token": params.token,
-        });
-        if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
-        }
-        return {
-            url: url.format(urlObj),
-            options: fetchOptions,
-        };
-    },
-    /** 
-     * Remove an API Key.
-     * @param apiKeyID API Key ID (public component).
-     */
-    apiKeyRemove(params: {  apiKeyID: string; }): FetchArgs {
-        // verify required parameter "apiKeyID" is set
-        if (params["apiKeyID"] == null) {
-            throw new Error("Missing required parameter apiKeyID when calling apiKeyRemove");
-        }
-        const baseUrl = `/apiKey`;
-        let urlObj = url.parse(baseUrl, true);
-        let fetchOptions: RequestInit = { method: "DELETE" };
-
-        let contentTypeHeader: Dictionary<string>;
-        contentTypeHeader = { "Content-Type": "application/x-www-form-urlencoded" };
-        fetchOptions.body = querystring.stringify({ 
-            "apiKeyID": params.apiKeyID,
-        });
-        if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
-        }
-        return {
-            url: url.format(urlObj),
-            options: fetchOptions,
-        };
-    },
-}
-
-/**
- * ApiKeyApi - functional programming interface
- */
-export const ApiKeyApiFp = {
-    /** 
-     * Disable an API Key.
-     * @param apiKeyID API Key ID (public component).
-     */
-    apiKeyDisable(params: { apiKeyID: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<ApiKey> {
-        const fetchArgs = ApiKeyApiFetchParamCreactor.apiKeyDisable(params);
-        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
-            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
-                if (response.status >= 200 && response.status < 300) {
-                    return response.json();
-                } else {
-                    throw response;
-                }
-            });
-        };
-    },
-    /** 
-     * Enable an API Key.
-     * @param apiKeyID API Key ID (public component).
-     */
-    apiKeyEnable(params: { apiKeyID: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<ApiKey> {
-        const fetchArgs = ApiKeyApiFetchParamCreactor.apiKeyEnable(params);
-        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
-            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
-                if (response.status >= 200 && response.status < 300) {
-                    return response.json();
-                } else {
-                    throw response;
-                }
-            });
-        };
-    },
-    /** 
-     * Get your API Keys.
-     * @param reverse If true, will sort results newest first.
-     */
-    apiKeyGet(params: { reverse?: boolean;  }): (fetch: FetchAPI, basePath?: string) => Promise<Array<ApiKey>> {
-        const fetchArgs = ApiKeyApiFetchParamCreactor.apiKeyGet(params);
-        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
-            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
-                if (response.status >= 200 && response.status < 300) {
-                    return response.json();
-                } else {
-                    throw response;
-                }
-            });
-        };
-    },
-    /** 
-     * Create a new API Key.
-     * API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
-     * @param name Key name. This name is for reference only.
-     * @param cidr CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href&#x3D;\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt;
-     * @param permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;].
-     * @param enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.
-     * @param token OTP Token (YubiKey, Google Authenticator)
-     */
-    apiKeyNew(params: { name?: string; cidr?: string; permissions?: string; enabled?: boolean; token?: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<ApiKey> {
-        const fetchArgs = ApiKeyApiFetchParamCreactor.apiKeyNew(params);
-        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
-            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
-                if (response.status >= 200 && response.status < 300) {
-                    return response.json();
-                } else {
-                    throw response;
-                }
-            });
-        };
-    },
-    /** 
-     * Remove an API Key.
-     * @param apiKeyID API Key ID (public component).
-     */
-    apiKeyRemove(params: { apiKeyID: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<InlineResponse200> {
-        const fetchArgs = ApiKeyApiFetchParamCreactor.apiKeyRemove(params);
-        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
-            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
-                if (response.status >= 200 && response.status < 300) {
-                    return response.json();
-                } else {
-                    throw response;
-                }
-            });
-        };
-    },
-};
-
-/**
- * ApiKeyApi - object-oriented interface
- */
-export class ApiKeyApi extends BaseAPI {
-    /** 
-     * Disable an API Key.
-     * @param apiKeyID API Key ID (public component).
-     */
-    apiKeyDisable(params: {  apiKeyID: string; }) {
-        return ApiKeyApiFp.apiKeyDisable(params)(this.fetch, this.basePath);
-    }
-    /** 
-     * Enable an API Key.
-     * @param apiKeyID API Key ID (public component).
-     */
-    apiKeyEnable(params: {  apiKeyID: string; }) {
-        return ApiKeyApiFp.apiKeyEnable(params)(this.fetch, this.basePath);
-    }
-    /** 
-     * Get your API Keys.
-     * @param reverse If true, will sort results newest first.
-     */
-    apiKeyGet(params: {  reverse?: boolean; }) {
-        return ApiKeyApiFp.apiKeyGet(params)(this.fetch, this.basePath);
-    }
-    /** 
-     * Create a new API Key.
-     * API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
-     * @param name Key name. This name is for reference only.
-     * @param cidr CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href&#x3D;\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt;
-     * @param permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;].
-     * @param enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.
-     * @param token OTP Token (YubiKey, Google Authenticator)
-     */
-    apiKeyNew(params: {  name?: string; cidr?: string; permissions?: string; enabled?: boolean; token?: string; }) {
-        return ApiKeyApiFp.apiKeyNew(params)(this.fetch, this.basePath);
-    }
-    /** 
-     * Remove an API Key.
-     * @param apiKeyID API Key ID (public component).
-     */
-    apiKeyRemove(params: {  apiKeyID: string; }) {
-        return ApiKeyApiFp.apiKeyRemove(params)(this.fetch, this.basePath);
-    }
-}
-
-
-/**
- * ChatApi - fetch parameter creator
- */
-export const ChatApiFetchParamCreactor = {
-    /** 
-     * Get chat messages.
-     * @param count Number of results to fetch.
-     * @param start Starting point for results.
-     * @param reverse If true, will sort results newest first.
-     */
-    chatGet(params: {  count?: number; start?: number; reverse?: boolean; }): FetchArgs {
-        const baseUrl = `/chat`;
-        let urlObj = url.parse(baseUrl, true);
-        urlObj.query = assign({}, urlObj.query, { 
-            "count": params.count,
-            "start": params.start,
-            "reverse": params.reverse,
-        });
         let fetchOptions: RequestInit = { method: "GET" };
 
         let contentTypeHeader: Dictionary<string>;
@@ -1046,8 +1093,9 @@ export const ChatApiFetchParamCreactor = {
     /** 
      * Send a chat message.
      * @param message 
+     * @param channelID Channel to post to. Default 1 (English).
      */
-    chatNew(params: {  message: string; }): FetchArgs {
+    chatNew(params: {  message: string; channelID?: number; }): FetchArgs {
         // verify required parameter "message" is set
         if (params["message"] == null) {
             throw new Error("Missing required parameter message when calling chatNew");
@@ -1060,6 +1108,7 @@ export const ChatApiFetchParamCreactor = {
         contentTypeHeader = { "Content-Type": "application/x-www-form-urlencoded" };
         fetchOptions.body = querystring.stringify({ 
             "message": params.message,
+            "channelID": params.channelID,
         });
         if (contentTypeHeader) {
             fetchOptions.headers = contentTypeHeader;
@@ -1080,9 +1129,25 @@ export const ChatApiFp = {
      * @param count Number of results to fetch.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
+     * @param channelID Channel id. GET /chat/channels for ids. Leave blank for all.
      */
-    chatGet(params: { count?: number; start?: number; reverse?: boolean;  }): (fetch: FetchAPI, basePath?: string) => Promise<Array<Chat>> {
+    chatGet(params: { count?: number; start?: number; reverse?: boolean; channelID?: number;  }): (fetch: FetchAPI, basePath?: string) => Promise<Array<Chat>> {
         const fetchArgs = ChatApiFetchParamCreactor.chatGet(params);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /** 
+     * Get available channels.
+     */
+    chatGetChannels(): (fetch: FetchAPI, basePath?: string) => Promise<Array<ChatChannel>> {
+        const fetchArgs = ChatApiFetchParamCreactor.chatGetChannels();
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -1112,8 +1177,9 @@ export const ChatApiFp = {
     /** 
      * Send a chat message.
      * @param message 
+     * @param channelID Channel to post to. Default 1 (English).
      */
-    chatNew(params: { message: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<Chat> {
+    chatNew(params: { message: string; channelID?: number;  }): (fetch: FetchAPI, basePath?: string) => Promise<Chat> {
         const fetchArgs = ChatApiFetchParamCreactor.chatNew(params);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
@@ -1136,9 +1202,16 @@ export class ChatApi extends BaseAPI {
      * @param count Number of results to fetch.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
+     * @param channelID Channel id. GET /chat/channels for ids. Leave blank for all.
      */
-    chatGet(params: {  count?: number; start?: number; reverse?: boolean; }) {
+    chatGet(params: {  count?: number; start?: number; reverse?: boolean; channelID?: number; }) {
         return ChatApiFp.chatGet(params)(this.fetch, this.basePath);
+    }
+    /** 
+     * Get available channels.
+     */
+    chatGetChannels() {
+        return ChatApiFp.chatGetChannels()(this.fetch, this.basePath);
     }
     /** 
      * Get connected users.
@@ -1150,8 +1223,9 @@ export class ChatApi extends BaseAPI {
     /** 
      * Send a chat message.
      * @param message 
+     * @param channelID Channel to post to. Default 1 (English).
      */
-    chatNew(params: {  message: string; }) {
+    chatNew(params: {  message: string; channelID?: number; }) {
         return ChatApiFp.chatNew(params)(this.fetch, this.basePath);
     }
 }
@@ -1914,9 +1988,10 @@ export class LiquidationApi extends BaseAPI {
 export const OrderApiFetchParamCreactor = {
     /** 
      * Amend the quantity or price of an open order.
-     * &lt;p&gt;Send an &lt;code&gt;orderID&lt;/code&gt; or &lt;code&gt;clOrdID&lt;/code&gt; to identify the order you wish to amend.&lt;/p&gt; &lt;p&gt;Both order quantity and price can be amended. Only one &lt;code&gt;qty&lt;/code&gt; field can be used to amend.&lt;/p&gt; &lt;p&gt;Use the &lt;code&gt;leavesQty&lt;/code&gt; field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position&amp;#39;s delta by a certain amount, regardless of how much of the order has already filled.&lt;/p&gt; &lt;p&gt;Use the &lt;code&gt;simpleOrderQty&lt;/code&gt; and &lt;code&gt;simpleLeavesQty&lt;/code&gt; fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.&lt;/p&gt; &lt;p&gt;Like order placement, amending can be done in bulk. Simply send a request to &lt;code&gt;PUT /api/v1/order/bulk&lt;/code&gt; with a JSON body of the shape: &lt;code&gt;{&amp;quot;orders&amp;quot;: [{...}, {...}]}&lt;/code&gt;, each object containing the fields used in this endpoint.&lt;/p&gt; 
+     * Send an &#x60;orderID&#x60; or &#x60;origClOrdID&#x60; to identify the order you wish to amend.  Both order quantity and price can be amended. Only one &#x60;qty&#x60; field can be used to amend.  Use the &#x60;leavesQty&#x60; field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position&#39;s delta by a certain amount, regardless of how much of the order has already filled.  Use the &#x60;simpleOrderQty&#x60; and &#x60;simpleLeavesQty&#x60; fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.  Like order placement, amending can be done in bulk. Simply send a request to &#x60;PUT /api/v1/order/bulk&#x60; with a JSON body of the shape: &#x60;{\&quot;orders\&quot;: [{...}, {...}]}&#x60;, each object containing the fields used in this endpoint. 
      * @param orderID Order ID
-     * @param clOrdID Client Order ID. See POST /order.
+     * @param origClOrdID Client Order ID. See POST /order.
+     * @param clOrdID Optional new Client Order ID, requires &#x60;origClOrdID&#x60;.
      * @param simpleOrderQty Optional order quantity in units of the underlying instrument (i.e. Bitcoin).
      * @param orderQty Optional order quantity in units of the instrument (i.e. contracts).
      * @param simpleLeavesQty Optional leaves quantity in units of the underlying instrument (i.e. Bitcoin). Useful for amending partially filled orders.
@@ -1926,7 +2001,7 @@ export const OrderApiFetchParamCreactor = {
      * @param pegOffsetValue Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders.
      * @param text Optional amend annotation. e.g. &#39;Adjust skew&#39;.
      */
-    orderAmend(params: {  orderID?: string; clOrdID?: string; simpleOrderQty?: number; orderQty?: number; simpleLeavesQty?: number; leavesQty?: number; price?: number; stopPx?: number; pegOffsetValue?: number; text?: string; }): FetchArgs {
+    orderAmend(params: {  orderID?: string; origClOrdID?: string; clOrdID?: string; simpleOrderQty?: number; orderQty?: number; simpleLeavesQty?: number; leavesQty?: number; price?: number; stopPx?: number; pegOffsetValue?: number; text?: string; }): FetchArgs {
         const baseUrl = `/order`;
         let urlObj = url.parse(baseUrl, true);
         let fetchOptions: RequestInit = { method: "PUT" };
@@ -1935,6 +2010,7 @@ export const OrderApiFetchParamCreactor = {
         contentTypeHeader = { "Content-Type": "application/x-www-form-urlencoded" };
         fetchOptions.body = querystring.stringify({ 
             "orderID": params.orderID,
+            "origClOrdID": params.origClOrdID,
             "clOrdID": params.clOrdID,
             "simpleOrderQty": params.simpleOrderQty,
             "orderQty": params.orderQty,
@@ -2058,7 +2134,7 @@ export const OrderApiFetchParamCreactor = {
     },
     /** 
      * Close a position. [Deprecated, use POST /order with execInst: &#39;Close&#39;]
-     * If no &#x60;price&#x60; is specified, a market order will be submitted to close the whole of your position. + This will also close all other open orders in this symbol.
+     * If no &#x60;price&#x60; is specified, a market order will be submitted to close the whole of your position. This will also close all other open orders in this symbol.
      * @param symbol Symbol of position to close.
      * @param price Optional limit price.
      */
@@ -2140,7 +2216,7 @@ export const OrderApiFetchParamCreactor = {
      * @param type Deprecated: use &#x60;ordType&#x60;.
      * @param ordType Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to &#39;Limit&#39; when &#x60;price&#x60; is specified. Defaults to &#39;Stop&#39; when &#x60;stopPx&#x60; is specified. Defaults to &#39;StopLimit&#39; when &#x60;price&#x60; and &#x60;stopPx&#x60; are specified.
      * @param timeInForce Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to &#39;GoodTillCancel&#39; for &#39;Limit&#39;, &#39;StopLimit&#39;, &#39;LimitIfTouched&#39;, and &#39;MarketWithLeftOverAsLimit&#39; orders.
-     * @param execInst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, LastPrice, Close, ReduceOnly. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders.
+     * @param execInst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders.
      * @param contingencyType Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute, OneUpdatesTheOtherProportional.
      * @param text Optional order annotation. e.g. &#39;Take profit&#39;.
      */
@@ -2215,9 +2291,10 @@ export const OrderApiFetchParamCreactor = {
 export const OrderApiFp = {
     /** 
      * Amend the quantity or price of an open order.
-     * &lt;p&gt;Send an &lt;code&gt;orderID&lt;/code&gt; or &lt;code&gt;clOrdID&lt;/code&gt; to identify the order you wish to amend.&lt;/p&gt; &lt;p&gt;Both order quantity and price can be amended. Only one &lt;code&gt;qty&lt;/code&gt; field can be used to amend.&lt;/p&gt; &lt;p&gt;Use the &lt;code&gt;leavesQty&lt;/code&gt; field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position&amp;#39;s delta by a certain amount, regardless of how much of the order has already filled.&lt;/p&gt; &lt;p&gt;Use the &lt;code&gt;simpleOrderQty&lt;/code&gt; and &lt;code&gt;simpleLeavesQty&lt;/code&gt; fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.&lt;/p&gt; &lt;p&gt;Like order placement, amending can be done in bulk. Simply send a request to &lt;code&gt;PUT /api/v1/order/bulk&lt;/code&gt; with a JSON body of the shape: &lt;code&gt;{&amp;quot;orders&amp;quot;: [{...}, {...}]}&lt;/code&gt;, each object containing the fields used in this endpoint.&lt;/p&gt; 
+     * Send an &#x60;orderID&#x60; or &#x60;origClOrdID&#x60; to identify the order you wish to amend.  Both order quantity and price can be amended. Only one &#x60;qty&#x60; field can be used to amend.  Use the &#x60;leavesQty&#x60; field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position&#39;s delta by a certain amount, regardless of how much of the order has already filled.  Use the &#x60;simpleOrderQty&#x60; and &#x60;simpleLeavesQty&#x60; fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.  Like order placement, amending can be done in bulk. Simply send a request to &#x60;PUT /api/v1/order/bulk&#x60; with a JSON body of the shape: &#x60;{\&quot;orders\&quot;: [{...}, {...}]}&#x60;, each object containing the fields used in this endpoint. 
      * @param orderID Order ID
-     * @param clOrdID Client Order ID. See POST /order.
+     * @param origClOrdID Client Order ID. See POST /order.
+     * @param clOrdID Optional new Client Order ID, requires &#x60;origClOrdID&#x60;.
      * @param simpleOrderQty Optional order quantity in units of the underlying instrument (i.e. Bitcoin).
      * @param orderQty Optional order quantity in units of the instrument (i.e. contracts).
      * @param simpleLeavesQty Optional leaves quantity in units of the underlying instrument (i.e. Bitcoin). Useful for amending partially filled orders.
@@ -2227,7 +2304,7 @@ export const OrderApiFp = {
      * @param pegOffsetValue Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders.
      * @param text Optional amend annotation. e.g. &#39;Adjust skew&#39;.
      */
-    orderAmend(params: { orderID?: string; clOrdID?: string; simpleOrderQty?: number; orderQty?: number; simpleLeavesQty?: number; leavesQty?: number; price?: number; stopPx?: number; pegOffsetValue?: number; text?: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<Order> {
+    orderAmend(params: { orderID?: string; origClOrdID?: string; clOrdID?: string; simpleOrderQty?: number; orderQty?: number; simpleLeavesQty?: number; leavesQty?: number; price?: number; stopPx?: number; pegOffsetValue?: number; text?: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<Order> {
         const fetchArgs = OrderApiFetchParamCreactor.orderAmend(params);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
@@ -2312,7 +2389,7 @@ export const OrderApiFp = {
     },
     /** 
      * Close a position. [Deprecated, use POST /order with execInst: &#39;Close&#39;]
-     * If no &#x60;price&#x60; is specified, a market order will be submitted to close the whole of your position. + This will also close all other open orders in this symbol.
+     * If no &#x60;price&#x60; is specified, a market order will be submitted to close the whole of your position. This will also close all other open orders in this symbol.
      * @param symbol Symbol of position to close.
      * @param price Optional limit price.
      */
@@ -2371,7 +2448,7 @@ export const OrderApiFp = {
      * @param type Deprecated: use &#x60;ordType&#x60;.
      * @param ordType Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to &#39;Limit&#39; when &#x60;price&#x60; is specified. Defaults to &#39;Stop&#39; when &#x60;stopPx&#x60; is specified. Defaults to &#39;StopLimit&#39; when &#x60;price&#x60; and &#x60;stopPx&#x60; are specified.
      * @param timeInForce Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to &#39;GoodTillCancel&#39; for &#39;Limit&#39;, &#39;StopLimit&#39;, &#39;LimitIfTouched&#39;, and &#39;MarketWithLeftOverAsLimit&#39; orders.
-     * @param execInst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, LastPrice, Close, ReduceOnly. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders.
+     * @param execInst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders.
      * @param contingencyType Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute, OneUpdatesTheOtherProportional.
      * @param text Optional order annotation. e.g. &#39;Take profit&#39;.
      */
@@ -2412,9 +2489,10 @@ export const OrderApiFp = {
 export class OrderApi extends BaseAPI {
     /** 
      * Amend the quantity or price of an open order.
-     * &lt;p&gt;Send an &lt;code&gt;orderID&lt;/code&gt; or &lt;code&gt;clOrdID&lt;/code&gt; to identify the order you wish to amend.&lt;/p&gt; &lt;p&gt;Both order quantity and price can be amended. Only one &lt;code&gt;qty&lt;/code&gt; field can be used to amend.&lt;/p&gt; &lt;p&gt;Use the &lt;code&gt;leavesQty&lt;/code&gt; field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position&amp;#39;s delta by a certain amount, regardless of how much of the order has already filled.&lt;/p&gt; &lt;p&gt;Use the &lt;code&gt;simpleOrderQty&lt;/code&gt; and &lt;code&gt;simpleLeavesQty&lt;/code&gt; fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.&lt;/p&gt; &lt;p&gt;Like order placement, amending can be done in bulk. Simply send a request to &lt;code&gt;PUT /api/v1/order/bulk&lt;/code&gt; with a JSON body of the shape: &lt;code&gt;{&amp;quot;orders&amp;quot;: [{...}, {...}]}&lt;/code&gt;, each object containing the fields used in this endpoint.&lt;/p&gt; 
+     * Send an &#x60;orderID&#x60; or &#x60;origClOrdID&#x60; to identify the order you wish to amend.  Both order quantity and price can be amended. Only one &#x60;qty&#x60; field can be used to amend.  Use the &#x60;leavesQty&#x60; field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position&#39;s delta by a certain amount, regardless of how much of the order has already filled.  Use the &#x60;simpleOrderQty&#x60; and &#x60;simpleLeavesQty&#x60; fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.  Like order placement, amending can be done in bulk. Simply send a request to &#x60;PUT /api/v1/order/bulk&#x60; with a JSON body of the shape: &#x60;{\&quot;orders\&quot;: [{...}, {...}]}&#x60;, each object containing the fields used in this endpoint. 
      * @param orderID Order ID
-     * @param clOrdID Client Order ID. See POST /order.
+     * @param origClOrdID Client Order ID. See POST /order.
+     * @param clOrdID Optional new Client Order ID, requires &#x60;origClOrdID&#x60;.
      * @param simpleOrderQty Optional order quantity in units of the underlying instrument (i.e. Bitcoin).
      * @param orderQty Optional order quantity in units of the instrument (i.e. contracts).
      * @param simpleLeavesQty Optional leaves quantity in units of the underlying instrument (i.e. Bitcoin). Useful for amending partially filled orders.
@@ -2424,7 +2502,7 @@ export class OrderApi extends BaseAPI {
      * @param pegOffsetValue Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders.
      * @param text Optional amend annotation. e.g. &#39;Adjust skew&#39;.
      */
-    orderAmend(params: {  orderID?: string; clOrdID?: string; simpleOrderQty?: number; orderQty?: number; simpleLeavesQty?: number; leavesQty?: number; price?: number; stopPx?: number; pegOffsetValue?: number; text?: string; }) {
+    orderAmend(params: {  orderID?: string; origClOrdID?: string; clOrdID?: string; simpleOrderQty?: number; orderQty?: number; simpleLeavesQty?: number; leavesQty?: number; price?: number; stopPx?: number; pegOffsetValue?: number; text?: string; }) {
         return OrderApiFp.orderAmend(params)(this.fetch, this.basePath);
     }
     /** 
@@ -2464,7 +2542,7 @@ export class OrderApi extends BaseAPI {
     }
     /** 
      * Close a position. [Deprecated, use POST /order with execInst: &#39;Close&#39;]
-     * If no &#x60;price&#x60; is specified, a market order will be submitted to close the whole of your position. + This will also close all other open orders in this symbol.
+     * If no &#x60;price&#x60; is specified, a market order will be submitted to close the whole of your position. This will also close all other open orders in this symbol.
      * @param symbol Symbol of position to close.
      * @param price Optional limit price.
      */
@@ -2505,7 +2583,7 @@ export class OrderApi extends BaseAPI {
      * @param type Deprecated: use &#x60;ordType&#x60;.
      * @param ordType Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to &#39;Limit&#39; when &#x60;price&#x60; is specified. Defaults to &#39;Stop&#39; when &#x60;stopPx&#x60; is specified. Defaults to &#39;StopLimit&#39; when &#x60;price&#x60; and &#x60;stopPx&#x60; are specified.
      * @param timeInForce Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to &#39;GoodTillCancel&#39; for &#39;Limit&#39;, &#39;StopLimit&#39;, &#39;LimitIfTouched&#39;, and &#39;MarketWithLeftOverAsLimit&#39; orders.
-     * @param execInst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, LastPrice, Close, ReduceOnly. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders.
+     * @param execInst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders.
      * @param contingencyType Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute, OneUpdatesTheOtherProportional.
      * @param text Optional order annotation. e.g. &#39;Take profit&#39;.
      */
@@ -2771,6 +2849,39 @@ export const PositionApiFetchParamCreactor = {
             options: fetchOptions,
         };
     },
+    /** 
+     * Update your risk limit.
+     * Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+     * @param symbol Symbol of position to isolate.
+     * @param riskLimit New Risk Limit, in Satoshis.
+     */
+    positionUpdateRiskLimit(params: {  symbol: string; riskLimit: number; }): FetchArgs {
+        // verify required parameter "symbol" is set
+        if (params["symbol"] == null) {
+            throw new Error("Missing required parameter symbol when calling positionUpdateRiskLimit");
+        }
+        // verify required parameter "riskLimit" is set
+        if (params["riskLimit"] == null) {
+            throw new Error("Missing required parameter riskLimit when calling positionUpdateRiskLimit");
+        }
+        const baseUrl = `/position/riskLimit`;
+        let urlObj = url.parse(baseUrl, true);
+        let fetchOptions: RequestInit = { method: "POST" };
+
+        let contentTypeHeader: Dictionary<string>;
+        contentTypeHeader = { "Content-Type": "application/x-www-form-urlencoded" };
+        fetchOptions.body = querystring.stringify({ 
+            "symbol": params.symbol,
+            "riskLimit": params.riskLimit,
+        });
+        if (contentTypeHeader) {
+            fetchOptions.headers = contentTypeHeader;
+        }
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
 }
 
 /**
@@ -2850,6 +2961,24 @@ export const PositionApiFp = {
             });
         };
     },
+    /** 
+     * Update your risk limit.
+     * Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+     * @param symbol Symbol of position to isolate.
+     * @param riskLimit New Risk Limit, in Satoshis.
+     */
+    positionUpdateRiskLimit(params: { symbol: string; riskLimit: number;  }): (fetch: FetchAPI, basePath?: string) => Promise<Position> {
+        const fetchArgs = PositionApiFetchParamCreactor.positionUpdateRiskLimit(params);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
 };
 
 /**
@@ -2892,6 +3021,15 @@ export class PositionApi extends BaseAPI {
      */
     positionUpdateLeverage(params: {  symbol: string; leverage: number; }) {
         return PositionApiFp.positionUpdateLeverage(params)(this.fetch, this.basePath);
+    }
+    /** 
+     * Update your risk limit.
+     * Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+     * @param symbol Symbol of position to isolate.
+     * @param riskLimit New Risk Limit, in Satoshis.
+     */
+    positionUpdateRiskLimit(params: {  symbol: string; riskLimit: number; }) {
+        return PositionApiFp.positionUpdateRiskLimit(params)(this.fetch, this.basePath);
     }
 }
 
@@ -3627,38 +3765,6 @@ export const UserApiFetchParamCreactor = {
         };
     },
     /** 
-     * Confirm a password reset.
-     * @param token 
-     * @param newPassword 
-     */
-    userConfirmPasswordReset(params: {  token: string; newPassword: string; }): FetchArgs {
-        // verify required parameter "token" is set
-        if (params["token"] == null) {
-            throw new Error("Missing required parameter token when calling userConfirmPasswordReset");
-        }
-        // verify required parameter "newPassword" is set
-        if (params["newPassword"] == null) {
-            throw new Error("Missing required parameter newPassword when calling userConfirmPasswordReset");
-        }
-        const baseUrl = `/user/confirmPasswordReset`;
-        let urlObj = url.parse(baseUrl, true);
-        let fetchOptions: RequestInit = { method: "POST" };
-
-        let contentTypeHeader: Dictionary<string>;
-        contentTypeHeader = { "Content-Type": "application/x-www-form-urlencoded" };
-        fetchOptions.body = querystring.stringify({ 
-            "token": params.token,
-            "newPassword": params.newPassword,
-        });
-        if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
-        }
-        return {
-            url: url.format(urlObj),
-            options: fetchOptions,
-        };
-    },
-    /** 
      * Confirm a withdrawal.
      * @param token 
      */
@@ -3806,7 +3912,28 @@ export const UserApiFetchParamCreactor = {
         };
     },
     /** 
-     * Get a history of all of your wallet transactions (deposits and withdrawals).
+     * Get your current wallet information.
+     * @param currency 
+     */
+    userGetWallet(params: {  currency?: string; }): FetchArgs {
+        const baseUrl = `/user/wallet`;
+        let urlObj = url.parse(baseUrl, true);
+        urlObj.query = assign({}, urlObj.query, { 
+            "currency": params.currency,
+        });
+        let fetchOptions: RequestInit = { method: "GET" };
+
+        let contentTypeHeader: Dictionary<string>;
+        if (contentTypeHeader) {
+            fetchOptions.headers = contentTypeHeader;
+        }
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /** 
+     * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
      * @param currency 
      */
     userGetWalletHistory(params: {  currency?: string; }): FetchArgs {
@@ -3827,31 +3954,18 @@ export const UserApiFetchParamCreactor = {
         };
     },
     /** 
-     * Log in to BitMEX.
-     * @param email Your email address.
-     * @param password Your password.
-     * @param token OTP Token (YubiKey, Google Authenticator)
+     * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+     * @param currency 
      */
-    userLogin(params: {  email: string; password: string; token?: string; }): FetchArgs {
-        // verify required parameter "email" is set
-        if (params["email"] == null) {
-            throw new Error("Missing required parameter email when calling userLogin");
-        }
-        // verify required parameter "password" is set
-        if (params["password"] == null) {
-            throw new Error("Missing required parameter password when calling userLogin");
-        }
-        const baseUrl = `/user/login`;
+    userGetWalletSummary(params: {  currency?: string; }): FetchArgs {
+        const baseUrl = `/user/walletSummary`;
         let urlObj = url.parse(baseUrl, true);
-        let fetchOptions: RequestInit = { method: "POST" };
+        urlObj.query = assign({}, urlObj.query, { 
+            "currency": params.currency,
+        });
+        let fetchOptions: RequestInit = { method: "GET" };
 
         let contentTypeHeader: Dictionary<string>;
-        contentTypeHeader = { "Content-Type": "application/x-www-form-urlencoded" };
-        fetchOptions.body = querystring.stringify({ 
-            "email": params.email,
-            "password": params.password,
-            "token": params.token,
-        });
         if (contentTypeHeader) {
             fetchOptions.headers = contentTypeHeader;
         }
@@ -3895,58 +4009,6 @@ export const UserApiFetchParamCreactor = {
         };
     },
     /** 
-     * Register a new user.
-     * @param email Your email address.
-     * @param password Your password.
-     * @param country Country of residence.
-     * @param username Desired username.
-     * @param firstname First name.
-     * @param lastname Last name.
-     * @param acceptsTOS Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).
-     * @param referrerID Optional Referrer ID.
-     * @param tfaType Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef
-     * @param tfaToken Two-Factor Token.
-     */
-    userNew(params: {  email: string; password: string; country: string; username?: string; firstname?: string; lastname?: string; acceptsTOS?: string; referrerID?: string; tfaType?: string; tfaToken?: string; }): FetchArgs {
-        // verify required parameter "email" is set
-        if (params["email"] == null) {
-            throw new Error("Missing required parameter email when calling userNew");
-        }
-        // verify required parameter "password" is set
-        if (params["password"] == null) {
-            throw new Error("Missing required parameter password when calling userNew");
-        }
-        // verify required parameter "country" is set
-        if (params["country"] == null) {
-            throw new Error("Missing required parameter country when calling userNew");
-        }
-        const baseUrl = `/user`;
-        let urlObj = url.parse(baseUrl, true);
-        let fetchOptions: RequestInit = { method: "POST" };
-
-        let contentTypeHeader: Dictionary<string>;
-        contentTypeHeader = { "Content-Type": "application/x-www-form-urlencoded" };
-        fetchOptions.body = querystring.stringify({ 
-            "email": params.email,
-            "password": params.password,
-            "username": params.username,
-            "firstname": params.firstname,
-            "lastname": params.lastname,
-            "acceptsTOS": params.acceptsTOS,
-            "referrerID": params.referrerID,
-            "country": params.country,
-            "tfaType": params.tfaType,
-            "tfaToken": params.tfaToken,
-        });
-        if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
-        }
-        return {
-            url: url.format(urlObj),
-            options: fetchOptions,
-        };
-    },
-    /** 
      * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
      * @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
      */
@@ -3959,32 +4021,6 @@ export const UserApiFetchParamCreactor = {
         contentTypeHeader = { "Content-Type": "application/x-www-form-urlencoded" };
         fetchOptions.body = querystring.stringify({ 
             "type": params.type,
-        });
-        if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
-        }
-        return {
-            url: url.format(urlObj),
-            options: fetchOptions,
-        };
-    },
-    /** 
-     * Request a password reset.
-     * @param email 
-     */
-    userRequestPasswordReset(params: {  email: string; }): FetchArgs {
-        // verify required parameter "email" is set
-        if (params["email"] == null) {
-            throw new Error("Missing required parameter email when calling userRequestPasswordReset");
-        }
-        const baseUrl = `/user/requestPasswordReset`;
-        let urlObj = url.parse(baseUrl, true);
-        let fetchOptions: RequestInit = { method: "POST" };
-
-        let contentTypeHeader: Dictionary<string>;
-        contentTypeHeader = { "Content-Type": "application/x-www-form-urlencoded" };
-        fetchOptions.body = querystring.stringify({ 
-            "email": params.email,
         });
         if (contentTypeHeader) {
             fetchOptions.headers = contentTypeHeader;
@@ -4056,32 +4092,6 @@ export const UserApiFetchParamCreactor = {
         fetchOptions.body = querystring.stringify({ 
             "prefs": params.prefs,
             "overwrite": params.overwrite,
-        });
-        if (contentTypeHeader) {
-            fetchOptions.headers = contentTypeHeader;
-        }
-        return {
-            url: url.format(urlObj),
-            options: fetchOptions,
-        };
-    },
-    /** 
-     * Re-send verification email.
-     * @param email 
-     */
-    userSendVerificationEmail(params: {  email: string; }): FetchArgs {
-        // verify required parameter "email" is set
-        if (params["email"] == null) {
-            throw new Error("Missing required parameter email when calling userSendVerificationEmail");
-        }
-        const baseUrl = `/user/resendVerificationEmail`;
-        let urlObj = url.parse(baseUrl, true);
-        let fetchOptions: RequestInit = { method: "POST" };
-
-        let contentTypeHeader: Dictionary<string>;
-        contentTypeHeader = { "Content-Type": "application/x-www-form-urlencoded" };
-        fetchOptions.body = querystring.stringify({ 
-            "email": params.email,
         });
         if (contentTypeHeader) {
             fetchOptions.headers = contentTypeHeader;
@@ -4189,23 +4199,6 @@ export const UserApiFp = {
      */
     userConfirmEnableTFA(params: { token: string; type?: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<boolean> {
         const fetchArgs = UserApiFetchParamCreactor.userConfirmEnableTFA(params);
-        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
-            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
-                if (response.status >= 200 && response.status < 300) {
-                    return response.json();
-                } else {
-                    throw response;
-                }
-            });
-        };
-    },
-    /** 
-     * Confirm a password reset.
-     * @param token 
-     * @param newPassword 
-     */
-    userConfirmPasswordReset(params: { token: string; newPassword: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<boolean> {
-        const fetchArgs = UserApiFetchParamCreactor.userConfirmPasswordReset(params);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -4327,7 +4320,23 @@ export const UserApiFp = {
         };
     },
     /** 
-     * Get a history of all of your wallet transactions (deposits and withdrawals).
+     * Get your current wallet information.
+     * @param currency 
+     */
+    userGetWallet(params: { currency?: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<Wallet> {
+        const fetchArgs = UserApiFetchParamCreactor.userGetWallet(params);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /** 
+     * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
      * @param currency 
      */
     userGetWalletHistory(params: { currency?: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<Array<Transaction>> {
@@ -4343,13 +4352,11 @@ export const UserApiFp = {
         };
     },
     /** 
-     * Log in to BitMEX.
-     * @param email Your email address.
-     * @param password Your password.
-     * @param token OTP Token (YubiKey, Google Authenticator)
+     * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+     * @param currency 
      */
-    userLogin(params: { email: string; password: string; token?: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<AccessToken> {
-        const fetchArgs = UserApiFetchParamCreactor.userLogin(params);
+    userGetWalletSummary(params: { currency?: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<Array<Transaction>> {
+        const fetchArgs = UserApiFetchParamCreactor.userGetWalletSummary(params);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -4391,52 +4398,11 @@ export const UserApiFp = {
         };
     },
     /** 
-     * Register a new user.
-     * @param email Your email address.
-     * @param password Your password.
-     * @param country Country of residence.
-     * @param username Desired username.
-     * @param firstname First name.
-     * @param lastname Last name.
-     * @param acceptsTOS Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).
-     * @param referrerID Optional Referrer ID.
-     * @param tfaType Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef
-     * @param tfaToken Two-Factor Token.
-     */
-    userNew(params: { email: string; password: string; country: string; username?: string; firstname?: string; lastname?: string; acceptsTOS?: string; referrerID?: string; tfaType?: string; tfaToken?: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<User> {
-        const fetchArgs = UserApiFetchParamCreactor.userNew(params);
-        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
-            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
-                if (response.status >= 200 && response.status < 300) {
-                    return response.json();
-                } else {
-                    throw response;
-                }
-            });
-        };
-    },
-    /** 
      * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
      * @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
      */
     userRequestEnableTFA(params: { type?: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<boolean> {
         const fetchArgs = UserApiFetchParamCreactor.userRequestEnableTFA(params);
-        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
-            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
-                if (response.status >= 200 && response.status < 300) {
-                    return response.json();
-                } else {
-                    throw response;
-                }
-            });
-        };
-    },
-    /** 
-     * Request a password reset.
-     * @param email 
-     */
-    userRequestPasswordReset(params: { email: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<boolean> {
-        const fetchArgs = UserApiFetchParamCreactor.userRequestPasswordReset(params);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -4475,22 +4441,6 @@ export const UserApiFp = {
      */
     userSavePreferences(params: { prefs: string; overwrite?: boolean;  }): (fetch: FetchAPI, basePath?: string) => Promise<User> {
         const fetchArgs = UserApiFetchParamCreactor.userSavePreferences(params);
-        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
-            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
-                if (response.status >= 200 && response.status < 300) {
-                    return response.json();
-                } else {
-                    throw response;
-                }
-            });
-        };
-    },
-    /** 
-     * Re-send verification email.
-     * @param email 
-     */
-    userSendVerificationEmail(params: { email: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<boolean> {
-        const fetchArgs = UserApiFetchParamCreactor.userSendVerificationEmail(params);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -4561,14 +4511,6 @@ export class UserApi extends BaseAPI {
         return UserApiFp.userConfirmEnableTFA(params)(this.fetch, this.basePath);
     }
     /** 
-     * Confirm a password reset.
-     * @param token 
-     * @param newPassword 
-     */
-    userConfirmPasswordReset(params: {  token: string; newPassword: string; }) {
-        return UserApiFp.userConfirmPasswordReset(params)(this.fetch, this.basePath);
-    }
-    /** 
      * Confirm a withdrawal.
      * @param token 
      */
@@ -4616,20 +4558,25 @@ export class UserApi extends BaseAPI {
         return UserApiFp.userGetMargin(params)(this.fetch, this.basePath);
     }
     /** 
-     * Get a history of all of your wallet transactions (deposits and withdrawals).
+     * Get your current wallet information.
+     * @param currency 
+     */
+    userGetWallet(params: {  currency?: string; }) {
+        return UserApiFp.userGetWallet(params)(this.fetch, this.basePath);
+    }
+    /** 
+     * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
      * @param currency 
      */
     userGetWalletHistory(params: {  currency?: string; }) {
         return UserApiFp.userGetWalletHistory(params)(this.fetch, this.basePath);
     }
     /** 
-     * Log in to BitMEX.
-     * @param email Your email address.
-     * @param password Your password.
-     * @param token OTP Token (YubiKey, Google Authenticator)
+     * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+     * @param currency 
      */
-    userLogin(params: {  email: string; password: string; token?: string; }) {
-        return UserApiFp.userLogin(params)(this.fetch, this.basePath);
+    userGetWalletSummary(params: {  currency?: string; }) {
+        return UserApiFp.userGetWalletSummary(params)(this.fetch, this.basePath);
     }
     /** 
      * Log out of BitMEX.
@@ -4644,34 +4591,11 @@ export class UserApi extends BaseAPI {
         return UserApiFp.userLogoutAll()(this.fetch, this.basePath);
     }
     /** 
-     * Register a new user.
-     * @param email Your email address.
-     * @param password Your password.
-     * @param country Country of residence.
-     * @param username Desired username.
-     * @param firstname First name.
-     * @param lastname Last name.
-     * @param acceptsTOS Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).
-     * @param referrerID Optional Referrer ID.
-     * @param tfaType Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef
-     * @param tfaToken Two-Factor Token.
-     */
-    userNew(params: {  email: string; password: string; country: string; username?: string; firstname?: string; lastname?: string; acceptsTOS?: string; referrerID?: string; tfaType?: string; tfaToken?: string; }) {
-        return UserApiFp.userNew(params)(this.fetch, this.basePath);
-    }
-    /** 
      * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
      * @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
      */
     userRequestEnableTFA(params: {  type?: string; }) {
         return UserApiFp.userRequestEnableTFA(params)(this.fetch, this.basePath);
-    }
-    /** 
-     * Request a password reset.
-     * @param email 
-     */
-    userRequestPasswordReset(params: {  email: string; }) {
-        return UserApiFp.userRequestPasswordReset(params)(this.fetch, this.basePath);
     }
     /** 
      * Request a withdrawal to an external wallet.
@@ -4692,13 +4616,6 @@ export class UserApi extends BaseAPI {
      */
     userSavePreferences(params: {  prefs: string; overwrite?: boolean; }) {
         return UserApiFp.userSavePreferences(params)(this.fetch, this.basePath);
-    }
-    /** 
-     * Re-send verification email.
-     * @param email 
-     */
-    userSendVerificationEmail(params: {  email: string; }) {
-        return UserApiFp.userSendVerificationEmail(params)(this.fetch, this.basePath);
     }
     /** 
      * Update your password, name, and other attributes.

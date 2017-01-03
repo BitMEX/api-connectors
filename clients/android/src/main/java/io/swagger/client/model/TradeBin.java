@@ -36,12 +36,10 @@ public class TradeBin  {
   private Double homeNotional = null;
   @SerializedName("foreignNotional")
   private Double foreignNotional = null;
-  @SerializedName("id")
-  private Double id = null;
 
   /**
    **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public Date getTimestamp() {
     return timestamp;
   }
@@ -51,7 +49,7 @@ public class TradeBin  {
 
   /**
    **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public String getSymbol() {
     return symbol;
   }
@@ -169,16 +167,6 @@ public class TradeBin  {
     this.foreignNotional = foreignNotional;
   }
 
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getId() {
-    return id;
-  }
-  public void setId(Double id) {
-    this.id = id;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -201,8 +189,7 @@ public class TradeBin  {
         (lastSize == null ? tradeBin.lastSize == null : lastSize.equals(tradeBin.lastSize)) &&
         (turnover == null ? tradeBin.turnover == null : turnover.equals(tradeBin.turnover)) &&
         (homeNotional == null ? tradeBin.homeNotional == null : homeNotional.equals(tradeBin.homeNotional)) &&
-        (foreignNotional == null ? tradeBin.foreignNotional == null : foreignNotional.equals(tradeBin.foreignNotional)) &&
-        (id == null ? tradeBin.id == null : id.equals(tradeBin.id));
+        (foreignNotional == null ? tradeBin.foreignNotional == null : foreignNotional.equals(tradeBin.foreignNotional));
   }
 
   @Override
@@ -221,7 +208,6 @@ public class TradeBin  {
     result = 31 * result + (turnover == null ? 0: turnover.hashCode());
     result = 31 * result + (homeNotional == null ? 0: homeNotional.hashCode());
     result = 31 * result + (foreignNotional == null ? 0: foreignNotional.hashCode());
-    result = 31 * result + (id == null ? 0: id.hashCode());
     return result;
   }
 
@@ -243,7 +229,6 @@ public class TradeBin  {
     sb.append("  turnover: ").append(turnover).append("\n");
     sb.append("  homeNotional: ").append(homeNotional).append("\n");
     sb.append("  foreignNotional: ").append(foreignNotional).append("\n");
-    sb.append("  id: ").append(id).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

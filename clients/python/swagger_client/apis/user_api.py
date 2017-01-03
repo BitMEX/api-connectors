@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+    ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -440,117 +440,6 @@ class UserApi(object):
             form_params.append(('type', params['type']))
         if 'token' in params:
             form_params.append(('token', params['token']))
-
-        body_params = None
-
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.\
-            select_header_accept(['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])
-        if not header_params['Accept']:
-            del header_params['Accept']
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.\
-            select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
-
-        # Authentication setting
-        auth_settings = []
-
-        return self.api_client.call_api(resource_path, 'POST',
-                                            path_params,
-                                            query_params,
-                                            header_params,
-                                            body=body_params,
-                                            post_params=form_params,
-                                            files=local_var_files,
-                                            response_type='bool',
-                                            auth_settings=auth_settings,
-                                            callback=params.get('callback'),
-                                            _return_http_data_only=params.get('_return_http_data_only'))
-
-    def user_confirm_password_reset(self, token, new_password, **kwargs):
-        """
-        Confirm a password reset.
-        
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please define a `callback` function
-        to be invoked when receiving the response.
-        >>> def callback_function(response):
-        >>>     pprint(response)
-        >>>
-        >>> thread = api.user_confirm_password_reset(token, new_password, callback=callback_function)
-
-        :param callback function: The callback function
-            for asynchronous request. (optional)
-        :param str token:  (required)
-        :param str new_password:  (required)
-        :return: bool
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('callback'):
-            return self.user_confirm_password_reset_with_http_info(token, new_password, **kwargs)
-        else:
-            (data) = self.user_confirm_password_reset_with_http_info(token, new_password, **kwargs)
-            return data
-
-    def user_confirm_password_reset_with_http_info(self, token, new_password, **kwargs):
-        """
-        Confirm a password reset.
-        
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please define a `callback` function
-        to be invoked when receiving the response.
-        >>> def callback_function(response):
-        >>>     pprint(response)
-        >>>
-        >>> thread = api.user_confirm_password_reset_with_http_info(token, new_password, callback=callback_function)
-
-        :param callback function: The callback function
-            for asynchronous request. (optional)
-        :param str token:  (required)
-        :param str new_password:  (required)
-        :return: bool
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        all_params = ['token', 'new_password']
-        all_params.append('callback')
-        all_params.append('_return_http_data_only')
-
-        params = locals()
-        for key, val in iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method user_confirm_password_reset" % key
-                )
-            params[key] = val
-        del params['kwargs']
-        # verify the required parameter 'token' is set
-        if ('token' not in params) or (params['token'] is None):
-            raise ValueError("Missing the required parameter `token` when calling `user_confirm_password_reset`")
-        # verify the required parameter 'new_password' is set
-        if ('new_password' not in params) or (params['new_password'] is None):
-            raise ValueError("Missing the required parameter `new_password` when calling `user_confirm_password_reset`")
-
-        resource_path = '/user/confirmPasswordReset'.replace('{format}', 'json')
-        path_params = {}
-
-        query_params = {}
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-        if 'token' in params:
-            form_params.append(('token', params['token']))
-        if 'new_password' in params:
-            form_params.append(('newPassword', params['new_password']))
 
         body_params = None
 
@@ -1284,9 +1173,110 @@ class UserApi(object):
                                             callback=params.get('callback'),
                                             _return_http_data_only=params.get('_return_http_data_only'))
 
+    def user_get_wallet(self, **kwargs):
+        """
+        Get your current wallet information.
+        
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.user_get_wallet(callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str currency: 
+        :return: Wallet
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('callback'):
+            return self.user_get_wallet_with_http_info(**kwargs)
+        else:
+            (data) = self.user_get_wallet_with_http_info(**kwargs)
+            return data
+
+    def user_get_wallet_with_http_info(self, **kwargs):
+        """
+        Get your current wallet information.
+        
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.user_get_wallet_with_http_info(callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str currency: 
+        :return: Wallet
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['currency']
+        all_params.append('callback')
+        all_params.append('_return_http_data_only')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method user_get_wallet" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        resource_path = '/user/wallet'.replace('{format}', 'json')
+        path_params = {}
+
+        query_params = {}
+        if 'currency' in params:
+            query_params['currency'] = params['currency']
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])
+        if not header_params['Accept']:
+            del header_params['Accept']
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
+
+        # Authentication setting
+        auth_settings = []
+
+        return self.api_client.call_api(resource_path, 'GET',
+                                            path_params,
+                                            query_params,
+                                            header_params,
+                                            body=body_params,
+                                            post_params=form_params,
+                                            files=local_var_files,
+                                            response_type='Wallet',
+                                            auth_settings=auth_settings,
+                                            callback=params.get('callback'),
+                                            _return_http_data_only=params.get('_return_http_data_only'))
+
     def user_get_wallet_history(self, **kwargs):
         """
-        Get a history of all of your wallet transactions (deposits and withdrawals).
+        Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
         
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1313,7 +1303,7 @@ class UserApi(object):
 
     def user_get_wallet_history_with_http_info(self, **kwargs):
         """
-        Get a history of all of your wallet transactions (deposits and withdrawals).
+        Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
         
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1385,9 +1375,9 @@ class UserApi(object):
                                             callback=params.get('callback'),
                                             _return_http_data_only=params.get('_return_http_data_only'))
 
-    def user_login(self, email, password, **kwargs):
+    def user_get_wallet_summary(self, **kwargs):
         """
-        Log in to BitMEX.
+        Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
         
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1396,27 +1386,25 @@ class UserApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.user_login(email, password, callback=callback_function)
+        >>> thread = api.user_get_wallet_summary(callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param str email: Your email address. (required)
-        :param str password: Your password. (required)
-        :param str token: OTP Token (YubiKey, Google Authenticator)
-        :return: AccessToken
+        :param str currency: 
+        :return: list[Transaction]
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('callback'):
-            return self.user_login_with_http_info(email, password, **kwargs)
+            return self.user_get_wallet_summary_with_http_info(**kwargs)
         else:
-            (data) = self.user_login_with_http_info(email, password, **kwargs)
+            (data) = self.user_get_wallet_summary_with_http_info(**kwargs)
             return data
 
-    def user_login_with_http_info(self, email, password, **kwargs):
+    def user_get_wallet_summary_with_http_info(self, **kwargs):
         """
-        Log in to BitMEX.
+        Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
         
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1425,19 +1413,17 @@ class UserApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.user_login_with_http_info(email, password, callback=callback_function)
+        >>> thread = api.user_get_wallet_summary_with_http_info(callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param str email: Your email address. (required)
-        :param str password: Your password. (required)
-        :param str token: OTP Token (YubiKey, Google Authenticator)
-        :return: AccessToken
+        :param str currency: 
+        :return: list[Transaction]
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['email', 'password', 'token']
+        all_params = ['currency']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
 
@@ -1446,32 +1432,22 @@ class UserApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method user_login" % key
+                    " to method user_get_wallet_summary" % key
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'email' is set
-        if ('email' not in params) or (params['email'] is None):
-            raise ValueError("Missing the required parameter `email` when calling `user_login`")
-        # verify the required parameter 'password' is set
-        if ('password' not in params) or (params['password'] is None):
-            raise ValueError("Missing the required parameter `password` when calling `user_login`")
 
-        resource_path = '/user/login'.replace('{format}', 'json')
+        resource_path = '/user/walletSummary'.replace('{format}', 'json')
         path_params = {}
 
         query_params = {}
+        if 'currency' in params:
+            query_params['currency'] = params['currency']
 
         header_params = {}
 
         form_params = []
         local_var_files = {}
-        if 'email' in params:
-            form_params.append(('email', params['email']))
-        if 'password' in params:
-            form_params.append(('password', params['password']))
-        if 'token' in params:
-            form_params.append(('token', params['token']))
 
         body_params = None
 
@@ -1488,14 +1464,14 @@ class UserApi(object):
         # Authentication setting
         auth_settings = []
 
-        return self.api_client.call_api(resource_path, 'POST',
+        return self.api_client.call_api(resource_path, 'GET',
                                             path_params,
                                             query_params,
                                             header_params,
                                             body=body_params,
                                             post_params=form_params,
                                             files=local_var_files,
-                                            response_type='AccessToken',
+                                            response_type='list[Transaction]',
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'),
                                             _return_http_data_only=params.get('_return_http_data_only'))
@@ -1694,152 +1670,6 @@ class UserApi(object):
                                             callback=params.get('callback'),
                                             _return_http_data_only=params.get('_return_http_data_only'))
 
-    def user_new(self, email, password, country, **kwargs):
-        """
-        Register a new user.
-        
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please define a `callback` function
-        to be invoked when receiving the response.
-        >>> def callback_function(response):
-        >>>     pprint(response)
-        >>>
-        >>> thread = api.user_new(email, password, country, callback=callback_function)
-
-        :param callback function: The callback function
-            for asynchronous request. (optional)
-        :param str email: Your email address. (required)
-        :param str password: Your password. (required)
-        :param str country: Country of residence. (required)
-        :param str username: Desired username.
-        :param str firstname: First name.
-        :param str lastname: Last name.
-        :param str accepts_tos: Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).
-        :param str referrer_id: Optional Referrer ID.
-        :param str tfa_type: Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef
-        :param str tfa_token: Two-Factor Token.
-        :return: User
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('callback'):
-            return self.user_new_with_http_info(email, password, country, **kwargs)
-        else:
-            (data) = self.user_new_with_http_info(email, password, country, **kwargs)
-            return data
-
-    def user_new_with_http_info(self, email, password, country, **kwargs):
-        """
-        Register a new user.
-        
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please define a `callback` function
-        to be invoked when receiving the response.
-        >>> def callback_function(response):
-        >>>     pprint(response)
-        >>>
-        >>> thread = api.user_new_with_http_info(email, password, country, callback=callback_function)
-
-        :param callback function: The callback function
-            for asynchronous request. (optional)
-        :param str email: Your email address. (required)
-        :param str password: Your password. (required)
-        :param str country: Country of residence. (required)
-        :param str username: Desired username.
-        :param str firstname: First name.
-        :param str lastname: Last name.
-        :param str accepts_tos: Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms).
-        :param str referrer_id: Optional Referrer ID.
-        :param str tfa_type: Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef
-        :param str tfa_token: Two-Factor Token.
-        :return: User
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        all_params = ['email', 'password', 'country', 'username', 'firstname', 'lastname', 'accepts_tos', 'referrer_id', 'tfa_type', 'tfa_token']
-        all_params.append('callback')
-        all_params.append('_return_http_data_only')
-
-        params = locals()
-        for key, val in iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method user_new" % key
-                )
-            params[key] = val
-        del params['kwargs']
-        # verify the required parameter 'email' is set
-        if ('email' not in params) or (params['email'] is None):
-            raise ValueError("Missing the required parameter `email` when calling `user_new`")
-        # verify the required parameter 'password' is set
-        if ('password' not in params) or (params['password'] is None):
-            raise ValueError("Missing the required parameter `password` when calling `user_new`")
-        # verify the required parameter 'country' is set
-        if ('country' not in params) or (params['country'] is None):
-            raise ValueError("Missing the required parameter `country` when calling `user_new`")
-
-        resource_path = '/user'.replace('{format}', 'json')
-        path_params = {}
-
-        query_params = {}
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-        if 'email' in params:
-            form_params.append(('email', params['email']))
-        if 'password' in params:
-            form_params.append(('password', params['password']))
-        if 'username' in params:
-            form_params.append(('username', params['username']))
-        if 'firstname' in params:
-            form_params.append(('firstname', params['firstname']))
-        if 'lastname' in params:
-            form_params.append(('lastname', params['lastname']))
-        if 'accepts_tos' in params:
-            form_params.append(('acceptsTOS', params['accepts_tos']))
-        if 'referrer_id' in params:
-            form_params.append(('referrerID', params['referrer_id']))
-        if 'country' in params:
-            form_params.append(('country', params['country']))
-        if 'tfa_type' in params:
-            form_params.append(('tfaType', params['tfa_type']))
-        if 'tfa_token' in params:
-            form_params.append(('tfaToken', params['tfa_token']))
-
-        body_params = None
-
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.\
-            select_header_accept(['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])
-        if not header_params['Accept']:
-            del header_params['Accept']
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.\
-            select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
-
-        # Authentication setting
-        auth_settings = []
-
-        return self.api_client.call_api(resource_path, 'POST',
-                                            path_params,
-                                            query_params,
-                                            header_params,
-                                            body=body_params,
-                                            post_params=form_params,
-                                            files=local_var_files,
-                                            response_type='User',
-                                            auth_settings=auth_settings,
-                                            callback=params.get('callback'),
-                                            _return_http_data_only=params.get('_return_http_data_only'))
-
     def user_request_enable_tfa(self, **kwargs):
         """
         Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
@@ -1913,110 +1743,6 @@ class UserApi(object):
         local_var_files = {}
         if 'type' in params:
             form_params.append(('type', params['type']))
-
-        body_params = None
-
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.\
-            select_header_accept(['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])
-        if not header_params['Accept']:
-            del header_params['Accept']
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.\
-            select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
-
-        # Authentication setting
-        auth_settings = []
-
-        return self.api_client.call_api(resource_path, 'POST',
-                                            path_params,
-                                            query_params,
-                                            header_params,
-                                            body=body_params,
-                                            post_params=form_params,
-                                            files=local_var_files,
-                                            response_type='bool',
-                                            auth_settings=auth_settings,
-                                            callback=params.get('callback'),
-                                            _return_http_data_only=params.get('_return_http_data_only'))
-
-    def user_request_password_reset(self, email, **kwargs):
-        """
-        Request a password reset.
-        
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please define a `callback` function
-        to be invoked when receiving the response.
-        >>> def callback_function(response):
-        >>>     pprint(response)
-        >>>
-        >>> thread = api.user_request_password_reset(email, callback=callback_function)
-
-        :param callback function: The callback function
-            for asynchronous request. (optional)
-        :param str email:  (required)
-        :return: bool
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('callback'):
-            return self.user_request_password_reset_with_http_info(email, **kwargs)
-        else:
-            (data) = self.user_request_password_reset_with_http_info(email, **kwargs)
-            return data
-
-    def user_request_password_reset_with_http_info(self, email, **kwargs):
-        """
-        Request a password reset.
-        
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please define a `callback` function
-        to be invoked when receiving the response.
-        >>> def callback_function(response):
-        >>>     pprint(response)
-        >>>
-        >>> thread = api.user_request_password_reset_with_http_info(email, callback=callback_function)
-
-        :param callback function: The callback function
-            for asynchronous request. (optional)
-        :param str email:  (required)
-        :return: bool
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        all_params = ['email']
-        all_params.append('callback')
-        all_params.append('_return_http_data_only')
-
-        params = locals()
-        for key, val in iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method user_request_password_reset" % key
-                )
-            params[key] = val
-        del params['kwargs']
-        # verify the required parameter 'email' is set
-        if ('email' not in params) or (params['email'] is None):
-            raise ValueError("Missing the required parameter `email` when calling `user_request_password_reset`")
-
-        resource_path = '/user/requestPasswordReset'.replace('{format}', 'json')
-        path_params = {}
-
-        query_params = {}
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-        if 'email' in params:
-            form_params.append(('email', params['email']))
 
         body_params = None
 
@@ -2275,110 +2001,6 @@ class UserApi(object):
                                             post_params=form_params,
                                             files=local_var_files,
                                             response_type='User',
-                                            auth_settings=auth_settings,
-                                            callback=params.get('callback'),
-                                            _return_http_data_only=params.get('_return_http_data_only'))
-
-    def user_send_verification_email(self, email, **kwargs):
-        """
-        Re-send verification email.
-        
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please define a `callback` function
-        to be invoked when receiving the response.
-        >>> def callback_function(response):
-        >>>     pprint(response)
-        >>>
-        >>> thread = api.user_send_verification_email(email, callback=callback_function)
-
-        :param callback function: The callback function
-            for asynchronous request. (optional)
-        :param str email:  (required)
-        :return: bool
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('callback'):
-            return self.user_send_verification_email_with_http_info(email, **kwargs)
-        else:
-            (data) = self.user_send_verification_email_with_http_info(email, **kwargs)
-            return data
-
-    def user_send_verification_email_with_http_info(self, email, **kwargs):
-        """
-        Re-send verification email.
-        
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please define a `callback` function
-        to be invoked when receiving the response.
-        >>> def callback_function(response):
-        >>>     pprint(response)
-        >>>
-        >>> thread = api.user_send_verification_email_with_http_info(email, callback=callback_function)
-
-        :param callback function: The callback function
-            for asynchronous request. (optional)
-        :param str email:  (required)
-        :return: bool
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        all_params = ['email']
-        all_params.append('callback')
-        all_params.append('_return_http_data_only')
-
-        params = locals()
-        for key, val in iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method user_send_verification_email" % key
-                )
-            params[key] = val
-        del params['kwargs']
-        # verify the required parameter 'email' is set
-        if ('email' not in params) or (params['email'] is None):
-            raise ValueError("Missing the required parameter `email` when calling `user_send_verification_email`")
-
-        resource_path = '/user/resendVerificationEmail'.replace('{format}', 'json')
-        path_params = {}
-
-        query_params = {}
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-        if 'email' in params:
-            form_params.append(('email', params['email']))
-
-        body_params = None
-
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.\
-            select_header_accept(['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])
-        if not header_params['Accept']:
-            del header_params['Accept']
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.\
-            select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
-
-        # Authentication setting
-        auth_settings = []
-
-        return self.api_client.call_api(resource_path, 'POST',
-                                            path_params,
-                                            query_params,
-                                            header_params,
-                                            body=body_params,
-                                            post_params=form_params,
-                                            files=local_var_files,
-                                            response_type='bool',
                                             auth_settings=auth_settings,
                                             callback=params.get('callback'),
                                             _return_http_data_only=params.get('_return_http_data_only'))

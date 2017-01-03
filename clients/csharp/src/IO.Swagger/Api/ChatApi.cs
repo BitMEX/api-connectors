@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -46,8 +46,9 @@ namespace IO.Swagger.Api
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
+        /// <param name="channelID">Channel id. GET /chat/channels for ids. Leave blank for all. (optional)</param>
         /// <returns>List&lt;Chat&gt;</returns>
-        List<Chat> ChatGet (decimal? count = null, decimal? start = null, bool? reverse = null);
+        List<Chat> ChatGet (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null);
 
         /// <summary>
         /// Get chat messages.
@@ -59,8 +60,28 @@ namespace IO.Swagger.Api
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
+        /// <param name="channelID">Channel id. GET /chat/channels for ids. Leave blank for all. (optional)</param>
         /// <returns>ApiResponse of List&lt;Chat&gt;</returns>
-        ApiResponse<List<Chat>> ChatGetWithHttpInfo (decimal? count = null, decimal? start = null, bool? reverse = null);
+        ApiResponse<List<Chat>> ChatGetWithHttpInfo (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null);
+        /// <summary>
+        /// Get available channels.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;ChatChannel&gt;</returns>
+        List<ChatChannel> ChatGetChannels ();
+
+        /// <summary>
+        /// Get available channels.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;ChatChannel&gt;</returns>
+        ApiResponse<List<ChatChannel>> ChatGetChannelsWithHttpInfo ();
         /// <summary>
         /// Get connected users.
         /// </summary>
@@ -88,8 +109,9 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="message"></param>
+        /// <param name="channelID">Channel to post to. Default 1 (English). (optional, default to 1)</param>
         /// <returns>Chat</returns>
-        Chat ChatNew (string message);
+        Chat ChatNew (string message, double? channelID = null);
 
         /// <summary>
         /// Send a chat message.
@@ -99,8 +121,9 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="message"></param>
+        /// <param name="channelID">Channel to post to. Default 1 (English). (optional, default to 1)</param>
         /// <returns>ApiResponse of Chat</returns>
-        ApiResponse<Chat> ChatNewWithHttpInfo (string message);
+        ApiResponse<Chat> ChatNewWithHttpInfo (string message, double? channelID = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -113,8 +136,9 @@ namespace IO.Swagger.Api
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
+        /// <param name="channelID">Channel id. GET /chat/channels for ids. Leave blank for all. (optional)</param>
         /// <returns>Task of List&lt;Chat&gt;</returns>
-        System.Threading.Tasks.Task<List<Chat>> ChatGetAsync (decimal? count = null, decimal? start = null, bool? reverse = null);
+        System.Threading.Tasks.Task<List<Chat>> ChatGetAsync (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null);
 
         /// <summary>
         /// Get chat messages.
@@ -126,8 +150,28 @@ namespace IO.Swagger.Api
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
+        /// <param name="channelID">Channel id. GET /chat/channels for ids. Leave blank for all. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Chat&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Chat>>> ChatGetAsyncWithHttpInfo (decimal? count = null, decimal? start = null, bool? reverse = null);
+        System.Threading.Tasks.Task<ApiResponse<List<Chat>>> ChatGetAsyncWithHttpInfo (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null);
+        /// <summary>
+        /// Get available channels.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of List&lt;ChatChannel&gt;</returns>
+        System.Threading.Tasks.Task<List<ChatChannel>> ChatGetChannelsAsync ();
+
+        /// <summary>
+        /// Get available channels.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (List&lt;ChatChannel&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<ChatChannel>>> ChatGetChannelsAsyncWithHttpInfo ();
         /// <summary>
         /// Get connected users.
         /// </summary>
@@ -155,8 +199,9 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="message"></param>
+        /// <param name="channelID">Channel to post to. Default 1 (English). (optional, default to 1)</param>
         /// <returns>Task of Chat</returns>
-        System.Threading.Tasks.Task<Chat> ChatNewAsync (string message);
+        System.Threading.Tasks.Task<Chat> ChatNewAsync (string message, double? channelID = null);
 
         /// <summary>
         /// Send a chat message.
@@ -166,8 +211,9 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="message"></param>
+        /// <param name="channelID">Channel to post to. Default 1 (English). (optional, default to 1)</param>
         /// <returns>Task of ApiResponse (Chat)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Chat>> ChatNewAsyncWithHttpInfo (string message);
+        System.Threading.Tasks.Task<ApiResponse<Chat>> ChatNewAsyncWithHttpInfo (string message, double? channelID = null);
         #endregion Asynchronous Operations
     }
 
@@ -287,10 +333,11 @@ namespace IO.Swagger.Api
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
+        /// <param name="channelID">Channel id. GET /chat/channels for ids. Leave blank for all. (optional)</param>
         /// <returns>List&lt;Chat&gt;</returns>
-        public List<Chat> ChatGet (decimal? count = null, decimal? start = null, bool? reverse = null)
+        public List<Chat> ChatGet (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null)
         {
-             ApiResponse<List<Chat>> localVarResponse = ChatGetWithHttpInfo(count, start, reverse);
+             ApiResponse<List<Chat>> localVarResponse = ChatGetWithHttpInfo(count, start, reverse, channelID);
              return localVarResponse.Data;
         }
 
@@ -301,8 +348,9 @@ namespace IO.Swagger.Api
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
+        /// <param name="channelID">Channel id. GET /chat/channels for ids. Leave blank for all. (optional)</param>
         /// <returns>ApiResponse of List&lt;Chat&gt;</returns>
-        public ApiResponse< List<Chat> > ChatGetWithHttpInfo (decimal? count = null, decimal? start = null, bool? reverse = null)
+        public ApiResponse< List<Chat> > ChatGetWithHttpInfo (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null)
         {
 
             var localVarPath = "/chat";
@@ -338,6 +386,7 @@ namespace IO.Swagger.Api
             if (count != null) localVarQueryParams.Add("count", Configuration.ApiClient.ParameterToString(count)); // query parameter
             if (start != null) localVarQueryParams.Add("start", Configuration.ApiClient.ParameterToString(start)); // query parameter
             if (reverse != null) localVarQueryParams.Add("reverse", Configuration.ApiClient.ParameterToString(reverse)); // query parameter
+            if (channelID != null) localVarQueryParams.Add("channelID", Configuration.ApiClient.ParameterToString(channelID)); // query parameter
 
 
             // make the HTTP request
@@ -366,10 +415,11 @@ namespace IO.Swagger.Api
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
+        /// <param name="channelID">Channel id. GET /chat/channels for ids. Leave blank for all. (optional)</param>
         /// <returns>Task of List&lt;Chat&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Chat>> ChatGetAsync (decimal? count = null, decimal? start = null, bool? reverse = null)
+        public async System.Threading.Tasks.Task<List<Chat>> ChatGetAsync (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null)
         {
-             ApiResponse<List<Chat>> localVarResponse = await ChatGetAsyncWithHttpInfo(count, start, reverse);
+             ApiResponse<List<Chat>> localVarResponse = await ChatGetAsyncWithHttpInfo(count, start, reverse, channelID);
              return localVarResponse.Data;
 
         }
@@ -381,8 +431,9 @@ namespace IO.Swagger.Api
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
+        /// <param name="channelID">Channel id. GET /chat/channels for ids. Leave blank for all. (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Chat&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Chat>>> ChatGetAsyncWithHttpInfo (decimal? count = null, decimal? start = null, bool? reverse = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Chat>>> ChatGetAsyncWithHttpInfo (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null)
         {
 
             var localVarPath = "/chat";
@@ -418,6 +469,7 @@ namespace IO.Swagger.Api
             if (count != null) localVarQueryParams.Add("count", Configuration.ApiClient.ParameterToString(count)); // query parameter
             if (start != null) localVarQueryParams.Add("start", Configuration.ApiClient.ParameterToString(start)); // query parameter
             if (reverse != null) localVarQueryParams.Add("reverse", Configuration.ApiClient.ParameterToString(reverse)); // query parameter
+            if (channelID != null) localVarQueryParams.Add("channelID", Configuration.ApiClient.ParameterToString(channelID)); // query parameter
 
 
             // make the HTTP request
@@ -436,6 +488,147 @@ namespace IO.Swagger.Api
             return new ApiResponse<List<Chat>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<Chat>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Chat>)));
+            
+        }
+
+        /// <summary>
+        /// Get available channels. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;ChatChannel&gt;</returns>
+        public List<ChatChannel> ChatGetChannels ()
+        {
+             ApiResponse<List<ChatChannel>> localVarResponse = ChatGetChannelsWithHttpInfo();
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get available channels. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;ChatChannel&gt;</returns>
+        public ApiResponse< List<ChatChannel> > ChatGetChannelsWithHttpInfo ()
+        {
+
+            var localVarPath = "/chat/channels";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json", 
+                "application/xml", 
+                "text/xml", 
+                "application/javascript", 
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ChatGetChannels", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<ChatChannel>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<ChatChannel>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<ChatChannel>)));
+            
+        }
+
+        /// <summary>
+        /// Get available channels. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of List&lt;ChatChannel&gt;</returns>
+        public async System.Threading.Tasks.Task<List<ChatChannel>> ChatGetChannelsAsync ()
+        {
+             ApiResponse<List<ChatChannel>> localVarResponse = await ChatGetChannelsAsyncWithHttpInfo();
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get available channels. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (List&lt;ChatChannel&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<ChatChannel>>> ChatGetChannelsAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/chat/channels";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json", 
+                "application/xml", 
+                "text/xml", 
+                "application/javascript", 
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ChatGetChannels", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<ChatChannel>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<ChatChannel>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<ChatChannel>)));
             
         }
 
@@ -585,10 +778,11 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="message"></param>
+        /// <param name="channelID">Channel to post to. Default 1 (English). (optional, default to 1)</param>
         /// <returns>Chat</returns>
-        public Chat ChatNew (string message)
+        public Chat ChatNew (string message, double? channelID = null)
         {
-             ApiResponse<Chat> localVarResponse = ChatNewWithHttpInfo(message);
+             ApiResponse<Chat> localVarResponse = ChatNewWithHttpInfo(message, channelID);
              return localVarResponse.Data;
         }
 
@@ -597,8 +791,9 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="message"></param>
+        /// <param name="channelID">Channel to post to. Default 1 (English). (optional, default to 1)</param>
         /// <returns>ApiResponse of Chat</returns>
-        public ApiResponse< Chat > ChatNewWithHttpInfo (string message)
+        public ApiResponse< Chat > ChatNewWithHttpInfo (string message, double? channelID = null)
         {
             // verify the required parameter 'message' is set
             if (message == null)
@@ -635,6 +830,7 @@ namespace IO.Swagger.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (message != null) localVarFormParams.Add("message", Configuration.ApiClient.ParameterToString(message)); // form parameter
+            if (channelID != null) localVarFormParams.Add("channelID", Configuration.ApiClient.ParameterToString(channelID)); // form parameter
 
 
             // make the HTTP request
@@ -661,10 +857,11 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="message"></param>
+        /// <param name="channelID">Channel to post to. Default 1 (English). (optional, default to 1)</param>
         /// <returns>Task of Chat</returns>
-        public async System.Threading.Tasks.Task<Chat> ChatNewAsync (string message)
+        public async System.Threading.Tasks.Task<Chat> ChatNewAsync (string message, double? channelID = null)
         {
-             ApiResponse<Chat> localVarResponse = await ChatNewAsyncWithHttpInfo(message);
+             ApiResponse<Chat> localVarResponse = await ChatNewAsyncWithHttpInfo(message, channelID);
              return localVarResponse.Data;
 
         }
@@ -674,8 +871,9 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="message"></param>
+        /// <param name="channelID">Channel to post to. Default 1 (English). (optional, default to 1)</param>
         /// <returns>Task of ApiResponse (Chat)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Chat>> ChatNewAsyncWithHttpInfo (string message)
+        public async System.Threading.Tasks.Task<ApiResponse<Chat>> ChatNewAsyncWithHttpInfo (string message, double? channelID = null)
         {
             // verify the required parameter 'message' is set
             if (message == null)
@@ -712,6 +910,7 @@ namespace IO.Swagger.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (message != null) localVarFormParams.Add("message", Configuration.ApiClient.ParameterToString(message)); // form parameter
+            if (channelID != null) localVarFormParams.Add("channelID", Configuration.ApiClient.ParameterToString(channelID)); // form parameter
 
 
             // make the HTTP request

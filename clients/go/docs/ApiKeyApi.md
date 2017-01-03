@@ -1,18 +1,18 @@
-# \ApiKeyApi
+# \APIKeyApi
 
 All URIs are relative to *https://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ApiKeyDisable**](ApiKeyApi.md#ApiKeyDisable) | **Post** /apiKey/disable | Disable an API Key.
-[**ApiKeyEnable**](ApiKeyApi.md#ApiKeyEnable) | **Post** /apiKey/enable | Enable an API Key.
-[**ApiKeyGet**](ApiKeyApi.md#ApiKeyGet) | **Get** /apiKey | Get your API Keys.
-[**ApiKeyNew**](ApiKeyApi.md#ApiKeyNew) | **Post** /apiKey | Create a new API Key.
-[**ApiKeyRemove**](ApiKeyApi.md#ApiKeyRemove) | **Delete** /apiKey | Remove an API Key.
+[**APIKeyDisable**](APIKeyApi.md#APIKeyDisable) | **Post** /apiKey/disable | Disable an API Key.
+[**APIKeyEnable**](APIKeyApi.md#APIKeyEnable) | **Post** /apiKey/enable | Enable an API Key.
+[**APIKeyGet**](APIKeyApi.md#APIKeyGet) | **Get** /apiKey | Get your API Keys.
+[**APIKeyNew**](APIKeyApi.md#APIKeyNew) | **Post** /apiKey | Create a new API Key.
+[**APIKeyRemove**](APIKeyApi.md#APIKeyRemove) | **Delete** /apiKey | Remove an API Key.
 
 
-# **ApiKeyDisable**
-> ApiKey ApiKeyDisable($apiKeyID)
+# **APIKeyDisable**
+> ApiKey APIKeyDisable($apiKeyID)
 
 Disable an API Key.
 
@@ -25,7 +25,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**ApiKey**](APIKey.md)
 
 ### Authorization
 
@@ -38,8 +38,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **ApiKeyEnable**
-> ApiKey ApiKeyEnable($apiKeyID)
+# **APIKeyEnable**
+> ApiKey APIKeyEnable($apiKeyID)
 
 Enable an API Key.
 
@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**ApiKey**](APIKey.md)
 
 ### Authorization
 
@@ -65,8 +65,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **ApiKeyGet**
-> []ApiKey ApiKeyGet($reverse)
+# **APIKeyGet**
+> []ApiKey APIKeyGet($reverse)
 
 Get your API Keys.
 
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]ApiKey**](ApiKey.md)
+[**[]ApiKey**](APIKey.md)
 
 ### Authorization
 
@@ -92,8 +92,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **ApiKeyNew**
-> ApiKey ApiKeyNew($name, $cidr, $permissions, $enabled, $token)
+# **APIKeyNew**
+> ApiKey APIKeyNew($name, $cidr, $permissions, $enabled, $token)
 
 Create a new API Key.
 
@@ -112,7 +112,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**ApiKey**](APIKey.md)
 
 ### Authorization
 
@@ -125,8 +125,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **ApiKeyRemove**
-> InlineResponse200 ApiKeyRemove($apiKeyID)
+# **APIKeyRemove**
+> InlineResponse200 APIKeyRemove($apiKeyID)
 
 Remove an API Key.
 

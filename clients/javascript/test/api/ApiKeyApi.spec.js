@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -39,7 +39,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new BitMexApi.ApiKeyApi();
+    instance = new BitMexApi.APIKeyApi();
   });
 
   var getProperty = function(object, getter, property) {
@@ -58,51 +58,51 @@
       object[property] = value;
   }
 
-  describe('ApiKeyApi', function() {
-    describe('apiKeyDisable', function() {
-      it('should call apiKeyDisable successfully', function(done) {
-        //uncomment below and update the code to test apiKeyDisable
-        //instance.apiKeyDisable(pet, function(error) {
+  describe('APIKeyApi', function() {
+    describe('aPIKeyDisable', function() {
+      it('should call aPIKeyDisable successfully', function(done) {
+        //uncomment below and update the code to test aPIKeyDisable
+        //instance.aPIKeyDisable(pet, function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
         done();
       });
     });
-    describe('apiKeyEnable', function() {
-      it('should call apiKeyEnable successfully', function(done) {
-        //uncomment below and update the code to test apiKeyEnable
-        //instance.apiKeyEnable(pet, function(error) {
+    describe('aPIKeyEnable', function() {
+      it('should call aPIKeyEnable successfully', function(done) {
+        //uncomment below and update the code to test aPIKeyEnable
+        //instance.aPIKeyEnable(pet, function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
         done();
       });
     });
-    describe('apiKeyGet', function() {
-      it('should call apiKeyGet successfully', function(done) {
-        //uncomment below and update the code to test apiKeyGet
-        //instance.apiKeyGet(pet, function(error) {
+    describe('aPIKeyGet', function() {
+      it('should call aPIKeyGet successfully', function(done) {
+        //uncomment below and update the code to test aPIKeyGet
+        //instance.aPIKeyGet(pet, function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
         done();
       });
     });
-    describe('apiKeyNew', function() {
-      it('should call apiKeyNew successfully', function(done) {
-        //uncomment below and update the code to test apiKeyNew
-        //instance.apiKeyNew(pet, function(error) {
+    describe('aPIKeyNew', function() {
+      it('should call aPIKeyNew successfully', function(done) {
+        //uncomment below and update the code to test aPIKeyNew
+        //instance.aPIKeyNew(pet, function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
         done();
       });
     });
-    describe('apiKeyRemove', function() {
-      it('should call apiKeyRemove successfully', function(done) {
-        //uncomment below and update the code to test apiKeyRemove
-        //instance.apiKeyRemove(pet, function(error) {
+    describe('aPIKeyRemove', function() {
+      it('should call aPIKeyRemove successfully', function(done) {
+        //uncomment below and update the code to test aPIKeyRemove
+        //instance.aPIKeyRemove(pet, function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

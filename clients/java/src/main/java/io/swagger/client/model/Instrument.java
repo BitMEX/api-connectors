@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -36,7 +36,7 @@ import org.joda.time.LocalDate;
 /**
  * Instrument
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-07-05T09:40:48.217-05:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-01-03T10:34:33.567-06:00")
 public class Instrument   {
   @JsonProperty("symbol")
   private String symbol = null;
@@ -140,6 +140,12 @@ public class Instrument   {
   @JsonProperty("maintMargin")
   private Double maintMargin = null;
 
+  @JsonProperty("riskLimit")
+  private BigDecimal riskLimit = null;
+
+  @JsonProperty("riskStep")
+  private BigDecimal riskStep = null;
+
   @JsonProperty("limit")
   private Double limit = null;
 
@@ -148,6 +154,9 @@ public class Instrument   {
 
   @JsonProperty("taxed")
   private Boolean taxed = null;
+
+  @JsonProperty("deleverage")
+  private Boolean deleverage = null;
 
   @JsonProperty("makerFee")
   private Double makerFee = null;
@@ -929,6 +938,42 @@ public class Instrument   {
     this.maintMargin = maintMargin;
   }
 
+  public Instrument riskLimit(BigDecimal riskLimit) {
+    this.riskLimit = riskLimit;
+    return this;
+  }
+
+   /**
+   * Get riskLimit
+   * @return riskLimit
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public BigDecimal getRiskLimit() {
+    return riskLimit;
+  }
+
+  public void setRiskLimit(BigDecimal riskLimit) {
+    this.riskLimit = riskLimit;
+  }
+
+  public Instrument riskStep(BigDecimal riskStep) {
+    this.riskStep = riskStep;
+    return this;
+  }
+
+   /**
+   * Get riskStep
+   * @return riskStep
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public BigDecimal getRiskStep() {
+    return riskStep;
+  }
+
+  public void setRiskStep(BigDecimal riskStep) {
+    this.riskStep = riskStep;
+  }
+
   public Instrument limit(Double limit) {
     this.limit = limit;
     return this;
@@ -981,6 +1026,24 @@ public class Instrument   {
 
   public void setTaxed(Boolean taxed) {
     this.taxed = taxed;
+  }
+
+  public Instrument deleverage(Boolean deleverage) {
+    this.deleverage = deleverage;
+    return this;
+  }
+
+   /**
+   * Get deleverage
+   * @return deleverage
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public Boolean getDeleverage() {
+    return deleverage;
+  }
+
+  public void setDeleverage(Boolean deleverage) {
+    this.deleverage = deleverage;
   }
 
   public Instrument makerFee(Double makerFee) {
@@ -2035,9 +2098,12 @@ public class Instrument   {
         Objects.equals(this.isInverse, instrument.isInverse) &&
         Objects.equals(this.initMargin, instrument.initMargin) &&
         Objects.equals(this.maintMargin, instrument.maintMargin) &&
+        Objects.equals(this.riskLimit, instrument.riskLimit) &&
+        Objects.equals(this.riskStep, instrument.riskStep) &&
         Objects.equals(this.limit, instrument.limit) &&
         Objects.equals(this.capped, instrument.capped) &&
         Objects.equals(this.taxed, instrument.taxed) &&
+        Objects.equals(this.deleverage, instrument.deleverage) &&
         Objects.equals(this.makerFee, instrument.makerFee) &&
         Objects.equals(this.takerFee, instrument.takerFee) &&
         Objects.equals(this.settlementFee, instrument.settlementFee) &&
@@ -2098,7 +2164,7 @@ public class Instrument   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(symbol, rootSymbol, state, typ, listing, front, expiry, settle, relistInterval, inverseLeg, sellLeg, buyLeg, positionCurrency, underlying, quoteCurrency, underlyingSymbol, reference, referenceSymbol, calcInterval, publishInterval, publishTime, maxOrderQty, maxPrice, lotSize, tickSize, multiplier, settlCurrency, underlyingToPositionMultiplier, underlyingToSettleMultiplier, quoteToSettleMultiplier, isQuanto, isInverse, initMargin, maintMargin, limit, capped, taxed, makerFee, takerFee, settlementFee, insuranceFee, fundingBaseSymbol, fundingQuoteSymbol, fundingPremiumSymbol, fundingTimestamp, fundingInterval, fundingRate, indicativeFundingRate, rebalanceTimestamp, rebalanceInterval, openingTimestamp, closingTimestamp, sessionInterval, prevClosePrice, limitDownPrice, limitUpPrice, bankruptLimitDownPrice, bankruptLimitUpPrice, prevTotalVolume, totalVolume, volume, volume24h, prevTotalTurnover, totalTurnover, turnover, turnover24h, prevPrice24h, vwap, highPrice, lowPrice, lastPrice, lastPriceProtected, lastTickDirection, lastChangePcnt, bidPrice, midPrice, askPrice, impactBidPrice, impactMidPrice, impactAskPrice, hasLiquidity, openInterest, openValue, fairMethod, fairBasisRate, fairBasis, fairPrice, markMethod, markPrice, indicativeTaxRate, indicativeSettlePrice, settledPrice, timestamp);
+    return Objects.hash(symbol, rootSymbol, state, typ, listing, front, expiry, settle, relistInterval, inverseLeg, sellLeg, buyLeg, positionCurrency, underlying, quoteCurrency, underlyingSymbol, reference, referenceSymbol, calcInterval, publishInterval, publishTime, maxOrderQty, maxPrice, lotSize, tickSize, multiplier, settlCurrency, underlyingToPositionMultiplier, underlyingToSettleMultiplier, quoteToSettleMultiplier, isQuanto, isInverse, initMargin, maintMargin, riskLimit, riskStep, limit, capped, taxed, deleverage, makerFee, takerFee, settlementFee, insuranceFee, fundingBaseSymbol, fundingQuoteSymbol, fundingPremiumSymbol, fundingTimestamp, fundingInterval, fundingRate, indicativeFundingRate, rebalanceTimestamp, rebalanceInterval, openingTimestamp, closingTimestamp, sessionInterval, prevClosePrice, limitDownPrice, limitUpPrice, bankruptLimitDownPrice, bankruptLimitUpPrice, prevTotalVolume, totalVolume, volume, volume24h, prevTotalTurnover, totalTurnover, turnover, turnover24h, prevPrice24h, vwap, highPrice, lowPrice, lastPrice, lastPriceProtected, lastTickDirection, lastChangePcnt, bidPrice, midPrice, askPrice, impactBidPrice, impactMidPrice, impactAskPrice, hasLiquidity, openInterest, openValue, fairMethod, fairBasisRate, fairBasis, fairPrice, markMethod, markPrice, indicativeTaxRate, indicativeSettlePrice, settledPrice, timestamp);
   }
 
   @Override
@@ -2140,9 +2206,12 @@ public class Instrument   {
     sb.append("    isInverse: ").append(toIndentedString(isInverse)).append("\n");
     sb.append("    initMargin: ").append(toIndentedString(initMargin)).append("\n");
     sb.append("    maintMargin: ").append(toIndentedString(maintMargin)).append("\n");
+    sb.append("    riskLimit: ").append(toIndentedString(riskLimit)).append("\n");
+    sb.append("    riskStep: ").append(toIndentedString(riskStep)).append("\n");
     sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
     sb.append("    capped: ").append(toIndentedString(capped)).append("\n");
     sb.append("    taxed: ").append(toIndentedString(taxed)).append("\n");
+    sb.append("    deleverage: ").append(toIndentedString(deleverage)).append("\n");
     sb.append("    makerFee: ").append(toIndentedString(makerFee)).append("\n");
     sb.append("    takerFee: ").append(toIndentedString(takerFee)).append("\n");
     sb.append("    settlementFee: ").append(toIndentedString(settlementFee)).append("\n");

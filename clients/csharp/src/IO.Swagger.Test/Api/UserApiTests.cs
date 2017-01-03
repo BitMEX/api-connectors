@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -126,19 +126,6 @@ namespace IO.Swagger.Test
         }
         
         /// <summary>
-        /// Test UserConfirmPasswordReset
-        /// </summary>
-        [Test]
-        public void UserConfirmPasswordResetTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string token = null;
-            //string newPassword = null;
-            //var response = instance.UserConfirmPasswordReset(token, newPassword);
-            //Assert.IsInstanceOf<bool?> (response, "response is bool?");
-        }
-        
-        /// <summary>
         /// Test UserConfirmWithdrawal
         /// </summary>
         [Test]
@@ -221,6 +208,18 @@ namespace IO.Swagger.Test
         }
         
         /// <summary>
+        /// Test UserGetWallet
+        /// </summary>
+        [Test]
+        public void UserGetWalletTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string currency = null;
+            //var response = instance.UserGetWallet(currency);
+            //Assert.IsInstanceOf<Wallet> (response, "response is Wallet");
+        }
+        
+        /// <summary>
         /// Test UserGetWalletHistory
         /// </summary>
         [Test]
@@ -233,17 +232,15 @@ namespace IO.Swagger.Test
         }
         
         /// <summary>
-        /// Test UserLogin
+        /// Test UserGetWalletSummary
         /// </summary>
         [Test]
-        public void UserLoginTest()
+        public void UserGetWalletSummaryTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string email = null;
-            //string password = null;
-            //string token = null;
-            //var response = instance.UserLogin(email, password, token);
-            //Assert.IsInstanceOf<AccessToken> (response, "response is AccessToken");
+            //string currency = null;
+            //var response = instance.UserGetWalletSummary(currency);
+            //Assert.IsInstanceOf<List<Transaction>> (response, "response is List<Transaction>");
         }
         
         /// <summary>
@@ -269,27 +266,6 @@ namespace IO.Swagger.Test
         }
         
         /// <summary>
-        /// Test UserNew
-        /// </summary>
-        [Test]
-        public void UserNewTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string email = null;
-            //string password = null;
-            //string country = null;
-            //string username = null;
-            //string firstname = null;
-            //string lastname = null;
-            //string acceptsTOS = null;
-            //string referrerID = null;
-            //string tfaType = null;
-            //string tfaToken = null;
-            //var response = instance.UserNew(email, password, country, username, firstname, lastname, acceptsTOS, referrerID, tfaType, tfaToken);
-            //Assert.IsInstanceOf<User> (response, "response is User");
-        }
-        
-        /// <summary>
         /// Test UserRequestEnableTFA
         /// </summary>
         [Test]
@@ -298,18 +274,6 @@ namespace IO.Swagger.Test
             // TODO uncomment below to test the method and replace null with proper value
             //string type = null;
             //var response = instance.UserRequestEnableTFA(type);
-            //Assert.IsInstanceOf<bool?> (response, "response is bool?");
-        }
-        
-        /// <summary>
-        /// Test UserRequestPasswordReset
-        /// </summary>
-        [Test]
-        public void UserRequestPasswordResetTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string email = null;
-            //var response = instance.UserRequestPasswordReset(email);
             //Assert.IsInstanceOf<bool?> (response, "response is bool?");
         }
         
@@ -340,18 +304,6 @@ namespace IO.Swagger.Test
             //bool? overwrite = null;
             //var response = instance.UserSavePreferences(prefs, overwrite);
             //Assert.IsInstanceOf<User> (response, "response is User");
-        }
-        
-        /// <summary>
-        /// Test UserSendVerificationEmail
-        /// </summary>
-        [Test]
-        public void UserSendVerificationEmailTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string email = null;
-            //var response = instance.UserSendVerificationEmail(email);
-            //Assert.IsInstanceOf<bool?> (response, "response is bool?");
         }
         
         /// <summary>

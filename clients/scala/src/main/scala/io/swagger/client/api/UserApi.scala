@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * REST API for the BitMEX.com trading platform.<br><br><a href=\"/app/restAPI\">REST Documentation</a><br><a href=\"/app/wsAPI\">Websocket Documentation</a>
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -30,6 +30,7 @@ import io.swagger.client.model.User
 import io.swagger.client.model.Affiliate
 import io.swagger.client.model.UserCommission
 import io.swagger.client.model.Margin
+import io.swagger.client.model.Wallet
 import io.swagger.client.model.Number
 import io.swagger.client.ApiInvoker
 import io.swagger.client.ApiException
@@ -215,54 +216,6 @@ class UserApi(val defBasePath: String = "https://localhost/api/v1",
     else {
       formParams += "type" -> _type.toString()
       formParams += "token" -> token.toString()
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(ApiInvoker.deserialize(s, "", classOf[Boolean]).asInstanceOf[Boolean])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-
-  /**
-   * Confirm a password reset.
-   * 
-   * @param token  
-   * @param newPassword  
-   * @return Boolean
-   */
-  def userConfirmPasswordReset (token: String, newPassword: String) : Option[Boolean] = {
-    // create path and map variables
-    val path = "/user/confirmPasswordReset".replaceAll("\\{format\\}","json")
-    val contentTypes = List("application/json", "application/x-www-form-urlencoded", "application/json")
-    val contentType = contentTypes(0)
-
-    // query params
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-        
-    
-    var postBody: AnyRef = null
-
-    if(contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart()
-      
-      mp.field("token", token.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
-      mp.field("newPassword", newPassword.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
-      postBody = mp
-    }
-    else {
-      formParams += "token" -> token.toString()
-      formParams += "newPassword" -> newPassword.toString()
     }
 
     try {
@@ -574,7 +527,49 @@ class UserApi(val defBasePath: String = "https://localhost/api/v1",
   }
 
   /**
-   * Get a history of all of your wallet transactions (deposits and withdrawals).
+   * Get your current wallet information.
+   * 
+   * @param currency  (optional, default to XBt)
+   * @return Wallet
+   */
+  def userGetWallet (currency: String /* = XBt */) : Option[Wallet] = {
+    // create path and map variables
+    val path = "/user/wallet".replaceAll("\\{format\\}","json")
+    val contentTypes = List("application/json", "application/x-www-form-urlencoded", "application/json")
+    val contentType = contentTypes(0)
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+    val formParams = new HashMap[String, String]
+
+    if(String.valueOf(currency) != "null") queryParams += "currency" -> currency.toString
+    
+    
+    var postBody: AnyRef = null
+
+    if(contentType.startsWith("multipart/form-data")) {
+      val mp = new FormDataMultiPart()
+      
+      postBody = mp
+    }
+    else {
+    }
+
+    try {
+      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
+        case s: String =>
+           Some(ApiInvoker.deserialize(s, "", classOf[Wallet]).asInstanceOf[Wallet])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+
+  /**
+   * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
    * 
    * @param currency  (optional, default to XBt)
    * @return List[Transaction]
@@ -616,16 +611,14 @@ class UserApi(val defBasePath: String = "https://localhost/api/v1",
   }
 
   /**
-   * Log in to BitMEX.
+   * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
    * 
-   * @param email Your email address. 
-   * @param password Your password. 
-   * @param token OTP Token (YubiKey, Google Authenticator) (optional)
-   * @return AccessToken
+   * @param currency  (optional, default to XBt)
+   * @return List[Transaction]
    */
-  def userLogin (email: String, password: String, token: String) : Option[AccessToken] = {
+  def userGetWalletSummary (currency: String /* = XBt */) : Option[List[Transaction]] = {
     // create path and map variables
-    val path = "/user/login".replaceAll("\\{format\\}","json")
+    val path = "/user/walletSummary".replaceAll("\\{format\\}","json")
     val contentTypes = List("application/json", "application/x-www-form-urlencoded", "application/json")
     val contentType = contentTypes(0)
 
@@ -634,31 +627,23 @@ class UserApi(val defBasePath: String = "https://localhost/api/v1",
     val headerParams = new HashMap[String, String]
     val formParams = new HashMap[String, String]
 
-        
+    if(String.valueOf(currency) != "null") queryParams += "currency" -> currency.toString
+    
     
     var postBody: AnyRef = null
 
     if(contentType.startsWith("multipart/form-data")) {
       val mp = new FormDataMultiPart()
       
-      mp.field("email", email.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
-      mp.field("password", password.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
-      mp.field("token", token.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
       postBody = mp
     }
     else {
-      formParams += "email" -> email.toString()
-      formParams += "password" -> password.toString()
-      formParams += "token" -> token.toString()
     }
 
     try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
+      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
         case s: String =>
-           Some(ApiInvoker.deserialize(s, "", classOf[AccessToken]).asInstanceOf[AccessToken])
+           Some(ApiInvoker.deserialize(s, "array", classOf[Transaction]).asInstanceOf[List[Transaction]])
         case _ => None
       }
     } catch {
@@ -747,86 +732,6 @@ class UserApi(val defBasePath: String = "https://localhost/api/v1",
   }
 
   /**
-   * Register a new user.
-   * 
-   * @param email Your email address. 
-   * @param password Your password. 
-   * @param country Country of residence. 
-   * @param username Desired username. (optional)
-   * @param firstname First name. (optional)
-   * @param lastname Last name. (optional)
-   * @param acceptsTOS Set to true to indicate acceptance of the Terms of Service (https://www.bitmex.com/terms). (optional)
-   * @param referrerID Optional Referrer ID. (optional)
-   * @param tfaType Optional Two-Factor Type. Accepted values: GA, Yubikey, Clef (optional)
-   * @param tfaToken Two-Factor Token. (optional)
-   * @return User
-   */
-  def userNew (email: String, password: String, country: String, username: String, firstname: String, lastname: String, acceptsTOS: String, referrerID: String, tfaType: String, tfaToken: String) : Option[User] = {
-    // create path and map variables
-    val path = "/user".replaceAll("\\{format\\}","json")
-    val contentTypes = List("application/json", "application/x-www-form-urlencoded", "application/json")
-    val contentType = contentTypes(0)
-
-    // query params
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-        
-    
-    var postBody: AnyRef = null
-
-    if(contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart()
-      
-      mp.field("email", email.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
-      mp.field("password", password.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
-      mp.field("username", username.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
-      mp.field("firstname", firstname.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
-      mp.field("lastname", lastname.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
-      mp.field("acceptsTOS", acceptsTOS.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
-      mp.field("referrerID", referrerID.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
-      mp.field("country", country.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
-      mp.field("tfaType", tfaType.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
-      mp.field("tfaToken", tfaToken.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
-      postBody = mp
-    }
-    else {
-      formParams += "email" -> email.toString()
-      formParams += "password" -> password.toString()
-      formParams += "username" -> username.toString()
-      formParams += "firstname" -> firstname.toString()
-      formParams += "lastname" -> lastname.toString()
-      formParams += "acceptsTOS" -> acceptsTOS.toString()
-      formParams += "referrerID" -> referrerID.toString()
-      formParams += "country" -> country.toString()
-      formParams += "tfaType" -> tfaType.toString()
-      formParams += "tfaToken" -> tfaToken.toString()
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(ApiInvoker.deserialize(s, "", classOf[User]).asInstanceOf[User])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-
-  /**
    * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
    * 
    * @param _type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)
@@ -856,50 +761,6 @@ class UserApi(val defBasePath: String = "https://localhost/api/v1",
     }
     else {
       formParams += "type" -> _type.toString()
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(ApiInvoker.deserialize(s, "", classOf[Boolean]).asInstanceOf[Boolean])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-
-  /**
-   * Request a password reset.
-   * 
-   * @param email  
-   * @return Boolean
-   */
-  def userRequestPasswordReset (email: String) : Option[Boolean] = {
-    // create path and map variables
-    val path = "/user/requestPasswordReset".replaceAll("\\{format\\}","json")
-    val contentTypes = List("application/json", "application/x-www-form-urlencoded", "application/json")
-    val contentType = contentTypes(0)
-
-    // query params
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-        
-    
-    var postBody: AnyRef = null
-
-    if(contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart()
-      
-      mp.field("email", email.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
-      postBody = mp
-    }
-    else {
-      formParams += "email" -> email.toString()
     }
 
     try {
@@ -1014,50 +875,6 @@ class UserApi(val defBasePath: String = "https://localhost/api/v1",
       apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
         case s: String =>
            Some(ApiInvoker.deserialize(s, "", classOf[User]).asInstanceOf[User])
-        case _ => None
-      }
-    } catch {
-      case ex: ApiException if ex.code == 404 => None
-      case ex: ApiException => throw ex
-    }
-  }
-
-  /**
-   * Re-send verification email.
-   * 
-   * @param email  
-   * @return Boolean
-   */
-  def userSendVerificationEmail (email: String) : Option[Boolean] = {
-    // create path and map variables
-    val path = "/user/resendVerificationEmail".replaceAll("\\{format\\}","json")
-    val contentTypes = List("application/json", "application/x-www-form-urlencoded", "application/json")
-    val contentType = contentTypes(0)
-
-    // query params
-    val queryParams = new HashMap[String, String]
-    val headerParams = new HashMap[String, String]
-    val formParams = new HashMap[String, String]
-
-        
-    
-    var postBody: AnyRef = null
-
-    if(contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart()
-      
-      mp.field("email", email.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
-      postBody = mp
-    }
-    else {
-      formParams += "email" -> email.toString()
-    }
-
-    try {
-      apiInvoker.invokeApi(basePath, path, "POST", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
-        case s: String =>
-           Some(ApiInvoker.deserialize(s, "", classOf[Boolean]).asInstanceOf[Boolean])
         case _ => None
       }
     } catch {

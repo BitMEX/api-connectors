@@ -676,4 +676,174 @@ formParams.put("leverage", ApiInvoker.parameterToString(leverage));
       errorListener.onErrorResponse(new VolleyError(ex));
     }
   }
+  /**
+  * Update your risk limit.
+  * Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+   * @param symbol Symbol of position to isolate.
+   * @param riskLimit New Risk Limit, in Satoshis.
+   * @return Position
+  */
+  public Position positionUpdateRiskLimit (String symbol, BigDecimal riskLimit) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+     Object postBody = null;
+  
+      // verify the required parameter 'symbol' is set
+      if (symbol == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'symbol' when calling positionUpdateRiskLimit",
+      new ApiException(400, "Missing the required parameter 'symbol' when calling positionUpdateRiskLimit"));
+      }
+  
+      // verify the required parameter 'riskLimit' is set
+      if (riskLimit == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'riskLimit' when calling positionUpdateRiskLimit",
+      new ApiException(400, "Missing the required parameter 'riskLimit' when calling positionUpdateRiskLimit"));
+      }
+  
+
+  // create path and map variables
+  String path = "/position/riskLimit".replaceAll("\\{format\\}","json");
+
+  // query params
+  List<Pair> queryParams = new ArrayList<Pair>();
+      // header params
+      Map<String, String> headerParams = new HashMap<String, String>();
+      // form params
+      Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+      String[] contentTypes = {
+  "application/json","application/x-www-form-urlencoded"
+      };
+      String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+      if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+  
+          if (symbol != null) {
+          localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+          }
+  
+          if (riskLimit != null) {
+          localVarBuilder.addTextBody("riskLimit", ApiInvoker.parameterToString(riskLimit), ApiInvoker.TEXT_PLAIN_UTF8);
+          }
+  
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+      } else {
+      // normal form params
+  formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+formParams.put("riskLimit", ApiInvoker.parameterToString(riskLimit));
+      }
+
+      String[] authNames = new String[] {  };
+
+      try {
+        String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
+        if(localVarResponse != null){
+           return (Position) ApiInvoker.deserialize(localVarResponse, "", Position.class);
+        } else {
+           return null;
+        }
+      } catch (ApiException ex) {
+         throw ex;
+      } catch (InterruptedException ex) {
+         throw ex;
+      } catch (ExecutionException ex) {
+         if(ex.getCause() instanceof VolleyError) {
+	    VolleyError volleyError = (VolleyError)ex.getCause();
+	    if (volleyError.networkResponse != null) {
+	       throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+	    }
+         }
+         throw ex;
+      } catch (TimeoutException ex) {
+         throw ex;
+      }
+  }
+
+      /**
+   * Update your risk limit.
+   * Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+   * @param symbol Symbol of position to isolate.   * @param riskLimit New Risk Limit, in Satoshis.
+  */
+  public void positionUpdateRiskLimit (String symbol, BigDecimal riskLimit, final Response.Listener<Position> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+  
+    // verify the required parameter 'symbol' is set
+    if (symbol == null) {
+       VolleyError error = new VolleyError("Missing the required parameter 'symbol' when calling positionUpdateRiskLimit",
+         new ApiException(400, "Missing the required parameter 'symbol' when calling positionUpdateRiskLimit"));
+    }
+    
+    // verify the required parameter 'riskLimit' is set
+    if (riskLimit == null) {
+       VolleyError error = new VolleyError("Missing the required parameter 'riskLimit' when calling positionUpdateRiskLimit",
+         new ApiException(400, "Missing the required parameter 'riskLimit' when calling positionUpdateRiskLimit"));
+    }
+    
+
+    // create path and map variables
+    String path = "/position/riskLimit".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+      if (symbol != null) {
+        localVarBuilder.addTextBody("symbol", ApiInvoker.parameterToString(symbol), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (riskLimit != null) {
+        localVarBuilder.addTextBody("riskLimit", ApiInvoker.parameterToString(riskLimit), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("symbol", ApiInvoker.parameterToString(symbol));
+formParams.put("riskLimit", ApiInvoker.parameterToString(riskLimit));
+    }
+
+      String[] authNames = new String[] {  };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((Position) ApiInvoker.deserialize(localVarResponse,  "", Position.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
 }

@@ -14,9 +14,9 @@ class SwaggerClient(config: SwaggerConfig) extends Closeable {
 
   protected def transportClient: TransportClient = new RestClient(config)
   
-  val announcement = new AnnouncementApi(client, config)
+  val aPIKey = new APIKeyApi(client, config)
   
-  val apiKey = new ApiKeyApi(client, config)
+  val announcement = new AnnouncementApi(client, config)
   
   val chat = new ChatApi(client, config)
   

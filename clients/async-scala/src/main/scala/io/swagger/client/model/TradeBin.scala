@@ -5,8 +5,8 @@ import java.util.UUID
 
 
 case class TradeBin (
-  timestamp: Option[Date],
-symbol: Option[String],
+  timestamp: Date,
+symbol: String,
 open: Option[Double],
 high: Option[Double],
 low: Option[Double],
@@ -17,6 +17,5 @@ vwap: Option[Double],
 lastSize: Option[Number],
 turnover: Option[Number],
 homeNotional: Option[Double],
-foreignNotional: Option[Double],
-id: Option[Double]
+foreignNotional: Option[Double]
 )
