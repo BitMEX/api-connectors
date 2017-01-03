@@ -50,13 +50,6 @@ Clients:
 * [Scala](/clients/scala)
 * [Scala-Async](/clients/async-scala)
 
-REST Server Examples:
-
-* [Java (JAX-RS)](/servers/jax-rs)
-* [Javascript (Node/Express)](/servers/node)
-* [Ruby (Sinatra)](/servers/sinatra)
-* [Scala (Scalatra)](/servers/scalatra)
-
 Swagger Output:
 
 * [JSON](/clients/swagger)

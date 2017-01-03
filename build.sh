@@ -4,12 +4,10 @@
 T="$(date +%s)"
 DIR=`pwd`
 CLIENTS=$DIR/clients
-SERVERS=$DIR/servers
 DOCS=$DIR/docs
 CLI=$DIR/swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar
 RESOURCES="https://www.bitmex.com/api/explorer/swagger.json"
 declare -a CLIENTLANGS=(android async-scala clojure csharp dart java javascript go objc php python ruby scala swagger swagger-yaml typescript-fetch)
-declare -a SERVERLANGS=(go-server jaxrs nodejs-server python-flask silex-PHP sinatra scalatra spring)
 declare -a DOCLANGS=(html dynamic-html)
 
 echo "Getting swagger json..."
@@ -18,13 +16,9 @@ wget $RESOURCES
 
 echo "Creating output folders..."
 rm -rf $CLIENTS
-rm -rf $SERVERS
 rm -rf $DOCS
 for clientLang in "${CLIENTLANGS[@]}"; do
   mkdir -p $CLIENTS/$clientLang
-done
-for serverLang in "${SERVERLANGS[@]}"; do
-  mkdir -p $SERVERS/$serverLang
 done
 
 echo "Checking out newest swagger-codegen..."
@@ -38,11 +32,6 @@ mvn package -DskipTests
 echo "Generating client libraries..."
 for clientLang in "${CLIENTLANGS[@]}"; do
   java -jar $CLI generate -i $DIR/swagger.json -l $clientLang -o $CLIENTS/$clientLang
-done
-
-echo "Generating sample servers..."
-for serverLang in "${SERVERLANGS[@]}"; do
-  java -jar $CLI generate -i $DIR/swagger.json -l $serverLang -o $SERVERS/$serverLang
 done
 
 echo "Generating static docs..."
