@@ -12,7 +12,6 @@ Official Examples
 
 #### HTTP
 
-* [Client-side JS](/official-http/client-js)
 * [C#](/official-http/csharp)
 * [mIRC](/official-http/mirc)
 * [Node-Request](/official-http/node-request)
@@ -37,16 +36,19 @@ Auto-Generated Languages
 
 Clients:
 
+* [Android](/clients/android)
 * [C#](/clients/csharp)
-* [Groovy](/clients/groovy)
-* [Java (Android)](/clients/java/android)
-* [Java (Jersey)](/clients/java/jersey)
+* [Clojure](/clients/clojure)
+* [Dart](/clients/dart)
+* [Go](/clients/go)
+* [Java](/clients/java)
+* [JavaScript](/clients/javascript)
 * [Objective C](/clients/objc)
 * [PHP](/clients/php)
-* [Python 2](/clients/python)
-* [Python 3](/clients/python3)
+* [Python](/clients/python)
 * [Ruby](/clients/ruby)
 * [Scala](/clients/scala)
+* [Scala-Async](/clients/async-scala)
 
 REST Server Examples:
 
@@ -55,4 +57,7 @@ REST Server Examples:
 * [Ruby (Sinatra)](/servers/sinatra)
 * [Scala (Scalatra)](/servers/scalatra)
 
+Swagger Output:
 
+* [JSON](/clients/swagger)
+* [YAML](/clients/swagger-yaml)
