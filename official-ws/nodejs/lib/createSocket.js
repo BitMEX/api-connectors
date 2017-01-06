@@ -1,4 +1,4 @@
-var makeWSStream = require('websocket-stream');
+'use strict';
 var debug = require('debug')('BitMEX:realtime-api:socket');
 var signMessage = require('./signMessage');
 var WebSocketClient = require('./ReconnectingSocket');

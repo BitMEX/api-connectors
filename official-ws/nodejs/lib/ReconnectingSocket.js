@@ -1,4 +1,5 @@
-const WebSocket = require('ws');
+'use strict';
+var WebSocket = require('ws');
 var debug = require('debug')('BitMEX:realtime-api:socket:internal');
 
 function WebSocketClient(){

@@ -1,5 +1,4 @@
 'use strict';
-
 var EventEmitter = require('eventemitter2').EventEmitter2;
 var util = require('util');
 var debug = require('debug')('BitMEX');
