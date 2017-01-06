@@ -9,7 +9,7 @@ module.exports = {
   testnet: true,
 
   // Symbols to watch. Add any/all symbols you are going to poll here.
-  symbols: ['XBT24H', 'XBU7D', 'ETH7D'],
+  symbols: ['XBTUSD'],
 
   // Available streams:
   // Public:

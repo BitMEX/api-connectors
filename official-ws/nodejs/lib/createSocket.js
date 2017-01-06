@@ -1,7 +1,7 @@
-var WebSocket = require('ws');
-var inject = require('reconnect-core');
+var makeWSStream = require('websocket-stream');
 var debug = require('debug')('BitMEX:realtime-api:socket');
 var signMessage = require('./signMessage');
+var WebSocketClient = require('./ReconnectingSocket');
 
 module.exports = function createSocket(options, emitter) {
   'use strict';
@@ -11,19 +11,15 @@ module.exports = function createSocket(options, emitter) {
   }
   debug('connecting to %s', endpoint);
 
-  var reconnect = inject(function(endpoint) {
-    return new WebSocket(endpoint);
-  });
+  var client = new WebSocketClient();
 
-  var re = reconnect({
-    // See opts at https://www.npmjs.com/package/reconnect-core
-  })
-  .on('connect', function() {
-    re.opened = true;
+  client.onopen = function() {
+    client.opened = true;
     console.log('Connection to BitMEX at', endpoint, 'opened.');
     emitter.emit('connect');
-  })
-  .on('message', function(data) {
+  };
+
+  client.onmessage = function(data) {
     try {
       data = JSON.parse(data);
     } catch(e) {
@@ -45,20 +41,16 @@ module.exports = function createSocket(options, emitter) {
     var key = data.table + ':' + symbol + ':' + data.action;
     debug('emitting %s with data %j', key, data);
     emitter.emit(key, data);
-  })
-  .on('disconnect', function() {
-    console.warn('Connection to BitMEX lost.');
-    re.opened = false;
-  })
-  .on('reconnect', function() {
-    console.log('Reconnecting to websocket...')
-  })
-  .on('error', function(e) {
+  };
+
+  client.onerror = function(e) {
     var listeners = emitter.listeners('error');
     // If no error listeners are attached, throw.
     if (!listeners.length) throw e;
     else emitter.emit('error', e);
-  });
+  }
 
-  return re;
+  client.open(endpoint);
+
+  return client;
 };

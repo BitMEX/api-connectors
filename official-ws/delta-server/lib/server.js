@@ -37,7 +37,7 @@ function initServer(config) {
 
 function initWSClient(app, config) {
   var data = {};
-  // var client = new BitMEXClient({testnet: config.testnet});
+
   var client = new BitMEXClient(_.pick(config, 'endpoint', 'apiKeyID', 'apiKeySecret'));
 
   client.on('error', function(error) {

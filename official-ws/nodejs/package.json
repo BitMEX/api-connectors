@@ -19,8 +19,7 @@
     "eventemitter2": "^0.4.14",
     "lodash": "^3.6.0",
     "primus-multiplex": "^3.1.0",
-    "reconnect-core": "^1.1.0",
     "superagent": "^1.1.0",
-    "ws": "^0.7.1"
+    "ws": "^1.1.0"
   }
 }

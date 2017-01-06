@@ -24,7 +24,7 @@ function BitMEXClient(options) {
   });
   if (!options) options = {};
   this._data = {}; // internal data store
-  this._keys = {}; // keys store - populated by images on getSymbol() call
+  this._keys = {}; // keys store - populated by images on connect
   if (!options.endpoint) {
     options.endpoint = options.testnet ? endpoints.testnet : endpoints.production;
   }
@@ -57,11 +57,6 @@ BitMEXClient.prototype.getData = function(symbol, tableName) {
   if (tableName) {
     out = out && out[tableName] || [];
   }
-  return clone(out);
-};
-
-BitMEXClient.prototype.getSymbol = function(symbol) {
-  var out = this._data[symbol];
   return clone(out);
 };
 
@@ -120,10 +115,8 @@ BitMEXClient.prototype.addStream = function(symbol, tableName, callback) {
 };
 
 function addStream(client, symbol, tableName, callback) {
-  // Check if we have been pushed the full dataset yet. If not, we ignore data until we get it.
-  var hasData = !!client._data[symbol];
-  // Stub the data so subsequent calls don't ask for another image.
-  if (!hasData) client._data[symbol] = [];
+  // Stub data if we don't have an array there already
+  if (!client._data[symbol]) client._data[symbol] = [];
 
   // Add the listener for deltas before subscribing.
   // These events come from createSocket, which does minimal data parsing
@@ -152,11 +145,6 @@ function addStream(client, symbol, tableName, callback) {
   }
   var sub = toSubscribe.map(function(table) { return table + ':' + symbol; });
   client.socket.send(JSON.stringify({op: 'subscribe', args: sub}));
-
-  // Ask for a full-table push if we need it.
-  if (!hasData) {
-    client.socket.send(JSON.stringify({op: 'getSymbol', args: [symbol]}));
-  }
 }
 
 function clone(data) {
