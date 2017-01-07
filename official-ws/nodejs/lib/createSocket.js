@@ -33,9 +33,6 @@ module.exports = function createSocket(options, emitter) {
     // If no data was found, stub the symbol. At least we'll get keys.
     var symbol = data.data[0] && data.data[0].symbol || 'stub';
 
-    // On getSymbol(), returns 'orderBook25', we want to transparently turn that into 'orderBook'
-    if (data.table === 'orderBook25') data.table = 'orderBook';
-
     // Fires events as <table>:<symbol>:<action>, such as
     // instrument:XBU24H:update
     var key = data.table + ':' + symbol + ':' + data.action;

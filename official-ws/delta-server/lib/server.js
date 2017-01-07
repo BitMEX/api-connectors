@@ -3,7 +3,7 @@
 var _ = require('lodash');
 var express = require('express');
 var BitMEXClient = require('../../nodejs/index');
-var debug = require('debug')('BitMEX:Delta-Server:server');
+var debug = require('debug')('BitMEX:Delta-Server');
 
 module.exports = function createServer(config) {
   var app = initServer(config);
@@ -14,6 +14,8 @@ module.exports = function createServer(config) {
 function initServer(config) {
   var app = express();
 
+  app.set('view engine', 'ejs');
+
   if (debug.enabled) {
     app.use(function(req, res, next) {
       debug('Got request at %s', req.url);
@@ -22,10 +24,11 @@ function initServer(config) {
   }
 
   app.get('/', function(req, res) {
-    var streams = config.streams.map(function(s) { return '<code>/' + s + '</code>'; });
-    var symbols = config.symbols.map(function(s) { return '<code>' + s + '</code>'; });
-    res.send('Welcome to the BitMEX-Delta-Server.<br><br> You are subscribed to the following streams: ' +
-      streams.join(', ') + ' and the following symbols: ' + symbols.join(', ') + '.');
+    res.render('index', {
+      tables: config.streams,
+      symbols: config.symbols,
+      noSymbolTables: BitMEXClient.noSymbolTables
+    });
   });
 
   var server = app.listen(config.port, function() {
@@ -55,10 +58,10 @@ function initWSClient(app, config) {
   app.get('/:stream', function(req, res) {
     var symbol = req.query.symbol, stream = req.params.stream;
     if (symbol && config.symbols.indexOf(symbol) === -1) {
-      return res.send(404);
+      return res.send(404, 'Symbol "' + symbol +'" not found. Did you subscribe to it?');
     }
     if (config.streams.indexOf(stream) === -1) {
-      return res.send(404);
+      return res.send(404, 'Stream "' + stream +'" not found. Did you subscribe to it?');
     }
     var data = symbol ? client.getData(symbol, stream) : client.getTable(stream);
     res.json(data);

@@ -1,0 +1,25 @@
+<html>
+  <head></head>
+  <body>
+    <h3>Welcome to the BitMEX Delta Server.</h3>
+    <p>
+      This project subscribes to BitMEX realtime data streams, exposing them as a simple HTTP API for
+      consumption in your own projects.
+    </p>
+    <h4>Subscribed tables:</h4>
+    <ul>
+      <% tables.forEach(function(table) { %>
+        <li>
+          <a href="/<%= table %>"><%= table %></a>
+          <% if (noSymbolTables.indexOf(table) === -1) { %>
+            <ul>
+            <% symbols.forEach(function(symbol) { %>
+              <a href="/<%= table %>?symbol=<%= symbol %>"><%= symbol %></a></li>
+            <% }) %>
+            </ul>
+          <% } %>
+        </li>
+      <% }) %>
+    </ul>
+  </body>
+</html>

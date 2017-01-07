@@ -24,7 +24,7 @@ module.exports.getWSAuthQuery = function getWSAuthQuery(apiKey, apiSecret) {
   var query = {
     'api-nonce': nonce,
     'api-key': apiKey,
-    'api-signature' :module.exports(apiSecret, 'GET', '/realtime', nonce)
+    'api-signature': module.exports(apiSecret, 'GET', '/realtime', nonce)
   };
 
   return querystring.stringify(query);
