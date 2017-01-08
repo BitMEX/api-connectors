@@ -17,8 +17,8 @@ Usage of this server requires [installing Node.JS](https://nodejs.org/download/)
 After installing, clone this repository, install the dependencies, and start the server.
 
 ```bash
-git clone https://github.com/BitMEX/websocketAdapters.git
-cd websocketAdapters/server
+git clone git@github.com:BitMEX/api-connectors.git
+cd official-ws/delta-server
 npm install
 cp config.example.js config.js
 # Edit config.js to add the symbols and streams (instrument, orderBook, etc) that you want to watch.
@@ -30,6 +30,7 @@ node index.js
 # In another terminal...
 curl localhost:4444
 curl localhost:4444/instrument
+curl localhost:4444/instrument?symbol=XBTUSD
 ```
 
 ### Details
