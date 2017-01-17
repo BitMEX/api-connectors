@@ -1,15 +1,16 @@
 'use strict';
 var SwaggerClient = require("swagger-client");
 var _ = require('lodash');
-// require('debug-trace')({always: true, right: true}); // fancy logging to trace down logging
 var BitMEXAPIKeyAuthorization = require('./lib/BitMEXAPIKeyAuthorization');
 
 new SwaggerClient({
+  // Switch this to `www.bitmex.com` when you're ready to try it out for real.
+  // Don't forget the `www`!
   url: 'https://testnet.bitmex.com/api/explorer/swagger.json',
   usePromise: true
 })
 .then(function(client) {
-  // COmment out if you're not authorizing
+  // Comment out if you're not requesting any user data.
   client.clientAuthorizations.add("apiKey", new BitMEXAPIKeyAuthorization('api-key', 'api-secret'));
 
   // Print client capabilities
