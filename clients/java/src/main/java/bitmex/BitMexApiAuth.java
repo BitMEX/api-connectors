@@ -44,28 +44,16 @@ public class BitMexApiAuth {
 
     private String getSignature(Map<String, Object> formParams, List<Pair> queryParams, String nonce, String method, String path) throws UnsupportedEncodingException {
         String base = apiClient.getPath();
-        //String url = base + "/order";
-        //String url = "/api/v1/order?symbol=XBTUSD";
         final String params;
         params = getQueryParams(queryParams);
 
         String url = base + path + params;
 
-        //String postData = getFormParams(formParams);
         String postData = convertToJson(formParams);
         String messageToEncode = method + url + nonce + postData;
         System.out.println("Message = : " + messageToEncode);
         byte[] encoded = sha256_HMAC.doFinal(messageToEncode.getBytes("UTF-8"));
         return toHexString(encoded);
-    }
-
-    private static String getFormParams(Map<String, Object> formParams) {
-        final StringBuilder builder = new StringBuilder();
-        for(Map.Entry<String, Object> item : formParams.entrySet()) {
-            builder.append("&").append(item.getKey()).append("=").append(item.getValue());
-        }
-        //builder.setCharAt(0, '?');
-        return builder.toString();
     }
 
     private static String getQueryParams(List<Pair> queryParams) {
@@ -89,6 +77,9 @@ public class BitMexApiAuth {
     }
 
     public static String convertToJson(Map<String, Object> formParams) {
+        if(formParams.size() == 0) {
+            return "";
+        }
         Gson gson = new Gson();
         String response = gson.toJson(formParams);
         return response;

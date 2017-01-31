@@ -28,6 +28,7 @@ package bitmex;
 import io.swagger.client.ApiException;
 import io.swagger.client.api.OrderApi;
 import io.swagger.client.model.Order;
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 
@@ -52,17 +53,22 @@ public class BitMexOrderApiTest {
 
     @Test
     public void orderLifeCycleTest() throws ApiException {
+
+        orderCancelAllTest();
+
         //create order
         orderNewTest();
 
         //Check order
-        /*orderGetOrdersTest(1);
+        orderGetActiveOrdersTest(1);
 
         //Cancel
         orderCancelAllTest();
 
         //check order again
-        orderGetOrdersTest(1);*/
+        orderGetActiveOrdersTest(0);
+
+        orderCancelAllTest();
     }
 
 
@@ -82,12 +88,11 @@ public class BitMexOrderApiTest {
         String symbol = null;
         String filter = null;
         String text = null;
-        // Object response = api.orderCancelAll(symbol, filter, text);
+        Object response = api.orderCancelAll(symbol, filter, text);
 
-        // TODO: test validations
     }
 
-    public void orderGetOrdersTest(int orderCount) throws ApiException {
+    public void orderGetActiveOrdersTest(int orderCount) throws ApiException {
         String symbol = "XBTUSD";
         String filter = null;
         String columns = null;
@@ -98,20 +103,22 @@ public class BitMexOrderApiTest {
         LocalDate endTime = null;
         List<Order> response = api.orderGetOrders(symbol, filter, columns, count, start, reverse, startTime, endTime);
 
+        int activeOrderCount = 0;
+        for(Order order : response) {
+            if(!order.getOrdStatus().equals("Canceled")) {
+                activeOrderCount++;
+            }
+        }
 
-        assertThat(response.size(), is(orderCount));
+        assertThat(activeOrderCount, is(orderCount));
     }
 
     public void orderNewTest() throws ApiException {
         String symbol = "XBTUSD";
         String side = "Buy";
-        //Double simpleOrderQty = 2.0;
-        Double simpleOrderQty = null;
-        //BigDecimal quantity = null;
-        //BigDecimal quantity = new BigDecimal("1");
+        Double simpleOrderQty = 0.00001;
         BigDecimal quantity = null;
-        BigDecimal orderQty = new BigDecimal("1");
-        //BigDecimal orderQty = null;
+        BigDecimal orderQty = null;
         Double price = 1.0;
         BigDecimal displayQty = null;
         Double stopPrice = null;
@@ -128,7 +135,9 @@ public class BitMexOrderApiTest {
         String text = null;
         Order response = api.orderNew(symbol, side, simpleOrderQty, quantity, orderQty, price, displayQty, stopPrice, stopPx, clOrdID, clOrdLinkID, pegOffsetValue, pegPriceType, type, ordType, timeInForce, execInst, contingencyType, text);
 
-        int i = 1;
+        assertThat(response.getSymbol(), is("XBTUSD"));
+        assertThat(response.getPrice(), is(1.0));
+        assertThat(response.getSimpleOrderQty(), is(0.00001));
     }
 
 }
