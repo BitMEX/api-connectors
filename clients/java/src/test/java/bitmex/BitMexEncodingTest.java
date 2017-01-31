@@ -18,8 +18,7 @@ public class BitMexEncodingTest {
 
     @Test
     public void test_sign_get() throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException {
-        String apiKey = "LAqUlngMIQkIUjXMUreyu3qn";
-        String apiSecret = "chNOOS4KvNXR_Xq4k4c9qsfoKWvnDecLATCRlcBwyKDYnWgO";
+        String apiSecret = "API_KEY_SECRET";
         String verb = "GET";
         String path = "/api/v1/instrument?filter=%7B%22symbol%22%3A+%22XBTM15%22%7D";
         long nonce = 1429631577690L;
@@ -38,8 +37,7 @@ public class BitMexEncodingTest {
 
     @Test
     public void test_sign_post() throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException {
-        String apiKey = "LAqUlngMIQkIUjXMUreyu3qn";
-        String apiSecret = "chNOOS4KvNXR_Xq4k4c9qsfoKWvnDecLATCRlcBwyKDYnWgO";
+        String apiSecret = "API_KEY_SECRET";
         String verb = "POST";
         String path = "/api/v1/order";
         long nonce = 1429631577995L;
