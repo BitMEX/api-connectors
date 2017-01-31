@@ -1,5 +1,6 @@
 package io.swagger.client.api;
 
+import bitmex.BitMexApiAuth;
 import com.sun.jersey.api.client.GenericType;
 
 import io.swagger.client.ApiException;
@@ -10,10 +11,14 @@ import io.swagger.client.Pair;
 
 import io.swagger.client.model.Order;
 import io.swagger.client.model.Error;
+
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import org.joda.time.LocalDate;
 
 
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,9 +28,18 @@ import java.util.Map;
 public class OrderApi {
   private ApiClient apiClient;
 
-  public OrderApi() {
-    this(Configuration.getDefaultApiClient());
-  }
+    private static String bitmexKey = "D2Dw7aXimP3o_v_J2TP_jSi3";
+    private static String bitmexSecret = "4ujBH5y6VNlV-fTgik5zCubQBEeYsqXA5tD7NLF64aQf5U1V";
+
+    public OrderApi() throws UnsupportedEncodingException, NoSuchAlgorithmException, InvalidKeyException {
+        //this(Configuration.getDefaultApiClient());
+        apiClient = new ApiClient();
+        apiClient.setHost("https://testnet.bitmex.com");
+        apiClient.setPath("/api/v1");
+        BitMexApiAuth bitmexAuth = new BitMexApiAuth(apiClient, bitmexKey, bitmexSecret);
+        apiClient.setBitMexAuth(bitmexAuth);
+
+    }
 
   public OrderApi(ApiClient apiClient) {
     this.apiClient = apiClient;
