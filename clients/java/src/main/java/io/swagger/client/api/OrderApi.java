@@ -28,11 +28,10 @@ import java.util.Map;
 public class OrderApi {
   private ApiClient apiClient;
 
-    private static String bitmexKey = "D2Dw7aXimP3o_v_J2TP_jSi3";
-    private static String bitmexSecret = "4ujBH5y6VNlV-fTgik5zCubQBEeYsqXA5tD7NLF64aQf5U1V";
+    private static String bitmexKey = "API_KEY";
+    private static String bitmexSecret = "API_KEY_SECRET";
 
     public OrderApi() throws UnsupportedEncodingException, NoSuchAlgorithmException, InvalidKeyException {
-        //this(Configuration.getDefaultApiClient());
         apiClient = new ApiClient();
         apiClient.setHost("https://testnet.bitmex.com");
         apiClient.setPath("/api/v1");
