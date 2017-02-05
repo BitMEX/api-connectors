@@ -486,7 +486,7 @@ public class ApiClient {
       return convertToJson(formParams);
     } else {
       // We let Jersey attempt to serialize the body
-      return null;
+      return obj;
     }
   }
 
@@ -568,7 +568,6 @@ public class ApiClient {
     }
     return response;
   }
-
 
   /**
    * Invoke API by sending HTTP request with the given options.
