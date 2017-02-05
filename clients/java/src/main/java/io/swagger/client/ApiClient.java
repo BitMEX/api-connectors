@@ -482,10 +482,11 @@ public class ApiClient {
       return mp;
     } else if (contentType.startsWith("application/x-www-form-urlencoded")) {
       return this.getXWWWFormUrlencodedParams(formParams);
+    } else if (contentType.startsWith("application/json")) {
+      return convertToJson(formParams);
     } else {
       // We let Jersey attempt to serialize the body
-      //Convert to json
-      return convertToJson(formParams);
+      return null;
     }
   }
 
@@ -529,7 +530,7 @@ public class ApiClient {
 
     updateParamsForAuth(authNames, queryParams, headerParams);
 
-    bitMexAuth.applyToParams(formParams, queryParams, headerParams, method, path);
+    bitMexAuth.addSignature(formParams, queryParams, headerParams, method, path);
 
 
     final String url = buildUrl(path, queryParams);

@@ -71,19 +71,6 @@ public class BitMexOrderApiTest {
         orderCancelAllTest();
     }
 
-
-/*
-    @Test
-    public void orderCancelTest() throws ApiException {
-        String orderID = null;
-        String clOrdID = null;
-        String text = null;
-        // List<Order> response = api.orderCancel(orderID, clOrdID, text);
-
-        // TODO: test validations
-    }
-*/
-
     public void orderCancelAllTest() throws ApiException {
         String symbol = null;
         String filter = null;

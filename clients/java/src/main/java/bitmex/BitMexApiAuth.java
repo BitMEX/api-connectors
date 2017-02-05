@@ -31,7 +31,7 @@ public class BitMexApiAuth {
         sha256_HMAC.init(secret_key);
     }
 
-    public void applyToParams(Map<String, Object> formParams, List<Pair> queryParams, Map<String, String> headerParams, String method, String path)  {
+    public void addSignature(Map<String, Object> formParams, List<Pair> queryParams, Map<String, String> headerParams, String method, String path)  {
         String nonce = Long.toString(System.currentTimeMillis());
         headerParams.put("api-nonce", nonce);
         headerParams.put("api-key", bitmexKey);
@@ -44,12 +44,9 @@ public class BitMexApiAuth {
 
     private String getSignature(Map<String, Object> formParams, List<Pair> queryParams, String nonce, String method, String path) throws UnsupportedEncodingException {
         String base = apiClient.getPath();
-        final String params;
-        params = getQueryParams(queryParams);
-
-        String url = base + path + params;
-
+        String params = getQueryParams(queryParams);
         String postData = convertToJson(formParams);
+        String url = base + path + params;
         String messageToEncode = method + url + nonce + postData;
         System.out.println("Message = : " + messageToEncode);
         byte[] encoded = sha256_HMAC.doFinal(messageToEncode.getBytes("UTF-8"));
