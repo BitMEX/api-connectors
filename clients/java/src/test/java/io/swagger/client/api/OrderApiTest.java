@@ -28,10 +28,14 @@ package io.swagger.client.api;
 import io.swagger.client.ApiException;
 import io.swagger.client.model.Order;
 import io.swagger.client.model.Error;
+
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,7 +48,10 @@ public class OrderApiTest {
 
     private final OrderApi api = new OrderApi();
 
-    
+    public OrderApiTest() throws UnsupportedEncodingException, NoSuchAlgorithmException, InvalidKeyException {
+    }
+
+
     /**
      * Amend the quantity or price of an open order.
      *

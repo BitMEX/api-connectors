@@ -30,6 +30,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
+
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 
@@ -132,10 +134,10 @@ public class Order   {
   private String text = null;
 
   @JsonProperty("transactTime")
-  private LocalDate transactTime = null;
+  private DateTime transactTime = null;
 
   @JsonProperty("timestamp")
-  private LocalDate timestamp = null;
+  private DateTime timestamp = null;
 
   public Order orderID(String orderID) {
     this.orderID = orderID;
@@ -695,7 +697,7 @@ public class Order   {
     this.text = text;
   }
 
-  public Order transactTime(LocalDate transactTime) {
+  public Order transactTime(DateTime transactTime) {
     this.transactTime = transactTime;
     return this;
   }
@@ -705,15 +707,15 @@ public class Order   {
    * @return transactTime
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getTransactTime() {
+  public DateTime getTransactTime() {
     return transactTime;
   }
 
-  public void setTransactTime(LocalDate transactTime) {
+  public void setTransactTime(DateTime transactTime) {
     this.transactTime = transactTime;
   }
 
-  public Order timestamp(LocalDate timestamp) {
+  public Order timestamp(DateTime timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -723,11 +725,11 @@ public class Order   {
    * @return timestamp
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getTimestamp() {
+  public DateTime getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(LocalDate timestamp) {
+  public void setTimestamp(DateTime timestamp) {
     this.timestamp = timestamp;
   }
 
