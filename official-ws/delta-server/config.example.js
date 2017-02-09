@@ -13,10 +13,10 @@ module.exports = {
 
   // Available streams:
   // Public:
-  // ["instrument","orderBook","quote","trade"]
+  // ["instrument","orderBookL2","quote","trade"]
   // Private:
   // ["execution","margin","order","position"]
-  streams: ["instrument","orderBook","quote","trade"],
+  streams: ["instrument","orderBookL2","quote","trade"],
 
   // If you want to use any of the above "private" streams, you must authenticate with an API Key.
   apiKeyID: '',

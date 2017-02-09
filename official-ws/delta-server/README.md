@@ -21,16 +21,16 @@ git clone git@github.com:BitMEX/api-connectors.git
 cd official-ws/delta-server
 npm install
 cp config.example.js config.js
-# Edit config.js to add the symbols and streams (instrument, orderBook, etc) that you want to watch.
+# Edit config.js to add the symbols and streams (instrument, orderBookL2, etc) that you want to watch.
 nano config.js
 # Will start the server on port 4444. Pass a port as the first argument,
 # set the PORT environment variable, or set 'port' in config.js to change this.
 node index.js
 
 # In another terminal...
-curl localhost:4444
-curl localhost:4444/instrument
-curl localhost:4444/instrument?symbol=XBTUSD
+curl "http://localhost:4444"
+curl "http://localhost:4444/instrument"
+curl "http://localhost:4444/instrument?symbol=XBTUSD"
 ```
 
 ### Details
@@ -38,7 +38,7 @@ curl localhost:4444/instrument?symbol=XBTUSD
 BitMEX-Delta-Server, by default, subscribes to the data streams specified in `config.js`. Copy `config.example.js`
 to `config.js` to get started.
 
-By default, this tool only connects to the `XBT24H` stream. Add other contracts as needed. A list of open instruments
+By default, this tool only connects to the `XBTUSD` stream. Add other contracts as needed. A list of open instruments
 is available via [this endpoint](https://www.bitmex.com:443/api/v1/instrument?filter=%7B%22state%22%3A%20%22Open%22%7D).
 
 Like the public API, you can also use symbol aliases, such as `XBT:daily`, and `XBT:weekly`. The
@@ -46,7 +46,7 @@ Like the public API, you can also use symbol aliases, such as `XBT:daily`, and `
 
 ### Public Data
 
-By default, BitMEX-Delta-Server makes the endpoints `/orderBook`, `/instrument`, `/quote`, and `/trade` available.
+By default, BitMEX-Delta-Server makes the endpoints `/orderBookL2`, `/instrument`, `/quote`, and `/trade` available.
 These endpoints take an optional symbol in the querystring (e.g. `?symbol=XBU24H`), otherwise they return all data.
 
 Data is returned as an array. To get data for a particular symbol, check the `symbol` property of each data item
