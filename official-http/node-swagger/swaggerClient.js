@@ -17,7 +17,7 @@ new SwaggerClient({
   inspect(client.apis);
 
   // Get a trade
-  client.Trade.Trade_get({symbol: 'XBT24H', count: 40})
+  client.Trade.Trade_get({symbol: 'XBTUSD', count: 40})
   .then(function(response) {
     var trades = JSON.parse(response.data.toString());
     // Print the max price traded in the last `count` trades.
@@ -26,7 +26,15 @@ new SwaggerClient({
   .catch(function(e) {
     // Error handling...
     console.log('Error:', e.statusText);
-  });
+  })
+
+  // Example: Placing an order - commented for your safety
+  // .then(function() {
+  //   return client.Order.Order_new({symbol: 'XBTUSD', price: 1000, orderQty: 1})
+  // })
+  // .then(function (response) {
+  //   console.log(response.data.toString());
+  // });
 })
 .catch(function(e) {
   console.error("Unable to connect:", e);
