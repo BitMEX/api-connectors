@@ -2,7 +2,7 @@
 
 # Builds new versions of client libraries using swagger-codegen
 T="$(date +%s)"
-DIR=`pwd`
+DIR=$(pwd)
 CLIENTS=$DIR/clients
 DOCS=$DIR/docs
 CLI=$DIR/swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar
@@ -12,7 +12,10 @@ declare -a DOCLANGS=(html dynamic-html)
 
 echo "Getting swagger json..."
 rm $DIR/swagger.json || true
-wget $RESOURCES
+curl $RESOURCES | \
+  # Remove `--`, which is an invalid comment in XML and the generator happily puts into XML comments
+  sed s/--//g > \
+  $DIR/swagger.json
 
 echo "Creating output folders..."
 rm -rf $CLIENTS
@@ -35,7 +38,7 @@ for clientLang in "${CLIENTLANGS[@]}"; do
 done
 
 echo "Generating static docs..."
-for docLang in "${DOCLANGSS[@]}"; do
+for docLang in "${DOCLANGS[@]}"; do
   java -jar $CLI generate -i $DIR/swagger.json -l $docLang -o $DOCS/$docLang
 done
 
