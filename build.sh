@@ -14,7 +14,9 @@ echo "Getting swagger json..."
 rm $DIR/swagger.json || true
 curl $RESOURCES | \
   # Remove `--`, which is an invalid comment in XML and the generator happily puts into XML comments
-  sed s/--//g > \
+  tr -d '\-\-' | \
+  # Pretty-print
+  jq '.' > \
   $DIR/swagger.json
 
 echo "Creating output folders..."
