@@ -48,8 +48,8 @@ Name | Type | Description | Notes
 **exec_comm** | **float** |  | [optional] 
 **home_notional** | **double** |  | [optional] 
 **foreign_notional** | **double** |  | [optional] 
-**transact_time** | [**\DateTime**](Date.md) |  | [optional] 
-**timestamp** | [**\DateTime**](Date.md) |  | [optional] 
+**transact_time** | [**\DateTime**](\DateTime.md) |  | [optional] 
+**timestamp** | [**\DateTime**](\DateTime.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

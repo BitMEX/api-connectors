@@ -49,7 +49,7 @@ class UserApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(
     }
   }
 
-  def user.confirmEmail(token: String)(implicit reader: ClientResponseReader[AccessToken]): Future[AccessToken] = {
+  def user.confirm(token: String)(implicit reader: ClientResponseReader[AccessToken]): Future[AccessToken] = {
     // create path and map variables
     val path = (addFmt("/user/confirmEmail"))
 
@@ -287,6 +287,25 @@ class UserApi(client: TransportClient, config: SwaggerConfig) extends ApiClient(
 
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def user.minWithdrawalFee(currency: Option[String] = Some(XBt)
+      )(implicit reader: ClientResponseReader[Double]): Future[Double] = {
+    // create path and map variables
+    val path = (addFmt("/user/minWithdrawalFee"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
+    if (currency != null) currency.foreach { v => queryParams += "currency" -> v.toString }
+
+
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>
       process(reader.read(resp))
     }

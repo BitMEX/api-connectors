@@ -5,7 +5,7 @@ import java.util.UUID
 
 
 case class Quote (
-  timestamp: Date,
+  timestamp: DateTime,
 symbol: String,
 bidSize: Option[Number],
 bidPrice: Option[Double],

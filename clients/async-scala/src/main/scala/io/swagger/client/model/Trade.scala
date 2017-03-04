@@ -5,7 +5,7 @@ import java.util.UUID
 
 
 case class Trade (
-  timestamp: Date,
+  timestamp: DateTime,
 symbol: String,
 side: Option[String],
 size: Option[Number],

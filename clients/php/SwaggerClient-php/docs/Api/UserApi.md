@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**userCancelWithdrawal**](UserApi.md#userCancelWithdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 [**userCheckReferralCode**](UserApi.md#userCheckReferralCode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
-[**userConfirmEmail**](UserApi.md#userConfirmEmail) | **POST** /user/confirmEmail | Confirm your email address with a token.
+[**userConfirm**](UserApi.md#userConfirm) | **POST** /user/confirmEmail | Confirm your email address with a token.
 [**userConfirmEnableTFA**](UserApi.md#userConfirmEnableTFA) | **POST** /user/confirmEnableTFA | Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
 [**userConfirmWithdrawal**](UserApi.md#userConfirmWithdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
 [**userDisableTFA**](UserApi.md#userDisableTFA) | **POST** /user/disableTFA | Disable two-factor auth for this account.
@@ -20,7 +20,8 @@ Method | HTTP request | Description
 [**userGetWalletSummary**](UserApi.md#userGetWalletSummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**userLogout**](UserApi.md#userLogout) | **POST** /user/logout | Log out of BitMEX.
 [**userLogoutAll**](UserApi.md#userLogoutAll) | **POST** /user/logoutAll | Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
-[**userRequestEnableTFA**](UserApi.md#userRequestEnableTFA) | **POST** /user/requestEnableTFA | Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+[**userMinWithdrawalFee**](UserApi.md#userMinWithdrawalFee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
+[**userRequestEnableTFA**](UserApi.md#userRequestEnableTFA) | **POST** /user/requestEnableTFA | Get secret key for setting up two-factor auth.
 [**userRequestWithdrawal**](UserApi.md#userRequestWithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**userSavePreferences**](UserApi.md#userSavePreferences) | **POST** /user/preferences | Save user preferences.
 [**userUpdate**](UserApi.md#userUpdate) | **PUT** /user | Update your password, name, and other attributes.
@@ -114,8 +115,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **userConfirmEmail**
-> \Swagger\Client\Model\AccessToken userConfirmEmail($token)
+# **userConfirm**
+> \Swagger\Client\Model\AccessToken userConfirm($token)
 
 Confirm your email address with a token.
 
@@ -128,10 +129,10 @@ $api_instance = new Swagger\Client\Api\UserApi();
 $token = "token_example"; // string | 
 
 try {
-    $result = $api_instance->userConfirmEmail($token);
+    $result = $api_instance->userConfirm($token);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling UserApi->userConfirmEmail: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling UserApi->userConfirm: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -699,10 +700,57 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **userMinWithdrawalFee**
+> double userMinWithdrawalFee($currency)
+
+Get the minimum withdrawal fee for a currency.
+
+This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\UserApi();
+$currency = "XBt"; // string | 
+
+try {
+    $result = $api_instance->userMinWithdrawalFee($currency);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling UserApi->userMinWithdrawalFee: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **string**|  | [optional] [default to XBt]
+
+### Return type
+
+**double**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **userRequestEnableTFA**
 > bool userRequestEnableTFA($type)
 
-Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+Get secret key for setting up two-factor auth.
+
+Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
 
 ### Example
 ```php

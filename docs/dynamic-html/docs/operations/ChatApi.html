@@ -1,0 +1,123 @@
+<div class="main-content">
+  <h2><a name=""></a></h2>
+  <p>This is the  API</p>
+
+  <h2><a name="chat.get"></a>chat.get</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/chat</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="Chat"><a href="">List</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">count</span>
+      <span class="param-type">BigDecimal</span>
+      
+      <p class="param-description">Number of results to fetch.</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">start</span>
+      <span class="param-type">BigDecimal</span>
+      
+      <p class="param-description">Starting point for results.</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">reverse</span>
+      <span class="param-type">Boolean</span>
+      
+      <p class="param-description">If true, will sort results newest first.</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">channelID</span>
+      <span class="param-type">Double</span>
+      
+      <p class="param-description">Channel id. GET /chat/channels for ids. Leave blank for all.</p>
+	  </li>
+  </ul>
+  <h2><a name="chat.getChannels"></a>chat.getChannels</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/chat/channels</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="ChatChannel"><a href="">List</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  </ul>
+  <h2><a name="chat.getConnected"></a>chat.getConnected</h2>
+  <hr>
+  <p></p>
+  <p>Returns an array with browser users in the first position and API users (bots) in the second position.</p>
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/chat/connected</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="ConnectedUsers"><a href="">ConnectedUsers</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  </ul>
+  <h2><a name="chat.new"></a>chat.new</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/chat</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="Chat"><a href="">Chat</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">message</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">channelID</span>
+      <span class="param-type">Double</span>
+      
+      <p class="param-description">Channel to post to. Default 1 (English).</p>
+	  </li>
+  </ul>
+</div>

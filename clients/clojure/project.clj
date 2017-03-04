@@ -3,7 +3,7 @@
 
 [Changelog](/app/apiChangelog)
 
-----
+
 
 #### Getting Started
 
@@ -42,7 +42,7 @@ Fill in the parameters and click the `Try it out!` button to try any of these qu
 
 Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.
 
----
+-
 
 ## All API Endpoints
 

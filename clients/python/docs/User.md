@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **username** | **str** |  | 
 **email** | **str** |  | 
 **phone** | **str** |  | [optional] 
-**created** | **date** |  | [optional] 
-**last_updated** | **date** |  | [optional] 
+**created** | **datetime** |  | [optional] 
+**last_updated** | **datetime** |  | [optional] 
 **preferences** | [**UserPreferences**](UserPreferences.md) |  | [optional] 
 **tfa_enabled** | **str** |  | [optional] 
 **affiliate_id** | **str** |  | [optional] 

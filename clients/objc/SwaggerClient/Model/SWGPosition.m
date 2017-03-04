@@ -6,6 +6,30 @@
   self = [super init];
   if (self) {
     // initialize property's default value, if any
+    self.commission = @0.0;
+    self.initMarginReq = @0.0;
+    self.maintMarginReq = @0.0;
+    self.leverage = @0.0;
+    self.deleveragePercentile = @0.0;
+    self.prevClosePrice = @0.0;
+    self.markPrice = @0.0;
+    self.homeNotional = @0.0;
+    self.foreignNotional = @0.0;
+    self.indicativeTaxRate = @0.0;
+    self.unrealisedPnlPcnt = @0.0;
+    self.unrealisedRoePcnt = @0.0;
+    self.simpleQty = @0.0;
+    self.simpleCost = @0.0;
+    self.simpleValue = @0.0;
+    self.simplePnl = @0.0;
+    self.simplePnlPcnt = @0.0;
+    self.avgCostPrice = @0.0;
+    self.avgEntryPrice = @0.0;
+    self.breakEvenPrice = @0.0;
+    self.marginCallPrice = @0.0;
+    self.liquidationPrice = @0.0;
+    self.bankruptPrice = @0.0;
+    self.lastPrice = @0.0;
     
   }
   return self;

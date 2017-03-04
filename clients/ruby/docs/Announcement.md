@@ -7,6 +7,6 @@ Name | Type | Description | Notes
 **link** | **String** |  | [optional] 
 **title** | **String** |  | [optional] 
 **content** | **String** |  | [optional] 
-**date** | **Date** |  | [optional] 
+**date** | **DateTime** |  | [optional] 
 
 

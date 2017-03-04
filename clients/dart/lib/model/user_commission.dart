@@ -15,11 +15,15 @@ class UserCommission {
   @Property(name: 'settlementFee')
   double settlementFee = null;
   
+
+  @Property(name: 'maxFee')
+  double maxFee = null;
+  
   UserCommission();
 
   @override
   String toString()  {
-    return 'UserCommission[makerFee=$makerFee, takerFee=$takerFee, settlementFee=$settlementFee, ]';
+    return 'UserCommission[makerFee=$makerFee, takerFee=$takerFee, settlementFee=$settlementFee, maxFee=$maxFee, ]';
   }
 
 }

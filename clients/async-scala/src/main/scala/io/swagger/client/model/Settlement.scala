@@ -5,7 +5,7 @@ import java.util.UUID
 
 
 case class Settlement (
-  timestamp: Date,
+  timestamp: DateTime,
 symbol: String,
 settlementType: Option[String],
 settledPrice: Option[Double],

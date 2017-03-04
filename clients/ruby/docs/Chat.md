@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **Float** |  | [optional] 
-**date** | **Date** |  | 
+**date** | **DateTime** |  | 
 **user** | **String** |  | 
 **message** | **String** |  | 
 **html** | **String** |  | 

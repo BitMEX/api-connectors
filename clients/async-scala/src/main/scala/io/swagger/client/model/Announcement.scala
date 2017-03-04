@@ -9,5 +9,5 @@ case class Announcement (
 link: Option[String],
 title: Option[String],
 content: Option[String],
-date: Option[Date]
+date: Option[DateTime]
 )

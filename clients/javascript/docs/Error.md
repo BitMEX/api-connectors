@@ -3,7 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**message** | **String** |  | 
-**code** | **Number** |  | 
+**error** | [**ErrorError**](ErrorError.md) |  | [optional] 
 
 

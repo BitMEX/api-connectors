@@ -48,7 +48,7 @@ Name | Type | Description | Notes
 **exec_comm** | **Float** |  | [optional] 
 **home_notional** | **Float** |  | [optional] 
 **foreign_notional** | **Float** |  | [optional] 
-**transact_time** | **Date** |  | [optional] 
-**timestamp** | **Date** |  | [optional] 
+**transact_time** | **DateTime** |  | [optional] 
+**timestamp** | **DateTime** |  | [optional] 
 
 

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -116,8 +116,12 @@ export interface ConnectedUsers {
 }
 
 export interface Error {
-    "message": string;
-    "code": number;
+    "error"?: ErrorError;
+}
+
+export interface ErrorError {
+    "message"?: string;
+    "name"?: string;
 }
 
 export interface Execution {
@@ -600,9 +604,11 @@ export interface UserCommission {
     "makerFee"?: number;
     "takerFee"?: number;
     "settlementFee"?: number;
+    "maxFee"?: number;
 }
 
 export interface UserPreferences {
+    "animationsEnabled"?: boolean;
     "announcementsLastSeen"?: Date;
     "chatChannelID"?: number;
     "colorTheme"?: string;
@@ -645,6 +651,10 @@ export interface Wallet {
     "confirmedDebit"?: number;
     "timestamp"?: Date;
     "addr"?: string;
+    "withdrawalLock"?: Array<XAny>;
+}
+
+export interface XAny {
 }
 
 
@@ -3714,10 +3724,10 @@ export const UserApiFetchParamCreactor = {
      * Confirm your email address with a token.
      * @param token 
      */
-    userConfirmEmail(params: {  token: string; }): FetchArgs {
+    userConfirm(params: {  token: string; }): FetchArgs {
         // verify required parameter "token" is set
         if (params["token"] == null) {
-            throw new Error("Missing required parameter token when calling userConfirmEmail");
+            throw new Error("Missing required parameter token when calling userConfirm");
         }
         const baseUrl = `/user/confirmEmail`;
         let urlObj = url.parse(baseUrl, true);
@@ -4009,7 +4019,30 @@ export const UserApiFetchParamCreactor = {
         };
     },
     /** 
-     * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+     * Get the minimum withdrawal fee for a currency.
+     * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+     * @param currency 
+     */
+    userMinWithdrawalFee(params: {  currency?: string; }): FetchArgs {
+        const baseUrl = `/user/minWithdrawalFee`;
+        let urlObj = url.parse(baseUrl, true);
+        urlObj.query = assign({}, urlObj.query, { 
+            "currency": params.currency,
+        });
+        let fetchOptions: RequestInit = { method: "GET" };
+
+        let contentTypeHeader: Dictionary<string>;
+        if (contentTypeHeader) {
+            fetchOptions.headers = contentTypeHeader;
+        }
+        return {
+            url: url.format(urlObj),
+            options: fetchOptions,
+        };
+    },
+    /** 
+     * Get secret key for setting up two-factor auth.
+     * Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
      * @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
      */
     userRequestEnableTFA(params: {  type?: string; }): FetchArgs {
@@ -4180,8 +4213,8 @@ export const UserApiFp = {
      * Confirm your email address with a token.
      * @param token 
      */
-    userConfirmEmail(params: { token: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<AccessToken> {
-        const fetchArgs = UserApiFetchParamCreactor.userConfirmEmail(params);
+    userConfirm(params: { token: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<AccessToken> {
+        const fetchArgs = UserApiFetchParamCreactor.userConfirm(params);
         return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
             return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
@@ -4398,7 +4431,25 @@ export const UserApiFp = {
         };
     },
     /** 
-     * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+     * Get the minimum withdrawal fee for a currency.
+     * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+     * @param currency 
+     */
+    userMinWithdrawalFee(params: { currency?: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<number> {
+        const fetchArgs = UserApiFetchParamCreactor.userMinWithdrawalFee(params);
+        return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
+            return fetch(basePath + fetchArgs.url, fetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        };
+    },
+    /** 
+     * Get secret key for setting up two-factor auth.
+     * Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
      * @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
      */
     userRequestEnableTFA(params: { type?: string;  }): (fetch: FetchAPI, basePath?: string) => Promise<boolean> {
@@ -4499,8 +4550,8 @@ export class UserApi extends BaseAPI {
      * Confirm your email address with a token.
      * @param token 
      */
-    userConfirmEmail(params: {  token: string; }) {
-        return UserApiFp.userConfirmEmail(params)(this.fetch, this.basePath);
+    userConfirm(params: {  token: string; }) {
+        return UserApiFp.userConfirm(params)(this.fetch, this.basePath);
     }
     /** 
      * Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
@@ -4591,7 +4642,16 @@ export class UserApi extends BaseAPI {
         return UserApiFp.userLogoutAll()(this.fetch, this.basePath);
     }
     /** 
-     * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+     * Get the minimum withdrawal fee for a currency.
+     * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+     * @param currency 
+     */
+    userMinWithdrawalFee(params: {  currency?: string; }) {
+        return UserApiFp.userMinWithdrawalFee(params)(this.fetch, this.basePath);
+    }
+    /** 
+     * Get secret key for setting up two-factor auth.
+     * Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
      * @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
      */
     userRequestEnableTFA(params: {  type?: string; }) {

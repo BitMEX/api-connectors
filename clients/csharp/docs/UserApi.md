@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**UserCancelWithdrawal**](UserApi.md#usercancelwithdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 [**UserCheckReferralCode**](UserApi.md#usercheckreferralcode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
-[**UserConfirmEmail**](UserApi.md#userconfirmemail) | **POST** /user/confirmEmail | Confirm your email address with a token.
+[**UserConfirm**](UserApi.md#userconfirm) | **POST** /user/confirmEmail | Confirm your email address with a token.
 [**UserConfirmEnableTFA**](UserApi.md#userconfirmenabletfa) | **POST** /user/confirmEnableTFA | Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
 [**UserConfirmWithdrawal**](UserApi.md#userconfirmwithdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
 [**UserDisableTFA**](UserApi.md#userdisabletfa) | **POST** /user/disableTFA | Disable two-factor auth for this account.
@@ -20,7 +20,8 @@ Method | HTTP request | Description
 [**UserGetWalletSummary**](UserApi.md#usergetwalletsummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**UserLogout**](UserApi.md#userlogout) | **POST** /user/logout | Log out of BitMEX.
 [**UserLogoutAll**](UserApi.md#userlogoutall) | **POST** /user/logoutAll | Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
-[**UserRequestEnableTFA**](UserApi.md#userrequestenabletfa) | **POST** /user/requestEnableTFA | Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+[**UserMinWithdrawalFee**](UserApi.md#userminwithdrawalfee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
+[**UserRequestEnableTFA**](UserApi.md#userrequestenabletfa) | **POST** /user/requestEnableTFA | Get secret key for setting up two-factor auth.
 [**UserRequestWithdrawal**](UserApi.md#userrequestwithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**UserSavePreferences**](UserApi.md#usersavepreferences) | **POST** /user/preferences | Save user preferences.
 [**UserUpdate**](UserApi.md#userupdate) | **PUT** /user | Update your password, name, and other attributes.
@@ -146,8 +147,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **UserConfirmEmail**
-> AccessToken UserConfirmEmail (string token)
+# **UserConfirm**
+> AccessToken UserConfirm (string token)
 
 Confirm your email address with a token.
 
@@ -161,7 +162,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class UserConfirmEmailExample
+    public class UserConfirmExample
     {
         public void main()
         {
@@ -172,12 +173,12 @@ namespace Example
             try
             {
                 // Confirm your email address with a token.
-                AccessToken result = apiInstance.UserConfirmEmail(token);
+                AccessToken result = apiInstance.UserConfirm(token);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling UserApi.UserConfirmEmail: " + e.Message );
+                Debug.Print("Exception when calling UserApi.UserConfirm: " + e.Message );
             }
         }
     }
@@ -955,10 +956,73 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **UserMinWithdrawalFee**
+> double? UserMinWithdrawalFee (string currency = null)
+
+Get the minimum withdrawal fee for a currency.
+
+This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserMinWithdrawalFeeExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new UserApi();
+            var currency = currency_example;  // string |  (optional)  (default to XBt)
+
+            try
+            {
+                // Get the minimum withdrawal fee for a currency.
+                double? result = apiInstance.UserMinWithdrawalFee(currency);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserMinWithdrawalFee: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **string**|  | [optional] [default to XBt]
+
+### Return type
+
+**double?**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **UserRequestEnableTFA**
 > bool? UserRequestEnableTFA (string type = null)
 
-Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+Get secret key for setting up two-factor auth.
+
+Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
 
 ### Example
 ```csharp
@@ -980,7 +1044,7 @@ namespace Example
 
             try
             {
-                // Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+                // Get secret key for setting up two-factor auth.
                 bool? result = apiInstance.UserRequestEnableTFA(type);
                 Debug.WriteLine(result);
             }

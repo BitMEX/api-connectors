@@ -6,6 +6,6 @@ import java.util.UUID
 
 case class Insurance (
   currency: String,
-timestamp: Date,
+timestamp: DateTime,
 walletBalance: Option[Number]
 )

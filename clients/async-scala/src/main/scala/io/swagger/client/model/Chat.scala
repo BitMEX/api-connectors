@@ -6,7 +6,7 @@ import java.util.UUID
 
 case class Chat (
   id: Option[Number],
-date: Date,
+date: DateTime,
 user: String,
 message: String,
 html: String,

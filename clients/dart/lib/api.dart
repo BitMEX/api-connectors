@@ -43,6 +43,7 @@ part 'model/chat.dart';
 part 'model/chat_channel.dart';
 part 'model/connected_users.dart';
 part 'model/error.dart';
+part 'model/error_error.dart';
 part 'model/execution.dart';
 part 'model/funding.dart';
 part 'model/inline_response200.dart';
@@ -67,4 +68,5 @@ part 'model/user.dart';
 part 'model/user_commission.dart';
 part 'model/user_preferences.dart';
 part 'model/wallet.dart';
+part 'model/x_any.dart';
 

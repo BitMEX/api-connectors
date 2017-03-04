@@ -40,7 +40,7 @@
   ([optional-params]
    (:data (user-check-referral-code-with-http-info optional-params))))
 
-(defn user-confirm-email-with-http-info
+(defn user-confirm-with-http-info
   "Confirm your email address with a token."
   [token ]
   (call-api "/user/confirmEmail" :post
@@ -52,10 +52,10 @@
              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
              :auth-names    []}))
 
-(defn user-confirm-email
+(defn user-confirm
   "Confirm your email address with a token."
   [token ]
-  (:data (user-confirm-email-with-http-info token)))
+  (:data (user-confirm-with-http-info token)))
 
 (defn user-confirm-enable-tfa-with-http-info
   "Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint."
@@ -292,8 +292,30 @@
   []
   (:data (user-logout-all-with-http-info)))
 
+(defn user-min-withdrawal-fee-with-http-info
+  "Get the minimum withdrawal fee for a currency.
+  This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency."
+  ([] (user-min-withdrawal-fee-with-http-info nil))
+  ([{:keys [currency ]}]
+   (call-api "/user/minWithdrawalFee" :get
+             {:path-params   {}
+              :header-params {}
+              :query-params  {"currency" currency }
+              :form-params   {}
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
+              :auth-names    []})))
+
+(defn user-min-withdrawal-fee
+  "Get the minimum withdrawal fee for a currency.
+  This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency."
+  ([] (user-min-withdrawal-fee nil))
+  ([optional-params]
+   (:data (user-min-withdrawal-fee-with-http-info optional-params))))
+
 (defn user-request-enable-tfa-with-http-info
-  "Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys."
+  "Get secret key for setting up two-factor auth.
+  Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled."
   ([] (user-request-enable-tfa-with-http-info nil))
   ([{:keys [type ]}]
    (call-api "/user/requestEnableTFA" :post
@@ -306,7 +328,8 @@
               :auth-names    []})))
 
 (defn user-request-enable-tfa
-  "Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys."
+  "Get secret key for setting up two-factor auth.
+  Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled."
   ([] (user-request-enable-tfa nil))
   ([optional-params]
    (:data (user-request-enable-tfa-with-http-info optional-params))))

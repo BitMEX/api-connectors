@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **link** | **String** |  |  [optional]
 **title** | **String** |  |  [optional]
 **content** | **String** |  |  [optional]
-**date** | [**LocalDate**](LocalDate.md) |  |  [optional]
+**date** | [**DateTime**](DateTime.md) |  |  [optional]
 
 
 

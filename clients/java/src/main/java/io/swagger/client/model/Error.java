@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -29,54 +29,33 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.math.BigDecimal;
+import io.swagger.client.model.ErrorError;
 
 
 /**
  * Error
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-01-03T10:34:33.567-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-03-04T11:15:54.597-06:00")
 public class Error   {
-  @JsonProperty("message")
-  private String message = null;
+  @JsonProperty("error")
+  private ErrorError error = null;
 
-  @JsonProperty("code")
-  private BigDecimal code = null;
-
-  public Error message(String message) {
-    this.message = message;
+  public Error error(ErrorError error) {
+    this.error = error;
     return this;
   }
 
    /**
-   * Get message
-   * @return message
+   * Get error
+   * @return error
   **/
-  @ApiModelProperty(example = "null", required = true, value = "")
-  public String getMessage() {
-    return message;
+  @ApiModelProperty(example = "null", value = "")
+  public ErrorError getError() {
+    return error;
   }
 
-  public void setMessage(String message) {
-    this.message = message;
-  }
-
-  public Error code(BigDecimal code) {
-    this.code = code;
-    return this;
-  }
-
-   /**
-   * Get code
-   * @return code
-  **/
-  @ApiModelProperty(example = "null", required = true, value = "")
-  public BigDecimal getCode() {
-    return code;
-  }
-
-  public void setCode(BigDecimal code) {
-    this.code = code;
+  public void setError(ErrorError error) {
+    this.error = error;
   }
 
 
@@ -89,13 +68,12 @@ public class Error   {
       return false;
     }
     Error error = (Error) o;
-    return Objects.equals(this.message, error.message) &&
-        Objects.equals(this.code, error.code);
+    return Objects.equals(this.error, error.error);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message, code);
+    return Objects.hash(error);
   }
 
   @Override
@@ -103,8 +81,7 @@ public class Error   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Error {\n");
     
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("}");
     return sb.toString();
   }

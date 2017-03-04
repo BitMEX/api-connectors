@@ -4,8 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**message** | **String** |  | 
-**code** | [**BigDecimal**](BigDecimal.md) |  | 
+**error** | [**ErrorError**](ErrorError.md) |  |  [optional]
 
 
 

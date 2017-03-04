@@ -11,6 +11,6 @@ Name | Type | Description | Notes
 **permissions** | [**Array&lt;XAny&gt;**](XAny.md) |  | [optional] 
 **enabled** | **BOOLEAN** |  | [optional] [default to false]
 **user_id** | **Float** |  | 
-**created** | **Date** |  | [optional] 
+**created** | **DateTime** |  | [optional] 
 
 

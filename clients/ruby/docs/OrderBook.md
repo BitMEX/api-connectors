@@ -9,6 +9,6 @@ Name | Type | Description | Notes
 **bid_price** | **Float** |  | [optional] 
 **ask_price** | **Float** |  | [optional] 
 **ask_size** | **Float** |  | [optional] 
-**timestamp** | **Date** |  | [optional] 
+**timestamp** | **DateTime** |  | [optional] 
 
 

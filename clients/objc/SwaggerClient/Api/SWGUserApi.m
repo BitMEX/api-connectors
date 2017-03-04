@@ -215,7 +215,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns SWGAccessToken*
 ///
--(NSNumber*) userConfirmEmailWithToken: (NSString*) token
+-(NSNumber*) userConfirmWithToken: (NSString*) token
     completionHandler: (void (^)(SWGAccessToken* output, NSError* error)) handler {
     // verify the required parameter 'token' is set
     if (token == nil) {
@@ -1094,8 +1094,69 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 }
 
 ///
-/// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
-/// 
+/// Get the minimum withdrawal fee for a currency.
+/// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+///  @param currency  (optional, default to XBt)
+///
+///  @returns NSNumber*
+///
+-(NSNumber*) userMinWithdrawalFeeWithCurrency: (NSString*) currency
+    completionHandler: (void (^)(NSNumber* output, NSError* error)) handler {
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/minWithdrawalFee"];
+
+    // remove format in URL if needed
+    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (currency != nil) {
+        queryParams[@"currency"] = currency;
+    }
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"application/xml", @"text/xml", @"application/javascript", @"text/javascript"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"GET"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"NSNumber*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((NSNumber*)data, error);
+                                }
+                           }
+          ];
+}
+
+///
+/// Get secret key for setting up two-factor auth.
+/// Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
 ///  @param type Two-factor auth type. Supported types: 'GA' (Google Authenticator) (optional)
 ///
 ///  @returns NSNumber*

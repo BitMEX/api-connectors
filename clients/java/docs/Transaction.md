@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 **address** | **String** |  |  [optional]
 **tx** | **String** |  |  [optional]
 **text** | **String** |  |  [optional]
-**transactTime** | [**LocalDate**](LocalDate.md) |  |  [optional]
-**timestamp** | [**LocalDate**](LocalDate.md) |  |  [optional]
+**transactTime** | [**DateTime**](DateTime.md) |  |  [optional]
+**timestamp** | [**DateTime**](DateTime.md) |  |  [optional]
 
 
 

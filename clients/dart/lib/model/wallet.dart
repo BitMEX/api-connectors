@@ -71,11 +71,15 @@ class Wallet {
   @Property(name: 'addr')
   String addr = null;
   
+
+  @Property(name: 'withdrawalLock')
+  List<X-any> withdrawalLock = [];
+  
   Wallet();
 
   @override
   String toString()  {
-    return 'Wallet[account=$account, currency=$currency, prevDeposited=$prevDeposited, prevWithdrawn=$prevWithdrawn, prevAmount=$prevAmount, prevTimestamp=$prevTimestamp, deltaDeposited=$deltaDeposited, deltaWithdrawn=$deltaWithdrawn, deltaAmount=$deltaAmount, deposited=$deposited, withdrawn=$withdrawn, amount=$amount, pendingCredit=$pendingCredit, pendingDebit=$pendingDebit, confirmedDebit=$confirmedDebit, timestamp=$timestamp, addr=$addr, ]';
+    return 'Wallet[account=$account, currency=$currency, prevDeposited=$prevDeposited, prevWithdrawn=$prevWithdrawn, prevAmount=$prevAmount, prevTimestamp=$prevTimestamp, deltaDeposited=$deltaDeposited, deltaWithdrawn=$deltaWithdrawn, deltaAmount=$deltaAmount, deposited=$deposited, withdrawn=$withdrawn, amount=$amount, pendingCredit=$pendingCredit, pendingDebit=$pendingDebit, confirmedDebit=$confirmedDebit, timestamp=$timestamp, addr=$addr, withdrawalLock=$withdrawalLock, ]';
   }
 
 }

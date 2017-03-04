@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -45,11 +45,13 @@ namespace IO.Swagger.Model
         /// <param name="MakerFee">MakerFee.</param>
         /// <param name="TakerFee">TakerFee.</param>
         /// <param name="SettlementFee">SettlementFee.</param>
-        public UserCommission(double? MakerFee = null, double? TakerFee = null, double? SettlementFee = null)
+        /// <param name="MaxFee">MaxFee.</param>
+        public UserCommission(double? MakerFee = null, double? TakerFee = null, double? SettlementFee = null, double? MaxFee = null)
         {
             this.MakerFee = MakerFee;
             this.TakerFee = TakerFee;
             this.SettlementFee = SettlementFee;
+            this.MaxFee = MaxFee;
         }
         
         /// <summary>
@@ -68,6 +70,11 @@ namespace IO.Swagger.Model
         [DataMember(Name="settlementFee", EmitDefaultValue=false)]
         public double? SettlementFee { get; set; }
         /// <summary>
+        /// Gets or Sets MaxFee
+        /// </summary>
+        [DataMember(Name="maxFee", EmitDefaultValue=false)]
+        public double? MaxFee { get; set; }
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -78,6 +85,7 @@ namespace IO.Swagger.Model
             sb.Append("  MakerFee: ").Append(MakerFee).Append("\n");
             sb.Append("  TakerFee: ").Append(TakerFee).Append("\n");
             sb.Append("  SettlementFee: ").Append(SettlementFee).Append("\n");
+            sb.Append("  MaxFee: ").Append(MaxFee).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -128,6 +136,11 @@ namespace IO.Swagger.Model
                     this.SettlementFee == other.SettlementFee ||
                     this.SettlementFee != null &&
                     this.SettlementFee.Equals(other.SettlementFee)
+                ) && 
+                (
+                    this.MaxFee == other.MaxFee ||
+                    this.MaxFee != null &&
+                    this.MaxFee.Equals(other.MaxFee)
                 );
         }
 
@@ -148,6 +161,8 @@ namespace IO.Swagger.Model
                     hash = hash * 59 + this.TakerFee.GetHashCode();
                 if (this.SettlementFee != null)
                     hash = hash * 59 + this.SettlementFee.GetHashCode();
+                if (this.MaxFee != null)
+                    hash = hash * 59 + this.MaxFee.GetHashCode();
                 return hash;
             }
         }

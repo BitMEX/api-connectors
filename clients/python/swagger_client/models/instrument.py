@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+    ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -46,11 +46,11 @@ class Instrument(object):
             'root_symbol': 'str',
             'state': 'str',
             'typ': 'str',
-            'listing': 'date',
-            'front': 'date',
-            'expiry': 'date',
-            'settle': 'date',
-            'relist_interval': 'date',
+            'listing': 'datetime',
+            'front': 'datetime',
+            'expiry': 'datetime',
+            'settle': 'datetime',
+            'relist_interval': 'datetime',
             'inverse_leg': 'str',
             'sell_leg': 'str',
             'buy_leg': 'str',
@@ -60,9 +60,9 @@ class Instrument(object):
             'underlying_symbol': 'str',
             'reference': 'str',
             'reference_symbol': 'str',
-            'calc_interval': 'date',
-            'publish_interval': 'date',
-            'publish_time': 'date',
+            'calc_interval': 'datetime',
+            'publish_interval': 'datetime',
+            'publish_time': 'datetime',
             'max_order_qty': 'float',
             'max_price': 'float',
             'lot_size': 'float',
@@ -89,15 +89,15 @@ class Instrument(object):
             'funding_base_symbol': 'str',
             'funding_quote_symbol': 'str',
             'funding_premium_symbol': 'str',
-            'funding_timestamp': 'date',
-            'funding_interval': 'date',
+            'funding_timestamp': 'datetime',
+            'funding_interval': 'datetime',
             'funding_rate': 'float',
             'indicative_funding_rate': 'float',
-            'rebalance_timestamp': 'date',
-            'rebalance_interval': 'date',
-            'opening_timestamp': 'date',
-            'closing_timestamp': 'date',
-            'session_interval': 'date',
+            'rebalance_timestamp': 'datetime',
+            'rebalance_interval': 'datetime',
+            'opening_timestamp': 'datetime',
+            'closing_timestamp': 'datetime',
+            'session_interval': 'datetime',
             'prev_close_price': 'float',
             'limit_down_price': 'float',
             'limit_up_price': 'float',
@@ -137,7 +137,7 @@ class Instrument(object):
             'indicative_tax_rate': 'float',
             'indicative_settle_price': 'float',
             'settled_price': 'float',
-            'timestamp': 'date'
+            'timestamp': 'datetime'
         }
 
         self.attribute_map = {
@@ -435,7 +435,7 @@ class Instrument(object):
 
 
         :return: The listing of this Instrument.
-        :rtype: date
+        :rtype: datetime
         """
         return self._listing
 
@@ -446,7 +446,7 @@ class Instrument(object):
 
 
         :param listing: The listing of this Instrument.
-        :type: date
+        :type: datetime
         """
 
         self._listing = listing
@@ -458,7 +458,7 @@ class Instrument(object):
 
 
         :return: The front of this Instrument.
-        :rtype: date
+        :rtype: datetime
         """
         return self._front
 
@@ -469,7 +469,7 @@ class Instrument(object):
 
 
         :param front: The front of this Instrument.
-        :type: date
+        :type: datetime
         """
 
         self._front = front
@@ -481,7 +481,7 @@ class Instrument(object):
 
 
         :return: The expiry of this Instrument.
-        :rtype: date
+        :rtype: datetime
         """
         return self._expiry
 
@@ -492,7 +492,7 @@ class Instrument(object):
 
 
         :param expiry: The expiry of this Instrument.
-        :type: date
+        :type: datetime
         """
 
         self._expiry = expiry
@@ -504,7 +504,7 @@ class Instrument(object):
 
 
         :return: The settle of this Instrument.
-        :rtype: date
+        :rtype: datetime
         """
         return self._settle
 
@@ -515,7 +515,7 @@ class Instrument(object):
 
 
         :param settle: The settle of this Instrument.
-        :type: date
+        :type: datetime
         """
 
         self._settle = settle
@@ -527,7 +527,7 @@ class Instrument(object):
 
 
         :return: The relist_interval of this Instrument.
-        :rtype: date
+        :rtype: datetime
         """
         return self._relist_interval
 
@@ -538,7 +538,7 @@ class Instrument(object):
 
 
         :param relist_interval: The relist_interval of this Instrument.
-        :type: date
+        :type: datetime
         """
 
         self._relist_interval = relist_interval
@@ -757,7 +757,7 @@ class Instrument(object):
 
 
         :return: The calc_interval of this Instrument.
-        :rtype: date
+        :rtype: datetime
         """
         return self._calc_interval
 
@@ -768,7 +768,7 @@ class Instrument(object):
 
 
         :param calc_interval: The calc_interval of this Instrument.
-        :type: date
+        :type: datetime
         """
 
         self._calc_interval = calc_interval
@@ -780,7 +780,7 @@ class Instrument(object):
 
 
         :return: The publish_interval of this Instrument.
-        :rtype: date
+        :rtype: datetime
         """
         return self._publish_interval
 
@@ -791,7 +791,7 @@ class Instrument(object):
 
 
         :param publish_interval: The publish_interval of this Instrument.
-        :type: date
+        :type: datetime
         """
 
         self._publish_interval = publish_interval
@@ -803,7 +803,7 @@ class Instrument(object):
 
 
         :return: The publish_time of this Instrument.
-        :rtype: date
+        :rtype: datetime
         """
         return self._publish_time
 
@@ -814,7 +814,7 @@ class Instrument(object):
 
 
         :param publish_time: The publish_time of this Instrument.
-        :type: date
+        :type: datetime
         """
 
         self._publish_time = publish_time
@@ -1424,7 +1424,7 @@ class Instrument(object):
 
 
         :return: The funding_timestamp of this Instrument.
-        :rtype: date
+        :rtype: datetime
         """
         return self._funding_timestamp
 
@@ -1435,7 +1435,7 @@ class Instrument(object):
 
 
         :param funding_timestamp: The funding_timestamp of this Instrument.
-        :type: date
+        :type: datetime
         """
 
         self._funding_timestamp = funding_timestamp
@@ -1447,7 +1447,7 @@ class Instrument(object):
 
 
         :return: The funding_interval of this Instrument.
-        :rtype: date
+        :rtype: datetime
         """
         return self._funding_interval
 
@@ -1458,7 +1458,7 @@ class Instrument(object):
 
 
         :param funding_interval: The funding_interval of this Instrument.
-        :type: date
+        :type: datetime
         """
 
         self._funding_interval = funding_interval
@@ -1516,7 +1516,7 @@ class Instrument(object):
 
 
         :return: The rebalance_timestamp of this Instrument.
-        :rtype: date
+        :rtype: datetime
         """
         return self._rebalance_timestamp
 
@@ -1527,7 +1527,7 @@ class Instrument(object):
 
 
         :param rebalance_timestamp: The rebalance_timestamp of this Instrument.
-        :type: date
+        :type: datetime
         """
 
         self._rebalance_timestamp = rebalance_timestamp
@@ -1539,7 +1539,7 @@ class Instrument(object):
 
 
         :return: The rebalance_interval of this Instrument.
-        :rtype: date
+        :rtype: datetime
         """
         return self._rebalance_interval
 
@@ -1550,7 +1550,7 @@ class Instrument(object):
 
 
         :param rebalance_interval: The rebalance_interval of this Instrument.
-        :type: date
+        :type: datetime
         """
 
         self._rebalance_interval = rebalance_interval
@@ -1562,7 +1562,7 @@ class Instrument(object):
 
 
         :return: The opening_timestamp of this Instrument.
-        :rtype: date
+        :rtype: datetime
         """
         return self._opening_timestamp
 
@@ -1573,7 +1573,7 @@ class Instrument(object):
 
 
         :param opening_timestamp: The opening_timestamp of this Instrument.
-        :type: date
+        :type: datetime
         """
 
         self._opening_timestamp = opening_timestamp
@@ -1585,7 +1585,7 @@ class Instrument(object):
 
 
         :return: The closing_timestamp of this Instrument.
-        :rtype: date
+        :rtype: datetime
         """
         return self._closing_timestamp
 
@@ -1596,7 +1596,7 @@ class Instrument(object):
 
 
         :param closing_timestamp: The closing_timestamp of this Instrument.
-        :type: date
+        :type: datetime
         """
 
         self._closing_timestamp = closing_timestamp
@@ -1608,7 +1608,7 @@ class Instrument(object):
 
 
         :return: The session_interval of this Instrument.
-        :rtype: date
+        :rtype: datetime
         """
         return self._session_interval
 
@@ -1619,7 +1619,7 @@ class Instrument(object):
 
 
         :param session_interval: The session_interval of this Instrument.
-        :type: date
+        :type: datetime
         """
 
         self._session_interval = session_interval
@@ -2528,7 +2528,7 @@ class Instrument(object):
 
 
         :return: The timestamp of this Instrument.
-        :rtype: date
+        :rtype: datetime
         """
         return self._timestamp
 
@@ -2539,7 +2539,7 @@ class Instrument(object):
 
 
         :param timestamp: The timestamp of this Instrument.
-        :type: date
+        :type: datetime
         """
 
         self._timestamp = timestamp

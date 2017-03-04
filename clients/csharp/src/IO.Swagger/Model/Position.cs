@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -52,17 +52,17 @@ namespace IO.Swagger.Model
         /// <param name="Currency">Currency (required).</param>
         /// <param name="Underlying">Underlying.</param>
         /// <param name="QuoteCurrency">QuoteCurrency.</param>
-        /// <param name="Commission">Commission.</param>
-        /// <param name="InitMarginReq">InitMarginReq.</param>
-        /// <param name="MaintMarginReq">MaintMarginReq.</param>
+        /// <param name="Commission">Commission (default to 0.0).</param>
+        /// <param name="InitMarginReq">InitMarginReq (default to 0.0).</param>
+        /// <param name="MaintMarginReq">MaintMarginReq (default to 0.0).</param>
         /// <param name="RiskLimit">RiskLimit.</param>
-        /// <param name="Leverage">Leverage.</param>
+        /// <param name="Leverage">Leverage (default to 0.0).</param>
         /// <param name="CrossMargin">CrossMargin.</param>
-        /// <param name="DeleveragePercentile">DeleveragePercentile.</param>
+        /// <param name="DeleveragePercentile">DeleveragePercentile (default to 0.0).</param>
         /// <param name="RebalancedPnl">RebalancedPnl.</param>
         /// <param name="PrevRealisedPnl">PrevRealisedPnl.</param>
         /// <param name="PrevUnrealisedPnl">PrevUnrealisedPnl.</param>
-        /// <param name="PrevClosePrice">PrevClosePrice.</param>
+        /// <param name="PrevClosePrice">PrevClosePrice (default to 0.0).</param>
         /// <param name="OpeningTimestamp">OpeningTimestamp.</param>
         /// <param name="OpeningQty">OpeningQty.</param>
         /// <param name="OpeningCost">OpeningCost.</param>
@@ -90,11 +90,11 @@ namespace IO.Swagger.Model
         /// <param name="GrossOpenPremium">GrossOpenPremium.</param>
         /// <param name="GrossExecCost">GrossExecCost.</param>
         /// <param name="IsOpen">IsOpen.</param>
-        /// <param name="MarkPrice">MarkPrice.</param>
+        /// <param name="MarkPrice">MarkPrice (default to 0.0).</param>
         /// <param name="MarkValue">MarkValue.</param>
         /// <param name="RiskValue">RiskValue.</param>
-        /// <param name="HomeNotional">HomeNotional.</param>
-        /// <param name="ForeignNotional">ForeignNotional.</param>
+        /// <param name="HomeNotional">HomeNotional (default to 0.0).</param>
+        /// <param name="ForeignNotional">ForeignNotional (default to 0.0).</param>
         /// <param name="PosState">PosState.</param>
         /// <param name="PosCost">PosCost.</param>
         /// <param name="PosCost2">PosCost2.</param>
@@ -118,25 +118,25 @@ namespace IO.Swagger.Model
         /// <param name="LongBankrupt">LongBankrupt.</param>
         /// <param name="ShortBankrupt">ShortBankrupt.</param>
         /// <param name="TaxBase">TaxBase.</param>
-        /// <param name="IndicativeTaxRate">IndicativeTaxRate.</param>
+        /// <param name="IndicativeTaxRate">IndicativeTaxRate (default to 0.0).</param>
         /// <param name="IndicativeTax">IndicativeTax.</param>
         /// <param name="UnrealisedTax">UnrealisedTax.</param>
         /// <param name="UnrealisedPnl">UnrealisedPnl.</param>
-        /// <param name="UnrealisedPnlPcnt">UnrealisedPnlPcnt.</param>
-        /// <param name="UnrealisedRoePcnt">UnrealisedRoePcnt.</param>
-        /// <param name="SimpleQty">SimpleQty.</param>
-        /// <param name="SimpleCost">SimpleCost.</param>
-        /// <param name="SimpleValue">SimpleValue.</param>
-        /// <param name="SimplePnl">SimplePnl.</param>
-        /// <param name="SimplePnlPcnt">SimplePnlPcnt.</param>
-        /// <param name="AvgCostPrice">AvgCostPrice.</param>
-        /// <param name="AvgEntryPrice">AvgEntryPrice.</param>
-        /// <param name="BreakEvenPrice">BreakEvenPrice.</param>
-        /// <param name="MarginCallPrice">MarginCallPrice.</param>
-        /// <param name="LiquidationPrice">LiquidationPrice.</param>
-        /// <param name="BankruptPrice">BankruptPrice.</param>
+        /// <param name="UnrealisedPnlPcnt">UnrealisedPnlPcnt (default to 0.0).</param>
+        /// <param name="UnrealisedRoePcnt">UnrealisedRoePcnt (default to 0.0).</param>
+        /// <param name="SimpleQty">SimpleQty (default to 0.0).</param>
+        /// <param name="SimpleCost">SimpleCost (default to 0.0).</param>
+        /// <param name="SimpleValue">SimpleValue (default to 0.0).</param>
+        /// <param name="SimplePnl">SimplePnl (default to 0.0).</param>
+        /// <param name="SimplePnlPcnt">SimplePnlPcnt (default to 0.0).</param>
+        /// <param name="AvgCostPrice">AvgCostPrice (default to 0.0).</param>
+        /// <param name="AvgEntryPrice">AvgEntryPrice (default to 0.0).</param>
+        /// <param name="BreakEvenPrice">BreakEvenPrice (default to 0.0).</param>
+        /// <param name="MarginCallPrice">MarginCallPrice (default to 0.0).</param>
+        /// <param name="LiquidationPrice">LiquidationPrice (default to 0.0).</param>
+        /// <param name="BankruptPrice">BankruptPrice (default to 0.0).</param>
         /// <param name="Timestamp">Timestamp.</param>
-        /// <param name="LastPrice">LastPrice.</param>
+        /// <param name="LastPrice">LastPrice (default to 0.0).</param>
         /// <param name="LastValue">LastValue.</param>
         public Position(decimal? Account = null, string Symbol = null, string Currency = null, string Underlying = null, string QuoteCurrency = null, double? Commission = null, double? InitMarginReq = null, double? MaintMarginReq = null, decimal? RiskLimit = null, double? Leverage = null, bool? CrossMargin = null, double? DeleveragePercentile = null, decimal? RebalancedPnl = null, decimal? PrevRealisedPnl = null, decimal? PrevUnrealisedPnl = null, double? PrevClosePrice = null, DateTime? OpeningTimestamp = null, decimal? OpeningQty = null, decimal? OpeningCost = null, decimal? OpeningComm = null, decimal? OpenOrderBuyQty = null, decimal? OpenOrderBuyCost = null, decimal? OpenOrderBuyPremium = null, decimal? OpenOrderSellQty = null, decimal? OpenOrderSellCost = null, decimal? OpenOrderSellPremium = null, decimal? ExecBuyQty = null, decimal? ExecBuyCost = null, decimal? ExecSellQty = null, decimal? ExecSellCost = null, decimal? ExecQty = null, decimal? ExecCost = null, decimal? ExecComm = null, DateTime? CurrentTimestamp = null, decimal? CurrentQty = null, decimal? CurrentCost = null, decimal? CurrentComm = null, decimal? RealisedCost = null, decimal? UnrealisedCost = null, decimal? GrossOpenCost = null, decimal? GrossOpenPremium = null, decimal? GrossExecCost = null, bool? IsOpen = null, double? MarkPrice = null, decimal? MarkValue = null, decimal? RiskValue = null, double? HomeNotional = null, double? ForeignNotional = null, string PosState = null, decimal? PosCost = null, decimal? PosCost2 = null, decimal? PosCross = null, decimal? PosInit = null, decimal? PosComm = null, decimal? PosLoss = null, decimal? PosMargin = null, decimal? PosMaint = null, decimal? PosAllowance = null, decimal? TaxableMargin = null, decimal? InitMargin = null, decimal? MaintMargin = null, decimal? SessionMargin = null, decimal? TargetExcessMargin = null, decimal? VarMargin = null, decimal? RealisedGrossPnl = null, decimal? RealisedTax = null, decimal? RealisedPnl = null, decimal? UnrealisedGrossPnl = null, decimal? LongBankrupt = null, decimal? ShortBankrupt = null, decimal? TaxBase = null, double? IndicativeTaxRate = null, decimal? IndicativeTax = null, decimal? UnrealisedTax = null, decimal? UnrealisedPnl = null, double? UnrealisedPnlPcnt = null, double? UnrealisedRoePcnt = null, double? SimpleQty = null, double? SimpleCost = null, double? SimpleValue = null, double? SimplePnl = null, double? SimplePnlPcnt = null, double? AvgCostPrice = null, double? AvgEntryPrice = null, double? BreakEvenPrice = null, double? MarginCallPrice = null, double? LiquidationPrice = null, double? BankruptPrice = null, DateTime? Timestamp = null, double? LastPrice = null, decimal? LastValue = null)
         {
@@ -169,17 +169,65 @@ namespace IO.Swagger.Model
             }
             this.Underlying = Underlying;
             this.QuoteCurrency = QuoteCurrency;
-            this.Commission = Commission;
-            this.InitMarginReq = InitMarginReq;
-            this.MaintMarginReq = MaintMarginReq;
+            // use default value if no "Commission" provided
+            if (Commission == null)
+            {
+                this.Commission = 0.0;
+            }
+            else
+            {
+                this.Commission = Commission;
+            }
+            // use default value if no "InitMarginReq" provided
+            if (InitMarginReq == null)
+            {
+                this.InitMarginReq = 0.0;
+            }
+            else
+            {
+                this.InitMarginReq = InitMarginReq;
+            }
+            // use default value if no "MaintMarginReq" provided
+            if (MaintMarginReq == null)
+            {
+                this.MaintMarginReq = 0.0;
+            }
+            else
+            {
+                this.MaintMarginReq = MaintMarginReq;
+            }
             this.RiskLimit = RiskLimit;
-            this.Leverage = Leverage;
+            // use default value if no "Leverage" provided
+            if (Leverage == null)
+            {
+                this.Leverage = 0.0;
+            }
+            else
+            {
+                this.Leverage = Leverage;
+            }
             this.CrossMargin = CrossMargin;
-            this.DeleveragePercentile = DeleveragePercentile;
+            // use default value if no "DeleveragePercentile" provided
+            if (DeleveragePercentile == null)
+            {
+                this.DeleveragePercentile = 0.0;
+            }
+            else
+            {
+                this.DeleveragePercentile = DeleveragePercentile;
+            }
             this.RebalancedPnl = RebalancedPnl;
             this.PrevRealisedPnl = PrevRealisedPnl;
             this.PrevUnrealisedPnl = PrevUnrealisedPnl;
-            this.PrevClosePrice = PrevClosePrice;
+            // use default value if no "PrevClosePrice" provided
+            if (PrevClosePrice == null)
+            {
+                this.PrevClosePrice = 0.0;
+            }
+            else
+            {
+                this.PrevClosePrice = PrevClosePrice;
+            }
             this.OpeningTimestamp = OpeningTimestamp;
             this.OpeningQty = OpeningQty;
             this.OpeningCost = OpeningCost;
@@ -207,11 +255,35 @@ namespace IO.Swagger.Model
             this.GrossOpenPremium = GrossOpenPremium;
             this.GrossExecCost = GrossExecCost;
             this.IsOpen = IsOpen;
-            this.MarkPrice = MarkPrice;
+            // use default value if no "MarkPrice" provided
+            if (MarkPrice == null)
+            {
+                this.MarkPrice = 0.0;
+            }
+            else
+            {
+                this.MarkPrice = MarkPrice;
+            }
             this.MarkValue = MarkValue;
             this.RiskValue = RiskValue;
-            this.HomeNotional = HomeNotional;
-            this.ForeignNotional = ForeignNotional;
+            // use default value if no "HomeNotional" provided
+            if (HomeNotional == null)
+            {
+                this.HomeNotional = 0.0;
+            }
+            else
+            {
+                this.HomeNotional = HomeNotional;
+            }
+            // use default value if no "ForeignNotional" provided
+            if (ForeignNotional == null)
+            {
+                this.ForeignNotional = 0.0;
+            }
+            else
+            {
+                this.ForeignNotional = ForeignNotional;
+            }
             this.PosState = PosState;
             this.PosCost = PosCost;
             this.PosCost2 = PosCost2;
@@ -235,25 +307,145 @@ namespace IO.Swagger.Model
             this.LongBankrupt = LongBankrupt;
             this.ShortBankrupt = ShortBankrupt;
             this.TaxBase = TaxBase;
-            this.IndicativeTaxRate = IndicativeTaxRate;
+            // use default value if no "IndicativeTaxRate" provided
+            if (IndicativeTaxRate == null)
+            {
+                this.IndicativeTaxRate = 0.0;
+            }
+            else
+            {
+                this.IndicativeTaxRate = IndicativeTaxRate;
+            }
             this.IndicativeTax = IndicativeTax;
             this.UnrealisedTax = UnrealisedTax;
             this.UnrealisedPnl = UnrealisedPnl;
-            this.UnrealisedPnlPcnt = UnrealisedPnlPcnt;
-            this.UnrealisedRoePcnt = UnrealisedRoePcnt;
-            this.SimpleQty = SimpleQty;
-            this.SimpleCost = SimpleCost;
-            this.SimpleValue = SimpleValue;
-            this.SimplePnl = SimplePnl;
-            this.SimplePnlPcnt = SimplePnlPcnt;
-            this.AvgCostPrice = AvgCostPrice;
-            this.AvgEntryPrice = AvgEntryPrice;
-            this.BreakEvenPrice = BreakEvenPrice;
-            this.MarginCallPrice = MarginCallPrice;
-            this.LiquidationPrice = LiquidationPrice;
-            this.BankruptPrice = BankruptPrice;
+            // use default value if no "UnrealisedPnlPcnt" provided
+            if (UnrealisedPnlPcnt == null)
+            {
+                this.UnrealisedPnlPcnt = 0.0;
+            }
+            else
+            {
+                this.UnrealisedPnlPcnt = UnrealisedPnlPcnt;
+            }
+            // use default value if no "UnrealisedRoePcnt" provided
+            if (UnrealisedRoePcnt == null)
+            {
+                this.UnrealisedRoePcnt = 0.0;
+            }
+            else
+            {
+                this.UnrealisedRoePcnt = UnrealisedRoePcnt;
+            }
+            // use default value if no "SimpleQty" provided
+            if (SimpleQty == null)
+            {
+                this.SimpleQty = 0.0;
+            }
+            else
+            {
+                this.SimpleQty = SimpleQty;
+            }
+            // use default value if no "SimpleCost" provided
+            if (SimpleCost == null)
+            {
+                this.SimpleCost = 0.0;
+            }
+            else
+            {
+                this.SimpleCost = SimpleCost;
+            }
+            // use default value if no "SimpleValue" provided
+            if (SimpleValue == null)
+            {
+                this.SimpleValue = 0.0;
+            }
+            else
+            {
+                this.SimpleValue = SimpleValue;
+            }
+            // use default value if no "SimplePnl" provided
+            if (SimplePnl == null)
+            {
+                this.SimplePnl = 0.0;
+            }
+            else
+            {
+                this.SimplePnl = SimplePnl;
+            }
+            // use default value if no "SimplePnlPcnt" provided
+            if (SimplePnlPcnt == null)
+            {
+                this.SimplePnlPcnt = 0.0;
+            }
+            else
+            {
+                this.SimplePnlPcnt = SimplePnlPcnt;
+            }
+            // use default value if no "AvgCostPrice" provided
+            if (AvgCostPrice == null)
+            {
+                this.AvgCostPrice = 0.0;
+            }
+            else
+            {
+                this.AvgCostPrice = AvgCostPrice;
+            }
+            // use default value if no "AvgEntryPrice" provided
+            if (AvgEntryPrice == null)
+            {
+                this.AvgEntryPrice = 0.0;
+            }
+            else
+            {
+                this.AvgEntryPrice = AvgEntryPrice;
+            }
+            // use default value if no "BreakEvenPrice" provided
+            if (BreakEvenPrice == null)
+            {
+                this.BreakEvenPrice = 0.0;
+            }
+            else
+            {
+                this.BreakEvenPrice = BreakEvenPrice;
+            }
+            // use default value if no "MarginCallPrice" provided
+            if (MarginCallPrice == null)
+            {
+                this.MarginCallPrice = 0.0;
+            }
+            else
+            {
+                this.MarginCallPrice = MarginCallPrice;
+            }
+            // use default value if no "LiquidationPrice" provided
+            if (LiquidationPrice == null)
+            {
+                this.LiquidationPrice = 0.0;
+            }
+            else
+            {
+                this.LiquidationPrice = LiquidationPrice;
+            }
+            // use default value if no "BankruptPrice" provided
+            if (BankruptPrice == null)
+            {
+                this.BankruptPrice = 0.0;
+            }
+            else
+            {
+                this.BankruptPrice = BankruptPrice;
+            }
             this.Timestamp = Timestamp;
-            this.LastPrice = LastPrice;
+            // use default value if no "LastPrice" provided
+            if (LastPrice == null)
+            {
+                this.LastPrice = 0.0;
+            }
+            else
+            {
+                this.LastPrice = LastPrice;
+            }
             this.LastValue = LastValue;
         }
         

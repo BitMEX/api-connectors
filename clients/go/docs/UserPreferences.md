@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AnimationsEnabled** | **bool** |  | [optional] [default to null]
 **AnnouncementsLastSeen** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
 **ChatChannelID** | **float64** |  | [optional] [default to null]
 **ColorTheme** | **string** |  | [optional] [default to null]

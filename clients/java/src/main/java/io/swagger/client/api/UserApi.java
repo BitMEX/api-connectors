@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-01-03T10:34:33.567-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-03-04T11:15:54.597-06:00")
 public class UserApi {
   private ApiClient apiClient;
 
@@ -130,12 +130,12 @@ public class UserApi {
    * @return AccessToken
    * @throws ApiException if fails to make API call
    */
-  public AccessToken userConfirmEmail(String token) throws ApiException {
+  public AccessToken userConfirm(String token) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'token' is set
     if (token == null) {
-      throw new ApiException(400, "Missing the required parameter 'token' when calling userConfirmEmail");
+      throw new ApiException(400, "Missing the required parameter 'token' when calling userConfirm");
     }
     
     // create path and map variables
@@ -661,8 +661,45 @@ if (token != null)
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
-   * 
+   * Get the minimum withdrawal fee for a currency.
+   * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+   * @param currency  (optional, default to XBt)
+   * @return Double
+   * @throws ApiException if fails to make API call
+   */
+  public Double userMinWithdrawalFee(String currency) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // create path and map variables
+    String localVarPath = "/user/minWithdrawalFee".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "currency", currency));
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json", "application/xml", "text/xml", "application/javascript", "text/javascript"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json", "application/x-www-form-urlencoded"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] {  };
+
+    GenericType<Double> localVarReturnType = new GenericType<Double>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * Get secret key for setting up two-factor auth.
+   * Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
    * @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)
    * @return Boolean
    * @throws ApiException if fails to make API call

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -144,7 +144,7 @@ class UserApi(val defBasePath: String = "https://localhost/api/v1",
    * @param token  
    * @return AccessToken
    */
-  def userConfirmEmail (token: String) : Option[AccessToken] = {
+  def userConfirm (token: String) : Option[AccessToken] = {
     // create path and map variables
     val path = "/user/confirmEmail".replaceAll("\\{format\\}","json")
     val contentTypes = List("application/json", "application/x-www-form-urlencoded", "application/json")
@@ -732,8 +732,50 @@ class UserApi(val defBasePath: String = "https://localhost/api/v1",
   }
 
   /**
-   * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
-   * 
+   * Get the minimum withdrawal fee for a currency.
+   * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+   * @param currency  (optional, default to XBt)
+   * @return Double
+   */
+  def userMinWithdrawalFee (currency: String /* = XBt */) : Option[Double] = {
+    // create path and map variables
+    val path = "/user/minWithdrawalFee".replaceAll("\\{format\\}","json")
+    val contentTypes = List("application/json", "application/x-www-form-urlencoded", "application/json")
+    val contentType = contentTypes(0)
+
+    // query params
+    val queryParams = new HashMap[String, String]
+    val headerParams = new HashMap[String, String]
+    val formParams = new HashMap[String, String]
+
+    if(String.valueOf(currency) != "null") queryParams += "currency" -> currency.toString
+    
+    
+    var postBody: AnyRef = null
+
+    if(contentType.startsWith("multipart/form-data")) {
+      val mp = new FormDataMultiPart()
+      
+      postBody = mp
+    }
+    else {
+    }
+
+    try {
+      apiInvoker.invokeApi(basePath, path, "GET", queryParams.toMap, formParams.toMap, postBody, headerParams.toMap, contentType) match {
+        case s: String =>
+           Some(ApiInvoker.deserialize(s, "", classOf[Double]).asInstanceOf[Double])
+        case _ => None
+      }
+    } catch {
+      case ex: ApiException if ex.code == 404 => None
+      case ex: ApiException => throw ex
+    }
+  }
+
+  /**
+   * Get secret key for setting up two-factor auth.
+   * Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
    * @param _type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)
    * @return Boolean
    */

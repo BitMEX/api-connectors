@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **confirmedDebit** | **NSNumber*** |  | [optional] 
 **timestamp** | **NSDate*** |  | [optional] 
 **addr** | **NSString*** |  | [optional] 
+**withdrawalLock** | [**NSArray&lt;SWGXAny&gt;***](SWGXAny.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**timestamp** | [**\DateTime**](Date.md) |  | 
+**timestamp** | [**\DateTime**](\DateTime.md) |  | 
 **symbol** | **string** |  | 
-**funding_interval** | [**\DateTime**](Date.md) |  | [optional] 
+**funding_interval** | [**\DateTime**](\DateTime.md) |  | [optional] 
 **funding_rate** | **double** |  | [optional] 
 **funding_rate_daily** | **double** |  | [optional] 
 

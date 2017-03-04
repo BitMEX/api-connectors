@@ -21,19 +21,19 @@ public class Position  {
   @SerializedName("quoteCurrency")
   private String quoteCurrency = null;
   @SerializedName("commission")
-  private Double commission = null;
+  private Double commission = 0.0;
   @SerializedName("initMarginReq")
-  private Double initMarginReq = null;
+  private Double initMarginReq = 0.0;
   @SerializedName("maintMarginReq")
-  private Double maintMarginReq = null;
+  private Double maintMarginReq = 0.0;
   @SerializedName("riskLimit")
   private BigDecimal riskLimit = null;
   @SerializedName("leverage")
-  private Double leverage = null;
+  private Double leverage = 0.0;
   @SerializedName("crossMargin")
   private Boolean crossMargin = null;
   @SerializedName("deleveragePercentile")
-  private Double deleveragePercentile = null;
+  private Double deleveragePercentile = 0.0;
   @SerializedName("rebalancedPnl")
   private BigDecimal rebalancedPnl = null;
   @SerializedName("prevRealisedPnl")
@@ -41,7 +41,7 @@ public class Position  {
   @SerializedName("prevUnrealisedPnl")
   private BigDecimal prevUnrealisedPnl = null;
   @SerializedName("prevClosePrice")
-  private Double prevClosePrice = null;
+  private Double prevClosePrice = 0.0;
   @SerializedName("openingTimestamp")
   private Date openingTimestamp = null;
   @SerializedName("openingQty")
@@ -97,15 +97,15 @@ public class Position  {
   @SerializedName("isOpen")
   private Boolean isOpen = null;
   @SerializedName("markPrice")
-  private Double markPrice = null;
+  private Double markPrice = 0.0;
   @SerializedName("markValue")
   private BigDecimal markValue = null;
   @SerializedName("riskValue")
   private BigDecimal riskValue = null;
   @SerializedName("homeNotional")
-  private Double homeNotional = null;
+  private Double homeNotional = 0.0;
   @SerializedName("foreignNotional")
-  private Double foreignNotional = null;
+  private Double foreignNotional = 0.0;
   @SerializedName("posState")
   private String posState = null;
   @SerializedName("posCost")
@@ -153,7 +153,7 @@ public class Position  {
   @SerializedName("taxBase")
   private BigDecimal taxBase = null;
   @SerializedName("indicativeTaxRate")
-  private Double indicativeTaxRate = null;
+  private Double indicativeTaxRate = 0.0;
   @SerializedName("indicativeTax")
   private BigDecimal indicativeTax = null;
   @SerializedName("unrealisedTax")
@@ -161,35 +161,35 @@ public class Position  {
   @SerializedName("unrealisedPnl")
   private BigDecimal unrealisedPnl = null;
   @SerializedName("unrealisedPnlPcnt")
-  private Double unrealisedPnlPcnt = null;
+  private Double unrealisedPnlPcnt = 0.0;
   @SerializedName("unrealisedRoePcnt")
-  private Double unrealisedRoePcnt = null;
+  private Double unrealisedRoePcnt = 0.0;
   @SerializedName("simpleQty")
-  private Double simpleQty = null;
+  private Double simpleQty = 0.0;
   @SerializedName("simpleCost")
-  private Double simpleCost = null;
+  private Double simpleCost = 0.0;
   @SerializedName("simpleValue")
-  private Double simpleValue = null;
+  private Double simpleValue = 0.0;
   @SerializedName("simplePnl")
-  private Double simplePnl = null;
+  private Double simplePnl = 0.0;
   @SerializedName("simplePnlPcnt")
-  private Double simplePnlPcnt = null;
+  private Double simplePnlPcnt = 0.0;
   @SerializedName("avgCostPrice")
-  private Double avgCostPrice = null;
+  private Double avgCostPrice = 0.0;
   @SerializedName("avgEntryPrice")
-  private Double avgEntryPrice = null;
+  private Double avgEntryPrice = 0.0;
   @SerializedName("breakEvenPrice")
-  private Double breakEvenPrice = null;
+  private Double breakEvenPrice = 0.0;
   @SerializedName("marginCallPrice")
-  private Double marginCallPrice = null;
+  private Double marginCallPrice = 0.0;
   @SerializedName("liquidationPrice")
-  private Double liquidationPrice = null;
+  private Double liquidationPrice = 0.0;
   @SerializedName("bankruptPrice")
-  private Double bankruptPrice = null;
+  private Double bankruptPrice = 0.0;
   @SerializedName("timestamp")
   private Date timestamp = null;
   @SerializedName("lastPrice")
-  private Double lastPrice = null;
+  private Double lastPrice = 0.0;
   @SerializedName("lastValue")
   private BigDecimal lastValue = null;
 

@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **float** |  | [optional] 
-**date** | [**\DateTime**](Date.md) |  | 
+**date** | [**\DateTime**](\DateTime.md) |  | 
 **user** | **string** |  | 
 **message** | **string** |  | 
 **html** | **string** |  | 

@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**user_cancel_withdrawal**](UserApi.md#user_cancel_withdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 [**user_check_referral_code**](UserApi.md#user_check_referral_code) | **GET** /user/checkReferralCode | Check if a referral code is valid.
-[**user_confirm_email**](UserApi.md#user_confirm_email) | **POST** /user/confirmEmail | Confirm your email address with a token.
+[**user_confirm**](UserApi.md#user_confirm) | **POST** /user/confirmEmail | Confirm your email address with a token.
 [**user_confirm_enable_tfa**](UserApi.md#user_confirm_enable_tfa) | **POST** /user/confirmEnableTFA | Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
 [**user_confirm_withdrawal**](UserApi.md#user_confirm_withdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
 [**user_disable_tfa**](UserApi.md#user_disable_tfa) | **POST** /user/disableTFA | Disable two-factor auth for this account.
@@ -20,7 +20,8 @@ Method | HTTP request | Description
 [**user_get_wallet_summary**](UserApi.md#user_get_wallet_summary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**user_logout**](UserApi.md#user_logout) | **POST** /user/logout | Log out of BitMEX.
 [**user_logout_all**](UserApi.md#user_logout_all) | **POST** /user/logoutAll | Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
-[**user_request_enable_tfa**](UserApi.md#user_request_enable_tfa) | **POST** /user/requestEnableTFA | Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+[**user_min_withdrawal_fee**](UserApi.md#user_min_withdrawal_fee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
+[**user_request_enable_tfa**](UserApi.md#user_request_enable_tfa) | **POST** /user/requestEnableTFA | Get secret key for setting up two-factor auth.
 [**user_request_withdrawal**](UserApi.md#user_request_withdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**user_save_preferences**](UserApi.md#user_save_preferences) | **POST** /user/preferences | Save user preferences.
 [**user_update**](UserApi.md#user_update) | **PUT** /user | Update your password, name, and other attributes.
@@ -119,8 +120,8 @@ No authorization required
 
 
 
-# **user_confirm_email**
-> AccessToken user_confirm_email(token)
+# **user_confirm**
+> AccessToken user_confirm(token)
 
 Confirm your email address with a token.
 
@@ -136,10 +137,10 @@ token = "token_example" # String |
 
 begin
   #Confirm your email address with a token.
-  result = api_instance.user_confirm_email(token)
+  result = api_instance.user_confirm(token)
   p result
 rescue SwaggerClient::ApiError => e
-  puts "Exception when calling UserApi->user_confirm_email: #{e}"
+  puts "Exception when calling UserApi->user_confirm: #{e}"
 end
 ```
 
@@ -731,10 +732,60 @@ No authorization required
 
 
 
+# **user_min_withdrawal_fee**
+> Float user_min_withdrawal_fee(opts)
+
+Get the minimum withdrawal fee for a currency.
+
+This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+
+api_instance = SwaggerClient::UserApi.new
+
+opts = { 
+  currency: "XBt" # String | 
+}
+
+begin
+  #Get the minimum withdrawal fee for a currency.
+  result = api_instance.user_min_withdrawal_fee(opts)
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling UserApi->user_min_withdrawal_fee: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **String**|  | [optional] [default to XBt]
+
+### Return type
+
+**Float**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+
+
 # **user_request_enable_tfa**
 > BOOLEAN user_request_enable_tfa(opts)
 
-Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+Get secret key for setting up two-factor auth.
+
+Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
 
 ### Example
 ```ruby
@@ -748,7 +799,7 @@ opts = {
 }
 
 begin
-  #Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+  #Get secret key for setting up two-factor auth.
   result = api_instance.user_request_enable_tfa(opts)
   p result
 rescue SwaggerClient::ApiError => e

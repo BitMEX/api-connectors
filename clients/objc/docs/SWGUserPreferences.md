@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**animationsEnabled** | **NSNumber*** |  | [optional] 
 **announcementsLastSeen** | **NSDate*** |  | [optional] 
 **chatChannelID** | **NSNumber*** |  | [optional] 
 **colorTheme** | **NSString*** |  | [optional] 

@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**timestamp** | [**\DateTime**](Date.md) |  | 
+**timestamp** | [**\DateTime**](\DateTime.md) |  | 
 **symbol** | **string** |  | 
 **bid_size** | **float** |  | [optional] 
 **bid_price** | **double** |  | [optional] 

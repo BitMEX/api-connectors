@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **username** | **string** |  | 
 **email** | **string** |  | 
 **phone** | **string** |  | [optional] 
-**created** | [**\DateTime**](Date.md) |  | [optional] 
-**last_updated** | [**\DateTime**](Date.md) |  | [optional] 
+**created** | [**\DateTime**](\DateTime.md) |  | [optional] 
+**last_updated** | [**\DateTime**](\DateTime.md) |  | [optional] 
 **preferences** | [**\Swagger\Client\Model\UserPreferences**](UserPreferences.md) |  | [optional] 
 **tfa_enabled** | **string** |  | [optional] 
 **affiliate_id** | **string** |  | [optional] 

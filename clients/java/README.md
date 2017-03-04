@@ -139,7 +139,7 @@ Class | Method | HTTP request | Description
 *TradeApi* | [**tradeGetBucketed**](docs/TradeApi.md#tradeGetBucketed) | **GET** /trade/bucketed | Get previous trades in time buckets.
 *UserApi* | [**userCancelWithdrawal**](docs/UserApi.md#userCancelWithdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 *UserApi* | [**userCheckReferralCode**](docs/UserApi.md#userCheckReferralCode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
-*UserApi* | [**userConfirmEmail**](docs/UserApi.md#userConfirmEmail) | **POST** /user/confirmEmail | Confirm your email address with a token.
+*UserApi* | [**userConfirm**](docs/UserApi.md#userConfirm) | **POST** /user/confirmEmail | Confirm your email address with a token.
 *UserApi* | [**userConfirmEnableTFA**](docs/UserApi.md#userConfirmEnableTFA) | **POST** /user/confirmEnableTFA | Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
 *UserApi* | [**userConfirmWithdrawal**](docs/UserApi.md#userConfirmWithdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
 *UserApi* | [**userDisableTFA**](docs/UserApi.md#userDisableTFA) | **POST** /user/disableTFA | Disable two-factor auth for this account.
@@ -153,7 +153,8 @@ Class | Method | HTTP request | Description
 *UserApi* | [**userGetWalletSummary**](docs/UserApi.md#userGetWalletSummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 *UserApi* | [**userLogout**](docs/UserApi.md#userLogout) | **POST** /user/logout | Log out of BitMEX.
 *UserApi* | [**userLogoutAll**](docs/UserApi.md#userLogoutAll) | **POST** /user/logoutAll | Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
-*UserApi* | [**userRequestEnableTFA**](docs/UserApi.md#userRequestEnableTFA) | **POST** /user/requestEnableTFA | Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+*UserApi* | [**userMinWithdrawalFee**](docs/UserApi.md#userMinWithdrawalFee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
+*UserApi* | [**userRequestEnableTFA**](docs/UserApi.md#userRequestEnableTFA) | **POST** /user/requestEnableTFA | Get secret key for setting up two-factor auth.
 *UserApi* | [**userRequestWithdrawal**](docs/UserApi.md#userRequestWithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 *UserApi* | [**userSavePreferences**](docs/UserApi.md#userSavePreferences) | **POST** /user/preferences | Save user preferences.
 *UserApi* | [**userUpdate**](docs/UserApi.md#userUpdate) | **PUT** /user | Update your password, name, and other attributes.
@@ -169,6 +170,7 @@ Class | Method | HTTP request | Description
  - [ChatChannel](docs/ChatChannel.md)
  - [ConnectedUsers](docs/ConnectedUsers.md)
  - [Error](docs/Error.md)
+ - [ErrorError](docs/ErrorError.md)
  - [Execution](docs/Execution.md)
  - [Funding](docs/Funding.md)
  - [InlineResponse200](docs/InlineResponse200.md)
@@ -193,6 +195,7 @@ Class | Method | HTTP request | Description
  - [UserCommission](docs/UserCommission.md)
  - [UserPreferences](docs/UserPreferences.md)
  - [Wallet](docs/Wallet.md)
+ - [XAny](docs/XAny.md)
 
 
 ## Documentation for Authorization

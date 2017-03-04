@@ -67,6 +67,10 @@ public class JsonUtil {
       return new TypeToken<List<Error>>(){}.getType();
     }
     
+    if ("ErrorError".equalsIgnoreCase(className)) {
+      return new TypeToken<List<ErrorError>>(){}.getType();
+    }
+    
     if ("Execution".equalsIgnoreCase(className)) {
       return new TypeToken<List<Execution>>(){}.getType();
     }
@@ -163,6 +167,10 @@ public class JsonUtil {
       return new TypeToken<List<Wallet>>(){}.getType();
     }
     
+    if ("XAny".equalsIgnoreCase(className)) {
+      return new TypeToken<List<XAny>>(){}.getType();
+    }
+    
     return new TypeToken<List<Object>>(){}.getType();
   }
 
@@ -199,6 +207,10 @@ public class JsonUtil {
     
     if ("Error".equalsIgnoreCase(className)) {
       return new TypeToken<Error>(){}.getType();
+    }
+    
+    if ("ErrorError".equalsIgnoreCase(className)) {
+      return new TypeToken<ErrorError>(){}.getType();
     }
     
     if ("Execution".equalsIgnoreCase(className)) {
@@ -295,6 +307,10 @@ public class JsonUtil {
     
     if ("Wallet".equalsIgnoreCase(className)) {
       return new TypeToken<Wallet>(){}.getType();
+    }
+    
+    if ("XAny".equalsIgnoreCase(className)) {
+      return new TypeToken<XAny>(){}.getType();
     }
     
     return new TypeToken<Object>(){}.getType();

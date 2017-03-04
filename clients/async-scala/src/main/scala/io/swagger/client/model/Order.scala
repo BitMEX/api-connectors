@@ -36,6 +36,6 @@ cumQty: Option[Number],
 avgPx: Option[Double],
 multiLegReportingType: Option[String],
 text: Option[String],
-transactTime: Option[Date],
-timestamp: Option[Date]
+transactTime: Option[DateTime],
+timestamp: Option[DateTime]
 )

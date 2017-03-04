@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**date** | [**\DateTime**](Date.md) |  | 
+**date** | [**\DateTime**](\DateTime.md) |  | 
 **root_symbol** | **string** |  | 
 **currency** | **string** |  | [optional] 
 **volume** | **float** |  | [optional] 

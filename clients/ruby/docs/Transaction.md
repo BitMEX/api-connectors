@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **address** | **String** |  | [optional] 
 **tx** | **String** |  | [optional] 
 **text** | **String** |  | [optional] 
-**transact_time** | **Date** |  | [optional] 
-**timestamp** | **Date** |  | [optional] 
+**transact_time** | **DateTime** |  | [optional] 
+**timestamp** | **DateTime** |  | [optional] 
 
 

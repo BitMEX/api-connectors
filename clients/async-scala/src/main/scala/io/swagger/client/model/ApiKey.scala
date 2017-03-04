@@ -13,5 +13,5 @@ cidr: Option[String],
 permissions: Option[List[X-any]],
 enabled: Option[Boolean],
 userId: Number,
-created: Option[Date]
+created: Option[DateTime]
 )

@@ -7,6 +7,6 @@ import java.util.UUID
 case class AccessToken (
   id: String,
 ttl: Option[Double],  // time to live in seconds (2 weeks by default)
-created: Option[Date],
+created: Option[DateTime],
 userId: Option[Double]
 )

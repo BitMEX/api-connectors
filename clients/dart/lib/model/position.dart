@@ -25,15 +25,15 @@ class Position {
   
 
   @Property(name: 'commission')
-  double commission = null;
+  double commission = 0.0;
   
 
   @Property(name: 'initMarginReq')
-  double initMarginReq = null;
+  double initMarginReq = 0.0;
   
 
   @Property(name: 'maintMarginReq')
-  double maintMarginReq = null;
+  double maintMarginReq = 0.0;
   
 
   @Property(name: 'riskLimit')
@@ -41,7 +41,7 @@ class Position {
   
 
   @Property(name: 'leverage')
-  double leverage = null;
+  double leverage = 0.0;
   
 
   @Property(name: 'crossMargin')
@@ -49,7 +49,7 @@ class Position {
   
 
   @Property(name: 'deleveragePercentile')
-  double deleveragePercentile = null;
+  double deleveragePercentile = 0.0;
   
 
   @Property(name: 'rebalancedPnl')
@@ -65,7 +65,7 @@ class Position {
   
 
   @Property(name: 'prevClosePrice')
-  double prevClosePrice = null;
+  double prevClosePrice = 0.0;
   
 
   @Property(name: 'openingTimestamp')
@@ -177,7 +177,7 @@ class Position {
   
 
   @Property(name: 'markPrice')
-  double markPrice = null;
+  double markPrice = 0.0;
   
 
   @Property(name: 'markValue')
@@ -189,11 +189,11 @@ class Position {
   
 
   @Property(name: 'homeNotional')
-  double homeNotional = null;
+  double homeNotional = 0.0;
   
 
   @Property(name: 'foreignNotional')
-  double foreignNotional = null;
+  double foreignNotional = 0.0;
   
 
   @Property(name: 'posState')
@@ -289,7 +289,7 @@ class Position {
   
 
   @Property(name: 'indicativeTaxRate')
-  double indicativeTaxRate = null;
+  double indicativeTaxRate = 0.0;
   
 
   @Property(name: 'indicativeTax')
@@ -305,55 +305,55 @@ class Position {
   
 
   @Property(name: 'unrealisedPnlPcnt')
-  double unrealisedPnlPcnt = null;
+  double unrealisedPnlPcnt = 0.0;
   
 
   @Property(name: 'unrealisedRoePcnt')
-  double unrealisedRoePcnt = null;
+  double unrealisedRoePcnt = 0.0;
   
 
   @Property(name: 'simpleQty')
-  double simpleQty = null;
+  double simpleQty = 0.0;
   
 
   @Property(name: 'simpleCost')
-  double simpleCost = null;
+  double simpleCost = 0.0;
   
 
   @Property(name: 'simpleValue')
-  double simpleValue = null;
+  double simpleValue = 0.0;
   
 
   @Property(name: 'simplePnl')
-  double simplePnl = null;
+  double simplePnl = 0.0;
   
 
   @Property(name: 'simplePnlPcnt')
-  double simplePnlPcnt = null;
+  double simplePnlPcnt = 0.0;
   
 
   @Property(name: 'avgCostPrice')
-  double avgCostPrice = null;
+  double avgCostPrice = 0.0;
   
 
   @Property(name: 'avgEntryPrice')
-  double avgEntryPrice = null;
+  double avgEntryPrice = 0.0;
   
 
   @Property(name: 'breakEvenPrice')
-  double breakEvenPrice = null;
+  double breakEvenPrice = 0.0;
   
 
   @Property(name: 'marginCallPrice')
-  double marginCallPrice = null;
+  double marginCallPrice = 0.0;
   
 
   @Property(name: 'liquidationPrice')
-  double liquidationPrice = null;
+  double liquidationPrice = 0.0;
   
 
   @Property(name: 'bankruptPrice')
-  double bankruptPrice = null;
+  double bankruptPrice = 0.0;
   
 
   @Property(name: 'timestamp')
@@ -361,7 +361,7 @@ class Position {
   
 
   @Property(name: 'lastPrice')
-  double lastPrice = null;
+  double lastPrice = 0.0;
   
 
   @Property(name: 'lastValue')

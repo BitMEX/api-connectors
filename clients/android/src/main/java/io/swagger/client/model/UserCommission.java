@@ -14,6 +14,8 @@ public class UserCommission  {
   private Double takerFee = null;
   @SerializedName("settlementFee")
   private Double settlementFee = null;
+  @SerializedName("maxFee")
+  private Double maxFee = null;
 
   /**
    **/
@@ -45,6 +47,16 @@ public class UserCommission  {
     this.settlementFee = settlementFee;
   }
 
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getMaxFee() {
+    return maxFee;
+  }
+  public void setMaxFee(Double maxFee) {
+    this.maxFee = maxFee;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -57,7 +69,8 @@ public class UserCommission  {
     UserCommission userCommission = (UserCommission) o;
     return (makerFee == null ? userCommission.makerFee == null : makerFee.equals(userCommission.makerFee)) &&
         (takerFee == null ? userCommission.takerFee == null : takerFee.equals(userCommission.takerFee)) &&
-        (settlementFee == null ? userCommission.settlementFee == null : settlementFee.equals(userCommission.settlementFee));
+        (settlementFee == null ? userCommission.settlementFee == null : settlementFee.equals(userCommission.settlementFee)) &&
+        (maxFee == null ? userCommission.maxFee == null : maxFee.equals(userCommission.maxFee));
   }
 
   @Override
@@ -66,6 +79,7 @@ public class UserCommission  {
     result = 31 * result + (makerFee == null ? 0: makerFee.hashCode());
     result = 31 * result + (takerFee == null ? 0: takerFee.hashCode());
     result = 31 * result + (settlementFee == null ? 0: settlementFee.hashCode());
+    result = 31 * result + (maxFee == null ? 0: maxFee.hashCode());
     return result;
   }
 
@@ -77,6 +91,7 @@ public class UserCommission  {
     sb.append("  makerFee: ").append(makerFee).append("\n");
     sb.append("  takerFee: ").append(takerFee).append("\n");
     sb.append("  settlementFee: ").append(settlementFee).append("\n");
+    sb.append("  maxFee: ").append(maxFee).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

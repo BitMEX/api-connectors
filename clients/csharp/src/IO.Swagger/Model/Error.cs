@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -42,45 +42,17 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Error" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Error() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Error" /> class.
-        /// </summary>
-        /// <param name="Message">Message (required).</param>
-        /// <param name="Code">Code (required).</param>
-        public Error(string Message = null, decimal? Code = null)
+        /// <param name="_Error">_Error.</param>
+        public Error(ErrorError _Error = null)
         {
-            // to ensure "Message" is required (not null)
-            if (Message == null)
-            {
-                throw new InvalidDataException("Message is a required property for Error and cannot be null");
-            }
-            else
-            {
-                this.Message = Message;
-            }
-            // to ensure "Code" is required (not null)
-            if (Code == null)
-            {
-                throw new InvalidDataException("Code is a required property for Error and cannot be null");
-            }
-            else
-            {
-                this.Code = Code;
-            }
+            this._Error = _Error;
         }
         
         /// <summary>
-        /// Gets or Sets Message
+        /// Gets or Sets _Error
         /// </summary>
-        [DataMember(Name="message", EmitDefaultValue=false)]
-        public string Message { get; set; }
-        /// <summary>
-        /// Gets or Sets Code
-        /// </summary>
-        [DataMember(Name="code", EmitDefaultValue=false)]
-        public decimal? Code { get; set; }
+        [DataMember(Name="error", EmitDefaultValue=false)]
+        public ErrorError _Error { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -89,8 +61,7 @@ namespace IO.Swagger.Model
         {
             var sb = new StringBuilder();
             sb.Append("class Error {\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("  _Error: ").Append(_Error).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -128,14 +99,9 @@ namespace IO.Swagger.Model
 
             return 
                 (
-                    this.Message == other.Message ||
-                    this.Message != null &&
-                    this.Message.Equals(other.Message)
-                ) && 
-                (
-                    this.Code == other.Code ||
-                    this.Code != null &&
-                    this.Code.Equals(other.Code)
+                    this._Error == other._Error ||
+                    this._Error != null &&
+                    this._Error.Equals(other._Error)
                 );
         }
 
@@ -150,10 +116,8 @@ namespace IO.Swagger.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Message != null)
-                    hash = hash * 59 + this.Message.GetHashCode();
-                if (this.Code != null)
-                    hash = hash * 59 + this.Code.GetHashCode();
+                if (this._Error != null)
+                    hash = hash * 59 + this._Error.GetHashCode();
                 return hash;
             }
         }

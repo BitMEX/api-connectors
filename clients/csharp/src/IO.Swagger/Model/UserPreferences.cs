@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -42,6 +42,7 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UserPreferences" /> class.
         /// </summary>
+        /// <param name="AnimationsEnabled">AnimationsEnabled.</param>
         /// <param name="AnnouncementsLastSeen">AnnouncementsLastSeen.</param>
         /// <param name="ChatChannelID">ChatChannelID.</param>
         /// <param name="ColorTheme">ColorTheme.</param>
@@ -64,8 +65,9 @@ namespace IO.Swagger.Model
         /// <param name="TickerGroup">TickerGroup.</param>
         /// <param name="TickerPinned">TickerPinned.</param>
         /// <param name="TradeLayout">TradeLayout.</param>
-        public UserPreferences(DateTime? AnnouncementsLastSeen = null, double? ChatChannelID = null, string ColorTheme = null, string Currency = null, bool? Debug = null, List<string> DisableEmails = null, List<string> HideConfirmDialogs = null, bool? HideConnectionModal = null, bool? HideFromLeaderboard = null, bool? HideNameFromLeaderboard = null, List<string> HideNotifications = null, string Locale = null, List<string> MsgsSeen = null, XAny OrderBookBinning = null, string OrderBookType = null, bool? OrderControlsPlusMinus = null, List<string> Sounds = null, bool? StrictIPCheck = null, bool? StrictTimeout = null, string TickerGroup = null, bool? TickerPinned = null, string TradeLayout = null)
+        public UserPreferences(bool? AnimationsEnabled = null, DateTime? AnnouncementsLastSeen = null, double? ChatChannelID = null, string ColorTheme = null, string Currency = null, bool? Debug = null, List<string> DisableEmails = null, List<string> HideConfirmDialogs = null, bool? HideConnectionModal = null, bool? HideFromLeaderboard = null, bool? HideNameFromLeaderboard = null, List<string> HideNotifications = null, string Locale = null, List<string> MsgsSeen = null, XAny OrderBookBinning = null, string OrderBookType = null, bool? OrderControlsPlusMinus = null, List<string> Sounds = null, bool? StrictIPCheck = null, bool? StrictTimeout = null, string TickerGroup = null, bool? TickerPinned = null, string TradeLayout = null)
         {
+            this.AnimationsEnabled = AnimationsEnabled;
             this.AnnouncementsLastSeen = AnnouncementsLastSeen;
             this.ChatChannelID = ChatChannelID;
             this.ColorTheme = ColorTheme;
@@ -130,6 +132,11 @@ namespace IO.Swagger.Model
             this.TradeLayout = TradeLayout;
         }
         
+        /// <summary>
+        /// Gets or Sets AnimationsEnabled
+        /// </summary>
+        [DataMember(Name="animationsEnabled", EmitDefaultValue=false)]
+        public bool? AnimationsEnabled { get; set; }
         /// <summary>
         /// Gets or Sets AnnouncementsLastSeen
         /// </summary>
@@ -248,6 +255,7 @@ namespace IO.Swagger.Model
         {
             var sb = new StringBuilder();
             sb.Append("class UserPreferences {\n");
+            sb.Append("  AnimationsEnabled: ").Append(AnimationsEnabled).Append("\n");
             sb.Append("  AnnouncementsLastSeen: ").Append(AnnouncementsLastSeen).Append("\n");
             sb.Append("  ChatChannelID: ").Append(ChatChannelID).Append("\n");
             sb.Append("  ColorTheme: ").Append(ColorTheme).Append("\n");
@@ -306,6 +314,11 @@ namespace IO.Swagger.Model
                 return false;
 
             return 
+                (
+                    this.AnimationsEnabled == other.AnimationsEnabled ||
+                    this.AnimationsEnabled != null &&
+                    this.AnimationsEnabled.Equals(other.AnimationsEnabled)
+                ) && 
                 (
                     this.AnnouncementsLastSeen == other.AnnouncementsLastSeen ||
                     this.AnnouncementsLastSeen != null &&
@@ -429,6 +442,8 @@ namespace IO.Swagger.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
+                if (this.AnimationsEnabled != null)
+                    hash = hash * 59 + this.AnimationsEnabled.GetHashCode();
                 if (this.AnnouncementsLastSeen != null)
                     hash = hash * 59 + this.AnnouncementsLastSeen.GetHashCode();
                 if (this.ChatChannelID != null)

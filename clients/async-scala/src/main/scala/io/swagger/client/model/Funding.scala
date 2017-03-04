@@ -5,9 +5,9 @@ import java.util.UUID
 
 
 case class Funding (
-  timestamp: Date,
+  timestamp: DateTime,
 symbol: String,
-fundingInterval: Option[Date],
+fundingInterval: Option[DateTime],
 fundingRate: Option[Double],
 fundingRateDaily: Option[Double]
 )

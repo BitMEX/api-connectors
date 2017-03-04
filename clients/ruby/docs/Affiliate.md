@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **prev_payout** | **Float** |  | [optional] 
 **prev_turnover** | **Float** |  | [optional] 
 **prev_comm** | **Float** |  | [optional] 
-**prev_timestamp** | **Date** |  | [optional] 
+**prev_timestamp** | **DateTime** |  | [optional] 
 **exec_turnover** | **Float** |  | [optional] 
 **exec_comm** | **Float** |  | [optional] 
 **total_referrals** | **Float** |  | [optional] 
@@ -16,6 +16,6 @@ Name | Type | Description | Notes
 **total_comm** | **Float** |  | [optional] 
 **payout_pcnt** | **Float** |  | [optional] 
 **pending_payout** | **Float** |  | [optional] 
-**timestamp** | **Date** |  | [optional] 
+**timestamp** | **DateTime** |  | [optional] 
 
 

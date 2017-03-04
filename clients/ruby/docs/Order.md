@@ -34,7 +34,7 @@ Name | Type | Description | Notes
 **avg_px** | **Float** |  | [optional] 
 **multi_leg_reporting_type** | **String** |  | [optional] 
 **text** | **String** |  | [optional] 
-**transact_time** | **Date** |  | [optional] 
-**timestamp** | **Date** |  | [optional] 
+**transact_time** | **DateTime** |  | [optional] 
+**timestamp** | **DateTime** |  | [optional] 
 
 

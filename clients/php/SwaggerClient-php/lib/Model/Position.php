@@ -14,7 +14,7 @@
 /**
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section.
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section.
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -494,17 +494,17 @@ class Position implements ArrayAccess
         $this->container['currency'] = isset($data['currency']) ? $data['currency'] : null;
         $this->container['underlying'] = isset($data['underlying']) ? $data['underlying'] : null;
         $this->container['quote_currency'] = isset($data['quote_currency']) ? $data['quote_currency'] : null;
-        $this->container['commission'] = isset($data['commission']) ? $data['commission'] : null;
-        $this->container['init_margin_req'] = isset($data['init_margin_req']) ? $data['init_margin_req'] : null;
-        $this->container['maint_margin_req'] = isset($data['maint_margin_req']) ? $data['maint_margin_req'] : null;
+        $this->container['commission'] = isset($data['commission']) ? $data['commission'] : 0.0;
+        $this->container['init_margin_req'] = isset($data['init_margin_req']) ? $data['init_margin_req'] : 0.0;
+        $this->container['maint_margin_req'] = isset($data['maint_margin_req']) ? $data['maint_margin_req'] : 0.0;
         $this->container['risk_limit'] = isset($data['risk_limit']) ? $data['risk_limit'] : null;
-        $this->container['leverage'] = isset($data['leverage']) ? $data['leverage'] : null;
+        $this->container['leverage'] = isset($data['leverage']) ? $data['leverage'] : 0.0;
         $this->container['cross_margin'] = isset($data['cross_margin']) ? $data['cross_margin'] : null;
-        $this->container['deleverage_percentile'] = isset($data['deleverage_percentile']) ? $data['deleverage_percentile'] : null;
+        $this->container['deleverage_percentile'] = isset($data['deleverage_percentile']) ? $data['deleverage_percentile'] : 0.0;
         $this->container['rebalanced_pnl'] = isset($data['rebalanced_pnl']) ? $data['rebalanced_pnl'] : null;
         $this->container['prev_realised_pnl'] = isset($data['prev_realised_pnl']) ? $data['prev_realised_pnl'] : null;
         $this->container['prev_unrealised_pnl'] = isset($data['prev_unrealised_pnl']) ? $data['prev_unrealised_pnl'] : null;
-        $this->container['prev_close_price'] = isset($data['prev_close_price']) ? $data['prev_close_price'] : null;
+        $this->container['prev_close_price'] = isset($data['prev_close_price']) ? $data['prev_close_price'] : 0.0;
         $this->container['opening_timestamp'] = isset($data['opening_timestamp']) ? $data['opening_timestamp'] : null;
         $this->container['opening_qty'] = isset($data['opening_qty']) ? $data['opening_qty'] : null;
         $this->container['opening_cost'] = isset($data['opening_cost']) ? $data['opening_cost'] : null;
@@ -532,11 +532,11 @@ class Position implements ArrayAccess
         $this->container['gross_open_premium'] = isset($data['gross_open_premium']) ? $data['gross_open_premium'] : null;
         $this->container['gross_exec_cost'] = isset($data['gross_exec_cost']) ? $data['gross_exec_cost'] : null;
         $this->container['is_open'] = isset($data['is_open']) ? $data['is_open'] : null;
-        $this->container['mark_price'] = isset($data['mark_price']) ? $data['mark_price'] : null;
+        $this->container['mark_price'] = isset($data['mark_price']) ? $data['mark_price'] : 0.0;
         $this->container['mark_value'] = isset($data['mark_value']) ? $data['mark_value'] : null;
         $this->container['risk_value'] = isset($data['risk_value']) ? $data['risk_value'] : null;
-        $this->container['home_notional'] = isset($data['home_notional']) ? $data['home_notional'] : null;
-        $this->container['foreign_notional'] = isset($data['foreign_notional']) ? $data['foreign_notional'] : null;
+        $this->container['home_notional'] = isset($data['home_notional']) ? $data['home_notional'] : 0.0;
+        $this->container['foreign_notional'] = isset($data['foreign_notional']) ? $data['foreign_notional'] : 0.0;
         $this->container['pos_state'] = isset($data['pos_state']) ? $data['pos_state'] : null;
         $this->container['pos_cost'] = isset($data['pos_cost']) ? $data['pos_cost'] : null;
         $this->container['pos_cost2'] = isset($data['pos_cost2']) ? $data['pos_cost2'] : null;
@@ -560,25 +560,25 @@ class Position implements ArrayAccess
         $this->container['long_bankrupt'] = isset($data['long_bankrupt']) ? $data['long_bankrupt'] : null;
         $this->container['short_bankrupt'] = isset($data['short_bankrupt']) ? $data['short_bankrupt'] : null;
         $this->container['tax_base'] = isset($data['tax_base']) ? $data['tax_base'] : null;
-        $this->container['indicative_tax_rate'] = isset($data['indicative_tax_rate']) ? $data['indicative_tax_rate'] : null;
+        $this->container['indicative_tax_rate'] = isset($data['indicative_tax_rate']) ? $data['indicative_tax_rate'] : 0.0;
         $this->container['indicative_tax'] = isset($data['indicative_tax']) ? $data['indicative_tax'] : null;
         $this->container['unrealised_tax'] = isset($data['unrealised_tax']) ? $data['unrealised_tax'] : null;
         $this->container['unrealised_pnl'] = isset($data['unrealised_pnl']) ? $data['unrealised_pnl'] : null;
-        $this->container['unrealised_pnl_pcnt'] = isset($data['unrealised_pnl_pcnt']) ? $data['unrealised_pnl_pcnt'] : null;
-        $this->container['unrealised_roe_pcnt'] = isset($data['unrealised_roe_pcnt']) ? $data['unrealised_roe_pcnt'] : null;
-        $this->container['simple_qty'] = isset($data['simple_qty']) ? $data['simple_qty'] : null;
-        $this->container['simple_cost'] = isset($data['simple_cost']) ? $data['simple_cost'] : null;
-        $this->container['simple_value'] = isset($data['simple_value']) ? $data['simple_value'] : null;
-        $this->container['simple_pnl'] = isset($data['simple_pnl']) ? $data['simple_pnl'] : null;
-        $this->container['simple_pnl_pcnt'] = isset($data['simple_pnl_pcnt']) ? $data['simple_pnl_pcnt'] : null;
-        $this->container['avg_cost_price'] = isset($data['avg_cost_price']) ? $data['avg_cost_price'] : null;
-        $this->container['avg_entry_price'] = isset($data['avg_entry_price']) ? $data['avg_entry_price'] : null;
-        $this->container['break_even_price'] = isset($data['break_even_price']) ? $data['break_even_price'] : null;
-        $this->container['margin_call_price'] = isset($data['margin_call_price']) ? $data['margin_call_price'] : null;
-        $this->container['liquidation_price'] = isset($data['liquidation_price']) ? $data['liquidation_price'] : null;
-        $this->container['bankrupt_price'] = isset($data['bankrupt_price']) ? $data['bankrupt_price'] : null;
+        $this->container['unrealised_pnl_pcnt'] = isset($data['unrealised_pnl_pcnt']) ? $data['unrealised_pnl_pcnt'] : 0.0;
+        $this->container['unrealised_roe_pcnt'] = isset($data['unrealised_roe_pcnt']) ? $data['unrealised_roe_pcnt'] : 0.0;
+        $this->container['simple_qty'] = isset($data['simple_qty']) ? $data['simple_qty'] : 0.0;
+        $this->container['simple_cost'] = isset($data['simple_cost']) ? $data['simple_cost'] : 0.0;
+        $this->container['simple_value'] = isset($data['simple_value']) ? $data['simple_value'] : 0.0;
+        $this->container['simple_pnl'] = isset($data['simple_pnl']) ? $data['simple_pnl'] : 0.0;
+        $this->container['simple_pnl_pcnt'] = isset($data['simple_pnl_pcnt']) ? $data['simple_pnl_pcnt'] : 0.0;
+        $this->container['avg_cost_price'] = isset($data['avg_cost_price']) ? $data['avg_cost_price'] : 0.0;
+        $this->container['avg_entry_price'] = isset($data['avg_entry_price']) ? $data['avg_entry_price'] : 0.0;
+        $this->container['break_even_price'] = isset($data['break_even_price']) ? $data['break_even_price'] : 0.0;
+        $this->container['margin_call_price'] = isset($data['margin_call_price']) ? $data['margin_call_price'] : 0.0;
+        $this->container['liquidation_price'] = isset($data['liquidation_price']) ? $data['liquidation_price'] : 0.0;
+        $this->container['bankrupt_price'] = isset($data['bankrupt_price']) ? $data['bankrupt_price'] : 0.0;
         $this->container['timestamp'] = isset($data['timestamp']) ? $data['timestamp'] : null;
-        $this->container['last_price'] = isset($data['last_price']) ? $data['last_price'] : null;
+        $this->container['last_price'] = isset($data['last_price']) ? $data['last_price'] : 0.0;
         $this->container['last_value'] = isset($data['last_value']) ? $data['last_value'] : null;
     }
 

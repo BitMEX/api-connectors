@@ -43,7 +43,7 @@ excessMargin: Option[Number],
 excessMarginPcnt: Option[Double],
 availableMargin: Option[Number],
 withdrawableMargin: Option[Number],
-timestamp: Option[Date],
+timestamp: Option[DateTime],
 grossLastValue: Option[Number],
 commission: Option[Double]
 )

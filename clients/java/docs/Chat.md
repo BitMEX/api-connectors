@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**date** | [**LocalDate**](LocalDate.md) |  | 
+**date** | [**DateTime**](DateTime.md) |  | 
 **user** | **String** |  | 
 **message** | **String** |  | 
 **html** | **String** |  | 

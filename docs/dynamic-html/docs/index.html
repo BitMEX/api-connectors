@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-responsive.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <script src="assets/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+  <script src="assets/js/main.js" type="text/javascript"></script>
+
+  <title>REST API Resources</title>
+</head>
+<body>
+  <div class="header">
+    <div class="top-bar">
+      <h1 id="logo"><a class="logo" href="/"><span>Swagger</span><span class="light">API Docs</span></a></h1>
+    </div>
+  </div>
+  <div class="model-container"></div>
+  <div class="content">
+    <div class="box clearfix">
+      <div class="sidebar">
+        <div class="section-box">
+          <div class="section-header">
+            Overview
+          </div>
+          <ul>
+            <li>Getting Started</li>
+          </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/APIKeyApi">APIKeyApi</a>
+          </div>
+          <ul>
+            <li><a href="#!/APIKeyApi#aPIKey.disable">aPIKey.disable</a></li>
+            <li><a href="#!/APIKeyApi#aPIKey.enable">aPIKey.enable</a></li>
+            <li><a href="#!/APIKeyApi#aPIKey.get">aPIKey.get</a></li>
+            <li><a href="#!/APIKeyApi#aPIKey.new">aPIKey.new</a></li>
+            <li><a href="#!/APIKeyApi#aPIKey.remove">aPIKey.remove</a></li>
+          </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/AnnouncementApi">AnnouncementApi</a>
+          </div>
+          <ul>
+            <li><a href="#!/AnnouncementApi#announcement.get">announcement.get</a></li>
+            <li><a href="#!/AnnouncementApi#announcement.getUrgent">announcement.getUrgent</a></li>
+          </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/ChatApi">ChatApi</a>
+          </div>
+          <ul>
+            <li><a href="#!/ChatApi#chat.get">chat.get</a></li>
+            <li><a href="#!/ChatApi#chat.getChannels">chat.getChannels</a></li>
+            <li><a href="#!/ChatApi#chat.getConnected">chat.getConnected</a></li>
+            <li><a href="#!/ChatApi#chat.new">chat.new</a></li>
+          </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/ExecutionApi">ExecutionApi</a>
+          </div>
+          <ul>
+            <li><a href="#!/ExecutionApi#execution.get">execution.get</a></li>
+            <li><a href="#!/ExecutionApi#execution.getTradeHistory">execution.getTradeHistory</a></li>
+          </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/FundingApi">FundingApi</a>
+          </div>
+          <ul>
+            <li><a href="#!/FundingApi#funding.get">funding.get</a></li>
+          </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/InstrumentApi">InstrumentApi</a>
+          </div>
+          <ul>
+            <li><a href="#!/InstrumentApi#instrument.get">instrument.get</a></li>
+            <li><a href="#!/InstrumentApi#instrument.getActive">instrument.getActive</a></li>
+            <li><a href="#!/InstrumentApi#instrument.getActiveAndIndices">instrument.getActiveAndIndices</a></li>
+            <li><a href="#!/InstrumentApi#instrument.getActiveIntervals">instrument.getActiveIntervals</a></li>
+            <li><a href="#!/InstrumentApi#instrument.getIndices">instrument.getIndices</a></li>
+          </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/InsuranceApi">InsuranceApi</a>
+          </div>
+          <ul>
+            <li><a href="#!/InsuranceApi#insurance.get">insurance.get</a></li>
+          </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/LeaderboardApi">LeaderboardApi</a>
+          </div>
+          <ul>
+            <li><a href="#!/LeaderboardApi#leaderboard.get">leaderboard.get</a></li>
+          </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/LiquidationApi">LiquidationApi</a>
+          </div>
+          <ul>
+            <li><a href="#!/LiquidationApi#liquidation.get">liquidation.get</a></li>
+          </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/OrderApi">OrderApi</a>
+          </div>
+          <ul>
+            <li><a href="#!/OrderApi#order.amend">order.amend</a></li>
+            <li><a href="#!/OrderApi#order.amendBulk">order.amendBulk</a></li>
+            <li><a href="#!/OrderApi#order.cancel">order.cancel</a></li>
+            <li><a href="#!/OrderApi#order.cancelAll">order.cancelAll</a></li>
+            <li><a href="#!/OrderApi#order.cancelAllAfter">order.cancelAllAfter</a></li>
+            <li><a href="#!/OrderApi#order.closePosition">order.closePosition</a></li>
+            <li><a href="#!/OrderApi#order.getOrders">order.getOrders</a></li>
+            <li><a href="#!/OrderApi#order.new">order.new</a></li>
+            <li><a href="#!/OrderApi#order.newBulk">order.newBulk</a></li>
+          </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/OrderBookApi">OrderBookApi</a>
+          </div>
+          <ul>
+            <li><a href="#!/OrderBookApi#orderBook.get">orderBook.get</a></li>
+            <li><a href="#!/OrderBookApi#orderBook.getL2">orderBook.getL2</a></li>
+          </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/PositionApi">PositionApi</a>
+          </div>
+          <ul>
+            <li><a href="#!/PositionApi#position.get">position.get</a></li>
+            <li><a href="#!/PositionApi#position.isolateMargin">position.isolateMargin</a></li>
+            <li><a href="#!/PositionApi#position.transferIsolatedMargin">position.transferIsolatedMargin</a></li>
+            <li><a href="#!/PositionApi#position.updateLeverage">position.updateLeverage</a></li>
+            <li><a href="#!/PositionApi#position.updateRiskLimit">position.updateRiskLimit</a></li>
+          </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/QuoteApi">QuoteApi</a>
+          </div>
+          <ul>
+            <li><a href="#!/QuoteApi#quote.get">quote.get</a></li>
+            <li><a href="#!/QuoteApi#quote.getBucketed">quote.getBucketed</a></li>
+          </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/SchemaApi">SchemaApi</a>
+          </div>
+          <ul>
+            <li><a href="#!/SchemaApi#schema.get">schema.get</a></li>
+            <li><a href="#!/SchemaApi#schema.websocketHelp">schema.websocketHelp</a></li>
+          </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/SettlementApi">SettlementApi</a>
+          </div>
+          <ul>
+            <li><a href="#!/SettlementApi#settlement.get">settlement.get</a></li>
+          </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/StatsApi">StatsApi</a>
+          </div>
+          <ul>
+            <li><a href="#!/StatsApi#stats.get">stats.get</a></li>
+            <li><a href="#!/StatsApi#stats.history">stats.history</a></li>
+          </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/TradeApi">TradeApi</a>
+          </div>
+          <ul>
+            <li><a href="#!/TradeApi#trade.get">trade.get</a></li>
+            <li><a href="#!/TradeApi#trade.getBucketed">trade.getBucketed</a></li>
+          </ul>
+        </div>
+        <div class="section-box">
+          <div class="section-header">
+            <a href="#!/UserApi">UserApi</a>
+          </div>
+          <ul>
+            <li><a href="#!/UserApi#user.cancelWithdrawal">user.cancelWithdrawal</a></li>
+            <li><a href="#!/UserApi#user.checkReferralCode">user.checkReferralCode</a></li>
+            <li><a href="#!/UserApi#user.confirm">user.confirm</a></li>
+            <li><a href="#!/UserApi#user.confirmEnableTFA">user.confirmEnableTFA</a></li>
+            <li><a href="#!/UserApi#user.confirmWithdrawal">user.confirmWithdrawal</a></li>
+            <li><a href="#!/UserApi#user.disableTFA">user.disableTFA</a></li>
+            <li><a href="#!/UserApi#user.get">user.get</a></li>
+            <li><a href="#!/UserApi#user.getAffiliateStatus">user.getAffiliateStatus</a></li>
+            <li><a href="#!/UserApi#user.getCommission">user.getCommission</a></li>
+            <li><a href="#!/UserApi#user.getDepositAddress">user.getDepositAddress</a></li>
+            <li><a href="#!/UserApi#user.getMargin">user.getMargin</a></li>
+            <li><a href="#!/UserApi#user.getWallet">user.getWallet</a></li>
+            <li><a href="#!/UserApi#user.getWalletHistory">user.getWalletHistory</a></li>
+            <li><a href="#!/UserApi#user.getWalletSummary">user.getWalletSummary</a></li>
+            <li><a href="#!/UserApi#user.logout">user.logout</a></li>
+            <li><a href="#!/UserApi#user.logoutAll">user.logoutAll</a></li>
+            <li><a href="#!/UserApi#user.minWithdrawalFee">user.minWithdrawalFee</a></li>
+            <li><a href="#!/UserApi#user.requestEnableTFA">user.requestEnableTFA</a></li>
+            <li><a href="#!/UserApi#user.requestWithdrawal">user.requestWithdrawal</a></li>
+            <li><a href="#!/UserApi#user.savePreferences">user.savePreferences</a></li>
+            <li><a href="#!/UserApi#user.update">user.update</a></li>
+          </ul>
+        </div>
+      </div>
+    <div class="non-sidebar">
+      <div class="main-content">
+        <h2>Getting Started</h2>
+        <p>To begin using your fancy HTTP API, follow the steps below.</p>
+        <p>You can add some helpful tips, here</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

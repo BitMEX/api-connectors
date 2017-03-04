@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**animationsEnabled** | **Boolean** |  |  [optional]
 **announcementsLastSeen** | [**Date**](Date.md) |  |  [optional]
 **chatChannelID** | **Double** |  |  [optional]
 **colorTheme** | **String** |  |  [optional]

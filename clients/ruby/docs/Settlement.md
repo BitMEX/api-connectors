@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**timestamp** | **Date** |  | 
+**timestamp** | **DateTime** |  | 
 **symbol** | **String** |  | 
 **settlement_type** | **String** |  | [optional] 
 **settled_price** | **Float** |  | [optional] 

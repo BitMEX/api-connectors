@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -87,7 +87,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <returns>AccessToken</returns>
-        AccessToken UserConfirmEmail (string token);
+        AccessToken UserConfirm (string token);
 
         /// <summary>
         /// Confirm your email address with a token.
@@ -98,7 +98,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <returns>ApiResponse of AccessToken</returns>
-        ApiResponse<AccessToken> UserConfirmEmailWithHttpInfo (string token);
+        ApiResponse<AccessToken> UserConfirmWithHttpInfo (string token);
         /// <summary>
         /// Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
         /// </summary>
@@ -367,10 +367,31 @@ namespace IO.Swagger.Api
         /// <returns>ApiResponse of double?</returns>
         ApiResponse<double?> UserLogoutAllWithHttpInfo ();
         /// <summary>
-        /// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+        /// Get the minimum withdrawal fee for a currency.
         /// </summary>
         /// <remarks>
-        /// 
+        /// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>double?</returns>
+        double? UserMinWithdrawalFee (string currency = null);
+
+        /// <summary>
+        /// Get the minimum withdrawal fee for a currency.
+        /// </summary>
+        /// <remarks>
+        /// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>ApiResponse of double?</returns>
+        ApiResponse<double?> UserMinWithdrawalFeeWithHttpInfo (string currency = null);
+        /// <summary>
+        /// Get secret key for setting up two-factor auth.
+        /// </summary>
+        /// <remarks>
+        /// Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)</param>
@@ -378,10 +399,10 @@ namespace IO.Swagger.Api
         bool? UserRequestEnableTFA (string type = null);
 
         /// <summary>
-        /// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+        /// Get secret key for setting up two-factor auth.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)</param>
@@ -527,7 +548,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <returns>Task of AccessToken</returns>
-        System.Threading.Tasks.Task<AccessToken> UserConfirmEmailAsync (string token);
+        System.Threading.Tasks.Task<AccessToken> UserConfirmAsync (string token);
 
         /// <summary>
         /// Confirm your email address with a token.
@@ -538,7 +559,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <returns>Task of ApiResponse (AccessToken)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccessToken>> UserConfirmEmailAsyncWithHttpInfo (string token);
+        System.Threading.Tasks.Task<ApiResponse<AccessToken>> UserConfirmAsyncWithHttpInfo (string token);
         /// <summary>
         /// Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
         /// </summary>
@@ -807,10 +828,31 @@ namespace IO.Swagger.Api
         /// <returns>Task of ApiResponse (double?)</returns>
         System.Threading.Tasks.Task<ApiResponse<double?>> UserLogoutAllAsyncWithHttpInfo ();
         /// <summary>
-        /// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+        /// Get the minimum withdrawal fee for a currency.
         /// </summary>
         /// <remarks>
-        /// 
+        /// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>Task of double?</returns>
+        System.Threading.Tasks.Task<double?> UserMinWithdrawalFeeAsync (string currency = null);
+
+        /// <summary>
+        /// Get the minimum withdrawal fee for a currency.
+        /// </summary>
+        /// <remarks>
+        /// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>Task of ApiResponse (double?)</returns>
+        System.Threading.Tasks.Task<ApiResponse<double?>> UserMinWithdrawalFeeAsyncWithHttpInfo (string currency = null);
+        /// <summary>
+        /// Get secret key for setting up two-factor auth.
+        /// </summary>
+        /// <remarks>
+        /// Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)</param>
@@ -818,10 +860,10 @@ namespace IO.Swagger.Api
         System.Threading.Tasks.Task<bool?> UserRequestEnableTFAAsync (string type = null);
 
         /// <summary>
-        /// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+        /// Get secret key for setting up two-factor auth.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)</param>
@@ -1332,9 +1374,9 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <returns>AccessToken</returns>
-        public AccessToken UserConfirmEmail (string token)
+        public AccessToken UserConfirm (string token)
         {
-             ApiResponse<AccessToken> localVarResponse = UserConfirmEmailWithHttpInfo(token);
+             ApiResponse<AccessToken> localVarResponse = UserConfirmWithHttpInfo(token);
              return localVarResponse.Data;
         }
 
@@ -1344,11 +1386,11 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <returns>ApiResponse of AccessToken</returns>
-        public ApiResponse< AccessToken > UserConfirmEmailWithHttpInfo (string token)
+        public ApiResponse< AccessToken > UserConfirmWithHttpInfo (string token)
         {
             // verify the required parameter 'token' is set
             if (token == null)
-                throw new ApiException(400, "Missing required parameter 'token' when calling UserApi->UserConfirmEmail");
+                throw new ApiException(400, "Missing required parameter 'token' when calling UserApi->UserConfirm");
 
             var localVarPath = "/user/confirmEmail";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1392,7 +1434,7 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("UserConfirmEmail", localVarResponse);
+                Exception exception = ExceptionFactory("UserConfirm", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1408,9 +1450,9 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <returns>Task of AccessToken</returns>
-        public async System.Threading.Tasks.Task<AccessToken> UserConfirmEmailAsync (string token)
+        public async System.Threading.Tasks.Task<AccessToken> UserConfirmAsync (string token)
         {
-             ApiResponse<AccessToken> localVarResponse = await UserConfirmEmailAsyncWithHttpInfo(token);
+             ApiResponse<AccessToken> localVarResponse = await UserConfirmAsyncWithHttpInfo(token);
              return localVarResponse.Data;
 
         }
@@ -1421,11 +1463,11 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="token"></param>
         /// <returns>Task of ApiResponse (AccessToken)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AccessToken>> UserConfirmEmailAsyncWithHttpInfo (string token)
+        public async System.Threading.Tasks.Task<ApiResponse<AccessToken>> UserConfirmAsyncWithHttpInfo (string token)
         {
             // verify the required parameter 'token' is set
             if (token == null)
-                throw new ApiException(400, "Missing required parameter 'token' when calling UserApi->UserConfirmEmail");
+                throw new ApiException(400, "Missing required parameter 'token' when calling UserApi->UserConfirm");
 
             var localVarPath = "/user/confirmEmail";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1469,7 +1511,7 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("UserConfirmEmail", localVarResponse);
+                Exception exception = ExceptionFactory("UserConfirm", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -3389,7 +3431,154 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys. 
+        /// Get the minimum withdrawal fee for a currency. This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>double?</returns>
+        public double? UserMinWithdrawalFee (string currency = null)
+        {
+             ApiResponse<double?> localVarResponse = UserMinWithdrawalFeeWithHttpInfo(currency);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get the minimum withdrawal fee for a currency. This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>ApiResponse of double?</returns>
+        public ApiResponse< double? > UserMinWithdrawalFeeWithHttpInfo (string currency = null)
+        {
+
+            var localVarPath = "/user/minWithdrawalFee";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json", 
+                "application/xml", 
+                "text/xml", 
+                "application/javascript", 
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (currency != null) localVarQueryParams.Add("currency", Configuration.ApiClient.ParameterToString(currency)); // query parameter
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserMinWithdrawalFee", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<double?>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (double?) Configuration.ApiClient.Deserialize(localVarResponse, typeof(double?)));
+            
+        }
+
+        /// <summary>
+        /// Get the minimum withdrawal fee for a currency. This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>Task of double?</returns>
+        public async System.Threading.Tasks.Task<double?> UserMinWithdrawalFeeAsync (string currency = null)
+        {
+             ApiResponse<double?> localVarResponse = await UserMinWithdrawalFeeAsyncWithHttpInfo(currency);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get the minimum withdrawal fee for a currency. This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <returns>Task of ApiResponse (double?)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<double?>> UserMinWithdrawalFeeAsyncWithHttpInfo (string currency = null)
+        {
+
+            var localVarPath = "/user/minWithdrawalFee";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json", 
+                "application/xml", 
+                "text/xml", 
+                "application/javascript", 
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (currency != null) localVarQueryParams.Add("currency", Configuration.ApiClient.ParameterToString(currency)); // query parameter
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserMinWithdrawalFee", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<double?>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (double?) Configuration.ApiClient.Deserialize(localVarResponse, typeof(double?)));
+            
+        }
+
+        /// <summary>
+        /// Get secret key for setting up two-factor auth. Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)</param>
@@ -3401,7 +3590,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys. 
+        /// Get secret key for setting up two-factor auth. Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)</param>
@@ -3462,7 +3651,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys. 
+        /// Get secret key for setting up two-factor auth. Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)</param>
@@ -3475,7 +3664,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys. 
+        /// Get secret key for setting up two-factor auth. Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)</param>

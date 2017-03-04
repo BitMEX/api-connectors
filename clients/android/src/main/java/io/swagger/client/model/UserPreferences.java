@@ -11,6 +11,8 @@ import com.google.gson.annotations.SerializedName;
 @ApiModel(description = "")
 public class UserPreferences  {
   
+  @SerializedName("animationsEnabled")
+  private Boolean animationsEnabled = null;
   @SerializedName("announcementsLastSeen")
   private Date announcementsLastSeen = null;
   @SerializedName("chatChannelID")
@@ -55,6 +57,16 @@ public class UserPreferences  {
   private Boolean tickerPinned = null;
   @SerializedName("tradeLayout")
   private String tradeLayout = null;
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Boolean getAnimationsEnabled() {
+    return animationsEnabled;
+  }
+  public void setAnimationsEnabled(Boolean animationsEnabled) {
+    this.animationsEnabled = animationsEnabled;
+  }
 
   /**
    **/
@@ -286,7 +298,8 @@ public class UserPreferences  {
       return false;
     }
     UserPreferences userPreferences = (UserPreferences) o;
-    return (announcementsLastSeen == null ? userPreferences.announcementsLastSeen == null : announcementsLastSeen.equals(userPreferences.announcementsLastSeen)) &&
+    return (animationsEnabled == null ? userPreferences.animationsEnabled == null : animationsEnabled.equals(userPreferences.animationsEnabled)) &&
+        (announcementsLastSeen == null ? userPreferences.announcementsLastSeen == null : announcementsLastSeen.equals(userPreferences.announcementsLastSeen)) &&
         (chatChannelID == null ? userPreferences.chatChannelID == null : chatChannelID.equals(userPreferences.chatChannelID)) &&
         (colorTheme == null ? userPreferences.colorTheme == null : colorTheme.equals(userPreferences.colorTheme)) &&
         (currency == null ? userPreferences.currency == null : currency.equals(userPreferences.currency)) &&
@@ -313,6 +326,7 @@ public class UserPreferences  {
   @Override
   public int hashCode() {
     int result = 17;
+    result = 31 * result + (animationsEnabled == null ? 0: animationsEnabled.hashCode());
     result = 31 * result + (announcementsLastSeen == null ? 0: announcementsLastSeen.hashCode());
     result = 31 * result + (chatChannelID == null ? 0: chatChannelID.hashCode());
     result = 31 * result + (colorTheme == null ? 0: colorTheme.hashCode());
@@ -343,6 +357,7 @@ public class UserPreferences  {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserPreferences {\n");
     
+    sb.append("  animationsEnabled: ").append(animationsEnabled).append("\n");
     sb.append("  announcementsLastSeen: ").append(announcementsLastSeen).append("\n");
     sb.append("  chatChannelID: ").append(chatChannelID).append("\n");
     sb.append("  colorTheme: ").append(colorTheme).append("\n");

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -29,14 +29,17 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.client.model.XAny;
 import java.math.BigDecimal;
-import org.joda.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import org.joda.time.DateTime;
 
 
 /**
  * Wallet
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-01-03T10:34:33.567-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-03-04T11:15:54.597-06:00")
 public class Wallet   {
   @JsonProperty("account")
   private BigDecimal account = null;
@@ -54,7 +57,7 @@ public class Wallet   {
   private BigDecimal prevAmount = null;
 
   @JsonProperty("prevTimestamp")
-  private LocalDate prevTimestamp = null;
+  private DateTime prevTimestamp = null;
 
   @JsonProperty("deltaDeposited")
   private BigDecimal deltaDeposited = null;
@@ -84,10 +87,13 @@ public class Wallet   {
   private BigDecimal confirmedDebit = null;
 
   @JsonProperty("timestamp")
-  private LocalDate timestamp = null;
+  private DateTime timestamp = null;
 
   @JsonProperty("addr")
   private String addr = null;
+
+  @JsonProperty("withdrawalLock")
+  private List<XAny> withdrawalLock = new ArrayList<XAny>();
 
   public Wallet account(BigDecimal account) {
     this.account = account;
@@ -179,7 +185,7 @@ public class Wallet   {
     this.prevAmount = prevAmount;
   }
 
-  public Wallet prevTimestamp(LocalDate prevTimestamp) {
+  public Wallet prevTimestamp(DateTime prevTimestamp) {
     this.prevTimestamp = prevTimestamp;
     return this;
   }
@@ -189,11 +195,11 @@ public class Wallet   {
    * @return prevTimestamp
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getPrevTimestamp() {
+  public DateTime getPrevTimestamp() {
     return prevTimestamp;
   }
 
-  public void setPrevTimestamp(LocalDate prevTimestamp) {
+  public void setPrevTimestamp(DateTime prevTimestamp) {
     this.prevTimestamp = prevTimestamp;
   }
 
@@ -359,7 +365,7 @@ public class Wallet   {
     this.confirmedDebit = confirmedDebit;
   }
 
-  public Wallet timestamp(LocalDate timestamp) {
+  public Wallet timestamp(DateTime timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -369,11 +375,11 @@ public class Wallet   {
    * @return timestamp
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getTimestamp() {
+  public DateTime getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(LocalDate timestamp) {
+  public void setTimestamp(DateTime timestamp) {
     this.timestamp = timestamp;
   }
 
@@ -393,6 +399,24 @@ public class Wallet   {
 
   public void setAddr(String addr) {
     this.addr = addr;
+  }
+
+  public Wallet withdrawalLock(List<XAny> withdrawalLock) {
+    this.withdrawalLock = withdrawalLock;
+    return this;
+  }
+
+   /**
+   * Get withdrawalLock
+   * @return withdrawalLock
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public List<XAny> getWithdrawalLock() {
+    return withdrawalLock;
+  }
+
+  public void setWithdrawalLock(List<XAny> withdrawalLock) {
+    this.withdrawalLock = withdrawalLock;
   }
 
 
@@ -421,12 +445,13 @@ public class Wallet   {
         Objects.equals(this.pendingDebit, wallet.pendingDebit) &&
         Objects.equals(this.confirmedDebit, wallet.confirmedDebit) &&
         Objects.equals(this.timestamp, wallet.timestamp) &&
-        Objects.equals(this.addr, wallet.addr);
+        Objects.equals(this.addr, wallet.addr) &&
+        Objects.equals(this.withdrawalLock, wallet.withdrawalLock);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(account, currency, prevDeposited, prevWithdrawn, prevAmount, prevTimestamp, deltaDeposited, deltaWithdrawn, deltaAmount, deposited, withdrawn, amount, pendingCredit, pendingDebit, confirmedDebit, timestamp, addr);
+    return Objects.hash(account, currency, prevDeposited, prevWithdrawn, prevAmount, prevTimestamp, deltaDeposited, deltaWithdrawn, deltaAmount, deposited, withdrawn, amount, pendingCredit, pendingDebit, confirmedDebit, timestamp, addr, withdrawalLock);
   }
 
   @Override
@@ -451,6 +476,7 @@ public class Wallet   {
     sb.append("    confirmedDebit: ").append(toIndentedString(confirmedDebit)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("    addr: ").append(toIndentedString(addr)).append("\n");
+    sb.append("    withdrawalLock: ").append(toIndentedString(withdrawalLock)).append("\n");
     sb.append("}");
     return sb.toString();
   }

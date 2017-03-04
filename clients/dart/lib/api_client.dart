@@ -75,6 +75,8 @@ class ApiClient {
         return isMap ? dson.map(json, new ConnectedUsers()) : dson.decode(json, new ConnectedUsers());
       case Error:
         return isMap ? dson.map(json, new Error()) : dson.decode(json, new Error());
+      case ErrorError:
+        return isMap ? dson.map(json, new ErrorError()) : dson.decode(json, new ErrorError());
       case Execution:
         return isMap ? dson.map(json, new Execution()) : dson.decode(json, new Execution());
       case Funding:
@@ -123,6 +125,8 @@ class ApiClient {
         return isMap ? dson.map(json, new UserPreferences()) : dson.decode(json, new UserPreferences());
       case Wallet:
         return isMap ? dson.map(json, new Wallet()) : dson.decode(json, new Wallet());
+      case X-any:
+        return isMap ? dson.map(json, new X-any()) : dson.decode(json, new X-any());
       default:
         throw new ApiException(500, 'Could not find a suitable class for deserialization');
     }

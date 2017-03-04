@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **prevDeposited** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **prevWithdrawn** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **prevAmount** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**prevTimestamp** | [**LocalDate**](LocalDate.md) |  |  [optional]
+**prevTimestamp** | [**DateTime**](DateTime.md) |  |  [optional]
 **deltaDeposited** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **deltaWithdrawn** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **deltaAmount** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
@@ -19,8 +19,9 @@ Name | Type | Description | Notes
 **pendingCredit** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **pendingDebit** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **confirmedDebit** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**timestamp** | [**LocalDate**](LocalDate.md) |  |  [optional]
+**timestamp** | [**DateTime**](DateTime.md) |  |  [optional]
 **addr** | **String** |  |  [optional]
+**withdrawalLock** | [**List&lt;XAny&gt;**](XAny.md) |  |  [optional]
 
 
 

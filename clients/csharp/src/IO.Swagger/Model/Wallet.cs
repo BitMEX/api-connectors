@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -64,7 +64,8 @@ namespace IO.Swagger.Model
         /// <param name="ConfirmedDebit">ConfirmedDebit.</param>
         /// <param name="Timestamp">Timestamp.</param>
         /// <param name="Addr">Addr.</param>
-        public Wallet(decimal? Account = null, string Currency = null, decimal? PrevDeposited = null, decimal? PrevWithdrawn = null, decimal? PrevAmount = null, DateTime? PrevTimestamp = null, decimal? DeltaDeposited = null, decimal? DeltaWithdrawn = null, decimal? DeltaAmount = null, decimal? Deposited = null, decimal? Withdrawn = null, decimal? Amount = null, decimal? PendingCredit = null, decimal? PendingDebit = null, decimal? ConfirmedDebit = null, DateTime? Timestamp = null, string Addr = null)
+        /// <param name="WithdrawalLock">WithdrawalLock.</param>
+        public Wallet(decimal? Account = null, string Currency = null, decimal? PrevDeposited = null, decimal? PrevWithdrawn = null, decimal? PrevAmount = null, DateTime? PrevTimestamp = null, decimal? DeltaDeposited = null, decimal? DeltaWithdrawn = null, decimal? DeltaAmount = null, decimal? Deposited = null, decimal? Withdrawn = null, decimal? Amount = null, decimal? PendingCredit = null, decimal? PendingDebit = null, decimal? ConfirmedDebit = null, DateTime? Timestamp = null, string Addr = null, List<XAny> WithdrawalLock = null)
         {
             // to ensure "Account" is required (not null)
             if (Account == null)
@@ -99,6 +100,7 @@ namespace IO.Swagger.Model
             this.ConfirmedDebit = ConfirmedDebit;
             this.Timestamp = Timestamp;
             this.Addr = Addr;
+            this.WithdrawalLock = WithdrawalLock;
         }
         
         /// <summary>
@@ -187,6 +189,11 @@ namespace IO.Swagger.Model
         [DataMember(Name="addr", EmitDefaultValue=false)]
         public string Addr { get; set; }
         /// <summary>
+        /// Gets or Sets WithdrawalLock
+        /// </summary>
+        [DataMember(Name="withdrawalLock", EmitDefaultValue=false)]
+        public List<XAny> WithdrawalLock { get; set; }
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -211,6 +218,7 @@ namespace IO.Swagger.Model
             sb.Append("  ConfirmedDebit: ").Append(ConfirmedDebit).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("  Addr: ").Append(Addr).Append("\n");
+            sb.Append("  WithdrawalLock: ").Append(WithdrawalLock).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -331,6 +339,11 @@ namespace IO.Swagger.Model
                     this.Addr == other.Addr ||
                     this.Addr != null &&
                     this.Addr.Equals(other.Addr)
+                ) && 
+                (
+                    this.WithdrawalLock == other.WithdrawalLock ||
+                    this.WithdrawalLock != null &&
+                    this.WithdrawalLock.SequenceEqual(other.WithdrawalLock)
                 );
         }
 
@@ -379,6 +392,8 @@ namespace IO.Swagger.Model
                     hash = hash * 59 + this.Timestamp.GetHashCode();
                 if (this.Addr != null)
                     hash = hash * 59 + this.Addr.GetHashCode();
+                if (this.WithdrawalLock != null)
+                    hash = hash * 59 + this.WithdrawalLock.GetHashCode();
                 return hash;
             }
         }

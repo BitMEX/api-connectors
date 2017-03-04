@@ -330,13 +330,13 @@ public class UserApi {
    * @param token 
    * @return AccessToken
   */
-  public AccessToken userConfirmEmail (String token) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public AccessToken userConfirm (String token) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
      Object postBody = null;
   
       // verify the required parameter 'token' is set
       if (token == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'token' when calling userConfirmEmail",
-      new ApiException(400, "Missing the required parameter 'token' when calling userConfirmEmail"));
+      VolleyError error = new VolleyError("Missing the required parameter 'token' when calling userConfirm",
+      new ApiException(400, "Missing the required parameter 'token' when calling userConfirm"));
       }
   
 
@@ -404,14 +404,14 @@ public class UserApi {
    * 
    * @param token 
   */
-  public void userConfirmEmail (String token, final Response.Listener<AccessToken> responseListener, final Response.ErrorListener errorListener) {
+  public void userConfirm (String token, final Response.Listener<AccessToken> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
   
     // verify the required parameter 'token' is set
     if (token == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'token' when calling userConfirmEmail",
-         new ApiException(400, "Missing the required parameter 'token' when calling userConfirmEmail"));
+       VolleyError error = new VolleyError("Missing the required parameter 'token' when calling userConfirm",
+         new ApiException(400, "Missing the required parameter 'token' when calling userConfirm"));
     }
     
 
@@ -2186,8 +2186,135 @@ formParams.put("token", ApiInvoker.parameterToString(token));
     }
   }
   /**
-  * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
-  * 
+  * Get the minimum withdrawal fee for a currency.
+  * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+   * @param currency 
+   * @return Double
+  */
+  public Double userMinWithdrawalFee (String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+     Object postBody = null;
+  
+
+  // create path and map variables
+  String path = "/user/minWithdrawalFee".replaceAll("\\{format\\}","json");
+
+  // query params
+  List<Pair> queryParams = new ArrayList<Pair>();
+      // header params
+      Map<String, String> headerParams = new HashMap<String, String>();
+      // form params
+      Map<String, String> formParams = new HashMap<String, String>();
+
+          queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+
+
+      String[] contentTypes = {
+  "application/json","application/x-www-form-urlencoded"
+      };
+      String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+      if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+  
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+      } else {
+      // normal form params
+        }
+
+      String[] authNames = new String[] {  };
+
+      try {
+        String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+        if(localVarResponse != null){
+           return (Double) ApiInvoker.deserialize(localVarResponse, "", Double.class);
+        } else {
+           return null;
+        }
+      } catch (ApiException ex) {
+         throw ex;
+      } catch (InterruptedException ex) {
+         throw ex;
+      } catch (ExecutionException ex) {
+         if(ex.getCause() instanceof VolleyError) {
+	    VolleyError volleyError = (VolleyError)ex.getCause();
+	    if (volleyError.networkResponse != null) {
+	       throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+	    }
+         }
+         throw ex;
+      } catch (TimeoutException ex) {
+         throw ex;
+      }
+  }
+
+      /**
+   * Get the minimum withdrawal fee for a currency.
+   * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+   * @param currency 
+  */
+  public void userMinWithdrawalFee (String currency, final Response.Listener<Double> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+  
+
+    // create path and map variables
+    String path = "/user/minWithdrawalFee".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+      String[] authNames = new String[] {  };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((Double) ApiInvoker.deserialize(localVarResponse,  "", Double.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Get secret key for setting up two-factor auth.
+  * Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
    * @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
    * @return Boolean
   */
@@ -2255,8 +2382,8 @@ formParams.put("token", ApiInvoker.parameterToString(token));
   }
 
       /**
-   * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
-   * 
+   * Get secret key for setting up two-factor auth.
+   * Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
    * @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
   */
   public void userRequestEnableTFA (String type, final Response.Listener<Boolean> responseListener, final Response.ErrorListener errorListener) {

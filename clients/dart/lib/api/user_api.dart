@@ -113,7 +113,7 @@ class UserApi {
   /// Confirm your email address with a token.
   ///
   /// 
-  Future<AccessToken> userConfirmEmail(String token) {
+  Future<AccessToken> userConfirm(String token) {
     Object postBody = null;
     // verify required params are set
     if() {
@@ -783,9 +783,56 @@ if (token != null)
       }
     });
   }
-  /// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+  /// Get the minimum withdrawal fee for a currency.
   ///
-  /// 
+  /// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+  Future<double> userMinWithdrawalFee(String currency) {
+    Object postBody = null;
+    // verify required params are set
+    if() {
+       throw new ApiException(400, "missing required params");
+    }
+
+    // create path and map variables
+    String path = "/user/minWithdrawalFee".replaceAll("{format}","json");
+
+    // query params
+    Map<String, String> queryParams = {};
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+    if("null" != currency)
+      queryParams["currency"] = currency is List ? currency.join(',') : currency;
+    
+    List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    List<String> authNames = [];
+
+    if(contentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = new MultipartRequest(null, null);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+          }
+
+    return apiClient.invokeAPI(basePath, path, 'GET', queryParams, postBody, headerParams, formParams, contentType, authNames).then((response) {
+      if(response.statusCode >= 400) {
+        throw new ApiException(response.statusCode, response.body);
+      }
+      else if(response.body != null){
+        return ApiClient.deserialize(response.body, double);
+      }
+      else {
+        return null;
+      }
+    });
+  }
+  /// Get secret key for setting up two-factor auth.
+  ///
+  /// Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
   Future<bool> userRequestEnableTFA(String type) {
     Object postBody = null;
     // verify required params are set

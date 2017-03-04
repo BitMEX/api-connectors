@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -30,13 +30,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
-import org.joda.time.LocalDate;
+import org.joda.time.DateTime;
 
 
 /**
  * Position
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-01-03T10:34:33.567-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-03-04T11:15:54.597-06:00")
 public class Position   {
   @JsonProperty("account")
   private BigDecimal account = null;
@@ -54,25 +54,25 @@ public class Position   {
   private String quoteCurrency = null;
 
   @JsonProperty("commission")
-  private Double commission = null;
+  private Double commission = 0.0d;
 
   @JsonProperty("initMarginReq")
-  private Double initMarginReq = null;
+  private Double initMarginReq = 0.0d;
 
   @JsonProperty("maintMarginReq")
-  private Double maintMarginReq = null;
+  private Double maintMarginReq = 0.0d;
 
   @JsonProperty("riskLimit")
   private BigDecimal riskLimit = null;
 
   @JsonProperty("leverage")
-  private Double leverage = null;
+  private Double leverage = 0.0d;
 
   @JsonProperty("crossMargin")
   private Boolean crossMargin = null;
 
   @JsonProperty("deleveragePercentile")
-  private Double deleveragePercentile = null;
+  private Double deleveragePercentile = 0.0d;
 
   @JsonProperty("rebalancedPnl")
   private BigDecimal rebalancedPnl = null;
@@ -84,10 +84,10 @@ public class Position   {
   private BigDecimal prevUnrealisedPnl = null;
 
   @JsonProperty("prevClosePrice")
-  private Double prevClosePrice = null;
+  private Double prevClosePrice = 0.0d;
 
   @JsonProperty("openingTimestamp")
-  private LocalDate openingTimestamp = null;
+  private DateTime openingTimestamp = null;
 
   @JsonProperty("openingQty")
   private BigDecimal openingQty = null;
@@ -138,7 +138,7 @@ public class Position   {
   private BigDecimal execComm = null;
 
   @JsonProperty("currentTimestamp")
-  private LocalDate currentTimestamp = null;
+  private DateTime currentTimestamp = null;
 
   @JsonProperty("currentQty")
   private BigDecimal currentQty = null;
@@ -168,7 +168,7 @@ public class Position   {
   private Boolean isOpen = null;
 
   @JsonProperty("markPrice")
-  private Double markPrice = null;
+  private Double markPrice = 0.0d;
 
   @JsonProperty("markValue")
   private BigDecimal markValue = null;
@@ -177,10 +177,10 @@ public class Position   {
   private BigDecimal riskValue = null;
 
   @JsonProperty("homeNotional")
-  private Double homeNotional = null;
+  private Double homeNotional = 0.0d;
 
   @JsonProperty("foreignNotional")
-  private Double foreignNotional = null;
+  private Double foreignNotional = 0.0d;
 
   @JsonProperty("posState")
   private String posState = null;
@@ -252,7 +252,7 @@ public class Position   {
   private BigDecimal taxBase = null;
 
   @JsonProperty("indicativeTaxRate")
-  private Double indicativeTaxRate = null;
+  private Double indicativeTaxRate = 0.0d;
 
   @JsonProperty("indicativeTax")
   private BigDecimal indicativeTax = null;
@@ -264,49 +264,49 @@ public class Position   {
   private BigDecimal unrealisedPnl = null;
 
   @JsonProperty("unrealisedPnlPcnt")
-  private Double unrealisedPnlPcnt = null;
+  private Double unrealisedPnlPcnt = 0.0d;
 
   @JsonProperty("unrealisedRoePcnt")
-  private Double unrealisedRoePcnt = null;
+  private Double unrealisedRoePcnt = 0.0d;
 
   @JsonProperty("simpleQty")
-  private Double simpleQty = null;
+  private Double simpleQty = 0.0d;
 
   @JsonProperty("simpleCost")
-  private Double simpleCost = null;
+  private Double simpleCost = 0.0d;
 
   @JsonProperty("simpleValue")
-  private Double simpleValue = null;
+  private Double simpleValue = 0.0d;
 
   @JsonProperty("simplePnl")
-  private Double simplePnl = null;
+  private Double simplePnl = 0.0d;
 
   @JsonProperty("simplePnlPcnt")
-  private Double simplePnlPcnt = null;
+  private Double simplePnlPcnt = 0.0d;
 
   @JsonProperty("avgCostPrice")
-  private Double avgCostPrice = null;
+  private Double avgCostPrice = 0.0d;
 
   @JsonProperty("avgEntryPrice")
-  private Double avgEntryPrice = null;
+  private Double avgEntryPrice = 0.0d;
 
   @JsonProperty("breakEvenPrice")
-  private Double breakEvenPrice = null;
+  private Double breakEvenPrice = 0.0d;
 
   @JsonProperty("marginCallPrice")
-  private Double marginCallPrice = null;
+  private Double marginCallPrice = 0.0d;
 
   @JsonProperty("liquidationPrice")
-  private Double liquidationPrice = null;
+  private Double liquidationPrice = 0.0d;
 
   @JsonProperty("bankruptPrice")
-  private Double bankruptPrice = null;
+  private Double bankruptPrice = 0.0d;
 
   @JsonProperty("timestamp")
-  private LocalDate timestamp = null;
+  private DateTime timestamp = null;
 
   @JsonProperty("lastPrice")
-  private Double lastPrice = null;
+  private Double lastPrice = 0.0d;
 
   @JsonProperty("lastValue")
   private BigDecimal lastValue = null;
@@ -599,7 +599,7 @@ public class Position   {
     this.prevClosePrice = prevClosePrice;
   }
 
-  public Position openingTimestamp(LocalDate openingTimestamp) {
+  public Position openingTimestamp(DateTime openingTimestamp) {
     this.openingTimestamp = openingTimestamp;
     return this;
   }
@@ -609,11 +609,11 @@ public class Position   {
    * @return openingTimestamp
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getOpeningTimestamp() {
+  public DateTime getOpeningTimestamp() {
     return openingTimestamp;
   }
 
-  public void setOpeningTimestamp(LocalDate openingTimestamp) {
+  public void setOpeningTimestamp(DateTime openingTimestamp) {
     this.openingTimestamp = openingTimestamp;
   }
 
@@ -905,7 +905,7 @@ public class Position   {
     this.execComm = execComm;
   }
 
-  public Position currentTimestamp(LocalDate currentTimestamp) {
+  public Position currentTimestamp(DateTime currentTimestamp) {
     this.currentTimestamp = currentTimestamp;
     return this;
   }
@@ -915,11 +915,11 @@ public class Position   {
    * @return currentTimestamp
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getCurrentTimestamp() {
+  public DateTime getCurrentTimestamp() {
     return currentTimestamp;
   }
 
-  public void setCurrentTimestamp(LocalDate currentTimestamp) {
+  public void setCurrentTimestamp(DateTime currentTimestamp) {
     this.currentTimestamp = currentTimestamp;
   }
 
@@ -1895,7 +1895,7 @@ public class Position   {
     this.bankruptPrice = bankruptPrice;
   }
 
-  public Position timestamp(LocalDate timestamp) {
+  public Position timestamp(DateTime timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -1905,11 +1905,11 @@ public class Position   {
    * @return timestamp
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getTimestamp() {
+  public DateTime getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(LocalDate timestamp) {
+  public void setTimestamp(DateTime timestamp) {
     this.timestamp = timestamp;
   }
 

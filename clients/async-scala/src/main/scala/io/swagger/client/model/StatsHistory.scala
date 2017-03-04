@@ -5,7 +5,7 @@ import java.util.UUID
 
 
 case class StatsHistory (
-  date: Date,
+  date: DateTime,
 rootSymbol: String,
 currency: Option[String],
 volume: Option[Number],

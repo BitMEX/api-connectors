@@ -3,7 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**announcements_last_seen** | **Date** |  | [optional] 
+**animations_enabled** | **BOOLEAN** |  | [optional] 
+**announcements_last_seen** | **DateTime** |  | [optional] 
 **chat_channel_id** | **Float** |  | [optional] 
 **color_theme** | **String** |  | [optional] 
 **currency** | **String** |  | [optional] 

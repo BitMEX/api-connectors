@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **prev_payout** | **float** |  | [optional] 
 **prev_turnover** | **float** |  | [optional] 
 **prev_comm** | **float** |  | [optional] 
-**prev_timestamp** | [**\DateTime**](Date.md) |  | [optional] 
+**prev_timestamp** | [**\DateTime**](\DateTime.md) |  | [optional] 
 **exec_turnover** | **float** |  | [optional] 
 **exec_comm** | **float** |  | [optional] 
 **total_referrals** | **float** |  | [optional] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **total_comm** | **float** |  | [optional] 
 **payout_pcnt** | **double** |  | [optional] 
 **pending_payout** | **float** |  | [optional] 
-**timestamp** | [**\DateTime**](Date.md) |  | [optional] 
+**timestamp** | [**\DateTime**](\DateTime.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -32,16 +32,19 @@ import io.swagger.annotations.ApiModelProperty;
 import io.swagger.client.model.XAny;
 import java.util.ArrayList;
 import java.util.List;
-import org.joda.time.LocalDate;
+import org.joda.time.DateTime;
 
 
 /**
  * UserPreferences
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-01-03T10:34:33.567-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-03-04T11:15:54.597-06:00")
 public class UserPreferences   {
+  @JsonProperty("animationsEnabled")
+  private Boolean animationsEnabled = null;
+
   @JsonProperty("announcementsLastSeen")
-  private LocalDate announcementsLastSeen = null;
+  private DateTime announcementsLastSeen = null;
 
   @JsonProperty("chatChannelID")
   private Double chatChannelID = null;
@@ -106,7 +109,25 @@ public class UserPreferences   {
   @JsonProperty("tradeLayout")
   private String tradeLayout = null;
 
-  public UserPreferences announcementsLastSeen(LocalDate announcementsLastSeen) {
+  public UserPreferences animationsEnabled(Boolean animationsEnabled) {
+    this.animationsEnabled = animationsEnabled;
+    return this;
+  }
+
+   /**
+   * Get animationsEnabled
+   * @return animationsEnabled
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public Boolean getAnimationsEnabled() {
+    return animationsEnabled;
+  }
+
+  public void setAnimationsEnabled(Boolean animationsEnabled) {
+    this.animationsEnabled = animationsEnabled;
+  }
+
+  public UserPreferences announcementsLastSeen(DateTime announcementsLastSeen) {
     this.announcementsLastSeen = announcementsLastSeen;
     return this;
   }
@@ -116,11 +137,11 @@ public class UserPreferences   {
    * @return announcementsLastSeen
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getAnnouncementsLastSeen() {
+  public DateTime getAnnouncementsLastSeen() {
     return announcementsLastSeen;
   }
 
-  public void setAnnouncementsLastSeen(LocalDate announcementsLastSeen) {
+  public void setAnnouncementsLastSeen(DateTime announcementsLastSeen) {
     this.announcementsLastSeen = announcementsLastSeen;
   }
 
@@ -512,7 +533,8 @@ public class UserPreferences   {
       return false;
     }
     UserPreferences userPreferences = (UserPreferences) o;
-    return Objects.equals(this.announcementsLastSeen, userPreferences.announcementsLastSeen) &&
+    return Objects.equals(this.animationsEnabled, userPreferences.animationsEnabled) &&
+        Objects.equals(this.announcementsLastSeen, userPreferences.announcementsLastSeen) &&
         Objects.equals(this.chatChannelID, userPreferences.chatChannelID) &&
         Objects.equals(this.colorTheme, userPreferences.colorTheme) &&
         Objects.equals(this.currency, userPreferences.currency) &&
@@ -538,7 +560,7 @@ public class UserPreferences   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(announcementsLastSeen, chatChannelID, colorTheme, currency, debug, disableEmails, hideConfirmDialogs, hideConnectionModal, hideFromLeaderboard, hideNameFromLeaderboard, hideNotifications, locale, msgsSeen, orderBookBinning, orderBookType, orderControlsPlusMinus, sounds, strictIPCheck, strictTimeout, tickerGroup, tickerPinned, tradeLayout);
+    return Objects.hash(animationsEnabled, announcementsLastSeen, chatChannelID, colorTheme, currency, debug, disableEmails, hideConfirmDialogs, hideConnectionModal, hideFromLeaderboard, hideNameFromLeaderboard, hideNotifications, locale, msgsSeen, orderBookBinning, orderBookType, orderControlsPlusMinus, sounds, strictIPCheck, strictTimeout, tickerGroup, tickerPinned, tradeLayout);
   }
 
   @Override
@@ -546,6 +568,7 @@ public class UserPreferences   {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserPreferences {\n");
     
+    sb.append("    animationsEnabled: ").append(toIndentedString(animationsEnabled)).append("\n");
     sb.append("    announcementsLastSeen: ").append(toIndentedString(announcementsLastSeen)).append("\n");
     sb.append("    chatChannelID: ").append(toIndentedString(chatChannelID)).append("\n");
     sb.append("    colorTheme: ").append(toIndentedString(colorTheme)).append("\n");

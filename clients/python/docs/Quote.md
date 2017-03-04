@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**timestamp** | **date** |  | 
+**timestamp** | **datetime** |  | 
 **symbol** | **str** |  | 
 **bid_size** | **float** |  | [optional] 
 **bid_price** | **float** |  | [optional] 

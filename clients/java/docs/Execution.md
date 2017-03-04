@@ -49,8 +49,8 @@ Name | Type | Description | Notes
 **execComm** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **homeNotional** | **Double** |  |  [optional]
 **foreignNotional** | **Double** |  |  [optional]
-**transactTime** | [**LocalDate**](LocalDate.md) |  |  [optional]
-**timestamp** | [**LocalDate**](LocalDate.md) |  |  [optional]
+**transactTime** | [**DateTime**](DateTime.md) |  |  [optional]
+**timestamp** | [**DateTime**](DateTime.md) |  |  [optional]
 
 
 

@@ -1,7 +1,7 @@
 =begin
 #BitMEX API
 
-### REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+### REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
 
 OpenAPI spec version: 1.2.0
 Contact: support@bitmex.com
@@ -150,8 +150,8 @@ module SwaggerClient
     # @param token 
     # @param [Hash] opts the optional parameters
     # @return [AccessToken]
-    def user_confirm_email(token, opts = {})
-      data, _status_code, _headers = user_confirm_email_with_http_info(token, opts)
+    def user_confirm(token, opts = {})
+      data, _status_code, _headers = user_confirm_with_http_info(token, opts)
       return data
     end
 
@@ -160,12 +160,12 @@ module SwaggerClient
     # @param token 
     # @param [Hash] opts the optional parameters
     # @return [Array<(AccessToken, Fixnum, Hash)>] AccessToken data, response status code and response headers
-    def user_confirm_email_with_http_info(token, opts = {})
+    def user_confirm_with_http_info(token, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: UserApi.user_confirm_email ..."
+        @api_client.config.logger.debug "Calling API: UserApi.user_confirm ..."
       end
       # verify the required parameter 'token' is set
-      fail ArgumentError, "Missing the required parameter 'token' when calling UserApi.user_confirm_email" if token.nil?
+      fail ArgumentError, "Missing the required parameter 'token' when calling UserApi.user_confirm" if token.nil?
       # resource path
       local_var_path = "/user/confirmEmail".sub('{format}','json')
 
@@ -198,7 +198,7 @@ module SwaggerClient
         :auth_names => auth_names,
         :return_type => 'AccessToken')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserApi#user_confirm_email\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserApi#user_confirm\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -927,8 +927,64 @@ module SwaggerClient
       return data, status_code, headers
     end
 
-    # Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
-    # 
+    # Get the minimum withdrawal fee for a currency.
+    # This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :currency  (default to XBt)
+    # @return [Float]
+    def user_min_withdrawal_fee(opts = {})
+      data, _status_code, _headers = user_min_withdrawal_fee_with_http_info(opts)
+      return data
+    end
+
+    # Get the minimum withdrawal fee for a currency.
+    # This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :currency 
+    # @return [Array<(Float, Fixnum, Hash)>] Float data, response status code and response headers
+    def user_min_withdrawal_fee_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: UserApi.user_min_withdrawal_fee ..."
+      end
+      # resource path
+      local_var_path = "/user/minWithdrawalFee".sub('{format}','json')
+
+      # query parameters
+      query_params = {}
+      query_params[:'currency'] = opts[:'currency'] if !opts[:'currency'].nil?
+
+      # header parameters
+      header_params = {}
+
+      # HTTP header 'Accept' (if needed)
+      local_header_accept = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript']
+      local_header_accept_result = @api_client.select_header_accept(local_header_accept) and header_params['Accept'] = local_header_accept_result
+
+      # HTTP header 'Content-Type'
+      local_header_content_type = ['application/json', 'application/x-www-form-urlencoded']
+      header_params['Content-Type'] = @api_client.select_header_content_type(local_header_content_type)
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Float')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: UserApi#user_min_withdrawal_fee\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get secret key for setting up two-factor auth.
+    # Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
     # @return [BOOLEAN]
@@ -937,8 +993,8 @@ module SwaggerClient
       return data
     end
 
-    # Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
-    # 
+    # Get secret key for setting up two-factor auth.
+    # Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
     # @return [Array<(BOOLEAN, Fixnum, Hash)>] BOOLEAN data, response status code and response headers

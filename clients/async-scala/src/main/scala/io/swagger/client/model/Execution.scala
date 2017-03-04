@@ -50,6 +50,6 @@ execCost: Option[Number],
 execComm: Option[Number],
 homeNotional: Option[Double],
 foreignNotional: Option[Double],
-transactTime: Option[Date],
-timestamp: Option[Date]
+transactTime: Option[DateTime],
+timestamp: Option[DateTime]
 )

@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**userCancelWithdrawal**](SWGUserApi.md#usercancelwithdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 [**userCheckReferralCode**](SWGUserApi.md#usercheckreferralcode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
-[**userConfirmEmail**](SWGUserApi.md#userconfirmemail) | **POST** /user/confirmEmail | Confirm your email address with a token.
+[**userConfirm**](SWGUserApi.md#userconfirm) | **POST** /user/confirmEmail | Confirm your email address with a token.
 [**userConfirmEnableTFA**](SWGUserApi.md#userconfirmenabletfa) | **POST** /user/confirmEnableTFA | Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
 [**userConfirmWithdrawal**](SWGUserApi.md#userconfirmwithdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
 [**userDisableTFA**](SWGUserApi.md#userdisabletfa) | **POST** /user/disableTFA | Disable two-factor auth for this account.
@@ -20,7 +20,8 @@ Method | HTTP request | Description
 [**userGetWalletSummary**](SWGUserApi.md#usergetwalletsummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**userLogout**](SWGUserApi.md#userlogout) | **POST** /user/logout | Log out of BitMEX.
 [**userLogoutAll**](SWGUserApi.md#userlogoutall) | **POST** /user/logoutAll | Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
-[**userRequestEnableTFA**](SWGUserApi.md#userrequestenabletfa) | **POST** /user/requestEnableTFA | Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+[**userMinWithdrawalFee**](SWGUserApi.md#userminwithdrawalfee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
+[**userRequestEnableTFA**](SWGUserApi.md#userrequestenabletfa) | **POST** /user/requestEnableTFA | Get secret key for setting up two-factor auth.
 [**userRequestWithdrawal**](SWGUserApi.md#userrequestwithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**userSavePreferences**](SWGUserApi.md#usersavepreferences) | **POST** /user/preferences | Save user preferences.
 [**userUpdate**](SWGUserApi.md#userupdate) | **PUT** /user | Update your password, name, and other attributes.
@@ -124,9 +125,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **userConfirmEmail**
+# **userConfirm**
 ```objc
--(NSNumber*) userConfirmEmailWithToken: (NSString*) token
+-(NSNumber*) userConfirmWithToken: (NSString*) token
         completionHandler: (void (^)(SWGAccessToken* output, NSError* error)) handler;
 ```
 
@@ -140,13 +141,13 @@ NSString* token = @"token_example"; //
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 // Confirm your email address with a token.
-[apiInstance userConfirmEmailWithToken:token
+[apiInstance userConfirmWithToken:token
           completionHandler: ^(SWGAccessToken* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
                         if (error) {
-                            NSLog(@"Error calling SWGUserApi->userConfirmEmail: %@", error);
+                            NSLog(@"Error calling SWGUserApi->userConfirm: %@", error);
                         }
                     }];
 ```
@@ -781,13 +782,65 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **userMinWithdrawalFee**
+```objc
+-(NSNumber*) userMinWithdrawalFeeWithCurrency: (NSString*) currency
+        completionHandler: (void (^)(NSNumber* output, NSError* error)) handler;
+```
+
+Get the minimum withdrawal fee for a currency.
+
+This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+
+### Example 
+```objc
+
+NSString* currency = @"XBt"; //  (optional) (default to XBt)
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Get the minimum withdrawal fee for a currency.
+[apiInstance userMinWithdrawalFeeWithCurrency:currency
+          completionHandler: ^(NSNumber* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userMinWithdrawalFee: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **NSString***|  | [optional] [default to XBt]
+
+### Return type
+
+**NSNumber***
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **userRequestEnableTFA**
 ```objc
 -(NSNumber*) userRequestEnableTFAWithType: (NSString*) type
         completionHandler: (void (^)(NSNumber* output, NSError* error)) handler;
 ```
 
-Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+Get secret key for setting up two-factor auth.
+
+Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
 
 ### Example 
 ```objc
@@ -796,7 +849,7 @@ NSString* type = @"type_example"; // Two-factor auth type. Supported types: 'GA'
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
-// Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+// Get secret key for setting up two-factor auth.
 [apiInstance userRequestEnableTFAWithType:type
           completionHandler: ^(NSNumber* output, NSError* error) {
                         if (output) {

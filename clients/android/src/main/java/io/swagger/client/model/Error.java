@@ -1,6 +1,6 @@
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
+import io.swagger.client.model.ErrorError;
 
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -9,29 +9,17 @@ import com.google.gson.annotations.SerializedName;
 @ApiModel(description = "")
 public class Error  {
   
-  @SerializedName("message")
-  private String message = null;
-  @SerializedName("code")
-  private BigDecimal code = null;
+  @SerializedName("error")
+  private ErrorError error = null;
 
   /**
    **/
-  @ApiModelProperty(required = true, value = "")
-  public String getMessage() {
-    return message;
+  @ApiModelProperty(value = "")
+  public ErrorError getError() {
+    return error;
   }
-  public void setMessage(String message) {
-    this.message = message;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(required = true, value = "")
-  public BigDecimal getCode() {
-    return code;
-  }
-  public void setCode(BigDecimal code) {
-    this.code = code;
+  public void setError(ErrorError error) {
+    this.error = error;
   }
 
 
@@ -44,15 +32,13 @@ public class Error  {
       return false;
     }
     Error error = (Error) o;
-    return (message == null ? error.message == null : message.equals(error.message)) &&
-        (code == null ? error.code == null : code.equals(error.code));
+    return (error == null ? error.error == null : error.equals(error.error));
   }
 
   @Override
   public int hashCode() {
     int result = 17;
-    result = 31 * result + (message == null ? 0: message.hashCode());
-    result = 31 * result + (code == null ? 0: code.hashCode());
+    result = 31 * result + (error == null ? 0: error.hashCode());
     return result;
   }
 
@@ -61,8 +47,7 @@ public class Error  {
     StringBuilder sb = new StringBuilder();
     sb.append("class Error {\n");
     
-    sb.append("  message: ").append(message).append("\n");
-    sb.append("  code: ").append(code).append("\n");
+    sb.append("  error: ").append(error).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

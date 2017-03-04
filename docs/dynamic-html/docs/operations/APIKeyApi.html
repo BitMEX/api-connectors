@@ -1,0 +1,169 @@
+<div class="main-content">
+  <h2><a name=""></a></h2>
+  <p>This is the  API</p>
+
+  <h2><a name="aPIKey.disable"></a>aPIKey.disable</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/apiKey/disable</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="APIKey"><a href="">APIKey</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">apiKeyID</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">API Key ID (public component).</p>
+	  </li>
+  </ul>
+  <h2><a name="aPIKey.enable"></a>aPIKey.enable</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/apiKey/enable</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="APIKey"><a href="">APIKey</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">apiKeyID</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">API Key ID (public component).</p>
+	  </li>
+  </ul>
+  <h2><a name="aPIKey.get"></a>aPIKey.get</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/apiKey</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="APIKey"><a href="">List</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">reverse</span>
+      <span class="param-type">Boolean</span>
+      
+      <p class="param-description">If true, will sort results newest first.</p>
+	  </li>
+  </ul>
+  <h2><a name="aPIKey.new"></a>aPIKey.new</h2>
+  <hr>
+  <p></p>
+  <p>API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.</p>
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/apiKey</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="APIKey"><a href="">APIKey</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">name</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Key name. This name is for reference only.</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">cidr</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href&#x3D;\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt;</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">permissions</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;].</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">enabled</span>
+      <span class="param-type">Boolean</span>
+      
+      <p class="param-description">Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">token</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">OTP Token (YubiKey, Google Authenticator)</p>
+	  </li>
+  </ul>
+  <h2><a name="aPIKey.remove"></a>aPIKey.remove</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/apiKey</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="inline_response_200"><a href="">inline_response_200</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">apiKeyID</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">API Key ID (public component).</p>
+	  </li>
+  </ul>
+</div>

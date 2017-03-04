@@ -10,7 +10,7 @@ currency: String,
 prevPayout: Option[Number],
 prevTurnover: Option[Number],
 prevComm: Option[Number],
-prevTimestamp: Option[Date],
+prevTimestamp: Option[DateTime],
 execTurnover: Option[Number],
 execComm: Option[Number],
 totalReferrals: Option[Number],
@@ -18,5 +18,5 @@ totalTurnover: Option[Number],
 totalComm: Option[Number],
 payoutPcnt: Option[Double],
 pendingPayout: Option[Number],
-timestamp: Option[Date]
+timestamp: Option[DateTime]
 )

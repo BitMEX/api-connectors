@@ -1,7 +1,7 @@
 =begin
 #BitMEX API
 
-### REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+### REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
 
 OpenAPI spec version: 1.2.0
 Contact: support@bitmex.com
@@ -325,7 +325,7 @@ module SwaggerClient
         :'prev_realised_pnl' => :'Float',
         :'prev_unrealised_pnl' => :'Float',
         :'prev_close_price' => :'Float',
-        :'opening_timestamp' => :'Date',
+        :'opening_timestamp' => :'DateTime',
         :'opening_qty' => :'Float',
         :'opening_cost' => :'Float',
         :'opening_comm' => :'Float',
@@ -342,7 +342,7 @@ module SwaggerClient
         :'exec_qty' => :'Float',
         :'exec_cost' => :'Float',
         :'exec_comm' => :'Float',
-        :'current_timestamp' => :'Date',
+        :'current_timestamp' => :'DateTime',
         :'current_qty' => :'Float',
         :'current_cost' => :'Float',
         :'current_comm' => :'Float',
@@ -397,7 +397,7 @@ module SwaggerClient
         :'margin_call_price' => :'Float',
         :'liquidation_price' => :'Float',
         :'bankrupt_price' => :'Float',
-        :'timestamp' => :'Date',
+        :'timestamp' => :'DateTime',
         :'last_price' => :'Float',
         :'last_value' => :'Float'
       }
@@ -433,14 +433,20 @@ module SwaggerClient
 
       if attributes.has_key?(:'commission')
         self.commission = attributes[:'commission']
+      else
+        self.commission = 0.0
       end
 
       if attributes.has_key?(:'initMarginReq')
         self.init_margin_req = attributes[:'initMarginReq']
+      else
+        self.init_margin_req = 0.0
       end
 
       if attributes.has_key?(:'maintMarginReq')
         self.maint_margin_req = attributes[:'maintMarginReq']
+      else
+        self.maint_margin_req = 0.0
       end
 
       if attributes.has_key?(:'riskLimit')
@@ -449,6 +455,8 @@ module SwaggerClient
 
       if attributes.has_key?(:'leverage')
         self.leverage = attributes[:'leverage']
+      else
+        self.leverage = 0.0
       end
 
       if attributes.has_key?(:'crossMargin')
@@ -457,6 +465,8 @@ module SwaggerClient
 
       if attributes.has_key?(:'deleveragePercentile')
         self.deleverage_percentile = attributes[:'deleveragePercentile']
+      else
+        self.deleverage_percentile = 0.0
       end
 
       if attributes.has_key?(:'rebalancedPnl')
@@ -473,6 +483,8 @@ module SwaggerClient
 
       if attributes.has_key?(:'prevClosePrice')
         self.prev_close_price = attributes[:'prevClosePrice']
+      else
+        self.prev_close_price = 0.0
       end
 
       if attributes.has_key?(:'openingTimestamp')
@@ -585,6 +597,8 @@ module SwaggerClient
 
       if attributes.has_key?(:'markPrice')
         self.mark_price = attributes[:'markPrice']
+      else
+        self.mark_price = 0.0
       end
 
       if attributes.has_key?(:'markValue')
@@ -597,10 +611,14 @@ module SwaggerClient
 
       if attributes.has_key?(:'homeNotional')
         self.home_notional = attributes[:'homeNotional']
+      else
+        self.home_notional = 0.0
       end
 
       if attributes.has_key?(:'foreignNotional')
         self.foreign_notional = attributes[:'foreignNotional']
+      else
+        self.foreign_notional = 0.0
       end
 
       if attributes.has_key?(:'posState')
@@ -697,6 +715,8 @@ module SwaggerClient
 
       if attributes.has_key?(:'indicativeTaxRate')
         self.indicative_tax_rate = attributes[:'indicativeTaxRate']
+      else
+        self.indicative_tax_rate = 0.0
       end
 
       if attributes.has_key?(:'indicativeTax')
@@ -713,54 +733,80 @@ module SwaggerClient
 
       if attributes.has_key?(:'unrealisedPnlPcnt')
         self.unrealised_pnl_pcnt = attributes[:'unrealisedPnlPcnt']
+      else
+        self.unrealised_pnl_pcnt = 0.0
       end
 
       if attributes.has_key?(:'unrealisedRoePcnt')
         self.unrealised_roe_pcnt = attributes[:'unrealisedRoePcnt']
+      else
+        self.unrealised_roe_pcnt = 0.0
       end
 
       if attributes.has_key?(:'simpleQty')
         self.simple_qty = attributes[:'simpleQty']
+      else
+        self.simple_qty = 0.0
       end
 
       if attributes.has_key?(:'simpleCost')
         self.simple_cost = attributes[:'simpleCost']
+      else
+        self.simple_cost = 0.0
       end
 
       if attributes.has_key?(:'simpleValue')
         self.simple_value = attributes[:'simpleValue']
+      else
+        self.simple_value = 0.0
       end
 
       if attributes.has_key?(:'simplePnl')
         self.simple_pnl = attributes[:'simplePnl']
+      else
+        self.simple_pnl = 0.0
       end
 
       if attributes.has_key?(:'simplePnlPcnt')
         self.simple_pnl_pcnt = attributes[:'simplePnlPcnt']
+      else
+        self.simple_pnl_pcnt = 0.0
       end
 
       if attributes.has_key?(:'avgCostPrice')
         self.avg_cost_price = attributes[:'avgCostPrice']
+      else
+        self.avg_cost_price = 0.0
       end
 
       if attributes.has_key?(:'avgEntryPrice')
         self.avg_entry_price = attributes[:'avgEntryPrice']
+      else
+        self.avg_entry_price = 0.0
       end
 
       if attributes.has_key?(:'breakEvenPrice')
         self.break_even_price = attributes[:'breakEvenPrice']
+      else
+        self.break_even_price = 0.0
       end
 
       if attributes.has_key?(:'marginCallPrice')
         self.margin_call_price = attributes[:'marginCallPrice']
+      else
+        self.margin_call_price = 0.0
       end
 
       if attributes.has_key?(:'liquidationPrice')
         self.liquidation_price = attributes[:'liquidationPrice']
+      else
+        self.liquidation_price = 0.0
       end
 
       if attributes.has_key?(:'bankruptPrice')
         self.bankrupt_price = attributes[:'bankruptPrice']
+      else
+        self.bankrupt_price = 0.0
       end
 
       if attributes.has_key?(:'timestamp')
@@ -769,6 +815,8 @@ module SwaggerClient
 
       if attributes.has_key?(:'lastPrice')
         self.last_price = attributes[:'lastPrice']
+      else
+        self.last_price = 0.0
       end
 
       if attributes.has_key?(:'lastValue')

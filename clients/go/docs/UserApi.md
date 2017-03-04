@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**UserCancelWithdrawal**](UserApi.md#UserCancelWithdrawal) | **Post** /user/cancelWithdrawal | Cancel a withdrawal.
 [**UserCheckReferralCode**](UserApi.md#UserCheckReferralCode) | **Get** /user/checkReferralCode | Check if a referral code is valid.
-[**UserConfirmEmail**](UserApi.md#UserConfirmEmail) | **Post** /user/confirmEmail | Confirm your email address with a token.
+[**UserConfirm**](UserApi.md#UserConfirm) | **Post** /user/confirmEmail | Confirm your email address with a token.
 [**UserConfirmEnableTFA**](UserApi.md#UserConfirmEnableTFA) | **Post** /user/confirmEnableTFA | Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
 [**UserConfirmWithdrawal**](UserApi.md#UserConfirmWithdrawal) | **Post** /user/confirmWithdrawal | Confirm a withdrawal.
 [**UserDisableTFA**](UserApi.md#UserDisableTFA) | **Post** /user/disableTFA | Disable two-factor auth for this account.
@@ -20,7 +20,8 @@ Method | HTTP request | Description
 [**UserGetWalletSummary**](UserApi.md#UserGetWalletSummary) | **Get** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**UserLogout**](UserApi.md#UserLogout) | **Post** /user/logout | Log out of BitMEX.
 [**UserLogoutAll**](UserApi.md#UserLogoutAll) | **Post** /user/logoutAll | Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
-[**UserRequestEnableTFA**](UserApi.md#UserRequestEnableTFA) | **Post** /user/requestEnableTFA | Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+[**UserMinWithdrawalFee**](UserApi.md#UserMinWithdrawalFee) | **Get** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
+[**UserRequestEnableTFA**](UserApi.md#UserRequestEnableTFA) | **Post** /user/requestEnableTFA | Get secret key for setting up two-factor auth.
 [**UserRequestWithdrawal**](UserApi.md#UserRequestWithdrawal) | **Post** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**UserSavePreferences**](UserApi.md#UserSavePreferences) | **Post** /user/preferences | Save user preferences.
 [**UserUpdate**](UserApi.md#UserUpdate) | **Put** /user | Update your password, name, and other attributes.
@@ -82,8 +83,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **UserConfirmEmail**
-> AccessToken UserConfirmEmail($token)
+# **UserConfirm**
+> AccessToken UserConfirm($token)
 
 Confirm your email address with a token.
 
@@ -447,10 +448,41 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **UserMinWithdrawalFee**
+> float64 UserMinWithdrawalFee($currency)
+
+Get the minimum withdrawal fee for a currency.
+
+This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **string**|  | [optional] [default to XBt]
+
+### Return type
+
+**float64**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **UserRequestEnableTFA**
 > bool UserRequestEnableTFA($type_)
 
-Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+Get secret key for setting up two-factor auth.
+
+Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
 
 
 ### Parameters

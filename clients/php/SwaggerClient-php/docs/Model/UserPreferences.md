@@ -3,7 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**announcements_last_seen** | [**\DateTime**](Date.md) |  | [optional] 
+**animations_enabled** | **bool** |  | [optional] 
+**announcements_last_seen** | [**\DateTime**](\DateTime.md) |  | [optional] 
 **chat_channel_id** | **double** |  | [optional] 
 **color_theme** | **string** |  | [optional] 
 **currency** | **string** |  | [optional] 

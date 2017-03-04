@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **permissions** | [**list[XAny]**](XAny.md) |  | [optional] 
 **enabled** | **bool** |  | [optional] [default to False]
 **user_id** | **float** |  | 
-**created** | **date** |  | [optional] 
+**created** | **datetime** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

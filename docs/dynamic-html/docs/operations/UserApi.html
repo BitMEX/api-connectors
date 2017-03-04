@@ -1,0 +1,608 @@
+<div class="main-content">
+  <h2><a name=""></a></h2>
+  <p>This is the  API</p>
+
+  <h2><a name="user.cancelWithdrawal"></a>user.cancelWithdrawal</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user/cancelWithdrawal</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="Transaction"><a href="">Transaction</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">token</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+  </ul>
+  <h2><a name="user.checkReferralCode"></a>user.checkReferralCode</h2>
+  <hr>
+  <p></p>
+  <p>If the code is valid, responds with the referral code&#39;s discount (e.g. &#x60;0.1&#x60; for 10%). Otherwise, will return a 404.</p>
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user/checkReferralCode</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="double"><a href="">Double</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">referralCode</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+  </ul>
+  <h2><a name="user.confirm"></a>user.confirm</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user/confirmEmail</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="AccessToken"><a href="">AccessToken</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">token</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+  </ul>
+  <h2><a name="user.confirmEnableTFA"></a>user.confirmEnableTFA</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user/confirmEnableTFA</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="boolean"><a href="">Boolean</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">token</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Token from your selected TFA type.</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">type</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39;</p>
+	  </li>
+  </ul>
+  <h2><a name="user.confirmWithdrawal"></a>user.confirmWithdrawal</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user/confirmWithdrawal</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="Transaction"><a href="">Transaction</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">token</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+  </ul>
+  <h2><a name="user.disableTFA"></a>user.disableTFA</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user/disableTFA</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="boolean"><a href="">Boolean</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">token</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Token from your selected TFA type.</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">type</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)</p>
+	  </li>
+  </ul>
+  <h2><a name="user.get"></a>user.get</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="User"><a href="">User</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  </ul>
+  <h2><a name="user.getAffiliateStatus"></a>user.getAffiliateStatus</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user/affiliateStatus</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="Affiliate"><a href="">List</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  </ul>
+  <h2><a name="user.getCommission"></a>user.getCommission</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user/commission</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="UserCommission"><a href="">List</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  </ul>
+  <h2><a name="user.getDepositAddress"></a>user.getDepositAddress</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user/depositAddress</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="string"><a href="">String</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">currency</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+  </ul>
+  <h2><a name="user.getMargin"></a>user.getMargin</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user/margin</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="Margin"><a href="">Margin</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">currency</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+  </ul>
+  <h2><a name="user.getWallet"></a>user.getWallet</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user/wallet</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="Wallet"><a href="">Wallet</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">currency</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+  </ul>
+  <h2><a name="user.getWalletHistory"></a>user.getWalletHistory</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user/walletHistory</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="Transaction"><a href="">List</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">currency</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+  </ul>
+  <h2><a name="user.getWalletSummary"></a>user.getWalletSummary</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user/walletSummary</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="Transaction"><a href="">List</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">currency</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+  </ul>
+  <h2><a name="user.logout"></a>user.logout</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user/logout</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model=""><a href=""></a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  </ul>
+  <h2><a name="user.logoutAll"></a>user.logoutAll</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user/logoutAll</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="double"><a href="">Double</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  </ul>
+  <h2><a name="user.minWithdrawalFee"></a>user.minWithdrawalFee</h2>
+  <hr>
+  <p></p>
+  <p>This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.</p>
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user/minWithdrawalFee</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="double"><a href="">Double</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">currency</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+  </ul>
+  <h2><a name="user.requestEnableTFA"></a>user.requestEnableTFA</h2>
+  <hr>
+  <p></p>
+  <p>Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.</p>
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user/requestEnableTFA</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="boolean"><a href="">Boolean</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">type</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)</p>
+	  </li>
+  </ul>
+  <h2><a name="user.requestWithdrawal"></a>user.requestWithdrawal</h2>
+  <hr>
+  <p></p>
+  <p>This will send a confirmation email to the email address on record, unless requested via an API Key with the &#x60;withdraw&#x60; permission.</p>
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user/requestWithdrawal</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="Transaction"><a href="">Transaction</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">currency</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">amount</span>
+      <span class="param-type">BigDecimal</span>
+      
+      <p class="param-description">Amount of withdrawal currency.</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">address</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Destination Address.</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">otpToken</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">2FA token. Required if 2FA is enabled on your account.</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">fee</span>
+      <span class="param-type">Double</span>
+      
+      <p class="param-description">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.</p>
+	  </li>
+  </ul>
+  <h2><a name="user.savePreferences"></a>user.savePreferences</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user/preferences</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="User"><a href="">User</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">prefs</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">overwrite</span>
+      <span class="param-type">Boolean</span>
+      
+      <p class="param-description">If true, will overwrite all existing preferences.</p>
+	  </li>
+  </ul>
+  <h2><a name="user.update"></a>user.update</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://localhost/api/v1/user</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>PUT</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="User"><a href="">User</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">firstname</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">lastname</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">oldPassword</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">newPassword</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">newPasswordConfirm</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">username</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Username can only be set once. To reset, email support.</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">country</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Country of residence.</p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">pgpPubKey</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">PGP Public Key. If specified, automated emails will be sentwith this key.</p>
+	  </li>
+  </ul>
+</div>

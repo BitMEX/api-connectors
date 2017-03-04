@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**user_cancel_withdrawal**](UserApi.md#user_cancel_withdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 [**user_check_referral_code**](UserApi.md#user_check_referral_code) | **GET** /user/checkReferralCode | Check if a referral code is valid.
-[**user_confirm_email**](UserApi.md#user_confirm_email) | **POST** /user/confirmEmail | Confirm your email address with a token.
+[**user_confirm**](UserApi.md#user_confirm) | **POST** /user/confirmEmail | Confirm your email address with a token.
 [**user_confirm_enable_tfa**](UserApi.md#user_confirm_enable_tfa) | **POST** /user/confirmEnableTFA | Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
 [**user_confirm_withdrawal**](UserApi.md#user_confirm_withdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
 [**user_disable_tfa**](UserApi.md#user_disable_tfa) | **POST** /user/disableTFA | Disable two-factor auth for this account.
@@ -20,7 +20,8 @@ Method | HTTP request | Description
 [**user_get_wallet_summary**](UserApi.md#user_get_wallet_summary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**user_logout**](UserApi.md#user_logout) | **POST** /user/logout | Log out of BitMEX.
 [**user_logout_all**](UserApi.md#user_logout_all) | **POST** /user/logoutAll | Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
-[**user_request_enable_tfa**](UserApi.md#user_request_enable_tfa) | **POST** /user/requestEnableTFA | Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+[**user_min_withdrawal_fee**](UserApi.md#user_min_withdrawal_fee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
+[**user_request_enable_tfa**](UserApi.md#user_request_enable_tfa) | **POST** /user/requestEnableTFA | Get secret key for setting up two-factor auth.
 [**user_request_withdrawal**](UserApi.md#user_request_withdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**user_save_preferences**](UserApi.md#user_save_preferences) | **POST** /user/preferences | Save user preferences.
 [**user_update**](UserApi.md#user_update) | **PUT** /user | Update your password, name, and other attributes.
@@ -118,8 +119,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **user_confirm_email**
-> AccessToken user_confirm_email(token)
+# **user_confirm**
+> AccessToken user_confirm(token)
 
 Confirm your email address with a token.
 
@@ -136,10 +137,10 @@ token = 'token_example' # str |
 
 try: 
     # Confirm your email address with a token.
-    api_response = api_instance.user_confirm_email(token)
+    api_response = api_instance.user_confirm(token)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_confirm_email: %s\n" % e
+    print "Exception when calling UserApi->user_confirm: %s\n" % e
 ```
 
 ### Parameters
@@ -731,10 +732,59 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **user_min_withdrawal_fee**
+> float user_min_withdrawal_fee(currency=currency)
+
+Get the minimum withdrawal fee for a currency.
+
+This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+
+### Example 
+```python
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.UserApi()
+currency = 'XBt' # str |  (optional) (default to XBt)
+
+try: 
+    # Get the minimum withdrawal fee for a currency.
+    api_response = api_instance.user_min_withdrawal_fee(currency=currency)
+    pprint(api_response)
+except ApiException as e:
+    print "Exception when calling UserApi->user_min_withdrawal_fee: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **str**|  | [optional] [default to XBt]
+
+### Return type
+
+**float**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **user_request_enable_tfa**
 > bool user_request_enable_tfa(type=type)
 
-Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+Get secret key for setting up two-factor auth.
+
+Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
 
 ### Example 
 ```python
@@ -748,7 +798,7 @@ api_instance = swagger_client.UserApi()
 type = 'type_example' # str | Two-factor auth type. Supported types: 'GA' (Google Authenticator) (optional)
 
 try: 
-    # Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+    # Get secret key for setting up two-factor auth.
     api_response = api_instance.user_request_enable_tfa(type=type)
     pprint(api_response)
 except ApiException as e:

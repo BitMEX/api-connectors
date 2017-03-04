@@ -11,5 +11,5 @@ bidSize: Option[Number],
 bidPrice: Option[Double],
 askPrice: Option[Double],
 askSize: Option[Number],
-timestamp: Option[Date]
+timestamp: Option[DateTime]
 )

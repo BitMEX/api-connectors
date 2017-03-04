@@ -5,6 +5,5 @@ import java.util.UUID
 
 
 case class Error (
-  message: String,
-code: Number
+  error: Option[Error_error]
 )

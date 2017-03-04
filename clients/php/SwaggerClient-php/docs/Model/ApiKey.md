@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **permissions** | [**\Swagger\Client\Model\XAny[]**](XAny.md) |  | [optional] 
 **enabled** | **bool** |  | [optional] [default to false]
 **user_id** | **float** |  | 
-**created** | [**\DateTime**](Date.md) |  | [optional] 
+**created** | [**\DateTime**](\DateTime.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

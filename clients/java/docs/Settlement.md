@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**timestamp** | [**LocalDate**](LocalDate.md) |  | 
+**timestamp** | [**DateTime**](DateTime.md) |  | 
 **symbol** | **String** |  | 
 **settlementType** | **String** |  |  [optional]
 **settledPrice** | **Double** |  |  [optional]

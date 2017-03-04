@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**userCancelWithdrawal**](UserApi.md#userCancelWithdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 [**userCheckReferralCode**](UserApi.md#userCheckReferralCode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
-[**userConfirmEmail**](UserApi.md#userConfirmEmail) | **POST** /user/confirmEmail | Confirm your email address with a token.
+[**userConfirm**](UserApi.md#userConfirm) | **POST** /user/confirmEmail | Confirm your email address with a token.
 [**userConfirmEnableTFA**](UserApi.md#userConfirmEnableTFA) | **POST** /user/confirmEnableTFA | Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
 [**userConfirmWithdrawal**](UserApi.md#userConfirmWithdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
 [**userDisableTFA**](UserApi.md#userDisableTFA) | **POST** /user/disableTFA | Disable two-factor auth for this account.
@@ -20,7 +20,8 @@ Method | HTTP request | Description
 [**userGetWalletSummary**](UserApi.md#userGetWalletSummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**userLogout**](UserApi.md#userLogout) | **POST** /user/logout | Log out of BitMEX.
 [**userLogoutAll**](UserApi.md#userLogoutAll) | **POST** /user/logoutAll | Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
-[**userRequestEnableTFA**](UserApi.md#userRequestEnableTFA) | **POST** /user/requestEnableTFA | Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+[**userMinWithdrawalFee**](UserApi.md#userMinWithdrawalFee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
+[**userRequestEnableTFA**](UserApi.md#userRequestEnableTFA) | **POST** /user/requestEnableTFA | Get secret key for setting up two-factor auth.
 [**userRequestWithdrawal**](UserApi.md#userRequestWithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**userSavePreferences**](UserApi.md#userSavePreferences) | **POST** /user/preferences | Save user preferences.
 [**userUpdate**](UserApi.md#userUpdate) | **PUT** /user | Update your password, name, and other attributes.
@@ -117,9 +118,9 @@ No authorization required
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
-<a name="userConfirmEmail"></a>
-# **userConfirmEmail**
-> AccessToken userConfirmEmail(token)
+<a name="userConfirm"></a>
+# **userConfirm**
+> AccessToken userConfirm(token)
 
 Confirm your email address with a token.
 
@@ -139,7 +140,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.userConfirmEmail(token, callback);
+apiInstance.userConfirm(token, callback);
 ```
 
 ### Parameters
@@ -716,11 +717,60 @@ No authorization required
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
+<a name="userMinWithdrawalFee"></a>
+# **userMinWithdrawalFee**
+> &#39;Number&#39; userMinWithdrawalFee(opts)
+
+Get the minimum withdrawal fee for a currency.
+
+This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+
+### Example
+```javascript
+var BitMexApi = require('bit_mex_api');
+
+var apiInstance = new BitMexApi.UserApi();
+
+var opts = { 
+  'currency': "XBt" // String | 
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.userMinWithdrawalFee(opts, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **String**|  | [optional] [default to XBt]
+
+### Return type
+
+**&#39;Number&#39;**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
 <a name="userRequestEnableTFA"></a>
 # **userRequestEnableTFA**
 > &#39;Boolean&#39; userRequestEnableTFA(opts)
 
-Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+Get secret key for setting up two-factor auth.
+
+Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
 
 ### Example
 ```javascript

@@ -4,6 +4,10 @@ part of api;
 @Entity()
 class UserPreferences {
   
+  @Property(name: 'animationsEnabled')
+  bool animationsEnabled = null;
+  
+
   @Property(name: 'announcementsLastSeen')
   DateTime announcementsLastSeen = null;
   
@@ -95,7 +99,7 @@ class UserPreferences {
 
   @override
   String toString()  {
-    return 'UserPreferences[announcementsLastSeen=$announcementsLastSeen, chatChannelID=$chatChannelID, colorTheme=$colorTheme, currency=$currency, debug=$debug, disableEmails=$disableEmails, hideConfirmDialogs=$hideConfirmDialogs, hideConnectionModal=$hideConnectionModal, hideFromLeaderboard=$hideFromLeaderboard, hideNameFromLeaderboard=$hideNameFromLeaderboard, hideNotifications=$hideNotifications, locale=$locale, msgsSeen=$msgsSeen, orderBookBinning=$orderBookBinning, orderBookType=$orderBookType, orderControlsPlusMinus=$orderControlsPlusMinus, sounds=$sounds, strictIPCheck=$strictIPCheck, strictTimeout=$strictTimeout, tickerGroup=$tickerGroup, tickerPinned=$tickerPinned, tradeLayout=$tradeLayout, ]';
+    return 'UserPreferences[animationsEnabled=$animationsEnabled, announcementsLastSeen=$announcementsLastSeen, chatChannelID=$chatChannelID, colorTheme=$colorTheme, currency=$currency, debug=$debug, disableEmails=$disableEmails, hideConfirmDialogs=$hideConfirmDialogs, hideConnectionModal=$hideConnectionModal, hideFromLeaderboard=$hideFromLeaderboard, hideNameFromLeaderboard=$hideNameFromLeaderboard, hideNotifications=$hideNotifications, locale=$locale, msgsSeen=$msgsSeen, orderBookBinning=$orderBookBinning, orderBookType=$orderBookType, orderControlsPlusMinus=$orderControlsPlusMinus, sounds=$sounds, strictIPCheck=$strictIPCheck, strictTimeout=$strictTimeout, tickerGroup=$tickerGroup, tickerPinned=$tickerPinned, tradeLayout=$tradeLayout, ]';
   }
 
 }

@@ -20,5 +20,6 @@ Name | Type | Description | Notes
 **confirmedDebit** | **Number** |  | [optional] 
 **timestamp** | **Date** |  | [optional] 
 **addr** | **String** |  | [optional] 
+**withdrawalLock** | [**[XAny]**](XAny.md) |  | [optional] 
 
 

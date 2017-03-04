@@ -15,6 +15,6 @@ transactStatus: Option[String],
 address: Option[String],
 tx: Option[String],
 text: Option[String],
-transactTime: Option[Date],
-timestamp: Option[Date]
+transactTime: Option[DateTime],
+timestamp: Option[DateTime]
 )

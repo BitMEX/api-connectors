@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **bid_price** | **double** |  | [optional] 
 **ask_price** | **double** |  | [optional] 
 **ask_size** | **float** |  | [optional] 
-**timestamp** | [**\DateTime**](Date.md) |  | [optional] 
+**timestamp** | [**\DateTime**](\DateTime.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -13,7 +13,7 @@
 /**
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section.
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section.
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -261,7 +261,7 @@ class UserApi
     }
 
     /**
-     * Operation userConfirmEmail
+     * Operation userConfirm
      *
      * Confirm your email address with a token.
      *
@@ -269,14 +269,14 @@ class UserApi
      * @return \Swagger\Client\Model\AccessToken
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function userConfirmEmail($token)
+    public function userConfirm($token)
     {
-        list($response) = $this->userConfirmEmailWithHttpInfo($token);
+        list($response) = $this->userConfirmWithHttpInfo($token);
         return $response;
     }
 
     /**
-     * Operation userConfirmEmailWithHttpInfo
+     * Operation userConfirmWithHttpInfo
      *
      * Confirm your email address with a token.
      *
@@ -284,11 +284,11 @@ class UserApi
      * @return Array of \Swagger\Client\Model\AccessToken, HTTP status code, HTTP response headers (array of strings)
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function userConfirmEmailWithHttpInfo($token)
+    public function userConfirmWithHttpInfo($token)
     {
         // verify the required parameter 'token' is set
         if ($token === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $token when calling userConfirmEmail');
+            throw new \InvalidArgumentException('Missing the required parameter $token when calling userConfirm');
         }
         // parse inputs
         $resourcePath = "/user/confirmEmail";
@@ -1333,9 +1333,86 @@ class UserApi
     }
 
     /**
+     * Operation userMinWithdrawalFee
+     *
+     * Get the minimum withdrawal fee for a currency.
+     *
+     * @param string $currency  (optional, default to XBt)
+     * @return double
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function userMinWithdrawalFee($currency = null)
+    {
+        list($response) = $this->userMinWithdrawalFeeWithHttpInfo($currency);
+        return $response;
+    }
+
+    /**
+     * Operation userMinWithdrawalFeeWithHttpInfo
+     *
+     * Get the minimum withdrawal fee for a currency.
+     *
+     * @param string $currency  (optional, default to XBt)
+     * @return Array of double, HTTP status code, HTTP response headers (array of strings)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function userMinWithdrawalFeeWithHttpInfo($currency = null)
+    {
+        // parse inputs
+        $resourcePath = "/user/minWithdrawalFee";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array('application/json','application/x-www-form-urlencoded'));
+
+        // query params
+        if ($currency !== null) {
+            $queryParams['currency'] = $this->apiClient->getSerializer()->toQueryValue($currency);
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'GET',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                'double',
+                '/user/minWithdrawalFee'
+            );
+
+            return array($this->apiClient->getSerializer()->deserialize($response, 'double', $httpHeader), $statusCode, $httpHeader);
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), 'double', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
      * Operation userRequestEnableTFA
      *
-     * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+     * Get secret key for setting up two-factor auth.
      *
      * @param string $type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)
      * @return bool
@@ -1350,7 +1427,7 @@ class UserApi
     /**
      * Operation userRequestEnableTFAWithHttpInfo
      *
-     * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+     * Get secret key for setting up two-factor auth.
      *
      * @param string $type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)
      * @return Array of bool, HTTP status code, HTTP response headers (array of strings)

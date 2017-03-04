@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "## REST API for the BitMEX Trading Platform\n\n[Changelog](/app/apiChangelog)\n\n----\n\n#### Getting Started\n\n\n##### Fetching Data\n\nAll REST endpoints are documented below. You can try out any query right from this interface.\n\nMost table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.\n\nAdditional documentation regarding filters, timestamps, and authentication\nis available in [the main API documentation](https://www.bitmex.com/app/restAPI).\n\n*All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want\nto have the quickest possible data without being subject to ratelimits.\n\n##### Return Types\n\nBy default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.\n\n##### Trade Data Queries\n\n*This is only a small subset of what is available, to get you started.*\n\nFill in the parameters and click the `Try it out!` button to try any of these queries.\n\n* [Pricing Data](#!/Quote/Quote_get)\n\n* [Trade Data](#!/Trade/Trade_get)\n\n* [OrderBook Data](#!/OrderBook/OrderBook_getL2)\n\n* [Settlement Data](#!/Settlement/Settlement_get)\n\n* [Exchange Statistics](#!/Stats/Stats_history)\n\nEvery function of the BitMEX.com platform is exposed here and documented. Many more functions are available.\n\n---\n\n## All API Endpoints\n\nClick to expand a section.\n",
+    "description" : "## REST API for the BitMEX Trading Platform\n\n[Changelog](/app/apiChangelog)\n\n\n\n#### Getting Started\n\n\n##### Fetching Data\n\nAll REST endpoints are documented below. You can try out any query right from this interface.\n\nMost table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.\n\nAdditional documentation regarding filters, timestamps, and authentication\nis available in [the main API documentation](https://www.bitmex.com/app/restAPI).\n\n*All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want\nto have the quickest possible data without being subject to ratelimits.\n\n##### Return Types\n\nBy default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.\n\n##### Trade Data Queries\n\n*This is only a small subset of what is available, to get you started.*\n\nFill in the parameters and click the `Try it out!` button to try any of these queries.\n\n* [Pricing Data](#!/Quote/Quote_get)\n\n* [Trade Data](#!/Trade/Trade_get)\n\n* [OrderBook Data](#!/OrderBook/OrderBook_getL2)\n\n* [Settlement Data](#!/Settlement/Settlement_get)\n\n* [Exchange Statistics](#!/Stats/Stats_history)\n\nEvery function of the BitMEX.com platform is exposed here and documented. Many more functions are available.\n\n-\n\n## All API Endpoints\n\nClick to expand a section.\n",
     "version" : "1.2.0",
     "title" : "BitMEX API",
     "termsOfService" : "https://www.bitmex.com/app/terms",
@@ -432,8 +432,7 @@
           "name" : "message",
           "in" : "formData",
           "required" : true,
-          "type" : "string",
-          "maximum" : 500.0
+          "type" : "string"
         }, {
           "name" : "channelID",
           "in" : "formData",
@@ -3079,7 +3078,7 @@
       "post" : {
         "tags" : [ "User" ],
         "summary" : "Confirm your email address with a token.",
-        "operationId" : "User.confirmEmail",
+        "operationId" : "User.confirm",
         "parameters" : [ {
           "name" : "token",
           "in" : "formData",
@@ -3247,6 +3246,30 @@
         }
       }
     },
+    "/user/minWithdrawalFee" : {
+      "get" : {
+        "tags" : [ "User" ],
+        "summary" : "Get the minimum withdrawal fee for a currency.",
+        "description" : "This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.",
+        "operationId" : "User.minWithdrawalFee",
+        "parameters" : [ {
+          "name" : "currency",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "default" : "XBt"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request was successful",
+            "schema" : {
+              "type" : "number",
+              "format" : "double"
+            }
+          }
+        }
+      }
+    },
     "/user/preferences" : {
       "post" : {
         "tags" : [ "User" ],
@@ -3279,7 +3302,8 @@
     "/user/requestEnableTFA" : {
       "post" : {
         "tags" : [ "User" ],
-        "summary" : "Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.",
+        "summary" : "Get secret key for setting up two-factor auth.",
+        "description" : "Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.",
         "operationId" : "User.requestEnableTFA",
         "parameters" : [ {
           "name" : "type",
@@ -3423,6 +3447,7 @@
   },
   "definitions" : {
     "Chat" : {
+      "type" : "object",
       "required" : [ "date", "html", "message", "user" ],
       "properties" : {
         "id" : {
@@ -3431,7 +3456,7 @@
         },
         "date" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "user" : {
           "type" : "string"
@@ -3453,18 +3478,15 @@
       }
     },
     "Error" : {
-      "required" : [ "code", "message" ],
+      "type" : "object",
       "properties" : {
-        "message" : {
-          "type" : "string"
-        },
-        "code" : {
-          "type" : "number",
-          "format" : "int32"
+        "error" : {
+          "$ref" : "#/definitions/Error_error"
         }
       }
     },
     "ChatChannel" : {
+      "type" : "object",
       "required" : [ "name" ],
       "properties" : {
         "id" : {
@@ -3477,6 +3499,7 @@
       }
     },
     "ConnectedUsers" : {
+      "type" : "object",
       "properties" : {
         "users" : {
           "type" : "number",
@@ -3489,6 +3512,7 @@
       }
     },
     "Announcement" : {
+      "type" : "object",
       "required" : [ "id" ],
       "properties" : {
         "id" : {
@@ -3506,11 +3530,15 @@
         },
         "date" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         }
       }
     },
+    "x-any" : {
+      "type" : "object"
+    },
     "APIKey" : {
+      "type" : "object",
       "required" : [ "id", "name", "nonce", "secret", "userId" ],
       "properties" : {
         "id" : {
@@ -3549,11 +3577,12 @@
         },
         "created" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         }
       }
     },
     "Execution" : {
+      "type" : "object",
       "required" : [ "execID" ],
       "properties" : {
         "execID" : {
@@ -3716,15 +3745,16 @@
         },
         "transactTime" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "timestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         }
       }
     },
     "Instrument" : {
+      "type" : "object",
       "required" : [ "symbol" ],
       "properties" : {
         "symbol" : {
@@ -3741,23 +3771,23 @@
         },
         "listing" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "front" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "expiry" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "settle" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "relistInterval" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "inverseLeg" : {
           "type" : "string"
@@ -3788,15 +3818,15 @@
         },
         "calcInterval" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "publishInterval" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "publishTime" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "maxOrderQty" : {
           "type" : "number",
@@ -3895,11 +3925,11 @@
         },
         "fundingTimestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "fundingInterval" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "fundingRate" : {
           "type" : "number",
@@ -3911,23 +3941,23 @@
         },
         "rebalanceTimestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "rebalanceInterval" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "openingTimestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "closingTimestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "sessionInterval" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "prevClosePrice" : {
           "type" : "number",
@@ -4083,11 +4113,12 @@
         },
         "timestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         }
       }
     },
     "InstrumentInterval" : {
+      "type" : "object",
       "required" : [ "intervals", "symbols" ],
       "properties" : {
         "intervals" : {
@@ -4105,6 +4136,7 @@
       }
     },
     "Insurance" : {
+      "type" : "object",
       "required" : [ "currency", "timestamp" ],
       "properties" : {
         "currency" : {
@@ -4112,7 +4144,7 @@
         },
         "timestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "walletBalance" : {
           "type" : "number",
@@ -4121,6 +4153,7 @@
       }
     },
     "Leaderboard" : {
+      "type" : "object",
       "required" : [ "name" ],
       "properties" : {
         "name" : {
@@ -4139,6 +4172,7 @@
       }
     },
     "Liquidation" : {
+      "type" : "object",
       "required" : [ "orderID" ],
       "properties" : {
         "orderID" : {
@@ -4162,6 +4196,7 @@
       }
     },
     "Order" : {
+      "type" : "object",
       "required" : [ "orderID" ],
       "properties" : {
         "orderID" : {
@@ -4272,15 +4307,16 @@
         },
         "transactTime" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "timestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         }
       }
     },
     "OrderBook" : {
+      "type" : "object",
       "required" : [ "level", "symbol" ],
       "properties" : {
         "symbol" : {
@@ -4308,11 +4344,12 @@
         },
         "timestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         }
       }
     },
     "OrderBookL2" : {
+      "type" : "object",
       "required" : [ "id", "side", "symbol" ],
       "properties" : {
         "symbol" : {
@@ -4336,6 +4373,7 @@
       }
     },
     "Position" : {
+      "type" : "object",
       "required" : [ "account", "currency", "symbol" ],
       "properties" : {
         "account" : {
@@ -4356,15 +4394,18 @@
         },
         "commission" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "initMarginReq" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "maintMarginReq" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "riskLimit" : {
           "type" : "number",
@@ -4372,14 +4413,16 @@
         },
         "leverage" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "crossMargin" : {
           "type" : "boolean"
         },
         "deleveragePercentile" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "rebalancedPnl" : {
           "type" : "number",
@@ -4395,11 +4438,12 @@
         },
         "prevClosePrice" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "openingTimestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "openingQty" : {
           "type" : "number",
@@ -4467,7 +4511,7 @@
         },
         "currentTimestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "currentQty" : {
           "type" : "number",
@@ -4506,7 +4550,8 @@
         },
         "markPrice" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "markValue" : {
           "type" : "number",
@@ -4518,11 +4563,13 @@
         },
         "homeNotional" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "foreignNotional" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "posState" : {
           "type" : "string"
@@ -4617,7 +4664,8 @@
         },
         "indicativeTaxRate" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "indicativeTax" : {
           "type" : "number",
@@ -4633,63 +4681,77 @@
         },
         "unrealisedPnlPcnt" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "unrealisedRoePcnt" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "simpleQty" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "simpleCost" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "simpleValue" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "simplePnl" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "simplePnlPcnt" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "avgCostPrice" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "avgEntryPrice" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "breakEvenPrice" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "marginCallPrice" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "liquidationPrice" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "bankruptPrice" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "timestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "lastPrice" : {
           "type" : "number",
-          "format" : "double"
+          "format" : "double",
+          "default" : 0.0
         },
         "lastValue" : {
           "type" : "number",
@@ -4698,11 +4760,12 @@
       }
     },
     "Quote" : {
+      "type" : "object",
       "required" : [ "symbol", "timestamp" ],
       "properties" : {
         "timestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "symbol" : {
           "type" : "string"
@@ -4726,11 +4789,12 @@
       }
     },
     "Settlement" : {
+      "type" : "object",
       "required" : [ "symbol", "timestamp" ],
       "properties" : {
         "timestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "symbol" : {
           "type" : "string"
@@ -4757,18 +4821,19 @@
       }
     },
     "Funding" : {
+      "type" : "object",
       "required" : [ "symbol", "timestamp" ],
       "properties" : {
         "timestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "symbol" : {
           "type" : "string"
         },
         "fundingInterval" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "fundingRate" : {
           "type" : "number",
@@ -4781,6 +4846,7 @@
       }
     },
     "Stats" : {
+      "type" : "object",
       "required" : [ "rootSymbol" ],
       "properties" : {
         "rootSymbol" : {
@@ -4808,11 +4874,12 @@
       }
     },
     "StatsHistory" : {
+      "type" : "object",
       "required" : [ "date", "rootSymbol" ],
       "properties" : {
         "date" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "rootSymbol" : {
           "type" : "string"
@@ -4831,11 +4898,12 @@
       }
     },
     "Trade" : {
+      "type" : "object",
       "required" : [ "symbol", "timestamp" ],
       "properties" : {
         "timestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "symbol" : {
           "type" : "string"
@@ -4873,11 +4941,12 @@
       }
     },
     "TradeBin" : {
+      "type" : "object",
       "required" : [ "symbol", "timestamp" ],
       "properties" : {
         "timestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "symbol" : {
           "type" : "string"
@@ -4929,6 +4998,7 @@
       }
     },
     "Wallet" : {
+      "type" : "object",
       "required" : [ "account", "currency" ],
       "properties" : {
         "account" : {
@@ -4952,7 +5022,7 @@
         },
         "prevTimestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "deltaDeposited" : {
           "type" : "number",
@@ -4992,14 +5062,21 @@
         },
         "timestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "addr" : {
           "type" : "string"
+        },
+        "withdrawalLock" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/x-any"
+          }
         }
       }
     },
     "Transaction" : {
+      "type" : "object",
       "required" : [ "transactID" ],
       "properties" : {
         "transactID" : {
@@ -5038,15 +5115,16 @@
         },
         "transactTime" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "timestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         }
       }
     },
     "AccessToken" : {
+      "type" : "object",
       "required" : [ "id" ],
       "properties" : {
         "id" : {
@@ -5060,7 +5138,7 @@
         },
         "created" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "userId" : {
           "type" : "number",
@@ -5069,6 +5147,7 @@
       }
     },
     "Affiliate" : {
+      "type" : "object",
       "required" : [ "account", "currency" ],
       "properties" : {
         "account" : {
@@ -5092,7 +5171,7 @@
         },
         "prevTimestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "execTurnover" : {
           "type" : "number",
@@ -5124,11 +5203,12 @@
         },
         "timestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         }
       }
     },
     "User" : {
+      "type" : "object",
       "required" : [ "email", "username" ],
       "properties" : {
         "id" : {
@@ -5156,11 +5236,11 @@
         },
         "created" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "lastUpdated" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "preferences" : {
           "$ref" : "#/definitions/UserPreferences"
@@ -5183,6 +5263,7 @@
       }
     },
     "UserCommission" : {
+      "type" : "object",
       "properties" : {
         "makerFee" : {
           "type" : "number",
@@ -5195,10 +5276,15 @@
         "settlementFee" : {
           "type" : "number",
           "format" : "double"
+        },
+        "maxFee" : {
+          "type" : "number",
+          "format" : "double"
         }
       }
     },
     "Margin" : {
+      "type" : "object",
       "required" : [ "account", "currency" ],
       "properties" : {
         "account" : {
@@ -5355,7 +5441,7 @@
         },
         "timestamp" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "grossLastValue" : {
           "type" : "number",
@@ -5369,10 +5455,14 @@
       }
     },
     "UserPreferences" : {
+      "type" : "object",
       "properties" : {
+        "animationsEnabled" : {
+          "type" : "boolean"
+        },
         "announcementsLastSeen" : {
           "type" : "string",
-          "format" : "date"
+          "format" : "date-time"
         },
         "chatChannelID" : {
           "type" : "number",
@@ -5464,6 +5554,16 @@
       "properties" : {
         "success" : {
           "type" : "boolean"
+        }
+      }
+    },
+    "Error_error" : {
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
         }
       }
     }

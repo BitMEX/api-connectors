@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**timestamp** | [**LocalDate**](LocalDate.md) |  | 
+**timestamp** | [**DateTime**](DateTime.md) |  | 
 **symbol** | **String** |  | 
 **side** | **String** |  |  [optional]
 **size** | [**BigDecimal**](BigDecimal.md) |  |  [optional]

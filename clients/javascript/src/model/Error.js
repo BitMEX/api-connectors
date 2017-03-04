@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -25,18 +25,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
+    define(['ApiClient', 'model/ErrorError'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('./ErrorError'));
   } else {
     // Browser globals (root is window)
     if (!root.BitMexApi) {
       root.BitMexApi = {};
     }
-    root.BitMexApi.Error = factory(root.BitMexApi.ApiClient);
+    root.BitMexApi.Error = factory(root.BitMexApi.ApiClient, root.BitMexApi.ErrorError);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, ErrorError) {
   'use strict';
 
 
@@ -52,14 +52,11 @@
    * Constructs a new <code>Error</code>.
    * @alias module:model/Error
    * @class
-   * @param message {String} 
-   * @param code {Number} 
    */
-  var exports = function(message, code) {
+  var exports = function() {
     var _this = this;
 
-    _this['message'] = message;
-    _this['code'] = code;
+
   };
 
   /**
@@ -73,24 +70,17 @@
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('message')) {
-        obj['message'] = ApiClient.convertToType(data['message'], 'String');
-      }
-      if (data.hasOwnProperty('code')) {
-        obj['code'] = ApiClient.convertToType(data['code'], 'Number');
+      if (data.hasOwnProperty('error')) {
+        obj['error'] = ErrorError.constructFromObject(data['error']);
       }
     }
     return obj;
   }
 
   /**
-   * @member {String} message
+   * @member {module:model/ErrorError} error
    */
-  exports.prototype['message'] = undefined;
-  /**
-   * @member {Number} code
-   */
-  exports.prototype['code'] = undefined;
+  exports.prototype['error'] = undefined;
 
 
 

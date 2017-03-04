@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -30,13 +30,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
-import org.joda.time.LocalDate;
+import org.joda.time.DateTime;
 
 
 /**
  * Affiliate
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-01-03T10:34:33.567-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-03-04T11:15:54.597-06:00")
 public class Affiliate   {
   @JsonProperty("account")
   private BigDecimal account = null;
@@ -54,7 +54,7 @@ public class Affiliate   {
   private BigDecimal prevComm = null;
 
   @JsonProperty("prevTimestamp")
-  private LocalDate prevTimestamp = null;
+  private DateTime prevTimestamp = null;
 
   @JsonProperty("execTurnover")
   private BigDecimal execTurnover = null;
@@ -78,7 +78,7 @@ public class Affiliate   {
   private BigDecimal pendingPayout = null;
 
   @JsonProperty("timestamp")
-  private LocalDate timestamp = null;
+  private DateTime timestamp = null;
 
   public Affiliate account(BigDecimal account) {
     this.account = account;
@@ -170,7 +170,7 @@ public class Affiliate   {
     this.prevComm = prevComm;
   }
 
-  public Affiliate prevTimestamp(LocalDate prevTimestamp) {
+  public Affiliate prevTimestamp(DateTime prevTimestamp) {
     this.prevTimestamp = prevTimestamp;
     return this;
   }
@@ -180,11 +180,11 @@ public class Affiliate   {
    * @return prevTimestamp
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getPrevTimestamp() {
+  public DateTime getPrevTimestamp() {
     return prevTimestamp;
   }
 
-  public void setPrevTimestamp(LocalDate prevTimestamp) {
+  public void setPrevTimestamp(DateTime prevTimestamp) {
     this.prevTimestamp = prevTimestamp;
   }
 
@@ -314,7 +314,7 @@ public class Affiliate   {
     this.pendingPayout = pendingPayout;
   }
 
-  public Affiliate timestamp(LocalDate timestamp) {
+  public Affiliate timestamp(DateTime timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -324,11 +324,11 @@ public class Affiliate   {
    * @return timestamp
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getTimestamp() {
+  public DateTime getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(LocalDate timestamp) {
+  public void setTimestamp(DateTime timestamp) {
     this.timestamp = timestamp;
   }
 

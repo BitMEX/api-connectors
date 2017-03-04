@@ -3,6 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AnimationsEnabled** | **bool?** |  | [optional] 
 **AnnouncementsLastSeen** | **DateTime?** |  | [optional] 
 **ChatChannelID** | **double?** |  | [optional] 
 **ColorTheme** | **string** |  | [optional] 

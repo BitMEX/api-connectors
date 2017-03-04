@@ -2,9 +2,9 @@
 swagger: "2.0"
 info:
   description: "## REST API for the BitMEX Trading Platform\n\n[Changelog](/app/apiChangelog)\n\
-    \n----\n\n#### Getting Started\n\n\n##### Fetching Data\n\nAll REST endpoints\
-    \ are documented below. You can try out any query right from this interface.\n\
-    \nMost table queries accept `count`, `start`, and `reverse` params. Set `reverse=true`\
+    \n\n\n#### Getting Started\n\n\n##### Fetching Data\n\nAll REST endpoints are\
+    \ documented below. You can try out any query right from this interface.\n\nMost\
+    \ table queries accept `count`, `start`, and `reverse` params. Set `reverse=true`\
     \ to get rows newest-first.\n\nAdditional documentation regarding filters, timestamps,\
     \ and authentication\nis available in [the main API documentation](https://www.bitmex.com/app/restAPI).\n\
     \n*All* table data is available via the [Websocket](/app/wsAPI). We highly recommend\
@@ -17,7 +17,7 @@ info:
     \ Data](#!/Trade/Trade_get)\n\n* [OrderBook Data](#!/OrderBook/OrderBook_getL2)\n\
     \n* [Settlement Data](#!/Settlement/Settlement_get)\n\n* [Exchange Statistics](#!/Stats/Stats_history)\n\
     \nEvery function of the BitMEX.com platform is exposed here and documented. Many\
-    \ more functions are available.\n\n---\n\n## All API Endpoints\n\nClick to expand\
+    \ more functions are available.\n\n-\n\n## All API Endpoints\n\nClick to expand\
     \ a section.\n"
   version: "1.2.0"
   title: "BitMEX API"
@@ -351,7 +351,6 @@ paths:
         in: "formData"
         required: true
         type: "string"
-        maximum: 500.0
       - name: "channelID"
         in: "formData"
         description: "Channel to post to. Default 1 (English)."
@@ -2607,7 +2606,7 @@ paths:
       tags:
       - "User"
       summary: "Confirm your email address with a token."
-      operationId: "User.confirmEmail"
+      operationId: "User.confirm"
       parameters:
       - name: "token"
         in: "formData"
@@ -2739,6 +2738,27 @@ paths:
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Margin"
+  /user/minWithdrawalFee:
+    get:
+      tags:
+      - "User"
+      summary: "Get the minimum withdrawal fee for a currency."
+      description: "This is changed based on network conditions to ensure timely withdrawals.\
+        \ During network congestion, this may be high. The fee is returned in the\
+        \ same currency."
+      operationId: "User.minWithdrawalFee"
+      parameters:
+      - name: "currency"
+        in: "query"
+        required: false
+        type: "string"
+        default: "XBt"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "number"
+            format: "double"
   /user/preferences:
     post:
       tags:
@@ -2766,8 +2786,9 @@ paths:
     post:
       tags:
       - "User"
-      summary: "Get Google Authenticator secret key for setting up two-factor auth.\
-        \ Fails if already enabled. Use /confirmEnableTFA for Yubikeys."
+      summary: "Get secret key for setting up two-factor auth."
+      description: "Use /confirmEnableTFA directly for Yubikeys. This fails if TFA\
+        \ is already enabled."
       operationId: "User.requestEnableTFA"
       parameters:
       - name: "type"
@@ -2883,6 +2904,7 @@ paths:
               $ref: "#/definitions/Transaction"
 definitions:
   Chat:
+    type: "object"
     required:
     - "date"
     - "html"
@@ -2894,7 +2916,7 @@ definitions:
         format: "int32"
       date:
         type: "string"
-        format: "date"
+        format: "date-time"
       user:
         type: "string"
       message:
@@ -2908,16 +2930,12 @@ definitions:
         type: "number"
         format: "double"
   Error:
-    required:
-    - "code"
-    - "message"
+    type: "object"
     properties:
-      message:
-        type: "string"
-      code:
-        type: "number"
-        format: "int32"
+      error:
+        $ref: "#/definitions/Error_error"
   ChatChannel:
+    type: "object"
     required:
     - "name"
     properties:
@@ -2927,6 +2945,7 @@ definitions:
       name:
         type: "string"
   ConnectedUsers:
+    type: "object"
     properties:
       users:
         type: "number"
@@ -2935,6 +2954,7 @@ definitions:
         type: "number"
         format: "int32"
   Announcement:
+    type: "object"
     required:
     - "id"
     properties:
@@ -2949,8 +2969,11 @@ definitions:
         type: "string"
       date:
         type: "string"
-        format: "date"
+        format: "date-time"
+  x-any:
+    type: "object"
   APIKey:
+    type: "object"
     required:
     - "id"
     - "name"
@@ -2985,8 +3008,9 @@ definitions:
         format: "int32"
       created:
         type: "string"
-        format: "date"
+        format: "date-time"
   Execution:
+    type: "object"
     required:
     - "execID"
     properties:
@@ -3105,11 +3129,12 @@ definitions:
         format: "double"
       transactTime:
         type: "string"
-        format: "date"
+        format: "date-time"
       timestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
   Instrument:
+    type: "object"
     required:
     - "symbol"
     properties:
@@ -3123,19 +3148,19 @@ definitions:
         type: "string"
       listing:
         type: "string"
-        format: "date"
+        format: "date-time"
       front:
         type: "string"
-        format: "date"
+        format: "date-time"
       expiry:
         type: "string"
-        format: "date"
+        format: "date-time"
       settle:
         type: "string"
-        format: "date"
+        format: "date-time"
       relistInterval:
         type: "string"
-        format: "date"
+        format: "date-time"
       inverseLeg:
         type: "string"
       sellLeg:
@@ -3156,13 +3181,13 @@ definitions:
         type: "string"
       calcInterval:
         type: "string"
-        format: "date"
+        format: "date-time"
       publishInterval:
         type: "string"
-        format: "date"
+        format: "date-time"
       publishTime:
         type: "string"
-        format: "date"
+        format: "date-time"
       maxOrderQty:
         type: "number"
         format: "int64"
@@ -3234,10 +3259,10 @@ definitions:
         type: "string"
       fundingTimestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
       fundingInterval:
         type: "string"
-        format: "date"
+        format: "date-time"
       fundingRate:
         type: "number"
         format: "double"
@@ -3246,19 +3271,19 @@ definitions:
         format: "double"
       rebalanceTimestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
       rebalanceInterval:
         type: "string"
-        format: "date"
+        format: "date-time"
       openingTimestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
       closingTimestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
       sessionInterval:
         type: "string"
-        format: "date"
+        format: "date-time"
       prevClosePrice:
         type: "number"
         format: "double"
@@ -3374,8 +3399,9 @@ definitions:
         format: "double"
       timestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
   InstrumentInterval:
+    type: "object"
     required:
     - "intervals"
     - "symbols"
@@ -3389,6 +3415,7 @@ definitions:
         items:
           type: "string"
   Insurance:
+    type: "object"
     required:
     - "currency"
     - "timestamp"
@@ -3397,11 +3424,12 @@ definitions:
         type: "string"
       timestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
       walletBalance:
         type: "number"
         format: "int64"
   Leaderboard:
+    type: "object"
     required:
     - "name"
     properties:
@@ -3415,6 +3443,7 @@ definitions:
         type: "number"
         format: "double"
   Liquidation:
+    type: "object"
     required:
     - "orderID"
     properties:
@@ -3432,6 +3461,7 @@ definitions:
         type: "number"
         format: "int64"
   Order:
+    type: "object"
     required:
     - "orderID"
     properties:
@@ -3512,11 +3542,12 @@ definitions:
         type: "string"
       transactTime:
         type: "string"
-        format: "date"
+        format: "date-time"
       timestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
   OrderBook:
+    type: "object"
     required:
     - "level"
     - "symbol"
@@ -3540,8 +3571,9 @@ definitions:
         format: "int64"
       timestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
   OrderBookL2:
+    type: "object"
     required:
     - "id"
     - "side"
@@ -3561,6 +3593,7 @@ definitions:
         type: "number"
         format: "double"
   Position:
+    type: "object"
     required:
     - "account"
     - "currency"
@@ -3580,23 +3613,28 @@ definitions:
       commission:
         type: "number"
         format: "double"
+        default: 0.0
       initMarginReq:
         type: "number"
         format: "double"
+        default: 0.0
       maintMarginReq:
         type: "number"
         format: "double"
+        default: 0.0
       riskLimit:
         type: "number"
         format: "int64"
       leverage:
         type: "number"
         format: "double"
+        default: 0.0
       crossMargin:
         type: "boolean"
       deleveragePercentile:
         type: "number"
         format: "double"
+        default: 0.0
       rebalancedPnl:
         type: "number"
         format: "int64"
@@ -3609,9 +3647,10 @@ definitions:
       prevClosePrice:
         type: "number"
         format: "double"
+        default: 0.0
       openingTimestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
       openingQty:
         type: "number"
         format: "int64"
@@ -3662,7 +3701,7 @@ definitions:
         format: "int64"
       currentTimestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
       currentQty:
         type: "number"
         format: "int64"
@@ -3692,6 +3731,7 @@ definitions:
       markPrice:
         type: "number"
         format: "double"
+        default: 0.0
       markValue:
         type: "number"
         format: "int64"
@@ -3701,9 +3741,11 @@ definitions:
       homeNotional:
         type: "number"
         format: "double"
+        default: 0.0
       foreignNotional:
         type: "number"
         format: "double"
+        default: 0.0
       posState:
         type: "string"
       posCost:
@@ -3775,6 +3817,7 @@ definitions:
       indicativeTaxRate:
         type: "number"
         format: "double"
+        default: 0.0
       indicativeTax:
         type: "number"
         format: "int64"
@@ -3787,59 +3830,74 @@ definitions:
       unrealisedPnlPcnt:
         type: "number"
         format: "double"
+        default: 0.0
       unrealisedRoePcnt:
         type: "number"
         format: "double"
+        default: 0.0
       simpleQty:
         type: "number"
         format: "double"
+        default: 0.0
       simpleCost:
         type: "number"
         format: "double"
+        default: 0.0
       simpleValue:
         type: "number"
         format: "double"
+        default: 0.0
       simplePnl:
         type: "number"
         format: "double"
+        default: 0.0
       simplePnlPcnt:
         type: "number"
         format: "double"
+        default: 0.0
       avgCostPrice:
         type: "number"
         format: "double"
+        default: 0.0
       avgEntryPrice:
         type: "number"
         format: "double"
+        default: 0.0
       breakEvenPrice:
         type: "number"
         format: "double"
+        default: 0.0
       marginCallPrice:
         type: "number"
         format: "double"
+        default: 0.0
       liquidationPrice:
         type: "number"
         format: "double"
+        default: 0.0
       bankruptPrice:
         type: "number"
         format: "double"
+        default: 0.0
       timestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
       lastPrice:
         type: "number"
         format: "double"
+        default: 0.0
       lastValue:
         type: "number"
         format: "int64"
   Quote:
+    type: "object"
     required:
     - "symbol"
     - "timestamp"
     properties:
       timestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
       symbol:
         type: "string"
       bidSize:
@@ -3855,13 +3913,14 @@ definitions:
         type: "number"
         format: "int64"
   Settlement:
+    type: "object"
     required:
     - "symbol"
     - "timestamp"
     properties:
       timestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
       symbol:
         type: "string"
       settlementType:
@@ -3879,18 +3938,19 @@ definitions:
         type: "number"
         format: "double"
   Funding:
+    type: "object"
     required:
     - "symbol"
     - "timestamp"
     properties:
       timestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
       symbol:
         type: "string"
       fundingInterval:
         type: "string"
-        format: "date"
+        format: "date-time"
       fundingRate:
         type: "number"
         format: "double"
@@ -3898,6 +3958,7 @@ definitions:
         type: "number"
         format: "double"
   Stats:
+    type: "object"
     required:
     - "rootSymbol"
     properties:
@@ -3918,13 +3979,14 @@ definitions:
         type: "number"
         format: "int64"
   StatsHistory:
+    type: "object"
     required:
     - "date"
     - "rootSymbol"
     properties:
       date:
         type: "string"
-        format: "date"
+        format: "date-time"
       rootSymbol:
         type: "string"
       currency:
@@ -3936,13 +3998,14 @@ definitions:
         type: "number"
         format: "int64"
   Trade:
+    type: "object"
     required:
     - "symbol"
     - "timestamp"
     properties:
       timestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
       symbol:
         type: "string"
       side:
@@ -3968,13 +4031,14 @@ definitions:
         type: "number"
         format: "double"
   TradeBin:
+    type: "object"
     required:
     - "symbol"
     - "timestamp"
     properties:
       timestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
       symbol:
         type: "string"
       open:
@@ -4011,6 +4075,7 @@ definitions:
         type: "number"
         format: "double"
   Wallet:
+    type: "object"
     required:
     - "account"
     - "currency"
@@ -4031,7 +4096,7 @@ definitions:
         format: "int64"
       prevTimestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
       deltaDeposited:
         type: "number"
         format: "int64"
@@ -4061,10 +4126,15 @@ definitions:
         format: "int64"
       timestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
       addr:
         type: "string"
+      withdrawalLock:
+        type: "array"
+        items:
+          $ref: "#/definitions/x-any"
   Transaction:
+    type: "object"
     required:
     - "transactID"
     properties:
@@ -4094,11 +4164,12 @@ definitions:
         type: "string"
       transactTime:
         type: "string"
-        format: "date"
+        format: "date-time"
       timestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
   AccessToken:
+    type: "object"
     required:
     - "id"
     properties:
@@ -4111,11 +4182,12 @@ definitions:
         default: 1209600.0
       created:
         type: "string"
-        format: "date"
+        format: "date-time"
       userId:
         type: "number"
         format: "double"
   Affiliate:
+    type: "object"
     required:
     - "account"
     - "currency"
@@ -4136,7 +4208,7 @@ definitions:
         format: "int64"
       prevTimestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
       execTurnover:
         type: "number"
         format: "int64"
@@ -4160,8 +4232,9 @@ definitions:
         format: "int64"
       timestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
   User:
+    type: "object"
     required:
     - "email"
     - "username"
@@ -4184,10 +4257,10 @@ definitions:
         type: "string"
       created:
         type: "string"
-        format: "date"
+        format: "date-time"
       lastUpdated:
         type: "string"
-        format: "date"
+        format: "date-time"
       preferences:
         $ref: "#/definitions/UserPreferences"
       TFAEnabled:
@@ -4202,6 +4275,7 @@ definitions:
         type: "string"
         maxLength: 3
   UserCommission:
+    type: "object"
     properties:
       makerFee:
         type: "number"
@@ -4212,7 +4286,11 @@ definitions:
       settlementFee:
         type: "number"
         format: "double"
+      maxFee:
+        type: "number"
+        format: "double"
   Margin:
+    type: "object"
     required:
     - "account"
     - "currency"
@@ -4333,7 +4411,7 @@ definitions:
         format: "int64"
       timestamp:
         type: "string"
-        format: "date"
+        format: "date-time"
       grossLastValue:
         type: "number"
         format: "int64"
@@ -4342,10 +4420,13 @@ definitions:
         format: "double"
         default: 0.0
   UserPreferences:
+    type: "object"
     properties:
+      animationsEnabled:
+        type: "boolean"
       announcementsLastSeen:
         type: "string"
-        format: "date"
+        format: "date-time"
       chatChannelID:
         type: "number"
         format: "double"
@@ -4408,3 +4489,9 @@ definitions:
     properties:
       success:
         type: "boolean"
+  Error_error:
+    properties:
+      message:
+        type: "string"
+      name:
+        type: "string"

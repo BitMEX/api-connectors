@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**date** | **date** |  | 
+**date** | **datetime** |  | 
 **root_symbol** | **str** |  | 
 **currency** | **str** |  | [optional] 
 **volume** | **float** |  | [optional] 

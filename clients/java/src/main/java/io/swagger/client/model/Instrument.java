@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -30,13 +30,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
-import org.joda.time.LocalDate;
+import org.joda.time.DateTime;
 
 
 /**
  * Instrument
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-01-03T10:34:33.567-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-03-04T11:15:54.597-06:00")
 public class Instrument   {
   @JsonProperty("symbol")
   private String symbol = null;
@@ -51,19 +51,19 @@ public class Instrument   {
   private String typ = null;
 
   @JsonProperty("listing")
-  private LocalDate listing = null;
+  private DateTime listing = null;
 
   @JsonProperty("front")
-  private LocalDate front = null;
+  private DateTime front = null;
 
   @JsonProperty("expiry")
-  private LocalDate expiry = null;
+  private DateTime expiry = null;
 
   @JsonProperty("settle")
-  private LocalDate settle = null;
+  private DateTime settle = null;
 
   @JsonProperty("relistInterval")
-  private LocalDate relistInterval = null;
+  private DateTime relistInterval = null;
 
   @JsonProperty("inverseLeg")
   private String inverseLeg = null;
@@ -93,13 +93,13 @@ public class Instrument   {
   private String referenceSymbol = null;
 
   @JsonProperty("calcInterval")
-  private LocalDate calcInterval = null;
+  private DateTime calcInterval = null;
 
   @JsonProperty("publishInterval")
-  private LocalDate publishInterval = null;
+  private DateTime publishInterval = null;
 
   @JsonProperty("publishTime")
-  private LocalDate publishTime = null;
+  private DateTime publishTime = null;
 
   @JsonProperty("maxOrderQty")
   private BigDecimal maxOrderQty = null;
@@ -180,10 +180,10 @@ public class Instrument   {
   private String fundingPremiumSymbol = null;
 
   @JsonProperty("fundingTimestamp")
-  private LocalDate fundingTimestamp = null;
+  private DateTime fundingTimestamp = null;
 
   @JsonProperty("fundingInterval")
-  private LocalDate fundingInterval = null;
+  private DateTime fundingInterval = null;
 
   @JsonProperty("fundingRate")
   private Double fundingRate = null;
@@ -192,19 +192,19 @@ public class Instrument   {
   private Double indicativeFundingRate = null;
 
   @JsonProperty("rebalanceTimestamp")
-  private LocalDate rebalanceTimestamp = null;
+  private DateTime rebalanceTimestamp = null;
 
   @JsonProperty("rebalanceInterval")
-  private LocalDate rebalanceInterval = null;
+  private DateTime rebalanceInterval = null;
 
   @JsonProperty("openingTimestamp")
-  private LocalDate openingTimestamp = null;
+  private DateTime openingTimestamp = null;
 
   @JsonProperty("closingTimestamp")
-  private LocalDate closingTimestamp = null;
+  private DateTime closingTimestamp = null;
 
   @JsonProperty("sessionInterval")
-  private LocalDate sessionInterval = null;
+  private DateTime sessionInterval = null;
 
   @JsonProperty("prevClosePrice")
   private Double prevClosePrice = null;
@@ -324,7 +324,7 @@ public class Instrument   {
   private Double settledPrice = null;
 
   @JsonProperty("timestamp")
-  private LocalDate timestamp = null;
+  private DateTime timestamp = null;
 
   public Instrument symbol(String symbol) {
     this.symbol = symbol;
@@ -398,7 +398,7 @@ public class Instrument   {
     this.typ = typ;
   }
 
-  public Instrument listing(LocalDate listing) {
+  public Instrument listing(DateTime listing) {
     this.listing = listing;
     return this;
   }
@@ -408,15 +408,15 @@ public class Instrument   {
    * @return listing
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getListing() {
+  public DateTime getListing() {
     return listing;
   }
 
-  public void setListing(LocalDate listing) {
+  public void setListing(DateTime listing) {
     this.listing = listing;
   }
 
-  public Instrument front(LocalDate front) {
+  public Instrument front(DateTime front) {
     this.front = front;
     return this;
   }
@@ -426,15 +426,15 @@ public class Instrument   {
    * @return front
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getFront() {
+  public DateTime getFront() {
     return front;
   }
 
-  public void setFront(LocalDate front) {
+  public void setFront(DateTime front) {
     this.front = front;
   }
 
-  public Instrument expiry(LocalDate expiry) {
+  public Instrument expiry(DateTime expiry) {
     this.expiry = expiry;
     return this;
   }
@@ -444,15 +444,15 @@ public class Instrument   {
    * @return expiry
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getExpiry() {
+  public DateTime getExpiry() {
     return expiry;
   }
 
-  public void setExpiry(LocalDate expiry) {
+  public void setExpiry(DateTime expiry) {
     this.expiry = expiry;
   }
 
-  public Instrument settle(LocalDate settle) {
+  public Instrument settle(DateTime settle) {
     this.settle = settle;
     return this;
   }
@@ -462,15 +462,15 @@ public class Instrument   {
    * @return settle
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getSettle() {
+  public DateTime getSettle() {
     return settle;
   }
 
-  public void setSettle(LocalDate settle) {
+  public void setSettle(DateTime settle) {
     this.settle = settle;
   }
 
-  public Instrument relistInterval(LocalDate relistInterval) {
+  public Instrument relistInterval(DateTime relistInterval) {
     this.relistInterval = relistInterval;
     return this;
   }
@@ -480,11 +480,11 @@ public class Instrument   {
    * @return relistInterval
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getRelistInterval() {
+  public DateTime getRelistInterval() {
     return relistInterval;
   }
 
-  public void setRelistInterval(LocalDate relistInterval) {
+  public void setRelistInterval(DateTime relistInterval) {
     this.relistInterval = relistInterval;
   }
 
@@ -650,7 +650,7 @@ public class Instrument   {
     this.referenceSymbol = referenceSymbol;
   }
 
-  public Instrument calcInterval(LocalDate calcInterval) {
+  public Instrument calcInterval(DateTime calcInterval) {
     this.calcInterval = calcInterval;
     return this;
   }
@@ -660,15 +660,15 @@ public class Instrument   {
    * @return calcInterval
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getCalcInterval() {
+  public DateTime getCalcInterval() {
     return calcInterval;
   }
 
-  public void setCalcInterval(LocalDate calcInterval) {
+  public void setCalcInterval(DateTime calcInterval) {
     this.calcInterval = calcInterval;
   }
 
-  public Instrument publishInterval(LocalDate publishInterval) {
+  public Instrument publishInterval(DateTime publishInterval) {
     this.publishInterval = publishInterval;
     return this;
   }
@@ -678,15 +678,15 @@ public class Instrument   {
    * @return publishInterval
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getPublishInterval() {
+  public DateTime getPublishInterval() {
     return publishInterval;
   }
 
-  public void setPublishInterval(LocalDate publishInterval) {
+  public void setPublishInterval(DateTime publishInterval) {
     this.publishInterval = publishInterval;
   }
 
-  public Instrument publishTime(LocalDate publishTime) {
+  public Instrument publishTime(DateTime publishTime) {
     this.publishTime = publishTime;
     return this;
   }
@@ -696,11 +696,11 @@ public class Instrument   {
    * @return publishTime
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getPublishTime() {
+  public DateTime getPublishTime() {
     return publishTime;
   }
 
-  public void setPublishTime(LocalDate publishTime) {
+  public void setPublishTime(DateTime publishTime) {
     this.publishTime = publishTime;
   }
 
@@ -1172,7 +1172,7 @@ public class Instrument   {
     this.fundingPremiumSymbol = fundingPremiumSymbol;
   }
 
-  public Instrument fundingTimestamp(LocalDate fundingTimestamp) {
+  public Instrument fundingTimestamp(DateTime fundingTimestamp) {
     this.fundingTimestamp = fundingTimestamp;
     return this;
   }
@@ -1182,15 +1182,15 @@ public class Instrument   {
    * @return fundingTimestamp
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getFundingTimestamp() {
+  public DateTime getFundingTimestamp() {
     return fundingTimestamp;
   }
 
-  public void setFundingTimestamp(LocalDate fundingTimestamp) {
+  public void setFundingTimestamp(DateTime fundingTimestamp) {
     this.fundingTimestamp = fundingTimestamp;
   }
 
-  public Instrument fundingInterval(LocalDate fundingInterval) {
+  public Instrument fundingInterval(DateTime fundingInterval) {
     this.fundingInterval = fundingInterval;
     return this;
   }
@@ -1200,11 +1200,11 @@ public class Instrument   {
    * @return fundingInterval
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getFundingInterval() {
+  public DateTime getFundingInterval() {
     return fundingInterval;
   }
 
-  public void setFundingInterval(LocalDate fundingInterval) {
+  public void setFundingInterval(DateTime fundingInterval) {
     this.fundingInterval = fundingInterval;
   }
 
@@ -1244,7 +1244,7 @@ public class Instrument   {
     this.indicativeFundingRate = indicativeFundingRate;
   }
 
-  public Instrument rebalanceTimestamp(LocalDate rebalanceTimestamp) {
+  public Instrument rebalanceTimestamp(DateTime rebalanceTimestamp) {
     this.rebalanceTimestamp = rebalanceTimestamp;
     return this;
   }
@@ -1254,15 +1254,15 @@ public class Instrument   {
    * @return rebalanceTimestamp
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getRebalanceTimestamp() {
+  public DateTime getRebalanceTimestamp() {
     return rebalanceTimestamp;
   }
 
-  public void setRebalanceTimestamp(LocalDate rebalanceTimestamp) {
+  public void setRebalanceTimestamp(DateTime rebalanceTimestamp) {
     this.rebalanceTimestamp = rebalanceTimestamp;
   }
 
-  public Instrument rebalanceInterval(LocalDate rebalanceInterval) {
+  public Instrument rebalanceInterval(DateTime rebalanceInterval) {
     this.rebalanceInterval = rebalanceInterval;
     return this;
   }
@@ -1272,15 +1272,15 @@ public class Instrument   {
    * @return rebalanceInterval
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getRebalanceInterval() {
+  public DateTime getRebalanceInterval() {
     return rebalanceInterval;
   }
 
-  public void setRebalanceInterval(LocalDate rebalanceInterval) {
+  public void setRebalanceInterval(DateTime rebalanceInterval) {
     this.rebalanceInterval = rebalanceInterval;
   }
 
-  public Instrument openingTimestamp(LocalDate openingTimestamp) {
+  public Instrument openingTimestamp(DateTime openingTimestamp) {
     this.openingTimestamp = openingTimestamp;
     return this;
   }
@@ -1290,15 +1290,15 @@ public class Instrument   {
    * @return openingTimestamp
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getOpeningTimestamp() {
+  public DateTime getOpeningTimestamp() {
     return openingTimestamp;
   }
 
-  public void setOpeningTimestamp(LocalDate openingTimestamp) {
+  public void setOpeningTimestamp(DateTime openingTimestamp) {
     this.openingTimestamp = openingTimestamp;
   }
 
-  public Instrument closingTimestamp(LocalDate closingTimestamp) {
+  public Instrument closingTimestamp(DateTime closingTimestamp) {
     this.closingTimestamp = closingTimestamp;
     return this;
   }
@@ -1308,15 +1308,15 @@ public class Instrument   {
    * @return closingTimestamp
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getClosingTimestamp() {
+  public DateTime getClosingTimestamp() {
     return closingTimestamp;
   }
 
-  public void setClosingTimestamp(LocalDate closingTimestamp) {
+  public void setClosingTimestamp(DateTime closingTimestamp) {
     this.closingTimestamp = closingTimestamp;
   }
 
-  public Instrument sessionInterval(LocalDate sessionInterval) {
+  public Instrument sessionInterval(DateTime sessionInterval) {
     this.sessionInterval = sessionInterval;
     return this;
   }
@@ -1326,11 +1326,11 @@ public class Instrument   {
    * @return sessionInterval
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getSessionInterval() {
+  public DateTime getSessionInterval() {
     return sessionInterval;
   }
 
-  public void setSessionInterval(LocalDate sessionInterval) {
+  public void setSessionInterval(DateTime sessionInterval) {
     this.sessionInterval = sessionInterval;
   }
 
@@ -2036,7 +2036,7 @@ public class Instrument   {
     this.settledPrice = settledPrice;
   }
 
-  public Instrument timestamp(LocalDate timestamp) {
+  public Instrument timestamp(DateTime timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -2046,11 +2046,11 @@ public class Instrument   {
    * @return timestamp
   **/
   @ApiModelProperty(example = "null", value = "")
-  public LocalDate getTimestamp() {
+  public DateTime getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(LocalDate timestamp) {
+  public void setTimestamp(DateTime timestamp) {
     this.timestamp = timestamp;
   }
 

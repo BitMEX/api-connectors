@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **currency** | **String** |  | 
-**timestamp** | **Date** |  | 
+**timestamp** | **DateTime** |  | 
 **wallet_balance** | **Float** |  | [optional] 
 
 

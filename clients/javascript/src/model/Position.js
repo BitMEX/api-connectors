@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -462,32 +462,37 @@
   exports.prototype['quoteCurrency'] = undefined;
   /**
    * @member {Number} commission
+   * @default 0.0
    */
-  exports.prototype['commission'] = undefined;
+  exports.prototype['commission'] = 0.0;
   /**
    * @member {Number} initMarginReq
+   * @default 0.0
    */
-  exports.prototype['initMarginReq'] = undefined;
+  exports.prototype['initMarginReq'] = 0.0;
   /**
    * @member {Number} maintMarginReq
+   * @default 0.0
    */
-  exports.prototype['maintMarginReq'] = undefined;
+  exports.prototype['maintMarginReq'] = 0.0;
   /**
    * @member {Number} riskLimit
    */
   exports.prototype['riskLimit'] = undefined;
   /**
    * @member {Number} leverage
+   * @default 0.0
    */
-  exports.prototype['leverage'] = undefined;
+  exports.prototype['leverage'] = 0.0;
   /**
    * @member {Boolean} crossMargin
    */
   exports.prototype['crossMargin'] = undefined;
   /**
    * @member {Number} deleveragePercentile
+   * @default 0.0
    */
-  exports.prototype['deleveragePercentile'] = undefined;
+  exports.prototype['deleveragePercentile'] = 0.0;
   /**
    * @member {Number} rebalancedPnl
    */
@@ -502,8 +507,9 @@
   exports.prototype['prevUnrealisedPnl'] = undefined;
   /**
    * @member {Number} prevClosePrice
+   * @default 0.0
    */
-  exports.prototype['prevClosePrice'] = undefined;
+  exports.prototype['prevClosePrice'] = 0.0;
   /**
    * @member {Date} openingTimestamp
    */
@@ -614,8 +620,9 @@
   exports.prototype['isOpen'] = undefined;
   /**
    * @member {Number} markPrice
+   * @default 0.0
    */
-  exports.prototype['markPrice'] = undefined;
+  exports.prototype['markPrice'] = 0.0;
   /**
    * @member {Number} markValue
    */
@@ -626,12 +633,14 @@
   exports.prototype['riskValue'] = undefined;
   /**
    * @member {Number} homeNotional
+   * @default 0.0
    */
-  exports.prototype['homeNotional'] = undefined;
+  exports.prototype['homeNotional'] = 0.0;
   /**
    * @member {Number} foreignNotional
+   * @default 0.0
    */
-  exports.prototype['foreignNotional'] = undefined;
+  exports.prototype['foreignNotional'] = 0.0;
   /**
    * @member {String} posState
    */
@@ -726,8 +735,9 @@
   exports.prototype['taxBase'] = undefined;
   /**
    * @member {Number} indicativeTaxRate
+   * @default 0.0
    */
-  exports.prototype['indicativeTaxRate'] = undefined;
+  exports.prototype['indicativeTaxRate'] = 0.0;
   /**
    * @member {Number} indicativeTax
    */
@@ -742,64 +752,78 @@
   exports.prototype['unrealisedPnl'] = undefined;
   /**
    * @member {Number} unrealisedPnlPcnt
+   * @default 0.0
    */
-  exports.prototype['unrealisedPnlPcnt'] = undefined;
+  exports.prototype['unrealisedPnlPcnt'] = 0.0;
   /**
    * @member {Number} unrealisedRoePcnt
+   * @default 0.0
    */
-  exports.prototype['unrealisedRoePcnt'] = undefined;
+  exports.prototype['unrealisedRoePcnt'] = 0.0;
   /**
    * @member {Number} simpleQty
+   * @default 0.0
    */
-  exports.prototype['simpleQty'] = undefined;
+  exports.prototype['simpleQty'] = 0.0;
   /**
    * @member {Number} simpleCost
+   * @default 0.0
    */
-  exports.prototype['simpleCost'] = undefined;
+  exports.prototype['simpleCost'] = 0.0;
   /**
    * @member {Number} simpleValue
+   * @default 0.0
    */
-  exports.prototype['simpleValue'] = undefined;
+  exports.prototype['simpleValue'] = 0.0;
   /**
    * @member {Number} simplePnl
+   * @default 0.0
    */
-  exports.prototype['simplePnl'] = undefined;
+  exports.prototype['simplePnl'] = 0.0;
   /**
    * @member {Number} simplePnlPcnt
+   * @default 0.0
    */
-  exports.prototype['simplePnlPcnt'] = undefined;
+  exports.prototype['simplePnlPcnt'] = 0.0;
   /**
    * @member {Number} avgCostPrice
+   * @default 0.0
    */
-  exports.prototype['avgCostPrice'] = undefined;
+  exports.prototype['avgCostPrice'] = 0.0;
   /**
    * @member {Number} avgEntryPrice
+   * @default 0.0
    */
-  exports.prototype['avgEntryPrice'] = undefined;
+  exports.prototype['avgEntryPrice'] = 0.0;
   /**
    * @member {Number} breakEvenPrice
+   * @default 0.0
    */
-  exports.prototype['breakEvenPrice'] = undefined;
+  exports.prototype['breakEvenPrice'] = 0.0;
   /**
    * @member {Number} marginCallPrice
+   * @default 0.0
    */
-  exports.prototype['marginCallPrice'] = undefined;
+  exports.prototype['marginCallPrice'] = 0.0;
   /**
    * @member {Number} liquidationPrice
+   * @default 0.0
    */
-  exports.prototype['liquidationPrice'] = undefined;
+  exports.prototype['liquidationPrice'] = 0.0;
   /**
    * @member {Number} bankruptPrice
+   * @default 0.0
    */
-  exports.prototype['bankruptPrice'] = undefined;
+  exports.prototype['bankruptPrice'] = 0.0;
   /**
    * @member {Date} timestamp
    */
   exports.prototype['timestamp'] = undefined;
   /**
    * @member {Number} lastPrice
+   * @default 0.0
    */
-  exports.prototype['lastPrice'] = undefined;
+  exports.prototype['lastPrice'] = 0.0;
   /**
    * @member {Number} lastValue
    */

@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithDictionary:@{ @"account": @"account", @"currency": @"currency", @"prevDeposited": @"prevDeposited", @"prevWithdrawn": @"prevWithdrawn", @"prevAmount": @"prevAmount", @"prevTimestamp": @"prevTimestamp", @"deltaDeposited": @"deltaDeposited", @"deltaWithdrawn": @"deltaWithdrawn", @"deltaAmount": @"deltaAmount", @"deposited": @"deposited", @"withdrawn": @"withdrawn", @"amount": @"amount", @"pendingCredit": @"pendingCredit", @"pendingDebit": @"pendingDebit", @"confirmedDebit": @"confirmedDebit", @"timestamp": @"timestamp", @"addr": @"addr" }];
+  return [[JSONKeyMapper alloc] initWithDictionary:@{ @"account": @"account", @"currency": @"currency", @"prevDeposited": @"prevDeposited", @"prevWithdrawn": @"prevWithdrawn", @"prevAmount": @"prevAmount", @"prevTimestamp": @"prevTimestamp", @"deltaDeposited": @"deltaDeposited", @"deltaWithdrawn": @"deltaWithdrawn", @"deltaAmount": @"deltaAmount", @"deposited": @"deposited", @"withdrawn": @"withdrawn", @"amount": @"amount", @"pendingCredit": @"pendingCredit", @"pendingDebit": @"pendingDebit", @"confirmedDebit": @"confirmedDebit", @"timestamp": @"timestamp", @"addr": @"addr", @"withdrawalLock": @"withdrawalLock" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"prevDeposited", @"prevWithdrawn", @"prevAmount", @"prevTimestamp", @"deltaDeposited", @"deltaWithdrawn", @"deltaAmount", @"deposited", @"withdrawn", @"amount", @"pendingCredit", @"pendingDebit", @"confirmedDebit", @"timestamp", @"addr"];
+  NSArray *optionalProperties = @[@"prevDeposited", @"prevWithdrawn", @"prevAmount", @"prevTimestamp", @"deltaDeposited", @"deltaWithdrawn", @"deltaAmount", @"deposited", @"withdrawn", @"amount", @"pendingCredit", @"pendingDebit", @"confirmedDebit", @"timestamp", @"addr", @"withdrawalLock"];
   return [optionalProperties containsObject:propertyName];
 }
 

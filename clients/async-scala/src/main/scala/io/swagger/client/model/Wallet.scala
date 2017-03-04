@@ -10,7 +10,7 @@ currency: String,
 prevDeposited: Option[Number],
 prevWithdrawn: Option[Number],
 prevAmount: Option[Number],
-prevTimestamp: Option[Date],
+prevTimestamp: Option[DateTime],
 deltaDeposited: Option[Number],
 deltaWithdrawn: Option[Number],
 deltaAmount: Option[Number],
@@ -20,6 +20,7 @@ amount: Option[Number],
 pendingCredit: Option[Number],
 pendingDebit: Option[Number],
 confirmedDebit: Option[Number],
-timestamp: Option[Date],
-addr: Option[String]
+timestamp: Option[DateTime],
+addr: Option[String],
+withdrawalLock: Option[List[X-any]]
 )

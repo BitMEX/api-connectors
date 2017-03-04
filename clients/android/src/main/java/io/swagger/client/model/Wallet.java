@@ -1,6 +1,8 @@
 package io.swagger.client.model;
 
+import io.swagger.client.model.XAny;
 import java.math.BigDecimal;
+import java.util.*;
 import java.util.Date;
 
 import io.swagger.annotations.*;
@@ -44,6 +46,8 @@ public class Wallet  {
   private Date timestamp = null;
   @SerializedName("addr")
   private String addr = null;
+  @SerializedName("withdrawalLock")
+  private List<XAny> withdrawalLock = null;
 
   /**
    **/
@@ -215,6 +219,16 @@ public class Wallet  {
     this.addr = addr;
   }
 
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public List<XAny> getWithdrawalLock() {
+    return withdrawalLock;
+  }
+  public void setWithdrawalLock(List<XAny> withdrawalLock) {
+    this.withdrawalLock = withdrawalLock;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -241,7 +255,8 @@ public class Wallet  {
         (pendingDebit == null ? wallet.pendingDebit == null : pendingDebit.equals(wallet.pendingDebit)) &&
         (confirmedDebit == null ? wallet.confirmedDebit == null : confirmedDebit.equals(wallet.confirmedDebit)) &&
         (timestamp == null ? wallet.timestamp == null : timestamp.equals(wallet.timestamp)) &&
-        (addr == null ? wallet.addr == null : addr.equals(wallet.addr));
+        (addr == null ? wallet.addr == null : addr.equals(wallet.addr)) &&
+        (withdrawalLock == null ? wallet.withdrawalLock == null : withdrawalLock.equals(wallet.withdrawalLock));
   }
 
   @Override
@@ -264,6 +279,7 @@ public class Wallet  {
     result = 31 * result + (confirmedDebit == null ? 0: confirmedDebit.hashCode());
     result = 31 * result + (timestamp == null ? 0: timestamp.hashCode());
     result = 31 * result + (addr == null ? 0: addr.hashCode());
+    result = 31 * result + (withdrawalLock == null ? 0: withdrawalLock.hashCode());
     return result;
   }
 
@@ -289,6 +305,7 @@ public class Wallet  {
     sb.append("  confirmedDebit: ").append(confirmedDebit).append("\n");
     sb.append("  timestamp: ").append(timestamp).append("\n");
     sb.append("  addr: ").append(addr).append("\n");
+    sb.append("  withdrawalLock: ").append(withdrawalLock).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

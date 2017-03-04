@@ -11,8 +11,8 @@ Name | Type | Description | Notes
 **username** | **String** |  | 
 **email** | **String** |  | 
 **phone** | **String** |  |  [optional]
-**created** | [**LocalDate**](LocalDate.md) |  |  [optional]
-**lastUpdated** | [**LocalDate**](LocalDate.md) |  |  [optional]
+**created** | [**DateTime**](DateTime.md) |  |  [optional]
+**lastUpdated** | [**DateTime**](DateTime.md) |  |  [optional]
 **preferences** | [**UserPreferences**](UserPreferences.md) |  |  [optional]
 **tFAEnabled** | **String** |  |  [optional]
 **affiliateID** | **String** |  |  [optional]

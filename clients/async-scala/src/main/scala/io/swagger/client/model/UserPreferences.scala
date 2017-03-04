@@ -5,7 +5,8 @@ import java.util.UUID
 
 
 case class UserPreferences (
-  announcementsLastSeen: Option[Date],
+  animationsEnabled: Option[Boolean],
+announcementsLastSeen: Option[DateTime],
 chatChannelID: Option[Double],
 colorTheme: Option[String],
 currency: Option[String],

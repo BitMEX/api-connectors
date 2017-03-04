@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -145,8 +145,8 @@
     }
 
     /**
-     * Callback function to receive the result of the userConfirmEmail operation.
-     * @callback module:api/UserApi~userConfirmEmailCallback
+     * Callback function to receive the result of the userConfirm operation.
+     * @callback module:api/UserApi~userConfirmCallback
      * @param {String} error Error message, if any.
      * @param {module:model/AccessToken} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -155,15 +155,15 @@
     /**
      * Confirm your email address with a token.
      * @param {String} token 
-     * @param {module:api/UserApi~userConfirmEmailCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/UserApi~userConfirmCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {module:model/AccessToken}
      */
-    this.userConfirmEmail = function(token, callback) {
+    this.userConfirm = function(token, callback) {
       var postBody = null;
 
       // verify the required parameter 'token' is set
       if (token == undefined || token == null) {
-        throw "Missing the required parameter 'token' when calling userConfirmEmail";
+        throw "Missing the required parameter 'token' when calling userConfirm";
       }
 
 
@@ -732,6 +732,49 @@
     }
 
     /**
+     * Callback function to receive the result of the userMinWithdrawalFee operation.
+     * @callback module:api/UserApi~userMinWithdrawalFeeCallback
+     * @param {String} error Error message, if any.
+     * @param {'Number'} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get the minimum withdrawal fee for a currency.
+     * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.currency  (default to XBt)
+     * @param {module:api/UserApi~userMinWithdrawalFeeCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {'Number'}
+     */
+    this.userMinWithdrawalFee = function(opts, callback) {
+      opts = opts || {};
+      var postBody = null;
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+        'currency': opts['currency']
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      var returnType = 'Number';
+
+      return this.apiClient.callApi(
+        '/user/minWithdrawalFee', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the userRequestEnableTFA operation.
      * @callback module:api/UserApi~userRequestEnableTFACallback
      * @param {String} error Error message, if any.
@@ -740,7 +783,8 @@
      */
 
     /**
-     * Get Google Authenticator secret key for setting up two-factor auth. Fails if already enabled. Use /confirmEnableTFA for Yubikeys.
+     * Get secret key for setting up two-factor auth.
+     * Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
      * @param {Object} opts Optional parameters
      * @param {String} opts.type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
      * @param {module:api/UserApi~userRequestEnableTFACallback} callback The callback function, accepting three arguments: error, data, response

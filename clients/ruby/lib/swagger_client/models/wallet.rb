@@ -1,7 +1,7 @@
 =begin
 #BitMEX API
 
-### REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
+### REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
 
 OpenAPI spec version: 1.2.0
 Contact: support@bitmex.com
@@ -60,6 +60,8 @@ module SwaggerClient
 
     attr_accessor :addr
 
+    attr_accessor :withdrawal_lock
+
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -80,7 +82,8 @@ module SwaggerClient
         :'pending_debit' => :'pendingDebit',
         :'confirmed_debit' => :'confirmedDebit',
         :'timestamp' => :'timestamp',
-        :'addr' => :'addr'
+        :'addr' => :'addr',
+        :'withdrawal_lock' => :'withdrawalLock'
       }
     end
 
@@ -92,7 +95,7 @@ module SwaggerClient
         :'prev_deposited' => :'Float',
         :'prev_withdrawn' => :'Float',
         :'prev_amount' => :'Float',
-        :'prev_timestamp' => :'Date',
+        :'prev_timestamp' => :'DateTime',
         :'delta_deposited' => :'Float',
         :'delta_withdrawn' => :'Float',
         :'delta_amount' => :'Float',
@@ -102,8 +105,9 @@ module SwaggerClient
         :'pending_credit' => :'Float',
         :'pending_debit' => :'Float',
         :'confirmed_debit' => :'Float',
-        :'timestamp' => :'Date',
-        :'addr' => :'String'
+        :'timestamp' => :'DateTime',
+        :'addr' => :'String',
+        :'withdrawal_lock' => :'Array<XAny>'
       }
     end
 
@@ -183,6 +187,12 @@ module SwaggerClient
         self.addr = attributes[:'addr']
       end
 
+      if attributes.has_key?(:'withdrawalLock')
+        if (value = attributes[:'withdrawalLock']).is_a?(Array)
+          self.withdrawal_lock = value
+        end
+      end
+
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -221,7 +231,8 @@ module SwaggerClient
           pending_debit == o.pending_debit &&
           confirmed_debit == o.confirmed_debit &&
           timestamp == o.timestamp &&
-          addr == o.addr
+          addr == o.addr &&
+          withdrawal_lock == o.withdrawal_lock
     end
 
     # @see the `==` method
@@ -233,7 +244,7 @@ module SwaggerClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account, currency, prev_deposited, prev_withdrawn, prev_amount, prev_timestamp, delta_deposited, delta_withdrawn, delta_amount, deposited, withdrawn, amount, pending_credit, pending_debit, confirmed_debit, timestamp, addr].hash
+      [account, currency, prev_deposited, prev_withdrawn, prev_amount, prev_timestamp, delta_deposited, delta_withdrawn, delta_amount, deposited, withdrawn, amount, pending_credit, pending_debit, confirmed_debit, timestamp, addr, withdrawal_lock].hash
     end
 
     # Builds the object from hash

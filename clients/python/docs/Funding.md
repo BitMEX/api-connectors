@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**timestamp** | **date** |  | 
+**timestamp** | **datetime** |  | 
 **symbol** | **str** |  | 
-**funding_interval** | **date** |  | [optional] 
+**funding_interval** | **datetime** |  | [optional] 
 **funding_rate** | **float** |  | [optional] 
 **funding_rate_daily** | **float** |  | [optional] 
 

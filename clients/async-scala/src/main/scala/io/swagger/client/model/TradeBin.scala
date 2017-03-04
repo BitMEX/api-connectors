@@ -5,7 +5,7 @@ import java.util.UUID
 
 
 case class TradeBin (
-  timestamp: Date,
+  timestamp: DateTime,
 symbol: String,
 open: Option[Double],
 high: Option[Double],

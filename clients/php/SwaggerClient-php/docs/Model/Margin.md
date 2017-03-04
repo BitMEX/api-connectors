@@ -41,7 +41,7 @@ Name | Type | Description | Notes
 **excess_margin_pcnt** | **double** |  | [optional] [default to 0.0]
 **available_margin** | **float** |  | [optional] 
 **withdrawable_margin** | **float** |  | [optional] 
-**timestamp** | [**\DateTime**](Date.md) |  | [optional] 
+**timestamp** | [**\DateTime**](\DateTime.md) |  | [optional] 
 **gross_last_value** | **float** |  | [optional] 
 **commission** | **double** |  | [optional] [default to 0.0]
 

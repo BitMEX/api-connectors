@@ -14,7 +14,7 @@
 /**
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section.
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section.
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -82,7 +82,8 @@ class Wallet implements ArrayAccess
         'pending_debit' => 'float',
         'confirmed_debit' => 'float',
         'timestamp' => '\DateTime',
-        'addr' => 'string'
+        'addr' => 'string',
+        'withdrawal_lock' => '\Swagger\Client\Model\XAny[]'
     );
 
     public static function swaggerTypes()
@@ -111,7 +112,8 @@ class Wallet implements ArrayAccess
         'pending_debit' => 'pendingDebit',
         'confirmed_debit' => 'confirmedDebit',
         'timestamp' => 'timestamp',
-        'addr' => 'addr'
+        'addr' => 'addr',
+        'withdrawal_lock' => 'withdrawalLock'
     );
 
     public static function attributeMap()
@@ -140,7 +142,8 @@ class Wallet implements ArrayAccess
         'pending_debit' => 'setPendingDebit',
         'confirmed_debit' => 'setConfirmedDebit',
         'timestamp' => 'setTimestamp',
-        'addr' => 'setAddr'
+        'addr' => 'setAddr',
+        'withdrawal_lock' => 'setWithdrawalLock'
     );
 
     public static function setters()
@@ -169,7 +172,8 @@ class Wallet implements ArrayAccess
         'pending_debit' => 'getPendingDebit',
         'confirmed_debit' => 'getConfirmedDebit',
         'timestamp' => 'getTimestamp',
-        'addr' => 'getAddr'
+        'addr' => 'getAddr',
+        'withdrawal_lock' => 'getWithdrawalLock'
     );
 
     public static function getters()
@@ -210,6 +214,7 @@ class Wallet implements ArrayAccess
         $this->container['confirmed_debit'] = isset($data['confirmed_debit']) ? $data['confirmed_debit'] : null;
         $this->container['timestamp'] = isset($data['timestamp']) ? $data['timestamp'] : null;
         $this->container['addr'] = isset($data['addr']) ? $data['addr'] : null;
+        $this->container['withdrawal_lock'] = isset($data['withdrawal_lock']) ? $data['withdrawal_lock'] : null;
     }
 
     /**
@@ -600,6 +605,27 @@ class Wallet implements ArrayAccess
     public function setAddr($addr)
     {
         $this->container['addr'] = $addr;
+
+        return $this;
+    }
+
+    /**
+     * Gets withdrawal_lock
+     * @return \Swagger\Client\Model\XAny[]
+     */
+    public function getWithdrawalLock()
+    {
+        return $this->container['withdrawal_lock'];
+    }
+
+    /**
+     * Sets withdrawal_lock
+     * @param \Swagger\Client\Model\XAny[] $withdrawal_lock
+     * @return $this
+     */
+    public function setWithdrawalLock($withdrawal_lock)
+    {
+        $this->container['withdrawal_lock'] = $withdrawal_lock;
 
         return $this;
     }

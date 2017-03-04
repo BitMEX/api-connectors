@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **confirmedDebit** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **timestamp** | [**Date**](Date.md) |  |  [optional]
 **addr** | **String** |  |  [optional]
+**withdrawalLock** | [**List&lt;XAny&gt;**](XAny.md) |  |  [optional]
 
 
 
