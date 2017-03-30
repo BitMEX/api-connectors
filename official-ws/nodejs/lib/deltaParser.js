@@ -1,13 +1,11 @@
 'use strict';
-var _ = require('lodash');
-var debug = require('debug')('BitMEX:realtime-api:deltaParser');
-var util = require('util');
+const _ = require('lodash');
+const debug = require('debug')('BitMEX:realtime-api:deltaParser');
 
 /**
  * A mixin that binds a store's data to a websocket.
  * Accepts multiple socket descriptors.
  * @param  {Object|Array} socketDescriptors Description of a socket connection.
- * @return {Mixin}                          Fluxxor Store mixin.
  */
 module.exports = {
 
@@ -33,7 +31,7 @@ module.exports = {
    * @param  {Array}  data      Array of new data.
    * @return {Array}            Updated data.
    */
-  onAction: function(action, tableName, symbol, client, data) {
+  onAction(action, tableName, symbol, client, data) {
     // Deltas before the getSymbol() call returns can be safely discarded.
     if (action !== 'partial' && !isInitialized(tableName, symbol, client)) return;
     if (action === 'partial') {
@@ -42,15 +40,15 @@ module.exports = {
     return module.exports['_' + action](client._data[symbol], tableName, data.data, client._keys[tableName]);
   },
 
-  _delete: function(context, key, data, keys) {
+  _delete(context, key, data, keys) {
     return removeFromStore.apply(null, arguments);
   },
 
-  _insert: function(context, key, data, keys) {
+  _insert(context, key, data, keys) {
     return insertIntoStore.apply(null, arguments);
   },
 
-  _partial: function(tableName, symbol, client, data) {
+  _partial(tableName, symbol, client, data) {
     if (!client._data[symbol]) client._data[symbol] = {};
     // Intitialize data.
     client._data[symbol][tableName] = data.data;
@@ -59,7 +57,7 @@ module.exports = {
     return client._data[symbol][tableName];
   },
 
-  _update: function(context, key, data, keys) {
+  _update(context, key, data, keys) {
     return updateStore.apply(null, arguments);
   }
 };
@@ -76,10 +74,10 @@ function isInitialized(tableName, symbol, client) {
  * @param  {Array}  keys    Key names that uniquely identify a datum.
  */
 function insertIntoStore(context, key, newData) {
-  var store = context[key] || [];
+  const store = context[key] || [];
 
   // Create a new working object.
-  var storeData = [].concat(store).concat(newData);
+  const storeData = [].concat(store).concat(newData);
 
   return replaceStore(context, key, storeData);
 }
@@ -92,18 +90,18 @@ function insertIntoStore(context, key, newData) {
  * @param  {Array}  keys    Key names that uniquely identify a datum.
  */
 function updateStore(context, key, newData, keys) {
-  var store = context[key] || [];
+  const store = context[key] || [];
 
   // Create a new working object.
-  var storeData = [].concat(store);
+  const storeData = [].concat(store);
 
   // Loop through data, updating items in `storeData` when necessary.
-  for (var i = 0; i < newData.length; i++) {
-    var newDatum = newData[i];
+  for (let i = 0; i < newData.length; i++) {
+    let newDatum = newData[i];
 
     // Find the item we're updating, if it exists.
-    var criteria = _.pick(newDatum, keys);
-    var itemToUpdate = _.find(storeData, criteria);
+    const criteria = _.pick(newDatum, keys);
+    const itemToUpdate = _.find(storeData, criteria);
 
     // If the item exists, replace it with an updated item.
     // This will actually replace the existing store with a new array
@@ -133,17 +131,17 @@ function updateStore(context, key, newData, keys) {
  * @param  {Array}  keys    Key names that uniquely identify a datum.
  */
 function removeFromStore(context, key, newData, keys) {
-  var store = context[key] || [];
+  const store = context[key] || [];
 
   // Create a new working object.
-  var storeData = [].concat(store);
+  let storeData = [].concat(store);
 
   // Loop through incoming data and remove items that match.
-  for (var i = 0; i < newData.length; i++) {
+  for (let i = 0; i < newData.length; i++) {
 
     // Find the item to remove and remove it.
-    var criteria = _.pick(newData[i], keys);
-    var itemToRemove = _.find(storeData, criteria);
+    const criteria = _.pick(newData[i], keys);
+    const itemToRemove = _.find(storeData, criteria);
     storeData = _.without(storeData, itemToRemove);
   }
 

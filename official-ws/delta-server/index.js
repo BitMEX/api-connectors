@@ -1,8 +1,8 @@
 'use strict';
 
-var _ = require('lodash');
-var baseConfig = require('./config.example.js');
-var config;
+const _ = require('lodash');
+const baseConfig = require('./config.example.js');
+let config;
 try {
   config = _.extend({}, baseConfig, require('./config'));
 } catch(e) {

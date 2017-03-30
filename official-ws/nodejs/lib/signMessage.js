@@ -1,7 +1,7 @@
 'use strict';
-var _ = require('lodash');
-var crypto = require('crypto');
-var querystring = require('querystring');
+const _ = require('lodash');
+const crypto = require('crypto');
+const querystring = require('querystring');
 
 /**
  * Sign a message. hex( HMAC_SHA256(secret, verb + url + nonce + data) )
@@ -20,8 +20,8 @@ module.exports = function signMessage(secret, verb, url, nonce, data) {
 };
 
 module.exports.getWSAuthQuery = function getWSAuthQuery(apiKey, apiSecret) {
-  var nonce = new Date().valueOf();
-  var query = {
+  const nonce = Date.now();
+  const query = {
     'api-nonce': nonce,
     'api-key': apiKey,
     'api-signature': module.exports(apiSecret, 'GET', '/realtime', nonce)

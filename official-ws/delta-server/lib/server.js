@@ -1,18 +1,18 @@
 'use strict';
 
-var _ = require('lodash');
-var express = require('express');
-var BitMEXClient = require('../../nodejs/index');
-var debug = require('debug')('BitMEX:Delta-Server');
+const _ = require('lodash');
+const express = require('express');
+const BitMEXClient = require('../../nodejs/index');
+const debug = require('debug')('BitMEX:Delta-Server');
 
 module.exports = function createServer(config) {
-  var app = initServer(config);
+  const app = initServer(config);
   initWSClient(app, config);
   return app;
 };
 
 function initServer(config) {
-  var app = express();
+  const app = express();
 
   app.set('view engine', 'ejs');
 
@@ -31,7 +31,7 @@ function initServer(config) {
     });
   });
 
-  var server = app.listen(config.port, function() {
+  app.listen(config.port, function() {
     console.log('BitMEX-Delta-Server listening on http://localhost:' + config.port);
   });
 
@@ -39,9 +39,7 @@ function initServer(config) {
 }
 
 function initWSClient(app, config) {
-  var data = {};
-
-  var client = new BitMEXClient(_.pick(config, 'testnet', 'endpoint', 'apiKeyID', 'apiKeySecret'));
+  const client = new BitMEXClient(_.pick(config, 'testnet', 'endpoint', 'apiKeyID', 'apiKeySecret'));
 
   client.on('error', function(error) {
     console.error("Caught Websocket error:", error);
@@ -56,14 +54,14 @@ function initWSClient(app, config) {
   });
 
   app.get('/:stream', function(req, res) {
-    var symbol = req.query.symbol, stream = req.params.stream;
+    const symbol = req.query.symbol, stream = req.params.stream;
     if (symbol && config.symbols.indexOf(symbol) === -1) {
       return res.send(404, 'Symbol "' + symbol +'" not found. Did you subscribe to it?');
     }
     if (config.streams.indexOf(stream) === -1) {
       return res.send(404, 'Stream "' + stream +'" not found. Did you subscribe to it?');
     }
-    var data = symbol ? client.getData(symbol, stream) : client.getTable(stream);
+    const data = symbol ? client.getData(symbol, stream) : client.getTable(stream);
     res.json(data);
   });
 }

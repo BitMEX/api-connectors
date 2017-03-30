@@ -1,11 +1,15 @@
 {
   "name": "bitmex-realtime-data-server",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A proxy to bitmex that serves realtime data without ratelimiting.",
   "main": "index.js",
+  "engines": {
+    "node": ">=4"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "cd ../nodejs && npm install"
+    "postinstall": "cd ../nodejs && npm install",
+    "start": "sh run.sh"
   },
   "author": "Samuel Reed <samuel.trace.reed@gmail.com> (http://strml.net/)",
   "license": "MIT",
@@ -13,6 +17,9 @@
     "debug": "^2.1.3",
     "ejs": "^2.5.5",
     "express": "^4.12.3",
-    "lodash": "^3.6.0"
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "opn-cli": "^3.1.0"
   }
 }

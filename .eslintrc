@@ -2,7 +2,12 @@
   root: true,
   extends: "eslint:recommended",
   rules: {
-    "no-console": 0
+    "no-console": 0,
+    "no-unused-vars": [1, {
+      "argsIgnorePattern": "^(e|_.*)$",
+      "vars": "local",
+      "varsIgnorePattern": "(debug|^_)"
+    }],
   },
   env: {
     "node": true,

@@ -1,16 +1,16 @@
 'use strict';
-var EventEmitter = require('eventemitter2').EventEmitter2;
-var util = require('util');
-var debug = require('debug')('BitMEX:realtime-api');
-var createSocket = require('./lib/createSocket');
-var deltaParser = require('./lib/deltaParser');
-var getStreams = require('./lib/getStreams');
+const EventEmitter = require('eventemitter2').EventEmitter2;
+const util = require('util');
+const debug = require('debug')('BitMEX:realtime-api');
+const createSocket = require('./lib/createSocket');
+const deltaParser = require('./lib/deltaParser');
+const getStreams = require('./lib/getStreams');
 
-var endpoints = {
+const endpoints = {
   production: 'wss://www.bitmex.com/realtime',
   testnet: 'wss://testnet.bitmex.com/realtime'
 };
-var noSymbolTables = BitMEXClient.noSymbolTables = [
+const noSymbolTables = BitMEXClient.noSymbolTables = [
   'margin',
   'chat'
 ];
@@ -18,7 +18,7 @@ var noSymbolTables = BitMEXClient.noSymbolTables = [
 module.exports = BitMEXClient;
 
 function BitMEXClient(options) {
-  var emitter = this;
+  const emitter = this;
   // We inherit from EventEmitter2, which supports wildcards.
   EventEmitter.call(emitter, {
     wildcard: true,
@@ -31,7 +31,7 @@ function BitMEXClient(options) {
   if (!options.endpoint) {
     options.endpoint = options.testnet ? endpoints.testnet : endpoints.production;
   }
-  console.log(options)
+  debug(options)
 
   // Initialize the socket.
   this.socket = createSocket(options, emitter);
@@ -44,7 +44,7 @@ function BitMEXClient(options) {
     if (err) throw err;
     emitter.initialized = true;
     emitter.streams = streams;
-    emitter.emit('initialized');
+    emitter.emit('initialize');
   });
 }
 util.inherits(BitMEXClient, EventEmitter);
@@ -57,9 +57,9 @@ util.inherits(BitMEXClient, EventEmitter);
  *                              the table name.
  */
 BitMEXClient.prototype.getData = function(symbol, tableName) {
-  var shouldAppendSymbol = noSymbolTables.indexOf(tableName) === -1;
-  var dataKey = shouldAppendSymbol ? symbol : 'stub';
-  var out = this._data[dataKey] || [];
+  const shouldAppendSymbol = noSymbolTables.indexOf(tableName) === -1;
+  const dataKey = shouldAppendSymbol ? symbol : 'stub';
+  let out = this._data[dataKey] || [];
   if (tableName && out[tableName]) {
     out = out[tableName];
   }
@@ -70,10 +70,10 @@ BitMEXClient.prototype.getData = function(symbol, tableName) {
  * Get data for all symbols, by table.
  */
 BitMEXClient.prototype.getTable = function(tableName) {
-  var data = this._data;
-  var shouldAppendSymbol = noSymbolTables.indexOf(tableName) === -1;
-  var symbols = shouldAppendSymbol ? Object.keys(data) : ['stub'];
-  var out = symbols.reduce(function(memo, symbol) {
+  const data = this._data;
+  const shouldAppendSymbol = noSymbolTables.indexOf(tableName) === -1;
+  const symbols = shouldAppendSymbol ? Object.keys(data) : ['stub'];
+  const out = symbols.reduce(function(memo, symbol) {
     return memo.concat(data[symbol][tableName]);
   }, []);
   return clone(out);
@@ -92,9 +92,9 @@ BitMEXClient.prototype.getTable = function(tableName) {
  * @param {Function} callback  Data callback.
  */
 BitMEXClient.prototype.addStream = function(symbol, tableName, callback) {
-  var client = this;
+  const client = this;
   if (!this.initialized) {
-    return this.once('initialized', function() {
+    return this.once('initialize', function() {
       client.addStream(symbol, tableName, callback);
     });
   }
@@ -125,7 +125,7 @@ BitMEXClient.prototype.addStream = function(symbol, tableName, callback) {
 function addStream(client, symbol, tableName, callback) {
 
   // Tell BitMEX we want to subscribe to this data. If wildcard, sub to all tables.
-  var toSubscribe = [tableName];
+  let toSubscribe = [tableName];
   if (tableName === '*') {
     // This list comes from the getSymbols call, which hits
     // https://www.bitmex.com/api/v1/schema/websocketHelp
@@ -136,9 +136,9 @@ function addStream(client, symbol, tableName, callback) {
     // Create a subscription topic.
 
     // Some tables don't take symbols.
-    var shouldAppendSymbol = noSymbolTables.indexOf(tableName) === -1;
+    const shouldAppendSymbol = noSymbolTables.indexOf(table) === -1;
 
-    var subscription = [tableName, shouldAppendSymbol ? symbol : '*'].join(':');
+    const subscription = [table, shouldAppendSymbol ? symbol : '*'].join(':');
 
     debug('Opening listener to %s.', subscription);
 
@@ -147,14 +147,13 @@ function addStream(client, symbol, tableName, callback) {
     // to figure out what table and symbol the data is for.
     //
     // The emitter emits 'partial', 'update', 'insert', and 'delete' events, listen to them all.
-    console.log(subscription)
     client.on(subscription + ':*', function(data) {
-      var split = this.event.split(':');
-      var tableName = split[0], symbol = split[1], action = split[2];
+      const split = this.event.split(':');
+      const table = split[0], symbol = split[1], action = split[2];
 
       try {
-        var newData = deltaParser.onAction(action, tableName, symbol, client, data);
-        callback(newData, symbol, tableName);
+        const newData = deltaParser.onAction(action, table, symbol, client, data);
+        callback(newData, symbol, table);
       } catch(e) {
         client.emit('error', e);
       }
