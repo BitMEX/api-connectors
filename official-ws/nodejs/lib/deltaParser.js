@@ -53,7 +53,7 @@ module.exports = {
     // Intitialize data.
     client._data[symbol][tableName] = data.data;
     // Initialize keys.
-    client._keys[tableName] = Object.keys(data.foreignKeys);
+    client._keys[tableName] = data.keys.length ? data.keys : Object.keys(data.foreignKeys);
     return client._data[symbol][tableName];
   },
 
