@@ -23,6 +23,11 @@ function initServer(config) {
     });
   }
 
+  // Readability
+  if (process.env.NODE_ENV !== 'production') {
+    app.set('json spaces', 2);
+  }
+
   app.get('/', function(req, res) {
     res.render('index', {
       tables: config.streams,
