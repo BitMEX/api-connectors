@@ -1,4 +1,5 @@
 'use strict';
+/*eslint no-unused-vars:0*/
 const _ = require('lodash');
 const debug = require('debug')('BitMEX:realtime-api:deltaParser');
 
@@ -34,9 +35,18 @@ module.exports = {
   onAction(action, tableName, symbol, client, data) {
     // Deltas before the getSymbol() call returns can be safely discarded.
     if (action !== 'partial' && !isInitialized(tableName, symbol, client)) return;
-    if (action === 'partial') {
-      return this._partial(tableName, symbol, client, data);
+    // Partials initialize the table, so there's a different signature.
+    if (action === 'partial') return this._partial(tableName, symbol, client, data);
+
+    // Some tables don't have keys, like 'trade' and 'quote'. They are insert-only tables
+    // and you should never see updates or deletes on them.
+    const keys = client._keys[tableName];
+    if ((action === 'update' || action === 'delete') && keys.length === 0) {
+      throw new Error("The data in the store " + tableName + " is not keyed for " + action + "s. " +
+        "Please email support@bitmex.com if you see this.");
     }
+
+    // This dispatches delete/insert/update.
     return module.exports['_' + action](client._data[symbol], tableName, data.data, client._keys[tableName]);
   },
 
@@ -53,7 +63,7 @@ module.exports = {
     // Intitialize data.
     client._data[symbol][tableName] = data.data;
     // Initialize keys.
-    client._keys[tableName] = data.keys.length ? data.keys : Object.keys(data.foreignKeys);
+    client._keys[tableName] = data.keys;
     return client._data[symbol][tableName];
   },
 
