@@ -47,7 +47,7 @@ Like the public API, you can also use symbol aliases, such as `XBT:daily`, and `
 ### Public Data
 
 By default, BitMEX-Delta-Server makes the endpoints `/orderBookL2`, `/instrument`, `/quote`, and `/trade` available.
-These endpoints take an optional symbol in the querystring (e.g. `?symbol=XBU24H`), otherwise they return all data.
+These endpoints take an optional symbol in the querystring (e.g. `?symbol=XBTUSD`), otherwise they return all data.
 
 Data is returned as an array. To get data for a particular symbol, check the `symbol` property of each data item
 or send a symbol query.

@@ -3,7 +3,7 @@ var BitMEXClient = require('../index');
 
 var client = new BitMEXClient({testnet: true});
 
-client.addStream('XBUH15', function(data, symbol, table) {
+client.addStream('XBTUSD', function(data, symbol, table) {
   console.log('Update on ' + table + ':' + symbol + '. New data:\n', data, '\n');
 });
 

@@ -9,7 +9,7 @@ def run():
 
     # Instantiating the WS will make it connect. Be sure to add an auth method. You can use login/password
     # or api_key/api_secret.
-    ws = BitMEXWebsocket(endpoint="https://testnet.bitmex.com/api/v1", symbol="XBT24H",
+    ws = BitMEXWebsocket(endpoint="https://testnet.bitmex.com/api/v1", symbol="XBTUSD",
                          login="replaceme@email.com", password="password", api_key=None, api_secret=None)
 
     logger.info("Instrument data: %s" % ws.get_instrument())
