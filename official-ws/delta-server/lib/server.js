@@ -59,14 +59,14 @@ function initWSClient(app, config) {
   });
 
   app.get('/:stream', function(req, res) {
-    const symbol = req.query.symbol, stream = req.params.stream;
+    const symbol = req.query.symbol;
+    const stream = req.params.stream;
     if (symbol && config.symbols.indexOf(symbol) === -1) {
       return res.send(404, 'Symbol "' + symbol +'" not found. Did you subscribe to it?');
     }
     if (config.streams.indexOf(stream) === -1) {
       return res.send(404, 'Stream "' + stream +'" not found. Did you subscribe to it?');
     }
-    const data = symbol ? client.getData(symbol, stream) : client.getTable(stream);
-    res.json(data);
+    res.json(client.getData(symbol, stream));
   });
 }
