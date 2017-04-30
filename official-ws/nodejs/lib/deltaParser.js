@@ -47,7 +47,7 @@ module.exports = {
     }
 
     // This dispatches delete/insert/update.
-    return module.exports['_' + action](client._data[symbol], tableName, data.data, client._keys[tableName]);
+    return module.exports['_' + action](client._data[tableName], symbol, data.data, client._keys[tableName]);
   },
 
   _delete(context, key, data, keys) {
@@ -59,12 +59,18 @@ module.exports = {
   },
 
   _partial(tableName, symbol, client, data) {
-    if (!client._data[symbol]) client._data[symbol] = {};
+    if (!client._data[tableName]) client._data[tableName] = {};
+    const dataArr = data.data || [];
     // Intitialize data.
-    client._data[symbol][tableName] = data.data;
+    // FIXME: we need to echo back `filter` with each partial, otherwise we can't tell the difference
+    // between no data for a symbol and a partial for a different symbol.
+    if (!client._data[tableName][symbol] || dataArr.length) {
+      client._data[tableName][symbol] = dataArr;
+    }
     // Initialize keys.
     client._keys[tableName] = data.keys;
-    return client._data[symbol][tableName];
+    // Return inserted data
+    return dataArr;
   },
 
   _update(context, key, data, keys) {
@@ -73,7 +79,7 @@ module.exports = {
 };
 
 function isInitialized(tableName, symbol, client) {
-  return client._data[symbol] && client._data[symbol][tableName];
+  return client._data[tableName] && client._data[tableName][symbol];
 }
 
 /**

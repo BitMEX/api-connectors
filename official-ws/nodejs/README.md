@@ -59,9 +59,9 @@ The client also doubles as a basic EventEmitter. The following events are fired:
 * Note: Don't forget to attach an `error` handler! If one is not attached, errors will be thrown
 and crash your client.
 
-###### client.getData(string symbol, [string tableName])
+###### client.getData([string symbol], [string tableName])
 
-Use this function to access data directly. This returns all tables for a symbol.
+Use this function to access data directly. Pass either a symbol, or tableName, or both.
 Data returned by this method is safe to modify as it is cloned from the internal stores.
 
 If speed is a concern, all data is accessible directly inside the client via the `client._data` property.

@@ -47,17 +47,16 @@ WebSocketClient.prototype.open = function(url){
 WebSocketClient.prototype.send = function(data,option) {
     try{
         debug(data);
-        this.instance.send(data,option);
+        this.instance.send(data, option);
     } catch (e){
         this.instance.emit('error',e);
     }
 };
 WebSocketClient.prototype.reconnect = function(_event) {
     debug('WebSocketClient: retry in ' + this.autoReconnectInterval + ' ms');
-    const that = this;
-    setTimeout(function(){
+    setTimeout(() => {
         debug("WebSocketClient: reconnecting...");
-        that.open(that.url);
+        this.open(this.url);
     }, this.autoReconnectInterval);
 };
 

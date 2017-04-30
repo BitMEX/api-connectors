@@ -1,4 +1,5 @@
 'use strict';
+const _ = require('lodash');
 const EventEmitter = require('eventemitter2').EventEmitter2;
 const util = require('util');
 const debug = require('debug')('BitMEX:realtime-api');
@@ -23,15 +24,18 @@ function BitMEXClient(options) {
   EventEmitter.call(emitter, {
     wildcard: true,
     delimiter: ':',
-    maxListeners: Infinity
+    maxListeners: Infinity,
+    newListener: true,
   });
   if (!options) options = {};
-  this._data = {}; // internal data store
+  this._data = {}; // internal data store keyed by [tableName][symbol]
   this._keys = {}; // keys store - populated by images on connect
   if (!options.endpoint) {
     options.endpoint = options.testnet ? endpoints.testnet : endpoints.production;
   }
   debug(options)
+
+  this._setupListenerTracking();
 
   // Initialize the socket.
   this.socket = createSocket(options, emitter);
@@ -51,32 +55,47 @@ util.inherits(BitMEXClient, EventEmitter);
 
 /**
  * Simple data getter. Clones data on the way out so it can be safely modified.
- * @param  {String} symbol      Symbol of data to retrieve.
+ * @param  {String} [symbol]    Symbol of data to retrieve.
  * @param  {String} [tableName] Table / stream name.
  * @return {Object}             All current data. If no tableName is provided, will return an object keyed by
  *                              the table name.
  */
 BitMEXClient.prototype.getData = function(symbol, tableName) {
-  const shouldAppendSymbol = noSymbolTables.indexOf(tableName) === -1;
-  const dataKey = shouldAppendSymbol ? symbol : 'stub';
-  let out = this._data[dataKey] || [];
-  if (tableName && out[tableName]) {
-    out = out[tableName];
+  const tableUsesSymbol = noSymbolTables.indexOf(tableName) === -1;
+  if (!tableUsesSymbol) symbol = '*';
+  let out;
+
+  // Both filters specified, easy return
+  if (symbol && tableName) {
+    out = clone(this._data[tableName][symbol] || []);
+  }
+  // Since we're keying by [table][symbol], we have to search deep
+  else if (symbol && !tableName) {
+    out = Object.keys(this._data).reduce((memo, tableKey) => {
+      memo[tableKey] = this._data[tableKey][symbol] || [];
+    }, {});
+  }
+  // All table data
+  else if (!symbol && tableName) {
+    out = this._data[tableName] || {};
+  } else {
+    throw new Error('Pass a symbol, tableName, or both to getData([symbol], [tableName]) - but one must be provided.');
   }
   return clone(out);
 };
 
 /**
- * Get data for all symbols, by table.
+ * Helper to get data for all symbols, by table.
  */
 BitMEXClient.prototype.getTable = function(tableName) {
-  const data = this._data;
-  const shouldAppendSymbol = noSymbolTables.indexOf(tableName) === -1;
-  const symbols = shouldAppendSymbol ? Object.keys(data) : ['stub'];
-  const out = symbols.reduce(function(memo, symbol) {
-    return memo.concat(data[symbol][tableName]);
-  }, []);
-  return clone(out);
+  return this.getData(null, tableName);
+};
+
+/**
+ * Helper to get data for all tables, by symbol.
+ */
+BitMEXClient.prototype.getSymbol = function(symbol) {
+  return this.getData(symbol);
 };
 
 /**
@@ -101,7 +120,7 @@ BitMEXClient.prototype.addStream = function(symbol, tableName, callback) {
   if (!this.socket.opened) {
     // Not open yet. Call this when open
     return this.socket.once('open', function() {
-      addStream(client, symbol, tableName, callback);
+      addStreamHelper(client, symbol, tableName, callback);
     });
   }
 
@@ -119,10 +138,36 @@ BitMEXClient.prototype.addStream = function(symbol, tableName, callback) {
       '. Available tables are ' + client.streams.all + '.'));
   }
 
-  addStream(client, symbol, tableName, callback);
+  addStreamHelper(client, symbol, tableName, callback);
 };
 
-function addStream(client, symbol, tableName, callback) {
+BitMEXClient.prototype._setupListenerTracking = function() {
+  // Keep track of listeners.
+  const listenerTree = this._listenerTree = {};
+  this.on('newListener', (eventName) => {
+    const split = eventName.split(':');
+    if (split.length !== 3) return; // other events
+
+    const [table, , symbol] = split;
+    if (!listenerTree[table]) listenerTree[table] = {};
+    if (!listenerTree[table][symbol]) listenerTree[table][symbol] = 0;
+    listenerTree[table][symbol]++;
+  });
+  this.on('removeListener', (eventName) => {
+    const split = eventName.split(':');
+    if (split.length !== 3) return; // other events
+    const [table, , symbol] = split;
+    listenerTree[table][symbol]--;
+  });
+}
+
+BitMEXClient.prototype.subscriptionCount = function(table, symbol) {
+  return this._listenerTree[table] && this._listenerTree[table][symbol] || 0;
+};
+
+function addStreamHelper(client, symbol, tableName, callback) {
+  const tableUsesSymbol = noSymbolTables.indexOf(tableName) === -1;
+  if (!tableUsesSymbol) symbol = '*';
 
   // Tell BitMEX we want to subscribe to this data. If wildcard, sub to all tables.
   let toSubscribe = [tableName];
@@ -134,11 +179,7 @@ function addStream(client, symbol, tableName, callback) {
   // For each subscription,
   toSubscribe.forEach(function(table) {
     // Create a subscription topic.
-
-    // Some tables don't take symbols.
-    const shouldAppendSymbol = noSymbolTables.indexOf(table) === -1;
-
-    const subscription = [table, shouldAppendSymbol ? symbol : '*'].join(':');
+    const subscription = `${table}:*:${symbol}`;
 
     debug('Opening listener to %s.', subscription);
 
@@ -147,9 +188,8 @@ function addStream(client, symbol, tableName, callback) {
     // to figure out what table and symbol the data is for.
     //
     // The emitter emits 'partial', 'update', 'insert', and 'delete' events, listen to them all.
-    client.on(subscription + ':*', function(data) {
-      const split = this.event.split(':');
-      const table = split[0], symbol = split[1], action = split[2];
+    client.on(subscription, function(data) {
+      const [table, action, symbol] = this.event.split(':');
 
       try {
         const newData = deltaParser.onAction(action, table, symbol, client, data);
@@ -159,10 +199,14 @@ function addStream(client, symbol, tableName, callback) {
       }
     });
 
-    client.socket.send(JSON.stringify({op: 'subscribe', args: subscription}));
+    // If this is the first sub, subscribe to bitmex adapter.
+    if (client.subscriptionCount(table, symbol) === 1) {
+      client.socket.send(JSON.stringify({op: 'subscribe', args: `${table}:${symbol}`}));
+    }
   });
 }
 
 function clone(data) {
   return JSON.parse(JSON.stringify(data));
 }
+

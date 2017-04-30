@@ -1,9 +1,10 @@
 'use strict';
+const _ = require('lodash');
 const debug = require('debug')('BitMEX:realtime-api:socket');
 const signMessage = require('./signMessage');
 const WebSocketClient = require('./ReconnectingSocket');
 
-module.exports = function createSocket(options, emitter) {
+module.exports = function createSocket(options, bmexClient) {
   'use strict';
   let endpoint = options.endpoint;
   if (options.apiKeyID && options.apiKeySecret) {
@@ -11,49 +12,87 @@ module.exports = function createSocket(options, emitter) {
   }
   debug('connecting to %s', endpoint);
 
-  const client = new WebSocketClient();
+  // Create client and bind listeners.
+  const wsClient = new WebSocketClient();
 
-  client.onopen = function() {
-    client.opened = true;
+  wsClient.onopen = function() {
+    wsClient.opened = true;
     debug('Connection to BitMEX at', endpoint, 'opened.');
-    emitter.emit('open');
+    bmexClient.emit('open');
   };
 
-  client.onclose = function() {
-    client.opened = false;
+  wsClient.onclose = function() {
+    wsClient.opened = false;
     debug('Connection to BitMEX at', endpoint, 'opened.');
-    emitter.emit('close');
-  }
+    bmexClient.emit('close');
+  };
 
-  client.onmessage = function(data) {
+  wsClient.onmessage = function(data) {
     try {
       data = JSON.parse(data);
     } catch(e) {
-      emitter.emit('error', 'Unable to parse incoming data:', data);
+      bmexClient.emit('error', 'Unable to parse incoming data:', data);
       return;
     }
 
-    if (data.error) return emitter.emit('error', data.error);
+    if (data.error) return bmexClient.emit('error', data.error);
     if (!data.data) return; // connection or subscription notice
 
-    // If no data was found, stub the symbol. At least we'll get keys.
-    const symbol = data.data[0] && data.data[0].symbol || 'stub';
 
-    // Fires events as <table>:<symbol>:<action>, such as
-    // instrument:XBTUSD:update
-    const key = data.table + ':' + symbol + ':' + data.action;
-    debug('emitting %s with data %j', key, data);
-    emitter.emit(key, data);
+    // Fires events as <table>:<action>:<symbol>, such as
+    // instrument:update:XBTUSD.
+    // Consumers may be listening on:
+    // * action filter   (e.g. `instrument:partial:*`)
+    // * symbol filter   (e.g. `instrument:*:XBTUSD`)
+    // * table filter    (e.g. `instrument:*:*`)
+    emitSplitData(bmexClient, data);
+
+    // For no-symbol tables, emit a '*' event.
+    const tableNoSymbol = _.includes(bmexClient.constructor.noSymbolTables, data.table);
+    if (tableNoSymbol) {
+      emitFullData(bmexClient, data);
+    }
   };
 
-  client.onerror = function(e) {
-    const listeners = emitter.listeners('error');
+  wsClient.onerror = function(e) {
+    const listeners = bmexClient.listeners('error');
     // If no error listeners are attached, throw.
     if (!listeners.length) throw e;
-    else emitter.emit('error', e);
+    else bmexClient.emit('error', e);
   }
 
-  client.open(endpoint);
+  wsClient.open(endpoint);
 
-  return client;
+  return wsClient;
 };
+
+function emitSplitData(emitter, data) {
+  const {table, action} = data;
+
+  // Technically, we can change this (e.g. chat channels)
+  const filterKey = data.filterKey || 'symbol';
+
+  // By looking at what we're subscribed to, we can save time by only emitting those events.
+  const matchingStreams = emitter._listenerTree[table];
+  const symbolData = _.mapValues(matchingStreams, () => []);
+
+  // This is similar to _groupBy, but faster.
+  for (let i = 0; i < data.data.length; i++) {
+    const d = data.data[i];
+    if (symbolData[d[filterKey]]) symbolData[d[filterKey]].push(d);
+  }
+
+  Object.keys(symbolData).forEach((symbol) => {
+    const key = `${table}:${action}:${symbol}`;
+    debug('emitting %s with data %j', key, symbolData[symbol]);
+    emitter.emit(key, _.extend({}, data, {data: symbolData[symbol]}));
+  });
+}
+
+function emitFullData(emitter, data) {
+  const {table, action} = data;
+
+  const key = `${table}:${action}:*`;
+  debug('emitting %s with data %j', key, data.data);
+  emitter.emit(key, data);
+}
