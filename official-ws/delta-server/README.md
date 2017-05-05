@@ -41,8 +41,9 @@ to `config.js` to get started.
 By default, this tool only connects to the `XBTUSD` stream. Add other contracts as needed. A list of open instruments
 is available via [this endpoint](https://www.bitmex.com:443/api/v1/instrument?filter=%7B%22state%22%3A%20%22Open%22%7D).
 
-Like the public API, you can also use symbol aliases, such as `XBT:daily`, and `XBT:weekly`. The
-[full list is available here](https://www.bitmex.com/api/v1/instrument/activeIntervals).
+At this time, symbol aliases, like `XBT:perpetual`
+([the full list is available here](https://www.bitmex.com/api/v1/instrument/activeIntervals)) are not available
+for use with the Delta Server.
 
 ### Public Data
 
