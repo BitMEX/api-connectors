@@ -53,7 +53,7 @@ Please follow the [installation](#installation) instruction and execute the foll
 ```javascript
 var BitMexApi = require('bit_mex_api');
 
-var api = new BitMexApi.APIKeyApi()
+var api = new BitMexApi.ApiKeyApi()
 
 var apiKeyID = "apiKeyID_example"; // {String} API Key ID (public component).
 
@@ -65,7 +65,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.aPIKeyDisable(apiKeyID, callback);
+api.apiKeyDisable(apiKeyID, callback);
 
 ```
 
