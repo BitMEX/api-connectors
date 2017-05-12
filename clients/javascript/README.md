@@ -75,11 +75,11 @@ All URIs are relative to *https://localhost/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BitMexApi.APIKeyApi* | [**aPIKeyDisable**](docs/APIKeyApi.md#aPIKeyDisable) | **POST** /apiKey/disable | Disable an API Key.
-*BitMexApi.APIKeyApi* | [**aPIKeyEnable**](docs/APIKeyApi.md#aPIKeyEnable) | **POST** /apiKey/enable | Enable an API Key.
-*BitMexApi.APIKeyApi* | [**aPIKeyGet**](docs/APIKeyApi.md#aPIKeyGet) | **GET** /apiKey | Get your API Keys.
-*BitMexApi.APIKeyApi* | [**aPIKeyNew**](docs/APIKeyApi.md#aPIKeyNew) | **POST** /apiKey | Create a new API Key.
-*BitMexApi.APIKeyApi* | [**aPIKeyRemove**](docs/APIKeyApi.md#aPIKeyRemove) | **DELETE** /apiKey | Remove an API Key.
+*BitMexApi.ApiKeyApi* | [**apiKeyDisable**](docs/ApiKeyApi.md#apiKeyDisable) | **POST** /apiKey/disable | Disable an API Key.
+*BitMexApi.ApiKeyApi* | [**apiKeyEnable**](docs/ApiKeyApi.md#piIKeyEnable) | **POST** /apiKey/enable | Enable an API Key.
+*BitMexApi.ApiKeyApi* | [**apiKeyGet**](docs/ApiKeyApi.md#apiKeyGet) | **GET** /apiKey | Get your API Keys.
+*BitMexApi.ApiKeyApi* | [**apiKeyNew**](docs/ApiKeyApi.md#apiKeyNew) | **POST** /apiKey | Create a new API Key.
+*BitMexApi.ApiKeyApi* | [**apiKeyRemove**](docs/ApiKeyApi.md#aPIKeyRemove) | **DELETE** /apiKey | Remove an API Key.
 *BitMexApi.AnnouncementApi* | [**announcementGet**](docs/AnnouncementApi.md#announcementGet) | **GET** /announcement | Get site announcements.
 *BitMexApi.AnnouncementApi* | [**announcementGetUrgent**](docs/AnnouncementApi.md#announcementGetUrgent) | **GET** /announcement/urgent | Get urgent (banner) announcements.
 *BitMexApi.ChatApi* | [**chatGet**](docs/ChatApi.md#chatGet) | **GET** /chat | Get chat messages.
