@@ -61,22 +61,19 @@ namespace BitMEX
             return DateTime.UtcNow.Ticks - yearBegin.Ticks;
         }
 
-        private string Query(string function, Dictionary<string, string> param = null, bool auth = false)
+        private string Query(string method, string function, Dictionary<string, string> param = null, bool auth = false)
         {
-            string url = "/api/v1" + function;
             string paramData = BuildQueryData(param);
-            if (paramData != "")
-                url += "?" + paramData;
+            string url = "/api/v1" + function + ((method == "GET" && paramData != "") ? "?" + paramData : "");
+            string postData = (method != "GET") ? paramData : "";
 
             HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(domain + url);
-            webRequest.Method = "GET";
-
-            string postData = "";
+            webRequest.Method = method;
 
             if (auth)
             {
                 string nonce = GetNonce().ToString();
-                string message = "GET" + url + nonce + postData;
+                string message = method + url + nonce + postData;
                 byte[] signatureBytes = hmacsha256(Encoding.UTF8.GetBytes(apiSecret), Encoding.UTF8.GetBytes(message));
                 string signatureString = ByteArrayToString(signatureBytes);
 
@@ -87,6 +84,16 @@ namespace BitMEX
 
             try
             {
+                if (postData != "")
+                {
+                    webRequest.ContentType = "application/x-www-form-urlencoded";
+                    var data = Encoding.UTF8.GetBytes(postData);
+                    using (var stream = webRequest.GetRequestStream())
+                    {
+                        stream.Write(data, 0, data.Length);
+                    }
+                }
+
                 using (WebResponse webResponse = webRequest.GetResponse())
                 using (Stream str = webResponse.GetResponseStream())
                 using (StreamReader sr = new StreamReader(str))
@@ -117,7 +124,7 @@ namespace BitMEX
         //    var param = new Dictionary<string, string>();
         //    param["symbol"] = symbol;
         //    param["depth"] = depth.ToString();
-        //    string res = Query("/orderBook", param);
+        //    string res = Query("GET", "/orderBook", param);
         //    return JsonSerializer.DeserializeFromString<List<OrderBookItem>>(res);
         //}
 
@@ -132,7 +139,17 @@ namespace BitMEX
             //param["reverse"] = false.ToString();
             //param["startTime"] = "";
             //param["endTime"] = "";
-            return Query("/order", param, true);
+            return Query("GET", "/order", param, true);
+        }
+
+        public string PostOrders()
+        {
+            var param = new Dictionary<string, string>();
+            param["symbol"] = "XBTUSD";
+            param["side"] = "Buy";
+            param["orderQty"] = "1";
+            param["ordType"] = "Market";
+            return Query("POST", "/order", param, true);
         }
 
         private byte[] hmacsha256(byte[] keyByte, byte[] messageBytes)
