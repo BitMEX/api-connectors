@@ -72,7 +72,7 @@ namespace IO.Swagger.Test
         public void InstanceTest()
         {
             // test 'IsInstanceOfType' QuoteApi
-            Assert.IsInstanceOfType(typeof(QuoteApi), instance, "instance is a QuoteApi");
+			Assert.IsInstanceOf<QuoteApi>(instance, "instance is a QuoteApi");
         }
 
         

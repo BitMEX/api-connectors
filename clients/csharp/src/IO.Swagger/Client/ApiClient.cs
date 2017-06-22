@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)  ----  #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -30,8 +30,14 @@ using System.Web;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Threading;
+
 using Newtonsoft.Json;
 using RestSharp;
+using RestSharp.Extensions;
 
 namespace IO.Swagger.Client
 {
@@ -42,14 +48,24 @@ namespace IO.Swagger.Client
     {
         private JsonSerializerSettings serializerSettings = new JsonSerializerSettings
         {
-            ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor
+            ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
+
+			// make sure we're using UTC in our datetime serialisations
+			DateTimeZoneHandling = DateTimeZoneHandling.Utc
         };
+
+		// these are necessary to track time since last api call to prevent rate limit errors in both syncronus and async cases
+		DateTime m_lastCall = DateTime.UtcNow;
+		SemaphoreSlim m_sema = new SemaphoreSlim(1);
 
         /// <summary>
         /// Allows for extending request processing for <see cref="ApiClient"/> generated code.
         /// </summary>
         /// <param name="request">The RestSharp request object</param>
-        partial void InterceptRequest(IRestRequest request);
+        void InterceptRequest(IRestRequest r)
+		{
+			
+		}
 
         /// <summary>
         /// Allows for extending response processing for <see cref="ApiClient"/> generated code.
@@ -66,6 +82,8 @@ namespace IO.Swagger.Client
         {
             Configuration = Configuration.Default;
             RestClient = new RestClient("https://localhost/api/v1");
+
+			m_lastCall = new DateTime();
         }
 
         /// <summary>
@@ -159,8 +177,114 @@ namespace IO.Swagger.Client
                 }
             }
 
+			// build correct set of headers for given api call
+			long expires = GetNonce();
+			string key = Configuration.ApiKey.Keys.First();
+			string secret = Configuration.ApiKey.Values.First();
+
+			string url = "/api/v1" + path;
+
+			if (queryParams.Count > 0)
+			{
+				string paramData = BuildQueryData(queryParams);
+				if (paramData != "")
+					url += "?" + paramData;
+			}
+			if (formParams.Count > 0)
+			{
+				string paramData = BuildQueryData(formParams);
+				if (paramData != "")
+				{
+					if (request.Method == Method.DELETE)
+					{
+						url += "?" + paramData;
+					}
+					else if (request.Method == Method.POST || request.Method == Method.PUT)
+					{
+						postBody = paramData;
+					}
+				}
+			}
+
+			request.AddHeader("api-nonce", expires.ToString());
+			request.AddHeader("api-key", key);
+			request.AddHeader("api-signature", GenerateSignature(secret, request.Method.ToString(), url , expires, (string)(postBody != null ? postBody : "")));
+			
             return request;
         }
+
+		/// <summary>
+		/// Turn the given dictionary into a query string
+		/// </summary>
+		/// <param name="param"></param>
+		/// <returns></returns>
+		private string BuildQueryData(Dictionary<string, string> param)
+		{
+			if (param == null)
+				return "";
+
+			StringBuilder b = new StringBuilder();
+			foreach (var item in param)
+				b.Append(string.Format("&{0}={1}", item.Key, item.Value.UrlEncode()));
+
+			try { return b.ToString().Substring(1); }
+			catch (Exception) { return ""; }
+		}
+
+		/// <summary>
+		/// Get a valid nonce
+		/// </summary>
+		/// <returns></returns>
+		static public long GetNonce()
+		{
+			DateTime yearBegin = new DateTime(1990, 1, 1);
+			return DateTime.UtcNow.Ticks - yearBegin.Ticks;
+		}
+
+		/// <summary>
+		/// Turn the given byte array into a hex string
+		/// </summary>
+		/// <param name="ba"></param>
+		/// <returns></returns>
+		public static string ByteArrayToString(byte[] ba)
+		{
+			StringBuilder hex = new StringBuilder(ba.Length * 2);
+			foreach (byte b in ba)
+				hex.AppendFormat("{0:x2}", b);
+			return hex.ToString();
+		}
+
+		/// <summary>
+		/// Generate bitmex compatible signature for the given set of parameters
+		/// </summary>
+		/// <param name="apiSecret"></param>
+		/// <param name="method"></param>
+		/// <param name="url"></param>
+		/// <param name="nonce"></param>
+		/// <param name="body"></param>
+		/// <returns></returns>
+		public static string GenerateSignature(string apiSecret, string method, string url, long nonce, string body)
+		{
+			string message = method + url + nonce + body;
+			byte[] signatureBytes = hmacsha256(Encoding.UTF8.GetBytes(apiSecret), Encoding.UTF8.GetBytes(message));
+			string signatureString = ByteArrayToString(signatureBytes);
+
+			return signatureString;
+		}
+
+		/// <summary>
+		/// Generate hmacsha256 from the given data
+		/// </summary>
+		/// <param name="keyByte"></param>
+		/// <param name="messageBytes"></param>
+		/// <returns></returns>
+		static private byte[] hmacsha256(byte[] keyByte, byte[] messageBytes)
+		{
+			using (var hash = new HMACSHA256(keyByte))
+			{
+				return hash.ComputeHash(messageBytes);
+			}
+		}
 
         /// <summary>
         /// Makes the HTTP request (Sync).
@@ -181,18 +305,40 @@ namespace IO.Swagger.Client
             Dictionary<String, FileParameter> fileParams, Dictionary<String, String> pathParams,
             String contentType)
         {
-            var request = PrepareRequest(
-                path, method, queryParams, postBody, headerParams, formParams, fileParams,
-                pathParams, contentType);
+			m_sema.Wait();
 
-            // set timeout
-            RestClient.Timeout = Configuration.Timeout;
-            // set user agent
-            RestClient.UserAgent = Configuration.UserAgent;
+			double sleepTime = 1.1 - (DateTime.UtcNow - m_lastCall).TotalSeconds;
+			if (sleepTime > 0)
+			{
+				Thread.Sleep((int)(sleepTime * 1000));
+			}
 
-            InterceptRequest(request);
-            var response = RestClient.Execute(request);
-            InterceptResponse(request, response);
+			IRestResponse response = null;
+			try
+			{
+				var request = PrepareRequest(
+					path, method, queryParams, postBody, headerParams, formParams, fileParams,
+					pathParams, contentType);
+
+				// set timeout
+				RestClient.Timeout = Configuration.Timeout;
+				// set user agent
+				RestClient.UserAgent = Configuration.UserAgent;
+
+				InterceptRequest(request);
+
+				response = RestClient.Execute(request);
+				InterceptResponse(request, response);
+			}
+			catch
+			{
+				throw;
+			}
+			finally
+			{
+				m_lastCall = DateTime.UtcNow;
+				m_sema.Release();
+			}
 
             return (Object) response;
         }
@@ -215,12 +361,41 @@ namespace IO.Swagger.Client
             Dictionary<String, FileParameter> fileParams, Dictionary<String, String> pathParams,
             String contentType)
         {
-            var request = PrepareRequest(
-                path, method, queryParams, postBody, headerParams, formParams, fileParams,
-                pathParams, contentType);
-            InterceptRequest(request);
-            var response = await RestClient.ExecuteTaskAsync(request);
-            InterceptResponse(request, response);
+			await m_sema.WaitAsync();
+
+			//
+            // Wait asyncronusly so we never end up blocking the calling thread
+			//
+
+			double sleepTime = 1.1 - (DateTime.UtcNow - m_lastCall).TotalSeconds;
+			if (sleepTime > 0)
+			{
+				await Task.Delay((int)(sleepTime*1000));
+			}
+			
+			var request = PrepareRequest(
+				path, method, queryParams, postBody, headerParams, formParams, fileParams,
+				pathParams, contentType);
+			InterceptRequest(request);
+
+            IRestResponse response;
+
+			try
+			{
+				response = await RestClient.ExecuteTaskAsync(request);
+				InterceptResponse(request, response);
+			}
+			catch
+			{
+				throw;
+			}
+			finally
+			{
+				// make sure we track this, and realse the sema in case of any exceptions
+				m_lastCall = DateTime.UtcNow;
+				m_sema.Release();
+			}
+
             return (Object)response;
         }
 
