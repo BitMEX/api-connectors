@@ -35,6 +35,19 @@ new SwaggerClient({
   // .then(function (response) {
   //   console.log(response.data.toString());
   // });
+
+  // Example: sending a bulk order
+  // Note: due to a bug in the Swagger client, you must stringify the Array, otherwise
+  // we will be sent `["[object Object]","[object Object]"]`
+  // client.Order.Order_newBulk({
+  //   "orders": JSON.stringify([
+  //     {"symbol":"XBTUSD","price":2433.5,"orderQty":147,"side":"Sell"},
+  //     {"symbol":"XBTUSD","price":2431.1,"orderQty":190,"side":"Sell"}
+  //   ])
+  // })
+  // .then(function (response) {
+  //   console.log(response.data.toString());
+  // });
 })
 .catch(function(e) {
   console.error("Unable to connect:", e);
