@@ -4,6 +4,7 @@ import hashlib
 import hmac
 from bravado.requests_client import Authenticator
 
+
 class APIKeyAuthenticator(Authenticator):
     """?api_key authenticator.
     This authenticator adds BitMEX API key support via header.
@@ -25,13 +26,13 @@ class APIKeyAuthenticator(Authenticator):
 
     # Add the proper headers via the `expires` scheme.
     def apply(self, r):
-        expires = int(round(time.time()) + 5) # 5s grace period in case of clock skew
+        # 5s grace period in case of clock skew
+        expires = int(round(time.time()) + 5)
         r.headers['api-expires'] = str(expires)
         r.headers['api-key'] = self.api_key
-        r.headers['api-signature'] = self.generate_signature(self.api_secret, r.method, r.url, expires,
-            r.body if hasattr(r, 'body') else '')
-
-        print(r.headers['api-signature'])
+        body = r.prepare().body or ''
+        # print(json.dumps(r.data,  separators=(',',':')))
+        r.headers['api-signature'] = self.generate_signature(self.api_secret, r.method, r.url, expires, body)
         return r
 
     # Generates an API signature.
@@ -56,6 +57,7 @@ class APIKeyAuthenticator(Authenticator):
 
         # print "Computing HMAC: %s" % verb + path + str(nonce) + data
         message = bytes(verb + path + str(nonce) + data).encode('utf-8')
+        print(message)
 
         signature = hmac.new(secret, message, digestmod=hashlib.sha256).hexdigest()
         return signature
