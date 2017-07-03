@@ -14,7 +14,7 @@ config = {
   'use_models': False,
   # This library has some issues with nullable fields
   'validate_responses': False,
-  # Returns response in tuple
+  # Returns response in 2-tuple of (body, response); if False, will only return body
   'also_return_response': True,
 }
 
@@ -60,11 +60,11 @@ print(dir(bitMEXAuthenticated.Position))
 
 # Basic authenticated call
 print('\n---A basic Position GET:---')
-res = bitMEXAuthenticated.Position.Position_get().result()
+res, http_response = bitMEXAuthenticated.Position.Position_get().result()
 pp.pprint(res)
 
 
 # Basic order placement
 # print(dir(bitMEXAuthenticated.Order))
-# res = bitMEXAuthenticated.Order.Order_new(symbol='XBTUSD', orderQty=3, price=1000).result()
+# res, http_response = bitMEXAuthenticated.Order.Order_new(symbol='XBTUSD', orderQty=3, price=1000).result()
 # print(res)
