@@ -45,7 +45,8 @@ class BitMEXWebsocket():
 
         # Connected. Wait for partials
         self.__wait_for_symbol(symbol)
-        self.__wait_for_account()
+        if login or api_key:
+            self.__wait_for_account()
         self.logger.info('Got all market data. Starting.')
 
     def exit(self):
@@ -126,13 +127,13 @@ class BitMEXWebsocket():
 
     def __get_auth(self):
         '''Return auth headers. Will use API Keys if present in settings.'''
-        if not self.config['api_key']:
+        if self.config['login']:
             self.logger.info("Authenticating with email/password.")
             return [
                 "email: " + self.config['login'],
                 "password: " + self.config['password']
             ]
-        else:
+        elif self.config['api_key']:
             self.logger.info("Authenticating with API Key.")
             # To auth to the WS using an API key, we generate a signature of a nonce and
             # the WS API endpoint.
@@ -142,6 +143,9 @@ class BitMEXWebsocket():
                 "api-signature: " + generate_signature(self.config['api_secret'], 'GET', '/realtime', nonce, ''),
                 "api-key:" + self.config['api_key']
             ]
+        else:
+            self.logger.info("Not authenticating.")
+            return []
 
     def __get_url(self):
         '''

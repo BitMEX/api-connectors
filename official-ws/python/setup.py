@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from setuptools import setup
-from os.path import join
+from os.path import join, dirname
 
 here = dirname(__file__)
 
