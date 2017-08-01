@@ -38,7 +38,7 @@ WebSocketClient.prototype.open = function(url){
 };
 
 // Forward eventemitter methods
-['on', 'off', 'once', 'addListener', 'removeListener'].forEach(function(key) {
+['on', 'off', 'once', 'addListener', 'removeListener', 'emit'].forEach(function(key) {
     WebSocketClient.prototype[key] = function() {
         this.instance[key].apply(this.instance, arguments);
     };
@@ -53,8 +53,10 @@ WebSocketClient.prototype.send = function(data,option) {
     }
 };
 WebSocketClient.prototype.reconnect = function(_event) {
+    this.emit('reconnect');
     debug('WebSocketClient: retry in ' + this.autoReconnectInterval + ' ms');
-    setTimeout(() => {
+    clearTimeout(this.reconnectTimeout);
+    this.reconnectTimeout = setTimeout(() => {
         debug("WebSocketClient: reconnecting...");
         this.open(this.url);
     }, this.autoReconnectInterval);

@@ -6,10 +6,8 @@ const WebSocketClient = require('./ReconnectingSocket');
 
 module.exports = function createSocket(options, bmexClient) {
   'use strict';
-  let endpoint = options.endpoint;
-  if (options.apiKeyID && options.apiKeySecret) {
-    endpoint += '?' + signMessage.getWSAuthQuery(options.apiKeyID, options.apiKeySecret);
-  }
+
+  const endpoint = makeEndpoint(options);
   debug('connecting to %s', endpoint);
 
   // Create client and bind listeners.
@@ -63,6 +61,12 @@ module.exports = function createSocket(options, bmexClient) {
 
   wsClient.open(endpoint);
 
+  // Have to regenerate endpoint on reconnection so we have a new nonce.
+  wsClient.addListener('reconnect', function() {
+    debug('Reconnecting...');
+    wsClient.url = makeEndpoint(options);
+  });
+
   return wsClient;
 };
 
@@ -95,4 +99,12 @@ function emitFullData(emitter, data) {
   const key = `${table}:${action}:*`;
   debug('emitting %s with data %j', key, data.data);
   emitter.emit(key, data);
+}
+
+function makeEndpoint(options) {
+  let endpoint = options.endpoint;
+  if (options.apiKeyID && options.apiKeySecret) {
+    endpoint += '?' + signMessage.getWSAuthQuery(options.apiKeyID, options.apiKeySecret);
+  }
+  return endpoint;
 }
