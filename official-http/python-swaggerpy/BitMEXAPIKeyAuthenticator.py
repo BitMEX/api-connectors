@@ -30,9 +30,11 @@ class APIKeyAuthenticator(Authenticator):
         expires = int(round(time.time()) + 5)
         r.headers['api-expires'] = str(expires)
         r.headers['api-key'] = self.api_key
-        body = r.prepare().body or ''
+        prepared = r.prepare()
+        body = prepared.body or ''
+        url = prepared.path_url
         # print(json.dumps(r.data,  separators=(',',':')))
-        r.headers['api-signature'] = self.generate_signature(self.api_secret, r.method, r.url, expires, body)
+        r.headers['api-signature'] = self.generate_signature(self.api_secret, r.method, url, expires, body)
         return r
 
     # Generates an API signature.
@@ -55,9 +57,8 @@ class APIKeyAuthenticator(Authenticator):
         if parsedURL.query:
             path = path + '?' + parsedURL.query
 
-        # print "Computing HMAC: %s" % verb + path + str(nonce) + data
         message = bytes(verb + path + str(nonce) + data).encode('utf-8')
-        print(message)
+        # print("Computing HMAC: %s" % message)
 
         signature = hmac.new(secret, message, digestmod=hashlib.sha256).hexdigest()
         return signature

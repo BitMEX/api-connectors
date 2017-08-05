@@ -60,7 +60,7 @@ print(dir(bitMEXAuthenticated.Position))
 
 # Basic authenticated call
 print('\n---A basic Position GET:---')
-res, http_response = bitMEXAuthenticated.Position.Position_get().result()
+res, http_response = bitMEXAuthenticated.Position.Position_get(filter=json.dumps({'symbol': 'XBTUSD'})).result()
 pp.pprint(res)
 
 
