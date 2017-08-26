@@ -1,3 +1,4 @@
+import time, urlparse, hmac, hashlib
 def generate_nonce():
     return int(round(time.time() * 1000))
 
