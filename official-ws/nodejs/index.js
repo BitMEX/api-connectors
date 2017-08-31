@@ -113,15 +113,11 @@ BitMEXClient.prototype.getSymbol = function(symbol) {
 BitMEXClient.prototype.addStream = function(symbol, tableName, callback) {
   const client = this;
   if (!this.initialized) {
-    return this.once('initialize', function() {
-      client.addStream(symbol, tableName, callback);
-    });
+    return this.once('initialize', () => client.addStream(symbol, tableName, callback));
   }
   if (!this.socket.opened) {
     // Not open yet. Call this when open
-    return this.socket.once('open', function() {
-      addStreamHelper(client, symbol, tableName, callback);
-    });
+    return this.socket.once('open', () => client.addStream(symbol, tableName, callback))
   }
 
   // Massage arguments.
@@ -134,7 +130,7 @@ BitMEXClient.prototype.addStream = function(symbol, tableName, callback) {
   if (typeof callback !== 'function') throw new Error('A callback must be passed to BitMEXClient#addStream.');
 
   else if (client.streams.all.indexOf(tableName) === -1) {
-    callback(new Error('Unknown table for BitMEX subscription: ' + tableName +
+    return callback(new Error('Unknown table for BitMEX subscription: ' + tableName +
       '. Available tables are ' + client.streams.all + '.'));
   }
 
@@ -165,17 +161,25 @@ BitMEXClient.prototype.subscriptionCount = function(table, symbol) {
   return this._listenerTree[table] && this._listenerTree[table][symbol] || 0;
 };
 
+BitMEXClient.prototype.sendSubscribeRequest = function(table, symbol) {
+  this.socket.send(JSON.stringify({op: 'subscribe', args: `${table}:${symbol}`}));
+};
+
 function addStreamHelper(client, symbol, tableName, callback) {
   const tableUsesSymbol = noSymbolTables.indexOf(tableName) === -1;
   if (!tableUsesSymbol) symbol = '*';
 
   // Tell BitMEX we want to subscribe to this data. If wildcard, sub to all tables.
-  let toSubscribe = [tableName];
+  let toSubscribe;
   if (tableName === '*') {
     // This list comes from the getSymbols call, which hits
     // https://www.bitmex.com/api/v1/schema/websocketHelp
     toSubscribe = client.streams[client.authenticated ? 'all' : 'public'];
+  } else {
+    // Normal sub
+    toSubscribe = [tableName];
   }
+
   // For each subscription,
   toSubscribe.forEach(function(table) {
     // Create a subscription topic.
@@ -201,7 +205,11 @@ function addStreamHelper(client, symbol, tableName, callback) {
 
     // If this is the first sub, subscribe to bitmex adapter.
     if (client.subscriptionCount(table, symbol) === 1) {
-      client.socket.send(JSON.stringify({op: 'subscribe', args: `${table}:${symbol}`}));
+      const openSubscription = () => client.sendSubscribeRequest(table, symbol);
+      // If we reconnect, will need to reopen.
+      client.on('open', openSubscription);
+      // If we're already opened, prime the pump (I made that up)
+      if (client.socket.opened) openSubscription();
     }
   });
 }
