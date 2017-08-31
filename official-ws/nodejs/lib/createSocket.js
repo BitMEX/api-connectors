@@ -15,13 +15,13 @@ module.exports = function createSocket(options, bmexClient) {
 
   wsClient.onopen = function() {
     wsClient.opened = true;
-    debug('Connection to BitMEX at', endpoint, 'opened.');
+    debug('Connection to BitMEX at', wsClient.url, 'opened.');
     bmexClient.emit('open');
   };
 
   wsClient.onclose = function() {
     wsClient.opened = false;
-    debug('Connection to BitMEX at', endpoint, 'opened.');
+    debug('Connection to BitMEX at', wsClient.url, 'closed.');
     bmexClient.emit('close');
   };
 
@@ -63,8 +63,8 @@ module.exports = function createSocket(options, bmexClient) {
 
   // Have to regenerate endpoint on reconnection so we have a new nonce.
   wsClient.addListener('reconnect', function() {
-    debug('Reconnecting...');
     wsClient.url = makeEndpoint(options);
+    debug('Reconnecting to BitMEX at ', wsClient.url);
   });
 
   return wsClient;
