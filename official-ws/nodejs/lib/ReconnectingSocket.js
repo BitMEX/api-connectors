@@ -28,7 +28,7 @@ WebSocketClient.prototype.open = function(url){
             break;
         default:    // Abnormal closure
             this.logError('Websocket closed.');
-            this.reconnect(code);
+            reconnecting = true;
             break;
         }
         this.onclose(code);
