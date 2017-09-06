@@ -57,7 +57,14 @@ module.exports = function createSocket(options, bmexClient) {
     // If no error listeners are attached, throw.
     if (!listeners.length) throw e;
     else bmexClient.emit('error', e);
-  }
+  };
+
+  wsClient.onend = function(code) {
+    const listeners = bmexClient.listeners('end');
+    // If no end listeners are attached, throw.
+    if (!listeners.length) throw new Error('WebSocket closed. Please check errors above.');
+    else bmexClient.emit('end', code);
+  };
 
   wsClient.open(endpoint);
 

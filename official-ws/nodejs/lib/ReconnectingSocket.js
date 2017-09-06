@@ -16,20 +16,31 @@ WebSocketClient.prototype.open = function(url){
     this.instance.on('message', (data, flags) => {
         this.onmessage(data,flags);
     });
-    this.instance.on('close', (e) => {
-        switch (e){
+    this.instance.on('close', (code) => {
+        let reconnecting = false;
+
+        switch (code){
         case 1000:  // CLOSE_NORMAL
             debug("Closed");
             break;
+        case 1011:  // UNEXPECTED_CONDITION
+            this.logError("Closing Websocket")
+            break;
         default:    // Abnormal closure
-            this.reconnect(e);
+            this.logError('Websocket closed.');
+            this.reconnect(code);
             break;
         }
-        this.onclose(e);
+        this.onclose(code);
+        if (reconnecting) {
+            this.reconnect(code);
+        } else {
+            this.onend(code);
+        }
     });
     this.instance.on('error', (e) => {
         if (e.code) {
-            this.log("Error on connection: " + e.code);
+            this.logError("Error on connection.", e.message);
         }
         switch (e.code){
         case 'ECONNREFUSED':
@@ -39,6 +50,23 @@ WebSocketClient.prototype.open = function(url){
             break;
         }
     });
+    this.instance.on('unexpected-response', (request, response) => {
+        // Parse body
+        let buf = '';
+        response.on('data', (data) => { buf += data; });
+        response.on('end', () => {
+            if (response.statusCode === 401) {
+                this.logError(`Authentication invalid. Please check your credentials. Message: ${buf}`);
+            } else {
+                this.logError(`Unexpected response from server [${response.statusCode}]: ${buf}`);
+            }
+            this.log('The WebSocket will terminate. Please manually reconnect.');
+            request.abort();
+            this.instance.close(1011);
+            this.instance.emit('close', 1011);
+        })
+
+    })
 };
 
 // Forward eventemitter methods
@@ -51,7 +79,12 @@ WebSocketClient.prototype.open = function(url){
 WebSocketClient.prototype.log = function() {
     if (!this.logConnection) return;
     const args = [].slice.call(arguments);
-    console.log.apply(console, ['WebSocket:'].concat(args));
+    console.log.apply(console, ['WebSocket [INFO]:'].concat(args));
+}
+
+WebSocketClient.prototype.logError = function() {
+    const args = [].slice.call(arguments);
+    console.error.apply(console, ['WebSocket [ERROR]:'].concat(args));
 }
 
 WebSocketClient.prototype.send = function(data, option) {
@@ -62,11 +95,12 @@ WebSocketClient.prototype.send = function(data, option) {
         this.instance.emit('error',e);
     }
 };
-WebSocketClient.prototype.reconnect = function(_event) {
+WebSocketClient.prototype.reconnect = function(_code) {
     this.emit('reconnect');
     this.log('Retry in ' + this.autoReconnectInterval + ' ms');
     clearTimeout(this.reconnectTimeout);
     this.reconnectTimeout = setTimeout(() => {
+        this.instance.close(1000, 'Reconnecting.');
         this.log("Reconnecting...");
         this.open(this.url);
     }, this.autoReconnectInterval);

@@ -33,6 +33,7 @@ function BitMEXClient(options) {
   if (!options.endpoint) {
     options.endpoint = options.testnet ? endpoints.testnet : endpoints.production;
   }
+  if (process.env.BITMEX_ENDPOINT) options.endpoint = process.env.BITMEX_ENDPOINT;
   debug(options)
 
   this._setupListenerTracking();
