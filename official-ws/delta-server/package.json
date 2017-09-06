@@ -1,6 +1,6 @@
 {
-  "name": "bitmex-realtime-data-server",
-  "version": "0.1.0",
+  "name": "bitmex-delta-server",
+  "version": "0.2.0",
   "description": "A proxy to bitmex that serves realtime data without ratelimiting.",
   "main": "index.js",
   "engines": {
