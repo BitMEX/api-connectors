@@ -50,6 +50,11 @@ function initWSClient(app, config) {
     console.error("Caught Websocket error:", error);
   });
 
+  client.on('end', function() {
+    console.error('Client closed due to unrecoverable WebSocket error. Please check errors above.');
+    process.exit(1);
+  });
+
   config.symbols.forEach(function(symbol) {
     config.streams.forEach(function(streamName) {
       client.addStream(symbol, streamName, function(data, symbol, tableName) {
