@@ -20,8 +20,14 @@ After installing, clone this repository, install the dependencies, and start the
 
 ```bash
 git clone https://github.com/BitMEX/api-connectors.git
-cd official-ws/delta-server
+
+# Install dependencies
+cd official-ws/nodejs
 npm install
+cd ../official-ws/delta-server
+npm install
+
+# Setup config
 cp config.example.js config.js
 # Edit config.js to add the symbols and streams (instrument, orderBookL2, etc) that you want to watch.
 nano config.js

@@ -3,6 +3,7 @@
   "version": "0.2.1",
   "description": "A proxy to bitmex that serves realtime data without ratelimiting.",
   "main": "index.js",
+  "repository": "https://github.com/BitMEX/api-connectors.git",
   "engines": {
     "node": ">=4"
   },
