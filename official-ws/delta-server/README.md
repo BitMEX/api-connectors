@@ -12,12 +12,14 @@ want to write websocket integration yourself.
 
 ### Usage
 
-Usage of this server requires [installing Node.JS](https://nodejs.org/download/).
+Usage of this server requires [installing Node.JS](https://nodejs.org/download/). Be sure you have at least
+Node 6.x or later. On most Linux distributions, you can download via the
+[NodeSource PPA](https://github.com/nodesource/distributions#installation-instructions).
 
 After installing, clone this repository, install the dependencies, and start the server.
 
 ```bash
-git clone git@github.com:BitMEX/api-connectors.git
+git clone https://github.com/BitMEX/api-connectors.git
 cd official-ws/delta-server
 npm install
 cp config.example.js config.js
