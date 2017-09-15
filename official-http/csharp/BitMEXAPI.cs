@@ -41,7 +41,7 @@ namespace BitMEX
 
             StringBuilder b = new StringBuilder();
             foreach (var item in param)
-                b.Append(string.Format("&{0}={1}", item.Key, item.Value));
+                b.Append(string.Format("&{0}={1}", item.Key, WebUtility.UrlEncode(item.Value)));
 
             try { return b.ToString().Substring(1); }
             catch (Exception) { return ""; }
@@ -132,7 +132,7 @@ namespace BitMEX
         {
             var param = new Dictionary<string, string>();
             param["symbol"] = "XBTUSD";
-            //param["filter"] = "{\"orderId\":\"123\"}";
+            //param["filter"] = "{\"open\":true}";
             //param["columns"] = "";
             //param["count"] = 100.ToString();
             //param["start"] = 0.ToString();
