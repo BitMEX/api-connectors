@@ -19,6 +19,7 @@ namespace Test
             BitMEXApi bitmex = new BitMEXApi(bitmexKey, bitmexSecret);
             // var orderBook = bitmex.GetOrderBook("XBTUSD", 3);
             var orders = bitmex.GetOrders();
+            // var orders = bitmex.DeleteOrders();
             Console.WriteLine(orders);
         }
     }

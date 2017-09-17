@@ -47,6 +47,18 @@ namespace BitMEX
             catch (Exception) { return ""; }
         }
 
+        private string BuildJSON(Dictionary<string, string> param)
+        {
+            if (param == null)
+                return "";
+
+            var entries = new List<string>();
+            foreach (var item in param)
+                entries.Add(string.Format("\"{0}\":\"{1}\"", item.Key, item.Value));
+
+            return "{" + string.Join(",", entries) + "}";
+        }
+
         public static string ByteArrayToString(byte[] ba)
         {
             StringBuilder hex = new StringBuilder(ba.Length * 2);
@@ -61,9 +73,9 @@ namespace BitMEX
             return DateTime.UtcNow.Ticks - yearBegin.Ticks;
         }
 
-        private string Query(string method, string function, Dictionary<string, string> param = null, bool auth = false)
+        private string Query(string method, string function, Dictionary<string, string> param = null, bool auth = false, bool json = false)
         {
-            string paramData = BuildQueryData(param);
+            string paramData = json ? BuildJSON(param) : BuildQueryData(param);
             string url = "/api/v1" + function + ((method == "GET" && paramData != "") ? "?" + paramData : "");
             string postData = (method != "GET") ? paramData : "";
 
@@ -86,7 +98,7 @@ namespace BitMEX
             {
                 if (postData != "")
                 {
-                    webRequest.ContentType = "application/x-www-form-urlencoded";
+                    webRequest.ContentType = json ? "application/json" : "application/x-www-form-urlencoded";
                     var data = Encoding.UTF8.GetBytes(postData);
                     using (var stream = webRequest.GetRequestStream())
                     {
@@ -150,6 +162,14 @@ namespace BitMEX
             param["orderQty"] = "1";
             param["ordType"] = "Market";
             return Query("POST", "/order", param, true);
+        }
+
+        public string DeleteOrders()
+        {
+            var param = new Dictionary<string, string>();
+            param["orderID"] = "de709f12-2f24-9a36-b047-ab0ff090f0bb";
+            param["text"] = "cancel order by ID";
+            return Query("DELETE", "/order", param, true, true);
         }
 
         private byte[] hmacsha256(byte[] keyByte, byte[] messageBytes)
