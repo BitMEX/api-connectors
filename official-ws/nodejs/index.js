@@ -12,8 +12,18 @@ const endpoints = {
   testnet: 'wss://testnet.bitmex.com/realtime'
 };
 const noSymbolTables = BitMEXClient.noSymbolTables = [
+  'account',
+  'affiliate',
+  'funds',
+  'insurance',
   'margin',
-  'chat'
+  'transact',
+  'wallet',
+  'announcement',
+  'connected',
+  'chat',
+  'publicNotifications',
+  'privateNotifications'
 ];
 
 module.exports = BitMEXClient;
@@ -163,6 +173,7 @@ BitMEXClient.prototype.subscriptionCount = function(table, symbol) {
 };
 
 BitMEXClient.prototype.sendSubscribeRequest = function(table, symbol) {
+  console.log(JSON.stringify({op: 'subscribe', args: `${table}:${symbol}`}))
   this.socket.send(JSON.stringify({op: 'subscribe', args: `${table}:${symbol}`}));
 };
 
