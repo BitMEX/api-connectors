@@ -1,14 +1,15 @@
 #import "SWGChatApi.h"
 #import "SWGQueryParamCollection.h"
+#import "SWGApiClient.h"
 #import "SWGChat.h"
-#import "SWGError.h"
 #import "SWGChatChannel.h"
 #import "SWGConnectedUsers.h"
+#import "SWGError.h"
 
 
 @interface SWGChatApi ()
 
-@property (nonatomic, strong) NSMutableDictionary *defaultHeaders;
+@property (nonatomic, strong, readwrite) NSMutableDictionary *mutableDefaultHeaders;
 
 @end
 
@@ -22,52 +23,31 @@ NSInteger kSWGChatApiMissingParamErrorCode = 234513;
 #pragma mark - Initialize methods
 
 - (instancetype) init {
-    self = [super init];
-    if (self) {
-        SWGConfiguration *config = [SWGConfiguration sharedConfig];
-        if (config.apiClient == nil) {
-            config.apiClient = [[SWGApiClient alloc] init];
-        }
-        _apiClient = config.apiClient;
-        _defaultHeaders = [NSMutableDictionary dictionary];
-    }
-    return self;
+    return [self initWithApiClient:[SWGApiClient sharedClient]];
 }
 
-- (id) initWithApiClient:(SWGApiClient *)apiClient {
+
+-(instancetype) initWithApiClient:(SWGApiClient *)apiClient {
     self = [super init];
     if (self) {
         _apiClient = apiClient;
-        _defaultHeaders = [NSMutableDictionary dictionary];
+        _mutableDefaultHeaders = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
 #pragma mark -
 
-+ (instancetype)sharedAPI {
-    static SWGChatApi *sharedAPI;
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        sharedAPI = [[self alloc] init];
-    });
-    return sharedAPI;
-}
-
 -(NSString*) defaultHeaderForKey:(NSString*)key {
-    return self.defaultHeaders[key];
-}
-
--(void) addHeader:(NSString*)value forKey:(NSString*)key {
-    [self setDefaultHeaderValue:value forKey:key];
+    return self.mutableDefaultHeaders[key];
 }
 
 -(void) setDefaultHeaderValue:(NSString*) value forKey:(NSString*)key {
-    [self.defaultHeaders setValue:value forKey:key];
+    [self.mutableDefaultHeaders setValue:value forKey:key];
 }
 
--(NSUInteger) requestQueueSize {
-    return [SWGApiClient requestQueueSize];
+-(NSDictionary *)defaultHeaders {
+    return self.mutableDefaultHeaders;
 }
 
 #pragma mark - Api Methods
@@ -77,7 +57,7 @@ NSInteger kSWGChatApiMissingParamErrorCode = 234513;
 /// 
 ///  @param count Number of results to fetch. (optional, default to 100)
 ///
-///  @param start Starting point for results. (optional, default to 0)
+///  @param start Starting ID for results. (optional, default to 0)
 ///
 ///  @param reverse If true, will sort results newest first. (optional, default to true)
 ///
@@ -85,15 +65,12 @@ NSInteger kSWGChatApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSArray<SWGChat>*
 ///
--(NSNumber*) chatGetWithCount: (NSNumber*) count
+-(NSURLSessionTask*) chatGetWithCount: (NSNumber*) count
     start: (NSNumber*) start
     reverse: (NSNumber*) reverse
     channelID: (NSNumber*) channelID
     completionHandler: (void (^)(NSArray<SWGChat>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/chat"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -105,7 +82,7 @@ NSInteger kSWGChatApiMissingParamErrorCode = 234513;
         queryParams[@"start"] = start;
     }
     if (reverse != nil) {
-        queryParams[@"reverse"] = reverse;
+        queryParams[@"reverse"] = [reverse isEqual:@(YES)] ? @"true" : @"false";
     }
     if (channelID != nil) {
         queryParams[@"channelID"] = channelID;
@@ -147,8 +124,7 @@ NSInteger kSWGChatApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSArray<SWGChat>*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -156,12 +132,9 @@ NSInteger kSWGChatApiMissingParamErrorCode = 234513;
 /// 
 ///  @returns NSArray<SWGChatChannel>*
 ///
--(NSNumber*) chatGetChannelsWithCompletionHandler: 
+-(NSURLSessionTask*) chatGetChannelsWithCompletionHandler: 
     (void (^)(NSArray<SWGChatChannel>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/chat/channels"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -203,8 +176,7 @@ NSInteger kSWGChatApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSArray<SWGChatChannel>*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -212,12 +184,9 @@ NSInteger kSWGChatApiMissingParamErrorCode = 234513;
 /// Returns an array with browser users in the first position and API users (bots) in the second position.
 ///  @returns SWGConnectedUsers*
 ///
--(NSNumber*) chatGetConnectedWithCompletionHandler: 
+-(NSURLSessionTask*) chatGetConnectedWithCompletionHandler: 
     (void (^)(SWGConnectedUsers* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/chat/connected"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -259,8 +228,7 @@ NSInteger kSWGChatApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGConnectedUsers*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -272,7 +240,7 @@ NSInteger kSWGChatApiMissingParamErrorCode = 234513;
 ///
 ///  @returns SWGChat*
 ///
--(NSNumber*) chatNewWithMessage: (NSString*) message
+-(NSURLSessionTask*) chatNewWithMessage: (NSString*) message
     channelID: (NSNumber*) channelID
     completionHandler: (void (^)(SWGChat* output, NSError* error)) handler {
     // verify the required parameter 'message' is set
@@ -287,9 +255,6 @@ NSInteger kSWGChatApiMissingParamErrorCode = 234513;
     }
 
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/chat"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -309,7 +274,7 @@ NSInteger kSWGChatApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -337,8 +302,7 @@ NSInteger kSWGChatApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGChat*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 

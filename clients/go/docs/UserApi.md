@@ -28,16 +28,14 @@ Method | HTTP request | Description
 
 
 # **UserCancelWithdrawal**
-> Transaction UserCancelWithdrawal($token)
-
+> Transaction UserCancelWithdrawal(token)
 Cancel a withdrawal.
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **token** | **string**|  | 
+  **token** | **string**|  | 
 
 ### Return type
 
@@ -55,18 +53,23 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserCheckReferralCode**
-> float64 UserCheckReferralCode($referralCode)
-
+> float64 UserCheckReferralCode(optional)
 Check if a referral code is valid.
 
 If the code is valid, responds with the referral code's discount (e.g. `0.1` for 10%). Otherwise, will return a 404.
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **referralCode** | **string**|  | [optional] 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **referralCode** | **string**|  | 
 
 ### Return type
 
@@ -84,16 +87,14 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserConfirm**
-> AccessToken UserConfirm($token)
-
+> AccessToken UserConfirm(token)
 Confirm your email address with a token.
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **token** | **string**|  | 
+  **token** | **string**|  | 
 
 ### Return type
 
@@ -111,17 +112,26 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserConfirmEnableTFA**
-> bool UserConfirmEnableTFA($token, $type_)
-
+> bool UserConfirmEnableTFA(ctx, ctx, ctx, token, optional)
 Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
 
+### Required Parameters
 
-### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **token** | **string**| Token from your selected TFA type. | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **string**| Token from your selected TFA type. | 
- **type_** | **string**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39; | [optional] 
+ **type_** | **string**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39; | 
 
 ### Return type
 
@@ -129,7 +139,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -139,16 +149,14 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserConfirmWithdrawal**
-> Transaction UserConfirmWithdrawal($token)
-
+> Transaction UserConfirmWithdrawal(token)
 Confirm a withdrawal.
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **token** | **string**|  | 
+  **token** | **string**|  | 
 
 ### Return type
 
@@ -166,17 +174,26 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserDisableTFA**
-> bool UserDisableTFA($token, $type_)
-
+> bool UserDisableTFA(ctx, ctx, ctx, token, optional)
 Disable two-factor auth for this account.
 
+### Required Parameters
 
-### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **token** | **string**| Token from your selected TFA type. | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **string**| Token from your selected TFA type. | 
- **type_** | **string**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) | [optional] 
+ **type_** | **string**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) | 
 
 ### Return type
 
@@ -184,7 +201,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -194,12 +211,10 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserGet**
-> User UserGet()
-
+> User UserGet(ctx, ctx, ctx, )
 Get your user model.
 
-
-### Parameters
+### Required Parameters
 This endpoint does not need any parameter.
 
 ### Return type
@@ -208,7 +223,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -218,21 +233,19 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserGetAffiliateStatus**
-> []Affiliate UserGetAffiliateStatus()
-
+> Affiliate UserGetAffiliateStatus(ctx, ctx, ctx, )
 Get your current affiliate/referral status.
 
-
-### Parameters
+### Required Parameters
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**[]Affiliate**](Affiliate.md)
+[**Affiliate**](Affiliate.md)
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -242,12 +255,10 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserGetCommission**
-> []UserCommission UserGetCommission()
-
+> []UserCommission UserGetCommission(ctx, ctx, ctx, )
 Get your account's commission status.
 
-
-### Parameters
+### Required Parameters
 This endpoint does not need any parameter.
 
 ### Return type
@@ -256,7 +267,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -266,16 +277,24 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserGetDepositAddress**
-> string UserGetDepositAddress($currency)
-
+> string UserGetDepositAddress(ctx, ctx, ctx, optional)
 Get a deposit address.
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **string**|  | [default to XBt]
 
 ### Return type
 
@@ -283,7 +302,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -293,16 +312,24 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserGetMargin**
-> Margin UserGetMargin($currency)
-
+> Margin UserGetMargin(ctx, ctx, ctx, optional)
 Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **string**|  | [default to XBt]
 
 ### Return type
 
@@ -310,7 +337,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -320,16 +347,24 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserGetWallet**
-> Wallet UserGetWallet($currency)
-
+> Wallet UserGetWallet(ctx, ctx, ctx, optional)
 Get your current wallet information.
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **string**|  | [default to XBt]
 
 ### Return type
 
@@ -337,7 +372,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -347,16 +382,24 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserGetWalletHistory**
-> []Transaction UserGetWalletHistory($currency)
-
+> []Transaction UserGetWalletHistory(ctx, ctx, ctx, optional)
 Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **string**|  | [default to XBt]
 
 ### Return type
 
@@ -364,7 +407,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -374,16 +417,24 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserGetWalletSummary**
-> []Transaction UserGetWalletSummary($currency)
-
+> []Transaction UserGetWalletSummary(ctx, ctx, ctx, optional)
 Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **string**|  | [default to XBt]
 
 ### Return type
 
@@ -391,7 +442,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -402,16 +453,14 @@ No authorization required
 
 # **UserLogout**
 > UserLogout()
-
 Log out of BitMEX.
 
-
-### Parameters
+### Required Parameters
 This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+ (empty response body)
 
 ### Authorization
 
@@ -425,12 +474,10 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserLogoutAll**
-> float64 UserLogoutAll()
-
+> float64 UserLogoutAll(ctx, ctx, ctx, )
 Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.
 
-
-### Parameters
+### Required Parameters
 This endpoint does not need any parameter.
 
 ### Return type
@@ -439,7 +486,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -449,22 +496,27 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserMinWithdrawalFee**
-> float64 UserMinWithdrawalFee($currency)
-
+> interface{} UserMinWithdrawalFee(optional)
 Get the minimum withdrawal fee for a currency.
 
 This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **string**|  | [default to XBt]
 
 ### Return type
 
-**float64**
+[**interface{}**](interface{}.md)
 
 ### Authorization
 
@@ -478,18 +530,26 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserRequestEnableTFA**
-> bool UserRequestEnableTFA($type_)
-
+> bool UserRequestEnableTFA(ctx, ctx, ctx, optional)
 Get secret key for setting up two-factor auth.
 
 Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **type_** | **string**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) | [optional] 
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **type_** | **string**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) | 
 
 ### Return type
 
@@ -497,7 +557,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -507,22 +567,33 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserRequestWithdrawal**
-> Transaction UserRequestWithdrawal($currency, $amount, $address, $otpToken, $fee)
-
+> Transaction UserRequestWithdrawal(ctx, ctx, ctx, currency, amount, address, optional)
 Request a withdrawal to an external wallet.
 
 This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission.
 
+### Required Parameters
 
-### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **currency** | **string**| Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60; | [default to XBt]
+  **amount** | **float32**| Amount of withdrawal currency. | 
+  **address** | **string**| Destination Address. | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **string**| Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60; | [default to XBt]
  **amount** | **float32**| Amount of withdrawal currency. | 
  **address** | **string**| Destination Address. | 
- **otpToken** | **string**| 2FA token. Required if 2FA is enabled on your account. | [optional] 
- **fee** | **float64**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional] 
+ **otpToken** | **string**| 2FA token. Required if 2FA is enabled on your account. | 
+ **fee** | **float64**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | 
 
 ### Return type
 
@@ -530,7 +601,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -540,17 +611,26 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserSavePreferences**
-> User UserSavePreferences($prefs, $overwrite)
-
+> User UserSavePreferences(ctx, ctx, ctx, prefs, optional)
 Save user preferences.
 
+### Required Parameters
 
-### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **prefs** | **string**|  | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **prefs** | **string**|  | 
- **overwrite** | **bool**| If true, will overwrite all existing preferences. | [optional] [default to false]
+ **overwrite** | **bool**| If true, will overwrite all existing preferences. | [default to false]
 
 ### Return type
 
@@ -558,7 +638,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -568,23 +648,31 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserUpdate**
-> User UserUpdate($firstname, $lastname, $oldPassword, $newPassword, $newPasswordConfirm, $username, $country, $pgpPubKey)
-
+> User UserUpdate(ctx, ctx, ctx, optional)
 Update your password, name, and other attributes.
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **firstname** | **string**|  | [optional] 
- **lastname** | **string**|  | [optional] 
- **oldPassword** | **string**|  | [optional] 
- **newPassword** | **string**|  | [optional] 
- **newPasswordConfirm** | **string**|  | [optional] 
- **username** | **string**| Username can only be set once. To reset, email support. | [optional] 
- **country** | **string**| Country of residence. | [optional] 
- **pgpPubKey** | **string**| PGP Public Key. If specified, automated emails will be sentwith this key. | [optional] 
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **firstname** | **string**|  | 
+ **lastname** | **string**|  | 
+ **oldPassword** | **string**|  | 
+ **newPassword** | **string**|  | 
+ **newPasswordConfirm** | **string**|  | 
+ **username** | **string**| Username can only be set once. To reset, email support. | 
+ **country** | **string**| Country of residence. | 
+ **pgpPubKey** | **string**| PGP Public Key. If specified, automated emails will be sentwith this key. | 
 
 ### Return type
 
@@ -592,7 +680,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

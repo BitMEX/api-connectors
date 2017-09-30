@@ -17,5 +17,6 @@ Name | Type | Description | Notes
 **payoutPcnt** | **Number** |  | [optional] 
 **pendingPayout** | **Number** |  | [optional] 
 **timestamp** | **Date** |  | [optional] 
+**referrerAccount** | **Number** |  | [optional] 
 
 

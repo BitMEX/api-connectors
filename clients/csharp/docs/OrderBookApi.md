@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**OrderBookGetL2**](OrderBookApi.md#orderbookgetl2) | **GET** /orderBook/L2 | Get current orderbook in vertical format.
 
 
+<a name="orderbookget"></a>
 # **OrderBookGet**
 > List<OrderBook> OrderBookGet (string symbol, decimal? depth = null)
 
@@ -27,7 +28,6 @@ namespace Example
     {
         public void main()
         {
-            
             var apiInstance = new OrderBookApi();
             var symbol = symbol_example;  // string | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
             var depth = 3.4;  // decimal? | Orderbook depth. (optional)  (default to 25)
@@ -69,6 +69,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="orderbookgetl2"></a>
 # **OrderBookGetL2**
 > List<OrderBookL2> OrderBookGetL2 (string symbol, decimal? depth = null)
 
@@ -88,7 +89,6 @@ namespace Example
     {
         public void main()
         {
-            
             var apiInstance = new OrderBookApi();
             var symbol = symbol_example;  // string | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
             var depth = 3.4;  // decimal? | Orderbook depth per side. Send 0 for full depth. (optional)  (default to 25)

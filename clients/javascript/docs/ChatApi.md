@@ -18,25 +18,24 @@ Get chat messages.
 
 ### Example
 ```javascript
-var BitMexApi = require('bit_mex_api');
+import BitMexApi from 'bit_mex_api';
 
-var apiInstance = new BitMexApi.ChatApi();
+let apiInstance = new BitMexApi.ChatApi();
 
-var opts = { 
+let opts = { 
   'count': 100, // Number | Number of results to fetch.
-  'start': 0, // Number | Starting point for results.
+  'start': 0, // Number | Starting ID for results.
   'reverse': true, // Boolean | If true, will sort results newest first.
   'channelID': 1.2 // Number | Channel id. GET /chat/channels for ids. Leave blank for all.
 };
 
-var callback = function(error, data, response) {
+apiInstance.chatGet(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.chatGet(opts, callback);
+});
 ```
 
 ### Parameters
@@ -44,7 +43,7 @@ apiInstance.chatGet(opts, callback);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **count** | **Number**| Number of results to fetch. | [optional] [default to 100]
- **start** | **Number**| Starting point for results. | [optional] [default to 0]
+ **start** | **Number**| Starting ID for results. | [optional] [default to 0]
  **reverse** | **Boolean**| If true, will sort results newest first. | [optional] [default to true]
  **channelID** | **Number**| Channel id. GET /chat/channels for ids. Leave blank for all. | [optional] 
 
@@ -69,18 +68,17 @@ Get available channels.
 
 ### Example
 ```javascript
-var BitMexApi = require('bit_mex_api');
+import BitMexApi from 'bit_mex_api';
 
-var apiInstance = new BitMexApi.ChatApi();
+let apiInstance = new BitMexApi.ChatApi();
 
-var callback = function(error, data, response) {
+apiInstance.chatGetChannels((error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.chatGetChannels(callback);
+});
 ```
 
 ### Parameters
@@ -109,18 +107,17 @@ Returns an array with browser users in the first position and API users (bots) i
 
 ### Example
 ```javascript
-var BitMexApi = require('bit_mex_api');
+import BitMexApi from 'bit_mex_api';
 
-var apiInstance = new BitMexApi.ChatApi();
+let apiInstance = new BitMexApi.ChatApi();
 
-var callback = function(error, data, response) {
+apiInstance.chatGetConnected((error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.chatGetConnected(callback);
+});
 ```
 
 ### Parameters
@@ -147,24 +144,42 @@ Send a chat message.
 
 ### Example
 ```javascript
-var BitMexApi = require('bit_mex_api');
+import BitMexApi from 'bit_mex_api';
+let defaultClient = BitMexApi.ApiClient.instance;
 
-var apiInstance = new BitMexApi.ChatApi();
+// Configure API key authorization: apiKey
+let apiKey = defaultClient.authentications['apiKey'];
+apiKey.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.apiKeyPrefix = 'Token';
 
-var message = "message_example"; // String | 
+// Configure API key authorization: apiNonce
+let apiNonce = defaultClient.authentications['apiNonce'];
+apiNonce.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiNonce.apiKeyPrefix = 'Token';
 
-var opts = { 
+// Configure API key authorization: apiSignature
+let apiSignature = defaultClient.authentications['apiSignature'];
+apiSignature.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.apiKeyPrefix = 'Token';
+
+let apiInstance = new BitMexApi.ChatApi();
+
+let message = "message_example"; // String | 
+
+let opts = { 
   'channelID': 1 // Number | Channel to post to. Default 1 (English).
 };
 
-var callback = function(error, data, response) {
+apiInstance.chatNew(message, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.chatNew(message, opts, callback);
+});
 ```
 
 ### Parameters
@@ -180,7 +195,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

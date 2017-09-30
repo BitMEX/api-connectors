@@ -76,6 +76,37 @@
   []
   (:data (instrument-get-active-intervals-with-http-info)))
 
+(defn instrument-get-composite-index-with-http-info
+  "Show constituent parts of an index.
+  Composite indices are built from multiple external price sources.
+
+Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.XBT` to
+get the ticks and weights of the constituent exchanges that build the \".XBT\" index.
+
+A tick with reference `\"BMI\"` and weight `null` is the composite index tick."
+  ([] (instrument-get-composite-index-with-http-info nil))
+  ([{:keys [account symbol filter columns count start reverse start-time end-time ]}]
+   (call-api "/instrument/compositeIndex" :get
+             {:path-params   {}
+              :header-params {}
+              :query-params  {"account" account "symbol" symbol "filter" filter "columns" columns "count" count "start" start "reverse" reverse "startTime" start-time "endTime" end-time }
+              :form-params   {}
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
+              :auth-names    []})))
+
+(defn instrument-get-composite-index
+  "Show constituent parts of an index.
+  Composite indices are built from multiple external price sources.
+
+Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.XBT` to
+get the ticks and weights of the constituent exchanges that build the \".XBT\" index.
+
+A tick with reference `\"BMI\"` and weight `null` is the composite index tick."
+  ([] (instrument-get-composite-index nil))
+  ([optional-params]
+   (:data (instrument-get-composite-index-with-http-info optional-params))))
+
 (defn instrument-get-indices-with-http-info
   "Get all price indices."
   []

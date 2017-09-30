@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**ExecutionGetTradeHistory**](ExecutionApi.md#executiongettradehistory) | **GET** /execution/tradeHistory | Get all balance-affecting executions. This includes each trade, insurance charge, and settlement.
 
 
+<a name="executionget"></a>
 # **ExecutionGet**
 > List<Execution> ExecutionGet (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
 
@@ -29,7 +30,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new ExecutionApi();
             var symbol = symbol_example;  // string | Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`. (optional) 
             var filter = filter_example;  // string | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. (optional) 
@@ -37,8 +50,8 @@ namespace Example
             var count = 3.4;  // decimal? | Number of results to fetch. (optional)  (default to 100)
             var start = 3.4;  // decimal? | Starting point for results. (optional)  (default to 0)
             var reverse = true;  // bool? | If true, will sort results newest first. (optional)  (default to false)
-            var startTime = 2013-10-20;  // DateTime? | Starting date filter for results. (optional) 
-            var endTime = 2013-10-20;  // DateTime? | Ending date filter for results. (optional) 
+            var startTime = 2013-10-20T19:20:30+01:00;  // DateTime? | Starting date filter for results. (optional) 
+            var endTime = 2013-10-20T19:20:30+01:00;  // DateTime? | Ending date filter for results. (optional) 
 
             try
             {
@@ -74,7 +87,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -83,6 +96,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="executiongettradehistory"></a>
 # **ExecutionGetTradeHistory**
 > List<Execution> ExecutionGetTradeHistory (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
 
@@ -102,7 +116,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new ExecutionApi();
             var symbol = symbol_example;  // string | Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`. (optional) 
             var filter = filter_example;  // string | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. (optional) 
@@ -110,8 +136,8 @@ namespace Example
             var count = 3.4;  // decimal? | Number of results to fetch. (optional)  (default to 100)
             var start = 3.4;  // decimal? | Starting point for results. (optional)  (default to 0)
             var reverse = true;  // bool? | If true, will sort results newest first. (optional)  (default to false)
-            var startTime = 2013-10-20;  // DateTime? | Starting date filter for results. (optional) 
-            var endTime = 2013-10-20;  // DateTime? | Ending date filter for results. (optional) 
+            var startTime = 2013-10-20T19:20:30+01:00;  // DateTime? | Starting date filter for results. (optional) 
+            var endTime = 2013-10-20T19:20:30+01:00;  // DateTime? | Ending date filter for results. (optional) 
 
             try
             {
@@ -147,7 +173,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

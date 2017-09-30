@@ -188,7 +188,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -272,7 +272,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -309,7 +309,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -318,7 +318,7 @@ No authorization required
 
 <a name="userGetAffiliateStatus"></a>
 # **userGetAffiliateStatus**
-> List&lt;Affiliate&gt; userGetAffiliateStatus()
+> Affiliate userGetAffiliateStatus()
 
 Get your current affiliate/referral status.
 
@@ -329,7 +329,7 @@ Get your current affiliate/referral status.
 
 UserApi apiInstance = new UserApi();
 try {
-    List<Affiliate> result = apiInstance.userGetAffiliateStatus();
+    Affiliate result = apiInstance.userGetAffiliateStatus();
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userGetAffiliateStatus");
@@ -342,11 +342,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List&lt;Affiliate&gt;**](Affiliate.md)
+[**Affiliate**](Affiliate.md)
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -383,7 +383,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -424,7 +424,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -465,7 +465,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -506,7 +506,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -547,7 +547,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -588,7 +588,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -661,7 +661,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -670,7 +670,7 @@ No authorization required
 
 <a name="userMinWithdrawalFee"></a>
 # **userMinWithdrawalFee**
-> Double userMinWithdrawalFee(currency)
+> Object userMinWithdrawalFee(currency)
 
 Get the minimum withdrawal fee for a currency.
 
@@ -684,7 +684,7 @@ This is changed based on network conditions to ensure timely withdrawals. During
 UserApi apiInstance = new UserApi();
 String currency = "XBt"; // String | 
 try {
-    Double result = apiInstance.userMinWithdrawalFee(currency);
+    Object result = apiInstance.userMinWithdrawalFee(currency);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userMinWithdrawalFee");
@@ -700,7 +700,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Double**
+**Object**
 
 ### Authorization
 
@@ -747,7 +747,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -798,7 +798,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -841,7 +841,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -896,7 +896,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

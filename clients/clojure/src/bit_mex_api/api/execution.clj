@@ -20,7 +20,7 @@ See [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_8_8.html)
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
 
 (defn execution-get
   "Get all raw executions for your account.
@@ -46,7 +46,7 @@ See [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_8_8.html)
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
 
 (defn execution-get-trade-history
   "Get all balance-affecting executions. This includes each trade, insurance charge, and settlement."

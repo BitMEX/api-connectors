@@ -11,10 +11,10 @@ Name | Type | Description | Notes
 **username** | **String** |  | 
 **email** | **String** |  | 
 **phone** | **String** |  |  [optional]
-**created** | [**DateTime**](DateTime.md) |  |  [optional]
-**lastUpdated** | [**DateTime**](DateTime.md) |  |  [optional]
+**created** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
+**lastUpdated** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **preferences** | [**UserPreferences**](UserPreferences.md) |  |  [optional]
-**tFAEnabled** | **String** |  |  [optional]
+**tfAEnabled** | **String** |  |  [optional]
 **affiliateID** | **String** |  |  [optional]
 **pgpPubKey** | **String** |  |  [optional]
 **country** | **String** |  |  [optional]

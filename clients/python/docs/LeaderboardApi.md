@@ -14,6 +14,7 @@ Get current leaderboard.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -28,7 +29,7 @@ try:
     api_response = api_instance.leaderboard_get(method=method)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling LeaderboardApi->leaderboard_get: %s\n" % e
+    print("Exception when calling LeaderboardApi->leaderboard_get: %s\n" % e)
 ```
 
 ### Parameters

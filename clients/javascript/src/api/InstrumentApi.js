@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -9,51 +9,32 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Instrument', 'model/Error', 'model/InstrumentInterval'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/Instrument'), require('../model/Error'), require('../model/InstrumentInterval'));
-  } else {
-    // Browser globals (root is window)
-    if (!root.BitMexApi) {
-      root.BitMexApi = {};
+
+import ApiClient from "../ApiClient";
+import Error from '../model/Error';
+import IndexComposite from '../model/IndexComposite';
+import Instrument from '../model/Instrument';
+import InstrumentInterval from '../model/InstrumentInterval';
+
+/**
+* Instrument service.
+* @module api/InstrumentApi
+* @version 1.2.0
+*/
+export default class InstrumentApi {
+
+    /**
+    * Constructs a new InstrumentApi. 
+    * @alias module:api/InstrumentApi
+    * @class
+    * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
+    * default to {@link module:ApiClient#instance} if unspecified.
+    */
+    constructor(apiClient) {
+        this.apiClient = apiClient || ApiClient.instance;
     }
-    root.BitMexApi.InstrumentApi = factory(root.BitMexApi.ApiClient, root.BitMexApi.Instrument, root.BitMexApi.Error, root.BitMexApi.InstrumentInterval);
-  }
-}(this, function(ApiClient, Instrument, Error, InstrumentInterval) {
-  'use strict';
-
-  /**
-   * Instrument service.
-   * @module api/InstrumentApi
-   * @version 1.2.0
-   */
-
-  /**
-   * Constructs a new InstrumentApi. 
-   * @alias module:api/InstrumentApi
-   * @class
-   * @param {module:ApiClient} apiClient Optional API client implementation to use,
-   * default to {@link module:ApiClient#instance} if unspecified.
-   */
-  var exports = function(apiClient) {
-    this.apiClient = apiClient || ApiClient.instance;
 
 
     /**
@@ -77,16 +58,16 @@
      * @param {Date} opts.startTime Starting date filter for results.
      * @param {Date} opts.endTime Ending date filter for results.
      * @param {module:api/InstrumentApi~instrumentGetCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Array.<module:model/Instrument>}
+     * data is of type: {@link Array.<module:model/Instrument>}
      */
-    this.instrumentGet = function(opts, callback) {
+    instrumentGet(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
         'symbol': opts['symbol'],
         'filter': opts['filter'],
         'columns': opts['columns'],
@@ -96,15 +77,15 @@
         'startTime': opts['startTime'],
         'endTime': opts['endTime']
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [Instrument];
+      let authNames = [];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = [Instrument];
 
       return this.apiClient.callApi(
         '/instrument', 'GET',
@@ -124,25 +105,25 @@
     /**
      * Get all active instruments and instruments that have expired in &lt;24hrs.
      * @param {module:api/InstrumentApi~instrumentGetActiveCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Array.<module:model/Instrument>}
+     * data is of type: {@link Array.<module:model/Instrument>}
      */
-    this.instrumentGetActive = function(callback) {
-      var postBody = null;
+    instrumentGetActive(callback) {
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [Instrument];
+      let authNames = [];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = [Instrument];
 
       return this.apiClient.callApi(
         '/instrument/active', 'GET',
@@ -162,25 +143,25 @@
     /**
      * Helper method. Gets all active instruments and all indices. This is a join of the result of /indices and /active.
      * @param {module:api/InstrumentApi~instrumentGetActiveAndIndicesCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Array.<module:model/Instrument>}
+     * data is of type: {@link Array.<module:model/Instrument>}
      */
-    this.instrumentGetActiveAndIndices = function(callback) {
-      var postBody = null;
+    instrumentGetActiveAndIndices(callback) {
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [Instrument];
+      let authNames = [];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = [Instrument];
 
       return this.apiClient.callApi(
         '/instrument/activeAndIndices', 'GET',
@@ -201,28 +182,87 @@
      * Return all active contract series and interval pairs.
      * This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as &#x60;[\&quot;BVOL:daily\&quot;, \&quot;BVOL:weekly\&quot;, \&quot;XBU:daily\&quot;, \&quot;XBU:monthly\&quot;, ...]&#x60;. These identifiers are usable in any query&#39;s &#x60;symbol&#x60; param. The second array is the current resolution of these intervals. Results are mapped at the same index.
      * @param {module:api/InstrumentApi~instrumentGetActiveIntervalsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/InstrumentInterval}
+     * data is of type: {@link module:model/InstrumentInterval}
      */
-    this.instrumentGetActiveIntervals = function(callback) {
-      var postBody = null;
+    instrumentGetActiveIntervals(callback) {
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = InstrumentInterval;
+      let authNames = [];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = InstrumentInterval;
 
       return this.apiClient.callApi(
         '/instrument/activeIntervals', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the instrumentGetCompositeIndex operation.
+     * @callback module:api/InstrumentApi~instrumentGetCompositeIndexCallback
+     * @param {String} error Error message, if any.
+     * @param {Array.<module:model/IndexComposite>} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Show constituent parts of an index.
+     * Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a &#x60;symbol&#x60; of &#x60;.XBT&#x60; to get the ticks and weights of the constituent exchanges that build the \&quot;.XBT\&quot; index.  A tick with reference &#x60;\&quot;BMI\&quot;&#x60; and weight &#x60;null&#x60; is the composite index tick. 
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.account 
+     * @param {String} opts.symbol The composite index symbol. (default to .XBT)
+     * @param {String} opts.filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
+     * @param {String} opts.columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
+     * @param {Number} opts.count Number of results to fetch. (default to 100)
+     * @param {Number} opts.start Starting point for results. (default to 0)
+     * @param {Boolean} opts.reverse If true, will sort results newest first. (default to false)
+     * @param {Date} opts.startTime Starting date filter for results.
+     * @param {Date} opts.endTime Ending date filter for results.
+     * @param {module:api/InstrumentApi~instrumentGetCompositeIndexCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link Array.<module:model/IndexComposite>}
+     */
+    instrumentGetCompositeIndex(opts, callback) {
+      opts = opts || {};
+      let postBody = null;
+
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'account': opts['account'],
+        'symbol': opts['symbol'],
+        'filter': opts['filter'],
+        'columns': opts['columns'],
+        'count': opts['count'],
+        'start': opts['start'],
+        'reverse': opts['reverse'],
+        'startTime': opts['startTime'],
+        'endTime': opts['endTime']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = [];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = [IndexComposite];
+
+      return this.apiClient.callApi(
+        '/instrument/compositeIndex', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -239,25 +279,25 @@
     /**
      * Get all price indices.
      * @param {module:api/InstrumentApi~instrumentGetIndicesCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Array.<module:model/Instrument>}
+     * data is of type: {@link Array.<module:model/Instrument>}
      */
-    this.instrumentGetIndices = function(callback) {
-      var postBody = null;
+    instrumentGetIndices(callback) {
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [Instrument];
+      let authNames = [];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = [Instrument];
 
       return this.apiClient.callApi(
         '/instrument/indices', 'GET',
@@ -265,7 +305,6 @@
         authNames, contentTypes, accepts, returnType, callback
       );
     }
-  };
 
-  return exports;
-}));
+
+}

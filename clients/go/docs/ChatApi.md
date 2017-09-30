@@ -11,19 +11,24 @@ Method | HTTP request | Description
 
 
 # **ChatGet**
-> []Chat ChatGet($count, $start, $reverse, $channelID)
-
+> []Chat ChatGet(optional)
 Get chat messages.
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **count** | **float32**| Number of results to fetch. | [optional] [default to 100]
- **start** | **float32**| Starting point for results. | [optional] [default to 0]
- **reverse** | **bool**| If true, will sort results newest first. | [optional] [default to true]
- **channelID** | **float64**| Channel id. GET /chat/channels for ids. Leave blank for all. | [optional] 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **count** | **float32**| Number of results to fetch. | [default to 100]
+ **start** | **float32**| Starting ID for results. | [default to 0]
+ **reverse** | **bool**| If true, will sort results newest first. | [default to true]
+ **channelID** | **float64**| Channel id. GET /chat/channels for ids. Leave blank for all. | 
 
 ### Return type
 
@@ -42,11 +47,9 @@ No authorization required
 
 # **ChatGetChannels**
 > []ChatChannel ChatGetChannels()
-
 Get available channels.
 
-
-### Parameters
+### Required Parameters
 This endpoint does not need any parameter.
 
 ### Return type
@@ -66,13 +69,11 @@ No authorization required
 
 # **ChatGetConnected**
 > ConnectedUsers ChatGetConnected()
-
 Get connected users.
 
 Returns an array with browser users in the first position and API users (bots) in the second position.
 
-
-### Parameters
+### Required Parameters
 This endpoint does not need any parameter.
 
 ### Return type
@@ -91,17 +92,26 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ChatNew**
-> Chat ChatNew($message, $channelID)
-
+> Chat ChatNew(ctx, ctx, ctx, message, optional)
 Send a chat message.
 
+### Required Parameters
 
-### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **message** | **string**|  | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **message** | **string**|  | 
- **channelID** | **float64**| Channel to post to. Default 1 (English). | [optional] [default to 1]
+ **channelID** | **float64**| Channel to post to. Default 1 (English). | [default to 1]
 
 ### Return type
 
@@ -109,7 +119,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

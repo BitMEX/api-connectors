@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **fundingGet**
 ```objc
--(NSNumber*) fundingGetWithSymbol: (NSString*) symbol
+-(NSURLSessionTask*) fundingGetWithSymbol: (NSString*) symbol
     filter: (NSString*) filter
     columns: (NSString*) columns
     count: (NSNumber*) count
@@ -31,8 +31,8 @@ NSString* columns = @"columns_example"; // Array of column names to fetch. If om
 NSNumber* count = @100; // Number of results to fetch. (optional) (default to 100)
 NSNumber* start = @0; // Starting point for results. (optional) (default to 0)
 NSNumber* reverse = @false; // If true, will sort results newest first. (optional) (default to false)
-NSDate* startTime = @"2013-10-20"; // Starting date filter for results. (optional)
-NSDate* endTime = @"2013-10-20"; // Ending date filter for results. (optional)
+NSDate* startTime = @"2013-10-20T19:20:30+01:00"; // Starting date filter for results. (optional)
+NSDate* endTime = @"2013-10-20T19:20:30+01:00"; // Ending date filter for results. (optional)
 
 SWGFundingApi*apiInstance = [[SWGFundingApi alloc] init];
 

@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithDictionary:@{ @"intervals": @"intervals", @"symbols": @"symbols" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"intervals": @"intervals", @"symbols": @"symbols" }];
 }
 
 /**

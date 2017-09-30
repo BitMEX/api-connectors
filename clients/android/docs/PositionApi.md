@@ -25,7 +25,7 @@ See &lt;a href&#x3D;\&quot;http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_A
 //import io.swagger.client.api.PositionApi;
 
 PositionApi apiInstance = new PositionApi();
-String filter = "filter_example"; // String | Table filter. For example, send {\"symbol\": \"XBT24H\"}.
+String filter = "filter_example"; // String | Table filter. For example, send {\"symbol\": \"XBTUSD\"}.
 String columns = "columns_example"; // String | Which columns to fetch. For example, send [\"columnName\"].
 BigDecimal count = new BigDecimal(); // BigDecimal | Number of rows to fetch.
 try {
@@ -41,7 +41,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | **String**| Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBT24H\&quot;}. | [optional]
+ **filter** | **String**| Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. | [optional]
  **columns** | **String**| Which columns to fetch. For example, send [\&quot;columnName\&quot;]. | [optional]
  **count** | **BigDecimal**| Number of rows to fetch. | [optional]
 
@@ -51,7 +51,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -64,7 +64,7 @@ No authorization required
 
 Enable isolated margin or cross margin per-position.
 
-On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
 
 ### Example
 ```java
@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -141,7 +141,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -154,7 +154,7 @@ No authorization required
 
 Choose leverage for a position.
 
-On Speculative (DPE-Enabled) contracts, users can choose an isolated leverage. This will automatically enable isolated margin.
+Users can choose an isolated leverage. This will automatically enable isolated margin.
 
 ### Example
 ```java
@@ -186,7 +186,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

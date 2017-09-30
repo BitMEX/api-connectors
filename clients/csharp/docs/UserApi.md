@@ -27,6 +27,7 @@ Method | HTTP request | Description
 [**UserUpdate**](UserApi.md#userupdate) | **PUT** /user | Update your password, name, and other attributes.
 
 
+<a name="usercancelwithdrawal"></a>
 # **UserCancelWithdrawal**
 > Transaction UserCancelWithdrawal (string token)
 
@@ -46,7 +47,6 @@ namespace Example
     {
         public void main()
         {
-            
             var apiInstance = new UserApi();
             var token = token_example;  // string | 
 
@@ -86,6 +86,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="usercheckreferralcode"></a>
 # **UserCheckReferralCode**
 > double? UserCheckReferralCode (string referralCode = null)
 
@@ -107,7 +108,6 @@ namespace Example
     {
         public void main()
         {
-            
             var apiInstance = new UserApi();
             var referralCode = referralCode_example;  // string |  (optional) 
 
@@ -147,6 +147,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="userconfirm"></a>
 # **UserConfirm**
 > AccessToken UserConfirm (string token)
 
@@ -166,7 +167,6 @@ namespace Example
     {
         public void main()
         {
-            
             var apiInstance = new UserApi();
             var token = token_example;  // string | 
 
@@ -206,6 +206,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="userconfirmenabletfa"></a>
 # **UserConfirmEnableTFA**
 > bool? UserConfirmEnableTFA (string token, string type = null)
 
@@ -225,7 +226,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new UserApi();
             var token = token_example;  // string | Token from your selected TFA type.
             var type = type_example;  // string | Two-factor auth type. Supported types: 'GA' (Google Authenticator), 'Yubikey' (optional) 
@@ -258,7 +271,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -267,6 +280,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="userconfirmwithdrawal"></a>
 # **UserConfirmWithdrawal**
 > Transaction UserConfirmWithdrawal (string token)
 
@@ -286,7 +300,6 @@ namespace Example
     {
         public void main()
         {
-            
             var apiInstance = new UserApi();
             var token = token_example;  // string | 
 
@@ -326,6 +339,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="userdisabletfa"></a>
 # **UserDisableTFA**
 > bool? UserDisableTFA (string token, string type = null)
 
@@ -345,7 +359,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new UserApi();
             var token = token_example;  // string | Token from your selected TFA type.
             var type = type_example;  // string | Two-factor auth type. Supported types: 'GA' (Google Authenticator) (optional) 
@@ -378,7 +404,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -387,6 +413,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="userget"></a>
 # **UserGet**
 > User UserGet ()
 
@@ -406,7 +433,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new UserApi();
 
             try
@@ -433,7 +472,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -442,8 +481,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="usergetaffiliatestatus"></a>
 # **UserGetAffiliateStatus**
-> List<Affiliate> UserGetAffiliateStatus ()
+> Affiliate UserGetAffiliateStatus ()
 
 Get your current affiliate/referral status.
 
@@ -461,13 +501,25 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new UserApi();
 
             try
             {
                 // Get your current affiliate/referral status.
-                List&lt;Affiliate&gt; result = apiInstance.UserGetAffiliateStatus();
+                Affiliate result = apiInstance.UserGetAffiliateStatus();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -484,11 +536,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List<Affiliate>**](Affiliate.md)
+[**Affiliate**](Affiliate.md)
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -497,6 +549,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="usergetcommission"></a>
 # **UserGetCommission**
 > List<UserCommission> UserGetCommission ()
 
@@ -516,7 +569,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new UserApi();
 
             try
@@ -543,7 +608,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -552,6 +617,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="usergetdepositaddress"></a>
 # **UserGetDepositAddress**
 > string UserGetDepositAddress (string currency = null)
 
@@ -571,7 +637,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new UserApi();
             var currency = currency_example;  // string |  (optional)  (default to XBt)
 
@@ -602,7 +680,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -611,6 +689,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="usergetmargin"></a>
 # **UserGetMargin**
 > Margin UserGetMargin (string currency = null)
 
@@ -630,7 +709,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new UserApi();
             var currency = currency_example;  // string |  (optional)  (default to XBt)
 
@@ -661,7 +752,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -670,6 +761,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="usergetwallet"></a>
 # **UserGetWallet**
 > Wallet UserGetWallet (string currency = null)
 
@@ -689,7 +781,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new UserApi();
             var currency = currency_example;  // string |  (optional)  (default to XBt)
 
@@ -720,7 +824,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -729,6 +833,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="usergetwallethistory"></a>
 # **UserGetWalletHistory**
 > List<Transaction> UserGetWalletHistory (string currency = null)
 
@@ -748,7 +853,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new UserApi();
             var currency = currency_example;  // string |  (optional)  (default to XBt)
 
@@ -779,7 +896,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -788,6 +905,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="usergetwalletsummary"></a>
 # **UserGetWalletSummary**
 > List<Transaction> UserGetWalletSummary (string currency = null)
 
@@ -807,7 +925,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new UserApi();
             var currency = currency_example;  // string |  (optional)  (default to XBt)
 
@@ -838,7 +968,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -847,6 +977,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="userlogout"></a>
 # **UserLogout**
 > void UserLogout ()
 
@@ -866,7 +997,6 @@ namespace Example
     {
         public void main()
         {
-            
             var apiInstance = new UserApi();
 
             try
@@ -901,6 +1031,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="userlogoutall"></a>
 # **UserLogoutAll**
 > double? UserLogoutAll ()
 
@@ -920,7 +1051,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new UserApi();
 
             try
@@ -947,7 +1090,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -956,8 +1099,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="userminwithdrawalfee"></a>
 # **UserMinWithdrawalFee**
-> double? UserMinWithdrawalFee (string currency = null)
+> Object UserMinWithdrawalFee (string currency = null)
 
 Get the minimum withdrawal fee for a currency.
 
@@ -977,14 +1121,13 @@ namespace Example
     {
         public void main()
         {
-            
             var apiInstance = new UserApi();
             var currency = currency_example;  // string |  (optional)  (default to XBt)
 
             try
             {
                 // Get the minimum withdrawal fee for a currency.
-                double? result = apiInstance.UserMinWithdrawalFee(currency);
+                Object result = apiInstance.UserMinWithdrawalFee(currency);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1004,7 +1147,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**double?**
+**Object**
 
 ### Authorization
 
@@ -1017,6 +1160,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="userrequestenabletfa"></a>
 # **UserRequestEnableTFA**
 > bool? UserRequestEnableTFA (string type = null)
 
@@ -1038,7 +1182,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new UserApi();
             var type = type_example;  // string | Two-factor auth type. Supported types: 'GA' (Google Authenticator) (optional) 
 
@@ -1069,7 +1225,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -1078,6 +1234,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="userrequestwithdrawal"></a>
 # **UserRequestWithdrawal**
 > Transaction UserRequestWithdrawal (string currency, decimal? amount, string address, string otpToken = null, double? fee = null)
 
@@ -1099,7 +1256,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new UserApi();
             var currency = currency_example;  // string | Currency you're withdrawing. Options: `XBt` (default to XBt)
             var amount = 3.4;  // decimal? | Amount of withdrawal currency.
@@ -1138,7 +1307,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -1147,6 +1316,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="usersavepreferences"></a>
 # **UserSavePreferences**
 > User UserSavePreferences (string prefs, bool? overwrite = null)
 
@@ -1166,7 +1336,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new UserApi();
             var prefs = prefs_example;  // string | 
             var overwrite = true;  // bool? | If true, will overwrite all existing preferences. (optional)  (default to false)
@@ -1199,7 +1381,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -1208,6 +1390,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="userupdate"></a>
 # **UserUpdate**
 > User UserUpdate (string firstname = null, string lastname = null, string oldPassword = null, string newPassword = null, string newPasswordConfirm = null, string username = null, string country = null, string pgpPubKey = null)
 
@@ -1227,7 +1410,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new UserApi();
             var firstname = firstname_example;  // string |  (optional) 
             var lastname = lastname_example;  // string |  (optional) 
@@ -1272,7 +1467,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

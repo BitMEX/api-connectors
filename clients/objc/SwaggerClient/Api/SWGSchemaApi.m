@@ -1,11 +1,12 @@
 #import "SWGSchemaApi.h"
 #import "SWGQueryParamCollection.h"
+#import "SWGApiClient.h"
 #import "SWGError.h"
 
 
 @interface SWGSchemaApi ()
 
-@property (nonatomic, strong) NSMutableDictionary *defaultHeaders;
+@property (nonatomic, strong, readwrite) NSMutableDictionary *mutableDefaultHeaders;
 
 @end
 
@@ -19,52 +20,31 @@ NSInteger kSWGSchemaApiMissingParamErrorCode = 234513;
 #pragma mark - Initialize methods
 
 - (instancetype) init {
-    self = [super init];
-    if (self) {
-        SWGConfiguration *config = [SWGConfiguration sharedConfig];
-        if (config.apiClient == nil) {
-            config.apiClient = [[SWGApiClient alloc] init];
-        }
-        _apiClient = config.apiClient;
-        _defaultHeaders = [NSMutableDictionary dictionary];
-    }
-    return self;
+    return [self initWithApiClient:[SWGApiClient sharedClient]];
 }
 
-- (id) initWithApiClient:(SWGApiClient *)apiClient {
+
+-(instancetype) initWithApiClient:(SWGApiClient *)apiClient {
     self = [super init];
     if (self) {
         _apiClient = apiClient;
-        _defaultHeaders = [NSMutableDictionary dictionary];
+        _mutableDefaultHeaders = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
 #pragma mark -
 
-+ (instancetype)sharedAPI {
-    static SWGSchemaApi *sharedAPI;
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        sharedAPI = [[self alloc] init];
-    });
-    return sharedAPI;
-}
-
 -(NSString*) defaultHeaderForKey:(NSString*)key {
-    return self.defaultHeaders[key];
-}
-
--(void) addHeader:(NSString*)value forKey:(NSString*)key {
-    [self setDefaultHeaderValue:value forKey:key];
+    return self.mutableDefaultHeaders[key];
 }
 
 -(void) setDefaultHeaderValue:(NSString*) value forKey:(NSString*)key {
-    [self.defaultHeaders setValue:value forKey:key];
+    [self.mutableDefaultHeaders setValue:value forKey:key];
 }
 
--(NSUInteger) requestQueueSize {
-    return [SWGApiClient requestQueueSize];
+-(NSDictionary *)defaultHeaders {
+    return self.mutableDefaultHeaders;
 }
 
 #pragma mark - Api Methods
@@ -76,12 +56,9 @@ NSInteger kSWGSchemaApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSObject*
 ///
--(NSNumber*) schemaGetWithModel: (NSString*) model
+-(NSURLSessionTask*) schemaGetWithModel: (NSString*) model
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/schema"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -126,8 +103,7 @@ NSInteger kSWGSchemaApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSObject*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -135,12 +111,9 @@ NSInteger kSWGSchemaApiMissingParamErrorCode = 234513;
 /// 
 ///  @returns NSObject*
 ///
--(NSNumber*) schemaWebsocketHelpWithCompletionHandler: 
+-(NSURLSessionTask*) schemaWebsocketHelpWithCompletionHandler: 
     (void (^)(NSObject* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/schema/websocketHelp"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -182,8 +155,7 @@ NSInteger kSWGSchemaApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSObject*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 

@@ -9,17 +9,23 @@ Method | HTTP request | Description
 
 
 # **OrderBookGet**
-> []OrderBook OrderBookGet($symbol, $depth)
-
+> []OrderBook OrderBookGet(symbol, optional)
 Get current orderbook [deprecated, use /orderBook/L2].
 
+### Required Parameters
 
-### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+  **symbol** | **string**| Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string**| Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. | 
- **depth** | **float32**| Orderbook depth. | [optional] [default to 25]
+ **depth** | **float32**| Orderbook depth. | [default to 25]
 
 ### Return type
 
@@ -37,17 +43,23 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **OrderBookGetL2**
-> []OrderBookL2 OrderBookGetL2($symbol, $depth)
-
+> []OrderBookL2 OrderBookGetL2(symbol, optional)
 Get current orderbook in vertical format.
 
+### Required Parameters
 
-### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+  **symbol** | **string**| Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **string**| Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. | 
- **depth** | **float32**| Orderbook depth per side. Send 0 for full depth. | [optional] [default to 25]
+ **depth** | **float32**| Orderbook depth per side. Send 0 for full depth. | [default to 25]
 
 ### Return type
 

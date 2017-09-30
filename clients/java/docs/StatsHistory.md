@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**date** | [**DateTime**](DateTime.md) |  | 
+**date** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
 **rootSymbol** | **String** |  | 
 **currency** | **String** |  |  [optional]
 **volume** | [**BigDecimal**](BigDecimal.md) |  |  [optional]

@@ -1,13 +1,14 @@
 #import "SWGAPIKeyApi.h"
 #import "SWGQueryParamCollection.h"
-#import "SWGError.h"
+#import "SWGApiClient.h"
 #import "SWGAPIKey.h"
+#import "SWGError.h"
 #import "SWGInlineResponse200.h"
 
 
 @interface SWGAPIKeyApi ()
 
-@property (nonatomic, strong) NSMutableDictionary *defaultHeaders;
+@property (nonatomic, strong, readwrite) NSMutableDictionary *mutableDefaultHeaders;
 
 @end
 
@@ -21,52 +22,31 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
 #pragma mark - Initialize methods
 
 - (instancetype) init {
-    self = [super init];
-    if (self) {
-        SWGConfiguration *config = [SWGConfiguration sharedConfig];
-        if (config.apiClient == nil) {
-            config.apiClient = [[SWGApiClient alloc] init];
-        }
-        _apiClient = config.apiClient;
-        _defaultHeaders = [NSMutableDictionary dictionary];
-    }
-    return self;
+    return [self initWithApiClient:[SWGApiClient sharedClient]];
 }
 
-- (id) initWithApiClient:(SWGApiClient *)apiClient {
+
+-(instancetype) initWithApiClient:(SWGApiClient *)apiClient {
     self = [super init];
     if (self) {
         _apiClient = apiClient;
-        _defaultHeaders = [NSMutableDictionary dictionary];
+        _mutableDefaultHeaders = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
 #pragma mark -
 
-+ (instancetype)sharedAPI {
-    static SWGAPIKeyApi *sharedAPI;
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        sharedAPI = [[self alloc] init];
-    });
-    return sharedAPI;
-}
-
 -(NSString*) defaultHeaderForKey:(NSString*)key {
-    return self.defaultHeaders[key];
-}
-
--(void) addHeader:(NSString*)value forKey:(NSString*)key {
-    [self setDefaultHeaderValue:value forKey:key];
+    return self.mutableDefaultHeaders[key];
 }
 
 -(void) setDefaultHeaderValue:(NSString*) value forKey:(NSString*)key {
-    [self.defaultHeaders setValue:value forKey:key];
+    [self.mutableDefaultHeaders setValue:value forKey:key];
 }
 
--(NSUInteger) requestQueueSize {
-    return [SWGApiClient requestQueueSize];
+-(NSDictionary *)defaultHeaders {
+    return self.mutableDefaultHeaders;
 }
 
 #pragma mark - Api Methods
@@ -78,7 +58,7 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
 ///
 ///  @returns SWGAPIKey*
 ///
--(NSNumber*) aPIKeyDisableWithApiKeyID: (NSString*) apiKeyID
+-(NSURLSessionTask*) aPIKeyDisableWithApiKeyID: (NSString*) apiKeyID
     completionHandler: (void (^)(SWGAPIKey* output, NSError* error)) handler {
     // verify the required parameter 'apiKeyID' is set
     if (apiKeyID == nil) {
@@ -93,9 +73,6 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
 
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/apiKey/disable"];
 
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
-
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
@@ -114,7 +91,7 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -139,8 +116,7 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGAPIKey*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -150,7 +126,7 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
 ///
 ///  @returns SWGAPIKey*
 ///
--(NSNumber*) aPIKeyEnableWithApiKeyID: (NSString*) apiKeyID
+-(NSURLSessionTask*) aPIKeyEnableWithApiKeyID: (NSString*) apiKeyID
     completionHandler: (void (^)(SWGAPIKey* output, NSError* error)) handler {
     // verify the required parameter 'apiKeyID' is set
     if (apiKeyID == nil) {
@@ -165,9 +141,6 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
 
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/apiKey/enable"];
 
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
-
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
@@ -186,7 +159,7 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -211,8 +184,7 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGAPIKey*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -222,18 +194,15 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSArray<SWGAPIKey>*
 ///
--(NSNumber*) aPIKeyGetWithReverse: (NSNumber*) reverse
+-(NSURLSessionTask*) aPIKeyGetWithReverse: (NSNumber*) reverse
     completionHandler: (void (^)(NSArray<SWGAPIKey>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/apiKey"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
     if (reverse != nil) {
-        queryParams[@"reverse"] = reverse;
+        queryParams[@"reverse"] = [reverse isEqual:@(YES)] ? @"true" : @"false";
     }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
@@ -250,7 +219,7 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -272,8 +241,7 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSArray<SWGAPIKey>*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -283,7 +251,7 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
 ///
 ///  @param cidr CIDR block to restrict this key to. To restrict to a single address, append \"/32\", e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. <a href=\"http://software77.net/cidr-101.html\">More on CIDR blocks</a> (optional)
 ///
-///  @param permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\"order\", \"withdraw\"]. (optional)
+///  @param permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\"order\", \"orderCancel\", \"withdraw\"]. (optional)
 ///
 ///  @param enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (optional, default to false)
 ///
@@ -291,16 +259,13 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
 ///
 ///  @returns SWGAPIKey*
 ///
--(NSNumber*) aPIKeyNewWithName: (NSString*) name
+-(NSURLSessionTask*) aPIKeyNewWithName: (NSString*) name
     cidr: (NSString*) cidr
     permissions: (NSString*) permissions
     enabled: (NSNumber*) enabled
     token: (NSString*) token
     completionHandler: (void (^)(SWGAPIKey* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/apiKey"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -320,7 +285,7 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -357,8 +322,7 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGAPIKey*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -368,7 +332,7 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
 ///
 ///  @returns SWGInlineResponse200*
 ///
--(NSNumber*) aPIKeyRemoveWithApiKeyID: (NSString*) apiKeyID
+-(NSURLSessionTask*) aPIKeyRemoveWithApiKeyID: (NSString*) apiKeyID
     completionHandler: (void (^)(SWGInlineResponse200* output, NSError* error)) handler {
     // verify the required parameter 'apiKeyID' is set
     if (apiKeyID == nil) {
@@ -382,9 +346,6 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
     }
 
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/apiKey"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -404,7 +365,7 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -429,8 +390,7 @@ NSInteger kSWGAPIKeyApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGInlineResponse200*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 

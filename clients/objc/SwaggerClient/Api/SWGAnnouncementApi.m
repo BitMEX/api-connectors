@@ -1,12 +1,13 @@
 #import "SWGAnnouncementApi.h"
 #import "SWGQueryParamCollection.h"
+#import "SWGApiClient.h"
 #import "SWGAnnouncement.h"
 #import "SWGError.h"
 
 
 @interface SWGAnnouncementApi ()
 
-@property (nonatomic, strong) NSMutableDictionary *defaultHeaders;
+@property (nonatomic, strong, readwrite) NSMutableDictionary *mutableDefaultHeaders;
 
 @end
 
@@ -20,52 +21,31 @@ NSInteger kSWGAnnouncementApiMissingParamErrorCode = 234513;
 #pragma mark - Initialize methods
 
 - (instancetype) init {
-    self = [super init];
-    if (self) {
-        SWGConfiguration *config = [SWGConfiguration sharedConfig];
-        if (config.apiClient == nil) {
-            config.apiClient = [[SWGApiClient alloc] init];
-        }
-        _apiClient = config.apiClient;
-        _defaultHeaders = [NSMutableDictionary dictionary];
-    }
-    return self;
+    return [self initWithApiClient:[SWGApiClient sharedClient]];
 }
 
-- (id) initWithApiClient:(SWGApiClient *)apiClient {
+
+-(instancetype) initWithApiClient:(SWGApiClient *)apiClient {
     self = [super init];
     if (self) {
         _apiClient = apiClient;
-        _defaultHeaders = [NSMutableDictionary dictionary];
+        _mutableDefaultHeaders = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
 #pragma mark -
 
-+ (instancetype)sharedAPI {
-    static SWGAnnouncementApi *sharedAPI;
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        sharedAPI = [[self alloc] init];
-    });
-    return sharedAPI;
-}
-
 -(NSString*) defaultHeaderForKey:(NSString*)key {
-    return self.defaultHeaders[key];
-}
-
--(void) addHeader:(NSString*)value forKey:(NSString*)key {
-    [self setDefaultHeaderValue:value forKey:key];
+    return self.mutableDefaultHeaders[key];
 }
 
 -(void) setDefaultHeaderValue:(NSString*) value forKey:(NSString*)key {
-    [self.defaultHeaders setValue:value forKey:key];
+    [self.mutableDefaultHeaders setValue:value forKey:key];
 }
 
--(NSUInteger) requestQueueSize {
-    return [SWGApiClient requestQueueSize];
+-(NSDictionary *)defaultHeaders {
+    return self.mutableDefaultHeaders;
 }
 
 #pragma mark - Api Methods
@@ -77,12 +57,9 @@ NSInteger kSWGAnnouncementApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSArray<SWGAnnouncement>*
 ///
--(NSNumber*) announcementGetWithColumns: (NSString*) columns
+-(NSURLSessionTask*) announcementGetWithColumns: (NSString*) columns
     completionHandler: (void (^)(NSArray<SWGAnnouncement>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/announcement"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -127,8 +104,7 @@ NSInteger kSWGAnnouncementApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSArray<SWGAnnouncement>*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -136,12 +112,9 @@ NSInteger kSWGAnnouncementApiMissingParamErrorCode = 234513;
 /// 
 ///  @returns NSArray<SWGAnnouncement>*
 ///
--(NSNumber*) announcementGetUrgentWithCompletionHandler: 
+-(NSURLSessionTask*) announcementGetUrgentWithCompletionHandler: 
     (void (^)(NSArray<SWGAnnouncement>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/announcement/urgent"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -161,7 +134,7 @@ NSInteger kSWGAnnouncementApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -183,8 +156,7 @@ NSInteger kSWGAnnouncementApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSArray<SWGAnnouncement>*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 

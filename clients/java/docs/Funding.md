@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**timestamp** | [**DateTime**](DateTime.md) |  | 
+**timestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
 **symbol** | **String** |  | 
-**fundingInterval** | [**DateTime**](DateTime.md) |  |  [optional]
+**fundingInterval** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **fundingRate** | **Double** |  |  [optional]
 **fundingRateDaily** | **Double** |  |  [optional]
 

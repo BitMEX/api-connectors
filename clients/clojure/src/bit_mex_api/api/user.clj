@@ -68,7 +68,7 @@
               :form-params   {"type" type "token" token }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
 
 (defn user-confirm-enable-tfa
   "Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint."
@@ -104,7 +104,7 @@
               :form-params   {"type" type "token" token }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
 
 (defn user-disable-tfa
   "Disable two-factor auth for this account."
@@ -122,7 +122,7 @@
              :form-params   {}
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-             :auth-names    []}))
+             :auth-names    ["apiKey" "apiNonce" "apiSignature"]}))
 
 (defn user-get
   "Get your user model."
@@ -139,7 +139,7 @@
              :form-params   {}
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-             :auth-names    []}))
+             :auth-names    ["apiKey" "apiNonce" "apiSignature"]}))
 
 (defn user-get-affiliate-status
   "Get your current affiliate/referral status."
@@ -156,7 +156,7 @@
              :form-params   {}
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-             :auth-names    []}))
+             :auth-names    ["apiKey" "apiNonce" "apiSignature"]}))
 
 (defn user-get-commission
   "Get your account's commission status."
@@ -174,7 +174,7 @@
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
 
 (defn user-get-deposit-address
   "Get a deposit address."
@@ -193,7 +193,7 @@
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
 
 (defn user-get-margin
   "Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies."
@@ -212,7 +212,7 @@
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
 
 (defn user-get-wallet
   "Get your current wallet information."
@@ -231,7 +231,7 @@
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
 
 (defn user-get-wallet-history
   "Get a history of all of your wallet transactions (deposits, withdrawals, PNL)."
@@ -250,7 +250,7 @@
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
 
 (defn user-get-wallet-summary
   "Get a summary of all of your wallet transactions (deposits, withdrawals, PNL)."
@@ -285,7 +285,7 @@
              :form-params   {}
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-             :auth-names    []}))
+             :auth-names    ["apiKey" "apiNonce" "apiSignature"]}))
 
 (defn user-logout-all
   "Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices."
@@ -325,7 +325,7 @@
               :form-params   {"type" type }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
 
 (defn user-request-enable-tfa
   "Get secret key for setting up two-factor auth.
@@ -346,7 +346,7 @@
               :form-params   {"otpToken" otp-token "currency" currency "amount" amount "address" address "fee" fee }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
 
 (defn user-request-withdrawal
   "Request a withdrawal to an external wallet.
@@ -366,7 +366,7 @@
               :form-params   {"prefs" prefs "overwrite" overwrite }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
 
 (defn user-save-preferences
   "Save user preferences."
@@ -385,7 +385,7 @@
               :form-params   {"firstname" firstname "lastname" lastname "oldPassword" old-password "newPassword" new-password "newPasswordConfirm" new-password-confirm "username" username "country" country "pgpPubKey" pgp-pub-key }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
 
 (defn user-update
   "Update your password, name, and other attributes."

@@ -3,6 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AlertOnLiquidations** | **bool?** |  | [optional] 
 **AnimationsEnabled** | **bool?** |  | [optional] 
 **AnnouncementsLastSeen** | **DateTime?** |  | [optional] 
 **ChatChannelID** | **double?** |  | [optional] 
@@ -17,8 +18,9 @@ Name | Type | Description | Notes
 **HideNotifications** | **List&lt;string&gt;** |  | [optional] 
 **Locale** | **string** |  | [optional] [default to "en-US"]
 **MsgsSeen** | **List&lt;string&gt;** |  | [optional] 
-**OrderBookBinning** | [**XAny**](XAny.md) |  | [optional] 
+**OrderBookBinning** | **Object** |  | [optional] 
 **OrderBookType** | **string** |  | [optional] 
+**OrderClearImmediate** | **bool?** |  | [optional] [default to false]
 **OrderControlsPlusMinus** | **bool?** |  | [optional] 
 **Sounds** | **List&lt;string&gt;** |  | [optional] 
 **StrictIPCheck** | **bool?** |  | [optional] [default to false]

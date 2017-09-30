@@ -18,13 +18,30 @@ Disable an API Key.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.APIKeyApi()
+api_instance = swagger_client.APIKeyApi(swagger_client.ApiClient(configuration))
 api_key_id = 'api_key_id_example' # str | API Key ID (public component).
 
 try: 
@@ -32,7 +49,7 @@ try:
     api_response = api_instance.a_pi_key_disable(api_key_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling APIKeyApi->a_pi_key_disable: %s\n" % e
+    print("Exception when calling APIKeyApi->a_pi_key_disable: %s\n" % e)
 ```
 
 ### Parameters
@@ -47,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -63,13 +80,30 @@ Enable an API Key.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.APIKeyApi()
+api_instance = swagger_client.APIKeyApi(swagger_client.ApiClient(configuration))
 api_key_id = 'api_key_id_example' # str | API Key ID (public component).
 
 try: 
@@ -77,7 +111,7 @@ try:
     api_response = api_instance.a_pi_key_enable(api_key_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling APIKeyApi->a_pi_key_enable: %s\n" % e
+    print("Exception when calling APIKeyApi->a_pi_key_enable: %s\n" % e)
 ```
 
 ### Parameters
@@ -92,7 +126,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -108,13 +142,30 @@ Get your API Keys.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.APIKeyApi()
+api_instance = swagger_client.APIKeyApi(swagger_client.ApiClient(configuration))
 reverse = false # bool | If true, will sort results newest first. (optional) (default to false)
 
 try: 
@@ -122,7 +173,7 @@ try:
     api_response = api_instance.a_pi_key_get(reverse=reverse)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling APIKeyApi->a_pi_key_get: %s\n" % e
+    print("Exception when calling APIKeyApi->a_pi_key_get: %s\n" % e)
 ```
 
 ### Parameters
@@ -137,7 +188,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -155,16 +206,33 @@ API Keys can also be created via [this Python script](https://github.com/BitMEX/
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.APIKeyApi()
+api_instance = swagger_client.APIKeyApi(swagger_client.ApiClient(configuration))
 name = 'name_example' # str | Key name. This name is for reference only. (optional)
 cidr = 'cidr_example' # str | CIDR block to restrict this key to. To restrict to a single address, append \"/32\", e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. <a href=\"http://software77.net/cidr-101.html\">More on CIDR blocks</a> (optional)
-permissions = 'permissions_example' # str | Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\"order\", \"withdraw\"]. (optional)
+permissions = 'permissions_example' # str | Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\"order\", \"orderCancel\", \"withdraw\"]. (optional)
 enabled = false # bool | Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (optional) (default to false)
 token = 'token_example' # str | OTP Token (YubiKey, Google Authenticator) (optional)
 
@@ -173,7 +241,7 @@ try:
     api_response = api_instance.a_pi_key_new(name=name, cidr=cidr, permissions=permissions, enabled=enabled, token=token)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling APIKeyApi->a_pi_key_new: %s\n" % e
+    print("Exception when calling APIKeyApi->a_pi_key_new: %s\n" % e)
 ```
 
 ### Parameters
@@ -182,7 +250,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| Key name. This name is for reference only. | [optional] 
  **cidr** | **str**| CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href&#x3D;\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt; | [optional] 
- **permissions** | **str**| Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;]. | [optional] 
+ **permissions** | **str**| Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;orderCancel\&quot;, \&quot;withdraw\&quot;]. | [optional] 
  **enabled** | **bool**| Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. | [optional] [default to false]
  **token** | **str**| OTP Token (YubiKey, Google Authenticator) | [optional] 
 
@@ -192,7 +260,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -208,13 +276,30 @@ Remove an API Key.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.APIKeyApi()
+api_instance = swagger_client.APIKeyApi(swagger_client.ApiClient(configuration))
 api_key_id = 'api_key_id_example' # str | API Key ID (public component).
 
 try: 
@@ -222,7 +307,7 @@ try:
     api_response = api_instance.a_pi_key_remove(api_key_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling APIKeyApi->a_pi_key_remove: %s\n" % e
+    print("Exception when calling APIKeyApi->a_pi_key_remove: %s\n" % e)
 ```
 
 ### Parameters
@@ -237,7 +322,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

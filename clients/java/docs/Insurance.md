@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **currency** | **String** |  | 
-**timestamp** | [**DateTime**](DateTime.md) |  | 
+**timestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
 **walletBalance** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 
 

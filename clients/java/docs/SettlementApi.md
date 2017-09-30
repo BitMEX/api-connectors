@@ -27,8 +27,8 @@ String columns = "columns_example"; // String | Array of column names to fetch. 
 BigDecimal count = new BigDecimal(); // BigDecimal | Number of results to fetch.
 BigDecimal start = new BigDecimal(); // BigDecimal | Starting point for results.
 Boolean reverse = false; // Boolean | If true, will sort results newest first.
-LocalDate startTime = new LocalDate(); // LocalDate | Starting date filter for results.
-LocalDate endTime = new LocalDate(); // LocalDate | Ending date filter for results.
+OffsetDateTime startTime = new OffsetDateTime(); // OffsetDateTime | Starting date filter for results.
+OffsetDateTime endTime = new OffsetDateTime(); // OffsetDateTime | Ending date filter for results.
 try {
     List<Settlement> result = apiInstance.settlementGet(symbol, filter, columns, count, start, reverse, startTime, endTime);
     System.out.println(result);
@@ -48,8 +48,8 @@ Name | Type | Description  | Notes
  **count** | **BigDecimal**| Number of results to fetch. | [optional] [default to 100]
  **start** | **BigDecimal**| Starting point for results. | [optional] [default to 0]
  **reverse** | **Boolean**| If true, will sort results newest first. | [optional] [default to false]
- **startTime** | **LocalDate**| Starting date filter for results. | [optional]
- **endTime** | **LocalDate**| Ending date filter for results. | [optional]
+ **startTime** | **OffsetDateTime**| Starting date filter for results. | [optional]
+ **endTime** | **OffsetDateTime**| Ending date filter for results. | [optional]
 
 ### Return type
 

@@ -16,24 +16,23 @@ Get current orderbook [deprecated, use /orderBook/L2].
 
 ### Example
 ```javascript
-var BitMexApi = require('bit_mex_api');
+import BitMexApi from 'bit_mex_api';
 
-var apiInstance = new BitMexApi.OrderBookApi();
+let apiInstance = new BitMexApi.OrderBookApi();
 
-var symbol = "symbol_example"; // String | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
+let symbol = "symbol_example"; // String | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
 
-var opts = { 
+let opts = { 
   'depth': 25 // Number | Orderbook depth.
 };
 
-var callback = function(error, data, response) {
+apiInstance.orderBookGet(symbol, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.orderBookGet(symbol, opts, callback);
+});
 ```
 
 ### Parameters
@@ -64,24 +63,23 @@ Get current orderbook in vertical format.
 
 ### Example
 ```javascript
-var BitMexApi = require('bit_mex_api');
+import BitMexApi from 'bit_mex_api';
 
-var apiInstance = new BitMexApi.OrderBookApi();
+let apiInstance = new BitMexApi.OrderBookApi();
 
-var symbol = "symbol_example"; // String | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
+let symbol = "symbol_example"; // String | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
 
-var opts = { 
+let opts = { 
   'depth': 25 // Number | Orderbook depth per side. Send 0 for full depth.
 };
 
-var callback = function(error, data, response) {
+apiInstance.orderBookGetL2(symbol, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.orderBookGetL2(symbol, opts, callback);
+});
 ```
 
 ### Parameters

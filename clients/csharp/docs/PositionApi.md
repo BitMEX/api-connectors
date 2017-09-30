@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**PositionUpdateRiskLimit**](PositionApi.md#positionupdaterisklimit) | **POST** /position/riskLimit | Update your risk limit.
 
 
+<a name="positionget"></a>
 # **PositionGet**
 > List<Position> PositionGet (string filter = null, string columns = null, decimal? count = null)
 
@@ -32,9 +33,21 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new PositionApi();
-            var filter = filter_example;  // string | Table filter. For example, send {\"symbol\": \"XBT24H\"}. (optional) 
+            var filter = filter_example;  // string | Table filter. For example, send {\"symbol\": \"XBTUSD\"}. (optional) 
             var columns = columns_example;  // string | Which columns to fetch. For example, send [\"columnName\"]. (optional) 
             var count = 3.4;  // decimal? | Number of rows to fetch. (optional) 
 
@@ -57,7 +70,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | **string**| Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBT24H\&quot;}. | [optional] 
+ **filter** | **string**| Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. | [optional] 
  **columns** | **string**| Which columns to fetch. For example, send [\&quot;columnName\&quot;]. | [optional] 
  **count** | **decimal?**| Number of rows to fetch. | [optional] 
 
@@ -67,7 +80,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -76,12 +89,13 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="positionisolatemargin"></a>
 # **PositionIsolateMargin**
 > Position PositionIsolateMargin (string symbol, bool? enabled = null)
 
 Enable isolated margin or cross margin per-position.
 
-On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
 
 ### Example
 ```csharp
@@ -97,7 +111,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new PositionApi();
             var symbol = symbol_example;  // string | Position symbol to isolate.
             var enabled = true;  // bool? | True for isolated margin, false for cross margin. (optional)  (default to true)
@@ -130,7 +156,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -139,6 +165,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="positiontransferisolatedmargin"></a>
 # **PositionTransferIsolatedMargin**
 > Position PositionTransferIsolatedMargin (string symbol, decimal? amount)
 
@@ -160,7 +187,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new PositionApi();
             var symbol = symbol_example;  // string | Symbol of position to isolate.
             var amount = 3.4;  // decimal? | Amount to transfer, in Satoshis. May be negative.
@@ -193,7 +232,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -202,12 +241,13 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="positionupdateleverage"></a>
 # **PositionUpdateLeverage**
 > Position PositionUpdateLeverage (string symbol, double? leverage)
 
 Choose leverage for a position.
 
-On Speculative (DPE-Enabled) contracts, users can choose an isolated leverage. This will automatically enable isolated margin.
+Users can choose an isolated leverage. This will automatically enable isolated margin.
 
 ### Example
 ```csharp
@@ -223,7 +263,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new PositionApi();
             var symbol = symbol_example;  // string | Symbol of position to adjust.
             var leverage = 1.2;  // double? | Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.
@@ -256,7 +308,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -265,6 +317,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="positionupdaterisklimit"></a>
 # **PositionUpdateRiskLimit**
 > Position PositionUpdateRiskLimit (string symbol, decimal? riskLimit)
 
@@ -286,7 +339,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new PositionApi();
             var symbol = symbol_example;  // string | Symbol of position to isolate.
             var riskLimit = 3.4;  // decimal? | New Risk Limit, in Satoshis.
@@ -319,7 +384,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

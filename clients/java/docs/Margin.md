@@ -42,7 +42,7 @@ Name | Type | Description | Notes
 **excessMarginPcnt** | **Double** |  |  [optional]
 **availableMargin** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **withdrawableMargin** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**timestamp** | [**DateTime**](DateTime.md) |  |  [optional]
+**timestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **grossLastValue** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **commission** | **Double** |  |  [optional]
 

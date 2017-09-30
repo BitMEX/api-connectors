@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**SchemaWebsocketHelp**](SchemaApi.md#schemawebsockethelp) | **GET** /schema/websocketHelp | Returns help text &amp; subject list for websocket usage.
 
 
+<a name="schemaget"></a>
 # **SchemaGet**
 > Object SchemaGet (string model = null)
 
@@ -27,7 +28,6 @@ namespace Example
     {
         public void main()
         {
-            
             var apiInstance = new SchemaApi();
             var model = model_example;  // string | Optional model filter. If omitted, will return all models. (optional) 
 
@@ -67,6 +67,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="schemawebsockethelp"></a>
 # **SchemaWebsocketHelp**
 > Object SchemaWebsocketHelp ()
 
@@ -86,7 +87,6 @@ namespace Example
     {
         public void main()
         {
-            
             var apiInstance = new SchemaApi();
 
             try

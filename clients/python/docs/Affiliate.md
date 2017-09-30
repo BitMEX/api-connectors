@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **payout_pcnt** | **float** |  | [optional] 
 **pending_payout** | **float** |  | [optional] 
 **timestamp** | **datetime** |  | [optional] 
+**referrer_account** | **float** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -9,17 +9,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 
 (function(root, factory) {
@@ -62,7 +51,7 @@
     describe('userCancelWithdrawal', function() {
       it('should call userCancelWithdrawal successfully', function(done) {
         //uncomment below and update the code to test userCancelWithdrawal
-        //instance.userCancelWithdrawal(pet, function(error) {
+        //instance.userCancelWithdrawal(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -72,7 +61,7 @@
     describe('userCheckReferralCode', function() {
       it('should call userCheckReferralCode successfully', function(done) {
         //uncomment below and update the code to test userCheckReferralCode
-        //instance.userCheckReferralCode(pet, function(error) {
+        //instance.userCheckReferralCode(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -82,7 +71,7 @@
     describe('userConfirm', function() {
       it('should call userConfirm successfully', function(done) {
         //uncomment below and update the code to test userConfirm
-        //instance.userConfirm(pet, function(error) {
+        //instance.userConfirm(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -92,7 +81,7 @@
     describe('userConfirmEnableTFA', function() {
       it('should call userConfirmEnableTFA successfully', function(done) {
         //uncomment below and update the code to test userConfirmEnableTFA
-        //instance.userConfirmEnableTFA(pet, function(error) {
+        //instance.userConfirmEnableTFA(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -102,7 +91,7 @@
     describe('userConfirmWithdrawal', function() {
       it('should call userConfirmWithdrawal successfully', function(done) {
         //uncomment below and update the code to test userConfirmWithdrawal
-        //instance.userConfirmWithdrawal(pet, function(error) {
+        //instance.userConfirmWithdrawal(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -112,7 +101,7 @@
     describe('userDisableTFA', function() {
       it('should call userDisableTFA successfully', function(done) {
         //uncomment below and update the code to test userDisableTFA
-        //instance.userDisableTFA(pet, function(error) {
+        //instance.userDisableTFA(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -122,7 +111,7 @@
     describe('userGet', function() {
       it('should call userGet successfully', function(done) {
         //uncomment below and update the code to test userGet
-        //instance.userGet(pet, function(error) {
+        //instance.userGet(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -132,7 +121,7 @@
     describe('userGetAffiliateStatus', function() {
       it('should call userGetAffiliateStatus successfully', function(done) {
         //uncomment below and update the code to test userGetAffiliateStatus
-        //instance.userGetAffiliateStatus(pet, function(error) {
+        //instance.userGetAffiliateStatus(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -142,7 +131,7 @@
     describe('userGetCommission', function() {
       it('should call userGetCommission successfully', function(done) {
         //uncomment below and update the code to test userGetCommission
-        //instance.userGetCommission(pet, function(error) {
+        //instance.userGetCommission(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -152,7 +141,7 @@
     describe('userGetDepositAddress', function() {
       it('should call userGetDepositAddress successfully', function(done) {
         //uncomment below and update the code to test userGetDepositAddress
-        //instance.userGetDepositAddress(pet, function(error) {
+        //instance.userGetDepositAddress(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -162,7 +151,7 @@
     describe('userGetMargin', function() {
       it('should call userGetMargin successfully', function(done) {
         //uncomment below and update the code to test userGetMargin
-        //instance.userGetMargin(pet, function(error) {
+        //instance.userGetMargin(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -172,7 +161,7 @@
     describe('userGetWallet', function() {
       it('should call userGetWallet successfully', function(done) {
         //uncomment below and update the code to test userGetWallet
-        //instance.userGetWallet(pet, function(error) {
+        //instance.userGetWallet(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -182,7 +171,7 @@
     describe('userGetWalletHistory', function() {
       it('should call userGetWalletHistory successfully', function(done) {
         //uncomment below and update the code to test userGetWalletHistory
-        //instance.userGetWalletHistory(pet, function(error) {
+        //instance.userGetWalletHistory(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -192,7 +181,7 @@
     describe('userGetWalletSummary', function() {
       it('should call userGetWalletSummary successfully', function(done) {
         //uncomment below and update the code to test userGetWalletSummary
-        //instance.userGetWalletSummary(pet, function(error) {
+        //instance.userGetWalletSummary(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -202,7 +191,7 @@
     describe('userLogout', function() {
       it('should call userLogout successfully', function(done) {
         //uncomment below and update the code to test userLogout
-        //instance.userLogout(pet, function(error) {
+        //instance.userLogout(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -212,7 +201,7 @@
     describe('userLogoutAll', function() {
       it('should call userLogoutAll successfully', function(done) {
         //uncomment below and update the code to test userLogoutAll
-        //instance.userLogoutAll(pet, function(error) {
+        //instance.userLogoutAll(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -222,7 +211,7 @@
     describe('userMinWithdrawalFee', function() {
       it('should call userMinWithdrawalFee successfully', function(done) {
         //uncomment below and update the code to test userMinWithdrawalFee
-        //instance.userMinWithdrawalFee(pet, function(error) {
+        //instance.userMinWithdrawalFee(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -232,7 +221,7 @@
     describe('userRequestEnableTFA', function() {
       it('should call userRequestEnableTFA successfully', function(done) {
         //uncomment below and update the code to test userRequestEnableTFA
-        //instance.userRequestEnableTFA(pet, function(error) {
+        //instance.userRequestEnableTFA(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -242,7 +231,7 @@
     describe('userRequestWithdrawal', function() {
       it('should call userRequestWithdrawal successfully', function(done) {
         //uncomment below and update the code to test userRequestWithdrawal
-        //instance.userRequestWithdrawal(pet, function(error) {
+        //instance.userRequestWithdrawal(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -252,7 +241,7 @@
     describe('userSavePreferences', function() {
       it('should call userSavePreferences successfully', function(done) {
         //uncomment below and update the code to test userSavePreferences
-        //instance.userSavePreferences(pet, function(error) {
+        //instance.userSavePreferences(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -262,7 +251,7 @@
     describe('userUpdate', function() {
       it('should call userUpdate successfully', function(done) {
         //uncomment below and update the code to test userUpdate
-        //instance.userUpdate(pet, function(error) {
+        //instance.userUpdate(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

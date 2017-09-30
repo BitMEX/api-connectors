@@ -1,13 +1,14 @@
 #import "SWGOrderBookApi.h"
 #import "SWGQueryParamCollection.h"
-#import "SWGOrderBook.h"
+#import "SWGApiClient.h"
 #import "SWGError.h"
+#import "SWGOrderBook.h"
 #import "SWGOrderBookL2.h"
 
 
 @interface SWGOrderBookApi ()
 
-@property (nonatomic, strong) NSMutableDictionary *defaultHeaders;
+@property (nonatomic, strong, readwrite) NSMutableDictionary *mutableDefaultHeaders;
 
 @end
 
@@ -21,52 +22,31 @@ NSInteger kSWGOrderBookApiMissingParamErrorCode = 234513;
 #pragma mark - Initialize methods
 
 - (instancetype) init {
-    self = [super init];
-    if (self) {
-        SWGConfiguration *config = [SWGConfiguration sharedConfig];
-        if (config.apiClient == nil) {
-            config.apiClient = [[SWGApiClient alloc] init];
-        }
-        _apiClient = config.apiClient;
-        _defaultHeaders = [NSMutableDictionary dictionary];
-    }
-    return self;
+    return [self initWithApiClient:[SWGApiClient sharedClient]];
 }
 
-- (id) initWithApiClient:(SWGApiClient *)apiClient {
+
+-(instancetype) initWithApiClient:(SWGApiClient *)apiClient {
     self = [super init];
     if (self) {
         _apiClient = apiClient;
-        _defaultHeaders = [NSMutableDictionary dictionary];
+        _mutableDefaultHeaders = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
 #pragma mark -
 
-+ (instancetype)sharedAPI {
-    static SWGOrderBookApi *sharedAPI;
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        sharedAPI = [[self alloc] init];
-    });
-    return sharedAPI;
-}
-
 -(NSString*) defaultHeaderForKey:(NSString*)key {
-    return self.defaultHeaders[key];
-}
-
--(void) addHeader:(NSString*)value forKey:(NSString*)key {
-    [self setDefaultHeaderValue:value forKey:key];
+    return self.mutableDefaultHeaders[key];
 }
 
 -(void) setDefaultHeaderValue:(NSString*) value forKey:(NSString*)key {
-    [self.defaultHeaders setValue:value forKey:key];
+    [self.mutableDefaultHeaders setValue:value forKey:key];
 }
 
--(NSUInteger) requestQueueSize {
-    return [SWGApiClient requestQueueSize];
+-(NSDictionary *)defaultHeaders {
+    return self.mutableDefaultHeaders;
 }
 
 #pragma mark - Api Methods
@@ -80,7 +60,7 @@ NSInteger kSWGOrderBookApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSArray<SWGOrderBook>*
 ///
--(NSNumber*) orderBookGetWithSymbol: (NSString*) symbol
+-(NSURLSessionTask*) orderBookGetWithSymbol: (NSString*) symbol
     depth: (NSNumber*) depth
     completionHandler: (void (^)(NSArray<SWGOrderBook>* output, NSError* error)) handler {
     // verify the required parameter 'symbol' is set
@@ -95,9 +75,6 @@ NSInteger kSWGOrderBookApiMissingParamErrorCode = 234513;
     }
 
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/orderBook"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -145,8 +122,7 @@ NSInteger kSWGOrderBookApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSArray<SWGOrderBook>*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -158,7 +134,7 @@ NSInteger kSWGOrderBookApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSArray<SWGOrderBookL2>*
 ///
--(NSNumber*) orderBookGetL2WithSymbol: (NSString*) symbol
+-(NSURLSessionTask*) orderBookGetL2WithSymbol: (NSString*) symbol
     depth: (NSNumber*) depth
     completionHandler: (void (^)(NSArray<SWGOrderBookL2>* output, NSError* error)) handler {
     // verify the required parameter 'symbol' is set
@@ -173,9 +149,6 @@ NSInteger kSWGOrderBookApiMissingParamErrorCode = 234513;
     }
 
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/orderBook/L2"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -223,8 +196,7 @@ NSInteger kSWGOrderBookApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSArray<SWGOrderBookL2>*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 

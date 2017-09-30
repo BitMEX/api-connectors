@@ -25,7 +25,7 @@ Get chat messages.
 
 ChatApi apiInstance = new ChatApi();
 BigDecimal count = new BigDecimal(); // BigDecimal | Number of results to fetch.
-BigDecimal start = new BigDecimal(); // BigDecimal | Starting point for results.
+BigDecimal start = new BigDecimal(); // BigDecimal | Starting ID for results.
 Boolean reverse = true; // Boolean | If true, will sort results newest first.
 Double channelID = 3.4D; // Double | Channel id. GET /chat/channels for ids. Leave blank for all.
 try {
@@ -42,7 +42,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **count** | **BigDecimal**| Number of results to fetch. | [optional] [default to 100]
- **start** | **BigDecimal**| Starting point for results. | [optional] [default to 0]
+ **start** | **BigDecimal**| Starting ID for results. | [optional] [default to 0]
  **reverse** | **Boolean**| If true, will sort results newest first. | [optional] [default to true]
  **channelID** | **Double**| Channel id. GET /chat/channels for ids. Leave blank for all. | [optional]
 
@@ -148,9 +148,31 @@ Send a chat message.
 ### Example
 ```java
 // Import classes:
+//import io.swagger.client.ApiClient;
 //import io.swagger.client.ApiException;
+//import io.swagger.client.Configuration;
+//import io.swagger.client.auth.*;
 //import io.swagger.client.api.ChatApi;
 
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: apiKey
+ApiKeyAuth apiKey = (ApiKeyAuth) defaultClient.getAuthentication("apiKey");
+apiKey.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.setApiKeyPrefix("Token");
+
+// Configure API key authorization: apiNonce
+ApiKeyAuth apiNonce = (ApiKeyAuth) defaultClient.getAuthentication("apiNonce");
+apiNonce.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiNonce.setApiKeyPrefix("Token");
+
+// Configure API key authorization: apiSignature
+ApiKeyAuth apiSignature = (ApiKeyAuth) defaultClient.getAuthentication("apiSignature");
+apiSignature.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.setApiKeyPrefix("Token");
 
 ChatApi apiInstance = new ChatApi();
 String message = "message_example"; // String | 
@@ -177,7 +199,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

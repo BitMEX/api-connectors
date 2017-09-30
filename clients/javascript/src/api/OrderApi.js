@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -9,51 +9,30 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Order', 'model/Error'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/Order'), require('../model/Error'));
-  } else {
-    // Browser globals (root is window)
-    if (!root.BitMexApi) {
-      root.BitMexApi = {};
+
+import ApiClient from "../ApiClient";
+import Error from '../model/Error';
+import Order from '../model/Order';
+
+/**
+* Order service.
+* @module api/OrderApi
+* @version 1.2.0
+*/
+export default class OrderApi {
+
+    /**
+    * Constructs a new OrderApi. 
+    * @alias module:api/OrderApi
+    * @class
+    * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
+    * default to {@link module:ApiClient#instance} if unspecified.
+    */
+    constructor(apiClient) {
+        this.apiClient = apiClient || ApiClient.instance;
     }
-    root.BitMexApi.OrderApi = factory(root.BitMexApi.ApiClient, root.BitMexApi.Order, root.BitMexApi.Error);
-  }
-}(this, function(ApiClient, Order, Error) {
-  'use strict';
-
-  /**
-   * Order service.
-   * @module api/OrderApi
-   * @version 1.2.0
-   */
-
-  /**
-   * Constructs a new OrderApi. 
-   * @alias module:api/OrderApi
-   * @class
-   * @param {module:ApiClient} apiClient Optional API client implementation to use,
-   * default to {@link module:ApiClient#instance} if unspecified.
-   */
-  var exports = function(apiClient) {
-    this.apiClient = apiClient || ApiClient.instance;
 
 
     /**
@@ -80,20 +59,20 @@
      * @param {Number} opts.pegOffsetValue Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders.
      * @param {String} opts.text Optional amend annotation. e.g. &#39;Adjust skew&#39;.
      * @param {module:api/OrderApi~orderAmendCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/Order}
+     * data is of type: {@link module:model/Order}
      */
-    this.orderAmend = function(opts, callback) {
+    orderAmend(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'orderID': opts['orderID'],
         'origClOrdID': opts['origClOrdID'],
         'clOrdID': opts['clOrdID'],
@@ -107,10 +86,10 @@
         'text': opts['text']
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = Order;
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = Order;
 
       return this.apiClient.callApi(
         '/order', 'PUT',
@@ -128,32 +107,32 @@
      */
 
     /**
-     * Amend multiple orders.
+     * Amend multiple orders for the same symbol.
      * Similar to POST /amend, but with multiple orders. &#x60;application/json&#x60; only. Ratelimited at 50%.
      * @param {Object} opts Optional parameters
      * @param {String} opts.orders An array of orders.
      * @param {module:api/OrderApi~orderAmendBulkCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Array.<module:model/Order>}
+     * data is of type: {@link Array.<module:model/Order>}
      */
-    this.orderAmendBulk = function(opts, callback) {
+    orderAmendBulk(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'orders': opts['orders']
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [Order];
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = [Order];
 
       return this.apiClient.callApi(
         '/order/bulk', 'PUT',
@@ -178,29 +157,29 @@
      * @param {String} opts.clOrdID Client Order ID(s). See POST /order.
      * @param {String} opts.text Optional cancellation annotation. e.g. &#39;Spread Exceeded&#39;.
      * @param {module:api/OrderApi~orderCancelCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Array.<module:model/Order>}
+     * data is of type: {@link Array.<module:model/Order>}
      */
-    this.orderCancel = function(opts, callback) {
+    orderCancel(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'orderID': opts['orderID'],
         'clOrdID': opts['clOrdID'],
         'text': opts['text']
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [Order];
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = [Order];
 
       return this.apiClient.callApi(
         '/order', 'DELETE',
@@ -224,29 +203,29 @@
      * @param {String} opts.filter Optional filter for cancellation. Use to only cancel some orders, e.g. &#x60;{\&quot;side\&quot;: \&quot;Buy\&quot;}&#x60;.
      * @param {String} opts.text Optional cancellation annotation. e.g. &#39;Spread Exceeded&#39;
      * @param {module:api/OrderApi~orderCancelAllCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Object}
+     * data is of type: {@link Object}
      */
-    this.orderCancelAll = function(opts, callback) {
+    orderCancelAll(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'symbol': opts['symbol'],
         'filter': opts['filter'],
         'text': opts['text']
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = Object;
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = Object;
 
       return this.apiClient.callApi(
         '/order/all', 'DELETE',
@@ -268,31 +247,31 @@
      * Useful as a dead-man&#39;s switch to ensure your orders are canceled in case of an outage. If called repeatedly, the existing offset will be canceled and a new one will be inserted in its place.  Example usage: call this route at 15s intervals with an offset of 60000 (60s). If this route is not called within 60 seconds, all your orders will be automatically canceled.  This is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#dead-man-s-switch-auto-cancel-). 
      * @param {Number} timeout Timeout in ms. Set to 0 to cancel this timer. 
      * @param {module:api/OrderApi~orderCancelAllAfterCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Object}
+     * data is of type: {@link Object}
      */
-    this.orderCancelAllAfter = function(timeout, callback) {
-      var postBody = null;
+    orderCancelAllAfter(timeout, callback) {
+      let postBody = null;
 
       // verify the required parameter 'timeout' is set
-      if (timeout == undefined || timeout == null) {
-        throw "Missing the required parameter 'timeout' when calling orderCancelAllAfter";
+      if (timeout === undefined || timeout === null) {
+        throw new Error("Missing the required parameter 'timeout' when calling orderCancelAllAfter");
       }
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'timeout': timeout
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = Object;
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = Object;
 
       return this.apiClient.callApi(
         '/order/cancelAllAfter', 'POST',
@@ -316,33 +295,33 @@
      * @param {Object} opts Optional parameters
      * @param {Number} opts.price Optional limit price.
      * @param {module:api/OrderApi~orderClosePositionCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/Order}
+     * data is of type: {@link module:model/Order}
      */
-    this.orderClosePosition = function(symbol, opts, callback) {
+    orderClosePosition(symbol, opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
       // verify the required parameter 'symbol' is set
-      if (symbol == undefined || symbol == null) {
-        throw "Missing the required parameter 'symbol' when calling orderClosePosition";
+      if (symbol === undefined || symbol === null) {
+        throw new Error("Missing the required parameter 'symbol' when calling orderClosePosition");
       }
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'symbol': symbol,
         'price': opts['price']
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = Order;
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = Order;
 
       return this.apiClient.callApi(
         '/order/closePosition', 'POST',
@@ -372,16 +351,16 @@
      * @param {Date} opts.startTime Starting date filter for results.
      * @param {Date} opts.endTime Ending date filter for results.
      * @param {module:api/OrderApi~orderGetOrdersCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Array.<module:model/Order>}
+     * data is of type: {@link Array.<module:model/Order>}
      */
-    this.orderGetOrders = function(opts, callback) {
+    orderGetOrders(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
         'symbol': opts['symbol'],
         'filter': opts['filter'],
         'columns': opts['columns'],
@@ -391,15 +370,15 @@
         'startTime': opts['startTime'],
         'endTime': opts['endTime']
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [Order];
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = [Order];
 
       return this.apiClient.callApi(
         '/order', 'GET',
@@ -418,47 +397,47 @@
 
     /**
      * Create a new order.
-     * This endpoint is used for placing orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, and Pegged.  If no order type is provided, BitMEX will assume &#39;Limit&#39;. Be very careful with &#39;Market&#39; and &#39;Stop&#39; orders as you may be filled at an unfavourable price.  You can submit bulk orders by POSTing an array of orders to &#x60;/api/v1/order/bulk&#x60;. Send a JSON payload with the shape: &#x60;{\&quot;orders\&quot;: [{...}, {...}]}&#x60;, with each inner object containing the same fields that would be sent to this endpoint.  A note on API tools: if you want to keep track of order IDs yourself, set a unique clOrdID per order. This clOrdID will come back as a property on the order and any related executions (including on the WebSocket), and can be used to get or cancel the order. Max length is 36 characters.  To generate a clOrdID, consider setting a prefix, and incrementing a counter or generating a UUID. Some UUIDs are longer than 36 characters, so use a url-safe base64 encoding. For example, the prefix &#x60;&#39;bmex_mm_&#39;&#x60; and the UUID &#x60;&#39;7fbd6545-bb0c-11e4-a273-6003088a7c04&#39;&#x60; creates &#x60;&#39;bmex_mm_f71lRbsMEeSic2ADCIp8BA&#39;&#x60;.  See the [BitMEX Reference Market Maker](https://github.com/BitMEX/market-maker/blob/22c75a2b6db63e20212813e9afdb845db1b09b2a/bitmex.py#L152) for an example of how to use and generate clOrdIDs. 
-     * @param {String} symbol Instrument symbol. e.g. &#39;XBT24H&#39;.
+     * ## Placing Orders  This endpoint is used for placing orders. See individual fields below for more details on their use.  #### Order Types  All orders require a &#x60;symbol&#x60;. All other fields are optional except when otherwise specified.  These are the valid &#x60;ordType&#x60;s:  * **Limit**: The default order type. Specify an &#x60;orderQty&#x60; and &#x60;price&#x60;. * **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at   which point it will cancel. * **MarketWithLeftOverAsLimit**: A market order that, after eating through the order book as far as   permitted by available margin, will become a limit order. The difference between this type and &#x60;Market&#x60; only   affects the behavior in thin books. Upon reaching the deepest possible price, if there is quantity left over,   a &#x60;Market&#x60; order will cancel the remaining quantity. &#x60;MarketWithLeftOverAsLimit&#x60; will keep the remaining   quantity in the books as a &#x60;Limit&#x60;. * **Stop**: A Stop Market order. Specify an &#x60;orderQty&#x60; and &#x60;stopPx&#x60;. When the &#x60;stopPx&#x60; is reached, the order will be entered   into the book.   * On sell orders, the order will trigger if the triggering price is lower than the &#x60;stopPx&#x60;. On buys, higher.   * Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your     account so that it may trigger fully.   * &#x60;Close&#x60; Stops don&#39;t require an &#x60;orderQty&#x60;. See Execution Instructions below. * **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an &#x60;orderQty&#x60;, &#x60;stopPx&#x60;,   and &#x60;price&#x60;. * **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders. * **LimitIfTouched**: As above; use for Take Profit Limit orders.  #### Execution Instructions  The following &#x60;execInst&#x60;s are supported. If using multiple, separate with a comma (e.g. &#x60;LastPrice,Close&#x60;).  * **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement,   it will cancel instead. * **AllOrNone**: Valid only for hidden orders (&#x60;displayQty: 0&#x60;). Use to only execute if the entire order would fill. * **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.   Use only one. By default, &#x60;&#39;MarkPrice&#39;&#x60; is used. Also used for Pegged orders to define the value of &#x60;&#39;LastPeg&#39;&#x60;. * **ReduceOnly**: A &#x60;&#39;ReduceOnly&#39;&#x60; order can only reduce your position, not increase it. If you have a &#x60;&#39;ReduceOnly&#39;&#x60;   limit order that rests in the order book while the position is reduced by other orders, then its order quantity will   be amended down or canceled. If there are multiple &#x60;&#39;ReduceOnly&#39;&#x60; orders the least agresssive will be amended first. * **Close**: &#x60;&#39;Close&#39;&#x60; implies &#x60;&#39;ReduceOnly&#39;&#x60;. A &#x60;&#39;Close&#39;&#x60; order will cancel other active limit orders with the same side   and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a   &#x60;&#39;Close&#39;&#x60; Stop is ensured to have the margin required to execute, and can only execute up to the full size of your   position. If not specified, a &#x60;&#39;Close&#39;&#x60; order has an &#x60;orderQty&#x60; equal to your current position&#39;s size.  #### Linked Orders  Linked Orders are an advanced capability. It is very powerful, but its use requires careful coding and testing. Please follow this document carefully and use the [Testnet Exchange](https://testnet.bitmex.com) while developing.  BitMEX offers four advanced Linked Order types:  * **OCO**: *One Cancels the Other*. A very flexible version of the standard Stop / Take Profit technique.   Multiple orders may be linked together using a single &#x60;clOrdLinkID&#x60;. Send a &#x60;contingencyType&#x60; of   &#x60;OneCancelsTheOther&#x60; on the orders. The first order that fully or partially executes (or activates   for &#x60;Stop&#x60; orders) will cancel all other orders with the same &#x60;clOrdLinkID&#x60;. * **OTO**: *One Triggers the Other*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneTriggersTheOther&#39;&#x60; on the primary order and   then subsequent orders with the same &#x60;clOrdLinkID&#x60; will be not be triggered until the primary order fully executes. * **OUOA**: *One Updates the Other Absolute*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneUpdatesTheOtherAbsolute&#39;&#x60; on the orders. Then   as one order has a execution, other orders with the same &#x60;clOrdLinkID&#x60; will have their order quantity amended   down by the execution quantity. * **OUOP**: *One Updates the Other Proportional*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneUpdatesTheOtherProportional&#39;&#x60; on the orders. Then   as one order has a execution, other orders with the same &#x60;clOrdLinkID&#x60; will have their order quantity reduced proportionally   by the fill percentage.  #### Trailing Stops  You may use &#x60;pegPriceType&#x60; of &#x60;&#39;TrailingStopPeg&#39;&#x60; to create Trailing Stops. The pegged &#x60;stopPx&#x60; will move as the market moves away from the peg, and freeze as the market moves toward it.  To use, combine with &#x60;pegOffsetValue&#x60; to set the &#x60;stopPx&#x60; of your order. The peg is set to the triggering price specified in the &#x60;execInst&#x60; (default &#x60;&#39;MarkPrice&#39;&#x60;). Use a negative offset for stop-sell and buy-if-touched orders.  Requires &#x60;ordType&#x60;: &#x60;&#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, &#39;LimitIfTouched&#39;&#x60;.  #### Simple Quantities  Send a &#x60;simpleOrderQty&#x60; instead of an &#x60;orderQty&#x60; to create an order denominated in the underlying currency. This is useful for opening up a position with 1 XBT of exposure without having to calculate how many contracts it is.  #### Rate Limits  See the [Bulk Order Documentation](#!/Order/Order_newBulk) if you need to place multiple orders at the same time. Bulk orders require fewer risk checks in the trading engine and thus are ratelimited at **1/10** the normal rate.  You can also improve your reactivity to market movements while staying under your ratelimit by using the [Amend](#!/Order/Order_amend) and [Amend Bulk](#!/Order/Order_amendBulk) endpoints. This allows you to stay in the market and avoids the cancel/replace cycle.  #### Tracking Your Orders  If you want to keep track of order IDs yourself, set a unique &#x60;clOrdID&#x60; per order. This &#x60;clOrdID&#x60; will come back as a property on the order and any related executions (including on the WebSocket), and can be used to get or cancel the order. Max length is 36 characters. 
+     * @param {String} symbol Instrument symbol. e.g. &#39;XBTUSD&#39;.
      * @param {Object} opts Optional parameters
      * @param {String} opts.side Order side. Valid options: Buy, Sell. Defaults to &#39;Buy&#39; unless &#x60;orderQty&#x60; or &#x60;simpleOrderQty&#x60; is negative.
      * @param {Number} opts.simpleOrderQty Order quantity in units of the underlying instrument (i.e. Bitcoin).
      * @param {Number} opts.quantity Deprecated: use &#x60;orderQty&#x60;.
      * @param {Number} opts.orderQty Order quantity in units of the instrument (i.e. contracts).
      * @param {Number} opts.price Optional limit price for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders.
-     * @param {Number} opts.displayQty Optional quantity to display in the book. Use 0 for a hidden order.
+     * @param {Number} opts.displayQty Optional quantity to display in the book. Use 0 for a fully hidden order.
      * @param {Number} opts.stopPrice Deprecated: use &#x60;stopPx&#x60;.
      * @param {Number} opts.stopPx Optional trigger price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use &#x60;execInst&#x60; of &#39;MarkPrice&#39; or &#39;LastPrice&#39; to define the current price used for triggering.
      * @param {String} opts.clOrdID Optional Client Order ID. This clOrdID will come back on the order and any related executions.
      * @param {String} opts.clOrdLinkID Optional Client Order Link ID for contingent orders.
      * @param {Number} opts.pegOffsetValue Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders.
-     * @param {String} opts.pegPriceType Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg, TrailingStopPeg.
+     * @param {String} opts.pegPriceType Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg.
      * @param {String} opts.type Deprecated: use &#x60;ordType&#x60;.
      * @param {String} opts.ordType Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to &#39;Limit&#39; when &#x60;price&#x60; is specified. Defaults to &#39;Stop&#39; when &#x60;stopPx&#x60; is specified. Defaults to &#39;StopLimit&#39; when &#x60;price&#x60; and &#x60;stopPx&#x60; are specified. (default to Limit)
      * @param {String} opts.timeInForce Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to &#39;GoodTillCancel&#39; for &#39;Limit&#39;, &#39;StopLimit&#39;, &#39;LimitIfTouched&#39;, and &#39;MarketWithLeftOverAsLimit&#39; orders.
-     * @param {String} opts.execInst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders.
+     * @param {String} opts.execInst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39;, &#39;IndexPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders.
      * @param {String} opts.contingencyType Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute, OneUpdatesTheOtherProportional.
      * @param {String} opts.text Optional order annotation. e.g. &#39;Take profit&#39;.
      * @param {module:api/OrderApi~orderNewCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/Order}
+     * data is of type: {@link module:model/Order}
      */
-    this.orderNew = function(symbol, opts, callback) {
+    orderNew(symbol, opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
       // verify the required parameter 'symbol' is set
-      if (symbol == undefined || symbol == null) {
-        throw "Missing the required parameter 'symbol' when calling orderNew";
+      if (symbol === undefined || symbol === null) {
+        throw new Error("Missing the required parameter 'symbol' when calling orderNew");
       }
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'symbol': symbol,
         'side': opts['side'],
         'simpleOrderQty': opts['simpleOrderQty'],
@@ -480,10 +459,10 @@
         'text': opts['text']
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = Order;
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = Order;
 
       return this.apiClient.callApi(
         '/order', 'POST',
@@ -501,32 +480,32 @@
      */
 
     /**
-     * Create multiple new orders.
-     * This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at &#x60;ceil(0.5 * orders)&#x60;. Submitting 10 orders via a bulk order call will only count as 5 requests.  For now, only &#x60;application/json&#x60; is supported on this endpoint. 
+     * Create multiple new orders for the same symbol.
+     * This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at &#x60;ceil(0.1 * orders)&#x60;. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only &#x60;application/json&#x60; is supported on this endpoint. 
      * @param {Object} opts Optional parameters
      * @param {String} opts.orders An array of orders.
      * @param {module:api/OrderApi~orderNewBulkCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Array.<module:model/Order>}
+     * data is of type: {@link Array.<module:model/Order>}
      */
-    this.orderNewBulk = function(opts, callback) {
+    orderNewBulk(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'orders': opts['orders']
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [Order];
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = [Order];
 
       return this.apiClient.callApi(
         '/order/bulk', 'POST',
@@ -534,7 +513,6 @@
         authNames, contentTypes, accepts, returnType, callback
       );
     }
-  };
 
-  return exports;
-}));
+
+}

@@ -5,14 +5,14 @@ All URIs are relative to *https://localhost/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**order_amend**](OrderApi.md#order_amend) | **PUT** /order | Amend the quantity or price of an open order.
-[**order_amend_bulk**](OrderApi.md#order_amend_bulk) | **PUT** /order/bulk | Amend multiple orders.
+[**order_amend_bulk**](OrderApi.md#order_amend_bulk) | **PUT** /order/bulk | Amend multiple orders for the same symbol.
 [**order_cancel**](OrderApi.md#order_cancel) | **DELETE** /order | Cancel order(s). Send multiple order IDs to cancel in bulk.
 [**order_cancel_all**](OrderApi.md#order_cancel_all) | **DELETE** /order/all | Cancels all of your orders.
 [**order_cancel_all_after**](OrderApi.md#order_cancel_all_after) | **POST** /order/cancelAllAfter | Automatically cancel all your orders after a specified timeout.
 [**order_close_position**](OrderApi.md#order_close_position) | **POST** /order/closePosition | Close a position. [Deprecated, use POST /order with execInst: &#39;Close&#39;]
 [**order_get_orders**](OrderApi.md#order_get_orders) | **GET** /order | Get your orders.
 [**order_new**](OrderApi.md#order_new) | **POST** /order | Create a new order.
-[**order_new_bulk**](OrderApi.md#order_new_bulk) | **POST** /order/bulk | Create multiple new orders.
+[**order_new_bulk**](OrderApi.md#order_new_bulk) | **POST** /order/bulk | Create multiple new orders for the same symbol.
 
 
 # **order_amend**
@@ -24,13 +24,30 @@ Send an `orderID` or `origClOrdID` to identify the order you wish to amend.  Bot
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.OrderApi()
+api_instance = swagger_client.OrderApi(swagger_client.ApiClient(configuration))
 order_id = 'order_id_example' # str | Order ID (optional)
 orig_cl_ord_id = 'orig_cl_ord_id_example' # str | Client Order ID. See POST /order. (optional)
 cl_ord_id = 'cl_ord_id_example' # str | Optional new Client Order ID, requires `origClOrdID`. (optional)
@@ -48,7 +65,7 @@ try:
     api_response = api_instance.order_amend(order_id=order_id, orig_cl_ord_id=orig_cl_ord_id, cl_ord_id=cl_ord_id, simple_order_qty=simple_order_qty, order_qty=order_qty, simple_leaves_qty=simple_leaves_qty, leaves_qty=leaves_qty, price=price, stop_px=stop_px, peg_offset_value=peg_offset_value, text=text)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling OrderApi->order_amend: %s\n" % e
+    print("Exception when calling OrderApi->order_amend: %s\n" % e)
 ```
 
 ### Parameters
@@ -73,7 +90,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -85,27 +102,44 @@ No authorization required
 # **order_amend_bulk**
 > list[Order] order_amend_bulk(orders=orders)
 
-Amend multiple orders.
+Amend multiple orders for the same symbol.
 
 Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 50%.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.OrderApi()
+api_instance = swagger_client.OrderApi(swagger_client.ApiClient(configuration))
 orders = 'orders_example' # str | An array of orders. (optional)
 
 try: 
-    # Amend multiple orders.
+    # Amend multiple orders for the same symbol.
     api_response = api_instance.order_amend_bulk(orders=orders)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling OrderApi->order_amend_bulk: %s\n" % e
+    print("Exception when calling OrderApi->order_amend_bulk: %s\n" % e)
 ```
 
 ### Parameters
@@ -120,7 +154,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -138,13 +172,30 @@ Either an orderID or a clOrdID must be provided.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.OrderApi()
+api_instance = swagger_client.OrderApi(swagger_client.ApiClient(configuration))
 order_id = 'order_id_example' # str | Order ID(s). (optional)
 cl_ord_id = 'cl_ord_id_example' # str | Client Order ID(s). See POST /order. (optional)
 text = 'text_example' # str | Optional cancellation annotation. e.g. 'Spread Exceeded'. (optional)
@@ -154,7 +205,7 @@ try:
     api_response = api_instance.order_cancel(order_id=order_id, cl_ord_id=cl_ord_id, text=text)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling OrderApi->order_cancel: %s\n" % e
+    print("Exception when calling OrderApi->order_cancel: %s\n" % e)
 ```
 
 ### Parameters
@@ -171,7 +222,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -187,13 +238,30 @@ Cancels all of your orders.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.OrderApi()
+api_instance = swagger_client.OrderApi(swagger_client.ApiClient(configuration))
 symbol = 'symbol_example' # str | Optional symbol. If provided, only cancels orders for that symbol. (optional)
 filter = 'filter_example' # str | Optional filter for cancellation. Use to only cancel some orders, e.g. `{\"side\": \"Buy\"}`. (optional)
 text = 'text_example' # str | Optional cancellation annotation. e.g. 'Spread Exceeded' (optional)
@@ -203,7 +271,7 @@ try:
     api_response = api_instance.order_cancel_all(symbol=symbol, filter=filter, text=text)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling OrderApi->order_cancel_all: %s\n" % e
+    print("Exception when calling OrderApi->order_cancel_all: %s\n" % e)
 ```
 
 ### Parameters
@@ -220,7 +288,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -238,13 +306,30 @@ Useful as a dead-man's switch to ensure your orders are canceled in case of an o
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.OrderApi()
+api_instance = swagger_client.OrderApi(swagger_client.ApiClient(configuration))
 timeout = 1.2 # float | Timeout in ms. Set to 0 to cancel this timer. 
 
 try: 
@@ -252,7 +337,7 @@ try:
     api_response = api_instance.order_cancel_all_after(timeout)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling OrderApi->order_cancel_all_after: %s\n" % e
+    print("Exception when calling OrderApi->order_cancel_all_after: %s\n" % e)
 ```
 
 ### Parameters
@@ -267,7 +352,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -285,13 +370,30 @@ If no `price` is specified, a market order will be submitted to close the whole 
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.OrderApi()
+api_instance = swagger_client.OrderApi(swagger_client.ApiClient(configuration))
 symbol = 'symbol_example' # str | Symbol of position to close.
 price = 1.2 # float | Optional limit price. (optional)
 
@@ -300,7 +402,7 @@ try:
     api_response = api_instance.order_close_position(symbol, price=price)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling OrderApi->order_close_position: %s\n" % e
+    print("Exception when calling OrderApi->order_close_position: %s\n" % e)
 ```
 
 ### Parameters
@@ -316,7 +418,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -334,28 +436,45 @@ To get open orders only, send {\"open\": true} in the filter param.  See <a href
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.OrderApi()
+api_instance = swagger_client.OrderApi(swagger_client.ApiClient(configuration))
 symbol = 'symbol_example' # str | Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`. (optional)
 filter = 'filter_example' # str | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. (optional)
 columns = 'columns_example' # str | Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
 count = 100 # float | Number of results to fetch. (optional) (default to 100)
 start = 0 # float | Starting point for results. (optional) (default to 0)
 reverse = false # bool | If true, will sort results newest first. (optional) (default to false)
-start_time = '2013-10-20' # date | Starting date filter for results. (optional)
-end_time = '2013-10-20' # date | Ending date filter for results. (optional)
+start_time = '2013-10-20T19:20:30+01:00' # datetime | Starting date filter for results. (optional)
+end_time = '2013-10-20T19:20:30+01:00' # datetime | Ending date filter for results. (optional)
 
 try: 
     # Get your orders.
     api_response = api_instance.order_get_orders(symbol=symbol, filter=filter, columns=columns, count=count, start=start, reverse=reverse, start_time=start_time, end_time=end_time)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling OrderApi->order_get_orders: %s\n" % e
+    print("Exception when calling OrderApi->order_get_orders: %s\n" % e)
 ```
 
 ### Parameters
@@ -368,8 +487,8 @@ Name | Type | Description  | Notes
  **count** | **float**| Number of results to fetch. | [optional] [default to 100]
  **start** | **float**| Starting point for results. | [optional] [default to 0]
  **reverse** | **bool**| If true, will sort results newest first. | [optional] [default to false]
- **start_time** | **date**| Starting date filter for results. | [optional] 
- **end_time** | **date**| Ending date filter for results. | [optional] 
+ **start_time** | **datetime**| Starting date filter for results. | [optional] 
+ **end_time** | **datetime**| Ending date filter for results. | [optional] 
 
 ### Return type
 
@@ -377,7 +496,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -391,34 +510,51 @@ No authorization required
 
 Create a new order.
 
-This endpoint is used for placing orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, and Pegged.  If no order type is provided, BitMEX will assume 'Limit'. Be very careful with 'Market' and 'Stop' orders as you may be filled at an unfavourable price.  You can submit bulk orders by POSTing an array of orders to `/api/v1/order/bulk`. Send a JSON payload with the shape: `{\"orders\": [{...}, {...}]}`, with each inner object containing the same fields that would be sent to this endpoint.  A note on API tools: if you want to keep track of order IDs yourself, set a unique clOrdID per order. This clOrdID will come back as a property on the order and any related executions (including on the WebSocket), and can be used to get or cancel the order. Max length is 36 characters.  To generate a clOrdID, consider setting a prefix, and incrementing a counter or generating a UUID. Some UUIDs are longer than 36 characters, so use a url-safe base64 encoding. For example, the prefix `'bmex_mm_'` and the UUID `'7fbd6545-bb0c-11e4-a273-6003088a7c04'` creates `'bmex_mm_f71lRbsMEeSic2ADCIp8BA'`.  See the [BitMEX Reference Market Maker](https://github.com/BitMEX/market-maker/blob/22c75a2b6db63e20212813e9afdb845db1b09b2a/bitmex.py#L152) for an example of how to use and generate clOrdIDs. 
+## Placing Orders  This endpoint is used for placing orders. See individual fields below for more details on their use.  #### Order Types  All orders require a `symbol`. All other fields are optional except when otherwise specified.  These are the valid `ordType`s:  * **Limit**: The default order type. Specify an `orderQty` and `price`. * **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at   which point it will cancel. * **MarketWithLeftOverAsLimit**: A market order that, after eating through the order book as far as   permitted by available margin, will become a limit order. The difference between this type and `Market` only   affects the behavior in thin books. Upon reaching the deepest possible price, if there is quantity left over,   a `Market` order will cancel the remaining quantity. `MarketWithLeftOverAsLimit` will keep the remaining   quantity in the books as a `Limit`. * **Stop**: A Stop Market order. Specify an `orderQty` and `stopPx`. When the `stopPx` is reached, the order will be entered   into the book.   * On sell orders, the order will trigger if the triggering price is lower than the `stopPx`. On buys, higher.   * Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your     account so that it may trigger fully.   * `Close` Stops don't require an `orderQty`. See Execution Instructions below. * **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an `orderQty`, `stopPx`,   and `price`. * **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders. * **LimitIfTouched**: As above; use for Take Profit Limit orders.  #### Execution Instructions  The following `execInst`s are supported. If using multiple, separate with a comma (e.g. `LastPrice,Close`).  * **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement,   it will cancel instead. * **AllOrNone**: Valid only for hidden orders (`displayQty: 0`). Use to only execute if the entire order would fill. * **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.   Use only one. By default, `'MarkPrice'` is used. Also used for Pegged orders to define the value of `'LastPeg'`. * **ReduceOnly**: A `'ReduceOnly'` order can only reduce your position, not increase it. If you have a `'ReduceOnly'`   limit order that rests in the order book while the position is reduced by other orders, then its order quantity will   be amended down or canceled. If there are multiple `'ReduceOnly'` orders the least agresssive will be amended first. * **Close**: `'Close'` implies `'ReduceOnly'`. A `'Close'` order will cancel other active limit orders with the same side   and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a   `'Close'` Stop is ensured to have the margin required to execute, and can only execute up to the full size of your   position. If not specified, a `'Close'` order has an `orderQty` equal to your current position's size.  #### Linked Orders  Linked Orders are an advanced capability. It is very powerful, but its use requires careful coding and testing. Please follow this document carefully and use the [Testnet Exchange](https://testnet.bitmex.com) while developing.  BitMEX offers four advanced Linked Order types:  * **OCO**: *One Cancels the Other*. A very flexible version of the standard Stop / Take Profit technique.   Multiple orders may be linked together using a single `clOrdLinkID`. Send a `contingencyType` of   `OneCancelsTheOther` on the orders. The first order that fully or partially executes (or activates   for `Stop` orders) will cancel all other orders with the same `clOrdLinkID`. * **OTO**: *One Triggers the Other*. Send a `contingencyType` of `'OneTriggersTheOther'` on the primary order and   then subsequent orders with the same `clOrdLinkID` will be not be triggered until the primary order fully executes. * **OUOA**: *One Updates the Other Absolute*. Send a `contingencyType` of `'OneUpdatesTheOtherAbsolute'` on the orders. Then   as one order has a execution, other orders with the same `clOrdLinkID` will have their order quantity amended   down by the execution quantity. * **OUOP**: *One Updates the Other Proportional*. Send a `contingencyType` of `'OneUpdatesTheOtherProportional'` on the orders. Then   as one order has a execution, other orders with the same `clOrdLinkID` will have their order quantity reduced proportionally   by the fill percentage.  #### Trailing Stops  You may use `pegPriceType` of `'TrailingStopPeg'` to create Trailing Stops. The pegged `stopPx` will move as the market moves away from the peg, and freeze as the market moves toward it.  To use, combine with `pegOffsetValue` to set the `stopPx` of your order. The peg is set to the triggering price specified in the `execInst` (default `'MarkPrice'`). Use a negative offset for stop-sell and buy-if-touched orders.  Requires `ordType`: `'Stop', 'StopLimit', 'MarketIfTouched', 'LimitIfTouched'`.  #### Simple Quantities  Send a `simpleOrderQty` instead of an `orderQty` to create an order denominated in the underlying currency. This is useful for opening up a position with 1 XBT of exposure without having to calculate how many contracts it is.  #### Rate Limits  See the [Bulk Order Documentation](#!/Order/Order_newBulk) if you need to place multiple orders at the same time. Bulk orders require fewer risk checks in the trading engine and thus are ratelimited at **1/10** the normal rate.  You can also improve your reactivity to market movements while staying under your ratelimit by using the [Amend](#!/Order/Order_amend) and [Amend Bulk](#!/Order/Order_amendBulk) endpoints. This allows you to stay in the market and avoids the cancel/replace cycle.  #### Tracking Your Orders  If you want to keep track of order IDs yourself, set a unique `clOrdID` per order. This `clOrdID` will come back as a property on the order and any related executions (including on the WebSocket), and can be used to get or cancel the order. Max length is 36 characters. 
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.OrderApi()
-symbol = 'symbol_example' # str | Instrument symbol. e.g. 'XBT24H'.
+api_instance = swagger_client.OrderApi(swagger_client.ApiClient(configuration))
+symbol = 'symbol_example' # str | Instrument symbol. e.g. 'XBTUSD'.
 side = 'side_example' # str | Order side. Valid options: Buy, Sell. Defaults to 'Buy' unless `orderQty` or `simpleOrderQty` is negative. (optional)
 simple_order_qty = 1.2 # float | Order quantity in units of the underlying instrument (i.e. Bitcoin). (optional)
 quantity = 3.4 # float | Deprecated: use `orderQty`. (optional)
 order_qty = 3.4 # float | Order quantity in units of the instrument (i.e. contracts). (optional)
 price = 1.2 # float | Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders. (optional)
-display_qty = 3.4 # float | Optional quantity to display in the book. Use 0 for a hidden order. (optional)
+display_qty = 3.4 # float | Optional quantity to display in the book. Use 0 for a fully hidden order. (optional)
 stop_price = 1.2 # float | Deprecated: use `stopPx`. (optional)
 stop_px = 1.2 # float | Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use `execInst` of 'MarkPrice' or 'LastPrice' to define the current price used for triggering. (optional)
 cl_ord_id = 'cl_ord_id_example' # str | Optional Client Order ID. This clOrdID will come back on the order and any related executions. (optional)
 cl_ord_link_id = 'cl_ord_link_id_example' # str | Optional Client Order Link ID for contingent orders. (optional)
 peg_offset_value = 1.2 # float | Optional trailing offset from the current price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for 'Pegged' orders. (optional)
-peg_price_type = 'peg_price_type_example' # str | Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg, TrailingStopPeg. (optional)
+peg_price_type = 'peg_price_type_example' # str | Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg. (optional)
 type = 'type_example' # str | Deprecated: use `ordType`. (optional)
 ord_type = 'Limit' # str | Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to 'Limit' when `price` is specified. Defaults to 'Stop' when `stopPx` is specified. Defaults to 'StopLimit' when `price` and `stopPx` are specified. (optional) (default to Limit)
 time_in_force = 'time_in_force_example' # str | Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to 'GoodTillCancel' for 'Limit', 'StopLimit', 'LimitIfTouched', and 'MarketWithLeftOverAsLimit' orders. (optional)
-exec_inst = 'exec_inst_example' # str | Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. 'AllOrNone' instruction requires `displayQty` to be 0. 'MarkPrice' or 'LastPrice' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. (optional)
+exec_inst = 'exec_inst_example' # str | Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. 'AllOrNone' instruction requires `displayQty` to be 0. 'MarkPrice', 'IndexPrice' or 'LastPrice' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. (optional)
 contingency_type = 'contingency_type_example' # str | Optional contingency type for use with `clOrdLinkID`. Valid options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute, OneUpdatesTheOtherProportional. (optional)
 text = 'text_example' # str | Optional order annotation. e.g. 'Take profit'. (optional)
 
@@ -427,30 +563,30 @@ try:
     api_response = api_instance.order_new(symbol, side=side, simple_order_qty=simple_order_qty, quantity=quantity, order_qty=order_qty, price=price, display_qty=display_qty, stop_price=stop_price, stop_px=stop_px, cl_ord_id=cl_ord_id, cl_ord_link_id=cl_ord_link_id, peg_offset_value=peg_offset_value, peg_price_type=peg_price_type, type=type, ord_type=ord_type, time_in_force=time_in_force, exec_inst=exec_inst, contingency_type=contingency_type, text=text)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling OrderApi->order_new: %s\n" % e
+    print("Exception when calling OrderApi->order_new: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **str**| Instrument symbol. e.g. &#39;XBT24H&#39;. | 
+ **symbol** | **str**| Instrument symbol. e.g. &#39;XBTUSD&#39;. | 
  **side** | **str**| Order side. Valid options: Buy, Sell. Defaults to &#39;Buy&#39; unless &#x60;orderQty&#x60; or &#x60;simpleOrderQty&#x60; is negative. | [optional] 
  **simple_order_qty** | **float**| Order quantity in units of the underlying instrument (i.e. Bitcoin). | [optional] 
  **quantity** | **float**| Deprecated: use &#x60;orderQty&#x60;. | [optional] 
  **order_qty** | **float**| Order quantity in units of the instrument (i.e. contracts). | [optional] 
  **price** | **float**| Optional limit price for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders. | [optional] 
- **display_qty** | **float**| Optional quantity to display in the book. Use 0 for a hidden order. | [optional] 
+ **display_qty** | **float**| Optional quantity to display in the book. Use 0 for a fully hidden order. | [optional] 
  **stop_price** | **float**| Deprecated: use &#x60;stopPx&#x60;. | [optional] 
  **stop_px** | **float**| Optional trigger price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use &#x60;execInst&#x60; of &#39;MarkPrice&#39; or &#39;LastPrice&#39; to define the current price used for triggering. | [optional] 
  **cl_ord_id** | **str**| Optional Client Order ID. This clOrdID will come back on the order and any related executions. | [optional] 
  **cl_ord_link_id** | **str**| Optional Client Order Link ID for contingent orders. | [optional] 
  **peg_offset_value** | **float**| Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders. | [optional] 
- **peg_price_type** | **str**| Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg, TrailingStopPeg. | [optional] 
+ **peg_price_type** | **str**| Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg. | [optional] 
  **type** | **str**| Deprecated: use &#x60;ordType&#x60;. | [optional] 
  **ord_type** | **str**| Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to &#39;Limit&#39; when &#x60;price&#x60; is specified. Defaults to &#39;Stop&#39; when &#x60;stopPx&#x60; is specified. Defaults to &#39;StopLimit&#39; when &#x60;price&#x60; and &#x60;stopPx&#x60; are specified. | [optional] [default to Limit]
  **time_in_force** | **str**| Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to &#39;GoodTillCancel&#39; for &#39;Limit&#39;, &#39;StopLimit&#39;, &#39;LimitIfTouched&#39;, and &#39;MarketWithLeftOverAsLimit&#39; orders. | [optional] 
- **exec_inst** | **str**| Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. | [optional] 
+ **exec_inst** | **str**| Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39;, &#39;IndexPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. | [optional] 
  **contingency_type** | **str**| Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute, OneUpdatesTheOtherProportional. | [optional] 
  **text** | **str**| Optional order annotation. e.g. &#39;Take profit&#39;. | [optional] 
 
@@ -460,7 +596,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -472,27 +608,44 @@ No authorization required
 # **order_new_bulk**
 > list[Order] order_new_bulk(orders=orders)
 
-Create multiple new orders.
+Create multiple new orders for the same symbol.
 
-This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at `ceil(0.5 * orders)`. Submitting 10 orders via a bulk order call will only count as 5 requests.  For now, only `application/json` is supported on this endpoint. 
+This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at `ceil(0.1 * orders)`. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only `application/json` is supported on this endpoint. 
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.OrderApi()
+api_instance = swagger_client.OrderApi(swagger_client.ApiClient(configuration))
 orders = 'orders_example' # str | An array of orders. (optional)
 
 try: 
-    # Create multiple new orders.
+    # Create multiple new orders for the same symbol.
     api_response = api_instance.order_new_bulk(orders=orders)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling OrderApi->order_new_bulk: %s\n" % e
+    print("Exception when calling OrderApi->order_new_bulk: %s\n" % e)
 ```
 
 ### Parameters
@@ -507,7 +660,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

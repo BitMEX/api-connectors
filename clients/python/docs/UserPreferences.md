@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**alert_on_liquidations** | **bool** |  | [optional] 
 **animations_enabled** | **bool** |  | [optional] 
 **announcements_last_seen** | **datetime** |  | [optional] 
 **chat_channel_id** | **float** |  | [optional] 
@@ -17,8 +18,9 @@ Name | Type | Description | Notes
 **hide_notifications** | **list[str]** |  | [optional] 
 **locale** | **str** |  | [optional] [default to 'en-US']
 **msgs_seen** | **list[str]** |  | [optional] 
-**order_book_binning** | [**XAny**](XAny.md) |  | [optional] 
+**order_book_binning** | **object** |  | [optional] 
 **order_book_type** | **str** |  | [optional] 
+**order_clear_immediate** | **bool** |  | [optional] [default to False]
 **order_controls_plus_minus** | **bool** |  | [optional] 
 **sounds** | **list[str]** |  | [optional] 
 **strict_ip_check** | **bool** |  | [optional] [default to False]

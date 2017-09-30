@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AlertOnLiquidations** | **bool** |  | [optional] [default to null]
 **AnimationsEnabled** | **bool** |  | [optional] [default to null]
 **AnnouncementsLastSeen** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
 **ChatChannelID** | **float64** |  | [optional] [default to null]
@@ -17,8 +18,9 @@ Name | Type | Description | Notes
 **HideNotifications** | **[]string** |  | [optional] [default to null]
 **Locale** | **string** |  | [optional] [default to null]
 **MsgsSeen** | **[]string** |  | [optional] [default to null]
-**OrderBookBinning** | [**XAny**](x-any.md) |  | [optional] [default to null]
+**OrderBookBinning** | [***interface{}**](interface{}.md) |  | [optional] [default to null]
 **OrderBookType** | **string** |  | [optional] [default to null]
+**OrderClearImmediate** | **bool** |  | [optional] [default to null]
 **OrderControlsPlusMinus** | **bool** |  | [optional] [default to null]
 **Sounds** | **[]string** |  | [optional] [default to null]
 **StrictIPCheck** | **bool** |  | [optional] [default to null]

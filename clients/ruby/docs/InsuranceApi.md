@@ -26,8 +26,8 @@ opts = {
   count: 100, # Float | Number of results to fetch.
   start: 0, # Float | Starting point for results.
   reverse: false, # BOOLEAN | If true, will sort results newest first.
-  start_time: Date.parse("2013-10-20"), # Date | Starting date filter for results.
-  end_time: Date.parse("2013-10-20") # Date | Ending date filter for results.
+  start_time: DateTime.parse("2013-10-20T19:20:30+01:00"), # DateTime | Starting date filter for results.
+  end_time: DateTime.parse("2013-10-20T19:20:30+01:00") # DateTime | Ending date filter for results.
 }
 
 begin
@@ -49,8 +49,8 @@ Name | Type | Description  | Notes
  **count** | **Float**| Number of results to fetch. | [optional] [default to 100]
  **start** | **Float**| Starting point for results. | [optional] [default to 0]
  **reverse** | **BOOLEAN**| If true, will sort results newest first. | [optional] [default to false]
- **start_time** | **Date**| Starting date filter for results. | [optional] 
- **end_time** | **Date**| Ending date filter for results. | [optional] 
+ **start_time** | **DateTime**| Starting date filter for results. | [optional] 
+ **end_time** | **DateTime**| Ending date filter for results. | [optional] 
 
 ### Return type
 

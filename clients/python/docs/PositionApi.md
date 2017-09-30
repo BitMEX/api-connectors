@@ -20,14 +20,31 @@ See <a href=\"http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html\"
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.PositionApi()
-filter = 'filter_example' # str | Table filter. For example, send {\"symbol\": \"XBT24H\"}. (optional)
+api_instance = swagger_client.PositionApi(swagger_client.ApiClient(configuration))
+filter = 'filter_example' # str | Table filter. For example, send {\"symbol\": \"XBTUSD\"}. (optional)
 columns = 'columns_example' # str | Which columns to fetch. For example, send [\"columnName\"]. (optional)
 count = 3.4 # float | Number of rows to fetch. (optional)
 
@@ -36,14 +53,14 @@ try:
     api_response = api_instance.position_get(filter=filter, columns=columns, count=count)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling PositionApi->position_get: %s\n" % e
+    print("Exception when calling PositionApi->position_get: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | **str**| Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBT24H\&quot;}. | [optional] 
+ **filter** | **str**| Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. | [optional] 
  **columns** | **str**| Which columns to fetch. For example, send [\&quot;columnName\&quot;]. | [optional] 
  **count** | **float**| Number of rows to fetch. | [optional] 
 
@@ -53,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -67,17 +84,34 @@ No authorization required
 
 Enable isolated margin or cross margin per-position.
 
-On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.PositionApi()
+api_instance = swagger_client.PositionApi(swagger_client.ApiClient(configuration))
 symbol = 'symbol_example' # str | Position symbol to isolate.
 enabled = true # bool | True for isolated margin, false for cross margin. (optional) (default to true)
 
@@ -86,7 +120,7 @@ try:
     api_response = api_instance.position_isolate_margin(symbol, enabled=enabled)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling PositionApi->position_isolate_margin: %s\n" % e
+    print("Exception when calling PositionApi->position_isolate_margin: %s\n" % e)
 ```
 
 ### Parameters
@@ -102,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -120,13 +154,30 @@ When margin is isolated on a position, use this function to add or remove margin
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.PositionApi()
+api_instance = swagger_client.PositionApi(swagger_client.ApiClient(configuration))
 symbol = 'symbol_example' # str | Symbol of position to isolate.
 amount = 3.4 # float | Amount to transfer, in Satoshis. May be negative.
 
@@ -135,7 +186,7 @@ try:
     api_response = api_instance.position_transfer_isolated_margin(symbol, amount)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling PositionApi->position_transfer_isolated_margin: %s\n" % e
+    print("Exception when calling PositionApi->position_transfer_isolated_margin: %s\n" % e)
 ```
 
 ### Parameters
@@ -151,7 +202,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -165,17 +216,34 @@ No authorization required
 
 Choose leverage for a position.
 
-On Speculative (DPE-Enabled) contracts, users can choose an isolated leverage. This will automatically enable isolated margin.
+Users can choose an isolated leverage. This will automatically enable isolated margin.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.PositionApi()
+api_instance = swagger_client.PositionApi(swagger_client.ApiClient(configuration))
 symbol = 'symbol_example' # str | Symbol of position to adjust.
 leverage = 1.2 # float | Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.
 
@@ -184,7 +252,7 @@ try:
     api_response = api_instance.position_update_leverage(symbol, leverage)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling PositionApi->position_update_leverage: %s\n" % e
+    print("Exception when calling PositionApi->position_update_leverage: %s\n" % e)
 ```
 
 ### Parameters
@@ -200,7 +268,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -218,13 +286,30 @@ Risk Limits limit the size of positions you can trade at various margin levels. 
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.PositionApi()
+api_instance = swagger_client.PositionApi(swagger_client.ApiClient(configuration))
 symbol = 'symbol_example' # str | Symbol of position to isolate.
 risk_limit = 3.4 # float | New Risk Limit, in Satoshis.
 
@@ -233,7 +318,7 @@ try:
     api_response = api_instance.position_update_risk_limit(symbol, risk_limit)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling PositionApi->position_update_risk_limit: %s\n" % e
+    print("Exception when calling PositionApi->position_update_risk_limit: %s\n" % e)
 ```
 
 ### Parameters
@@ -249,7 +334,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

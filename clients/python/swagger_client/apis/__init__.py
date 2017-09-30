@@ -10,6 +10,7 @@ from .instrument_api import InstrumentApi
 from .insurance_api import InsuranceApi
 from .leaderboard_api import LeaderboardApi
 from .liquidation_api import LiquidationApi
+from .notification_api import NotificationApi
 from .order_api import OrderApi
 from .order_book_api import OrderBookApi
 from .position_api import PositionApi

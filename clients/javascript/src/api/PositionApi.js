@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -9,51 +9,30 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Position', 'model/Error'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/Position'), require('../model/Error'));
-  } else {
-    // Browser globals (root is window)
-    if (!root.BitMexApi) {
-      root.BitMexApi = {};
+
+import ApiClient from "../ApiClient";
+import Error from '../model/Error';
+import Position from '../model/Position';
+
+/**
+* Position service.
+* @module api/PositionApi
+* @version 1.2.0
+*/
+export default class PositionApi {
+
+    /**
+    * Constructs a new PositionApi. 
+    * @alias module:api/PositionApi
+    * @class
+    * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
+    * default to {@link module:ApiClient#instance} if unspecified.
+    */
+    constructor(apiClient) {
+        this.apiClient = apiClient || ApiClient.instance;
     }
-    root.BitMexApi.PositionApi = factory(root.BitMexApi.ApiClient, root.BitMexApi.Position, root.BitMexApi.Error);
-  }
-}(this, function(ApiClient, Position, Error) {
-  'use strict';
-
-  /**
-   * Position service.
-   * @module api/PositionApi
-   * @version 1.2.0
-   */
-
-  /**
-   * Constructs a new PositionApi. 
-   * @alias module:api/PositionApi
-   * @class
-   * @param {module:ApiClient} apiClient Optional API client implementation to use,
-   * default to {@link module:ApiClient#instance} if unspecified.
-   */
-  var exports = function(apiClient) {
-    this.apiClient = apiClient || ApiClient.instance;
 
 
     /**
@@ -68,33 +47,33 @@
      * Get your positions.
      * See &lt;a href&#x3D;\&quot;http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html\&quot;&gt;the FIX Spec&lt;/a&gt; for explanations of these fields.
      * @param {Object} opts Optional parameters
-     * @param {String} opts.filter Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBT24H\&quot;}.
+     * @param {String} opts.filter Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}.
      * @param {String} opts.columns Which columns to fetch. For example, send [\&quot;columnName\&quot;].
      * @param {Number} opts.count Number of rows to fetch.
      * @param {module:api/PositionApi~positionGetCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Array.<module:model/Position>}
+     * data is of type: {@link Array.<module:model/Position>}
      */
-    this.positionGet = function(opts, callback) {
+    positionGet(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
         'filter': opts['filter'],
         'columns': opts['columns'],
         'count': opts['count']
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [Position];
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = [Position];
 
       return this.apiClient.callApi(
         '/position', 'GET',
@@ -113,38 +92,38 @@
 
     /**
      * Enable isolated margin or cross margin per-position.
-     * On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+     * Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
      * @param {String} symbol Position symbol to isolate.
      * @param {Object} opts Optional parameters
      * @param {Boolean} opts.enabled True for isolated margin, false for cross margin. (default to true)
      * @param {module:api/PositionApi~positionIsolateMarginCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/Position}
+     * data is of type: {@link module:model/Position}
      */
-    this.positionIsolateMargin = function(symbol, opts, callback) {
+    positionIsolateMargin(symbol, opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
       // verify the required parameter 'symbol' is set
-      if (symbol == undefined || symbol == null) {
-        throw "Missing the required parameter 'symbol' when calling positionIsolateMargin";
+      if (symbol === undefined || symbol === null) {
+        throw new Error("Missing the required parameter 'symbol' when calling positionIsolateMargin");
       }
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'symbol': symbol,
         'enabled': opts['enabled']
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = Position;
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = Position;
 
       return this.apiClient.callApi(
         '/position/isolate', 'POST',
@@ -167,37 +146,37 @@
      * @param {String} symbol Symbol of position to isolate.
      * @param {Number} amount Amount to transfer, in Satoshis. May be negative.
      * @param {module:api/PositionApi~positionTransferIsolatedMarginCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/Position}
+     * data is of type: {@link module:model/Position}
      */
-    this.positionTransferIsolatedMargin = function(symbol, amount, callback) {
-      var postBody = null;
+    positionTransferIsolatedMargin(symbol, amount, callback) {
+      let postBody = null;
 
       // verify the required parameter 'symbol' is set
-      if (symbol == undefined || symbol == null) {
-        throw "Missing the required parameter 'symbol' when calling positionTransferIsolatedMargin";
+      if (symbol === undefined || symbol === null) {
+        throw new Error("Missing the required parameter 'symbol' when calling positionTransferIsolatedMargin");
       }
 
       // verify the required parameter 'amount' is set
-      if (amount == undefined || amount == null) {
-        throw "Missing the required parameter 'amount' when calling positionTransferIsolatedMargin";
+      if (amount === undefined || amount === null) {
+        throw new Error("Missing the required parameter 'amount' when calling positionTransferIsolatedMargin");
       }
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'symbol': symbol,
         'amount': amount
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = Position;
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = Position;
 
       return this.apiClient.callApi(
         '/position/transferMargin', 'POST',
@@ -216,41 +195,41 @@
 
     /**
      * Choose leverage for a position.
-     * On Speculative (DPE-Enabled) contracts, users can choose an isolated leverage. This will automatically enable isolated margin.
+     * Users can choose an isolated leverage. This will automatically enable isolated margin.
      * @param {String} symbol Symbol of position to adjust.
      * @param {Number} leverage Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.
      * @param {module:api/PositionApi~positionUpdateLeverageCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/Position}
+     * data is of type: {@link module:model/Position}
      */
-    this.positionUpdateLeverage = function(symbol, leverage, callback) {
-      var postBody = null;
+    positionUpdateLeverage(symbol, leverage, callback) {
+      let postBody = null;
 
       // verify the required parameter 'symbol' is set
-      if (symbol == undefined || symbol == null) {
-        throw "Missing the required parameter 'symbol' when calling positionUpdateLeverage";
+      if (symbol === undefined || symbol === null) {
+        throw new Error("Missing the required parameter 'symbol' when calling positionUpdateLeverage");
       }
 
       // verify the required parameter 'leverage' is set
-      if (leverage == undefined || leverage == null) {
-        throw "Missing the required parameter 'leverage' when calling positionUpdateLeverage";
+      if (leverage === undefined || leverage === null) {
+        throw new Error("Missing the required parameter 'leverage' when calling positionUpdateLeverage");
       }
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'symbol': symbol,
         'leverage': leverage
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = Position;
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = Position;
 
       return this.apiClient.callApi(
         '/position/leverage', 'POST',
@@ -273,37 +252,37 @@
      * @param {String} symbol Symbol of position to isolate.
      * @param {Number} riskLimit New Risk Limit, in Satoshis.
      * @param {module:api/PositionApi~positionUpdateRiskLimitCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/Position}
+     * data is of type: {@link module:model/Position}
      */
-    this.positionUpdateRiskLimit = function(symbol, riskLimit, callback) {
-      var postBody = null;
+    positionUpdateRiskLimit(symbol, riskLimit, callback) {
+      let postBody = null;
 
       // verify the required parameter 'symbol' is set
-      if (symbol == undefined || symbol == null) {
-        throw "Missing the required parameter 'symbol' when calling positionUpdateRiskLimit";
+      if (symbol === undefined || symbol === null) {
+        throw new Error("Missing the required parameter 'symbol' when calling positionUpdateRiskLimit");
       }
 
       // verify the required parameter 'riskLimit' is set
-      if (riskLimit == undefined || riskLimit == null) {
-        throw "Missing the required parameter 'riskLimit' when calling positionUpdateRiskLimit";
+      if (riskLimit === undefined || riskLimit === null) {
+        throw new Error("Missing the required parameter 'riskLimit' when calling positionUpdateRiskLimit");
       }
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'symbol': symbol,
         'riskLimit': riskLimit
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = Position;
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = Position;
 
       return this.apiClient.callApi(
         '/position/riskLimit', 'POST',
@@ -311,7 +290,6 @@
         authNames, contentTypes, accepts, returnType, callback
       );
     }
-  };
 
-  return exports;
-}));
+
+}

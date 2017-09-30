@@ -17,5 +17,6 @@ Name | Type | Description | Notes
 **payout_pcnt** | **Float** |  | [optional] 
 **pending_payout** | **Float** |  | [optional] 
 **timestamp** | **DateTime** |  | [optional] 
+**referrer_account** | **Float** |  | [optional] 
 
 

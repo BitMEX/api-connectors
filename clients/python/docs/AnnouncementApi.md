@@ -15,6 +15,7 @@ Get site announcements.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -29,7 +30,7 @@ try:
     api_response = api_instance.announcement_get(columns=columns)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling AnnouncementApi->announcement_get: %s\n" % e
+    print("Exception when calling AnnouncementApi->announcement_get: %s\n" % e)
 ```
 
 ### Parameters
@@ -60,20 +61,37 @@ Get urgent (banner) announcements.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.AnnouncementApi()
+api_instance = swagger_client.AnnouncementApi(swagger_client.ApiClient(configuration))
 
 try: 
     # Get urgent (banner) announcements.
     api_response = api_instance.announcement_get_urgent()
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling AnnouncementApi->announcement_get_urgent: %s\n" % e
+    print("Exception when calling AnnouncementApi->announcement_get_urgent: %s\n" % e)
 ```
 
 ### Parameters
@@ -85,7 +103,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

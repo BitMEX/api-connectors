@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Phone** | **string** |  | [optional] [default to null]
 **Created** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
 **LastUpdated** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
-**Preferences** | [**UserPreferences**](UserPreferences.md) |  | [optional] [default to null]
+**Preferences** | [***UserPreferences**](UserPreferences.md) |  | [optional] [default to null]
 **TFAEnabled** | **string** |  | [optional] [default to null]
 **AffiliateID** | **string** |  | [optional] [default to null]
 **PgpPubKey** | **string** |  | [optional] [default to null]

@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**timestamp** | [**DateTime**](DateTime.md) |  | 
+**timestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
 **symbol** | **String** |  | 
 **bidSize** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **bidPrice** | **Double** |  |  [optional]

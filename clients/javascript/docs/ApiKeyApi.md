@@ -19,21 +19,39 @@ Disable an API Key.
 
 ### Example
 ```javascript
-var BitMexApi = require('bit_mex_api');
+import BitMexApi from 'bit_mex_api';
+let defaultClient = BitMexApi.ApiClient.instance;
 
-var apiInstance = new BitMexApi.APIKeyApi();
+// Configure API key authorization: apiKey
+let apiKey = defaultClient.authentications['apiKey'];
+apiKey.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.apiKeyPrefix = 'Token';
 
-var apiKeyID = "apiKeyID_example"; // String | API Key ID (public component).
+// Configure API key authorization: apiNonce
+let apiNonce = defaultClient.authentications['apiNonce'];
+apiNonce.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiNonce.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiSignature
+let apiSignature = defaultClient.authentications['apiSignature'];
+apiSignature.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.apiKeyPrefix = 'Token';
+
+let apiInstance = new BitMexApi.APIKeyApi();
+
+let apiKeyID = "apiKeyID_example"; // String | API Key ID (public component).
 
 
-var callback = function(error, data, response) {
+apiInstance.aPIKeyDisable(apiKeyID, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.aPIKeyDisable(apiKeyID, callback);
+});
 ```
 
 ### Parameters
@@ -48,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -63,21 +81,39 @@ Enable an API Key.
 
 ### Example
 ```javascript
-var BitMexApi = require('bit_mex_api');
+import BitMexApi from 'bit_mex_api';
+let defaultClient = BitMexApi.ApiClient.instance;
 
-var apiInstance = new BitMexApi.APIKeyApi();
+// Configure API key authorization: apiKey
+let apiKey = defaultClient.authentications['apiKey'];
+apiKey.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.apiKeyPrefix = 'Token';
 
-var apiKeyID = "apiKeyID_example"; // String | API Key ID (public component).
+// Configure API key authorization: apiNonce
+let apiNonce = defaultClient.authentications['apiNonce'];
+apiNonce.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiNonce.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiSignature
+let apiSignature = defaultClient.authentications['apiSignature'];
+apiSignature.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.apiKeyPrefix = 'Token';
+
+let apiInstance = new BitMexApi.APIKeyApi();
+
+let apiKeyID = "apiKeyID_example"; // String | API Key ID (public component).
 
 
-var callback = function(error, data, response) {
+apiInstance.aPIKeyEnable(apiKeyID, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.aPIKeyEnable(apiKeyID, callback);
+});
 ```
 
 ### Parameters
@@ -92,7 +128,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -107,22 +143,40 @@ Get your API Keys.
 
 ### Example
 ```javascript
-var BitMexApi = require('bit_mex_api');
+import BitMexApi from 'bit_mex_api';
+let defaultClient = BitMexApi.ApiClient.instance;
 
-var apiInstance = new BitMexApi.APIKeyApi();
+// Configure API key authorization: apiKey
+let apiKey = defaultClient.authentications['apiKey'];
+apiKey.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.apiKeyPrefix = 'Token';
 
-var opts = { 
+// Configure API key authorization: apiNonce
+let apiNonce = defaultClient.authentications['apiNonce'];
+apiNonce.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiNonce.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiSignature
+let apiSignature = defaultClient.authentications['apiSignature'];
+apiSignature.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.apiKeyPrefix = 'Token';
+
+let apiInstance = new BitMexApi.APIKeyApi();
+
+let opts = { 
   'reverse': false // Boolean | If true, will sort results newest first.
 };
 
-var callback = function(error, data, response) {
+apiInstance.aPIKeyGet(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.aPIKeyGet(opts, callback);
+});
 ```
 
 ### Parameters
@@ -137,7 +191,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -154,26 +208,44 @@ API Keys can also be created via [this Python script](https://github.com/BitMEX/
 
 ### Example
 ```javascript
-var BitMexApi = require('bit_mex_api');
+import BitMexApi from 'bit_mex_api';
+let defaultClient = BitMexApi.ApiClient.instance;
 
-var apiInstance = new BitMexApi.APIKeyApi();
+// Configure API key authorization: apiKey
+let apiKey = defaultClient.authentications['apiKey'];
+apiKey.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.apiKeyPrefix = 'Token';
 
-var opts = { 
+// Configure API key authorization: apiNonce
+let apiNonce = defaultClient.authentications['apiNonce'];
+apiNonce.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiNonce.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiSignature
+let apiSignature = defaultClient.authentications['apiSignature'];
+apiSignature.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.apiKeyPrefix = 'Token';
+
+let apiInstance = new BitMexApi.APIKeyApi();
+
+let opts = { 
   'name': "name_example", // String | Key name. This name is for reference only.
   'cidr': "cidr_example", // String | CIDR block to restrict this key to. To restrict to a single address, append \"/32\", e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. <a href=\"http://software77.net/cidr-101.html\">More on CIDR blocks</a>
-  'permissions': "permissions_example", // String | Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\"order\", \"withdraw\"].
+  'permissions': "permissions_example", // String | Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\"order\", \"orderCancel\", \"withdraw\"].
   'enabled': false, // Boolean | Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.
   'token': "token_example" // String | OTP Token (YubiKey, Google Authenticator)
 };
 
-var callback = function(error, data, response) {
+apiInstance.aPIKeyNew(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.aPIKeyNew(opts, callback);
+});
 ```
 
 ### Parameters
@@ -182,7 +254,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Key name. This name is for reference only. | [optional] 
  **cidr** | **String**| CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href&#x3D;\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt; | [optional] 
- **permissions** | **String**| Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;withdraw\&quot;]. | [optional] 
+ **permissions** | **String**| Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;orderCancel\&quot;, \&quot;withdraw\&quot;]. | [optional] 
  **enabled** | **Boolean**| Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. | [optional] [default to false]
  **token** | **String**| OTP Token (YubiKey, Google Authenticator) | [optional] 
 
@@ -192,7 +264,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -207,21 +279,39 @@ Remove an API Key.
 
 ### Example
 ```javascript
-var BitMexApi = require('bit_mex_api');
+import BitMexApi from 'bit_mex_api';
+let defaultClient = BitMexApi.ApiClient.instance;
 
-var apiInstance = new BitMexApi.APIKeyApi();
+// Configure API key authorization: apiKey
+let apiKey = defaultClient.authentications['apiKey'];
+apiKey.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.apiKeyPrefix = 'Token';
 
-var apiKeyID = "apiKeyID_example"; // String | API Key ID (public component).
+// Configure API key authorization: apiNonce
+let apiNonce = defaultClient.authentications['apiNonce'];
+apiNonce.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiNonce.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiSignature
+let apiSignature = defaultClient.authentications['apiSignature'];
+apiSignature.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.apiKeyPrefix = 'Token';
+
+let apiInstance = new BitMexApi.APIKeyApi();
+
+let apiKeyID = "apiKeyID_example"; // String | API Key ID (public component).
 
 
-var callback = function(error, data, response) {
+apiInstance.aPIKeyRemove(apiKeyID, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.aPIKeyRemove(apiKeyID, callback);
+});
 ```
 
 ### Parameters
@@ -236,7 +326,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

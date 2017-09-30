@@ -15,22 +15,21 @@ Get current leaderboard.
 
 ### Example
 ```javascript
-var BitMexApi = require('bit_mex_api');
+import BitMexApi from 'bit_mex_api';
 
-var apiInstance = new BitMexApi.LeaderboardApi();
+let apiInstance = new BitMexApi.LeaderboardApi();
 
-var opts = { 
+let opts = { 
   'method': "notional" // String | Ranking type. Options: \"notional\", \"ROE\"
 };
 
-var callback = function(error, data, response) {
+apiInstance.leaderboardGet(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.leaderboardGet(opts, callback);
+});
 ```
 
 ### Parameters

@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **PayoutPcnt** | **double?** |  | [optional] 
 **PendingPayout** | **decimal?** |  | [optional] 
 **Timestamp** | **DateTime?** |  | [optional] 
+**ReferrerAccount** | **double?** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

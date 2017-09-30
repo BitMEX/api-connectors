@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -9,51 +9,30 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Quote', 'model/Error'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/Quote'), require('../model/Error'));
-  } else {
-    // Browser globals (root is window)
-    if (!root.BitMexApi) {
-      root.BitMexApi = {};
+
+import ApiClient from "../ApiClient";
+import Error from '../model/Error';
+import Quote from '../model/Quote';
+
+/**
+* Quote service.
+* @module api/QuoteApi
+* @version 1.2.0
+*/
+export default class QuoteApi {
+
+    /**
+    * Constructs a new QuoteApi. 
+    * @alias module:api/QuoteApi
+    * @class
+    * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
+    * default to {@link module:ApiClient#instance} if unspecified.
+    */
+    constructor(apiClient) {
+        this.apiClient = apiClient || ApiClient.instance;
     }
-    root.BitMexApi.QuoteApi = factory(root.BitMexApi.ApiClient, root.BitMexApi.Quote, root.BitMexApi.Error);
-  }
-}(this, function(ApiClient, Quote, Error) {
-  'use strict';
-
-  /**
-   * Quote service.
-   * @module api/QuoteApi
-   * @version 1.2.0
-   */
-
-  /**
-   * Constructs a new QuoteApi. 
-   * @alias module:api/QuoteApi
-   * @class
-   * @param {module:ApiClient} apiClient Optional API client implementation to use,
-   * default to {@link module:ApiClient#instance} if unspecified.
-   */
-  var exports = function(apiClient) {
-    this.apiClient = apiClient || ApiClient.instance;
 
 
     /**
@@ -76,16 +55,16 @@
      * @param {Date} opts.startTime Starting date filter for results.
      * @param {Date} opts.endTime Ending date filter for results.
      * @param {module:api/QuoteApi~quoteGetCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Array.<module:model/Quote>}
+     * data is of type: {@link Array.<module:model/Quote>}
      */
-    this.quoteGet = function(opts, callback) {
+    quoteGet(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
         'symbol': opts['symbol'],
         'filter': opts['filter'],
         'columns': opts['columns'],
@@ -95,15 +74,15 @@
         'startTime': opts['startTime'],
         'endTime': opts['endTime']
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [Quote];
+      let authNames = [];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = [Quote];
 
       return this.apiClient.callApi(
         '/quote', 'GET',
@@ -123,7 +102,8 @@
     /**
      * Get previous quotes in time buckets.
      * @param {Object} opts Optional parameters
-     * @param {String} opts.binSize Time interval to bucket by. Available options: [&#39;1m&#39;, &#39;5m&#39;, &#39;1h&#39;, &#39;1d&#39;].
+     * @param {String} opts.binSize Time interval to bucket by. Available options: [1m,5m,1h,1d]. (default to 1m)
+     * @param {Boolean} opts.partial If true, will send in-progress (incomplete) bins for the current time period. (default to false)
      * @param {String} opts.symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBU:monthly&#x60;. Timeframes are &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, and &#x60;biquarterly&#x60;.
      * @param {String} opts.filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
      * @param {String} opts.columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
@@ -133,17 +113,18 @@
      * @param {Date} opts.startTime Starting date filter for results.
      * @param {Date} opts.endTime Ending date filter for results.
      * @param {module:api/QuoteApi~quoteGetBucketedCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Array.<module:model/Quote>}
+     * data is of type: {@link Array.<module:model/Quote>}
      */
-    this.quoteGetBucketed = function(opts, callback) {
+    quoteGetBucketed(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
         'binSize': opts['binSize'],
+        'partial': opts['partial'],
         'symbol': opts['symbol'],
         'filter': opts['filter'],
         'columns': opts['columns'],
@@ -153,15 +134,15 @@
         'startTime': opts['startTime'],
         'endTime': opts['endTime']
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [Quote];
+      let authNames = [];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = [Quote];
 
       return this.apiClient.callApi(
         '/quote/bucketed', 'GET',
@@ -169,7 +150,6 @@
         authNames, contentTypes, accepts, returnType, callback
       );
     }
-  };
 
-  return exports;
-}));
+
+}

@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  description: "## REST API for the BitMEX Trading Platform\n\n[Changelog](/app/apiChangelog)\n\
+  description: "## REST API for the BitMEX Trading Platform\n\n[View Changelog](/app/apiChangelog)\n\
     \n\n\n#### Getting Started\n\n\n##### Fetching Data\n\nAll REST endpoints are\
     \ documented below. You can try out any query right from this interface.\n\nMost\
     \ table queries accept `count`, `start`, and `reverse` params. Set `reverse=true`\
@@ -17,8 +17,9 @@ info:
     \ Data](#!/Trade/Trade_get)\n\n* [OrderBook Data](#!/OrderBook/OrderBook_getL2)\n\
     \n* [Settlement Data](#!/Settlement/Settlement_get)\n\n* [Exchange Statistics](#!/Stats/Stats_history)\n\
     \nEvery function of the BitMEX.com platform is exposed here and documented. Many\
-    \ more functions are available.\n\n-\n\n## All API Endpoints\n\nClick to expand\
-    \ a section.\n"
+    \ more functions are available.\n\n##### Swagger Specification\n\n[⇩ Download\
+    \ Swagger JSON](swagger.json)\n\n\n\n## All API Endpoints\n\nClick to expand a\
+    \ section.\n"
   version: "1.2.0"
   title: "BitMEX API"
   termsOfService: "https://www.bitmex.com/app/terms"
@@ -26,24 +27,44 @@ info:
     email: "support@bitmex.com"
 basePath: "/api/v1"
 tags:
-- name: "Chat"
 - name: "Announcement"
+  description: "Public Announcements"
 - name: "APIKey"
+  description: "Persistent API Keys for Developers"
+- name: "Chat"
+  description: "Trollbox Data"
 - name: "Execution"
-- name: "Instrument"
-- name: "Insurance"
-- name: "Leaderboard"
-- name: "Liquidation"
-- name: "Order"
-- name: "OrderBook"
-- name: "Position"
-- name: "Quote"
-- name: "Schema"
-- name: "Settlement"
+  description: "Raw Order and Balance Data"
 - name: "Funding"
+  description: "Swap Funding History"
+- name: "Instrument"
+  description: "Tradeable Contracts, Indices, and History"
+- name: "Insurance"
+  description: "Insurance Fund Data"
+- name: "Leaderboard"
+  description: "Information on Top Users"
+- name: "Liquidation"
+  description: "Active Liquidations"
+- name: "Notification"
+  description: "Account Notifications"
+- name: "Order"
+  description: "Placement, Cancellation, Amending, and History"
+- name: "OrderBook"
+  description: "Level 2 Book Data"
+- name: "Position"
+  description: "Summary of Open and Closed Positions"
+- name: "Quote"
+  description: "Best Bid/Offer Snapshots & Historical Bins"
+- name: "Schema"
+  description: "Dynamic Schemata for Developers"
+- name: "Settlement"
+  description: "Historical Settlement Data"
 - name: "Stats"
+  description: "Exchange Statistics"
 - name: "Trade"
+  description: "Individual & Bucketed Trades"
 - name: "User"
+  description: "Account Operations"
 consumes:
 - "application/json"
 - "application/x-www-form-urlencoded"
@@ -53,6 +74,10 @@ produces:
 - "text/xml"
 - "application/javascript"
 - "text/javascript"
+security:
+- apiKey: []
+  apiSignature: []
+  apiNonce: []
 paths:
   /announcement:
     get:
@@ -87,6 +112,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
   /announcement/urgent:
     get:
       tags:
@@ -169,8 +195,8 @@ paths:
       - name: "permissions"
         in: "formData"
         description: "Key Permissions. All keys can read margin and position data.\
-          \ Additional permissions must be added. Available: [\"order\", \"withdraw\"\
-          ]."
+          \ Additional permissions must be added. Available: [\"order\", \"orderCancel\"\
+          , \"withdraw\"]."
         required: false
         type: "string"
         format: "JSON"
@@ -305,7 +331,7 @@ paths:
         format: "int32"
       - name: "start"
         in: "query"
-        description: "Starting point for results."
+        description: "Starting ID for results."
         required: false
         type: "number"
         default: 0.0
@@ -341,6 +367,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
     post:
       tags:
       - "Chat"
@@ -401,6 +428,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
   /chat/connected:
     get:
       tags:
@@ -427,6 +455,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
   /execution:
     get:
       tags:
@@ -491,13 +520,13 @@ paths:
         description: "Starting date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       - name: "endTime"
         in: "query"
         description: "Ending date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       responses:
         200:
           description: "Request was successful"
@@ -575,13 +604,13 @@ paths:
         description: "Starting date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       - name: "endTime"
         in: "query"
         description: "Ending date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       responses:
         200:
           description: "Request was successful"
@@ -658,13 +687,13 @@ paths:
         description: "Starting date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       - name: "endTime"
         in: "query"
         description: "Ending date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       responses:
         200:
           description: "Request was successful"
@@ -684,6 +713,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
   /instrument:
     get:
       tags:
@@ -746,13 +776,13 @@ paths:
         description: "Starting date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       - name: "endTime"
         in: "query"
         description: "Ending date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       responses:
         200:
           description: "Request was successful"
@@ -772,6 +802,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
   /instrument/active:
     get:
       tags:
@@ -798,6 +829,34 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
+  /instrument/indices:
+    get:
+      tags:
+      - "Instrument"
+      summary: "Get all price indices."
+      operationId: "Instrument.getIndices"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Instrument"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      security: []
   /instrument/activeAndIndices:
     get:
       tags:
@@ -825,6 +884,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
   /instrument/activeIntervals:
     get:
       tags:
@@ -855,20 +915,86 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-  /instrument/indices:
+      security: []
+  /instrument/compositeIndex:
     get:
       tags:
       - "Instrument"
-      summary: "Get all price indices."
-      operationId: "Instrument.getIndices"
-      parameters: []
+      summary: "Show constituent parts of an index."
+      description: "Composite indices are built from multiple external price sources.\n\
+        \nUse this endpoint to get the underlying prices of an index. For example,\
+        \ send a `symbol` of `.XBT` to\nget the ticks and weights of the constituent\
+        \ exchanges that build the \".XBT\" index.\n\nA tick with reference `\"BMI\"\
+        ` and weight `null` is the composite index tick.\n"
+      operationId: "Instrument.getCompositeIndex"
+      parameters:
+      - name: "account"
+        in: "query"
+        required: false
+        type: "number"
+        format: "double"
+      - name: "symbol"
+        in: "query"
+        description: "The composite index symbol."
+        required: false
+        type: "string"
+        default: ".XBT"
+      - name: "filter"
+        in: "query"
+        description: "Generic table filter. Send JSON key/value pairs, such as `{\"\
+          key\": \"value\"}`. You can key on individual fields, and do more advanced\
+          \ querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters)\
+          \ for more details."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "columns"
+        in: "query"
+        description: "Array of column names to fetch. If omitted, will return all\
+          \ columns.\n\nNote that this method will always return item keys, even when\
+          \ not specified, so you may receive more columns that you expect."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "count"
+        in: "query"
+        description: "Number of results to fetch."
+        required: false
+        type: "number"
+        default: 100.0
+        format: "int32"
+      - name: "start"
+        in: "query"
+        description: "Starting point for results."
+        required: false
+        type: "number"
+        default: 0.0
+        format: "int32"
+      - name: "reverse"
+        in: "query"
+        description: "If true, will sort results newest first."
+        required: false
+        type: "boolean"
+        default: false
+      - name: "startTime"
+        in: "query"
+        description: "Starting date filter for results."
+        required: false
+        type: "string"
+        format: "date-time"
+      - name: "endTime"
+        in: "query"
+        description: "Ending date filter for results."
+        required: false
+        type: "string"
+        format: "date-time"
       responses:
         200:
           description: "Request was successful"
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/Instrument"
+              $ref: "#/definitions/IndexComposite"
         400:
           description: "Parameter Error"
           schema:
@@ -881,6 +1007,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
   /insurance:
     get:
       tags:
@@ -938,13 +1065,13 @@ paths:
         description: "Starting date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       - name: "endTime"
         in: "query"
         description: "Ending date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       responses:
         200:
           description: "Request was successful"
@@ -964,6 +1091,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
   /leaderboard:
     get:
       tags:
@@ -984,6 +1112,7 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Leaderboard"
+      security: []
   /liquidation:
     get:
       tags:
@@ -1041,13 +1170,13 @@ paths:
         description: "Starting date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       - name: "endTime"
         in: "query"
         description: "Ending date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       responses:
         200:
           description: "Request was successful"
@@ -1055,6 +1184,34 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Liquidation"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      security: []
+  /notification:
+    get:
+      tags:
+      - "Notification"
+      summary: "Get your current notifications."
+      description: "This is an upcoming feature and currently does not return data."
+      operationId: "Notification.get"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Notification"
         400:
           description: "Parameter Error"
           schema:
@@ -1127,13 +1284,13 @@ paths:
         description: "Starting date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       - name: "endTime"
         in: "query"
         description: "Ending date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       responses:
         200:
           description: "Request was successful"
@@ -1157,29 +1314,94 @@ paths:
       tags:
       - "Order"
       summary: "Create a new order."
-      description: "This endpoint is used for placing orders. Valid order types are\
-        \ Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit,\
-        \ and Pegged.\n\nIf no order type is provided, BitMEX will assume 'Limit'.\n\
-        Be very careful with 'Market' and 'Stop' orders as you may be filled at an\
-        \ unfavourable price.\n\nYou can submit bulk orders by POSTing an array of\
-        \ orders to `/api/v1/order/bulk`. Send a JSON payload\nwith the shape: `{\"\
-        orders\": [{...}, {...}]}`, with each inner object containing the same fields\
-        \ that would be\nsent to this endpoint.\n\nA note on API tools: if you want\
-        \ to keep track of order IDs yourself, set a unique clOrdID per order.\nThis\
-        \ clOrdID will come back as a property on the order and any related executions\
-        \ (including on the WebSocket),\nand can be used to get or cancel the order.\
-        \ Max length is 36 characters.\n\nTo generate a clOrdID, consider setting\
-        \ a prefix, and incrementing a counter or generating a UUID.\nSome UUIDs are\
-        \ longer than 36 characters, so use a url-safe base64 encoding. For example,\
-        \ the prefix `'bmex_mm_'`\nand the UUID `'7fbd6545-bb0c-11e4-a273-6003088a7c04'`\
-        \ creates `'bmex_mm_f71lRbsMEeSic2ADCIp8BA'`.\n\nSee the [BitMEX Reference\
-        \ Market Maker](https://github.com/BitMEX/market-maker/blob/22c75a2b6db63e20212813e9afdb845db1b09b2a/bitmex.py#L152)\n\
-        for an example of how to use and generate clOrdIDs.\n"
+      description: "## Placing Orders\n\nThis endpoint is used for placing orders.\
+        \ See individual fields below for more details on their use.\n\n#### Order\
+        \ Types\n\nAll orders require a `symbol`. All other fields are optional except\
+        \ when otherwise specified.\n\nThese are the valid `ordType`s:\n\n* **Limit**:\
+        \ The default order type. Specify an `orderQty` and `price`.\n* **Market**:\
+        \ A traditional Market order. A Market order will execute until filled or\
+        \ your bankruptcy price is reached, at\n  which point it will cancel.\n* **MarketWithLeftOverAsLimit**:\
+        \ A market order that, after eating through the order book as far as\n  permitted\
+        \ by available margin, will become a limit order. The difference between this\
+        \ type and `Market` only\n  affects the behavior in thin books. Upon reaching\
+        \ the deepest possible price, if there is quantity left over,\n  a `Market`\
+        \ order will cancel the remaining quantity. `MarketWithLeftOverAsLimit` will\
+        \ keep the remaining\n  quantity in the books as a `Limit`.\n* **Stop**: A\
+        \ Stop Market order. Specify an `orderQty` and `stopPx`. When the `stopPx`\
+        \ is reached, the order will be entered\n  into the book.\n  * On sell orders,\
+        \ the order will trigger if the triggering price is lower than the `stopPx`.\
+        \ On buys, higher.\n  * Note: Stop orders do not consume margin until triggered.\
+        \ Be sure that the required margin is available in your\n    account so that\
+        \ it may trigger fully.\n  * `Close` Stops don't require an `orderQty`. See\
+        \ Execution Instructions below.\n* **StopLimit**: Like a Stop Market, but\
+        \ enters a Limit order instead of a Market order. Specify an `orderQty`, `stopPx`,\n\
+        \  and `price`.\n* **MarketIfTouched**: Similar to a Stop, but triggers are\
+        \ done in the opposite direction. Useful for Take Profit orders.\n* **LimitIfTouched**:\
+        \ As above; use for Take Profit Limit orders.\n\n#### Execution Instructions\n\
+        \nThe following `execInst`s are supported. If using multiple, separate with\
+        \ a comma (e.g. `LastPrice,Close`).\n\n* **ParticipateDoNotInitiate**: Also\
+        \ known as a Post-Only order. If this order would have executed on placement,\n\
+        \  it will cancel instead.\n* **AllOrNone**: Valid only for hidden orders\
+        \ (`displayQty: 0`). Use to only execute if the entire order would fill.\n\
+        * **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders\
+        \ to determine the triggering price.\n  Use only one. By default, `'MarkPrice'`\
+        \ is used. Also used for Pegged orders to define the value of `'LastPeg'`.\n\
+        * **ReduceOnly**: A `'ReduceOnly'` order can only reduce your position, not\
+        \ increase it. If you have a `'ReduceOnly'`\n  limit order that rests in the\
+        \ order book while the position is reduced by other orders, then its order\
+        \ quantity will\n  be amended down or canceled. If there are multiple `'ReduceOnly'`\
+        \ orders the least agresssive will be amended first.\n* **Close**: `'Close'`\
+        \ implies `'ReduceOnly'`. A `'Close'` order will cancel other active limit\
+        \ orders with the same side\n  and symbol if the open quantity exceeds the\
+        \ current position. This is useful for stops: by canceling these orders, a\n\
+        \  `'Close'` Stop is ensured to have the margin required to execute, and can\
+        \ only execute up to the full size of your\n  position. If not specified,\
+        \ a `'Close'` order has an `orderQty` equal to your current position's size.\n\
+        \n#### Linked Orders\n\nLinked Orders are an advanced capability. It is very\
+        \ powerful, but its use requires careful coding and testing.\nPlease follow\
+        \ this document carefully and use the [Testnet Exchange](https://testnet.bitmex.com)\
+        \ while developing.\n\nBitMEX offers four advanced Linked Order types:\n\n\
+        * **OCO**: *One Cancels the Other*. A very flexible version of the standard\
+        \ Stop / Take Profit technique.\n  Multiple orders may be linked together\
+        \ using a single `clOrdLinkID`. Send a `contingencyType` of\n  `OneCancelsTheOther`\
+        \ on the orders. The first order that fully or partially executes (or activates\n\
+        \  for `Stop` orders) will cancel all other orders with the same `clOrdLinkID`.\n\
+        * **OTO**: *One Triggers the Other*. Send a `contingencyType` of `'OneTriggersTheOther'`\
+        \ on the primary order and\n  then subsequent orders with the same `clOrdLinkID`\
+        \ will be not be triggered until the primary order fully executes.\n* **OUOA**:\
+        \ *One Updates the Other Absolute*. Send a `contingencyType` of `'OneUpdatesTheOtherAbsolute'`\
+        \ on the orders. Then\n  as one order has a execution, other orders with the\
+        \ same `clOrdLinkID` will have their order quantity amended\n  down by the\
+        \ execution quantity.\n* **OUOP**: *One Updates the Other Proportional*. Send\
+        \ a `contingencyType` of `'OneUpdatesTheOtherProportional'` on the orders.\
+        \ Then\n  as one order has a execution, other orders with the same `clOrdLinkID`\
+        \ will have their order quantity reduced proportionally\n  by the fill percentage.\n\
+        \n#### Trailing Stops\n\nYou may use `pegPriceType` of `'TrailingStopPeg'`\
+        \ to create Trailing Stops. The pegged `stopPx` will move as the market\n\
+        moves away from the peg, and freeze as the market moves toward it.\n\nTo use,\
+        \ combine with `pegOffsetValue` to set the `stopPx` of your order. The peg\
+        \ is set to the triggering price\nspecified in the `execInst` (default `'MarkPrice'`).\
+        \ Use a negative offset for stop-sell and buy-if-touched orders.\n\nRequires\
+        \ `ordType`: `'Stop', 'StopLimit', 'MarketIfTouched', 'LimitIfTouched'`.\n\
+        \n#### Simple Quantities\n\nSend a `simpleOrderQty` instead of an `orderQty`\
+        \ to create an order denominated in the underlying currency.\nThis is useful\
+        \ for opening up a position with 1 XBT of exposure without having to calculate\
+        \ how many contracts it is.\n\n#### Rate Limits\n\nSee the [Bulk Order Documentation](#!/Order/Order_newBulk)\
+        \ if you need to place multiple orders at the same time.\nBulk orders require\
+        \ fewer risk checks in the trading engine and thus are ratelimited at **1/10**\
+        \ the normal rate.\n\nYou can also improve your reactivity to market movements\
+        \ while staying under your ratelimit by using the\n[Amend](#!/Order/Order_amend)\
+        \ and [Amend Bulk](#!/Order/Order_amendBulk) endpoints. This allows you to\
+        \ stay\nin the market and avoids the cancel/replace cycle.\n\n#### Tracking\
+        \ Your Orders\n\nIf you want to keep track of order IDs yourself, set a unique\
+        \ `clOrdID` per order.\nThis `clOrdID` will come back as a property on the\
+        \ order and any related executions (including on the WebSocket),\nand can\
+        \ be used to get or cancel the order. Max length is 36 characters.\n"
       operationId: "Order.new"
       parameters:
       - name: "symbol"
         in: "formData"
-        description: "Instrument symbol. e.g. 'XBT24H'."
+        description: "Instrument symbol. e.g. 'XBTUSD'."
         required: true
         type: "string"
       - name: "side"
@@ -1215,8 +1437,8 @@ paths:
         format: "double"
       - name: "displayQty"
         in: "formData"
-        description: "Optional quantity to display in the book. Use 0 for a hidden\
-          \ order."
+        description: "Optional quantity to display in the book. Use 0 for a fully\
+          \ hidden order."
         required: false
         type: "number"
         format: "int32"
@@ -1258,7 +1480,7 @@ paths:
       - name: "pegPriceType"
         in: "formData"
         description: "Optional peg price type. Valid options: LastPeg, MidPricePeg,\
-          \ MarketPeg, PrimaryPeg, TrailingStopPeg, TrailingStopPeg."
+          \ MarketPeg, PrimaryPeg, TrailingStopPeg."
         required: false
         type: "string"
       - name: "type"
@@ -1286,8 +1508,8 @@ paths:
         in: "formData"
         description: "Optional execution instructions. Valid options: ParticipateDoNotInitiate,\
           \ AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed.\
-          \ 'AllOrNone' instruction requires `displayQty` to be 0. 'MarkPrice' or\
-          \ 'LastPrice' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched',\
+          \ 'AllOrNone' instruction requires `displayQty` to be 0. 'MarkPrice', 'IndexPrice'\
+          \ or 'LastPrice' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched',\
           \ and 'LimitIfTouched' orders."
         required: false
         type: "string"
@@ -1468,61 +1690,20 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-  /order/all:
-    delete:
-      tags:
-      - "Order"
-      summary: "Cancels all of your orders."
-      operationId: "Order.cancelAll"
-      parameters:
-      - name: "symbol"
-        in: "formData"
-        description: "Optional symbol. If provided, only cancels orders for that symbol."
-        required: false
-        type: "string"
-      - name: "filter"
-        in: "formData"
-        description: "Optional filter for cancellation. Use to only cancel some orders,\
-          \ e.g. `{\"side\": \"Buy\"}`."
-        required: false
-        type: "string"
-        format: "JSON"
-      - name: "text"
-        in: "formData"
-        description: "Optional cancellation annotation. e.g. 'Spread Exceeded'"
-        required: false
-        type: "string"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            type: "object"
-            properties: {}
-        400:
-          description: "Parameter Error"
-          schema:
-            $ref: "#/definitions/Error"
-        401:
-          description: "Unauthorized"
-          schema:
-            $ref: "#/definitions/Error"
-        404:
-          description: "Not Found"
-          schema:
-            $ref: "#/definitions/Error"
   /order/bulk:
     post:
       tags:
       - "Order"
-      summary: "Create multiple new orders."
+      summary: "Create multiple new orders for the same symbol."
       description: "This endpoint is used for placing bulk orders. Valid order types\
         \ are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit,\
         \ and Pegged.\n\nEach individual order object in the array should have the\
         \ same properties as an individual POST /order call.\n\nThis endpoint is much\
         \ faster for getting many orders into the book at once. Because it reduces\
-        \ load on BitMEX\nsystems, this endpoint is ratelimited at `ceil(0.5 * orders)`.\
-        \ Submitting 10 orders via a bulk order call\nwill only count as 5 requests.\n\
-        \nFor now, only `application/json` is supported on this endpoint.\n"
+        \ load on BitMEX\nsystems, this endpoint is ratelimited at `ceil(0.1 * orders)`.\
+        \ Submitting 10 orders via a bulk order call\nwill only count as 1 request,\
+        \ 15 as 2, 32 as 4, and so on.\n\nFor now, only `application/json` is supported\
+        \ on this endpoint.\n"
       operationId: "Order.newBulk"
       parameters:
       - name: "orders"
@@ -1553,7 +1734,7 @@ paths:
     put:
       tags:
       - "Order"
-      summary: "Amend multiple orders."
+      summary: "Amend multiple orders for the same symbol."
       description: "Similar to POST /amend, but with multiple orders. `application/json`\
         \ only. Ratelimited at 50%."
       operationId: "Order.amendBulk"
@@ -1571,43 +1752,6 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Order"
-        400:
-          description: "Parameter Error"
-          schema:
-            $ref: "#/definitions/Error"
-        401:
-          description: "Unauthorized"
-          schema:
-            $ref: "#/definitions/Error"
-        404:
-          description: "Not Found"
-          schema:
-            $ref: "#/definitions/Error"
-  /order/cancelAllAfter:
-    post:
-      tags:
-      - "Order"
-      summary: "Automatically cancel all your orders after a specified timeout."
-      description: "Useful as a dead-man's switch to ensure your orders are canceled\
-        \ in case of an outage.\nIf called repeatedly, the existing offset will be\
-        \ canceled and a new one will be inserted in its place.\n\nExample usage:\
-        \ call this route at 15s intervals with an offset of 60000 (60s).\nIf this\
-        \ route is not called within 60 seconds, all your orders will be automatically\
-        \ canceled.\n\nThis is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#dead-man-s-switch-auto-cancel-).\n"
-      operationId: "Order.cancelAllAfter"
-      parameters:
-      - name: "timeout"
-        in: "formData"
-        description: "Timeout in ms. Set to 0 to cancel this timer. "
-        required: true
-        type: "number"
-        format: "double"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            type: "object"
-            properties: {}
         400:
           description: "Parameter Error"
           schema:
@@ -1659,6 +1803,85 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+  /order/all:
+    delete:
+      tags:
+      - "Order"
+      summary: "Cancels all of your orders."
+      operationId: "Order.cancelAll"
+      parameters:
+      - name: "symbol"
+        in: "formData"
+        description: "Optional symbol. If provided, only cancels orders for that symbol."
+        required: false
+        type: "string"
+      - name: "filter"
+        in: "formData"
+        description: "Optional filter for cancellation. Use to only cancel some orders,\
+          \ e.g. `{\"side\": \"Buy\"}`."
+        required: false
+        type: "string"
+        format: "JSON"
+      - name: "text"
+        in: "formData"
+        description: "Optional cancellation annotation. e.g. 'Spread Exceeded'"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "object"
+            properties: {}
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+  /order/cancelAllAfter:
+    post:
+      tags:
+      - "Order"
+      summary: "Automatically cancel all your orders after a specified timeout."
+      description: "Useful as a dead-man's switch to ensure your orders are canceled\
+        \ in case of an outage.\nIf called repeatedly, the existing offset will be\
+        \ canceled and a new one will be inserted in its place.\n\nExample usage:\
+        \ call this route at 15s intervals with an offset of 60000 (60s).\nIf this\
+        \ route is not called within 60 seconds, all your orders will be automatically\
+        \ canceled.\n\nThis is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#dead-man-s-switch-auto-cancel-).\n"
+      operationId: "Order.cancelAllAfter"
+      parameters:
+      - name: "timeout"
+        in: "formData"
+        description: "Timeout in ms. Set to 0 to cancel this timer. "
+        required: true
+        type: "number"
+        format: "double"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "object"
+            properties: {}
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
   /orderBook:
     get:
       tags:
@@ -1678,7 +1901,7 @@ paths:
         required: false
         type: "number"
         default: 25.0
-        minimum: 0.0
+        minimum: 0
         format: "int32"
       responses:
         200:
@@ -1699,6 +1922,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
   /orderBook/L2:
     get:
       tags:
@@ -1718,7 +1942,7 @@ paths:
         required: false
         type: "number"
         default: 25.0
-        minimum: 0.0
+        minimum: 0
         format: "int32"
       responses:
         200:
@@ -1739,6 +1963,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
   /position:
     get:
       tags:
@@ -1750,7 +1975,7 @@ paths:
       parameters:
       - name: "filter"
         in: "query"
-        description: "Table filter. For example, send {\"symbol\": \"XBT24H\"}."
+        description: "Table filter. For example, send {\"symbol\": \"XBTUSD\"}."
         required: false
         type: "string"
         format: "JSON"
@@ -1790,9 +2015,8 @@ paths:
       tags:
       - "Position"
       summary: "Enable isolated margin or cross margin per-position."
-      description: "On Speculative (DPE-Enabled) contracts, users can switch isolate\
-        \ margin per-position. This function allows switching margin isolation (aka\
-        \ fixed margin) on and off."
+      description: "Users can switch isolate margin per-position. This function allows\
+        \ switching margin isolation (aka fixed margin) on and off."
       operationId: "Position.isolateMargin"
       parameters:
       - name: "symbol"
@@ -1806,45 +2030,6 @@ paths:
         required: false
         type: "boolean"
         default: true
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            description: "Affected position."
-            $ref: "#/definitions/Position"
-        400:
-          description: "Parameter Error"
-          schema:
-            $ref: "#/definitions/Error"
-        401:
-          description: "Unauthorized"
-          schema:
-            $ref: "#/definitions/Error"
-        404:
-          description: "Not Found"
-          schema:
-            $ref: "#/definitions/Error"
-  /position/leverage:
-    post:
-      tags:
-      - "Position"
-      summary: "Choose leverage for a position."
-      description: "On Speculative (DPE-Enabled) contracts, users can choose an isolated\
-        \ leverage. This will automatically enable isolated margin."
-      operationId: "Position.updateLeverage"
-      parameters:
-      - name: "symbol"
-        in: "formData"
-        description: "Symbol of position to adjust."
-        required: true
-        type: "string"
-      - name: "leverage"
-        in: "formData"
-        description: "Leverage value. Send a number between 0.01 and 100 to enable\
-          \ isolated margin with a fixed leverage. Send 0 to enable cross margin."
-        required: true
-        type: "number"
-        format: "double"
       responses:
         200:
           description: "Request was successful"
@@ -1941,6 +2126,45 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+  /position/leverage:
+    post:
+      tags:
+      - "Position"
+      summary: "Choose leverage for a position."
+      description: "Users can choose an isolated leverage. This will automatically\
+        \ enable isolated margin."
+      operationId: "Position.updateLeverage"
+      parameters:
+      - name: "symbol"
+        in: "formData"
+        description: "Symbol of position to adjust."
+        required: true
+        type: "string"
+      - name: "leverage"
+        in: "formData"
+        description: "Leverage value. Send a number between 0.01 and 100 to enable\
+          \ isolated margin with a fixed leverage. Send 0 to enable cross margin."
+        required: true
+        type: "number"
+        format: "double"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            description: "Affected position."
+            $ref: "#/definitions/Position"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
   /quote:
     get:
       tags:
@@ -1998,13 +2222,13 @@ paths:
         description: "Starting date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       - name: "endTime"
         in: "query"
         description: "Ending date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       responses:
         200:
           description: "Request was successful"
@@ -2024,6 +2248,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
   /quote/bucketed:
     get:
       tags:
@@ -2033,10 +2258,17 @@ paths:
       parameters:
       - name: "binSize"
         in: "query"
-        description: "Time interval to bucket by. Available options: ['1m', '5m',\
-          \ '1h', '1d']."
+        description: "Time interval to bucket by. Available options: [1m,5m,1h,1d]."
         required: false
         type: "string"
+        default: "1m"
+      - name: "partial"
+        in: "query"
+        description: "If true, will send in-progress (incomplete) bins for the current\
+          \ time period."
+        required: false
+        type: "boolean"
+        default: false
       - name: "symbol"
         in: "query"
         description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
@@ -2087,13 +2319,13 @@ paths:
         description: "Starting date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       - name: "endTime"
         in: "query"
         description: "Ending date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       responses:
         200:
           description: "Request was successful"
@@ -2113,6 +2345,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
   /schema:
     get:
       tags:
@@ -2143,6 +2376,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
   /schema/websocketHelp:
     get:
       tags:
@@ -2168,6 +2402,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
   /settlement:
     get:
       tags:
@@ -2225,13 +2460,13 @@ paths:
         description: "Starting date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       - name: "endTime"
         in: "query"
         description: "Ending date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       responses:
         200:
           description: "Request was successful"
@@ -2251,6 +2486,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
   /stats:
     get:
       tags:
@@ -2277,6 +2513,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
   /stats/history:
     get:
       tags:
@@ -2303,6 +2540,34 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
+  /stats/historyUSD:
+    get:
+      tags:
+      - "Stats"
+      summary: "Get a summary of exchange statistics in USD."
+      operationId: "Stats.historyUSD"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/StatsUSD"
+        400:
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      security: []
   /trade:
     get:
       tags:
@@ -2364,13 +2629,13 @@ paths:
         description: "Starting date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       - name: "endTime"
         in: "query"
         description: "Ending date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       responses:
         200:
           description: "Request was successful"
@@ -2390,6 +2655,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
   /trade/bucketed:
     get:
       tags:
@@ -2399,10 +2665,17 @@ paths:
       parameters:
       - name: "binSize"
         in: "query"
-        description: "Time interval to bucket by. Available options: ['1m', '5m',\
-          \ '1h', '1d']."
+        description: "Time interval to bucket by. Available options: [1m,5m,1h,1d]."
         required: false
         type: "string"
+        default: "1m"
+      - name: "partial"
+        in: "query"
+        description: "If true, will send in-progress (incomplete) bins for the current\
+          \ time period."
+        required: false
+        type: "boolean"
+        default: false
       - name: "symbol"
         in: "query"
         description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
@@ -2453,13 +2726,13 @@ paths:
         description: "Starting date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       - name: "endTime"
         in: "query"
         description: "Ending date filter for results."
         required: false
         type: "string"
-        format: "date"
+        format: "date-time"
       responses:
         200:
           description: "Request was successful"
@@ -2479,6 +2752,343 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      security: []
+  /user/depositAddress:
+    get:
+      tags:
+      - "User"
+      summary: "Get a deposit address."
+      operationId: "User.getDepositAddress"
+      parameters:
+      - name: "currency"
+        in: "query"
+        required: false
+        type: "string"
+        default: "XBt"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "string"
+  /user/wallet:
+    get:
+      tags:
+      - "User"
+      summary: "Get your current wallet information."
+      operationId: "User.getWallet"
+      parameters:
+      - name: "currency"
+        in: "query"
+        required: false
+        type: "string"
+        default: "XBt"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/Wallet"
+  /user/walletHistory:
+    get:
+      tags:
+      - "User"
+      summary: "Get a history of all of your wallet transactions (deposits, withdrawals,\
+        \ PNL)."
+      operationId: "User.getWalletHistory"
+      parameters:
+      - name: "currency"
+        in: "query"
+        required: false
+        type: "string"
+        default: "XBt"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Transaction"
+  /user/walletSummary:
+    get:
+      tags:
+      - "User"
+      summary: "Get a summary of all of your wallet transactions (deposits, withdrawals,\
+        \ PNL)."
+      operationId: "User.getWalletSummary"
+      parameters:
+      - name: "currency"
+        in: "query"
+        required: false
+        type: "string"
+        default: "XBt"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Transaction"
+  /user/minWithdrawalFee:
+    get:
+      tags:
+      - "User"
+      summary: "Get the minimum withdrawal fee for a currency."
+      description: "This is changed based on network conditions to ensure timely withdrawals.\
+        \ During network congestion, this may be high. The fee is returned in the\
+        \ same currency."
+      operationId: "User.minWithdrawalFee"
+      parameters:
+      - name: "currency"
+        in: "query"
+        required: false
+        type: "string"
+        default: "XBt"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "object"
+            properties: {}
+      security: []
+  /user/requestWithdrawal:
+    post:
+      tags:
+      - "User"
+      summary: "Request a withdrawal to an external wallet."
+      description: "This will send a confirmation email to the email address on record,\
+        \ unless requested via an API Key with the `withdraw` permission."
+      operationId: "User.requestWithdrawal"
+      parameters:
+      - name: "otpToken"
+        in: "formData"
+        description: "2FA token. Required if 2FA is enabled on your account."
+        required: false
+        type: "string"
+      - name: "currency"
+        in: "formData"
+        description: "Currency you're withdrawing. Options: `XBt`"
+        required: true
+        type: "string"
+        default: "XBt"
+      - name: "amount"
+        in: "formData"
+        description: "Amount of withdrawal currency."
+        required: true
+        type: "number"
+        format: "int64"
+      - name: "address"
+        in: "formData"
+        description: "Destination Address."
+        required: true
+        type: "string"
+      - name: "fee"
+        in: "formData"
+        description: "Network fee for Bitcoin withdrawals. If not specified, a default\
+          \ value will be calculated based on Bitcoin network conditions. You will\
+          \ have a chance to confirm this via email."
+        required: false
+        type: "number"
+        format: "double"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/Transaction"
+  /user/cancelWithdrawal:
+    post:
+      tags:
+      - "User"
+      summary: "Cancel a withdrawal."
+      operationId: "User.cancelWithdrawal"
+      parameters:
+      - name: "token"
+        in: "formData"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/Transaction"
+      security: []
+  /user/confirmWithdrawal:
+    post:
+      tags:
+      - "User"
+      summary: "Confirm a withdrawal."
+      operationId: "User.confirmWithdrawal"
+      parameters:
+      - name: "token"
+        in: "formData"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/Transaction"
+      security: []
+  /user/requestEnableTFA:
+    post:
+      tags:
+      - "User"
+      summary: "Get secret key for setting up two-factor auth."
+      description: "Use /confirmEnableTFA directly for Yubikeys. This fails if TFA\
+        \ is already enabled."
+      operationId: "User.requestEnableTFA"
+      parameters:
+      - name: "type"
+        in: "formData"
+        description: "Two-factor auth type. Supported types: 'GA' (Google Authenticator)"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "boolean"
+  /user/confirmEnableTFA:
+    post:
+      tags:
+      - "User"
+      summary: "Confirm two-factor auth for this account. If using a Yubikey, simply\
+        \ send a token to this endpoint."
+      operationId: "User.confirmEnableTFA"
+      parameters:
+      - name: "type"
+        in: "formData"
+        description: "Two-factor auth type. Supported types: 'GA' (Google Authenticator),\
+          \ 'Yubikey'"
+        required: false
+        type: "string"
+      - name: "token"
+        in: "formData"
+        description: "Token from your selected TFA type."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "boolean"
+  /user/disableTFA:
+    post:
+      tags:
+      - "User"
+      summary: "Disable two-factor auth for this account."
+      operationId: "User.disableTFA"
+      parameters:
+      - name: "type"
+        in: "formData"
+        description: "Two-factor auth type. Supported types: 'GA' (Google Authenticator)"
+        required: false
+        type: "string"
+      - name: "token"
+        in: "formData"
+        description: "Token from your selected TFA type."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "boolean"
+  /user/confirmEmail:
+    post:
+      tags:
+      - "User"
+      summary: "Confirm your email address with a token."
+      operationId: "User.confirm"
+      parameters:
+      - name: "token"
+        in: "formData"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/AccessToken"
+      security: []
+  /user/affiliateStatus:
+    get:
+      tags:
+      - "User"
+      summary: "Get your current affiliate/referral status."
+      operationId: "User.getAffiliateStatus"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/Affiliate"
+  /user/checkReferralCode:
+    get:
+      tags:
+      - "User"
+      summary: "Check if a referral code is valid."
+      description: "If the code is valid, responds with the referral code's discount\
+        \ (e.g. `0.1` for 10%). Otherwise, will return a 404."
+      operationId: "User.checkReferralCode"
+      parameters:
+      - name: "referralCode"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "number"
+            format: "double"
+      security: []
+  /user/logout:
+    post:
+      tags:
+      - "User"
+      summary: "Log out of BitMEX."
+      operationId: "User.logout"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+      security: []
+  /user/logoutAll:
+    post:
+      tags:
+      - "User"
+      summary: "Log all systems out of BitMEX. This will revoke all of your account's\
+        \ access tokens, logging you out on all devices."
+      operationId: "User.logoutAll"
+      parameters: []
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            type: "number"
+            format: "double"
+  /user/preferences:
+    post:
+      tags:
+      - "User"
+      summary: "Save user preferences."
+      operationId: "User.savePreferences"
+      parameters:
+      - name: "prefs"
+        in: "formData"
+        required: true
+        type: "string"
+        format: "JSON"
+      - name: "overwrite"
+        in: "formData"
+        description: "If true, will overwrite all existing preferences."
+        required: false
+        type: "boolean"
+        default: false
+      responses:
+        200:
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/User"
   /user:
     get:
       tags:
@@ -2538,55 +3148,6 @@ paths:
           description: "Request was successful"
           schema:
             $ref: "#/definitions/User"
-  /user/affiliateStatus:
-    get:
-      tags:
-      - "User"
-      summary: "Get your current affiliate/referral status."
-      operationId: "User.getAffiliateStatus"
-      parameters: []
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Affiliate"
-  /user/cancelWithdrawal:
-    post:
-      tags:
-      - "User"
-      summary: "Cancel a withdrawal."
-      operationId: "User.cancelWithdrawal"
-      parameters:
-      - name: "token"
-        in: "formData"
-        required: true
-        type: "string"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            $ref: "#/definitions/Transaction"
-  /user/checkReferralCode:
-    get:
-      tags:
-      - "User"
-      summary: "Check if a referral code is valid."
-      description: "If the code is valid, responds with the referral code's discount\
-        \ (e.g. `0.1` for 10%). Otherwise, will return a 404."
-      operationId: "User.checkReferralCode"
-      parameters:
-      - name: "referralCode"
-        in: "query"
-        required: false
-        type: "string"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            type: "number"
-            format: "double"
   /user/commission:
     get:
       tags:
@@ -2601,125 +3162,6 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/UserCommission"
-  /user/confirmEmail:
-    post:
-      tags:
-      - "User"
-      summary: "Confirm your email address with a token."
-      operationId: "User.confirm"
-      parameters:
-      - name: "token"
-        in: "formData"
-        required: true
-        type: "string"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            $ref: "#/definitions/AccessToken"
-  /user/confirmEnableTFA:
-    post:
-      tags:
-      - "User"
-      summary: "Confirm two-factor auth for this account. If using a Yubikey, simply\
-        \ send a token to this endpoint."
-      operationId: "User.confirmEnableTFA"
-      parameters:
-      - name: "type"
-        in: "formData"
-        description: "Two-factor auth type. Supported types: 'GA' (Google Authenticator),\
-          \ 'Yubikey'"
-        required: false
-        type: "string"
-      - name: "token"
-        in: "formData"
-        description: "Token from your selected TFA type."
-        required: true
-        type: "string"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            type: "boolean"
-  /user/confirmWithdrawal:
-    post:
-      tags:
-      - "User"
-      summary: "Confirm a withdrawal."
-      operationId: "User.confirmWithdrawal"
-      parameters:
-      - name: "token"
-        in: "formData"
-        required: true
-        type: "string"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            $ref: "#/definitions/Transaction"
-  /user/depositAddress:
-    get:
-      tags:
-      - "User"
-      summary: "Get a deposit address."
-      operationId: "User.getDepositAddress"
-      parameters:
-      - name: "currency"
-        in: "query"
-        required: false
-        type: "string"
-        default: "XBt"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            type: "string"
-  /user/disableTFA:
-    post:
-      tags:
-      - "User"
-      summary: "Disable two-factor auth for this account."
-      operationId: "User.disableTFA"
-      parameters:
-      - name: "type"
-        in: "formData"
-        description: "Two-factor auth type. Supported types: 'GA' (Google Authenticator)"
-        required: false
-        type: "string"
-      - name: "token"
-        in: "formData"
-        description: "Token from your selected TFA type."
-        required: true
-        type: "string"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            type: "boolean"
-  /user/logout:
-    post:
-      tags:
-      - "User"
-      summary: "Log out of BitMEX."
-      operationId: "User.logout"
-      parameters: []
-      responses:
-        200:
-          description: "Request was successful"
-  /user/logoutAll:
-    post:
-      tags:
-      - "User"
-      summary: "Log all systems out of BitMEX. This will revoke all of your account's\
-        \ access tokens, logging you out on all devices."
-      operationId: "User.logoutAll"
-      parameters: []
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            type: "number"
-            format: "double"
   /user/margin:
     get:
       tags:
@@ -2738,221 +3180,20 @@ paths:
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Margin"
-  /user/minWithdrawalFee:
-    get:
-      tags:
-      - "User"
-      summary: "Get the minimum withdrawal fee for a currency."
-      description: "This is changed based on network conditions to ensure timely withdrawals.\
-        \ During network congestion, this may be high. The fee is returned in the\
-        \ same currency."
-      operationId: "User.minWithdrawalFee"
-      parameters:
-      - name: "currency"
-        in: "query"
-        required: false
-        type: "string"
-        default: "XBt"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            type: "number"
-            format: "double"
-  /user/preferences:
-    post:
-      tags:
-      - "User"
-      summary: "Save user preferences."
-      operationId: "User.savePreferences"
-      parameters:
-      - name: "prefs"
-        in: "formData"
-        required: true
-        type: "string"
-        format: "JSON"
-      - name: "overwrite"
-        in: "formData"
-        description: "If true, will overwrite all existing preferences."
-        required: false
-        type: "boolean"
-        default: false
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            $ref: "#/definitions/User"
-  /user/requestEnableTFA:
-    post:
-      tags:
-      - "User"
-      summary: "Get secret key for setting up two-factor auth."
-      description: "Use /confirmEnableTFA directly for Yubikeys. This fails if TFA\
-        \ is already enabled."
-      operationId: "User.requestEnableTFA"
-      parameters:
-      - name: "type"
-        in: "formData"
-        description: "Two-factor auth type. Supported types: 'GA' (Google Authenticator)"
-        required: false
-        type: "string"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            type: "boolean"
-  /user/requestWithdrawal:
-    post:
-      tags:
-      - "User"
-      summary: "Request a withdrawal to an external wallet."
-      description: "This will send a confirmation email to the email address on record,\
-        \ unless requested via an API Key with the `withdraw` permission."
-      operationId: "User.requestWithdrawal"
-      parameters:
-      - name: "otpToken"
-        in: "formData"
-        description: "2FA token. Required if 2FA is enabled on your account."
-        required: false
-        type: "string"
-      - name: "currency"
-        in: "formData"
-        description: "Currency you're withdrawing. Options: `XBt`"
-        required: true
-        type: "string"
-        default: "XBt"
-      - name: "amount"
-        in: "formData"
-        description: "Amount of withdrawal currency."
-        required: true
-        type: "number"
-        format: "int64"
-      - name: "address"
-        in: "formData"
-        description: "Destination Address."
-        required: true
-        type: "string"
-      - name: "fee"
-        in: "formData"
-        description: "Network fee for Bitcoin withdrawals. If not specified, a default\
-          \ value will be calculated based on Bitcoin network conditions. You will\
-          \ have a chance to confirm this via email."
-        required: false
-        type: "number"
-        format: "double"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            $ref: "#/definitions/Transaction"
-  /user/wallet:
-    get:
-      tags:
-      - "User"
-      summary: "Get your current wallet information."
-      operationId: "User.getWallet"
-      parameters:
-      - name: "currency"
-        in: "query"
-        required: false
-        type: "string"
-        default: "XBt"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            $ref: "#/definitions/Wallet"
-  /user/walletHistory:
-    get:
-      tags:
-      - "User"
-      summary: "Get a history of all of your wallet transactions (deposits, withdrawals,\
-        \ PNL)."
-      operationId: "User.getWalletHistory"
-      parameters:
-      - name: "currency"
-        in: "query"
-        required: false
-        type: "string"
-        default: "XBt"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Transaction"
-  /user/walletSummary:
-    get:
-      tags:
-      - "User"
-      summary: "Get a summary of all of your wallet transactions (deposits, withdrawals,\
-        \ PNL)."
-      operationId: "User.getWalletSummary"
-      parameters:
-      - name: "currency"
-        in: "query"
-        required: false
-        type: "string"
-        default: "XBt"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Transaction"
+securityDefinitions:
+  apiKey:
+    type: "apiKey"
+    name: "api-key"
+    in: "header"
+  apiSignature:
+    type: "apiKey"
+    name: "api-signature"
+    in: "header"
+  apiNonce:
+    type: "apiKey"
+    name: "api-nonce"
+    in: "header"
 definitions:
-  Chat:
-    type: "object"
-    required:
-    - "date"
-    - "html"
-    - "message"
-    - "user"
-    properties:
-      id:
-        type: "number"
-        format: "int32"
-      date:
-        type: "string"
-        format: "date-time"
-      user:
-        type: "string"
-      message:
-        type: "string"
-      html:
-        type: "string"
-      fromBot:
-        type: "boolean"
-        default: false
-      channelID:
-        type: "number"
-        format: "double"
-  Error:
-    type: "object"
-    properties:
-      error:
-        $ref: "#/definitions/Error_error"
-  ChatChannel:
-    type: "object"
-    required:
-    - "name"
-    properties:
-      id:
-        type: "number"
-        format: "int32"
-      name:
-        type: "string"
-  ConnectedUsers:
-    type: "object"
-    properties:
-      users:
-        type: "number"
-        format: "int32"
-      bots:
-        type: "number"
-        format: "int32"
   Announcement:
     type: "object"
     required:
@@ -2970,6 +3211,18 @@ definitions:
       date:
         type: "string"
         format: "date-time"
+    description: "Public Announcements"
+    example:
+      date: "2000-01-23T04:56:07.000+00:00"
+      link: "link"
+      id: 0.80082819046101150206595775671303272247314453125
+      title: "title"
+      content: "content"
+  Error:
+    type: "object"
+    properties:
+      error:
+        $ref: "#/definitions/Error_error"
   x-any:
     type: "object"
   APIKey:
@@ -3009,6 +3262,79 @@ definitions:
       created:
         type: "string"
         format: "date-time"
+    description: "Persistent API Keys for Developers"
+    example:
+      permissions:
+      - {}
+      - {}
+      created: "2000-01-23T04:56:07.000+00:00"
+      name: "name"
+      cidr: "cidr"
+      id: "id"
+      secret: "secret"
+      nonce: 0.80082819046101150206595775671303272247314453125
+      userId: 6.02745618307040320615897144307382404804229736328125
+      enabled: false
+  Chat:
+    type: "object"
+    required:
+    - "date"
+    - "html"
+    - "message"
+    - "user"
+    properties:
+      id:
+        type: "number"
+        format: "int32"
+      date:
+        type: "string"
+        format: "date-time"
+      user:
+        type: "string"
+      message:
+        type: "string"
+      html:
+        type: "string"
+      fromBot:
+        type: "boolean"
+        default: false
+      channelID:
+        type: "number"
+        format: "double"
+    description: "Trollbox Data"
+    example:
+      date: "2000-01-23T04:56:07.000+00:00"
+      html: "html"
+      id: 0.80082819046101150206595775671303272247314453125
+      message: "message"
+      user: "user"
+      channelID: 6.027456183070403
+      fromBot: false
+  ChatChannel:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      id:
+        type: "number"
+        format: "int32"
+      name:
+        type: "string"
+    example:
+      name: "name"
+      id: 0.80082819046101150206595775671303272247314453125
+  ConnectedUsers:
+    type: "object"
+    properties:
+      users:
+        type: "number"
+        format: "int32"
+      bots:
+        type: "number"
+        format: "int32"
+    example:
+      bots: 6.02745618307040320615897144307382404804229736328125
+      users: 0.80082819046101150206595775671303272247314453125
   Execution:
     type: "object"
     required:
@@ -3133,6 +3459,82 @@ definitions:
       timestamp:
         type: "string"
         format: "date-time"
+    description: "Raw Order and Balance Data"
+    example:
+      symbol: "symbol"
+      triggered: "triggered"
+      clOrdLinkID: "clOrdLinkID"
+      execInst: "execInst"
+      homeNotional: 4.965218492984954
+      pegOffsetValue: 2.027123023002322
+      pegPriceType: "pegPriceType"
+      execID: "execID"
+      contingencyType: "contingencyType"
+      foreignNotional: 5.025004791520295
+      lastMkt: "lastMkt"
+      simpleCumQty: 1.2315135367772556
+      execCost: 7.4577447736837658709418974467553198337554931640625
+      execComm: 1.173074250955943309548956676735542714595794677734375
+      settlCurrency: "settlCurrency"
+      ordRejReason: "ordRejReason"
+      price: 7.061401241503109
+      trdMatchID: "trdMatchID"
+      orderQty: 2.3021358869347654518833223846741020679473876953125
+      currency: "currency"
+      commission: 6.84685269835264
+      text: "text"
+      execType: "execType"
+      timeInForce: "timeInForce"
+      timestamp: "2000-01-23T04:56:07.000+00:00"
+      ordStatus: "ordStatus"
+      side: "side"
+      simpleOrderQty: 5.637376656633329
+      orderID: "orderID"
+      lastPx: 1.4658129805029452
+      leavesQty: 7.3862819483858839220147274318151175975799560546875
+      cumQty: 1.024645700144157789424070870154537260532379150390625
+      tradePublishIndicator: "tradePublishIndicator"
+      displayQty: 9.301444243932575517419536481611430644989013671875
+      simpleLeavesQty: 4.145608029883936
+      clOrdID: "clOrdID"
+      lastQty: 6.02745618307040320615897144307382404804229736328125
+      avgPx: 1.4894159098541704
+      multiLegReportingType: "multiLegReportingType"
+      workingIndicator: true
+      lastLiquidityInd: "lastLiquidityInd"
+      transactTime: "2000-01-23T04:56:07.000+00:00"
+      exDestination: "exDestination"
+      account: 0.80082819046101150206595775671303272247314453125
+      underlyingLastPx: 5.962133916683182
+      stopPx: 3.616076749251911
+      ordType: "ordType"
+  Funding:
+    type: "object"
+    required:
+    - "symbol"
+    - "timestamp"
+    properties:
+      timestamp:
+        type: "string"
+        format: "date-time"
+      symbol:
+        type: "string"
+      fundingInterval:
+        type: "string"
+        format: "date-time"
+      fundingRate:
+        type: "number"
+        format: "double"
+      fundingRateDaily:
+        type: "number"
+        format: "double"
+    description: "Swap Funding History"
+    example:
+      symbol: "symbol"
+      fundingRateDaily: 6.027456183070403
+      fundingInterval: "2000-01-23T04:56:07.000+00:00"
+      timestamp: "2000-01-23T04:56:07.000+00:00"
+      fundingRate: 0.8008281904610115
   Instrument:
     type: "object"
     required:
@@ -3400,6 +3802,104 @@ definitions:
       timestamp:
         type: "string"
         format: "date-time"
+    description: "Tradeable Contracts, Indices, and History"
+    example:
+      totalVolume: 6.438423552598546706349225132726132869720458984375
+      symbol: "symbol"
+      capped: true
+      vwap: 6.704019297950036
+      closingTimestamp: "2000-01-23T04:56:07.000+00:00"
+      typ: "typ"
+      inverseLeg: "inverseLeg"
+      reference: "reference"
+      deleverage: true
+      prevTotalTurnover: 1.2846590061165319429647979632136411964893341064453125
+      riskLimit: 4.1456080298839363962315474054776132106781005859375
+      fundingBaseSymbol: "fundingBaseSymbol"
+      prevPrice24h: 5.944895607614016
+      limit: 1.2315135367772556
+      highPrice: 3.353193347011243
+      fairMethod: "fairMethod"
+      taxed: true
+      state: "state"
+      expiry: "2000-01-23T04:56:07.000+00:00"
+      fundingPremiumSymbol: "fundingPremiumSymbol"
+      publishInterval: "2000-01-23T04:56:07.000+00:00"
+      calcInterval: "2000-01-23T04:56:07.000+00:00"
+      lastChangePcnt: 7.058770351582356
+      publishTime: "2000-01-23T04:56:07.000+00:00"
+      askPrice: 4.652396432933246
+      maintMargin: 2.027123023002322
+      takerFee: 1.4894159098541704
+      multiplier: 5.63737665663332876420099637471139430999755859375
+      fairBasis: 3.2588565619047607
+      volume24h: 6.96511769763884558415156789124011993408203125
+      indicativeTaxRate: 6.628464275087742
+      settlementFee: 6.84685269835264
+      totalTurnover: 2.884162126668780246063761296682059764862060546875
+      turnover24h: 6.87805222012787620400331434211693704128265380859375
+      underlying: "underlying"
+      quoteToSettleMultiplier: 9.301444243932575517419536481611430644989013671875
+      fairPrice: 4.078845849666752
+      bidPrice: 6.519180951018382
+      fundingQuoteSymbol: "fundingQuoteSymbol"
+      quoteCurrency: "quoteCurrency"
+      volume: 3.557195227068097320710649000830017030239105224609375
+      impactMidPrice: 7.740351818741173
+      indicativeSettlePrice: 4.258773108174356
+      sellLeg: "sellLeg"
+      settledPrice: 1.041444916118296
+      relistInterval: "2000-01-23T04:56:07.000+00:00"
+      maxOrderQty: 0.80082819046101150206595775671303272247314453125
+      prevClosePrice: 5.025004791520295
+      maxPrice: 6.027456183070403
+      underlyingToPositionMultiplier: 2.3021358869347654518833223846741020679473876953125
+      hasLiquidity: true
+      openInterest: 3.05761002410493443193217899533919990062713623046875
+      riskStep: 7.3862819483858839220147274318151175975799560546875
+      settle: "2000-01-23T04:56:07.000+00:00"
+      isQuanto: true
+      buyLeg: "buyLeg"
+      rootSymbol: "rootSymbol"
+      tickSize: 5.962133916683182
+      markMethod: "markMethod"
+      markPrice: 0.2025324113236393
+      underlyingSymbol: "underlyingSymbol"
+      fundingTimestamp: "2000-01-23T04:56:07.000+00:00"
+      settlCurrency: "settlCurrency"
+      makerFee: 1.0246457001441578
+      lowPrice: 3.0937452626664474
+      underlyingToSettleMultiplier: 7.061401241503109105224211816675961017608642578125
+      sessionInterval: "2000-01-23T04:56:07.000+00:00"
+      fundingInterval: "2000-01-23T04:56:07.000+00:00"
+      listing: "2000-01-23T04:56:07.000+00:00"
+      indicativeFundingRate: 4.965218492984954
+      bankruptLimitDownPrice: 6.683562403749608
+      turnover: 6.77832496304801335185175048536621034145355224609375
+      positionCurrency: "positionCurrency"
+      timestamp: "2000-01-23T04:56:07.000+00:00"
+      impactAskPrice: 3.0205796992916243
+      referenceSymbol: "referenceSymbol"
+      limitDownPrice: 9.965781217890562
+      lastTickDirection: "lastTickDirection"
+      openValue: 7.04836565559697003635619694250635802745819091796875
+      isInverse: true
+      lotSize: 1.46581298050294517310021547018550336360931396484375
+      rebalanceTimestamp: "2000-01-23T04:56:07.000+00:00"
+      openingTimestamp: "2000-01-23T04:56:07.000+00:00"
+      fairBasisRate: 5.533258397034986
+      lastPriceProtected: 0.8851374739011653
+      midPrice: 0.10263654006109402
+      insuranceFee: 7.457744773683766
+      impactBidPrice: 8.969578798196912
+      prevTotalVolume: 9.0183481860707832566959041287191212177276611328125
+      initMargin: 3.616076749251911
+      limitUpPrice: 9.369310271410669
+      bankruptLimitUpPrice: 8.762042012749001
+      front: "2000-01-23T04:56:07.000+00:00"
+      rebalanceInterval: "2000-01-23T04:56:07.000+00:00"
+      fundingRate: 1.1730742509559433
+      lastPrice: 7.143538047012306
   InstrumentInterval:
     type: "object"
     required:
@@ -3414,6 +3914,44 @@ definitions:
         type: "array"
         items:
           type: "string"
+    example:
+      intervals:
+      - "intervals"
+      - "intervals"
+      symbols:
+      - "symbols"
+      - "symbols"
+  IndexComposite:
+    type: "object"
+    required:
+    - "timestamp"
+    properties:
+      timestamp:
+        type: "string"
+        format: "date-time"
+      symbol:
+        type: "string"
+      indexSymbol:
+        type: "string"
+      reference:
+        type: "string"
+      lastPrice:
+        type: "number"
+        format: "double"
+      weight:
+        type: "number"
+        format: "double"
+      logged:
+        type: "string"
+        format: "date-time"
+    example:
+      reference: "reference"
+      symbol: "symbol"
+      indexSymbol: "indexSymbol"
+      logged: "2000-01-23T04:56:07.000+00:00"
+      weight: 6.027456183070403
+      timestamp: "2000-01-23T04:56:07.000+00:00"
+      lastPrice: 0.8008281904610115
   Insurance:
     type: "object"
     required:
@@ -3428,6 +3966,11 @@ definitions:
       walletBalance:
         type: "number"
         format: "int64"
+    description: "Insurance Fund Data"
+    example:
+      walletBalance: 0.80082819046101150206595775671303272247314453125
+      currency: "currency"
+      timestamp: "2000-01-23T04:56:07.000+00:00"
   Leaderboard:
     type: "object"
     required:
@@ -3442,6 +3985,12 @@ definitions:
       profit:
         type: "number"
         format: "double"
+    description: "Information on Top Users"
+    example:
+      isMe: true
+      name: "name"
+      isRealName: true
+      profit: 0.8008281904610115
   Liquidation:
     type: "object"
     required:
@@ -3460,6 +4009,63 @@ definitions:
       leavesQty:
         type: "number"
         format: "int64"
+    description: "Active Liquidations"
+    example:
+      symbol: "symbol"
+      side: "side"
+      orderID: "orderID"
+      price: 0.8008281904610115
+      leavesQty: 6.02745618307040320615897144307382404804229736328125
+  Notification:
+    type: "object"
+    required:
+    - "body"
+    - "date"
+    - "title"
+    - "ttl"
+    properties:
+      id:
+        type: "number"
+        format: "int32"
+      date:
+        type: "string"
+        format: "date-time"
+      title:
+        type: "string"
+      body:
+        type: "string"
+      ttl:
+        type: "number"
+        format: "int32"
+      type:
+        type: "string"
+        enum:
+        - "success"
+        - "error"
+        - "info"
+      closable:
+        type: "boolean"
+        default: true
+      persist:
+        type: "boolean"
+        default: true
+      waitForVisibility:
+        type: "boolean"
+        default: true
+      sound:
+        type: "string"
+    description: "Account Notifications"
+    example:
+      date: "2000-01-23T04:56:07.000+00:00"
+      waitForVisibility: true
+      closable: true
+      sound: "sound"
+      id: 0.80082819046101150206595775671303272247314453125
+      persist: true
+      title: "title"
+      body: "body"
+      type: "success"
+      ttl: 6.02745618307040320615897144307382404804229736328125
   Order:
     type: "object"
     required:
@@ -3546,6 +4152,41 @@ definitions:
       timestamp:
         type: "string"
         format: "date-time"
+    description: "Placement, Cancellation, Amending, and History"
+    example:
+      symbol: "symbol"
+      triggered: "triggered"
+      clOrdLinkID: "clOrdLinkID"
+      execInst: "execInst"
+      pegOffsetValue: 7.061401241503109
+      pegPriceType: "pegPriceType"
+      contingencyType: "contingencyType"
+      simpleCumQty: 2.027123023002322
+      settlCurrency: "settlCurrency"
+      ordRejReason: "ordRejReason"
+      price: 5.962133916683182
+      orderQty: 1.46581298050294517310021547018550336360931396484375
+      currency: "currency"
+      text: "text"
+      timeInForce: "timeInForce"
+      timestamp: "2000-01-23T04:56:07.000+00:00"
+      ordStatus: "ordStatus"
+      side: "side"
+      simpleOrderQty: 6.027456183070403
+      orderID: "orderID"
+      leavesQty: 3.61607674925191080461672754609026014804840087890625
+      cumQty: 4.1456080298839363962315474054776132106781005859375
+      displayQty: 5.63737665663332876420099637471139430999755859375
+      simpleLeavesQty: 9.301444243932576
+      clOrdID: "clOrdID"
+      avgPx: 7.386281948385884
+      multiLegReportingType: "multiLegReportingType"
+      workingIndicator: true
+      transactTime: "2000-01-23T04:56:07.000+00:00"
+      exDestination: "exDestination"
+      account: 0.80082819046101150206595775671303272247314453125
+      stopPx: 2.3021358869347655
+      ordType: "ordType"
   OrderBook:
     type: "object"
     required:
@@ -3572,6 +4213,15 @@ definitions:
       timestamp:
         type: "string"
         format: "date-time"
+    description: "Level 2 Book Data"
+    example:
+      symbol: "symbol"
+      askPrice: 5.962133916683182
+      level: 0.80082819046101150206595775671303272247314453125
+      bidSize: 6.02745618307040320615897144307382404804229736328125
+      bidPrice: 1.4658129805029452
+      askSize: 5.63737665663332876420099637471139430999755859375
+      timestamp: "2000-01-23T04:56:07.000+00:00"
   OrderBookL2:
     type: "object"
     required:
@@ -3592,6 +4242,12 @@ definitions:
       price:
         type: "number"
         format: "double"
+    example:
+      symbol: "symbol"
+      side: "side"
+      size: 6.02745618307040320615897144307382404804229736328125
+      price: 1.4658129805029452
+      id: 0.80082819046101150206595775671303272247314453125
   Position:
     type: "object"
     required:
@@ -3889,6 +4545,99 @@ definitions:
       lastValue:
         type: "number"
         format: "int64"
+    description: "Summary of Open and Closed Positions"
+    example:
+      symbol: "symbol"
+      lastValue: 5.2991435602753593769875806174241006374359130859375
+      breakEvenPrice: 1.8268702177058116
+      avgCostPrice: 8.863729185622827
+      posLoss: 3.05761002410493443193217899533919990062713623046875
+      openOrderSellQty: 1.173074250955943309548956676735542714595794677734375
+      avgEntryPrice: 9.254183946267839
+      taxBase: 5.5073869641798811613853104063309729099273681640625
+      foreignNotional: 6.519180951018382
+      execComm: 3.557195227068097320710649000830017030239105224609375
+      riskLimit: 5.63737665663332876420099637471139430999755859375
+      prevUnrealisedPnl: 2.027123023002321833274663731572218239307403564453125
+      longBankrupt: 0.519900201872498524124921459588222205638885498046875
+      marginCallPrice: 3.502657762086401
+      unrealisedCost: 6.87805222012787620400331434211693704128265380859375
+      posComm: 3.02057969929162428712743349024094641208648681640625
+      posMaint: 5.5332583970349862312332334113307297229766845703125
+      simplePnlPcnt: 4.573936264232251
+      execSellCost: 8.7620420127490010742121739895083010196685791015625
+      realisedCost: 6.77832496304801335185175048536621034145355224609375
+      posInit: 7.7403518187411730622216055053286254405975341796875
+      grossExecCost: 3.35319334701124294184637619764544069766998291015625
+      posAllowance: 3.258856561904760695824734284542500972747802734375
+      targetExcessMargin: 1.0414449161182959269211778519093059003353118896484375
+      shortBankrupt: 7.93350688173715123951978966942988336086273193359375
+      indicativeTax: 6.07389808578115175663469926803372800350189208984375
+      maintMargin: 6.6284642750877420525057459599338471889495849609375
+      riskValue: 0.885137473901165261480628032586537301540374755859375
+      execBuyCost: 9.3693102714106686335071572102606296539306640625
+      grossOpenPremium: 6.70401929795003592715829654480330646038055419921875
+      currentCost: 1.2846590061165319429647979632136411964893341064453125
+      indicativeTaxRate: 4.86315908102884
+      underlying: "underlying"
+      quoteCurrency: "quoteCurrency"
+      initMarginReq: 1.4658129805029452
+      isOpen: true
+      posCross: 8.9695787981969115065794539987109601497650146484375
+      currentTimestamp: "2000-01-23T04:56:07.000+00:00"
+      simpleValue: 8.28965939814297
+      prevClosePrice: 4.145608029883936
+      unrealisedPnlPcnt: 3.901545264248647
+      simpleCost: 1.7325933120207193
+      execQty: 9.0183481860707832566959041287191212177276611328125
+      taxableMargin: 4.078845849666752343409825698472559452056884765625
+      openingCost: 1.231513536777255612975068288506008684635162353515625
+      realisedGrossPnl: 7.26052126480210358039357743109576404094696044921875
+      leverage: 2.3021358869347655
+      posState: "posState"
+      openOrderSellPremium: 5.02500479152029466689555192715488374233245849609375
+      simpleQty: 2.9409642974827896
+      openingQty: 7.3862819483858839220147274318151175975799560546875
+      homeNotional: 7.058770351582356
+      liquidationPrice: 9.183123594773994
+      openOrderBuyQty: 1.489415909854170383397331534069962799549102783203125
+      unrealisedPnl: 4.4596050349586793259959449642337858676910400390625
+      execCost: 6.438423552598546706349225132726132869720458984375
+      unrealisedGrossPnl: 9.7029638000235660655334868351928889751434326171875
+      markPrice: 3.0937452626664474
+      posMargin: 7.04836565559697003635619694250635802745819091796875
+      unrealisedTax: 8.2516257489237574418439180590212345123291015625
+      crossMargin: true
+      deleveragePercentile: 7.061401241503109
+      openOrderBuyCost: 6.8468526983526398765889098285697400569915771484375
+      posCost: 0.10263654006109401706225980888120830059051513671875
+      currency: "currency"
+      commission: 6.027456183070403
+      sessionMargin: 4.258773108174356281097061582840979099273681640625
+      maintMarginReq: 5.962133916683182
+      bankruptPrice: 8.761432466225475
+      openOrderSellCost: 4.9652184929849543237878606305457651615142822265625
+      markValue: 7.14353804701230643559028976596891880035400390625
+      timestamp: "2000-01-23T04:56:07.000+00:00"
+      realisedPnl: 0.8774076871421565559927557842456735670566558837890625
+      varMargin: 4.67894798900584873990737833082675933837890625
+      realisedTax: 9.132027271330688478201409452594816684722900390625
+      rebalancedPnl: 9.301444243932575517419536481611430644989013671875
+      openOrderBuyPremium: 7.4577447736837658709418974467553198337554931640625
+      posCost2: 4.6523964329332461176136348512955009937286376953125
+      openingTimestamp: "2000-01-23T04:56:07.000+00:00"
+      currentQty: 6.96511769763884558415156789124011993408203125
+      currentComm: 2.884162126668780246063761296682059764862060546875
+      execSellQty: 6.683562403749608193948006373830139636993408203125
+      grossOpenCost: 5.94489560761401580890606055618263781070709228515625
+      prevRealisedPnl: 3.61607674925191080461672754609026014804840087890625
+      execBuyQty: 9.965781217890562260208753286860883235931396484375
+      initMargin: 0.202532411323639305322785730822943150997161865234375
+      unrealisedRoePcnt: 0.43431398824148815
+      simplePnl: 6.623518433804886
+      account: 0.80082819046101150206595775671303272247314453125
+      openingComm: 1.024645700144157789424070870154537260532379150390625
+      lastPrice: 0.4182561061793122
   Quote:
     type: "object"
     required:
@@ -3912,6 +4661,14 @@ definitions:
       askSize:
         type: "number"
         format: "int64"
+    description: "Best Bid/Offer Snapshots & Historical Bins"
+    example:
+      symbol: "symbol"
+      askPrice: 1.4658129805029452
+      bidSize: 0.80082819046101150206595775671303272247314453125
+      bidPrice: 6.027456183070403
+      askSize: 5.962133916683182377482808078639209270477294921875
+      timestamp: "2000-01-23T04:56:07.000+00:00"
   Settlement:
     type: "object"
     required:
@@ -3937,26 +4694,15 @@ definitions:
       taxRate:
         type: "number"
         format: "double"
-  Funding:
-    type: "object"
-    required:
-    - "symbol"
-    - "timestamp"
-    properties:
-      timestamp:
-        type: "string"
-        format: "date-time"
-      symbol:
-        type: "string"
-      fundingInterval:
-        type: "string"
-        format: "date-time"
-      fundingRate:
-        type: "number"
-        format: "double"
-      fundingRateDaily:
-        type: "number"
-        format: "double"
+    description: "Historical Settlement Data"
+    example:
+      settlementType: "settlementType"
+      symbol: "symbol"
+      taxRate: 5.962133916683182
+      settledPrice: 0.8008281904610115
+      bankrupt: 6.02745618307040320615897144307382404804229736328125
+      timestamp: "2000-01-23T04:56:07.000+00:00"
+      taxBase: 1.46581298050294517310021547018550336360931396484375
   Stats:
     type: "object"
     required:
@@ -3978,6 +4724,14 @@ definitions:
       openValue:
         type: "number"
         format: "int64"
+    description: "Exchange Statistics"
+    example:
+      openInterest: 1.46581298050294517310021547018550336360931396484375
+      openValue: 5.962133916683182377482808078639209270477294921875
+      volume24h: 0.80082819046101150206595775671303272247314453125
+      currency: "currency"
+      turnover24h: 6.02745618307040320615897144307382404804229736328125
+      rootSymbol: "rootSymbol"
   StatsHistory:
     type: "object"
     required:
@@ -3997,6 +4751,40 @@ definitions:
       turnover:
         type: "number"
         format: "int64"
+    example:
+      date: "2000-01-23T04:56:07.000+00:00"
+      volume: 0.80082819046101150206595775671303272247314453125
+      currency: "currency"
+      turnover: 6.02745618307040320615897144307382404804229736328125
+      rootSymbol: "rootSymbol"
+  StatsUSD:
+    type: "object"
+    required:
+    - "rootSymbol"
+    properties:
+      rootSymbol:
+        type: "string"
+      currency:
+        type: "string"
+      turnover24h:
+        type: "number"
+        format: "int64"
+      turnover30d:
+        type: "number"
+        format: "int64"
+      turnover365d:
+        type: "number"
+        format: "int64"
+      turnover:
+        type: "number"
+        format: "int64"
+    example:
+      turnover30d: 6.02745618307040320615897144307382404804229736328125
+      turnover365d: 1.46581298050294517310021547018550336360931396484375
+      currency: "currency"
+      turnover24h: 0.80082819046101150206595775671303272247314453125
+      turnover: 5.962133916683182377482808078639209270477294921875
+      rootSymbol: "rootSymbol"
   Trade:
     type: "object"
     required:
@@ -4030,6 +4818,18 @@ definitions:
       foreignNotional:
         type: "number"
         format: "double"
+    description: "Individual & Bucketed Trades"
+    example:
+      foreignNotional: 5.637376656633329
+      symbol: "symbol"
+      side: "side"
+      tickDirection: "tickDirection"
+      size: 0.80082819046101150206595775671303272247314453125
+      price: 6.027456183070403
+      grossValue: 1.46581298050294517310021547018550336360931396484375
+      trdMatchID: "trdMatchID"
+      homeNotional: 5.962133916683182
+      timestamp: "2000-01-23T04:56:07.000+00:00"
   TradeBin:
     type: "object"
     required:
@@ -4074,6 +4874,20 @@ definitions:
       foreignNotional:
         type: "number"
         format: "double"
+    example:
+      symbol: "symbol"
+      vwap: 7.061401241503109
+      trades: 5.63737665663332876420099637471139430999755859375
+      homeNotional: 2.027123023002322
+      volume: 2.3021358869347654518833223846741020679473876953125
+      foreignNotional: 4.145608029883936
+      high: 6.027456183070403
+      low: 1.4658129805029452
+      lastSize: 9.301444243932575517419536481611430644989013671875
+      close: 5.962133916683182
+      turnover: 3.61607674925191080461672754609026014804840087890625
+      open: 0.8008281904610115
+      timestamp: "2000-01-23T04:56:07.000+00:00"
   Wallet:
     type: "object"
     required:
@@ -4091,6 +4905,12 @@ definitions:
       prevWithdrawn:
         type: "number"
         format: "int64"
+      prevTransferIn:
+        type: "number"
+        format: "int64"
+      prevTransferOut:
+        type: "number"
+        format: "int64"
       prevAmount:
         type: "number"
         format: "int64"
@@ -4103,6 +4923,12 @@ definitions:
       deltaWithdrawn:
         type: "number"
         format: "int64"
+      deltaTransferIn:
+        type: "number"
+        format: "int64"
+      deltaTransferOut:
+        type: "number"
+        format: "int64"
       deltaAmount:
         type: "number"
         format: "int64"
@@ -4110,6 +4936,12 @@ definitions:
         type: "number"
         format: "int64"
       withdrawn:
+        type: "number"
+        format: "int64"
+      transferIn:
+        type: "number"
+        format: "int64"
+      transferOut:
         type: "number"
         format: "int64"
       amount:
@@ -4129,10 +4961,40 @@ definitions:
         format: "date-time"
       addr:
         type: "string"
+      script:
+        type: "string"
       withdrawalLock:
         type: "array"
         items:
-          $ref: "#/definitions/x-any"
+          type: "string"
+    example:
+      deposited: 7.3862819483858839220147274318151175975799560546875
+      withdrawn: 1.231513536777255612975068288506008684635162353515625
+      deltaDeposited: 7.061401241503109105224211816675961017608642578125
+      prevWithdrawn: 1.46581298050294517310021547018550336360931396484375
+      deltaWithdrawn: 9.301444243932575517419536481611430644989013671875
+      currency: "currency"
+      prevAmount: 2.3021358869347654518833223846741020679473876953125
+      withdrawalLock:
+      - "withdrawalLock"
+      - "withdrawalLock"
+      addr: "addr"
+      prevTimestamp: "2000-01-23T04:56:07.000+00:00"
+      timestamp: "2000-01-23T04:56:07.000+00:00"
+      transferOut: 1.489415909854170383397331534069962799549102783203125
+      deltaAmount: 4.1456080298839363962315474054776132106781005859375
+      amount: 6.8468526983526398765889098285697400569915771484375
+      pendingDebit: 1.173074250955943309548956676735542714595794677734375
+      confirmedDebit: 4.9652184929849543237878606305457651615142822265625
+      pendingCredit: 7.4577447736837658709418974467553198337554931640625
+      script: "script"
+      prevTransferOut: 5.63737665663332876420099637471139430999755859375
+      deltaTransferOut: 2.027123023002321833274663731572218239307403564453125
+      deltaTransferIn: 3.61607674925191080461672754609026014804840087890625
+      transferIn: 1.024645700144157789424070870154537260532379150390625
+      prevDeposited: 6.02745618307040320615897144307382404804229736328125
+      prevTransferIn: 5.962133916683182377482808078639209270477294921875
+      account: 0.80082819046101150206595775671303272247314453125
   Transaction:
     type: "object"
     required:
@@ -4168,6 +5030,19 @@ definitions:
       timestamp:
         type: "string"
         format: "date-time"
+    example:
+      amount: 6.02745618307040320615897144307382404804229736328125
+      address: "address"
+      transactType: "transactType"
+      tx: "tx"
+      transactID: "transactID"
+      fee: 1.46581298050294517310021547018550336360931396484375
+      transactTime: "2000-01-23T04:56:07.000+00:00"
+      currency: "currency"
+      text: "text"
+      account: 0.80082819046101150206595775671303272247314453125
+      transactStatus: "transactStatus"
+      timestamp: "2000-01-23T04:56:07.000+00:00"
   AccessToken:
     type: "object"
     required:
@@ -4186,6 +5061,11 @@ definitions:
       userId:
         type: "number"
         format: "double"
+    example:
+      created: "2000-01-23T04:56:07.000+00:00"
+      id: "id"
+      ttl: 0.8008281904610115
+      userId: 6.027456183070403
   Affiliate:
     type: "object"
     required:
@@ -4233,6 +5113,25 @@ definitions:
       timestamp:
         type: "string"
         format: "date-time"
+      referrerAccount:
+        type: "number"
+        format: "double"
+    example:
+      execTurnover: 5.63737665663332876420099637471139430999755859375
+      totalTurnover: 9.301444243932575517419536481611430644989013671875
+      referrerAccount: 7.386281948385884
+      execComm: 2.3021358869347654518833223846741020679473876953125
+      totalReferrals: 7.061401241503109105224211816675961017608642578125
+      currency: "currency"
+      pendingPayout: 4.1456080298839363962315474054776132106781005859375
+      prevPayout: 6.02745618307040320615897144307382404804229736328125
+      prevComm: 5.962133916683182377482808078639209270477294921875
+      prevTimestamp: "2000-01-23T04:56:07.000+00:00"
+      account: 0.80082819046101150206595775671303272247314453125
+      prevTurnover: 1.46581298050294517310021547018550336360931396484375
+      totalComm: 3.61607674925191080461672754609026014804840087890625
+      payoutPcnt: 2.027123023002322
+      timestamp: "2000-01-23T04:56:07.000+00:00"
   User:
     type: "object"
     required:
@@ -4274,6 +5173,57 @@ definitions:
       country:
         type: "string"
         maxLength: 3
+    description: "Account Operations"
+    example:
+      country: "country"
+      firstname: "firstname"
+      preferences:
+        hideNotifications:
+        - "hideNotifications"
+        - "hideNotifications"
+        tickerGroup: "tickerGroup"
+        animationsEnabled: true
+        alertOnLiquidations: true
+        locale: "en-US"
+        hideConfirmDialogs:
+        - "hideConfirmDialogs"
+        - "hideConfirmDialogs"
+        disableEmails:
+        - "disableEmails"
+        - "disableEmails"
+        sounds:
+        - "sounds"
+        - "sounds"
+        colorTheme: "colorTheme"
+        currency: "currency"
+        hideNameFromLeaderboard: true
+        tradeLayout: "tradeLayout"
+        strictTimeout: true
+        orderBookBinning: "{}"
+        debug: true
+        strictIPCheck: false
+        msgsSeen:
+        - "msgsSeen"
+        - "msgsSeen"
+        orderControlsPlusMinus: true
+        hideConnectionModal: true
+        tickerPinned: true
+        hideFromLeaderboard: false
+        announcementsLastSeen: "2000-01-23T04:56:07.000+00:00"
+        orderBookType: "orderBookType"
+        orderClearImmediate: false
+        chatChannelID: 1.4658129805029452
+      created: "2000-01-23T04:56:07.000+00:00"
+      ownerId: 6.02745618307040320615897144307382404804229736328125
+      affiliateID: "affiliateID"
+      lastname: "lastname"
+      lastUpdated: "2000-01-23T04:56:07.000+00:00"
+      phone: "phone"
+      TFAEnabled: "TFAEnabled"
+      id: 0.80082819046101150206595775671303272247314453125
+      email: "email"
+      pgpPubKey: "pgpPubKey"
+      username: "username"
   UserCommission:
     type: "object"
     properties:
@@ -4289,6 +5239,11 @@ definitions:
       maxFee:
         type: "number"
         format: "double"
+    example:
+      takerFee: 6.027456183070403
+      makerFee: 0.8008281904610115
+      settlementFee: 1.4658129805029452
+      maxFee: 5.962133916683182
   Margin:
     type: "object"
     required:
@@ -4419,9 +5374,53 @@ definitions:
         type: "number"
         format: "double"
         default: 0.0
+    example:
+      grossMarkValue: 1.231513536777255612975068288506008684635162353515625
+      marginUsedPcnt: 2.8841621266687802
+      marginLeverage: 1.284659006116532
+      marginBalancePcnt: 6.965117697638846
+      unrealisedPnl: 9.3693102714106686335071572102606296539306640625
+      riskLimit: 6.02745618307040320615897144307382404804229736328125
+      prevUnrealisedPnl: 9.301444243932575517419536481611430644989013671875
+      walletBalance: 6.438423552598546706349225132726132869720458984375
+      grossLastValue: 3.35319334701124294184637619764544069766998291015625
+      action: "action"
+      currency: "currency"
+      commission: 3.0937452626664474
+      state: "state"
+      sessionMargin: 1.173074250955943309548956676735542714595794677734375
+      marginBalance: 3.557195227068097320710649000830017030239105224609375
+      timestamp: "2000-01-23T04:56:07.000+00:00"
+      grossExecCost: 7.3862819483858839220147274318151175975799560546875
+      targetExcessMargin: 4.9652184929849543237878606305457651615142822265625
+      realisedPnl: 9.965781217890562260208753286860883235931396484375
+      varMargin: 5.02500479152029466689555192715488374233245849609375
+      indicativeTax: 6.683562403749608193948006373830139636993408203125
+      amount: 1.46581298050294517310021547018550336360931396484375
+      maintMargin: 7.4577447736837658709418974467553198337554931640625
+      pendingDebit: 5.63737665663332876420099637471139430999755859375
+      riskValue: 1.024645700144157789424070870154537260532379150390625
+      confirmedDebit: 2.3021358869347654518833223846741020679473876953125
+      grossComm: 3.61607674925191080461672754609026014804840087890625
+      grossOpenPremium: 4.1456080298839363962315474054776132106781005859375
+      excessMarginPcnt: 6.878052220127876
+      withdrawableMargin: 6.70401929795003592715829654480330646038055419921875
+      pendingCredit: 5.962133916683182377482808078639209270477294921875
+      grossOpenCost: 2.027123023002321833274663731572218239307403564453125
+      prevState: "prevState"
+      prevRealisedPnl: 7.061401241503109105224211816675961017608642578125
+      excessMargin: 6.77832496304801335185175048536621034145355224609375
+      unrealisedProfit: 8.7620420127490010742121739895083010196685791015625
+      initMargin: 6.8468526983526398765889098285697400569915771484375
+      syntheticMargin: 9.0183481860707832566959041287191212177276611328125
+      taxableMargin: 1.489415909854170383397331534069962799549102783203125
+      account: 0.80082819046101150206595775671303272247314453125
+      availableMargin: 5.94489560761401580890606055618263781070709228515625
   UserPreferences:
     type: "object"
     properties:
+      alertOnLiquidations:
+        type: "boolean"
       animationsEnabled:
         type: "boolean"
       announcementsLastSeen:
@@ -4464,9 +5463,13 @@ definitions:
         items:
           type: "string"
       orderBookBinning:
-        $ref: "#/definitions/x-any"
+        type: "object"
+        properties: {}
       orderBookType:
         type: "string"
+      orderClearImmediate:
+        type: "boolean"
+        default: false
       orderControlsPlusMinus:
         type: "boolean"
       sounds:
@@ -4485,10 +5488,48 @@ definitions:
         type: "boolean"
       tradeLayout:
         type: "string"
+    example:
+      hideNotifications:
+      - "hideNotifications"
+      - "hideNotifications"
+      tickerGroup: "tickerGroup"
+      animationsEnabled: true
+      alertOnLiquidations: true
+      locale: "en-US"
+      hideConfirmDialogs:
+      - "hideConfirmDialogs"
+      - "hideConfirmDialogs"
+      disableEmails:
+      - "disableEmails"
+      - "disableEmails"
+      sounds:
+      - "sounds"
+      - "sounds"
+      colorTheme: "colorTheme"
+      currency: "currency"
+      hideNameFromLeaderboard: true
+      tradeLayout: "tradeLayout"
+      strictTimeout: true
+      orderBookBinning: "{}"
+      debug: true
+      strictIPCheck: false
+      msgsSeen:
+      - "msgsSeen"
+      - "msgsSeen"
+      orderControlsPlusMinus: true
+      hideConnectionModal: true
+      tickerPinned: true
+      hideFromLeaderboard: false
+      announcementsLastSeen: "2000-01-23T04:56:07.000+00:00"
+      orderBookType: "orderBookType"
+      orderClearImmediate: false
+      chatChannelID: 1.4658129805029452
   inline_response_200:
     properties:
       success:
         type: "boolean"
+    example:
+      success: true
   Error_error:
     properties:
       message:

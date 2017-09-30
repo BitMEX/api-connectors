@@ -1,7 +1,7 @@
 (defproject bit-mex-api "1.2.0"
   :description "## REST API for the BitMEX Trading Platform
 
-[Changelog](/app/apiChangelog)
+[View Changelog](/app/apiChangelog)
 
 
 
@@ -42,11 +42,15 @@ Fill in the parameters and click the `Try it out!` button to try any of these qu
 
 Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.
 
--
+##### Swagger Specification
+
+[⇩ Download Swagger JSON](swagger.json)
+
+
 
 ## All API Endpoints
 
 Click to expand a section."
   :dependencies [[org.clojure/clojure "1.7.0"]
-                 [clj-http "2.0.0"]
+                 [clj-http "3.6.0"]
                  [cheshire "5.5.0"]])

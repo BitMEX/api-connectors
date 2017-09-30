@@ -19,6 +19,23 @@ This returns all raw transactions, which includes order opening and cancelation,
 ```ruby
 # load the gem
 require 'swagger_client'
+# setup authorization
+SwaggerClient.configure do |config|
+  # Configure API key authorization: apiKey
+  config.api_key['api-key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-key'] = 'Bearer'
+
+  # Configure API key authorization: apiNonce
+  config.api_key['api-nonce'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-nonce'] = 'Bearer'
+
+  # Configure API key authorization: apiSignature
+  config.api_key['api-signature'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-signature'] = 'Bearer'
+end
 
 api_instance = SwaggerClient::ExecutionApi.new
 
@@ -29,8 +46,8 @@ opts = {
   count: 100, # Float | Number of results to fetch.
   start: 0, # Float | Starting point for results.
   reverse: false, # BOOLEAN | If true, will sort results newest first.
-  start_time: Date.parse("2013-10-20"), # Date | Starting date filter for results.
-  end_time: Date.parse("2013-10-20") # Date | Ending date filter for results.
+  start_time: DateTime.parse("2013-10-20T19:20:30+01:00"), # DateTime | Starting date filter for results.
+  end_time: DateTime.parse("2013-10-20T19:20:30+01:00") # DateTime | Ending date filter for results.
 }
 
 begin
@@ -52,8 +69,8 @@ Name | Type | Description  | Notes
  **count** | **Float**| Number of results to fetch. | [optional] [default to 100]
  **start** | **Float**| Starting point for results. | [optional] [default to 0]
  **reverse** | **BOOLEAN**| If true, will sort results newest first. | [optional] [default to false]
- **start_time** | **Date**| Starting date filter for results. | [optional] 
- **end_time** | **Date**| Ending date filter for results. | [optional] 
+ **start_time** | **DateTime**| Starting date filter for results. | [optional] 
+ **end_time** | **DateTime**| Ending date filter for results. | [optional] 
 
 ### Return type
 
@@ -61,7 +78,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -79,6 +96,23 @@ Get all balance-affecting executions. This includes each trade, insurance charge
 ```ruby
 # load the gem
 require 'swagger_client'
+# setup authorization
+SwaggerClient.configure do |config|
+  # Configure API key authorization: apiKey
+  config.api_key['api-key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-key'] = 'Bearer'
+
+  # Configure API key authorization: apiNonce
+  config.api_key['api-nonce'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-nonce'] = 'Bearer'
+
+  # Configure API key authorization: apiSignature
+  config.api_key['api-signature'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-signature'] = 'Bearer'
+end
 
 api_instance = SwaggerClient::ExecutionApi.new
 
@@ -89,8 +123,8 @@ opts = {
   count: 100, # Float | Number of results to fetch.
   start: 0, # Float | Starting point for results.
   reverse: false, # BOOLEAN | If true, will sort results newest first.
-  start_time: Date.parse("2013-10-20"), # Date | Starting date filter for results.
-  end_time: Date.parse("2013-10-20") # Date | Ending date filter for results.
+  start_time: DateTime.parse("2013-10-20T19:20:30+01:00"), # DateTime | Starting date filter for results.
+  end_time: DateTime.parse("2013-10-20T19:20:30+01:00") # DateTime | Ending date filter for results.
 }
 
 begin
@@ -112,8 +146,8 @@ Name | Type | Description  | Notes
  **count** | **Float**| Number of results to fetch. | [optional] [default to 100]
  **start** | **Float**| Starting point for results. | [optional] [default to 0]
  **reverse** | **BOOLEAN**| If true, will sort results newest first. | [optional] [default to false]
- **start_time** | **Date**| Starting date filter for results. | [optional] 
- **end_time** | **Date**| Ending date filter for results. | [optional] 
+ **start_time** | **DateTime**| Starting date filter for results. | [optional] 
+ **end_time** | **DateTime**| Ending date filter for results. | [optional] 
 
 ### Return type
 
@@ -121,7 +155,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

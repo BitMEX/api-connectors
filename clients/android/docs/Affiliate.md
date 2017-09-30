@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **payoutPcnt** | **Double** |  |  [optional]
 **pendingPayout** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **timestamp** | [**Date**](Date.md) |  |  [optional]
+**referrerAccount** | **Double** |  |  [optional]
 
 
 

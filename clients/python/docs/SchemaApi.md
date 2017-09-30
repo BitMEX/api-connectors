@@ -15,6 +15,7 @@ Get model schemata for data objects returned by this API.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -29,7 +30,7 @@ try:
     api_response = api_instance.schema_get(model=model)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling SchemaApi->schema_get: %s\n" % e
+    print("Exception when calling SchemaApi->schema_get: %s\n" % e)
 ```
 
 ### Parameters
@@ -60,6 +61,7 @@ Returns help text & subject list for websocket usage.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -73,7 +75,7 @@ try:
     api_response = api_instance.schema_websocket_help()
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling SchemaApi->schema_websocket_help: %s\n" % e
+    print("Exception when calling SchemaApi->schema_websocket_help: %s\n" % e)
 ```
 
 ### Parameters

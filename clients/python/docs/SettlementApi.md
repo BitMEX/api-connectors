@@ -14,6 +14,7 @@ Get settlement history.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -27,15 +28,15 @@ columns = 'columns_example' # str | Array of column names to fetch. If omitted, 
 count = 100 # float | Number of results to fetch. (optional) (default to 100)
 start = 0 # float | Starting point for results. (optional) (default to 0)
 reverse = false # bool | If true, will sort results newest first. (optional) (default to false)
-start_time = '2013-10-20' # date | Starting date filter for results. (optional)
-end_time = '2013-10-20' # date | Ending date filter for results. (optional)
+start_time = '2013-10-20T19:20:30+01:00' # datetime | Starting date filter for results. (optional)
+end_time = '2013-10-20T19:20:30+01:00' # datetime | Ending date filter for results. (optional)
 
 try: 
     # Get settlement history.
     api_response = api_instance.settlement_get(symbol=symbol, filter=filter, columns=columns, count=count, start=start, reverse=reverse, start_time=start_time, end_time=end_time)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling SettlementApi->settlement_get: %s\n" % e
+    print("Exception when calling SettlementApi->settlement_get: %s\n" % e)
 ```
 
 ### Parameters
@@ -48,8 +49,8 @@ Name | Type | Description  | Notes
  **count** | **float**| Number of results to fetch. | [optional] [default to 100]
  **start** | **float**| Starting point for results. | [optional] [default to 0]
  **reverse** | **bool**| If true, will sort results newest first. | [optional] [default to false]
- **start_time** | **date**| Starting date filter for results. | [optional] 
- **end_time** | **date**| Ending date filter for results. | [optional] 
+ **start_time** | **datetime**| Starting date filter for results. | [optional] 
+ **end_time** | **datetime**| Ending date filter for results. | [optional] 
 
 ### Return type
 

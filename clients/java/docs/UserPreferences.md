@@ -4,8 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**alertOnLiquidations** | **Boolean** |  |  [optional]
 **animationsEnabled** | **Boolean** |  |  [optional]
-**announcementsLastSeen** | [**DateTime**](DateTime.md) |  |  [optional]
+**announcementsLastSeen** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **chatChannelID** | **Double** |  |  [optional]
 **colorTheme** | **String** |  |  [optional]
 **currency** | **String** |  |  [optional]
@@ -18,8 +19,9 @@ Name | Type | Description | Notes
 **hideNotifications** | **List&lt;String&gt;** |  |  [optional]
 **locale** | **String** |  |  [optional]
 **msgsSeen** | **List&lt;String&gt;** |  |  [optional]
-**orderBookBinning** | [**XAny**](XAny.md) |  |  [optional]
+**orderBookBinning** | **Object** |  |  [optional]
 **orderBookType** | **String** |  |  [optional]
+**orderClearImmediate** | **Boolean** |  |  [optional]
 **orderControlsPlusMinus** | **Boolean** |  |  [optional]
 **sounds** | **List&lt;String&gt;** |  |  [optional]
 **strictIPCheck** | **Boolean** |  |  [optional]

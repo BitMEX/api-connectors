@@ -16,22 +16,21 @@ Get site announcements.
 
 ### Example
 ```javascript
-var BitMexApi = require('bit_mex_api');
+import BitMexApi from 'bit_mex_api';
 
-var apiInstance = new BitMexApi.AnnouncementApi();
+let apiInstance = new BitMexApi.AnnouncementApi();
 
-var opts = { 
+let opts = { 
   'columns': "columns_example" // String | Array of column names to fetch. If omitted, will return all columns.
 };
 
-var callback = function(error, data, response) {
+apiInstance.announcementGet(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.announcementGet(opts, callback);
+});
 ```
 
 ### Parameters
@@ -61,18 +60,36 @@ Get urgent (banner) announcements.
 
 ### Example
 ```javascript
-var BitMexApi = require('bit_mex_api');
+import BitMexApi from 'bit_mex_api';
+let defaultClient = BitMexApi.ApiClient.instance;
 
-var apiInstance = new BitMexApi.AnnouncementApi();
+// Configure API key authorization: apiKey
+let apiKey = defaultClient.authentications['apiKey'];
+apiKey.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.apiKeyPrefix = 'Token';
 
-var callback = function(error, data, response) {
+// Configure API key authorization: apiNonce
+let apiNonce = defaultClient.authentications['apiNonce'];
+apiNonce.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiNonce.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiSignature
+let apiSignature = defaultClient.authentications['apiSignature'];
+apiSignature.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.apiKeyPrefix = 'Token';
+
+let apiInstance = new BitMexApi.AnnouncementApi();
+
+apiInstance.announcementGetUrgent((error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.announcementGetUrgent(callback);
+});
 ```
 
 ### Parameters
@@ -84,7 +101,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

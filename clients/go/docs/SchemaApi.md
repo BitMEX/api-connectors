@@ -9,20 +9,25 @@ Method | HTTP request | Description
 
 
 # **SchemaGet**
-> Object SchemaGet($model)
-
+> interface{} SchemaGet(optional)
 Get model schemata for data objects returned by this API.
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model** | **string**| Optional model filter. If omitted, will return all models. | [optional] 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **model** | **string**| Optional model filter. If omitted, will return all models. | 
 
 ### Return type
 
-[**Object**](object.md)
+[**interface{}**](interface{}.md)
 
 ### Authorization
 
@@ -36,17 +41,15 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SchemaWebsocketHelp**
-> Object SchemaWebsocketHelp()
-
+> interface{} SchemaWebsocketHelp()
 Returns help text & subject list for websocket usage.
 
-
-### Parameters
+### Required Parameters
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**Object**](object.md)
+[**interface{}**](interface{}.md)
 
 ### Authorization
 

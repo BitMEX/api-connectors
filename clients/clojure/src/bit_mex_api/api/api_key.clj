@@ -12,7 +12,7 @@
              :form-params   {"apiKeyID" api-key-id }
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-             :auth-names    []}))
+             :auth-names    ["apiKey" "apiNonce" "apiSignature"]}))
 
 (defn a-pi-key-disable
   "Disable an API Key."
@@ -29,7 +29,7 @@
              :form-params   {"apiKeyID" api-key-id }
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-             :auth-names    []}))
+             :auth-names    ["apiKey" "apiNonce" "apiSignature"]}))
 
 (defn a-pi-key-enable
   "Enable an API Key."
@@ -47,7 +47,7 @@
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
 
 (defn a-pi-key-get
   "Get your API Keys."
@@ -67,7 +67,7 @@
               :form-params   {"name" name "cidr" cidr "permissions" permissions "enabled" enabled "token" token }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
 
 (defn a-pi-key-new
   "Create a new API Key.
@@ -86,7 +86,7 @@
              :form-params   {"apiKeyID" api-key-id }
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-             :auth-names    []}))
+             :auth-names    ["apiKey" "apiNonce" "apiSignature"]}))
 
 (defn a-pi-key-remove
   "Remove an API Key."

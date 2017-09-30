@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 # **chatGet**
 ```objc
--(NSNumber*) chatGetWithCount: (NSNumber*) count
+-(NSURLSessionTask*) chatGetWithCount: (NSNumber*) count
     start: (NSNumber*) start
     reverse: (NSNumber*) reverse
     channelID: (NSNumber*) channelID
@@ -25,7 +25,7 @@ Get chat messages.
 ```objc
 
 NSNumber* count = @100; // Number of results to fetch. (optional) (default to 100)
-NSNumber* start = @0; // Starting point for results. (optional) (default to 0)
+NSNumber* start = @0; // Starting ID for results. (optional) (default to 0)
 NSNumber* reverse = @true; // If true, will sort results newest first. (optional) (default to true)
 NSNumber* channelID = @1.2; // Channel id. GET /chat/channels for ids. Leave blank for all. (optional)
 
@@ -51,7 +51,7 @@ SWGChatApi*apiInstance = [[SWGChatApi alloc] init];
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **count** | **NSNumber***| Number of results to fetch. | [optional] [default to 100]
- **start** | **NSNumber***| Starting point for results. | [optional] [default to 0]
+ **start** | **NSNumber***| Starting ID for results. | [optional] [default to 0]
  **reverse** | **NSNumber***| If true, will sort results newest first. | [optional] [default to true]
  **channelID** | **NSNumber***| Channel id. GET /chat/channels for ids. Leave blank for all. | [optional] 
 
@@ -72,7 +72,7 @@ No authorization required
 
 # **chatGetChannels**
 ```objc
--(NSNumber*) chatGetChannelsWithCompletionHandler: 
+-(NSURLSessionTask*) chatGetChannelsWithCompletionHandler: 
         (void (^)(NSArray<SWGChatChannel>* output, NSError* error)) handler;
 ```
 
@@ -116,7 +116,7 @@ No authorization required
 
 # **chatGetConnected**
 ```objc
--(NSNumber*) chatGetConnectedWithCompletionHandler: 
+-(NSURLSessionTask*) chatGetConnectedWithCompletionHandler: 
         (void (^)(SWGConnectedUsers* output, NSError* error)) handler;
 ```
 
@@ -162,7 +162,7 @@ No authorization required
 
 # **chatNew**
 ```objc
--(NSNumber*) chatNewWithMessage: (NSString*) message
+-(NSURLSessionTask*) chatNewWithMessage: (NSString*) message
     channelID: (NSNumber*) channelID
         completionHandler: (void (^)(SWGChat* output, NSError* error)) handler;
 ```
@@ -171,6 +171,23 @@ Send a chat message.
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiNonce)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
 
 NSString* message = @"message_example"; // 
 NSNumber* channelID = @1; // Channel to post to. Default 1 (English). (optional) (default to 1)
@@ -203,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

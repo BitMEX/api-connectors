@@ -31,7 +31,7 @@
              :form-params   {}
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-             :auth-names    []}))
+             :auth-names    ["apiKey" "apiNonce" "apiSignature"]}))
 
 (defn announcement-get-urgent
   "Get urgent (banner) announcements."

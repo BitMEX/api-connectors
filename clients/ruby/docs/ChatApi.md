@@ -24,7 +24,7 @@ api_instance = SwaggerClient::ChatApi.new
 
 opts = { 
   count: 100, # Float | Number of results to fetch.
-  start: 0, # Float | Starting point for results.
+  start: 0, # Float | Starting ID for results.
   reverse: true, # BOOLEAN | If true, will sort results newest first.
   channel_id: 1.2 # Float | Channel id. GET /chat/channels for ids. Leave blank for all.
 }
@@ -43,7 +43,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **count** | **Float**| Number of results to fetch. | [optional] [default to 100]
- **start** | **Float**| Starting point for results. | [optional] [default to 0]
+ **start** | **Float**| Starting ID for results. | [optional] [default to 0]
  **reverse** | **BOOLEAN**| If true, will sort results newest first. | [optional] [default to true]
  **channel_id** | **Float**| Channel id. GET /chat/channels for ids. Leave blank for all. | [optional] 
 
@@ -151,6 +151,23 @@ Send a chat message.
 ```ruby
 # load the gem
 require 'swagger_client'
+# setup authorization
+SwaggerClient.configure do |config|
+  # Configure API key authorization: apiKey
+  config.api_key['api-key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-key'] = 'Bearer'
+
+  # Configure API key authorization: apiNonce
+  config.api_key['api-nonce'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-nonce'] = 'Bearer'
+
+  # Configure API key authorization: apiSignature
+  config.api_key['api-signature'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-signature'] = 'Bearer'
+end
 
 api_instance = SwaggerClient::ChatApi.new
 
@@ -182,7 +199,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

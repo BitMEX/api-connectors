@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**ChatNew**](ChatApi.md#chatnew) | **POST** /chat | Send a chat message.
 
 
+<a name="chatget"></a>
 # **ChatGet**
 > List<Chat> ChatGet (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null)
 
@@ -29,10 +30,9 @@ namespace Example
     {
         public void main()
         {
-            
             var apiInstance = new ChatApi();
             var count = 3.4;  // decimal? | Number of results to fetch. (optional)  (default to 100)
-            var start = 3.4;  // decimal? | Starting point for results. (optional)  (default to 0)
+            var start = 3.4;  // decimal? | Starting ID for results. (optional)  (default to 0)
             var reverse = true;  // bool? | If true, will sort results newest first. (optional)  (default to true)
             var channelID = 1.2;  // double? | Channel id. GET /chat/channels for ids. Leave blank for all. (optional) 
 
@@ -56,7 +56,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **count** | **decimal?**| Number of results to fetch. | [optional] [default to 100]
- **start** | **decimal?**| Starting point for results. | [optional] [default to 0]
+ **start** | **decimal?**| Starting ID for results. | [optional] [default to 0]
  **reverse** | **bool?**| If true, will sort results newest first. | [optional] [default to true]
  **channelID** | **double?**| Channel id. GET /chat/channels for ids. Leave blank for all. | [optional] 
 
@@ -75,6 +75,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="chatgetchannels"></a>
 # **ChatGetChannels**
 > List<ChatChannel> ChatGetChannels ()
 
@@ -94,7 +95,6 @@ namespace Example
     {
         public void main()
         {
-            
             var apiInstance = new ChatApi();
 
             try
@@ -130,6 +130,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="chatgetconnected"></a>
 # **ChatGetConnected**
 > ConnectedUsers ChatGetConnected ()
 
@@ -151,7 +152,6 @@ namespace Example
     {
         public void main()
         {
-            
             var apiInstance = new ChatApi();
 
             try
@@ -187,6 +187,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="chatnew"></a>
 # **ChatNew**
 > Chat ChatNew (string message, double? channelID = null)
 
@@ -206,7 +207,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new ChatApi();
             var message = message_example;  // string | 
             var channelID = 1.2;  // double? | Channel to post to. Default 1 (English). (optional)  (default to 1)
@@ -239,7 +252,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

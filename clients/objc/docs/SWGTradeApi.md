@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **tradeGet**
 ```objc
--(NSNumber*) tradeGetWithSymbol: (NSString*) symbol
+-(NSURLSessionTask*) tradeGetWithSymbol: (NSString*) symbol
     filter: (NSString*) filter
     columns: (NSString*) columns
     count: (NSNumber*) count
@@ -34,8 +34,8 @@ NSString* columns = @"columns_example"; // Array of column names to fetch. If om
 NSNumber* count = @100; // Number of results to fetch. (optional) (default to 100)
 NSNumber* start = @0; // Starting point for results. (optional) (default to 0)
 NSNumber* reverse = @false; // If true, will sort results newest first. (optional) (default to false)
-NSDate* startTime = @"2013-10-20"; // Starting date filter for results. (optional)
-NSDate* endTime = @"2013-10-20"; // Ending date filter for results. (optional)
+NSDate* startTime = @"2013-10-20T19:20:30+01:00"; // Starting date filter for results. (optional)
+NSDate* endTime = @"2013-10-20T19:20:30+01:00"; // Ending date filter for results. (optional)
 
 SWGTradeApi*apiInstance = [[SWGTradeApi alloc] init];
 
@@ -88,7 +88,8 @@ No authorization required
 
 # **tradeGetBucketed**
 ```objc
--(NSNumber*) tradeGetBucketedWithBinSize: (NSString*) binSize
+-(NSURLSessionTask*) tradeGetBucketedWithBinSize: (NSString*) binSize
+    partial: (NSNumber*) partial
     symbol: (NSString*) symbol
     filter: (NSString*) filter
     columns: (NSString*) columns
@@ -105,20 +106,22 @@ Get previous trades in time buckets.
 ### Example 
 ```objc
 
-NSString* binSize = @"binSize_example"; // Time interval to bucket by. Available options: ['1m', '5m', '1h', '1d']. (optional)
+NSString* binSize = @"1m"; // Time interval to bucket by. Available options: [1m,5m,1h,1d]. (optional) (default to 1m)
+NSNumber* partial = @false; // If true, will send in-progress (incomplete) bins for the current time period. (optional) (default to false)
 NSString* symbol = @"symbol_example"; // Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`. (optional)
 NSString* filter = @"filter_example"; // Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. (optional)
 NSString* columns = @"columns_example"; // Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
 NSNumber* count = @100; // Number of results to fetch. (optional) (default to 100)
 NSNumber* start = @0; // Starting point for results. (optional) (default to 0)
 NSNumber* reverse = @false; // If true, will sort results newest first. (optional) (default to false)
-NSDate* startTime = @"2013-10-20"; // Starting date filter for results. (optional)
-NSDate* endTime = @"2013-10-20"; // Ending date filter for results. (optional)
+NSDate* startTime = @"2013-10-20T19:20:30+01:00"; // Starting date filter for results. (optional)
+NSDate* endTime = @"2013-10-20T19:20:30+01:00"; // Ending date filter for results. (optional)
 
 SWGTradeApi*apiInstance = [[SWGTradeApi alloc] init];
 
 // Get previous trades in time buckets.
 [apiInstance tradeGetBucketedWithBinSize:binSize
+              partial:partial
               symbol:symbol
               filter:filter
               columns:columns
@@ -141,7 +144,8 @@ SWGTradeApi*apiInstance = [[SWGTradeApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **binSize** | **NSString***| Time interval to bucket by. Available options: [&#39;1m&#39;, &#39;5m&#39;, &#39;1h&#39;, &#39;1d&#39;]. | [optional] 
+ **binSize** | **NSString***| Time interval to bucket by. Available options: [1m,5m,1h,1d]. | [optional] [default to 1m]
+ **partial** | **NSNumber***| If true, will send in-progress (incomplete) bins for the current time period. | [optional] [default to false]
  **symbol** | **NSString***| Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBU:monthly&#x60;. Timeframes are &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, and &#x60;biquarterly&#x60;. | [optional] 
  **filter** | **NSString***| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. | [optional] 
  **columns** | **NSString***| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | [optional] 

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **bidPrice** | **Double** |  |  [optional]
 **askPrice** | **Double** |  |  [optional]
 **askSize** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**timestamp** | [**DateTime**](DateTime.md) |  |  [optional]
+**timestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 
 
 

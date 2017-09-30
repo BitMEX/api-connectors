@@ -8,16 +8,21 @@ Method | HTTP request | Description
 
 
 # **LeaderboardGet**
-> []Leaderboard LeaderboardGet($method)
-
+> []Leaderboard LeaderboardGet(optional)
 Get current leaderboard.
 
-
-### Parameters
+### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **method** | **string**| Ranking type. Options: \&quot;notional\&quot;, \&quot;ROE\&quot; | [optional] [default to notional]
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **method** | **string**| Ranking type. Options: \&quot;notional\&quot;, \&quot;ROE\&quot; | [default to notional]
 
 ### Return type
 

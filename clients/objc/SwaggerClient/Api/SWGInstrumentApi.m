@@ -1,13 +1,15 @@
 #import "SWGInstrumentApi.h"
 #import "SWGQueryParamCollection.h"
+#import "SWGApiClient.h"
 #import "SWGError.h"
+#import "SWGIndexComposite.h"
 #import "SWGInstrument.h"
 #import "SWGInstrumentInterval.h"
 
 
 @interface SWGInstrumentApi ()
 
-@property (nonatomic, strong) NSMutableDictionary *defaultHeaders;
+@property (nonatomic, strong, readwrite) NSMutableDictionary *mutableDefaultHeaders;
 
 @end
 
@@ -21,52 +23,31 @@ NSInteger kSWGInstrumentApiMissingParamErrorCode = 234513;
 #pragma mark - Initialize methods
 
 - (instancetype) init {
-    self = [super init];
-    if (self) {
-        SWGConfiguration *config = [SWGConfiguration sharedConfig];
-        if (config.apiClient == nil) {
-            config.apiClient = [[SWGApiClient alloc] init];
-        }
-        _apiClient = config.apiClient;
-        _defaultHeaders = [NSMutableDictionary dictionary];
-    }
-    return self;
+    return [self initWithApiClient:[SWGApiClient sharedClient]];
 }
 
-- (id) initWithApiClient:(SWGApiClient *)apiClient {
+
+-(instancetype) initWithApiClient:(SWGApiClient *)apiClient {
     self = [super init];
     if (self) {
         _apiClient = apiClient;
-        _defaultHeaders = [NSMutableDictionary dictionary];
+        _mutableDefaultHeaders = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
 #pragma mark -
 
-+ (instancetype)sharedAPI {
-    static SWGInstrumentApi *sharedAPI;
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        sharedAPI = [[self alloc] init];
-    });
-    return sharedAPI;
-}
-
 -(NSString*) defaultHeaderForKey:(NSString*)key {
-    return self.defaultHeaders[key];
-}
-
--(void) addHeader:(NSString*)value forKey:(NSString*)key {
-    [self setDefaultHeaderValue:value forKey:key];
+    return self.mutableDefaultHeaders[key];
 }
 
 -(void) setDefaultHeaderValue:(NSString*) value forKey:(NSString*)key {
-    [self.defaultHeaders setValue:value forKey:key];
+    [self.mutableDefaultHeaders setValue:value forKey:key];
 }
 
--(NSUInteger) requestQueueSize {
-    return [SWGApiClient requestQueueSize];
+-(NSDictionary *)defaultHeaders {
+    return self.mutableDefaultHeaders;
 }
 
 #pragma mark - Api Methods
@@ -92,7 +73,7 @@ NSInteger kSWGInstrumentApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSArray<SWGInstrument>*
 ///
--(NSNumber*) instrumentGetWithSymbol: (NSString*) symbol
+-(NSURLSessionTask*) instrumentGetWithSymbol: (NSString*) symbol
     filter: (NSString*) filter
     columns: (NSString*) columns
     count: (NSNumber*) count
@@ -102,9 +83,6 @@ NSInteger kSWGInstrumentApiMissingParamErrorCode = 234513;
     endTime: (NSDate*) endTime
     completionHandler: (void (^)(NSArray<SWGInstrument>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/instrument"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -125,7 +103,7 @@ NSInteger kSWGInstrumentApiMissingParamErrorCode = 234513;
         queryParams[@"start"] = start;
     }
     if (reverse != nil) {
-        queryParams[@"reverse"] = reverse;
+        queryParams[@"reverse"] = [reverse isEqual:@(YES)] ? @"true" : @"false";
     }
     if (startTime != nil) {
         queryParams[@"startTime"] = startTime;
@@ -170,8 +148,7 @@ NSInteger kSWGInstrumentApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSArray<SWGInstrument>*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -179,12 +156,9 @@ NSInteger kSWGInstrumentApiMissingParamErrorCode = 234513;
 /// 
 ///  @returns NSArray<SWGInstrument>*
 ///
--(NSNumber*) instrumentGetActiveWithCompletionHandler: 
+-(NSURLSessionTask*) instrumentGetActiveWithCompletionHandler: 
     (void (^)(NSArray<SWGInstrument>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/instrument/active"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -226,8 +200,7 @@ NSInteger kSWGInstrumentApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSArray<SWGInstrument>*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -235,12 +208,9 @@ NSInteger kSWGInstrumentApiMissingParamErrorCode = 234513;
 /// 
 ///  @returns NSArray<SWGInstrument>*
 ///
--(NSNumber*) instrumentGetActiveAndIndicesWithCompletionHandler: 
+-(NSURLSessionTask*) instrumentGetActiveAndIndicesWithCompletionHandler: 
     (void (^)(NSArray<SWGInstrument>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/instrument/activeAndIndices"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -282,8 +252,7 @@ NSInteger kSWGInstrumentApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSArray<SWGInstrument>*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -291,12 +260,9 @@ NSInteger kSWGInstrumentApiMissingParamErrorCode = 234513;
 /// This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"BVOL:daily\", \"BVOL:weekly\", \"XBU:daily\", \"XBU:monthly\", ...]`. These identifiers are usable in any query's `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.
 ///  @returns SWGInstrumentInterval*
 ///
--(NSNumber*) instrumentGetActiveIntervalsWithCompletionHandler: 
+-(NSURLSessionTask*) instrumentGetActiveIntervalsWithCompletionHandler: 
     (void (^)(SWGInstrumentInterval* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/instrument/activeIntervals"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -338,8 +304,112 @@ NSInteger kSWGInstrumentApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGInstrumentInterval*)data, error);
                                 }
-                           }
-          ];
+                            }];
+}
+
+///
+/// Show constituent parts of an index.
+/// Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.XBT` to get the ticks and weights of the constituent exchanges that build the \".XBT\" index.  A tick with reference `\"BMI\"` and weight `null` is the composite index tick. 
+///  @param account  (optional)
+///
+///  @param symbol The composite index symbol. (optional, default to .XBT)
+///
+///  @param filter Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. (optional)
+///
+///  @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
+///
+///  @param count Number of results to fetch. (optional, default to 100)
+///
+///  @param start Starting point for results. (optional, default to 0)
+///
+///  @param reverse If true, will sort results newest first. (optional, default to false)
+///
+///  @param startTime Starting date filter for results. (optional)
+///
+///  @param endTime Ending date filter for results. (optional)
+///
+///  @returns NSArray<SWGIndexComposite>*
+///
+-(NSURLSessionTask*) instrumentGetCompositeIndexWithAccount: (NSNumber*) account
+    symbol: (NSString*) symbol
+    filter: (NSString*) filter
+    columns: (NSString*) columns
+    count: (NSNumber*) count
+    start: (NSNumber*) start
+    reverse: (NSNumber*) reverse
+    startTime: (NSDate*) startTime
+    endTime: (NSDate*) endTime
+    completionHandler: (void (^)(NSArray<SWGIndexComposite>* output, NSError* error)) handler {
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/instrument/compositeIndex"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (account != nil) {
+        queryParams[@"account"] = account;
+    }
+    if (symbol != nil) {
+        queryParams[@"symbol"] = symbol;
+    }
+    if (filter != nil) {
+        queryParams[@"filter"] = filter;
+    }
+    if (columns != nil) {
+        queryParams[@"columns"] = columns;
+    }
+    if (count != nil) {
+        queryParams[@"count"] = count;
+    }
+    if (start != nil) {
+        queryParams[@"start"] = start;
+    }
+    if (reverse != nil) {
+        queryParams[@"reverse"] = [reverse isEqual:@(YES)] ? @"true" : @"false";
+    }
+    if (startTime != nil) {
+        queryParams[@"startTime"] = startTime;
+    }
+    if (endTime != nil) {
+        queryParams[@"endTime"] = endTime;
+    }
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"application/xml", @"text/xml", @"application/javascript", @"text/javascript"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"GET"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"NSArray<SWGIndexComposite>*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((NSArray<SWGIndexComposite>*)data, error);
+                                }
+                            }];
 }
 
 ///
@@ -347,12 +417,9 @@ NSInteger kSWGInstrumentApiMissingParamErrorCode = 234513;
 /// 
 ///  @returns NSArray<SWGInstrument>*
 ///
--(NSNumber*) instrumentGetIndicesWithCompletionHandler: 
+-(NSURLSessionTask*) instrumentGetIndicesWithCompletionHandler: 
     (void (^)(NSArray<SWGInstrument>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/instrument/indices"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -394,8 +461,7 @@ NSInteger kSWGInstrumentApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSArray<SWGInstrument>*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 

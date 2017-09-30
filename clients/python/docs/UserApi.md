@@ -34,6 +34,7 @@ Cancel a withdrawal.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -48,7 +49,7 @@ try:
     api_response = api_instance.user_cancel_withdrawal(token)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_cancel_withdrawal: %s\n" % e
+    print("Exception when calling UserApi->user_cancel_withdrawal: %s\n" % e)
 ```
 
 ### Parameters
@@ -81,6 +82,7 @@ If the code is valid, responds with the referral code's discount (e.g. `0.1` for
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -95,7 +97,7 @@ try:
     api_response = api_instance.user_check_referral_code(referral_code=referral_code)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_check_referral_code: %s\n" % e
+    print("Exception when calling UserApi->user_check_referral_code: %s\n" % e)
 ```
 
 ### Parameters
@@ -126,6 +128,7 @@ Confirm your email address with a token.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -140,7 +143,7 @@ try:
     api_response = api_instance.user_confirm(token)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_confirm: %s\n" % e
+    print("Exception when calling UserApi->user_confirm: %s\n" % e)
 ```
 
 ### Parameters
@@ -171,13 +174,30 @@ Confirm two-factor auth for this account. If using a Yubikey, simply send a toke
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.UserApi()
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 token = 'token_example' # str | Token from your selected TFA type.
 type = 'type_example' # str | Two-factor auth type. Supported types: 'GA' (Google Authenticator), 'Yubikey' (optional)
 
@@ -186,7 +206,7 @@ try:
     api_response = api_instance.user_confirm_enable_tfa(token, type=type)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_confirm_enable_tfa: %s\n" % e
+    print("Exception when calling UserApi->user_confirm_enable_tfa: %s\n" % e)
 ```
 
 ### Parameters
@@ -202,7 +222,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -218,6 +238,7 @@ Confirm a withdrawal.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -232,7 +253,7 @@ try:
     api_response = api_instance.user_confirm_withdrawal(token)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_confirm_withdrawal: %s\n" % e
+    print("Exception when calling UserApi->user_confirm_withdrawal: %s\n" % e)
 ```
 
 ### Parameters
@@ -263,13 +284,30 @@ Disable two-factor auth for this account.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.UserApi()
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 token = 'token_example' # str | Token from your selected TFA type.
 type = 'type_example' # str | Two-factor auth type. Supported types: 'GA' (Google Authenticator) (optional)
 
@@ -278,7 +316,7 @@ try:
     api_response = api_instance.user_disable_tfa(token, type=type)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_disable_tfa: %s\n" % e
+    print("Exception when calling UserApi->user_disable_tfa: %s\n" % e)
 ```
 
 ### Parameters
@@ -294,7 +332,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -310,20 +348,37 @@ Get your user model.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.UserApi()
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 
 try: 
     # Get your user model.
     api_response = api_instance.user_get()
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_get: %s\n" % e
+    print("Exception when calling UserApi->user_get: %s\n" % e)
 ```
 
 ### Parameters
@@ -335,7 +390,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -345,26 +400,43 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **user_get_affiliate_status**
-> list[Affiliate] user_get_affiliate_status()
+> Affiliate user_get_affiliate_status()
 
 Get your current affiliate/referral status.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.UserApi()
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 
 try: 
     # Get your current affiliate/referral status.
     api_response = api_instance.user_get_affiliate_status()
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_get_affiliate_status: %s\n" % e
+    print("Exception when calling UserApi->user_get_affiliate_status: %s\n" % e)
 ```
 
 ### Parameters
@@ -372,11 +444,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**list[Affiliate]**](Affiliate.md)
+[**Affiliate**](Affiliate.md)
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -392,20 +464,37 @@ Get your account's commission status.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.UserApi()
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 
 try: 
     # Get your account's commission status.
     api_response = api_instance.user_get_commission()
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_get_commission: %s\n" % e
+    print("Exception when calling UserApi->user_get_commission: %s\n" % e)
 ```
 
 ### Parameters
@@ -417,7 +506,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -433,13 +522,30 @@ Get a deposit address.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.UserApi()
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 currency = 'XBt' # str |  (optional) (default to XBt)
 
 try: 
@@ -447,7 +553,7 @@ try:
     api_response = api_instance.user_get_deposit_address(currency=currency)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_get_deposit_address: %s\n" % e
+    print("Exception when calling UserApi->user_get_deposit_address: %s\n" % e)
 ```
 
 ### Parameters
@@ -462,7 +568,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -478,13 +584,30 @@ Get your account's margin status. Send a currency of \"all\" to receive an array
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.UserApi()
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 currency = 'XBt' # str |  (optional) (default to XBt)
 
 try: 
@@ -492,7 +615,7 @@ try:
     api_response = api_instance.user_get_margin(currency=currency)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_get_margin: %s\n" % e
+    print("Exception when calling UserApi->user_get_margin: %s\n" % e)
 ```
 
 ### Parameters
@@ -507,7 +630,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -523,13 +646,30 @@ Get your current wallet information.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.UserApi()
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 currency = 'XBt' # str |  (optional) (default to XBt)
 
 try: 
@@ -537,7 +677,7 @@ try:
     api_response = api_instance.user_get_wallet(currency=currency)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_get_wallet: %s\n" % e
+    print("Exception when calling UserApi->user_get_wallet: %s\n" % e)
 ```
 
 ### Parameters
@@ -552,7 +692,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -568,13 +708,30 @@ Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.UserApi()
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 currency = 'XBt' # str |  (optional) (default to XBt)
 
 try: 
@@ -582,7 +739,7 @@ try:
     api_response = api_instance.user_get_wallet_history(currency=currency)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_get_wallet_history: %s\n" % e
+    print("Exception when calling UserApi->user_get_wallet_history: %s\n" % e)
 ```
 
 ### Parameters
@@ -597,7 +754,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -613,13 +770,30 @@ Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.UserApi()
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 currency = 'XBt' # str |  (optional) (default to XBt)
 
 try: 
@@ -627,7 +801,7 @@ try:
     api_response = api_instance.user_get_wallet_summary(currency=currency)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_get_wallet_summary: %s\n" % e
+    print("Exception when calling UserApi->user_get_wallet_summary: %s\n" % e)
 ```
 
 ### Parameters
@@ -642,7 +816,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -658,6 +832,7 @@ Log out of BitMEX.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -670,7 +845,7 @@ try:
     # Log out of BitMEX.
     api_instance.user_logout()
 except ApiException as e:
-    print "Exception when calling UserApi->user_logout: %s\n" % e
+    print("Exception when calling UserApi->user_logout: %s\n" % e)
 ```
 
 ### Parameters
@@ -698,20 +873,37 @@ Log all systems out of BitMEX. This will revoke all of your account's access tok
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.UserApi()
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 
 try: 
     # Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.
     api_response = api_instance.user_logout_all()
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_logout_all: %s\n" % e
+    print("Exception when calling UserApi->user_logout_all: %s\n" % e)
 ```
 
 ### Parameters
@@ -723,7 +915,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -733,7 +925,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **user_min_withdrawal_fee**
-> float user_min_withdrawal_fee(currency=currency)
+> object user_min_withdrawal_fee(currency=currency)
 
 Get the minimum withdrawal fee for a currency.
 
@@ -741,6 +933,7 @@ This is changed based on network conditions to ensure timely withdrawals. During
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -755,7 +948,7 @@ try:
     api_response = api_instance.user_min_withdrawal_fee(currency=currency)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_min_withdrawal_fee: %s\n" % e
+    print("Exception when calling UserApi->user_min_withdrawal_fee: %s\n" % e)
 ```
 
 ### Parameters
@@ -766,7 +959,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**float**
+**object**
 
 ### Authorization
 
@@ -788,13 +981,30 @@ Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enable
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.UserApi()
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 type = 'type_example' # str | Two-factor auth type. Supported types: 'GA' (Google Authenticator) (optional)
 
 try: 
@@ -802,7 +1012,7 @@ try:
     api_response = api_instance.user_request_enable_tfa(type=type)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_request_enable_tfa: %s\n" % e
+    print("Exception when calling UserApi->user_request_enable_tfa: %s\n" % e)
 ```
 
 ### Parameters
@@ -817,7 +1027,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -835,13 +1045,30 @@ This will send a confirmation email to the email address on record, unless reque
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.UserApi()
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 currency = 'XBt' # str | Currency you're withdrawing. Options: `XBt` (default to XBt)
 amount = 3.4 # float | Amount of withdrawal currency.
 address = 'address_example' # str | Destination Address.
@@ -853,7 +1080,7 @@ try:
     api_response = api_instance.user_request_withdrawal(currency, amount, address, otp_token=otp_token, fee=fee)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_request_withdrawal: %s\n" % e
+    print("Exception when calling UserApi->user_request_withdrawal: %s\n" % e)
 ```
 
 ### Parameters
@@ -872,7 +1099,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -888,13 +1115,30 @@ Save user preferences.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.UserApi()
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 prefs = 'prefs_example' # str | 
 overwrite = false # bool | If true, will overwrite all existing preferences. (optional) (default to false)
 
@@ -903,7 +1147,7 @@ try:
     api_response = api_instance.user_save_preferences(prefs, overwrite=overwrite)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_save_preferences: %s\n" % e
+    print("Exception when calling UserApi->user_save_preferences: %s\n" % e)
 ```
 
 ### Parameters
@@ -919,7 +1163,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -935,13 +1179,30 @@ Update your password, name, and other attributes.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.UserApi()
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 firstname = 'firstname_example' # str |  (optional)
 lastname = 'lastname_example' # str |  (optional)
 old_password = 'old_password_example' # str |  (optional)
@@ -956,7 +1217,7 @@ try:
     api_response = api_instance.user_update(firstname=firstname, lastname=lastname, old_password=old_password, new_password=new_password, new_password_confirm=new_password_confirm, username=username, country=country, pgp_pub_key=pgp_pub_key)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UserApi->user_update: %s\n" % e
+    print("Exception when calling UserApi->user_update: %s\n" % e)
 ```
 
 ### Parameters
@@ -978,7 +1239,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -9,51 +9,32 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Chat', 'model/Error', 'model/ChatChannel', 'model/ConnectedUsers'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/Chat'), require('../model/Error'), require('../model/ChatChannel'), require('../model/ConnectedUsers'));
-  } else {
-    // Browser globals (root is window)
-    if (!root.BitMexApi) {
-      root.BitMexApi = {};
+
+import ApiClient from "../ApiClient";
+import Chat from '../model/Chat';
+import ChatChannel from '../model/ChatChannel';
+import ConnectedUsers from '../model/ConnectedUsers';
+import Error from '../model/Error';
+
+/**
+* Chat service.
+* @module api/ChatApi
+* @version 1.2.0
+*/
+export default class ChatApi {
+
+    /**
+    * Constructs a new ChatApi. 
+    * @alias module:api/ChatApi
+    * @class
+    * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
+    * default to {@link module:ApiClient#instance} if unspecified.
+    */
+    constructor(apiClient) {
+        this.apiClient = apiClient || ApiClient.instance;
     }
-    root.BitMexApi.ChatApi = factory(root.BitMexApi.ApiClient, root.BitMexApi.Chat, root.BitMexApi.Error, root.BitMexApi.ChatChannel, root.BitMexApi.ConnectedUsers);
-  }
-}(this, function(ApiClient, Chat, Error, ChatChannel, ConnectedUsers) {
-  'use strict';
-
-  /**
-   * Chat service.
-   * @module api/ChatApi
-   * @version 1.2.0
-   */
-
-  /**
-   * Constructs a new ChatApi. 
-   * @alias module:api/ChatApi
-   * @class
-   * @param {module:ApiClient} apiClient Optional API client implementation to use,
-   * default to {@link module:ApiClient#instance} if unspecified.
-   */
-  var exports = function(apiClient) {
-    this.apiClient = apiClient || ApiClient.instance;
 
 
     /**
@@ -68,34 +49,34 @@
      * Get chat messages.
      * @param {Object} opts Optional parameters
      * @param {Number} opts.count Number of results to fetch. (default to 100)
-     * @param {Number} opts.start Starting point for results. (default to 0)
+     * @param {Number} opts.start Starting ID for results. (default to 0)
      * @param {Boolean} opts.reverse If true, will sort results newest first. (default to true)
      * @param {Number} opts.channelID Channel id. GET /chat/channels for ids. Leave blank for all.
      * @param {module:api/ChatApi~chatGetCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Array.<module:model/Chat>}
+     * data is of type: {@link Array.<module:model/Chat>}
      */
-    this.chatGet = function(opts, callback) {
+    chatGet(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
         'count': opts['count'],
         'start': opts['start'],
         'reverse': opts['reverse'],
         'channelID': opts['channelID']
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [Chat];
+      let authNames = [];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = [Chat];
 
       return this.apiClient.callApi(
         '/chat', 'GET',
@@ -115,25 +96,25 @@
     /**
      * Get available channels.
      * @param {module:api/ChatApi~chatGetChannelsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Array.<module:model/ChatChannel>}
+     * data is of type: {@link Array.<module:model/ChatChannel>}
      */
-    this.chatGetChannels = function(callback) {
-      var postBody = null;
+    chatGetChannels(callback) {
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [ChatChannel];
+      let authNames = [];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = [ChatChannel];
 
       return this.apiClient.callApi(
         '/chat/channels', 'GET',
@@ -154,25 +135,25 @@
      * Get connected users.
      * Returns an array with browser users in the first position and API users (bots) in the second position.
      * @param {module:api/ChatApi~chatGetConnectedCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/ConnectedUsers}
+     * data is of type: {@link module:model/ConnectedUsers}
      */
-    this.chatGetConnected = function(callback) {
-      var postBody = null;
+    chatGetConnected(callback) {
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = ConnectedUsers;
+      let authNames = [];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = ConnectedUsers;
 
       return this.apiClient.callApi(
         '/chat/connected', 'GET',
@@ -195,33 +176,33 @@
      * @param {Object} opts Optional parameters
      * @param {Number} opts.channelID Channel to post to. Default 1 (English). (default to 1)
      * @param {module:api/ChatApi~chatNewCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/Chat}
+     * data is of type: {@link module:model/Chat}
      */
-    this.chatNew = function(message, opts, callback) {
+    chatNew(message, opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
       // verify the required parameter 'message' is set
-      if (message == undefined || message == null) {
-        throw "Missing the required parameter 'message' when calling chatNew";
+      if (message === undefined || message === null) {
+        throw new Error("Missing the required parameter 'message' when calling chatNew");
       }
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'message': message,
         'channelID': opts['channelID']
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = Chat;
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = Chat;
 
       return this.apiClient.callApi(
         '/chat', 'POST',
@@ -229,7 +210,6 @@
         authNames, contentTypes, accepts, returnType, callback
       );
     }
-  };
 
-  return exports;
-}));
+
+}

@@ -23,7 +23,7 @@ Get chat messages.
 
 ChatApi apiInstance = new ChatApi();
 BigDecimal count = new BigDecimal(); // BigDecimal | Number of results to fetch.
-BigDecimal start = new BigDecimal(); // BigDecimal | Starting point for results.
+BigDecimal start = new BigDecimal(); // BigDecimal | Starting ID for results.
 Boolean reverse = true; // Boolean | If true, will sort results newest first.
 Double channelID = 3.4D; // Double | Channel id. GET /chat/channels for ids. Leave blank for all.
 try {
@@ -40,7 +40,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **count** | **BigDecimal**| Number of results to fetch. | [optional] [default to 100]
- **start** | **BigDecimal**| Starting point for results. | [optional] [default to 0]
+ **start** | **BigDecimal**| Starting ID for results. | [optional] [default to 0]
  **reverse** | **Boolean**| If true, will sort results newest first. | [optional] [default to true]
  **channelID** | **Double**| Channel id. GET /chat/channels for ids. Leave blank for all. | [optional]
 
@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

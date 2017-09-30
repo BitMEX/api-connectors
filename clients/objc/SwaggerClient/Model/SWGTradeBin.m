@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithDictionary:@{ @"timestamp": @"timestamp", @"symbol": @"symbol", @"open": @"open", @"high": @"high", @"low": @"low", @"close": @"close", @"trades": @"trades", @"volume": @"volume", @"vwap": @"vwap", @"lastSize": @"lastSize", @"turnover": @"turnover", @"homeNotional": @"homeNotional", @"foreignNotional": @"foreignNotional" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"timestamp": @"timestamp", @"symbol": @"symbol", @"open": @"open", @"high": @"high", @"low": @"low", @"close": @"close", @"trades": @"trades", @"volume": @"volume", @"vwap": @"vwap", @"lastSize": @"lastSize", @"turnover": @"turnover", @"homeNotional": @"homeNotional", @"foreignNotional": @"foreignNotional" }];
 }
 
 /**

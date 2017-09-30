@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithDictionary:@{ @"account": @"account", @"currency": @"currency", @"prevDeposited": @"prevDeposited", @"prevWithdrawn": @"prevWithdrawn", @"prevAmount": @"prevAmount", @"prevTimestamp": @"prevTimestamp", @"deltaDeposited": @"deltaDeposited", @"deltaWithdrawn": @"deltaWithdrawn", @"deltaAmount": @"deltaAmount", @"deposited": @"deposited", @"withdrawn": @"withdrawn", @"amount": @"amount", @"pendingCredit": @"pendingCredit", @"pendingDebit": @"pendingDebit", @"confirmedDebit": @"confirmedDebit", @"timestamp": @"timestamp", @"addr": @"addr", @"withdrawalLock": @"withdrawalLock" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"account": @"account", @"currency": @"currency", @"prevDeposited": @"prevDeposited", @"prevWithdrawn": @"prevWithdrawn", @"prevTransferIn": @"prevTransferIn", @"prevTransferOut": @"prevTransferOut", @"prevAmount": @"prevAmount", @"prevTimestamp": @"prevTimestamp", @"deltaDeposited": @"deltaDeposited", @"deltaWithdrawn": @"deltaWithdrawn", @"deltaTransferIn": @"deltaTransferIn", @"deltaTransferOut": @"deltaTransferOut", @"deltaAmount": @"deltaAmount", @"deposited": @"deposited", @"withdrawn": @"withdrawn", @"transferIn": @"transferIn", @"transferOut": @"transferOut", @"amount": @"amount", @"pendingCredit": @"pendingCredit", @"pendingDebit": @"pendingDebit", @"confirmedDebit": @"confirmedDebit", @"timestamp": @"timestamp", @"addr": @"addr", @"script": @"script", @"withdrawalLock": @"withdrawalLock" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"prevDeposited", @"prevWithdrawn", @"prevAmount", @"prevTimestamp", @"deltaDeposited", @"deltaWithdrawn", @"deltaAmount", @"deposited", @"withdrawn", @"amount", @"pendingCredit", @"pendingDebit", @"confirmedDebit", @"timestamp", @"addr", @"withdrawalLock"];
+  NSArray *optionalProperties = @[@"prevDeposited", @"prevWithdrawn", @"prevTransferIn", @"prevTransferOut", @"prevAmount", @"prevTimestamp", @"deltaDeposited", @"deltaWithdrawn", @"deltaTransferIn", @"deltaTransferOut", @"deltaAmount", @"deposited", @"withdrawn", @"transferIn", @"transferOut", @"amount", @"pendingCredit", @"pendingDebit", @"confirmedDebit", @"timestamp", @"addr", @"script", @"withdrawalLock"];
   return [optionalProperties containsObject:propertyName];
 }
 

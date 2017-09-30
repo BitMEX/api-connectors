@@ -36,3 +36,20 @@
   []
   (:data (stats-history-with-http-info)))
 
+(defn stats-history-usd-with-http-info
+  "Get a summary of exchange statistics in USD."
+  []
+  (call-api "/stats/historyUSD" :get
+            {:path-params   {}
+             :header-params {}
+             :query-params  {}
+             :form-params   {}
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
+             :auth-names    []}))
+
+(defn stats-history-usd
+  "Get a summary of exchange statistics in USD."
+  []
+  (:data (stats-history-usd-with-http-info)))
+

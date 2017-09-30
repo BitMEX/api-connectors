@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **nonce** | **NSNumber*** |  | 
 **cidr** | **NSString*** |  | [optional] 
 **permissions** | [**NSArray&lt;SWGXAny&gt;***](SWGXAny.md) |  | [optional] 
-**enabled** | **NSNumber*** |  | [optional] [default to @0]
+**enabled** | **NSNumber*** |  | [optional] [default to @(NO)]
 **userId** | **NSNumber*** |  | 
 **created** | **NSDate*** |  | [optional] 
 

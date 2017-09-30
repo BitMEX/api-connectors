@@ -7,7 +7,8 @@ CLIENTS=$DIR/clients
 DOCS=$DIR/docs
 CLI=$DIR/swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar
 RESOURCES="https://www.bitmex.com/api/explorer/swagger.json"
-declare -a CLIENTLANGS=(android async-scala clojure csharp dart java javascript go objc php python ruby scala swagger swagger-yaml typescript-fetch)
+declare -a CLIENTLANGS=(android akka-scala clojure csharp java javascript go objc python ruby scala swagger swagger-yaml swift4)
+# FIXME: php and typescript-node appear to have case-sensitive FS problems
 declare -a DOCLANGS=(html dynamic-html)
 
 echo "Getting swagger json..."

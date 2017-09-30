@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**AnnouncementGetUrgent**](AnnouncementApi.md#announcementgeturgent) | **GET** /announcement/urgent | Get urgent (banner) announcements.
 
 
+<a name="announcementget"></a>
 # **AnnouncementGet**
 > List<Announcement> AnnouncementGet (string columns = null)
 
@@ -27,7 +28,6 @@ namespace Example
     {
         public void main()
         {
-            
             var apiInstance = new AnnouncementApi();
             var columns = columns_example;  // string | Array of column names to fetch. If omitted, will return all columns. (optional) 
 
@@ -67,6 +67,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="announcementgeturgent"></a>
 # **AnnouncementGetUrgent**
 > List<Announcement> AnnouncementGetUrgent ()
 
@@ -86,7 +87,19 @@ namespace Example
     {
         public void main()
         {
-            
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiNonce
+            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
             var apiInstance = new AnnouncementApi();
 
             try
@@ -113,7 +126,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

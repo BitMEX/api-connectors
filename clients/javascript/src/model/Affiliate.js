@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -9,188 +9,172 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
-  } else {
-    // Browser globals (root is window)
-    if (!root.BitMexApi) {
-      root.BitMexApi = {};
+
+import ApiClient from '../ApiClient';
+
+
+
+
+
+/**
+* The Affiliate model module.
+* @module model/Affiliate
+* @version 1.2.0
+*/
+export default class Affiliate {
+    /**
+    * Constructs a new <code>Affiliate</code>.
+    * @alias module:model/Affiliate
+    * @class
+    * @param account {Number} 
+    * @param currency {String} 
+    */
+
+    constructor(account, currency) {
+        
+
+        
+        
+
+        this['account'] = account;this['currency'] = currency;
+
+        
     }
-    root.BitMexApi.Affiliate = factory(root.BitMexApi.ApiClient);
-  }
-}(this, function(ApiClient) {
-  'use strict';
 
+    /**
+    * Constructs a <code>Affiliate</code> from a plain JavaScript object, optionally creating a new instance.
+    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
+    * @param {Object} data The plain JavaScript object bearing properties of interest.
+    * @param {module:model/Affiliate} obj Optional instance to populate.
+    * @return {module:model/Affiliate} The populated <code>Affiliate</code> instance.
+    */
+    static constructFromObject(data, obj) {
+        if (data) {
+            obj = obj || new Affiliate();
 
+            
+            
+            
 
-
-  /**
-   * The Affiliate model module.
-   * @module model/Affiliate
-   * @version 1.2.0
-   */
-
-  /**
-   * Constructs a new <code>Affiliate</code>.
-   * @alias module:model/Affiliate
-   * @class
-   * @param account {Number} 
-   * @param currency {String} 
-   */
-  var exports = function(account, currency) {
-    var _this = this;
-
-    _this['account'] = account;
-    _this['currency'] = currency;
-
-
-
-
-
-
-
-
-
-
-
-
-  };
-
-  /**
-   * Constructs a <code>Affiliate</code> from a plain JavaScript object, optionally creating a new instance.
-   * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
-   * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/Affiliate} obj Optional instance to populate.
-   * @return {module:model/Affiliate} The populated <code>Affiliate</code> instance.
-   */
-  exports.constructFromObject = function(data, obj) {
-    if (data) {
-      obj = obj || new exports();
-
-      if (data.hasOwnProperty('account')) {
-        obj['account'] = ApiClient.convertToType(data['account'], 'Number');
-      }
-      if (data.hasOwnProperty('currency')) {
-        obj['currency'] = ApiClient.convertToType(data['currency'], 'String');
-      }
-      if (data.hasOwnProperty('prevPayout')) {
-        obj['prevPayout'] = ApiClient.convertToType(data['prevPayout'], 'Number');
-      }
-      if (data.hasOwnProperty('prevTurnover')) {
-        obj['prevTurnover'] = ApiClient.convertToType(data['prevTurnover'], 'Number');
-      }
-      if (data.hasOwnProperty('prevComm')) {
-        obj['prevComm'] = ApiClient.convertToType(data['prevComm'], 'Number');
-      }
-      if (data.hasOwnProperty('prevTimestamp')) {
-        obj['prevTimestamp'] = ApiClient.convertToType(data['prevTimestamp'], 'Date');
-      }
-      if (data.hasOwnProperty('execTurnover')) {
-        obj['execTurnover'] = ApiClient.convertToType(data['execTurnover'], 'Number');
-      }
-      if (data.hasOwnProperty('execComm')) {
-        obj['execComm'] = ApiClient.convertToType(data['execComm'], 'Number');
-      }
-      if (data.hasOwnProperty('totalReferrals')) {
-        obj['totalReferrals'] = ApiClient.convertToType(data['totalReferrals'], 'Number');
-      }
-      if (data.hasOwnProperty('totalTurnover')) {
-        obj['totalTurnover'] = ApiClient.convertToType(data['totalTurnover'], 'Number');
-      }
-      if (data.hasOwnProperty('totalComm')) {
-        obj['totalComm'] = ApiClient.convertToType(data['totalComm'], 'Number');
-      }
-      if (data.hasOwnProperty('payoutPcnt')) {
-        obj['payoutPcnt'] = ApiClient.convertToType(data['payoutPcnt'], 'Number');
-      }
-      if (data.hasOwnProperty('pendingPayout')) {
-        obj['pendingPayout'] = ApiClient.convertToType(data['pendingPayout'], 'Number');
-      }
-      if (data.hasOwnProperty('timestamp')) {
-        obj['timestamp'] = ApiClient.convertToType(data['timestamp'], 'Date');
-      }
+            if (data.hasOwnProperty('account')) {
+                obj['account'] = ApiClient.convertToType(data['account'], 'Number');
+            }
+            if (data.hasOwnProperty('currency')) {
+                obj['currency'] = ApiClient.convertToType(data['currency'], 'String');
+            }
+            if (data.hasOwnProperty('prevPayout')) {
+                obj['prevPayout'] = ApiClient.convertToType(data['prevPayout'], 'Number');
+            }
+            if (data.hasOwnProperty('prevTurnover')) {
+                obj['prevTurnover'] = ApiClient.convertToType(data['prevTurnover'], 'Number');
+            }
+            if (data.hasOwnProperty('prevComm')) {
+                obj['prevComm'] = ApiClient.convertToType(data['prevComm'], 'Number');
+            }
+            if (data.hasOwnProperty('prevTimestamp')) {
+                obj['prevTimestamp'] = ApiClient.convertToType(data['prevTimestamp'], 'Date');
+            }
+            if (data.hasOwnProperty('execTurnover')) {
+                obj['execTurnover'] = ApiClient.convertToType(data['execTurnover'], 'Number');
+            }
+            if (data.hasOwnProperty('execComm')) {
+                obj['execComm'] = ApiClient.convertToType(data['execComm'], 'Number');
+            }
+            if (data.hasOwnProperty('totalReferrals')) {
+                obj['totalReferrals'] = ApiClient.convertToType(data['totalReferrals'], 'Number');
+            }
+            if (data.hasOwnProperty('totalTurnover')) {
+                obj['totalTurnover'] = ApiClient.convertToType(data['totalTurnover'], 'Number');
+            }
+            if (data.hasOwnProperty('totalComm')) {
+                obj['totalComm'] = ApiClient.convertToType(data['totalComm'], 'Number');
+            }
+            if (data.hasOwnProperty('payoutPcnt')) {
+                obj['payoutPcnt'] = ApiClient.convertToType(data['payoutPcnt'], 'Number');
+            }
+            if (data.hasOwnProperty('pendingPayout')) {
+                obj['pendingPayout'] = ApiClient.convertToType(data['pendingPayout'], 'Number');
+            }
+            if (data.hasOwnProperty('timestamp')) {
+                obj['timestamp'] = ApiClient.convertToType(data['timestamp'], 'Date');
+            }
+            if (data.hasOwnProperty('referrerAccount')) {
+                obj['referrerAccount'] = ApiClient.convertToType(data['referrerAccount'], 'Number');
+            }
+        }
+        return obj;
     }
-    return obj;
-  }
 
-  /**
-   * @member {Number} account
-   */
-  exports.prototype['account'] = undefined;
-  /**
-   * @member {String} currency
-   */
-  exports.prototype['currency'] = undefined;
-  /**
-   * @member {Number} prevPayout
-   */
-  exports.prototype['prevPayout'] = undefined;
-  /**
-   * @member {Number} prevTurnover
-   */
-  exports.prototype['prevTurnover'] = undefined;
-  /**
-   * @member {Number} prevComm
-   */
-  exports.prototype['prevComm'] = undefined;
-  /**
-   * @member {Date} prevTimestamp
-   */
-  exports.prototype['prevTimestamp'] = undefined;
-  /**
-   * @member {Number} execTurnover
-   */
-  exports.prototype['execTurnover'] = undefined;
-  /**
-   * @member {Number} execComm
-   */
-  exports.prototype['execComm'] = undefined;
-  /**
-   * @member {Number} totalReferrals
-   */
-  exports.prototype['totalReferrals'] = undefined;
-  /**
-   * @member {Number} totalTurnover
-   */
-  exports.prototype['totalTurnover'] = undefined;
-  /**
-   * @member {Number} totalComm
-   */
-  exports.prototype['totalComm'] = undefined;
-  /**
-   * @member {Number} payoutPcnt
-   */
-  exports.prototype['payoutPcnt'] = undefined;
-  /**
-   * @member {Number} pendingPayout
-   */
-  exports.prototype['pendingPayout'] = undefined;
-  /**
-   * @member {Date} timestamp
-   */
-  exports.prototype['timestamp'] = undefined;
+    /**
+    * @member {Number} account
+    */
+    account = undefined;
+    /**
+    * @member {String} currency
+    */
+    currency = undefined;
+    /**
+    * @member {Number} prevPayout
+    */
+    prevPayout = undefined;
+    /**
+    * @member {Number} prevTurnover
+    */
+    prevTurnover = undefined;
+    /**
+    * @member {Number} prevComm
+    */
+    prevComm = undefined;
+    /**
+    * @member {Date} prevTimestamp
+    */
+    prevTimestamp = undefined;
+    /**
+    * @member {Number} execTurnover
+    */
+    execTurnover = undefined;
+    /**
+    * @member {Number} execComm
+    */
+    execComm = undefined;
+    /**
+    * @member {Number} totalReferrals
+    */
+    totalReferrals = undefined;
+    /**
+    * @member {Number} totalTurnover
+    */
+    totalTurnover = undefined;
+    /**
+    * @member {Number} totalComm
+    */
+    totalComm = undefined;
+    /**
+    * @member {Number} payoutPcnt
+    */
+    payoutPcnt = undefined;
+    /**
+    * @member {Number} pendingPayout
+    */
+    pendingPayout = undefined;
+    /**
+    * @member {Date} timestamp
+    */
+    timestamp = undefined;
+    /**
+    * @member {Number} referrerAccount
+    */
+    referrerAccount = undefined;
 
 
 
-  return exports;
-}));
+
+
+
+
+
+}
 
 

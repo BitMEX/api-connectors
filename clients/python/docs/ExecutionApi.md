@@ -17,28 +17,45 @@ This returns all raw transactions, which includes order opening and cancelation,
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.ExecutionApi()
+api_instance = swagger_client.ExecutionApi(swagger_client.ApiClient(configuration))
 symbol = 'symbol_example' # str | Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`. (optional)
 filter = 'filter_example' # str | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. (optional)
 columns = 'columns_example' # str | Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
 count = 100 # float | Number of results to fetch. (optional) (default to 100)
 start = 0 # float | Starting point for results. (optional) (default to 0)
 reverse = false # bool | If true, will sort results newest first. (optional) (default to false)
-start_time = '2013-10-20' # date | Starting date filter for results. (optional)
-end_time = '2013-10-20' # date | Ending date filter for results. (optional)
+start_time = '2013-10-20T19:20:30+01:00' # datetime | Starting date filter for results. (optional)
+end_time = '2013-10-20T19:20:30+01:00' # datetime | Ending date filter for results. (optional)
 
 try: 
     # Get all raw executions for your account.
     api_response = api_instance.execution_get(symbol=symbol, filter=filter, columns=columns, count=count, start=start, reverse=reverse, start_time=start_time, end_time=end_time)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling ExecutionApi->execution_get: %s\n" % e
+    print("Exception when calling ExecutionApi->execution_get: %s\n" % e)
 ```
 
 ### Parameters
@@ -51,8 +68,8 @@ Name | Type | Description  | Notes
  **count** | **float**| Number of results to fetch. | [optional] [default to 100]
  **start** | **float**| Starting point for results. | [optional] [default to 0]
  **reverse** | **bool**| If true, will sort results newest first. | [optional] [default to false]
- **start_time** | **date**| Starting date filter for results. | [optional] 
- **end_time** | **date**| Ending date filter for results. | [optional] 
+ **start_time** | **datetime**| Starting date filter for results. | [optional] 
+ **end_time** | **datetime**| Ending date filter for results. | [optional] 
 
 ### Return type
 
@@ -60,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -76,28 +93,45 @@ Get all balance-affecting executions. This includes each trade, insurance charge
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.ExecutionApi()
+api_instance = swagger_client.ExecutionApi(swagger_client.ApiClient(configuration))
 symbol = 'symbol_example' # str | Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`. (optional)
 filter = 'filter_example' # str | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. (optional)
 columns = 'columns_example' # str | Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
 count = 100 # float | Number of results to fetch. (optional) (default to 100)
 start = 0 # float | Starting point for results. (optional) (default to 0)
 reverse = false # bool | If true, will sort results newest first. (optional) (default to false)
-start_time = '2013-10-20' # date | Starting date filter for results. (optional)
-end_time = '2013-10-20' # date | Ending date filter for results. (optional)
+start_time = '2013-10-20T19:20:30+01:00' # datetime | Starting date filter for results. (optional)
+end_time = '2013-10-20T19:20:30+01:00' # datetime | Ending date filter for results. (optional)
 
 try: 
     # Get all balance-affecting executions. This includes each trade, insurance charge, and settlement.
     api_response = api_instance.execution_get_trade_history(symbol=symbol, filter=filter, columns=columns, count=count, start=start, reverse=reverse, start_time=start_time, end_time=end_time)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling ExecutionApi->execution_get_trade_history: %s\n" % e
+    print("Exception when calling ExecutionApi->execution_get_trade_history: %s\n" % e)
 ```
 
 ### Parameters
@@ -110,8 +144,8 @@ Name | Type | Description  | Notes
  **count** | **float**| Number of results to fetch. | [optional] [default to 100]
  **start** | **float**| Starting point for results. | [optional] [default to 0]
  **reverse** | **bool**| If true, will sort results newest first. | [optional] [default to false]
- **start_time** | **date**| Starting date filter for results. | [optional] 
- **end_time** | **date**| Ending date filter for results. | [optional] 
+ **start_time** | **datetime**| Starting date filter for results. | [optional] 
+ **end_time** | **datetime**| Ending date filter for results. | [optional] 
 
 ### Return type
 
@@ -119,7 +153,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

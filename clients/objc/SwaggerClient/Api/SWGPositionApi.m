@@ -1,12 +1,13 @@
 #import "SWGPositionApi.h"
 #import "SWGQueryParamCollection.h"
+#import "SWGApiClient.h"
 #import "SWGError.h"
 #import "SWGPosition.h"
 
 
 @interface SWGPositionApi ()
 
-@property (nonatomic, strong) NSMutableDictionary *defaultHeaders;
+@property (nonatomic, strong, readwrite) NSMutableDictionary *mutableDefaultHeaders;
 
 @end
 
@@ -20,52 +21,31 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
 #pragma mark - Initialize methods
 
 - (instancetype) init {
-    self = [super init];
-    if (self) {
-        SWGConfiguration *config = [SWGConfiguration sharedConfig];
-        if (config.apiClient == nil) {
-            config.apiClient = [[SWGApiClient alloc] init];
-        }
-        _apiClient = config.apiClient;
-        _defaultHeaders = [NSMutableDictionary dictionary];
-    }
-    return self;
+    return [self initWithApiClient:[SWGApiClient sharedClient]];
 }
 
-- (id) initWithApiClient:(SWGApiClient *)apiClient {
+
+-(instancetype) initWithApiClient:(SWGApiClient *)apiClient {
     self = [super init];
     if (self) {
         _apiClient = apiClient;
-        _defaultHeaders = [NSMutableDictionary dictionary];
+        _mutableDefaultHeaders = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
 #pragma mark -
 
-+ (instancetype)sharedAPI {
-    static SWGPositionApi *sharedAPI;
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        sharedAPI = [[self alloc] init];
-    });
-    return sharedAPI;
-}
-
 -(NSString*) defaultHeaderForKey:(NSString*)key {
-    return self.defaultHeaders[key];
-}
-
--(void) addHeader:(NSString*)value forKey:(NSString*)key {
-    [self setDefaultHeaderValue:value forKey:key];
+    return self.mutableDefaultHeaders[key];
 }
 
 -(void) setDefaultHeaderValue:(NSString*) value forKey:(NSString*)key {
-    [self.defaultHeaders setValue:value forKey:key];
+    [self.mutableDefaultHeaders setValue:value forKey:key];
 }
 
--(NSUInteger) requestQueueSize {
-    return [SWGApiClient requestQueueSize];
+-(NSDictionary *)defaultHeaders {
+    return self.mutableDefaultHeaders;
 }
 
 #pragma mark - Api Methods
@@ -73,7 +53,7 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
 ///
 /// Get your positions.
 /// See <a href=\"http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html\">the FIX Spec</a> for explanations of these fields.
-///  @param filter Table filter. For example, send {\"symbol\": \"XBT24H\"}. (optional)
+///  @param filter Table filter. For example, send {\"symbol\": \"XBTUSD\"}. (optional)
 ///
 ///  @param columns Which columns to fetch. For example, send [\"columnName\"]. (optional)
 ///
@@ -81,14 +61,11 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSArray<SWGPosition>*
 ///
--(NSNumber*) positionGetWithFilter: (NSString*) filter
+-(NSURLSessionTask*) positionGetWithFilter: (NSString*) filter
     columns: (NSString*) columns
     count: (NSNumber*) count
     completionHandler: (void (^)(NSArray<SWGPosition>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/position"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -117,7 +94,7 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -139,20 +116,19 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSArray<SWGPosition>*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
 /// Enable isolated margin or cross margin per-position.
-/// On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+/// Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
 ///  @param symbol Position symbol to isolate. 
 ///
 ///  @param enabled True for isolated margin, false for cross margin. (optional, default to true)
 ///
 ///  @returns SWGPosition*
 ///
--(NSNumber*) positionIsolateMarginWithSymbol: (NSString*) symbol
+-(NSURLSessionTask*) positionIsolateMarginWithSymbol: (NSString*) symbol
     enabled: (NSNumber*) enabled
     completionHandler: (void (^)(SWGPosition* output, NSError* error)) handler {
     // verify the required parameter 'symbol' is set
@@ -167,9 +143,6 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
     }
 
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/position/isolate"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -189,7 +162,7 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -217,8 +190,7 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGPosition*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -230,7 +202,7 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
 ///
 ///  @returns SWGPosition*
 ///
--(NSNumber*) positionTransferIsolatedMarginWithSymbol: (NSString*) symbol
+-(NSURLSessionTask*) positionTransferIsolatedMarginWithSymbol: (NSString*) symbol
     amount: (NSNumber*) amount
     completionHandler: (void (^)(SWGPosition* output, NSError* error)) handler {
     // verify the required parameter 'symbol' is set
@@ -257,9 +229,6 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
 
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/position/transferMargin"];
 
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
-
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
@@ -278,7 +247,7 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -306,20 +275,19 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGPosition*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
 /// Choose leverage for a position.
-/// On Speculative (DPE-Enabled) contracts, users can choose an isolated leverage. This will automatically enable isolated margin.
+/// Users can choose an isolated leverage. This will automatically enable isolated margin.
 ///  @param symbol Symbol of position to adjust. 
 ///
 ///  @param leverage Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin. 
 ///
 ///  @returns SWGPosition*
 ///
--(NSNumber*) positionUpdateLeverageWithSymbol: (NSString*) symbol
+-(NSURLSessionTask*) positionUpdateLeverageWithSymbol: (NSString*) symbol
     leverage: (NSNumber*) leverage
     completionHandler: (void (^)(SWGPosition* output, NSError* error)) handler {
     // verify the required parameter 'symbol' is set
@@ -346,9 +314,6 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
 
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/position/leverage"];
 
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
-
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
@@ -367,7 +332,7 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -395,8 +360,7 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGPosition*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -408,7 +372,7 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
 ///
 ///  @returns SWGPosition*
 ///
--(NSNumber*) positionUpdateRiskLimitWithSymbol: (NSString*) symbol
+-(NSURLSessionTask*) positionUpdateRiskLimitWithSymbol: (NSString*) symbol
     riskLimit: (NSNumber*) riskLimit
     completionHandler: (void (^)(SWGPosition* output, NSError* error)) handler {
     // verify the required parameter 'symbol' is set
@@ -435,9 +399,6 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
 
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/position/riskLimit"];
 
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
-
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
@@ -456,7 +417,7 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -484,8 +445,7 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGPosition*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 

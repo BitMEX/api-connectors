@@ -14,7 +14,7 @@
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
 
 (defn position-get
   "Get your positions.
@@ -25,7 +25,7 @@
 
 (defn position-isolate-margin-with-http-info
   "Enable isolated margin or cross margin per-position.
-  On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off."
+  Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off."
   ([symbol ] (position-isolate-margin-with-http-info symbol nil))
   ([symbol {:keys [enabled ]}]
    (call-api "/position/isolate" :post
@@ -35,11 +35,11 @@
               :form-params   {"symbol" symbol "enabled" enabled }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    []})))
+              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
 
 (defn position-isolate-margin
   "Enable isolated margin or cross margin per-position.
-  On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off."
+  Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off."
   ([symbol ] (position-isolate-margin symbol nil))
   ([symbol optional-params]
    (:data (position-isolate-margin-with-http-info symbol optional-params))))
@@ -55,7 +55,7 @@
              :form-params   {"symbol" symbol "amount" amount }
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-             :auth-names    []}))
+             :auth-names    ["apiKey" "apiNonce" "apiSignature"]}))
 
 (defn position-transfer-isolated-margin
   "Transfer equity in or out of a position.
@@ -65,7 +65,7 @@
 
 (defn position-update-leverage-with-http-info
   "Choose leverage for a position.
-  On Speculative (DPE-Enabled) contracts, users can choose an isolated leverage. This will automatically enable isolated margin."
+  Users can choose an isolated leverage. This will automatically enable isolated margin."
   [symbol leverage ]
   (call-api "/position/leverage" :post
             {:path-params   {}
@@ -74,11 +74,11 @@
              :form-params   {"symbol" symbol "leverage" leverage }
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-             :auth-names    []}))
+             :auth-names    ["apiKey" "apiNonce" "apiSignature"]}))
 
 (defn position-update-leverage
   "Choose leverage for a position.
-  On Speculative (DPE-Enabled) contracts, users can choose an isolated leverage. This will automatically enable isolated margin."
+  Users can choose an isolated leverage. This will automatically enable isolated margin."
   [symbol leverage ]
   (:data (position-update-leverage-with-http-info symbol leverage)))
 
@@ -93,7 +93,7 @@
              :form-params   {"symbol" symbol "riskLimit" risk-limit }
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-             :auth-names    []}))
+             :auth-names    ["apiKey" "apiNonce" "apiSignature"]}))
 
 (defn position-update-risk-limit
   "Update your risk limit.

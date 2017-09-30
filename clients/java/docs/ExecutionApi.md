@@ -19,9 +19,31 @@ This returns all raw transactions, which includes order opening and cancelation,
 ### Example
 ```java
 // Import classes:
+//import io.swagger.client.ApiClient;
 //import io.swagger.client.ApiException;
+//import io.swagger.client.Configuration;
+//import io.swagger.client.auth.*;
 //import io.swagger.client.api.ExecutionApi;
 
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: apiKey
+ApiKeyAuth apiKey = (ApiKeyAuth) defaultClient.getAuthentication("apiKey");
+apiKey.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.setApiKeyPrefix("Token");
+
+// Configure API key authorization: apiNonce
+ApiKeyAuth apiNonce = (ApiKeyAuth) defaultClient.getAuthentication("apiNonce");
+apiNonce.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiNonce.setApiKeyPrefix("Token");
+
+// Configure API key authorization: apiSignature
+ApiKeyAuth apiSignature = (ApiKeyAuth) defaultClient.getAuthentication("apiSignature");
+apiSignature.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.setApiKeyPrefix("Token");
 
 ExecutionApi apiInstance = new ExecutionApi();
 String symbol = "symbol_example"; // String | Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
@@ -30,8 +52,8 @@ String columns = "columns_example"; // String | Array of column names to fetch. 
 BigDecimal count = new BigDecimal(); // BigDecimal | Number of results to fetch.
 BigDecimal start = new BigDecimal(); // BigDecimal | Starting point for results.
 Boolean reverse = false; // Boolean | If true, will sort results newest first.
-LocalDate startTime = new LocalDate(); // LocalDate | Starting date filter for results.
-LocalDate endTime = new LocalDate(); // LocalDate | Ending date filter for results.
+OffsetDateTime startTime = new OffsetDateTime(); // OffsetDateTime | Starting date filter for results.
+OffsetDateTime endTime = new OffsetDateTime(); // OffsetDateTime | Ending date filter for results.
 try {
     List<Execution> result = apiInstance.executionGet(symbol, filter, columns, count, start, reverse, startTime, endTime);
     System.out.println(result);
@@ -51,8 +73,8 @@ Name | Type | Description  | Notes
  **count** | **BigDecimal**| Number of results to fetch. | [optional] [default to 100]
  **start** | **BigDecimal**| Starting point for results. | [optional] [default to 0]
  **reverse** | **Boolean**| If true, will sort results newest first. | [optional] [default to false]
- **startTime** | **LocalDate**| Starting date filter for results. | [optional]
- **endTime** | **LocalDate**| Ending date filter for results. | [optional]
+ **startTime** | **OffsetDateTime**| Starting date filter for results. | [optional]
+ **endTime** | **OffsetDateTime**| Ending date filter for results. | [optional]
 
 ### Return type
 
@@ -60,7 +82,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -76,9 +98,31 @@ Get all balance-affecting executions. This includes each trade, insurance charge
 ### Example
 ```java
 // Import classes:
+//import io.swagger.client.ApiClient;
 //import io.swagger.client.ApiException;
+//import io.swagger.client.Configuration;
+//import io.swagger.client.auth.*;
 //import io.swagger.client.api.ExecutionApi;
 
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: apiKey
+ApiKeyAuth apiKey = (ApiKeyAuth) defaultClient.getAuthentication("apiKey");
+apiKey.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.setApiKeyPrefix("Token");
+
+// Configure API key authorization: apiNonce
+ApiKeyAuth apiNonce = (ApiKeyAuth) defaultClient.getAuthentication("apiNonce");
+apiNonce.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiNonce.setApiKeyPrefix("Token");
+
+// Configure API key authorization: apiSignature
+ApiKeyAuth apiSignature = (ApiKeyAuth) defaultClient.getAuthentication("apiSignature");
+apiSignature.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.setApiKeyPrefix("Token");
 
 ExecutionApi apiInstance = new ExecutionApi();
 String symbol = "symbol_example"; // String | Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
@@ -87,8 +131,8 @@ String columns = "columns_example"; // String | Array of column names to fetch. 
 BigDecimal count = new BigDecimal(); // BigDecimal | Number of results to fetch.
 BigDecimal start = new BigDecimal(); // BigDecimal | Starting point for results.
 Boolean reverse = false; // Boolean | If true, will sort results newest first.
-LocalDate startTime = new LocalDate(); // LocalDate | Starting date filter for results.
-LocalDate endTime = new LocalDate(); // LocalDate | Ending date filter for results.
+OffsetDateTime startTime = new OffsetDateTime(); // OffsetDateTime | Starting date filter for results.
+OffsetDateTime endTime = new OffsetDateTime(); // OffsetDateTime | Ending date filter for results.
 try {
     List<Execution> result = apiInstance.executionGetTradeHistory(symbol, filter, columns, count, start, reverse, startTime, endTime);
     System.out.println(result);
@@ -108,8 +152,8 @@ Name | Type | Description  | Notes
  **count** | **BigDecimal**| Number of results to fetch. | [optional] [default to 100]
  **start** | **BigDecimal**| Starting point for results. | [optional] [default to 0]
  **reverse** | **Boolean**| If true, will sort results newest first. | [optional] [default to false]
- **startTime** | **LocalDate**| Starting date filter for results. | [optional]
- **endTime** | **LocalDate**| Ending date filter for results. | [optional]
+ **startTime** | **OffsetDateTime**| Starting date filter for results. | [optional]
+ **endTime** | **OffsetDateTime**| Ending date filter for results. | [optional]
 
 ### Return type
 
@@ -117,7 +161,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

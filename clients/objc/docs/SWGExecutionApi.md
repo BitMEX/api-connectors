@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **executionGet**
 ```objc
--(NSNumber*) executionGetWithSymbol: (NSString*) symbol
+-(NSURLSessionTask*) executionGetWithSymbol: (NSString*) symbol
     filter: (NSString*) filter
     columns: (NSString*) columns
     count: (NSNumber*) count
@@ -27,6 +27,23 @@ This returns all raw transactions, which includes order opening and cancelation,
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiNonce)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
 
 NSString* symbol = @"symbol_example"; // Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`. (optional)
 NSString* filter = @"filter_example"; // Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. (optional)
@@ -34,8 +51,8 @@ NSString* columns = @"columns_example"; // Array of column names to fetch. If om
 NSNumber* count = @100; // Number of results to fetch. (optional) (default to 100)
 NSNumber* start = @0; // Starting point for results. (optional) (default to 0)
 NSNumber* reverse = @false; // If true, will sort results newest first. (optional) (default to false)
-NSDate* startTime = @"2013-10-20"; // Starting date filter for results. (optional)
-NSDate* endTime = @"2013-10-20"; // Ending date filter for results. (optional)
+NSDate* startTime = @"2013-10-20T19:20:30+01:00"; // Starting date filter for results. (optional)
+NSDate* endTime = @"2013-10-20T19:20:30+01:00"; // Ending date filter for results. (optional)
 
 SWGExecutionApi*apiInstance = [[SWGExecutionApi alloc] init];
 
@@ -77,7 +94,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -88,7 +105,7 @@ No authorization required
 
 # **executionGetTradeHistory**
 ```objc
--(NSNumber*) executionGetTradeHistoryWithSymbol: (NSString*) symbol
+-(NSURLSessionTask*) executionGetTradeHistoryWithSymbol: (NSString*) symbol
     filter: (NSString*) filter
     columns: (NSString*) columns
     count: (NSNumber*) count
@@ -103,6 +120,23 @@ Get all balance-affecting executions. This includes each trade, insurance charge
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiNonce)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
 
 NSString* symbol = @"symbol_example"; // Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`. (optional)
 NSString* filter = @"filter_example"; // Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. (optional)
@@ -110,8 +144,8 @@ NSString* columns = @"columns_example"; // Array of column names to fetch. If om
 NSNumber* count = @100; // Number of results to fetch. (optional) (default to 100)
 NSNumber* start = @0; // Starting point for results. (optional) (default to 0)
 NSNumber* reverse = @false; // If true, will sort results newest first. (optional) (default to false)
-NSDate* startTime = @"2013-10-20"; // Starting date filter for results. (optional)
-NSDate* endTime = @"2013-10-20"; // Ending date filter for results. (optional)
+NSDate* startTime = @"2013-10-20T19:20:30+01:00"; // Starting date filter for results. (optional)
+NSDate* endTime = @"2013-10-20T19:20:30+01:00"; // Ending date filter for results. (optional)
 
 SWGExecutionApi*apiInstance = [[SWGExecutionApi alloc] init];
 
@@ -153,7 +187,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

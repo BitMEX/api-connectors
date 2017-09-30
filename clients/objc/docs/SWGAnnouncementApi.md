@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **announcementGet**
 ```objc
--(NSNumber*) announcementGetWithColumns: (NSString*) columns
+-(NSURLSessionTask*) announcementGetWithColumns: (NSString*) columns
         completionHandler: (void (^)(NSArray<SWGAnnouncement>* output, NSError* error)) handler;
 ```
 
@@ -58,7 +58,7 @@ No authorization required
 
 # **announcementGetUrgent**
 ```objc
--(NSNumber*) announcementGetUrgentWithCompletionHandler: 
+-(NSURLSessionTask*) announcementGetUrgentWithCompletionHandler: 
         (void (^)(NSArray<SWGAnnouncement>* output, NSError* error)) handler;
 ```
 
@@ -66,6 +66,23 @@ Get urgent (banner) announcements.
 
 ### Example 
 ```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiNonce)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
 
 
 SWGAnnouncementApi*apiInstance = [[SWGAnnouncementApi alloc] init];
@@ -91,7 +108,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

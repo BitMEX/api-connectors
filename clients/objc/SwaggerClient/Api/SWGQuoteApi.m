@@ -1,12 +1,13 @@
 #import "SWGQuoteApi.h"
 #import "SWGQueryParamCollection.h"
+#import "SWGApiClient.h"
 #import "SWGError.h"
 #import "SWGQuote.h"
 
 
 @interface SWGQuoteApi ()
 
-@property (nonatomic, strong) NSMutableDictionary *defaultHeaders;
+@property (nonatomic, strong, readwrite) NSMutableDictionary *mutableDefaultHeaders;
 
 @end
 
@@ -20,52 +21,31 @@ NSInteger kSWGQuoteApiMissingParamErrorCode = 234513;
 #pragma mark - Initialize methods
 
 - (instancetype) init {
-    self = [super init];
-    if (self) {
-        SWGConfiguration *config = [SWGConfiguration sharedConfig];
-        if (config.apiClient == nil) {
-            config.apiClient = [[SWGApiClient alloc] init];
-        }
-        _apiClient = config.apiClient;
-        _defaultHeaders = [NSMutableDictionary dictionary];
-    }
-    return self;
+    return [self initWithApiClient:[SWGApiClient sharedClient]];
 }
 
-- (id) initWithApiClient:(SWGApiClient *)apiClient {
+
+-(instancetype) initWithApiClient:(SWGApiClient *)apiClient {
     self = [super init];
     if (self) {
         _apiClient = apiClient;
-        _defaultHeaders = [NSMutableDictionary dictionary];
+        _mutableDefaultHeaders = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
 #pragma mark -
 
-+ (instancetype)sharedAPI {
-    static SWGQuoteApi *sharedAPI;
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        sharedAPI = [[self alloc] init];
-    });
-    return sharedAPI;
-}
-
 -(NSString*) defaultHeaderForKey:(NSString*)key {
-    return self.defaultHeaders[key];
-}
-
--(void) addHeader:(NSString*)value forKey:(NSString*)key {
-    [self setDefaultHeaderValue:value forKey:key];
+    return self.mutableDefaultHeaders[key];
 }
 
 -(void) setDefaultHeaderValue:(NSString*) value forKey:(NSString*)key {
-    [self.defaultHeaders setValue:value forKey:key];
+    [self.mutableDefaultHeaders setValue:value forKey:key];
 }
 
--(NSUInteger) requestQueueSize {
-    return [SWGApiClient requestQueueSize];
+-(NSDictionary *)defaultHeaders {
+    return self.mutableDefaultHeaders;
 }
 
 #pragma mark - Api Methods
@@ -91,7 +71,7 @@ NSInteger kSWGQuoteApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSArray<SWGQuote>*
 ///
--(NSNumber*) quoteGetWithSymbol: (NSString*) symbol
+-(NSURLSessionTask*) quoteGetWithSymbol: (NSString*) symbol
     filter: (NSString*) filter
     columns: (NSString*) columns
     count: (NSNumber*) count
@@ -101,9 +81,6 @@ NSInteger kSWGQuoteApiMissingParamErrorCode = 234513;
     endTime: (NSDate*) endTime
     completionHandler: (void (^)(NSArray<SWGQuote>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/quote"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -124,7 +101,7 @@ NSInteger kSWGQuoteApiMissingParamErrorCode = 234513;
         queryParams[@"start"] = start;
     }
     if (reverse != nil) {
-        queryParams[@"reverse"] = reverse;
+        queryParams[@"reverse"] = [reverse isEqual:@(YES)] ? @"true" : @"false";
     }
     if (startTime != nil) {
         queryParams[@"startTime"] = startTime;
@@ -169,14 +146,15 @@ NSInteger kSWGQuoteApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSArray<SWGQuote>*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
 /// Get previous quotes in time buckets.
 /// 
-///  @param binSize Time interval to bucket by. Available options: ['1m', '5m', '1h', '1d']. (optional)
+///  @param binSize Time interval to bucket by. Available options: [1m,5m,1h,1d]. (optional, default to 1m)
+///
+///  @param partial If true, will send in-progress (incomplete) bins for the current time period. (optional, default to false)
 ///
 ///  @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`. (optional)
 ///
@@ -196,7 +174,8 @@ NSInteger kSWGQuoteApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSArray<SWGQuote>*
 ///
--(NSNumber*) quoteGetBucketedWithBinSize: (NSString*) binSize
+-(NSURLSessionTask*) quoteGetBucketedWithBinSize: (NSString*) binSize
+    partial: (NSNumber*) partial
     symbol: (NSString*) symbol
     filter: (NSString*) filter
     columns: (NSString*) columns
@@ -208,14 +187,14 @@ NSInteger kSWGQuoteApiMissingParamErrorCode = 234513;
     completionHandler: (void (^)(NSArray<SWGQuote>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/quote/bucketed"];
 
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
-
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
     if (binSize != nil) {
         queryParams[@"binSize"] = binSize;
+    }
+    if (partial != nil) {
+        queryParams[@"partial"] = [partial isEqual:@(YES)] ? @"true" : @"false";
     }
     if (symbol != nil) {
         queryParams[@"symbol"] = symbol;
@@ -233,7 +212,7 @@ NSInteger kSWGQuoteApiMissingParamErrorCode = 234513;
         queryParams[@"start"] = start;
     }
     if (reverse != nil) {
-        queryParams[@"reverse"] = reverse;
+        queryParams[@"reverse"] = [reverse isEqual:@(YES)] ? @"true" : @"false";
     }
     if (startTime != nil) {
         queryParams[@"startTime"] = startTime;
@@ -278,8 +257,7 @@ NSInteger kSWGQuoteApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSArray<SWGQuote>*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 

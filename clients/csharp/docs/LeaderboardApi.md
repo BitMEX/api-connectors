@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**LeaderboardGet**](LeaderboardApi.md#leaderboardget) | **GET** /leaderboard | Get current leaderboard.
 
 
+<a name="leaderboardget"></a>
 # **LeaderboardGet**
 > List<Leaderboard> LeaderboardGet (string method = null)
 
@@ -26,7 +27,6 @@ namespace Example
     {
         public void main()
         {
-            
             var apiInstance = new LeaderboardApi();
             var method = method_example;  // string | Ranking type. Options: \"notional\", \"ROE\" (optional)  (default to notional)
 

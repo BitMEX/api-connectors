@@ -35,8 +35,8 @@ Name | Type | Description | Notes
 **avgPx** | **Double** |  |  [optional]
 **multiLegReportingType** | **String** |  |  [optional]
 **text** | **String** |  |  [optional]
-**transactTime** | [**DateTime**](DateTime.md) |  |  [optional]
-**timestamp** | [**DateTime**](DateTime.md) |  |  [optional]
+**transactTime** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
+**timestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 
 
 

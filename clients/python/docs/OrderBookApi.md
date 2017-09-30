@@ -15,6 +15,7 @@ Get current orderbook [deprecated, use /orderBook/L2].
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -30,7 +31,7 @@ try:
     api_response = api_instance.order_book_get(symbol, depth=depth)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling OrderBookApi->order_book_get: %s\n" % e
+    print("Exception when calling OrderBookApi->order_book_get: %s\n" % e)
 ```
 
 ### Parameters
@@ -62,6 +63,7 @@ Get current orderbook in vertical format.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -77,7 +79,7 @@ try:
     api_response = api_instance.order_book_get_l2(symbol, depth=depth)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling OrderBookApi->order_book_get_l2: %s\n" % e
+    print("Exception when calling OrderBookApi->order_book_get_l2: %s\n" % e)
 ```
 
 ### Parameters

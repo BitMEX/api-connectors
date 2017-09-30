@@ -1,17 +1,18 @@
 #import "SWGUserApi.h"
 #import "SWGQueryParamCollection.h"
-#import "SWGTransaction.h"
+#import "SWGApiClient.h"
 #import "SWGAccessToken.h"
-#import "SWGUser.h"
 #import "SWGAffiliate.h"
-#import "SWGUserCommission.h"
 #import "SWGMargin.h"
+#import "SWGTransaction.h"
+#import "SWGUser.h"
+#import "SWGUserCommission.h"
 #import "SWGWallet.h"
 
 
 @interface SWGUserApi ()
 
-@property (nonatomic, strong) NSMutableDictionary *defaultHeaders;
+@property (nonatomic, strong, readwrite) NSMutableDictionary *mutableDefaultHeaders;
 
 @end
 
@@ -25,52 +26,31 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 #pragma mark - Initialize methods
 
 - (instancetype) init {
-    self = [super init];
-    if (self) {
-        SWGConfiguration *config = [SWGConfiguration sharedConfig];
-        if (config.apiClient == nil) {
-            config.apiClient = [[SWGApiClient alloc] init];
-        }
-        _apiClient = config.apiClient;
-        _defaultHeaders = [NSMutableDictionary dictionary];
-    }
-    return self;
+    return [self initWithApiClient:[SWGApiClient sharedClient]];
 }
 
-- (id) initWithApiClient:(SWGApiClient *)apiClient {
+
+-(instancetype) initWithApiClient:(SWGApiClient *)apiClient {
     self = [super init];
     if (self) {
         _apiClient = apiClient;
-        _defaultHeaders = [NSMutableDictionary dictionary];
+        _mutableDefaultHeaders = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
 #pragma mark -
 
-+ (instancetype)sharedAPI {
-    static SWGUserApi *sharedAPI;
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        sharedAPI = [[self alloc] init];
-    });
-    return sharedAPI;
-}
-
 -(NSString*) defaultHeaderForKey:(NSString*)key {
-    return self.defaultHeaders[key];
-}
-
--(void) addHeader:(NSString*)value forKey:(NSString*)key {
-    [self setDefaultHeaderValue:value forKey:key];
+    return self.mutableDefaultHeaders[key];
 }
 
 -(void) setDefaultHeaderValue:(NSString*) value forKey:(NSString*)key {
-    [self.defaultHeaders setValue:value forKey:key];
+    [self.mutableDefaultHeaders setValue:value forKey:key];
 }
 
--(NSUInteger) requestQueueSize {
-    return [SWGApiClient requestQueueSize];
+-(NSDictionary *)defaultHeaders {
+    return self.mutableDefaultHeaders;
 }
 
 #pragma mark - Api Methods
@@ -82,7 +62,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns SWGTransaction*
 ///
--(NSNumber*) userCancelWithdrawalWithToken: (NSString*) token
+-(NSURLSessionTask*) userCancelWithdrawalWithToken: (NSString*) token
     completionHandler: (void (^)(SWGTransaction* output, NSError* error)) handler {
     // verify the required parameter 'token' is set
     if (token == nil) {
@@ -96,9 +76,6 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     }
 
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/cancelWithdrawal"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -143,8 +120,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGTransaction*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -154,12 +130,9 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSNumber*
 ///
--(NSNumber*) userCheckReferralCodeWithReferralCode: (NSString*) referralCode
+-(NSURLSessionTask*) userCheckReferralCodeWithReferralCode: (NSString*) referralCode
     completionHandler: (void (^)(NSNumber* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/checkReferralCode"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -204,8 +177,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSNumber*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -215,7 +187,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns SWGAccessToken*
 ///
--(NSNumber*) userConfirmWithToken: (NSString*) token
+-(NSURLSessionTask*) userConfirmWithToken: (NSString*) token
     completionHandler: (void (^)(SWGAccessToken* output, NSError* error)) handler {
     // verify the required parameter 'token' is set
     if (token == nil) {
@@ -229,9 +201,6 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     }
 
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/confirmEmail"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -276,8 +245,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGAccessToken*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -289,7 +257,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSNumber*
 ///
--(NSNumber*) userConfirmEnableTFAWithToken: (NSString*) token
+-(NSURLSessionTask*) userConfirmEnableTFAWithToken: (NSString*) token
     type: (NSString*) type
     completionHandler: (void (^)(NSNumber* output, NSError* error)) handler {
     // verify the required parameter 'token' is set
@@ -304,9 +272,6 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     }
 
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/confirmEnableTFA"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -326,7 +291,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -354,8 +319,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSNumber*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -365,7 +329,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns SWGTransaction*
 ///
--(NSNumber*) userConfirmWithdrawalWithToken: (NSString*) token
+-(NSURLSessionTask*) userConfirmWithdrawalWithToken: (NSString*) token
     completionHandler: (void (^)(SWGTransaction* output, NSError* error)) handler {
     // verify the required parameter 'token' is set
     if (token == nil) {
@@ -379,9 +343,6 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     }
 
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/confirmWithdrawal"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -426,8 +387,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGTransaction*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -439,7 +399,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSNumber*
 ///
--(NSNumber*) userDisableTFAWithToken: (NSString*) token
+-(NSURLSessionTask*) userDisableTFAWithToken: (NSString*) token
     type: (NSString*) type
     completionHandler: (void (^)(NSNumber* output, NSError* error)) handler {
     // verify the required parameter 'token' is set
@@ -454,9 +414,6 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     }
 
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/disableTFA"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -476,7 +433,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -504,8 +461,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSNumber*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -513,12 +469,9 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 /// 
 ///  @returns SWGUser*
 ///
--(NSNumber*) userGetWithCompletionHandler: 
+-(NSURLSessionTask*) userGetWithCompletionHandler: 
     (void (^)(SWGUser* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -538,7 +491,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -560,21 +513,17 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGUser*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
 /// Get your current affiliate/referral status.
 /// 
-///  @returns NSArray<SWGAffiliate>*
+///  @returns SWGAffiliate*
 ///
--(NSNumber*) userGetAffiliateStatusWithCompletionHandler: 
-    (void (^)(NSArray<SWGAffiliate>* output, NSError* error)) handler {
+-(NSURLSessionTask*) userGetAffiliateStatusWithCompletionHandler: 
+    (void (^)(SWGAffiliate* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/affiliateStatus"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -594,7 +543,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -611,13 +560,12 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"NSArray<SWGAffiliate>*"
+                              responseType: @"SWGAffiliate*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((NSArray<SWGAffiliate>*)data, error);
+                                    handler((SWGAffiliate*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -625,12 +573,9 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 /// 
 ///  @returns NSArray<SWGUserCommission>*
 ///
--(NSNumber*) userGetCommissionWithCompletionHandler: 
+-(NSURLSessionTask*) userGetCommissionWithCompletionHandler: 
     (void (^)(NSArray<SWGUserCommission>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/commission"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -650,7 +595,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -672,8 +617,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSArray<SWGUserCommission>*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -683,12 +627,9 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSString*
 ///
--(NSNumber*) userGetDepositAddressWithCurrency: (NSString*) currency
+-(NSURLSessionTask*) userGetDepositAddressWithCurrency: (NSString*) currency
     completionHandler: (void (^)(NSString* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/depositAddress"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -711,7 +652,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -733,8 +674,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSString*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -744,12 +684,9 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns SWGMargin*
 ///
--(NSNumber*) userGetMarginWithCurrency: (NSString*) currency
+-(NSURLSessionTask*) userGetMarginWithCurrency: (NSString*) currency
     completionHandler: (void (^)(SWGMargin* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/margin"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -772,7 +709,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -794,8 +731,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGMargin*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -805,12 +741,9 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns SWGWallet*
 ///
--(NSNumber*) userGetWalletWithCurrency: (NSString*) currency
+-(NSURLSessionTask*) userGetWalletWithCurrency: (NSString*) currency
     completionHandler: (void (^)(SWGWallet* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/wallet"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -833,7 +766,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -855,8 +788,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGWallet*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -866,12 +798,9 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSArray<SWGTransaction>*
 ///
--(NSNumber*) userGetWalletHistoryWithCurrency: (NSString*) currency
+-(NSURLSessionTask*) userGetWalletHistoryWithCurrency: (NSString*) currency
     completionHandler: (void (^)(NSArray<SWGTransaction>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/walletHistory"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -894,7 +823,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -916,8 +845,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSArray<SWGTransaction>*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -927,12 +855,9 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSArray<SWGTransaction>*
 ///
--(NSNumber*) userGetWalletSummaryWithCurrency: (NSString*) currency
+-(NSURLSessionTask*) userGetWalletSummaryWithCurrency: (NSString*) currency
     completionHandler: (void (^)(NSArray<SWGTransaction>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/walletSummary"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -955,7 +880,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -977,8 +902,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSArray<SWGTransaction>*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -986,12 +910,9 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 /// 
 ///  @returns void
 ///
--(NSNumber*) userLogoutWithCompletionHandler: 
+-(NSURLSessionTask*) userLogoutWithCompletionHandler: 
     (void (^)(NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/logout"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -1033,8 +954,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler(error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -1042,12 +962,9 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 /// 
 ///  @returns NSNumber*
 ///
--(NSNumber*) userLogoutAllWithCompletionHandler: 
+-(NSURLSessionTask*) userLogoutAllWithCompletionHandler: 
     (void (^)(NSNumber* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/logoutAll"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -1067,7 +984,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -1089,8 +1006,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSNumber*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -1098,14 +1014,11 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 /// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
 ///  @param currency  (optional, default to XBt)
 ///
-///  @returns NSNumber*
+///  @returns NSObject*
 ///
--(NSNumber*) userMinWithdrawalFeeWithCurrency: (NSString*) currency
-    completionHandler: (void (^)(NSNumber* output, NSError* error)) handler {
+-(NSURLSessionTask*) userMinWithdrawalFeeWithCurrency: (NSString*) currency
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/minWithdrawalFee"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -1145,13 +1058,12 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"NSNumber*"
+                              responseType: @"NSObject*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((NSNumber*)data, error);
+                                    handler((NSObject*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -1161,12 +1073,9 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSNumber*
 ///
--(NSNumber*) userRequestEnableTFAWithType: (NSString*) type
+-(NSURLSessionTask*) userRequestEnableTFAWithType: (NSString*) type
     completionHandler: (void (^)(NSNumber* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/requestEnableTFA"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -1186,7 +1095,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -1211,8 +1120,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((NSNumber*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -1230,7 +1138,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns SWGTransaction*
 ///
--(NSNumber*) userRequestWithdrawalWithCurrency: (NSString*) currency
+-(NSURLSessionTask*) userRequestWithdrawalWithCurrency: (NSString*) currency
     amount: (NSNumber*) amount
     address: (NSString*) address
     otpToken: (NSString*) otpToken
@@ -1271,9 +1179,6 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/requestWithdrawal"];
 
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
-
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
@@ -1292,7 +1197,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -1329,8 +1234,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGTransaction*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -1342,7 +1246,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns SWGUser*
 ///
--(NSNumber*) userSavePreferencesWithPrefs: (NSString*) prefs
+-(NSURLSessionTask*) userSavePreferencesWithPrefs: (NSString*) prefs
     overwrite: (NSNumber*) overwrite
     completionHandler: (void (^)(SWGUser* output, NSError* error)) handler {
     // verify the required parameter 'prefs' is set
@@ -1357,9 +1261,6 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     }
 
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/preferences"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -1379,7 +1280,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -1407,8 +1308,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGUser*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 ///
@@ -1432,7 +1332,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns SWGUser*
 ///
--(NSNumber*) userUpdateWithFirstname: (NSString*) firstname
+-(NSURLSessionTask*) userUpdateWithFirstname: (NSString*) firstname
     lastname: (NSString*) lastname
     oldPassword: (NSString*) oldPassword
     varNewPassword: (NSString*) varNewPassword
@@ -1442,9 +1342,6 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     pgpPubKey: (NSString*) pgpPubKey
     completionHandler: (void (^)(SWGUser* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user"];
-
-    // remove format in URL if needed
-    [resourcePath replaceOccurrencesOfString:@".{format}" withString:@".json" options:0 range:NSMakeRange(0,resourcePath.length)];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -1464,7 +1361,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[];
+    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -1510,8 +1407,7 @@ NSInteger kSWGUserApiMissingParamErrorCode = 234513;
                                 if(handler) {
                                     handler((SWGUser*)data, error);
                                 }
-                           }
-          ];
+                            }];
 }
 
 

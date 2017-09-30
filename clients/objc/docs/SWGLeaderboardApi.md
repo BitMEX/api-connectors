@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **leaderboardGet**
 ```objc
--(NSNumber*) leaderboardGetWithMethod: (NSString*) method
+-(NSURLSessionTask*) leaderboardGetWithMethod: (NSString*) method
         completionHandler: (void (^)(NSArray<SWGLeaderboard>* output, NSError* error)) handler;
 ```
 

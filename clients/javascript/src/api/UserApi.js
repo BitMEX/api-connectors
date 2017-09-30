@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -9,51 +9,35 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Transaction', 'model/AccessToken', 'model/User', 'model/Affiliate', 'model/UserCommission', 'model/Margin', 'model/Wallet'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/Transaction'), require('../model/AccessToken'), require('../model/User'), require('../model/Affiliate'), require('../model/UserCommission'), require('../model/Margin'), require('../model/Wallet'));
-  } else {
-    // Browser globals (root is window)
-    if (!root.BitMexApi) {
-      root.BitMexApi = {};
+
+import ApiClient from "../ApiClient";
+import AccessToken from '../model/AccessToken';
+import Affiliate from '../model/Affiliate';
+import Margin from '../model/Margin';
+import Transaction from '../model/Transaction';
+import User from '../model/User';
+import UserCommission from '../model/UserCommission';
+import Wallet from '../model/Wallet';
+
+/**
+* User service.
+* @module api/UserApi
+* @version 1.2.0
+*/
+export default class UserApi {
+
+    /**
+    * Constructs a new UserApi. 
+    * @alias module:api/UserApi
+    * @class
+    * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
+    * default to {@link module:ApiClient#instance} if unspecified.
+    */
+    constructor(apiClient) {
+        this.apiClient = apiClient || ApiClient.instance;
     }
-    root.BitMexApi.UserApi = factory(root.BitMexApi.ApiClient, root.BitMexApi.Transaction, root.BitMexApi.AccessToken, root.BitMexApi.User, root.BitMexApi.Affiliate, root.BitMexApi.UserCommission, root.BitMexApi.Margin, root.BitMexApi.Wallet);
-  }
-}(this, function(ApiClient, Transaction, AccessToken, User, Affiliate, UserCommission, Margin, Wallet) {
-  'use strict';
-
-  /**
-   * User service.
-   * @module api/UserApi
-   * @version 1.2.0
-   */
-
-  /**
-   * Constructs a new UserApi. 
-   * @alias module:api/UserApi
-   * @class
-   * @param {module:ApiClient} apiClient Optional API client implementation to use,
-   * default to {@link module:ApiClient#instance} if unspecified.
-   */
-  var exports = function(apiClient) {
-    this.apiClient = apiClient || ApiClient.instance;
 
 
     /**
@@ -68,31 +52,31 @@
      * Cancel a withdrawal.
      * @param {String} token 
      * @param {module:api/UserApi~userCancelWithdrawalCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/Transaction}
+     * data is of type: {@link module:model/Transaction}
      */
-    this.userCancelWithdrawal = function(token, callback) {
-      var postBody = null;
+    userCancelWithdrawal(token, callback) {
+      let postBody = null;
 
       // verify the required parameter 'token' is set
-      if (token == undefined || token == null) {
-        throw "Missing the required parameter 'token' when calling userCancelWithdrawal";
+      if (token === undefined || token === null) {
+        throw new Error("Missing the required parameter 'token' when calling userCancelWithdrawal");
       }
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'token': token
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = Transaction;
+      let authNames = [];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = Transaction;
 
       return this.apiClient.callApi(
         '/user/cancelWithdrawal', 'POST',
@@ -115,27 +99,27 @@
      * @param {Object} opts Optional parameters
      * @param {String} opts.referralCode 
      * @param {module:api/UserApi~userCheckReferralCodeCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {'Number'}
+     * data is of type: {@link 'Number'}
      */
-    this.userCheckReferralCode = function(opts, callback) {
+    userCheckReferralCode(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
         'referralCode': opts['referralCode']
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = 'Number';
+      let authNames = [];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = 'Number';
 
       return this.apiClient.callApi(
         '/user/checkReferralCode', 'GET',
@@ -156,31 +140,31 @@
      * Confirm your email address with a token.
      * @param {String} token 
      * @param {module:api/UserApi~userConfirmCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/AccessToken}
+     * data is of type: {@link module:model/AccessToken}
      */
-    this.userConfirm = function(token, callback) {
-      var postBody = null;
+    userConfirm(token, callback) {
+      let postBody = null;
 
       // verify the required parameter 'token' is set
-      if (token == undefined || token == null) {
-        throw "Missing the required parameter 'token' when calling userConfirm";
+      if (token === undefined || token === null) {
+        throw new Error("Missing the required parameter 'token' when calling userConfirm");
       }
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'token': token
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = AccessToken;
+      let authNames = [];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = AccessToken;
 
       return this.apiClient.callApi(
         '/user/confirmEmail', 'POST',
@@ -203,33 +187,33 @@
      * @param {Object} opts Optional parameters
      * @param {String} opts.type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39;
      * @param {module:api/UserApi~userConfirmEnableTFACallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {'Boolean'}
+     * data is of type: {@link 'Boolean'}
      */
-    this.userConfirmEnableTFA = function(token, opts, callback) {
+    userConfirmEnableTFA(token, opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
       // verify the required parameter 'token' is set
-      if (token == undefined || token == null) {
-        throw "Missing the required parameter 'token' when calling userConfirmEnableTFA";
+      if (token === undefined || token === null) {
+        throw new Error("Missing the required parameter 'token' when calling userConfirmEnableTFA");
       }
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'type': opts['type'],
         'token': token
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = 'Boolean';
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = 'Boolean';
 
       return this.apiClient.callApi(
         '/user/confirmEnableTFA', 'POST',
@@ -250,31 +234,31 @@
      * Confirm a withdrawal.
      * @param {String} token 
      * @param {module:api/UserApi~userConfirmWithdrawalCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/Transaction}
+     * data is of type: {@link module:model/Transaction}
      */
-    this.userConfirmWithdrawal = function(token, callback) {
-      var postBody = null;
+    userConfirmWithdrawal(token, callback) {
+      let postBody = null;
 
       // verify the required parameter 'token' is set
-      if (token == undefined || token == null) {
-        throw "Missing the required parameter 'token' when calling userConfirmWithdrawal";
+      if (token === undefined || token === null) {
+        throw new Error("Missing the required parameter 'token' when calling userConfirmWithdrawal");
       }
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'token': token
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = Transaction;
+      let authNames = [];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = Transaction;
 
       return this.apiClient.callApi(
         '/user/confirmWithdrawal', 'POST',
@@ -297,33 +281,33 @@
      * @param {Object} opts Optional parameters
      * @param {String} opts.type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
      * @param {module:api/UserApi~userDisableTFACallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {'Boolean'}
+     * data is of type: {@link 'Boolean'}
      */
-    this.userDisableTFA = function(token, opts, callback) {
+    userDisableTFA(token, opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
       // verify the required parameter 'token' is set
-      if (token == undefined || token == null) {
-        throw "Missing the required parameter 'token' when calling userDisableTFA";
+      if (token === undefined || token === null) {
+        throw new Error("Missing the required parameter 'token' when calling userDisableTFA");
       }
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'type': opts['type'],
         'token': token
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = 'Boolean';
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = 'Boolean';
 
       return this.apiClient.callApi(
         '/user/disableTFA', 'POST',
@@ -343,25 +327,25 @@
     /**
      * Get your user model.
      * @param {module:api/UserApi~userGetCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/User}
+     * data is of type: {@link module:model/User}
      */
-    this.userGet = function(callback) {
-      var postBody = null;
+    userGet(callback) {
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = User;
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = User;
 
       return this.apiClient.callApi(
         '/user', 'GET',
@@ -374,32 +358,32 @@
      * Callback function to receive the result of the userGetAffiliateStatus operation.
      * @callback module:api/UserApi~userGetAffiliateStatusCallback
      * @param {String} error Error message, if any.
-     * @param {Array.<module:model/Affiliate>} data The data returned by the service call.
+     * @param {module:model/Affiliate} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
      * Get your current affiliate/referral status.
      * @param {module:api/UserApi~userGetAffiliateStatusCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Array.<module:model/Affiliate>}
+     * data is of type: {@link module:model/Affiliate}
      */
-    this.userGetAffiliateStatus = function(callback) {
-      var postBody = null;
+    userGetAffiliateStatus(callback) {
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [Affiliate];
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = Affiliate;
 
       return this.apiClient.callApi(
         '/user/affiliateStatus', 'GET',
@@ -419,25 +403,25 @@
     /**
      * Get your account&#39;s commission status.
      * @param {module:api/UserApi~userGetCommissionCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Array.<module:model/UserCommission>}
+     * data is of type: {@link Array.<module:model/UserCommission>}
      */
-    this.userGetCommission = function(callback) {
-      var postBody = null;
+    userGetCommission(callback) {
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [UserCommission];
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = [UserCommission];
 
       return this.apiClient.callApi(
         '/user/commission', 'GET',
@@ -459,27 +443,27 @@
      * @param {Object} opts Optional parameters
      * @param {String} opts.currency  (default to XBt)
      * @param {module:api/UserApi~userGetDepositAddressCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {'String'}
+     * data is of type: {@link 'String'}
      */
-    this.userGetDepositAddress = function(opts, callback) {
+    userGetDepositAddress(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
         'currency': opts['currency']
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = 'String';
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = 'String';
 
       return this.apiClient.callApi(
         '/user/depositAddress', 'GET',
@@ -501,27 +485,27 @@
      * @param {Object} opts Optional parameters
      * @param {String} opts.currency  (default to XBt)
      * @param {module:api/UserApi~userGetMarginCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/Margin}
+     * data is of type: {@link module:model/Margin}
      */
-    this.userGetMargin = function(opts, callback) {
+    userGetMargin(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
         'currency': opts['currency']
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = Margin;
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = Margin;
 
       return this.apiClient.callApi(
         '/user/margin', 'GET',
@@ -543,27 +527,27 @@
      * @param {Object} opts Optional parameters
      * @param {String} opts.currency  (default to XBt)
      * @param {module:api/UserApi~userGetWalletCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/Wallet}
+     * data is of type: {@link module:model/Wallet}
      */
-    this.userGetWallet = function(opts, callback) {
+    userGetWallet(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
         'currency': opts['currency']
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = Wallet;
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = Wallet;
 
       return this.apiClient.callApi(
         '/user/wallet', 'GET',
@@ -585,27 +569,27 @@
      * @param {Object} opts Optional parameters
      * @param {String} opts.currency  (default to XBt)
      * @param {module:api/UserApi~userGetWalletHistoryCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Array.<module:model/Transaction>}
+     * data is of type: {@link Array.<module:model/Transaction>}
      */
-    this.userGetWalletHistory = function(opts, callback) {
+    userGetWalletHistory(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
         'currency': opts['currency']
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [Transaction];
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = [Transaction];
 
       return this.apiClient.callApi(
         '/user/walletHistory', 'GET',
@@ -627,27 +611,27 @@
      * @param {Object} opts Optional parameters
      * @param {String} opts.currency  (default to XBt)
      * @param {module:api/UserApi~userGetWalletSummaryCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {Array.<module:model/Transaction>}
+     * data is of type: {@link Array.<module:model/Transaction>}
      */
-    this.userGetWalletSummary = function(opts, callback) {
+    userGetWalletSummary(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
         'currency': opts['currency']
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [Transaction];
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = [Transaction];
 
       return this.apiClient.callApi(
         '/user/walletSummary', 'GET',
@@ -668,23 +652,23 @@
      * Log out of BitMEX.
      * @param {module:api/UserApi~userLogoutCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    this.userLogout = function(callback) {
-      var postBody = null;
+    userLogout(callback) {
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = null;
+      let authNames = [];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = null;
 
       return this.apiClient.callApi(
         '/user/logout', 'POST',
@@ -704,25 +688,25 @@
     /**
      * Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
      * @param {module:api/UserApi~userLogoutAllCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {'Number'}
+     * data is of type: {@link 'Number'}
      */
-    this.userLogoutAll = function(callback) {
-      var postBody = null;
+    userLogoutAll(callback) {
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = 'Number';
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = 'Number';
 
       return this.apiClient.callApi(
         '/user/logoutAll', 'POST',
@@ -735,7 +719,7 @@
      * Callback function to receive the result of the userMinWithdrawalFee operation.
      * @callback module:api/UserApi~userMinWithdrawalFeeCallback
      * @param {String} error Error message, if any.
-     * @param {'Number'} data The data returned by the service call.
+     * @param {Object} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -745,27 +729,27 @@
      * @param {Object} opts Optional parameters
      * @param {String} opts.currency  (default to XBt)
      * @param {module:api/UserApi~userMinWithdrawalFeeCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {'Number'}
+     * data is of type: {@link Object}
      */
-    this.userMinWithdrawalFee = function(opts, callback) {
+    userMinWithdrawalFee(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
         'currency': opts['currency']
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = 'Number';
+      let authNames = [];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = Object;
 
       return this.apiClient.callApi(
         '/user/minWithdrawalFee', 'GET',
@@ -788,27 +772,27 @@
      * @param {Object} opts Optional parameters
      * @param {String} opts.type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
      * @param {module:api/UserApi~userRequestEnableTFACallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {'Boolean'}
+     * data is of type: {@link 'Boolean'}
      */
-    this.userRequestEnableTFA = function(opts, callback) {
+    userRequestEnableTFA(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'type': opts['type']
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = 'Boolean';
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = 'Boolean';
 
       return this.apiClient.callApi(
         '/user/requestEnableTFA', 'POST',
@@ -835,35 +819,35 @@
      * @param {String} opts.otpToken 2FA token. Required if 2FA is enabled on your account.
      * @param {Number} opts.fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
      * @param {module:api/UserApi~userRequestWithdrawalCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/Transaction}
+     * data is of type: {@link module:model/Transaction}
      */
-    this.userRequestWithdrawal = function(currency, amount, address, opts, callback) {
+    userRequestWithdrawal(currency, amount, address, opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
       // verify the required parameter 'currency' is set
-      if (currency == undefined || currency == null) {
-        throw "Missing the required parameter 'currency' when calling userRequestWithdrawal";
+      if (currency === undefined || currency === null) {
+        throw new Error("Missing the required parameter 'currency' when calling userRequestWithdrawal");
       }
 
       // verify the required parameter 'amount' is set
-      if (amount == undefined || amount == null) {
-        throw "Missing the required parameter 'amount' when calling userRequestWithdrawal";
+      if (amount === undefined || amount === null) {
+        throw new Error("Missing the required parameter 'amount' when calling userRequestWithdrawal");
       }
 
       // verify the required parameter 'address' is set
-      if (address == undefined || address == null) {
-        throw "Missing the required parameter 'address' when calling userRequestWithdrawal";
+      if (address === undefined || address === null) {
+        throw new Error("Missing the required parameter 'address' when calling userRequestWithdrawal");
       }
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'otpToken': opts['otpToken'],
         'currency': currency,
         'amount': amount,
@@ -871,10 +855,10 @@
         'fee': opts['fee']
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = Transaction;
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = Transaction;
 
       return this.apiClient.callApi(
         '/user/requestWithdrawal', 'POST',
@@ -897,33 +881,33 @@
      * @param {Object} opts Optional parameters
      * @param {Boolean} opts.overwrite If true, will overwrite all existing preferences. (default to false)
      * @param {module:api/UserApi~userSavePreferencesCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/User}
+     * data is of type: {@link module:model/User}
      */
-    this.userSavePreferences = function(prefs, opts, callback) {
+    userSavePreferences(prefs, opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
       // verify the required parameter 'prefs' is set
-      if (prefs == undefined || prefs == null) {
-        throw "Missing the required parameter 'prefs' when calling userSavePreferences";
+      if (prefs === undefined || prefs === null) {
+        throw new Error("Missing the required parameter 'prefs' when calling userSavePreferences");
       }
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'prefs': prefs,
         'overwrite': opts['overwrite']
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = User;
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = User;
 
       return this.apiClient.callApi(
         '/user/preferences', 'POST',
@@ -952,20 +936,20 @@
      * @param {String} opts.country Country of residence.
      * @param {String} opts.pgpPubKey PGP Public Key. If specified, automated emails will be sentwith this key.
      * @param {module:api/UserApi~userUpdateCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {module:model/User}
+     * data is of type: {@link module:model/User}
      */
-    this.userUpdate = function(opts, callback) {
+    userUpdate(opts, callback) {
       opts = opts || {};
-      var postBody = null;
+      let postBody = null;
 
 
-      var pathParams = {
+      let pathParams = {
       };
-      var queryParams = {
+      let queryParams = {
       };
-      var headerParams = {
+      let headerParams = {
       };
-      var formParams = {
+      let formParams = {
         'firstname': opts['firstname'],
         'lastname': opts['lastname'],
         'oldPassword': opts['oldPassword'],
@@ -976,10 +960,10 @@
         'pgpPubKey': opts['pgpPubKey']
       };
 
-      var authNames = [];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = User;
+      let authNames = ['apiKey', 'apiNonce', 'apiSignature'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
+      let returnType = User;
 
       return this.apiClient.callApi(
         '/user', 'PUT',
@@ -987,7 +971,6 @@
         authNames, contentTypes, accepts, returnType, callback
       );
     }
-  };
 
-  return exports;
-}));
+
+}

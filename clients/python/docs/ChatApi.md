@@ -17,6 +17,7 @@ Get chat messages.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -25,7 +26,7 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = swagger_client.ChatApi()
 count = 100 # float | Number of results to fetch. (optional) (default to 100)
-start = 0 # float | Starting point for results. (optional) (default to 0)
+start = 0 # float | Starting ID for results. (optional) (default to 0)
 reverse = true # bool | If true, will sort results newest first. (optional) (default to true)
 channel_id = 1.2 # float | Channel id. GET /chat/channels for ids. Leave blank for all. (optional)
 
@@ -34,7 +35,7 @@ try:
     api_response = api_instance.chat_get(count=count, start=start, reverse=reverse, channel_id=channel_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling ChatApi->chat_get: %s\n" % e
+    print("Exception when calling ChatApi->chat_get: %s\n" % e)
 ```
 
 ### Parameters
@@ -42,7 +43,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **count** | **float**| Number of results to fetch. | [optional] [default to 100]
- **start** | **float**| Starting point for results. | [optional] [default to 0]
+ **start** | **float**| Starting ID for results. | [optional] [default to 0]
  **reverse** | **bool**| If true, will sort results newest first. | [optional] [default to true]
  **channel_id** | **float**| Channel id. GET /chat/channels for ids. Leave blank for all. | [optional] 
 
@@ -68,6 +69,7 @@ Get available channels.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -81,7 +83,7 @@ try:
     api_response = api_instance.chat_get_channels()
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling ChatApi->chat_get_channels: %s\n" % e
+    print("Exception when calling ChatApi->chat_get_channels: %s\n" % e)
 ```
 
 ### Parameters
@@ -111,6 +113,7 @@ Returns an array with browser users in the first position and API users (bots) i
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -124,7 +127,7 @@ try:
     api_response = api_instance.chat_get_connected()
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling ChatApi->chat_get_connected: %s\n" % e
+    print("Exception when calling ChatApi->chat_get_connected: %s\n" % e)
 ```
 
 ### Parameters
@@ -152,13 +155,30 @@ Send a chat message.
 
 ### Example 
 ```python
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiNonce
+configuration = swagger_client.Configuration()
+configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-nonce'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
 # create an instance of the API class
-api_instance = swagger_client.ChatApi()
+api_instance = swagger_client.ChatApi(swagger_client.ApiClient(configuration))
 message = 'message_example' # str | 
 channel_id = 1 # float | Channel to post to. Default 1 (English). (optional) (default to 1)
 
@@ -167,7 +187,7 @@ try:
     api_response = api_instance.chat_new(message, channel_id=channel_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling ChatApi->chat_new: %s\n" % e
+    print("Exception when calling ChatApi->chat_new: %s\n" % e)
 ```
 
 ### Parameters
@@ -183,7 +203,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

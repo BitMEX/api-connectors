@@ -24,11 +24,11 @@
 (defn quote-get-bucketed-with-http-info
   "Get previous quotes in time buckets."
   ([] (quote-get-bucketed-with-http-info nil))
-  ([{:keys [bin-size symbol filter columns count start reverse start-time end-time ]}]
+  ([{:keys [bin-size partial symbol filter columns count start reverse start-time end-time ]}]
    (call-api "/quote/bucketed" :get
              {:path-params   {}
               :header-params {}
-              :query-params  {"binSize" bin-size "symbol" symbol "filter" filter "columns" columns "count" count "start" start "reverse" reverse "startTime" start-time "endTime" end-time }
+              :query-params  {"binSize" bin-size "partial" partial "symbol" symbol "filter" filter "columns" columns "count" count "start" start "reverse" reverse "startTime" start-time "endTime" end-time }
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]

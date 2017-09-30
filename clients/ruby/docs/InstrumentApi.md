@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**instrument_get_active**](InstrumentApi.md#instrument_get_active) | **GET** /instrument/active | Get all active instruments and instruments that have expired in &lt;24hrs.
 [**instrument_get_active_and_indices**](InstrumentApi.md#instrument_get_active_and_indices) | **GET** /instrument/activeAndIndices | Helper method. Gets all active instruments and all indices. This is a join of the result of /indices and /active.
 [**instrument_get_active_intervals**](InstrumentApi.md#instrument_get_active_intervals) | **GET** /instrument/activeIntervals | Return all active contract series and interval pairs.
+[**instrument_get_composite_index**](InstrumentApi.md#instrument_get_composite_index) | **GET** /instrument/compositeIndex | Show constituent parts of an index.
 [**instrument_get_indices**](InstrumentApi.md#instrument_get_indices) | **GET** /instrument/indices | Get all price indices.
 
 
@@ -32,8 +33,8 @@ opts = {
   count: 100, # Float | Number of results to fetch.
   start: 0, # Float | Starting point for results.
   reverse: false, # BOOLEAN | If true, will sort results newest first.
-  start_time: Date.parse("2013-10-20"), # Date | Starting date filter for results.
-  end_time: Date.parse("2013-10-20") # Date | Ending date filter for results.
+  start_time: DateTime.parse("2013-10-20T19:20:30+01:00"), # DateTime | Starting date filter for results.
+  end_time: DateTime.parse("2013-10-20T19:20:30+01:00") # DateTime | Ending date filter for results.
 }
 
 begin
@@ -55,8 +56,8 @@ Name | Type | Description  | Notes
  **count** | **Float**| Number of results to fetch. | [optional] [default to 100]
  **start** | **Float**| Starting point for results. | [optional] [default to 0]
  **reverse** | **BOOLEAN**| If true, will sort results newest first. | [optional] [default to false]
- **start_time** | **Date**| Starting date filter for results. | [optional] 
- **end_time** | **Date**| Ending date filter for results. | [optional] 
+ **start_time** | **DateTime**| Starting date filter for results. | [optional] 
+ **end_time** | **DateTime**| Ending date filter for results. | [optional] 
 
 ### Return type
 
@@ -180,6 +181,70 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**InstrumentInterval**](InstrumentInterval.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+
+
+# **instrument_get_composite_index**
+> Array&lt;IndexComposite&gt; instrument_get_composite_index(opts)
+
+Show constituent parts of an index.
+
+Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.XBT` to get the ticks and weights of the constituent exchanges that build the \".XBT\" index.  A tick with reference `\"BMI\"` and weight `null` is the composite index tick. 
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+
+api_instance = SwaggerClient::InstrumentApi.new
+
+opts = { 
+  account: 1.2, # Float | 
+  symbol: ".XBT", # String | The composite index symbol.
+  filter: "filter_example", # String | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
+  columns: "columns_example", # String | Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
+  count: 100, # Float | Number of results to fetch.
+  start: 0, # Float | Starting point for results.
+  reverse: false, # BOOLEAN | If true, will sort results newest first.
+  start_time: DateTime.parse("2013-10-20T19:20:30+01:00"), # DateTime | Starting date filter for results.
+  end_time: DateTime.parse("2013-10-20T19:20:30+01:00") # DateTime | Ending date filter for results.
+}
+
+begin
+  #Show constituent parts of an index.
+  result = api_instance.instrument_get_composite_index(opts)
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling InstrumentApi->instrument_get_composite_index: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **account** | **Float**|  | [optional] 
+ **symbol** | **String**| The composite index symbol. | [optional] [default to .XBT]
+ **filter** | **String**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. | [optional] 
+ **columns** | **String**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | [optional] 
+ **count** | **Float**| Number of results to fetch. | [optional] [default to 100]
+ **start** | **Float**| Starting point for results. | [optional] [default to 0]
+ **reverse** | **BOOLEAN**| If true, will sort results newest first. | [optional] [default to false]
+ **start_time** | **DateTime**| Starting date filter for results. | [optional] 
+ **end_time** | **DateTime**| Ending date filter for results. | [optional] 
+
+### Return type
+
+[**Array&lt;IndexComposite&gt;**](IndexComposite.md)
 
 ### Authorization
 

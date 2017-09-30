@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **orderBookGet**
 ```objc
--(NSNumber*) orderBookGetWithSymbol: (NSString*) symbol
+-(NSURLSessionTask*) orderBookGetWithSymbol: (NSString*) symbol
     depth: (NSNumber*) depth
         completionHandler: (void (^)(NSArray<SWGOrderBook>* output, NSError* error)) handler;
 ```
@@ -62,7 +62,7 @@ No authorization required
 
 # **orderBookGetL2**
 ```objc
--(NSNumber*) orderBookGetL2WithSymbol: (NSString*) symbol
+-(NSURLSessionTask*) orderBookGetL2WithSymbol: (NSString*) symbol
     depth: (NSNumber*) depth
         completionHandler: (void (^)(NSArray<SWGOrderBookL2>* output, NSError* error)) handler;
 ```

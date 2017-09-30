@@ -8,12 +8,13 @@ Method | HTTP request | Description
 [**instrumentGetActive**](SWGInstrumentApi.md#instrumentgetactive) | **GET** /instrument/active | Get all active instruments and instruments that have expired in &lt;24hrs.
 [**instrumentGetActiveAndIndices**](SWGInstrumentApi.md#instrumentgetactiveandindices) | **GET** /instrument/activeAndIndices | Helper method. Gets all active instruments and all indices. This is a join of the result of /indices and /active.
 [**instrumentGetActiveIntervals**](SWGInstrumentApi.md#instrumentgetactiveintervals) | **GET** /instrument/activeIntervals | Return all active contract series and interval pairs.
+[**instrumentGetCompositeIndex**](SWGInstrumentApi.md#instrumentgetcompositeindex) | **GET** /instrument/compositeIndex | Show constituent parts of an index.
 [**instrumentGetIndices**](SWGInstrumentApi.md#instrumentgetindices) | **GET** /instrument/indices | Get all price indices.
 
 
 # **instrumentGet**
 ```objc
--(NSNumber*) instrumentGetWithSymbol: (NSString*) symbol
+-(NSURLSessionTask*) instrumentGetWithSymbol: (NSString*) symbol
     filter: (NSString*) filter
     columns: (NSString*) columns
     count: (NSNumber*) count
@@ -37,8 +38,8 @@ NSString* columns = @"columns_example"; // Array of column names to fetch. If om
 NSNumber* count = @100; // Number of results to fetch. (optional) (default to 100)
 NSNumber* start = @0; // Starting point for results. (optional) (default to 0)
 NSNumber* reverse = @false; // If true, will sort results newest first. (optional) (default to false)
-NSDate* startTime = @"2013-10-20"; // Starting date filter for results. (optional)
-NSDate* endTime = @"2013-10-20"; // Ending date filter for results. (optional)
+NSDate* startTime = @"2013-10-20T19:20:30+01:00"; // Starting date filter for results. (optional)
+NSDate* endTime = @"2013-10-20T19:20:30+01:00"; // Ending date filter for results. (optional)
 
 SWGInstrumentApi*apiInstance = [[SWGInstrumentApi alloc] init];
 
@@ -91,7 +92,7 @@ No authorization required
 
 # **instrumentGetActive**
 ```objc
--(NSNumber*) instrumentGetActiveWithCompletionHandler: 
+-(NSURLSessionTask*) instrumentGetActiveWithCompletionHandler: 
         (void (^)(NSArray<SWGInstrument>* output, NSError* error)) handler;
 ```
 
@@ -135,7 +136,7 @@ No authorization required
 
 # **instrumentGetActiveAndIndices**
 ```objc
--(NSNumber*) instrumentGetActiveAndIndicesWithCompletionHandler: 
+-(NSURLSessionTask*) instrumentGetActiveAndIndicesWithCompletionHandler: 
         (void (^)(NSArray<SWGInstrument>* output, NSError* error)) handler;
 ```
 
@@ -179,7 +180,7 @@ No authorization required
 
 # **instrumentGetActiveIntervals**
 ```objc
--(NSNumber*) instrumentGetActiveIntervalsWithCompletionHandler: 
+-(NSURLSessionTask*) instrumentGetActiveIntervalsWithCompletionHandler: 
         (void (^)(SWGInstrumentInterval* output, NSError* error)) handler;
 ```
 
@@ -223,9 +224,91 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **instrumentGetCompositeIndex**
+```objc
+-(NSURLSessionTask*) instrumentGetCompositeIndexWithAccount: (NSNumber*) account
+    symbol: (NSString*) symbol
+    filter: (NSString*) filter
+    columns: (NSString*) columns
+    count: (NSNumber*) count
+    start: (NSNumber*) start
+    reverse: (NSNumber*) reverse
+    startTime: (NSDate*) startTime
+    endTime: (NSDate*) endTime
+        completionHandler: (void (^)(NSArray<SWGIndexComposite>* output, NSError* error)) handler;
+```
+
+Show constituent parts of an index.
+
+Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.XBT` to get the ticks and weights of the constituent exchanges that build the \".XBT\" index.  A tick with reference `\"BMI\"` and weight `null` is the composite index tick. 
+
+### Example 
+```objc
+
+NSNumber* account = @1.2; //  (optional)
+NSString* symbol = @".XBT"; // The composite index symbol. (optional) (default to .XBT)
+NSString* filter = @"filter_example"; // Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. (optional)
+NSString* columns = @"columns_example"; // Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
+NSNumber* count = @100; // Number of results to fetch. (optional) (default to 100)
+NSNumber* start = @0; // Starting point for results. (optional) (default to 0)
+NSNumber* reverse = @false; // If true, will sort results newest first. (optional) (default to false)
+NSDate* startTime = @"2013-10-20T19:20:30+01:00"; // Starting date filter for results. (optional)
+NSDate* endTime = @"2013-10-20T19:20:30+01:00"; // Ending date filter for results. (optional)
+
+SWGInstrumentApi*apiInstance = [[SWGInstrumentApi alloc] init];
+
+// Show constituent parts of an index.
+[apiInstance instrumentGetCompositeIndexWithAccount:account
+              symbol:symbol
+              filter:filter
+              columns:columns
+              count:count
+              start:start
+              reverse:reverse
+              startTime:startTime
+              endTime:endTime
+          completionHandler: ^(NSArray<SWGIndexComposite>* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGInstrumentApi->instrumentGetCompositeIndex: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **account** | **NSNumber***|  | [optional] 
+ **symbol** | **NSString***| The composite index symbol. | [optional] [default to .XBT]
+ **filter** | **NSString***| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. | [optional] 
+ **columns** | **NSString***| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | [optional] 
+ **count** | **NSNumber***| Number of results to fetch. | [optional] [default to 100]
+ **start** | **NSNumber***| Starting point for results. | [optional] [default to 0]
+ **reverse** | **NSNumber***| If true, will sort results newest first. | [optional] [default to false]
+ **startTime** | **NSDate***| Starting date filter for results. | [optional] 
+ **endTime** | **NSDate***| Ending date filter for results. | [optional] 
+
+### Return type
+
+[**NSArray<SWGIndexComposite>***](SWGIndexComposite.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **instrumentGetIndices**
 ```objc
--(NSNumber*) instrumentGetIndicesWithCompletionHandler: 
+-(NSURLSessionTask*) instrumentGetIndicesWithCompletionHandler: 
         (void (^)(NSArray<SWGInstrument>* output, NSError* error)) handler;
 ```
 

@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **PayoutPcnt** | **float64** |  | [optional] [default to null]
 **PendingPayout** | **float32** |  | [optional] [default to null]
 **Timestamp** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
+**ReferrerAccount** | **float64** |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

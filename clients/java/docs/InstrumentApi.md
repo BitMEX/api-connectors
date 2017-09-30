@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**instrumentGetActive**](InstrumentApi.md#instrumentGetActive) | **GET** /instrument/active | Get all active instruments and instruments that have expired in &lt;24hrs.
 [**instrumentGetActiveAndIndices**](InstrumentApi.md#instrumentGetActiveAndIndices) | **GET** /instrument/activeAndIndices | Helper method. Gets all active instruments and all indices. This is a join of the result of /indices and /active.
 [**instrumentGetActiveIntervals**](InstrumentApi.md#instrumentGetActiveIntervals) | **GET** /instrument/activeIntervals | Return all active contract series and interval pairs.
+[**instrumentGetCompositeIndex**](InstrumentApi.md#instrumentGetCompositeIndex) | **GET** /instrument/compositeIndex | Show constituent parts of an index.
 [**instrumentGetIndices**](InstrumentApi.md#instrumentGetIndices) | **GET** /instrument/indices | Get all price indices.
 
 
@@ -33,8 +34,8 @@ String columns = "columns_example"; // String | Array of column names to fetch. 
 BigDecimal count = new BigDecimal(); // BigDecimal | Number of results to fetch.
 BigDecimal start = new BigDecimal(); // BigDecimal | Starting point for results.
 Boolean reverse = false; // Boolean | If true, will sort results newest first.
-LocalDate startTime = new LocalDate(); // LocalDate | Starting date filter for results.
-LocalDate endTime = new LocalDate(); // LocalDate | Ending date filter for results.
+OffsetDateTime startTime = new OffsetDateTime(); // OffsetDateTime | Starting date filter for results.
+OffsetDateTime endTime = new OffsetDateTime(); // OffsetDateTime | Ending date filter for results.
 try {
     List<Instrument> result = apiInstance.instrumentGet(symbol, filter, columns, count, start, reverse, startTime, endTime);
     System.out.println(result);
@@ -54,8 +55,8 @@ Name | Type | Description  | Notes
  **count** | **BigDecimal**| Number of results to fetch. | [optional] [default to 100]
  **start** | **BigDecimal**| Starting point for results. | [optional] [default to 0]
  **reverse** | **Boolean**| If true, will sort results newest first. | [optional] [default to false]
- **startTime** | **LocalDate**| Starting date filter for results. | [optional]
- **endTime** | **LocalDate**| Ending date filter for results. | [optional]
+ **startTime** | **OffsetDateTime**| Starting date filter for results. | [optional]
+ **endTime** | **OffsetDateTime**| Ending date filter for results. | [optional]
 
 ### Return type
 
@@ -179,6 +180,67 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**InstrumentInterval**](InstrumentInterval.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+<a name="instrumentGetCompositeIndex"></a>
+# **instrumentGetCompositeIndex**
+> List&lt;IndexComposite&gt; instrumentGetCompositeIndex(account, symbol, filter, columns, count, start, reverse, startTime, endTime)
+
+Show constituent parts of an index.
+
+Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a &#x60;symbol&#x60; of &#x60;.XBT&#x60; to get the ticks and weights of the constituent exchanges that build the \&quot;.XBT\&quot; index.  A tick with reference &#x60;\&quot;BMI\&quot;&#x60; and weight &#x60;null&#x60; is the composite index tick. 
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiException;
+//import io.swagger.client.api.InstrumentApi;
+
+
+InstrumentApi apiInstance = new InstrumentApi();
+Double account = 3.4D; // Double | 
+String symbol = ".XBT"; // String | The composite index symbol.
+String filter = "filter_example"; // String | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
+String columns = "columns_example"; // String | Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
+BigDecimal count = new BigDecimal(); // BigDecimal | Number of results to fetch.
+BigDecimal start = new BigDecimal(); // BigDecimal | Starting point for results.
+Boolean reverse = false; // Boolean | If true, will sort results newest first.
+OffsetDateTime startTime = new OffsetDateTime(); // OffsetDateTime | Starting date filter for results.
+OffsetDateTime endTime = new OffsetDateTime(); // OffsetDateTime | Ending date filter for results.
+try {
+    List<IndexComposite> result = apiInstance.instrumentGetCompositeIndex(account, symbol, filter, columns, count, start, reverse, startTime, endTime);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling InstrumentApi#instrumentGetCompositeIndex");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **account** | **Double**|  | [optional]
+ **symbol** | **String**| The composite index symbol. | [optional] [default to .XBT]
+ **filter** | **String**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. | [optional]
+ **columns** | **String**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | [optional]
+ **count** | **BigDecimal**| Number of results to fetch. | [optional] [default to 100]
+ **start** | **BigDecimal**| Starting point for results. | [optional] [default to 0]
+ **reverse** | **Boolean**| If true, will sort results newest first. | [optional] [default to false]
+ **startTime** | **OffsetDateTime**| Starting date filter for results. | [optional]
+ **endTime** | **OffsetDateTime**| Ending date filter for results. | [optional]
+
+### Return type
+
+[**List&lt;IndexComposite&gt;**](IndexComposite.md)
 
 ### Authorization
 

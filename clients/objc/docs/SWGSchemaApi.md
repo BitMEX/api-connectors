@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **schemaGet**
 ```objc
--(NSNumber*) schemaGetWithModel: (NSString*) model
+-(NSURLSessionTask*) schemaGetWithModel: (NSString*) model
         completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 ```
 
@@ -58,7 +58,7 @@ No authorization required
 
 # **schemaWebsocketHelp**
 ```objc
--(NSNumber*) schemaWebsocketHelpWithCompletionHandler: 
+-(NSURLSessionTask*) schemaWebsocketHelpWithCompletionHandler: 
         (void (^)(NSObject* output, NSError* error)) handler;
 ```
 

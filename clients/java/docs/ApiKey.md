@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **permissions** | [**List&lt;XAny&gt;**](XAny.md) |  |  [optional]
 **enabled** | **Boolean** |  |  [optional]
 **userId** | [**BigDecimal**](BigDecimal.md) |  | 
-**created** | [**DateTime**](DateTime.md) |  |  [optional]
+**created** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 
 
 
