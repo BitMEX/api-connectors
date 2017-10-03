@@ -28,7 +28,7 @@ class BitMEXWebsocket():
     # We use the actual_kwargs decorator to get all kwargs sent to this method so we can easily pass
     # it to a validator function.
     @actual_kwargs()
-    def __init__(self, endpoint=None, symbol=None, api_key=None, api_secret=None, login=None, password=None):
+    def __init__(self, endpoint=None, symbol=None, api_key=None, api_secret=None):
         '''Connect to the websocket and initialize data stores.'''
         self.logger = logging.getLogger(__name__)
         self.logger.debug("Initializing WebSocket.")
@@ -45,7 +45,7 @@ class BitMEXWebsocket():
 
         # Connected. Wait for partials
         self.__wait_for_symbol(symbol)
-        if login or api_key:
+        if api_key:
             self.__wait_for_account()
         self.logger.info('Got all market data. Starting.')
 
@@ -107,7 +107,6 @@ class BitMEXWebsocket():
                                          on_close=self.__on_close,
                                          on_open=self.__on_open,
                                          on_error=self.__on_error,
-                                         # We can login using email/pass or API key
                                          header=self.__get_auth())
 
         self.wst = threading.Thread(target=lambda: self.ws.run_forever())
@@ -127,13 +126,7 @@ class BitMEXWebsocket():
 
     def __get_auth(self):
         '''Return auth headers. Will use API Keys if present in settings.'''
-        if self.config['login']:
-            self.logger.info("Authenticating with email/password.")
-            return [
-                "email: " + self.config['login'],
-                "password: " + self.config['password']
-            ]
-        elif self.config['api_key']:
+        if self.config['api_key']:
             self.logger.info("Authenticating with API Key.")
             # To auth to the WS using an API key, we generate a signature of a nonce and
             # the WS API endpoint.
@@ -240,6 +233,7 @@ class BitMEXWebsocket():
     def __on_error(self, ws, error):
         '''Called on fatal websocket errors. We exit on these.'''
         if not self.exited:
+            raise error
             self.logger.error("Error : %s" % error)
             sys.exit(1)
 
@@ -260,7 +254,7 @@ class BitMEXWebsocket():
         if 'endpoint' not in kwargs:
             self.logger.error("An endpoint (BitMEX URL) must be provided to BitMEXWebsocket()")
             sys.exit(1)
-        if 'api_key' not in kwargs and 'login' not in kwargs:
+        if 'api_key' not in kwargs:
             self.logger.error("No authentication provided! Unable to connect.")
             sys.exit(1)
 
