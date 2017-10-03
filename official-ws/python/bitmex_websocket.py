@@ -233,7 +233,6 @@ class BitMEXWebsocket():
     def __on_error(self, ws, error):
         '''Called on fatal websocket errors. We exit on these.'''
         if not self.exited:
-            raise error
             self.logger.error("Error : %s" % error)
             sys.exit(1)
 
