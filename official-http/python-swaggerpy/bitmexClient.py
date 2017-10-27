@@ -3,6 +3,7 @@
 from bravado.client import SwaggerClient
 from bravado.requests_client import RequestsClient
 from BitMEXAPIKeyAuthenticator import APIKeyAuthenticator
+import json
 import pprint
 
 HOST = "https://testnet.bitmex.com"
@@ -56,10 +57,9 @@ bitMEXAuthenticated = SwaggerClient.from_url(
   config=config,
   http_client=request_client)
 
-print(dir(bitMEXAuthenticated.Position))
-
 # Basic authenticated call
 print('\n---A basic Position GET:---')
+print('The following call requires an API key. If one is not set, it will throw an Unauthorized error.')
 res, http_response = bitMEXAuthenticated.Position.Position_get(filter=json.dumps({'symbol': 'XBTUSD'})).result()
 pp.pprint(res)
 
