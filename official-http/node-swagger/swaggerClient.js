@@ -28,6 +28,17 @@ new SwaggerClient({
     console.log('Error:', e.statusText);
   })
 
+  client.User.User_getMargin()
+  .then(function(response) {
+    var margin = JSON.parse(response.data.toString());
+    var marginBalance = (margin.marginBalance / 1e8).toFixed(4);
+    console.log('\nMargin Balance:', marginBalance, 'XBT');
+  })
+  .catch(function(e) {
+    // Error handling...
+    console.log('Error:', e.statusText);
+  })
+
   // Example: Placing an order - commented for your safety
   // .then(function() {
   //   return client.Order.Order_new({symbol: 'XBTUSD', price: 1000, orderQty: 1})
