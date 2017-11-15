@@ -81,8 +81,8 @@ class BitMEXWebsocket():
         return self.data['margin'][0]
 
     def market_depth(self):
-        '''Get market depth (orderbook). Returns up to 25 levels.'''
-        return self.data['orderBook25']
+        '''Get market depth (orderbook). Returns all levels.'''
+        return self.data['orderBookL2']
 
     def open_orders(self, clOrdIDPrefix):
         '''Get all your open orders.'''
@@ -146,8 +146,8 @@ class BitMEXWebsocket():
         Most subscription topics are scoped by the symbol we're listening to.
         '''
 
-        # You can sub to orderBook25 for top 25 levels, or orderBook10 for top 10 levels & save bandwidth
-        symbolSubs = ["execution", "instrument", "order", "orderBook25", "position", "quote", "trade"]
+        # You can sub to orderBookL2 for all levels, or orderBook10 for top 10 levels & save bandwidth
+        symbolSubs = ["execution", "instrument", "order", "orderBookL2", "position", "quote", "trade"]
         genericSubs = ["margin"]
 
         subscriptions = [sub + ':' + self.config['symbol'] for sub in symbolSubs]
@@ -161,7 +161,7 @@ class BitMEXWebsocket():
     def __wait_for_account(self):
         '''On subscribe, this data will come down. Wait for it.'''
         # Wait for the keys to show up from the ws
-        while not {'margin', 'position', 'order', 'orderBook25'} <= set(self.data):
+        while not {'margin', 'position', 'order', 'orderBookL2'} <= set(self.data):
             sleep(0.1)
 
     def __wait_for_symbol(self, symbol):
