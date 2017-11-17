@@ -26,14 +26,14 @@ var headers = {
   'api-signature': signature
 };
 
-request.post({
-    headers: headers,
-    url:'https://testnet.bitmex.com'+path,
-    method: verb,
-    body: postBody
-  },
-  function(error, response, body) {
-    if (error) { console.log(error); }
-    console.log(body);
-  }
-);
+const requestOptions = {
+  headers: headers,
+  url:'https://testnet.bitmex.com'+path,
+  method: verb,
+  body: postBody
+};
+
+request(requestOptions, function(error, response, body) {
+  if (error) { console.log(error); }
+  console.log(body);
+});
