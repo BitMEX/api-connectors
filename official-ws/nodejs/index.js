@@ -78,7 +78,7 @@ BitMEXClient.prototype.getData = function(symbol, tableName) {
 
   // Both filters specified, easy return
   if (symbol && tableName) {
-    out = clone(this._data[tableName][symbol] || []);
+    out = this._data[tableName][symbol] || [];
   }
   // Since we're keying by [table][symbol], we have to search deep
   else if (symbol && !tableName) {
