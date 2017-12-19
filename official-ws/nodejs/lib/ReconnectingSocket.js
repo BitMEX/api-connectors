@@ -3,13 +3,16 @@ const WebSocket = require('ws');
 const debug = require('debug')('BitMEX:realtime-api:socket:internal');
 
 function WebSocketClient(){
-    this.autoReconnectInterval = 1000;    // ms
+    this.initialAutoReconnectInterval = 1000;    // ms
+    this.autoReconnectInterval = this.initialAutoReconnectInterval;
+    this.maxAutoReconnectInterval = 60000; // maximum wait between reconnect retrys
     this.logConnection = true;
 }
 WebSocketClient.prototype.open = function(url){
     this.url = url;
     this.instance = new WebSocket(this.url);
     this.instance.on('open', () => {
+        this.autoReconnectInterval = this.initialAutoReconnectInterval; // reset delay
         this.log("Connected.");
         this.onopen();
     });
@@ -100,6 +103,12 @@ WebSocketClient.prototype.reconnect = function(_code) {
     this.log('Retry in ' + this.autoReconnectInterval + ' ms');
     clearTimeout(this.reconnectTimeout);
     this.reconnectTimeout = setTimeout(() => {
+        // incease wait for next time to avoid spamming the server
+        if (this.autoReconnectInterval < this.maxAutoReconnectInterval) {
+            this.autoReconnectInterval *= 2;
+            if (this.autoReconnectInterval > this.maxAutoReconnectInterval)
+                this.autoReconnectInterval = this.maxAutoReconnectInterval;
+        }
         this.instance.close(1000, 'Reconnecting.');
         this.log("Reconnecting...");
         this.open(this.url);
