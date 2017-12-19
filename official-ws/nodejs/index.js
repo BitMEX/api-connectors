@@ -7,6 +7,8 @@ const createSocket = require('./lib/createSocket');
 const deltaParser = require('./lib/deltaParser');
 const getStreams = require('./lib/getStreams');
 
+const DEFAULT_MAX_TABLE_LEN = 10000;
+
 const endpoints = {
   production: 'wss://www.bitmex.com/realtime',
   testnet: 'wss://testnet.bitmex.com/realtime'
@@ -38,8 +40,9 @@ function BitMEXClient(options) {
     newListener: true,
   });
   if (!options) options = {};
-  this._data = {}; // internal data store keyed by [tableName][symbol]
+  this._data = {}; // internal data store keyed by [tableName][symbol]. Used by deltaParser.
   this._keys = {}; // keys store - populated by images on connect
+  this._maxTableLen = typeof options.maxTableLen === 'number' ? options.maxTableLen : DEFAULT_MAX_TABLE_LEN;
   if (!options.endpoint) {
     options.endpoint = options.testnet ? endpoints.testnet : endpoints.production;
   }
@@ -209,6 +212,10 @@ function addStreamHelper(client, symbol, tableName, callback) {
 
       try {
         const newData = deltaParser.onAction(action, table, symbol, client, data);
+        // Truncate table to protect from unbounded memory growth
+        if (newData.length > client._maxTableLen) {
+          newData.length = client._maxTableLen;
+        }
         callback(newData, symbol, table);
       } catch(e) {
         client.emit('error', e);
