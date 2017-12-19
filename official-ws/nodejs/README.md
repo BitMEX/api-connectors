@@ -75,6 +75,14 @@ Same as above, but returns all tables for a given symbol.
 
 Same as above, but returns all symbols for a given table.
 
+Example:
+```js
+client.addStream('XBTUSD', 'trade', () => {});
+setTimeout(() => {
+  console.log('XBTUSD trades during the last few seconds:', client.getTable('trade').XBTUSD);
+}, 5000);
+```
+
 #### Available Public Streams
 
 The streams below echo the models described in the [API Explorer](https://www.bitmex.com/api/explorer).
