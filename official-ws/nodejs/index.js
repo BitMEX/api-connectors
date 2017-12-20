@@ -212,9 +212,9 @@ function addStreamHelper(client, symbol, tableName, callback) {
 
       try {
         const newData = deltaParser.onAction(action, table, symbol, client, data);
-        // Truncate table to protect from unbounded memory growth
+        // Shift oldest elements out of the table (FIFO queue) to prevent unbounded memory growth
         if (newData.length > client._maxTableLen) {
-          newData.length = client._maxTableLen;
+          newData.splice(0, newData.length - client._maxTableLen);
         }
         callback(newData, symbol, table);
       } catch(e) {
