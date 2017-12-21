@@ -34,7 +34,7 @@ module.exports = {
    */
   onAction(action, tableName, symbol, client, data) {
     // Deltas before the getSymbol() call returns can be safely discarded.
-    if (action !== 'partial' && !isInitialized(tableName, symbol, client)) return;
+    if (action !== 'partial' && !isInitialized(tableName, symbol, client)) return [];
     // Partials initialize the table, so there's a different signature.
     if (action === 'partial') return this._partial(tableName, symbol, client, data);
 
