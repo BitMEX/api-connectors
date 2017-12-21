@@ -24,7 +24,7 @@ client.addStream('XBTUSD', 'instrument', function(data, symbol, tableName) {
 
 #### API Reference
 
-###### new BitMEXClient(object options)
+##### new BitMEXClient(object options)
 
 Options:
 
@@ -38,28 +38,33 @@ Options:
 }
 ```
 
-###### client.addStream(string symbol, [string tableName], function callback)
+##### client.addStream(string symbol, [string tableName], function callback)
 
 Subscribe to a data stream. Pass a symbol to subscribe to all public data for an instrument.
 
 Pass an optional `tableName` to only receive data for a specific table.
 
-###### client.on(string eventName, function callback)
+##### client.on(string eventName, function callback)
 
 The client also doubles as a basic EventEmitter. The following events are fired:
 
 ```
-"data",        # Raw data from the websocket
+"initialize"  // Socket initialized, client.streams available
 "error"
 "open"
 "close"
-"initialize"
+```
+Example:
+```js
+client.on('initialize', () => {
+  console.log(client.streams);  // Log .public, .private and .all stream names
+});
 ```
 
-* Note: Don't forget to attach an `error` handler! If one is not attached, errors will be thrown
+**Note**: Don't forget to attach an `error` handler! If one is not attached, errors will be thrown
 and crash your client.
 
-###### client.getData([string symbol], [string tableName])
+##### client.getData([string symbol], [string tableName])
 
 Use this function to access data directly. Pass either a symbol, or tableName, or both.
 Data returned by this method is safe to modify as it is cloned from the internal stores.
@@ -67,11 +72,11 @@ Data returned by this method is safe to modify as it is cloned from the internal
 If speed is a concern, all data is accessible directly inside the client via the `client._data` property.
 Do not modify this data, or you will corrupt further updates!
 
-###### client.getSymbol(string symbol)
+##### client.getSymbol(string symbol)
 
 Same as above, but returns all tables for a given symbol.
 
-###### client.getTable(string tableName)
+##### client.getTable(string tableName)
 
 Same as above, but returns all symbols for a given table.
 
