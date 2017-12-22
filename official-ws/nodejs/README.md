@@ -17,7 +17,7 @@ const client = new BitMEXClient({testnet: true});
 Then subscribe to a symbol and table, and pass a callback.
 
 ```js
-client.addStream('XBTUSD', 'instrument', function(data, symbol, tableName) {
+client.addStream('XBTUSD', 'instrument', function (data, symbol, tableName) {
   // Do something with the table data...
 });
 ```
@@ -34,7 +34,8 @@ Options:
   // Set API Key ID and Secret to subscribe to private streams.
   // See `Available Private Streams` below.
   apiKeyID: '',
-  apiKeySecret: ''
+  apiKeySecret: '',
+  maxTableLen: 10000  // the maximum number of table elements to keep in memory (FIFO queue)
 }
 ```
 
@@ -43,6 +44,14 @@ Options:
 Subscribe to a data stream. Pass a symbol to subscribe to all public data for an instrument.
 
 Pass an optional `tableName` to only receive data for a specific table.
+
+```js
+client.addStream('XBTUSD', 'quote', function (data, symbol, tableName) {
+  if (!data.length) return;
+  const quote = data[data.length - 1];  // the last data element is the newest quote
+  // Do something with the quote (.bidPrice, .bidSize, .askPrice, .askSize)
+});
+```
 
 ##### client.on(string eventName, function callback)
 
@@ -80,7 +89,6 @@ Same as above, but returns all tables for a given symbol.
 
 Same as above, but returns all symbols for a given table.
 
-Example:
 ```js
 client.addStream('XBTUSD', 'trade', () => {});
 setTimeout(() => {
@@ -93,12 +101,14 @@ setTimeout(() => {
 The streams below echo the models described in the [API Explorer](https://www.bitmex.com/api/explorer).
 
 ```
-"chat",        # Trollbox
-"instrument",  # Instrument updates including turnover and bid/ask
-"liquidation", # Liquidations
-"orderBookL2", # Full orderBook using deltas
-"quote",       # Top level of the book
-"trade"        # Trades
+"chat",         // Trollbox
+"instrument",   // Instrument updates including turnover and bid/ask
+"liquidation",  // Liquidations
+"orderBookL2",  // Full orderBook using deltas
+"orderBook10",  // Last 10 bids and asks (price and size)
+"quote",        // Top level of the book
+"trade"         // Trades
+...             // See https://www.bitmex.com/app/wsAPI#Subscriptions for more streams
 ```
 
 #### Available Private Streams
@@ -107,10 +117,11 @@ The following streams require authentication via an API key. Use
 [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) to easily create a key.
 
 ```
-"execution",   # Individual order placements and executions, settlements, commissions
-"margin",      # Your account's margin details
-"order",       # Order creations, cancellations, and updates
-"position"     # Your positions, per instrument
+"execution",    // Individual order placements and executions, settlements, commissions
+"margin",       // Your account's margin details
+"order",        // Order creations, cancellations, and updates
+"position"      // Your positions, per instrument
+...             // See https://www.bitmex.com/app/wsAPI#Subscriptions for more streams
 ```
 
 ### Debugging
