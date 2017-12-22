@@ -121,7 +121,7 @@ The following streams require authentication via an API key. Use
 "margin",       // Your account's margin details
 "order",        // Order creations, cancellations, and updates
 "position"      // Your positions, per instrument
-...             // See https://www.bitmex.com/api/explorer for more streams
+...             // See https://www.bitmex.com/app/wsAPI#Subscriptions for more streams
 ```
 
 ### Debugging
