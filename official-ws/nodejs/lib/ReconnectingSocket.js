@@ -2,6 +2,10 @@
 const WebSocket = require('ws');
 const debug = require('debug')('BitMEX:realtime-api:socket:internal');
 
+const CLOSE_NORMAL = 1000;
+const CLOSE_UNEXPECTED = 1011;
+const CLOSE_DOWNTIME = 1012;
+
 function WebSocketClient(){
     this.initialAutoReconnectInterval = 1000;    // ms
     this.autoReconnectInterval = this.initialAutoReconnectInterval;
@@ -23,14 +27,14 @@ WebSocketClient.prototype.open = function(url){
         let reconnecting = false;
 
         switch (code){
-        case 1000:  // CLOSE_NORMAL
-            debug("Closed");
+        case CLOSE_NORMAL:
+            debug(`WebSocket closed normally.`);
             break;
-        case 1011:  // UNEXPECTED_CONDITION
-            this.logError("Closing Websocket")
+        case CLOSE_UNEXPECTED:
+            this.logError("WebSocket closed unexpectedly.");
             break;
         default:    // Abnormal closure
-            this.logError('Websocket closed.');
+            this.logError(`WebSocket closed with code ${code}`);
             reconnecting = true;
             break;
         }
@@ -58,15 +62,27 @@ WebSocketClient.prototype.open = function(url){
         let buf = '';
         response.on('data', (data) => { buf += data; });
         response.on('end', () => {
+
+            let closeConnection = code => {
+                if (code === CLOSE_UNEXPECTED)
+                    this.log('The WebSocket will terminate. Please manually reconnect.');
+               request.abort();
+               this.instance.close(code);
+               this.instance.emit('close', code);
+            };
+
             if (response.statusCode === 401) {
                 this.logError(`Authentication invalid. Please check your credentials. Message: ${buf}`);
+                closeConnection(CLOSE_UNEXPECTED);
+            } else if (response.statusCode === 503) {
+                // maintainence / downtime
+                this.logError(`Server responded with [${response.statusCode}], will retry soon: ${buf}`);
+                this.autoReconnectInterval = 5000; // first retry in 5 seconds
+                closeConnection(CLOSE_DOWNTIME);
             } else {
                 this.logError(`Unexpected response from server [${response.statusCode}]: ${buf}`);
+                closeConnection(CLOSE_UNEXPECTED);
             }
-            this.log('The WebSocket will terminate. Please manually reconnect.');
-            request.abort();
-            this.instance.close(1011);
-            this.instance.emit('close', 1011);
         })
 
     })
@@ -99,17 +115,17 @@ WebSocketClient.prototype.send = function(data, option) {
     }
 };
 WebSocketClient.prototype.reconnect = function(_code) {
-    this.emit('reconnect');
     this.log('Retry in ' + this.autoReconnectInterval + ' ms');
     clearTimeout(this.reconnectTimeout);
     this.reconnectTimeout = setTimeout(() => {
-        // incease wait for next time to avoid spamming the server
+        this.emit('reconnect');
+        // increase wait for next time to avoid spamming the server
         if (this.autoReconnectInterval < this.maxAutoReconnectInterval) {
             this.autoReconnectInterval *= 2;
             if (this.autoReconnectInterval > this.maxAutoReconnectInterval)
                 this.autoReconnectInterval = this.maxAutoReconnectInterval;
         }
-        this.instance.close(1000, 'Reconnecting.');
+        this.instance.close(CLOSE_NORMAL, 'Reconnecting.');
         this.log("Reconnecting...");
         this.open(this.url);
     }, this.autoReconnectInterval);
