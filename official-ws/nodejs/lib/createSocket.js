@@ -34,7 +34,7 @@ module.exports = function createSocket(options, bmexClient) {
   wsClient.onmessage = function(data) {
     try {
       data = JSON.parse(data);
-    } catch(e) {
+    } catch (e) {
       bmexClient.emit('error', 'Unable to parse incoming data:', data);
       return;
     }
@@ -78,7 +78,7 @@ module.exports = function createSocket(options, bmexClient) {
 };
 
 function emitSplitData(emitter, data) {
-  const {table, action} = data;
+  const { table, action } = data;
 
   // Technically, we can change this (e.g. chat channels)
   const filterKey = data.filterKey || 'symbol';
@@ -96,12 +96,12 @@ function emitSplitData(emitter, data) {
   Object.keys(symbolData).forEach((symbol) => {
     const key = `${table}:${action}:${symbol}`;
     debug('emitting %s with data %j', key, symbolData[symbol]);
-    emitter.emit(key, _.extend({}, data, {data: symbolData[symbol]}));
+    emitter.emit(key, _.extend({}, data, { data: symbolData[symbol] }));
   });
 }
 
 function emitFullData(emitter, data) {
-  const {table, action} = data;
+  const { table, action } = data;
 
   const key = `${table}:${action}:*`;
   debug('emitting %s with data %j', key, data.data);

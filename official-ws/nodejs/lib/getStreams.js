@@ -11,16 +11,16 @@ module.exports = function(wsEndpoint, callback) {
   });
 
   superagent
-  .get(httpEndpoint + '/api/v1/schema/websocketHelp')
-  .end(function(err, res) {
-    if (err) return callback(err);
-    const streams = res.body.subscriptionSubjects;
-    debug('Got streams from server: %j', streams);
-    callback(null, {
-      public: streams.public,
-      private: streams.authenticationRequired,
-      all: streams.public.concat(streams.authenticationRequired)
+    .get(httpEndpoint + '/api/v1/schema/websocketHelp')
+    .end(function(err, res) {
+      if (err) return callback(err);
+      const streams = res.body.subscriptionSubjects;
+      debug('Got streams from server: %j', streams);
+      callback(null, {
+        public: streams.public,
+        private: streams.authenticationRequired,
+        all: streams.public.concat(streams.authenticationRequired)
+      });
     });
-  });
 };
 
