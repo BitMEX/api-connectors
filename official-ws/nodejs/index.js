@@ -176,8 +176,8 @@ BitMEXClient.prototype.subscriptionCount = function(table, symbol) {
 };
 
 BitMEXClient.prototype.sendSubscribeRequest = function(table, symbol) {
-  console.log(JSON.stringify({op: 'subscribe', args: `${table}:${symbol}`}))
-  this.socket.send(JSON.stringify({op: 'subscribe', args: `${table}:${symbol}`}));
+  console.log(JSON.stringify({ op: 'subscribe', args: `${table}:${symbol}` }))
+  this.socket.send(JSON.stringify({ op: 'subscribe', args: `${table}:${symbol}` }));
 };
 
 function addStreamHelper(client, symbol, tableName, callback) {
@@ -217,7 +217,7 @@ function addStreamHelper(client, symbol, tableName, callback) {
           newData.splice(0, newData.length - client._maxTableLen);
         }
         callback(newData, symbol, table);
-      } catch(e) {
+      } catch (e) {
         client.emit('error', e);
       }
     });
