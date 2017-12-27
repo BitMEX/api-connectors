@@ -42,19 +42,18 @@ module.exports = function createSocket(options, bmexClient) {
     if (data.error) return bmexClient.emit('error', data.error);
     if (!data.data) return; // connection or subscription notice
 
-
-    // Fires events as <table>:<action>:<symbol>, such as
-    // instrument:update:XBTUSD.
-    // Consumers may be listening on:
-    // * action filter   (e.g. `instrument:partial:*`)
-    // * symbol filter   (e.g. `instrument:*:XBTUSD`)
-    // * table filter    (e.g. `instrument:*:*`)
-    emitSplitData(bmexClient, data);
-
-    // For no-symbol tables, emit a '*' event.
     const tableNoSymbol = _.includes(bmexClient.constructor.noSymbolTables, data.table);
     if (tableNoSymbol) {
+      // For no-symbol tables, emit a '*' event.
       emitFullData(bmexClient, data);
+    } else {
+      // Fires events as <table>:<action>:<symbol>, such as
+      // instrument:update:XBTUSD.
+      // Consumers may be listening on:
+      // * action filter   (e.g. `instrument:partial:*`)
+      // * symbol filter   (e.g. `instrument:*:XBTUSD`)
+      // * table filter    (e.g. `instrument:*:*`)
+      emitSplitData(bmexClient, data);
     }
   };
 
