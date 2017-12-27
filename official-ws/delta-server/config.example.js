@@ -20,5 +20,8 @@ module.exports = {
 
   // If you want to use any of the above "private" streams, you must authenticate with an API Key.
   apiKeyID: '',
-  apiKeySecret: ''
+  apiKeySecret: '',
+
+  // This prevents memory usage from getting out of control. Tweak to your needs.
+  maxTableLen: 10000,
 };

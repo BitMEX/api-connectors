@@ -44,7 +44,7 @@ function initServer(config) {
 }
 
 function initWSClient(app, config) {
-  const client = new BitMEXClient(_.pick(config, 'testnet', 'endpoint', 'apiKeyID', 'apiKeySecret'));
+  const client = new BitMEXClient(_.pick(config, 'testnet', 'endpoint', 'apiKeyID', 'apiKeySecret', 'maxTableLen'));
 
   client.on('error', function(error) {
     console.error("Caught Websocket error:", error);
@@ -57,6 +57,7 @@ function initWSClient(app, config) {
 
   config.symbols.forEach(function(symbol) {
     config.streams.forEach(function(streamName) {
+      debug(`Subscribing to ${streamName}:${symbol}.`);
       client.addStream(symbol, streamName, function(data, symbol, tableName) {
         debug('Got new data on %s:%s - %j', tableName, symbol, data);
       });
