@@ -205,7 +205,7 @@ class BitMEXWebsocket():
 
                     # Limit the max length of the table to avoid excessive memory usage.
                     # Don't trim orders because we'll lose valuable state if we do.
-                    if len(self.data[table]) > BitMEXWebsocket.MAX_TABLE_LEN:
+                    if table not in ['order', 'orderBookL2'] and len(self.data[table]) > BitMEXWebsocket.MAX_TABLE_LEN:
                         self.data[table] = self.data[table][(BitMEXWebsocket.MAX_TABLE_LEN / 2):]
 
                 elif action == 'update':

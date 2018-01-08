@@ -234,6 +234,6 @@ function addStreamHelper(client, symbol, tableName, callback) {
 }
 
 function clone(data) {
-  return JSON.parse(JSON.stringify(data));
+  return data.map(o => Object.assign({}, o));
 }
 
