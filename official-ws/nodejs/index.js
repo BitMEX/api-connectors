@@ -67,6 +67,14 @@ function BitMEXClient(options) {
 }
 util.inherits(BitMEXClient, EventEmitter);
 
+BitMEXClient.prototype.pause = function() {
+   this.socket.pause();
+};
+
+BitMEXClient.prototype.resume = function() {
+   this.socket.resume();
+};
+
 /**
  * Simple data getter. Clones data on the way out so it can be safely modified.
  * @param  {String} [symbol]    Symbol of data to retrieve.

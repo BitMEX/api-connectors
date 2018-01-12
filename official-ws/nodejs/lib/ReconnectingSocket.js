@@ -106,6 +106,15 @@ WebSocketClient.prototype.logError = function() {
     console.error.apply(console, ['WebSocket [ERROR]:'].concat(args));
 }
 
+WebSocketClient.prototype.pause = function() {
+    this.instance.close(CLOSE_NORMAL, null);
+    this.instance = null;
+}
+
+WebSocketClient.prototype.resume = function() {
+    this.open(this.url);
+}
+
 WebSocketClient.prototype.send = function(data, option) {
     try{
         debug(data);
