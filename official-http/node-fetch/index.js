@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 const crypto = require('crypto');
+const qs = require('qs');
 
 const apiKey = 'API_KEY';
 const apiSecret = 'API_SECRET';
@@ -11,9 +12,7 @@ function makeRequest(verb, endpoint, data = {}) {
 
   let query = '', postBody = '';
   if (verb === 'GET')
-    query = '?' + Object.entries(data).map(
-      ([key, value]) => key + '=' + encodeURIComponent(value instanceof Object ? JSON.stringify(value) : value)
-    ).join('&');
+    query = '?' + qs.stringify(data);
   else
     // Pre-compute the reqBody so we can be sure that we're using *exactly* the same body in the request
     // and in the signature. If you don't do this, you might get differently-sorted keys and blow the signature.
