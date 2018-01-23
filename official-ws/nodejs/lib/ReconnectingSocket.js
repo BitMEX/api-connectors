@@ -124,10 +124,10 @@ WebSocketClient.prototype.send = function(data, option) {
     }
 };
 WebSocketClient.prototype.reconnect = function(_code) {
-    this.log('Retry in ' + this.autoReconnectInterval + ' ms');
+   this.emit('reconnect');
+   this.log('Retry in ' + this.autoReconnectInterval + ' ms');
     clearTimeout(this.reconnectTimeout);
     this.reconnectTimeout = setTimeout(() => {
-        this.emit('reconnect');
         // increase wait for next time to avoid spamming the server
         if (this.autoReconnectInterval < this.maxAutoReconnectInterval) {
             this.autoReconnectInterval *= 2;
@@ -135,7 +135,7 @@ WebSocketClient.prototype.reconnect = function(_code) {
                 this.autoReconnectInterval = this.maxAutoReconnectInterval;
         }
         this.instance.close(CLOSE_NORMAL, 'Reconnecting.');
-        this.log("Reconnecting...");
+        this.log(`Reconnecting...`);
         this.open(this.url);
     }, this.autoReconnectInterval);
 };
