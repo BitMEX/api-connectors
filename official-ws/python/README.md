@@ -17,5 +17,6 @@ python main.py
 > 2015-07-29 11:30:11,082 - root - INFO - Instrument data: {u'quoteCurrency': u'USD', u'askPrice': 282.33, ....
 ```
 
-
+### Compatibility
+This module supports Python 3.5+.
 

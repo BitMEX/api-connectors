@@ -4,9 +4,8 @@ import threading
 import traceback
 from time import sleep
 import json
-import string
 import logging
-import urlparse
+import urllib
 import math
 from util.actual_kwargs import actual_kwargs
 from util.api_key import generate_nonce, generate_signature
@@ -20,7 +19,7 @@ from util.api_key import generate_nonce, generate_signature
 # On connect, it synchronously asks for a push of all this data then returns.
 # Right after, the MM can start using its data. It will be updated in realtime, so the MM can
 # poll really often if it wants.
-class BitMEXWebsocket():
+class BitMEXWebsocket:
 
     # Don't grow a table larger than this amount. Helps cap memory usage.
     MAX_TABLE_LEN = 200
@@ -74,7 +73,7 @@ class BitMEXWebsocket():
 
         # The instrument has a tickSize. Use it to round values.
         instrument = self.data['instrument'][0]
-        return {k: round(float(v or 0), instrument['tickLog']) for k, v in ticker.iteritems()}
+        return {k: round(float(v or 0), instrument['tickLog']) for k, v in ticker.items()}
 
     def funds(self):
         '''Get your margin details.'''
@@ -153,10 +152,10 @@ class BitMEXWebsocket():
         subscriptions = [sub + ':' + self.config['symbol'] for sub in symbolSubs]
         subscriptions += genericSubs
 
-        urlParts = list(urlparse.urlparse(self.config['endpoint']))
+        urlParts = list(urllib.parse.urlparse(self.config['endpoint']))
         urlParts[0] = urlParts[0].replace('http', 'ws')
-        urlParts[2] = "/realtime?subscribe=" + string.join(subscriptions, ",")
-        return urlparse.urlunparse(urlParts)
+        urlParts[2] = "/realtime?subscribe={}".format(','.join(subscriptions))
+        return urllib.parse.urlunparse(urlParts)
 
     def __wait_for_account(self):
         '''On subscribe, this data will come down. Wait for it.'''
@@ -169,8 +168,10 @@ class BitMEXWebsocket():
         while not {'instrument', 'trade', 'quote'} <= set(self.data):
             sleep(0.1)
 
-    def __send_command(self, command, args=[]):
+    def __send_command(self, command, args=None):
         '''Send a raw command.'''
+        if args is None:
+            args = []
         self.ws.send(json.dumps({"op": command, "args": args}))
 
     def __on_message(self, ws, message):
