@@ -135,17 +135,11 @@ BitMEXClient.prototype.addStream = function(symbol, tableName, callback) {
   }
 
   // Massage arguments.
-
-  // Allow omitting tableName
-  if (typeof tableName === 'function') {
-    callback = tableName;
-    tableName = '*';
-  }
   if (typeof callback !== 'function') throw new Error('A callback must be passed to BitMEXClient#addStream.');
 
   else if (client.streams.all.indexOf(tableName) === -1) {
-    return callback(new Error('Unknown table for BitMEX subscription: ' + tableName +
-      '. Available tables are ' + client.streams.all + '.'));
+    throw new Error('Unknown table for BitMEX subscription: ' + tableName +
+      '. Available tables are ' + client.streams.all + '.');
   }
 
   addStreamHelper(client, symbol, tableName, callback);
