@@ -5,6 +5,7 @@ const debug = require('debug')('BitMEX:realtime-api:socket:internal');
 const CLOSE_NORMAL = 1000;
 const CLOSE_UNEXPECTED = 1011;
 const CLOSE_DOWNTIME = 1012;
+const CLOSE_BAD_GATEWAY = 1013;
 
 function WebSocketClient(){
     this.initialAutoReconnectInterval = 1000;    // ms
@@ -74,11 +75,19 @@ WebSocketClient.prototype.open = function(url){
             if (response.statusCode === 401) {
                 this.logError(`Authentication invalid. Please check your credentials. Message: ${buf}`);
                 closeConnection(CLOSE_UNEXPECTED);
+
+            } else if (response.statusCode === 502) {
+                // Bad Gateway
+                this.logError(`Server responded with [${response.statusCode}], will retry soon: ${buf}`);
+                this.autoReconnectInterval = 5000; // first retry in 5 seconds
+                closeConnection(CLOSE_BAD_GATEWAY);
+
             } else if (response.statusCode === 503) {
                 // maintainence / downtime
                 this.logError(`Server responded with [${response.statusCode}], will retry soon: ${buf}`);
                 this.autoReconnectInterval = 5000; // first retry in 5 seconds
                 closeConnection(CLOSE_DOWNTIME);
+
             } else {
                 this.logError(`Unexpected response from server [${response.statusCode}]: ${buf}`);
                 closeConnection(CLOSE_UNEXPECTED);
