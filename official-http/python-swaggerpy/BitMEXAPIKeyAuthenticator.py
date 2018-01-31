@@ -1,4 +1,4 @@
-import urlparse
+import urllib.parse
 import time
 import hashlib
 import hmac
@@ -52,14 +52,14 @@ class APIKeyAuthenticator(Authenticator):
     def generate_signature(self, secret, verb, url, nonce, data):
         """Generate a request signature compatible with BitMEX."""
         # Parse the url so we can remove the base and extract just the path.
-        parsedURL = urlparse.urlparse(url)
+        parsedURL = urllib.parse.urlparse(url)
         path = parsedURL.path
         if parsedURL.query:
             path = path + '?' + parsedURL.query
 
-        message = bytes(verb + path + str(nonce) + data).encode('utf-8')
+        message = bytes(verb + path + str(nonce) + data, 'utf-8')
         # print("Computing HMAC: %s" % message)
 
-        signature = hmac.new(secret, message, digestmod=hashlib.sha256).hexdigest()
+        signature = hmac.new(bytes(secret, 'utf-8'), message, digestmod=hashlib.sha256).hexdigest()
         return signature
 
