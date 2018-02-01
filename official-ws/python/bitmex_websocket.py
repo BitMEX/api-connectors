@@ -1,4 +1,3 @@
-import sys
 import websocket
 import threading
 import traceback
@@ -121,7 +120,7 @@ class BitMEXWebsocket:
         if not conn_timeout:
             self.logger.error("Couldn't connect to WS! Exiting.")
             self.exit()
-            sys.exit(1)
+            raise websocket.WebSocketTimeoutException('Couldn\'t connect to WS! Exiting.')
 
     def __get_auth(self):
         '''Return auth headers. Will use API Keys if present in settings.'''
@@ -235,7 +234,7 @@ class BitMEXWebsocket:
         '''Called on fatal websocket errors. We exit on these.'''
         if not self.exited:
             self.logger.error("Error : %s" % error)
-            sys.exit(1)
+            raise websocket.WebSocketException(error)
 
     def __on_open(self, ws):
         '''Called when the WS opens.'''
@@ -244,19 +243,20 @@ class BitMEXWebsocket:
     def __on_close(self, ws):
         '''Called on websocket close.'''
         self.logger.info('Websocket Closed')
-        sys.exit(1)
 
     def __validate(self, kwargs):
         '''Simple method that ensure the user sent the right args to the method.'''
         if 'symbol' not in kwargs:
-            self.logger.error("A symbol must be provided to BitMEXWebsocket()")
-            sys.exit(1)
+            self.logger.error("Symbol is required for BitMEXWebsocket()")
+            raise ValueError('Symbol is required for BitMEXWebsocket()')
+
         if 'endpoint' not in kwargs:
-            self.logger.error("An endpoint (BitMEX URL) must be provided to BitMEXWebsocket()")
-            sys.exit(1)
+            self.logger.error("endpoint (BitMEX URL) is required for BitMEXWebsocket()")
+            raise ValueError('endpoint (BitMEX URL) is required for BitMEXWebsocket()')
+
         if 'api_key' not in kwargs:
             self.logger.error("No authentication provided! Unable to connect.")
-            sys.exit(1)
+            raise ValueError('No authentication provided! Unable to connect.')
 
     def __reset(self, kwargs):
         '''Resets internal datastores.'''
