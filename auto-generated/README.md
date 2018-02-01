@@ -5,4 +5,4 @@ These connectors are likely to be incomplete - BitMEX uses [a custom authenticat
 which is not recognized out of the box by swagger.
 
 They are a starting point for integrating BitMEX's API with another application.
-For complete connectors, see the [official-http](official-http/) directory.
+For complete connectors, see the [official-http](/official-http/) directory.
