@@ -15,6 +15,7 @@ and unauthenticated clients. Some endpoints require credentials, for more info s
 
 To get started, instantiate a connection:
 
+    from bitmex_websocket import BitMEXWebsocket
     ws = BitMEXWebsocket(endpoint="https://testnet.bitmex.com/api/v1", symbol="XBTUSD", api_key=None, api_secret=None)
 
 If you want to subscribe to authenticated data streams, [create an API key](https://testnet.bitmex.com/app/apiKeys) and
