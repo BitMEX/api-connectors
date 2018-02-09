@@ -5,7 +5,7 @@ from os.path import join, dirname
 here = dirname(__file__)
 
 setup(name='bitmex-ws',
-      version='0.3',
+      version='0.3.1',
       description='Sample adapter for connecting to the BitMEX Websocket API.',
       long_description=open(join(here, 'README.md')).read(),
       author='Samuel Reed',
