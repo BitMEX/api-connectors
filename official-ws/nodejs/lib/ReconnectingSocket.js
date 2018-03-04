@@ -7,11 +7,12 @@ const CLOSE_UNEXPECTED = 1011;
 const CLOSE_DOWNTIME = 1012;
 const CLOSE_BAD_GATEWAY = 1013;
 
-function WebSocketClient(){
+function WebSocketClient(alwaysReconnect){
     this.initialAutoReconnectInterval = 1000;    // ms
     this.autoReconnectInterval = this.initialAutoReconnectInterval;
     this.maxAutoReconnectInterval = 60000; // maximum wait between reconnect retrys
     this.logConnection = true;
+    this.alwaysReconnect = alwaysReconnect || false;
 }
 WebSocketClient.prototype.open = function(url){
     this.url = url;
@@ -40,7 +41,7 @@ WebSocketClient.prototype.open = function(url){
             break;
         }
         this.onclose(code);
-        if (reconnecting) {
+        if (reconnecting || this.alwaysReconnect) {
             this.reconnect(code);
         } else {
             this.onend(code);
