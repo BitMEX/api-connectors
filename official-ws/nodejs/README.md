@@ -43,7 +43,7 @@ Options:
 
 Subscribe to a data stream. Pass a symbol to subscribe to all public data for an instrument.
 
-Pass an optional `tableName` to only receive data for a specific table.
+Pass `tableName` to receive data for a specific table.
 
 ```js
 client.addStream('XBTUSD', 'quote', function (data, symbol, tableName) {
