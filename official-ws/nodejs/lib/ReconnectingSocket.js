@@ -12,7 +12,7 @@ function WebSocketClient(alwaysReconnect){
   this.autoReconnectInterval = this.initialAutoReconnectInterval;
   this.maxAutoReconnectInterval = 60000; // maximum wait between reconnect retrys
   this.logConnection = true;
-    this.alwaysReconnect = alwaysReconnect || false;
+  this.alwaysReconnect = alwaysReconnect || false;
 }
 WebSocketClient.prototype.open = function(url){
   this.url = url;
@@ -34,6 +34,7 @@ WebSocketClient.prototype.open = function(url){
         break;
       case CLOSE_UNEXPECTED:
         this.logError("WebSocket closed unexpectedly.");
+        reconnecting = this.alwaysReconnect;
         break;
       default:    // Abnormal closure
         this.logError(`WebSocket closed with code ${code}`);
@@ -41,7 +42,7 @@ WebSocketClient.prototype.open = function(url){
         break;
     }
     this.onclose(code);
-    if (reconnecting || this.alwaysReconnect) {
+    if (reconnecting) {
       this.reconnect(code);
     } else {
       this.onend(code);
