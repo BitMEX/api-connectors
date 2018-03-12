@@ -36,22 +36,22 @@ Auto-Generated Languages
 
 Clients:
 
-* [Android](/clients/android)
-* [C#](/clients/csharp)
-* [Clojure](/clients/clojure)
-* [Dart](/clients/dart)
-* [Go](/clients/go)
-* [Java](/clients/java)
-* [JavaScript](/clients/javascript)
-* [Objective C](/clients/objc)
-* [PHP](/clients/php)
-* [Python](/clients/python)
-* [Ruby](/clients/ruby)
-* [Scala](/clients/scala)
-* [Scala-Async](/clients/async-scala)
-* [TypeScript](/clients/typescript)
+* [Android](/auto-generated/android)
+* [C#](/auto-generated/csharp)
+* [Clojure](/auto-generated/clojure)
+* [Dart](/auto-generated/dart)
+* [Go](/auto-generated/go)
+* [Java](/auto-generated/java)
+* [JavaScript](/auto-generated/javascript)
+* [Objective C](/auto-generated/objc)
+* [PHP](/auto-generated/php)
+* [Python](/auto-generated/python)
+* [Ruby](/auto-generated/ruby)
+* [Scala](/auto-generated/scala)
+* [Scala-Async](/auto-generated/async-scala)
+* [TypeScript](/auto-generated/typescript)
 
 Swagger Output:
 
-* [JSON](/clients/swagger)
-* [YAML](/clients/swagger-yaml)
+* [JSON](/auto-generated/swagger)
+* [YAML](/auto-generated/swagger-yaml)
