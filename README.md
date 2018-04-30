@@ -13,7 +13,7 @@ Official Examples
 #### HTTP
 
 * [C#](/official-http/csharp)
-* [mIRC](/official-http/mirc)
+* [mIRC](/official-http/mIRC)
 * [Node-Request](/official-http/node-request)
 * [Node-Swagger](/official-http/node-swagger)
 * [Python-SwaggerPy](/official-http/python-swaggerpy)
