@@ -231,3 +231,7 @@ function clone(data) {
   return data.map(o => Object.assign({}, o));
 }
 
+if (require.main === module) {
+  console.error('This module is not meant to be run directly. Try running example.js instead.');
+  process.exit(1);
+}
