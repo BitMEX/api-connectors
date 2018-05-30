@@ -23,13 +23,31 @@ See <a href=\"http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html\"
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\PositionApi();
-$filter = "filter_example"; // string | Table filter. For example, send {\"symbol\": \"XBT24H\"}.
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\PositionApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$filter = "filter_example"; // string | Table filter. For example, send {\"symbol\": \"XBTUSD\"}.
 $columns = "columns_example"; // string | Which columns to fetch. For example, send [\"columnName\"].
-$count = 3.4; // float | Number of rows to fetch.
+$count = 8.14; // float | Number of rows to fetch.
 
 try {
-    $result = $api_instance->positionGet($filter, $columns, $count);
+    $result = $apiInstance->positionGet($filter, $columns, $count);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PositionApi->positionGet: ', $e->getMessage(), PHP_EOL;
@@ -41,7 +59,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | **string**| Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBT24H\&quot;}. | [optional]
+ **filter** | **string**| Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. | [optional]
  **columns** | **string**| Which columns to fetch. For example, send [\&quot;columnName\&quot;]. | [optional]
  **count** | **float**| Number of rows to fetch. | [optional]
 
@@ -51,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -65,19 +83,35 @@ No authorization required
 
 Enable isolated margin or cross margin per-position.
 
-On Speculative (DPE-Enabled) contracts, users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
-
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\PositionApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\PositionApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $symbol = "symbol_example"; // string | Position symbol to isolate.
 $enabled = true; // bool | True for isolated margin, false for cross margin.
 
 try {
-    $result = $api_instance->positionIsolateMargin($symbol, $enabled);
+    $result = $apiInstance->positionIsolateMargin($symbol, $enabled);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PositionApi->positionIsolateMargin: ', $e->getMessage(), PHP_EOL;
@@ -98,7 +132,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -112,19 +146,35 @@ No authorization required
 
 Transfer equity in or out of a position.
 
-When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
-
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\PositionApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\PositionApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $symbol = "symbol_example"; // string | Symbol of position to isolate.
-$amount = 3.4; // float | Amount to transfer, in Satoshis. May be negative.
+$amount = 8.14; // float | Amount to transfer, in Satoshis. May be negative.
 
 try {
-    $result = $api_instance->positionTransferIsolatedMargin($symbol, $amount);
+    $result = $apiInstance->positionTransferIsolatedMargin($symbol, $amount);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PositionApi->positionTransferIsolatedMargin: ', $e->getMessage(), PHP_EOL;
@@ -145,7 +195,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -159,19 +209,35 @@ No authorization required
 
 Choose leverage for a position.
 
-On Speculative (DPE-Enabled) contracts, users can choose an isolated leverage. This will automatically enable isolated margin.
-
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\PositionApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\PositionApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $symbol = "symbol_example"; // string | Symbol of position to adjust.
 $leverage = 1.2; // double | Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.
 
 try {
-    $result = $api_instance->positionUpdateLeverage($symbol, $leverage);
+    $result = $apiInstance->positionUpdateLeverage($symbol, $leverage);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PositionApi->positionUpdateLeverage: ', $e->getMessage(), PHP_EOL;
@@ -192,7 +258,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -206,19 +272,35 @@ No authorization required
 
 Update your risk limit.
 
-Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
-
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\PositionApi();
-$symbol = "symbol_example"; // string | Symbol of position to isolate.
-$risk_limit = 3.4; // float | New Risk Limit, in Satoshis.
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\PositionApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$symbol = "symbol_example"; // string | Symbol of position to update risk limit on.
+$risk_limit = 8.14; // float | New Risk Limit, in Satoshis.
 
 try {
-    $result = $api_instance->positionUpdateRiskLimit($symbol, $risk_limit);
+    $result = $apiInstance->positionUpdateRiskLimit($symbol, $risk_limit);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PositionApi->positionUpdateRiskLimit: ', $e->getMessage(), PHP_EOL;
@@ -230,7 +312,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string**| Symbol of position to isolate. |
+ **symbol** | **string**| Symbol of position to update risk limit on. |
  **risk_limit** | **float**| New Risk Limit, in Satoshis. |
 
 ### Return type
@@ -239,7 +321,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 

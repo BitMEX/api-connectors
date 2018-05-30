@@ -9,7 +9,7 @@ import Foundation
 
 
 
-open class UserPreferences: Codable {
+public struct UserPreferences: Codable {
 
     public var alertOnLiquidations: Bool?
     public var animationsEnabled: Bool?
@@ -30,6 +30,7 @@ open class UserPreferences: Codable {
     public var orderBookType: String?
     public var orderClearImmediate: Bool?
     public var orderControlsPlusMinus: Bool?
+    public var showLocaleNumbers: Bool?
     public var sounds: [String]?
     public var strictIPCheck: Bool?
     public var strictTimeout: Bool?
@@ -37,70 +38,35 @@ open class UserPreferences: Codable {
     public var tickerPinned: Bool?
     public var tradeLayout: String?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encodeIfPresent(alertOnLiquidations, forKey: "alertOnLiquidations")
-        try container.encodeIfPresent(animationsEnabled, forKey: "animationsEnabled")
-        try container.encodeIfPresent(announcementsLastSeen, forKey: "announcementsLastSeen")
-        try container.encodeIfPresent(chatChannelID, forKey: "chatChannelID")
-        try container.encodeIfPresent(colorTheme, forKey: "colorTheme")
-        try container.encodeIfPresent(currency, forKey: "currency")
-        try container.encodeIfPresent(debug, forKey: "debug")
-        try container.encodeArrayIfPresent(disableEmails, forKey: "disableEmails")
-        try container.encodeArrayIfPresent(hideConfirmDialogs, forKey: "hideConfirmDialogs")
-        try container.encodeIfPresent(hideConnectionModal, forKey: "hideConnectionModal")
-        try container.encodeIfPresent(hideFromLeaderboard, forKey: "hideFromLeaderboard")
-        try container.encodeIfPresent(hideNameFromLeaderboard, forKey: "hideNameFromLeaderboard")
-        try container.encodeArrayIfPresent(hideNotifications, forKey: "hideNotifications")
-        try container.encodeIfPresent(locale, forKey: "locale")
-        try container.encodeArrayIfPresent(msgsSeen, forKey: "msgsSeen")
-        try container.encodeIfPresent(orderBookBinning, forKey: "orderBookBinning")
-        try container.encodeIfPresent(orderBookType, forKey: "orderBookType")
-        try container.encodeIfPresent(orderClearImmediate, forKey: "orderClearImmediate")
-        try container.encodeIfPresent(orderControlsPlusMinus, forKey: "orderControlsPlusMinus")
-        try container.encodeArrayIfPresent(sounds, forKey: "sounds")
-        try container.encodeIfPresent(strictIPCheck, forKey: "strictIPCheck")
-        try container.encodeIfPresent(strictTimeout, forKey: "strictTimeout")
-        try container.encodeIfPresent(tickerGroup, forKey: "tickerGroup")
-        try container.encodeIfPresent(tickerPinned, forKey: "tickerPinned")
-        try container.encodeIfPresent(tradeLayout, forKey: "tradeLayout")
+    public init(alertOnLiquidations: Bool?, animationsEnabled: Bool?, announcementsLastSeen: Date?, chatChannelID: Double?, colorTheme: String?, currency: String?, debug: Bool?, disableEmails: [String]?, hideConfirmDialogs: [String]?, hideConnectionModal: Bool?, hideFromLeaderboard: Bool?, hideNameFromLeaderboard: Bool?, hideNotifications: [String]?, locale: String?, msgsSeen: [String]?, orderBookBinning: Any?, orderBookType: String?, orderClearImmediate: Bool?, orderControlsPlusMinus: Bool?, showLocaleNumbers: Bool?, sounds: [String]?, strictIPCheck: Bool?, strictTimeout: Bool?, tickerGroup: String?, tickerPinned: Bool?, tradeLayout: String?) {
+        self.alertOnLiquidations = alertOnLiquidations
+        self.animationsEnabled = animationsEnabled
+        self.announcementsLastSeen = announcementsLastSeen
+        self.chatChannelID = chatChannelID
+        self.colorTheme = colorTheme
+        self.currency = currency
+        self.debug = debug
+        self.disableEmails = disableEmails
+        self.hideConfirmDialogs = hideConfirmDialogs
+        self.hideConnectionModal = hideConnectionModal
+        self.hideFromLeaderboard = hideFromLeaderboard
+        self.hideNameFromLeaderboard = hideNameFromLeaderboard
+        self.hideNotifications = hideNotifications
+        self.locale = locale
+        self.msgsSeen = msgsSeen
+        self.orderBookBinning = orderBookBinning
+        self.orderBookType = orderBookType
+        self.orderClearImmediate = orderClearImmediate
+        self.orderControlsPlusMinus = orderControlsPlusMinus
+        self.showLocaleNumbers = showLocaleNumbers
+        self.sounds = sounds
+        self.strictIPCheck = strictIPCheck
+        self.strictTimeout = strictTimeout
+        self.tickerGroup = tickerGroup
+        self.tickerPinned = tickerPinned
+        self.tradeLayout = tradeLayout
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        alertOnLiquidations = try container.decodeIfPresent(Bool.self, forKey: "alertOnLiquidations")
-        animationsEnabled = try container.decodeIfPresent(Bool.self, forKey: "animationsEnabled")
-        announcementsLastSeen = try container.decodeIfPresent(Date.self, forKey: "announcementsLastSeen")
-        chatChannelID = try container.decodeIfPresent(Double.self, forKey: "chatChannelID")
-        colorTheme = try container.decodeIfPresent(String.self, forKey: "colorTheme")
-        currency = try container.decodeIfPresent(String.self, forKey: "currency")
-        debug = try container.decodeIfPresent(Bool.self, forKey: "debug")
-        disableEmails = try container.decodeArrayIfPresent(String.self, forKey: "disableEmails")
-        hideConfirmDialogs = try container.decodeArrayIfPresent(String.self, forKey: "hideConfirmDialogs")
-        hideConnectionModal = try container.decodeIfPresent(Bool.self, forKey: "hideConnectionModal")
-        hideFromLeaderboard = try container.decodeIfPresent(Bool.self, forKey: "hideFromLeaderboard")
-        hideNameFromLeaderboard = try container.decodeIfPresent(Bool.self, forKey: "hideNameFromLeaderboard")
-        hideNotifications = try container.decodeArrayIfPresent(String.self, forKey: "hideNotifications")
-        locale = try container.decodeIfPresent(String.self, forKey: "locale")
-        msgsSeen = try container.decodeArrayIfPresent(String.self, forKey: "msgsSeen")
-        orderBookBinning = try container.decodeIfPresent(Any.self, forKey: "orderBookBinning")
-        orderBookType = try container.decodeIfPresent(String.self, forKey: "orderBookType")
-        orderClearImmediate = try container.decodeIfPresent(Bool.self, forKey: "orderClearImmediate")
-        orderControlsPlusMinus = try container.decodeIfPresent(Bool.self, forKey: "orderControlsPlusMinus")
-        sounds = try container.decodeArrayIfPresent(String.self, forKey: "sounds")
-        strictIPCheck = try container.decodeIfPresent(Bool.self, forKey: "strictIPCheck")
-        strictTimeout = try container.decodeIfPresent(Bool.self, forKey: "strictTimeout")
-        tickerGroup = try container.decodeIfPresent(String.self, forKey: "tickerGroup")
-        tickerPinned = try container.decodeIfPresent(Bool.self, forKey: "tickerPinned")
-        tradeLayout = try container.decodeIfPresent(String.self, forKey: "tradeLayout")
-    }
 }
 

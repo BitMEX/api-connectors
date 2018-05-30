@@ -16,21 +16,22 @@ Get model schemata for data objects returned by this API.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.SchemaApi();
+var apiInstance = new BitMexApi.SchemaApi();
 
-let opts = { 
+var opts = { 
   'model': "model_example" // String | Optional model filter. If omitted, will return all models.
 };
 
-apiInstance.schemaGet(opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.schemaGet(opts, callback);
 ```
 
 ### Parameters
@@ -60,17 +61,18 @@ Returns help text &amp; subject list for websocket usage.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.SchemaApi();
+var apiInstance = new BitMexApi.SchemaApi();
 
-apiInstance.schemaWebsocketHelp((error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.schemaWebsocketHelp(callback);
 ```
 
 ### Parameters

@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Get exchange-wide and per-series turnover and volume statistics.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -25,7 +25,7 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = swagger_client.StatsApi()
 
-try: 
+try:
     # Get exchange-wide and per-series turnover and volume statistics.
     api_response = api_instance.stats_get()
     pprint(api_response)
@@ -56,7 +56,7 @@ No authorization required
 
 Get historical exchange-wide and per-series turnover and volume statistics.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -67,7 +67,7 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = swagger_client.StatsApi()
 
-try: 
+try:
     # Get historical exchange-wide and per-series turnover and volume statistics.
     api_response = api_instance.stats_history()
     pprint(api_response)
@@ -98,7 +98,7 @@ No authorization required
 
 Get a summary of exchange statistics in USD.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -109,7 +109,7 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = swagger_client.StatsApi()
 
-try: 
+try:
     # Get a summary of exchange statistics in USD.
     api_response = api_instance.stats_history_usd()
     pprint(api_response)

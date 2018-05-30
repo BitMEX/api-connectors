@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -26,6 +26,7 @@ import javax.ws.rs.core.MediaType
 
 import java.io.File
 import java.util.Date
+import java.util.TimeZone
 
 import scala.collection.mutable.HashMap
 
@@ -43,20 +44,31 @@ import scala.concurrent._
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
 
+import org.json4s._
+
 class APIKeyApi(
   val defBasePath: String = "https://localhost/api/v1",
   defApiInvoker: ApiInvoker = ApiInvoker
 ) {
-
-  implicit val formats = new org.json4s.DefaultFormats {
-    override def dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+0000")
+  private lazy val dateTimeFormatter = {
+    val formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+    formatter.setTimeZone(TimeZone.getTimeZone("UTC"))
+    formatter
   }
-  implicit val stringReader = ClientResponseReaders.StringReader
-  implicit val unitReader = ClientResponseReaders.UnitReader
-  implicit val jvalueReader = ClientResponseReaders.JValueReader
-  implicit val jsonReader = JsonFormatsReader
-  implicit val stringWriter = RequestWriters.StringWriter
-  implicit val jsonWriter = JsonFormatsWriter
+  private val dateFormatter = {
+    val formatter = new SimpleDateFormat("yyyy-MM-dd")
+    formatter.setTimeZone(TimeZone.getTimeZone("UTC"))
+    formatter
+  }
+  implicit val formats = new org.json4s.DefaultFormats {
+    override def dateFormatter = dateTimeFormatter
+  }
+  implicit val stringReader: ClientResponseReader[String] = ClientResponseReaders.StringReader
+  implicit val unitReader: ClientResponseReader[Unit] = ClientResponseReaders.UnitReader
+  implicit val jvalueReader: ClientResponseReader[JValue] = ClientResponseReaders.JValueReader
+  implicit val jsonReader: ClientResponseReader[Nothing] = JsonFormatsReader
+  implicit val stringWriter: RequestWriter[String] = RequestWriters.StringWriter
+  implicit val jsonWriter: RequestWriter[Nothing] = JsonFormatsWriter
 
   var basePath: String = defBasePath
   var apiInvoker: ApiInvoker = defApiInvoker
@@ -65,13 +77,14 @@ class APIKeyApi(
     apiInvoker.defaultHeaders += key -> value
   }
 
-  val config = SwaggerConfig.forUrl(new URI(defBasePath))
+  val config: SwaggerConfig = SwaggerConfig.forUrl(new URI(defBasePath))
   val client = new RestClient(config)
   val helper = new APIKeyApiAsyncHelper(client, config)
 
   /**
    * Disable an API Key.
    * 
+   *
    * @param apiKeyID API Key ID (public component). 
    * @return APIKey
    */
@@ -86,9 +99,10 @@ class APIKeyApi(
   /**
    * Disable an API Key. asynchronously
    * 
+   *
    * @param apiKeyID API Key ID (public component). 
    * @return Future(APIKey)
-  */
+   */
   def aPIKeyDisableAsync(apiKeyID: String): Future[APIKey] = {
       helper.aPIKeyDisable(apiKeyID)
   }
@@ -96,6 +110,7 @@ class APIKeyApi(
   /**
    * Enable an API Key.
    * 
+   *
    * @param apiKeyID API Key ID (public component). 
    * @return APIKey
    */
@@ -110,9 +125,10 @@ class APIKeyApi(
   /**
    * Enable an API Key. asynchronously
    * 
+   *
    * @param apiKeyID API Key ID (public component). 
    * @return Future(APIKey)
-  */
+   */
   def aPIKeyEnableAsync(apiKeyID: String): Future[APIKey] = {
       helper.aPIKeyEnable(apiKeyID)
   }
@@ -120,10 +136,11 @@ class APIKeyApi(
   /**
    * Get your API Keys.
    * 
+   *
    * @param reverse If true, will sort results newest first. (optional, default to false)
    * @return List[APIKey]
    */
-  def aPIKeyGet(reverse: Option[Boolean] /* = false*/): Option[List[APIKey]] = {
+  def aPIKeyGet(reverse: Option[Boolean] = Option(false)): Option[List[APIKey]] = {
     val await = Try(Await.result(aPIKeyGetAsync(reverse), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -134,16 +151,18 @@ class APIKeyApi(
   /**
    * Get your API Keys. asynchronously
    * 
+   *
    * @param reverse If true, will sort results newest first. (optional, default to false)
    * @return Future(List[APIKey])
-  */
-  def aPIKeyGetAsync(reverse: Option[Boolean] /* = false*/): Future[List[APIKey]] = {
+   */
+  def aPIKeyGetAsync(reverse: Option[Boolean] = Option(false)): Future[List[APIKey]] = {
       helper.aPIKeyGet(reverse)
   }
 
   /**
    * Create a new API Key.
    * API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
+   *
    * @param name Key name. This name is for reference only. (optional)
    * @param cidr CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href&#x3D;\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt; (optional)
    * @param permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;orderCancel\&quot;, \&quot;withdraw\&quot;]. (optional)
@@ -151,7 +170,7 @@ class APIKeyApi(
    * @param token OTP Token (YubiKey, Google Authenticator) (optional)
    * @return APIKey
    */
-  def aPIKeyNew(name: Option[String] = None, cidr: Option[String] = None, permissions: Option[String] = None, enabled: Option[Boolean] /* = false*/, token: Option[String] = None): Option[APIKey] = {
+  def aPIKeyNew(name: Option[String] = None, cidr: Option[String] = None, permissions: Option[String] = None, enabled: Option[Boolean] = Option(false), token: Option[String] = None): Option[APIKey] = {
     val await = Try(Await.result(aPIKeyNewAsync(name, cidr, permissions, enabled, token), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -162,20 +181,22 @@ class APIKeyApi(
   /**
    * Create a new API Key. asynchronously
    * API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
+   *
    * @param name Key name. This name is for reference only. (optional)
    * @param cidr CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href&#x3D;\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt; (optional)
    * @param permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;orderCancel\&quot;, \&quot;withdraw\&quot;]. (optional)
    * @param enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (optional, default to false)
    * @param token OTP Token (YubiKey, Google Authenticator) (optional)
    * @return Future(APIKey)
-  */
-  def aPIKeyNewAsync(name: Option[String] = None, cidr: Option[String] = None, permissions: Option[String] = None, enabled: Option[Boolean] /* = false*/, token: Option[String] = None): Future[APIKey] = {
+   */
+  def aPIKeyNewAsync(name: Option[String] = None, cidr: Option[String] = None, permissions: Option[String] = None, enabled: Option[Boolean] = Option(false), token: Option[String] = None): Future[APIKey] = {
       helper.aPIKeyNew(name, cidr, permissions, enabled, token)
   }
 
   /**
    * Remove an API Key.
    * 
+   *
    * @param apiKeyID API Key ID (public component). 
    * @return InlineResponse200
    */
@@ -190,9 +211,10 @@ class APIKeyApi(
   /**
    * Remove an API Key. asynchronously
    * 
+   *
    * @param apiKeyID API Key ID (public component). 
    * @return Future(InlineResponse200)
-  */
+   */
   def aPIKeyRemoveAsync(apiKeyID: String): Future[InlineResponse200] = {
       helper.aPIKeyRemove(apiKeyID)
   }
@@ -235,7 +257,7 @@ class APIKeyApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exten
     }
   }
 
-  def aPIKeyGet(reverse: Option[Boolean] = Some(false)
+  def aPIKeyGet(reverse: Option[Boolean] = Option(false)
     )(implicit reader: ClientResponseReader[List[APIKey]]): Future[List[APIKey]] = {
     // create path and map variables
     val path = (addFmt("/apiKey"))
@@ -258,7 +280,7 @@ class APIKeyApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exten
   def aPIKeyNew(name: Option[String] = None,
     cidr: Option[String] = None,
     permissions: Option[String] = None,
-    enabled: Option[Boolean] = Some(false),
+    enabled: Option[Boolean] = Option(false),
     token: Option[String] = None
     )(implicit reader: ClientResponseReader[APIKey]): Future[APIKey] = {
     // create path and map variables

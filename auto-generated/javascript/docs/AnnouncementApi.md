@@ -16,21 +16,22 @@ Get site announcements.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.AnnouncementApi();
+var apiInstance = new BitMexApi.AnnouncementApi();
 
-let opts = { 
+var opts = { 
   'columns': "columns_example" // String | Array of column names to fetch. If omitted, will return all columns.
 };
 
-apiInstance.announcementGet(opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.announcementGet(opts, callback);
 ```
 
 ### Parameters
@@ -60,36 +61,37 @@ Get urgent (banner) announcements.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.AnnouncementApi();
+var apiInstance = new BitMexApi.AnnouncementApi();
 
-apiInstance.announcementGetUrgent((error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.announcementGetUrgent(callback);
 ```
 
 ### Parameters

@@ -17,17 +17,18 @@ Get exchange-wide and per-series turnover and volume statistics.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.StatsApi();
+var apiInstance = new BitMexApi.StatsApi();
 
-apiInstance.statsGet((error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.statsGet(callback);
 ```
 
 ### Parameters
@@ -54,17 +55,18 @@ Get historical exchange-wide and per-series turnover and volume statistics.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.StatsApi();
+var apiInstance = new BitMexApi.StatsApi();
 
-apiInstance.statsHistory((error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.statsHistory(callback);
 ```
 
 ### Parameters
@@ -91,17 +93,18 @@ Get a summary of exchange statistics in USD.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.StatsApi();
+var apiInstance = new BitMexApi.StatsApi();
 
-apiInstance.statsHistoryUSD((error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.statsHistoryUSD(callback);
 ```
 
 ### Parameters

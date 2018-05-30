@@ -22,13 +22,13 @@ This returns all instruments and indices, including those that have settled or a
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.InstrumentApi();
+var apiInstance = new BitMexApi.InstrumentApi();
 
-let opts = { 
+var opts = { 
   'symbol': "symbol_example", // String | Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`.
-  'filter': "filter_example", // String | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
+  'filter': "filter_example", // String | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
   'columns': "columns_example", // String | Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
   'count': 100, // Number | Number of results to fetch.
   'start': 0, // Number | Starting point for results.
@@ -37,13 +37,14 @@ let opts = {
   'endTime': new Date("2013-10-20T19:20:30+01:00") // Date | Ending date filter for results.
 };
 
-apiInstance.instrumentGet(opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.instrumentGet(opts, callback);
 ```
 
 ### Parameters
@@ -51,7 +52,7 @@ apiInstance.instrumentGet(opts, (error, data, response) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **symbol** | **String**| Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBU:monthly&#x60;. Timeframes are &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, and &#x60;biquarterly&#x60;. | [optional] 
- **filter** | **String**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. | [optional] 
+ **filter** | **String**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | [optional] 
  **columns** | **String**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | [optional] 
  **count** | **Number**| Number of results to fetch. | [optional] [default to 100]
  **start** | **Number**| Starting point for results. | [optional] [default to 0]
@@ -80,17 +81,18 @@ Get all active instruments and instruments that have expired in &lt;24hrs.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.InstrumentApi();
+var apiInstance = new BitMexApi.InstrumentApi();
 
-apiInstance.instrumentGetActive((error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.instrumentGetActive(callback);
 ```
 
 ### Parameters
@@ -117,17 +119,18 @@ Helper method. Gets all active instruments and all indices. This is a join of th
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.InstrumentApi();
+var apiInstance = new BitMexApi.InstrumentApi();
 
-apiInstance.instrumentGetActiveAndIndices((error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.instrumentGetActiveAndIndices(callback);
 ```
 
 ### Parameters
@@ -156,17 +159,18 @@ This endpoint is useful for determining which pairs are live. It returns two arr
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.InstrumentApi();
+var apiInstance = new BitMexApi.InstrumentApi();
 
-apiInstance.instrumentGetActiveIntervals((error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.instrumentGetActiveIntervals(callback);
 ```
 
 ### Parameters
@@ -195,14 +199,14 @@ Composite indices are built from multiple external price sources.  Use this endp
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.InstrumentApi();
+var apiInstance = new BitMexApi.InstrumentApi();
 
-let opts = { 
+var opts = { 
   'account': 1.2, // Number | 
   'symbol': ".XBT", // String | The composite index symbol.
-  'filter': "filter_example", // String | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.
+  'filter': "filter_example", // String | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
   'columns': "columns_example", // String | Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
   'count': 100, // Number | Number of results to fetch.
   'start': 0, // Number | Starting point for results.
@@ -211,13 +215,14 @@ let opts = {
   'endTime': new Date("2013-10-20T19:20:30+01:00") // Date | Ending date filter for results.
 };
 
-apiInstance.instrumentGetCompositeIndex(opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.instrumentGetCompositeIndex(opts, callback);
 ```
 
 ### Parameters
@@ -226,7 +231,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **account** | **Number**|  | [optional] 
  **symbol** | **String**| The composite index symbol. | [optional] [default to .XBT]
- **filter** | **String**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. | [optional] 
+ **filter** | **String**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | [optional] 
  **columns** | **String**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | [optional] 
  **count** | **Number**| Number of results to fetch. | [optional] [default to 100]
  **start** | **Number**| Starting point for results. | [optional] [default to 0]
@@ -255,17 +260,18 @@ Get all price indices.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.InstrumentApi();
+var apiInstance = new BitMexApi.InstrumentApi();
 
-apiInstance.instrumentGetIndices((error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.instrumentGetIndices(callback);
 ```
 
 ### Parameters

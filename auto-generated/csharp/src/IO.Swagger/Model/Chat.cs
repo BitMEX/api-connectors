@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,62 +38,62 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Chat" /> class.
         /// </summary>
-        /// <param name="Id">Id.</param>
-        /// <param name="Date">Date (required).</param>
-        /// <param name="User">User (required).</param>
-        /// <param name="Message">Message (required).</param>
-        /// <param name="Html">Html (required).</param>
-        /// <param name="FromBot">FromBot (default to false).</param>
-        /// <param name="ChannelID">ChannelID.</param>
-        public Chat(decimal? Id = default(decimal?), DateTime? Date = default(DateTime?), string User = default(string), string Message = default(string), string Html = default(string), bool? FromBot = false, double? ChannelID = default(double?))
+        /// <param name="id">id.</param>
+        /// <param name="date">date (required).</param>
+        /// <param name="user">user (required).</param>
+        /// <param name="message">message (required).</param>
+        /// <param name="html">html (required).</param>
+        /// <param name="fromBot">fromBot (default to false).</param>
+        /// <param name="channelID">channelID.</param>
+        public Chat(decimal? id = default(decimal?), DateTime? date = default(DateTime?), string user = default(string), string message = default(string), string html = default(string), bool? fromBot = false, double? channelID = default(double?))
         {
-            // to ensure "Date" is required (not null)
-            if (Date == null)
+            // to ensure "date" is required (not null)
+            if (date == null)
             {
-                throw new InvalidDataException("Date is a required property for Chat and cannot be null");
+                throw new InvalidDataException("date is a required property for Chat and cannot be null");
             }
             else
             {
-                this.Date = Date;
+                this.Date = date;
             }
-            // to ensure "User" is required (not null)
-            if (User == null)
+            // to ensure "user" is required (not null)
+            if (user == null)
             {
-                throw new InvalidDataException("User is a required property for Chat and cannot be null");
+                throw new InvalidDataException("user is a required property for Chat and cannot be null");
             }
             else
             {
-                this.User = User;
+                this.User = user;
             }
-            // to ensure "Message" is required (not null)
-            if (Message == null)
+            // to ensure "message" is required (not null)
+            if (message == null)
             {
-                throw new InvalidDataException("Message is a required property for Chat and cannot be null");
+                throw new InvalidDataException("message is a required property for Chat and cannot be null");
             }
             else
             {
-                this.Message = Message;
+                this.Message = message;
             }
-            // to ensure "Html" is required (not null)
-            if (Html == null)
+            // to ensure "html" is required (not null)
+            if (html == null)
             {
-                throw new InvalidDataException("Html is a required property for Chat and cannot be null");
+                throw new InvalidDataException("html is a required property for Chat and cannot be null");
             }
             else
             {
-                this.Html = Html;
+                this.Html = html;
             }
-            this.Id = Id;
-            // use default value if no "FromBot" provided
-            if (FromBot == null)
+            this.Id = id;
+            // use default value if no "fromBot" provided
+            if (fromBot == null)
             {
                 this.FromBot = false;
             }
             else
             {
-                this.FromBot = FromBot;
+                this.FromBot = fromBot;
             }
-            this.ChannelID = ChannelID;
+            this.ChannelID = channelID;
         }
         
         /// <summary>
@@ -161,7 +161,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

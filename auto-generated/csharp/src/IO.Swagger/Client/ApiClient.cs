@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -95,7 +95,7 @@ namespace IO.Swagger.Client
         /// <value>An instance of the IReadableConfiguration.</value>
         /// <remarks>
         /// <see cref="IReadableConfiguration"/> helps us to avoid modifying possibly global
-        /// configuration values from within a given client. It does not gaurantee thread-safety
+        /// configuration values from within a given client. It does not guarantee thread-safety
         /// of the <see cref="Configuration"/> instance in any way.
         /// </remarks>
         public IReadableConfiguration Configuration { get; set; }
@@ -139,14 +139,7 @@ namespace IO.Swagger.Client
 
             if (postBody != null) // http body (model or byte[]) parameter
             {
-                if (postBody.GetType() == typeof(String))
-                {
-                    request.AddParameter("application/json", postBody, ParameterType.RequestBody);
-                }
-                else if (postBody.GetType() == typeof(byte[]))
-                {
-                    request.AddParameter(contentType, postBody, ParameterType.RequestBody);
-                }
+                request.AddParameter(contentType, postBody, ParameterType.RequestBody);
             }
 
             return request;
@@ -352,8 +345,24 @@ namespace IO.Swagger.Client
         }
 
         /// <summary>
+        ///Check if the given MIME is a JSON MIME.
+        ///JSON MIME examples:
+        ///    application/json
+        ///    application/json; charset=UTF8
+        ///    APPLICATION/JSON
+        ///    application/vnd.company+json
+        /// </summary>
+        /// <param name="mime">MIME</param>
+        /// <returns>Returns True if MIME type is json.</returns>
+        public bool IsJsonMime(String mime)
+        {
+            var jsonRegex = new Regex("(?i)^(application/json|[^;/ \t]+/[^;/ \t]+[+]json)[ \t]*(;.*)?$");
+            return mime != null && (jsonRegex.IsMatch(mime) || mime.Equals("application/json-patch+json"));
+        }
+
+        /// <summary>
         /// Select the Content-Type header's value from the given content-type array:
-        /// if JSON exists in the given array, use it;
+        /// if JSON type exists in the given array, use it;
         /// otherwise use the first one defined in 'consumes'
         /// </summary>
         /// <param name="contentTypes">The Content-Type array to select from.</param>
@@ -361,10 +370,13 @@ namespace IO.Swagger.Client
         public String SelectHeaderContentType(String[] contentTypes)
         {
             if (contentTypes.Length == 0)
-                return null;
-
-            if (contentTypes.Contains("application/json", StringComparer.OrdinalIgnoreCase))
                 return "application/json";
+
+            foreach (var contentType in contentTypes)
+            {
+                if (IsJsonMime(contentType.ToLower()))
+                    return contentType;
+            }
 
             return contentTypes[0]; // use the first content type specified in 'consumes'
         }

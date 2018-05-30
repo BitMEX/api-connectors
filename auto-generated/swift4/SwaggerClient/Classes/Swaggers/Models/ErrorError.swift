@@ -9,29 +9,16 @@ import Foundation
 
 
 
-open class ErrorError: Codable {
+public struct ErrorError: Codable {
 
     public var message: String?
     public var name: String?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encodeIfPresent(message, forKey: "message")
-        try container.encodeIfPresent(name, forKey: "name")
+    public init(message: String?, name: String?) {
+        self.message = message
+        self.name = name
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        message = try container.decodeIfPresent(String.self, forKey: "message")
-        name = try container.decodeIfPresent(String.self, forKey: "name")
-    }
 }
 

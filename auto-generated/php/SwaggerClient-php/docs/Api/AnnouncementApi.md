@@ -18,11 +18,15 @@ Get site announcements.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\AnnouncementApi();
+$apiInstance = new Swagger\Client\Api\AnnouncementApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
 $columns = "columns_example"; // string | Array of column names to fetch. If omitted, will return all columns.
 
 try {
-    $result = $api_instance->announcementGet($columns);
+    $result = $apiInstance->announcementGet($columns);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AnnouncementApi->announcementGet: ', $e->getMessage(), PHP_EOL;
@@ -61,10 +65,28 @@ Get urgent (banner) announcements.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\AnnouncementApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\AnnouncementApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $result = $api_instance->announcementGetUrgent();
+    $result = $apiInstance->announcementGetUrgent();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AnnouncementApi->announcementGetUrgent: ', $e->getMessage(), PHP_EOL;
@@ -81,7 +103,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 

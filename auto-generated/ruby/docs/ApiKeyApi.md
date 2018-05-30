@@ -40,7 +40,7 @@ end
 
 api_instance = SwaggerClient::APIKeyApi.new
 
-api_key_id = "api_key_id_example" # String | API Key ID (public component).
+api_key_id = 'api_key_id_example' # String | API Key ID (public component).
 
 
 begin
@@ -102,7 +102,7 @@ end
 
 api_instance = SwaggerClient::APIKeyApi.new
 
-api_key_id = "api_key_id_example" # String | API Key ID (public component).
+api_key_id = 'api_key_id_example' # String | API Key ID (public component).
 
 
 begin
@@ -230,11 +230,11 @@ end
 api_instance = SwaggerClient::APIKeyApi.new
 
 opts = { 
-  name: "name_example", # String | Key name. This name is for reference only.
-  cidr: "cidr_example", # String | CIDR block to restrict this key to. To restrict to a single address, append \"/32\", e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. <a href=\"http://software77.net/cidr-101.html\">More on CIDR blocks</a>
-  permissions: "permissions_example", # String | Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\"order\", \"orderCancel\", \"withdraw\"].
+  name: 'name_example', # String | Key name. This name is for reference only.
+  cidr: 'cidr_example', # String | CIDR block to restrict this key to. To restrict to a single address, append \"/32\", e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. <a href=\"http://software77.net/cidr-101.html\">More on CIDR blocks</a>
+  permissions: 'permissions_example', # String | Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\"order\", \"orderCancel\", \"withdraw\"].
   enabled: false, # BOOLEAN | Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.
-  token: "token_example" # String | OTP Token (YubiKey, Google Authenticator)
+  token: 'token_example' # String | OTP Token (YubiKey, Google Authenticator)
 }
 
 begin
@@ -300,7 +300,7 @@ end
 
 api_instance = SwaggerClient::APIKeyApi.new
 
-api_key_id = "api_key_id_example" # String | API Key ID (public component).
+api_key_id = 'api_key_id_example' # String | API Key ID (public component).
 
 
 begin

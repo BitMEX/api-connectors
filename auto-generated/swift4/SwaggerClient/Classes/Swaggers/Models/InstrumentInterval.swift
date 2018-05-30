@@ -9,29 +9,16 @@ import Foundation
 
 
 
-open class InstrumentInterval: Codable {
+public struct InstrumentInterval: Codable {
 
     public var intervals: [String]
     public var symbols: [String]
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encodeArray(intervals, forKey: "intervals")
-        try container.encodeArray(symbols, forKey: "symbols")
+    public init(intervals: [String], symbols: [String]) {
+        self.intervals = intervals
+        self.symbols = symbols
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        intervals = try container.decodeArray(String.self, forKey: "intervals")
-        symbols = try container.decodeArray(String.self, forKey: "symbols")
-    }
 }
 

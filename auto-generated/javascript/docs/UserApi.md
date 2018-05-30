@@ -35,20 +35,21 @@ Cancel a withdrawal.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-let token = "token_example"; // String | 
+var token = "token_example"; // String | 
 
 
-apiInstance.userCancelWithdrawal(token, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userCancelWithdrawal(token, callback);
 ```
 
 ### Parameters
@@ -80,21 +81,22 @@ If the code is valid, responds with the referral code&#39;s discount (e.g. &#x60
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-let opts = { 
+var opts = { 
   'referralCode': "referralCode_example" // String | 
 };
 
-apiInstance.userCheckReferralCode(opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userCheckReferralCode(opts, callback);
 ```
 
 ### Parameters
@@ -124,20 +126,21 @@ Confirm your email address with a token.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-let token = "token_example"; // String | 
+var token = "token_example"; // String | 
 
 
-apiInstance.userConfirm(token, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userConfirm(token, callback);
 ```
 
 ### Parameters
@@ -167,42 +170,43 @@ Confirm two-factor auth for this account. If using a Yubikey, simply send a toke
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-let token = "token_example"; // String | Token from your selected TFA type.
+var token = "token_example"; // String | Token from your selected TFA type.
 
-let opts = { 
+var opts = { 
   'type': "type_example" // String | Two-factor auth type. Supported types: 'GA' (Google Authenticator), 'Yubikey'
 };
 
-apiInstance.userConfirmEnableTFA(token, opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userConfirmEnableTFA(token, opts, callback);
 ```
 
 ### Parameters
@@ -233,20 +237,21 @@ Confirm a withdrawal.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-let token = "token_example"; // String | 
+var token = "token_example"; // String | 
 
 
-apiInstance.userConfirmWithdrawal(token, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userConfirmWithdrawal(token, callback);
 ```
 
 ### Parameters
@@ -276,42 +281,43 @@ Disable two-factor auth for this account.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-let token = "token_example"; // String | Token from your selected TFA type.
+var token = "token_example"; // String | Token from your selected TFA type.
 
-let opts = { 
+var opts = { 
   'type': "type_example" // String | Two-factor auth type. Supported types: 'GA' (Google Authenticator)
 };
 
-apiInstance.userDisableTFA(token, opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userDisableTFA(token, opts, callback);
 ```
 
 ### Parameters
@@ -342,36 +348,37 @@ Get your user model.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-apiInstance.userGet((error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userGet(callback);
 ```
 
 ### Parameters
@@ -398,36 +405,37 @@ Get your current affiliate/referral status.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-apiInstance.userGetAffiliateStatus((error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userGetAffiliateStatus(callback);
 ```
 
 ### Parameters
@@ -454,36 +462,37 @@ Get your account&#39;s commission status.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-apiInstance.userGetCommission((error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userGetCommission(callback);
 ```
 
 ### Parameters
@@ -510,40 +519,41 @@ Get a deposit address.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-let opts = { 
+var opts = { 
   'currency': "XBt" // String | 
 };
 
-apiInstance.userGetDepositAddress(opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userGetDepositAddress(opts, callback);
 ```
 
 ### Parameters
@@ -573,40 +583,41 @@ Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to re
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-let opts = { 
+var opts = { 
   'currency': "XBt" // String | 
 };
 
-apiInstance.userGetMargin(opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userGetMargin(opts, callback);
 ```
 
 ### Parameters
@@ -636,40 +647,41 @@ Get your current wallet information.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-let opts = { 
+var opts = { 
   'currency': "XBt" // String | 
 };
 
-apiInstance.userGetWallet(opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userGetWallet(opts, callback);
 ```
 
 ### Parameters
@@ -699,40 +711,41 @@ Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-let opts = { 
+var opts = { 
   'currency': "XBt" // String | 
 };
 
-apiInstance.userGetWalletHistory(opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userGetWalletHistory(opts, callback);
 ```
 
 ### Parameters
@@ -762,40 +775,41 @@ Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-let opts = { 
+var opts = { 
   'currency': "XBt" // String | 
 };
 
-apiInstance.userGetWalletSummary(opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userGetWalletSummary(opts, callback);
 ```
 
 ### Parameters
@@ -825,17 +839,18 @@ Log out of BitMEX.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-apiInstance.userLogout((error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully.');
   }
-});
+};
+apiInstance.userLogout(callback);
 ```
 
 ### Parameters
@@ -862,36 +877,37 @@ Log all systems out of BitMEX. This will revoke all of your account&#39;s access
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-apiInstance.userLogoutAll((error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userLogoutAll(callback);
 ```
 
 ### Parameters
@@ -920,21 +936,22 @@ This is changed based on network conditions to ensure timely withdrawals. During
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-let opts = { 
+var opts = { 
   'currency': "XBt" // String | 
 };
 
-apiInstance.userMinWithdrawalFee(opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userMinWithdrawalFee(opts, callback);
 ```
 
 ### Parameters
@@ -966,40 +983,41 @@ Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enable
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-let opts = { 
+var opts = { 
   'type': "type_example" // String | Two-factor auth type. Supported types: 'GA' (Google Authenticator)
 };
 
-apiInstance.userRequestEnableTFA(opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userRequestEnableTFA(opts, callback);
 ```
 
 ### Parameters
@@ -1031,47 +1049,48 @@ This will send a confirmation email to the email address on record, unless reque
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-let currency = "XBt"; // String | Currency you're withdrawing. Options: `XBt`
+var currency = "XBt"; // String | Currency you're withdrawing. Options: `XBt`
 
-let amount = 3.4; // Number | Amount of withdrawal currency.
+var amount = 8.14; // Number | Amount of withdrawal currency.
 
-let address = "address_example"; // String | Destination Address.
+var address = "address_example"; // String | Destination Address.
 
-let opts = { 
+var opts = { 
   'otpToken': "otpToken_example", // String | 2FA token. Required if 2FA is enabled on your account.
   'fee': 1.2 // Number | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
 };
 
-apiInstance.userRequestWithdrawal(currency, amount, address, opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userRequestWithdrawal(currency, amount, address, opts, callback);
 ```
 
 ### Parameters
@@ -1105,42 +1124,43 @@ Save user preferences.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-let prefs = "prefs_example"; // String | 
+var prefs = "prefs_example"; // String | 
 
-let opts = { 
+var opts = { 
   'overwrite': false // Boolean | If true, will overwrite all existing preferences.
 };
 
-apiInstance.userSavePreferences(prefs, opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userSavePreferences(prefs, opts, callback);
 ```
 
 ### Parameters
@@ -1171,30 +1191,30 @@ Update your password, name, and other attributes.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.UserApi();
+var apiInstance = new BitMexApi.UserApi();
 
-let opts = { 
+var opts = { 
   'firstname': "firstname_example", // String | 
   'lastname': "lastname_example", // String | 
   'oldPassword': "oldPassword_example", // String | 
@@ -1205,13 +1225,14 @@ let opts = {
   'pgpPubKey': "pgpPubKey_example" // String | PGP Public Key. If specified, automated emails will be sentwith this key.
 };
 
-apiInstance.userUpdate(opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.userUpdate(opts, callback);
 ```
 
 ### Parameters

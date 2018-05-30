@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **symbol** | **NSString*** |  | 
 **settlementType** | **NSString*** |  | [optional] 
 **settledPrice** | **NSNumber*** |  | [optional] 
+**optionStrikePrice** | **NSNumber*** |  | [optional] 
+**optionUnderlyingPrice** | **NSNumber*** |  | [optional] 
 **bankrupt** | **NSNumber*** |  | [optional] 
 **taxBase** | **NSNumber*** |  | [optional] 
 **taxRate** | **NSNumber*** |  | [optional] 

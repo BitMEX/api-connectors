@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **Symbol** | **string** |  | [default to null]
 **SettlementType** | **string** |  | [optional] [default to null]
 **SettledPrice** | **float64** |  | [optional] [default to null]
+**OptionStrikePrice** | **float64** |  | [optional] [default to null]
+**OptionUnderlyingPrice** | **float64** |  | [optional] [default to null]
 **Bankrupt** | **float32** |  | [optional] [default to null]
 **TaxBase** | **float32** |  | [optional] [default to null]
 **TaxRate** | **float64** |  | [optional] [default to null]

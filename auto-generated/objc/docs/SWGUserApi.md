@@ -1121,7 +1121,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
 
 NSString* currency = @"XBt"; // Currency you're withdrawing. Options: `XBt` (default to XBt)
-NSNumber* amount = @3.4; // Amount of withdrawal currency.
+NSNumber* amount = @8.14; // Amount of withdrawal currency.
 NSString* address = @"address_example"; // Destination Address.
 NSString* otpToken = @"otpToken_example"; // 2FA token. Required if 2FA is enabled on your account. (optional)
 NSNumber* fee = @1.2; // Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)

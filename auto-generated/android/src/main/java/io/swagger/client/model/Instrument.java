@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -47,6 +47,14 @@ public class Instrument {
   private String sellLeg = null;
   @SerializedName("buyLeg")
   private String buyLeg = null;
+  @SerializedName("optionStrikePcnt")
+  private Double optionStrikePcnt = null;
+  @SerializedName("optionStrikeRound")
+  private Double optionStrikeRound = null;
+  @SerializedName("optionStrikePrice")
+  private Double optionStrikePrice = null;
+  @SerializedName("optionMultiplier")
+  private Double optionMultiplier = null;
   @SerializedName("positionCurrency")
   private String positionCurrency = null;
   @SerializedName("underlying")
@@ -211,6 +219,8 @@ public class Instrument {
   private Double indicativeTaxRate = null;
   @SerializedName("indicativeSettlePrice")
   private Double indicativeSettlePrice = null;
+  @SerializedName("optionUnderlyingPrice")
+  private Double optionUnderlyingPrice = null;
   @SerializedName("settledPrice")
   private Double settledPrice = null;
   @SerializedName("timestamp")
@@ -334,6 +344,46 @@ public class Instrument {
   }
   public void setBuyLeg(String buyLeg) {
     this.buyLeg = buyLeg;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getOptionStrikePcnt() {
+    return optionStrikePcnt;
+  }
+  public void setOptionStrikePcnt(Double optionStrikePcnt) {
+    this.optionStrikePcnt = optionStrikePcnt;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getOptionStrikeRound() {
+    return optionStrikeRound;
+  }
+  public void setOptionStrikeRound(Double optionStrikeRound) {
+    this.optionStrikeRound = optionStrikeRound;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getOptionStrikePrice() {
+    return optionStrikePrice;
+  }
+  public void setOptionStrikePrice(Double optionStrikePrice) {
+    this.optionStrikePrice = optionStrikePrice;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getOptionMultiplier() {
+    return optionMultiplier;
+  }
+  public void setOptionMultiplier(Double optionMultiplier) {
+    this.optionMultiplier = optionMultiplier;
   }
 
   /**
@@ -1159,6 +1209,16 @@ public class Instrument {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Double getOptionUnderlyingPrice() {
+    return optionUnderlyingPrice;
+  }
+  public void setOptionUnderlyingPrice(Double optionUnderlyingPrice) {
+    this.optionUnderlyingPrice = optionUnderlyingPrice;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public Double getSettledPrice() {
     return settledPrice;
   }
@@ -1198,6 +1258,10 @@ public class Instrument {
         (this.inverseLeg == null ? instrument.inverseLeg == null : this.inverseLeg.equals(instrument.inverseLeg)) &&
         (this.sellLeg == null ? instrument.sellLeg == null : this.sellLeg.equals(instrument.sellLeg)) &&
         (this.buyLeg == null ? instrument.buyLeg == null : this.buyLeg.equals(instrument.buyLeg)) &&
+        (this.optionStrikePcnt == null ? instrument.optionStrikePcnt == null : this.optionStrikePcnt.equals(instrument.optionStrikePcnt)) &&
+        (this.optionStrikeRound == null ? instrument.optionStrikeRound == null : this.optionStrikeRound.equals(instrument.optionStrikeRound)) &&
+        (this.optionStrikePrice == null ? instrument.optionStrikePrice == null : this.optionStrikePrice.equals(instrument.optionStrikePrice)) &&
+        (this.optionMultiplier == null ? instrument.optionMultiplier == null : this.optionMultiplier.equals(instrument.optionMultiplier)) &&
         (this.positionCurrency == null ? instrument.positionCurrency == null : this.positionCurrency.equals(instrument.positionCurrency)) &&
         (this.underlying == null ? instrument.underlying == null : this.underlying.equals(instrument.underlying)) &&
         (this.quoteCurrency == null ? instrument.quoteCurrency == null : this.quoteCurrency.equals(instrument.quoteCurrency)) &&
@@ -1280,6 +1344,7 @@ public class Instrument {
         (this.markPrice == null ? instrument.markPrice == null : this.markPrice.equals(instrument.markPrice)) &&
         (this.indicativeTaxRate == null ? instrument.indicativeTaxRate == null : this.indicativeTaxRate.equals(instrument.indicativeTaxRate)) &&
         (this.indicativeSettlePrice == null ? instrument.indicativeSettlePrice == null : this.indicativeSettlePrice.equals(instrument.indicativeSettlePrice)) &&
+        (this.optionUnderlyingPrice == null ? instrument.optionUnderlyingPrice == null : this.optionUnderlyingPrice.equals(instrument.optionUnderlyingPrice)) &&
         (this.settledPrice == null ? instrument.settledPrice == null : this.settledPrice.equals(instrument.settledPrice)) &&
         (this.timestamp == null ? instrument.timestamp == null : this.timestamp.equals(instrument.timestamp));
   }
@@ -1299,6 +1364,10 @@ public class Instrument {
     result = 31 * result + (this.inverseLeg == null ? 0: this.inverseLeg.hashCode());
     result = 31 * result + (this.sellLeg == null ? 0: this.sellLeg.hashCode());
     result = 31 * result + (this.buyLeg == null ? 0: this.buyLeg.hashCode());
+    result = 31 * result + (this.optionStrikePcnt == null ? 0: this.optionStrikePcnt.hashCode());
+    result = 31 * result + (this.optionStrikeRound == null ? 0: this.optionStrikeRound.hashCode());
+    result = 31 * result + (this.optionStrikePrice == null ? 0: this.optionStrikePrice.hashCode());
+    result = 31 * result + (this.optionMultiplier == null ? 0: this.optionMultiplier.hashCode());
     result = 31 * result + (this.positionCurrency == null ? 0: this.positionCurrency.hashCode());
     result = 31 * result + (this.underlying == null ? 0: this.underlying.hashCode());
     result = 31 * result + (this.quoteCurrency == null ? 0: this.quoteCurrency.hashCode());
@@ -1381,6 +1450,7 @@ public class Instrument {
     result = 31 * result + (this.markPrice == null ? 0: this.markPrice.hashCode());
     result = 31 * result + (this.indicativeTaxRate == null ? 0: this.indicativeTaxRate.hashCode());
     result = 31 * result + (this.indicativeSettlePrice == null ? 0: this.indicativeSettlePrice.hashCode());
+    result = 31 * result + (this.optionUnderlyingPrice == null ? 0: this.optionUnderlyingPrice.hashCode());
     result = 31 * result + (this.settledPrice == null ? 0: this.settledPrice.hashCode());
     result = 31 * result + (this.timestamp == null ? 0: this.timestamp.hashCode());
     return result;
@@ -1403,6 +1473,10 @@ public class Instrument {
     sb.append("  inverseLeg: ").append(inverseLeg).append("\n");
     sb.append("  sellLeg: ").append(sellLeg).append("\n");
     sb.append("  buyLeg: ").append(buyLeg).append("\n");
+    sb.append("  optionStrikePcnt: ").append(optionStrikePcnt).append("\n");
+    sb.append("  optionStrikeRound: ").append(optionStrikeRound).append("\n");
+    sb.append("  optionStrikePrice: ").append(optionStrikePrice).append("\n");
+    sb.append("  optionMultiplier: ").append(optionMultiplier).append("\n");
     sb.append("  positionCurrency: ").append(positionCurrency).append("\n");
     sb.append("  underlying: ").append(underlying).append("\n");
     sb.append("  quoteCurrency: ").append(quoteCurrency).append("\n");
@@ -1485,6 +1559,7 @@ public class Instrument {
     sb.append("  markPrice: ").append(markPrice).append("\n");
     sb.append("  indicativeTaxRate: ").append(indicativeTaxRate).append("\n");
     sb.append("  indicativeSettlePrice: ").append(indicativeSettlePrice).append("\n");
+    sb.append("  optionUnderlyingPrice: ").append(optionUnderlyingPrice).append("\n");
     sb.append("  settledPrice: ").append(settledPrice).append("\n");
     sb.append("  timestamp: ").append(timestamp).append("\n");
     sb.append("}\n");

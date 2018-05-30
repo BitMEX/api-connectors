@@ -5,6 +5,7 @@
 (defn a-pi-key-disable-with-http-info
   "Disable an API Key."
   [api-key-id ]
+  (check-required-params api-key-id)
   (call-api "/apiKey/disable" :post
             {:path-params   {}
              :header-params {}
@@ -22,6 +23,7 @@
 (defn a-pi-key-enable-with-http-info
   "Enable an API Key."
   [api-key-id ]
+  (check-required-params api-key-id)
   (call-api "/apiKey/enable" :post
             {:path-params   {}
              :header-params {}
@@ -79,6 +81,7 @@
 (defn a-pi-key-remove-with-http-info
   "Remove an API Key."
   [api-key-id ]
+  (check-required-params api-key-id)
   (call-api "/apiKey" :delete
             {:path-params   {}
              :header-params {}

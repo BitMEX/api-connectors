@@ -10,6 +10,7 @@
     self.hideNameFromLeaderboard = @(YES);
     self.locale = @"en-US";
     self.orderClearImmediate = @(NO);
+    self.showLocaleNumbers = @(YES);
     self.strictIPCheck = @(NO);
     self.strictTimeout = @(YES);
     
@@ -23,7 +24,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"alertOnLiquidations": @"alertOnLiquidations", @"animationsEnabled": @"animationsEnabled", @"announcementsLastSeen": @"announcementsLastSeen", @"chatChannelID": @"chatChannelID", @"colorTheme": @"colorTheme", @"currency": @"currency", @"debug": @"debug", @"disableEmails": @"disableEmails", @"hideConfirmDialogs": @"hideConfirmDialogs", @"hideConnectionModal": @"hideConnectionModal", @"hideFromLeaderboard": @"hideFromLeaderboard", @"hideNameFromLeaderboard": @"hideNameFromLeaderboard", @"hideNotifications": @"hideNotifications", @"locale": @"locale", @"msgsSeen": @"msgsSeen", @"orderBookBinning": @"orderBookBinning", @"orderBookType": @"orderBookType", @"orderClearImmediate": @"orderClearImmediate", @"orderControlsPlusMinus": @"orderControlsPlusMinus", @"sounds": @"sounds", @"strictIPCheck": @"strictIPCheck", @"strictTimeout": @"strictTimeout", @"tickerGroup": @"tickerGroup", @"tickerPinned": @"tickerPinned", @"tradeLayout": @"tradeLayout" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"alertOnLiquidations": @"alertOnLiquidations", @"animationsEnabled": @"animationsEnabled", @"announcementsLastSeen": @"announcementsLastSeen", @"chatChannelID": @"chatChannelID", @"colorTheme": @"colorTheme", @"currency": @"currency", @"debug": @"debug", @"disableEmails": @"disableEmails", @"hideConfirmDialogs": @"hideConfirmDialogs", @"hideConnectionModal": @"hideConnectionModal", @"hideFromLeaderboard": @"hideFromLeaderboard", @"hideNameFromLeaderboard": @"hideNameFromLeaderboard", @"hideNotifications": @"hideNotifications", @"locale": @"locale", @"msgsSeen": @"msgsSeen", @"orderBookBinning": @"orderBookBinning", @"orderBookType": @"orderBookType", @"orderClearImmediate": @"orderClearImmediate", @"orderControlsPlusMinus": @"orderControlsPlusMinus", @"showLocaleNumbers": @"showLocaleNumbers", @"sounds": @"sounds", @"strictIPCheck": @"strictIPCheck", @"strictTimeout": @"strictTimeout", @"tickerGroup": @"tickerGroup", @"tickerPinned": @"tickerPinned", @"tradeLayout": @"tradeLayout" }];
 }
 
 /**
@@ -33,7 +34,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"alertOnLiquidations", @"animationsEnabled", @"announcementsLastSeen", @"chatChannelID", @"colorTheme", @"currency", @"debug", @"disableEmails", @"hideConfirmDialogs", @"hideConnectionModal", @"hideFromLeaderboard", @"hideNameFromLeaderboard", @"hideNotifications", @"locale", @"msgsSeen", @"orderBookBinning", @"orderBookType", @"orderClearImmediate", @"orderControlsPlusMinus", @"sounds", @"strictIPCheck", @"strictTimeout", @"tickerGroup", @"tickerPinned", @"tradeLayout"];
+  NSArray *optionalProperties = @[@"alertOnLiquidations", @"animationsEnabled", @"announcementsLastSeen", @"chatChannelID", @"colorTheme", @"currency", @"debug", @"disableEmails", @"hideConfirmDialogs", @"hideConnectionModal", @"hideFromLeaderboard", @"hideNameFromLeaderboard", @"hideNotifications", @"locale", @"msgsSeen", @"orderBookBinning", @"orderBookType", @"orderClearImmediate", @"orderControlsPlusMinus", @"showLocaleNumbers", @"sounds", @"strictIPCheck", @"strictTimeout", @"tickerGroup", @"tickerPinned", @"tradeLayout"];
   return [optionalProperties containsObject:propertyName];
 }
 

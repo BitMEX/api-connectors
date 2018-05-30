@@ -9,7 +9,7 @@ import Foundation
 
 
 
-open class StatsUSD: Codable {
+public struct StatsUSD: Codable {
 
     public var rootSymbol: String
     public var currency: String?
@@ -18,32 +18,15 @@ open class StatsUSD: Codable {
     public var turnover365d: Double?
     public var turnover: Double?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(rootSymbol, forKey: "rootSymbol")
-        try container.encodeIfPresent(currency, forKey: "currency")
-        try container.encodeIfPresent(turnover24h, forKey: "turnover24h")
-        try container.encodeIfPresent(turnover30d, forKey: "turnover30d")
-        try container.encodeIfPresent(turnover365d, forKey: "turnover365d")
-        try container.encodeIfPresent(turnover, forKey: "turnover")
+    public init(rootSymbol: String, currency: String?, turnover24h: Double?, turnover30d: Double?, turnover365d: Double?, turnover: Double?) {
+        self.rootSymbol = rootSymbol
+        self.currency = currency
+        self.turnover24h = turnover24h
+        self.turnover30d = turnover30d
+        self.turnover365d = turnover365d
+        self.turnover = turnover
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        rootSymbol = try container.decode(String.self, forKey: "rootSymbol")
-        currency = try container.decodeIfPresent(String.self, forKey: "currency")
-        turnover24h = try container.decodeIfPresent(Double.self, forKey: "turnover24h")
-        turnover30d = try container.decodeIfPresent(Double.self, forKey: "turnover30d")
-        turnover365d = try container.decodeIfPresent(Double.self, forKey: "turnover365d")
-        turnover = try container.decodeIfPresent(Double.self, forKey: "turnover")
-    }
 }
 

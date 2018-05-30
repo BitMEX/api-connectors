@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -28,6 +28,7 @@ import javax.ws.rs.core.MediaType
 
 import java.io.File
 import java.util.Date
+import java.util.TimeZone
 
 import scala.collection.mutable.HashMap
 
@@ -45,20 +46,31 @@ import scala.concurrent._
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
 
+import org.json4s._
+
 class ChatApi(
   val defBasePath: String = "https://localhost/api/v1",
   defApiInvoker: ApiInvoker = ApiInvoker
 ) {
-
-  implicit val formats = new org.json4s.DefaultFormats {
-    override def dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+0000")
+  private lazy val dateTimeFormatter = {
+    val formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+    formatter.setTimeZone(TimeZone.getTimeZone("UTC"))
+    formatter
   }
-  implicit val stringReader = ClientResponseReaders.StringReader
-  implicit val unitReader = ClientResponseReaders.UnitReader
-  implicit val jvalueReader = ClientResponseReaders.JValueReader
-  implicit val jsonReader = JsonFormatsReader
-  implicit val stringWriter = RequestWriters.StringWriter
-  implicit val jsonWriter = JsonFormatsWriter
+  private val dateFormatter = {
+    val formatter = new SimpleDateFormat("yyyy-MM-dd")
+    formatter.setTimeZone(TimeZone.getTimeZone("UTC"))
+    formatter
+  }
+  implicit val formats = new org.json4s.DefaultFormats {
+    override def dateFormatter = dateTimeFormatter
+  }
+  implicit val stringReader: ClientResponseReader[String] = ClientResponseReaders.StringReader
+  implicit val unitReader: ClientResponseReader[Unit] = ClientResponseReaders.UnitReader
+  implicit val jvalueReader: ClientResponseReader[JValue] = ClientResponseReaders.JValueReader
+  implicit val jsonReader: ClientResponseReader[Nothing] = JsonFormatsReader
+  implicit val stringWriter: RequestWriter[String] = RequestWriters.StringWriter
+  implicit val jsonWriter: RequestWriter[Nothing] = JsonFormatsWriter
 
   var basePath: String = defBasePath
   var apiInvoker: ApiInvoker = defApiInvoker
@@ -67,20 +79,21 @@ class ChatApi(
     apiInvoker.defaultHeaders += key -> value
   }
 
-  val config = SwaggerConfig.forUrl(new URI(defBasePath))
+  val config: SwaggerConfig = SwaggerConfig.forUrl(new URI(defBasePath))
   val client = new RestClient(config)
   val helper = new ChatApiAsyncHelper(client, config)
 
   /**
    * Get chat messages.
    * 
+   *
    * @param count Number of results to fetch. (optional, default to 100)
    * @param start Starting ID for results. (optional, default to 0)
    * @param reverse If true, will sort results newest first. (optional, default to true)
    * @param channelID Channel id. GET /chat/channels for ids. Leave blank for all. (optional)
    * @return List[Chat]
    */
-  def chatGet(count: Option[Number] /* = 100*/, start: Option[Number] /* = 0*/, reverse: Option[Boolean] /* = true*/, channelID: Option[Double] = None): Option[List[Chat]] = {
+  def chatGet(count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(true), channelID: Option[Double] = None): Option[List[Chat]] = {
     val await = Try(Await.result(chatGetAsync(count, start, reverse, channelID), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -91,19 +104,21 @@ class ChatApi(
   /**
    * Get chat messages. asynchronously
    * 
+   *
    * @param count Number of results to fetch. (optional, default to 100)
    * @param start Starting ID for results. (optional, default to 0)
    * @param reverse If true, will sort results newest first. (optional, default to true)
    * @param channelID Channel id. GET /chat/channels for ids. Leave blank for all. (optional)
    * @return Future(List[Chat])
-  */
-  def chatGetAsync(count: Option[Number] /* = 100*/, start: Option[Number] /* = 0*/, reverse: Option[Boolean] /* = true*/, channelID: Option[Double] = None): Future[List[Chat]] = {
+   */
+  def chatGetAsync(count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(true), channelID: Option[Double] = None): Future[List[Chat]] = {
       helper.chatGet(count, start, reverse, channelID)
   }
 
   /**
    * Get available channels.
    * 
+   *
    * @return List[ChatChannel]
    */
   def chatGetChannels(): Option[List[ChatChannel]] = {
@@ -117,8 +132,9 @@ class ChatApi(
   /**
    * Get available channels. asynchronously
    * 
+   *
    * @return Future(List[ChatChannel])
-  */
+   */
   def chatGetChannelsAsync(): Future[List[ChatChannel]] = {
       helper.chatGetChannels()
   }
@@ -126,6 +142,7 @@ class ChatApi(
   /**
    * Get connected users.
    * Returns an array with browser users in the first position and API users (bots) in the second position.
+   *
    * @return ConnectedUsers
    */
   def chatGetConnected(): Option[ConnectedUsers] = {
@@ -139,8 +156,9 @@ class ChatApi(
   /**
    * Get connected users. asynchronously
    * Returns an array with browser users in the first position and API users (bots) in the second position.
+   *
    * @return Future(ConnectedUsers)
-  */
+   */
   def chatGetConnectedAsync(): Future[ConnectedUsers] = {
       helper.chatGetConnected()
   }
@@ -148,11 +166,12 @@ class ChatApi(
   /**
    * Send a chat message.
    * 
+   *
    * @param message  
    * @param channelID Channel to post to. Default 1 (English). (optional, default to 1)
    * @return Chat
    */
-  def chatNew(message: String, channelID: Option[Double] /* = 1*/): Option[Chat] = {
+  def chatNew(message: String, channelID: Option[Double] = Option(1)): Option[Chat] = {
     val await = Try(Await.result(chatNewAsync(message, channelID), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -163,11 +182,12 @@ class ChatApi(
   /**
    * Send a chat message. asynchronously
    * 
+   *
    * @param message  
    * @param channelID Channel to post to. Default 1 (English). (optional, default to 1)
    * @return Future(Chat)
-  */
-  def chatNewAsync(message: String, channelID: Option[Double] /* = 1*/): Future[Chat] = {
+   */
+  def chatNewAsync(message: String, channelID: Option[Double] = Option(1)): Future[Chat] = {
       helper.chatNew(message, channelID)
   }
 
@@ -175,9 +195,9 @@ class ChatApi(
 
 class ChatApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
-  def chatGet(count: Option[Number] = Some(100),
-    start: Option[Number] = Some(0),
-    reverse: Option[Boolean] = Some(true),
+  def chatGet(count: Option[Number] = Option(100),
+    start: Option[Number] = Option(0),
+    reverse: Option[Boolean] = Option(true),
     channelID: Option[Double] = None
     )(implicit reader: ClientResponseReader[List[Chat]]): Future[List[Chat]] = {
     // create path and map variables
@@ -241,7 +261,7 @@ class ChatApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
   }
 
   def chatNew(message: String,
-    channelID: Option[Double] = Some(1)
+    channelID: Option[Double] = Option(1)
     )(implicit reader: ClientResponseReader[Chat]): Future[Chat] = {
     // create path and map variables
     val path = (addFmt("/chat"))

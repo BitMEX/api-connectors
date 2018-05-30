@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "## REST API for the BitMEX Trading Platform\n\n[View Changelog](/app/apiChangelog)\n\n\n\n#### Getting Started\n\n\n##### Fetching Data\n\nAll REST endpoints are documented below. You can try out any query right from this interface.\n\nMost table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.\n\nAdditional documentation regarding filters, timestamps, and authentication\nis available in [the main API documentation](https://www.bitmex.com/app/restAPI).\n\n*All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want\nto have the quickest possible data without being subject to ratelimits.\n\n##### Return Types\n\nBy default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.\n\n##### Trade Data Queries\n\n*This is only a small subset of what is available, to get you started.*\n\nFill in the parameters and click the `Try it out!` button to try any of these queries.\n\n* [Pricing Data](#!/Quote/Quote_get)\n\n* [Trade Data](#!/Trade/Trade_get)\n\n* [OrderBook Data](#!/OrderBook/OrderBook_getL2)\n\n* [Settlement Data](#!/Settlement/Settlement_get)\n\n* [Exchange Statistics](#!/Stats/Stats_history)\n\nEvery function of the BitMEX.com platform is exposed here and documented. Many more functions are available.\n\n##### Swagger Specification\n\n[⇩ Download Swagger JSON](swagger.json)\n\n\n\n## All API Endpoints\n\nClick to expand a section.\n",
+    "description" : "## REST API for the BitMEX Trading Platform\n\n[View Changelog](/app/apiChangelog)\n\n\n\n#### Getting Started\n\nBase URI: [https://www.bitmex.com/api/v1](/api/v1)\n\n##### Fetching Data\n\nAll REST endpoints are documented below. You can try out any query right from this interface.\n\nMost table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.\n\nAdditional documentation regarding filters, timestamps, and authentication\nis available in [the main API documentation](/app/restAPI).\n\n*All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want\nto have the quickest possible data without being subject to ratelimits.\n\n##### Return Types\n\nBy default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.\n\n##### Trade Data Queries\n\n*This is only a small subset of what is available, to get you started.*\n\nFill in the parameters and click the `Try it out!` button to try any of these queries.\n\n* [Pricing Data](#!/Quote/Quote_get)\n\n* [Trade Data](#!/Trade/Trade_get)\n\n* [OrderBook Data](#!/OrderBook/OrderBook_getL2)\n\n* [Settlement Data](#!/Settlement/Settlement_get)\n\n* [Exchange Statistics](#!/Stats/Stats_history)\n\nEvery function of the BitMEX.com platform is exposed here and documented. Many more functions are available.\n\n##### Swagger Specification\n\n[⇩ Download Swagger JSON](swagger.json)\n\n\n\n## All API Endpoints\n\nClick to expand a section.\n",
     "version" : "1.2.0",
     "title" : "BitMEX API",
     "termsOfService" : "https://www.bitmex.com/app/terms",
@@ -587,7 +587,7 @@
         }, {
           "name" : "filter",
           "in" : "query",
-          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.",
+          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.",
           "required" : false,
           "type" : "string",
           "format" : "JSON"
@@ -681,7 +681,7 @@
         }, {
           "name" : "filter",
           "in" : "query",
-          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.",
+          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.",
           "required" : false,
           "type" : "string",
           "format" : "JSON"
@@ -775,7 +775,7 @@
         }, {
           "name" : "filter",
           "in" : "query",
-          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.",
+          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.",
           "required" : false,
           "type" : "string",
           "format" : "JSON"
@@ -871,7 +871,7 @@
         }, {
           "name" : "filter",
           "in" : "query",
-          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.",
+          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.",
           "required" : false,
           "type" : "string",
           "format" : "JSON"
@@ -1124,7 +1124,7 @@
         }, {
           "name" : "filter",
           "in" : "query",
-          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.",
+          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.",
           "required" : false,
           "type" : "string",
           "format" : "JSON"
@@ -1219,7 +1219,7 @@
         }, {
           "name" : "filter",
           "in" : "query",
-          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.",
+          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.",
           "required" : false,
           "type" : "string",
           "format" : "JSON"
@@ -1322,9 +1322,61 @@
                 "$ref" : "#/definitions/Leaderboard"
               }
             }
+          },
+          "400" : {
+            "description" : "Parameter Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
           }
         },
         "security" : [ ]
+      }
+    },
+    "/leaderboard/name" : {
+      "get" : {
+        "tags" : [ "Leaderboard" ],
+        "summary" : "Get your alias on the leaderboard.",
+        "operationId" : "Leaderboard.getName",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Request was successful",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200_1"
+            }
+          },
+          "400" : {
+            "description" : "Parameter Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
       }
     },
     "/liquidation" : {
@@ -1341,7 +1393,7 @@
         }, {
           "name" : "filter",
           "in" : "query",
-          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.",
+          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.",
           "required" : false,
           "type" : "string",
           "format" : "JSON"
@@ -1475,7 +1527,7 @@
         }, {
           "name" : "filter",
           "in" : "query",
-          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.",
+          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.",
           "required" : false,
           "type" : "string",
           "format" : "JSON"
@@ -1557,7 +1609,7 @@
       "post" : {
         "tags" : [ "Order" ],
         "summary" : "Create a new order.",
-        "description" : "## Placing Orders\n\nThis endpoint is used for placing orders. See individual fields below for more details on their use.\n\n#### Order Types\n\nAll orders require a `symbol`. All other fields are optional except when otherwise specified.\n\nThese are the valid `ordType`s:\n\n* **Limit**: The default order type. Specify an `orderQty` and `price`.\n* **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at\n  which point it will cancel.\n* **MarketWithLeftOverAsLimit**: A market order that, after eating through the order book as far as\n  permitted by available margin, will become a limit order. The difference between this type and `Market` only\n  affects the behavior in thin books. Upon reaching the deepest possible price, if there is quantity left over,\n  a `Market` order will cancel the remaining quantity. `MarketWithLeftOverAsLimit` will keep the remaining\n  quantity in the books as a `Limit`.\n* **Stop**: A Stop Market order. Specify an `orderQty` and `stopPx`. When the `stopPx` is reached, the order will be entered\n  into the book.\n  * On sell orders, the order will trigger if the triggering price is lower than the `stopPx`. On buys, higher.\n  * Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your\n    account so that it may trigger fully.\n  * `Close` Stops don't require an `orderQty`. See Execution Instructions below.\n* **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an `orderQty`, `stopPx`,\n  and `price`.\n* **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders.\n* **LimitIfTouched**: As above; use for Take Profit Limit orders.\n\n#### Execution Instructions\n\nThe following `execInst`s are supported. If using multiple, separate with a comma (e.g. `LastPrice,Close`).\n\n* **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement,\n  it will cancel instead.\n* **AllOrNone**: Valid only for hidden orders (`displayQty: 0`). Use to only execute if the entire order would fill.\n* **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.\n  Use only one. By default, `'MarkPrice'` is used. Also used for Pegged orders to define the value of `'LastPeg'`.\n* **ReduceOnly**: A `'ReduceOnly'` order can only reduce your position, not increase it. If you have a `'ReduceOnly'`\n  limit order that rests in the order book while the position is reduced by other orders, then its order quantity will\n  be amended down or canceled. If there are multiple `'ReduceOnly'` orders the least agresssive will be amended first.\n* **Close**: `'Close'` implies `'ReduceOnly'`. A `'Close'` order will cancel other active limit orders with the same side\n  and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a\n  `'Close'` Stop is ensured to have the margin required to execute, and can only execute up to the full size of your\n  position. If not specified, a `'Close'` order has an `orderQty` equal to your current position's size.\n\n#### Linked Orders\n\nLinked Orders are an advanced capability. It is very powerful, but its use requires careful coding and testing.\nPlease follow this document carefully and use the [Testnet Exchange](https://testnet.bitmex.com) while developing.\n\nBitMEX offers four advanced Linked Order types:\n\n* **OCO**: *One Cancels the Other*. A very flexible version of the standard Stop / Take Profit technique.\n  Multiple orders may be linked together using a single `clOrdLinkID`. Send a `contingencyType` of\n  `OneCancelsTheOther` on the orders. The first order that fully or partially executes (or activates\n  for `Stop` orders) will cancel all other orders with the same `clOrdLinkID`.\n* **OTO**: *One Triggers the Other*. Send a `contingencyType` of `'OneTriggersTheOther'` on the primary order and\n  then subsequent orders with the same `clOrdLinkID` will be not be triggered until the primary order fully executes.\n* **OUOA**: *One Updates the Other Absolute*. Send a `contingencyType` of `'OneUpdatesTheOtherAbsolute'` on the orders. Then\n  as one order has a execution, other orders with the same `clOrdLinkID` will have their order quantity amended\n  down by the execution quantity.\n* **OUOP**: *One Updates the Other Proportional*. Send a `contingencyType` of `'OneUpdatesTheOtherProportional'` on the orders. Then\n  as one order has a execution, other orders with the same `clOrdLinkID` will have their order quantity reduced proportionally\n  by the fill percentage.\n\n#### Trailing Stops\n\nYou may use `pegPriceType` of `'TrailingStopPeg'` to create Trailing Stops. The pegged `stopPx` will move as the market\nmoves away from the peg, and freeze as the market moves toward it.\n\nTo use, combine with `pegOffsetValue` to set the `stopPx` of your order. The peg is set to the triggering price\nspecified in the `execInst` (default `'MarkPrice'`). Use a negative offset for stop-sell and buy-if-touched orders.\n\nRequires `ordType`: `'Stop', 'StopLimit', 'MarketIfTouched', 'LimitIfTouched'`.\n\n#### Simple Quantities\n\nSend a `simpleOrderQty` instead of an `orderQty` to create an order denominated in the underlying currency.\nThis is useful for opening up a position with 1 XBT of exposure without having to calculate how many contracts it is.\n\n#### Rate Limits\n\nSee the [Bulk Order Documentation](#!/Order/Order_newBulk) if you need to place multiple orders at the same time.\nBulk orders require fewer risk checks in the trading engine and thus are ratelimited at **1/10** the normal rate.\n\nYou can also improve your reactivity to market movements while staying under your ratelimit by using the\n[Amend](#!/Order/Order_amend) and [Amend Bulk](#!/Order/Order_amendBulk) endpoints. This allows you to stay\nin the market and avoids the cancel/replace cycle.\n\n#### Tracking Your Orders\n\nIf you want to keep track of order IDs yourself, set a unique `clOrdID` per order.\nThis `clOrdID` will come back as a property on the order and any related executions (including on the WebSocket),\nand can be used to get or cancel the order. Max length is 36 characters.\n",
+        "description" : "## Placing Orders\n\nThis endpoint is used for placing orders. See individual fields below for more details on their use.\n\n#### Order Types\n\nAll orders require a `symbol`. All other fields are optional except when otherwise specified.\n\nThese are the valid `ordType`s:\n\n* **Limit**: The default order type. Specify an `orderQty` and `price`.\n* **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at\n  which point it will cancel.\n* **MarketWithLeftOverAsLimit**: A market order that, after eating through the order book as far as\n  permitted by available margin, will become a limit order. The difference between this type and `Market` only\n  affects the behavior in thin books. Upon reaching the deepest possible price, if there is quantity left over,\n  a `Market` order will cancel the remaining quantity. `MarketWithLeftOverAsLimit` will keep the remaining\n  quantity in the books as a `Limit`.\n* **Stop**: A Stop Market order. Specify an `orderQty` and `stopPx`. When the `stopPx` is reached, the order will be entered\n  into the book.\n  * On sell orders, the order will trigger if the triggering price is lower than the `stopPx`. On buys, higher.\n  * Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your\n    account so that it may trigger fully.\n  * `Close` Stops don't require an `orderQty`. See Execution Instructions below.\n* **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an `orderQty`, `stopPx`,\n  and `price`.\n* **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders.\n* **LimitIfTouched**: As above; use for Take Profit Limit orders.\n\n#### Execution Instructions\n\nThe following `execInst`s are supported. If using multiple, separate with a comma (e.g. `LastPrice,Close`).\n\n* **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement,\n  it will cancel instead.\n* **AllOrNone**: Valid only for hidden orders (`displayQty: 0`). Use to only execute if the entire order would fill.\n* **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.\n  Use only one. By default, `'MarkPrice'` is used. Also used for Pegged orders to define the value of `'LastPeg'`.\n* **ReduceOnly**: A `'ReduceOnly'` order can only reduce your position, not increase it. If you have a `'ReduceOnly'`\n  limit order that rests in the order book while the position is reduced by other orders, then its order quantity will\n  be amended down or canceled. If there are multiple `'ReduceOnly'` orders the least agresssive will be amended first.\n* **Close**: `'Close'` implies `'ReduceOnly'`. A `'Close'` order will cancel other active limit orders with the same side\n  and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a\n  `'Close'` Stop is ensured to have the margin required to execute, and can only execute up to the full size of your\n  position. If `orderQty` is not specified, a `'Close'` order has an `orderQty` equal to your current position's size.\n  * Note that a `Close` order without an `orderQty` requires a `side`, so that BitMEX knows if it should trigger\n  above or below the `stopPx`.\n\n#### Linked Orders\n\nLinked Orders are an advanced capability. It is very powerful, but its use requires careful coding and testing.\nPlease follow this document carefully and use the [Testnet Exchange](https://testnet.bitmex.com) while developing.\n\nBitMEX offers four advanced Linked Order types:\n\n* **OCO**: *One Cancels the Other*. A very flexible version of the standard Stop / Take Profit technique.\n  Multiple orders may be linked together using a single `clOrdLinkID`. Send a `contingencyType` of\n  `OneCancelsTheOther` on the orders. The first order that fully or partially executes (or activates\n  for `Stop` orders) will cancel all other orders with the same `clOrdLinkID`.\n* **OTO**: *One Triggers the Other*. Send a `contingencyType` of `'OneTriggersTheOther'` on the primary order and\n  then subsequent orders with the same `clOrdLinkID` will be not be triggered until the primary order fully executes.\n* **OUOA**: *One Updates the Other Absolute*. Send a `contingencyType` of `'OneUpdatesTheOtherAbsolute'` on the orders. Then\n  as one order has a execution, other orders with the same `clOrdLinkID` will have their order quantity amended\n  down by the execution quantity.\n* **OUOP**: *One Updates the Other Proportional*. Send a `contingencyType` of `'OneUpdatesTheOtherProportional'` on the orders. Then\n  as one order has a execution, other orders with the same `clOrdLinkID` will have their order quantity reduced proportionally\n  by the fill percentage.\n\n#### Trailing Stops\n\nYou may use `pegPriceType` of `'TrailingStopPeg'` to create Trailing Stops. The pegged `stopPx` will move as the market\nmoves away from the peg, and freeze as the market moves toward it.\n\nTo use, combine with `pegOffsetValue` to set the `stopPx` of your order. The peg is set to the triggering price\nspecified in the `execInst` (default `'MarkPrice'`). Use a negative offset for stop-sell and buy-if-touched orders.\n\nRequires `ordType`: `'Stop', 'StopLimit', 'MarketIfTouched', 'LimitIfTouched'`.\n\n#### Simple Quantities\n\nSend a `simpleOrderQty` instead of an `orderQty` to create an order denominated in the underlying currency.\nThis is useful for opening up a position with 1 XBT of exposure without having to calculate how many contracts it is.\n\n#### Rate Limits\n\nSee the [Bulk Order Documentation](#!/Order/Order_newBulk) if you need to place multiple orders at the same time.\nBulk orders require fewer risk checks in the trading engine and thus are ratelimited at **1/10** the normal rate.\n\nYou can also improve your reactivity to market movements while staying under your ratelimit by using the\n[Amend](#!/Order/Order_amend) and [Amend Bulk](#!/Order/Order_amendBulk) endpoints. This allows you to stay\nin the market and avoids the cancel/replace cycle.\n\n#### Tracking Your Orders\n\nIf you want to keep track of order IDs yourself, set a unique `clOrdID` per order.\nThis `clOrdID` will come back as a property on the order and any related executions (including on the WebSocket),\nand can be used to get or cancel the order. Max length is 36 characters.\n\nYou can also change the `clOrdID` by amending an order, supplying an `origClOrdID`, and your desired new\nID as the `clOrdID` param, like so:\n\n```\n# Amends an order's leavesQty, and updates its clOrdID to \"def-456\"\nPUT /api/v1/order {\"origClOrdID\": \"abc-123\", \"clOrdID\": \"def-456\", \"leavesQty\": 1000}\n```\n",
         "operationId" : "Order.new",
         "parameters" : [ {
           "name" : "symbol",
@@ -1579,13 +1631,6 @@
           "type" : "number",
           "format" : "double"
         }, {
-          "name" : "quantity",
-          "in" : "formData",
-          "description" : "Deprecated: use `orderQty`.",
-          "required" : false,
-          "type" : "number",
-          "format" : "int32"
-        }, {
           "name" : "orderQty",
           "in" : "formData",
           "description" : "Order quantity in units of the instrument (i.e. contracts).",
@@ -1606,13 +1651,6 @@
           "required" : false,
           "type" : "number",
           "format" : "int32"
-        }, {
-          "name" : "stopPrice",
-          "in" : "formData",
-          "description" : "Deprecated: use `stopPx`.",
-          "required" : false,
-          "type" : "number",
-          "format" : "double"
         }, {
           "name" : "stopPx",
           "in" : "formData",
@@ -1643,12 +1681,6 @@
           "name" : "pegPriceType",
           "in" : "formData",
           "description" : "Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg.",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "type",
-          "in" : "formData",
-          "description" : "Deprecated: use `ordType`.",
           "required" : false,
           "type" : "string"
         }, {
@@ -1713,7 +1745,7 @@
       "put" : {
         "tags" : [ "Order" ],
         "summary" : "Amend the quantity or price of an open order.",
-        "description" : "Send an `orderID` or `origClOrdID` to identify the order you wish to amend.\n\nBoth order quantity and price can be amended. Only one `qty` field can be used to amend.\n\nUse the `leavesQty` field to specify how much of the order you wish to remain open. This can be useful\nif you want to adjust your position's delta by a certain amount, regardless of how much of the order has\nalready filled.\n\nUse the `simpleOrderQty` and `simpleLeavesQty` fields to specify order size in Bitcoin, rather than contracts.\nThese fields will round up to the nearest contract.\n\nLike order placement, amending can be done in bulk. Simply send a request to `PUT /api/v1/order/bulk` with\na JSON body of the shape: `{\"orders\": [{...}, {...}]}`, each object containing the fields used in this endpoint.\n",
+        "description" : "Send an `orderID` or `origClOrdID` to identify the order you wish to amend.\n\nBoth order quantity and price can be amended. Only one `qty` field can be used to amend.\n\nUse the `leavesQty` field to specify how much of the order you wish to remain open. This can be useful\nif you want to adjust your position's delta by a certain amount, regardless of how much of the order has\nalready filled.\n\n> A `leavesQty` can be used to make a \"Filled\" order live again, if it is received within 60 seconds of the fill.\n\nUse the `simpleOrderQty` and `simpleLeavesQty` fields to specify order size in Bitcoin, rather than contracts.\nThese fields will round up to the nearest contract.\n\nLike order placement, amending can be done in bulk. Simply send a request to `PUT /api/v1/order/bulk` with\na JSON body of the shape: `{\"orders\": [{...}, {...}]}`, each object containing the fields used in this endpoint.\n",
         "operationId" : "Order.amend",
         "parameters" : [ {
           "name" : "orderID",
@@ -1920,7 +1952,7 @@
       "put" : {
         "tags" : [ "Order" ],
         "summary" : "Amend multiple orders for the same symbol.",
-        "description" : "Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 50%.",
+        "description" : "Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 10%.",
         "operationId" : "Order.amendBulk",
         "parameters" : [ {
           "name" : "orders",
@@ -1985,7 +2017,6 @@
           "200" : {
             "description" : "Request was successful",
             "schema" : {
-              "description" : "Resulting close order.",
               "$ref" : "#/definitions/Order"
             }
           },
@@ -2039,8 +2070,10 @@
           "200" : {
             "description" : "Request was successful",
             "schema" : {
-              "type" : "object",
-              "properties" : { }
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Order"
+              }
             }
           },
           "400" : {
@@ -2068,7 +2101,7 @@
       "post" : {
         "tags" : [ "Order" ],
         "summary" : "Automatically cancel all your orders after a specified timeout.",
-        "description" : "Useful as a dead-man's switch to ensure your orders are canceled in case of an outage.\nIf called repeatedly, the existing offset will be canceled and a new one will be inserted in its place.\n\nExample usage: call this route at 15s intervals with an offset of 60000 (60s).\nIf this route is not called within 60 seconds, all your orders will be automatically canceled.\n\nThis is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#dead-man-s-switch-auto-cancel-).\n",
+        "description" : "Useful as a dead-man's switch to ensure your orders are canceled in case of an outage.\nIf called repeatedly, the existing offset will be canceled and a new one will be inserted in its place.\n\nExample usage: call this route at 15s intervals with an offset of 60000 (60s).\nIf this route is not called within 60 seconds, all your orders will be automatically canceled.\n\nThis is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#Dead-Mans-Switch-Auto-Cancel).\n",
         "operationId" : "Order.cancelAllAfter",
         "parameters" : [ {
           "name" : "timeout",
@@ -2105,59 +2138,6 @@
             }
           }
         }
-      }
-    },
-    "/orderBook" : {
-      "get" : {
-        "tags" : [ "OrderBook" ],
-        "summary" : "Get current orderbook [deprecated, use /orderBook/L2].",
-        "operationId" : "OrderBook.get",
-        "parameters" : [ {
-          "name" : "symbol",
-          "in" : "query",
-          "description" : "Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "depth",
-          "in" : "query",
-          "description" : "Orderbook depth.",
-          "required" : false,
-          "type" : "number",
-          "default" : 25.0,
-          "minimum" : 0,
-          "format" : "int32"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Request was successful",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/OrderBook"
-              }
-            }
-          },
-          "400" : {
-            "description" : "Parameter Error",
-            "schema" : {
-              "$ref" : "#/definitions/Error"
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized",
-            "schema" : {
-              "$ref" : "#/definitions/Error"
-            }
-          },
-          "404" : {
-            "description" : "Not Found",
-            "schema" : {
-              "$ref" : "#/definitions/Error"
-            }
-          }
-        },
-        "security" : [ ]
       }
     },
     "/orderBook/L2" : {
@@ -2276,7 +2256,6 @@
       "post" : {
         "tags" : [ "Position" ],
         "summary" : "Enable isolated margin or cross margin per-position.",
-        "description" : "Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.",
         "operationId" : "Position.isolateMargin",
         "parameters" : [ {
           "name" : "symbol",
@@ -2296,7 +2275,6 @@
           "200" : {
             "description" : "Request was successful",
             "schema" : {
-              "description" : "Affected position.",
               "$ref" : "#/definitions/Position"
             }
           },
@@ -2325,12 +2303,11 @@
       "post" : {
         "tags" : [ "Position" ],
         "summary" : "Update your risk limit.",
-        "description" : "Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.",
         "operationId" : "Position.updateRiskLimit",
         "parameters" : [ {
           "name" : "symbol",
           "in" : "formData",
-          "description" : "Symbol of position to isolate.",
+          "description" : "Symbol of position to update risk limit on.",
           "required" : true,
           "type" : "string"
         }, {
@@ -2345,7 +2322,6 @@
           "200" : {
             "description" : "Request was successful",
             "schema" : {
-              "description" : "Affected position.",
               "$ref" : "#/definitions/Position"
             }
           },
@@ -2374,7 +2350,6 @@
       "post" : {
         "tags" : [ "Position" ],
         "summary" : "Transfer equity in or out of a position.",
-        "description" : "When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.",
         "operationId" : "Position.transferIsolatedMargin",
         "parameters" : [ {
           "name" : "symbol",
@@ -2394,7 +2369,6 @@
           "200" : {
             "description" : "Request was successful",
             "schema" : {
-              "description" : "Affected position.",
               "$ref" : "#/definitions/Position"
             }
           },
@@ -2423,7 +2397,6 @@
       "post" : {
         "tags" : [ "Position" ],
         "summary" : "Choose leverage for a position.",
-        "description" : "Users can choose an isolated leverage. This will automatically enable isolated margin.",
         "operationId" : "Position.updateLeverage",
         "parameters" : [ {
           "name" : "symbol",
@@ -2443,7 +2416,6 @@
           "200" : {
             "description" : "Request was successful",
             "schema" : {
-              "description" : "Affected position.",
               "$ref" : "#/definitions/Position"
             }
           },
@@ -2482,7 +2454,7 @@
         }, {
           "name" : "filter",
           "in" : "query",
-          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.",
+          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.",
           "required" : false,
           "type" : "string",
           "format" : "JSON"
@@ -2591,7 +2563,7 @@
         }, {
           "name" : "filter",
           "in" : "query",
-          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.",
+          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.",
           "required" : false,
           "type" : "string",
           "format" : "JSON"
@@ -2764,7 +2736,7 @@
         }, {
           "name" : "filter",
           "in" : "query",
-          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.",
+          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.",
           "required" : false,
           "type" : "string",
           "format" : "JSON"
@@ -2974,7 +2946,7 @@
         }, {
           "name" : "filter",
           "in" : "query",
-          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.",
+          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.",
           "required" : false,
           "type" : "string",
           "format" : "JSON"
@@ -3083,7 +3055,7 @@
         }, {
           "name" : "filter",
           "in" : "query",
-          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.",
+          "description" : "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.",
           "required" : false,
           "type" : "string",
           "format" : "JSON"
@@ -3744,6 +3716,7 @@
     },
     "Error" : {
       "type" : "object",
+      "required" : [ "error" ],
       "properties" : {
         "error" : {
           "$ref" : "#/definitions/Error_error"
@@ -4184,6 +4157,22 @@
         "buyLeg" : {
           "type" : "string"
         },
+        "optionStrikePcnt" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "optionStrikeRound" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "optionStrikePrice" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "optionMultiplier" : {
+          "type" : "number",
+          "format" : "double"
+        },
         "positionCurrency" : {
           "type" : "string"
         },
@@ -4493,6 +4482,10 @@
           "type" : "number",
           "format" : "double"
         },
+        "optionUnderlyingPrice" : {
+          "type" : "number",
+          "format" : "double"
+        },
         "settledPrice" : {
           "type" : "number",
           "format" : "double"
@@ -4504,102 +4497,107 @@
       },
       "description" : "Tradeable Contracts, Indices, and History",
       "example" : {
-        "totalVolume" : 6.438423552598546706349225132726132869720458984375,
-        "symbol" : "symbol",
-        "capped" : true,
-        "vwap" : 6.704019297950036,
-        "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-        "typ" : "typ",
-        "inverseLeg" : "inverseLeg",
-        "reference" : "reference",
+        "optionUnderlyingPrice" : 0.8774076871421566,
         "deleverage" : true,
-        "prevTotalTurnover" : 1.2846590061165319429647979632136411964893341064453125,
-        "riskLimit" : 4.1456080298839363962315474054776132106781005859375,
+        "riskLimit" : 1.489415909854170383397331534069962799549102783203125,
         "fundingBaseSymbol" : "fundingBaseSymbol",
-        "prevPrice24h" : 5.944895607614016,
-        "limit" : 1.2315135367772556,
-        "highPrice" : 3.353193347011243,
+        "prevPrice24h" : 7.143538047012306,
+        "highPrice" : 7.058770351582356,
         "fairMethod" : "fairMethod",
         "taxed" : true,
         "state" : "state",
         "expiry" : "2000-01-23T04:56:07.000+00:00",
         "fundingPremiumSymbol" : "fundingPremiumSymbol",
         "publishInterval" : "2000-01-23T04:56:07.000+00:00",
-        "calcInterval" : "2000-01-23T04:56:07.000+00:00",
-        "lastChangePcnt" : 7.058770351582356,
         "publishTime" : "2000-01-23T04:56:07.000+00:00",
-        "askPrice" : 4.652396432933246,
-        "maintMargin" : 2.027123023002322,
-        "takerFee" : 1.4894159098541704,
-        "multiplier" : 5.63737665663332876420099637471139430999755859375,
-        "fairBasis" : 3.2588565619047607,
-        "volume24h" : 6.96511769763884558415156789124011993408203125,
-        "indicativeTaxRate" : 6.628464275087742,
-        "settlementFee" : 6.84685269835264,
-        "totalTurnover" : 2.884162126668780246063761296682059764862060546875,
-        "turnover24h" : 6.87805222012787620400331434211693704128265380859375,
+        "maintMargin" : 1.0246457001441578,
+        "takerFee" : 4.965218492984954,
+        "fairBasis" : 4.258773108174356,
+        "volume24h" : 6.87805222012787620400331434211693704128265380859375,
         "underlying" : "underlying",
-        "quoteToSettleMultiplier" : 9.301444243932575517419536481611430644989013671875,
-        "fairPrice" : 4.078845849666752,
-        "bidPrice" : 6.519180951018382,
+        "quoteToSettleMultiplier" : 7.3862819483858839220147274318151175975799560546875,
         "fundingQuoteSymbol" : "fundingQuoteSymbol",
         "quoteCurrency" : "quoteCurrency",
-        "volume" : 3.557195227068097320710649000830017030239105224609375,
-        "impactMidPrice" : 7.740351818741173,
-        "indicativeSettlePrice" : 4.258773108174356,
-        "sellLeg" : "sellLeg",
-        "settledPrice" : 1.041444916118296,
+        "indicativeSettlePrice" : 9.132027271330688,
+        "settledPrice" : 9.702963800023566,
         "relistInterval" : "2000-01-23T04:56:07.000+00:00",
-        "maxOrderQty" : 0.80082819046101150206595775671303272247314453125,
-        "prevClosePrice" : 5.025004791520295,
-        "maxPrice" : 6.027456183070403,
-        "underlyingToPositionMultiplier" : 2.3021358869347654518833223846741020679473876953125,
-        "hasLiquidity" : true,
-        "openInterest" : 3.05761002410493443193217899533919990062713623046875,
-        "riskStep" : 7.3862819483858839220147274318151175975799560546875,
+        "prevClosePrice" : 8.762042012749001,
+        "maxPrice" : 2.3021358869347655,
+        "underlyingToPositionMultiplier" : 2.027123023002321833274663731572218239307403564453125,
         "settle" : "2000-01-23T04:56:07.000+00:00",
-        "isQuanto" : true,
         "buyLeg" : "buyLeg",
-        "rootSymbol" : "rootSymbol",
-        "tickSize" : 5.962133916683182,
-        "markMethod" : "markMethod",
-        "markPrice" : 0.2025324113236393,
-        "underlyingSymbol" : "underlyingSymbol",
-        "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+        "tickSize" : 9.301444243932576,
+        "markPrice" : 4.678947989005849,
         "settlCurrency" : "settlCurrency",
-        "makerFee" : 1.0246457001441578,
-        "lowPrice" : 3.0937452626664474,
-        "underlyingToSettleMultiplier" : 7.061401241503109105224211816675961017608642578125,
-        "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
-        "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
         "listing" : "2000-01-23T04:56:07.000+00:00",
-        "indicativeFundingRate" : 4.965218492984954,
-        "bankruptLimitDownPrice" : 6.683562403749608,
-        "turnover" : 6.77832496304801335185175048536621034145355224609375,
+        "indicativeFundingRate" : 6.683562403749608,
         "positionCurrency" : "positionCurrency",
         "timestamp" : "2000-01-23T04:56:07.000+00:00",
-        "impactAskPrice" : 3.0205796992916243,
-        "referenceSymbol" : "referenceSymbol",
-        "limitDownPrice" : 9.965781217890562,
+        "limitDownPrice" : 9.018348186070783,
         "lastTickDirection" : "lastTickDirection",
-        "openValue" : 7.04836565559697003635619694250635802745819091796875,
-        "isInverse" : true,
-        "lotSize" : 1.46581298050294517310021547018550336360931396484375,
         "rebalanceTimestamp" : "2000-01-23T04:56:07.000+00:00",
-        "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-        "fairBasisRate" : 5.533258397034986,
-        "lastPriceProtected" : 0.8851374739011653,
-        "midPrice" : 0.10263654006109402,
-        "insuranceFee" : 7.457744773683766,
-        "impactBidPrice" : 8.969578798196912,
-        "prevTotalVolume" : 9.0183481860707832566959041287191212177276611328125,
-        "initMargin" : 3.616076749251911,
-        "limitUpPrice" : 9.369310271410669,
-        "bankruptLimitUpPrice" : 8.762042012749001,
-        "front" : "2000-01-23T04:56:07.000+00:00",
+        "fairBasisRate" : 6.628464275087742,
+        "lastPriceProtected" : 4.652396432933246,
+        "midPrice" : 3.0205796992916243,
+        "insuranceFee" : 9.965781217890562,
+        "optionStrikePrice" : 1.4658129805029452,
+        "limitUpPrice" : 6.438423552598547,
+        "bankruptLimitUpPrice" : 6.965117697638846,
         "rebalanceInterval" : "2000-01-23T04:56:07.000+00:00",
-        "fundingRate" : 1.1730742509559433,
-        "lastPrice" : 7.143538047012306
+        "fundingRate" : 9.369310271410669,
+        "lastPrice" : 0.10263654006109402,
+        "totalVolume" : 2.884162126668780246063761296682059764862060546875,
+        "symbol" : "symbol",
+        "capped" : true,
+        "vwap" : 0.8851374739011653,
+        "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+        "typ" : "typ",
+        "inverseLeg" : "inverseLeg",
+        "reference" : "reference",
+        "prevTotalTurnover" : 5.94489560761401580890606055618263781070709228515625,
+        "limit" : 7.457744773683766,
+        "calcInterval" : "2000-01-23T04:56:07.000+00:00",
+        "lastChangePcnt" : 8.969578798196912,
+        "askPrice" : 3.0576100241049344,
+        "multiplier" : 3.61607674925191080461672754609026014804840087890625,
+        "indicativeTaxRate" : 7.260521264802104,
+        "settlementFee" : 5.025004791520295,
+        "totalTurnover" : 6.70401929795003592715829654480330646038055419921875,
+        "turnover24h" : 3.093745262666447448651751983561553061008453369140625,
+        "fairPrice" : 1.041444916118296,
+        "bidPrice" : 7.740351818741173,
+        "volume" : 6.77832496304801335185175048536621034145355224609375,
+        "impactMidPrice" : 5.533258397034986,
+        "sellLeg" : "sellLeg",
+        "optionStrikePcnt" : 0.8008281904610115,
+        "maxOrderQty" : 5.63737665663332876420099637471139430999755859375,
+        "hasLiquidity" : true,
+        "openInterest" : 4.078845849666752343409825698472559452056884765625,
+        "riskStep" : 6.8468526983526398765889098285697400569915771484375,
+        "optionStrikeRound" : 6.027456183070403,
+        "isQuanto" : true,
+        "rootSymbol" : "rootSymbol",
+        "markMethod" : "markMethod",
+        "underlyingSymbol" : "underlyingSymbol",
+        "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+        "makerFee" : 1.1730742509559433,
+        "lowPrice" : 6.519180951018382,
+        "underlyingToSettleMultiplier" : 4.1456080298839363962315474054776132106781005859375,
+        "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
+        "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
+        "bankruptLimitDownPrice" : 3.5571952270680973,
+        "turnover" : 3.35319334701124294184637619764544069766998291015625,
+        "impactAskPrice" : 3.2588565619047607,
+        "referenceSymbol" : "referenceSymbol",
+        "openValue" : 0.202532411323639305322785730822943150997161865234375,
+        "isInverse" : true,
+        "lotSize" : 7.061401241503109105224211816675961017608642578125,
+        "optionMultiplier" : 5.962133916683182,
+        "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+        "impactBidPrice" : 7.04836565559697,
+        "prevTotalVolume" : 1.2846590061165319429647979632136411964893341064453125,
+        "initMargin" : 1.2315135367772556,
+        "front" : "2000-01-23T04:56:07.000+00:00"
       }
     },
     "InstrumentInterval" : {
@@ -4697,9 +4695,6 @@
         "isRealName" : {
           "type" : "boolean"
         },
-        "isMe" : {
-          "type" : "boolean"
-        },
         "profit" : {
           "type" : "number",
           "format" : "double"
@@ -4707,7 +4702,6 @@
       },
       "description" : "Information on Top Users",
       "example" : {
-        "isMe" : true,
         "name" : "name",
         "isRealName" : true,
         "profit" : 0.8008281904610115
@@ -4955,49 +4949,6 @@
         "account" : 0.80082819046101150206595775671303272247314453125,
         "stopPx" : 2.3021358869347655,
         "ordType" : "ordType"
-      }
-    },
-    "OrderBook" : {
-      "type" : "object",
-      "required" : [ "level", "symbol" ],
-      "properties" : {
-        "symbol" : {
-          "type" : "string"
-        },
-        "level" : {
-          "type" : "number",
-          "format" : "int64"
-        },
-        "bidSize" : {
-          "type" : "number",
-          "format" : "int64"
-        },
-        "bidPrice" : {
-          "type" : "number",
-          "format" : "double"
-        },
-        "askPrice" : {
-          "type" : "number",
-          "format" : "double"
-        },
-        "askSize" : {
-          "type" : "number",
-          "format" : "int64"
-        },
-        "timestamp" : {
-          "type" : "string",
-          "format" : "date-time"
-        }
-      },
-      "description" : "Level 2 Book Data",
-      "example" : {
-        "symbol" : "symbol",
-        "askPrice" : 5.962133916683182,
-        "level" : 0.80082819046101150206595775671303272247314453125,
-        "bidSize" : 6.02745618307040320615897144307382404804229736328125,
-        "bidPrice" : 1.4658129805029452,
-        "askSize" : 5.63737665663332876420099637471139430999755859375,
-        "timestamp" : "2000-01-23T04:56:07.000+00:00"
       }
     },
     "OrderBookL2" : {
@@ -5568,6 +5519,14 @@
           "type" : "number",
           "format" : "double"
         },
+        "optionStrikePrice" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "optionUnderlyingPrice" : {
+          "type" : "number",
+          "format" : "double"
+        },
         "bankrupt" : {
           "type" : "number",
           "format" : "int64"
@@ -5585,11 +5544,13 @@
       "example" : {
         "settlementType" : "settlementType",
         "symbol" : "symbol",
-        "taxRate" : 5.962133916683182,
+        "taxRate" : 2.3021358869347655,
+        "optionStrikePrice" : 6.027456183070403,
         "settledPrice" : 0.8008281904610115,
-        "bankrupt" : 6.02745618307040320615897144307382404804229736328125,
+        "optionUnderlyingPrice" : 1.4658129805029452,
+        "bankrupt" : 5.962133916683182377482808078639209270477294921875,
         "timestamp" : "2000-01-23T04:56:07.000+00:00",
-        "taxBase" : 1.46581298050294517310021547018550336360931396484375
+        "taxBase" : 5.63737665663332876420099637471139430999755859375
       }
     },
     "Stats" : {
@@ -6181,6 +6142,9 @@
         "country" : {
           "type" : "string",
           "maxLength" : 3
+        },
+        "typ" : {
+          "type" : "string"
         }
       },
       "description" : "Account Operations",
@@ -6212,9 +6176,11 @@
           "announcementsLastSeen" : "2000-01-23T04:56:07.000+00:00",
           "orderBookType" : "orderBookType",
           "orderClearImmediate" : false,
+          "showLocaleNumbers" : true,
           "chatChannelID" : 1.4658129805029452
         },
         "created" : "2000-01-23T04:56:07.000+00:00",
+        "typ" : "typ",
         "ownerId" : 6.02745618307040320615897144307382404804229736328125,
         "affiliateID" : "affiliateID",
         "lastname" : "lastname",
@@ -6547,6 +6513,10 @@
         "orderControlsPlusMinus" : {
           "type" : "boolean"
         },
+        "showLocaleNumbers" : {
+          "type" : "boolean",
+          "default" : true
+        },
         "sounds" : {
           "type" : "array",
           "items" : {
@@ -6596,6 +6566,7 @@
         "announcementsLastSeen" : "2000-01-23T04:56:07.000+00:00",
         "orderBookType" : "orderBookType",
         "orderClearImmediate" : false,
+        "showLocaleNumbers" : true,
         "chatChannelID" : 1.4658129805029452
       }
     },
@@ -6607,6 +6578,16 @@
       },
       "example" : {
         "success" : true
+      }
+    },
+    "inline_response_200_1" : {
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "name" : "name"
       }
     },
     "Error_error" : {

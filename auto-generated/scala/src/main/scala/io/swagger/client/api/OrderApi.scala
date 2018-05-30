@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -27,6 +27,7 @@ import javax.ws.rs.core.MediaType
 
 import java.io.File
 import java.util.Date
+import java.util.TimeZone
 
 import scala.collection.mutable.HashMap
 
@@ -44,20 +45,31 @@ import scala.concurrent._
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
 
+import org.json4s._
+
 class OrderApi(
   val defBasePath: String = "https://localhost/api/v1",
   defApiInvoker: ApiInvoker = ApiInvoker
 ) {
-
-  implicit val formats = new org.json4s.DefaultFormats {
-    override def dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+0000")
+  private lazy val dateTimeFormatter = {
+    val formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+    formatter.setTimeZone(TimeZone.getTimeZone("UTC"))
+    formatter
   }
-  implicit val stringReader = ClientResponseReaders.StringReader
-  implicit val unitReader = ClientResponseReaders.UnitReader
-  implicit val jvalueReader = ClientResponseReaders.JValueReader
-  implicit val jsonReader = JsonFormatsReader
-  implicit val stringWriter = RequestWriters.StringWriter
-  implicit val jsonWriter = JsonFormatsWriter
+  private val dateFormatter = {
+    val formatter = new SimpleDateFormat("yyyy-MM-dd")
+    formatter.setTimeZone(TimeZone.getTimeZone("UTC"))
+    formatter
+  }
+  implicit val formats = new org.json4s.DefaultFormats {
+    override def dateFormatter = dateTimeFormatter
+  }
+  implicit val stringReader: ClientResponseReader[String] = ClientResponseReaders.StringReader
+  implicit val unitReader: ClientResponseReader[Unit] = ClientResponseReaders.UnitReader
+  implicit val jvalueReader: ClientResponseReader[JValue] = ClientResponseReaders.JValueReader
+  implicit val jsonReader: ClientResponseReader[Nothing] = JsonFormatsReader
+  implicit val stringWriter: RequestWriter[String] = RequestWriters.StringWriter
+  implicit val jsonWriter: RequestWriter[Nothing] = JsonFormatsWriter
 
   var basePath: String = defBasePath
   var apiInvoker: ApiInvoker = defApiInvoker
@@ -66,13 +78,14 @@ class OrderApi(
     apiInvoker.defaultHeaders += key -> value
   }
 
-  val config = SwaggerConfig.forUrl(new URI(defBasePath))
+  val config: SwaggerConfig = SwaggerConfig.forUrl(new URI(defBasePath))
   val client = new RestClient(config)
   val helper = new OrderApiAsyncHelper(client, config)
 
   /**
    * Amend the quantity or price of an open order.
-   * Send an &#x60;orderID&#x60; or &#x60;origClOrdID&#x60; to identify the order you wish to amend.  Both order quantity and price can be amended. Only one &#x60;qty&#x60; field can be used to amend.  Use the &#x60;leavesQty&#x60; field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position&#39;s delta by a certain amount, regardless of how much of the order has already filled.  Use the &#x60;simpleOrderQty&#x60; and &#x60;simpleLeavesQty&#x60; fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.  Like order placement, amending can be done in bulk. Simply send a request to &#x60;PUT /api/v1/order/bulk&#x60; with a JSON body of the shape: &#x60;{\&quot;orders\&quot;: [{...}, {...}]}&#x60;, each object containing the fields used in this endpoint. 
+   * Send an &#x60;orderID&#x60; or &#x60;origClOrdID&#x60; to identify the order you wish to amend.  Both order quantity and price can be amended. Only one &#x60;qty&#x60; field can be used to amend.  Use the &#x60;leavesQty&#x60; field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position&#39;s delta by a certain amount, regardless of how much of the order has already filled.  &gt; A &#x60;leavesQty&#x60; can be used to make a \&quot;Filled\&quot; order live again, if it is received within 60 seconds of the fill.  Use the &#x60;simpleOrderQty&#x60; and &#x60;simpleLeavesQty&#x60; fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.  Like order placement, amending can be done in bulk. Simply send a request to &#x60;PUT /api/v1/order/bulk&#x60; with a JSON body of the shape: &#x60;{\&quot;orders\&quot;: [{...}, {...}]}&#x60;, each object containing the fields used in this endpoint. 
+   *
    * @param orderID Order ID (optional)
    * @param origClOrdID Client Order ID. See POST /order. (optional)
    * @param clOrdID Optional new Client Order ID, requires &#x60;origClOrdID&#x60;. (optional)
@@ -96,7 +109,8 @@ class OrderApi(
 
   /**
    * Amend the quantity or price of an open order. asynchronously
-   * Send an &#x60;orderID&#x60; or &#x60;origClOrdID&#x60; to identify the order you wish to amend.  Both order quantity and price can be amended. Only one &#x60;qty&#x60; field can be used to amend.  Use the &#x60;leavesQty&#x60; field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position&#39;s delta by a certain amount, regardless of how much of the order has already filled.  Use the &#x60;simpleOrderQty&#x60; and &#x60;simpleLeavesQty&#x60; fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.  Like order placement, amending can be done in bulk. Simply send a request to &#x60;PUT /api/v1/order/bulk&#x60; with a JSON body of the shape: &#x60;{\&quot;orders\&quot;: [{...}, {...}]}&#x60;, each object containing the fields used in this endpoint. 
+   * Send an &#x60;orderID&#x60; or &#x60;origClOrdID&#x60; to identify the order you wish to amend.  Both order quantity and price can be amended. Only one &#x60;qty&#x60; field can be used to amend.  Use the &#x60;leavesQty&#x60; field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position&#39;s delta by a certain amount, regardless of how much of the order has already filled.  &gt; A &#x60;leavesQty&#x60; can be used to make a \&quot;Filled\&quot; order live again, if it is received within 60 seconds of the fill.  Use the &#x60;simpleOrderQty&#x60; and &#x60;simpleLeavesQty&#x60; fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.  Like order placement, amending can be done in bulk. Simply send a request to &#x60;PUT /api/v1/order/bulk&#x60; with a JSON body of the shape: &#x60;{\&quot;orders\&quot;: [{...}, {...}]}&#x60;, each object containing the fields used in this endpoint. 
+   *
    * @param orderID Order ID (optional)
    * @param origClOrdID Client Order ID. See POST /order. (optional)
    * @param clOrdID Optional new Client Order ID, requires &#x60;origClOrdID&#x60;. (optional)
@@ -109,14 +123,15 @@ class OrderApi(
    * @param pegOffsetValue Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders. (optional)
    * @param text Optional amend annotation. e.g. &#39;Adjust skew&#39;. (optional)
    * @return Future(Order)
-  */
+   */
   def orderAmendAsync(orderID: Option[String] = None, origClOrdID: Option[String] = None, clOrdID: Option[String] = None, simpleOrderQty: Option[Double] = None, orderQty: Option[Number] = None, simpleLeavesQty: Option[Double] = None, leavesQty: Option[Number] = None, price: Option[Double] = None, stopPx: Option[Double] = None, pegOffsetValue: Option[Double] = None, text: Option[String] = None): Future[Order] = {
       helper.orderAmend(orderID, origClOrdID, clOrdID, simpleOrderQty, orderQty, simpleLeavesQty, leavesQty, price, stopPx, pegOffsetValue, text)
   }
 
   /**
    * Amend multiple orders for the same symbol.
-   * Similar to POST /amend, but with multiple orders. &#x60;application/json&#x60; only. Ratelimited at 50%.
+   * Similar to POST /amend, but with multiple orders. &#x60;application/json&#x60; only. Ratelimited at 10%.
+   *
    * @param orders An array of orders. (optional)
    * @return List[Order]
    */
@@ -130,10 +145,11 @@ class OrderApi(
 
   /**
    * Amend multiple orders for the same symbol. asynchronously
-   * Similar to POST /amend, but with multiple orders. &#x60;application/json&#x60; only. Ratelimited at 50%.
+   * Similar to POST /amend, but with multiple orders. &#x60;application/json&#x60; only. Ratelimited at 10%.
+   *
    * @param orders An array of orders. (optional)
    * @return Future(List[Order])
-  */
+   */
   def orderAmendBulkAsync(orders: Option[String] = None): Future[List[Order]] = {
       helper.orderAmendBulk(orders)
   }
@@ -141,6 +157,7 @@ class OrderApi(
   /**
    * Cancel order(s). Send multiple order IDs to cancel in bulk.
    * Either an orderID or a clOrdID must be provided.
+   *
    * @param orderID Order ID(s). (optional)
    * @param clOrdID Client Order ID(s). See POST /order. (optional)
    * @param text Optional cancellation annotation. e.g. &#39;Spread Exceeded&#39;. (optional)
@@ -157,11 +174,12 @@ class OrderApi(
   /**
    * Cancel order(s). Send multiple order IDs to cancel in bulk. asynchronously
    * Either an orderID or a clOrdID must be provided.
+   *
    * @param orderID Order ID(s). (optional)
    * @param clOrdID Client Order ID(s). See POST /order. (optional)
    * @param text Optional cancellation annotation. e.g. &#39;Spread Exceeded&#39;. (optional)
    * @return Future(List[Order])
-  */
+   */
   def orderCancelAsync(orderID: Option[String] = None, clOrdID: Option[String] = None, text: Option[String] = None): Future[List[Order]] = {
       helper.orderCancel(orderID, clOrdID, text)
   }
@@ -169,12 +187,13 @@ class OrderApi(
   /**
    * Cancels all of your orders.
    * 
+   *
    * @param symbol Optional symbol. If provided, only cancels orders for that symbol. (optional)
    * @param filter Optional filter for cancellation. Use to only cancel some orders, e.g. &#x60;{\&quot;side\&quot;: \&quot;Buy\&quot;}&#x60;. (optional)
    * @param text Optional cancellation annotation. e.g. &#39;Spread Exceeded&#39; (optional)
-   * @return Any
+   * @return List[Order]
    */
-  def orderCancelAll(symbol: Option[String] = None, filter: Option[String] = None, text: Option[String] = None): Option[Any] = {
+  def orderCancelAll(symbol: Option[String] = None, filter: Option[String] = None, text: Option[String] = None): Option[List[Order]] = {
     val await = Try(Await.result(orderCancelAllAsync(symbol, filter, text), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -185,18 +204,20 @@ class OrderApi(
   /**
    * Cancels all of your orders. asynchronously
    * 
+   *
    * @param symbol Optional symbol. If provided, only cancels orders for that symbol. (optional)
    * @param filter Optional filter for cancellation. Use to only cancel some orders, e.g. &#x60;{\&quot;side\&quot;: \&quot;Buy\&quot;}&#x60;. (optional)
    * @param text Optional cancellation annotation. e.g. &#39;Spread Exceeded&#39; (optional)
-   * @return Future(Any)
-  */
-  def orderCancelAllAsync(symbol: Option[String] = None, filter: Option[String] = None, text: Option[String] = None): Future[Any] = {
+   * @return Future(List[Order])
+   */
+  def orderCancelAllAsync(symbol: Option[String] = None, filter: Option[String] = None, text: Option[String] = None): Future[List[Order]] = {
       helper.orderCancelAll(symbol, filter, text)
   }
 
   /**
    * Automatically cancel all your orders after a specified timeout.
-   * Useful as a dead-man&#39;s switch to ensure your orders are canceled in case of an outage. If called repeatedly, the existing offset will be canceled and a new one will be inserted in its place.  Example usage: call this route at 15s intervals with an offset of 60000 (60s). If this route is not called within 60 seconds, all your orders will be automatically canceled.  This is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#dead-man-s-switch-auto-cancel-). 
+   * Useful as a dead-man&#39;s switch to ensure your orders are canceled in case of an outage. If called repeatedly, the existing offset will be canceled and a new one will be inserted in its place.  Example usage: call this route at 15s intervals with an offset of 60000 (60s). If this route is not called within 60 seconds, all your orders will be automatically canceled.  This is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#Dead-Mans-Switch-Auto-Cancel). 
+   *
    * @param timeout Timeout in ms. Set to 0 to cancel this timer.  
    * @return Any
    */
@@ -210,10 +231,11 @@ class OrderApi(
 
   /**
    * Automatically cancel all your orders after a specified timeout. asynchronously
-   * Useful as a dead-man&#39;s switch to ensure your orders are canceled in case of an outage. If called repeatedly, the existing offset will be canceled and a new one will be inserted in its place.  Example usage: call this route at 15s intervals with an offset of 60000 (60s). If this route is not called within 60 seconds, all your orders will be automatically canceled.  This is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#dead-man-s-switch-auto-cancel-). 
+   * Useful as a dead-man&#39;s switch to ensure your orders are canceled in case of an outage. If called repeatedly, the existing offset will be canceled and a new one will be inserted in its place.  Example usage: call this route at 15s intervals with an offset of 60000 (60s). If this route is not called within 60 seconds, all your orders will be automatically canceled.  This is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#Dead-Mans-Switch-Auto-Cancel). 
+   *
    * @param timeout Timeout in ms. Set to 0 to cancel this timer.  
    * @return Future(Any)
-  */
+   */
   def orderCancelAllAfterAsync(timeout: Double): Future[Any] = {
       helper.orderCancelAllAfter(timeout)
   }
@@ -221,6 +243,7 @@ class OrderApi(
   /**
    * Close a position. [Deprecated, use POST /order with execInst: &#39;Close&#39;]
    * If no &#x60;price&#x60; is specified, a market order will be submitted to close the whole of your position. This will also close all other open orders in this symbol.
+   *
    * @param symbol Symbol of position to close. 
    * @param price Optional limit price. (optional)
    * @return Order
@@ -236,10 +259,11 @@ class OrderApi(
   /**
    * Close a position. [Deprecated, use POST /order with execInst: &#39;Close&#39;] asynchronously
    * If no &#x60;price&#x60; is specified, a market order will be submitted to close the whole of your position. This will also close all other open orders in this symbol.
+   *
    * @param symbol Symbol of position to close. 
    * @param price Optional limit price. (optional)
    * @return Future(Order)
-  */
+   */
   def orderClosePositionAsync(symbol: String, price: Option[Double] = None): Future[Order] = {
       helper.orderClosePosition(symbol, price)
   }
@@ -247,8 +271,9 @@ class OrderApi(
   /**
    * Get your orders.
    * To get open orders only, send {\&quot;open\&quot;: true} in the filter param.  See &lt;a href&#x3D;\&quot;http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_D_68.html\&quot;&gt;the FIX Spec&lt;/a&gt; for explanations of these fields.
+   *
    * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBU:monthly&#x60;. Timeframes are &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, and &#x60;biquarterly&#x60;. (optional)
-   * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. (optional)
+   * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. (optional)
    * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
    * @param count Number of results to fetch. (optional, default to 100)
    * @param start Starting point for results. (optional, default to 0)
@@ -257,7 +282,7 @@ class OrderApi(
    * @param endTime Ending date filter for results. (optional)
    * @return List[Order]
    */
-  def orderGetOrders(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] /* = 100*/, start: Option[Number] /* = 0*/, reverse: Option[Boolean] /* = false*/, startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Order]] = {
+  def orderGetOrders(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Option[List[Order]] = {
     val await = Try(Await.result(orderGetOrdersAsync(symbol, filter, columns, count, start, reverse, startTime, endTime), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -268,8 +293,9 @@ class OrderApi(
   /**
    * Get your orders. asynchronously
    * To get open orders only, send {\&quot;open\&quot;: true} in the filter param.  See &lt;a href&#x3D;\&quot;http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_D_68.html\&quot;&gt;the FIX Spec&lt;/a&gt; for explanations of these fields.
+   *
    * @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBU:monthly&#x60;. Timeframes are &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, and &#x60;biquarterly&#x60;. (optional)
-   * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. (optional)
+   * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. (optional)
    * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
    * @param count Number of results to fetch. (optional, default to 100)
    * @param start Starting point for results. (optional, default to 0)
@@ -277,28 +303,26 @@ class OrderApi(
    * @param startTime Starting date filter for results. (optional)
    * @param endTime Ending date filter for results. (optional)
    * @return Future(List[Order])
-  */
-  def orderGetOrdersAsync(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] /* = 100*/, start: Option[Number] /* = 0*/, reverse: Option[Boolean] /* = false*/, startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Order]] = {
+   */
+  def orderGetOrdersAsync(symbol: Option[String] = None, filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = Option(100), start: Option[Number] = Option(0), reverse: Option[Boolean] = Option(false), startTime: Option[Date] = None, endTime: Option[Date] = None): Future[List[Order]] = {
       helper.orderGetOrders(symbol, filter, columns, count, start, reverse, startTime, endTime)
   }
 
   /**
    * Create a new order.
-   * ## Placing Orders  This endpoint is used for placing orders. See individual fields below for more details on their use.  #### Order Types  All orders require a &#x60;symbol&#x60;. All other fields are optional except when otherwise specified.  These are the valid &#x60;ordType&#x60;s:  * **Limit**: The default order type. Specify an &#x60;orderQty&#x60; and &#x60;price&#x60;. * **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at   which point it will cancel. * **MarketWithLeftOverAsLimit**: A market order that, after eating through the order book as far as   permitted by available margin, will become a limit order. The difference between this type and &#x60;Market&#x60; only   affects the behavior in thin books. Upon reaching the deepest possible price, if there is quantity left over,   a &#x60;Market&#x60; order will cancel the remaining quantity. &#x60;MarketWithLeftOverAsLimit&#x60; will keep the remaining   quantity in the books as a &#x60;Limit&#x60;. * **Stop**: A Stop Market order. Specify an &#x60;orderQty&#x60; and &#x60;stopPx&#x60;. When the &#x60;stopPx&#x60; is reached, the order will be entered   into the book.   * On sell orders, the order will trigger if the triggering price is lower than the &#x60;stopPx&#x60;. On buys, higher.   * Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your     account so that it may trigger fully.   * &#x60;Close&#x60; Stops don&#39;t require an &#x60;orderQty&#x60;. See Execution Instructions below. * **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an &#x60;orderQty&#x60;, &#x60;stopPx&#x60;,   and &#x60;price&#x60;. * **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders. * **LimitIfTouched**: As above; use for Take Profit Limit orders.  #### Execution Instructions  The following &#x60;execInst&#x60;s are supported. If using multiple, separate with a comma (e.g. &#x60;LastPrice,Close&#x60;).  * **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement,   it will cancel instead. * **AllOrNone**: Valid only for hidden orders (&#x60;displayQty: 0&#x60;). Use to only execute if the entire order would fill. * **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.   Use only one. By default, &#x60;&#39;MarkPrice&#39;&#x60; is used. Also used for Pegged orders to define the value of &#x60;&#39;LastPeg&#39;&#x60;. * **ReduceOnly**: A &#x60;&#39;ReduceOnly&#39;&#x60; order can only reduce your position, not increase it. If you have a &#x60;&#39;ReduceOnly&#39;&#x60;   limit order that rests in the order book while the position is reduced by other orders, then its order quantity will   be amended down or canceled. If there are multiple &#x60;&#39;ReduceOnly&#39;&#x60; orders the least agresssive will be amended first. * **Close**: &#x60;&#39;Close&#39;&#x60; implies &#x60;&#39;ReduceOnly&#39;&#x60;. A &#x60;&#39;Close&#39;&#x60; order will cancel other active limit orders with the same side   and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a   &#x60;&#39;Close&#39;&#x60; Stop is ensured to have the margin required to execute, and can only execute up to the full size of your   position. If not specified, a &#x60;&#39;Close&#39;&#x60; order has an &#x60;orderQty&#x60; equal to your current position&#39;s size.  #### Linked Orders  Linked Orders are an advanced capability. It is very powerful, but its use requires careful coding and testing. Please follow this document carefully and use the [Testnet Exchange](https://testnet.bitmex.com) while developing.  BitMEX offers four advanced Linked Order types:  * **OCO**: *One Cancels the Other*. A very flexible version of the standard Stop / Take Profit technique.   Multiple orders may be linked together using a single &#x60;clOrdLinkID&#x60;. Send a &#x60;contingencyType&#x60; of   &#x60;OneCancelsTheOther&#x60; on the orders. The first order that fully or partially executes (or activates   for &#x60;Stop&#x60; orders) will cancel all other orders with the same &#x60;clOrdLinkID&#x60;. * **OTO**: *One Triggers the Other*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneTriggersTheOther&#39;&#x60; on the primary order and   then subsequent orders with the same &#x60;clOrdLinkID&#x60; will be not be triggered until the primary order fully executes. * **OUOA**: *One Updates the Other Absolute*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneUpdatesTheOtherAbsolute&#39;&#x60; on the orders. Then   as one order has a execution, other orders with the same &#x60;clOrdLinkID&#x60; will have their order quantity amended   down by the execution quantity. * **OUOP**: *One Updates the Other Proportional*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneUpdatesTheOtherProportional&#39;&#x60; on the orders. Then   as one order has a execution, other orders with the same &#x60;clOrdLinkID&#x60; will have their order quantity reduced proportionally   by the fill percentage.  #### Trailing Stops  You may use &#x60;pegPriceType&#x60; of &#x60;&#39;TrailingStopPeg&#39;&#x60; to create Trailing Stops. The pegged &#x60;stopPx&#x60; will move as the market moves away from the peg, and freeze as the market moves toward it.  To use, combine with &#x60;pegOffsetValue&#x60; to set the &#x60;stopPx&#x60; of your order. The peg is set to the triggering price specified in the &#x60;execInst&#x60; (default &#x60;&#39;MarkPrice&#39;&#x60;). Use a negative offset for stop-sell and buy-if-touched orders.  Requires &#x60;ordType&#x60;: &#x60;&#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, &#39;LimitIfTouched&#39;&#x60;.  #### Simple Quantities  Send a &#x60;simpleOrderQty&#x60; instead of an &#x60;orderQty&#x60; to create an order denominated in the underlying currency. This is useful for opening up a position with 1 XBT of exposure without having to calculate how many contracts it is.  #### Rate Limits  See the [Bulk Order Documentation](#!/Order/Order_newBulk) if you need to place multiple orders at the same time. Bulk orders require fewer risk checks in the trading engine and thus are ratelimited at **1/10** the normal rate.  You can also improve your reactivity to market movements while staying under your ratelimit by using the [Amend](#!/Order/Order_amend) and [Amend Bulk](#!/Order/Order_amendBulk) endpoints. This allows you to stay in the market and avoids the cancel/replace cycle.  #### Tracking Your Orders  If you want to keep track of order IDs yourself, set a unique &#x60;clOrdID&#x60; per order. This &#x60;clOrdID&#x60; will come back as a property on the order and any related executions (including on the WebSocket), and can be used to get or cancel the order. Max length is 36 characters. 
+   * ## Placing Orders  This endpoint is used for placing orders. See individual fields below for more details on their use.  #### Order Types  All orders require a &#x60;symbol&#x60;. All other fields are optional except when otherwise specified.  These are the valid &#x60;ordType&#x60;s:  * **Limit**: The default order type. Specify an &#x60;orderQty&#x60; and &#x60;price&#x60;. * **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at   which point it will cancel. * **MarketWithLeftOverAsLimit**: A market order that, after eating through the order book as far as   permitted by available margin, will become a limit order. The difference between this type and &#x60;Market&#x60; only   affects the behavior in thin books. Upon reaching the deepest possible price, if there is quantity left over,   a &#x60;Market&#x60; order will cancel the remaining quantity. &#x60;MarketWithLeftOverAsLimit&#x60; will keep the remaining   quantity in the books as a &#x60;Limit&#x60;. * **Stop**: A Stop Market order. Specify an &#x60;orderQty&#x60; and &#x60;stopPx&#x60;. When the &#x60;stopPx&#x60; is reached, the order will be entered   into the book.   * On sell orders, the order will trigger if the triggering price is lower than the &#x60;stopPx&#x60;. On buys, higher.   * Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your     account so that it may trigger fully.   * &#x60;Close&#x60; Stops don&#39;t require an &#x60;orderQty&#x60;. See Execution Instructions below. * **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an &#x60;orderQty&#x60;, &#x60;stopPx&#x60;,   and &#x60;price&#x60;. * **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders. * **LimitIfTouched**: As above; use for Take Profit Limit orders.  #### Execution Instructions  The following &#x60;execInst&#x60;s are supported. If using multiple, separate with a comma (e.g. &#x60;LastPrice,Close&#x60;).  * **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement,   it will cancel instead. * **AllOrNone**: Valid only for hidden orders (&#x60;displayQty: 0&#x60;). Use to only execute if the entire order would fill. * **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.   Use only one. By default, &#x60;&#39;MarkPrice&#39;&#x60; is used. Also used for Pegged orders to define the value of &#x60;&#39;LastPeg&#39;&#x60;. * **ReduceOnly**: A &#x60;&#39;ReduceOnly&#39;&#x60; order can only reduce your position, not increase it. If you have a &#x60;&#39;ReduceOnly&#39;&#x60;   limit order that rests in the order book while the position is reduced by other orders, then its order quantity will   be amended down or canceled. If there are multiple &#x60;&#39;ReduceOnly&#39;&#x60; orders the least agresssive will be amended first. * **Close**: &#x60;&#39;Close&#39;&#x60; implies &#x60;&#39;ReduceOnly&#39;&#x60;. A &#x60;&#39;Close&#39;&#x60; order will cancel other active limit orders with the same side   and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a   &#x60;&#39;Close&#39;&#x60; Stop is ensured to have the margin required to execute, and can only execute up to the full size of your   position. If &#x60;orderQty&#x60; is not specified, a &#x60;&#39;Close&#39;&#x60; order has an &#x60;orderQty&#x60; equal to your current position&#39;s size.   * Note that a &#x60;Close&#x60; order without an &#x60;orderQty&#x60; requires a &#x60;side&#x60;, so that BitMEX knows if it should trigger   above or below the &#x60;stopPx&#x60;.  #### Linked Orders  Linked Orders are an advanced capability. It is very powerful, but its use requires careful coding and testing. Please follow this document carefully and use the [Testnet Exchange](https://testnet.bitmex.com) while developing.  BitMEX offers four advanced Linked Order types:  * **OCO**: *One Cancels the Other*. A very flexible version of the standard Stop / Take Profit technique.   Multiple orders may be linked together using a single &#x60;clOrdLinkID&#x60;. Send a &#x60;contingencyType&#x60; of   &#x60;OneCancelsTheOther&#x60; on the orders. The first order that fully or partially executes (or activates   for &#x60;Stop&#x60; orders) will cancel all other orders with the same &#x60;clOrdLinkID&#x60;. * **OTO**: *One Triggers the Other*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneTriggersTheOther&#39;&#x60; on the primary order and   then subsequent orders with the same &#x60;clOrdLinkID&#x60; will be not be triggered until the primary order fully executes. * **OUOA**: *One Updates the Other Absolute*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneUpdatesTheOtherAbsolute&#39;&#x60; on the orders. Then   as one order has a execution, other orders with the same &#x60;clOrdLinkID&#x60; will have their order quantity amended   down by the execution quantity. * **OUOP**: *One Updates the Other Proportional*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneUpdatesTheOtherProportional&#39;&#x60; on the orders. Then   as one order has a execution, other orders with the same &#x60;clOrdLinkID&#x60; will have their order quantity reduced proportionally   by the fill percentage.  #### Trailing Stops  You may use &#x60;pegPriceType&#x60; of &#x60;&#39;TrailingStopPeg&#39;&#x60; to create Trailing Stops. The pegged &#x60;stopPx&#x60; will move as the market moves away from the peg, and freeze as the market moves toward it.  To use, combine with &#x60;pegOffsetValue&#x60; to set the &#x60;stopPx&#x60; of your order. The peg is set to the triggering price specified in the &#x60;execInst&#x60; (default &#x60;&#39;MarkPrice&#39;&#x60;). Use a negative offset for stop-sell and buy-if-touched orders.  Requires &#x60;ordType&#x60;: &#x60;&#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, &#39;LimitIfTouched&#39;&#x60;.  #### Simple Quantities  Send a &#x60;simpleOrderQty&#x60; instead of an &#x60;orderQty&#x60; to create an order denominated in the underlying currency. This is useful for opening up a position with 1 XBT of exposure without having to calculate how many contracts it is.  #### Rate Limits  See the [Bulk Order Documentation](#!/Order/Order_newBulk) if you need to place multiple orders at the same time. Bulk orders require fewer risk checks in the trading engine and thus are ratelimited at **1/10** the normal rate.  You can also improve your reactivity to market movements while staying under your ratelimit by using the [Amend](#!/Order/Order_amend) and [Amend Bulk](#!/Order/Order_amendBulk) endpoints. This allows you to stay in the market and avoids the cancel/replace cycle.  #### Tracking Your Orders  If you want to keep track of order IDs yourself, set a unique &#x60;clOrdID&#x60; per order. This &#x60;clOrdID&#x60; will come back as a property on the order and any related executions (including on the WebSocket), and can be used to get or cancel the order. Max length is 36 characters.  You can also change the &#x60;clOrdID&#x60; by amending an order, supplying an &#x60;origClOrdID&#x60;, and your desired new ID as the &#x60;clOrdID&#x60; param, like so:  &#x60;&#x60;&#x60; # Amends an order&#39;s leavesQty, and updates its clOrdID to \&quot;def-456\&quot; PUT /api/v1/order {\&quot;origClOrdID\&quot;: \&quot;abc-123\&quot;, \&quot;clOrdID\&quot;: \&quot;def-456\&quot;, \&quot;leavesQty\&quot;: 1000} &#x60;&#x60;&#x60; 
+   *
    * @param symbol Instrument symbol. e.g. &#39;XBTUSD&#39;. 
    * @param side Order side. Valid options: Buy, Sell. Defaults to &#39;Buy&#39; unless &#x60;orderQty&#x60; or &#x60;simpleOrderQty&#x60; is negative. (optional)
    * @param simpleOrderQty Order quantity in units of the underlying instrument (i.e. Bitcoin). (optional)
-   * @param quantity Deprecated: use &#x60;orderQty&#x60;. (optional)
    * @param orderQty Order quantity in units of the instrument (i.e. contracts). (optional)
    * @param price Optional limit price for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders. (optional)
    * @param displayQty Optional quantity to display in the book. Use 0 for a fully hidden order. (optional)
-   * @param stopPrice Deprecated: use &#x60;stopPx&#x60;. (optional)
    * @param stopPx Optional trigger price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use &#x60;execInst&#x60; of &#39;MarkPrice&#39; or &#39;LastPrice&#39; to define the current price used for triggering. (optional)
    * @param clOrdID Optional Client Order ID. This clOrdID will come back on the order and any related executions. (optional)
    * @param clOrdLinkID Optional Client Order Link ID for contingent orders. (optional)
    * @param pegOffsetValue Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders. (optional)
    * @param pegPriceType Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg. (optional)
-   * @param _type Deprecated: use &#x60;ordType&#x60;. (optional)
    * @param ordType Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to &#39;Limit&#39; when &#x60;price&#x60; is specified. Defaults to &#39;Stop&#39; when &#x60;stopPx&#x60; is specified. Defaults to &#39;StopLimit&#39; when &#x60;price&#x60; and &#x60;stopPx&#x60; are specified. (optional, default to Limit)
    * @param timeInForce Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to &#39;GoodTillCancel&#39; for &#39;Limit&#39;, &#39;StopLimit&#39;, &#39;LimitIfTouched&#39;, and &#39;MarketWithLeftOverAsLimit&#39; orders. (optional)
    * @param execInst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39;, &#39;IndexPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. (optional)
@@ -306,8 +330,8 @@ class OrderApi(
    * @param text Optional order annotation. e.g. &#39;Take profit&#39;. (optional)
    * @return Order
    */
-  def orderNew(symbol: String, side: Option[String] = None, simpleOrderQty: Option[Double] = None, quantity: Option[Number] = None, orderQty: Option[Number] = None, price: Option[Double] = None, displayQty: Option[Number] = None, stopPrice: Option[Double] = None, stopPx: Option[Double] = None, clOrdID: Option[String] = None, clOrdLinkID: Option[String] = None, pegOffsetValue: Option[Double] = None, pegPriceType: Option[String] = None, _type: Option[String] = None, ordType: Option[String] /* = Limit*/, timeInForce: Option[String] = None, execInst: Option[String] = None, contingencyType: Option[String] = None, text: Option[String] = None): Option[Order] = {
-    val await = Try(Await.result(orderNewAsync(symbol, side, simpleOrderQty, quantity, orderQty, price, displayQty, stopPrice, stopPx, clOrdID, clOrdLinkID, pegOffsetValue, pegPriceType, _type, ordType, timeInForce, execInst, contingencyType, text), Duration.Inf))
+  def orderNew(symbol: String, side: Option[String] = None, simpleOrderQty: Option[Double] = None, orderQty: Option[Number] = None, price: Option[Double] = None, displayQty: Option[Number] = None, stopPx: Option[Double] = None, clOrdID: Option[String] = None, clOrdLinkID: Option[String] = None, pegOffsetValue: Option[Double] = None, pegPriceType: Option[String] = None, ordType: Option[String] = Option("Limit"), timeInForce: Option[String] = None, execInst: Option[String] = None, contingencyType: Option[String] = None, text: Option[String] = None): Option[Order] = {
+    val await = Try(Await.result(orderNewAsync(symbol, side, simpleOrderQty, orderQty, price, displayQty, stopPx, clOrdID, clOrdLinkID, pegOffsetValue, pegPriceType, ordType, timeInForce, execInst, contingencyType, text), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -316,35 +340,34 @@ class OrderApi(
 
   /**
    * Create a new order. asynchronously
-   * ## Placing Orders  This endpoint is used for placing orders. See individual fields below for more details on their use.  #### Order Types  All orders require a &#x60;symbol&#x60;. All other fields are optional except when otherwise specified.  These are the valid &#x60;ordType&#x60;s:  * **Limit**: The default order type. Specify an &#x60;orderQty&#x60; and &#x60;price&#x60;. * **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at   which point it will cancel. * **MarketWithLeftOverAsLimit**: A market order that, after eating through the order book as far as   permitted by available margin, will become a limit order. The difference between this type and &#x60;Market&#x60; only   affects the behavior in thin books. Upon reaching the deepest possible price, if there is quantity left over,   a &#x60;Market&#x60; order will cancel the remaining quantity. &#x60;MarketWithLeftOverAsLimit&#x60; will keep the remaining   quantity in the books as a &#x60;Limit&#x60;. * **Stop**: A Stop Market order. Specify an &#x60;orderQty&#x60; and &#x60;stopPx&#x60;. When the &#x60;stopPx&#x60; is reached, the order will be entered   into the book.   * On sell orders, the order will trigger if the triggering price is lower than the &#x60;stopPx&#x60;. On buys, higher.   * Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your     account so that it may trigger fully.   * &#x60;Close&#x60; Stops don&#39;t require an &#x60;orderQty&#x60;. See Execution Instructions below. * **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an &#x60;orderQty&#x60;, &#x60;stopPx&#x60;,   and &#x60;price&#x60;. * **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders. * **LimitIfTouched**: As above; use for Take Profit Limit orders.  #### Execution Instructions  The following &#x60;execInst&#x60;s are supported. If using multiple, separate with a comma (e.g. &#x60;LastPrice,Close&#x60;).  * **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement,   it will cancel instead. * **AllOrNone**: Valid only for hidden orders (&#x60;displayQty: 0&#x60;). Use to only execute if the entire order would fill. * **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.   Use only one. By default, &#x60;&#39;MarkPrice&#39;&#x60; is used. Also used for Pegged orders to define the value of &#x60;&#39;LastPeg&#39;&#x60;. * **ReduceOnly**: A &#x60;&#39;ReduceOnly&#39;&#x60; order can only reduce your position, not increase it. If you have a &#x60;&#39;ReduceOnly&#39;&#x60;   limit order that rests in the order book while the position is reduced by other orders, then its order quantity will   be amended down or canceled. If there are multiple &#x60;&#39;ReduceOnly&#39;&#x60; orders the least agresssive will be amended first. * **Close**: &#x60;&#39;Close&#39;&#x60; implies &#x60;&#39;ReduceOnly&#39;&#x60;. A &#x60;&#39;Close&#39;&#x60; order will cancel other active limit orders with the same side   and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a   &#x60;&#39;Close&#39;&#x60; Stop is ensured to have the margin required to execute, and can only execute up to the full size of your   position. If not specified, a &#x60;&#39;Close&#39;&#x60; order has an &#x60;orderQty&#x60; equal to your current position&#39;s size.  #### Linked Orders  Linked Orders are an advanced capability. It is very powerful, but its use requires careful coding and testing. Please follow this document carefully and use the [Testnet Exchange](https://testnet.bitmex.com) while developing.  BitMEX offers four advanced Linked Order types:  * **OCO**: *One Cancels the Other*. A very flexible version of the standard Stop / Take Profit technique.   Multiple orders may be linked together using a single &#x60;clOrdLinkID&#x60;. Send a &#x60;contingencyType&#x60; of   &#x60;OneCancelsTheOther&#x60; on the orders. The first order that fully or partially executes (or activates   for &#x60;Stop&#x60; orders) will cancel all other orders with the same &#x60;clOrdLinkID&#x60;. * **OTO**: *One Triggers the Other*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneTriggersTheOther&#39;&#x60; on the primary order and   then subsequent orders with the same &#x60;clOrdLinkID&#x60; will be not be triggered until the primary order fully executes. * **OUOA**: *One Updates the Other Absolute*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneUpdatesTheOtherAbsolute&#39;&#x60; on the orders. Then   as one order has a execution, other orders with the same &#x60;clOrdLinkID&#x60; will have their order quantity amended   down by the execution quantity. * **OUOP**: *One Updates the Other Proportional*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneUpdatesTheOtherProportional&#39;&#x60; on the orders. Then   as one order has a execution, other orders with the same &#x60;clOrdLinkID&#x60; will have their order quantity reduced proportionally   by the fill percentage.  #### Trailing Stops  You may use &#x60;pegPriceType&#x60; of &#x60;&#39;TrailingStopPeg&#39;&#x60; to create Trailing Stops. The pegged &#x60;stopPx&#x60; will move as the market moves away from the peg, and freeze as the market moves toward it.  To use, combine with &#x60;pegOffsetValue&#x60; to set the &#x60;stopPx&#x60; of your order. The peg is set to the triggering price specified in the &#x60;execInst&#x60; (default &#x60;&#39;MarkPrice&#39;&#x60;). Use a negative offset for stop-sell and buy-if-touched orders.  Requires &#x60;ordType&#x60;: &#x60;&#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, &#39;LimitIfTouched&#39;&#x60;.  #### Simple Quantities  Send a &#x60;simpleOrderQty&#x60; instead of an &#x60;orderQty&#x60; to create an order denominated in the underlying currency. This is useful for opening up a position with 1 XBT of exposure without having to calculate how many contracts it is.  #### Rate Limits  See the [Bulk Order Documentation](#!/Order/Order_newBulk) if you need to place multiple orders at the same time. Bulk orders require fewer risk checks in the trading engine and thus are ratelimited at **1/10** the normal rate.  You can also improve your reactivity to market movements while staying under your ratelimit by using the [Amend](#!/Order/Order_amend) and [Amend Bulk](#!/Order/Order_amendBulk) endpoints. This allows you to stay in the market and avoids the cancel/replace cycle.  #### Tracking Your Orders  If you want to keep track of order IDs yourself, set a unique &#x60;clOrdID&#x60; per order. This &#x60;clOrdID&#x60; will come back as a property on the order and any related executions (including on the WebSocket), and can be used to get or cancel the order. Max length is 36 characters. 
+   * ## Placing Orders  This endpoint is used for placing orders. See individual fields below for more details on their use.  #### Order Types  All orders require a &#x60;symbol&#x60;. All other fields are optional except when otherwise specified.  These are the valid &#x60;ordType&#x60;s:  * **Limit**: The default order type. Specify an &#x60;orderQty&#x60; and &#x60;price&#x60;. * **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at   which point it will cancel. * **MarketWithLeftOverAsLimit**: A market order that, after eating through the order book as far as   permitted by available margin, will become a limit order. The difference between this type and &#x60;Market&#x60; only   affects the behavior in thin books. Upon reaching the deepest possible price, if there is quantity left over,   a &#x60;Market&#x60; order will cancel the remaining quantity. &#x60;MarketWithLeftOverAsLimit&#x60; will keep the remaining   quantity in the books as a &#x60;Limit&#x60;. * **Stop**: A Stop Market order. Specify an &#x60;orderQty&#x60; and &#x60;stopPx&#x60;. When the &#x60;stopPx&#x60; is reached, the order will be entered   into the book.   * On sell orders, the order will trigger if the triggering price is lower than the &#x60;stopPx&#x60;. On buys, higher.   * Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your     account so that it may trigger fully.   * &#x60;Close&#x60; Stops don&#39;t require an &#x60;orderQty&#x60;. See Execution Instructions below. * **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an &#x60;orderQty&#x60;, &#x60;stopPx&#x60;,   and &#x60;price&#x60;. * **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders. * **LimitIfTouched**: As above; use for Take Profit Limit orders.  #### Execution Instructions  The following &#x60;execInst&#x60;s are supported. If using multiple, separate with a comma (e.g. &#x60;LastPrice,Close&#x60;).  * **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement,   it will cancel instead. * **AllOrNone**: Valid only for hidden orders (&#x60;displayQty: 0&#x60;). Use to only execute if the entire order would fill. * **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.   Use only one. By default, &#x60;&#39;MarkPrice&#39;&#x60; is used. Also used for Pegged orders to define the value of &#x60;&#39;LastPeg&#39;&#x60;. * **ReduceOnly**: A &#x60;&#39;ReduceOnly&#39;&#x60; order can only reduce your position, not increase it. If you have a &#x60;&#39;ReduceOnly&#39;&#x60;   limit order that rests in the order book while the position is reduced by other orders, then its order quantity will   be amended down or canceled. If there are multiple &#x60;&#39;ReduceOnly&#39;&#x60; orders the least agresssive will be amended first. * **Close**: &#x60;&#39;Close&#39;&#x60; implies &#x60;&#39;ReduceOnly&#39;&#x60;. A &#x60;&#39;Close&#39;&#x60; order will cancel other active limit orders with the same side   and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a   &#x60;&#39;Close&#39;&#x60; Stop is ensured to have the margin required to execute, and can only execute up to the full size of your   position. If &#x60;orderQty&#x60; is not specified, a &#x60;&#39;Close&#39;&#x60; order has an &#x60;orderQty&#x60; equal to your current position&#39;s size.   * Note that a &#x60;Close&#x60; order without an &#x60;orderQty&#x60; requires a &#x60;side&#x60;, so that BitMEX knows if it should trigger   above or below the &#x60;stopPx&#x60;.  #### Linked Orders  Linked Orders are an advanced capability. It is very powerful, but its use requires careful coding and testing. Please follow this document carefully and use the [Testnet Exchange](https://testnet.bitmex.com) while developing.  BitMEX offers four advanced Linked Order types:  * **OCO**: *One Cancels the Other*. A very flexible version of the standard Stop / Take Profit technique.   Multiple orders may be linked together using a single &#x60;clOrdLinkID&#x60;. Send a &#x60;contingencyType&#x60; of   &#x60;OneCancelsTheOther&#x60; on the orders. The first order that fully or partially executes (or activates   for &#x60;Stop&#x60; orders) will cancel all other orders with the same &#x60;clOrdLinkID&#x60;. * **OTO**: *One Triggers the Other*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneTriggersTheOther&#39;&#x60; on the primary order and   then subsequent orders with the same &#x60;clOrdLinkID&#x60; will be not be triggered until the primary order fully executes. * **OUOA**: *One Updates the Other Absolute*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneUpdatesTheOtherAbsolute&#39;&#x60; on the orders. Then   as one order has a execution, other orders with the same &#x60;clOrdLinkID&#x60; will have their order quantity amended   down by the execution quantity. * **OUOP**: *One Updates the Other Proportional*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneUpdatesTheOtherProportional&#39;&#x60; on the orders. Then   as one order has a execution, other orders with the same &#x60;clOrdLinkID&#x60; will have their order quantity reduced proportionally   by the fill percentage.  #### Trailing Stops  You may use &#x60;pegPriceType&#x60; of &#x60;&#39;TrailingStopPeg&#39;&#x60; to create Trailing Stops. The pegged &#x60;stopPx&#x60; will move as the market moves away from the peg, and freeze as the market moves toward it.  To use, combine with &#x60;pegOffsetValue&#x60; to set the &#x60;stopPx&#x60; of your order. The peg is set to the triggering price specified in the &#x60;execInst&#x60; (default &#x60;&#39;MarkPrice&#39;&#x60;). Use a negative offset for stop-sell and buy-if-touched orders.  Requires &#x60;ordType&#x60;: &#x60;&#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, &#39;LimitIfTouched&#39;&#x60;.  #### Simple Quantities  Send a &#x60;simpleOrderQty&#x60; instead of an &#x60;orderQty&#x60; to create an order denominated in the underlying currency. This is useful for opening up a position with 1 XBT of exposure without having to calculate how many contracts it is.  #### Rate Limits  See the [Bulk Order Documentation](#!/Order/Order_newBulk) if you need to place multiple orders at the same time. Bulk orders require fewer risk checks in the trading engine and thus are ratelimited at **1/10** the normal rate.  You can also improve your reactivity to market movements while staying under your ratelimit by using the [Amend](#!/Order/Order_amend) and [Amend Bulk](#!/Order/Order_amendBulk) endpoints. This allows you to stay in the market and avoids the cancel/replace cycle.  #### Tracking Your Orders  If you want to keep track of order IDs yourself, set a unique &#x60;clOrdID&#x60; per order. This &#x60;clOrdID&#x60; will come back as a property on the order and any related executions (including on the WebSocket), and can be used to get or cancel the order. Max length is 36 characters.  You can also change the &#x60;clOrdID&#x60; by amending an order, supplying an &#x60;origClOrdID&#x60;, and your desired new ID as the &#x60;clOrdID&#x60; param, like so:  &#x60;&#x60;&#x60; # Amends an order&#39;s leavesQty, and updates its clOrdID to \&quot;def-456\&quot; PUT /api/v1/order {\&quot;origClOrdID\&quot;: \&quot;abc-123\&quot;, \&quot;clOrdID\&quot;: \&quot;def-456\&quot;, \&quot;leavesQty\&quot;: 1000} &#x60;&#x60;&#x60; 
+   *
    * @param symbol Instrument symbol. e.g. &#39;XBTUSD&#39;. 
    * @param side Order side. Valid options: Buy, Sell. Defaults to &#39;Buy&#39; unless &#x60;orderQty&#x60; or &#x60;simpleOrderQty&#x60; is negative. (optional)
    * @param simpleOrderQty Order quantity in units of the underlying instrument (i.e. Bitcoin). (optional)
-   * @param quantity Deprecated: use &#x60;orderQty&#x60;. (optional)
    * @param orderQty Order quantity in units of the instrument (i.e. contracts). (optional)
    * @param price Optional limit price for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders. (optional)
    * @param displayQty Optional quantity to display in the book. Use 0 for a fully hidden order. (optional)
-   * @param stopPrice Deprecated: use &#x60;stopPx&#x60;. (optional)
    * @param stopPx Optional trigger price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use &#x60;execInst&#x60; of &#39;MarkPrice&#39; or &#39;LastPrice&#39; to define the current price used for triggering. (optional)
    * @param clOrdID Optional Client Order ID. This clOrdID will come back on the order and any related executions. (optional)
    * @param clOrdLinkID Optional Client Order Link ID for contingent orders. (optional)
    * @param pegOffsetValue Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders. (optional)
    * @param pegPriceType Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg. (optional)
-   * @param _type Deprecated: use &#x60;ordType&#x60;. (optional)
    * @param ordType Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to &#39;Limit&#39; when &#x60;price&#x60; is specified. Defaults to &#39;Stop&#39; when &#x60;stopPx&#x60; is specified. Defaults to &#39;StopLimit&#39; when &#x60;price&#x60; and &#x60;stopPx&#x60; are specified. (optional, default to Limit)
    * @param timeInForce Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to &#39;GoodTillCancel&#39; for &#39;Limit&#39;, &#39;StopLimit&#39;, &#39;LimitIfTouched&#39;, and &#39;MarketWithLeftOverAsLimit&#39; orders. (optional)
    * @param execInst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39;, &#39;IndexPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. (optional)
    * @param contingencyType Optional contingency type for use with &#x60;clOrdLinkID&#x60;. Valid options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute, OneUpdatesTheOtherProportional. (optional)
    * @param text Optional order annotation. e.g. &#39;Take profit&#39;. (optional)
    * @return Future(Order)
-  */
-  def orderNewAsync(symbol: String, side: Option[String] = None, simpleOrderQty: Option[Double] = None, quantity: Option[Number] = None, orderQty: Option[Number] = None, price: Option[Double] = None, displayQty: Option[Number] = None, stopPrice: Option[Double] = None, stopPx: Option[Double] = None, clOrdID: Option[String] = None, clOrdLinkID: Option[String] = None, pegOffsetValue: Option[Double] = None, pegPriceType: Option[String] = None, _type: Option[String] = None, ordType: Option[String] /* = Limit*/, timeInForce: Option[String] = None, execInst: Option[String] = None, contingencyType: Option[String] = None, text: Option[String] = None): Future[Order] = {
-      helper.orderNew(symbol, side, simpleOrderQty, quantity, orderQty, price, displayQty, stopPrice, stopPx, clOrdID, clOrdLinkID, pegOffsetValue, pegPriceType, _type, ordType, timeInForce, execInst, contingencyType, text)
+   */
+  def orderNewAsync(symbol: String, side: Option[String] = None, simpleOrderQty: Option[Double] = None, orderQty: Option[Number] = None, price: Option[Double] = None, displayQty: Option[Number] = None, stopPx: Option[Double] = None, clOrdID: Option[String] = None, clOrdLinkID: Option[String] = None, pegOffsetValue: Option[Double] = None, pegPriceType: Option[String] = None, ordType: Option[String] = Option("Limit"), timeInForce: Option[String] = None, execInst: Option[String] = None, contingencyType: Option[String] = None, text: Option[String] = None): Future[Order] = {
+      helper.orderNew(symbol, side, simpleOrderQty, orderQty, price, displayQty, stopPx, clOrdID, clOrdLinkID, pegOffsetValue, pegPriceType, ordType, timeInForce, execInst, contingencyType, text)
   }
 
   /**
    * Create multiple new orders for the same symbol.
    * This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at &#x60;ceil(0.1 * orders)&#x60;. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only &#x60;application/json&#x60; is supported on this endpoint. 
+   *
    * @param orders An array of orders. (optional)
    * @return List[Order]
    */
@@ -359,9 +382,10 @@ class OrderApi(
   /**
    * Create multiple new orders for the same symbol. asynchronously
    * This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at &#x60;ceil(0.1 * orders)&#x60;. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only &#x60;application/json&#x60; is supported on this endpoint. 
+   *
    * @param orders An array of orders. (optional)
    * @return Future(List[Order])
-  */
+   */
   def orderNewBulkAsync(orders: Option[String] = None): Future[List[Order]] = {
       helper.orderNewBulk(orders)
   }
@@ -433,7 +457,7 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
   def orderCancelAll(symbol: Option[String] = None,
     filter: Option[String] = None,
     text: Option[String] = None
-    )(implicit reader: ClientResponseReader[Any]): Future[Any] = {
+    )(implicit reader: ClientResponseReader[List[Order]]): Future[List[Order]] = {
     // create path and map variables
     val path = (addFmt("/order/all"))
 
@@ -485,9 +509,9 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
   def orderGetOrders(symbol: Option[String] = None,
     filter: Option[String] = None,
     columns: Option[String] = None,
-    count: Option[Number] = Some(100),
-    start: Option[Number] = Some(0),
-    reverse: Option[Boolean] = Some(false),
+    count: Option[Number] = Option(100),
+    start: Option[Number] = Option(0),
+    reverse: Option[Boolean] = Option(false),
     startTime: Option[Date] = None,
     endTime: Option[Date] = None
     )(implicit reader: ClientResponseReader[List[Order]]): Future[List[Order]] = {
@@ -540,18 +564,15 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
   def orderNew(symbol: String,
     side: Option[String] = None,
     simpleOrderQty: Option[Double] = None,
-    quantity: Option[Number] = None,
     orderQty: Option[Number] = None,
     price: Option[Double] = None,
     displayQty: Option[Number] = None,
-    stopPrice: Option[Double] = None,
     stopPx: Option[Double] = None,
     clOrdID: Option[String] = None,
     clOrdLinkID: Option[String] = None,
     pegOffsetValue: Option[Double] = None,
     pegPriceType: Option[String] = None,
-    _type: Option[String] = None,
-    ordType: Option[String] = Some(Limit),
+    ordType: Option[String] = Option("Limit"),
     timeInForce: Option[String] = None,
     execInst: Option[String] = None,
     contingencyType: Option[String] = None,

@@ -1271,7 +1271,7 @@ namespace Example
 
             var apiInstance = new UserApi();
             var currency = currency_example;  // string | Currency you're withdrawing. Options: `XBt` (default to XBt)
-            var amount = 3.4;  // decimal? | Amount of withdrawal currency.
+            var amount = 8.14;  // decimal? | Amount of withdrawal currency.
             var address = address_example;  // string | Destination Address.
             var otpToken = otpToken_example;  // string | 2FA token. Required if 2FA is enabled on your account. (optional) 
             var fee = 1.2;  // double? | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional) 

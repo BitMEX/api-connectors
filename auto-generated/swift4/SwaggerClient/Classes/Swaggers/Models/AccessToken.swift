@@ -9,36 +9,28 @@ import Foundation
 
 
 
-open class AccessToken: Codable {
+public struct AccessToken: Codable {
 
-    public var id: String
+    public var _id: String
     /** time to live in seconds (2 weeks by default) */
     public var ttl: Double?
     public var created: Date?
     public var userId: Double?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(id, forKey: "id")
-        try container.encodeIfPresent(ttl, forKey: "ttl")
-        try container.encodeIfPresent(created, forKey: "created")
-        try container.encodeIfPresent(userId, forKey: "userId")
+    public init(_id: String, ttl: Double?, created: Date?, userId: Double?) {
+        self._id = _id
+        self.ttl = ttl
+        self.created = created
+        self.userId = userId
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
-
-        id = try container.decode(String.self, forKey: "id")
-        ttl = try container.decodeIfPresent(Double.self, forKey: "ttl")
-        created = try container.decodeIfPresent(Date.self, forKey: "created")
-        userId = try container.decodeIfPresent(Double.self, forKey: "userId")
+    public enum CodingKeys: String, CodingKey { 
+        case _id = "id"
+        case ttl
+        case created
+        case userId
     }
+
+
 }
 

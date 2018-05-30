@@ -7,6 +7,7 @@
 
 #### Getting Started
 
+Base URI: [https://www.bitmex.com/api/v1](/api/v1)
 
 ##### Fetching Data
 
@@ -15,7 +16,7 @@ All REST endpoints are documented below. You can try out any query right from th
 Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.
 
 Additional documentation regarding filters, timestamps, and authentication
-is available in [the main API documentation](https://www.bitmex.com/app/restAPI).
+is available in [the main API documentation](/app/restAPI).
 
 *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want
 to have the quickest possible data without being subject to ratelimits.

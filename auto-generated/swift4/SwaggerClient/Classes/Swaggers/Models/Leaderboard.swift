@@ -10,35 +10,18 @@ import Foundation
 
 /** Information on Top Users */
 
-open class Leaderboard: Codable {
+public struct Leaderboard: Codable {
 
     public var name: String
     public var isRealName: Bool?
-    public var isMe: Bool?
     public var profit: Double?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(name, forKey: "name")
-        try container.encodeIfPresent(isRealName, forKey: "isRealName")
-        try container.encodeIfPresent(isMe, forKey: "isMe")
-        try container.encodeIfPresent(profit, forKey: "profit")
+    public init(name: String, isRealName: Bool?, profit: Double?) {
+        self.name = name
+        self.isRealName = isRealName
+        self.profit = profit
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        name = try container.decode(String.self, forKey: "name")
-        isRealName = try container.decodeIfPresent(Bool.self, forKey: "isRealName")
-        isMe = try container.decodeIfPresent(Bool.self, forKey: "isMe")
-        profit = try container.decodeIfPresent(Double.self, forKey: "profit")
-    }
 }
 

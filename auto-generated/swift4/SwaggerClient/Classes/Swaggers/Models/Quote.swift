@@ -10,7 +10,7 @@ import Foundation
 
 /** Best Bid/Offer Snapshots &amp; Historical Bins */
 
-open class Quote: Codable {
+public struct Quote: Codable {
 
     public var timestamp: Date
     public var symbol: String
@@ -19,32 +19,15 @@ open class Quote: Codable {
     public var askPrice: Double?
     public var askSize: Double?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(timestamp, forKey: "timestamp")
-        try container.encode(symbol, forKey: "symbol")
-        try container.encodeIfPresent(bidSize, forKey: "bidSize")
-        try container.encodeIfPresent(bidPrice, forKey: "bidPrice")
-        try container.encodeIfPresent(askPrice, forKey: "askPrice")
-        try container.encodeIfPresent(askSize, forKey: "askSize")
+    public init(timestamp: Date, symbol: String, bidSize: Double?, bidPrice: Double?, askPrice: Double?, askSize: Double?) {
+        self.timestamp = timestamp
+        self.symbol = symbol
+        self.bidSize = bidSize
+        self.bidPrice = bidPrice
+        self.askPrice = askPrice
+        self.askSize = askSize
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        timestamp = try container.decode(Date.self, forKey: "timestamp")
-        symbol = try container.decode(String.self, forKey: "symbol")
-        bidSize = try container.decodeIfPresent(Double.self, forKey: "bidSize")
-        bidPrice = try container.decodeIfPresent(Double.self, forKey: "bidPrice")
-        askPrice = try container.decodeIfPresent(Double.self, forKey: "askPrice")
-        askSize = try container.decodeIfPresent(Double.self, forKey: "askSize")
-    }
 }
 

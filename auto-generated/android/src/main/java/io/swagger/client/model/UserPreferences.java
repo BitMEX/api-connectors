@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -58,6 +58,8 @@ public class UserPreferences {
   private Boolean orderClearImmediate = null;
   @SerializedName("orderControlsPlusMinus")
   private Boolean orderControlsPlusMinus = null;
+  @SerializedName("showLocaleNumbers")
+  private Boolean showLocaleNumbers = null;
   @SerializedName("sounds")
   private List<String> sounds = null;
   @SerializedName("strictIPCheck")
@@ -264,6 +266,16 @@ public class UserPreferences {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Boolean getShowLocaleNumbers() {
+    return showLocaleNumbers;
+  }
+  public void setShowLocaleNumbers(Boolean showLocaleNumbers) {
+    this.showLocaleNumbers = showLocaleNumbers;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public List<String> getSounds() {
     return sounds;
   }
@@ -350,6 +362,7 @@ public class UserPreferences {
         (this.orderBookType == null ? userPreferences.orderBookType == null : this.orderBookType.equals(userPreferences.orderBookType)) &&
         (this.orderClearImmediate == null ? userPreferences.orderClearImmediate == null : this.orderClearImmediate.equals(userPreferences.orderClearImmediate)) &&
         (this.orderControlsPlusMinus == null ? userPreferences.orderControlsPlusMinus == null : this.orderControlsPlusMinus.equals(userPreferences.orderControlsPlusMinus)) &&
+        (this.showLocaleNumbers == null ? userPreferences.showLocaleNumbers == null : this.showLocaleNumbers.equals(userPreferences.showLocaleNumbers)) &&
         (this.sounds == null ? userPreferences.sounds == null : this.sounds.equals(userPreferences.sounds)) &&
         (this.strictIPCheck == null ? userPreferences.strictIPCheck == null : this.strictIPCheck.equals(userPreferences.strictIPCheck)) &&
         (this.strictTimeout == null ? userPreferences.strictTimeout == null : this.strictTimeout.equals(userPreferences.strictTimeout)) &&
@@ -380,6 +393,7 @@ public class UserPreferences {
     result = 31 * result + (this.orderBookType == null ? 0: this.orderBookType.hashCode());
     result = 31 * result + (this.orderClearImmediate == null ? 0: this.orderClearImmediate.hashCode());
     result = 31 * result + (this.orderControlsPlusMinus == null ? 0: this.orderControlsPlusMinus.hashCode());
+    result = 31 * result + (this.showLocaleNumbers == null ? 0: this.showLocaleNumbers.hashCode());
     result = 31 * result + (this.sounds == null ? 0: this.sounds.hashCode());
     result = 31 * result + (this.strictIPCheck == null ? 0: this.strictIPCheck.hashCode());
     result = 31 * result + (this.strictTimeout == null ? 0: this.strictTimeout.hashCode());
@@ -413,6 +427,7 @@ public class UserPreferences {
     sb.append("  orderBookType: ").append(orderBookType).append("\n");
     sb.append("  orderClearImmediate: ").append(orderClearImmediate).append("\n");
     sb.append("  orderControlsPlusMinus: ").append(orderControlsPlusMinus).append("\n");
+    sb.append("  showLocaleNumbers: ").append(showLocaleNumbers).append("\n");
     sb.append("  sounds: ").append(sounds).append("\n");
     sb.append("  strictIPCheck: ").append(strictIPCheck).append("\n");
     sb.append("  strictTimeout: ").append(strictTimeout).append("\n");

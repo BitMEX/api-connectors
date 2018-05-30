@@ -18,7 +18,7 @@ open class NotificationAPI {
      */
     open class func notificationGet(completion: @escaping ((_ data: [Notification]?,_ error: Error?) -> Void)) {
         notificationGetWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -66,9 +66,8 @@ open class NotificationAPI {
         let path = "/notification"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<[Notification]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 

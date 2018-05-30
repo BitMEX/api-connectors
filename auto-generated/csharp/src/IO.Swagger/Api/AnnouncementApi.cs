@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -122,7 +122,7 @@ namespace IO.Swagger.Api
         /// <returns></returns>
         public AnnouncementApi(String basePath)
         {
-            this.Configuration = new Configuration { BasePath = basePath };
+            this.Configuration = new IO.Swagger.Client.Configuration { BasePath = basePath };
 
             ExceptionFactory = IO.Swagger.Client.Configuration.DefaultExceptionFactory;
         }
@@ -133,10 +133,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public AnnouncementApi(Configuration configuration = null)
+        public AnnouncementApi(IO.Swagger.Client.Configuration configuration = null)
         {
             if (configuration == null) // use the default one in Configuration
-                this.Configuration = Configuration.Default;
+                this.Configuration = IO.Swagger.Client.Configuration.Default;
             else
                 this.Configuration = configuration;
 
@@ -166,7 +166,7 @@ namespace IO.Swagger.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public Configuration Configuration {get; set;}
+        public IO.Swagger.Client.Configuration Configuration {get; set;}
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
@@ -230,7 +230,7 @@ namespace IO.Swagger.Api
             var localVarPath = "/announcement";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
             Object localVarPostBody = null;
@@ -240,7 +240,7 @@ namespace IO.Swagger.Api
                 "application/json", 
                 "application/x-www-form-urlencoded"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
@@ -250,15 +250,15 @@ namespace IO.Swagger.Api
                 "application/javascript",
                 "text/javascript"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (columns != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "columns", columns)); // query parameter
+            if (columns != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "columns", columns)); // query parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
@@ -272,7 +272,7 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<List<Announcement>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<Announcement>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Announcement>)));
+                (List<Announcement>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Announcement>)));
         }
 
         /// <summary>
@@ -300,7 +300,7 @@ namespace IO.Swagger.Api
             var localVarPath = "/announcement";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
             Object localVarPostBody = null;
@@ -310,7 +310,7 @@ namespace IO.Swagger.Api
                 "application/json", 
                 "application/x-www-form-urlencoded"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
@@ -320,15 +320,15 @@ namespace IO.Swagger.Api
                 "application/javascript",
                 "text/javascript"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (columns != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "columns", columns)); // query parameter
+            if (columns != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "columns", columns)); // query parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
@@ -342,7 +342,7 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<List<Announcement>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<Announcement>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Announcement>)));
+                (List<Announcement>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Announcement>)));
         }
 
         /// <summary>
@@ -367,7 +367,7 @@ namespace IO.Swagger.Api
             var localVarPath = "/announcement/urgent";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
             Object localVarPostBody = null;
@@ -377,7 +377,7 @@ namespace IO.Swagger.Api
                 "application/json", 
                 "application/x-www-form-urlencoded"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
@@ -387,29 +387,29 @@ namespace IO.Swagger.Api
                 "application/javascript",
                 "text/javascript"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
 
             // authentication (apiKey) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
             {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
             }
             // authentication (apiNonce) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-nonce")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-nonce")))
             {
-                localVarHeaderParams["api-nonce"] = Configuration.GetApiKeyWithPrefix("api-nonce");
+                localVarHeaderParams["api-nonce"] = this.Configuration.GetApiKeyWithPrefix("api-nonce");
             }
             // authentication (apiSignature) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-signature")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
             {
-                localVarHeaderParams["api-signature"] = Configuration.GetApiKeyWithPrefix("api-signature");
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
@@ -423,7 +423,7 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<List<Announcement>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<Announcement>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Announcement>)));
+                (List<Announcement>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Announcement>)));
         }
 
         /// <summary>
@@ -449,7 +449,7 @@ namespace IO.Swagger.Api
             var localVarPath = "/announcement/urgent";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
             Object localVarPostBody = null;
@@ -459,7 +459,7 @@ namespace IO.Swagger.Api
                 "application/json", 
                 "application/x-www-form-urlencoded"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
@@ -469,29 +469,29 @@ namespace IO.Swagger.Api
                 "application/javascript",
                 "text/javascript"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
 
             // authentication (apiKey) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
             {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
             }
             // authentication (apiNonce) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-nonce")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-nonce")))
             {
-                localVarHeaderParams["api-nonce"] = Configuration.GetApiKeyWithPrefix("api-nonce");
+                localVarHeaderParams["api-nonce"] = this.Configuration.GetApiKeyWithPrefix("api-nonce");
             }
             // authentication (apiSignature) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-signature")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
             {
-                localVarHeaderParams["api-signature"] = Configuration.GetApiKeyWithPrefix("api-signature");
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
@@ -505,7 +505,7 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<List<Announcement>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<Announcement>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Announcement>)));
+                (List<Announcement>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Announcement>)));
         }
 
     }

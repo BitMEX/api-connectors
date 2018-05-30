@@ -15,6 +15,10 @@ Name | Type | Description | Notes
 **inverseLeg** | **String** |  | [optional] 
 **sellLeg** | **String** |  | [optional] 
 **buyLeg** | **String** |  | [optional] 
+**optionStrikePcnt** | **Number** |  | [optional] 
+**optionStrikeRound** | **Number** |  | [optional] 
+**optionStrikePrice** | **Number** |  | [optional] 
+**optionMultiplier** | **Number** |  | [optional] 
 **positionCurrency** | **String** |  | [optional] 
 **underlying** | **String** |  | [optional] 
 **quoteCurrency** | **String** |  | [optional] 
@@ -97,6 +101,7 @@ Name | Type | Description | Notes
 **markPrice** | **Number** |  | [optional] 
 **indicativeTaxRate** | **Number** |  | [optional] 
 **indicativeSettlePrice** | **Number** |  | [optional] 
+**optionUnderlyingPrice** | **Number** |  | [optional] 
 **settledPrice** | **Number** |  | [optional] 
 **timestamp** | **Date** |  | [optional] 
 

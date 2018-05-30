@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **affiliate_id** | **string** |  | [optional] 
 **pgp_pub_key** | **string** |  | [optional] 
 **country** | **string** |  | [optional] 
+**typ** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,30 +38,30 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Insurance" /> class.
         /// </summary>
-        /// <param name="Currency">Currency (required).</param>
-        /// <param name="Timestamp">Timestamp (required).</param>
-        /// <param name="WalletBalance">WalletBalance.</param>
-        public Insurance(string Currency = default(string), DateTime? Timestamp = default(DateTime?), decimal? WalletBalance = default(decimal?))
+        /// <param name="currency">currency (required).</param>
+        /// <param name="timestamp">timestamp (required).</param>
+        /// <param name="walletBalance">walletBalance.</param>
+        public Insurance(string currency = default(string), DateTime? timestamp = default(DateTime?), decimal? walletBalance = default(decimal?))
         {
-            // to ensure "Currency" is required (not null)
-            if (Currency == null)
+            // to ensure "currency" is required (not null)
+            if (currency == null)
             {
-                throw new InvalidDataException("Currency is a required property for Insurance and cannot be null");
+                throw new InvalidDataException("currency is a required property for Insurance and cannot be null");
             }
             else
             {
-                this.Currency = Currency;
+                this.Currency = currency;
             }
-            // to ensure "Timestamp" is required (not null)
-            if (Timestamp == null)
+            // to ensure "timestamp" is required (not null)
+            if (timestamp == null)
             {
-                throw new InvalidDataException("Timestamp is a required property for Insurance and cannot be null");
+                throw new InvalidDataException("timestamp is a required property for Insurance and cannot be null");
             }
             else
             {
-                this.Timestamp = Timestamp;
+                this.Timestamp = timestamp;
             }
-            this.WalletBalance = WalletBalance;
+            this.WalletBalance = walletBalance;
         }
         
         /// <summary>
@@ -101,7 +101,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

@@ -39,7 +39,7 @@ require 'swagger_client'
 
 api_instance = SwaggerClient::UserApi.new
 
-token = "token_example" # String | 
+token = 'token_example' # String | 
 
 
 begin
@@ -87,7 +87,7 @@ require 'swagger_client'
 api_instance = SwaggerClient::UserApi.new
 
 opts = { 
-  referral_code: "referral_code_example" # String | 
+  referral_code: 'referral_code_example' # String | 
 }
 
 begin
@@ -132,7 +132,7 @@ require 'swagger_client'
 
 api_instance = SwaggerClient::UserApi.new
 
-token = "token_example" # String | 
+token = 'token_example' # String | 
 
 
 begin
@@ -194,10 +194,10 @@ end
 
 api_instance = SwaggerClient::UserApi.new
 
-token = "token_example" # String | Token from your selected TFA type.
+token = 'token_example' # String | Token from your selected TFA type.
 
 opts = { 
-  type: "type_example" # String | Two-factor auth type. Supported types: 'GA' (Google Authenticator), 'Yubikey'
+  type: 'type_example' # String | Two-factor auth type. Supported types: 'GA' (Google Authenticator), 'Yubikey'
 }
 
 begin
@@ -243,7 +243,7 @@ require 'swagger_client'
 
 api_instance = SwaggerClient::UserApi.new
 
-token = "token_example" # String | 
+token = 'token_example' # String | 
 
 
 begin
@@ -305,10 +305,10 @@ end
 
 api_instance = SwaggerClient::UserApi.new
 
-token = "token_example" # String | Token from your selected TFA type.
+token = 'token_example' # String | Token from your selected TFA type.
 
 opts = { 
-  type: "type_example" # String | Two-factor auth type. Supported types: 'GA' (Google Authenticator)
+  type: 'type_example' # String | Two-factor auth type. Supported types: 'GA' (Google Authenticator)
 }
 
 begin
@@ -540,7 +540,7 @@ end
 api_instance = SwaggerClient::UserApi.new
 
 opts = { 
-  currency: "XBt" # String | 
+  currency: 'XBt' # String | 
 }
 
 begin
@@ -603,7 +603,7 @@ end
 api_instance = SwaggerClient::UserApi.new
 
 opts = { 
-  currency: "XBt" # String | 
+  currency: 'XBt' # String | 
 }
 
 begin
@@ -666,7 +666,7 @@ end
 api_instance = SwaggerClient::UserApi.new
 
 opts = { 
-  currency: "XBt" # String | 
+  currency: 'XBt' # String | 
 }
 
 begin
@@ -729,7 +729,7 @@ end
 api_instance = SwaggerClient::UserApi.new
 
 opts = { 
-  currency: "XBt" # String | 
+  currency: 'XBt' # String | 
 }
 
 begin
@@ -792,7 +792,7 @@ end
 api_instance = SwaggerClient::UserApi.new
 
 opts = { 
-  currency: "XBt" # String | 
+  currency: 'XBt' # String | 
 }
 
 begin
@@ -934,7 +934,7 @@ require 'swagger_client'
 api_instance = SwaggerClient::UserApi.new
 
 opts = { 
-  currency: "XBt" # String | 
+  currency: 'XBt' # String | 
 }
 
 begin
@@ -999,7 +999,7 @@ end
 api_instance = SwaggerClient::UserApi.new
 
 opts = { 
-  type: "type_example" # String | Two-factor auth type. Supported types: 'GA' (Google Authenticator)
+  type: 'type_example' # String | Two-factor auth type. Supported types: 'GA' (Google Authenticator)
 }
 
 begin
@@ -1063,14 +1063,14 @@ end
 
 api_instance = SwaggerClient::UserApi.new
 
-currency = "XBt" # String | Currency you're withdrawing. Options: `XBt`
+currency = 'XBt' # String | Currency you're withdrawing. Options: `XBt`
 
-amount = 3.4 # Float | Amount of withdrawal currency.
+amount = 8.14 # Float | Amount of withdrawal currency.
 
-address = "address_example" # String | Destination Address.
+address = 'address_example' # String | Destination Address.
 
 opts = { 
-  otp_token: "otp_token_example", # String | 2FA token. Required if 2FA is enabled on your account.
+  otp_token: 'otp_token_example', # String | 2FA token. Required if 2FA is enabled on your account.
   fee: 1.2 # Float | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
 }
 
@@ -1137,7 +1137,7 @@ end
 
 api_instance = SwaggerClient::UserApi.new
 
-prefs = "prefs_example" # String | 
+prefs = 'prefs_example' # String | 
 
 opts = { 
   overwrite: false # BOOLEAN | If true, will overwrite all existing preferences.
@@ -1204,14 +1204,14 @@ end
 api_instance = SwaggerClient::UserApi.new
 
 opts = { 
-  firstname: "firstname_example", # String | 
-  lastname: "lastname_example", # String | 
-  old_password: "old_password_example", # String | 
-  new_password: "new_password_example", # String | 
-  new_password_confirm: "new_password_confirm_example", # String | 
-  username: "username_example", # String | Username can only be set once. To reset, email support.
-  country: "country_example", # String | Country of residence.
-  pgp_pub_key: "pgp_pub_key_example" # String | PGP Public Key. If specified, automated emails will be sentwith this key.
+  firstname: 'firstname_example', # String | 
+  lastname: 'lastname_example', # String | 
+  old_password: 'old_password_example', # String | 
+  new_password: 'new_password_example', # String | 
+  new_password_confirm: 'new_password_confirm_example', # String | 
+  username: 'username_example', # String | Username can only be set once. To reset, email support.
+  country: 'country_example', # String | Country of residence.
+  pgp_pub_key: 'pgp_pub_key_example' # String | PGP Public Key. If specified, automated emails will be sentwith this key.
 }
 
 begin

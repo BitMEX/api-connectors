@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **orderBookType** | **NSString*** |  | [optional] 
 **orderClearImmediate** | **NSNumber*** |  | [optional] [default to @(NO)]
 **orderControlsPlusMinus** | **NSNumber*** |  | [optional] 
+**showLocaleNumbers** | **NSNumber*** |  | [optional] [default to @(YES)]
 **sounds** | **NSArray&lt;NSString*&gt;*** |  | [optional] 
 **strictIPCheck** | **NSNumber*** |  | [optional] [default to @(NO)]
 **strictTimeout** | **NSNumber*** |  | [optional] [default to @(YES)]

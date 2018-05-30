@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -24,6 +24,7 @@ import javax.ws.rs.core.MediaType
 
 import java.io.File
 import java.util.Date
+import java.util.TimeZone
 
 import scala.collection.mutable.HashMap
 
@@ -41,20 +42,31 @@ import scala.concurrent._
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
 
+import org.json4s._
+
 class SchemaApi(
   val defBasePath: String = "https://localhost/api/v1",
   defApiInvoker: ApiInvoker = ApiInvoker
 ) {
-
-  implicit val formats = new org.json4s.DefaultFormats {
-    override def dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+0000")
+  private lazy val dateTimeFormatter = {
+    val formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+    formatter.setTimeZone(TimeZone.getTimeZone("UTC"))
+    formatter
   }
-  implicit val stringReader = ClientResponseReaders.StringReader
-  implicit val unitReader = ClientResponseReaders.UnitReader
-  implicit val jvalueReader = ClientResponseReaders.JValueReader
-  implicit val jsonReader = JsonFormatsReader
-  implicit val stringWriter = RequestWriters.StringWriter
-  implicit val jsonWriter = JsonFormatsWriter
+  private val dateFormatter = {
+    val formatter = new SimpleDateFormat("yyyy-MM-dd")
+    formatter.setTimeZone(TimeZone.getTimeZone("UTC"))
+    formatter
+  }
+  implicit val formats = new org.json4s.DefaultFormats {
+    override def dateFormatter = dateTimeFormatter
+  }
+  implicit val stringReader: ClientResponseReader[String] = ClientResponseReaders.StringReader
+  implicit val unitReader: ClientResponseReader[Unit] = ClientResponseReaders.UnitReader
+  implicit val jvalueReader: ClientResponseReader[JValue] = ClientResponseReaders.JValueReader
+  implicit val jsonReader: ClientResponseReader[Nothing] = JsonFormatsReader
+  implicit val stringWriter: RequestWriter[String] = RequestWriters.StringWriter
+  implicit val jsonWriter: RequestWriter[Nothing] = JsonFormatsWriter
 
   var basePath: String = defBasePath
   var apiInvoker: ApiInvoker = defApiInvoker
@@ -63,13 +75,14 @@ class SchemaApi(
     apiInvoker.defaultHeaders += key -> value
   }
 
-  val config = SwaggerConfig.forUrl(new URI(defBasePath))
+  val config: SwaggerConfig = SwaggerConfig.forUrl(new URI(defBasePath))
   val client = new RestClient(config)
   val helper = new SchemaApiAsyncHelper(client, config)
 
   /**
    * Get model schemata for data objects returned by this API.
    * 
+   *
    * @param model Optional model filter. If omitted, will return all models. (optional)
    * @return Any
    */
@@ -84,9 +97,10 @@ class SchemaApi(
   /**
    * Get model schemata for data objects returned by this API. asynchronously
    * 
+   *
    * @param model Optional model filter. If omitted, will return all models. (optional)
    * @return Future(Any)
-  */
+   */
   def schemaGetAsync(model: Option[String] = None): Future[Any] = {
       helper.schemaGet(model)
   }
@@ -94,6 +108,7 @@ class SchemaApi(
   /**
    * Returns help text &amp; subject list for websocket usage.
    * 
+   *
    * @return Any
    */
   def schemaWebsocketHelp(): Option[Any] = {
@@ -107,8 +122,9 @@ class SchemaApi(
   /**
    * Returns help text &amp; subject list for websocket usage. asynchronously
    * 
+   *
    * @return Future(Any)
-  */
+   */
   def schemaWebsocketHelpAsync(): Future[Any] = {
       helper.schemaWebsocketHelp()
   }

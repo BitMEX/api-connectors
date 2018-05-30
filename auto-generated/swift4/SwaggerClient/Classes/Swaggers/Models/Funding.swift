@@ -10,7 +10,7 @@ import Foundation
 
 /** Swap Funding History */
 
-open class Funding: Codable {
+public struct Funding: Codable {
 
     public var timestamp: Date
     public var symbol: String
@@ -18,30 +18,14 @@ open class Funding: Codable {
     public var fundingRate: Double?
     public var fundingRateDaily: Double?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(timestamp, forKey: "timestamp")
-        try container.encode(symbol, forKey: "symbol")
-        try container.encodeIfPresent(fundingInterval, forKey: "fundingInterval")
-        try container.encodeIfPresent(fundingRate, forKey: "fundingRate")
-        try container.encodeIfPresent(fundingRateDaily, forKey: "fundingRateDaily")
+    public init(timestamp: Date, symbol: String, fundingInterval: Date?, fundingRate: Double?, fundingRateDaily: Double?) {
+        self.timestamp = timestamp
+        self.symbol = symbol
+        self.fundingInterval = fundingInterval
+        self.fundingRate = fundingRate
+        self.fundingRateDaily = fundingRateDaily
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        timestamp = try container.decode(Date.self, forKey: "timestamp")
-        symbol = try container.decode(String.self, forKey: "symbol")
-        fundingInterval = try container.decodeIfPresent(Date.self, forKey: "fundingInterval")
-        fundingRate = try container.decodeIfPresent(Double.self, forKey: "fundingRate")
-        fundingRateDaily = try container.decodeIfPresent(Double.self, forKey: "fundingRateDaily")
-    }
 }
 

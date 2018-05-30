@@ -10,32 +10,18 @@ import Foundation
 
 /** Insurance Fund Data */
 
-open class Insurance: Codable {
+public struct Insurance: Codable {
 
     public var currency: String
     public var timestamp: Date
     public var walletBalance: Double?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(currency, forKey: "currency")
-        try container.encode(timestamp, forKey: "timestamp")
-        try container.encodeIfPresent(walletBalance, forKey: "walletBalance")
+    public init(currency: String, timestamp: Date, walletBalance: Double?) {
+        self.currency = currency
+        self.timestamp = timestamp
+        self.walletBalance = walletBalance
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        currency = try container.decode(String.self, forKey: "currency")
-        timestamp = try container.decode(Date.self, forKey: "timestamp")
-        walletBalance = try container.decodeIfPresent(Double.self, forKey: "walletBalance")
-    }
 }
 

@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,54 +38,54 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Affiliate" /> class.
         /// </summary>
-        /// <param name="Account">Account (required).</param>
-        /// <param name="Currency">Currency (required).</param>
-        /// <param name="PrevPayout">PrevPayout.</param>
-        /// <param name="PrevTurnover">PrevTurnover.</param>
-        /// <param name="PrevComm">PrevComm.</param>
-        /// <param name="PrevTimestamp">PrevTimestamp.</param>
-        /// <param name="ExecTurnover">ExecTurnover.</param>
-        /// <param name="ExecComm">ExecComm.</param>
-        /// <param name="TotalReferrals">TotalReferrals.</param>
-        /// <param name="TotalTurnover">TotalTurnover.</param>
-        /// <param name="TotalComm">TotalComm.</param>
-        /// <param name="PayoutPcnt">PayoutPcnt.</param>
-        /// <param name="PendingPayout">PendingPayout.</param>
-        /// <param name="Timestamp">Timestamp.</param>
-        /// <param name="ReferrerAccount">ReferrerAccount.</param>
-        public Affiliate(decimal? Account = default(decimal?), string Currency = default(string), decimal? PrevPayout = default(decimal?), decimal? PrevTurnover = default(decimal?), decimal? PrevComm = default(decimal?), DateTime? PrevTimestamp = default(DateTime?), decimal? ExecTurnover = default(decimal?), decimal? ExecComm = default(decimal?), decimal? TotalReferrals = default(decimal?), decimal? TotalTurnover = default(decimal?), decimal? TotalComm = default(decimal?), double? PayoutPcnt = default(double?), decimal? PendingPayout = default(decimal?), DateTime? Timestamp = default(DateTime?), double? ReferrerAccount = default(double?))
+        /// <param name="account">account (required).</param>
+        /// <param name="currency">currency (required).</param>
+        /// <param name="prevPayout">prevPayout.</param>
+        /// <param name="prevTurnover">prevTurnover.</param>
+        /// <param name="prevComm">prevComm.</param>
+        /// <param name="prevTimestamp">prevTimestamp.</param>
+        /// <param name="execTurnover">execTurnover.</param>
+        /// <param name="execComm">execComm.</param>
+        /// <param name="totalReferrals">totalReferrals.</param>
+        /// <param name="totalTurnover">totalTurnover.</param>
+        /// <param name="totalComm">totalComm.</param>
+        /// <param name="payoutPcnt">payoutPcnt.</param>
+        /// <param name="pendingPayout">pendingPayout.</param>
+        /// <param name="timestamp">timestamp.</param>
+        /// <param name="referrerAccount">referrerAccount.</param>
+        public Affiliate(decimal? account = default(decimal?), string currency = default(string), decimal? prevPayout = default(decimal?), decimal? prevTurnover = default(decimal?), decimal? prevComm = default(decimal?), DateTime? prevTimestamp = default(DateTime?), decimal? execTurnover = default(decimal?), decimal? execComm = default(decimal?), decimal? totalReferrals = default(decimal?), decimal? totalTurnover = default(decimal?), decimal? totalComm = default(decimal?), double? payoutPcnt = default(double?), decimal? pendingPayout = default(decimal?), DateTime? timestamp = default(DateTime?), double? referrerAccount = default(double?))
         {
-            // to ensure "Account" is required (not null)
-            if (Account == null)
+            // to ensure "account" is required (not null)
+            if (account == null)
             {
-                throw new InvalidDataException("Account is a required property for Affiliate and cannot be null");
+                throw new InvalidDataException("account is a required property for Affiliate and cannot be null");
             }
             else
             {
-                this.Account = Account;
+                this.Account = account;
             }
-            // to ensure "Currency" is required (not null)
-            if (Currency == null)
+            // to ensure "currency" is required (not null)
+            if (currency == null)
             {
-                throw new InvalidDataException("Currency is a required property for Affiliate and cannot be null");
+                throw new InvalidDataException("currency is a required property for Affiliate and cannot be null");
             }
             else
             {
-                this.Currency = Currency;
+                this.Currency = currency;
             }
-            this.PrevPayout = PrevPayout;
-            this.PrevTurnover = PrevTurnover;
-            this.PrevComm = PrevComm;
-            this.PrevTimestamp = PrevTimestamp;
-            this.ExecTurnover = ExecTurnover;
-            this.ExecComm = ExecComm;
-            this.TotalReferrals = TotalReferrals;
-            this.TotalTurnover = TotalTurnover;
-            this.TotalComm = TotalComm;
-            this.PayoutPcnt = PayoutPcnt;
-            this.PendingPayout = PendingPayout;
-            this.Timestamp = Timestamp;
-            this.ReferrerAccount = ReferrerAccount;
+            this.PrevPayout = prevPayout;
+            this.PrevTurnover = prevTurnover;
+            this.PrevComm = prevComm;
+            this.PrevTimestamp = prevTimestamp;
+            this.ExecTurnover = execTurnover;
+            this.ExecComm = execComm;
+            this.TotalReferrals = totalReferrals;
+            this.TotalTurnover = totalTurnover;
+            this.TotalComm = totalComm;
+            this.PayoutPcnt = payoutPcnt;
+            this.PendingPayout = pendingPayout;
+            this.Timestamp = timestamp;
+            this.ReferrerAccount = referrerAccount;
         }
         
         /// <summary>
@@ -209,7 +209,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

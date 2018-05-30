@@ -32,7 +32,7 @@ Method | HTTP request | Description
 
 Cancel a withdrawal.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -44,7 +44,7 @@ from pprint import pprint
 api_instance = swagger_client.UserApi()
 token = 'token_example' # str | 
 
-try: 
+try:
     # Cancel a withdrawal.
     api_response = api_instance.user_cancel_withdrawal(token)
     pprint(api_response)
@@ -80,7 +80,7 @@ Check if a referral code is valid.
 
 If the code is valid, responds with the referral code's discount (e.g. `0.1` for 10%). Otherwise, will return a 404.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -92,7 +92,7 @@ from pprint import pprint
 api_instance = swagger_client.UserApi()
 referral_code = 'referral_code_example' # str |  (optional)
 
-try: 
+try:
     # Check if a referral code is valid.
     api_response = api_instance.user_check_referral_code(referral_code=referral_code)
     pprint(api_response)
@@ -126,7 +126,7 @@ No authorization required
 
 Confirm your email address with a token.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -138,7 +138,7 @@ from pprint import pprint
 api_instance = swagger_client.UserApi()
 token = 'token_example' # str | 
 
-try: 
+try:
     # Confirm your email address with a token.
     api_response = api_instance.user_confirm(token)
     pprint(api_response)
@@ -172,7 +172,7 @@ No authorization required
 
 Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -201,7 +201,7 @@ api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 token = 'token_example' # str | Token from your selected TFA type.
 type = 'type_example' # str | Two-factor auth type. Supported types: 'GA' (Google Authenticator), 'Yubikey' (optional)
 
-try: 
+try:
     # Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
     api_response = api_instance.user_confirm_enable_tfa(token, type=type)
     pprint(api_response)
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 
 Confirm a withdrawal.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -248,7 +248,7 @@ from pprint import pprint
 api_instance = swagger_client.UserApi()
 token = 'token_example' # str | 
 
-try: 
+try:
     # Confirm a withdrawal.
     api_response = api_instance.user_confirm_withdrawal(token)
     pprint(api_response)
@@ -282,7 +282,7 @@ No authorization required
 
 Disable two-factor auth for this account.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -311,7 +311,7 @@ api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 token = 'token_example' # str | Token from your selected TFA type.
 type = 'type_example' # str | Two-factor auth type. Supported types: 'GA' (Google Authenticator) (optional)
 
-try: 
+try:
     # Disable two-factor auth for this account.
     api_response = api_instance.user_disable_tfa(token, type=type)
     pprint(api_response)
@@ -346,7 +346,7 @@ Name | Type | Description  | Notes
 
 Get your user model.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -373,7 +373,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 
-try: 
+try:
     # Get your user model.
     api_response = api_instance.user_get()
     pprint(api_response)
@@ -404,7 +404,7 @@ This endpoint does not need any parameter.
 
 Get your current affiliate/referral status.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -431,7 +431,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 
-try: 
+try:
     # Get your current affiliate/referral status.
     api_response = api_instance.user_get_affiliate_status()
     pprint(api_response)
@@ -462,7 +462,7 @@ This endpoint does not need any parameter.
 
 Get your account's commission status.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -489,7 +489,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 
-try: 
+try:
     # Get your account's commission status.
     api_response = api_instance.user_get_commission()
     pprint(api_response)
@@ -520,7 +520,7 @@ This endpoint does not need any parameter.
 
 Get a deposit address.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -548,7 +548,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 currency = 'XBt' # str |  (optional) (default to XBt)
 
-try: 
+try:
     # Get a deposit address.
     api_response = api_instance.user_get_deposit_address(currency=currency)
     pprint(api_response)
@@ -582,7 +582,7 @@ Name | Type | Description  | Notes
 
 Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -610,7 +610,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 currency = 'XBt' # str |  (optional) (default to XBt)
 
-try: 
+try:
     # Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.
     api_response = api_instance.user_get_margin(currency=currency)
     pprint(api_response)
@@ -644,7 +644,7 @@ Name | Type | Description  | Notes
 
 Get your current wallet information.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -672,7 +672,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 currency = 'XBt' # str |  (optional) (default to XBt)
 
-try: 
+try:
     # Get your current wallet information.
     api_response = api_instance.user_get_wallet(currency=currency)
     pprint(api_response)
@@ -706,7 +706,7 @@ Name | Type | Description  | Notes
 
 Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -734,7 +734,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 currency = 'XBt' # str |  (optional) (default to XBt)
 
-try: 
+try:
     # Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
     api_response = api_instance.user_get_wallet_history(currency=currency)
     pprint(api_response)
@@ -768,7 +768,7 @@ Name | Type | Description  | Notes
 
 Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -796,7 +796,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 currency = 'XBt' # str |  (optional) (default to XBt)
 
-try: 
+try:
     # Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
     api_response = api_instance.user_get_wallet_summary(currency=currency)
     pprint(api_response)
@@ -830,7 +830,7 @@ Name | Type | Description  | Notes
 
 Log out of BitMEX.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -841,7 +841,7 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = swagger_client.UserApi()
 
-try: 
+try:
     # Log out of BitMEX.
     api_instance.user_logout()
 except ApiException as e:
@@ -871,7 +871,7 @@ No authorization required
 
 Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -898,7 +898,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 
-try: 
+try:
     # Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.
     api_response = api_instance.user_logout_all()
     pprint(api_response)
@@ -931,7 +931,7 @@ Get the minimum withdrawal fee for a currency.
 
 This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -943,7 +943,7 @@ from pprint import pprint
 api_instance = swagger_client.UserApi()
 currency = 'XBt' # str |  (optional) (default to XBt)
 
-try: 
+try:
     # Get the minimum withdrawal fee for a currency.
     api_response = api_instance.user_min_withdrawal_fee(currency=currency)
     pprint(api_response)
@@ -979,7 +979,7 @@ Get secret key for setting up two-factor auth.
 
 Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1007,7 +1007,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 type = 'type_example' # str | Two-factor auth type. Supported types: 'GA' (Google Authenticator) (optional)
 
-try: 
+try:
     # Get secret key for setting up two-factor auth.
     api_response = api_instance.user_request_enable_tfa(type=type)
     pprint(api_response)
@@ -1043,7 +1043,7 @@ Request a withdrawal to an external wallet.
 
 This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1070,12 +1070,12 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 currency = 'XBt' # str | Currency you're withdrawing. Options: `XBt` (default to XBt)
-amount = 3.4 # float | Amount of withdrawal currency.
+amount = 8.14 # float | Amount of withdrawal currency.
 address = 'address_example' # str | Destination Address.
 otp_token = 'otp_token_example' # str | 2FA token. Required if 2FA is enabled on your account. (optional)
 fee = 1.2 # float | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
 
-try: 
+try:
     # Request a withdrawal to an external wallet.
     api_response = api_instance.user_request_withdrawal(currency, amount, address, otp_token=otp_token, fee=fee)
     pprint(api_response)
@@ -1113,7 +1113,7 @@ Name | Type | Description  | Notes
 
 Save user preferences.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1142,7 +1142,7 @@ api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
 prefs = 'prefs_example' # str | 
 overwrite = false # bool | If true, will overwrite all existing preferences. (optional) (default to false)
 
-try: 
+try:
     # Save user preferences.
     api_response = api_instance.user_save_preferences(prefs, overwrite=overwrite)
     pprint(api_response)
@@ -1177,7 +1177,7 @@ Name | Type | Description  | Notes
 
 Update your password, name, and other attributes.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1212,7 +1212,7 @@ username = 'username_example' # str | Username can only be set once. To reset, e
 country = 'country_example' # str | Country of residence. (optional)
 pgp_pub_key = 'pgp_pub_key_example' # str | PGP Public Key. If specified, automated emails will be sentwith this key. (optional)
 
-try: 
+try:
     # Update your password, name, and other attributes.
     api_response = api_instance.user_update(firstname=firstname, lastname=lastname, old_password=old_password, new_password=new_password, new_password_confirm=new_password_confirm, username=username, country=country, pgp_pub_key=pgp_pub_key)
     pprint(api_response)

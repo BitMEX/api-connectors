@@ -14,7 +14,7 @@ Get your current notifications.
 
 This is an upcoming feature and currently does not return data.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -41,7 +41,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = swagger_client.NotificationApi(swagger_client.ApiClient(configuration))
 
-try: 
+try:
     # Get your current notifications.
     api_response = api_instance.notification_get()
     pprint(api_response)

@@ -9,21 +9,22 @@ Method | HTTP request | Description
 
 
 # **SchemaGet**
-> interface{} SchemaGet(optional)
+> interface{} SchemaGet(ctx, optional)
 Get model schemata for data objects returned by this API.
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***SchemaGetOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a SchemaGetOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model** | **string**| Optional model filter. If omitted, will return all models. | 
+ **model** | **optional.String**| Optional model filter. If omitted, will return all models. | 
 
 ### Return type
 
@@ -41,7 +42,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SchemaWebsocketHelp**
-> interface{} SchemaWebsocketHelp()
+> interface{} SchemaWebsocketHelp(ctx, )
 Returns help text & subject list for websocket usage.
 
 ### Required Parameters

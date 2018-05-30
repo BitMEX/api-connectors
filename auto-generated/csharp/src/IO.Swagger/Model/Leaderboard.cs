@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,24 +38,22 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Leaderboard" /> class.
         /// </summary>
-        /// <param name="Name">Name (required).</param>
-        /// <param name="IsRealName">IsRealName.</param>
-        /// <param name="IsMe">IsMe.</param>
-        /// <param name="Profit">Profit.</param>
-        public Leaderboard(string Name = default(string), bool? IsRealName = default(bool?), bool? IsMe = default(bool?), double? Profit = default(double?))
+        /// <param name="name">name (required).</param>
+        /// <param name="isRealName">isRealName.</param>
+        /// <param name="profit">profit.</param>
+        public Leaderboard(string name = default(string), bool? isRealName = default(bool?), double? profit = default(double?))
         {
-            // to ensure "Name" is required (not null)
-            if (Name == null)
+            // to ensure "name" is required (not null)
+            if (name == null)
             {
-                throw new InvalidDataException("Name is a required property for Leaderboard and cannot be null");
+                throw new InvalidDataException("name is a required property for Leaderboard and cannot be null");
             }
             else
             {
-                this.Name = Name;
+                this.Name = name;
             }
-            this.IsRealName = IsRealName;
-            this.IsMe = IsMe;
-            this.Profit = Profit;
+            this.IsRealName = isRealName;
+            this.Profit = profit;
         }
         
         /// <summary>
@@ -69,12 +67,6 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="isRealName", EmitDefaultValue=false)]
         public bool? IsRealName { get; set; }
-
-        /// <summary>
-        /// Gets or Sets IsMe
-        /// </summary>
-        [DataMember(Name="isMe", EmitDefaultValue=false)]
-        public bool? IsMe { get; set; }
 
         /// <summary>
         /// Gets or Sets Profit
@@ -92,7 +84,6 @@ namespace IO.Swagger.Model
             sb.Append("class Leaderboard {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  IsRealName: ").Append(IsRealName).Append("\n");
-            sb.Append("  IsMe: ").Append(IsMe).Append("\n");
             sb.Append("  Profit: ").Append(Profit).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -102,7 +93,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -139,11 +130,6 @@ namespace IO.Swagger.Model
                     this.IsRealName.Equals(input.IsRealName))
                 ) && 
                 (
-                    this.IsMe == input.IsMe ||
-                    (this.IsMe != null &&
-                    this.IsMe.Equals(input.IsMe))
-                ) && 
-                (
                     this.Profit == input.Profit ||
                     (this.Profit != null &&
                     this.Profit.Equals(input.Profit))
@@ -163,8 +149,6 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
                 if (this.IsRealName != null)
                     hashCode = hashCode * 59 + this.IsRealName.GetHashCode();
-                if (this.IsMe != null)
-                    hashCode = hashCode * 59 + this.IsMe.GetHashCode();
                 if (this.Profit != null)
                     hashCode = hashCode * 59 + this.Profit.GetHashCode();
                 return hashCode;

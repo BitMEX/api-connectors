@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -25,8 +25,6 @@ public class Leaderboard {
   private String name = null;
   @SerializedName("isRealName")
   private Boolean isRealName = null;
-  @SerializedName("isMe")
-  private Boolean isMe = null;
   @SerializedName("profit")
   private Double profit = null;
 
@@ -53,16 +51,6 @@ public class Leaderboard {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Boolean getIsMe() {
-    return isMe;
-  }
-  public void setIsMe(Boolean isMe) {
-    this.isMe = isMe;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public Double getProfit() {
     return profit;
   }
@@ -82,7 +70,6 @@ public class Leaderboard {
     Leaderboard leaderboard = (Leaderboard) o;
     return (this.name == null ? leaderboard.name == null : this.name.equals(leaderboard.name)) &&
         (this.isRealName == null ? leaderboard.isRealName == null : this.isRealName.equals(leaderboard.isRealName)) &&
-        (this.isMe == null ? leaderboard.isMe == null : this.isMe.equals(leaderboard.isMe)) &&
         (this.profit == null ? leaderboard.profit == null : this.profit.equals(leaderboard.profit));
   }
 
@@ -91,7 +78,6 @@ public class Leaderboard {
     int result = 17;
     result = 31 * result + (this.name == null ? 0: this.name.hashCode());
     result = 31 * result + (this.isRealName == null ? 0: this.isRealName.hashCode());
-    result = 31 * result + (this.isMe == null ? 0: this.isMe.hashCode());
     result = 31 * result + (this.profit == null ? 0: this.profit.hashCode());
     return result;
   }
@@ -103,7 +89,6 @@ public class Leaderboard {
     
     sb.append("  name: ").append(name).append("\n");
     sb.append("  isRealName: ").append(isRealName).append("\n");
-    sb.append("  isMe: ").append(isMe).append("\n");
     sb.append("  profit: ").append(profit).append("\n");
     sb.append("}\n");
     return sb.toString();

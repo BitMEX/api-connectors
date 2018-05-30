@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **symbol** | **str** |  | 
 **settlement_type** | **str** |  | [optional] 
 **settled_price** | **float** |  | [optional] 
+**option_strike_price** | **float** |  | [optional] 
+**option_underlying_price** | **float** |  | [optional] 
 **bankrupt** | **float** |  | [optional] 
 **tax_base** | **float** |  | [optional] 
 **tax_rate** | **float** |  | [optional] 

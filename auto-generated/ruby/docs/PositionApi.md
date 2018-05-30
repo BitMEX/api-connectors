@@ -43,9 +43,9 @@ end
 api_instance = SwaggerClient::PositionApi.new
 
 opts = { 
-  filter: "filter_example", # String | Table filter. For example, send {\"symbol\": \"XBTUSD\"}.
-  columns: "columns_example", # String | Which columns to fetch. For example, send [\"columnName\"].
-  count: 3.4 # Float | Number of rows to fetch.
+  filter: 'filter_example', # String | Table filter. For example, send {\"symbol\": \"XBTUSD\"}.
+  columns: 'columns_example', # String | Which columns to fetch. For example, send [\"columnName\"].
+  count: 8.14 # Float | Number of rows to fetch.
 }
 
 begin
@@ -85,8 +85,6 @@ Name | Type | Description  | Notes
 
 Enable isolated margin or cross margin per-position.
 
-Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
-
 ### Example
 ```ruby
 # load the gem
@@ -111,7 +109,7 @@ end
 
 api_instance = SwaggerClient::PositionApi.new
 
-symbol = "symbol_example" # String | Position symbol to isolate.
+symbol = 'symbol_example' # String | Position symbol to isolate.
 
 opts = { 
   enabled: true # BOOLEAN | True for isolated margin, false for cross margin.
@@ -153,8 +151,6 @@ Name | Type | Description  | Notes
 
 Transfer equity in or out of a position.
 
-When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
-
 ### Example
 ```ruby
 # load the gem
@@ -179,9 +175,9 @@ end
 
 api_instance = SwaggerClient::PositionApi.new
 
-symbol = "symbol_example" # String | Symbol of position to isolate.
+symbol = 'symbol_example' # String | Symbol of position to isolate.
 
-amount = 3.4 # Float | Amount to transfer, in Satoshis. May be negative.
+amount = 8.14 # Float | Amount to transfer, in Satoshis. May be negative.
 
 
 begin
@@ -220,8 +216,6 @@ Name | Type | Description  | Notes
 
 Choose leverage for a position.
 
-Users can choose an isolated leverage. This will automatically enable isolated margin.
-
 ### Example
 ```ruby
 # load the gem
@@ -246,7 +240,7 @@ end
 
 api_instance = SwaggerClient::PositionApi.new
 
-symbol = "symbol_example" # String | Symbol of position to adjust.
+symbol = 'symbol_example' # String | Symbol of position to adjust.
 
 leverage = 1.2 # Float | Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.
 
@@ -287,8 +281,6 @@ Name | Type | Description  | Notes
 
 Update your risk limit.
 
-Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
-
 ### Example
 ```ruby
 # load the gem
@@ -313,9 +305,9 @@ end
 
 api_instance = SwaggerClient::PositionApi.new
 
-symbol = "symbol_example" # String | Symbol of position to isolate.
+symbol = 'symbol_example' # String | Symbol of position to update risk limit on.
 
-risk_limit = 3.4 # Float | New Risk Limit, in Satoshis.
+risk_limit = 8.14 # Float | New Risk Limit, in Satoshis.
 
 
 begin
@@ -331,7 +323,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **String**| Symbol of position to isolate. | 
+ **symbol** | **String**| Symbol of position to update risk limit on. | 
  **risk_limit** | **Float**| New Risk Limit, in Satoshis. | 
 
 ### Return type

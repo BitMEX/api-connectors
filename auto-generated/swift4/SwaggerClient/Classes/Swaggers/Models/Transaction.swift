@@ -9,7 +9,7 @@ import Foundation
 
 
 
-open class Transaction: Codable {
+public struct Transaction: Codable {
 
     public var transactID: String
     public var account: Double?
@@ -24,44 +24,21 @@ open class Transaction: Codable {
     public var transactTime: Date?
     public var timestamp: Date?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(transactID, forKey: "transactID")
-        try container.encodeIfPresent(account, forKey: "account")
-        try container.encodeIfPresent(currency, forKey: "currency")
-        try container.encodeIfPresent(transactType, forKey: "transactType")
-        try container.encodeIfPresent(amount, forKey: "amount")
-        try container.encodeIfPresent(fee, forKey: "fee")
-        try container.encodeIfPresent(transactStatus, forKey: "transactStatus")
-        try container.encodeIfPresent(address, forKey: "address")
-        try container.encodeIfPresent(tx, forKey: "tx")
-        try container.encodeIfPresent(text, forKey: "text")
-        try container.encodeIfPresent(transactTime, forKey: "transactTime")
-        try container.encodeIfPresent(timestamp, forKey: "timestamp")
+    public init(transactID: String, account: Double?, currency: String?, transactType: String?, amount: Double?, fee: Double?, transactStatus: String?, address: String?, tx: String?, text: String?, transactTime: Date?, timestamp: Date?) {
+        self.transactID = transactID
+        self.account = account
+        self.currency = currency
+        self.transactType = transactType
+        self.amount = amount
+        self.fee = fee
+        self.transactStatus = transactStatus
+        self.address = address
+        self.tx = tx
+        self.text = text
+        self.transactTime = transactTime
+        self.timestamp = timestamp
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        transactID = try container.decode(String.self, forKey: "transactID")
-        account = try container.decodeIfPresent(Double.self, forKey: "account")
-        currency = try container.decodeIfPresent(String.self, forKey: "currency")
-        transactType = try container.decodeIfPresent(String.self, forKey: "transactType")
-        amount = try container.decodeIfPresent(Double.self, forKey: "amount")
-        fee = try container.decodeIfPresent(Double.self, forKey: "fee")
-        transactStatus = try container.decodeIfPresent(String.self, forKey: "transactStatus")
-        address = try container.decodeIfPresent(String.self, forKey: "address")
-        tx = try container.decodeIfPresent(String.self, forKey: "tx")
-        text = try container.decodeIfPresent(String.self, forKey: "text")
-        transactTime = try container.decodeIfPresent(Date.self, forKey: "transactTime")
-        timestamp = try container.decodeIfPresent(Date.self, forKey: "timestamp")
-    }
 }
 

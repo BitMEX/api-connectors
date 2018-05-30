@@ -61,6 +61,7 @@
   "Send a chat message."
   ([message ] (chat-new-with-http-info message nil))
   ([message {:keys [channel-id ]}]
+   (check-required-params message)
    (call-api "/chat" :post
              {:path-params   {}
               :header-params {}

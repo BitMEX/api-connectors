@@ -9,26 +9,14 @@ import Foundation
 
 
 
-open class InlineResponse200: Codable {
+public struct InlineResponse200: Codable {
 
     public var success: Bool?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encodeIfPresent(success, forKey: "success")
+    public init(success: Bool?) {
+        self.success = success
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        success = try container.decodeIfPresent(Bool.self, forKey: "success")
-    }
 }
 

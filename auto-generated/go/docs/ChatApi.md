@@ -11,24 +11,25 @@ Method | HTTP request | Description
 
 
 # **ChatGet**
-> []Chat ChatGet(optional)
+> []Chat ChatGet(ctx, optional)
 Get chat messages.
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***ChatGetOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a ChatGetOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **count** | **float32**| Number of results to fetch. | [default to 100]
- **start** | **float32**| Starting ID for results. | [default to 0]
- **reverse** | **bool**| If true, will sort results newest first. | [default to true]
- **channelID** | **float64**| Channel id. GET /chat/channels for ids. Leave blank for all. | 
+ **count** | **optional.Float32**| Number of results to fetch. | [default to 100]
+ **start** | **optional.Float32**| Starting ID for results. | [default to 0]
+ **reverse** | **optional.Bool**| If true, will sort results newest first. | [default to true]
+ **channelID** | **optional.Float64**| Channel id. GET /chat/channels for ids. Leave blank for all. | 
 
 ### Return type
 
@@ -46,7 +47,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ChatGetChannels**
-> []ChatChannel ChatGetChannels()
+> []ChatChannel ChatGetChannels(ctx, )
 Get available channels.
 
 ### Required Parameters
@@ -68,7 +69,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ChatGetConnected**
-> ConnectedUsers ChatGetConnected()
+> ConnectedUsers ChatGetConnected(ctx, )
 Get connected users.
 
 Returns an array with browser users in the first position and API users (bots) in the second position.
@@ -92,26 +93,24 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ChatNew**
-> Chat ChatNew(ctx, ctx, ctx, message, optional)
+> Chat ChatNew(ctx, message, optional)
 Send a chat message.
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **message** | **string**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***ChatNewOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a ChatNewOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **message** | **string**|  | 
- **channelID** | **float64**| Channel to post to. Default 1 (English). | [default to 1]
+
+ **channelID** | **optional.Float64**| Channel to post to. Default 1 (English). | [default to 1]
 
 ### Return type
 

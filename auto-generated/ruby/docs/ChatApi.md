@@ -171,7 +171,7 @@ end
 
 api_instance = SwaggerClient::ChatApi.new
 
-message = "message_example" # String | 
+message = 'message_example' # String | 
 
 opts = { 
   channel_id: 1 # Float | Channel to post to. Default 1 (English).

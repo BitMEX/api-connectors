@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -13,61 +13,54 @@
 
 from __future__ import absolute_import
 
-import os
-import sys
 import unittest
 
 import swagger_client
+from swagger_client.api.position_api import PositionApi  # noqa: E501
 from swagger_client.rest import ApiException
-from swagger_client.apis.position_api import PositionApi
 
 
 class TestPositionApi(unittest.TestCase):
-    """ PositionApi unit test stubs """
+    """PositionApi unit test stubs"""
 
     def setUp(self):
-        self.api = swagger_client.apis.position_api.PositionApi()
+        self.api = swagger_client.api.position_api.PositionApi()  # noqa: E501
 
     def tearDown(self):
         pass
 
     def test_position_get(self):
-        """
-        Test case for position_get
+        """Test case for position_get
 
-        Get your positions.
+        Get your positions.  # noqa: E501
         """
         pass
 
     def test_position_isolate_margin(self):
-        """
-        Test case for position_isolate_margin
+        """Test case for position_isolate_margin
 
-        Enable isolated margin or cross margin per-position.
+        Enable isolated margin or cross margin per-position.  # noqa: E501
         """
         pass
 
     def test_position_transfer_isolated_margin(self):
-        """
-        Test case for position_transfer_isolated_margin
+        """Test case for position_transfer_isolated_margin
 
-        Transfer equity in or out of a position.
+        Transfer equity in or out of a position.  # noqa: E501
         """
         pass
 
     def test_position_update_leverage(self):
-        """
-        Test case for position_update_leverage
+        """Test case for position_update_leverage
 
-        Choose leverage for a position.
+        Choose leverage for a position.  # noqa: E501
         """
         pass
 
     def test_position_update_risk_limit(self):
-        """
-        Test case for position_update_risk_limit
+        """Test case for position_update_risk_limit
 
-        Update your risk limit.
+        Update your risk limit.  # noqa: E501
         """
         pass
 

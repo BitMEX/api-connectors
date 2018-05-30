@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **Symbol** | **string** |  | 
 **SettlementType** | **string** |  | [optional] 
 **SettledPrice** | **double?** |  | [optional] 
+**OptionStrikePrice** | **double?** |  | [optional] 
+**OptionUnderlyingPrice** | **double?** |  | [optional] 
 **Bankrupt** | **decimal?** |  | [optional] 
 **TaxBase** | **decimal?** |  | [optional] 
 **TaxRate** | **double?** |  | [optional] 

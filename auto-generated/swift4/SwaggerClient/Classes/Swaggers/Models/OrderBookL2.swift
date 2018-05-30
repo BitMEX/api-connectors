@@ -9,38 +9,30 @@ import Foundation
 
 
 
-open class OrderBookL2: Codable {
+public struct OrderBookL2: Codable {
 
     public var symbol: String
-    public var id: Double
+    public var _id: Double
     public var side: String
     public var size: Double?
     public var price: Double?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(symbol, forKey: "symbol")
-        try container.encode(id, forKey: "id")
-        try container.encode(side, forKey: "side")
-        try container.encodeIfPresent(size, forKey: "size")
-        try container.encodeIfPresent(price, forKey: "price")
+    public init(symbol: String, _id: Double, side: String, size: Double?, price: Double?) {
+        self.symbol = symbol
+        self._id = _id
+        self.side = side
+        self.size = size
+        self.price = price
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
-
-        symbol = try container.decode(String.self, forKey: "symbol")
-        id = try container.decode(Double.self, forKey: "id")
-        side = try container.decode(String.self, forKey: "side")
-        size = try container.decodeIfPresent(Double.self, forKey: "size")
-        price = try container.decodeIfPresent(Double.self, forKey: "price")
+    public enum CodingKeys: String, CodingKey { 
+        case symbol
+        case _id = "id"
+        case side
+        case size
+        case price
     }
+
+
 }
 

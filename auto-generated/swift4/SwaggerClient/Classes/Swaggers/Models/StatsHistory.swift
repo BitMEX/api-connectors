@@ -9,7 +9,7 @@ import Foundation
 
 
 
-open class StatsHistory: Codable {
+public struct StatsHistory: Codable {
 
     public var date: Date
     public var rootSymbol: String
@@ -17,30 +17,14 @@ open class StatsHistory: Codable {
     public var volume: Double?
     public var turnover: Double?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(date, forKey: "date")
-        try container.encode(rootSymbol, forKey: "rootSymbol")
-        try container.encodeIfPresent(currency, forKey: "currency")
-        try container.encodeIfPresent(volume, forKey: "volume")
-        try container.encodeIfPresent(turnover, forKey: "turnover")
+    public init(date: Date, rootSymbol: String, currency: String?, volume: Double?, turnover: Double?) {
+        self.date = date
+        self.rootSymbol = rootSymbol
+        self.currency = currency
+        self.volume = volume
+        self.turnover = turnover
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        date = try container.decode(Date.self, forKey: "date")
-        rootSymbol = try container.decode(String.self, forKey: "rootSymbol")
-        currency = try container.decodeIfPresent(String.self, forKey: "currency")
-        volume = try container.decodeIfPresent(Double.self, forKey: "volume")
-        turnover = try container.decodeIfPresent(Double.self, forKey: "turnover")
-    }
 }
 

@@ -10,14 +10,14 @@ import Foundation
 
 /** Account Notifications */
 
-open class Notification: Codable {
+public struct Notification: Codable {
 
     public enum ModelType: String, Codable { 
         case success = "success"
         case error = "error"
         case info = "info"
     }
-    public var id: Double?
+    public var _id: Double?
     public var date: Date
     public var title: String
     public var body: String
@@ -28,40 +28,32 @@ open class Notification: Codable {
     public var waitForVisibility: Bool?
     public var sound: String?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encodeIfPresent(id, forKey: "id")
-        try container.encode(date, forKey: "date")
-        try container.encode(title, forKey: "title")
-        try container.encode(body, forKey: "body")
-        try container.encode(ttl, forKey: "ttl")
-        try container.encodeIfPresent(type, forKey: "type")
-        try container.encodeIfPresent(closable, forKey: "closable")
-        try container.encodeIfPresent(persist, forKey: "persist")
-        try container.encodeIfPresent(waitForVisibility, forKey: "waitForVisibility")
-        try container.encodeIfPresent(sound, forKey: "sound")
+    public init(_id: Double?, date: Date, title: String, body: String, ttl: Double, type: ModelType?, closable: Bool?, persist: Bool?, waitForVisibility: Bool?, sound: String?) {
+        self._id = _id
+        self.date = date
+        self.title = title
+        self.body = body
+        self.ttl = ttl
+        self.type = type
+        self.closable = closable
+        self.persist = persist
+        self.waitForVisibility = waitForVisibility
+        self.sound = sound
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
-
-        id = try container.decodeIfPresent(Double.self, forKey: "id")
-        date = try container.decode(Date.self, forKey: "date")
-        title = try container.decode(String.self, forKey: "title")
-        body = try container.decode(String.self, forKey: "body")
-        ttl = try container.decode(Double.self, forKey: "ttl")
-        type = try container.decodeIfPresent(String.self, forKey: "type")
-        closable = try container.decodeIfPresent(Bool.self, forKey: "closable")
-        persist = try container.decodeIfPresent(Bool.self, forKey: "persist")
-        waitForVisibility = try container.decodeIfPresent(Bool.self, forKey: "waitForVisibility")
-        sound = try container.decodeIfPresent(String.self, forKey: "sound")
+    public enum CodingKeys: String, CodingKey { 
+        case _id = "id"
+        case date
+        case title
+        case body
+        case ttl
+        case type
+        case closable
+        case persist
+        case waitForVisibility
+        case sound
     }
+
+
 }
 

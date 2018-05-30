@@ -10,7 +10,7 @@ import Foundation
 
 /** Tradeable Contracts, Indices, and History */
 
-open class Instrument: Codable {
+public struct Instrument: Codable {
 
     public var symbol: String
     public var rootSymbol: String?
@@ -24,6 +24,10 @@ open class Instrument: Codable {
     public var inverseLeg: String?
     public var sellLeg: String?
     public var buyLeg: String?
+    public var optionStrikePcnt: Double?
+    public var optionStrikeRound: Double?
+    public var optionStrikePrice: Double?
+    public var optionMultiplier: Double?
     public var positionCurrency: String?
     public var underlying: String?
     public var quoteCurrency: String?
@@ -106,215 +110,114 @@ open class Instrument: Codable {
     public var markPrice: Double?
     public var indicativeTaxRate: Double?
     public var indicativeSettlePrice: Double?
+    public var optionUnderlyingPrice: Double?
     public var settledPrice: Double?
     public var timestamp: Date?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(symbol, forKey: "symbol")
-        try container.encodeIfPresent(rootSymbol, forKey: "rootSymbol")
-        try container.encodeIfPresent(state, forKey: "state")
-        try container.encodeIfPresent(typ, forKey: "typ")
-        try container.encodeIfPresent(listing, forKey: "listing")
-        try container.encodeIfPresent(front, forKey: "front")
-        try container.encodeIfPresent(expiry, forKey: "expiry")
-        try container.encodeIfPresent(settle, forKey: "settle")
-        try container.encodeIfPresent(relistInterval, forKey: "relistInterval")
-        try container.encodeIfPresent(inverseLeg, forKey: "inverseLeg")
-        try container.encodeIfPresent(sellLeg, forKey: "sellLeg")
-        try container.encodeIfPresent(buyLeg, forKey: "buyLeg")
-        try container.encodeIfPresent(positionCurrency, forKey: "positionCurrency")
-        try container.encodeIfPresent(underlying, forKey: "underlying")
-        try container.encodeIfPresent(quoteCurrency, forKey: "quoteCurrency")
-        try container.encodeIfPresent(underlyingSymbol, forKey: "underlyingSymbol")
-        try container.encodeIfPresent(reference, forKey: "reference")
-        try container.encodeIfPresent(referenceSymbol, forKey: "referenceSymbol")
-        try container.encodeIfPresent(calcInterval, forKey: "calcInterval")
-        try container.encodeIfPresent(publishInterval, forKey: "publishInterval")
-        try container.encodeIfPresent(publishTime, forKey: "publishTime")
-        try container.encodeIfPresent(maxOrderQty, forKey: "maxOrderQty")
-        try container.encodeIfPresent(maxPrice, forKey: "maxPrice")
-        try container.encodeIfPresent(lotSize, forKey: "lotSize")
-        try container.encodeIfPresent(tickSize, forKey: "tickSize")
-        try container.encodeIfPresent(multiplier, forKey: "multiplier")
-        try container.encodeIfPresent(settlCurrency, forKey: "settlCurrency")
-        try container.encodeIfPresent(underlyingToPositionMultiplier, forKey: "underlyingToPositionMultiplier")
-        try container.encodeIfPresent(underlyingToSettleMultiplier, forKey: "underlyingToSettleMultiplier")
-        try container.encodeIfPresent(quoteToSettleMultiplier, forKey: "quoteToSettleMultiplier")
-        try container.encodeIfPresent(isQuanto, forKey: "isQuanto")
-        try container.encodeIfPresent(isInverse, forKey: "isInverse")
-        try container.encodeIfPresent(initMargin, forKey: "initMargin")
-        try container.encodeIfPresent(maintMargin, forKey: "maintMargin")
-        try container.encodeIfPresent(riskLimit, forKey: "riskLimit")
-        try container.encodeIfPresent(riskStep, forKey: "riskStep")
-        try container.encodeIfPresent(limit, forKey: "limit")
-        try container.encodeIfPresent(capped, forKey: "capped")
-        try container.encodeIfPresent(taxed, forKey: "taxed")
-        try container.encodeIfPresent(deleverage, forKey: "deleverage")
-        try container.encodeIfPresent(makerFee, forKey: "makerFee")
-        try container.encodeIfPresent(takerFee, forKey: "takerFee")
-        try container.encodeIfPresent(settlementFee, forKey: "settlementFee")
-        try container.encodeIfPresent(insuranceFee, forKey: "insuranceFee")
-        try container.encodeIfPresent(fundingBaseSymbol, forKey: "fundingBaseSymbol")
-        try container.encodeIfPresent(fundingQuoteSymbol, forKey: "fundingQuoteSymbol")
-        try container.encodeIfPresent(fundingPremiumSymbol, forKey: "fundingPremiumSymbol")
-        try container.encodeIfPresent(fundingTimestamp, forKey: "fundingTimestamp")
-        try container.encodeIfPresent(fundingInterval, forKey: "fundingInterval")
-        try container.encodeIfPresent(fundingRate, forKey: "fundingRate")
-        try container.encodeIfPresent(indicativeFundingRate, forKey: "indicativeFundingRate")
-        try container.encodeIfPresent(rebalanceTimestamp, forKey: "rebalanceTimestamp")
-        try container.encodeIfPresent(rebalanceInterval, forKey: "rebalanceInterval")
-        try container.encodeIfPresent(openingTimestamp, forKey: "openingTimestamp")
-        try container.encodeIfPresent(closingTimestamp, forKey: "closingTimestamp")
-        try container.encodeIfPresent(sessionInterval, forKey: "sessionInterval")
-        try container.encodeIfPresent(prevClosePrice, forKey: "prevClosePrice")
-        try container.encodeIfPresent(limitDownPrice, forKey: "limitDownPrice")
-        try container.encodeIfPresent(limitUpPrice, forKey: "limitUpPrice")
-        try container.encodeIfPresent(bankruptLimitDownPrice, forKey: "bankruptLimitDownPrice")
-        try container.encodeIfPresent(bankruptLimitUpPrice, forKey: "bankruptLimitUpPrice")
-        try container.encodeIfPresent(prevTotalVolume, forKey: "prevTotalVolume")
-        try container.encodeIfPresent(totalVolume, forKey: "totalVolume")
-        try container.encodeIfPresent(volume, forKey: "volume")
-        try container.encodeIfPresent(volume24h, forKey: "volume24h")
-        try container.encodeIfPresent(prevTotalTurnover, forKey: "prevTotalTurnover")
-        try container.encodeIfPresent(totalTurnover, forKey: "totalTurnover")
-        try container.encodeIfPresent(turnover, forKey: "turnover")
-        try container.encodeIfPresent(turnover24h, forKey: "turnover24h")
-        try container.encodeIfPresent(prevPrice24h, forKey: "prevPrice24h")
-        try container.encodeIfPresent(vwap, forKey: "vwap")
-        try container.encodeIfPresent(highPrice, forKey: "highPrice")
-        try container.encodeIfPresent(lowPrice, forKey: "lowPrice")
-        try container.encodeIfPresent(lastPrice, forKey: "lastPrice")
-        try container.encodeIfPresent(lastPriceProtected, forKey: "lastPriceProtected")
-        try container.encodeIfPresent(lastTickDirection, forKey: "lastTickDirection")
-        try container.encodeIfPresent(lastChangePcnt, forKey: "lastChangePcnt")
-        try container.encodeIfPresent(bidPrice, forKey: "bidPrice")
-        try container.encodeIfPresent(midPrice, forKey: "midPrice")
-        try container.encodeIfPresent(askPrice, forKey: "askPrice")
-        try container.encodeIfPresent(impactBidPrice, forKey: "impactBidPrice")
-        try container.encodeIfPresent(impactMidPrice, forKey: "impactMidPrice")
-        try container.encodeIfPresent(impactAskPrice, forKey: "impactAskPrice")
-        try container.encodeIfPresent(hasLiquidity, forKey: "hasLiquidity")
-        try container.encodeIfPresent(openInterest, forKey: "openInterest")
-        try container.encodeIfPresent(openValue, forKey: "openValue")
-        try container.encodeIfPresent(fairMethod, forKey: "fairMethod")
-        try container.encodeIfPresent(fairBasisRate, forKey: "fairBasisRate")
-        try container.encodeIfPresent(fairBasis, forKey: "fairBasis")
-        try container.encodeIfPresent(fairPrice, forKey: "fairPrice")
-        try container.encodeIfPresent(markMethod, forKey: "markMethod")
-        try container.encodeIfPresent(markPrice, forKey: "markPrice")
-        try container.encodeIfPresent(indicativeTaxRate, forKey: "indicativeTaxRate")
-        try container.encodeIfPresent(indicativeSettlePrice, forKey: "indicativeSettlePrice")
-        try container.encodeIfPresent(settledPrice, forKey: "settledPrice")
-        try container.encodeIfPresent(timestamp, forKey: "timestamp")
+    public init(symbol: String, rootSymbol: String?, state: String?, typ: String?, listing: Date?, front: Date?, expiry: Date?, settle: Date?, relistInterval: Date?, inverseLeg: String?, sellLeg: String?, buyLeg: String?, optionStrikePcnt: Double?, optionStrikeRound: Double?, optionStrikePrice: Double?, optionMultiplier: Double?, positionCurrency: String?, underlying: String?, quoteCurrency: String?, underlyingSymbol: String?, reference: String?, referenceSymbol: String?, calcInterval: Date?, publishInterval: Date?, publishTime: Date?, maxOrderQty: Double?, maxPrice: Double?, lotSize: Double?, tickSize: Double?, multiplier: Double?, settlCurrency: String?, underlyingToPositionMultiplier: Double?, underlyingToSettleMultiplier: Double?, quoteToSettleMultiplier: Double?, isQuanto: Bool?, isInverse: Bool?, initMargin: Double?, maintMargin: Double?, riskLimit: Double?, riskStep: Double?, limit: Double?, capped: Bool?, taxed: Bool?, deleverage: Bool?, makerFee: Double?, takerFee: Double?, settlementFee: Double?, insuranceFee: Double?, fundingBaseSymbol: String?, fundingQuoteSymbol: String?, fundingPremiumSymbol: String?, fundingTimestamp: Date?, fundingInterval: Date?, fundingRate: Double?, indicativeFundingRate: Double?, rebalanceTimestamp: Date?, rebalanceInterval: Date?, openingTimestamp: Date?, closingTimestamp: Date?, sessionInterval: Date?, prevClosePrice: Double?, limitDownPrice: Double?, limitUpPrice: Double?, bankruptLimitDownPrice: Double?, bankruptLimitUpPrice: Double?, prevTotalVolume: Double?, totalVolume: Double?, volume: Double?, volume24h: Double?, prevTotalTurnover: Double?, totalTurnover: Double?, turnover: Double?, turnover24h: Double?, prevPrice24h: Double?, vwap: Double?, highPrice: Double?, lowPrice: Double?, lastPrice: Double?, lastPriceProtected: Double?, lastTickDirection: String?, lastChangePcnt: Double?, bidPrice: Double?, midPrice: Double?, askPrice: Double?, impactBidPrice: Double?, impactMidPrice: Double?, impactAskPrice: Double?, hasLiquidity: Bool?, openInterest: Double?, openValue: Double?, fairMethod: String?, fairBasisRate: Double?, fairBasis: Double?, fairPrice: Double?, markMethod: String?, markPrice: Double?, indicativeTaxRate: Double?, indicativeSettlePrice: Double?, optionUnderlyingPrice: Double?, settledPrice: Double?, timestamp: Date?) {
+        self.symbol = symbol
+        self.rootSymbol = rootSymbol
+        self.state = state
+        self.typ = typ
+        self.listing = listing
+        self.front = front
+        self.expiry = expiry
+        self.settle = settle
+        self.relistInterval = relistInterval
+        self.inverseLeg = inverseLeg
+        self.sellLeg = sellLeg
+        self.buyLeg = buyLeg
+        self.optionStrikePcnt = optionStrikePcnt
+        self.optionStrikeRound = optionStrikeRound
+        self.optionStrikePrice = optionStrikePrice
+        self.optionMultiplier = optionMultiplier
+        self.positionCurrency = positionCurrency
+        self.underlying = underlying
+        self.quoteCurrency = quoteCurrency
+        self.underlyingSymbol = underlyingSymbol
+        self.reference = reference
+        self.referenceSymbol = referenceSymbol
+        self.calcInterval = calcInterval
+        self.publishInterval = publishInterval
+        self.publishTime = publishTime
+        self.maxOrderQty = maxOrderQty
+        self.maxPrice = maxPrice
+        self.lotSize = lotSize
+        self.tickSize = tickSize
+        self.multiplier = multiplier
+        self.settlCurrency = settlCurrency
+        self.underlyingToPositionMultiplier = underlyingToPositionMultiplier
+        self.underlyingToSettleMultiplier = underlyingToSettleMultiplier
+        self.quoteToSettleMultiplier = quoteToSettleMultiplier
+        self.isQuanto = isQuanto
+        self.isInverse = isInverse
+        self.initMargin = initMargin
+        self.maintMargin = maintMargin
+        self.riskLimit = riskLimit
+        self.riskStep = riskStep
+        self.limit = limit
+        self.capped = capped
+        self.taxed = taxed
+        self.deleverage = deleverage
+        self.makerFee = makerFee
+        self.takerFee = takerFee
+        self.settlementFee = settlementFee
+        self.insuranceFee = insuranceFee
+        self.fundingBaseSymbol = fundingBaseSymbol
+        self.fundingQuoteSymbol = fundingQuoteSymbol
+        self.fundingPremiumSymbol = fundingPremiumSymbol
+        self.fundingTimestamp = fundingTimestamp
+        self.fundingInterval = fundingInterval
+        self.fundingRate = fundingRate
+        self.indicativeFundingRate = indicativeFundingRate
+        self.rebalanceTimestamp = rebalanceTimestamp
+        self.rebalanceInterval = rebalanceInterval
+        self.openingTimestamp = openingTimestamp
+        self.closingTimestamp = closingTimestamp
+        self.sessionInterval = sessionInterval
+        self.prevClosePrice = prevClosePrice
+        self.limitDownPrice = limitDownPrice
+        self.limitUpPrice = limitUpPrice
+        self.bankruptLimitDownPrice = bankruptLimitDownPrice
+        self.bankruptLimitUpPrice = bankruptLimitUpPrice
+        self.prevTotalVolume = prevTotalVolume
+        self.totalVolume = totalVolume
+        self.volume = volume
+        self.volume24h = volume24h
+        self.prevTotalTurnover = prevTotalTurnover
+        self.totalTurnover = totalTurnover
+        self.turnover = turnover
+        self.turnover24h = turnover24h
+        self.prevPrice24h = prevPrice24h
+        self.vwap = vwap
+        self.highPrice = highPrice
+        self.lowPrice = lowPrice
+        self.lastPrice = lastPrice
+        self.lastPriceProtected = lastPriceProtected
+        self.lastTickDirection = lastTickDirection
+        self.lastChangePcnt = lastChangePcnt
+        self.bidPrice = bidPrice
+        self.midPrice = midPrice
+        self.askPrice = askPrice
+        self.impactBidPrice = impactBidPrice
+        self.impactMidPrice = impactMidPrice
+        self.impactAskPrice = impactAskPrice
+        self.hasLiquidity = hasLiquidity
+        self.openInterest = openInterest
+        self.openValue = openValue
+        self.fairMethod = fairMethod
+        self.fairBasisRate = fairBasisRate
+        self.fairBasis = fairBasis
+        self.fairPrice = fairPrice
+        self.markMethod = markMethod
+        self.markPrice = markPrice
+        self.indicativeTaxRate = indicativeTaxRate
+        self.indicativeSettlePrice = indicativeSettlePrice
+        self.optionUnderlyingPrice = optionUnderlyingPrice
+        self.settledPrice = settledPrice
+        self.timestamp = timestamp
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        symbol = try container.decode(String.self, forKey: "symbol")
-        rootSymbol = try container.decodeIfPresent(String.self, forKey: "rootSymbol")
-        state = try container.decodeIfPresent(String.self, forKey: "state")
-        typ = try container.decodeIfPresent(String.self, forKey: "typ")
-        listing = try container.decodeIfPresent(Date.self, forKey: "listing")
-        front = try container.decodeIfPresent(Date.self, forKey: "front")
-        expiry = try container.decodeIfPresent(Date.self, forKey: "expiry")
-        settle = try container.decodeIfPresent(Date.self, forKey: "settle")
-        relistInterval = try container.decodeIfPresent(Date.self, forKey: "relistInterval")
-        inverseLeg = try container.decodeIfPresent(String.self, forKey: "inverseLeg")
-        sellLeg = try container.decodeIfPresent(String.self, forKey: "sellLeg")
-        buyLeg = try container.decodeIfPresent(String.self, forKey: "buyLeg")
-        positionCurrency = try container.decodeIfPresent(String.self, forKey: "positionCurrency")
-        underlying = try container.decodeIfPresent(String.self, forKey: "underlying")
-        quoteCurrency = try container.decodeIfPresent(String.self, forKey: "quoteCurrency")
-        underlyingSymbol = try container.decodeIfPresent(String.self, forKey: "underlyingSymbol")
-        reference = try container.decodeIfPresent(String.self, forKey: "reference")
-        referenceSymbol = try container.decodeIfPresent(String.self, forKey: "referenceSymbol")
-        calcInterval = try container.decodeIfPresent(Date.self, forKey: "calcInterval")
-        publishInterval = try container.decodeIfPresent(Date.self, forKey: "publishInterval")
-        publishTime = try container.decodeIfPresent(Date.self, forKey: "publishTime")
-        maxOrderQty = try container.decodeIfPresent(Double.self, forKey: "maxOrderQty")
-        maxPrice = try container.decodeIfPresent(Double.self, forKey: "maxPrice")
-        lotSize = try container.decodeIfPresent(Double.self, forKey: "lotSize")
-        tickSize = try container.decodeIfPresent(Double.self, forKey: "tickSize")
-        multiplier = try container.decodeIfPresent(Double.self, forKey: "multiplier")
-        settlCurrency = try container.decodeIfPresent(String.self, forKey: "settlCurrency")
-        underlyingToPositionMultiplier = try container.decodeIfPresent(Double.self, forKey: "underlyingToPositionMultiplier")
-        underlyingToSettleMultiplier = try container.decodeIfPresent(Double.self, forKey: "underlyingToSettleMultiplier")
-        quoteToSettleMultiplier = try container.decodeIfPresent(Double.self, forKey: "quoteToSettleMultiplier")
-        isQuanto = try container.decodeIfPresent(Bool.self, forKey: "isQuanto")
-        isInverse = try container.decodeIfPresent(Bool.self, forKey: "isInverse")
-        initMargin = try container.decodeIfPresent(Double.self, forKey: "initMargin")
-        maintMargin = try container.decodeIfPresent(Double.self, forKey: "maintMargin")
-        riskLimit = try container.decodeIfPresent(Double.self, forKey: "riskLimit")
-        riskStep = try container.decodeIfPresent(Double.self, forKey: "riskStep")
-        limit = try container.decodeIfPresent(Double.self, forKey: "limit")
-        capped = try container.decodeIfPresent(Bool.self, forKey: "capped")
-        taxed = try container.decodeIfPresent(Bool.self, forKey: "taxed")
-        deleverage = try container.decodeIfPresent(Bool.self, forKey: "deleverage")
-        makerFee = try container.decodeIfPresent(Double.self, forKey: "makerFee")
-        takerFee = try container.decodeIfPresent(Double.self, forKey: "takerFee")
-        settlementFee = try container.decodeIfPresent(Double.self, forKey: "settlementFee")
-        insuranceFee = try container.decodeIfPresent(Double.self, forKey: "insuranceFee")
-        fundingBaseSymbol = try container.decodeIfPresent(String.self, forKey: "fundingBaseSymbol")
-        fundingQuoteSymbol = try container.decodeIfPresent(String.self, forKey: "fundingQuoteSymbol")
-        fundingPremiumSymbol = try container.decodeIfPresent(String.self, forKey: "fundingPremiumSymbol")
-        fundingTimestamp = try container.decodeIfPresent(Date.self, forKey: "fundingTimestamp")
-        fundingInterval = try container.decodeIfPresent(Date.self, forKey: "fundingInterval")
-        fundingRate = try container.decodeIfPresent(Double.self, forKey: "fundingRate")
-        indicativeFundingRate = try container.decodeIfPresent(Double.self, forKey: "indicativeFundingRate")
-        rebalanceTimestamp = try container.decodeIfPresent(Date.self, forKey: "rebalanceTimestamp")
-        rebalanceInterval = try container.decodeIfPresent(Date.self, forKey: "rebalanceInterval")
-        openingTimestamp = try container.decodeIfPresent(Date.self, forKey: "openingTimestamp")
-        closingTimestamp = try container.decodeIfPresent(Date.self, forKey: "closingTimestamp")
-        sessionInterval = try container.decodeIfPresent(Date.self, forKey: "sessionInterval")
-        prevClosePrice = try container.decodeIfPresent(Double.self, forKey: "prevClosePrice")
-        limitDownPrice = try container.decodeIfPresent(Double.self, forKey: "limitDownPrice")
-        limitUpPrice = try container.decodeIfPresent(Double.self, forKey: "limitUpPrice")
-        bankruptLimitDownPrice = try container.decodeIfPresent(Double.self, forKey: "bankruptLimitDownPrice")
-        bankruptLimitUpPrice = try container.decodeIfPresent(Double.self, forKey: "bankruptLimitUpPrice")
-        prevTotalVolume = try container.decodeIfPresent(Double.self, forKey: "prevTotalVolume")
-        totalVolume = try container.decodeIfPresent(Double.self, forKey: "totalVolume")
-        volume = try container.decodeIfPresent(Double.self, forKey: "volume")
-        volume24h = try container.decodeIfPresent(Double.self, forKey: "volume24h")
-        prevTotalTurnover = try container.decodeIfPresent(Double.self, forKey: "prevTotalTurnover")
-        totalTurnover = try container.decodeIfPresent(Double.self, forKey: "totalTurnover")
-        turnover = try container.decodeIfPresent(Double.self, forKey: "turnover")
-        turnover24h = try container.decodeIfPresent(Double.self, forKey: "turnover24h")
-        prevPrice24h = try container.decodeIfPresent(Double.self, forKey: "prevPrice24h")
-        vwap = try container.decodeIfPresent(Double.self, forKey: "vwap")
-        highPrice = try container.decodeIfPresent(Double.self, forKey: "highPrice")
-        lowPrice = try container.decodeIfPresent(Double.self, forKey: "lowPrice")
-        lastPrice = try container.decodeIfPresent(Double.self, forKey: "lastPrice")
-        lastPriceProtected = try container.decodeIfPresent(Double.self, forKey: "lastPriceProtected")
-        lastTickDirection = try container.decodeIfPresent(String.self, forKey: "lastTickDirection")
-        lastChangePcnt = try container.decodeIfPresent(Double.self, forKey: "lastChangePcnt")
-        bidPrice = try container.decodeIfPresent(Double.self, forKey: "bidPrice")
-        midPrice = try container.decodeIfPresent(Double.self, forKey: "midPrice")
-        askPrice = try container.decodeIfPresent(Double.self, forKey: "askPrice")
-        impactBidPrice = try container.decodeIfPresent(Double.self, forKey: "impactBidPrice")
-        impactMidPrice = try container.decodeIfPresent(Double.self, forKey: "impactMidPrice")
-        impactAskPrice = try container.decodeIfPresent(Double.self, forKey: "impactAskPrice")
-        hasLiquidity = try container.decodeIfPresent(Bool.self, forKey: "hasLiquidity")
-        openInterest = try container.decodeIfPresent(Double.self, forKey: "openInterest")
-        openValue = try container.decodeIfPresent(Double.self, forKey: "openValue")
-        fairMethod = try container.decodeIfPresent(String.self, forKey: "fairMethod")
-        fairBasisRate = try container.decodeIfPresent(Double.self, forKey: "fairBasisRate")
-        fairBasis = try container.decodeIfPresent(Double.self, forKey: "fairBasis")
-        fairPrice = try container.decodeIfPresent(Double.self, forKey: "fairPrice")
-        markMethod = try container.decodeIfPresent(String.self, forKey: "markMethod")
-        markPrice = try container.decodeIfPresent(Double.self, forKey: "markPrice")
-        indicativeTaxRate = try container.decodeIfPresent(Double.self, forKey: "indicativeTaxRate")
-        indicativeSettlePrice = try container.decodeIfPresent(Double.self, forKey: "indicativeSettlePrice")
-        settledPrice = try container.decodeIfPresent(Double.self, forKey: "settledPrice")
-        timestamp = try container.decodeIfPresent(Date.self, forKey: "timestamp")
-    }
 }
 

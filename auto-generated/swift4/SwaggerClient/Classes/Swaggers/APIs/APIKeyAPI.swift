@@ -19,7 +19,7 @@ open class APIKeyAPI {
      */
     open class func aPIKeyDisable(apiKeyID: String, completion: @escaping ((_ data: APIKey?,_ error: Error?) -> Void)) {
         aPIKeyDisableWithRequestBuilder(apiKeyID: apiKeyID).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -61,9 +61,8 @@ open class APIKeyAPI {
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
         let parameters = APIHelper.convertBoolToString(nonNullParameters)
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<APIKey>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -78,7 +77,7 @@ open class APIKeyAPI {
      */
     open class func aPIKeyEnable(apiKeyID: String, completion: @escaping ((_ data: APIKey?,_ error: Error?) -> Void)) {
         aPIKeyEnableWithRequestBuilder(apiKeyID: apiKeyID).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -120,9 +119,8 @@ open class APIKeyAPI {
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
         let parameters = APIHelper.convertBoolToString(nonNullParameters)
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<APIKey>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -137,7 +135,7 @@ open class APIKeyAPI {
      */
     open class func aPIKeyGet(reverse: Bool? = nil, completion: @escaping ((_ data: [APIKey]?,_ error: Error?) -> Void)) {
         aPIKeyGetWithRequestBuilder(reverse: reverse).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -184,12 +182,11 @@ open class APIKeyAPI {
         let path = "/apiKey"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
             "reverse": reverse
         ])
-        
 
         let requestBuilder: RequestBuilder<[APIKey]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -208,7 +205,7 @@ open class APIKeyAPI {
      */
     open class func aPIKeyNew(name: String? = nil, cidr: String? = nil, permissions: String? = nil, enabled: Bool? = nil, token: String? = nil, completion: @escaping ((_ data: APIKey?,_ error: Error?) -> Void)) {
         aPIKeyNewWithRequestBuilder(name: name, cidr: cidr, permissions: permissions, enabled: enabled, token: token).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -259,9 +256,8 @@ open class APIKeyAPI {
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
         let parameters = APIHelper.convertBoolToString(nonNullParameters)
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<APIKey>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -276,7 +272,7 @@ open class APIKeyAPI {
      */
     open class func aPIKeyRemove(apiKeyID: String, completion: @escaping ((_ data: InlineResponse200?,_ error: Error?) -> Void)) {
         aPIKeyRemoveWithRequestBuilder(apiKeyID: apiKeyID).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -310,9 +306,8 @@ open class APIKeyAPI {
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
         let parameters = APIHelper.convertBoolToString(nonNullParameters)
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<InlineResponse200>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 

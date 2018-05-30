@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,406 +38,406 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Position" /> class.
         /// </summary>
-        /// <param name="Account">Account (required).</param>
-        /// <param name="Symbol">Symbol (required).</param>
-        /// <param name="Currency">Currency (required).</param>
-        /// <param name="Underlying">Underlying.</param>
-        /// <param name="QuoteCurrency">QuoteCurrency.</param>
-        /// <param name="Commission">Commission (default to 0.0).</param>
-        /// <param name="InitMarginReq">InitMarginReq (default to 0.0).</param>
-        /// <param name="MaintMarginReq">MaintMarginReq (default to 0.0).</param>
-        /// <param name="RiskLimit">RiskLimit.</param>
-        /// <param name="Leverage">Leverage (default to 0.0).</param>
-        /// <param name="CrossMargin">CrossMargin.</param>
-        /// <param name="DeleveragePercentile">DeleveragePercentile (default to 0.0).</param>
-        /// <param name="RebalancedPnl">RebalancedPnl.</param>
-        /// <param name="PrevRealisedPnl">PrevRealisedPnl.</param>
-        /// <param name="PrevUnrealisedPnl">PrevUnrealisedPnl.</param>
-        /// <param name="PrevClosePrice">PrevClosePrice (default to 0.0).</param>
-        /// <param name="OpeningTimestamp">OpeningTimestamp.</param>
-        /// <param name="OpeningQty">OpeningQty.</param>
-        /// <param name="OpeningCost">OpeningCost.</param>
-        /// <param name="OpeningComm">OpeningComm.</param>
-        /// <param name="OpenOrderBuyQty">OpenOrderBuyQty.</param>
-        /// <param name="OpenOrderBuyCost">OpenOrderBuyCost.</param>
-        /// <param name="OpenOrderBuyPremium">OpenOrderBuyPremium.</param>
-        /// <param name="OpenOrderSellQty">OpenOrderSellQty.</param>
-        /// <param name="OpenOrderSellCost">OpenOrderSellCost.</param>
-        /// <param name="OpenOrderSellPremium">OpenOrderSellPremium.</param>
-        /// <param name="ExecBuyQty">ExecBuyQty.</param>
-        /// <param name="ExecBuyCost">ExecBuyCost.</param>
-        /// <param name="ExecSellQty">ExecSellQty.</param>
-        /// <param name="ExecSellCost">ExecSellCost.</param>
-        /// <param name="ExecQty">ExecQty.</param>
-        /// <param name="ExecCost">ExecCost.</param>
-        /// <param name="ExecComm">ExecComm.</param>
-        /// <param name="CurrentTimestamp">CurrentTimestamp.</param>
-        /// <param name="CurrentQty">CurrentQty.</param>
-        /// <param name="CurrentCost">CurrentCost.</param>
-        /// <param name="CurrentComm">CurrentComm.</param>
-        /// <param name="RealisedCost">RealisedCost.</param>
-        /// <param name="UnrealisedCost">UnrealisedCost.</param>
-        /// <param name="GrossOpenCost">GrossOpenCost.</param>
-        /// <param name="GrossOpenPremium">GrossOpenPremium.</param>
-        /// <param name="GrossExecCost">GrossExecCost.</param>
-        /// <param name="IsOpen">IsOpen.</param>
-        /// <param name="MarkPrice">MarkPrice (default to 0.0).</param>
-        /// <param name="MarkValue">MarkValue.</param>
-        /// <param name="RiskValue">RiskValue.</param>
-        /// <param name="HomeNotional">HomeNotional (default to 0.0).</param>
-        /// <param name="ForeignNotional">ForeignNotional (default to 0.0).</param>
-        /// <param name="PosState">PosState.</param>
-        /// <param name="PosCost">PosCost.</param>
-        /// <param name="PosCost2">PosCost2.</param>
-        /// <param name="PosCross">PosCross.</param>
-        /// <param name="PosInit">PosInit.</param>
-        /// <param name="PosComm">PosComm.</param>
-        /// <param name="PosLoss">PosLoss.</param>
-        /// <param name="PosMargin">PosMargin.</param>
-        /// <param name="PosMaint">PosMaint.</param>
-        /// <param name="PosAllowance">PosAllowance.</param>
-        /// <param name="TaxableMargin">TaxableMargin.</param>
-        /// <param name="InitMargin">InitMargin.</param>
-        /// <param name="MaintMargin">MaintMargin.</param>
-        /// <param name="SessionMargin">SessionMargin.</param>
-        /// <param name="TargetExcessMargin">TargetExcessMargin.</param>
-        /// <param name="VarMargin">VarMargin.</param>
-        /// <param name="RealisedGrossPnl">RealisedGrossPnl.</param>
-        /// <param name="RealisedTax">RealisedTax.</param>
-        /// <param name="RealisedPnl">RealisedPnl.</param>
-        /// <param name="UnrealisedGrossPnl">UnrealisedGrossPnl.</param>
-        /// <param name="LongBankrupt">LongBankrupt.</param>
-        /// <param name="ShortBankrupt">ShortBankrupt.</param>
-        /// <param name="TaxBase">TaxBase.</param>
-        /// <param name="IndicativeTaxRate">IndicativeTaxRate (default to 0.0).</param>
-        /// <param name="IndicativeTax">IndicativeTax.</param>
-        /// <param name="UnrealisedTax">UnrealisedTax.</param>
-        /// <param name="UnrealisedPnl">UnrealisedPnl.</param>
-        /// <param name="UnrealisedPnlPcnt">UnrealisedPnlPcnt (default to 0.0).</param>
-        /// <param name="UnrealisedRoePcnt">UnrealisedRoePcnt (default to 0.0).</param>
-        /// <param name="SimpleQty">SimpleQty (default to 0.0).</param>
-        /// <param name="SimpleCost">SimpleCost (default to 0.0).</param>
-        /// <param name="SimpleValue">SimpleValue (default to 0.0).</param>
-        /// <param name="SimplePnl">SimplePnl (default to 0.0).</param>
-        /// <param name="SimplePnlPcnt">SimplePnlPcnt (default to 0.0).</param>
-        /// <param name="AvgCostPrice">AvgCostPrice (default to 0.0).</param>
-        /// <param name="AvgEntryPrice">AvgEntryPrice (default to 0.0).</param>
-        /// <param name="BreakEvenPrice">BreakEvenPrice (default to 0.0).</param>
-        /// <param name="MarginCallPrice">MarginCallPrice (default to 0.0).</param>
-        /// <param name="LiquidationPrice">LiquidationPrice (default to 0.0).</param>
-        /// <param name="BankruptPrice">BankruptPrice (default to 0.0).</param>
-        /// <param name="Timestamp">Timestamp.</param>
-        /// <param name="LastPrice">LastPrice (default to 0.0).</param>
-        /// <param name="LastValue">LastValue.</param>
-        public Position(decimal? Account = default(decimal?), string Symbol = default(string), string Currency = default(string), string Underlying = default(string), string QuoteCurrency = default(string), double? Commission = 0.0, double? InitMarginReq = 0.0, double? MaintMarginReq = 0.0, decimal? RiskLimit = default(decimal?), double? Leverage = 0.0, bool? CrossMargin = default(bool?), double? DeleveragePercentile = 0.0, decimal? RebalancedPnl = default(decimal?), decimal? PrevRealisedPnl = default(decimal?), decimal? PrevUnrealisedPnl = default(decimal?), double? PrevClosePrice = 0.0, DateTime? OpeningTimestamp = default(DateTime?), decimal? OpeningQty = default(decimal?), decimal? OpeningCost = default(decimal?), decimal? OpeningComm = default(decimal?), decimal? OpenOrderBuyQty = default(decimal?), decimal? OpenOrderBuyCost = default(decimal?), decimal? OpenOrderBuyPremium = default(decimal?), decimal? OpenOrderSellQty = default(decimal?), decimal? OpenOrderSellCost = default(decimal?), decimal? OpenOrderSellPremium = default(decimal?), decimal? ExecBuyQty = default(decimal?), decimal? ExecBuyCost = default(decimal?), decimal? ExecSellQty = default(decimal?), decimal? ExecSellCost = default(decimal?), decimal? ExecQty = default(decimal?), decimal? ExecCost = default(decimal?), decimal? ExecComm = default(decimal?), DateTime? CurrentTimestamp = default(DateTime?), decimal? CurrentQty = default(decimal?), decimal? CurrentCost = default(decimal?), decimal? CurrentComm = default(decimal?), decimal? RealisedCost = default(decimal?), decimal? UnrealisedCost = default(decimal?), decimal? GrossOpenCost = default(decimal?), decimal? GrossOpenPremium = default(decimal?), decimal? GrossExecCost = default(decimal?), bool? IsOpen = default(bool?), double? MarkPrice = 0.0, decimal? MarkValue = default(decimal?), decimal? RiskValue = default(decimal?), double? HomeNotional = 0.0, double? ForeignNotional = 0.0, string PosState = default(string), decimal? PosCost = default(decimal?), decimal? PosCost2 = default(decimal?), decimal? PosCross = default(decimal?), decimal? PosInit = default(decimal?), decimal? PosComm = default(decimal?), decimal? PosLoss = default(decimal?), decimal? PosMargin = default(decimal?), decimal? PosMaint = default(decimal?), decimal? PosAllowance = default(decimal?), decimal? TaxableMargin = default(decimal?), decimal? InitMargin = default(decimal?), decimal? MaintMargin = default(decimal?), decimal? SessionMargin = default(decimal?), decimal? TargetExcessMargin = default(decimal?), decimal? VarMargin = default(decimal?), decimal? RealisedGrossPnl = default(decimal?), decimal? RealisedTax = default(decimal?), decimal? RealisedPnl = default(decimal?), decimal? UnrealisedGrossPnl = default(decimal?), decimal? LongBankrupt = default(decimal?), decimal? ShortBankrupt = default(decimal?), decimal? TaxBase = default(decimal?), double? IndicativeTaxRate = 0.0, decimal? IndicativeTax = default(decimal?), decimal? UnrealisedTax = default(decimal?), decimal? UnrealisedPnl = default(decimal?), double? UnrealisedPnlPcnt = 0.0, double? UnrealisedRoePcnt = 0.0, double? SimpleQty = 0.0, double? SimpleCost = 0.0, double? SimpleValue = 0.0, double? SimplePnl = 0.0, double? SimplePnlPcnt = 0.0, double? AvgCostPrice = 0.0, double? AvgEntryPrice = 0.0, double? BreakEvenPrice = 0.0, double? MarginCallPrice = 0.0, double? LiquidationPrice = 0.0, double? BankruptPrice = 0.0, DateTime? Timestamp = default(DateTime?), double? LastPrice = 0.0, decimal? LastValue = default(decimal?))
+        /// <param name="account">account (required).</param>
+        /// <param name="symbol">symbol (required).</param>
+        /// <param name="currency">currency (required).</param>
+        /// <param name="underlying">underlying.</param>
+        /// <param name="quoteCurrency">quoteCurrency.</param>
+        /// <param name="commission">commission (default to 0.0).</param>
+        /// <param name="initMarginReq">initMarginReq (default to 0.0).</param>
+        /// <param name="maintMarginReq">maintMarginReq (default to 0.0).</param>
+        /// <param name="riskLimit">riskLimit.</param>
+        /// <param name="leverage">leverage (default to 0.0).</param>
+        /// <param name="crossMargin">crossMargin.</param>
+        /// <param name="deleveragePercentile">deleveragePercentile (default to 0.0).</param>
+        /// <param name="rebalancedPnl">rebalancedPnl.</param>
+        /// <param name="prevRealisedPnl">prevRealisedPnl.</param>
+        /// <param name="prevUnrealisedPnl">prevUnrealisedPnl.</param>
+        /// <param name="prevClosePrice">prevClosePrice (default to 0.0).</param>
+        /// <param name="openingTimestamp">openingTimestamp.</param>
+        /// <param name="openingQty">openingQty.</param>
+        /// <param name="openingCost">openingCost.</param>
+        /// <param name="openingComm">openingComm.</param>
+        /// <param name="openOrderBuyQty">openOrderBuyQty.</param>
+        /// <param name="openOrderBuyCost">openOrderBuyCost.</param>
+        /// <param name="openOrderBuyPremium">openOrderBuyPremium.</param>
+        /// <param name="openOrderSellQty">openOrderSellQty.</param>
+        /// <param name="openOrderSellCost">openOrderSellCost.</param>
+        /// <param name="openOrderSellPremium">openOrderSellPremium.</param>
+        /// <param name="execBuyQty">execBuyQty.</param>
+        /// <param name="execBuyCost">execBuyCost.</param>
+        /// <param name="execSellQty">execSellQty.</param>
+        /// <param name="execSellCost">execSellCost.</param>
+        /// <param name="execQty">execQty.</param>
+        /// <param name="execCost">execCost.</param>
+        /// <param name="execComm">execComm.</param>
+        /// <param name="currentTimestamp">currentTimestamp.</param>
+        /// <param name="currentQty">currentQty.</param>
+        /// <param name="currentCost">currentCost.</param>
+        /// <param name="currentComm">currentComm.</param>
+        /// <param name="realisedCost">realisedCost.</param>
+        /// <param name="unrealisedCost">unrealisedCost.</param>
+        /// <param name="grossOpenCost">grossOpenCost.</param>
+        /// <param name="grossOpenPremium">grossOpenPremium.</param>
+        /// <param name="grossExecCost">grossExecCost.</param>
+        /// <param name="isOpen">isOpen.</param>
+        /// <param name="markPrice">markPrice (default to 0.0).</param>
+        /// <param name="markValue">markValue.</param>
+        /// <param name="riskValue">riskValue.</param>
+        /// <param name="homeNotional">homeNotional (default to 0.0).</param>
+        /// <param name="foreignNotional">foreignNotional (default to 0.0).</param>
+        /// <param name="posState">posState.</param>
+        /// <param name="posCost">posCost.</param>
+        /// <param name="posCost2">posCost2.</param>
+        /// <param name="posCross">posCross.</param>
+        /// <param name="posInit">posInit.</param>
+        /// <param name="posComm">posComm.</param>
+        /// <param name="posLoss">posLoss.</param>
+        /// <param name="posMargin">posMargin.</param>
+        /// <param name="posMaint">posMaint.</param>
+        /// <param name="posAllowance">posAllowance.</param>
+        /// <param name="taxableMargin">taxableMargin.</param>
+        /// <param name="initMargin">initMargin.</param>
+        /// <param name="maintMargin">maintMargin.</param>
+        /// <param name="sessionMargin">sessionMargin.</param>
+        /// <param name="targetExcessMargin">targetExcessMargin.</param>
+        /// <param name="varMargin">varMargin.</param>
+        /// <param name="realisedGrossPnl">realisedGrossPnl.</param>
+        /// <param name="realisedTax">realisedTax.</param>
+        /// <param name="realisedPnl">realisedPnl.</param>
+        /// <param name="unrealisedGrossPnl">unrealisedGrossPnl.</param>
+        /// <param name="longBankrupt">longBankrupt.</param>
+        /// <param name="shortBankrupt">shortBankrupt.</param>
+        /// <param name="taxBase">taxBase.</param>
+        /// <param name="indicativeTaxRate">indicativeTaxRate (default to 0.0).</param>
+        /// <param name="indicativeTax">indicativeTax.</param>
+        /// <param name="unrealisedTax">unrealisedTax.</param>
+        /// <param name="unrealisedPnl">unrealisedPnl.</param>
+        /// <param name="unrealisedPnlPcnt">unrealisedPnlPcnt (default to 0.0).</param>
+        /// <param name="unrealisedRoePcnt">unrealisedRoePcnt (default to 0.0).</param>
+        /// <param name="simpleQty">simpleQty (default to 0.0).</param>
+        /// <param name="simpleCost">simpleCost (default to 0.0).</param>
+        /// <param name="simpleValue">simpleValue (default to 0.0).</param>
+        /// <param name="simplePnl">simplePnl (default to 0.0).</param>
+        /// <param name="simplePnlPcnt">simplePnlPcnt (default to 0.0).</param>
+        /// <param name="avgCostPrice">avgCostPrice (default to 0.0).</param>
+        /// <param name="avgEntryPrice">avgEntryPrice (default to 0.0).</param>
+        /// <param name="breakEvenPrice">breakEvenPrice (default to 0.0).</param>
+        /// <param name="marginCallPrice">marginCallPrice (default to 0.0).</param>
+        /// <param name="liquidationPrice">liquidationPrice (default to 0.0).</param>
+        /// <param name="bankruptPrice">bankruptPrice (default to 0.0).</param>
+        /// <param name="timestamp">timestamp.</param>
+        /// <param name="lastPrice">lastPrice (default to 0.0).</param>
+        /// <param name="lastValue">lastValue.</param>
+        public Position(decimal? account = default(decimal?), string symbol = default(string), string currency = default(string), string underlying = default(string), string quoteCurrency = default(string), double? commission = 0.0, double? initMarginReq = 0.0, double? maintMarginReq = 0.0, decimal? riskLimit = default(decimal?), double? leverage = 0.0, bool? crossMargin = default(bool?), double? deleveragePercentile = 0.0, decimal? rebalancedPnl = default(decimal?), decimal? prevRealisedPnl = default(decimal?), decimal? prevUnrealisedPnl = default(decimal?), double? prevClosePrice = 0.0, DateTime? openingTimestamp = default(DateTime?), decimal? openingQty = default(decimal?), decimal? openingCost = default(decimal?), decimal? openingComm = default(decimal?), decimal? openOrderBuyQty = default(decimal?), decimal? openOrderBuyCost = default(decimal?), decimal? openOrderBuyPremium = default(decimal?), decimal? openOrderSellQty = default(decimal?), decimal? openOrderSellCost = default(decimal?), decimal? openOrderSellPremium = default(decimal?), decimal? execBuyQty = default(decimal?), decimal? execBuyCost = default(decimal?), decimal? execSellQty = default(decimal?), decimal? execSellCost = default(decimal?), decimal? execQty = default(decimal?), decimal? execCost = default(decimal?), decimal? execComm = default(decimal?), DateTime? currentTimestamp = default(DateTime?), decimal? currentQty = default(decimal?), decimal? currentCost = default(decimal?), decimal? currentComm = default(decimal?), decimal? realisedCost = default(decimal?), decimal? unrealisedCost = default(decimal?), decimal? grossOpenCost = default(decimal?), decimal? grossOpenPremium = default(decimal?), decimal? grossExecCost = default(decimal?), bool? isOpen = default(bool?), double? markPrice = 0.0, decimal? markValue = default(decimal?), decimal? riskValue = default(decimal?), double? homeNotional = 0.0, double? foreignNotional = 0.0, string posState = default(string), decimal? posCost = default(decimal?), decimal? posCost2 = default(decimal?), decimal? posCross = default(decimal?), decimal? posInit = default(decimal?), decimal? posComm = default(decimal?), decimal? posLoss = default(decimal?), decimal? posMargin = default(decimal?), decimal? posMaint = default(decimal?), decimal? posAllowance = default(decimal?), decimal? taxableMargin = default(decimal?), decimal? initMargin = default(decimal?), decimal? maintMargin = default(decimal?), decimal? sessionMargin = default(decimal?), decimal? targetExcessMargin = default(decimal?), decimal? varMargin = default(decimal?), decimal? realisedGrossPnl = default(decimal?), decimal? realisedTax = default(decimal?), decimal? realisedPnl = default(decimal?), decimal? unrealisedGrossPnl = default(decimal?), decimal? longBankrupt = default(decimal?), decimal? shortBankrupt = default(decimal?), decimal? taxBase = default(decimal?), double? indicativeTaxRate = 0.0, decimal? indicativeTax = default(decimal?), decimal? unrealisedTax = default(decimal?), decimal? unrealisedPnl = default(decimal?), double? unrealisedPnlPcnt = 0.0, double? unrealisedRoePcnt = 0.0, double? simpleQty = 0.0, double? simpleCost = 0.0, double? simpleValue = 0.0, double? simplePnl = 0.0, double? simplePnlPcnt = 0.0, double? avgCostPrice = 0.0, double? avgEntryPrice = 0.0, double? breakEvenPrice = 0.0, double? marginCallPrice = 0.0, double? liquidationPrice = 0.0, double? bankruptPrice = 0.0, DateTime? timestamp = default(DateTime?), double? lastPrice = 0.0, decimal? lastValue = default(decimal?))
         {
-            // to ensure "Account" is required (not null)
-            if (Account == null)
+            // to ensure "account" is required (not null)
+            if (account == null)
             {
-                throw new InvalidDataException("Account is a required property for Position and cannot be null");
+                throw new InvalidDataException("account is a required property for Position and cannot be null");
             }
             else
             {
-                this.Account = Account;
+                this.Account = account;
             }
-            // to ensure "Symbol" is required (not null)
-            if (Symbol == null)
+            // to ensure "symbol" is required (not null)
+            if (symbol == null)
             {
-                throw new InvalidDataException("Symbol is a required property for Position and cannot be null");
+                throw new InvalidDataException("symbol is a required property for Position and cannot be null");
             }
             else
             {
-                this.Symbol = Symbol;
+                this.Symbol = symbol;
             }
-            // to ensure "Currency" is required (not null)
-            if (Currency == null)
+            // to ensure "currency" is required (not null)
+            if (currency == null)
             {
-                throw new InvalidDataException("Currency is a required property for Position and cannot be null");
+                throw new InvalidDataException("currency is a required property for Position and cannot be null");
             }
             else
             {
-                this.Currency = Currency;
+                this.Currency = currency;
             }
-            this.Underlying = Underlying;
-            this.QuoteCurrency = QuoteCurrency;
-            // use default value if no "Commission" provided
-            if (Commission == null)
+            this.Underlying = underlying;
+            this.QuoteCurrency = quoteCurrency;
+            // use default value if no "commission" provided
+            if (commission == null)
             {
                 this.Commission = 0.0;
             }
             else
             {
-                this.Commission = Commission;
+                this.Commission = commission;
             }
-            // use default value if no "InitMarginReq" provided
-            if (InitMarginReq == null)
+            // use default value if no "initMarginReq" provided
+            if (initMarginReq == null)
             {
                 this.InitMarginReq = 0.0;
             }
             else
             {
-                this.InitMarginReq = InitMarginReq;
+                this.InitMarginReq = initMarginReq;
             }
-            // use default value if no "MaintMarginReq" provided
-            if (MaintMarginReq == null)
+            // use default value if no "maintMarginReq" provided
+            if (maintMarginReq == null)
             {
                 this.MaintMarginReq = 0.0;
             }
             else
             {
-                this.MaintMarginReq = MaintMarginReq;
+                this.MaintMarginReq = maintMarginReq;
             }
-            this.RiskLimit = RiskLimit;
-            // use default value if no "Leverage" provided
-            if (Leverage == null)
+            this.RiskLimit = riskLimit;
+            // use default value if no "leverage" provided
+            if (leverage == null)
             {
                 this.Leverage = 0.0;
             }
             else
             {
-                this.Leverage = Leverage;
+                this.Leverage = leverage;
             }
-            this.CrossMargin = CrossMargin;
-            // use default value if no "DeleveragePercentile" provided
-            if (DeleveragePercentile == null)
+            this.CrossMargin = crossMargin;
+            // use default value if no "deleveragePercentile" provided
+            if (deleveragePercentile == null)
             {
                 this.DeleveragePercentile = 0.0;
             }
             else
             {
-                this.DeleveragePercentile = DeleveragePercentile;
+                this.DeleveragePercentile = deleveragePercentile;
             }
-            this.RebalancedPnl = RebalancedPnl;
-            this.PrevRealisedPnl = PrevRealisedPnl;
-            this.PrevUnrealisedPnl = PrevUnrealisedPnl;
-            // use default value if no "PrevClosePrice" provided
-            if (PrevClosePrice == null)
+            this.RebalancedPnl = rebalancedPnl;
+            this.PrevRealisedPnl = prevRealisedPnl;
+            this.PrevUnrealisedPnl = prevUnrealisedPnl;
+            // use default value if no "prevClosePrice" provided
+            if (prevClosePrice == null)
             {
                 this.PrevClosePrice = 0.0;
             }
             else
             {
-                this.PrevClosePrice = PrevClosePrice;
+                this.PrevClosePrice = prevClosePrice;
             }
-            this.OpeningTimestamp = OpeningTimestamp;
-            this.OpeningQty = OpeningQty;
-            this.OpeningCost = OpeningCost;
-            this.OpeningComm = OpeningComm;
-            this.OpenOrderBuyQty = OpenOrderBuyQty;
-            this.OpenOrderBuyCost = OpenOrderBuyCost;
-            this.OpenOrderBuyPremium = OpenOrderBuyPremium;
-            this.OpenOrderSellQty = OpenOrderSellQty;
-            this.OpenOrderSellCost = OpenOrderSellCost;
-            this.OpenOrderSellPremium = OpenOrderSellPremium;
-            this.ExecBuyQty = ExecBuyQty;
-            this.ExecBuyCost = ExecBuyCost;
-            this.ExecSellQty = ExecSellQty;
-            this.ExecSellCost = ExecSellCost;
-            this.ExecQty = ExecQty;
-            this.ExecCost = ExecCost;
-            this.ExecComm = ExecComm;
-            this.CurrentTimestamp = CurrentTimestamp;
-            this.CurrentQty = CurrentQty;
-            this.CurrentCost = CurrentCost;
-            this.CurrentComm = CurrentComm;
-            this.RealisedCost = RealisedCost;
-            this.UnrealisedCost = UnrealisedCost;
-            this.GrossOpenCost = GrossOpenCost;
-            this.GrossOpenPremium = GrossOpenPremium;
-            this.GrossExecCost = GrossExecCost;
-            this.IsOpen = IsOpen;
-            // use default value if no "MarkPrice" provided
-            if (MarkPrice == null)
+            this.OpeningTimestamp = openingTimestamp;
+            this.OpeningQty = openingQty;
+            this.OpeningCost = openingCost;
+            this.OpeningComm = openingComm;
+            this.OpenOrderBuyQty = openOrderBuyQty;
+            this.OpenOrderBuyCost = openOrderBuyCost;
+            this.OpenOrderBuyPremium = openOrderBuyPremium;
+            this.OpenOrderSellQty = openOrderSellQty;
+            this.OpenOrderSellCost = openOrderSellCost;
+            this.OpenOrderSellPremium = openOrderSellPremium;
+            this.ExecBuyQty = execBuyQty;
+            this.ExecBuyCost = execBuyCost;
+            this.ExecSellQty = execSellQty;
+            this.ExecSellCost = execSellCost;
+            this.ExecQty = execQty;
+            this.ExecCost = execCost;
+            this.ExecComm = execComm;
+            this.CurrentTimestamp = currentTimestamp;
+            this.CurrentQty = currentQty;
+            this.CurrentCost = currentCost;
+            this.CurrentComm = currentComm;
+            this.RealisedCost = realisedCost;
+            this.UnrealisedCost = unrealisedCost;
+            this.GrossOpenCost = grossOpenCost;
+            this.GrossOpenPremium = grossOpenPremium;
+            this.GrossExecCost = grossExecCost;
+            this.IsOpen = isOpen;
+            // use default value if no "markPrice" provided
+            if (markPrice == null)
             {
                 this.MarkPrice = 0.0;
             }
             else
             {
-                this.MarkPrice = MarkPrice;
+                this.MarkPrice = markPrice;
             }
-            this.MarkValue = MarkValue;
-            this.RiskValue = RiskValue;
-            // use default value if no "HomeNotional" provided
-            if (HomeNotional == null)
+            this.MarkValue = markValue;
+            this.RiskValue = riskValue;
+            // use default value if no "homeNotional" provided
+            if (homeNotional == null)
             {
                 this.HomeNotional = 0.0;
             }
             else
             {
-                this.HomeNotional = HomeNotional;
+                this.HomeNotional = homeNotional;
             }
-            // use default value if no "ForeignNotional" provided
-            if (ForeignNotional == null)
+            // use default value if no "foreignNotional" provided
+            if (foreignNotional == null)
             {
                 this.ForeignNotional = 0.0;
             }
             else
             {
-                this.ForeignNotional = ForeignNotional;
+                this.ForeignNotional = foreignNotional;
             }
-            this.PosState = PosState;
-            this.PosCost = PosCost;
-            this.PosCost2 = PosCost2;
-            this.PosCross = PosCross;
-            this.PosInit = PosInit;
-            this.PosComm = PosComm;
-            this.PosLoss = PosLoss;
-            this.PosMargin = PosMargin;
-            this.PosMaint = PosMaint;
-            this.PosAllowance = PosAllowance;
-            this.TaxableMargin = TaxableMargin;
-            this.InitMargin = InitMargin;
-            this.MaintMargin = MaintMargin;
-            this.SessionMargin = SessionMargin;
-            this.TargetExcessMargin = TargetExcessMargin;
-            this.VarMargin = VarMargin;
-            this.RealisedGrossPnl = RealisedGrossPnl;
-            this.RealisedTax = RealisedTax;
-            this.RealisedPnl = RealisedPnl;
-            this.UnrealisedGrossPnl = UnrealisedGrossPnl;
-            this.LongBankrupt = LongBankrupt;
-            this.ShortBankrupt = ShortBankrupt;
-            this.TaxBase = TaxBase;
-            // use default value if no "IndicativeTaxRate" provided
-            if (IndicativeTaxRate == null)
+            this.PosState = posState;
+            this.PosCost = posCost;
+            this.PosCost2 = posCost2;
+            this.PosCross = posCross;
+            this.PosInit = posInit;
+            this.PosComm = posComm;
+            this.PosLoss = posLoss;
+            this.PosMargin = posMargin;
+            this.PosMaint = posMaint;
+            this.PosAllowance = posAllowance;
+            this.TaxableMargin = taxableMargin;
+            this.InitMargin = initMargin;
+            this.MaintMargin = maintMargin;
+            this.SessionMargin = sessionMargin;
+            this.TargetExcessMargin = targetExcessMargin;
+            this.VarMargin = varMargin;
+            this.RealisedGrossPnl = realisedGrossPnl;
+            this.RealisedTax = realisedTax;
+            this.RealisedPnl = realisedPnl;
+            this.UnrealisedGrossPnl = unrealisedGrossPnl;
+            this.LongBankrupt = longBankrupt;
+            this.ShortBankrupt = shortBankrupt;
+            this.TaxBase = taxBase;
+            // use default value if no "indicativeTaxRate" provided
+            if (indicativeTaxRate == null)
             {
                 this.IndicativeTaxRate = 0.0;
             }
             else
             {
-                this.IndicativeTaxRate = IndicativeTaxRate;
+                this.IndicativeTaxRate = indicativeTaxRate;
             }
-            this.IndicativeTax = IndicativeTax;
-            this.UnrealisedTax = UnrealisedTax;
-            this.UnrealisedPnl = UnrealisedPnl;
-            // use default value if no "UnrealisedPnlPcnt" provided
-            if (UnrealisedPnlPcnt == null)
+            this.IndicativeTax = indicativeTax;
+            this.UnrealisedTax = unrealisedTax;
+            this.UnrealisedPnl = unrealisedPnl;
+            // use default value if no "unrealisedPnlPcnt" provided
+            if (unrealisedPnlPcnt == null)
             {
                 this.UnrealisedPnlPcnt = 0.0;
             }
             else
             {
-                this.UnrealisedPnlPcnt = UnrealisedPnlPcnt;
+                this.UnrealisedPnlPcnt = unrealisedPnlPcnt;
             }
-            // use default value if no "UnrealisedRoePcnt" provided
-            if (UnrealisedRoePcnt == null)
+            // use default value if no "unrealisedRoePcnt" provided
+            if (unrealisedRoePcnt == null)
             {
                 this.UnrealisedRoePcnt = 0.0;
             }
             else
             {
-                this.UnrealisedRoePcnt = UnrealisedRoePcnt;
+                this.UnrealisedRoePcnt = unrealisedRoePcnt;
             }
-            // use default value if no "SimpleQty" provided
-            if (SimpleQty == null)
+            // use default value if no "simpleQty" provided
+            if (simpleQty == null)
             {
                 this.SimpleQty = 0.0;
             }
             else
             {
-                this.SimpleQty = SimpleQty;
+                this.SimpleQty = simpleQty;
             }
-            // use default value if no "SimpleCost" provided
-            if (SimpleCost == null)
+            // use default value if no "simpleCost" provided
+            if (simpleCost == null)
             {
                 this.SimpleCost = 0.0;
             }
             else
             {
-                this.SimpleCost = SimpleCost;
+                this.SimpleCost = simpleCost;
             }
-            // use default value if no "SimpleValue" provided
-            if (SimpleValue == null)
+            // use default value if no "simpleValue" provided
+            if (simpleValue == null)
             {
                 this.SimpleValue = 0.0;
             }
             else
             {
-                this.SimpleValue = SimpleValue;
+                this.SimpleValue = simpleValue;
             }
-            // use default value if no "SimplePnl" provided
-            if (SimplePnl == null)
+            // use default value if no "simplePnl" provided
+            if (simplePnl == null)
             {
                 this.SimplePnl = 0.0;
             }
             else
             {
-                this.SimplePnl = SimplePnl;
+                this.SimplePnl = simplePnl;
             }
-            // use default value if no "SimplePnlPcnt" provided
-            if (SimplePnlPcnt == null)
+            // use default value if no "simplePnlPcnt" provided
+            if (simplePnlPcnt == null)
             {
                 this.SimplePnlPcnt = 0.0;
             }
             else
             {
-                this.SimplePnlPcnt = SimplePnlPcnt;
+                this.SimplePnlPcnt = simplePnlPcnt;
             }
-            // use default value if no "AvgCostPrice" provided
-            if (AvgCostPrice == null)
+            // use default value if no "avgCostPrice" provided
+            if (avgCostPrice == null)
             {
                 this.AvgCostPrice = 0.0;
             }
             else
             {
-                this.AvgCostPrice = AvgCostPrice;
+                this.AvgCostPrice = avgCostPrice;
             }
-            // use default value if no "AvgEntryPrice" provided
-            if (AvgEntryPrice == null)
+            // use default value if no "avgEntryPrice" provided
+            if (avgEntryPrice == null)
             {
                 this.AvgEntryPrice = 0.0;
             }
             else
             {
-                this.AvgEntryPrice = AvgEntryPrice;
+                this.AvgEntryPrice = avgEntryPrice;
             }
-            // use default value if no "BreakEvenPrice" provided
-            if (BreakEvenPrice == null)
+            // use default value if no "breakEvenPrice" provided
+            if (breakEvenPrice == null)
             {
                 this.BreakEvenPrice = 0.0;
             }
             else
             {
-                this.BreakEvenPrice = BreakEvenPrice;
+                this.BreakEvenPrice = breakEvenPrice;
             }
-            // use default value if no "MarginCallPrice" provided
-            if (MarginCallPrice == null)
+            // use default value if no "marginCallPrice" provided
+            if (marginCallPrice == null)
             {
                 this.MarginCallPrice = 0.0;
             }
             else
             {
-                this.MarginCallPrice = MarginCallPrice;
+                this.MarginCallPrice = marginCallPrice;
             }
-            // use default value if no "LiquidationPrice" provided
-            if (LiquidationPrice == null)
+            // use default value if no "liquidationPrice" provided
+            if (liquidationPrice == null)
             {
                 this.LiquidationPrice = 0.0;
             }
             else
             {
-                this.LiquidationPrice = LiquidationPrice;
+                this.LiquidationPrice = liquidationPrice;
             }
-            // use default value if no "BankruptPrice" provided
-            if (BankruptPrice == null)
+            // use default value if no "bankruptPrice" provided
+            if (bankruptPrice == null)
             {
                 this.BankruptPrice = 0.0;
             }
             else
             {
-                this.BankruptPrice = BankruptPrice;
+                this.BankruptPrice = bankruptPrice;
             }
-            this.Timestamp = Timestamp;
-            // use default value if no "LastPrice" provided
-            if (LastPrice == null)
+            this.Timestamp = timestamp;
+            // use default value if no "lastPrice" provided
+            if (lastPrice == null)
             {
                 this.LastPrice = 0.0;
             }
             else
             {
-                this.LastPrice = LastPrice;
+                this.LastPrice = lastPrice;
             }
-            this.LastValue = LastValue;
+            this.LastValue = lastValue;
         }
         
         /// <summary>
@@ -1093,7 +1093,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

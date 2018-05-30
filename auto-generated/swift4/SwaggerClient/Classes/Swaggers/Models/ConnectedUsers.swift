@@ -9,29 +9,16 @@ import Foundation
 
 
 
-open class ConnectedUsers: Codable {
+public struct ConnectedUsers: Codable {
 
     public var users: Double?
     public var bots: Double?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encodeIfPresent(users, forKey: "users")
-        try container.encodeIfPresent(bots, forKey: "bots")
+    public init(users: Double?, bots: Double?) {
+        self.users = users
+        self.bots = bots
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        users = try container.decodeIfPresent(Double.self, forKey: "users")
-        bots = try container.decodeIfPresent(Double.self, forKey: "bots")
-    }
 }
 

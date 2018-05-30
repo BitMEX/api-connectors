@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **order_book_type** | **str** |  | [optional] 
 **order_clear_immediate** | **bool** |  | [optional] [default to False]
 **order_controls_plus_minus** | **bool** |  | [optional] 
+**show_locale_numbers** | **bool** |  | [optional] [default to True]
 **sounds** | **list[str]** |  | [optional] 
 **strict_ip_check** | **bool** |  | [optional] [default to False]
 **strict_timeout** | **bool** |  | [optional] [default to True]

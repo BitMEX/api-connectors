@@ -9,21 +9,22 @@ Method | HTTP request | Description
 
 
 # **AnnouncementGet**
-> []Announcement AnnouncementGet(optional)
+> []Announcement AnnouncementGet(ctx, optional)
 Get site announcements.
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***AnnouncementGetOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a AnnouncementGetOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **columns** | **string**| Array of column names to fetch. If omitted, will return all columns. | 
+ **columns** | **optional.String**| Array of column names to fetch. If omitted, will return all columns. | 
 
 ### Return type
 
@@ -41,7 +42,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **AnnouncementGetUrgent**
-> []Announcement AnnouncementGetUrgent(ctx, ctx, ctx, )
+> []Announcement AnnouncementGetUrgent(ctx, )
 Get urgent (banner) announcements.
 
 ### Required Parameters

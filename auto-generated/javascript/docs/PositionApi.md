@@ -21,42 +21,43 @@ See &lt;a href&#x3D;\&quot;http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_A
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.PositionApi();
+var apiInstance = new BitMexApi.PositionApi();
 
-let opts = { 
+var opts = { 
   'filter': "filter_example", // String | Table filter. For example, send {\"symbol\": \"XBTUSD\"}.
   'columns': "columns_example", // String | Which columns to fetch. For example, send [\"columnName\"].
-  'count': 3.4 // Number | Number of rows to fetch.
+  'count': 8.14 // Number | Number of rows to fetch.
 };
 
-apiInstance.positionGet(opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.positionGet(opts, callback);
 ```
 
 ### Parameters
@@ -86,46 +87,45 @@ Name | Type | Description  | Notes
 
 Enable isolated margin or cross margin per-position.
 
-Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
-
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.PositionApi();
+var apiInstance = new BitMexApi.PositionApi();
 
-let symbol = "symbol_example"; // String | Position symbol to isolate.
+var symbol = "symbol_example"; // String | Position symbol to isolate.
 
-let opts = { 
+var opts = { 
   'enabled': true // Boolean | True for isolated margin, false for cross margin.
 };
 
-apiInstance.positionIsolateMargin(symbol, opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.positionIsolateMargin(symbol, opts, callback);
 ```
 
 ### Parameters
@@ -154,45 +154,44 @@ Name | Type | Description  | Notes
 
 Transfer equity in or out of a position.
 
-When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
-
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.PositionApi();
+var apiInstance = new BitMexApi.PositionApi();
 
-let symbol = "symbol_example"; // String | Symbol of position to isolate.
+var symbol = "symbol_example"; // String | Symbol of position to isolate.
 
-let amount = 3.4; // Number | Amount to transfer, in Satoshis. May be negative.
+var amount = 8.14; // Number | Amount to transfer, in Satoshis. May be negative.
 
 
-apiInstance.positionTransferIsolatedMargin(symbol, amount, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.positionTransferIsolatedMargin(symbol, amount, callback);
 ```
 
 ### Parameters
@@ -221,45 +220,44 @@ Name | Type | Description  | Notes
 
 Choose leverage for a position.
 
-Users can choose an isolated leverage. This will automatically enable isolated margin.
-
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.PositionApi();
+var apiInstance = new BitMexApi.PositionApi();
 
-let symbol = "symbol_example"; // String | Symbol of position to adjust.
+var symbol = "symbol_example"; // String | Symbol of position to adjust.
 
-let leverage = 1.2; // Number | Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.
+var leverage = 1.2; // Number | Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.
 
 
-apiInstance.positionUpdateLeverage(symbol, leverage, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.positionUpdateLeverage(symbol, leverage, callback);
 ```
 
 ### Parameters
@@ -288,52 +286,51 @@ Name | Type | Description  | Notes
 
 Update your risk limit.
 
-Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
-
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.PositionApi();
+var apiInstance = new BitMexApi.PositionApi();
 
-let symbol = "symbol_example"; // String | Symbol of position to isolate.
+var symbol = "symbol_example"; // String | Symbol of position to update risk limit on.
 
-let riskLimit = 3.4; // Number | New Risk Limit, in Satoshis.
+var riskLimit = 8.14; // Number | New Risk Limit, in Satoshis.
 
 
-apiInstance.positionUpdateRiskLimit(symbol, riskLimit, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.positionUpdateRiskLimit(symbol, riskLimit, callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **String**| Symbol of position to isolate. | 
+ **symbol** | **String**| Symbol of position to update risk limit on. | 
  **riskLimit** | **Number**| New Risk Limit, in Satoshis. | 
 
 ### Return type

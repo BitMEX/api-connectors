@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 Get site announcements.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -25,7 +25,7 @@ from pprint import pprint
 api_instance = swagger_client.AnnouncementApi()
 columns = 'columns_example' # str | Array of column names to fetch. If omitted, will return all columns. (optional)
 
-try: 
+try:
     # Get site announcements.
     api_response = api_instance.announcement_get(columns=columns)
     pprint(api_response)
@@ -59,7 +59,7 @@ No authorization required
 
 Get urgent (banner) announcements.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -86,7 +86,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = swagger_client.AnnouncementApi(swagger_client.ApiClient(configuration))
 
-try: 
+try:
     # Get urgent (banner) announcements.
     api_response = api_instance.announcement_get_urgent()
     pprint(api_response)

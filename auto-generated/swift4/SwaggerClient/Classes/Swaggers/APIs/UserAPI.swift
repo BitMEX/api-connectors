@@ -19,7 +19,7 @@ open class UserAPI {
      */
     open class func userCancelWithdrawal(token: String, completion: @escaping ((_ data: Transaction?,_ error: Error?) -> Void)) {
         userCancelWithdrawalWithRequestBuilder(token: token).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -55,9 +55,8 @@ open class UserAPI {
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
         let parameters = APIHelper.convertBoolToString(nonNullParameters)
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<Transaction>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -72,7 +71,7 @@ open class UserAPI {
      */
     open class func userCheckReferralCode(referralCode: String? = nil, completion: @escaping ((_ data: Double?,_ error: Error?) -> Void)) {
         userCheckReferralCodeWithRequestBuilder(referralCode: referralCode).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -91,12 +90,11 @@ open class UserAPI {
         let path = "/user/checkReferralCode"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
             "referralCode": referralCode
         ])
-        
 
         let requestBuilder: RequestBuilder<Double>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -111,7 +109,7 @@ open class UserAPI {
      */
     open class func userConfirm(token: String, completion: @escaping ((_ data: AccessToken?,_ error: Error?) -> Void)) {
         userConfirmWithRequestBuilder(token: token).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -139,9 +137,8 @@ open class UserAPI {
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
         let parameters = APIHelper.convertBoolToString(nonNullParameters)
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<AccessToken>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -157,7 +154,7 @@ open class UserAPI {
      */
     open class func userConfirmEnableTFA(token: String, type: String? = nil, completion: @escaping ((_ data: Bool?,_ error: Error?) -> Void)) {
         userConfirmEnableTFAWithRequestBuilder(token: token, type: type).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -191,9 +188,8 @@ open class UserAPI {
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
         let parameters = APIHelper.convertBoolToString(nonNullParameters)
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<Bool>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -208,7 +204,7 @@ open class UserAPI {
      */
     open class func userConfirmWithdrawal(token: String, completion: @escaping ((_ data: Transaction?,_ error: Error?) -> Void)) {
         userConfirmWithdrawalWithRequestBuilder(token: token).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -244,9 +240,8 @@ open class UserAPI {
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
         let parameters = APIHelper.convertBoolToString(nonNullParameters)
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<Transaction>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -262,7 +257,7 @@ open class UserAPI {
      */
     open class func userDisableTFA(token: String, type: String? = nil, completion: @escaping ((_ data: Bool?,_ error: Error?) -> Void)) {
         userDisableTFAWithRequestBuilder(token: token, type: type).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -296,9 +291,8 @@ open class UserAPI {
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
         let parameters = APIHelper.convertBoolToString(nonNullParameters)
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<Bool>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -312,7 +306,7 @@ open class UserAPI {
      */
     open class func userGet(completion: @escaping ((_ data: User?,_ error: Error?) -> Void)) {
         userGetWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -357,9 +351,11 @@ open class UserAPI {
     "announcementsLastSeen" : "2000-01-23T04:56:07.000+00:00",
     "orderBookType" : "orderBookType",
     "orderClearImmediate" : false,
+    "showLocaleNumbers" : true,
     "chatChannelID" : 1.4658129805029452
   },
   "created" : "2000-01-23T04:56:07.000+00:00",
+  "typ" : "typ",
   "ownerId" : 6.02745618307040320615897144307382404804229736328125,
   "affiliateID" : "affiliateID",
   "lastname" : "lastname",
@@ -378,9 +374,8 @@ open class UserAPI {
         let path = "/user"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<User>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -394,7 +389,7 @@ open class UserAPI {
      */
     open class func userGetAffiliateStatus(completion: @escaping ((_ data: Affiliate?,_ error: Error?) -> Void)) {
         userGetAffiliateStatusWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -435,9 +430,8 @@ open class UserAPI {
         let path = "/user/affiliateStatus"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<Affiliate>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -451,7 +445,7 @@ open class UserAPI {
      */
     open class func userGetCommission(completion: @escaping ((_ data: [UserCommission]?,_ error: Error?) -> Void)) {
         userGetCommissionWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -486,9 +480,8 @@ open class UserAPI {
         let path = "/user/commission"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<[UserCommission]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -503,7 +496,7 @@ open class UserAPI {
      */
     open class func userGetDepositAddress(currency: String? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         userGetDepositAddressWithRequestBuilder(currency: currency).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -530,12 +523,11 @@ open class UserAPI {
         let path = "/user/depositAddress"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
             "currency": currency
         ])
-        
 
         let requestBuilder: RequestBuilder<String>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -550,7 +542,7 @@ open class UserAPI {
      */
     open class func userGetMargin(currency: String? = nil, completion: @escaping ((_ data: Margin?,_ error: Error?) -> Void)) {
         userGetMarginWithRequestBuilder(currency: currency).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -619,12 +611,11 @@ open class UserAPI {
         let path = "/user/margin"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
             "currency": currency
         ])
-        
 
         let requestBuilder: RequestBuilder<Margin>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -639,7 +630,7 @@ open class UserAPI {
      */
     open class func userGetWallet(currency: String? = nil, completion: @escaping ((_ data: Wallet?,_ error: Error?) -> Void)) {
         userGetWalletWithRequestBuilder(currency: currency).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -692,12 +683,11 @@ open class UserAPI {
         let path = "/user/wallet"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
             "currency": currency
         ])
-        
 
         let requestBuilder: RequestBuilder<Wallet>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -712,7 +702,7 @@ open class UserAPI {
      */
     open class func userGetWalletHistory(currency: String? = nil, completion: @escaping ((_ data: [Transaction]?,_ error: Error?) -> Void)) {
         userGetWalletHistoryWithRequestBuilder(currency: currency).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -765,12 +755,11 @@ open class UserAPI {
         let path = "/user/walletHistory"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
             "currency": currency
         ])
-        
 
         let requestBuilder: RequestBuilder<[Transaction]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -785,7 +774,7 @@ open class UserAPI {
      */
     open class func userGetWalletSummary(currency: String? = nil, completion: @escaping ((_ data: [Transaction]?,_ error: Error?) -> Void)) {
         userGetWalletSummaryWithRequestBuilder(currency: currency).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -838,12 +827,11 @@ open class UserAPI {
         let path = "/user/walletSummary"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
             "currency": currency
         ])
-        
 
         let requestBuilder: RequestBuilder<[Transaction]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -855,9 +843,13 @@ open class UserAPI {
      
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func userLogout(completion: @escaping ((_ error: Error?) -> Void)) {
+    open class func userLogout(completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
         userLogoutWithRequestBuilder().execute { (response, error) -> Void in
-            completion(error);
+            if error == nil {
+                completion((), error)
+            } else {
+                completion(nil, error)
+            }
         }
     }
 
@@ -872,9 +864,8 @@ open class UserAPI {
         let path = "/user/logout"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getNonDecodableBuilder()
 
@@ -888,7 +879,7 @@ open class UserAPI {
      */
     open class func userLogoutAll(completion: @escaping ((_ data: Double?,_ error: Error?) -> Void)) {
         userLogoutAllWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -913,9 +904,8 @@ open class UserAPI {
         let path = "/user/logoutAll"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<Double>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -930,7 +920,7 @@ open class UserAPI {
      */
     open class func userMinWithdrawalFee(currency: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
         userMinWithdrawalFeeWithRequestBuilder(currency: currency).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -949,12 +939,11 @@ open class UserAPI {
         let path = "/user/minWithdrawalFee"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
             "currency": currency
         ])
-        
 
         let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -969,7 +958,7 @@ open class UserAPI {
      */
     open class func userRequestEnableTFA(type: String? = nil, completion: @escaping ((_ data: Bool?,_ error: Error?) -> Void)) {
         userRequestEnableTFAWithRequestBuilder(type: type).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -1002,9 +991,8 @@ open class UserAPI {
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
         let parameters = APIHelper.convertBoolToString(nonNullParameters)
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<Bool>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -1023,7 +1011,7 @@ open class UserAPI {
      */
     open class func userRequestWithdrawal(currency: String, amount: Double, address: String, otpToken: String? = nil, fee: Double? = nil, completion: @escaping ((_ data: Transaction?,_ error: Error?) -> Void)) {
         userRequestWithdrawalWithRequestBuilder(currency: currency, amount: amount, address: address, otpToken: otpToken, fee: fee).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -1077,9 +1065,8 @@ open class UserAPI {
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
         let parameters = APIHelper.convertBoolToString(nonNullParameters)
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<Transaction>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -1095,7 +1082,7 @@ open class UserAPI {
      */
     open class func userSavePreferences(prefs: String, overwrite: Bool? = nil, completion: @escaping ((_ data: User?,_ error: Error?) -> Void)) {
         userSavePreferencesWithRequestBuilder(prefs: prefs, overwrite: overwrite).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -1140,9 +1127,11 @@ open class UserAPI {
     "announcementsLastSeen" : "2000-01-23T04:56:07.000+00:00",
     "orderBookType" : "orderBookType",
     "orderClearImmediate" : false,
+    "showLocaleNumbers" : true,
     "chatChannelID" : 1.4658129805029452
   },
   "created" : "2000-01-23T04:56:07.000+00:00",
+  "typ" : "typ",
   "ownerId" : 6.02745618307040320615897144307382404804229736328125,
   "affiliateID" : "affiliateID",
   "lastname" : "lastname",
@@ -1170,9 +1159,8 @@ open class UserAPI {
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
         let parameters = APIHelper.convertBoolToString(nonNullParameters)
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<User>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -1194,7 +1182,7 @@ open class UserAPI {
      */
     open class func userUpdate(firstname: String? = nil, lastname: String? = nil, oldPassword: String? = nil, newPassword: String? = nil, newPasswordConfirm: String? = nil, username: String? = nil, country: String? = nil, pgpPubKey: String? = nil, completion: @escaping ((_ data: User?,_ error: Error?) -> Void)) {
         userUpdateWithRequestBuilder(firstname: firstname, lastname: lastname, oldPassword: oldPassword, newPassword: newPassword, newPasswordConfirm: newPasswordConfirm, username: username, country: country, pgpPubKey: pgpPubKey).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -1239,9 +1227,11 @@ open class UserAPI {
     "announcementsLastSeen" : "2000-01-23T04:56:07.000+00:00",
     "orderBookType" : "orderBookType",
     "orderClearImmediate" : false,
+    "showLocaleNumbers" : true,
     "chatChannelID" : 1.4658129805029452
   },
   "created" : "2000-01-23T04:56:07.000+00:00",
+  "typ" : "typ",
   "ownerId" : 6.02745618307040320615897144307382404804229736328125,
   "affiliateID" : "affiliateID",
   "lastname" : "lastname",
@@ -1281,9 +1271,8 @@ open class UserAPI {
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
         let parameters = APIHelper.convertBoolToString(nonNullParameters)
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<User>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 

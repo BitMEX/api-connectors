@@ -9,11 +9,11 @@ import Foundation
 
 
 
-open class TradeBin: Codable {
+public struct TradeBin: Codable {
 
     public var timestamp: Date
     public var symbol: String
-    public var open: Double?
+    public var _open: Double?
     public var high: Double?
     public var low: Double?
     public var close: Double?
@@ -25,46 +25,38 @@ open class TradeBin: Codable {
     public var homeNotional: Double?
     public var foreignNotional: Double?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(timestamp, forKey: "timestamp")
-        try container.encode(symbol, forKey: "symbol")
-        try container.encodeIfPresent(open, forKey: "open")
-        try container.encodeIfPresent(high, forKey: "high")
-        try container.encodeIfPresent(low, forKey: "low")
-        try container.encodeIfPresent(close, forKey: "close")
-        try container.encodeIfPresent(trades, forKey: "trades")
-        try container.encodeIfPresent(volume, forKey: "volume")
-        try container.encodeIfPresent(vwap, forKey: "vwap")
-        try container.encodeIfPresent(lastSize, forKey: "lastSize")
-        try container.encodeIfPresent(turnover, forKey: "turnover")
-        try container.encodeIfPresent(homeNotional, forKey: "homeNotional")
-        try container.encodeIfPresent(foreignNotional, forKey: "foreignNotional")
+    public init(timestamp: Date, symbol: String, _open: Double?, high: Double?, low: Double?, close: Double?, trades: Double?, volume: Double?, vwap: Double?, lastSize: Double?, turnover: Double?, homeNotional: Double?, foreignNotional: Double?) {
+        self.timestamp = timestamp
+        self.symbol = symbol
+        self._open = _open
+        self.high = high
+        self.low = low
+        self.close = close
+        self.trades = trades
+        self.volume = volume
+        self.vwap = vwap
+        self.lastSize = lastSize
+        self.turnover = turnover
+        self.homeNotional = homeNotional
+        self.foreignNotional = foreignNotional
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
-
-        timestamp = try container.decode(Date.self, forKey: "timestamp")
-        symbol = try container.decode(String.self, forKey: "symbol")
-        open = try container.decodeIfPresent(Double.self, forKey: "open")
-        high = try container.decodeIfPresent(Double.self, forKey: "high")
-        low = try container.decodeIfPresent(Double.self, forKey: "low")
-        close = try container.decodeIfPresent(Double.self, forKey: "close")
-        trades = try container.decodeIfPresent(Double.self, forKey: "trades")
-        volume = try container.decodeIfPresent(Double.self, forKey: "volume")
-        vwap = try container.decodeIfPresent(Double.self, forKey: "vwap")
-        lastSize = try container.decodeIfPresent(Double.self, forKey: "lastSize")
-        turnover = try container.decodeIfPresent(Double.self, forKey: "turnover")
-        homeNotional = try container.decodeIfPresent(Double.self, forKey: "homeNotional")
-        foreignNotional = try container.decodeIfPresent(Double.self, forKey: "foreignNotional")
+    public enum CodingKeys: String, CodingKey { 
+        case timestamp
+        case symbol
+        case _open = "open"
+        case high
+        case low
+        case close
+        case trades
+        case volume
+        case vwap
+        case lastSize
+        case turnover
+        case homeNotional
+        case foreignNotional
     }
+
+
 }
 

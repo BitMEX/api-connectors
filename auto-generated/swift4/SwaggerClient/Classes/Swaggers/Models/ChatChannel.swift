@@ -9,29 +9,21 @@ import Foundation
 
 
 
-open class ChatChannel: Codable {
+public struct ChatChannel: Codable {
 
-    public var id: Double?
+    public var _id: Double?
     public var name: String
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encodeIfPresent(id, forKey: "id")
-        try container.encode(name, forKey: "name")
+    public init(_id: Double?, name: String) {
+        self._id = _id
+        self.name = name
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
-
-        id = try container.decodeIfPresent(Double.self, forKey: "id")
-        name = try container.decode(String.self, forKey: "name")
+    public enum CodingKeys: String, CodingKey { 
+        case _id = "id"
+        case name
     }
+
+
 }
 

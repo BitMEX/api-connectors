@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,28 +38,28 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="StatsUSD" /> class.
         /// </summary>
-        /// <param name="RootSymbol">RootSymbol (required).</param>
-        /// <param name="Currency">Currency.</param>
-        /// <param name="Turnover24h">Turnover24h.</param>
-        /// <param name="Turnover30d">Turnover30d.</param>
-        /// <param name="Turnover365d">Turnover365d.</param>
-        /// <param name="Turnover">Turnover.</param>
-        public StatsUSD(string RootSymbol = default(string), string Currency = default(string), decimal? Turnover24h = default(decimal?), decimal? Turnover30d = default(decimal?), decimal? Turnover365d = default(decimal?), decimal? Turnover = default(decimal?))
+        /// <param name="rootSymbol">rootSymbol (required).</param>
+        /// <param name="currency">currency.</param>
+        /// <param name="turnover24h">turnover24h.</param>
+        /// <param name="turnover30d">turnover30d.</param>
+        /// <param name="turnover365d">turnover365d.</param>
+        /// <param name="turnover">turnover.</param>
+        public StatsUSD(string rootSymbol = default(string), string currency = default(string), decimal? turnover24h = default(decimal?), decimal? turnover30d = default(decimal?), decimal? turnover365d = default(decimal?), decimal? turnover = default(decimal?))
         {
-            // to ensure "RootSymbol" is required (not null)
-            if (RootSymbol == null)
+            // to ensure "rootSymbol" is required (not null)
+            if (rootSymbol == null)
             {
-                throw new InvalidDataException("RootSymbol is a required property for StatsUSD and cannot be null");
+                throw new InvalidDataException("rootSymbol is a required property for StatsUSD and cannot be null");
             }
             else
             {
-                this.RootSymbol = RootSymbol;
+                this.RootSymbol = rootSymbol;
             }
-            this.Currency = Currency;
-            this.Turnover24h = Turnover24h;
-            this.Turnover30d = Turnover30d;
-            this.Turnover365d = Turnover365d;
-            this.Turnover = Turnover;
+            this.Currency = currency;
+            this.Turnover24h = turnover24h;
+            this.Turnover30d = turnover30d;
+            this.Turnover365d = turnover365d;
+            this.Turnover = turnover;
         }
         
         /// <summary>
@@ -120,7 +120,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

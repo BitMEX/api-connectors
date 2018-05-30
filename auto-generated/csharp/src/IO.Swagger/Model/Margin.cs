@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,145 +38,145 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Margin" /> class.
         /// </summary>
-        /// <param name="Account">Account (required).</param>
-        /// <param name="Currency">Currency (required).</param>
-        /// <param name="RiskLimit">RiskLimit.</param>
-        /// <param name="PrevState">PrevState.</param>
-        /// <param name="State">State.</param>
-        /// <param name="Action">Action.</param>
-        /// <param name="Amount">Amount.</param>
-        /// <param name="PendingCredit">PendingCredit.</param>
-        /// <param name="PendingDebit">PendingDebit.</param>
-        /// <param name="ConfirmedDebit">ConfirmedDebit.</param>
-        /// <param name="PrevRealisedPnl">PrevRealisedPnl.</param>
-        /// <param name="PrevUnrealisedPnl">PrevUnrealisedPnl.</param>
-        /// <param name="GrossComm">GrossComm.</param>
-        /// <param name="GrossOpenCost">GrossOpenCost.</param>
-        /// <param name="GrossOpenPremium">GrossOpenPremium.</param>
-        /// <param name="GrossExecCost">GrossExecCost.</param>
-        /// <param name="GrossMarkValue">GrossMarkValue.</param>
-        /// <param name="RiskValue">RiskValue.</param>
-        /// <param name="TaxableMargin">TaxableMargin.</param>
-        /// <param name="InitMargin">InitMargin.</param>
-        /// <param name="MaintMargin">MaintMargin.</param>
-        /// <param name="SessionMargin">SessionMargin.</param>
-        /// <param name="TargetExcessMargin">TargetExcessMargin.</param>
-        /// <param name="VarMargin">VarMargin.</param>
-        /// <param name="RealisedPnl">RealisedPnl.</param>
-        /// <param name="UnrealisedPnl">UnrealisedPnl.</param>
-        /// <param name="IndicativeTax">IndicativeTax.</param>
-        /// <param name="UnrealisedProfit">UnrealisedProfit.</param>
-        /// <param name="SyntheticMargin">SyntheticMargin.</param>
-        /// <param name="WalletBalance">WalletBalance.</param>
-        /// <param name="MarginBalance">MarginBalance.</param>
-        /// <param name="MarginBalancePcnt">MarginBalancePcnt (default to 0.0).</param>
-        /// <param name="MarginLeverage">MarginLeverage (default to 0.0).</param>
-        /// <param name="MarginUsedPcnt">MarginUsedPcnt (default to 0.0).</param>
-        /// <param name="ExcessMargin">ExcessMargin.</param>
-        /// <param name="ExcessMarginPcnt">ExcessMarginPcnt (default to 0.0).</param>
-        /// <param name="AvailableMargin">AvailableMargin.</param>
-        /// <param name="WithdrawableMargin">WithdrawableMargin.</param>
-        /// <param name="Timestamp">Timestamp.</param>
-        /// <param name="GrossLastValue">GrossLastValue.</param>
-        /// <param name="Commission">Commission (default to 0.0).</param>
-        public Margin(decimal? Account = default(decimal?), string Currency = default(string), decimal? RiskLimit = default(decimal?), string PrevState = default(string), string State = default(string), string Action = default(string), decimal? Amount = default(decimal?), decimal? PendingCredit = default(decimal?), decimal? PendingDebit = default(decimal?), decimal? ConfirmedDebit = default(decimal?), decimal? PrevRealisedPnl = default(decimal?), decimal? PrevUnrealisedPnl = default(decimal?), decimal? GrossComm = default(decimal?), decimal? GrossOpenCost = default(decimal?), decimal? GrossOpenPremium = default(decimal?), decimal? GrossExecCost = default(decimal?), decimal? GrossMarkValue = default(decimal?), decimal? RiskValue = default(decimal?), decimal? TaxableMargin = default(decimal?), decimal? InitMargin = default(decimal?), decimal? MaintMargin = default(decimal?), decimal? SessionMargin = default(decimal?), decimal? TargetExcessMargin = default(decimal?), decimal? VarMargin = default(decimal?), decimal? RealisedPnl = default(decimal?), decimal? UnrealisedPnl = default(decimal?), decimal? IndicativeTax = default(decimal?), decimal? UnrealisedProfit = default(decimal?), decimal? SyntheticMargin = default(decimal?), decimal? WalletBalance = default(decimal?), decimal? MarginBalance = default(decimal?), double? MarginBalancePcnt = 0.0, double? MarginLeverage = 0.0, double? MarginUsedPcnt = 0.0, decimal? ExcessMargin = default(decimal?), double? ExcessMarginPcnt = 0.0, decimal? AvailableMargin = default(decimal?), decimal? WithdrawableMargin = default(decimal?), DateTime? Timestamp = default(DateTime?), decimal? GrossLastValue = default(decimal?), double? Commission = 0.0)
+        /// <param name="account">account (required).</param>
+        /// <param name="currency">currency (required).</param>
+        /// <param name="riskLimit">riskLimit.</param>
+        /// <param name="prevState">prevState.</param>
+        /// <param name="state">state.</param>
+        /// <param name="action">action.</param>
+        /// <param name="amount">amount.</param>
+        /// <param name="pendingCredit">pendingCredit.</param>
+        /// <param name="pendingDebit">pendingDebit.</param>
+        /// <param name="confirmedDebit">confirmedDebit.</param>
+        /// <param name="prevRealisedPnl">prevRealisedPnl.</param>
+        /// <param name="prevUnrealisedPnl">prevUnrealisedPnl.</param>
+        /// <param name="grossComm">grossComm.</param>
+        /// <param name="grossOpenCost">grossOpenCost.</param>
+        /// <param name="grossOpenPremium">grossOpenPremium.</param>
+        /// <param name="grossExecCost">grossExecCost.</param>
+        /// <param name="grossMarkValue">grossMarkValue.</param>
+        /// <param name="riskValue">riskValue.</param>
+        /// <param name="taxableMargin">taxableMargin.</param>
+        /// <param name="initMargin">initMargin.</param>
+        /// <param name="maintMargin">maintMargin.</param>
+        /// <param name="sessionMargin">sessionMargin.</param>
+        /// <param name="targetExcessMargin">targetExcessMargin.</param>
+        /// <param name="varMargin">varMargin.</param>
+        /// <param name="realisedPnl">realisedPnl.</param>
+        /// <param name="unrealisedPnl">unrealisedPnl.</param>
+        /// <param name="indicativeTax">indicativeTax.</param>
+        /// <param name="unrealisedProfit">unrealisedProfit.</param>
+        /// <param name="syntheticMargin">syntheticMargin.</param>
+        /// <param name="walletBalance">walletBalance.</param>
+        /// <param name="marginBalance">marginBalance.</param>
+        /// <param name="marginBalancePcnt">marginBalancePcnt (default to 0.0).</param>
+        /// <param name="marginLeverage">marginLeverage (default to 0.0).</param>
+        /// <param name="marginUsedPcnt">marginUsedPcnt (default to 0.0).</param>
+        /// <param name="excessMargin">excessMargin.</param>
+        /// <param name="excessMarginPcnt">excessMarginPcnt (default to 0.0).</param>
+        /// <param name="availableMargin">availableMargin.</param>
+        /// <param name="withdrawableMargin">withdrawableMargin.</param>
+        /// <param name="timestamp">timestamp.</param>
+        /// <param name="grossLastValue">grossLastValue.</param>
+        /// <param name="commission">commission (default to 0.0).</param>
+        public Margin(decimal? account = default(decimal?), string currency = default(string), decimal? riskLimit = default(decimal?), string prevState = default(string), string state = default(string), string action = default(string), decimal? amount = default(decimal?), decimal? pendingCredit = default(decimal?), decimal? pendingDebit = default(decimal?), decimal? confirmedDebit = default(decimal?), decimal? prevRealisedPnl = default(decimal?), decimal? prevUnrealisedPnl = default(decimal?), decimal? grossComm = default(decimal?), decimal? grossOpenCost = default(decimal?), decimal? grossOpenPremium = default(decimal?), decimal? grossExecCost = default(decimal?), decimal? grossMarkValue = default(decimal?), decimal? riskValue = default(decimal?), decimal? taxableMargin = default(decimal?), decimal? initMargin = default(decimal?), decimal? maintMargin = default(decimal?), decimal? sessionMargin = default(decimal?), decimal? targetExcessMargin = default(decimal?), decimal? varMargin = default(decimal?), decimal? realisedPnl = default(decimal?), decimal? unrealisedPnl = default(decimal?), decimal? indicativeTax = default(decimal?), decimal? unrealisedProfit = default(decimal?), decimal? syntheticMargin = default(decimal?), decimal? walletBalance = default(decimal?), decimal? marginBalance = default(decimal?), double? marginBalancePcnt = 0.0, double? marginLeverage = 0.0, double? marginUsedPcnt = 0.0, decimal? excessMargin = default(decimal?), double? excessMarginPcnt = 0.0, decimal? availableMargin = default(decimal?), decimal? withdrawableMargin = default(decimal?), DateTime? timestamp = default(DateTime?), decimal? grossLastValue = default(decimal?), double? commission = 0.0)
         {
-            // to ensure "Account" is required (not null)
-            if (Account == null)
+            // to ensure "account" is required (not null)
+            if (account == null)
             {
-                throw new InvalidDataException("Account is a required property for Margin and cannot be null");
+                throw new InvalidDataException("account is a required property for Margin and cannot be null");
             }
             else
             {
-                this.Account = Account;
+                this.Account = account;
             }
-            // to ensure "Currency" is required (not null)
-            if (Currency == null)
+            // to ensure "currency" is required (not null)
+            if (currency == null)
             {
-                throw new InvalidDataException("Currency is a required property for Margin and cannot be null");
+                throw new InvalidDataException("currency is a required property for Margin and cannot be null");
             }
             else
             {
-                this.Currency = Currency;
+                this.Currency = currency;
             }
-            this.RiskLimit = RiskLimit;
-            this.PrevState = PrevState;
-            this.State = State;
-            this.Action = Action;
-            this.Amount = Amount;
-            this.PendingCredit = PendingCredit;
-            this.PendingDebit = PendingDebit;
-            this.ConfirmedDebit = ConfirmedDebit;
-            this.PrevRealisedPnl = PrevRealisedPnl;
-            this.PrevUnrealisedPnl = PrevUnrealisedPnl;
-            this.GrossComm = GrossComm;
-            this.GrossOpenCost = GrossOpenCost;
-            this.GrossOpenPremium = GrossOpenPremium;
-            this.GrossExecCost = GrossExecCost;
-            this.GrossMarkValue = GrossMarkValue;
-            this.RiskValue = RiskValue;
-            this.TaxableMargin = TaxableMargin;
-            this.InitMargin = InitMargin;
-            this.MaintMargin = MaintMargin;
-            this.SessionMargin = SessionMargin;
-            this.TargetExcessMargin = TargetExcessMargin;
-            this.VarMargin = VarMargin;
-            this.RealisedPnl = RealisedPnl;
-            this.UnrealisedPnl = UnrealisedPnl;
-            this.IndicativeTax = IndicativeTax;
-            this.UnrealisedProfit = UnrealisedProfit;
-            this.SyntheticMargin = SyntheticMargin;
-            this.WalletBalance = WalletBalance;
-            this.MarginBalance = MarginBalance;
-            // use default value if no "MarginBalancePcnt" provided
-            if (MarginBalancePcnt == null)
+            this.RiskLimit = riskLimit;
+            this.PrevState = prevState;
+            this.State = state;
+            this.Action = action;
+            this.Amount = amount;
+            this.PendingCredit = pendingCredit;
+            this.PendingDebit = pendingDebit;
+            this.ConfirmedDebit = confirmedDebit;
+            this.PrevRealisedPnl = prevRealisedPnl;
+            this.PrevUnrealisedPnl = prevUnrealisedPnl;
+            this.GrossComm = grossComm;
+            this.GrossOpenCost = grossOpenCost;
+            this.GrossOpenPremium = grossOpenPremium;
+            this.GrossExecCost = grossExecCost;
+            this.GrossMarkValue = grossMarkValue;
+            this.RiskValue = riskValue;
+            this.TaxableMargin = taxableMargin;
+            this.InitMargin = initMargin;
+            this.MaintMargin = maintMargin;
+            this.SessionMargin = sessionMargin;
+            this.TargetExcessMargin = targetExcessMargin;
+            this.VarMargin = varMargin;
+            this.RealisedPnl = realisedPnl;
+            this.UnrealisedPnl = unrealisedPnl;
+            this.IndicativeTax = indicativeTax;
+            this.UnrealisedProfit = unrealisedProfit;
+            this.SyntheticMargin = syntheticMargin;
+            this.WalletBalance = walletBalance;
+            this.MarginBalance = marginBalance;
+            // use default value if no "marginBalancePcnt" provided
+            if (marginBalancePcnt == null)
             {
                 this.MarginBalancePcnt = 0.0;
             }
             else
             {
-                this.MarginBalancePcnt = MarginBalancePcnt;
+                this.MarginBalancePcnt = marginBalancePcnt;
             }
-            // use default value if no "MarginLeverage" provided
-            if (MarginLeverage == null)
+            // use default value if no "marginLeverage" provided
+            if (marginLeverage == null)
             {
                 this.MarginLeverage = 0.0;
             }
             else
             {
-                this.MarginLeverage = MarginLeverage;
+                this.MarginLeverage = marginLeverage;
             }
-            // use default value if no "MarginUsedPcnt" provided
-            if (MarginUsedPcnt == null)
+            // use default value if no "marginUsedPcnt" provided
+            if (marginUsedPcnt == null)
             {
                 this.MarginUsedPcnt = 0.0;
             }
             else
             {
-                this.MarginUsedPcnt = MarginUsedPcnt;
+                this.MarginUsedPcnt = marginUsedPcnt;
             }
-            this.ExcessMargin = ExcessMargin;
-            // use default value if no "ExcessMarginPcnt" provided
-            if (ExcessMarginPcnt == null)
+            this.ExcessMargin = excessMargin;
+            // use default value if no "excessMarginPcnt" provided
+            if (excessMarginPcnt == null)
             {
                 this.ExcessMarginPcnt = 0.0;
             }
             else
             {
-                this.ExcessMarginPcnt = ExcessMarginPcnt;
+                this.ExcessMarginPcnt = excessMarginPcnt;
             }
-            this.AvailableMargin = AvailableMargin;
-            this.WithdrawableMargin = WithdrawableMargin;
-            this.Timestamp = Timestamp;
-            this.GrossLastValue = GrossLastValue;
-            // use default value if no "Commission" provided
-            if (Commission == null)
+            this.AvailableMargin = availableMargin;
+            this.WithdrawableMargin = withdrawableMargin;
+            this.Timestamp = timestamp;
+            this.GrossLastValue = grossLastValue;
+            // use default value if no "commission" provided
+            if (commission == null)
             {
                 this.Commission = 0.0;
             }
             else
             {
-                this.Commission = Commission;
+                this.Commission = commission;
             }
         }
         
@@ -483,7 +483,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

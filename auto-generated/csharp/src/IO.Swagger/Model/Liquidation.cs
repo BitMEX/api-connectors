@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,26 +38,26 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Liquidation" /> class.
         /// </summary>
-        /// <param name="OrderID">OrderID (required).</param>
-        /// <param name="Symbol">Symbol.</param>
-        /// <param name="Side">Side.</param>
-        /// <param name="Price">Price.</param>
-        /// <param name="LeavesQty">LeavesQty.</param>
-        public Liquidation(string OrderID = default(string), string Symbol = default(string), string Side = default(string), double? Price = default(double?), decimal? LeavesQty = default(decimal?))
+        /// <param name="orderID">orderID (required).</param>
+        /// <param name="symbol">symbol.</param>
+        /// <param name="side">side.</param>
+        /// <param name="price">price.</param>
+        /// <param name="leavesQty">leavesQty.</param>
+        public Liquidation(string orderID = default(string), string symbol = default(string), string side = default(string), double? price = default(double?), decimal? leavesQty = default(decimal?))
         {
-            // to ensure "OrderID" is required (not null)
-            if (OrderID == null)
+            // to ensure "orderID" is required (not null)
+            if (orderID == null)
             {
-                throw new InvalidDataException("OrderID is a required property for Liquidation and cannot be null");
+                throw new InvalidDataException("orderID is a required property for Liquidation and cannot be null");
             }
             else
             {
-                this.OrderID = OrderID;
+                this.OrderID = orderID;
             }
-            this.Symbol = Symbol;
-            this.Side = Side;
-            this.Price = Price;
-            this.LeavesQty = LeavesQty;
+            this.Symbol = symbol;
+            this.Side = side;
+            this.Price = price;
+            this.LeavesQty = leavesQty;
         }
         
         /// <summary>
@@ -111,7 +111,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

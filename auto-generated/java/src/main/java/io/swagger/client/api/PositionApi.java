@@ -1,6 +1,6 @@
 /*
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -68,7 +68,7 @@ public class PositionApi {
      */
     public com.squareup.okhttp.Call positionGetCall(String filter, String columns, BigDecimal count, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
-        
+
         // create path and map variables
         String localVarPath = "/position";
 
@@ -112,18 +112,14 @@ public class PositionApi {
         String[] localVarAuthNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call positionGetValidateBeforeCall(String filter, String columns, BigDecimal count, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        
+
         com.squareup.okhttp.Call call = positionGetCall(filter, columns, count, progressListener, progressRequestListener);
         return call;
 
-        
-        
-        
-        
     }
 
     /**
@@ -202,7 +198,7 @@ public class PositionApi {
      */
     public com.squareup.okhttp.Call positionIsolateMarginCall(String symbol, Boolean enabled, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
-        
+
         // create path and map variables
         String localVarPath = "/position/isolate";
 
@@ -244,7 +240,7 @@ public class PositionApi {
         String[] localVarAuthNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call positionIsolateMarginValidateBeforeCall(String symbol, Boolean enabled, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
@@ -253,19 +249,15 @@ public class PositionApi {
             throw new ApiException("Missing the required parameter 'symbol' when calling positionIsolateMargin(Async)");
         }
         
-        
+
         com.squareup.okhttp.Call call = positionIsolateMarginCall(symbol, enabled, progressListener, progressRequestListener);
         return call;
 
-        
-        
-        
-        
     }
 
     /**
      * Enable isolated margin or cross margin per-position.
-     * Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+     * 
      * @param symbol Position symbol to isolate. (required)
      * @param enabled True for isolated margin, false for cross margin. (optional, default to true)
      * @return Position
@@ -278,7 +270,7 @@ public class PositionApi {
 
     /**
      * Enable isolated margin or cross margin per-position.
-     * Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+     * 
      * @param symbol Position symbol to isolate. (required)
      * @param enabled True for isolated margin, false for cross margin. (optional, default to true)
      * @return ApiResponse&lt;Position&gt;
@@ -292,7 +284,7 @@ public class PositionApi {
 
     /**
      * Enable isolated margin or cross margin per-position. (asynchronously)
-     * Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+     * 
      * @param symbol Position symbol to isolate. (required)
      * @param enabled True for isolated margin, false for cross margin. (optional, default to true)
      * @param callback The callback to be executed when the API call finishes
@@ -336,7 +328,7 @@ public class PositionApi {
      */
     public com.squareup.okhttp.Call positionTransferIsolatedMarginCall(String symbol, BigDecimal amount, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
-        
+
         // create path and map variables
         String localVarPath = "/position/transferMargin";
 
@@ -378,7 +370,7 @@ public class PositionApi {
         String[] localVarAuthNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call positionTransferIsolatedMarginValidateBeforeCall(String symbol, BigDecimal amount, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
@@ -392,19 +384,15 @@ public class PositionApi {
             throw new ApiException("Missing the required parameter 'amount' when calling positionTransferIsolatedMargin(Async)");
         }
         
-        
+
         com.squareup.okhttp.Call call = positionTransferIsolatedMarginCall(symbol, amount, progressListener, progressRequestListener);
         return call;
 
-        
-        
-        
-        
     }
 
     /**
      * Transfer equity in or out of a position.
-     * When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
+     * 
      * @param symbol Symbol of position to isolate. (required)
      * @param amount Amount to transfer, in Satoshis. May be negative. (required)
      * @return Position
@@ -417,7 +405,7 @@ public class PositionApi {
 
     /**
      * Transfer equity in or out of a position.
-     * When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
+     * 
      * @param symbol Symbol of position to isolate. (required)
      * @param amount Amount to transfer, in Satoshis. May be negative. (required)
      * @return ApiResponse&lt;Position&gt;
@@ -431,7 +419,7 @@ public class PositionApi {
 
     /**
      * Transfer equity in or out of a position. (asynchronously)
-     * When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
+     * 
      * @param symbol Symbol of position to isolate. (required)
      * @param amount Amount to transfer, in Satoshis. May be negative. (required)
      * @param callback The callback to be executed when the API call finishes
@@ -475,7 +463,7 @@ public class PositionApi {
      */
     public com.squareup.okhttp.Call positionUpdateLeverageCall(String symbol, Double leverage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
-        
+
         // create path and map variables
         String localVarPath = "/position/leverage";
 
@@ -517,7 +505,7 @@ public class PositionApi {
         String[] localVarAuthNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call positionUpdateLeverageValidateBeforeCall(String symbol, Double leverage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
@@ -531,19 +519,15 @@ public class PositionApi {
             throw new ApiException("Missing the required parameter 'leverage' when calling positionUpdateLeverage(Async)");
         }
         
-        
+
         com.squareup.okhttp.Call call = positionUpdateLeverageCall(symbol, leverage, progressListener, progressRequestListener);
         return call;
 
-        
-        
-        
-        
     }
 
     /**
      * Choose leverage for a position.
-     * Users can choose an isolated leverage. This will automatically enable isolated margin.
+     * 
      * @param symbol Symbol of position to adjust. (required)
      * @param leverage Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin. (required)
      * @return Position
@@ -556,7 +540,7 @@ public class PositionApi {
 
     /**
      * Choose leverage for a position.
-     * Users can choose an isolated leverage. This will automatically enable isolated margin.
+     * 
      * @param symbol Symbol of position to adjust. (required)
      * @param leverage Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin. (required)
      * @return ApiResponse&lt;Position&gt;
@@ -570,7 +554,7 @@ public class PositionApi {
 
     /**
      * Choose leverage for a position. (asynchronously)
-     * Users can choose an isolated leverage. This will automatically enable isolated margin.
+     * 
      * @param symbol Symbol of position to adjust. (required)
      * @param leverage Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin. (required)
      * @param callback The callback to be executed when the API call finishes
@@ -605,7 +589,7 @@ public class PositionApi {
     }
     /**
      * Build call for positionUpdateRiskLimit
-     * @param symbol Symbol of position to isolate. (required)
+     * @param symbol Symbol of position to update risk limit on. (required)
      * @param riskLimit New Risk Limit, in Satoshis. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -614,7 +598,7 @@ public class PositionApi {
      */
     public com.squareup.okhttp.Call positionUpdateRiskLimitCall(String symbol, BigDecimal riskLimit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
-        
+
         // create path and map variables
         String localVarPath = "/position/riskLimit";
 
@@ -656,7 +640,7 @@ public class PositionApi {
         String[] localVarAuthNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call positionUpdateRiskLimitValidateBeforeCall(String symbol, BigDecimal riskLimit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
@@ -670,20 +654,16 @@ public class PositionApi {
             throw new ApiException("Missing the required parameter 'riskLimit' when calling positionUpdateRiskLimit(Async)");
         }
         
-        
+
         com.squareup.okhttp.Call call = positionUpdateRiskLimitCall(symbol, riskLimit, progressListener, progressRequestListener);
         return call;
 
-        
-        
-        
-        
     }
 
     /**
      * Update your risk limit.
-     * Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
-     * @param symbol Symbol of position to isolate. (required)
+     * 
+     * @param symbol Symbol of position to update risk limit on. (required)
      * @param riskLimit New Risk Limit, in Satoshis. (required)
      * @return Position
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -695,8 +675,8 @@ public class PositionApi {
 
     /**
      * Update your risk limit.
-     * Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
-     * @param symbol Symbol of position to isolate. (required)
+     * 
+     * @param symbol Symbol of position to update risk limit on. (required)
      * @param riskLimit New Risk Limit, in Satoshis. (required)
      * @return ApiResponse&lt;Position&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -709,8 +689,8 @@ public class PositionApi {
 
     /**
      * Update your risk limit. (asynchronously)
-     * Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
-     * @param symbol Symbol of position to isolate. (required)
+     * 
+     * @param symbol Symbol of position to update risk limit on. (required)
      * @param riskLimit New Risk Limit, in Satoshis. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call

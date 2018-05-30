@@ -19,7 +19,7 @@ open class LeaderboardAPI {
      */
     open class func leaderboardGet(method: String? = nil, completion: @escaping ((_ data: [Leaderboard]?,_ error: Error?) -> Void)) {
         leaderboardGetWithRequestBuilder(method: method).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -28,12 +28,10 @@ open class LeaderboardAPI {
      Get current leaderboard.
      - GET /leaderboard
      - examples: [{contentType=application/json, example=[ {
-  "isMe" : true,
   "name" : "name",
   "isRealName" : true,
   "profit" : 0.8008281904610115
 }, {
-  "isMe" : true,
   "name" : "name",
   "isRealName" : true,
   "profit" : 0.8008281904610115
@@ -47,14 +45,55 @@ open class LeaderboardAPI {
         let path = "/leaderboard"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
             "method": method
         ])
-        
 
         let requestBuilder: RequestBuilder<[Leaderboard]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
+     Get your alias on the leaderboard.
+     
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func leaderboardGetName(completion: @escaping ((_ data: InlineResponse2001?,_ error: Error?) -> Void)) {
+        leaderboardGetNameWithRequestBuilder().execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Get your alias on the leaderboard.
+     - GET /leaderboard/name
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-nonce 
+       - name: apiNonce
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
+     - examples: [{contentType=application/json, example={
+  "name" : "name"
+}}]
+
+     - returns: RequestBuilder<InlineResponse2001> 
+     */
+    open class func leaderboardGetNameWithRequestBuilder() -> RequestBuilder<InlineResponse2001> {
+        let path = "/leaderboard/name"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        let url = URLComponents(string: URLString)
+
+        let requestBuilder: RequestBuilder<InlineResponse2001>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }

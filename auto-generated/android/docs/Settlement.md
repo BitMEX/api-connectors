@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **symbol** | **String** |  | 
 **settlementType** | **String** |  |  [optional]
 **settledPrice** | **Double** |  |  [optional]
+**optionStrikePrice** | **Double** |  |  [optional]
+**optionUnderlyingPrice** | **Double** |  |  [optional]
 **bankrupt** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **taxBase** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **taxRate** | **Double** |  |  [optional]

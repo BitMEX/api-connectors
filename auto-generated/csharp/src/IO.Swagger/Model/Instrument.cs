@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,208 +38,218 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Instrument" /> class.
         /// </summary>
-        /// <param name="Symbol">Symbol (required).</param>
-        /// <param name="RootSymbol">RootSymbol.</param>
-        /// <param name="State">State.</param>
-        /// <param name="Typ">Typ.</param>
-        /// <param name="Listing">Listing.</param>
-        /// <param name="Front">Front.</param>
-        /// <param name="Expiry">Expiry.</param>
-        /// <param name="Settle">Settle.</param>
-        /// <param name="RelistInterval">RelistInterval.</param>
-        /// <param name="InverseLeg">InverseLeg.</param>
-        /// <param name="SellLeg">SellLeg.</param>
-        /// <param name="BuyLeg">BuyLeg.</param>
-        /// <param name="PositionCurrency">PositionCurrency.</param>
-        /// <param name="Underlying">Underlying.</param>
-        /// <param name="QuoteCurrency">QuoteCurrency.</param>
-        /// <param name="UnderlyingSymbol">UnderlyingSymbol.</param>
-        /// <param name="Reference">Reference.</param>
-        /// <param name="ReferenceSymbol">ReferenceSymbol.</param>
-        /// <param name="CalcInterval">CalcInterval.</param>
-        /// <param name="PublishInterval">PublishInterval.</param>
-        /// <param name="PublishTime">PublishTime.</param>
-        /// <param name="MaxOrderQty">MaxOrderQty.</param>
-        /// <param name="MaxPrice">MaxPrice.</param>
-        /// <param name="LotSize">LotSize.</param>
-        /// <param name="TickSize">TickSize.</param>
-        /// <param name="Multiplier">Multiplier.</param>
-        /// <param name="SettlCurrency">SettlCurrency.</param>
-        /// <param name="UnderlyingToPositionMultiplier">UnderlyingToPositionMultiplier.</param>
-        /// <param name="UnderlyingToSettleMultiplier">UnderlyingToSettleMultiplier.</param>
-        /// <param name="QuoteToSettleMultiplier">QuoteToSettleMultiplier.</param>
-        /// <param name="IsQuanto">IsQuanto.</param>
-        /// <param name="IsInverse">IsInverse.</param>
-        /// <param name="InitMargin">InitMargin.</param>
-        /// <param name="MaintMargin">MaintMargin.</param>
-        /// <param name="RiskLimit">RiskLimit.</param>
-        /// <param name="RiskStep">RiskStep.</param>
-        /// <param name="Limit">Limit.</param>
-        /// <param name="Capped">Capped.</param>
-        /// <param name="Taxed">Taxed.</param>
-        /// <param name="Deleverage">Deleverage.</param>
-        /// <param name="MakerFee">MakerFee.</param>
-        /// <param name="TakerFee">TakerFee.</param>
-        /// <param name="SettlementFee">SettlementFee.</param>
-        /// <param name="InsuranceFee">InsuranceFee.</param>
-        /// <param name="FundingBaseSymbol">FundingBaseSymbol.</param>
-        /// <param name="FundingQuoteSymbol">FundingQuoteSymbol.</param>
-        /// <param name="FundingPremiumSymbol">FundingPremiumSymbol.</param>
-        /// <param name="FundingTimestamp">FundingTimestamp.</param>
-        /// <param name="FundingInterval">FundingInterval.</param>
-        /// <param name="FundingRate">FundingRate.</param>
-        /// <param name="IndicativeFundingRate">IndicativeFundingRate.</param>
-        /// <param name="RebalanceTimestamp">RebalanceTimestamp.</param>
-        /// <param name="RebalanceInterval">RebalanceInterval.</param>
-        /// <param name="OpeningTimestamp">OpeningTimestamp.</param>
-        /// <param name="ClosingTimestamp">ClosingTimestamp.</param>
-        /// <param name="SessionInterval">SessionInterval.</param>
-        /// <param name="PrevClosePrice">PrevClosePrice.</param>
-        /// <param name="LimitDownPrice">LimitDownPrice.</param>
-        /// <param name="LimitUpPrice">LimitUpPrice.</param>
-        /// <param name="BankruptLimitDownPrice">BankruptLimitDownPrice.</param>
-        /// <param name="BankruptLimitUpPrice">BankruptLimitUpPrice.</param>
-        /// <param name="PrevTotalVolume">PrevTotalVolume.</param>
-        /// <param name="TotalVolume">TotalVolume.</param>
-        /// <param name="Volume">Volume.</param>
-        /// <param name="Volume24h">Volume24h.</param>
-        /// <param name="PrevTotalTurnover">PrevTotalTurnover.</param>
-        /// <param name="TotalTurnover">TotalTurnover.</param>
-        /// <param name="Turnover">Turnover.</param>
-        /// <param name="Turnover24h">Turnover24h.</param>
-        /// <param name="PrevPrice24h">PrevPrice24h.</param>
-        /// <param name="Vwap">Vwap.</param>
-        /// <param name="HighPrice">HighPrice.</param>
-        /// <param name="LowPrice">LowPrice.</param>
-        /// <param name="LastPrice">LastPrice.</param>
-        /// <param name="LastPriceProtected">LastPriceProtected.</param>
-        /// <param name="LastTickDirection">LastTickDirection.</param>
-        /// <param name="LastChangePcnt">LastChangePcnt.</param>
-        /// <param name="BidPrice">BidPrice.</param>
-        /// <param name="MidPrice">MidPrice.</param>
-        /// <param name="AskPrice">AskPrice.</param>
-        /// <param name="ImpactBidPrice">ImpactBidPrice.</param>
-        /// <param name="ImpactMidPrice">ImpactMidPrice.</param>
-        /// <param name="ImpactAskPrice">ImpactAskPrice.</param>
-        /// <param name="HasLiquidity">HasLiquidity.</param>
-        /// <param name="OpenInterest">OpenInterest.</param>
-        /// <param name="OpenValue">OpenValue.</param>
-        /// <param name="FairMethod">FairMethod.</param>
-        /// <param name="FairBasisRate">FairBasisRate.</param>
-        /// <param name="FairBasis">FairBasis.</param>
-        /// <param name="FairPrice">FairPrice.</param>
-        /// <param name="MarkMethod">MarkMethod.</param>
-        /// <param name="MarkPrice">MarkPrice.</param>
-        /// <param name="IndicativeTaxRate">IndicativeTaxRate.</param>
-        /// <param name="IndicativeSettlePrice">IndicativeSettlePrice.</param>
-        /// <param name="SettledPrice">SettledPrice.</param>
-        /// <param name="Timestamp">Timestamp.</param>
-        public Instrument(string Symbol = default(string), string RootSymbol = default(string), string State = default(string), string Typ = default(string), DateTime? Listing = default(DateTime?), DateTime? Front = default(DateTime?), DateTime? Expiry = default(DateTime?), DateTime? Settle = default(DateTime?), DateTime? RelistInterval = default(DateTime?), string InverseLeg = default(string), string SellLeg = default(string), string BuyLeg = default(string), string PositionCurrency = default(string), string Underlying = default(string), string QuoteCurrency = default(string), string UnderlyingSymbol = default(string), string Reference = default(string), string ReferenceSymbol = default(string), DateTime? CalcInterval = default(DateTime?), DateTime? PublishInterval = default(DateTime?), DateTime? PublishTime = default(DateTime?), decimal? MaxOrderQty = default(decimal?), double? MaxPrice = default(double?), decimal? LotSize = default(decimal?), double? TickSize = default(double?), decimal? Multiplier = default(decimal?), string SettlCurrency = default(string), decimal? UnderlyingToPositionMultiplier = default(decimal?), decimal? UnderlyingToSettleMultiplier = default(decimal?), decimal? QuoteToSettleMultiplier = default(decimal?), bool? IsQuanto = default(bool?), bool? IsInverse = default(bool?), double? InitMargin = default(double?), double? MaintMargin = default(double?), decimal? RiskLimit = default(decimal?), decimal? RiskStep = default(decimal?), double? Limit = default(double?), bool? Capped = default(bool?), bool? Taxed = default(bool?), bool? Deleverage = default(bool?), double? MakerFee = default(double?), double? TakerFee = default(double?), double? SettlementFee = default(double?), double? InsuranceFee = default(double?), string FundingBaseSymbol = default(string), string FundingQuoteSymbol = default(string), string FundingPremiumSymbol = default(string), DateTime? FundingTimestamp = default(DateTime?), DateTime? FundingInterval = default(DateTime?), double? FundingRate = default(double?), double? IndicativeFundingRate = default(double?), DateTime? RebalanceTimestamp = default(DateTime?), DateTime? RebalanceInterval = default(DateTime?), DateTime? OpeningTimestamp = default(DateTime?), DateTime? ClosingTimestamp = default(DateTime?), DateTime? SessionInterval = default(DateTime?), double? PrevClosePrice = default(double?), double? LimitDownPrice = default(double?), double? LimitUpPrice = default(double?), double? BankruptLimitDownPrice = default(double?), double? BankruptLimitUpPrice = default(double?), decimal? PrevTotalVolume = default(decimal?), decimal? TotalVolume = default(decimal?), decimal? Volume = default(decimal?), decimal? Volume24h = default(decimal?), decimal? PrevTotalTurnover = default(decimal?), decimal? TotalTurnover = default(decimal?), decimal? Turnover = default(decimal?), decimal? Turnover24h = default(decimal?), double? PrevPrice24h = default(double?), double? Vwap = default(double?), double? HighPrice = default(double?), double? LowPrice = default(double?), double? LastPrice = default(double?), double? LastPriceProtected = default(double?), string LastTickDirection = default(string), double? LastChangePcnt = default(double?), double? BidPrice = default(double?), double? MidPrice = default(double?), double? AskPrice = default(double?), double? ImpactBidPrice = default(double?), double? ImpactMidPrice = default(double?), double? ImpactAskPrice = default(double?), bool? HasLiquidity = default(bool?), decimal? OpenInterest = default(decimal?), decimal? OpenValue = default(decimal?), string FairMethod = default(string), double? FairBasisRate = default(double?), double? FairBasis = default(double?), double? FairPrice = default(double?), string MarkMethod = default(string), double? MarkPrice = default(double?), double? IndicativeTaxRate = default(double?), double? IndicativeSettlePrice = default(double?), double? SettledPrice = default(double?), DateTime? Timestamp = default(DateTime?))
+        /// <param name="symbol">symbol (required).</param>
+        /// <param name="rootSymbol">rootSymbol.</param>
+        /// <param name="state">state.</param>
+        /// <param name="typ">typ.</param>
+        /// <param name="listing">listing.</param>
+        /// <param name="front">front.</param>
+        /// <param name="expiry">expiry.</param>
+        /// <param name="settle">settle.</param>
+        /// <param name="relistInterval">relistInterval.</param>
+        /// <param name="inverseLeg">inverseLeg.</param>
+        /// <param name="sellLeg">sellLeg.</param>
+        /// <param name="buyLeg">buyLeg.</param>
+        /// <param name="optionStrikePcnt">optionStrikePcnt.</param>
+        /// <param name="optionStrikeRound">optionStrikeRound.</param>
+        /// <param name="optionStrikePrice">optionStrikePrice.</param>
+        /// <param name="optionMultiplier">optionMultiplier.</param>
+        /// <param name="positionCurrency">positionCurrency.</param>
+        /// <param name="underlying">underlying.</param>
+        /// <param name="quoteCurrency">quoteCurrency.</param>
+        /// <param name="underlyingSymbol">underlyingSymbol.</param>
+        /// <param name="reference">reference.</param>
+        /// <param name="referenceSymbol">referenceSymbol.</param>
+        /// <param name="calcInterval">calcInterval.</param>
+        /// <param name="publishInterval">publishInterval.</param>
+        /// <param name="publishTime">publishTime.</param>
+        /// <param name="maxOrderQty">maxOrderQty.</param>
+        /// <param name="maxPrice">maxPrice.</param>
+        /// <param name="lotSize">lotSize.</param>
+        /// <param name="tickSize">tickSize.</param>
+        /// <param name="multiplier">multiplier.</param>
+        /// <param name="settlCurrency">settlCurrency.</param>
+        /// <param name="underlyingToPositionMultiplier">underlyingToPositionMultiplier.</param>
+        /// <param name="underlyingToSettleMultiplier">underlyingToSettleMultiplier.</param>
+        /// <param name="quoteToSettleMultiplier">quoteToSettleMultiplier.</param>
+        /// <param name="isQuanto">isQuanto.</param>
+        /// <param name="isInverse">isInverse.</param>
+        /// <param name="initMargin">initMargin.</param>
+        /// <param name="maintMargin">maintMargin.</param>
+        /// <param name="riskLimit">riskLimit.</param>
+        /// <param name="riskStep">riskStep.</param>
+        /// <param name="limit">limit.</param>
+        /// <param name="capped">capped.</param>
+        /// <param name="taxed">taxed.</param>
+        /// <param name="deleverage">deleverage.</param>
+        /// <param name="makerFee">makerFee.</param>
+        /// <param name="takerFee">takerFee.</param>
+        /// <param name="settlementFee">settlementFee.</param>
+        /// <param name="insuranceFee">insuranceFee.</param>
+        /// <param name="fundingBaseSymbol">fundingBaseSymbol.</param>
+        /// <param name="fundingQuoteSymbol">fundingQuoteSymbol.</param>
+        /// <param name="fundingPremiumSymbol">fundingPremiumSymbol.</param>
+        /// <param name="fundingTimestamp">fundingTimestamp.</param>
+        /// <param name="fundingInterval">fundingInterval.</param>
+        /// <param name="fundingRate">fundingRate.</param>
+        /// <param name="indicativeFundingRate">indicativeFundingRate.</param>
+        /// <param name="rebalanceTimestamp">rebalanceTimestamp.</param>
+        /// <param name="rebalanceInterval">rebalanceInterval.</param>
+        /// <param name="openingTimestamp">openingTimestamp.</param>
+        /// <param name="closingTimestamp">closingTimestamp.</param>
+        /// <param name="sessionInterval">sessionInterval.</param>
+        /// <param name="prevClosePrice">prevClosePrice.</param>
+        /// <param name="limitDownPrice">limitDownPrice.</param>
+        /// <param name="limitUpPrice">limitUpPrice.</param>
+        /// <param name="bankruptLimitDownPrice">bankruptLimitDownPrice.</param>
+        /// <param name="bankruptLimitUpPrice">bankruptLimitUpPrice.</param>
+        /// <param name="prevTotalVolume">prevTotalVolume.</param>
+        /// <param name="totalVolume">totalVolume.</param>
+        /// <param name="volume">volume.</param>
+        /// <param name="volume24h">volume24h.</param>
+        /// <param name="prevTotalTurnover">prevTotalTurnover.</param>
+        /// <param name="totalTurnover">totalTurnover.</param>
+        /// <param name="turnover">turnover.</param>
+        /// <param name="turnover24h">turnover24h.</param>
+        /// <param name="prevPrice24h">prevPrice24h.</param>
+        /// <param name="vwap">vwap.</param>
+        /// <param name="highPrice">highPrice.</param>
+        /// <param name="lowPrice">lowPrice.</param>
+        /// <param name="lastPrice">lastPrice.</param>
+        /// <param name="lastPriceProtected">lastPriceProtected.</param>
+        /// <param name="lastTickDirection">lastTickDirection.</param>
+        /// <param name="lastChangePcnt">lastChangePcnt.</param>
+        /// <param name="bidPrice">bidPrice.</param>
+        /// <param name="midPrice">midPrice.</param>
+        /// <param name="askPrice">askPrice.</param>
+        /// <param name="impactBidPrice">impactBidPrice.</param>
+        /// <param name="impactMidPrice">impactMidPrice.</param>
+        /// <param name="impactAskPrice">impactAskPrice.</param>
+        /// <param name="hasLiquidity">hasLiquidity.</param>
+        /// <param name="openInterest">openInterest.</param>
+        /// <param name="openValue">openValue.</param>
+        /// <param name="fairMethod">fairMethod.</param>
+        /// <param name="fairBasisRate">fairBasisRate.</param>
+        /// <param name="fairBasis">fairBasis.</param>
+        /// <param name="fairPrice">fairPrice.</param>
+        /// <param name="markMethod">markMethod.</param>
+        /// <param name="markPrice">markPrice.</param>
+        /// <param name="indicativeTaxRate">indicativeTaxRate.</param>
+        /// <param name="indicativeSettlePrice">indicativeSettlePrice.</param>
+        /// <param name="optionUnderlyingPrice">optionUnderlyingPrice.</param>
+        /// <param name="settledPrice">settledPrice.</param>
+        /// <param name="timestamp">timestamp.</param>
+        public Instrument(string symbol = default(string), string rootSymbol = default(string), string state = default(string), string typ = default(string), DateTime? listing = default(DateTime?), DateTime? front = default(DateTime?), DateTime? expiry = default(DateTime?), DateTime? settle = default(DateTime?), DateTime? relistInterval = default(DateTime?), string inverseLeg = default(string), string sellLeg = default(string), string buyLeg = default(string), double? optionStrikePcnt = default(double?), double? optionStrikeRound = default(double?), double? optionStrikePrice = default(double?), double? optionMultiplier = default(double?), string positionCurrency = default(string), string underlying = default(string), string quoteCurrency = default(string), string underlyingSymbol = default(string), string reference = default(string), string referenceSymbol = default(string), DateTime? calcInterval = default(DateTime?), DateTime? publishInterval = default(DateTime?), DateTime? publishTime = default(DateTime?), decimal? maxOrderQty = default(decimal?), double? maxPrice = default(double?), decimal? lotSize = default(decimal?), double? tickSize = default(double?), decimal? multiplier = default(decimal?), string settlCurrency = default(string), decimal? underlyingToPositionMultiplier = default(decimal?), decimal? underlyingToSettleMultiplier = default(decimal?), decimal? quoteToSettleMultiplier = default(decimal?), bool? isQuanto = default(bool?), bool? isInverse = default(bool?), double? initMargin = default(double?), double? maintMargin = default(double?), decimal? riskLimit = default(decimal?), decimal? riskStep = default(decimal?), double? limit = default(double?), bool? capped = default(bool?), bool? taxed = default(bool?), bool? deleverage = default(bool?), double? makerFee = default(double?), double? takerFee = default(double?), double? settlementFee = default(double?), double? insuranceFee = default(double?), string fundingBaseSymbol = default(string), string fundingQuoteSymbol = default(string), string fundingPremiumSymbol = default(string), DateTime? fundingTimestamp = default(DateTime?), DateTime? fundingInterval = default(DateTime?), double? fundingRate = default(double?), double? indicativeFundingRate = default(double?), DateTime? rebalanceTimestamp = default(DateTime?), DateTime? rebalanceInterval = default(DateTime?), DateTime? openingTimestamp = default(DateTime?), DateTime? closingTimestamp = default(DateTime?), DateTime? sessionInterval = default(DateTime?), double? prevClosePrice = default(double?), double? limitDownPrice = default(double?), double? limitUpPrice = default(double?), double? bankruptLimitDownPrice = default(double?), double? bankruptLimitUpPrice = default(double?), decimal? prevTotalVolume = default(decimal?), decimal? totalVolume = default(decimal?), decimal? volume = default(decimal?), decimal? volume24h = default(decimal?), decimal? prevTotalTurnover = default(decimal?), decimal? totalTurnover = default(decimal?), decimal? turnover = default(decimal?), decimal? turnover24h = default(decimal?), double? prevPrice24h = default(double?), double? vwap = default(double?), double? highPrice = default(double?), double? lowPrice = default(double?), double? lastPrice = default(double?), double? lastPriceProtected = default(double?), string lastTickDirection = default(string), double? lastChangePcnt = default(double?), double? bidPrice = default(double?), double? midPrice = default(double?), double? askPrice = default(double?), double? impactBidPrice = default(double?), double? impactMidPrice = default(double?), double? impactAskPrice = default(double?), bool? hasLiquidity = default(bool?), decimal? openInterest = default(decimal?), decimal? openValue = default(decimal?), string fairMethod = default(string), double? fairBasisRate = default(double?), double? fairBasis = default(double?), double? fairPrice = default(double?), string markMethod = default(string), double? markPrice = default(double?), double? indicativeTaxRate = default(double?), double? indicativeSettlePrice = default(double?), double? optionUnderlyingPrice = default(double?), double? settledPrice = default(double?), DateTime? timestamp = default(DateTime?))
         {
-            // to ensure "Symbol" is required (not null)
-            if (Symbol == null)
+            // to ensure "symbol" is required (not null)
+            if (symbol == null)
             {
-                throw new InvalidDataException("Symbol is a required property for Instrument and cannot be null");
+                throw new InvalidDataException("symbol is a required property for Instrument and cannot be null");
             }
             else
             {
-                this.Symbol = Symbol;
+                this.Symbol = symbol;
             }
-            this.RootSymbol = RootSymbol;
-            this.State = State;
-            this.Typ = Typ;
-            this.Listing = Listing;
-            this.Front = Front;
-            this.Expiry = Expiry;
-            this.Settle = Settle;
-            this.RelistInterval = RelistInterval;
-            this.InverseLeg = InverseLeg;
-            this.SellLeg = SellLeg;
-            this.BuyLeg = BuyLeg;
-            this.PositionCurrency = PositionCurrency;
-            this.Underlying = Underlying;
-            this.QuoteCurrency = QuoteCurrency;
-            this.UnderlyingSymbol = UnderlyingSymbol;
-            this.Reference = Reference;
-            this.ReferenceSymbol = ReferenceSymbol;
-            this.CalcInterval = CalcInterval;
-            this.PublishInterval = PublishInterval;
-            this.PublishTime = PublishTime;
-            this.MaxOrderQty = MaxOrderQty;
-            this.MaxPrice = MaxPrice;
-            this.LotSize = LotSize;
-            this.TickSize = TickSize;
-            this.Multiplier = Multiplier;
-            this.SettlCurrency = SettlCurrency;
-            this.UnderlyingToPositionMultiplier = UnderlyingToPositionMultiplier;
-            this.UnderlyingToSettleMultiplier = UnderlyingToSettleMultiplier;
-            this.QuoteToSettleMultiplier = QuoteToSettleMultiplier;
-            this.IsQuanto = IsQuanto;
-            this.IsInverse = IsInverse;
-            this.InitMargin = InitMargin;
-            this.MaintMargin = MaintMargin;
-            this.RiskLimit = RiskLimit;
-            this.RiskStep = RiskStep;
-            this.Limit = Limit;
-            this.Capped = Capped;
-            this.Taxed = Taxed;
-            this.Deleverage = Deleverage;
-            this.MakerFee = MakerFee;
-            this.TakerFee = TakerFee;
-            this.SettlementFee = SettlementFee;
-            this.InsuranceFee = InsuranceFee;
-            this.FundingBaseSymbol = FundingBaseSymbol;
-            this.FundingQuoteSymbol = FundingQuoteSymbol;
-            this.FundingPremiumSymbol = FundingPremiumSymbol;
-            this.FundingTimestamp = FundingTimestamp;
-            this.FundingInterval = FundingInterval;
-            this.FundingRate = FundingRate;
-            this.IndicativeFundingRate = IndicativeFundingRate;
-            this.RebalanceTimestamp = RebalanceTimestamp;
-            this.RebalanceInterval = RebalanceInterval;
-            this.OpeningTimestamp = OpeningTimestamp;
-            this.ClosingTimestamp = ClosingTimestamp;
-            this.SessionInterval = SessionInterval;
-            this.PrevClosePrice = PrevClosePrice;
-            this.LimitDownPrice = LimitDownPrice;
-            this.LimitUpPrice = LimitUpPrice;
-            this.BankruptLimitDownPrice = BankruptLimitDownPrice;
-            this.BankruptLimitUpPrice = BankruptLimitUpPrice;
-            this.PrevTotalVolume = PrevTotalVolume;
-            this.TotalVolume = TotalVolume;
-            this.Volume = Volume;
-            this.Volume24h = Volume24h;
-            this.PrevTotalTurnover = PrevTotalTurnover;
-            this.TotalTurnover = TotalTurnover;
-            this.Turnover = Turnover;
-            this.Turnover24h = Turnover24h;
-            this.PrevPrice24h = PrevPrice24h;
-            this.Vwap = Vwap;
-            this.HighPrice = HighPrice;
-            this.LowPrice = LowPrice;
-            this.LastPrice = LastPrice;
-            this.LastPriceProtected = LastPriceProtected;
-            this.LastTickDirection = LastTickDirection;
-            this.LastChangePcnt = LastChangePcnt;
-            this.BidPrice = BidPrice;
-            this.MidPrice = MidPrice;
-            this.AskPrice = AskPrice;
-            this.ImpactBidPrice = ImpactBidPrice;
-            this.ImpactMidPrice = ImpactMidPrice;
-            this.ImpactAskPrice = ImpactAskPrice;
-            this.HasLiquidity = HasLiquidity;
-            this.OpenInterest = OpenInterest;
-            this.OpenValue = OpenValue;
-            this.FairMethod = FairMethod;
-            this.FairBasisRate = FairBasisRate;
-            this.FairBasis = FairBasis;
-            this.FairPrice = FairPrice;
-            this.MarkMethod = MarkMethod;
-            this.MarkPrice = MarkPrice;
-            this.IndicativeTaxRate = IndicativeTaxRate;
-            this.IndicativeSettlePrice = IndicativeSettlePrice;
-            this.SettledPrice = SettledPrice;
-            this.Timestamp = Timestamp;
+            this.RootSymbol = rootSymbol;
+            this.State = state;
+            this.Typ = typ;
+            this.Listing = listing;
+            this.Front = front;
+            this.Expiry = expiry;
+            this.Settle = settle;
+            this.RelistInterval = relistInterval;
+            this.InverseLeg = inverseLeg;
+            this.SellLeg = sellLeg;
+            this.BuyLeg = buyLeg;
+            this.OptionStrikePcnt = optionStrikePcnt;
+            this.OptionStrikeRound = optionStrikeRound;
+            this.OptionStrikePrice = optionStrikePrice;
+            this.OptionMultiplier = optionMultiplier;
+            this.PositionCurrency = positionCurrency;
+            this.Underlying = underlying;
+            this.QuoteCurrency = quoteCurrency;
+            this.UnderlyingSymbol = underlyingSymbol;
+            this.Reference = reference;
+            this.ReferenceSymbol = referenceSymbol;
+            this.CalcInterval = calcInterval;
+            this.PublishInterval = publishInterval;
+            this.PublishTime = publishTime;
+            this.MaxOrderQty = maxOrderQty;
+            this.MaxPrice = maxPrice;
+            this.LotSize = lotSize;
+            this.TickSize = tickSize;
+            this.Multiplier = multiplier;
+            this.SettlCurrency = settlCurrency;
+            this.UnderlyingToPositionMultiplier = underlyingToPositionMultiplier;
+            this.UnderlyingToSettleMultiplier = underlyingToSettleMultiplier;
+            this.QuoteToSettleMultiplier = quoteToSettleMultiplier;
+            this.IsQuanto = isQuanto;
+            this.IsInverse = isInverse;
+            this.InitMargin = initMargin;
+            this.MaintMargin = maintMargin;
+            this.RiskLimit = riskLimit;
+            this.RiskStep = riskStep;
+            this.Limit = limit;
+            this.Capped = capped;
+            this.Taxed = taxed;
+            this.Deleverage = deleverage;
+            this.MakerFee = makerFee;
+            this.TakerFee = takerFee;
+            this.SettlementFee = settlementFee;
+            this.InsuranceFee = insuranceFee;
+            this.FundingBaseSymbol = fundingBaseSymbol;
+            this.FundingQuoteSymbol = fundingQuoteSymbol;
+            this.FundingPremiumSymbol = fundingPremiumSymbol;
+            this.FundingTimestamp = fundingTimestamp;
+            this.FundingInterval = fundingInterval;
+            this.FundingRate = fundingRate;
+            this.IndicativeFundingRate = indicativeFundingRate;
+            this.RebalanceTimestamp = rebalanceTimestamp;
+            this.RebalanceInterval = rebalanceInterval;
+            this.OpeningTimestamp = openingTimestamp;
+            this.ClosingTimestamp = closingTimestamp;
+            this.SessionInterval = sessionInterval;
+            this.PrevClosePrice = prevClosePrice;
+            this.LimitDownPrice = limitDownPrice;
+            this.LimitUpPrice = limitUpPrice;
+            this.BankruptLimitDownPrice = bankruptLimitDownPrice;
+            this.BankruptLimitUpPrice = bankruptLimitUpPrice;
+            this.PrevTotalVolume = prevTotalVolume;
+            this.TotalVolume = totalVolume;
+            this.Volume = volume;
+            this.Volume24h = volume24h;
+            this.PrevTotalTurnover = prevTotalTurnover;
+            this.TotalTurnover = totalTurnover;
+            this.Turnover = turnover;
+            this.Turnover24h = turnover24h;
+            this.PrevPrice24h = prevPrice24h;
+            this.Vwap = vwap;
+            this.HighPrice = highPrice;
+            this.LowPrice = lowPrice;
+            this.LastPrice = lastPrice;
+            this.LastPriceProtected = lastPriceProtected;
+            this.LastTickDirection = lastTickDirection;
+            this.LastChangePcnt = lastChangePcnt;
+            this.BidPrice = bidPrice;
+            this.MidPrice = midPrice;
+            this.AskPrice = askPrice;
+            this.ImpactBidPrice = impactBidPrice;
+            this.ImpactMidPrice = impactMidPrice;
+            this.ImpactAskPrice = impactAskPrice;
+            this.HasLiquidity = hasLiquidity;
+            this.OpenInterest = openInterest;
+            this.OpenValue = openValue;
+            this.FairMethod = fairMethod;
+            this.FairBasisRate = fairBasisRate;
+            this.FairBasis = fairBasis;
+            this.FairPrice = fairPrice;
+            this.MarkMethod = markMethod;
+            this.MarkPrice = markPrice;
+            this.IndicativeTaxRate = indicativeTaxRate;
+            this.IndicativeSettlePrice = indicativeSettlePrice;
+            this.OptionUnderlyingPrice = optionUnderlyingPrice;
+            this.SettledPrice = settledPrice;
+            this.Timestamp = timestamp;
         }
         
         /// <summary>
@@ -313,6 +323,30 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="buyLeg", EmitDefaultValue=false)]
         public string BuyLeg { get; set; }
+
+        /// <summary>
+        /// Gets or Sets OptionStrikePcnt
+        /// </summary>
+        [DataMember(Name="optionStrikePcnt", EmitDefaultValue=false)]
+        public double? OptionStrikePcnt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets OptionStrikeRound
+        /// </summary>
+        [DataMember(Name="optionStrikeRound", EmitDefaultValue=false)]
+        public double? OptionStrikeRound { get; set; }
+
+        /// <summary>
+        /// Gets or Sets OptionStrikePrice
+        /// </summary>
+        [DataMember(Name="optionStrikePrice", EmitDefaultValue=false)]
+        public double? OptionStrikePrice { get; set; }
+
+        /// <summary>
+        /// Gets or Sets OptionMultiplier
+        /// </summary>
+        [DataMember(Name="optionMultiplier", EmitDefaultValue=false)]
+        public double? OptionMultiplier { get; set; }
 
         /// <summary>
         /// Gets or Sets PositionCurrency
@@ -807,6 +841,12 @@ namespace IO.Swagger.Model
         public double? IndicativeSettlePrice { get; set; }
 
         /// <summary>
+        /// Gets or Sets OptionUnderlyingPrice
+        /// </summary>
+        [DataMember(Name="optionUnderlyingPrice", EmitDefaultValue=false)]
+        public double? OptionUnderlyingPrice { get; set; }
+
+        /// <summary>
         /// Gets or Sets SettledPrice
         /// </summary>
         [DataMember(Name="settledPrice", EmitDefaultValue=false)]
@@ -838,6 +878,10 @@ namespace IO.Swagger.Model
             sb.Append("  InverseLeg: ").Append(InverseLeg).Append("\n");
             sb.Append("  SellLeg: ").Append(SellLeg).Append("\n");
             sb.Append("  BuyLeg: ").Append(BuyLeg).Append("\n");
+            sb.Append("  OptionStrikePcnt: ").Append(OptionStrikePcnt).Append("\n");
+            sb.Append("  OptionStrikeRound: ").Append(OptionStrikeRound).Append("\n");
+            sb.Append("  OptionStrikePrice: ").Append(OptionStrikePrice).Append("\n");
+            sb.Append("  OptionMultiplier: ").Append(OptionMultiplier).Append("\n");
             sb.Append("  PositionCurrency: ").Append(PositionCurrency).Append("\n");
             sb.Append("  Underlying: ").Append(Underlying).Append("\n");
             sb.Append("  QuoteCurrency: ").Append(QuoteCurrency).Append("\n");
@@ -920,6 +964,7 @@ namespace IO.Swagger.Model
             sb.Append("  MarkPrice: ").Append(MarkPrice).Append("\n");
             sb.Append("  IndicativeTaxRate: ").Append(IndicativeTaxRate).Append("\n");
             sb.Append("  IndicativeSettlePrice: ").Append(IndicativeSettlePrice).Append("\n");
+            sb.Append("  OptionUnderlyingPrice: ").Append(OptionUnderlyingPrice).Append("\n");
             sb.Append("  SettledPrice: ").Append(SettledPrice).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("}\n");
@@ -930,7 +975,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -1015,6 +1060,26 @@ namespace IO.Swagger.Model
                     this.BuyLeg == input.BuyLeg ||
                     (this.BuyLeg != null &&
                     this.BuyLeg.Equals(input.BuyLeg))
+                ) && 
+                (
+                    this.OptionStrikePcnt == input.OptionStrikePcnt ||
+                    (this.OptionStrikePcnt != null &&
+                    this.OptionStrikePcnt.Equals(input.OptionStrikePcnt))
+                ) && 
+                (
+                    this.OptionStrikeRound == input.OptionStrikeRound ||
+                    (this.OptionStrikeRound != null &&
+                    this.OptionStrikeRound.Equals(input.OptionStrikeRound))
+                ) && 
+                (
+                    this.OptionStrikePrice == input.OptionStrikePrice ||
+                    (this.OptionStrikePrice != null &&
+                    this.OptionStrikePrice.Equals(input.OptionStrikePrice))
+                ) && 
+                (
+                    this.OptionMultiplier == input.OptionMultiplier ||
+                    (this.OptionMultiplier != null &&
+                    this.OptionMultiplier.Equals(input.OptionMultiplier))
                 ) && 
                 (
                     this.PositionCurrency == input.PositionCurrency ||
@@ -1427,6 +1492,11 @@ namespace IO.Swagger.Model
                     this.IndicativeSettlePrice.Equals(input.IndicativeSettlePrice))
                 ) && 
                 (
+                    this.OptionUnderlyingPrice == input.OptionUnderlyingPrice ||
+                    (this.OptionUnderlyingPrice != null &&
+                    this.OptionUnderlyingPrice.Equals(input.OptionUnderlyingPrice))
+                ) && 
+                (
                     this.SettledPrice == input.SettledPrice ||
                     (this.SettledPrice != null &&
                     this.SettledPrice.Equals(input.SettledPrice))
@@ -1471,6 +1541,14 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.SellLeg.GetHashCode();
                 if (this.BuyLeg != null)
                     hashCode = hashCode * 59 + this.BuyLeg.GetHashCode();
+                if (this.OptionStrikePcnt != null)
+                    hashCode = hashCode * 59 + this.OptionStrikePcnt.GetHashCode();
+                if (this.OptionStrikeRound != null)
+                    hashCode = hashCode * 59 + this.OptionStrikeRound.GetHashCode();
+                if (this.OptionStrikePrice != null)
+                    hashCode = hashCode * 59 + this.OptionStrikePrice.GetHashCode();
+                if (this.OptionMultiplier != null)
+                    hashCode = hashCode * 59 + this.OptionMultiplier.GetHashCode();
                 if (this.PositionCurrency != null)
                     hashCode = hashCode * 59 + this.PositionCurrency.GetHashCode();
                 if (this.Underlying != null)
@@ -1635,6 +1713,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.IndicativeTaxRate.GetHashCode();
                 if (this.IndicativeSettlePrice != null)
                     hashCode = hashCode * 59 + this.IndicativeSettlePrice.GetHashCode();
+                if (this.OptionUnderlyingPrice != null)
+                    hashCode = hashCode * 59 + this.OptionUnderlyingPrice.GetHashCode();
                 if (this.SettledPrice != null)
                     hashCode = hashCode * 59 + this.SettledPrice.GetHashCode();
                 if (this.Timestamp != null)

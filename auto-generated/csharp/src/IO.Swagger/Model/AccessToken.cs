@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,32 +38,32 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AccessToken" /> class.
         /// </summary>
-        /// <param name="Id">Id (required).</param>
-        /// <param name="Ttl">time to live in seconds (2 weeks by default) (default to 1209600.0).</param>
-        /// <param name="Created">Created.</param>
-        /// <param name="UserId">UserId.</param>
-        public AccessToken(string Id = default(string), double? Ttl = 1209600.0, DateTime? Created = default(DateTime?), double? UserId = default(double?))
+        /// <param name="id">id (required).</param>
+        /// <param name="ttl">time to live in seconds (2 weeks by default) (default to 1209600.0).</param>
+        /// <param name="created">created.</param>
+        /// <param name="userId">userId.</param>
+        public AccessToken(string id = default(string), double? ttl = 1209600.0, DateTime? created = default(DateTime?), double? userId = default(double?))
         {
-            // to ensure "Id" is required (not null)
-            if (Id == null)
+            // to ensure "id" is required (not null)
+            if (id == null)
             {
-                throw new InvalidDataException("Id is a required property for AccessToken and cannot be null");
+                throw new InvalidDataException("id is a required property for AccessToken and cannot be null");
             }
             else
             {
-                this.Id = Id;
+                this.Id = id;
             }
-            // use default value if no "Ttl" provided
-            if (Ttl == null)
+            // use default value if no "ttl" provided
+            if (ttl == null)
             {
                 this.Ttl = 1209600.0;
             }
             else
             {
-                this.Ttl = Ttl;
+                this.Ttl = ttl;
             }
-            this.Created = Created;
-            this.UserId = UserId;
+            this.Created = created;
+            this.UserId = userId;
         }
         
         /// <summary>
@@ -111,7 +111,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

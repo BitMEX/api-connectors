@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -26,6 +26,7 @@ import javax.ws.rs.core.MediaType
 
 import java.io.File
 import java.util.Date
+import java.util.TimeZone
 
 import scala.collection.mutable.HashMap
 
@@ -43,20 +44,31 @@ import scala.concurrent._
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
 
+import org.json4s._
+
 class PositionApi(
   val defBasePath: String = "https://localhost/api/v1",
   defApiInvoker: ApiInvoker = ApiInvoker
 ) {
-
-  implicit val formats = new org.json4s.DefaultFormats {
-    override def dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+0000")
+  private lazy val dateTimeFormatter = {
+    val formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+    formatter.setTimeZone(TimeZone.getTimeZone("UTC"))
+    formatter
   }
-  implicit val stringReader = ClientResponseReaders.StringReader
-  implicit val unitReader = ClientResponseReaders.UnitReader
-  implicit val jvalueReader = ClientResponseReaders.JValueReader
-  implicit val jsonReader = JsonFormatsReader
-  implicit val stringWriter = RequestWriters.StringWriter
-  implicit val jsonWriter = JsonFormatsWriter
+  private val dateFormatter = {
+    val formatter = new SimpleDateFormat("yyyy-MM-dd")
+    formatter.setTimeZone(TimeZone.getTimeZone("UTC"))
+    formatter
+  }
+  implicit val formats = new org.json4s.DefaultFormats {
+    override def dateFormatter = dateTimeFormatter
+  }
+  implicit val stringReader: ClientResponseReader[String] = ClientResponseReaders.StringReader
+  implicit val unitReader: ClientResponseReader[Unit] = ClientResponseReaders.UnitReader
+  implicit val jvalueReader: ClientResponseReader[JValue] = ClientResponseReaders.JValueReader
+  implicit val jsonReader: ClientResponseReader[Nothing] = JsonFormatsReader
+  implicit val stringWriter: RequestWriter[String] = RequestWriters.StringWriter
+  implicit val jsonWriter: RequestWriter[Nothing] = JsonFormatsWriter
 
   var basePath: String = defBasePath
   var apiInvoker: ApiInvoker = defApiInvoker
@@ -65,13 +77,14 @@ class PositionApi(
     apiInvoker.defaultHeaders += key -> value
   }
 
-  val config = SwaggerConfig.forUrl(new URI(defBasePath))
+  val config: SwaggerConfig = SwaggerConfig.forUrl(new URI(defBasePath))
   val client = new RestClient(config)
   val helper = new PositionApiAsyncHelper(client, config)
 
   /**
    * Get your positions.
    * See &lt;a href&#x3D;\&quot;http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html\&quot;&gt;the FIX Spec&lt;/a&gt; for explanations of these fields.
+   *
    * @param filter Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. (optional)
    * @param columns Which columns to fetch. For example, send [\&quot;columnName\&quot;]. (optional)
    * @param count Number of rows to fetch. (optional)
@@ -88,23 +101,25 @@ class PositionApi(
   /**
    * Get your positions. asynchronously
    * See &lt;a href&#x3D;\&quot;http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html\&quot;&gt;the FIX Spec&lt;/a&gt; for explanations of these fields.
+   *
    * @param filter Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. (optional)
    * @param columns Which columns to fetch. For example, send [\&quot;columnName\&quot;]. (optional)
    * @param count Number of rows to fetch. (optional)
    * @return Future(List[Position])
-  */
+   */
   def positionGetAsync(filter: Option[String] = None, columns: Option[String] = None, count: Option[Number] = None): Future[List[Position]] = {
       helper.positionGet(filter, columns, count)
   }
 
   /**
    * Enable isolated margin or cross margin per-position.
-   * Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+   * 
+   *
    * @param symbol Position symbol to isolate. 
    * @param enabled True for isolated margin, false for cross margin. (optional, default to true)
    * @return Position
    */
-  def positionIsolateMargin(symbol: String, enabled: Option[Boolean] /* = true*/): Option[Position] = {
+  def positionIsolateMargin(symbol: String, enabled: Option[Boolean] = Option(true)): Option[Position] = {
     val await = Try(Await.result(positionIsolateMarginAsync(symbol, enabled), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -114,18 +129,20 @@ class PositionApi(
 
   /**
    * Enable isolated margin or cross margin per-position. asynchronously
-   * Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+   * 
+   *
    * @param symbol Position symbol to isolate. 
    * @param enabled True for isolated margin, false for cross margin. (optional, default to true)
    * @return Future(Position)
-  */
-  def positionIsolateMarginAsync(symbol: String, enabled: Option[Boolean] /* = true*/): Future[Position] = {
+   */
+  def positionIsolateMarginAsync(symbol: String, enabled: Option[Boolean] = Option(true)): Future[Position] = {
       helper.positionIsolateMargin(symbol, enabled)
   }
 
   /**
    * Transfer equity in or out of a position.
-   * When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
+   * 
+   *
    * @param symbol Symbol of position to isolate. 
    * @param amount Amount to transfer, in Satoshis. May be negative. 
    * @return Position
@@ -140,18 +157,20 @@ class PositionApi(
 
   /**
    * Transfer equity in or out of a position. asynchronously
-   * When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
+   * 
+   *
    * @param symbol Symbol of position to isolate. 
    * @param amount Amount to transfer, in Satoshis. May be negative. 
    * @return Future(Position)
-  */
+   */
   def positionTransferIsolatedMarginAsync(symbol: String, amount: Number): Future[Position] = {
       helper.positionTransferIsolatedMargin(symbol, amount)
   }
 
   /**
    * Choose leverage for a position.
-   * Users can choose an isolated leverage. This will automatically enable isolated margin.
+   * 
+   *
    * @param symbol Symbol of position to adjust. 
    * @param leverage Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin. 
    * @return Position
@@ -166,19 +185,21 @@ class PositionApi(
 
   /**
    * Choose leverage for a position. asynchronously
-   * Users can choose an isolated leverage. This will automatically enable isolated margin.
+   * 
+   *
    * @param symbol Symbol of position to adjust. 
    * @param leverage Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin. 
    * @return Future(Position)
-  */
+   */
   def positionUpdateLeverageAsync(symbol: String, leverage: Double): Future[Position] = {
       helper.positionUpdateLeverage(symbol, leverage)
   }
 
   /**
    * Update your risk limit.
-   * Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
-   * @param symbol Symbol of position to isolate. 
+   * 
+   *
+   * @param symbol Symbol of position to update risk limit on. 
    * @param riskLimit New Risk Limit, in Satoshis. 
    * @return Position
    */
@@ -192,11 +213,12 @@ class PositionApi(
 
   /**
    * Update your risk limit. asynchronously
-   * Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
-   * @param symbol Symbol of position to isolate. 
+   * 
+   *
+   * @param symbol Symbol of position to update risk limit on. 
    * @param riskLimit New Risk Limit, in Satoshis. 
    * @return Future(Position)
-  */
+   */
   def positionUpdateRiskLimitAsync(symbol: String, riskLimit: Number): Future[Position] = {
       helper.positionUpdateRiskLimit(symbol, riskLimit)
   }
@@ -236,7 +258,7 @@ class PositionApiAsyncHelper(client: TransportClient, config: SwaggerConfig) ext
   }
 
   def positionIsolateMargin(symbol: String,
-    enabled: Option[Boolean] = Some(true)
+    enabled: Option[Boolean] = Option(true)
     )(implicit reader: ClientResponseReader[Position]): Future[Position] = {
     // create path and map variables
     val path = (addFmt("/position/isolate"))

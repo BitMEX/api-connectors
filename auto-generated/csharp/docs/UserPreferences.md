@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **OrderBookType** | **string** |  | [optional] 
 **OrderClearImmediate** | **bool?** |  | [optional] [default to false]
 **OrderControlsPlusMinus** | **bool?** |  | [optional] 
+**ShowLocaleNumbers** | **bool?** |  | [optional] [default to true]
 **Sounds** | **List&lt;string&gt;** |  | [optional] 
 **StrictIPCheck** | **bool?** |  | [optional] [default to false]
 **StrictTimeout** | **bool?** |  | [optional] [default to true]

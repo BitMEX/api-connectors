@@ -5,6 +5,7 @@
 (defn user-cancel-withdrawal-with-http-info
   "Cancel a withdrawal."
   [token ]
+  (check-required-params token)
   (call-api "/user/cancelWithdrawal" :post
             {:path-params   {}
              :header-params {}
@@ -43,6 +44,7 @@
 (defn user-confirm-with-http-info
   "Confirm your email address with a token."
   [token ]
+  (check-required-params token)
   (call-api "/user/confirmEmail" :post
             {:path-params   {}
              :header-params {}
@@ -61,6 +63,7 @@
   "Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint."
   ([token ] (user-confirm-enable-tfa-with-http-info token nil))
   ([token {:keys [type ]}]
+   (check-required-params token)
    (call-api "/user/confirmEnableTFA" :post
              {:path-params   {}
               :header-params {}
@@ -79,6 +82,7 @@
 (defn user-confirm-withdrawal-with-http-info
   "Confirm a withdrawal."
   [token ]
+  (check-required-params token)
   (call-api "/user/confirmWithdrawal" :post
             {:path-params   {}
              :header-params {}
@@ -97,6 +101,7 @@
   "Disable two-factor auth for this account."
   ([token ] (user-disable-tfa-with-http-info token nil))
   ([token {:keys [type ]}]
+   (check-required-params token)
    (call-api "/user/disableTFA" :post
              {:path-params   {}
               :header-params {}
@@ -339,6 +344,7 @@
   This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission."
   ([currency amount address ] (user-request-withdrawal-with-http-info currency amount address nil))
   ([currency amount address {:keys [otp-token fee ]}]
+   (check-required-params currency amount address)
    (call-api "/user/requestWithdrawal" :post
              {:path-params   {}
               :header-params {}
@@ -359,6 +365,7 @@
   "Save user preferences."
   ([prefs ] (user-save-preferences-with-http-info prefs nil))
   ([prefs {:keys [overwrite ]}]
+   (check-required-params prefs)
    (call-api "/user/preferences" :post
              {:path-params   {}
               :header-params {}

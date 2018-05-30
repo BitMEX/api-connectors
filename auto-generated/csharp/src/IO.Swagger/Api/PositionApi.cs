@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -53,7 +53,7 @@ namespace IO.Swagger.Api
         /// Enable isolated margin or cross margin per-position.
         /// </summary>
         /// <remarks>
-        /// Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+        /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Position symbol to isolate.</param>
@@ -65,7 +65,7 @@ namespace IO.Swagger.Api
         /// Enable isolated margin or cross margin per-position.
         /// </summary>
         /// <remarks>
-        /// Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+        /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Position symbol to isolate.</param>
@@ -76,7 +76,7 @@ namespace IO.Swagger.Api
         /// Transfer equity in or out of a position.
         /// </summary>
         /// <remarks>
-        /// When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
+        /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to isolate.</param>
@@ -88,7 +88,7 @@ namespace IO.Swagger.Api
         /// Transfer equity in or out of a position.
         /// </summary>
         /// <remarks>
-        /// When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
+        /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to isolate.</param>
@@ -99,7 +99,7 @@ namespace IO.Swagger.Api
         /// Choose leverage for a position.
         /// </summary>
         /// <remarks>
-        /// Users can choose an isolated leverage. This will automatically enable isolated margin.
+        /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to adjust.</param>
@@ -111,7 +111,7 @@ namespace IO.Swagger.Api
         /// Choose leverage for a position.
         /// </summary>
         /// <remarks>
-        /// Users can choose an isolated leverage. This will automatically enable isolated margin.
+        /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to adjust.</param>
@@ -122,10 +122,10 @@ namespace IO.Swagger.Api
         /// Update your risk limit.
         /// </summary>
         /// <remarks>
-        /// Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+        /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="symbol">Symbol of position to isolate.</param>
+        /// <param name="symbol">Symbol of position to update risk limit on.</param>
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
         /// <returns>Position</returns>
         Position PositionUpdateRiskLimit (string symbol, decimal? riskLimit);
@@ -134,10 +134,10 @@ namespace IO.Swagger.Api
         /// Update your risk limit.
         /// </summary>
         /// <remarks>
-        /// Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+        /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="symbol">Symbol of position to isolate.</param>
+        /// <param name="symbol">Symbol of position to update risk limit on.</param>
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
         /// <returns>ApiResponse of Position</returns>
         ApiResponse<Position> PositionUpdateRiskLimitWithHttpInfo (string symbol, decimal? riskLimit);
@@ -172,7 +172,7 @@ namespace IO.Swagger.Api
         /// Enable isolated margin or cross margin per-position.
         /// </summary>
         /// <remarks>
-        /// Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+        /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Position symbol to isolate.</param>
@@ -184,7 +184,7 @@ namespace IO.Swagger.Api
         /// Enable isolated margin or cross margin per-position.
         /// </summary>
         /// <remarks>
-        /// Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+        /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Position symbol to isolate.</param>
@@ -195,7 +195,7 @@ namespace IO.Swagger.Api
         /// Transfer equity in or out of a position.
         /// </summary>
         /// <remarks>
-        /// When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
+        /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to isolate.</param>
@@ -207,7 +207,7 @@ namespace IO.Swagger.Api
         /// Transfer equity in or out of a position.
         /// </summary>
         /// <remarks>
-        /// When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
+        /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to isolate.</param>
@@ -218,7 +218,7 @@ namespace IO.Swagger.Api
         /// Choose leverage for a position.
         /// </summary>
         /// <remarks>
-        /// Users can choose an isolated leverage. This will automatically enable isolated margin.
+        /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to adjust.</param>
@@ -230,7 +230,7 @@ namespace IO.Swagger.Api
         /// Choose leverage for a position.
         /// </summary>
         /// <remarks>
-        /// Users can choose an isolated leverage. This will automatically enable isolated margin.
+        /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to adjust.</param>
@@ -241,10 +241,10 @@ namespace IO.Swagger.Api
         /// Update your risk limit.
         /// </summary>
         /// <remarks>
-        /// Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+        /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="symbol">Symbol of position to isolate.</param>
+        /// <param name="symbol">Symbol of position to update risk limit on.</param>
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
         /// <returns>Task of Position</returns>
         System.Threading.Tasks.Task<Position> PositionUpdateRiskLimitAsync (string symbol, decimal? riskLimit);
@@ -253,10 +253,10 @@ namespace IO.Swagger.Api
         /// Update your risk limit.
         /// </summary>
         /// <remarks>
-        /// Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+        /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="symbol">Symbol of position to isolate.</param>
+        /// <param name="symbol">Symbol of position to update risk limit on.</param>
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
         /// <returns>Task of ApiResponse (Position)</returns>
         System.Threading.Tasks.Task<ApiResponse<Position>> PositionUpdateRiskLimitAsyncWithHttpInfo (string symbol, decimal? riskLimit);
@@ -276,7 +276,7 @@ namespace IO.Swagger.Api
         /// <returns></returns>
         public PositionApi(String basePath)
         {
-            this.Configuration = new Configuration { BasePath = basePath };
+            this.Configuration = new IO.Swagger.Client.Configuration { BasePath = basePath };
 
             ExceptionFactory = IO.Swagger.Client.Configuration.DefaultExceptionFactory;
         }
@@ -287,10 +287,10 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public PositionApi(Configuration configuration = null)
+        public PositionApi(IO.Swagger.Client.Configuration configuration = null)
         {
             if (configuration == null) // use the default one in Configuration
-                this.Configuration = Configuration.Default;
+                this.Configuration = IO.Swagger.Client.Configuration.Default;
             else
                 this.Configuration = configuration;
 
@@ -320,7 +320,7 @@ namespace IO.Swagger.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public Configuration Configuration {get; set;}
+        public IO.Swagger.Client.Configuration Configuration {get; set;}
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
@@ -388,7 +388,7 @@ namespace IO.Swagger.Api
             var localVarPath = "/position";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
             Object localVarPostBody = null;
@@ -398,7 +398,7 @@ namespace IO.Swagger.Api
                 "application/json", 
                 "application/x-www-form-urlencoded"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
@@ -408,32 +408,32 @@ namespace IO.Swagger.Api
                 "application/javascript",
                 "text/javascript"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (filter != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "filter", filter)); // query parameter
-            if (columns != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "columns", columns)); // query parameter
-            if (count != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "count", count)); // query parameter
+            if (filter != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "filter", filter)); // query parameter
+            if (columns != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "columns", columns)); // query parameter
+            if (count != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "count", count)); // query parameter
 
             // authentication (apiKey) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
             {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
             }
             // authentication (apiNonce) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-nonce")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-nonce")))
             {
-                localVarHeaderParams["api-nonce"] = Configuration.GetApiKeyWithPrefix("api-nonce");
+                localVarHeaderParams["api-nonce"] = this.Configuration.GetApiKeyWithPrefix("api-nonce");
             }
             // authentication (apiSignature) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-signature")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
             {
-                localVarHeaderParams["api-signature"] = Configuration.GetApiKeyWithPrefix("api-signature");
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
@@ -447,7 +447,7 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<List<Position>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<Position>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Position>)));
+                (List<Position>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Position>)));
         }
 
         /// <summary>
@@ -479,7 +479,7 @@ namespace IO.Swagger.Api
             var localVarPath = "/position";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
             Object localVarPostBody = null;
@@ -489,7 +489,7 @@ namespace IO.Swagger.Api
                 "application/json", 
                 "application/x-www-form-urlencoded"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
@@ -499,32 +499,32 @@ namespace IO.Swagger.Api
                 "application/javascript",
                 "text/javascript"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (filter != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "filter", filter)); // query parameter
-            if (columns != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "columns", columns)); // query parameter
-            if (count != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "count", count)); // query parameter
+            if (filter != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "filter", filter)); // query parameter
+            if (columns != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "columns", columns)); // query parameter
+            if (count != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "count", count)); // query parameter
 
             // authentication (apiKey) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
             {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
             }
             // authentication (apiNonce) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-nonce")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-nonce")))
             {
-                localVarHeaderParams["api-nonce"] = Configuration.GetApiKeyWithPrefix("api-nonce");
+                localVarHeaderParams["api-nonce"] = this.Configuration.GetApiKeyWithPrefix("api-nonce");
             }
             // authentication (apiSignature) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-signature")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
             {
-                localVarHeaderParams["api-signature"] = Configuration.GetApiKeyWithPrefix("api-signature");
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
@@ -538,11 +538,11 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<List<Position>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<Position>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Position>)));
+                (List<Position>) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Position>)));
         }
 
         /// <summary>
-        /// Enable isolated margin or cross margin per-position. Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+        /// Enable isolated margin or cross margin per-position. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Position symbol to isolate.</param>
@@ -555,7 +555,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Enable isolated margin or cross margin per-position. Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+        /// Enable isolated margin or cross margin per-position. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Position symbol to isolate.</param>
@@ -570,7 +570,7 @@ namespace IO.Swagger.Api
             var localVarPath = "/position/isolate";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
             Object localVarPostBody = null;
@@ -580,7 +580,7 @@ namespace IO.Swagger.Api
                 "application/json", 
                 "application/x-www-form-urlencoded"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
@@ -590,31 +590,31 @@ namespace IO.Swagger.Api
                 "application/javascript",
                 "text/javascript"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (symbol != null) localVarFormParams.Add("symbol", Configuration.ApiClient.ParameterToString(symbol)); // form parameter
-            if (enabled != null) localVarFormParams.Add("enabled", Configuration.ApiClient.ParameterToString(enabled)); // form parameter
+            if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
+            if (enabled != null) localVarFormParams.Add("enabled", this.Configuration.ApiClient.ParameterToString(enabled)); // form parameter
 
             // authentication (apiKey) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
             {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
             }
             // authentication (apiNonce) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-nonce")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-nonce")))
             {
-                localVarHeaderParams["api-nonce"] = Configuration.GetApiKeyWithPrefix("api-nonce");
+                localVarHeaderParams["api-nonce"] = this.Configuration.GetApiKeyWithPrefix("api-nonce");
             }
             // authentication (apiSignature) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-signature")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
             {
-                localVarHeaderParams["api-signature"] = Configuration.GetApiKeyWithPrefix("api-signature");
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
                 Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
@@ -628,11 +628,11 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<Position>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Position) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Position)));
+                (Position) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Position)));
         }
 
         /// <summary>
-        /// Enable isolated margin or cross margin per-position. Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+        /// Enable isolated margin or cross margin per-position. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Position symbol to isolate.</param>
@@ -646,7 +646,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Enable isolated margin or cross margin per-position. Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+        /// Enable isolated margin or cross margin per-position. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Position symbol to isolate.</param>
@@ -661,7 +661,7 @@ namespace IO.Swagger.Api
             var localVarPath = "/position/isolate";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
             Object localVarPostBody = null;
@@ -671,7 +671,7 @@ namespace IO.Swagger.Api
                 "application/json", 
                 "application/x-www-form-urlencoded"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
@@ -681,31 +681,31 @@ namespace IO.Swagger.Api
                 "application/javascript",
                 "text/javascript"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (symbol != null) localVarFormParams.Add("symbol", Configuration.ApiClient.ParameterToString(symbol)); // form parameter
-            if (enabled != null) localVarFormParams.Add("enabled", Configuration.ApiClient.ParameterToString(enabled)); // form parameter
+            if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
+            if (enabled != null) localVarFormParams.Add("enabled", this.Configuration.ApiClient.ParameterToString(enabled)); // form parameter
 
             // authentication (apiKey) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
             {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
             }
             // authentication (apiNonce) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-nonce")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-nonce")))
             {
-                localVarHeaderParams["api-nonce"] = Configuration.GetApiKeyWithPrefix("api-nonce");
+                localVarHeaderParams["api-nonce"] = this.Configuration.GetApiKeyWithPrefix("api-nonce");
             }
             // authentication (apiSignature) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-signature")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
             {
-                localVarHeaderParams["api-signature"] = Configuration.GetApiKeyWithPrefix("api-signature");
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
@@ -719,11 +719,11 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<Position>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Position) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Position)));
+                (Position) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Position)));
         }
 
         /// <summary>
-        /// Transfer equity in or out of a position. When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
+        /// Transfer equity in or out of a position. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to isolate.</param>
@@ -736,7 +736,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Transfer equity in or out of a position. When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
+        /// Transfer equity in or out of a position. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to isolate.</param>
@@ -754,7 +754,7 @@ namespace IO.Swagger.Api
             var localVarPath = "/position/transferMargin";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
             Object localVarPostBody = null;
@@ -764,7 +764,7 @@ namespace IO.Swagger.Api
                 "application/json", 
                 "application/x-www-form-urlencoded"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
@@ -774,31 +774,31 @@ namespace IO.Swagger.Api
                 "application/javascript",
                 "text/javascript"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (symbol != null) localVarFormParams.Add("symbol", Configuration.ApiClient.ParameterToString(symbol)); // form parameter
-            if (amount != null) localVarFormParams.Add("amount", Configuration.ApiClient.ParameterToString(amount)); // form parameter
+            if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
+            if (amount != null) localVarFormParams.Add("amount", this.Configuration.ApiClient.ParameterToString(amount)); // form parameter
 
             // authentication (apiKey) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
             {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
             }
             // authentication (apiNonce) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-nonce")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-nonce")))
             {
-                localVarHeaderParams["api-nonce"] = Configuration.GetApiKeyWithPrefix("api-nonce");
+                localVarHeaderParams["api-nonce"] = this.Configuration.GetApiKeyWithPrefix("api-nonce");
             }
             // authentication (apiSignature) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-signature")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
             {
-                localVarHeaderParams["api-signature"] = Configuration.GetApiKeyWithPrefix("api-signature");
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
                 Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
@@ -812,11 +812,11 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<Position>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Position) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Position)));
+                (Position) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Position)));
         }
 
         /// <summary>
-        /// Transfer equity in or out of a position. When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
+        /// Transfer equity in or out of a position. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to isolate.</param>
@@ -830,7 +830,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Transfer equity in or out of a position. When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
+        /// Transfer equity in or out of a position. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to isolate.</param>
@@ -848,7 +848,7 @@ namespace IO.Swagger.Api
             var localVarPath = "/position/transferMargin";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
             Object localVarPostBody = null;
@@ -858,7 +858,7 @@ namespace IO.Swagger.Api
                 "application/json", 
                 "application/x-www-form-urlencoded"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
@@ -868,31 +868,31 @@ namespace IO.Swagger.Api
                 "application/javascript",
                 "text/javascript"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (symbol != null) localVarFormParams.Add("symbol", Configuration.ApiClient.ParameterToString(symbol)); // form parameter
-            if (amount != null) localVarFormParams.Add("amount", Configuration.ApiClient.ParameterToString(amount)); // form parameter
+            if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
+            if (amount != null) localVarFormParams.Add("amount", this.Configuration.ApiClient.ParameterToString(amount)); // form parameter
 
             // authentication (apiKey) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
             {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
             }
             // authentication (apiNonce) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-nonce")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-nonce")))
             {
-                localVarHeaderParams["api-nonce"] = Configuration.GetApiKeyWithPrefix("api-nonce");
+                localVarHeaderParams["api-nonce"] = this.Configuration.GetApiKeyWithPrefix("api-nonce");
             }
             // authentication (apiSignature) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-signature")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
             {
-                localVarHeaderParams["api-signature"] = Configuration.GetApiKeyWithPrefix("api-signature");
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
@@ -906,11 +906,11 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<Position>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Position) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Position)));
+                (Position) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Position)));
         }
 
         /// <summary>
-        /// Choose leverage for a position. Users can choose an isolated leverage. This will automatically enable isolated margin.
+        /// Choose leverage for a position. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to adjust.</param>
@@ -923,7 +923,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Choose leverage for a position. Users can choose an isolated leverage. This will automatically enable isolated margin.
+        /// Choose leverage for a position. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to adjust.</param>
@@ -941,7 +941,7 @@ namespace IO.Swagger.Api
             var localVarPath = "/position/leverage";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
             Object localVarPostBody = null;
@@ -951,7 +951,7 @@ namespace IO.Swagger.Api
                 "application/json", 
                 "application/x-www-form-urlencoded"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
@@ -961,31 +961,31 @@ namespace IO.Swagger.Api
                 "application/javascript",
                 "text/javascript"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (symbol != null) localVarFormParams.Add("symbol", Configuration.ApiClient.ParameterToString(symbol)); // form parameter
-            if (leverage != null) localVarFormParams.Add("leverage", Configuration.ApiClient.ParameterToString(leverage)); // form parameter
+            if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
+            if (leverage != null) localVarFormParams.Add("leverage", this.Configuration.ApiClient.ParameterToString(leverage)); // form parameter
 
             // authentication (apiKey) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
             {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
             }
             // authentication (apiNonce) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-nonce")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-nonce")))
             {
-                localVarHeaderParams["api-nonce"] = Configuration.GetApiKeyWithPrefix("api-nonce");
+                localVarHeaderParams["api-nonce"] = this.Configuration.GetApiKeyWithPrefix("api-nonce");
             }
             // authentication (apiSignature) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-signature")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
             {
-                localVarHeaderParams["api-signature"] = Configuration.GetApiKeyWithPrefix("api-signature");
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
                 Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
@@ -999,11 +999,11 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<Position>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Position) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Position)));
+                (Position) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Position)));
         }
 
         /// <summary>
-        /// Choose leverage for a position. Users can choose an isolated leverage. This will automatically enable isolated margin.
+        /// Choose leverage for a position. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to adjust.</param>
@@ -1017,7 +1017,7 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Choose leverage for a position. Users can choose an isolated leverage. This will automatically enable isolated margin.
+        /// Choose leverage for a position. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="symbol">Symbol of position to adjust.</param>
@@ -1035,7 +1035,7 @@ namespace IO.Swagger.Api
             var localVarPath = "/position/leverage";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
             Object localVarPostBody = null;
@@ -1045,7 +1045,7 @@ namespace IO.Swagger.Api
                 "application/json", 
                 "application/x-www-form-urlencoded"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
@@ -1055,31 +1055,31 @@ namespace IO.Swagger.Api
                 "application/javascript",
                 "text/javascript"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (symbol != null) localVarFormParams.Add("symbol", Configuration.ApiClient.ParameterToString(symbol)); // form parameter
-            if (leverage != null) localVarFormParams.Add("leverage", Configuration.ApiClient.ParameterToString(leverage)); // form parameter
+            if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
+            if (leverage != null) localVarFormParams.Add("leverage", this.Configuration.ApiClient.ParameterToString(leverage)); // form parameter
 
             // authentication (apiKey) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
             {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
             }
             // authentication (apiNonce) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-nonce")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-nonce")))
             {
-                localVarHeaderParams["api-nonce"] = Configuration.GetApiKeyWithPrefix("api-nonce");
+                localVarHeaderParams["api-nonce"] = this.Configuration.GetApiKeyWithPrefix("api-nonce");
             }
             // authentication (apiSignature) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-signature")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
             {
-                localVarHeaderParams["api-signature"] = Configuration.GetApiKeyWithPrefix("api-signature");
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
@@ -1093,14 +1093,14 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<Position>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Position) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Position)));
+                (Position) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Position)));
         }
 
         /// <summary>
-        /// Update your risk limit. Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+        /// Update your risk limit. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="symbol">Symbol of position to isolate.</param>
+        /// <param name="symbol">Symbol of position to update risk limit on.</param>
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
         /// <returns>Position</returns>
         public Position PositionUpdateRiskLimit (string symbol, decimal? riskLimit)
@@ -1110,10 +1110,10 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Update your risk limit. Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+        /// Update your risk limit. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="symbol">Symbol of position to isolate.</param>
+        /// <param name="symbol">Symbol of position to update risk limit on.</param>
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
         /// <returns>ApiResponse of Position</returns>
         public ApiResponse< Position > PositionUpdateRiskLimitWithHttpInfo (string symbol, decimal? riskLimit)
@@ -1128,7 +1128,7 @@ namespace IO.Swagger.Api
             var localVarPath = "/position/riskLimit";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
             Object localVarPostBody = null;
@@ -1138,7 +1138,7 @@ namespace IO.Swagger.Api
                 "application/json", 
                 "application/x-www-form-urlencoded"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
@@ -1148,31 +1148,31 @@ namespace IO.Swagger.Api
                 "application/javascript",
                 "text/javascript"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (symbol != null) localVarFormParams.Add("symbol", Configuration.ApiClient.ParameterToString(symbol)); // form parameter
-            if (riskLimit != null) localVarFormParams.Add("riskLimit", Configuration.ApiClient.ParameterToString(riskLimit)); // form parameter
+            if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
+            if (riskLimit != null) localVarFormParams.Add("riskLimit", this.Configuration.ApiClient.ParameterToString(riskLimit)); // form parameter
 
             // authentication (apiKey) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
             {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
             }
             // authentication (apiNonce) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-nonce")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-nonce")))
             {
-                localVarHeaderParams["api-nonce"] = Configuration.GetApiKeyWithPrefix("api-nonce");
+                localVarHeaderParams["api-nonce"] = this.Configuration.GetApiKeyWithPrefix("api-nonce");
             }
             // authentication (apiSignature) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-signature")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
             {
-                localVarHeaderParams["api-signature"] = Configuration.GetApiKeyWithPrefix("api-signature");
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
                 Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
@@ -1186,14 +1186,14 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<Position>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Position) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Position)));
+                (Position) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Position)));
         }
 
         /// <summary>
-        /// Update your risk limit. Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+        /// Update your risk limit. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="symbol">Symbol of position to isolate.</param>
+        /// <param name="symbol">Symbol of position to update risk limit on.</param>
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
         /// <returns>Task of Position</returns>
         public async System.Threading.Tasks.Task<Position> PositionUpdateRiskLimitAsync (string symbol, decimal? riskLimit)
@@ -1204,10 +1204,10 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Update your risk limit. Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
+        /// Update your risk limit. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="symbol">Symbol of position to isolate.</param>
+        /// <param name="symbol">Symbol of position to update risk limit on.</param>
         /// <param name="riskLimit">New Risk Limit, in Satoshis.</param>
         /// <returns>Task of ApiResponse (Position)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<Position>> PositionUpdateRiskLimitAsyncWithHttpInfo (string symbol, decimal? riskLimit)
@@ -1222,7 +1222,7 @@ namespace IO.Swagger.Api
             var localVarPath = "/position/riskLimit";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
             Object localVarPostBody = null;
@@ -1232,7 +1232,7 @@ namespace IO.Swagger.Api
                 "application/json", 
                 "application/x-www-form-urlencoded"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
@@ -1242,31 +1242,31 @@ namespace IO.Swagger.Api
                 "application/javascript",
                 "text/javascript"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (symbol != null) localVarFormParams.Add("symbol", Configuration.ApiClient.ParameterToString(symbol)); // form parameter
-            if (riskLimit != null) localVarFormParams.Add("riskLimit", Configuration.ApiClient.ParameterToString(riskLimit)); // form parameter
+            if (symbol != null) localVarFormParams.Add("symbol", this.Configuration.ApiClient.ParameterToString(symbol)); // form parameter
+            if (riskLimit != null) localVarFormParams.Add("riskLimit", this.Configuration.ApiClient.ParameterToString(riskLimit)); // form parameter
 
             // authentication (apiKey) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
             {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
             }
             // authentication (apiNonce) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-nonce")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-nonce")))
             {
-                localVarHeaderParams["api-nonce"] = Configuration.GetApiKeyWithPrefix("api-nonce");
+                localVarHeaderParams["api-nonce"] = this.Configuration.GetApiKeyWithPrefix("api-nonce");
             }
             // authentication (apiSignature) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-signature")))
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
             {
-                localVarHeaderParams["api-signature"] = Configuration.GetApiKeyWithPrefix("api-signature");
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
@@ -1280,7 +1280,7 @@ namespace IO.Swagger.Api
 
             return new ApiResponse<Position>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Position) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Position)));
+                (Position) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Position)));
         }
 
     }

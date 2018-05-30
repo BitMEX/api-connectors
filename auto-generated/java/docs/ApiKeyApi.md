@@ -1,14 +1,14 @@
-# APIKeyApi
+# ApiKeyApi
 
 All URIs are relative to *https://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**aPIKeyDisable**](APIKeyApi.md#aPIKeyDisable) | **POST** /apiKey/disable | Disable an API Key.
-[**aPIKeyEnable**](APIKeyApi.md#aPIKeyEnable) | **POST** /apiKey/enable | Enable an API Key.
-[**aPIKeyGet**](APIKeyApi.md#aPIKeyGet) | **GET** /apiKey | Get your API Keys.
-[**aPIKeyNew**](APIKeyApi.md#aPIKeyNew) | **POST** /apiKey | Create a new API Key.
-[**aPIKeyRemove**](APIKeyApi.md#aPIKeyRemove) | **DELETE** /apiKey | Remove an API Key.
+[**aPIKeyDisable**](ApiKeyApi.md#aPIKeyDisable) | **POST** /apiKey/disable | Disable an API Key.
+[**aPIKeyEnable**](ApiKeyApi.md#aPIKeyEnable) | **POST** /apiKey/enable | Enable an API Key.
+[**aPIKeyGet**](ApiKeyApi.md#aPIKeyGet) | **GET** /apiKey | Get your API Keys.
+[**aPIKeyNew**](ApiKeyApi.md#aPIKeyNew) | **POST** /apiKey | Create a new API Key.
+[**aPIKeyRemove**](ApiKeyApi.md#aPIKeyRemove) | **DELETE** /apiKey | Remove an API Key.
 
 
 <a name="aPIKeyDisable"></a>
@@ -24,7 +24,7 @@ Disable an API Key.
 //import io.swagger.client.ApiException;
 //import io.swagger.client.Configuration;
 //import io.swagger.client.auth.*;
-//import io.swagger.client.api.APIKeyApi;
+//import io.swagger.client.api.ApiKeyApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -46,13 +46,13 @@ apiSignature.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.setApiKeyPrefix("Token");
 
-APIKeyApi apiInstance = new APIKeyApi();
+ApiKeyApi apiInstance = new ApiKeyApi();
 String apiKeyID = "apiKeyID_example"; // String | API Key ID (public component).
 try {
     APIKey result = apiInstance.aPIKeyDisable(apiKeyID);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling APIKeyApi#aPIKeyDisable");
+    System.err.println("Exception when calling ApiKeyApi#aPIKeyDisable");
     e.printStackTrace();
 }
 ```
@@ -89,7 +89,7 @@ Enable an API Key.
 //import io.swagger.client.ApiException;
 //import io.swagger.client.Configuration;
 //import io.swagger.client.auth.*;
-//import io.swagger.client.api.APIKeyApi;
+//import io.swagger.client.api.ApiKeyApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -111,13 +111,13 @@ apiSignature.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.setApiKeyPrefix("Token");
 
-APIKeyApi apiInstance = new APIKeyApi();
+ApiKeyApi apiInstance = new ApiKeyApi();
 String apiKeyID = "apiKeyID_example"; // String | API Key ID (public component).
 try {
     APIKey result = apiInstance.aPIKeyEnable(apiKeyID);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling APIKeyApi#aPIKeyEnable");
+    System.err.println("Exception when calling ApiKeyApi#aPIKeyEnable");
     e.printStackTrace();
 }
 ```
@@ -154,7 +154,7 @@ Get your API Keys.
 //import io.swagger.client.ApiException;
 //import io.swagger.client.Configuration;
 //import io.swagger.client.auth.*;
-//import io.swagger.client.api.APIKeyApi;
+//import io.swagger.client.api.ApiKeyApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -176,13 +176,13 @@ apiSignature.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.setApiKeyPrefix("Token");
 
-APIKeyApi apiInstance = new APIKeyApi();
+ApiKeyApi apiInstance = new ApiKeyApi();
 Boolean reverse = false; // Boolean | If true, will sort results newest first.
 try {
     List<APIKey> result = apiInstance.aPIKeyGet(reverse);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling APIKeyApi#aPIKeyGet");
+    System.err.println("Exception when calling ApiKeyApi#aPIKeyGet");
     e.printStackTrace();
 }
 ```
@@ -221,7 +221,7 @@ API Keys can also be created via [this Python script](https://github.com/BitMEX/
 //import io.swagger.client.ApiException;
 //import io.swagger.client.Configuration;
 //import io.swagger.client.auth.*;
-//import io.swagger.client.api.APIKeyApi;
+//import io.swagger.client.api.ApiKeyApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -243,7 +243,7 @@ apiSignature.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.setApiKeyPrefix("Token");
 
-APIKeyApi apiInstance = new APIKeyApi();
+ApiKeyApi apiInstance = new ApiKeyApi();
 String name = "name_example"; // String | Key name. This name is for reference only.
 String cidr = "cidr_example"; // String | CIDR block to restrict this key to. To restrict to a single address, append \"/32\", e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. <a href=\"http://software77.net/cidr-101.html\">More on CIDR blocks</a>
 String permissions = "permissions_example"; // String | Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\"order\", \"orderCancel\", \"withdraw\"].
@@ -253,7 +253,7 @@ try {
     APIKey result = apiInstance.aPIKeyNew(name, cidr, permissions, enabled, token);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling APIKeyApi#aPIKeyNew");
+    System.err.println("Exception when calling ApiKeyApi#aPIKeyNew");
     e.printStackTrace();
 }
 ```
@@ -294,7 +294,7 @@ Remove an API Key.
 //import io.swagger.client.ApiException;
 //import io.swagger.client.Configuration;
 //import io.swagger.client.auth.*;
-//import io.swagger.client.api.APIKeyApi;
+//import io.swagger.client.api.ApiKeyApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -316,13 +316,13 @@ apiSignature.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.setApiKeyPrefix("Token");
 
-APIKeyApi apiInstance = new APIKeyApi();
+ApiKeyApi apiInstance = new ApiKeyApi();
 String apiKeyID = "apiKeyID_example"; // String | API Key ID (public component).
 try {
     InlineResponse200 result = apiInstance.aPIKeyRemove(apiKeyID);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling APIKeyApi#aPIKeyRemove");
+    System.err.println("Exception when calling ApiKeyApi#aPIKeyRemove");
     e.printStackTrace();
 }
 ```

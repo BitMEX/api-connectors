@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 Disable an API Key.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -44,7 +44,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 api_instance = swagger_client.APIKeyApi(swagger_client.ApiClient(configuration))
 api_key_id = 'api_key_id_example' # str | API Key ID (public component).
 
-try: 
+try:
     # Disable an API Key.
     api_response = api_instance.a_pi_key_disable(api_key_id)
     pprint(api_response)
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 Enable an API Key.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -106,7 +106,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 api_instance = swagger_client.APIKeyApi(swagger_client.ApiClient(configuration))
 api_key_id = 'api_key_id_example' # str | API Key ID (public component).
 
-try: 
+try:
     # Enable an API Key.
     api_response = api_instance.a_pi_key_enable(api_key_id)
     pprint(api_response)
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 Get your API Keys.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -168,7 +168,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 api_instance = swagger_client.APIKeyApi(swagger_client.ApiClient(configuration))
 reverse = false # bool | If true, will sort results newest first. (optional) (default to false)
 
-try: 
+try:
     # Get your API Keys.
     api_response = api_instance.a_pi_key_get(reverse=reverse)
     pprint(api_response)
@@ -204,7 +204,7 @@ Create a new API Key.
 
 API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -236,7 +236,7 @@ permissions = 'permissions_example' # str | Key Permissions. All keys can read m
 enabled = false # bool | Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. (optional) (default to false)
 token = 'token_example' # str | OTP Token (YubiKey, Google Authenticator) (optional)
 
-try: 
+try:
     # Create a new API Key.
     api_response = api_instance.a_pi_key_new(name=name, cidr=cidr, permissions=permissions, enabled=enabled, token=token)
     pprint(api_response)
@@ -274,7 +274,7 @@ Name | Type | Description  | Notes
 
 Remove an API Key.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -302,7 +302,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 api_instance = swagger_client.APIKeyApi(swagger_client.ApiClient(configuration))
 api_key_id = 'api_key_id_example' # str | API Key ID (public component).
 
-try: 
+try:
     # Remove an API Key.
     api_response = api_instance.a_pi_key_remove(api_key_id)
     pprint(api_response)

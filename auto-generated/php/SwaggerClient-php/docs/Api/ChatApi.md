@@ -20,14 +20,18 @@ Get chat messages.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\ChatApi();
+$apiInstance = new Swagger\Client\Api\ChatApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
 $count = 100; // float | Number of results to fetch.
-$start = 0; // float | Starting point for results.
+$start = 0; // float | Starting ID for results.
 $reverse = true; // bool | If true, will sort results newest first.
 $channel_id = 1.2; // double | Channel id. GET /chat/channels for ids. Leave blank for all.
 
 try {
-    $result = $api_instance->chatGet($count, $start, $reverse, $channel_id);
+    $result = $apiInstance->chatGet($count, $start, $reverse, $channel_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ChatApi->chatGet: ', $e->getMessage(), PHP_EOL;
@@ -40,7 +44,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **count** | **float**| Number of results to fetch. | [optional] [default to 100]
- **start** | **float**| Starting point for results. | [optional] [default to 0]
+ **start** | **float**| Starting ID for results. | [optional] [default to 0]
  **reverse** | **bool**| If true, will sort results newest first. | [optional] [default to true]
  **channel_id** | **double**| Channel id. GET /chat/channels for ids. Leave blank for all. | [optional]
 
@@ -69,10 +73,14 @@ Get available channels.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\ChatApi();
+$apiInstance = new Swagger\Client\Api\ChatApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
 
 try {
-    $result = $api_instance->chatGetChannels();
+    $result = $apiInstance->chatGetChannels();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ChatApi->chatGetChannels: ', $e->getMessage(), PHP_EOL;
@@ -110,10 +118,14 @@ Returns an array with browser users in the first position and API users (bots) i
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\ChatApi();
+$apiInstance = new Swagger\Client\Api\ChatApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
 
 try {
-    $result = $api_instance->chatGetConnected();
+    $result = $apiInstance->chatGetConnected();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ChatApi->chatGetConnected: ', $e->getMessage(), PHP_EOL;
@@ -149,12 +161,30 @@ Send a chat message.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\ChatApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\ChatApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $message = "message_example"; // string | 
 $channel_id = 1; // double | Channel to post to. Default 1 (English).
 
 try {
-    $result = $api_instance->chatNew($message, $channel_id);
+    $result = $apiInstance->chatNew($message, $channel_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ChatApi->chatNew: ', $e->getMessage(), PHP_EOL;
@@ -175,7 +205,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 

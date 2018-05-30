@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -31,29 +31,29 @@ namespace IO.Swagger.Model
     public partial class Notification :  IEquatable<Notification>, IValidatableObject
     {
         /// <summary>
-        /// Gets or Sets Type
+        /// Defines Type
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
             
             /// <summary>
-            /// Enum Success for "success"
+            /// Enum Success for value: success
             /// </summary>
             [EnumMember(Value = "success")]
-            Success,
+            Success = 1,
             
             /// <summary>
-            /// Enum Error for "error"
+            /// Enum Error for value: error
             /// </summary>
             [EnumMember(Value = "error")]
-            Error,
+            Error = 2,
             
             /// <summary>
-            /// Enum Info for "info"
+            /// Enum Info for value: info
             /// </summary>
             [EnumMember(Value = "info")]
-            Info
+            Info = 3
         }
 
         /// <summary>
@@ -69,84 +69,84 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Notification" /> class.
         /// </summary>
-        /// <param name="Id">Id.</param>
-        /// <param name="Date">Date (required).</param>
-        /// <param name="Title">Title (required).</param>
-        /// <param name="Body">Body (required).</param>
-        /// <param name="Ttl">Ttl (required).</param>
-        /// <param name="Type">Type.</param>
-        /// <param name="Closable">Closable (default to true).</param>
-        /// <param name="Persist">Persist (default to true).</param>
-        /// <param name="WaitForVisibility">WaitForVisibility (default to true).</param>
-        /// <param name="Sound">Sound.</param>
-        public Notification(decimal? Id = default(decimal?), DateTime? Date = default(DateTime?), string Title = default(string), string Body = default(string), decimal? Ttl = default(decimal?), TypeEnum? Type = default(TypeEnum?), bool? Closable = true, bool? Persist = true, bool? WaitForVisibility = true, string Sound = default(string))
+        /// <param name="id">id.</param>
+        /// <param name="date">date (required).</param>
+        /// <param name="title">title (required).</param>
+        /// <param name="body">body (required).</param>
+        /// <param name="ttl">ttl (required).</param>
+        /// <param name="type">type.</param>
+        /// <param name="closable">closable (default to true).</param>
+        /// <param name="persist">persist (default to true).</param>
+        /// <param name="waitForVisibility">waitForVisibility (default to true).</param>
+        /// <param name="sound">sound.</param>
+        public Notification(decimal? id = default(decimal?), DateTime? date = default(DateTime?), string title = default(string), string body = default(string), decimal? ttl = default(decimal?), TypeEnum? type = default(TypeEnum?), bool? closable = true, bool? persist = true, bool? waitForVisibility = true, string sound = default(string))
         {
-            // to ensure "Date" is required (not null)
-            if (Date == null)
+            // to ensure "date" is required (not null)
+            if (date == null)
             {
-                throw new InvalidDataException("Date is a required property for Notification and cannot be null");
+                throw new InvalidDataException("date is a required property for Notification and cannot be null");
             }
             else
             {
-                this.Date = Date;
+                this.Date = date;
             }
-            // to ensure "Title" is required (not null)
-            if (Title == null)
+            // to ensure "title" is required (not null)
+            if (title == null)
             {
-                throw new InvalidDataException("Title is a required property for Notification and cannot be null");
+                throw new InvalidDataException("title is a required property for Notification and cannot be null");
             }
             else
             {
-                this.Title = Title;
+                this.Title = title;
             }
-            // to ensure "Body" is required (not null)
-            if (Body == null)
+            // to ensure "body" is required (not null)
+            if (body == null)
             {
-                throw new InvalidDataException("Body is a required property for Notification and cannot be null");
+                throw new InvalidDataException("body is a required property for Notification and cannot be null");
             }
             else
             {
-                this.Body = Body;
+                this.Body = body;
             }
-            // to ensure "Ttl" is required (not null)
-            if (Ttl == null)
+            // to ensure "ttl" is required (not null)
+            if (ttl == null)
             {
-                throw new InvalidDataException("Ttl is a required property for Notification and cannot be null");
+                throw new InvalidDataException("ttl is a required property for Notification and cannot be null");
             }
             else
             {
-                this.Ttl = Ttl;
+                this.Ttl = ttl;
             }
-            this.Id = Id;
-            this.Type = Type;
-            // use default value if no "Closable" provided
-            if (Closable == null)
+            this.Id = id;
+            this.Type = type;
+            // use default value if no "closable" provided
+            if (closable == null)
             {
                 this.Closable = true;
             }
             else
             {
-                this.Closable = Closable;
+                this.Closable = closable;
             }
-            // use default value if no "Persist" provided
-            if (Persist == null)
+            // use default value if no "persist" provided
+            if (persist == null)
             {
                 this.Persist = true;
             }
             else
             {
-                this.Persist = Persist;
+                this.Persist = persist;
             }
-            // use default value if no "WaitForVisibility" provided
-            if (WaitForVisibility == null)
+            // use default value if no "waitForVisibility" provided
+            if (waitForVisibility == null)
             {
                 this.WaitForVisibility = true;
             }
             else
             {
-                this.WaitForVisibility = WaitForVisibility;
+                this.WaitForVisibility = waitForVisibility;
             }
-            this.Sound = Sound;
+            this.Sound = sound;
         }
         
         /// <summary>
@@ -230,7 +230,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

@@ -21,3 +21,20 @@
   ([optional-params]
    (:data (leaderboard-get-with-http-info optional-params))))
 
+(defn leaderboard-get-name-with-http-info
+  "Get your alias on the leaderboard."
+  []
+  (call-api "/leaderboard/name" :get
+            {:path-params   {}
+             :header-params {}
+             :query-params  {}
+             :form-params   {}
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
+             :auth-names    ["apiKey" "apiNonce" "apiSignature"]}))
+
+(defn leaderboard-get-name
+  "Get your alias on the leaderboard."
+  []
+  (:data (leaderboard-get-name-with-http-info)))
+

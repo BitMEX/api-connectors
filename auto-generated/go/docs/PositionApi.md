@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **PositionGet**
-> []Position PositionGet(ctx, ctx, ctx, optional)
+> []Position PositionGet(ctx, optional)
 Get your positions.
 
 See <a href=\"http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html\">the FIX Spec</a> for explanations of these fields.
@@ -21,19 +21,17 @@ See <a href=\"http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html\"
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***PositionGetOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a PositionGetOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | **string**| Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. | 
- **columns** | **string**| Which columns to fetch. For example, send [\&quot;columnName\&quot;]. | 
- **count** | **float32**| Number of rows to fetch. | 
+ **filter** | **optional.String**| Table filter. For example, send {\&quot;symbol\&quot;: \&quot;XBTUSD\&quot;}. | 
+ **columns** | **optional.String**| Which columns to fetch. For example, send [\&quot;columnName\&quot;]. | 
+ **count** | **optional.Float32**| Number of rows to fetch. | 
 
 ### Return type
 
@@ -51,28 +49,24 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **PositionIsolateMargin**
-> Position PositionIsolateMargin(ctx, ctx, ctx, symbol, optional)
+> Position PositionIsolateMargin(ctx, symbol, optional)
 Enable isolated margin or cross margin per-position.
-
-Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **symbol** | **string**| Position symbol to isolate. | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***PositionIsolateMarginOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a PositionIsolateMarginOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string**| Position symbol to isolate. | 
- **enabled** | **bool**| True for isolated margin, false for cross margin. | [default to true]
+
+ **enabled** | **optional.Bool**| True for isolated margin, false for cross margin. | [default to true]
 
 ### Return type
 
@@ -90,18 +84,14 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **PositionTransferIsolatedMargin**
-> Position PositionTransferIsolatedMargin(ctx, ctx, ctx, symbol, amount)
+> Position PositionTransferIsolatedMargin(ctx, symbol, amount)
 Transfer equity in or out of a position.
-
-When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **symbol** | **string**| Symbol of position to isolate. | 
   **amount** | **float32**| Amount to transfer, in Satoshis. May be negative. | 
 
@@ -121,18 +111,14 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **PositionUpdateLeverage**
-> Position PositionUpdateLeverage(ctx, ctx, ctx, symbol, leverage)
+> Position PositionUpdateLeverage(ctx, symbol, leverage)
 Choose leverage for a position.
-
-Users can choose an isolated leverage. This will automatically enable isolated margin.
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **symbol** | **string**| Symbol of position to adjust. | 
   **leverage** | **float64**| Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin. | 
 
@@ -152,19 +138,15 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **PositionUpdateRiskLimit**
-> Position PositionUpdateRiskLimit(ctx, ctx, ctx, symbol, riskLimit)
+> Position PositionUpdateRiskLimit(ctx, symbol, riskLimit)
 Update your risk limit.
-
-Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **symbol** | **string**| Symbol of position to isolate. | 
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **symbol** | **string**| Symbol of position to update risk limit on. | 
   **riskLimit** | **float32**| New Risk Limit, in Satoshis. | 
 
 ### Return type

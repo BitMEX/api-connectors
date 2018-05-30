@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,50 +38,50 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TradeBin" /> class.
         /// </summary>
-        /// <param name="Timestamp">Timestamp (required).</param>
-        /// <param name="Symbol">Symbol (required).</param>
-        /// <param name="Open">Open.</param>
-        /// <param name="High">High.</param>
-        /// <param name="Low">Low.</param>
-        /// <param name="Close">Close.</param>
-        /// <param name="Trades">Trades.</param>
-        /// <param name="Volume">Volume.</param>
-        /// <param name="Vwap">Vwap.</param>
-        /// <param name="LastSize">LastSize.</param>
-        /// <param name="Turnover">Turnover.</param>
-        /// <param name="HomeNotional">HomeNotional.</param>
-        /// <param name="ForeignNotional">ForeignNotional.</param>
-        public TradeBin(DateTime? Timestamp = default(DateTime?), string Symbol = default(string), double? Open = default(double?), double? High = default(double?), double? Low = default(double?), double? Close = default(double?), decimal? Trades = default(decimal?), decimal? Volume = default(decimal?), double? Vwap = default(double?), decimal? LastSize = default(decimal?), decimal? Turnover = default(decimal?), double? HomeNotional = default(double?), double? ForeignNotional = default(double?))
+        /// <param name="timestamp">timestamp (required).</param>
+        /// <param name="symbol">symbol (required).</param>
+        /// <param name="open">open.</param>
+        /// <param name="high">high.</param>
+        /// <param name="low">low.</param>
+        /// <param name="close">close.</param>
+        /// <param name="trades">trades.</param>
+        /// <param name="volume">volume.</param>
+        /// <param name="vwap">vwap.</param>
+        /// <param name="lastSize">lastSize.</param>
+        /// <param name="turnover">turnover.</param>
+        /// <param name="homeNotional">homeNotional.</param>
+        /// <param name="foreignNotional">foreignNotional.</param>
+        public TradeBin(DateTime? timestamp = default(DateTime?), string symbol = default(string), double? open = default(double?), double? high = default(double?), double? low = default(double?), double? close = default(double?), decimal? trades = default(decimal?), decimal? volume = default(decimal?), double? vwap = default(double?), decimal? lastSize = default(decimal?), decimal? turnover = default(decimal?), double? homeNotional = default(double?), double? foreignNotional = default(double?))
         {
-            // to ensure "Timestamp" is required (not null)
-            if (Timestamp == null)
+            // to ensure "timestamp" is required (not null)
+            if (timestamp == null)
             {
-                throw new InvalidDataException("Timestamp is a required property for TradeBin and cannot be null");
+                throw new InvalidDataException("timestamp is a required property for TradeBin and cannot be null");
             }
             else
             {
-                this.Timestamp = Timestamp;
+                this.Timestamp = timestamp;
             }
-            // to ensure "Symbol" is required (not null)
-            if (Symbol == null)
+            // to ensure "symbol" is required (not null)
+            if (symbol == null)
             {
-                throw new InvalidDataException("Symbol is a required property for TradeBin and cannot be null");
+                throw new InvalidDataException("symbol is a required property for TradeBin and cannot be null");
             }
             else
             {
-                this.Symbol = Symbol;
+                this.Symbol = symbol;
             }
-            this.Open = Open;
-            this.High = High;
-            this.Low = Low;
-            this.Close = Close;
-            this.Trades = Trades;
-            this.Volume = Volume;
-            this.Vwap = Vwap;
-            this.LastSize = LastSize;
-            this.Turnover = Turnover;
-            this.HomeNotional = HomeNotional;
-            this.ForeignNotional = ForeignNotional;
+            this.Open = open;
+            this.High = high;
+            this.Low = low;
+            this.Close = close;
+            this.Trades = trades;
+            this.Volume = volume;
+            this.Vwap = vwap;
+            this.LastSize = lastSize;
+            this.Turnover = turnover;
+            this.HomeNotional = homeNotional;
+            this.ForeignNotional = foreignNotional;
         }
         
         /// <summary>
@@ -191,7 +191,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Get chat messages.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -30,7 +30,7 @@ start = 0 # float | Starting ID for results. (optional) (default to 0)
 reverse = true # bool | If true, will sort results newest first. (optional) (default to true)
 channel_id = 1.2 # float | Channel id. GET /chat/channels for ids. Leave blank for all. (optional)
 
-try: 
+try:
     # Get chat messages.
     api_response = api_instance.chat_get(count=count, start=start, reverse=reverse, channel_id=channel_id)
     pprint(api_response)
@@ -67,7 +67,7 @@ No authorization required
 
 Get available channels.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -78,7 +78,7 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = swagger_client.ChatApi()
 
-try: 
+try:
     # Get available channels.
     api_response = api_instance.chat_get_channels()
     pprint(api_response)
@@ -111,7 +111,7 @@ Get connected users.
 
 Returns an array with browser users in the first position and API users (bots) in the second position.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -122,7 +122,7 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = swagger_client.ChatApi()
 
-try: 
+try:
     # Get connected users.
     api_response = api_instance.chat_get_connected()
     pprint(api_response)
@@ -153,7 +153,7 @@ No authorization required
 
 Send a chat message.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -182,7 +182,7 @@ api_instance = swagger_client.ChatApi(swagger_client.ApiClient(configuration))
 message = 'message_example' # str | 
 channel_id = 1 # float | Channel to post to. Default 1 (English). (optional) (default to 1)
 
-try: 
+try:
     # Send a chat message.
     api_response = api_instance.chat_new(message, channel_id=channel_id)
     pprint(api_response)

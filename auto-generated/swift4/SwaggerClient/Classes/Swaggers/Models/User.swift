@@ -10,9 +10,9 @@ import Foundation
 
 /** Account Operations */
 
-open class User: Codable {
+public struct User: Codable {
 
-    public var id: Double?
+    public var _id: Double?
     public var ownerId: Double?
     public var firstname: String?
     public var lastname: String?
@@ -26,49 +26,44 @@ open class User: Codable {
     public var affiliateID: String?
     public var pgpPubKey: String?
     public var country: String?
+    public var typ: String?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encodeIfPresent(id, forKey: "id")
-        try container.encodeIfPresent(ownerId, forKey: "ownerId")
-        try container.encodeIfPresent(firstname, forKey: "firstname")
-        try container.encodeIfPresent(lastname, forKey: "lastname")
-        try container.encode(username, forKey: "username")
-        try container.encode(email, forKey: "email")
-        try container.encodeIfPresent(phone, forKey: "phone")
-        try container.encodeIfPresent(created, forKey: "created")
-        try container.encodeIfPresent(lastUpdated, forKey: "lastUpdated")
-        try container.encodeIfPresent(preferences, forKey: "preferences")
-        try container.encodeIfPresent(tFAEnabled, forKey: "TFAEnabled")
-        try container.encodeIfPresent(affiliateID, forKey: "affiliateID")
-        try container.encodeIfPresent(pgpPubKey, forKey: "pgpPubKey")
-        try container.encodeIfPresent(country, forKey: "country")
+    public init(_id: Double?, ownerId: Double?, firstname: String?, lastname: String?, username: String, email: String, phone: String?, created: Date?, lastUpdated: Date?, preferences: UserPreferences?, tFAEnabled: String?, affiliateID: String?, pgpPubKey: String?, country: String?, typ: String?) {
+        self._id = _id
+        self.ownerId = ownerId
+        self.firstname = firstname
+        self.lastname = lastname
+        self.username = username
+        self.email = email
+        self.phone = phone
+        self.created = created
+        self.lastUpdated = lastUpdated
+        self.preferences = preferences
+        self.tFAEnabled = tFAEnabled
+        self.affiliateID = affiliateID
+        self.pgpPubKey = pgpPubKey
+        self.country = country
+        self.typ = typ
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
-
-        id = try container.decodeIfPresent(Double.self, forKey: "id")
-        ownerId = try container.decodeIfPresent(Double.self, forKey: "ownerId")
-        firstname = try container.decodeIfPresent(String.self, forKey: "firstname")
-        lastname = try container.decodeIfPresent(String.self, forKey: "lastname")
-        username = try container.decode(String.self, forKey: "username")
-        email = try container.decode(String.self, forKey: "email")
-        phone = try container.decodeIfPresent(String.self, forKey: "phone")
-        created = try container.decodeIfPresent(Date.self, forKey: "created")
-        lastUpdated = try container.decodeIfPresent(Date.self, forKey: "lastUpdated")
-        preferences = try container.decodeIfPresent(UserPreferences.self, forKey: "preferences")
-        tFAEnabled = try container.decodeIfPresent(String.self, forKey: "TFAEnabled")
-        affiliateID = try container.decodeIfPresent(String.self, forKey: "affiliateID")
-        pgpPubKey = try container.decodeIfPresent(String.self, forKey: "pgpPubKey")
-        country = try container.decodeIfPresent(String.self, forKey: "country")
+    public enum CodingKeys: String, CodingKey { 
+        case _id = "id"
+        case ownerId
+        case firstname
+        case lastname
+        case username
+        case email
+        case phone
+        case created
+        case lastUpdated
+        case preferences
+        case tFAEnabled = "TFAEnabled"
+        case affiliateID
+        case pgpPubKey
+        case country
+        case typ
     }
+
+
 }
 

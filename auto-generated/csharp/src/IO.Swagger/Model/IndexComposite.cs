@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,30 +38,30 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="IndexComposite" /> class.
         /// </summary>
-        /// <param name="Timestamp">Timestamp (required).</param>
-        /// <param name="Symbol">Symbol.</param>
-        /// <param name="IndexSymbol">IndexSymbol.</param>
-        /// <param name="Reference">Reference.</param>
-        /// <param name="LastPrice">LastPrice.</param>
-        /// <param name="Weight">Weight.</param>
-        /// <param name="Logged">Logged.</param>
-        public IndexComposite(DateTime? Timestamp = default(DateTime?), string Symbol = default(string), string IndexSymbol = default(string), string Reference = default(string), double? LastPrice = default(double?), double? Weight = default(double?), DateTime? Logged = default(DateTime?))
+        /// <param name="timestamp">timestamp (required).</param>
+        /// <param name="symbol">symbol.</param>
+        /// <param name="indexSymbol">indexSymbol.</param>
+        /// <param name="reference">reference.</param>
+        /// <param name="lastPrice">lastPrice.</param>
+        /// <param name="weight">weight.</param>
+        /// <param name="logged">logged.</param>
+        public IndexComposite(DateTime? timestamp = default(DateTime?), string symbol = default(string), string indexSymbol = default(string), string reference = default(string), double? lastPrice = default(double?), double? weight = default(double?), DateTime? logged = default(DateTime?))
         {
-            // to ensure "Timestamp" is required (not null)
-            if (Timestamp == null)
+            // to ensure "timestamp" is required (not null)
+            if (timestamp == null)
             {
-                throw new InvalidDataException("Timestamp is a required property for IndexComposite and cannot be null");
+                throw new InvalidDataException("timestamp is a required property for IndexComposite and cannot be null");
             }
             else
             {
-                this.Timestamp = Timestamp;
+                this.Timestamp = timestamp;
             }
-            this.Symbol = Symbol;
-            this.IndexSymbol = IndexSymbol;
-            this.Reference = Reference;
-            this.LastPrice = LastPrice;
-            this.Weight = Weight;
-            this.Logged = Logged;
+            this.Symbol = symbol;
+            this.IndexSymbol = indexSymbol;
+            this.Reference = reference;
+            this.LastPrice = lastPrice;
+            this.Weight = weight;
+            this.Logged = logged;
         }
         
         /// <summary>
@@ -129,7 +129,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

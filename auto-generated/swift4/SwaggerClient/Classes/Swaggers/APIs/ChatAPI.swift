@@ -22,7 +22,7 @@ open class ChatAPI {
      */
     open class func chatGet(count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, channelID: Double? = nil, completion: @escaping ((_ data: [Chat]?,_ error: Error?) -> Void)) {
         chatGetWithRequestBuilder(count: count, start: start, reverse: reverse, channelID: channelID).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -59,15 +59,14 @@ open class ChatAPI {
         let path = "/chat"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
             "count": count, 
             "start": start, 
             "reverse": reverse, 
             "channelID": channelID
         ])
-        
 
         let requestBuilder: RequestBuilder<[Chat]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -81,7 +80,7 @@ open class ChatAPI {
      */
     open class func chatGetChannels(completion: @escaping ((_ data: [ChatChannel]?,_ error: Error?) -> Void)) {
         chatGetChannelsWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -103,9 +102,8 @@ open class ChatAPI {
         let path = "/chat/channels"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<[ChatChannel]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -119,7 +117,7 @@ open class ChatAPI {
      */
     open class func chatGetConnected(completion: @escaping ((_ data: ConnectedUsers?,_ error: Error?) -> Void)) {
         chatGetConnectedWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -139,9 +137,8 @@ open class ChatAPI {
         let path = "/chat/connected"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<ConnectedUsers>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -157,7 +154,7 @@ open class ChatAPI {
      */
     open class func chatNew(message: String, channelID: Double? = nil, completion: @escaping ((_ data: Chat?,_ error: Error?) -> Void)) {
         chatNewWithRequestBuilder(message: message, channelID: channelID).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -199,9 +196,8 @@ open class ChatAPI {
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
         let parameters = APIHelper.convertBoolToString(nonNullParameters)
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<Chat>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 

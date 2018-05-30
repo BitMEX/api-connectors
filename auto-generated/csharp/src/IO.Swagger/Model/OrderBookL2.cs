@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,42 +38,42 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="OrderBookL2" /> class.
         /// </summary>
-        /// <param name="Symbol">Symbol (required).</param>
-        /// <param name="Id">Id (required).</param>
-        /// <param name="Side">Side (required).</param>
-        /// <param name="Size">Size.</param>
-        /// <param name="Price">Price.</param>
-        public OrderBookL2(string Symbol = default(string), decimal? Id = default(decimal?), string Side = default(string), decimal? Size = default(decimal?), double? Price = default(double?))
+        /// <param name="symbol">symbol (required).</param>
+        /// <param name="id">id (required).</param>
+        /// <param name="side">side (required).</param>
+        /// <param name="size">size.</param>
+        /// <param name="price">price.</param>
+        public OrderBookL2(string symbol = default(string), decimal? id = default(decimal?), string side = default(string), decimal? size = default(decimal?), double? price = default(double?))
         {
-            // to ensure "Symbol" is required (not null)
-            if (Symbol == null)
+            // to ensure "symbol" is required (not null)
+            if (symbol == null)
             {
-                throw new InvalidDataException("Symbol is a required property for OrderBookL2 and cannot be null");
+                throw new InvalidDataException("symbol is a required property for OrderBookL2 and cannot be null");
             }
             else
             {
-                this.Symbol = Symbol;
+                this.Symbol = symbol;
             }
-            // to ensure "Id" is required (not null)
-            if (Id == null)
+            // to ensure "id" is required (not null)
+            if (id == null)
             {
-                throw new InvalidDataException("Id is a required property for OrderBookL2 and cannot be null");
+                throw new InvalidDataException("id is a required property for OrderBookL2 and cannot be null");
             }
             else
             {
-                this.Id = Id;
+                this.Id = id;
             }
-            // to ensure "Side" is required (not null)
-            if (Side == null)
+            // to ensure "side" is required (not null)
+            if (side == null)
             {
-                throw new InvalidDataException("Side is a required property for OrderBookL2 and cannot be null");
+                throw new InvalidDataException("side is a required property for OrderBookL2 and cannot be null");
             }
             else
             {
-                this.Side = Side;
+                this.Side = side;
             }
-            this.Size = Size;
-            this.Price = Price;
+            this.Size = size;
+            this.Price = price;
         }
         
         /// <summary>
@@ -127,7 +127,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,34 +38,34 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Funding" /> class.
         /// </summary>
-        /// <param name="Timestamp">Timestamp (required).</param>
-        /// <param name="Symbol">Symbol (required).</param>
-        /// <param name="FundingInterval">FundingInterval.</param>
-        /// <param name="FundingRate">FundingRate.</param>
-        /// <param name="FundingRateDaily">FundingRateDaily.</param>
-        public Funding(DateTime? Timestamp = default(DateTime?), string Symbol = default(string), DateTime? FundingInterval = default(DateTime?), double? FundingRate = default(double?), double? FundingRateDaily = default(double?))
+        /// <param name="timestamp">timestamp (required).</param>
+        /// <param name="symbol">symbol (required).</param>
+        /// <param name="fundingInterval">fundingInterval.</param>
+        /// <param name="fundingRate">fundingRate.</param>
+        /// <param name="fundingRateDaily">fundingRateDaily.</param>
+        public Funding(DateTime? timestamp = default(DateTime?), string symbol = default(string), DateTime? fundingInterval = default(DateTime?), double? fundingRate = default(double?), double? fundingRateDaily = default(double?))
         {
-            // to ensure "Timestamp" is required (not null)
-            if (Timestamp == null)
+            // to ensure "timestamp" is required (not null)
+            if (timestamp == null)
             {
-                throw new InvalidDataException("Timestamp is a required property for Funding and cannot be null");
+                throw new InvalidDataException("timestamp is a required property for Funding and cannot be null");
             }
             else
             {
-                this.Timestamp = Timestamp;
+                this.Timestamp = timestamp;
             }
-            // to ensure "Symbol" is required (not null)
-            if (Symbol == null)
+            // to ensure "symbol" is required (not null)
+            if (symbol == null)
             {
-                throw new InvalidDataException("Symbol is a required property for Funding and cannot be null");
+                throw new InvalidDataException("symbol is a required property for Funding and cannot be null");
             }
             else
             {
-                this.Symbol = Symbol;
+                this.Symbol = symbol;
             }
-            this.FundingInterval = FundingInterval;
-            this.FundingRate = FundingRate;
-            this.FundingRateDaily = FundingRateDaily;
+            this.FundingInterval = fundingInterval;
+            this.FundingRate = fundingRate;
+            this.FundingRateDaily = fundingRateDaily;
         }
         
         /// <summary>
@@ -119,7 +119,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

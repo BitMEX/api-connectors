@@ -18,7 +18,7 @@ open class StatsAPI {
      */
     open class func statsGet(completion: @escaping ((_ data: [Stats]?,_ error: Error?) -> Void)) {
         statsGetWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -48,9 +48,8 @@ open class StatsAPI {
         let path = "/stats"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<[Stats]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -64,7 +63,7 @@ open class StatsAPI {
      */
     open class func statsHistory(completion: @escaping ((_ data: [StatsHistory]?,_ error: Error?) -> Void)) {
         statsHistoryWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -92,9 +91,8 @@ open class StatsAPI {
         let path = "/stats/history"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<[StatsHistory]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -108,7 +106,7 @@ open class StatsAPI {
      */
     open class func statsHistoryUSD(completion: @escaping ((_ data: [StatsUSD]?,_ error: Error?) -> Void)) {
         statsHistoryUSDWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -138,9 +136,8 @@ open class StatsAPI {
         let path = "/stats/historyUSD"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<[StatsUSD]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 

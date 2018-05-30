@@ -37,11 +37,15 @@ Cancel a withdrawal.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
 $token = "token_example"; // string | 
 
 try {
-    $result = $api_instance->userCancelWithdrawal($token);
+    $result = $apiInstance->userCancelWithdrawal($token);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userCancelWithdrawal: ', $e->getMessage(), PHP_EOL;
@@ -82,11 +86,15 @@ If the code is valid, responds with the referral code's discount (e.g. `0.1` for
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
 $referral_code = "referral_code_example"; // string | 
 
 try {
-    $result = $api_instance->userCheckReferralCode($referral_code);
+    $result = $apiInstance->userCheckReferralCode($referral_code);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userCheckReferralCode: ', $e->getMessage(), PHP_EOL;
@@ -125,11 +133,15 @@ Confirm your email address with a token.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
 $token = "token_example"; // string | 
 
 try {
-    $result = $api_instance->userConfirm($token);
+    $result = $apiInstance->userConfirm($token);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userConfirm: ', $e->getMessage(), PHP_EOL;
@@ -168,12 +180,30 @@ Confirm two-factor auth for this account. If using a Yubikey, simply send a toke
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $token = "token_example"; // string | Token from your selected TFA type.
 $type = "type_example"; // string | Two-factor auth type. Supported types: 'GA' (Google Authenticator), 'Yubikey'
 
 try {
-    $result = $api_instance->userConfirmEnableTFA($token, $type);
+    $result = $apiInstance->userConfirmEnableTFA($token, $type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userConfirmEnableTFA: ', $e->getMessage(), PHP_EOL;
@@ -194,7 +224,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -213,11 +243,15 @@ Confirm a withdrawal.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
 $token = "token_example"; // string | 
 
 try {
-    $result = $api_instance->userConfirmWithdrawal($token);
+    $result = $apiInstance->userConfirmWithdrawal($token);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userConfirmWithdrawal: ', $e->getMessage(), PHP_EOL;
@@ -256,12 +290,30 @@ Disable two-factor auth for this account.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $token = "token_example"; // string | Token from your selected TFA type.
 $type = "type_example"; // string | Two-factor auth type. Supported types: 'GA' (Google Authenticator)
 
 try {
-    $result = $api_instance->userDisableTFA($token, $type);
+    $result = $apiInstance->userDisableTFA($token, $type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userDisableTFA: ', $e->getMessage(), PHP_EOL;
@@ -282,7 +334,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -301,10 +353,28 @@ Get your user model.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $result = $api_instance->userGet();
+    $result = $apiInstance->userGet();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userGet: ', $e->getMessage(), PHP_EOL;
@@ -321,7 +391,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -331,7 +401,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **userGetAffiliateStatus**
-> \Swagger\Client\Model\Affiliate[] userGetAffiliateStatus()
+> \Swagger\Client\Model\Affiliate userGetAffiliateStatus()
 
 Get your current affiliate/referral status.
 
@@ -340,10 +410,28 @@ Get your current affiliate/referral status.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $result = $api_instance->userGetAffiliateStatus();
+    $result = $apiInstance->userGetAffiliateStatus();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userGetAffiliateStatus: ', $e->getMessage(), PHP_EOL;
@@ -356,11 +444,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Swagger\Client\Model\Affiliate[]**](../Model/Affiliate.md)
+[**\Swagger\Client\Model\Affiliate**](../Model/Affiliate.md)
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -379,10 +467,28 @@ Get your account's commission status.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $result = $api_instance->userGetCommission();
+    $result = $apiInstance->userGetCommission();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userGetCommission: ', $e->getMessage(), PHP_EOL;
@@ -399,7 +505,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -418,11 +524,29 @@ Get a deposit address.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $currency = "XBt"; // string | 
 
 try {
-    $result = $api_instance->userGetDepositAddress($currency);
+    $result = $apiInstance->userGetDepositAddress($currency);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userGetDepositAddress: ', $e->getMessage(), PHP_EOL;
@@ -442,7 +566,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -461,11 +585,29 @@ Get your account's margin status. Send a currency of \"all\" to receive an array
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $currency = "XBt"; // string | 
 
 try {
-    $result = $api_instance->userGetMargin($currency);
+    $result = $apiInstance->userGetMargin($currency);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userGetMargin: ', $e->getMessage(), PHP_EOL;
@@ -485,7 +627,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -504,11 +646,29 @@ Get your current wallet information.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $currency = "XBt"; // string | 
 
 try {
-    $result = $api_instance->userGetWallet($currency);
+    $result = $apiInstance->userGetWallet($currency);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userGetWallet: ', $e->getMessage(), PHP_EOL;
@@ -528,7 +688,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -547,11 +707,29 @@ Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $currency = "XBt"; // string | 
 
 try {
-    $result = $api_instance->userGetWalletHistory($currency);
+    $result = $apiInstance->userGetWalletHistory($currency);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userGetWalletHistory: ', $e->getMessage(), PHP_EOL;
@@ -571,7 +749,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -590,11 +768,29 @@ Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $currency = "XBt"; // string | 
 
 try {
-    $result = $api_instance->userGetWalletSummary($currency);
+    $result = $apiInstance->userGetWalletSummary($currency);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userGetWalletSummary: ', $e->getMessage(), PHP_EOL;
@@ -614,7 +810,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -633,10 +829,14 @@ Log out of BitMEX.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
 
 try {
-    $api_instance->userLogout();
+    $apiInstance->userLogout();
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userLogout: ', $e->getMessage(), PHP_EOL;
 }
@@ -671,10 +871,28 @@ Log all systems out of BitMEX. This will revoke all of your account's access tok
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 
 try {
-    $result = $api_instance->userLogoutAll();
+    $result = $apiInstance->userLogoutAll();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userLogoutAll: ', $e->getMessage(), PHP_EOL;
@@ -691,7 +909,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -701,7 +919,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **userMinWithdrawalFee**
-> double userMinWithdrawalFee($currency)
+> object userMinWithdrawalFee($currency)
 
 Get the minimum withdrawal fee for a currency.
 
@@ -712,11 +930,15 @@ This is changed based on network conditions to ensure timely withdrawals. During
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
 $currency = "XBt"; // string | 
 
 try {
-    $result = $api_instance->userMinWithdrawalFee($currency);
+    $result = $apiInstance->userMinWithdrawalFee($currency);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userMinWithdrawalFee: ', $e->getMessage(), PHP_EOL;
@@ -732,7 +954,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**double**
+**object**
 
 ### Authorization
 
@@ -757,11 +979,29 @@ Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enable
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $type = "type_example"; // string | Two-factor auth type. Supported types: 'GA' (Google Authenticator)
 
 try {
-    $result = $api_instance->userRequestEnableTFA($type);
+    $result = $apiInstance->userRequestEnableTFA($type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userRequestEnableTFA: ', $e->getMessage(), PHP_EOL;
@@ -781,7 +1021,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -802,15 +1042,33 @@ This will send a confirmation email to the email address on record, unless reque
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $currency = "XBt"; // string | Currency you're withdrawing. Options: `XBt`
-$amount = 3.4; // float | Amount of withdrawal currency.
+$amount = 8.14; // float | Amount of withdrawal currency.
 $address = "address_example"; // string | Destination Address.
 $otp_token = "otp_token_example"; // string | 2FA token. Required if 2FA is enabled on your account.
 $fee = 1.2; // double | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
 
 try {
-    $result = $api_instance->userRequestWithdrawal($currency, $amount, $address, $otp_token, $fee);
+    $result = $apiInstance->userRequestWithdrawal($currency, $amount, $address, $otp_token, $fee);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userRequestWithdrawal: ', $e->getMessage(), PHP_EOL;
@@ -834,7 +1092,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -853,12 +1111,30 @@ Save user preferences.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $prefs = "prefs_example"; // string | 
 $overwrite = false; // bool | If true, will overwrite all existing preferences.
 
 try {
-    $result = $api_instance->userSavePreferences($prefs, $overwrite);
+    $result = $apiInstance->userSavePreferences($prefs, $overwrite);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userSavePreferences: ', $e->getMessage(), PHP_EOL;
@@ -879,7 +1155,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -898,7 +1174,25 @@ Update your password, name, and other attributes.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\UserApi();
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiNonce
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-nonce', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-nonce', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
 $firstname = "firstname_example"; // string | 
 $lastname = "lastname_example"; // string | 
 $old_password = "old_password_example"; // string | 
@@ -909,7 +1203,7 @@ $country = "country_example"; // string | Country of residence.
 $pgp_pub_key = "pgp_pub_key_example"; // string | PGP Public Key. If specified, automated emails will be sentwith this key.
 
 try {
-    $result = $api_instance->userUpdate($firstname, $lastname, $old_password, $new_password, $new_password_confirm, $username, $country, $pgp_pub_key);
+    $result = $apiInstance->userUpdate($firstname, $lastname, $old_password, $new_password, $new_password_confirm, $username, $country, $pgp_pub_key);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userUpdate: ', $e->getMessage(), PHP_EOL;
@@ -936,7 +1230,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKey](../../README.md#apiKey), [apiNonce](../../README.md#apiNonce), [apiSignature](../../README.md#apiSignature)
 
 ### HTTP request headers
 

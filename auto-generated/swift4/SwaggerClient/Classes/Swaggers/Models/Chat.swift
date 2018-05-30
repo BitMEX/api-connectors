@@ -10,9 +10,9 @@ import Foundation
 
 /** Trollbox Data */
 
-open class Chat: Codable {
+public struct Chat: Codable {
 
-    public var id: Double?
+    public var _id: Double?
     public var date: Date
     public var user: String
     public var message: String
@@ -20,34 +20,26 @@ open class Chat: Codable {
     public var fromBot: Bool?
     public var channelID: Double?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encodeIfPresent(id, forKey: "id")
-        try container.encode(date, forKey: "date")
-        try container.encode(user, forKey: "user")
-        try container.encode(message, forKey: "message")
-        try container.encode(html, forKey: "html")
-        try container.encodeIfPresent(fromBot, forKey: "fromBot")
-        try container.encodeIfPresent(channelID, forKey: "channelID")
+    public init(_id: Double?, date: Date, user: String, message: String, html: String, fromBot: Bool?, channelID: Double?) {
+        self._id = _id
+        self.date = date
+        self.user = user
+        self.message = message
+        self.html = html
+        self.fromBot = fromBot
+        self.channelID = channelID
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
-
-        id = try container.decodeIfPresent(Double.self, forKey: "id")
-        date = try container.decode(Date.self, forKey: "date")
-        user = try container.decode(String.self, forKey: "user")
-        message = try container.decode(String.self, forKey: "message")
-        html = try container.decode(String.self, forKey: "html")
-        fromBot = try container.decodeIfPresent(Bool.self, forKey: "fromBot")
-        channelID = try container.decodeIfPresent(Double.self, forKey: "channelID")
+    public enum CodingKeys: String, CodingKey { 
+        case _id = "id"
+        case date
+        case user
+        case message
+        case html
+        case fromBot
+        case channelID
     }
+
+
 }
 

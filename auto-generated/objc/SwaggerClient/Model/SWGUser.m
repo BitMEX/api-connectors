@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"ownerId": @"ownerId", @"firstname": @"firstname", @"lastname": @"lastname", @"username": @"username", @"email": @"email", @"phone": @"phone", @"created": @"created", @"lastUpdated": @"lastUpdated", @"preferences": @"preferences", @"tFAEnabled": @"TFAEnabled", @"affiliateID": @"affiliateID", @"pgpPubKey": @"pgpPubKey", @"country": @"country" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"ownerId": @"ownerId", @"firstname": @"firstname", @"lastname": @"lastname", @"username": @"username", @"email": @"email", @"phone": @"phone", @"created": @"created", @"lastUpdated": @"lastUpdated", @"preferences": @"preferences", @"tFAEnabled": @"TFAEnabled", @"affiliateID": @"affiliateID", @"pgpPubKey": @"pgpPubKey", @"country": @"country", @"typ": @"typ" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"_id", @"ownerId", @"firstname", @"lastname", @"phone", @"created", @"lastUpdated", @"preferences", @"tFAEnabled", @"affiliateID", @"pgpPubKey", @"country"];
+  NSArray *optionalProperties = @[@"_id", @"ownerId", @"firstname", @"lastname", @"phone", @"created", @"lastUpdated", @"preferences", @"tFAEnabled", @"affiliateID", @"pgpPubKey", @"country", @"typ"];
   return [optionalProperties containsObject:propertyName];
 }
 

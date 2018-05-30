@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,40 +38,40 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Transaction" /> class.
         /// </summary>
-        /// <param name="TransactID">TransactID (required).</param>
-        /// <param name="Account">Account.</param>
-        /// <param name="Currency">Currency.</param>
-        /// <param name="TransactType">TransactType.</param>
-        /// <param name="Amount">Amount.</param>
-        /// <param name="Fee">Fee.</param>
-        /// <param name="TransactStatus">TransactStatus.</param>
-        /// <param name="Address">Address.</param>
-        /// <param name="Tx">Tx.</param>
-        /// <param name="Text">Text.</param>
-        /// <param name="TransactTime">TransactTime.</param>
-        /// <param name="Timestamp">Timestamp.</param>
-        public Transaction(string TransactID = default(string), decimal? Account = default(decimal?), string Currency = default(string), string TransactType = default(string), decimal? Amount = default(decimal?), decimal? Fee = default(decimal?), string TransactStatus = default(string), string Address = default(string), string Tx = default(string), string Text = default(string), DateTime? TransactTime = default(DateTime?), DateTime? Timestamp = default(DateTime?))
+        /// <param name="transactID">transactID (required).</param>
+        /// <param name="account">account.</param>
+        /// <param name="currency">currency.</param>
+        /// <param name="transactType">transactType.</param>
+        /// <param name="amount">amount.</param>
+        /// <param name="fee">fee.</param>
+        /// <param name="transactStatus">transactStatus.</param>
+        /// <param name="address">address.</param>
+        /// <param name="tx">tx.</param>
+        /// <param name="text">text.</param>
+        /// <param name="transactTime">transactTime.</param>
+        /// <param name="timestamp">timestamp.</param>
+        public Transaction(string transactID = default(string), decimal? account = default(decimal?), string currency = default(string), string transactType = default(string), decimal? amount = default(decimal?), decimal? fee = default(decimal?), string transactStatus = default(string), string address = default(string), string tx = default(string), string text = default(string), DateTime? transactTime = default(DateTime?), DateTime? timestamp = default(DateTime?))
         {
-            // to ensure "TransactID" is required (not null)
-            if (TransactID == null)
+            // to ensure "transactID" is required (not null)
+            if (transactID == null)
             {
-                throw new InvalidDataException("TransactID is a required property for Transaction and cannot be null");
+                throw new InvalidDataException("transactID is a required property for Transaction and cannot be null");
             }
             else
             {
-                this.TransactID = TransactID;
+                this.TransactID = transactID;
             }
-            this.Account = Account;
-            this.Currency = Currency;
-            this.TransactType = TransactType;
-            this.Amount = Amount;
-            this.Fee = Fee;
-            this.TransactStatus = TransactStatus;
-            this.Address = Address;
-            this.Tx = Tx;
-            this.Text = Text;
-            this.TransactTime = TransactTime;
-            this.Timestamp = Timestamp;
+            this.Account = account;
+            this.Currency = currency;
+            this.TransactType = transactType;
+            this.Amount = amount;
+            this.Fee = fee;
+            this.TransactStatus = transactStatus;
+            this.Address = address;
+            this.Tx = tx;
+            this.Text = text;
+            this.TransactTime = transactTime;
+            this.Timestamp = timestamp;
         }
         
         /// <summary>
@@ -174,7 +174,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

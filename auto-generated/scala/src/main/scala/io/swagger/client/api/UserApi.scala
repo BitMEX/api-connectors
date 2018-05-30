@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -31,6 +31,7 @@ import javax.ws.rs.core.MediaType
 
 import java.io.File
 import java.util.Date
+import java.util.TimeZone
 
 import scala.collection.mutable.HashMap
 
@@ -48,20 +49,31 @@ import scala.concurrent._
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
 
+import org.json4s._
+
 class UserApi(
   val defBasePath: String = "https://localhost/api/v1",
   defApiInvoker: ApiInvoker = ApiInvoker
 ) {
-
-  implicit val formats = new org.json4s.DefaultFormats {
-    override def dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+0000")
+  private lazy val dateTimeFormatter = {
+    val formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+    formatter.setTimeZone(TimeZone.getTimeZone("UTC"))
+    formatter
   }
-  implicit val stringReader = ClientResponseReaders.StringReader
-  implicit val unitReader = ClientResponseReaders.UnitReader
-  implicit val jvalueReader = ClientResponseReaders.JValueReader
-  implicit val jsonReader = JsonFormatsReader
-  implicit val stringWriter = RequestWriters.StringWriter
-  implicit val jsonWriter = JsonFormatsWriter
+  private val dateFormatter = {
+    val formatter = new SimpleDateFormat("yyyy-MM-dd")
+    formatter.setTimeZone(TimeZone.getTimeZone("UTC"))
+    formatter
+  }
+  implicit val formats = new org.json4s.DefaultFormats {
+    override def dateFormatter = dateTimeFormatter
+  }
+  implicit val stringReader: ClientResponseReader[String] = ClientResponseReaders.StringReader
+  implicit val unitReader: ClientResponseReader[Unit] = ClientResponseReaders.UnitReader
+  implicit val jvalueReader: ClientResponseReader[JValue] = ClientResponseReaders.JValueReader
+  implicit val jsonReader: ClientResponseReader[Nothing] = JsonFormatsReader
+  implicit val stringWriter: RequestWriter[String] = RequestWriters.StringWriter
+  implicit val jsonWriter: RequestWriter[Nothing] = JsonFormatsWriter
 
   var basePath: String = defBasePath
   var apiInvoker: ApiInvoker = defApiInvoker
@@ -70,13 +82,14 @@ class UserApi(
     apiInvoker.defaultHeaders += key -> value
   }
 
-  val config = SwaggerConfig.forUrl(new URI(defBasePath))
+  val config: SwaggerConfig = SwaggerConfig.forUrl(new URI(defBasePath))
   val client = new RestClient(config)
   val helper = new UserApiAsyncHelper(client, config)
 
   /**
    * Cancel a withdrawal.
    * 
+   *
    * @param token  
    * @return Transaction
    */
@@ -91,9 +104,10 @@ class UserApi(
   /**
    * Cancel a withdrawal. asynchronously
    * 
+   *
    * @param token  
    * @return Future(Transaction)
-  */
+   */
   def userCancelWithdrawalAsync(token: String): Future[Transaction] = {
       helper.userCancelWithdrawal(token)
   }
@@ -101,6 +115,7 @@ class UserApi(
   /**
    * Check if a referral code is valid.
    * If the code is valid, responds with the referral code&#39;s discount (e.g. &#x60;0.1&#x60; for 10%). Otherwise, will return a 404.
+   *
    * @param referralCode  (optional)
    * @return Double
    */
@@ -115,9 +130,10 @@ class UserApi(
   /**
    * Check if a referral code is valid. asynchronously
    * If the code is valid, responds with the referral code&#39;s discount (e.g. &#x60;0.1&#x60; for 10%). Otherwise, will return a 404.
+   *
    * @param referralCode  (optional)
    * @return Future(Double)
-  */
+   */
   def userCheckReferralCodeAsync(referralCode: Option[String] = None): Future[Double] = {
       helper.userCheckReferralCode(referralCode)
   }
@@ -125,6 +141,7 @@ class UserApi(
   /**
    * Confirm your email address with a token.
    * 
+   *
    * @param token  
    * @return AccessToken
    */
@@ -139,9 +156,10 @@ class UserApi(
   /**
    * Confirm your email address with a token. asynchronously
    * 
+   *
    * @param token  
    * @return Future(AccessToken)
-  */
+   */
   def userConfirmAsync(token: String): Future[AccessToken] = {
       helper.userConfirm(token)
   }
@@ -149,12 +167,13 @@ class UserApi(
   /**
    * Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
    * 
+   *
    * @param token Token from your selected TFA type. 
-   * @param _type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39; (optional)
+   * @param `type` Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39; (optional)
    * @return Boolean
    */
-  def userConfirmEnableTFA(token: String, _type: Option[String] = None): Option[Boolean] = {
-    val await = Try(Await.result(userConfirmEnableTFAAsync(token, _type), Duration.Inf))
+  def userConfirmEnableTFA(token: String, `type`: Option[String] = None): Option[Boolean] = {
+    val await = Try(Await.result(userConfirmEnableTFAAsync(token, `type`), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -164,17 +183,19 @@ class UserApi(
   /**
    * Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint. asynchronously
    * 
+   *
    * @param token Token from your selected TFA type. 
-   * @param _type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39; (optional)
+   * @param `type` Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39; (optional)
    * @return Future(Boolean)
-  */
-  def userConfirmEnableTFAAsync(token: String, _type: Option[String] = None): Future[Boolean] = {
-      helper.userConfirmEnableTFA(token, _type)
+   */
+  def userConfirmEnableTFAAsync(token: String, `type`: Option[String] = None): Future[Boolean] = {
+      helper.userConfirmEnableTFA(token, `type`)
   }
 
   /**
    * Confirm a withdrawal.
    * 
+   *
    * @param token  
    * @return Transaction
    */
@@ -189,9 +210,10 @@ class UserApi(
   /**
    * Confirm a withdrawal. asynchronously
    * 
+   *
    * @param token  
    * @return Future(Transaction)
-  */
+   */
   def userConfirmWithdrawalAsync(token: String): Future[Transaction] = {
       helper.userConfirmWithdrawal(token)
   }
@@ -199,12 +221,13 @@ class UserApi(
   /**
    * Disable two-factor auth for this account.
    * 
+   *
    * @param token Token from your selected TFA type. 
-   * @param _type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)
+   * @param `type` Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)
    * @return Boolean
    */
-  def userDisableTFA(token: String, _type: Option[String] = None): Option[Boolean] = {
-    val await = Try(Await.result(userDisableTFAAsync(token, _type), Duration.Inf))
+  def userDisableTFA(token: String, `type`: Option[String] = None): Option[Boolean] = {
+    val await = Try(Await.result(userDisableTFAAsync(token, `type`), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -214,17 +237,19 @@ class UserApi(
   /**
    * Disable two-factor auth for this account. asynchronously
    * 
+   *
    * @param token Token from your selected TFA type. 
-   * @param _type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)
+   * @param `type` Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)
    * @return Future(Boolean)
-  */
-  def userDisableTFAAsync(token: String, _type: Option[String] = None): Future[Boolean] = {
-      helper.userDisableTFA(token, _type)
+   */
+  def userDisableTFAAsync(token: String, `type`: Option[String] = None): Future[Boolean] = {
+      helper.userDisableTFA(token, `type`)
   }
 
   /**
    * Get your user model.
    * 
+   *
    * @return User
    */
   def userGet(): Option[User] = {
@@ -238,8 +263,9 @@ class UserApi(
   /**
    * Get your user model. asynchronously
    * 
+   *
    * @return Future(User)
-  */
+   */
   def userGetAsync(): Future[User] = {
       helper.userGet()
   }
@@ -247,6 +273,7 @@ class UserApi(
   /**
    * Get your current affiliate/referral status.
    * 
+   *
    * @return Affiliate
    */
   def userGetAffiliateStatus(): Option[Affiliate] = {
@@ -260,8 +287,9 @@ class UserApi(
   /**
    * Get your current affiliate/referral status. asynchronously
    * 
+   *
    * @return Future(Affiliate)
-  */
+   */
   def userGetAffiliateStatusAsync(): Future[Affiliate] = {
       helper.userGetAffiliateStatus()
   }
@@ -269,6 +297,7 @@ class UserApi(
   /**
    * Get your account&#39;s commission status.
    * 
+   *
    * @return List[UserCommission]
    */
   def userGetCommission(): Option[List[UserCommission]] = {
@@ -282,8 +311,9 @@ class UserApi(
   /**
    * Get your account&#39;s commission status. asynchronously
    * 
+   *
    * @return Future(List[UserCommission])
-  */
+   */
   def userGetCommissionAsync(): Future[List[UserCommission]] = {
       helper.userGetCommission()
   }
@@ -291,10 +321,11 @@ class UserApi(
   /**
    * Get a deposit address.
    * 
+   *
    * @param currency  (optional, default to XBt)
    * @return String
    */
-  def userGetDepositAddress(currency: Option[String] /* = XBt*/): Option[String] = {
+  def userGetDepositAddress(currency: Option[String] = Option("XBt")): Option[String] = {
     val await = Try(Await.result(userGetDepositAddressAsync(currency), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -305,20 +336,22 @@ class UserApi(
   /**
    * Get a deposit address. asynchronously
    * 
+   *
    * @param currency  (optional, default to XBt)
    * @return Future(String)
-  */
-  def userGetDepositAddressAsync(currency: Option[String] /* = XBt*/): Future[String] = {
+   */
+  def userGetDepositAddressAsync(currency: Option[String] = Option("XBt")): Future[String] = {
       helper.userGetDepositAddress(currency)
   }
 
   /**
    * Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
    * 
+   *
    * @param currency  (optional, default to XBt)
    * @return Margin
    */
-  def userGetMargin(currency: Option[String] /* = XBt*/): Option[Margin] = {
+  def userGetMargin(currency: Option[String] = Option("XBt")): Option[Margin] = {
     val await = Try(Await.result(userGetMarginAsync(currency), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -329,20 +362,22 @@ class UserApi(
   /**
    * Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies. asynchronously
    * 
+   *
    * @param currency  (optional, default to XBt)
    * @return Future(Margin)
-  */
-  def userGetMarginAsync(currency: Option[String] /* = XBt*/): Future[Margin] = {
+   */
+  def userGetMarginAsync(currency: Option[String] = Option("XBt")): Future[Margin] = {
       helper.userGetMargin(currency)
   }
 
   /**
    * Get your current wallet information.
    * 
+   *
    * @param currency  (optional, default to XBt)
    * @return Wallet
    */
-  def userGetWallet(currency: Option[String] /* = XBt*/): Option[Wallet] = {
+  def userGetWallet(currency: Option[String] = Option("XBt")): Option[Wallet] = {
     val await = Try(Await.result(userGetWalletAsync(currency), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -353,20 +388,22 @@ class UserApi(
   /**
    * Get your current wallet information. asynchronously
    * 
+   *
    * @param currency  (optional, default to XBt)
    * @return Future(Wallet)
-  */
-  def userGetWalletAsync(currency: Option[String] /* = XBt*/): Future[Wallet] = {
+   */
+  def userGetWalletAsync(currency: Option[String] = Option("XBt")): Future[Wallet] = {
       helper.userGetWallet(currency)
   }
 
   /**
    * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
    * 
+   *
    * @param currency  (optional, default to XBt)
    * @return List[Transaction]
    */
-  def userGetWalletHistory(currency: Option[String] /* = XBt*/): Option[List[Transaction]] = {
+  def userGetWalletHistory(currency: Option[String] = Option("XBt")): Option[List[Transaction]] = {
     val await = Try(Await.result(userGetWalletHistoryAsync(currency), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -377,20 +414,22 @@ class UserApi(
   /**
    * Get a history of all of your wallet transactions (deposits, withdrawals, PNL). asynchronously
    * 
+   *
    * @param currency  (optional, default to XBt)
    * @return Future(List[Transaction])
-  */
-  def userGetWalletHistoryAsync(currency: Option[String] /* = XBt*/): Future[List[Transaction]] = {
+   */
+  def userGetWalletHistoryAsync(currency: Option[String] = Option("XBt")): Future[List[Transaction]] = {
       helper.userGetWalletHistory(currency)
   }
 
   /**
    * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
    * 
+   *
    * @param currency  (optional, default to XBt)
    * @return List[Transaction]
    */
-  def userGetWalletSummary(currency: Option[String] /* = XBt*/): Option[List[Transaction]] = {
+  def userGetWalletSummary(currency: Option[String] = Option("XBt")): Option[List[Transaction]] = {
     val await = Try(Await.result(userGetWalletSummaryAsync(currency), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -401,16 +440,18 @@ class UserApi(
   /**
    * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). asynchronously
    * 
+   *
    * @param currency  (optional, default to XBt)
    * @return Future(List[Transaction])
-  */
-  def userGetWalletSummaryAsync(currency: Option[String] /* = XBt*/): Future[List[Transaction]] = {
+   */
+  def userGetWalletSummaryAsync(currency: Option[String] = Option("XBt")): Future[List[Transaction]] = {
       helper.userGetWalletSummary(currency)
   }
 
   /**
    * Log out of BitMEX.
    * 
+   *
    * @return void
    */
   def userLogout() = {
@@ -424,8 +465,9 @@ class UserApi(
   /**
    * Log out of BitMEX. asynchronously
    * 
+   *
    * @return Future(void)
-  */
+   */
   def userLogoutAsync() = {
       helper.userLogout()
   }
@@ -433,6 +475,7 @@ class UserApi(
   /**
    * Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
    * 
+   *
    * @return Double
    */
   def userLogoutAll(): Option[Double] = {
@@ -446,8 +489,9 @@ class UserApi(
   /**
    * Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices. asynchronously
    * 
+   *
    * @return Future(Double)
-  */
+   */
   def userLogoutAllAsync(): Future[Double] = {
       helper.userLogoutAll()
   }
@@ -455,10 +499,11 @@ class UserApi(
   /**
    * Get the minimum withdrawal fee for a currency.
    * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+   *
    * @param currency  (optional, default to XBt)
    * @return Any
    */
-  def userMinWithdrawalFee(currency: Option[String] /* = XBt*/): Option[Any] = {
+  def userMinWithdrawalFee(currency: Option[String] = Option("XBt")): Option[Any] = {
     val await = Try(Await.result(userMinWithdrawalFeeAsync(currency), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -469,21 +514,23 @@ class UserApi(
   /**
    * Get the minimum withdrawal fee for a currency. asynchronously
    * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+   *
    * @param currency  (optional, default to XBt)
    * @return Future(Any)
-  */
-  def userMinWithdrawalFeeAsync(currency: Option[String] /* = XBt*/): Future[Any] = {
+   */
+  def userMinWithdrawalFeeAsync(currency: Option[String] = Option("XBt")): Future[Any] = {
       helper.userMinWithdrawalFee(currency)
   }
 
   /**
    * Get secret key for setting up two-factor auth.
    * Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
-   * @param _type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)
+   *
+   * @param `type` Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)
    * @return Boolean
    */
-  def userRequestEnableTFA(_type: Option[String] = None): Option[Boolean] = {
-    val await = Try(Await.result(userRequestEnableTFAAsync(_type), Duration.Inf))
+  def userRequestEnableTFA(`type`: Option[String] = None): Option[Boolean] = {
+    val await = Try(Await.result(userRequestEnableTFAAsync(`type`), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -493,16 +540,18 @@ class UserApi(
   /**
    * Get secret key for setting up two-factor auth. asynchronously
    * Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
-   * @param _type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)
+   *
+   * @param `type` Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)
    * @return Future(Boolean)
-  */
-  def userRequestEnableTFAAsync(_type: Option[String] = None): Future[Boolean] = {
-      helper.userRequestEnableTFA(_type)
+   */
+  def userRequestEnableTFAAsync(`type`: Option[String] = None): Future[Boolean] = {
+      helper.userRequestEnableTFA(`type`)
   }
 
   /**
    * Request a withdrawal to an external wallet.
    * This will send a confirmation email to the email address on record, unless requested via an API Key with the &#x60;withdraw&#x60; permission.
+   *
    * @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60; 
    * @param amount Amount of withdrawal currency. 
    * @param address Destination Address. 
@@ -510,7 +559,7 @@ class UserApi(
    * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
    * @return Transaction
    */
-  def userRequestWithdrawal(currency: String /* = XBt*/, amount: Number, address: String, otpToken: Option[String] = None, fee: Option[Double] = None): Option[Transaction] = {
+  def userRequestWithdrawal(currency: String = "XBt", amount: Number, address: String, otpToken: Option[String] = None, fee: Option[Double] = None): Option[Transaction] = {
     val await = Try(Await.result(userRequestWithdrawalAsync(currency, amount, address, otpToken, fee), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -521,25 +570,27 @@ class UserApi(
   /**
    * Request a withdrawal to an external wallet. asynchronously
    * This will send a confirmation email to the email address on record, unless requested via an API Key with the &#x60;withdraw&#x60; permission.
+   *
    * @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60; 
    * @param amount Amount of withdrawal currency. 
    * @param address Destination Address. 
    * @param otpToken 2FA token. Required if 2FA is enabled on your account. (optional)
    * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
    * @return Future(Transaction)
-  */
-  def userRequestWithdrawalAsync(currency: String /* = XBt*/, amount: Number, address: String, otpToken: Option[String] = None, fee: Option[Double] = None): Future[Transaction] = {
+   */
+  def userRequestWithdrawalAsync(currency: String = "XBt", amount: Number, address: String, otpToken: Option[String] = None, fee: Option[Double] = None): Future[Transaction] = {
       helper.userRequestWithdrawal(currency, amount, address, otpToken, fee)
   }
 
   /**
    * Save user preferences.
    * 
+   *
    * @param prefs  
    * @param overwrite If true, will overwrite all existing preferences. (optional, default to false)
    * @return User
    */
-  def userSavePreferences(prefs: String, overwrite: Option[Boolean] /* = false*/): Option[User] = {
+  def userSavePreferences(prefs: String, overwrite: Option[Boolean] = Option(false)): Option[User] = {
     val await = Try(Await.result(userSavePreferencesAsync(prefs, overwrite), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -550,17 +601,19 @@ class UserApi(
   /**
    * Save user preferences. asynchronously
    * 
+   *
    * @param prefs  
    * @param overwrite If true, will overwrite all existing preferences. (optional, default to false)
    * @return Future(User)
-  */
-  def userSavePreferencesAsync(prefs: String, overwrite: Option[Boolean] /* = false*/): Future[User] = {
+   */
+  def userSavePreferencesAsync(prefs: String, overwrite: Option[Boolean] = Option(false)): Future[User] = {
       helper.userSavePreferences(prefs, overwrite)
   }
 
   /**
    * Update your password, name, and other attributes.
    * 
+   *
    * @param firstname  (optional)
    * @param lastname  (optional)
    * @param oldPassword  (optional)
@@ -582,6 +635,7 @@ class UserApi(
   /**
    * Update your password, name, and other attributes. asynchronously
    * 
+   *
    * @param firstname  (optional)
    * @param lastname  (optional)
    * @param oldPassword  (optional)
@@ -591,7 +645,7 @@ class UserApi(
    * @param country Country of residence. (optional)
    * @param pgpPubKey PGP Public Key. If specified, automated emails will be sentwith this key. (optional)
    * @return Future(User)
-  */
+   */
   def userUpdateAsync(firstname: Option[String] = None, lastname: Option[String] = None, oldPassword: Option[String] = None, newPassword: Option[String] = None, newPasswordConfirm: Option[String] = None, username: Option[String] = None, country: Option[String] = None, pgpPubKey: Option[String] = None): Future[User] = {
       helper.userUpdate(firstname, lastname, oldPassword, newPassword, newPasswordConfirm, username, country, pgpPubKey)
   }
@@ -655,7 +709,7 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
   }
 
   def userConfirmEnableTFA(token: String,
-    _type: Option[String] = None
+    `type`: Option[String] = None
     )(implicit reader: ClientResponseReader[Boolean]): Future[Boolean] = {
     // create path and map variables
     val path = (addFmt("/user/confirmEnableTFA"))
@@ -691,7 +745,7 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
   }
 
   def userDisableTFA(token: String,
-    _type: Option[String] = None
+    `type`: Option[String] = None
     )(implicit reader: ClientResponseReader[Boolean]): Future[Boolean] = {
     // create path and map variables
     val path = (addFmt("/user/disableTFA"))
@@ -754,7 +808,7 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
     }
   }
 
-  def userGetDepositAddress(currency: Option[String] = Some(XBt)
+  def userGetDepositAddress(currency: Option[String] = Option("XBt")
     )(implicit reader: ClientResponseReader[String]): Future[String] = {
     // create path and map variables
     val path = (addFmt("/user/depositAddress"))
@@ -774,7 +828,7 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
     }
   }
 
-  def userGetMargin(currency: Option[String] = Some(XBt)
+  def userGetMargin(currency: Option[String] = Option("XBt")
     )(implicit reader: ClientResponseReader[Margin]): Future[Margin] = {
     // create path and map variables
     val path = (addFmt("/user/margin"))
@@ -794,7 +848,7 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
     }
   }
 
-  def userGetWallet(currency: Option[String] = Some(XBt)
+  def userGetWallet(currency: Option[String] = Option("XBt")
     )(implicit reader: ClientResponseReader[Wallet]): Future[Wallet] = {
     // create path and map variables
     val path = (addFmt("/user/wallet"))
@@ -814,7 +868,7 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
     }
   }
 
-  def userGetWalletHistory(currency: Option[String] = Some(XBt)
+  def userGetWalletHistory(currency: Option[String] = Option("XBt")
     )(implicit reader: ClientResponseReader[List[Transaction]]): Future[List[Transaction]] = {
     // create path and map variables
     val path = (addFmt("/user/walletHistory"))
@@ -834,7 +888,7 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
     }
   }
 
-  def userGetWalletSummary(currency: Option[String] = Some(XBt)
+  def userGetWalletSummary(currency: Option[String] = Option("XBt")
     )(implicit reader: ClientResponseReader[List[Transaction]]): Future[List[Transaction]] = {
     // create path and map variables
     val path = (addFmt("/user/walletSummary"))
@@ -884,7 +938,7 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
     }
   }
 
-  def userMinWithdrawalFee(currency: Option[String] = Some(XBt)
+  def userMinWithdrawalFee(currency: Option[String] = Option("XBt")
     )(implicit reader: ClientResponseReader[Any]): Future[Any] = {
     // create path and map variables
     val path = (addFmt("/user/minWithdrawalFee"))
@@ -904,7 +958,7 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
     }
   }
 
-  def userRequestEnableTFA(_type: Option[String] = None
+  def userRequestEnableTFA(`type`: Option[String] = None
     )(implicit reader: ClientResponseReader[Boolean]): Future[Boolean] = {
     // create path and map variables
     val path = (addFmt("/user/requestEnableTFA"))
@@ -920,7 +974,7 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
     }
   }
 
-  def userRequestWithdrawal(currency: String = XBt,
+  def userRequestWithdrawal(currency: String = "XBt",
     amount: Number,
     address: String,
     otpToken: Option[String] = None,
@@ -945,7 +999,7 @@ class UserApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends
   }
 
   def userSavePreferences(prefs: String,
-    overwrite: Option[Boolean] = Some(false)
+    overwrite: Option[Boolean] = Option(false)
     )(implicit reader: ClientResponseReader[User]): Future[User] = {
     // create path and map variables
     val path = (addFmt("/user/preferences"))

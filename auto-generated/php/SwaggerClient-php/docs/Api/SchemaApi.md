@@ -18,11 +18,15 @@ Get model schemata for data objects returned by this API.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\SchemaApi();
+$apiInstance = new Swagger\Client\Api\SchemaApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
 $model = "model_example"; // string | Optional model filter. If omitted, will return all models.
 
 try {
-    $result = $api_instance->schemaGet($model);
+    $result = $apiInstance->schemaGet($model);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SchemaApi->schemaGet: ', $e->getMessage(), PHP_EOL;
@@ -61,10 +65,14 @@ Returns help text & subject list for websocket usage.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\SchemaApi();
+$apiInstance = new Swagger\Client\Api\SchemaApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
 
 try {
-    $result = $api_instance->schemaWebsocketHelp();
+    $result = $apiInstance->schemaWebsocketHelp();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SchemaApi->schemaWebsocketHelp: ', $e->getMessage(), PHP_EOL;

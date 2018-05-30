@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -14,6 +14,8 @@ package io.swagger.client.api
 
 import java.text.SimpleDateFormat
 
+import io.swagger.client.model.Error
+import io.swagger.client.model.InlineResponse2001
 import io.swagger.client.model.Leaderboard
 import io.swagger.client.{ApiInvoker, ApiException}
 
@@ -24,6 +26,7 @@ import javax.ws.rs.core.MediaType
 
 import java.io.File
 import java.util.Date
+import java.util.TimeZone
 
 import scala.collection.mutable.HashMap
 
@@ -41,20 +44,31 @@ import scala.concurrent._
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
 
+import org.json4s._
+
 class LeaderboardApi(
   val defBasePath: String = "https://localhost/api/v1",
   defApiInvoker: ApiInvoker = ApiInvoker
 ) {
-
-  implicit val formats = new org.json4s.DefaultFormats {
-    override def dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+0000")
+  private lazy val dateTimeFormatter = {
+    val formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+    formatter.setTimeZone(TimeZone.getTimeZone("UTC"))
+    formatter
   }
-  implicit val stringReader = ClientResponseReaders.StringReader
-  implicit val unitReader = ClientResponseReaders.UnitReader
-  implicit val jvalueReader = ClientResponseReaders.JValueReader
-  implicit val jsonReader = JsonFormatsReader
-  implicit val stringWriter = RequestWriters.StringWriter
-  implicit val jsonWriter = JsonFormatsWriter
+  private val dateFormatter = {
+    val formatter = new SimpleDateFormat("yyyy-MM-dd")
+    formatter.setTimeZone(TimeZone.getTimeZone("UTC"))
+    formatter
+  }
+  implicit val formats = new org.json4s.DefaultFormats {
+    override def dateFormatter = dateTimeFormatter
+  }
+  implicit val stringReader: ClientResponseReader[String] = ClientResponseReaders.StringReader
+  implicit val unitReader: ClientResponseReader[Unit] = ClientResponseReaders.UnitReader
+  implicit val jvalueReader: ClientResponseReader[JValue] = ClientResponseReaders.JValueReader
+  implicit val jsonReader: ClientResponseReader[Nothing] = JsonFormatsReader
+  implicit val stringWriter: RequestWriter[String] = RequestWriters.StringWriter
+  implicit val jsonWriter: RequestWriter[Nothing] = JsonFormatsWriter
 
   var basePath: String = defBasePath
   var apiInvoker: ApiInvoker = defApiInvoker
@@ -63,17 +77,18 @@ class LeaderboardApi(
     apiInvoker.defaultHeaders += key -> value
   }
 
-  val config = SwaggerConfig.forUrl(new URI(defBasePath))
+  val config: SwaggerConfig = SwaggerConfig.forUrl(new URI(defBasePath))
   val client = new RestClient(config)
   val helper = new LeaderboardApiAsyncHelper(client, config)
 
   /**
    * Get current leaderboard.
    * 
+   *
    * @param method Ranking type. Options: \&quot;notional\&quot;, \&quot;ROE\&quot; (optional, default to notional)
    * @return List[Leaderboard]
    */
-  def leaderboardGet(method: Option[String] /* = notional*/): Option[List[Leaderboard]] = {
+  def leaderboardGet(method: Option[String] = Option("notional")): Option[List[Leaderboard]] = {
     val await = Try(Await.result(leaderboardGetAsync(method), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -84,18 +99,43 @@ class LeaderboardApi(
   /**
    * Get current leaderboard. asynchronously
    * 
+   *
    * @param method Ranking type. Options: \&quot;notional\&quot;, \&quot;ROE\&quot; (optional, default to notional)
    * @return Future(List[Leaderboard])
-  */
-  def leaderboardGetAsync(method: Option[String] /* = notional*/): Future[List[Leaderboard]] = {
+   */
+  def leaderboardGetAsync(method: Option[String] = Option("notional")): Future[List[Leaderboard]] = {
       helper.leaderboardGet(method)
+  }
+
+  /**
+   * Get your alias on the leaderboard.
+   * 
+   *
+   * @return InlineResponse2001
+   */
+  def leaderboardGetName(): Option[InlineResponse2001] = {
+    val await = Try(Await.result(leaderboardGetNameAsync(), Duration.Inf))
+    await match {
+      case Success(i) => Some(await.get)
+      case Failure(t) => None
+    }
+  }
+
+  /**
+   * Get your alias on the leaderboard. asynchronously
+   * 
+   *
+   * @return Future(InlineResponse2001)
+   */
+  def leaderboardGetNameAsync(): Future[InlineResponse2001] = {
+      helper.leaderboardGetName()
   }
 
 }
 
 class LeaderboardApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
-  def leaderboardGet(method: Option[String] = Some(notional)
+  def leaderboardGet(method: Option[String] = Option("notional")
     )(implicit reader: ClientResponseReader[List[Leaderboard]]): Future[List[Leaderboard]] = {
     // create path and map variables
     val path = (addFmt("/leaderboard"))
@@ -108,6 +148,21 @@ class LeaderboardApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
       case Some(param) => queryParams += "method" -> param.toString
       case _ => queryParams
     }
+
+    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
+    resFuture flatMap { resp =>
+      process(reader.read(resp))
+    }
+  }
+
+  def leaderboardGetName()(implicit reader: ClientResponseReader[InlineResponse2001]): Future[InlineResponse2001] = {
+    // create path and map variables
+    val path = (addFmt("/leaderboard/name"))
+
+    // query params
+    val queryParams = new mutable.HashMap[String, String]
+    val headerParams = new mutable.HashMap[String, String]
+
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>

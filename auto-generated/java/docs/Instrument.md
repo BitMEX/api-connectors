@@ -16,6 +16,10 @@ Name | Type | Description | Notes
 **inverseLeg** | **String** |  |  [optional]
 **sellLeg** | **String** |  |  [optional]
 **buyLeg** | **String** |  |  [optional]
+**optionStrikePcnt** | **Double** |  |  [optional]
+**optionStrikeRound** | **Double** |  |  [optional]
+**optionStrikePrice** | **Double** |  |  [optional]
+**optionMultiplier** | **Double** |  |  [optional]
 **positionCurrency** | **String** |  |  [optional]
 **underlying** | **String** |  |  [optional]
 **quoteCurrency** | **String** |  |  [optional]
@@ -98,6 +102,7 @@ Name | Type | Description | Notes
 **markPrice** | **Double** |  |  [optional]
 **indicativeTaxRate** | **Double** |  |  [optional]
 **indicativeSettlePrice** | **Double** |  |  [optional]
+**optionUnderlyingPrice** | **Double** |  |  [optional]
 **settledPrice** | **Double** |  |  [optional]
 **timestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 

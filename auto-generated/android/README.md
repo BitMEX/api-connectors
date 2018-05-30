@@ -105,6 +105,7 @@ Class | Method | HTTP request | Description
 *InstrumentApi* | [**instrumentGetIndices**](docs/InstrumentApi.md#instrumentGetIndices) | **GET** /instrument/indices | Get all price indices.
 *InsuranceApi* | [**insuranceGet**](docs/InsuranceApi.md#insuranceGet) | **GET** /insurance | Get insurance fund history.
 *LeaderboardApi* | [**leaderboardGet**](docs/LeaderboardApi.md#leaderboardGet) | **GET** /leaderboard | Get current leaderboard.
+*LeaderboardApi* | [**leaderboardGetName**](docs/LeaderboardApi.md#leaderboardGetName) | **GET** /leaderboard/name | Get your alias on the leaderboard.
 *LiquidationApi* | [**liquidationGet**](docs/LiquidationApi.md#liquidationGet) | **GET** /liquidation | Get liquidation orders.
 *NotificationApi* | [**notificationGet**](docs/NotificationApi.md#notificationGet) | **GET** /notification | Get your current notifications.
 *OrderApi* | [**orderAmend**](docs/OrderApi.md#orderAmend) | **PUT** /order | Amend the quantity or price of an open order.
@@ -116,7 +117,6 @@ Class | Method | HTTP request | Description
 *OrderApi* | [**orderGetOrders**](docs/OrderApi.md#orderGetOrders) | **GET** /order | Get your orders.
 *OrderApi* | [**orderNew**](docs/OrderApi.md#orderNew) | **POST** /order | Create a new order.
 *OrderApi* | [**orderNewBulk**](docs/OrderApi.md#orderNewBulk) | **POST** /order/bulk | Create multiple new orders for the same symbol.
-*OrderBookApi* | [**orderBookGet**](docs/OrderBookApi.md#orderBookGet) | **GET** /orderBook | Get current orderbook [deprecated, use /orderBook/L2].
 *OrderBookApi* | [**orderBookGetL2**](docs/OrderBookApi.md#orderBookGetL2) | **GET** /orderBook/L2 | Get current orderbook in vertical format.
 *PositionApi* | [**positionGet**](docs/PositionApi.md#positionGet) | **GET** /position | Get your positions.
 *PositionApi* | [**positionIsolateMargin**](docs/PositionApi.md#positionIsolateMargin) | **POST** /position/isolate | Enable isolated margin or cross margin per-position.
@@ -171,6 +171,7 @@ Class | Method | HTTP request | Description
  - [Funding](docs/Funding.md)
  - [IndexComposite](docs/IndexComposite.md)
  - [InlineResponse200](docs/InlineResponse200.md)
+ - [InlineResponse2001](docs/InlineResponse2001.md)
  - [Instrument](docs/Instrument.md)
  - [InstrumentInterval](docs/InstrumentInterval.md)
  - [Insurance](docs/Insurance.md)
@@ -179,7 +180,6 @@ Class | Method | HTTP request | Description
  - [Margin](docs/Margin.md)
  - [Notification](docs/Notification.md)
  - [Order](docs/Order.md)
- - [OrderBook](docs/OrderBook.md)
  - [OrderBookL2](docs/OrderBookL2.md)
  - [Position](docs/Position.md)
  - [Quote](docs/Quote.md)

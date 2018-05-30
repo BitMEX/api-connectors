@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,74 +38,74 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Wallet" /> class.
         /// </summary>
-        /// <param name="Account">Account (required).</param>
-        /// <param name="Currency">Currency (required).</param>
-        /// <param name="PrevDeposited">PrevDeposited.</param>
-        /// <param name="PrevWithdrawn">PrevWithdrawn.</param>
-        /// <param name="PrevTransferIn">PrevTransferIn.</param>
-        /// <param name="PrevTransferOut">PrevTransferOut.</param>
-        /// <param name="PrevAmount">PrevAmount.</param>
-        /// <param name="PrevTimestamp">PrevTimestamp.</param>
-        /// <param name="DeltaDeposited">DeltaDeposited.</param>
-        /// <param name="DeltaWithdrawn">DeltaWithdrawn.</param>
-        /// <param name="DeltaTransferIn">DeltaTransferIn.</param>
-        /// <param name="DeltaTransferOut">DeltaTransferOut.</param>
-        /// <param name="DeltaAmount">DeltaAmount.</param>
-        /// <param name="Deposited">Deposited.</param>
-        /// <param name="Withdrawn">Withdrawn.</param>
-        /// <param name="TransferIn">TransferIn.</param>
-        /// <param name="TransferOut">TransferOut.</param>
-        /// <param name="Amount">Amount.</param>
-        /// <param name="PendingCredit">PendingCredit.</param>
-        /// <param name="PendingDebit">PendingDebit.</param>
-        /// <param name="ConfirmedDebit">ConfirmedDebit.</param>
-        /// <param name="Timestamp">Timestamp.</param>
-        /// <param name="Addr">Addr.</param>
-        /// <param name="Script">Script.</param>
-        /// <param name="WithdrawalLock">WithdrawalLock.</param>
-        public Wallet(decimal? Account = default(decimal?), string Currency = default(string), decimal? PrevDeposited = default(decimal?), decimal? PrevWithdrawn = default(decimal?), decimal? PrevTransferIn = default(decimal?), decimal? PrevTransferOut = default(decimal?), decimal? PrevAmount = default(decimal?), DateTime? PrevTimestamp = default(DateTime?), decimal? DeltaDeposited = default(decimal?), decimal? DeltaWithdrawn = default(decimal?), decimal? DeltaTransferIn = default(decimal?), decimal? DeltaTransferOut = default(decimal?), decimal? DeltaAmount = default(decimal?), decimal? Deposited = default(decimal?), decimal? Withdrawn = default(decimal?), decimal? TransferIn = default(decimal?), decimal? TransferOut = default(decimal?), decimal? Amount = default(decimal?), decimal? PendingCredit = default(decimal?), decimal? PendingDebit = default(decimal?), decimal? ConfirmedDebit = default(decimal?), DateTime? Timestamp = default(DateTime?), string Addr = default(string), string Script = default(string), List<string> WithdrawalLock = default(List<string>))
+        /// <param name="account">account (required).</param>
+        /// <param name="currency">currency (required).</param>
+        /// <param name="prevDeposited">prevDeposited.</param>
+        /// <param name="prevWithdrawn">prevWithdrawn.</param>
+        /// <param name="prevTransferIn">prevTransferIn.</param>
+        /// <param name="prevTransferOut">prevTransferOut.</param>
+        /// <param name="prevAmount">prevAmount.</param>
+        /// <param name="prevTimestamp">prevTimestamp.</param>
+        /// <param name="deltaDeposited">deltaDeposited.</param>
+        /// <param name="deltaWithdrawn">deltaWithdrawn.</param>
+        /// <param name="deltaTransferIn">deltaTransferIn.</param>
+        /// <param name="deltaTransferOut">deltaTransferOut.</param>
+        /// <param name="deltaAmount">deltaAmount.</param>
+        /// <param name="deposited">deposited.</param>
+        /// <param name="withdrawn">withdrawn.</param>
+        /// <param name="transferIn">transferIn.</param>
+        /// <param name="transferOut">transferOut.</param>
+        /// <param name="amount">amount.</param>
+        /// <param name="pendingCredit">pendingCredit.</param>
+        /// <param name="pendingDebit">pendingDebit.</param>
+        /// <param name="confirmedDebit">confirmedDebit.</param>
+        /// <param name="timestamp">timestamp.</param>
+        /// <param name="addr">addr.</param>
+        /// <param name="script">script.</param>
+        /// <param name="withdrawalLock">withdrawalLock.</param>
+        public Wallet(decimal? account = default(decimal?), string currency = default(string), decimal? prevDeposited = default(decimal?), decimal? prevWithdrawn = default(decimal?), decimal? prevTransferIn = default(decimal?), decimal? prevTransferOut = default(decimal?), decimal? prevAmount = default(decimal?), DateTime? prevTimestamp = default(DateTime?), decimal? deltaDeposited = default(decimal?), decimal? deltaWithdrawn = default(decimal?), decimal? deltaTransferIn = default(decimal?), decimal? deltaTransferOut = default(decimal?), decimal? deltaAmount = default(decimal?), decimal? deposited = default(decimal?), decimal? withdrawn = default(decimal?), decimal? transferIn = default(decimal?), decimal? transferOut = default(decimal?), decimal? amount = default(decimal?), decimal? pendingCredit = default(decimal?), decimal? pendingDebit = default(decimal?), decimal? confirmedDebit = default(decimal?), DateTime? timestamp = default(DateTime?), string addr = default(string), string script = default(string), List<string> withdrawalLock = default(List<string>))
         {
-            // to ensure "Account" is required (not null)
-            if (Account == null)
+            // to ensure "account" is required (not null)
+            if (account == null)
             {
-                throw new InvalidDataException("Account is a required property for Wallet and cannot be null");
+                throw new InvalidDataException("account is a required property for Wallet and cannot be null");
             }
             else
             {
-                this.Account = Account;
+                this.Account = account;
             }
-            // to ensure "Currency" is required (not null)
-            if (Currency == null)
+            // to ensure "currency" is required (not null)
+            if (currency == null)
             {
-                throw new InvalidDataException("Currency is a required property for Wallet and cannot be null");
+                throw new InvalidDataException("currency is a required property for Wallet and cannot be null");
             }
             else
             {
-                this.Currency = Currency;
+                this.Currency = currency;
             }
-            this.PrevDeposited = PrevDeposited;
-            this.PrevWithdrawn = PrevWithdrawn;
-            this.PrevTransferIn = PrevTransferIn;
-            this.PrevTransferOut = PrevTransferOut;
-            this.PrevAmount = PrevAmount;
-            this.PrevTimestamp = PrevTimestamp;
-            this.DeltaDeposited = DeltaDeposited;
-            this.DeltaWithdrawn = DeltaWithdrawn;
-            this.DeltaTransferIn = DeltaTransferIn;
-            this.DeltaTransferOut = DeltaTransferOut;
-            this.DeltaAmount = DeltaAmount;
-            this.Deposited = Deposited;
-            this.Withdrawn = Withdrawn;
-            this.TransferIn = TransferIn;
-            this.TransferOut = TransferOut;
-            this.Amount = Amount;
-            this.PendingCredit = PendingCredit;
-            this.PendingDebit = PendingDebit;
-            this.ConfirmedDebit = ConfirmedDebit;
-            this.Timestamp = Timestamp;
-            this.Addr = Addr;
-            this.Script = Script;
-            this.WithdrawalLock = WithdrawalLock;
+            this.PrevDeposited = prevDeposited;
+            this.PrevWithdrawn = prevWithdrawn;
+            this.PrevTransferIn = prevTransferIn;
+            this.PrevTransferOut = prevTransferOut;
+            this.PrevAmount = prevAmount;
+            this.PrevTimestamp = prevTimestamp;
+            this.DeltaDeposited = deltaDeposited;
+            this.DeltaWithdrawn = deltaWithdrawn;
+            this.DeltaTransferIn = deltaTransferIn;
+            this.DeltaTransferOut = deltaTransferOut;
+            this.DeltaAmount = deltaAmount;
+            this.Deposited = deposited;
+            this.Withdrawn = withdrawn;
+            this.TransferIn = transferIn;
+            this.TransferOut = transferOut;
+            this.Amount = amount;
+            this.PendingCredit = pendingCredit;
+            this.PendingDebit = pendingDebit;
+            this.ConfirmedDebit = confirmedDebit;
+            this.Timestamp = timestamp;
+            this.Addr = addr;
+            this.Script = script;
+            this.WithdrawalLock = withdrawalLock;
         }
         
         /// <summary>
@@ -299,7 +299,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

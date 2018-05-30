@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **StatsGet**
-> []Stats StatsGet()
+> []Stats StatsGet(ctx, )
 Get exchange-wide and per-series turnover and volume statistics.
 
 ### Required Parameters
@@ -32,7 +32,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **StatsHistory**
-> []StatsHistory StatsHistory()
+> []StatsHistory StatsHistory(ctx, )
 Get historical exchange-wide and per-series turnover and volume statistics.
 
 ### Required Parameters
@@ -54,7 +54,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **StatsHistoryUSD**
-> []StatsUsd StatsHistoryUSD()
+> []StatsUsd StatsHistoryUSD(ctx, )
 Get a summary of exchange statistics in USD.
 
 ### Required Parameters

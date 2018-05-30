@@ -18,24 +18,25 @@ Get chat messages.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.ChatApi();
+var apiInstance = new BitMexApi.ChatApi();
 
-let opts = { 
+var opts = { 
   'count': 100, // Number | Number of results to fetch.
   'start': 0, // Number | Starting ID for results.
   'reverse': true, // Boolean | If true, will sort results newest first.
   'channelID': 1.2 // Number | Channel id. GET /chat/channels for ids. Leave blank for all.
 };
 
-apiInstance.chatGet(opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.chatGet(opts, callback);
 ```
 
 ### Parameters
@@ -68,17 +69,18 @@ Get available channels.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.ChatApi();
+var apiInstance = new BitMexApi.ChatApi();
 
-apiInstance.chatGetChannels((error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.chatGetChannels(callback);
 ```
 
 ### Parameters
@@ -107,17 +109,18 @@ Returns an array with browser users in the first position and API users (bots) i
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
+var BitMexApi = require('bit_mex_api');
 
-let apiInstance = new BitMexApi.ChatApi();
+var apiInstance = new BitMexApi.ChatApi();
 
-apiInstance.chatGetConnected((error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.chatGetConnected(callback);
 ```
 
 ### Parameters
@@ -144,42 +147,43 @@ Send a chat message.
 
 ### Example
 ```javascript
-import BitMexApi from 'bit_mex_api';
-let defaultClient = BitMexApi.ApiClient.instance;
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
 
 // Configure API key authorization: apiKey
-let apiKey = defaultClient.authentications['apiKey'];
+var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiNonce
-let apiNonce = defaultClient.authentications['apiNonce'];
+var apiNonce = defaultClient.authentications['apiNonce'];
 apiNonce.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
-let apiSignature = defaultClient.authentications['apiSignature'];
+var apiSignature = defaultClient.authentications['apiSignature'];
 apiSignature.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiSignature.apiKeyPrefix = 'Token';
 
-let apiInstance = new BitMexApi.ChatApi();
+var apiInstance = new BitMexApi.ChatApi();
 
-let message = "message_example"; // String | 
+var message = "message_example"; // String | 
 
-let opts = { 
+var opts = { 
   'channelID': 1 // Number | Channel to post to. Default 1 (English).
 };
 
-apiInstance.chatNew(message, opts, (error, data, response) => {
+var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-});
+};
+apiInstance.chatNew(message, opts, callback);
 ```
 
 ### Parameters

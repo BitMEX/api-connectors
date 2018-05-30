@@ -21,7 +21,7 @@ require 'swagger_client'
 api_instance = SwaggerClient::AnnouncementApi.new
 
 opts = { 
-  columns: "columns_example" # String | Array of column names to fetch. If omitted, will return all columns.
+  columns: 'columns_example' # String | Array of column names to fetch. If omitted, will return all columns.
 }
 
 begin

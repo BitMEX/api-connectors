@@ -10,9 +10,9 @@ import Foundation
 
 /** Persistent API Keys for Developers */
 
-open class APIKey: Codable {
+public struct APIKey: Codable {
 
-    public var id: String
+    public var _id: String
     public var secret: String
     public var name: String
     public var nonce: Double
@@ -22,38 +22,30 @@ open class APIKey: Codable {
     public var userId: Double
     public var created: Date?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(id, forKey: "id")
-        try container.encode(secret, forKey: "secret")
-        try container.encode(name, forKey: "name")
-        try container.encode(nonce, forKey: "nonce")
-        try container.encodeIfPresent(cidr, forKey: "cidr")
-        try container.encodeArrayIfPresent(permissions, forKey: "permissions")
-        try container.encodeIfPresent(enabled, forKey: "enabled")
-        try container.encode(userId, forKey: "userId")
-        try container.encodeIfPresent(created, forKey: "created")
+    public init(_id: String, secret: String, name: String, nonce: Double, cidr: String?, permissions: [XAny]?, enabled: Bool?, userId: Double, created: Date?) {
+        self._id = _id
+        self.secret = secret
+        self.name = name
+        self.nonce = nonce
+        self.cidr = cidr
+        self.permissions = permissions
+        self.enabled = enabled
+        self.userId = userId
+        self.created = created
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
-
-        id = try container.decode(String.self, forKey: "id")
-        secret = try container.decode(String.self, forKey: "secret")
-        name = try container.decode(String.self, forKey: "name")
-        nonce = try container.decode(Double.self, forKey: "nonce")
-        cidr = try container.decodeIfPresent(String.self, forKey: "cidr")
-        permissions = try container.decodeArrayIfPresent(XAny.self, forKey: "permissions")
-        enabled = try container.decodeIfPresent(Bool.self, forKey: "enabled")
-        userId = try container.decode(Double.self, forKey: "userId")
-        created = try container.decodeIfPresent(Date.self, forKey: "created")
+    public enum CodingKeys: String, CodingKey { 
+        case _id = "id"
+        case secret
+        case name
+        case nonce
+        case cidr
+        case permissions
+        case enabled
+        case userId
+        case created
     }
+
+
 }
 

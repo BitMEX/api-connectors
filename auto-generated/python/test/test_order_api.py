@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -13,93 +13,82 @@
 
 from __future__ import absolute_import
 
-import os
-import sys
 import unittest
 
 import swagger_client
+from swagger_client.api.order_api import OrderApi  # noqa: E501
 from swagger_client.rest import ApiException
-from swagger_client.apis.order_api import OrderApi
 
 
 class TestOrderApi(unittest.TestCase):
-    """ OrderApi unit test stubs """
+    """OrderApi unit test stubs"""
 
     def setUp(self):
-        self.api = swagger_client.apis.order_api.OrderApi()
+        self.api = swagger_client.api.order_api.OrderApi()  # noqa: E501
 
     def tearDown(self):
         pass
 
     def test_order_amend(self):
-        """
-        Test case for order_amend
+        """Test case for order_amend
 
-        Amend the quantity or price of an open order.
+        Amend the quantity or price of an open order.  # noqa: E501
         """
         pass
 
     def test_order_amend_bulk(self):
-        """
-        Test case for order_amend_bulk
+        """Test case for order_amend_bulk
 
-        Amend multiple orders for the same symbol.
+        Amend multiple orders for the same symbol.  # noqa: E501
         """
         pass
 
     def test_order_cancel(self):
-        """
-        Test case for order_cancel
+        """Test case for order_cancel
 
-        Cancel order(s). Send multiple order IDs to cancel in bulk.
+        Cancel order(s). Send multiple order IDs to cancel in bulk.  # noqa: E501
         """
         pass
 
     def test_order_cancel_all(self):
-        """
-        Test case for order_cancel_all
+        """Test case for order_cancel_all
 
-        Cancels all of your orders.
+        Cancels all of your orders.  # noqa: E501
         """
         pass
 
     def test_order_cancel_all_after(self):
-        """
-        Test case for order_cancel_all_after
+        """Test case for order_cancel_all_after
 
-        Automatically cancel all your orders after a specified timeout.
+        Automatically cancel all your orders after a specified timeout.  # noqa: E501
         """
         pass
 
     def test_order_close_position(self):
-        """
-        Test case for order_close_position
+        """Test case for order_close_position
 
-        Close a position. [Deprecated, use POST /order with execInst: 'Close']
+        Close a position. [Deprecated, use POST /order with execInst: 'Close']  # noqa: E501
         """
         pass
 
     def test_order_get_orders(self):
-        """
-        Test case for order_get_orders
+        """Test case for order_get_orders
 
-        Get your orders.
+        Get your orders.  # noqa: E501
         """
         pass
 
     def test_order_new(self):
-        """
-        Test case for order_new
+        """Test case for order_new
 
-        Create a new order.
+        Create a new order.  # noqa: E501
         """
         pass
 
     def test_order_new_bulk(self):
-        """
-        Test case for order_new_bulk
+        """Test case for order_new_bulk
 
-        Create multiple new orders for the same symbol.
+        Create multiple new orders for the same symbol.  # noqa: E501
         """
         pass
 

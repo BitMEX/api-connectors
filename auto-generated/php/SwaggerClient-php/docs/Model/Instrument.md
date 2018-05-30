@@ -15,6 +15,10 @@ Name | Type | Description | Notes
 **inverse_leg** | **string** |  | [optional] 
 **sell_leg** | **string** |  | [optional] 
 **buy_leg** | **string** |  | [optional] 
+**option_strike_pcnt** | **double** |  | [optional] 
+**option_strike_round** | **double** |  | [optional] 
+**option_strike_price** | **double** |  | [optional] 
+**option_multiplier** | **double** |  | [optional] 
 **position_currency** | **string** |  | [optional] 
 **underlying** | **string** |  | [optional] 
 **quote_currency** | **string** |  | [optional] 
@@ -97,6 +101,7 @@ Name | Type | Description | Notes
 **mark_price** | **double** |  | [optional] 
 **indicative_tax_rate** | **double** |  | [optional] 
 **indicative_settle_price** | **double** |  | [optional] 
+**option_underlying_price** | **double** |  | [optional] 
 **settled_price** | **double** |  | [optional] 
 **timestamp** | [**\DateTime**](\DateTime.md) |  | [optional] 
 

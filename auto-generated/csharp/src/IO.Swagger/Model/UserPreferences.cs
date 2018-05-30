@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -33,106 +33,116 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UserPreferences" /> class.
         /// </summary>
-        /// <param name="AlertOnLiquidations">AlertOnLiquidations.</param>
-        /// <param name="AnimationsEnabled">AnimationsEnabled.</param>
-        /// <param name="AnnouncementsLastSeen">AnnouncementsLastSeen.</param>
-        /// <param name="ChatChannelID">ChatChannelID.</param>
-        /// <param name="ColorTheme">ColorTheme.</param>
-        /// <param name="Currency">Currency.</param>
-        /// <param name="Debug">Debug.</param>
-        /// <param name="DisableEmails">DisableEmails.</param>
-        /// <param name="HideConfirmDialogs">HideConfirmDialogs.</param>
-        /// <param name="HideConnectionModal">HideConnectionModal.</param>
-        /// <param name="HideFromLeaderboard">HideFromLeaderboard (default to false).</param>
-        /// <param name="HideNameFromLeaderboard">HideNameFromLeaderboard (default to true).</param>
-        /// <param name="HideNotifications">HideNotifications.</param>
-        /// <param name="Locale">Locale (default to &quot;en-US&quot;).</param>
-        /// <param name="MsgsSeen">MsgsSeen.</param>
-        /// <param name="OrderBookBinning">OrderBookBinning.</param>
-        /// <param name="OrderBookType">OrderBookType.</param>
-        /// <param name="OrderClearImmediate">OrderClearImmediate (default to false).</param>
-        /// <param name="OrderControlsPlusMinus">OrderControlsPlusMinus.</param>
-        /// <param name="Sounds">Sounds.</param>
-        /// <param name="StrictIPCheck">StrictIPCheck (default to false).</param>
-        /// <param name="StrictTimeout">StrictTimeout (default to true).</param>
-        /// <param name="TickerGroup">TickerGroup.</param>
-        /// <param name="TickerPinned">TickerPinned.</param>
-        /// <param name="TradeLayout">TradeLayout.</param>
-        public UserPreferences(bool? AlertOnLiquidations = default(bool?), bool? AnimationsEnabled = default(bool?), DateTime? AnnouncementsLastSeen = default(DateTime?), double? ChatChannelID = default(double?), string ColorTheme = default(string), string Currency = default(string), bool? Debug = default(bool?), List<string> DisableEmails = default(List<string>), List<string> HideConfirmDialogs = default(List<string>), bool? HideConnectionModal = default(bool?), bool? HideFromLeaderboard = false, bool? HideNameFromLeaderboard = true, List<string> HideNotifications = default(List<string>), string Locale = "en-US", List<string> MsgsSeen = default(List<string>), Object OrderBookBinning = default(Object), string OrderBookType = default(string), bool? OrderClearImmediate = false, bool? OrderControlsPlusMinus = default(bool?), List<string> Sounds = default(List<string>), bool? StrictIPCheck = false, bool? StrictTimeout = true, string TickerGroup = default(string), bool? TickerPinned = default(bool?), string TradeLayout = default(string))
+        /// <param name="alertOnLiquidations">alertOnLiquidations.</param>
+        /// <param name="animationsEnabled">animationsEnabled.</param>
+        /// <param name="announcementsLastSeen">announcementsLastSeen.</param>
+        /// <param name="chatChannelID">chatChannelID.</param>
+        /// <param name="colorTheme">colorTheme.</param>
+        /// <param name="currency">currency.</param>
+        /// <param name="debug">debug.</param>
+        /// <param name="disableEmails">disableEmails.</param>
+        /// <param name="hideConfirmDialogs">hideConfirmDialogs.</param>
+        /// <param name="hideConnectionModal">hideConnectionModal.</param>
+        /// <param name="hideFromLeaderboard">hideFromLeaderboard (default to false).</param>
+        /// <param name="hideNameFromLeaderboard">hideNameFromLeaderboard (default to true).</param>
+        /// <param name="hideNotifications">hideNotifications.</param>
+        /// <param name="locale">locale (default to &quot;en-US&quot;).</param>
+        /// <param name="msgsSeen">msgsSeen.</param>
+        /// <param name="orderBookBinning">orderBookBinning.</param>
+        /// <param name="orderBookType">orderBookType.</param>
+        /// <param name="orderClearImmediate">orderClearImmediate (default to false).</param>
+        /// <param name="orderControlsPlusMinus">orderControlsPlusMinus.</param>
+        /// <param name="showLocaleNumbers">showLocaleNumbers (default to true).</param>
+        /// <param name="sounds">sounds.</param>
+        /// <param name="strictIPCheck">strictIPCheck (default to false).</param>
+        /// <param name="strictTimeout">strictTimeout (default to true).</param>
+        /// <param name="tickerGroup">tickerGroup.</param>
+        /// <param name="tickerPinned">tickerPinned.</param>
+        /// <param name="tradeLayout">tradeLayout.</param>
+        public UserPreferences(bool? alertOnLiquidations = default(bool?), bool? animationsEnabled = default(bool?), DateTime? announcementsLastSeen = default(DateTime?), double? chatChannelID = default(double?), string colorTheme = default(string), string currency = default(string), bool? debug = default(bool?), List<string> disableEmails = default(List<string>), List<string> hideConfirmDialogs = default(List<string>), bool? hideConnectionModal = default(bool?), bool? hideFromLeaderboard = false, bool? hideNameFromLeaderboard = true, List<string> hideNotifications = default(List<string>), string locale = "en-US", List<string> msgsSeen = default(List<string>), Object orderBookBinning = default(Object), string orderBookType = default(string), bool? orderClearImmediate = false, bool? orderControlsPlusMinus = default(bool?), bool? showLocaleNumbers = true, List<string> sounds = default(List<string>), bool? strictIPCheck = false, bool? strictTimeout = true, string tickerGroup = default(string), bool? tickerPinned = default(bool?), string tradeLayout = default(string))
         {
-            this.AlertOnLiquidations = AlertOnLiquidations;
-            this.AnimationsEnabled = AnimationsEnabled;
-            this.AnnouncementsLastSeen = AnnouncementsLastSeen;
-            this.ChatChannelID = ChatChannelID;
-            this.ColorTheme = ColorTheme;
-            this.Currency = Currency;
-            this.Debug = Debug;
-            this.DisableEmails = DisableEmails;
-            this.HideConfirmDialogs = HideConfirmDialogs;
-            this.HideConnectionModal = HideConnectionModal;
-            // use default value if no "HideFromLeaderboard" provided
-            if (HideFromLeaderboard == null)
+            this.AlertOnLiquidations = alertOnLiquidations;
+            this.AnimationsEnabled = animationsEnabled;
+            this.AnnouncementsLastSeen = announcementsLastSeen;
+            this.ChatChannelID = chatChannelID;
+            this.ColorTheme = colorTheme;
+            this.Currency = currency;
+            this.Debug = debug;
+            this.DisableEmails = disableEmails;
+            this.HideConfirmDialogs = hideConfirmDialogs;
+            this.HideConnectionModal = hideConnectionModal;
+            // use default value if no "hideFromLeaderboard" provided
+            if (hideFromLeaderboard == null)
             {
                 this.HideFromLeaderboard = false;
             }
             else
             {
-                this.HideFromLeaderboard = HideFromLeaderboard;
+                this.HideFromLeaderboard = hideFromLeaderboard;
             }
-            // use default value if no "HideNameFromLeaderboard" provided
-            if (HideNameFromLeaderboard == null)
+            // use default value if no "hideNameFromLeaderboard" provided
+            if (hideNameFromLeaderboard == null)
             {
                 this.HideNameFromLeaderboard = true;
             }
             else
             {
-                this.HideNameFromLeaderboard = HideNameFromLeaderboard;
+                this.HideNameFromLeaderboard = hideNameFromLeaderboard;
             }
-            this.HideNotifications = HideNotifications;
-            // use default value if no "Locale" provided
-            if (Locale == null)
+            this.HideNotifications = hideNotifications;
+            // use default value if no "locale" provided
+            if (locale == null)
             {
                 this.Locale = "en-US";
             }
             else
             {
-                this.Locale = Locale;
+                this.Locale = locale;
             }
-            this.MsgsSeen = MsgsSeen;
-            this.OrderBookBinning = OrderBookBinning;
-            this.OrderBookType = OrderBookType;
-            // use default value if no "OrderClearImmediate" provided
-            if (OrderClearImmediate == null)
+            this.MsgsSeen = msgsSeen;
+            this.OrderBookBinning = orderBookBinning;
+            this.OrderBookType = orderBookType;
+            // use default value if no "orderClearImmediate" provided
+            if (orderClearImmediate == null)
             {
                 this.OrderClearImmediate = false;
             }
             else
             {
-                this.OrderClearImmediate = OrderClearImmediate;
+                this.OrderClearImmediate = orderClearImmediate;
             }
-            this.OrderControlsPlusMinus = OrderControlsPlusMinus;
-            this.Sounds = Sounds;
-            // use default value if no "StrictIPCheck" provided
-            if (StrictIPCheck == null)
+            this.OrderControlsPlusMinus = orderControlsPlusMinus;
+            // use default value if no "showLocaleNumbers" provided
+            if (showLocaleNumbers == null)
+            {
+                this.ShowLocaleNumbers = true;
+            }
+            else
+            {
+                this.ShowLocaleNumbers = showLocaleNumbers;
+            }
+            this.Sounds = sounds;
+            // use default value if no "strictIPCheck" provided
+            if (strictIPCheck == null)
             {
                 this.StrictIPCheck = false;
             }
             else
             {
-                this.StrictIPCheck = StrictIPCheck;
+                this.StrictIPCheck = strictIPCheck;
             }
-            // use default value if no "StrictTimeout" provided
-            if (StrictTimeout == null)
+            // use default value if no "strictTimeout" provided
+            if (strictTimeout == null)
             {
                 this.StrictTimeout = true;
             }
             else
             {
-                this.StrictTimeout = StrictTimeout;
+                this.StrictTimeout = strictTimeout;
             }
-            this.TickerGroup = TickerGroup;
-            this.TickerPinned = TickerPinned;
-            this.TradeLayout = TradeLayout;
+            this.TickerGroup = tickerGroup;
+            this.TickerPinned = tickerPinned;
+            this.TradeLayout = tradeLayout;
         }
         
         /// <summary>
@@ -250,6 +260,12 @@ namespace IO.Swagger.Model
         public bool? OrderControlsPlusMinus { get; set; }
 
         /// <summary>
+        /// Gets or Sets ShowLocaleNumbers
+        /// </summary>
+        [DataMember(Name="showLocaleNumbers", EmitDefaultValue=false)]
+        public bool? ShowLocaleNumbers { get; set; }
+
+        /// <summary>
         /// Gets or Sets Sounds
         /// </summary>
         [DataMember(Name="sounds", EmitDefaultValue=false)]
@@ -312,6 +328,7 @@ namespace IO.Swagger.Model
             sb.Append("  OrderBookType: ").Append(OrderBookType).Append("\n");
             sb.Append("  OrderClearImmediate: ").Append(OrderClearImmediate).Append("\n");
             sb.Append("  OrderControlsPlusMinus: ").Append(OrderControlsPlusMinus).Append("\n");
+            sb.Append("  ShowLocaleNumbers: ").Append(ShowLocaleNumbers).Append("\n");
             sb.Append("  Sounds: ").Append(Sounds).Append("\n");
             sb.Append("  StrictIPCheck: ").Append(StrictIPCheck).Append("\n");
             sb.Append("  StrictTimeout: ").Append(StrictTimeout).Append("\n");
@@ -326,7 +343,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -448,6 +465,11 @@ namespace IO.Swagger.Model
                     this.OrderControlsPlusMinus.Equals(input.OrderControlsPlusMinus))
                 ) && 
                 (
+                    this.ShowLocaleNumbers == input.ShowLocaleNumbers ||
+                    (this.ShowLocaleNumbers != null &&
+                    this.ShowLocaleNumbers.Equals(input.ShowLocaleNumbers))
+                ) && 
+                (
                     this.Sounds == input.Sounds ||
                     this.Sounds != null &&
                     this.Sounds.SequenceEqual(input.Sounds)
@@ -526,6 +548,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.OrderClearImmediate.GetHashCode();
                 if (this.OrderControlsPlusMinus != null)
                     hashCode = hashCode * 59 + this.OrderControlsPlusMinus.GetHashCode();
+                if (this.ShowLocaleNumbers != null)
+                    hashCode = hashCode * 59 + this.ShowLocaleNumbers.GetHashCode();
                 if (this.Sounds != null)
                     hashCode = hashCode * 59 + this.Sounds.GetHashCode();
                 if (this.StrictIPCheck != null)

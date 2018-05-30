@@ -10,7 +10,7 @@ import Foundation
 
 /** Exchange Statistics */
 
-open class Stats: Codable {
+public struct Stats: Codable {
 
     public var rootSymbol: String
     public var currency: String?
@@ -19,32 +19,15 @@ open class Stats: Codable {
     public var openInterest: Double?
     public var openValue: Double?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(rootSymbol, forKey: "rootSymbol")
-        try container.encodeIfPresent(currency, forKey: "currency")
-        try container.encodeIfPresent(volume24h, forKey: "volume24h")
-        try container.encodeIfPresent(turnover24h, forKey: "turnover24h")
-        try container.encodeIfPresent(openInterest, forKey: "openInterest")
-        try container.encodeIfPresent(openValue, forKey: "openValue")
+    public init(rootSymbol: String, currency: String?, volume24h: Double?, turnover24h: Double?, openInterest: Double?, openValue: Double?) {
+        self.rootSymbol = rootSymbol
+        self.currency = currency
+        self.volume24h = volume24h
+        self.turnover24h = turnover24h
+        self.openInterest = openInterest
+        self.openValue = openValue
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        rootSymbol = try container.decode(String.self, forKey: "rootSymbol")
-        currency = try container.decodeIfPresent(String.self, forKey: "currency")
-        volume24h = try container.decodeIfPresent(Double.self, forKey: "volume24h")
-        turnover24h = try container.decodeIfPresent(Double.self, forKey: "turnover24h")
-        openInterest = try container.decodeIfPresent(Double.self, forKey: "openInterest")
-        openValue = try container.decodeIfPresent(Double.self, forKey: "openValue")
-    }
 }
 

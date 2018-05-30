@@ -19,7 +19,7 @@ open class SchemaAPI {
      */
     open class func schemaGet(model: String? = nil, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
         schemaGetWithRequestBuilder(model: model).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -37,12 +37,11 @@ open class SchemaAPI {
         let path = "/schema"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
             "model": model
         ])
-        
 
         let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -56,7 +55,7 @@ open class SchemaAPI {
      */
     open class func schemaWebsocketHelp(completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
         schemaWebsocketHelpWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -72,9 +71,8 @@ open class SchemaAPI {
         let path = "/schema/websocketHelp"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 

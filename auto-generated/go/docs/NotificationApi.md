@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **NotificationGet**
-> []Notification NotificationGet(ctx, ctx, ctx, )
+> []Notification NotificationGet(ctx, )
 Get your current notifications.
 
 This is an upcoming feature and currently does not return data.

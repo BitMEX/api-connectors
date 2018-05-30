@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,82 +38,82 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Order" /> class.
         /// </summary>
-        /// <param name="OrderID">OrderID (required).</param>
-        /// <param name="ClOrdID">ClOrdID.</param>
-        /// <param name="ClOrdLinkID">ClOrdLinkID.</param>
-        /// <param name="Account">Account.</param>
-        /// <param name="Symbol">Symbol.</param>
-        /// <param name="Side">Side.</param>
-        /// <param name="SimpleOrderQty">SimpleOrderQty.</param>
-        /// <param name="OrderQty">OrderQty.</param>
-        /// <param name="Price">Price.</param>
-        /// <param name="DisplayQty">DisplayQty.</param>
-        /// <param name="StopPx">StopPx.</param>
-        /// <param name="PegOffsetValue">PegOffsetValue.</param>
-        /// <param name="PegPriceType">PegPriceType.</param>
-        /// <param name="Currency">Currency.</param>
-        /// <param name="SettlCurrency">SettlCurrency.</param>
-        /// <param name="OrdType">OrdType.</param>
-        /// <param name="TimeInForce">TimeInForce.</param>
-        /// <param name="ExecInst">ExecInst.</param>
-        /// <param name="ContingencyType">ContingencyType.</param>
-        /// <param name="ExDestination">ExDestination.</param>
-        /// <param name="OrdStatus">OrdStatus.</param>
-        /// <param name="Triggered">Triggered.</param>
-        /// <param name="WorkingIndicator">WorkingIndicator.</param>
-        /// <param name="OrdRejReason">OrdRejReason.</param>
-        /// <param name="SimpleLeavesQty">SimpleLeavesQty.</param>
-        /// <param name="LeavesQty">LeavesQty.</param>
-        /// <param name="SimpleCumQty">SimpleCumQty.</param>
-        /// <param name="CumQty">CumQty.</param>
-        /// <param name="AvgPx">AvgPx.</param>
-        /// <param name="MultiLegReportingType">MultiLegReportingType.</param>
-        /// <param name="Text">Text.</param>
-        /// <param name="TransactTime">TransactTime.</param>
-        /// <param name="Timestamp">Timestamp.</param>
-        public Order(string OrderID = default(string), string ClOrdID = default(string), string ClOrdLinkID = default(string), decimal? Account = default(decimal?), string Symbol = default(string), string Side = default(string), double? SimpleOrderQty = default(double?), decimal? OrderQty = default(decimal?), double? Price = default(double?), decimal? DisplayQty = default(decimal?), double? StopPx = default(double?), double? PegOffsetValue = default(double?), string PegPriceType = default(string), string Currency = default(string), string SettlCurrency = default(string), string OrdType = default(string), string TimeInForce = default(string), string ExecInst = default(string), string ContingencyType = default(string), string ExDestination = default(string), string OrdStatus = default(string), string Triggered = default(string), bool? WorkingIndicator = default(bool?), string OrdRejReason = default(string), double? SimpleLeavesQty = default(double?), decimal? LeavesQty = default(decimal?), double? SimpleCumQty = default(double?), decimal? CumQty = default(decimal?), double? AvgPx = default(double?), string MultiLegReportingType = default(string), string Text = default(string), DateTime? TransactTime = default(DateTime?), DateTime? Timestamp = default(DateTime?))
+        /// <param name="orderID">orderID (required).</param>
+        /// <param name="clOrdID">clOrdID.</param>
+        /// <param name="clOrdLinkID">clOrdLinkID.</param>
+        /// <param name="account">account.</param>
+        /// <param name="symbol">symbol.</param>
+        /// <param name="side">side.</param>
+        /// <param name="simpleOrderQty">simpleOrderQty.</param>
+        /// <param name="orderQty">orderQty.</param>
+        /// <param name="price">price.</param>
+        /// <param name="displayQty">displayQty.</param>
+        /// <param name="stopPx">stopPx.</param>
+        /// <param name="pegOffsetValue">pegOffsetValue.</param>
+        /// <param name="pegPriceType">pegPriceType.</param>
+        /// <param name="currency">currency.</param>
+        /// <param name="settlCurrency">settlCurrency.</param>
+        /// <param name="ordType">ordType.</param>
+        /// <param name="timeInForce">timeInForce.</param>
+        /// <param name="execInst">execInst.</param>
+        /// <param name="contingencyType">contingencyType.</param>
+        /// <param name="exDestination">exDestination.</param>
+        /// <param name="ordStatus">ordStatus.</param>
+        /// <param name="triggered">triggered.</param>
+        /// <param name="workingIndicator">workingIndicator.</param>
+        /// <param name="ordRejReason">ordRejReason.</param>
+        /// <param name="simpleLeavesQty">simpleLeavesQty.</param>
+        /// <param name="leavesQty">leavesQty.</param>
+        /// <param name="simpleCumQty">simpleCumQty.</param>
+        /// <param name="cumQty">cumQty.</param>
+        /// <param name="avgPx">avgPx.</param>
+        /// <param name="multiLegReportingType">multiLegReportingType.</param>
+        /// <param name="text">text.</param>
+        /// <param name="transactTime">transactTime.</param>
+        /// <param name="timestamp">timestamp.</param>
+        public Order(string orderID = default(string), string clOrdID = default(string), string clOrdLinkID = default(string), decimal? account = default(decimal?), string symbol = default(string), string side = default(string), double? simpleOrderQty = default(double?), decimal? orderQty = default(decimal?), double? price = default(double?), decimal? displayQty = default(decimal?), double? stopPx = default(double?), double? pegOffsetValue = default(double?), string pegPriceType = default(string), string currency = default(string), string settlCurrency = default(string), string ordType = default(string), string timeInForce = default(string), string execInst = default(string), string contingencyType = default(string), string exDestination = default(string), string ordStatus = default(string), string triggered = default(string), bool? workingIndicator = default(bool?), string ordRejReason = default(string), double? simpleLeavesQty = default(double?), decimal? leavesQty = default(decimal?), double? simpleCumQty = default(double?), decimal? cumQty = default(decimal?), double? avgPx = default(double?), string multiLegReportingType = default(string), string text = default(string), DateTime? transactTime = default(DateTime?), DateTime? timestamp = default(DateTime?))
         {
-            // to ensure "OrderID" is required (not null)
-            if (OrderID == null)
+            // to ensure "orderID" is required (not null)
+            if (orderID == null)
             {
-                throw new InvalidDataException("OrderID is a required property for Order and cannot be null");
+                throw new InvalidDataException("orderID is a required property for Order and cannot be null");
             }
             else
             {
-                this.OrderID = OrderID;
+                this.OrderID = orderID;
             }
-            this.ClOrdID = ClOrdID;
-            this.ClOrdLinkID = ClOrdLinkID;
-            this.Account = Account;
-            this.Symbol = Symbol;
-            this.Side = Side;
-            this.SimpleOrderQty = SimpleOrderQty;
-            this.OrderQty = OrderQty;
-            this.Price = Price;
-            this.DisplayQty = DisplayQty;
-            this.StopPx = StopPx;
-            this.PegOffsetValue = PegOffsetValue;
-            this.PegPriceType = PegPriceType;
-            this.Currency = Currency;
-            this.SettlCurrency = SettlCurrency;
-            this.OrdType = OrdType;
-            this.TimeInForce = TimeInForce;
-            this.ExecInst = ExecInst;
-            this.ContingencyType = ContingencyType;
-            this.ExDestination = ExDestination;
-            this.OrdStatus = OrdStatus;
-            this.Triggered = Triggered;
-            this.WorkingIndicator = WorkingIndicator;
-            this.OrdRejReason = OrdRejReason;
-            this.SimpleLeavesQty = SimpleLeavesQty;
-            this.LeavesQty = LeavesQty;
-            this.SimpleCumQty = SimpleCumQty;
-            this.CumQty = CumQty;
-            this.AvgPx = AvgPx;
-            this.MultiLegReportingType = MultiLegReportingType;
-            this.Text = Text;
-            this.TransactTime = TransactTime;
-            this.Timestamp = Timestamp;
+            this.ClOrdID = clOrdID;
+            this.ClOrdLinkID = clOrdLinkID;
+            this.Account = account;
+            this.Symbol = symbol;
+            this.Side = side;
+            this.SimpleOrderQty = simpleOrderQty;
+            this.OrderQty = orderQty;
+            this.Price = price;
+            this.DisplayQty = displayQty;
+            this.StopPx = stopPx;
+            this.PegOffsetValue = pegOffsetValue;
+            this.PegPriceType = pegPriceType;
+            this.Currency = currency;
+            this.SettlCurrency = settlCurrency;
+            this.OrdType = ordType;
+            this.TimeInForce = timeInForce;
+            this.ExecInst = execInst;
+            this.ContingencyType = contingencyType;
+            this.ExDestination = exDestination;
+            this.OrdStatus = ordStatus;
+            this.Triggered = triggered;
+            this.WorkingIndicator = workingIndicator;
+            this.OrdRejReason = ordRejReason;
+            this.SimpleLeavesQty = simpleLeavesQty;
+            this.LeavesQty = leavesQty;
+            this.SimpleCumQty = simpleCumQty;
+            this.CumQty = cumQty;
+            this.AvgPx = avgPx;
+            this.MultiLegReportingType = multiLegReportingType;
+            this.Text = text;
+            this.TransactTime = transactTime;
+            this.Timestamp = timestamp;
         }
         
         /// <summary>
@@ -363,7 +363,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

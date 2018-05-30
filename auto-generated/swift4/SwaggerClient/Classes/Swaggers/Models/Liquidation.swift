@@ -10,7 +10,7 @@ import Foundation
 
 /** Active Liquidations */
 
-open class Liquidation: Codable {
+public struct Liquidation: Codable {
 
     public var orderID: String
     public var symbol: String?
@@ -18,30 +18,14 @@ open class Liquidation: Codable {
     public var price: Double?
     public var leavesQty: Double?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(orderID, forKey: "orderID")
-        try container.encodeIfPresent(symbol, forKey: "symbol")
-        try container.encodeIfPresent(side, forKey: "side")
-        try container.encodeIfPresent(price, forKey: "price")
-        try container.encodeIfPresent(leavesQty, forKey: "leavesQty")
+    public init(orderID: String, symbol: String?, side: String?, price: Double?, leavesQty: Double?) {
+        self.orderID = orderID
+        self.symbol = symbol
+        self.side = side
+        self.price = price
+        self.leavesQty = leavesQty
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        orderID = try container.decode(String.self, forKey: "orderID")
-        symbol = try container.decodeIfPresent(String.self, forKey: "symbol")
-        side = try container.decodeIfPresent(String.self, forKey: "side")
-        price = try container.decodeIfPresent(Double.self, forKey: "price")
-        leavesQty = try container.decodeIfPresent(Double.self, forKey: "leavesQty")
-    }
 }
 

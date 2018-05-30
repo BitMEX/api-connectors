@@ -17,5 +17,6 @@ Name | Type | Description | Notes
 **affiliateID** | **String** |  | [optional] 
 **pgpPubKey** | **String** |  | [optional] 
 **country** | **String** |  | [optional] 
+**typ** | **String** |  | [optional] 
 
 

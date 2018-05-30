@@ -15,6 +15,10 @@ Name | Type | Description | Notes
 **InverseLeg** | **string** |  | [optional] [default to null]
 **SellLeg** | **string** |  | [optional] [default to null]
 **BuyLeg** | **string** |  | [optional] [default to null]
+**OptionStrikePcnt** | **float64** |  | [optional] [default to null]
+**OptionStrikeRound** | **float64** |  | [optional] [default to null]
+**OptionStrikePrice** | **float64** |  | [optional] [default to null]
+**OptionMultiplier** | **float64** |  | [optional] [default to null]
 **PositionCurrency** | **string** |  | [optional] [default to null]
 **Underlying** | **string** |  | [optional] [default to null]
 **QuoteCurrency** | **string** |  | [optional] [default to null]
@@ -97,6 +101,7 @@ Name | Type | Description | Notes
 **MarkPrice** | **float64** |  | [optional] [default to null]
 **IndicativeTaxRate** | **float64** |  | [optional] [default to null]
 **IndicativeSettlePrice** | **float64** |  | [optional] [default to null]
+**OptionUnderlyingPrice** | **float64** |  | [optional] [default to null]
 **SettledPrice** | **float64** |  | [optional] [default to null]
 **Timestamp** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
 

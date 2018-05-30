@@ -9,7 +9,7 @@ import Foundation
 
 
 
-open class Margin: Codable {
+public struct Margin: Codable {
 
     public var account: Double
     public var currency: String
@@ -53,102 +53,50 @@ open class Margin: Codable {
     public var grossLastValue: Double?
     public var commission: Double?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(account, forKey: "account")
-        try container.encode(currency, forKey: "currency")
-        try container.encodeIfPresent(riskLimit, forKey: "riskLimit")
-        try container.encodeIfPresent(prevState, forKey: "prevState")
-        try container.encodeIfPresent(state, forKey: "state")
-        try container.encodeIfPresent(action, forKey: "action")
-        try container.encodeIfPresent(amount, forKey: "amount")
-        try container.encodeIfPresent(pendingCredit, forKey: "pendingCredit")
-        try container.encodeIfPresent(pendingDebit, forKey: "pendingDebit")
-        try container.encodeIfPresent(confirmedDebit, forKey: "confirmedDebit")
-        try container.encodeIfPresent(prevRealisedPnl, forKey: "prevRealisedPnl")
-        try container.encodeIfPresent(prevUnrealisedPnl, forKey: "prevUnrealisedPnl")
-        try container.encodeIfPresent(grossComm, forKey: "grossComm")
-        try container.encodeIfPresent(grossOpenCost, forKey: "grossOpenCost")
-        try container.encodeIfPresent(grossOpenPremium, forKey: "grossOpenPremium")
-        try container.encodeIfPresent(grossExecCost, forKey: "grossExecCost")
-        try container.encodeIfPresent(grossMarkValue, forKey: "grossMarkValue")
-        try container.encodeIfPresent(riskValue, forKey: "riskValue")
-        try container.encodeIfPresent(taxableMargin, forKey: "taxableMargin")
-        try container.encodeIfPresent(initMargin, forKey: "initMargin")
-        try container.encodeIfPresent(maintMargin, forKey: "maintMargin")
-        try container.encodeIfPresent(sessionMargin, forKey: "sessionMargin")
-        try container.encodeIfPresent(targetExcessMargin, forKey: "targetExcessMargin")
-        try container.encodeIfPresent(varMargin, forKey: "varMargin")
-        try container.encodeIfPresent(realisedPnl, forKey: "realisedPnl")
-        try container.encodeIfPresent(unrealisedPnl, forKey: "unrealisedPnl")
-        try container.encodeIfPresent(indicativeTax, forKey: "indicativeTax")
-        try container.encodeIfPresent(unrealisedProfit, forKey: "unrealisedProfit")
-        try container.encodeIfPresent(syntheticMargin, forKey: "syntheticMargin")
-        try container.encodeIfPresent(walletBalance, forKey: "walletBalance")
-        try container.encodeIfPresent(marginBalance, forKey: "marginBalance")
-        try container.encodeIfPresent(marginBalancePcnt, forKey: "marginBalancePcnt")
-        try container.encodeIfPresent(marginLeverage, forKey: "marginLeverage")
-        try container.encodeIfPresent(marginUsedPcnt, forKey: "marginUsedPcnt")
-        try container.encodeIfPresent(excessMargin, forKey: "excessMargin")
-        try container.encodeIfPresent(excessMarginPcnt, forKey: "excessMarginPcnt")
-        try container.encodeIfPresent(availableMargin, forKey: "availableMargin")
-        try container.encodeIfPresent(withdrawableMargin, forKey: "withdrawableMargin")
-        try container.encodeIfPresent(timestamp, forKey: "timestamp")
-        try container.encodeIfPresent(grossLastValue, forKey: "grossLastValue")
-        try container.encodeIfPresent(commission, forKey: "commission")
+    public init(account: Double, currency: String, riskLimit: Double?, prevState: String?, state: String?, action: String?, amount: Double?, pendingCredit: Double?, pendingDebit: Double?, confirmedDebit: Double?, prevRealisedPnl: Double?, prevUnrealisedPnl: Double?, grossComm: Double?, grossOpenCost: Double?, grossOpenPremium: Double?, grossExecCost: Double?, grossMarkValue: Double?, riskValue: Double?, taxableMargin: Double?, initMargin: Double?, maintMargin: Double?, sessionMargin: Double?, targetExcessMargin: Double?, varMargin: Double?, realisedPnl: Double?, unrealisedPnl: Double?, indicativeTax: Double?, unrealisedProfit: Double?, syntheticMargin: Double?, walletBalance: Double?, marginBalance: Double?, marginBalancePcnt: Double?, marginLeverage: Double?, marginUsedPcnt: Double?, excessMargin: Double?, excessMarginPcnt: Double?, availableMargin: Double?, withdrawableMargin: Double?, timestamp: Date?, grossLastValue: Double?, commission: Double?) {
+        self.account = account
+        self.currency = currency
+        self.riskLimit = riskLimit
+        self.prevState = prevState
+        self.state = state
+        self.action = action
+        self.amount = amount
+        self.pendingCredit = pendingCredit
+        self.pendingDebit = pendingDebit
+        self.confirmedDebit = confirmedDebit
+        self.prevRealisedPnl = prevRealisedPnl
+        self.prevUnrealisedPnl = prevUnrealisedPnl
+        self.grossComm = grossComm
+        self.grossOpenCost = grossOpenCost
+        self.grossOpenPremium = grossOpenPremium
+        self.grossExecCost = grossExecCost
+        self.grossMarkValue = grossMarkValue
+        self.riskValue = riskValue
+        self.taxableMargin = taxableMargin
+        self.initMargin = initMargin
+        self.maintMargin = maintMargin
+        self.sessionMargin = sessionMargin
+        self.targetExcessMargin = targetExcessMargin
+        self.varMargin = varMargin
+        self.realisedPnl = realisedPnl
+        self.unrealisedPnl = unrealisedPnl
+        self.indicativeTax = indicativeTax
+        self.unrealisedProfit = unrealisedProfit
+        self.syntheticMargin = syntheticMargin
+        self.walletBalance = walletBalance
+        self.marginBalance = marginBalance
+        self.marginBalancePcnt = marginBalancePcnt
+        self.marginLeverage = marginLeverage
+        self.marginUsedPcnt = marginUsedPcnt
+        self.excessMargin = excessMargin
+        self.excessMarginPcnt = excessMarginPcnt
+        self.availableMargin = availableMargin
+        self.withdrawableMargin = withdrawableMargin
+        self.timestamp = timestamp
+        self.grossLastValue = grossLastValue
+        self.commission = commission
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        account = try container.decode(Double.self, forKey: "account")
-        currency = try container.decode(String.self, forKey: "currency")
-        riskLimit = try container.decodeIfPresent(Double.self, forKey: "riskLimit")
-        prevState = try container.decodeIfPresent(String.self, forKey: "prevState")
-        state = try container.decodeIfPresent(String.self, forKey: "state")
-        action = try container.decodeIfPresent(String.self, forKey: "action")
-        amount = try container.decodeIfPresent(Double.self, forKey: "amount")
-        pendingCredit = try container.decodeIfPresent(Double.self, forKey: "pendingCredit")
-        pendingDebit = try container.decodeIfPresent(Double.self, forKey: "pendingDebit")
-        confirmedDebit = try container.decodeIfPresent(Double.self, forKey: "confirmedDebit")
-        prevRealisedPnl = try container.decodeIfPresent(Double.self, forKey: "prevRealisedPnl")
-        prevUnrealisedPnl = try container.decodeIfPresent(Double.self, forKey: "prevUnrealisedPnl")
-        grossComm = try container.decodeIfPresent(Double.self, forKey: "grossComm")
-        grossOpenCost = try container.decodeIfPresent(Double.self, forKey: "grossOpenCost")
-        grossOpenPremium = try container.decodeIfPresent(Double.self, forKey: "grossOpenPremium")
-        grossExecCost = try container.decodeIfPresent(Double.self, forKey: "grossExecCost")
-        grossMarkValue = try container.decodeIfPresent(Double.self, forKey: "grossMarkValue")
-        riskValue = try container.decodeIfPresent(Double.self, forKey: "riskValue")
-        taxableMargin = try container.decodeIfPresent(Double.self, forKey: "taxableMargin")
-        initMargin = try container.decodeIfPresent(Double.self, forKey: "initMargin")
-        maintMargin = try container.decodeIfPresent(Double.self, forKey: "maintMargin")
-        sessionMargin = try container.decodeIfPresent(Double.self, forKey: "sessionMargin")
-        targetExcessMargin = try container.decodeIfPresent(Double.self, forKey: "targetExcessMargin")
-        varMargin = try container.decodeIfPresent(Double.self, forKey: "varMargin")
-        realisedPnl = try container.decodeIfPresent(Double.self, forKey: "realisedPnl")
-        unrealisedPnl = try container.decodeIfPresent(Double.self, forKey: "unrealisedPnl")
-        indicativeTax = try container.decodeIfPresent(Double.self, forKey: "indicativeTax")
-        unrealisedProfit = try container.decodeIfPresent(Double.self, forKey: "unrealisedProfit")
-        syntheticMargin = try container.decodeIfPresent(Double.self, forKey: "syntheticMargin")
-        walletBalance = try container.decodeIfPresent(Double.self, forKey: "walletBalance")
-        marginBalance = try container.decodeIfPresent(Double.self, forKey: "marginBalance")
-        marginBalancePcnt = try container.decodeIfPresent(Double.self, forKey: "marginBalancePcnt")
-        marginLeverage = try container.decodeIfPresent(Double.self, forKey: "marginLeverage")
-        marginUsedPcnt = try container.decodeIfPresent(Double.self, forKey: "marginUsedPcnt")
-        excessMargin = try container.decodeIfPresent(Double.self, forKey: "excessMargin")
-        excessMarginPcnt = try container.decodeIfPresent(Double.self, forKey: "excessMarginPcnt")
-        availableMargin = try container.decodeIfPresent(Double.self, forKey: "availableMargin")
-        withdrawableMargin = try container.decodeIfPresent(Double.self, forKey: "withdrawableMargin")
-        timestamp = try container.decodeIfPresent(Date.self, forKey: "timestamp")
-        grossLastValue = try container.decodeIfPresent(Double.self, forKey: "grossLastValue")
-        commission = try container.decodeIfPresent(Double.self, forKey: "commission")
-    }
 }
 

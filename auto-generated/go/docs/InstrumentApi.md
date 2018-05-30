@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **InstrumentGet**
-> []Instrument InstrumentGet(optional)
+> []Instrument InstrumentGet(ctx, optional)
 Get instruments.
 
 This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\"state\": \"Open\"}`.
@@ -22,21 +22,22 @@ This returns all instruments and indices, including those that have settled or a
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***InstrumentGetOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a InstrumentGetOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string**| Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBU:monthly&#x60;. Timeframes are &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, and &#x60;biquarterly&#x60;. | 
- **filter** | **string**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. | 
- **columns** | **string**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | 
- **count** | **float32**| Number of results to fetch. | [default to 100]
- **start** | **float32**| Starting point for results. | [default to 0]
- **reverse** | **bool**| If true, will sort results newest first. | [default to false]
- **startTime** | **time.Time**| Starting date filter for results. | 
- **endTime** | **time.Time**| Ending date filter for results. | 
+ **symbol** | **optional.String**| Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBU:monthly&#x60;. Timeframes are &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, and &#x60;biquarterly&#x60;. | 
+ **filter** | **optional.String**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | 
+ **columns** | **optional.String**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | 
+ **count** | **optional.Float32**| Number of results to fetch. | [default to 100]
+ **start** | **optional.Float32**| Starting point for results. | [default to 0]
+ **reverse** | **optional.Bool**| If true, will sort results newest first. | [default to false]
+ **startTime** | **optional.Time**| Starting date filter for results. | 
+ **endTime** | **optional.Time**| Ending date filter for results. | 
 
 ### Return type
 
@@ -54,7 +55,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **InstrumentGetActive**
-> []Instrument InstrumentGetActive()
+> []Instrument InstrumentGetActive(ctx, )
 Get all active instruments and instruments that have expired in <24hrs.
 
 ### Required Parameters
@@ -76,7 +77,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **InstrumentGetActiveAndIndices**
-> []Instrument InstrumentGetActiveAndIndices()
+> []Instrument InstrumentGetActiveAndIndices(ctx, )
 Helper method. Gets all active instruments and all indices. This is a join of the result of /indices and /active.
 
 ### Required Parameters
@@ -98,7 +99,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **InstrumentGetActiveIntervals**
-> InstrumentInterval InstrumentGetActiveIntervals()
+> InstrumentInterval InstrumentGetActiveIntervals(ctx, )
 Return all active contract series and interval pairs.
 
 This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"BVOL:daily\", \"BVOL:weekly\", \"XBU:daily\", \"XBU:monthly\", ...]`. These identifiers are usable in any query's `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.
@@ -122,7 +123,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **InstrumentGetCompositeIndex**
-> []IndexComposite InstrumentGetCompositeIndex(optional)
+> []IndexComposite InstrumentGetCompositeIndex(ctx, optional)
 Show constituent parts of an index.
 
 Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.XBT` to get the ticks and weights of the constituent exchanges that build the \".XBT\" index.  A tick with reference `\"BMI\"` and weight `null` is the composite index tick. 
@@ -131,22 +132,23 @@ Composite indices are built from multiple external price sources.  Use this endp
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***InstrumentGetCompositeIndexOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a InstrumentGetCompositeIndexOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **account** | **float64**|  | 
- **symbol** | **string**| The composite index symbol. | [default to .XBT]
- **filter** | **string**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details. | 
- **columns** | **string**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | 
- **count** | **float32**| Number of results to fetch. | [default to 100]
- **start** | **float32**| Starting point for results. | [default to 0]
- **reverse** | **bool**| If true, will sort results newest first. | [default to false]
- **startTime** | **time.Time**| Starting date filter for results. | 
- **endTime** | **time.Time**| Ending date filter for results. | 
+ **account** | **optional.Float64**|  | 
+ **symbol** | **optional.String**| The composite index symbol. | [default to .XBT]
+ **filter** | **optional.String**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | 
+ **columns** | **optional.String**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | 
+ **count** | **optional.Float32**| Number of results to fetch. | [default to 100]
+ **start** | **optional.Float32**| Starting point for results. | [default to 0]
+ **reverse** | **optional.Bool**| If true, will sort results newest first. | [default to false]
+ **startTime** | **optional.Time**| Starting date filter for results. | 
+ **endTime** | **optional.Time**| Ending date filter for results. | 
 
 ### Return type
 
@@ -164,7 +166,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **InstrumentGetIndices**
-> []Instrument InstrumentGetIndices()
+> []Instrument InstrumentGetIndices(ctx, )
 Get all price indices.
 
 ### Required Parameters

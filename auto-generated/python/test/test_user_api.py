@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -13,189 +13,166 @@
 
 from __future__ import absolute_import
 
-import os
-import sys
 import unittest
 
 import swagger_client
+from swagger_client.api.user_api import UserApi  # noqa: E501
 from swagger_client.rest import ApiException
-from swagger_client.apis.user_api import UserApi
 
 
 class TestUserApi(unittest.TestCase):
-    """ UserApi unit test stubs """
+    """UserApi unit test stubs"""
 
     def setUp(self):
-        self.api = swagger_client.apis.user_api.UserApi()
+        self.api = swagger_client.api.user_api.UserApi()  # noqa: E501
 
     def tearDown(self):
         pass
 
     def test_user_cancel_withdrawal(self):
-        """
-        Test case for user_cancel_withdrawal
+        """Test case for user_cancel_withdrawal
 
-        Cancel a withdrawal.
+        Cancel a withdrawal.  # noqa: E501
         """
         pass
 
     def test_user_check_referral_code(self):
-        """
-        Test case for user_check_referral_code
+        """Test case for user_check_referral_code
 
-        Check if a referral code is valid.
+        Check if a referral code is valid.  # noqa: E501
         """
         pass
 
     def test_user_confirm(self):
-        """
-        Test case for user_confirm
+        """Test case for user_confirm
 
-        Confirm your email address with a token.
+        Confirm your email address with a token.  # noqa: E501
         """
         pass
 
     def test_user_confirm_enable_tfa(self):
-        """
-        Test case for user_confirm_enable_tfa
+        """Test case for user_confirm_enable_tfa
 
-        Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
+        Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.  # noqa: E501
         """
         pass
 
     def test_user_confirm_withdrawal(self):
-        """
-        Test case for user_confirm_withdrawal
+        """Test case for user_confirm_withdrawal
 
-        Confirm a withdrawal.
+        Confirm a withdrawal.  # noqa: E501
         """
         pass
 
     def test_user_disable_tfa(self):
-        """
-        Test case for user_disable_tfa
+        """Test case for user_disable_tfa
 
-        Disable two-factor auth for this account.
+        Disable two-factor auth for this account.  # noqa: E501
         """
         pass
 
     def test_user_get(self):
-        """
-        Test case for user_get
+        """Test case for user_get
 
-        Get your user model.
+        Get your user model.  # noqa: E501
         """
         pass
 
     def test_user_get_affiliate_status(self):
-        """
-        Test case for user_get_affiliate_status
+        """Test case for user_get_affiliate_status
 
-        Get your current affiliate/referral status.
+        Get your current affiliate/referral status.  # noqa: E501
         """
         pass
 
     def test_user_get_commission(self):
-        """
-        Test case for user_get_commission
+        """Test case for user_get_commission
 
-        Get your account's commission status.
+        Get your account's commission status.  # noqa: E501
         """
         pass
 
     def test_user_get_deposit_address(self):
-        """
-        Test case for user_get_deposit_address
+        """Test case for user_get_deposit_address
 
-        Get a deposit address.
+        Get a deposit address.  # noqa: E501
         """
         pass
 
     def test_user_get_margin(self):
-        """
-        Test case for user_get_margin
+        """Test case for user_get_margin
 
-        Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.
+        Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.  # noqa: E501
         """
         pass
 
     def test_user_get_wallet(self):
-        """
-        Test case for user_get_wallet
+        """Test case for user_get_wallet
 
-        Get your current wallet information.
+        Get your current wallet information.  # noqa: E501
         """
         pass
 
     def test_user_get_wallet_history(self):
-        """
-        Test case for user_get_wallet_history
+        """Test case for user_get_wallet_history
 
-        Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
+        Get a history of all of your wallet transactions (deposits, withdrawals, PNL).  # noqa: E501
         """
         pass
 
     def test_user_get_wallet_summary(self):
-        """
-        Test case for user_get_wallet_summary
+        """Test case for user_get_wallet_summary
 
-        Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+        Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).  # noqa: E501
         """
         pass
 
     def test_user_logout(self):
-        """
-        Test case for user_logout
+        """Test case for user_logout
 
-        Log out of BitMEX.
+        Log out of BitMEX.  # noqa: E501
         """
         pass
 
     def test_user_logout_all(self):
-        """
-        Test case for user_logout_all
+        """Test case for user_logout_all
 
-        Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.
+        Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.  # noqa: E501
         """
         pass
 
     def test_user_min_withdrawal_fee(self):
-        """
-        Test case for user_min_withdrawal_fee
+        """Test case for user_min_withdrawal_fee
 
-        Get the minimum withdrawal fee for a currency.
+        Get the minimum withdrawal fee for a currency.  # noqa: E501
         """
         pass
 
     def test_user_request_enable_tfa(self):
-        """
-        Test case for user_request_enable_tfa
+        """Test case for user_request_enable_tfa
 
-        Get secret key for setting up two-factor auth.
+        Get secret key for setting up two-factor auth.  # noqa: E501
         """
         pass
 
     def test_user_request_withdrawal(self):
-        """
-        Test case for user_request_withdrawal
+        """Test case for user_request_withdrawal
 
-        Request a withdrawal to an external wallet.
+        Request a withdrawal to an external wallet.  # noqa: E501
         """
         pass
 
     def test_user_save_preferences(self):
-        """
-        Test case for user_save_preferences
+        """Test case for user_save_preferences
 
-        Save user preferences.
+        Save user preferences.  # noqa: E501
         """
         pass
 
     def test_user_update(self):
-        """
-        Test case for user_update
+        """Test case for user_update
 
-        Update your password, name, and other attributes.
+        Update your password, name, and other attributes.  # noqa: E501
         """
         pass
 

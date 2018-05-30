@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 Get model schemata for data objects returned by this API.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -25,7 +25,7 @@ from pprint import pprint
 api_instance = swagger_client.SchemaApi()
 model = 'model_example' # str | Optional model filter. If omitted, will return all models. (optional)
 
-try: 
+try:
     # Get model schemata for data objects returned by this API.
     api_response = api_instance.schema_get(model=model)
     pprint(api_response)
@@ -59,7 +59,7 @@ No authorization required
 
 Returns help text & subject list for websocket usage.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -70,7 +70,7 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = swagger_client.SchemaApi()
 
-try: 
+try:
     # Returns help text & subject list for websocket usage.
     api_response = api_instance.schema_websocket_help()
     pprint(api_response)

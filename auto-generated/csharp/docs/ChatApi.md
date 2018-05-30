@@ -31,8 +31,8 @@ namespace Example
         public void main()
         {
             var apiInstance = new ChatApi();
-            var count = 3.4;  // decimal? | Number of results to fetch. (optional)  (default to 100)
-            var start = 3.4;  // decimal? | Starting ID for results. (optional)  (default to 0)
+            var count = 8.14;  // decimal? | Number of results to fetch. (optional)  (default to 100)
+            var start = 8.14;  // decimal? | Starting ID for results. (optional)  (default to 0)
             var reverse = true;  // bool? | If true, will sort results newest first. (optional)  (default to true)
             var channelID = 1.2;  // double? | Channel id. GET /chat/channels for ids. Leave blank for all. (optional) 
 

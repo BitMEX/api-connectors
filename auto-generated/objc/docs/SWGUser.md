@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **affiliateID** | **NSString*** |  | [optional] 
 **pgpPubKey** | **NSString*** |  | [optional] 
 **country** | **NSString*** |  | [optional] 
+**typ** | **NSString*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

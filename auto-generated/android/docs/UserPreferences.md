@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **orderBookType** | **String** |  |  [optional]
 **orderClearImmediate** | **Boolean** |  |  [optional]
 **orderControlsPlusMinus** | **Boolean** |  |  [optional]
+**showLocaleNumbers** | **Boolean** |  |  [optional]
 **sounds** | **List&lt;String&gt;** |  |  [optional]
 **strictIPCheck** | **Boolean** |  |  [optional]
 **strictTimeout** | **Boolean** |  |  [optional]

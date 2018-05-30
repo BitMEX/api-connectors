@@ -21,7 +21,7 @@ open class PositionAPI {
      */
     open class func positionGet(filter: String? = nil, columns: String? = nil, count: Double? = nil, completion: @escaping ((_ data: [Position]?,_ error: Error?) -> Void)) {
         positionGetWithRequestBuilder(filter: filter, columns: columns, count: count).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -235,14 +235,13 @@ open class PositionAPI {
         let path = "/position"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
             "filter": filter, 
             "columns": columns, 
             "count": count
         ])
-        
 
         let requestBuilder: RequestBuilder<[Position]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -258,7 +257,7 @@ open class PositionAPI {
      */
     open class func positionIsolateMargin(symbol: String, enabled: Bool? = nil, completion: @escaping ((_ data: Position?,_ error: Error?) -> Void)) {
         positionIsolateMarginWithRequestBuilder(symbol: symbol, enabled: enabled).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -266,7 +265,6 @@ open class PositionAPI {
     /**
      Enable isolated margin or cross margin per-position.
      - POST /position/isolate
-     - Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
      - API Key:
        - type: apiKey api-key 
        - name: apiKey
@@ -385,9 +383,8 @@ open class PositionAPI {
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
         let parameters = APIHelper.convertBoolToString(nonNullParameters)
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<Position>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -403,7 +400,7 @@ open class PositionAPI {
      */
     open class func positionTransferIsolatedMargin(symbol: String, amount: Double, completion: @escaping ((_ data: Position?,_ error: Error?) -> Void)) {
         positionTransferIsolatedMarginWithRequestBuilder(symbol: symbol, amount: amount).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -411,7 +408,6 @@ open class PositionAPI {
     /**
      Transfer equity in or out of a position.
      - POST /position/transferMargin
-     - When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
      - API Key:
        - type: apiKey api-key 
        - name: apiKey
@@ -530,9 +526,8 @@ open class PositionAPI {
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
         let parameters = APIHelper.convertBoolToString(nonNullParameters)
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<Position>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -548,7 +543,7 @@ open class PositionAPI {
      */
     open class func positionUpdateLeverage(symbol: String, leverage: Double, completion: @escaping ((_ data: Position?,_ error: Error?) -> Void)) {
         positionUpdateLeverageWithRequestBuilder(symbol: symbol, leverage: leverage).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -556,7 +551,6 @@ open class PositionAPI {
     /**
      Choose leverage for a position.
      - POST /position/leverage
-     - Users can choose an isolated leverage. This will automatically enable isolated margin.
      - API Key:
        - type: apiKey api-key 
        - name: apiKey
@@ -675,9 +669,8 @@ open class PositionAPI {
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
         let parameters = APIHelper.convertBoolToString(nonNullParameters)
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<Position>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -687,13 +680,13 @@ open class PositionAPI {
     /**
      Update your risk limit.
      
-     - parameter symbol: (form) Symbol of position to isolate. 
+     - parameter symbol: (form) Symbol of position to update risk limit on. 
      - parameter riskLimit: (form) New Risk Limit, in Satoshis. 
      - parameter completion: completion handler to receive the data and the error objects
      */
     open class func positionUpdateRiskLimit(symbol: String, riskLimit: Double, completion: @escaping ((_ data: Position?,_ error: Error?) -> Void)) {
         positionUpdateRiskLimitWithRequestBuilder(symbol: symbol, riskLimit: riskLimit).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -701,7 +694,6 @@ open class PositionAPI {
     /**
      Update your risk limit.
      - POST /position/riskLimit
-     - Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
      - API Key:
        - type: apiKey api-key 
        - name: apiKey
@@ -805,7 +797,7 @@ open class PositionAPI {
   "lastPrice" : 0.4182561061793122
 }}]
      
-     - parameter symbol: (form) Symbol of position to isolate. 
+     - parameter symbol: (form) Symbol of position to update risk limit on. 
      - parameter riskLimit: (form) New Risk Limit, in Satoshis. 
 
      - returns: RequestBuilder<Position> 
@@ -820,9 +812,8 @@ open class PositionAPI {
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
         let parameters = APIHelper.convertBoolToString(nonNullParameters)
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<Position>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 

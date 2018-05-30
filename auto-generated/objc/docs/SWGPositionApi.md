@@ -45,7 +45,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
 NSString* filter = @"filter_example"; // Table filter. For example, send {\"symbol\": \"XBTUSD\"}. (optional)
 NSString* columns = @"columns_example"; // Which columns to fetch. For example, send [\"columnName\"]. (optional)
-NSNumber* count = @3.4; // Number of rows to fetch. (optional)
+NSNumber* count = @8.14; // Number of rows to fetch. (optional)
 
 SWGPositionApi*apiInstance = [[SWGPositionApi alloc] init];
 
@@ -94,8 +94,6 @@ Name | Type | Description  | Notes
 ```
 
 Enable isolated margin or cross margin per-position.
-
-Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
 
 ### Example 
 ```objc
@@ -166,8 +164,6 @@ Name | Type | Description  | Notes
 
 Transfer equity in or out of a position.
 
-When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
-
 ### Example 
 ```objc
 SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
@@ -189,7 +185,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
 
 NSString* symbol = @"symbol_example"; // Symbol of position to isolate.
-NSNumber* amount = @3.4; // Amount to transfer, in Satoshis. May be negative.
+NSNumber* amount = @8.14; // Amount to transfer, in Satoshis. May be negative.
 
 SWGPositionApi*apiInstance = [[SWGPositionApi alloc] init];
 
@@ -236,8 +232,6 @@ Name | Type | Description  | Notes
 ```
 
 Choose leverage for a position.
-
-Users can choose an isolated leverage. This will automatically enable isolated margin.
 
 ### Example 
 ```objc
@@ -308,8 +302,6 @@ Name | Type | Description  | Notes
 
 Update your risk limit.
 
-Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
-
 ### Example 
 ```objc
 SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
@@ -330,8 +322,8 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
 
 
-NSString* symbol = @"symbol_example"; // Symbol of position to isolate.
-NSNumber* riskLimit = @3.4; // New Risk Limit, in Satoshis.
+NSString* symbol = @"symbol_example"; // Symbol of position to update risk limit on.
+NSNumber* riskLimit = @8.14; // New Risk Limit, in Satoshis.
 
 SWGPositionApi*apiInstance = [[SWGPositionApi alloc] init];
 
@@ -352,7 +344,7 @@ SWGPositionApi*apiInstance = [[SWGPositionApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **NSString***| Symbol of position to isolate. | 
+ **symbol** | **NSString***| Symbol of position to update risk limit on. | 
  **riskLimit** | **NSNumber***| New Risk Limit, in Satoshis. | 
 
 ### Return type

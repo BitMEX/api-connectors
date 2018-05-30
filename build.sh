@@ -3,7 +3,7 @@
 # Builds new versions of client libraries using swagger-codegen
 T="$(date +%s)"
 DIR=$(pwd)
-CLIENTS=$DIR/clients
+CLIENTS=$DIR/auto-generated
 DOCS=$DIR/docs
 CLI=$DIR/swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar
 RESOURCES="https://www.bitmex.com/api/explorer/swagger.json"

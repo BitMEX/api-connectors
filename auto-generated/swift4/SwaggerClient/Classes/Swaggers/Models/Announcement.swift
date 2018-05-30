@@ -10,38 +10,30 @@ import Foundation
 
 /** Public Announcements */
 
-open class Announcement: Codable {
+public struct Announcement: Codable {
 
-    public var id: Double
+    public var _id: Double
     public var link: String?
     public var title: String?
     public var content: String?
     public var date: Date?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(id, forKey: "id")
-        try container.encodeIfPresent(link, forKey: "link")
-        try container.encodeIfPresent(title, forKey: "title")
-        try container.encodeIfPresent(content, forKey: "content")
-        try container.encodeIfPresent(date, forKey: "date")
+    public init(_id: Double, link: String?, title: String?, content: String?, date: Date?) {
+        self._id = _id
+        self.link = link
+        self.title = title
+        self.content = content
+        self.date = date
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
-
-        id = try container.decode(Double.self, forKey: "id")
-        link = try container.decodeIfPresent(String.self, forKey: "link")
-        title = try container.decodeIfPresent(String.self, forKey: "title")
-        content = try container.decodeIfPresent(String.self, forKey: "content")
-        date = try container.decodeIfPresent(Date.self, forKey: "date")
+    public enum CodingKeys: String, CodingKey { 
+        case _id = "id"
+        case link
+        case title
+        case content
+        case date
     }
+
+
 }
 

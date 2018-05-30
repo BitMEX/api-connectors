@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -31,6 +31,10 @@ public class Settlement {
   private String settlementType = null;
   @SerializedName("settledPrice")
   private Double settledPrice = null;
+  @SerializedName("optionStrikePrice")
+  private Double optionStrikePrice = null;
+  @SerializedName("optionUnderlyingPrice")
+  private Double optionUnderlyingPrice = null;
   @SerializedName("bankrupt")
   private BigDecimal bankrupt = null;
   @SerializedName("taxBase")
@@ -81,6 +85,26 @@ public class Settlement {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Double getOptionStrikePrice() {
+    return optionStrikePrice;
+  }
+  public void setOptionStrikePrice(Double optionStrikePrice) {
+    this.optionStrikePrice = optionStrikePrice;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getOptionUnderlyingPrice() {
+    return optionUnderlyingPrice;
+  }
+  public void setOptionUnderlyingPrice(Double optionUnderlyingPrice) {
+    this.optionUnderlyingPrice = optionUnderlyingPrice;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public BigDecimal getBankrupt() {
     return bankrupt;
   }
@@ -122,6 +146,8 @@ public class Settlement {
         (this.symbol == null ? settlement.symbol == null : this.symbol.equals(settlement.symbol)) &&
         (this.settlementType == null ? settlement.settlementType == null : this.settlementType.equals(settlement.settlementType)) &&
         (this.settledPrice == null ? settlement.settledPrice == null : this.settledPrice.equals(settlement.settledPrice)) &&
+        (this.optionStrikePrice == null ? settlement.optionStrikePrice == null : this.optionStrikePrice.equals(settlement.optionStrikePrice)) &&
+        (this.optionUnderlyingPrice == null ? settlement.optionUnderlyingPrice == null : this.optionUnderlyingPrice.equals(settlement.optionUnderlyingPrice)) &&
         (this.bankrupt == null ? settlement.bankrupt == null : this.bankrupt.equals(settlement.bankrupt)) &&
         (this.taxBase == null ? settlement.taxBase == null : this.taxBase.equals(settlement.taxBase)) &&
         (this.taxRate == null ? settlement.taxRate == null : this.taxRate.equals(settlement.taxRate));
@@ -134,6 +160,8 @@ public class Settlement {
     result = 31 * result + (this.symbol == null ? 0: this.symbol.hashCode());
     result = 31 * result + (this.settlementType == null ? 0: this.settlementType.hashCode());
     result = 31 * result + (this.settledPrice == null ? 0: this.settledPrice.hashCode());
+    result = 31 * result + (this.optionStrikePrice == null ? 0: this.optionStrikePrice.hashCode());
+    result = 31 * result + (this.optionUnderlyingPrice == null ? 0: this.optionUnderlyingPrice.hashCode());
     result = 31 * result + (this.bankrupt == null ? 0: this.bankrupt.hashCode());
     result = 31 * result + (this.taxBase == null ? 0: this.taxBase.hashCode());
     result = 31 * result + (this.taxRate == null ? 0: this.taxRate.hashCode());
@@ -149,6 +177,8 @@ public class Settlement {
     sb.append("  symbol: ").append(symbol).append("\n");
     sb.append("  settlementType: ").append(settlementType).append("\n");
     sb.append("  settledPrice: ").append(settledPrice).append("\n");
+    sb.append("  optionStrikePrice: ").append(optionStrikePrice).append("\n");
+    sb.append("  optionUnderlyingPrice: ").append(optionUnderlyingPrice).append("\n");
     sb.append("  bankrupt: ").append(bankrupt).append("\n");
     sb.append("  taxBase: ").append(taxBase).append("\n");
     sb.append("  taxRate: ").append(taxRate).append("\n");

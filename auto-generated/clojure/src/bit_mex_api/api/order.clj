@@ -12,6 +12,8 @@ Use the `leavesQty` field to specify how much of the order you wish to remain op
 if you want to adjust your position's delta by a certain amount, regardless of how much of the order has
 already filled.
 
+> A `leavesQty` can be used to make a \"Filled\" order live again, if it is received within 60 seconds of the fill.
+
 Use the `simpleOrderQty` and `simpleLeavesQty` fields to specify order size in Bitcoin, rather than contracts.
 These fields will round up to the nearest contract.
 
@@ -38,6 +40,8 @@ Use the `leavesQty` field to specify how much of the order you wish to remain op
 if you want to adjust your position's delta by a certain amount, regardless of how much of the order has
 already filled.
 
+> A `leavesQty` can be used to make a \"Filled\" order live again, if it is received within 60 seconds of the fill.
+
 Use the `simpleOrderQty` and `simpleLeavesQty` fields to specify order size in Bitcoin, rather than contracts.
 These fields will round up to the nearest contract.
 
@@ -49,7 +53,7 @@ a JSON body of the shape: `{\"orders\": [{...}, {...}]}`, each object containing
 
 (defn order-amend-bulk-with-http-info
   "Amend multiple orders for the same symbol.
-  Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 50%."
+  Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 10%."
   ([] (order-amend-bulk-with-http-info nil))
   ([{:keys [orders ]}]
    (call-api "/order/bulk" :put
@@ -63,7 +67,7 @@ a JSON body of the shape: `{\"orders\": [{...}, {...}]}`, each object containing
 
 (defn order-amend-bulk
   "Amend multiple orders for the same symbol.
-  Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 50%."
+  Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 10%."
   ([] (order-amend-bulk nil))
   ([optional-params]
    (:data (order-amend-bulk-with-http-info optional-params))))
@@ -116,8 +120,9 @@ If called repeatedly, the existing offset will be canceled and a new one will be
 Example usage: call this route at 15s intervals with an offset of 60000 (60s).
 If this route is not called within 60 seconds, all your orders will be automatically canceled.
 
-This is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#dead-man-s-switch-auto-cancel-)."
+This is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#Dead-Mans-Switch-Auto-Cancel)."
   [timeout ]
+  (check-required-params timeout)
   (call-api "/order/cancelAllAfter" :post
             {:path-params   {}
              :header-params {}
@@ -135,7 +140,7 @@ If called repeatedly, the existing offset will be canceled and a new one will be
 Example usage: call this route at 15s intervals with an offset of 60000 (60s).
 If this route is not called within 60 seconds, all your orders will be automatically canceled.
 
-This is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#dead-man-s-switch-auto-cancel-)."
+This is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#Dead-Mans-Switch-Auto-Cancel)."
   [timeout ]
   (:data (order-cancel-all-after-with-http-info timeout)))
 
@@ -144,6 +149,7 @@ This is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#dead-man
   If no `price` is specified, a market order will be submitted to close the whole of your position. This will also close all other open orders in this symbol."
   ([symbol ] (order-close-position-with-http-info symbol nil))
   ([symbol {:keys [price ]}]
+   (check-required-params symbol)
    (call-api "/order/closePosition" :post
              {:path-params   {}
               :header-params {}
@@ -231,7 +237,9 @@ The following `execInst`s are supported. If using multiple, separate with a comm
 * **Close**: `'Close'` implies `'ReduceOnly'`. A `'Close'` order will cancel other active limit orders with the same side
   and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a
   `'Close'` Stop is ensured to have the margin required to execute, and can only execute up to the full size of your
-  position. If not specified, a `'Close'` order has an `orderQty` equal to your current position's size.
+  position. If `orderQty` is not specified, a `'Close'` order has an `orderQty` equal to your current position's size.
+  * Note that a `Close` order without an `orderQty` requires a `side`, so that BitMEX knows if it should trigger
+  above or below the `stopPx`.
 
 #### Linked Orders
 
@@ -281,14 +289,23 @@ in the market and avoids the cancel/replace cycle.
 
 If you want to keep track of order IDs yourself, set a unique `clOrdID` per order.
 This `clOrdID` will come back as a property on the order and any related executions (including on the WebSocket),
-and can be used to get or cancel the order. Max length is 36 characters."
+and can be used to get or cancel the order. Max length is 36 characters.
+
+You can also change the `clOrdID` by amending an order, supplying an `origClOrdID`, and your desired new
+ID as the `clOrdID` param, like so:
+
+```
+# Amends an order's leavesQty, and updates its clOrdID to \"def-456\"
+PUT /api/v1/order {\"origClOrdID\": \"abc-123\", \"clOrdID\": \"def-456\", \"leavesQty\": 1000}
+```"
   ([symbol ] (order-new-with-http-info symbol nil))
-  ([symbol {:keys [side simple-order-qty quantity order-qty price display-qty stop-price stop-px cl-ord-id cl-ord-link-id peg-offset-value peg-price-type type ord-type time-in-force exec-inst contingency-type text ]}]
+  ([symbol {:keys [side simple-order-qty order-qty price display-qty stop-px cl-ord-id cl-ord-link-id peg-offset-value peg-price-type ord-type time-in-force exec-inst contingency-type text ]}]
+   (check-required-params symbol)
    (call-api "/order" :post
              {:path-params   {}
               :header-params {}
               :query-params  {}
-              :form-params   {"symbol" symbol "side" side "simpleOrderQty" simple-order-qty "quantity" quantity "orderQty" order-qty "price" price "displayQty" display-qty "stopPrice" stop-price "stopPx" stop-px "clOrdID" cl-ord-id "clOrdLinkID" cl-ord-link-id "pegOffsetValue" peg-offset-value "pegPriceType" peg-price-type "type" type "ordType" ord-type "timeInForce" time-in-force "execInst" exec-inst "contingencyType" contingency-type "text" text }
+              :form-params   {"symbol" symbol "side" side "simpleOrderQty" simple-order-qty "orderQty" order-qty "price" price "displayQty" display-qty "stopPx" stop-px "clOrdID" cl-ord-id "clOrdLinkID" cl-ord-link-id "pegOffsetValue" peg-offset-value "pegPriceType" peg-price-type "ordType" ord-type "timeInForce" time-in-force "execInst" exec-inst "contingencyType" contingency-type "text" text }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
               :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
@@ -339,7 +356,9 @@ The following `execInst`s are supported. If using multiple, separate with a comm
 * **Close**: `'Close'` implies `'ReduceOnly'`. A `'Close'` order will cancel other active limit orders with the same side
   and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a
   `'Close'` Stop is ensured to have the margin required to execute, and can only execute up to the full size of your
-  position. If not specified, a `'Close'` order has an `orderQty` equal to your current position's size.
+  position. If `orderQty` is not specified, a `'Close'` order has an `orderQty` equal to your current position's size.
+  * Note that a `Close` order without an `orderQty` requires a `side`, so that BitMEX knows if it should trigger
+  above or below the `stopPx`.
 
 #### Linked Orders
 
@@ -389,7 +408,15 @@ in the market and avoids the cancel/replace cycle.
 
 If you want to keep track of order IDs yourself, set a unique `clOrdID` per order.
 This `clOrdID` will come back as a property on the order and any related executions (including on the WebSocket),
-and can be used to get or cancel the order. Max length is 36 characters."
+and can be used to get or cancel the order. Max length is 36 characters.
+
+You can also change the `clOrdID` by amending an order, supplying an `origClOrdID`, and your desired new
+ID as the `clOrdID` param, like so:
+
+```
+# Amends an order's leavesQty, and updates its clOrdID to \"def-456\"
+PUT /api/v1/order {\"origClOrdID\": \"abc-123\", \"clOrdID\": \"def-456\", \"leavesQty\": 1000}
+```"
   ([symbol ] (order-new symbol nil))
   ([symbol optional-params]
    (:data (order-new-with-http-info symbol optional-params))))

@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **float** |  | [optional] 
-**date** | **datetime** |  | 
+**_date** | **datetime** |  | 
 **title** | **str** |  | 
 **body** | **str** |  | 
 **ttl** | **float** |  | 

@@ -9,7 +9,7 @@ import Foundation
 
 
 
-open class IndexComposite: Codable {
+public struct IndexComposite: Codable {
 
     public var timestamp: Date
     public var symbol: String?
@@ -19,34 +19,16 @@ open class IndexComposite: Codable {
     public var weight: Double?
     public var logged: Date?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(timestamp, forKey: "timestamp")
-        try container.encodeIfPresent(symbol, forKey: "symbol")
-        try container.encodeIfPresent(indexSymbol, forKey: "indexSymbol")
-        try container.encodeIfPresent(reference, forKey: "reference")
-        try container.encodeIfPresent(lastPrice, forKey: "lastPrice")
-        try container.encodeIfPresent(weight, forKey: "weight")
-        try container.encodeIfPresent(logged, forKey: "logged")
+    public init(timestamp: Date, symbol: String?, indexSymbol: String?, reference: String?, lastPrice: Double?, weight: Double?, logged: Date?) {
+        self.timestamp = timestamp
+        self.symbol = symbol
+        self.indexSymbol = indexSymbol
+        self.reference = reference
+        self.lastPrice = lastPrice
+        self.weight = weight
+        self.logged = logged
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        timestamp = try container.decode(Date.self, forKey: "timestamp")
-        symbol = try container.decodeIfPresent(String.self, forKey: "symbol")
-        indexSymbol = try container.decodeIfPresent(String.self, forKey: "indexSymbol")
-        reference = try container.decodeIfPresent(String.self, forKey: "reference")
-        lastPrice = try container.decodeIfPresent(Double.self, forKey: "lastPrice")
-        weight = try container.decodeIfPresent(Double.self, forKey: "weight")
-        logged = try container.decodeIfPresent(Date.self, forKey: "logged")
-    }
 }
 

@@ -19,7 +19,7 @@ open class AnnouncementAPI {
      */
     open class func announcementGet(columns: String? = nil, completion: @escaping ((_ data: [Announcement]?,_ error: Error?) -> Void)) {
         announcementGetWithRequestBuilder(columns: columns).execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -49,12 +49,11 @@ open class AnnouncementAPI {
         let path = "/announcement"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
             "columns": columns
         ])
-        
 
         let requestBuilder: RequestBuilder<[Announcement]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -68,7 +67,7 @@ open class AnnouncementAPI {
      */
     open class func announcementGetUrgent(completion: @escaping ((_ data: [Announcement]?,_ error: Error?) -> Void)) {
         announcementGetUrgentWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error);
+            completion(response?.body, error)
         }
     }
 
@@ -105,9 +104,8 @@ open class AnnouncementAPI {
         let path = "/announcement/urgent"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = NSURLComponents(string: URLString)
-
+        
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<[Announcement]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 

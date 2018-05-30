@@ -21,7 +21,7 @@ require 'swagger_client'
 api_instance = SwaggerClient::SchemaApi.new
 
 opts = { 
-  model: "model_example" # String | Optional model filter. If omitted, will return all models.
+  model: 'model_example' # String | Optional model filter. If omitted, will return all models.
 }
 
 begin

@@ -9,7 +9,7 @@ import Foundation
 
 
 
-open class Affiliate: Codable {
+public struct Affiliate: Codable {
 
     public var account: Double
     public var currency: String
@@ -27,50 +27,24 @@ open class Affiliate: Codable {
     public var timestamp: Date?
     public var referrerAccount: Double?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(account, forKey: "account")
-        try container.encode(currency, forKey: "currency")
-        try container.encodeIfPresent(prevPayout, forKey: "prevPayout")
-        try container.encodeIfPresent(prevTurnover, forKey: "prevTurnover")
-        try container.encodeIfPresent(prevComm, forKey: "prevComm")
-        try container.encodeIfPresent(prevTimestamp, forKey: "prevTimestamp")
-        try container.encodeIfPresent(execTurnover, forKey: "execTurnover")
-        try container.encodeIfPresent(execComm, forKey: "execComm")
-        try container.encodeIfPresent(totalReferrals, forKey: "totalReferrals")
-        try container.encodeIfPresent(totalTurnover, forKey: "totalTurnover")
-        try container.encodeIfPresent(totalComm, forKey: "totalComm")
-        try container.encodeIfPresent(payoutPcnt, forKey: "payoutPcnt")
-        try container.encodeIfPresent(pendingPayout, forKey: "pendingPayout")
-        try container.encodeIfPresent(timestamp, forKey: "timestamp")
-        try container.encodeIfPresent(referrerAccount, forKey: "referrerAccount")
+    public init(account: Double, currency: String, prevPayout: Double?, prevTurnover: Double?, prevComm: Double?, prevTimestamp: Date?, execTurnover: Double?, execComm: Double?, totalReferrals: Double?, totalTurnover: Double?, totalComm: Double?, payoutPcnt: Double?, pendingPayout: Double?, timestamp: Date?, referrerAccount: Double?) {
+        self.account = account
+        self.currency = currency
+        self.prevPayout = prevPayout
+        self.prevTurnover = prevTurnover
+        self.prevComm = prevComm
+        self.prevTimestamp = prevTimestamp
+        self.execTurnover = execTurnover
+        self.execComm = execComm
+        self.totalReferrals = totalReferrals
+        self.totalTurnover = totalTurnover
+        self.totalComm = totalComm
+        self.payoutPcnt = payoutPcnt
+        self.pendingPayout = pendingPayout
+        self.timestamp = timestamp
+        self.referrerAccount = referrerAccount
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        account = try container.decode(Double.self, forKey: "account")
-        currency = try container.decode(String.self, forKey: "currency")
-        prevPayout = try container.decodeIfPresent(Double.self, forKey: "prevPayout")
-        prevTurnover = try container.decodeIfPresent(Double.self, forKey: "prevTurnover")
-        prevComm = try container.decodeIfPresent(Double.self, forKey: "prevComm")
-        prevTimestamp = try container.decodeIfPresent(Date.self, forKey: "prevTimestamp")
-        execTurnover = try container.decodeIfPresent(Double.self, forKey: "execTurnover")
-        execComm = try container.decodeIfPresent(Double.self, forKey: "execComm")
-        totalReferrals = try container.decodeIfPresent(Double.self, forKey: "totalReferrals")
-        totalTurnover = try container.decodeIfPresent(Double.self, forKey: "totalTurnover")
-        totalComm = try container.decodeIfPresent(Double.self, forKey: "totalComm")
-        payoutPcnt = try container.decodeIfPresent(Double.self, forKey: "payoutPcnt")
-        pendingPayout = try container.decodeIfPresent(Double.self, forKey: "pendingPayout")
-        timestamp = try container.decodeIfPresent(Date.self, forKey: "timestamp")
-        referrerAccount = try container.decodeIfPresent(Double.self, forKey: "referrerAccount")
-    }
 }
 

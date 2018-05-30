@@ -10,7 +10,7 @@ import Foundation
 
 /** Individual &amp; Bucketed Trades */
 
-open class Trade: Codable {
+public struct Trade: Codable {
 
     public var timestamp: Date
     public var symbol: String
@@ -23,40 +23,19 @@ open class Trade: Codable {
     public var homeNotional: Double?
     public var foreignNotional: Double?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(timestamp, forKey: "timestamp")
-        try container.encode(symbol, forKey: "symbol")
-        try container.encodeIfPresent(side, forKey: "side")
-        try container.encodeIfPresent(size, forKey: "size")
-        try container.encodeIfPresent(price, forKey: "price")
-        try container.encodeIfPresent(tickDirection, forKey: "tickDirection")
-        try container.encodeIfPresent(trdMatchID, forKey: "trdMatchID")
-        try container.encodeIfPresent(grossValue, forKey: "grossValue")
-        try container.encodeIfPresent(homeNotional, forKey: "homeNotional")
-        try container.encodeIfPresent(foreignNotional, forKey: "foreignNotional")
+    public init(timestamp: Date, symbol: String, side: String?, size: Double?, price: Double?, tickDirection: String?, trdMatchID: String?, grossValue: Double?, homeNotional: Double?, foreignNotional: Double?) {
+        self.timestamp = timestamp
+        self.symbol = symbol
+        self.side = side
+        self.size = size
+        self.price = price
+        self.tickDirection = tickDirection
+        self.trdMatchID = trdMatchID
+        self.grossValue = grossValue
+        self.homeNotional = homeNotional
+        self.foreignNotional = foreignNotional
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        timestamp = try container.decode(Date.self, forKey: "timestamp")
-        symbol = try container.decode(String.self, forKey: "symbol")
-        side = try container.decodeIfPresent(String.self, forKey: "side")
-        size = try container.decodeIfPresent(Double.self, forKey: "size")
-        price = try container.decodeIfPresent(Double.self, forKey: "price")
-        tickDirection = try container.decodeIfPresent(String.self, forKey: "tickDirection")
-        trdMatchID = try container.decodeIfPresent(String.self, forKey: "trdMatchID")
-        grossValue = try container.decodeIfPresent(Double.self, forKey: "grossValue")
-        homeNotional = try container.decodeIfPresent(Double.self, forKey: "homeNotional")
-        foreignNotional = try container.decodeIfPresent(Double.self, forKey: "foreignNotional")
-    }
 }
 

@@ -49,7 +49,7 @@ namespace Example
             var apiInstance = new PositionApi();
             var filter = filter_example;  // string | Table filter. For example, send {\"symbol\": \"XBTUSD\"}. (optional) 
             var columns = columns_example;  // string | Which columns to fetch. For example, send [\"columnName\"]. (optional) 
-            var count = 3.4;  // decimal? | Number of rows to fetch. (optional) 
+            var count = 8.14;  // decimal? | Number of rows to fetch. (optional) 
 
             try
             {
@@ -94,8 +94,6 @@ Name | Type | Description  | Notes
 > Position PositionIsolateMargin (string symbol, bool? enabled = null)
 
 Enable isolated margin or cross margin per-position.
-
-Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
 
 ### Example
 ```csharp
@@ -171,8 +169,6 @@ Name | Type | Description  | Notes
 
 Transfer equity in or out of a position.
 
-When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
-
 ### Example
 ```csharp
 using System;
@@ -202,7 +198,7 @@ namespace Example
 
             var apiInstance = new PositionApi();
             var symbol = symbol_example;  // string | Symbol of position to isolate.
-            var amount = 3.4;  // decimal? | Amount to transfer, in Satoshis. May be negative.
+            var amount = 8.14;  // decimal? | Amount to transfer, in Satoshis. May be negative.
 
             try
             {
@@ -246,8 +242,6 @@ Name | Type | Description  | Notes
 > Position PositionUpdateLeverage (string symbol, double? leverage)
 
 Choose leverage for a position.
-
-Users can choose an isolated leverage. This will automatically enable isolated margin.
 
 ### Example
 ```csharp
@@ -323,8 +317,6 @@ Name | Type | Description  | Notes
 
 Update your risk limit.
 
-Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
-
 ### Example
 ```csharp
 using System;
@@ -353,8 +345,8 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
 
             var apiInstance = new PositionApi();
-            var symbol = symbol_example;  // string | Symbol of position to isolate.
-            var riskLimit = 3.4;  // decimal? | New Risk Limit, in Satoshis.
+            var symbol = symbol_example;  // string | Symbol of position to update risk limit on.
+            var riskLimit = 8.14;  // decimal? | New Risk Limit, in Satoshis.
 
             try
             {
@@ -375,7 +367,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string**| Symbol of position to isolate. | 
+ **symbol** | **string**| Symbol of position to update risk limit on. | 
  **riskLimit** | **decimal?**| New Risk Limit, in Satoshis. | 
 
 ### Return type

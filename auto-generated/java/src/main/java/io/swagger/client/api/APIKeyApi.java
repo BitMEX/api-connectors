@@ -1,6 +1,6 @@
 /*
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -37,14 +37,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class APIKeyApi {
+public class ApiKeyApi {
     private ApiClient apiClient;
 
-    public APIKeyApi() {
+    public ApiKeyApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public APIKeyApi(ApiClient apiClient) {
+    public ApiKeyApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -66,7 +66,7 @@ public class APIKeyApi {
      */
     public com.squareup.okhttp.Call aPIKeyDisableCall(String apiKeyID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
-        
+
         // create path and map variables
         String localVarPath = "/apiKey/disable";
 
@@ -106,7 +106,7 @@ public class APIKeyApi {
         String[] localVarAuthNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call aPIKeyDisableValidateBeforeCall(String apiKeyID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
@@ -115,14 +115,10 @@ public class APIKeyApi {
             throw new ApiException("Missing the required parameter 'apiKeyID' when calling aPIKeyDisable(Async)");
         }
         
-        
+
         com.squareup.okhttp.Call call = aPIKeyDisableCall(apiKeyID, progressListener, progressRequestListener);
         return call;
 
-        
-        
-        
-        
     }
 
     /**
@@ -194,7 +190,7 @@ public class APIKeyApi {
      */
     public com.squareup.okhttp.Call aPIKeyEnableCall(String apiKeyID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
-        
+
         // create path and map variables
         String localVarPath = "/apiKey/enable";
 
@@ -234,7 +230,7 @@ public class APIKeyApi {
         String[] localVarAuthNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call aPIKeyEnableValidateBeforeCall(String apiKeyID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
@@ -243,14 +239,10 @@ public class APIKeyApi {
             throw new ApiException("Missing the required parameter 'apiKeyID' when calling aPIKeyEnable(Async)");
         }
         
-        
+
         com.squareup.okhttp.Call call = aPIKeyEnableCall(apiKeyID, progressListener, progressRequestListener);
         return call;
 
-        
-        
-        
-        
     }
 
     /**
@@ -322,7 +314,7 @@ public class APIKeyApi {
      */
     public com.squareup.okhttp.Call aPIKeyGetCall(Boolean reverse, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
-        
+
         // create path and map variables
         String localVarPath = "/apiKey";
 
@@ -362,18 +354,14 @@ public class APIKeyApi {
         String[] localVarAuthNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call aPIKeyGetValidateBeforeCall(Boolean reverse, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        
+
         com.squareup.okhttp.Call call = aPIKeyGetCall(reverse, progressListener, progressRequestListener);
         return call;
 
-        
-        
-        
-        
     }
 
     /**
@@ -449,7 +437,7 @@ public class APIKeyApi {
      */
     public com.squareup.okhttp.Call aPIKeyNewCall(String name, String cidr, String permissions, Boolean enabled, String token, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
-        
+
         // create path and map variables
         String localVarPath = "/apiKey";
 
@@ -497,18 +485,14 @@ public class APIKeyApi {
         String[] localVarAuthNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call aPIKeyNewValidateBeforeCall(String name, String cidr, String permissions, Boolean enabled, String token, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        
+
         com.squareup.okhttp.Call call = aPIKeyNewCall(name, cidr, permissions, enabled, token, progressListener, progressRequestListener);
         return call;
 
-        
-        
-        
-        
     }
 
     /**
@@ -592,7 +576,7 @@ public class APIKeyApi {
      */
     public com.squareup.okhttp.Call aPIKeyRemoveCall(String apiKeyID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
-        
+
         // create path and map variables
         String localVarPath = "/apiKey";
 
@@ -632,7 +616,7 @@ public class APIKeyApi {
         String[] localVarAuthNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call aPIKeyRemoveValidateBeforeCall(String apiKeyID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
@@ -641,14 +625,10 @@ public class APIKeyApi {
             throw new ApiException("Missing the required parameter 'apiKeyID' when calling aPIKeyRemove(Async)");
         }
         
-        
+
         com.squareup.okhttp.Call call = aPIKeyRemoveCall(apiKeyID, progressListener, progressRequestListener);
         return call;
 
-        
-        
-        
-        
     }
 
     /**

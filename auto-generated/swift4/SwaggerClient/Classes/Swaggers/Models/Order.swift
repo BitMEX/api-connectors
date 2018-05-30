@@ -10,7 +10,7 @@ import Foundation
 
 /** Placement, Cancellation, Amending, and History */
 
-open class Order: Codable {
+public struct Order: Codable {
 
     public var orderID: String
     public var clOrdID: String?
@@ -46,86 +46,42 @@ open class Order: Codable {
     public var transactTime: Date?
     public var timestamp: Date?
 
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-
-        var container = encoder.container(keyedBy: String.self)
-
-        try container.encode(orderID, forKey: "orderID")
-        try container.encodeIfPresent(clOrdID, forKey: "clOrdID")
-        try container.encodeIfPresent(clOrdLinkID, forKey: "clOrdLinkID")
-        try container.encodeIfPresent(account, forKey: "account")
-        try container.encodeIfPresent(symbol, forKey: "symbol")
-        try container.encodeIfPresent(side, forKey: "side")
-        try container.encodeIfPresent(simpleOrderQty, forKey: "simpleOrderQty")
-        try container.encodeIfPresent(orderQty, forKey: "orderQty")
-        try container.encodeIfPresent(price, forKey: "price")
-        try container.encodeIfPresent(displayQty, forKey: "displayQty")
-        try container.encodeIfPresent(stopPx, forKey: "stopPx")
-        try container.encodeIfPresent(pegOffsetValue, forKey: "pegOffsetValue")
-        try container.encodeIfPresent(pegPriceType, forKey: "pegPriceType")
-        try container.encodeIfPresent(currency, forKey: "currency")
-        try container.encodeIfPresent(settlCurrency, forKey: "settlCurrency")
-        try container.encodeIfPresent(ordType, forKey: "ordType")
-        try container.encodeIfPresent(timeInForce, forKey: "timeInForce")
-        try container.encodeIfPresent(execInst, forKey: "execInst")
-        try container.encodeIfPresent(contingencyType, forKey: "contingencyType")
-        try container.encodeIfPresent(exDestination, forKey: "exDestination")
-        try container.encodeIfPresent(ordStatus, forKey: "ordStatus")
-        try container.encodeIfPresent(triggered, forKey: "triggered")
-        try container.encodeIfPresent(workingIndicator, forKey: "workingIndicator")
-        try container.encodeIfPresent(ordRejReason, forKey: "ordRejReason")
-        try container.encodeIfPresent(simpleLeavesQty, forKey: "simpleLeavesQty")
-        try container.encodeIfPresent(leavesQty, forKey: "leavesQty")
-        try container.encodeIfPresent(simpleCumQty, forKey: "simpleCumQty")
-        try container.encodeIfPresent(cumQty, forKey: "cumQty")
-        try container.encodeIfPresent(avgPx, forKey: "avgPx")
-        try container.encodeIfPresent(multiLegReportingType, forKey: "multiLegReportingType")
-        try container.encodeIfPresent(text, forKey: "text")
-        try container.encodeIfPresent(transactTime, forKey: "transactTime")
-        try container.encodeIfPresent(timestamp, forKey: "timestamp")
+    public init(orderID: String, clOrdID: String?, clOrdLinkID: String?, account: Double?, symbol: String?, side: String?, simpleOrderQty: Double?, orderQty: Double?, price: Double?, displayQty: Double?, stopPx: Double?, pegOffsetValue: Double?, pegPriceType: String?, currency: String?, settlCurrency: String?, ordType: String?, timeInForce: String?, execInst: String?, contingencyType: String?, exDestination: String?, ordStatus: String?, triggered: String?, workingIndicator: Bool?, ordRejReason: String?, simpleLeavesQty: Double?, leavesQty: Double?, simpleCumQty: Double?, cumQty: Double?, avgPx: Double?, multiLegReportingType: String?, text: String?, transactTime: Date?, timestamp: Date?) {
+        self.orderID = orderID
+        self.clOrdID = clOrdID
+        self.clOrdLinkID = clOrdLinkID
+        self.account = account
+        self.symbol = symbol
+        self.side = side
+        self.simpleOrderQty = simpleOrderQty
+        self.orderQty = orderQty
+        self.price = price
+        self.displayQty = displayQty
+        self.stopPx = stopPx
+        self.pegOffsetValue = pegOffsetValue
+        self.pegPriceType = pegPriceType
+        self.currency = currency
+        self.settlCurrency = settlCurrency
+        self.ordType = ordType
+        self.timeInForce = timeInForce
+        self.execInst = execInst
+        self.contingencyType = contingencyType
+        self.exDestination = exDestination
+        self.ordStatus = ordStatus
+        self.triggered = triggered
+        self.workingIndicator = workingIndicator
+        self.ordRejReason = ordRejReason
+        self.simpleLeavesQty = simpleLeavesQty
+        self.leavesQty = leavesQty
+        self.simpleCumQty = simpleCumQty
+        self.cumQty = cumQty
+        self.avgPx = avgPx
+        self.multiLegReportingType = multiLegReportingType
+        self.text = text
+        self.transactTime = transactTime
+        self.timestamp = timestamp
     }
 
-    // Decodable protocol methods
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: String.self)
 
-        orderID = try container.decode(String.self, forKey: "orderID")
-        clOrdID = try container.decodeIfPresent(String.self, forKey: "clOrdID")
-        clOrdLinkID = try container.decodeIfPresent(String.self, forKey: "clOrdLinkID")
-        account = try container.decodeIfPresent(Double.self, forKey: "account")
-        symbol = try container.decodeIfPresent(String.self, forKey: "symbol")
-        side = try container.decodeIfPresent(String.self, forKey: "side")
-        simpleOrderQty = try container.decodeIfPresent(Double.self, forKey: "simpleOrderQty")
-        orderQty = try container.decodeIfPresent(Double.self, forKey: "orderQty")
-        price = try container.decodeIfPresent(Double.self, forKey: "price")
-        displayQty = try container.decodeIfPresent(Double.self, forKey: "displayQty")
-        stopPx = try container.decodeIfPresent(Double.self, forKey: "stopPx")
-        pegOffsetValue = try container.decodeIfPresent(Double.self, forKey: "pegOffsetValue")
-        pegPriceType = try container.decodeIfPresent(String.self, forKey: "pegPriceType")
-        currency = try container.decodeIfPresent(String.self, forKey: "currency")
-        settlCurrency = try container.decodeIfPresent(String.self, forKey: "settlCurrency")
-        ordType = try container.decodeIfPresent(String.self, forKey: "ordType")
-        timeInForce = try container.decodeIfPresent(String.self, forKey: "timeInForce")
-        execInst = try container.decodeIfPresent(String.self, forKey: "execInst")
-        contingencyType = try container.decodeIfPresent(String.self, forKey: "contingencyType")
-        exDestination = try container.decodeIfPresent(String.self, forKey: "exDestination")
-        ordStatus = try container.decodeIfPresent(String.self, forKey: "ordStatus")
-        triggered = try container.decodeIfPresent(String.self, forKey: "triggered")
-        workingIndicator = try container.decodeIfPresent(Bool.self, forKey: "workingIndicator")
-        ordRejReason = try container.decodeIfPresent(String.self, forKey: "ordRejReason")
-        simpleLeavesQty = try container.decodeIfPresent(Double.self, forKey: "simpleLeavesQty")
-        leavesQty = try container.decodeIfPresent(Double.self, forKey: "leavesQty")
-        simpleCumQty = try container.decodeIfPresent(Double.self, forKey: "simpleCumQty")
-        cumQty = try container.decodeIfPresent(Double.self, forKey: "cumQty")
-        avgPx = try container.decodeIfPresent(Double.self, forKey: "avgPx")
-        multiLegReportingType = try container.decodeIfPresent(String.self, forKey: "multiLegReportingType")
-        text = try container.decodeIfPresent(String.self, forKey: "text")
-        transactTime = try container.decodeIfPresent(Date.self, forKey: "transactTime")
-        timestamp = try container.decodeIfPresent(Date.self, forKey: "timestamp")
-    }
 }
 

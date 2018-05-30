@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started   ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](https://www.bitmex.com/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,52 +38,54 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="User" /> class.
         /// </summary>
-        /// <param name="Id">Id.</param>
-        /// <param name="OwnerId">OwnerId.</param>
-        /// <param name="Firstname">Firstname.</param>
-        /// <param name="Lastname">Lastname.</param>
-        /// <param name="Username">Username (required).</param>
-        /// <param name="Email">Email (required).</param>
-        /// <param name="Phone">Phone.</param>
-        /// <param name="Created">Created.</param>
-        /// <param name="LastUpdated">LastUpdated.</param>
-        /// <param name="Preferences">Preferences.</param>
-        /// <param name="TFAEnabled">TFAEnabled.</param>
-        /// <param name="AffiliateID">AffiliateID.</param>
-        /// <param name="PgpPubKey">PgpPubKey.</param>
-        /// <param name="Country">Country.</param>
-        public User(decimal? Id = default(decimal?), decimal? OwnerId = default(decimal?), string Firstname = default(string), string Lastname = default(string), string Username = default(string), string Email = default(string), string Phone = default(string), DateTime? Created = default(DateTime?), DateTime? LastUpdated = default(DateTime?), UserPreferences Preferences = default(UserPreferences), string TFAEnabled = default(string), string AffiliateID = default(string), string PgpPubKey = default(string), string Country = default(string))
+        /// <param name="id">id.</param>
+        /// <param name="ownerId">ownerId.</param>
+        /// <param name="firstname">firstname.</param>
+        /// <param name="lastname">lastname.</param>
+        /// <param name="username">username (required).</param>
+        /// <param name="email">email (required).</param>
+        /// <param name="phone">phone.</param>
+        /// <param name="created">created.</param>
+        /// <param name="lastUpdated">lastUpdated.</param>
+        /// <param name="preferences">preferences.</param>
+        /// <param name="tFAEnabled">tFAEnabled.</param>
+        /// <param name="affiliateID">affiliateID.</param>
+        /// <param name="pgpPubKey">pgpPubKey.</param>
+        /// <param name="country">country.</param>
+        /// <param name="typ">typ.</param>
+        public User(decimal? id = default(decimal?), decimal? ownerId = default(decimal?), string firstname = default(string), string lastname = default(string), string username = default(string), string email = default(string), string phone = default(string), DateTime? created = default(DateTime?), DateTime? lastUpdated = default(DateTime?), UserPreferences preferences = default(UserPreferences), string tFAEnabled = default(string), string affiliateID = default(string), string pgpPubKey = default(string), string country = default(string), string typ = default(string))
         {
-            // to ensure "Username" is required (not null)
-            if (Username == null)
+            // to ensure "username" is required (not null)
+            if (username == null)
             {
-                throw new InvalidDataException("Username is a required property for User and cannot be null");
+                throw new InvalidDataException("username is a required property for User and cannot be null");
             }
             else
             {
-                this.Username = Username;
+                this.Username = username;
             }
-            // to ensure "Email" is required (not null)
-            if (Email == null)
+            // to ensure "email" is required (not null)
+            if (email == null)
             {
-                throw new InvalidDataException("Email is a required property for User and cannot be null");
+                throw new InvalidDataException("email is a required property for User and cannot be null");
             }
             else
             {
-                this.Email = Email;
+                this.Email = email;
             }
-            this.Id = Id;
-            this.OwnerId = OwnerId;
-            this.Firstname = Firstname;
-            this.Lastname = Lastname;
-            this.Phone = Phone;
-            this.Created = Created;
-            this.LastUpdated = LastUpdated;
-            this.Preferences = Preferences;
-            this.TFAEnabled = TFAEnabled;
-            this.AffiliateID = AffiliateID;
-            this.PgpPubKey = PgpPubKey;
-            this.Country = Country;
+            this.Id = id;
+            this.OwnerId = ownerId;
+            this.Firstname = firstname;
+            this.Lastname = lastname;
+            this.Phone = phone;
+            this.Created = created;
+            this.LastUpdated = lastUpdated;
+            this.Preferences = preferences;
+            this.TFAEnabled = tFAEnabled;
+            this.AffiliateID = affiliateID;
+            this.PgpPubKey = pgpPubKey;
+            this.Country = country;
+            this.Typ = typ;
         }
         
         /// <summary>
@@ -171,6 +173,12 @@ namespace IO.Swagger.Model
         public string Country { get; set; }
 
         /// <summary>
+        /// Gets or Sets Typ
+        /// </summary>
+        [DataMember(Name="typ", EmitDefaultValue=false)]
+        public string Typ { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -192,6 +200,7 @@ namespace IO.Swagger.Model
             sb.Append("  AffiliateID: ").Append(AffiliateID).Append("\n");
             sb.Append("  PgpPubKey: ").Append(PgpPubKey).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
+            sb.Append("  Typ: ").Append(Typ).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -200,7 +209,7 @@ namespace IO.Swagger.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -295,6 +304,11 @@ namespace IO.Swagger.Model
                     this.Country == input.Country ||
                     (this.Country != null &&
                     this.Country.Equals(input.Country))
+                ) && 
+                (
+                    this.Typ == input.Typ ||
+                    (this.Typ != null &&
+                    this.Typ.Equals(input.Typ))
                 );
         }
 
@@ -335,6 +349,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.PgpPubKey.GetHashCode();
                 if (this.Country != null)
                     hashCode = hashCode * 59 + this.Country.GetHashCode();
+                if (this.Typ != null)
+                    hashCode = hashCode * 59 + this.Typ.GetHashCode();
                 return hashCode;
             }
         }
