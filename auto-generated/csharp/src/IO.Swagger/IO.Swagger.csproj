@@ -12,7 +12,7 @@ Contact: support@bitmex.com
     
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E890AB62-4392-46CE-92C8-0C320896A72D}</ProjectGuid>
+    <ProjectGuid>{E4AC691D-EE89-4F3A-8CBF-502F3032FF45}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IO.Swagger</RootNamespace>

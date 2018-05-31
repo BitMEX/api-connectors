@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
  * Tradeable Contracts, Indices, and History
  */
 @ApiModel(description = "Tradeable Contracts, Indices, and History")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-05-30T12:55:43.198-05:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-05-31T16:00:32.015Z")
 public class Instrument {
   @SerializedName("symbol")
   private String symbol = null;

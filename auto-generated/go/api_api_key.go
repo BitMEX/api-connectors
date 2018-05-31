@@ -516,7 +516,7 @@ func (a *APIKeyApiService) APIKeyGet(ctx context.Context, localVarOptionals *API
 
 /* 
 APIKeyApiService Create a new API Key.
-API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
+API Keys can only be created via the frontend.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *APIKeyNewOpts - Optional Parameters:
      * @param "Name" (optional.String) -  Key name. This name is for reference only.

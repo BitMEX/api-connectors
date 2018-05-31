@@ -59,7 +59,7 @@
 
 (defn a-pi-key-new-with-http-info
   "Create a new API Key.
-  API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities."
+  API Keys can only be created via the frontend."
   ([] (a-pi-key-new-with-http-info nil))
   ([{:keys [name cidr permissions enabled token ]}]
    (call-api "/apiKey" :post
@@ -73,7 +73,7 @@
 
 (defn a-pi-key-new
   "Create a new API Key.
-  API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities."
+  API Keys can only be created via the frontend."
   ([] (a-pi-key-new nil))
   ([optional-params]
    (:data (a-pi-key-new-with-http-info optional-params))))

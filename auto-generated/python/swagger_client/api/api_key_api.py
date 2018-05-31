@@ -323,7 +323,7 @@ class APIKeyApi(object):
     def a_pi_key_new(self, **kwargs):  # noqa: E501
         """Create a new API Key.  # noqa: E501
 
-        API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.  # noqa: E501
+        API Keys can only be created via the frontend.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.a_pi_key_new(async=True)
@@ -349,7 +349,7 @@ class APIKeyApi(object):
     def a_pi_key_new_with_http_info(self, **kwargs):  # noqa: E501
         """Create a new API Key.  # noqa: E501
 
-        API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.  # noqa: E501
+        API Keys can only be created via the frontend.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.a_pi_key_new_with_http_info(async=True)

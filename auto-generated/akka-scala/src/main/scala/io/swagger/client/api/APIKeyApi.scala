@@ -99,7 +99,7 @@ object APIKeyApi {
       .withErrorResponse[Error](401)
       .withErrorResponse[Error](404)
         /**
-   * API Keys can also be created via [this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) See the [API Key Documentation](/app/apiKeys) for more information on capabilities.
+   * API Keys can only be created via the frontend.
    * 
    * Expected answers:
    *   code 200 : APIKey (Request was successful)

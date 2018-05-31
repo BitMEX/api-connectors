@@ -7,7 +7,7 @@ CLIENTS=$DIR/auto-generated
 DOCS=$DIR/docs
 CLI=$DIR/swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar
 RESOURCES="https://www.bitmex.com/api/explorer/swagger.json"
-declare -a CLIENTLANGS=(android akka-scala clojure csharp java javascript go objc php python ruby scala swagger swagger-yaml swift4 typescript-node)
+declare -a CLIENTLANGS=(android akka-scala clojure csharp java javascript go objc php python ruby scala swagger swagger-yaml swift4 typescript-node cpprest)
 # FIXME: php and typescript-node appear to have case-sensitive FS problems
 declare -a DOCLANGS=(html dynamic-html)
 
