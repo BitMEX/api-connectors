@@ -82,15 +82,15 @@ function emitSplitData(emitter, data) {
   // Technically, we can change this (e.g. chat channels)
   const filterKey = data.filterKey || 'symbol';
 
-  // By looking at what we're subscribed to, we can save time by only emitting those events.
-  const matchingStreams = emitter._listenerTree[table];
-  const symbolData = _.mapValues(matchingStreams, () => []);
-
-  // This is similar to _groupBy, but faster.
-  for (let i = 0; i < data.data.length; i++) {
-    const d = data.data[i];
-    if (symbolData[d[filterKey]]) symbolData[d[filterKey]].push(d);
-  }
+  // Generate data by symbol
+  const symbolData = data.data.reduce((accumulator, currentValue) => {
+    if (accumulator.hasOwnProperty(currentValue[filterKey])) {
+      accumulator[currentValue[filterKey]].push(currentValue);
+    } else {
+      accumulator[currentValue[filterKey]] = [currentValue];
+    }
+    return accumulator;
+  }, {});
 
   Object.keys(symbolData).forEach((symbol) => {
     const key = `${table}:${action}:${symbol}`;
