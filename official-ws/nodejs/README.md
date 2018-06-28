@@ -113,8 +113,7 @@ The streams below echo the models described in the [API Explorer](https://www.bi
 
 #### Available Private Streams
 
-The following streams require authentication via an API key. Use
-[this Python script](https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py) to easily create a key.
+The following streams require authentication via an API key.
 
 ```
 "execution",    // Individual order placements and executions, settlements, commissions
