@@ -90,6 +90,7 @@ function emitSplitData(emitter, data) {
   for (let i = 0; i < data.data.length; i++) {
     const d = data.data[i];
     if (symbolData[d[filterKey]]) symbolData[d[filterKey]].push(d);
+    if (symbolData['*']) symbolData['*'].push(d);
   }
 
   Object.keys(symbolData).forEach((symbol) => {
