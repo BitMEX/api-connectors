@@ -1,0 +1,13 @@
+{
+  "name": "bitmex-node-fetch",
+  "version": "0.0.1-unreleased",
+  "description": "An example of using node-fetch for BitMEX API authentication",
+  "main": "index.js",
+  "private": true,
+  "author": "https://github.com/bomper",
+  "license": "MIT",
+  "homepage": "https://github.com/BitMEX/api-connectors/tree/master/official-http/node-fetch",
+  "dependencies": {
+    "node-fetch": "latest"
+  }
+}

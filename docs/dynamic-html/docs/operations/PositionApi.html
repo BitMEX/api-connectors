@@ -51,7 +51,7 @@
   <h2><a name="position.isolateMargin"></a>position.isolateMargin</h2>
   <hr>
   <p></p>
-  <p>Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.</p>
+  
   <h3 class="section">URL</h3>
   <code>https://localhost/api/v1/position/isolate</code>
   <h3 class="section">HTTP Method</h3>
@@ -86,7 +86,7 @@
   <h2><a name="position.transferIsolatedMargin"></a>position.transferIsolatedMargin</h2>
   <hr>
   <p></p>
-  <p>When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.</p>
+  
   <h3 class="section">URL</h3>
   <code>https://localhost/api/v1/position/transferMargin</code>
   <h3 class="section">HTTP Method</h3>
@@ -121,7 +121,7 @@
   <h2><a name="position.updateLeverage"></a>position.updateLeverage</h2>
   <hr>
   <p></p>
-  <p>Users can choose an isolated leverage. This will automatically enable isolated margin.</p>
+  
   <h3 class="section">URL</h3>
   <code>https://localhost/api/v1/position/leverage</code>
   <h3 class="section">HTTP Method</h3>
@@ -156,7 +156,7 @@
   <h2><a name="position.updateRiskLimit"></a>position.updateRiskLimit</h2>
   <hr>
   <p></p>
-  <p>Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.</p>
+  
   <h3 class="section">URL</h3>
   <code>https://localhost/api/v1/position/riskLimit</code>
   <h3 class="section">HTTP Method</h3>
@@ -174,7 +174,7 @@
       <span class="param-name">symbol</span>
       <span class="param-type">String</span>
       
-      <p class="param-description">Symbol of position to isolate.</p>
+      <p class="param-description">Symbol of position to update risk limit on.</p>
 	  </li>
 	  <li class="parameter">
       <span class="param-in">Form: </span>

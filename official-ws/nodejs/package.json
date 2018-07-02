@@ -1,6 +1,6 @@
 {
   "name": "bitmex-realtime-api",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "description": "A library for interacting with BitMEX's websocket API.",
   "main": "index.js",
   "repository": "https://github.com/BitMEX/api-connectors.git",

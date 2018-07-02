@@ -114,7 +114,7 @@ Orders can be amended by providing the original order ID. Quantity or price can 
 ### Canceling orders
 An order can be canceled given the order ID:
 
-    client.Order.Order_cancel(orderId='').result()
+    client.Order.Order_cancel(orderID='').result()
 
 You can cancel all open orders:
 

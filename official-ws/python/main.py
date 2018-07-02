@@ -16,7 +16,7 @@ def run():
     # Run forever
     while(ws.ws.sock.connected):
         logger.info("Ticker: %s" % ws.get_ticker())
-        if ws.config['api_key']:
+        if ws.api_key:
             logger.info("Funds: %s" % ws.funds())
         logger.info("Market Depth: %s" % ws.market_depth())
         logger.info("Recent Trades: %s\n\n" % ws.recent_trades())

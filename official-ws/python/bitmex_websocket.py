@@ -1,14 +1,11 @@
-import sys
 import websocket
 import threading
 import traceback
 from time import sleep
 import json
-import string
 import logging
-import urlparse
+import urllib
 import math
-from util.actual_kwargs import actual_kwargs
 from util.api_key import generate_nonce, generate_signature
 
 
@@ -20,21 +17,30 @@ from util.api_key import generate_nonce, generate_signature
 # On connect, it synchronously asks for a push of all this data then returns.
 # Right after, the MM can start using its data. It will be updated in realtime, so the MM can
 # poll really often if it wants.
-class BitMEXWebsocket():
+class BitMEXWebsocket:
 
     # Don't grow a table larger than this amount. Helps cap memory usage.
     MAX_TABLE_LEN = 200
 
-    # We use the actual_kwargs decorator to get all kwargs sent to this method so we can easily pass
-    # it to a validator function.
-    @actual_kwargs()
-    def __init__(self, endpoint=None, symbol=None, api_key=None, api_secret=None):
+    def __init__(self, endpoint, symbol, api_key=None, api_secret=None):
         '''Connect to the websocket and initialize data stores.'''
         self.logger = logging.getLogger(__name__)
         self.logger.debug("Initializing WebSocket.")
 
-        self.__validate(self.__init__.actual_kwargs)
-        self.__reset(self.__init__.actual_kwargs)
+        self.endpoint = endpoint
+        self.symbol = symbol
+
+        if api_key is not None and api_secret is None:
+            raise ValueError('api_secret is required if api_key is provided')
+        if api_key is None and api_secret is not None:
+            raise ValueError('api_key is required if api_secret is provided')
+
+        self.api_key = api_key
+        self.api_secret = api_secret
+
+        self.data = {}
+        self.keys = {}
+        self.exited = False
 
         # We can subscribe right in the connection querystring, so let's build that.
         # Subscribe to all pertinent endpoints
@@ -74,7 +80,7 @@ class BitMEXWebsocket():
 
         # The instrument has a tickSize. Use it to round values.
         instrument = self.data['instrument'][0]
-        return {k: round(float(v or 0), instrument['tickLog']) for k, v in ticker.iteritems()}
+        return {k: round(float(v or 0), instrument['tickLog']) for k, v in ticker.items()}
 
     def funds(self):
         '''Get your margin details.'''
@@ -122,19 +128,19 @@ class BitMEXWebsocket():
         if not conn_timeout:
             self.logger.error("Couldn't connect to WS! Exiting.")
             self.exit()
-            sys.exit(1)
+            raise websocket.WebSocketTimeoutException('Couldn\'t connect to WS! Exiting.')
 
     def __get_auth(self):
         '''Return auth headers. Will use API Keys if present in settings.'''
-        if self.config['api_key']:
+        if self.api_key:
             self.logger.info("Authenticating with API Key.")
             # To auth to the WS using an API key, we generate a signature of a nonce and
             # the WS API endpoint.
             nonce = generate_nonce()
             return [
                 "api-nonce: " + str(nonce),
-                "api-signature: " + generate_signature(self.config['api_secret'], 'GET', '/realtime', nonce, ''),
-                "api-key:" + self.config['api_key']
+                "api-signature: " + generate_signature(self.api_secret, 'GET', '/realtime', nonce, ''),
+                "api-key:" + self.api_key
             ]
         else:
             self.logger.info("Not authenticating.")
@@ -150,13 +156,13 @@ class BitMEXWebsocket():
         symbolSubs = ["execution", "instrument", "order", "orderBookL2", "position", "quote", "trade"]
         genericSubs = ["margin"]
 
-        subscriptions = [sub + ':' + self.config['symbol'] for sub in symbolSubs]
+        subscriptions = [sub + ':' + self.symbol for sub in symbolSubs]
         subscriptions += genericSubs
 
-        urlParts = list(urlparse.urlparse(self.config['endpoint']))
+        urlParts = list(urllib.parse.urlparse(self.endpoint))
         urlParts[0] = urlParts[0].replace('http', 'ws')
-        urlParts[2] = "/realtime?subscribe=" + string.join(subscriptions, ",")
-        return urlparse.urlunparse(urlParts)
+        urlParts[2] = "/realtime?subscribe={}".format(','.join(subscriptions))
+        return urllib.parse.urlunparse(urlParts)
 
     def __wait_for_account(self):
         '''On subscribe, this data will come down. Wait for it.'''
@@ -169,8 +175,10 @@ class BitMEXWebsocket():
         while not {'instrument', 'trade', 'quote'} <= set(self.data):
             sleep(0.1)
 
-    def __send_command(self, command, args=[]):
+    def __send_command(self, command, args=None):
         '''Send a raw command.'''
+        if args is None:
+            args = []
         self.ws.send(json.dumps({"op": command, "args": args}))
 
     def __on_message(self, ws, message):
@@ -206,7 +214,7 @@ class BitMEXWebsocket():
                     # Limit the max length of the table to avoid excessive memory usage.
                     # Don't trim orders because we'll lose valuable state if we do.
                     if table not in ['order', 'orderBookL2'] and len(self.data[table]) > BitMEXWebsocket.MAX_TABLE_LEN:
-                        self.data[table] = self.data[table][(BitMEXWebsocket.MAX_TABLE_LEN / 2):]
+                        self.data[table] = self.data[table][int(BitMEXWebsocket.MAX_TABLE_LEN / 2):]
 
                 elif action == 'update':
                     self.logger.debug('%s: updating %s' % (table, message['data']))
@@ -234,7 +242,7 @@ class BitMEXWebsocket():
         '''Called on fatal websocket errors. We exit on these.'''
         if not self.exited:
             self.logger.error("Error : %s" % error)
-            sys.exit(1)
+            raise websocket.WebSocketException(error)
 
     def __on_open(self, ws):
         '''Called when the WS opens.'''
@@ -243,26 +251,6 @@ class BitMEXWebsocket():
     def __on_close(self, ws):
         '''Called on websocket close.'''
         self.logger.info('Websocket Closed')
-        sys.exit(1)
-
-    def __validate(self, kwargs):
-        '''Simple method that ensure the user sent the right args to the method.'''
-        if 'symbol' not in kwargs:
-            self.logger.error("A symbol must be provided to BitMEXWebsocket()")
-            sys.exit(1)
-        if 'endpoint' not in kwargs:
-            self.logger.error("An endpoint (BitMEX URL) must be provided to BitMEXWebsocket()")
-            sys.exit(1)
-        if 'api_key' not in kwargs:
-            self.logger.error("No authentication provided! Unable to connect.")
-            sys.exit(1)
-
-    def __reset(self, kwargs):
-        '''Resets internal datastores.'''
-        self.data = {}
-        self.keys = {}
-        self.config = kwargs
-        self.exited = False
 
 
 # Utility method for finding an item in the store.

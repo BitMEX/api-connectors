@@ -3,17 +3,17 @@
 # Builds new versions of client libraries using swagger-codegen
 T="$(date +%s)"
 DIR=$(pwd)
-CLIENTS=$DIR/clients
+CLIENTS=$DIR/auto-generated
 DOCS=$DIR/docs
 CLI=$DIR/swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar
 RESOURCES="https://www.bitmex.com/api/explorer/swagger.json"
-declare -a CLIENTLANGS=(android akka-scala clojure csharp java javascript go objc python ruby scala swagger swagger-yaml swift4)
+declare -a CLIENTLANGS=(android akka-scala clojure csharp java javascript go objc php python ruby scala swagger swagger-yaml swift4 typescript-node cpprest)
 # FIXME: php and typescript-node appear to have case-sensitive FS problems
 declare -a DOCLANGS=(html dynamic-html)
 
 echo "Getting swagger json..."
 rm $DIR/swagger.json || true
-curl $RESOURCES | \
+curl --compressed $RESOURCES | \
   # Remove `--`, which is an invalid comment in XML and the generator happily puts into XML comments
   sed s/--//g | \
   # Pretty-print
@@ -29,7 +29,7 @@ done
 
 echo "Checking out newest swagger-codegen..."
 git submodule init
-git submodule update
+git submodule update --recursive --remote
 
 echo "Building latest swagger-codegen..."
 cd swagger-codegen

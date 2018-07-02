@@ -5,7 +5,7 @@
   <h2><a name="order.amend"></a>order.amend</h2>
   <hr>
   <p></p>
-  <p>Send an &#x60;orderID&#x60; or &#x60;origClOrdID&#x60; to identify the order you wish to amend.  Both order quantity and price can be amended. Only one &#x60;qty&#x60; field can be used to amend.  Use the &#x60;leavesQty&#x60; field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position&#39;s delta by a certain amount, regardless of how much of the order has already filled.  Use the &#x60;simpleOrderQty&#x60; and &#x60;simpleLeavesQty&#x60; fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.  Like order placement, amending can be done in bulk. Simply send a request to &#x60;PUT /api/v1/order/bulk&#x60; with a JSON body of the shape: &#x60;{\&quot;orders\&quot;: [{...}, {...}]}&#x60;, each object containing the fields used in this endpoint. </p>
+  <p>Send an &#x60;orderID&#x60; or &#x60;origClOrdID&#x60; to identify the order you wish to amend.  Both order quantity and price can be amended. Only one &#x60;qty&#x60; field can be used to amend.  Use the &#x60;leavesQty&#x60; field to specify how much of the order you wish to remain open. This can be useful if you want to adjust your position&#39;s delta by a certain amount, regardless of how much of the order has already filled.  &gt; A &#x60;leavesQty&#x60; can be used to make a \&quot;Filled\&quot; order live again, if it is received within 60 seconds of the fill.  Use the &#x60;simpleOrderQty&#x60; and &#x60;simpleLeavesQty&#x60; fields to specify order size in Bitcoin, rather than contracts. These fields will round up to the nearest contract.  Like order placement, amending can be done in bulk. Simply send a request to &#x60;PUT /api/v1/order/bulk&#x60; with a JSON body of the shape: &#x60;{\&quot;orders\&quot;: [{...}, {...}]}&#x60;, each object containing the fields used in this endpoint. </p>
   <h3 class="section">URL</h3>
   <code>https://localhost/api/v1/order</code>
   <h3 class="section">HTTP Method</h3>
@@ -139,7 +139,7 @@
   <h2><a name="order.amendBulk"></a>order.amendBulk</h2>
   <hr>
   <p></p>
-  <p>Similar to POST /amend, but with multiple orders. &#x60;application/json&#x60; only. Ratelimited at 50%.</p>
+  <p>Similar to POST /amend, but with multiple orders. &#x60;application/json&#x60; only. Ratelimited at 10%.</p>
   <h3 class="section">URL</h3>
   <code>https://localhost/api/v1/order/bulk</code>
   <h3 class="section">HTTP Method</h3>
@@ -215,7 +215,7 @@
   <h3 class="section">HTTP Method</h3>
   <code>DELETE</code>
   <h3 class="section">Response Type</h3>
-  <div class="model" data-model="object"><a href="">Object</a></div>
+  <div class="model" data-model="Order"><a href="">List</a></div>
   <h3 class="section">Parameters</h3>
   <ul>
 	  <li class="parameter">
@@ -255,7 +255,7 @@
   <h2><a name="order.cancelAllAfter"></a>order.cancelAllAfter</h2>
   <hr>
   <p></p>
-  <p>Useful as a dead-man&#39;s switch to ensure your orders are canceled in case of an outage. If called repeatedly, the existing offset will be canceled and a new one will be inserted in its place.  Example usage: call this route at 15s intervals with an offset of 60000 (60s). If this route is not called within 60 seconds, all your orders will be automatically canceled.  This is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#dead-man-s-switch-auto-cancel-). </p>
+  <p>Useful as a dead-man&#39;s switch to ensure your orders are canceled in case of an outage. If called repeatedly, the existing offset will be canceled and a new one will be inserted in its place.  Example usage: call this route at 15s intervals with an offset of 60000 (60s). If this route is not called within 60 seconds, all your orders will be automatically canceled.  This is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#Dead-Mans-Switch-Auto-Cancel). </p>
   <h3 class="section">URL</h3>
   <code>https://localhost/api/v1/order/cancelAllAfter</code>
   <h3 class="section">HTTP Method</h3>
@@ -343,7 +343,7 @@
       <span class="param-name">filter</span>
       <span class="param-type">String</span>
       
-      <p class="param-description">Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#timestamp-filters) for more details.</p>
+      <p class="param-description">Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.</p>
 	  </li>
 	  <li class="parameter">
       
@@ -415,7 +415,7 @@
   <h2><a name="order.new"></a>order.new</h2>
   <hr>
   <p></p>
-  <p>## Placing Orders  This endpoint is used for placing orders. See individual fields below for more details on their use.  #### Order Types  All orders require a &#x60;symbol&#x60;. All other fields are optional except when otherwise specified.  These are the valid &#x60;ordType&#x60;s:  * **Limit**: The default order type. Specify an &#x60;orderQty&#x60; and &#x60;price&#x60;. * **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at   which point it will cancel. * **MarketWithLeftOverAsLimit**: A market order that, after eating through the order book as far as   permitted by available margin, will become a limit order. The difference between this type and &#x60;Market&#x60; only   affects the behavior in thin books. Upon reaching the deepest possible price, if there is quantity left over,   a &#x60;Market&#x60; order will cancel the remaining quantity. &#x60;MarketWithLeftOverAsLimit&#x60; will keep the remaining   quantity in the books as a &#x60;Limit&#x60;. * **Stop**: A Stop Market order. Specify an &#x60;orderQty&#x60; and &#x60;stopPx&#x60;. When the &#x60;stopPx&#x60; is reached, the order will be entered   into the book.   * On sell orders, the order will trigger if the triggering price is lower than the &#x60;stopPx&#x60;. On buys, higher.   * Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your     account so that it may trigger fully.   * &#x60;Close&#x60; Stops don&#39;t require an &#x60;orderQty&#x60;. See Execution Instructions below. * **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an &#x60;orderQty&#x60;, &#x60;stopPx&#x60;,   and &#x60;price&#x60;. * **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders. * **LimitIfTouched**: As above; use for Take Profit Limit orders.  #### Execution Instructions  The following &#x60;execInst&#x60;s are supported. If using multiple, separate with a comma (e.g. &#x60;LastPrice,Close&#x60;).  * **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement,   it will cancel instead. * **AllOrNone**: Valid only for hidden orders (&#x60;displayQty: 0&#x60;). Use to only execute if the entire order would fill. * **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.   Use only one. By default, &#x60;&#39;MarkPrice&#39;&#x60; is used. Also used for Pegged orders to define the value of &#x60;&#39;LastPeg&#39;&#x60;. * **ReduceOnly**: A &#x60;&#39;ReduceOnly&#39;&#x60; order can only reduce your position, not increase it. If you have a &#x60;&#39;ReduceOnly&#39;&#x60;   limit order that rests in the order book while the position is reduced by other orders, then its order quantity will   be amended down or canceled. If there are multiple &#x60;&#39;ReduceOnly&#39;&#x60; orders the least agresssive will be amended first. * **Close**: &#x60;&#39;Close&#39;&#x60; implies &#x60;&#39;ReduceOnly&#39;&#x60;. A &#x60;&#39;Close&#39;&#x60; order will cancel other active limit orders with the same side   and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a   &#x60;&#39;Close&#39;&#x60; Stop is ensured to have the margin required to execute, and can only execute up to the full size of your   position. If not specified, a &#x60;&#39;Close&#39;&#x60; order has an &#x60;orderQty&#x60; equal to your current position&#39;s size.  #### Linked Orders  Linked Orders are an advanced capability. It is very powerful, but its use requires careful coding and testing. Please follow this document carefully and use the [Testnet Exchange](https://testnet.bitmex.com) while developing.  BitMEX offers four advanced Linked Order types:  * **OCO**: *One Cancels the Other*. A very flexible version of the standard Stop / Take Profit technique.   Multiple orders may be linked together using a single &#x60;clOrdLinkID&#x60;. Send a &#x60;contingencyType&#x60; of   &#x60;OneCancelsTheOther&#x60; on the orders. The first order that fully or partially executes (or activates   for &#x60;Stop&#x60; orders) will cancel all other orders with the same &#x60;clOrdLinkID&#x60;. * **OTO**: *One Triggers the Other*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneTriggersTheOther&#39;&#x60; on the primary order and   then subsequent orders with the same &#x60;clOrdLinkID&#x60; will be not be triggered until the primary order fully executes. * **OUOA**: *One Updates the Other Absolute*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneUpdatesTheOtherAbsolute&#39;&#x60; on the orders. Then   as one order has a execution, other orders with the same &#x60;clOrdLinkID&#x60; will have their order quantity amended   down by the execution quantity. * **OUOP**: *One Updates the Other Proportional*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneUpdatesTheOtherProportional&#39;&#x60; on the orders. Then   as one order has a execution, other orders with the same &#x60;clOrdLinkID&#x60; will have their order quantity reduced proportionally   by the fill percentage.  #### Trailing Stops  You may use &#x60;pegPriceType&#x60; of &#x60;&#39;TrailingStopPeg&#39;&#x60; to create Trailing Stops. The pegged &#x60;stopPx&#x60; will move as the market moves away from the peg, and freeze as the market moves toward it.  To use, combine with &#x60;pegOffsetValue&#x60; to set the &#x60;stopPx&#x60; of your order. The peg is set to the triggering price specified in the &#x60;execInst&#x60; (default &#x60;&#39;MarkPrice&#39;&#x60;). Use a negative offset for stop-sell and buy-if-touched orders.  Requires &#x60;ordType&#x60;: &#x60;&#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, &#39;LimitIfTouched&#39;&#x60;.  #### Simple Quantities  Send a &#x60;simpleOrderQty&#x60; instead of an &#x60;orderQty&#x60; to create an order denominated in the underlying currency. This is useful for opening up a position with 1 XBT of exposure without having to calculate how many contracts it is.  #### Rate Limits  See the [Bulk Order Documentation](#!/Order/Order_newBulk) if you need to place multiple orders at the same time. Bulk orders require fewer risk checks in the trading engine and thus are ratelimited at **1/10** the normal rate.  You can also improve your reactivity to market movements while staying under your ratelimit by using the [Amend](#!/Order/Order_amend) and [Amend Bulk](#!/Order/Order_amendBulk) endpoints. This allows you to stay in the market and avoids the cancel/replace cycle.  #### Tracking Your Orders  If you want to keep track of order IDs yourself, set a unique &#x60;clOrdID&#x60; per order. This &#x60;clOrdID&#x60; will come back as a property on the order and any related executions (including on the WebSocket), and can be used to get or cancel the order. Max length is 36 characters. </p>
+  <p>## Placing Orders  This endpoint is used for placing orders. See individual fields below for more details on their use.  #### Order Types  All orders require a &#x60;symbol&#x60;. All other fields are optional except when otherwise specified.  These are the valid &#x60;ordType&#x60;s:  * **Limit**: The default order type. Specify an &#x60;orderQty&#x60; and &#x60;price&#x60;. * **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at   which point it will cancel. * **MarketWithLeftOverAsLimit**: A market order that, after eating through the order book as far as   permitted by available margin, will become a limit order. The difference between this type and &#x60;Market&#x60; only   affects the behavior in thin books. Upon reaching the deepest possible price, if there is quantity left over,   a &#x60;Market&#x60; order will cancel the remaining quantity. &#x60;MarketWithLeftOverAsLimit&#x60; will keep the remaining   quantity in the books as a &#x60;Limit&#x60;. * **Stop**: A Stop Market order. Specify an &#x60;orderQty&#x60; and &#x60;stopPx&#x60;. When the &#x60;stopPx&#x60; is reached, the order will be entered   into the book.   * On sell orders, the order will trigger if the triggering price is lower than the &#x60;stopPx&#x60;. On buys, higher.   * Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your     account so that it may trigger fully.   * &#x60;Close&#x60; Stops don&#39;t require an &#x60;orderQty&#x60;. See Execution Instructions below. * **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an &#x60;orderQty&#x60;, &#x60;stopPx&#x60;,   and &#x60;price&#x60;. * **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders. * **LimitIfTouched**: As above; use for Take Profit Limit orders.  #### Execution Instructions  The following &#x60;execInst&#x60;s are supported. If using multiple, separate with a comma (e.g. &#x60;LastPrice,Close&#x60;).  * **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement,   it will cancel instead. * **AllOrNone**: Valid only for hidden orders (&#x60;displayQty: 0&#x60;). Use to only execute if the entire order would fill. * **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.   Use only one. By default, &#x60;&#39;MarkPrice&#39;&#x60; is used. Also used for Pegged orders to define the value of &#x60;&#39;LastPeg&#39;&#x60;. * **ReduceOnly**: A &#x60;&#39;ReduceOnly&#39;&#x60; order can only reduce your position, not increase it. If you have a &#x60;&#39;ReduceOnly&#39;&#x60;   limit order that rests in the order book while the position is reduced by other orders, then its order quantity will   be amended down or canceled. If there are multiple &#x60;&#39;ReduceOnly&#39;&#x60; orders the least agresssive will be amended first. * **Close**: &#x60;&#39;Close&#39;&#x60; implies &#x60;&#39;ReduceOnly&#39;&#x60;. A &#x60;&#39;Close&#39;&#x60; order will cancel other active limit orders with the same side   and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a   &#x60;&#39;Close&#39;&#x60; Stop is ensured to have the margin required to execute, and can only execute up to the full size of your   position. If &#x60;orderQty&#x60; is not specified, a &#x60;&#39;Close&#39;&#x60; order has an &#x60;orderQty&#x60; equal to your current position&#39;s size.   * Note that a &#x60;Close&#x60; order without an &#x60;orderQty&#x60; requires a &#x60;side&#x60;, so that BitMEX knows if it should trigger   above or below the &#x60;stopPx&#x60;.  #### Linked Orders  Linked Orders are an advanced capability. It is very powerful, but its use requires careful coding and testing. Please follow this document carefully and use the [Testnet Exchange](https://testnet.bitmex.com) while developing.  BitMEX offers four advanced Linked Order types:  * **OCO**: *One Cancels the Other*. A very flexible version of the standard Stop / Take Profit technique.   Multiple orders may be linked together using a single &#x60;clOrdLinkID&#x60;. Send a &#x60;contingencyType&#x60; of   &#x60;OneCancelsTheOther&#x60; on the orders. The first order that fully or partially executes (or activates   for &#x60;Stop&#x60; orders) will cancel all other orders with the same &#x60;clOrdLinkID&#x60;. * **OTO**: *One Triggers the Other*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneTriggersTheOther&#39;&#x60; on the primary order and   then subsequent orders with the same &#x60;clOrdLinkID&#x60; will be not be triggered until the primary order fully executes. * **OUOA**: *One Updates the Other Absolute*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneUpdatesTheOtherAbsolute&#39;&#x60; on the orders. Then   as one order has a execution, other orders with the same &#x60;clOrdLinkID&#x60; will have their order quantity amended   down by the execution quantity. * **OUOP**: *One Updates the Other Proportional*. Send a &#x60;contingencyType&#x60; of &#x60;&#39;OneUpdatesTheOtherProportional&#39;&#x60; on the orders. Then   as one order has a execution, other orders with the same &#x60;clOrdLinkID&#x60; will have their order quantity reduced proportionally   by the fill percentage.  #### Trailing Stops  You may use &#x60;pegPriceType&#x60; of &#x60;&#39;TrailingStopPeg&#39;&#x60; to create Trailing Stops. The pegged &#x60;stopPx&#x60; will move as the market moves away from the peg, and freeze as the market moves toward it.  To use, combine with &#x60;pegOffsetValue&#x60; to set the &#x60;stopPx&#x60; of your order. The peg is set to the triggering price specified in the &#x60;execInst&#x60; (default &#x60;&#39;MarkPrice&#39;&#x60;). Use a negative offset for stop-sell and buy-if-touched orders.  Requires &#x60;ordType&#x60;: &#x60;&#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, &#39;LimitIfTouched&#39;&#x60;.  #### Simple Quantities  Send a &#x60;simpleOrderQty&#x60; instead of an &#x60;orderQty&#x60; to create an order denominated in the underlying currency. This is useful for opening up a position with 1 XBT of exposure without having to calculate how many contracts it is.  #### Rate Limits  See the [Bulk Order Documentation](#!/Order/Order_newBulk) if you need to place multiple orders at the same time. Bulk orders require fewer risk checks in the trading engine and thus are ratelimited at **1/10** the normal rate.  You can also improve your reactivity to market movements while staying under your ratelimit by using the [Amend](#!/Order/Order_amend) and [Amend Bulk](#!/Order/Order_amendBulk) endpoints. This allows you to stay in the market and avoids the cancel/replace cycle.  #### Tracking Your Orders  If you want to keep track of order IDs yourself, set a unique &#x60;clOrdID&#x60; per order. This &#x60;clOrdID&#x60; will come back as a property on the order and any related executions (including on the WebSocket), and can be used to get or cancel the order. Max length is 36 characters.  You can also change the &#x60;clOrdID&#x60; by amending an order, supplying an &#x60;origClOrdID&#x60;, and your desired new ID as the &#x60;clOrdID&#x60; param, like so:  &#x60;&#x60;&#x60; # Amends an order&#39;s leavesQty, and updates its clOrdID to \&quot;def-456\&quot; PUT /api/v1/order {\&quot;origClOrdID\&quot;: \&quot;abc-123\&quot;, \&quot;clOrdID\&quot;: \&quot;def-456\&quot;, \&quot;leavesQty\&quot;: 1000} &#x60;&#x60;&#x60; </p>
   <h3 class="section">URL</h3>
   <code>https://localhost/api/v1/order</code>
   <h3 class="section">HTTP Method</h3>
@@ -463,17 +463,6 @@
       
       
       
-      <span class="param-name">quantity</span>
-      <span class="param-type">BigDecimal</span>
-      
-      <p class="param-description">Deprecated: use &#x60;orderQty&#x60;.</p>
-	  </li>
-	  <li class="parameter">
-      <span class="param-in">Form: </span>
-      
-      
-      
-      
       <span class="param-name">orderQty</span>
       <span class="param-type">BigDecimal</span>
       
@@ -500,17 +489,6 @@
       <span class="param-type">BigDecimal</span>
       
       <p class="param-description">Optional quantity to display in the book. Use 0 for a fully hidden order.</p>
-	  </li>
-	  <li class="parameter">
-      <span class="param-in">Form: </span>
-      
-      
-      
-      
-      <span class="param-name">stopPrice</span>
-      <span class="param-type">Double</span>
-      
-      <p class="param-description">Deprecated: use &#x60;stopPx&#x60;.</p>
 	  </li>
 	  <li class="parameter">
       <span class="param-in">Form: </span>
@@ -566,17 +544,6 @@
       <span class="param-type">String</span>
       
       <p class="param-description">Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg.</p>
-	  </li>
-	  <li class="parameter">
-      <span class="param-in">Form: </span>
-      
-      
-      
-      
-      <span class="param-name">type</span>
-      <span class="param-type">String</span>
-      
-      <p class="param-description">Deprecated: use &#x60;ordType&#x60;.</p>
 	  </li>
 	  <li class="parameter">
       <span class="param-in">Form: </span>

@@ -183,11 +183,12 @@ font-style: italic;
     <div class="app-desc"><h2>REST API for the BitMEX Trading Platform</h2>
 <p><a href="/app/apiChangelog">View Changelog</a></p>
 <h4>Getting Started</h4>
+<p>Base URI: <a href="/api/v1">https://www.bitmex.com/api/v1</a></p>
 <h5>Fetching Data</h5>
 <p>All REST endpoints are documented below. You can try out any query right from this interface.</p>
 <p>Most table queries accept <code>count</code>, <code>start</code>, and <code>reverse</code> params. Set <code>reverse=true</code> to get rows newest-first.</p>
 <p>Additional documentation regarding filters, timestamps, and authentication
-is available in <a href="https://www.bitmex.com/app/restAPI">the main API documentation</a>.</p>
+is available in <a href="/app/restAPI">the main API documentation</a>.</p>
 <p><em>All</em> table data is available via the <a href="/app/wsAPI">Websocket</a>. We highly recommend using the socket if you want
 to have the quickest possible data without being subject to ratelimits.</p>
 <h5>Return Types</h5>
@@ -218,7 +219,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 <h2>All API Endpoints</h2>
 <p>Click to expand a section.</p>
 </div>
-    <div class="app-desc">More information: <a href=""></a></div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
     <div class="app-desc">Contact Info: <a href="support@bitmex.com">support@bitmex.com</a></div>
     <div class="app-desc">Version: 1.2.0</div>
     <div class="app-desc">BasePath:/api/v1</div>
@@ -281,6 +282,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
   <h4><a href="#Leaderboard">Leaderboard</a></h4>
   <ul>
   <li><a href="#leaderboard.get"><code><span class="http-method">get</span> /leaderboard</code></a></li>
+  <li><a href="#leaderboard.getName"><code><span class="http-method">get</span> /leaderboard/name</code></a></li>
   </ul>
   <h4><a href="#Liquidation">Liquidation</a></h4>
   <ul>
@@ -304,7 +306,6 @@ to have the quickest possible data without being subject to ratelimits.</p>
   </ul>
   <h4><a href="#OrderBook">OrderBook</a></h4>
   <ul>
-  <li><a href="#orderBook.get"><code><span class="http-method">get</span> /orderBook</code></a></li>
   <li><a href="#orderBook.getL2"><code><span class="http-method">get</span> /orderBook/L2</code></a></li>
   </ul>
   <h4><a href="#Position">Position</a></h4>
@@ -375,7 +376,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -415,7 +416,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -448,7 +449,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -488,7 +489,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -521,7 +522,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -571,7 +572,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -600,11 +601,11 @@ to have the quickest possible data without being subject to ratelimits.</p>
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /apiKey</code></pre></div>
     <div class="method-summary">Create a new API Key. (<span class="nickname">aPIKey.new</span>)</div>
-    <div class="method-notes">API Keys can also be created via <a href="https://github.com/BitMEX/market-maker/blob/master/generate-api-key.py">this Python script</a> See the <a href="/app/apiKeys">API Key Documentation</a> for more information on capabilities.</div>
+    <div class="method-notes">API Keys can only be created via the frontend.</div>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -652,7 +653,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -685,7 +686,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -717,7 +718,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -751,7 +752,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -793,7 +794,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -826,7 +827,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -862,7 +863,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -896,7 +897,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -948,7 +949,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -981,7 +982,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -1011,7 +1012,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -1044,7 +1045,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -1071,7 +1072,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -1104,7 +1105,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -1144,7 +1145,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -1183,7 +1184,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -1199,7 +1200,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
 <p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
  </div><div class="param">filter (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#timestamp-filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Array of column names to fetch. If omitted, will return all columns.</p>
 <p>Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.</p>
@@ -1327,7 +1328,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -1360,7 +1361,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -1376,7 +1377,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
 <p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
  </div><div class="param">filter (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#timestamp-filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Array of column names to fetch. If omitted, will return all columns.</p>
 <p>Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.</p>
@@ -1504,7 +1505,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -1538,7 +1539,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -1554,7 +1555,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
 <p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
  </div><div class="param">filter (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#timestamp-filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Array of column names to fetch. If omitted, will return all columns.</p>
 <p>Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.</p>
@@ -1598,7 +1599,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -1632,7 +1633,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -1648,7 +1649,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
 <p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
  </div><div class="param">filter (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#timestamp-filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Array of column names to fetch. If omitted, will return all columns.</p>
 <p>Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.</p>
@@ -1677,204 +1678,214 @@ changes. It can be quite noisy. More focused information is available at <code>/
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>[ {
-  "totalVolume" : 6.438423552598546706349225132726132869720458984375,
-  "symbol" : "symbol",
-  "capped" : true,
-  "vwap" : 6.704019297950036,
-  "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "typ" : "typ",
-  "inverseLeg" : "inverseLeg",
-  "reference" : "reference",
+  "optionUnderlyingPrice" : 0.8774076871421566,
   "deleverage" : true,
-  "prevTotalTurnover" : 1.2846590061165319429647979632136411964893341064453125,
-  "riskLimit" : 4.1456080298839363962315474054776132106781005859375,
+  "riskLimit" : 1.489415909854170383397331534069962799549102783203125,
   "fundingBaseSymbol" : "fundingBaseSymbol",
-  "prevPrice24h" : 5.944895607614016,
-  "limit" : 1.2315135367772556,
-  "highPrice" : 3.353193347011243,
+  "prevPrice24h" : 7.143538047012306,
+  "highPrice" : 7.058770351582356,
   "fairMethod" : "fairMethod",
   "taxed" : true,
   "state" : "state",
   "expiry" : "2000-01-23T04:56:07.000+00:00",
   "fundingPremiumSymbol" : "fundingPremiumSymbol",
   "publishInterval" : "2000-01-23T04:56:07.000+00:00",
-  "calcInterval" : "2000-01-23T04:56:07.000+00:00",
-  "lastChangePcnt" : 7.058770351582356,
   "publishTime" : "2000-01-23T04:56:07.000+00:00",
-  "askPrice" : 4.652396432933246,
-  "maintMargin" : 2.027123023002322,
-  "takerFee" : 1.4894159098541704,
-  "multiplier" : 5.63737665663332876420099637471139430999755859375,
-  "fairBasis" : 3.2588565619047607,
-  "volume24h" : 6.96511769763884558415156789124011993408203125,
-  "indicativeTaxRate" : 6.628464275087742,
-  "settlementFee" : 6.84685269835264,
-  "totalTurnover" : 2.884162126668780246063761296682059764862060546875,
-  "turnover24h" : 6.87805222012787620400331434211693704128265380859375,
+  "maintMargin" : 1.0246457001441578,
+  "takerFee" : 4.965218492984954,
+  "fairBasis" : 4.258773108174356,
+  "volume24h" : 6.87805222012787620400331434211693704128265380859375,
   "underlying" : "underlying",
-  "quoteToSettleMultiplier" : 9.301444243932575517419536481611430644989013671875,
-  "fairPrice" : 4.078845849666752,
-  "bidPrice" : 6.519180951018382,
+  "quoteToSettleMultiplier" : 7.3862819483858839220147274318151175975799560546875,
   "fundingQuoteSymbol" : "fundingQuoteSymbol",
   "quoteCurrency" : "quoteCurrency",
-  "volume" : 3.557195227068097320710649000830017030239105224609375,
-  "impactMidPrice" : 7.740351818741173,
-  "indicativeSettlePrice" : 4.258773108174356,
-  "sellLeg" : "sellLeg",
-  "settledPrice" : 1.041444916118296,
+  "indicativeSettlePrice" : 9.132027271330688,
+  "settledPrice" : 9.702963800023566,
   "relistInterval" : "2000-01-23T04:56:07.000+00:00",
-  "maxOrderQty" : 0.80082819046101150206595775671303272247314453125,
-  "prevClosePrice" : 5.025004791520295,
-  "maxPrice" : 6.027456183070403,
-  "underlyingToPositionMultiplier" : 2.3021358869347654518833223846741020679473876953125,
-  "hasLiquidity" : true,
-  "openInterest" : 3.05761002410493443193217899533919990062713623046875,
-  "riskStep" : 7.3862819483858839220147274318151175975799560546875,
+  "prevClosePrice" : 8.762042012749001,
+  "maxPrice" : 2.3021358869347655,
+  "underlyingToPositionMultiplier" : 2.027123023002321833274663731572218239307403564453125,
   "settle" : "2000-01-23T04:56:07.000+00:00",
-  "isQuanto" : true,
   "buyLeg" : "buyLeg",
-  "rootSymbol" : "rootSymbol",
-  "tickSize" : 5.962133916683182,
-  "markMethod" : "markMethod",
-  "markPrice" : 0.2025324113236393,
-  "underlyingSymbol" : "underlyingSymbol",
-  "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "tickSize" : 9.301444243932576,
+  "markPrice" : 4.678947989005849,
   "settlCurrency" : "settlCurrency",
-  "makerFee" : 1.0246457001441578,
-  "lowPrice" : 3.0937452626664474,
-  "underlyingToSettleMultiplier" : 7.061401241503109105224211816675961017608642578125,
-  "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
-  "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
   "listing" : "2000-01-23T04:56:07.000+00:00",
-  "indicativeFundingRate" : 4.965218492984954,
-  "bankruptLimitDownPrice" : 6.683562403749608,
-  "turnover" : 6.77832496304801335185175048536621034145355224609375,
+  "indicativeFundingRate" : 6.683562403749608,
   "positionCurrency" : "positionCurrency",
   "timestamp" : "2000-01-23T04:56:07.000+00:00",
-  "impactAskPrice" : 3.0205796992916243,
-  "referenceSymbol" : "referenceSymbol",
-  "limitDownPrice" : 9.965781217890562,
+  "limitDownPrice" : 9.018348186070783,
   "lastTickDirection" : "lastTickDirection",
-  "openValue" : 7.04836565559697003635619694250635802745819091796875,
-  "isInverse" : true,
-  "lotSize" : 1.46581298050294517310021547018550336360931396484375,
   "rebalanceTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "fairBasisRate" : 5.533258397034986,
-  "lastPriceProtected" : 0.8851374739011653,
-  "midPrice" : 0.10263654006109402,
-  "insuranceFee" : 7.457744773683766,
-  "impactBidPrice" : 8.969578798196912,
-  "prevTotalVolume" : 9.0183481860707832566959041287191212177276611328125,
-  "initMargin" : 3.616076749251911,
-  "limitUpPrice" : 9.369310271410669,
-  "bankruptLimitUpPrice" : 8.762042012749001,
-  "front" : "2000-01-23T04:56:07.000+00:00",
+  "fairBasisRate" : 6.628464275087742,
+  "lastPriceProtected" : 4.652396432933246,
+  "midPrice" : 3.0205796992916243,
+  "insuranceFee" : 9.965781217890562,
+  "optionStrikePrice" : 1.4658129805029452,
+  "limitUpPrice" : 6.438423552598547,
+  "bankruptLimitUpPrice" : 6.965117697638846,
   "rebalanceInterval" : "2000-01-23T04:56:07.000+00:00",
-  "fundingRate" : 1.1730742509559433,
-  "lastPrice" : 7.143538047012306
+  "fundingRate" : 9.369310271410669,
+  "lastPrice" : 0.10263654006109402,
+  "totalVolume" : 2.884162126668780246063761296682059764862060546875,
+  "symbol" : "symbol",
+  "capped" : true,
+  "vwap" : 0.8851374739011653,
+  "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "typ" : "typ",
+  "inverseLeg" : "inverseLeg",
+  "reference" : "reference",
+  "prevTotalTurnover" : 5.94489560761401580890606055618263781070709228515625,
+  "limit" : 7.457744773683766,
+  "calcInterval" : "2000-01-23T04:56:07.000+00:00",
+  "lastChangePcnt" : 8.969578798196912,
+  "askPrice" : 3.0576100241049344,
+  "multiplier" : 3.61607674925191080461672754609026014804840087890625,
+  "indicativeTaxRate" : 7.260521264802104,
+  "settlementFee" : 5.025004791520295,
+  "totalTurnover" : 6.70401929795003592715829654480330646038055419921875,
+  "turnover24h" : 3.093745262666447448651751983561553061008453369140625,
+  "fairPrice" : 1.041444916118296,
+  "bidPrice" : 7.740351818741173,
+  "volume" : 6.77832496304801335185175048536621034145355224609375,
+  "impactMidPrice" : 5.533258397034986,
+  "sellLeg" : "sellLeg",
+  "optionStrikePcnt" : 0.8008281904610115,
+  "maxOrderQty" : 5.63737665663332876420099637471139430999755859375,
+  "hasLiquidity" : true,
+  "openInterest" : 4.078845849666752343409825698472559452056884765625,
+  "riskStep" : 6.8468526983526398765889098285697400569915771484375,
+  "optionStrikeRound" : 6.027456183070403,
+  "isQuanto" : true,
+  "rootSymbol" : "rootSymbol",
+  "markMethod" : "markMethod",
+  "underlyingSymbol" : "underlyingSymbol",
+  "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "makerFee" : 1.1730742509559433,
+  "lowPrice" : 6.519180951018382,
+  "underlyingToSettleMultiplier" : 4.1456080298839363962315474054776132106781005859375,
+  "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
+  "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
+  "bankruptLimitDownPrice" : 3.5571952270680973,
+  "turnover" : 3.35319334701124294184637619764544069766998291015625,
+  "impactAskPrice" : 3.2588565619047607,
+  "referenceSymbol" : "referenceSymbol",
+  "openValue" : 0.202532411323639305322785730822943150997161865234375,
+  "isInverse" : true,
+  "lotSize" : 7.061401241503109105224211816675961017608642578125,
+  "optionMultiplier" : 5.962133916683182,
+  "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "impactBidPrice" : 7.04836565559697,
+  "prevTotalVolume" : 1.2846590061165319429647979632136411964893341064453125,
+  "initMargin" : 1.2315135367772556,
+  "front" : "2000-01-23T04:56:07.000+00:00"
 }, {
-  "totalVolume" : 6.438423552598546706349225132726132869720458984375,
-  "symbol" : "symbol",
-  "capped" : true,
-  "vwap" : 6.704019297950036,
-  "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "typ" : "typ",
-  "inverseLeg" : "inverseLeg",
-  "reference" : "reference",
+  "optionUnderlyingPrice" : 0.8774076871421566,
   "deleverage" : true,
-  "prevTotalTurnover" : 1.2846590061165319429647979632136411964893341064453125,
-  "riskLimit" : 4.1456080298839363962315474054776132106781005859375,
+  "riskLimit" : 1.489415909854170383397331534069962799549102783203125,
   "fundingBaseSymbol" : "fundingBaseSymbol",
-  "prevPrice24h" : 5.944895607614016,
-  "limit" : 1.2315135367772556,
-  "highPrice" : 3.353193347011243,
+  "prevPrice24h" : 7.143538047012306,
+  "highPrice" : 7.058770351582356,
   "fairMethod" : "fairMethod",
   "taxed" : true,
   "state" : "state",
   "expiry" : "2000-01-23T04:56:07.000+00:00",
   "fundingPremiumSymbol" : "fundingPremiumSymbol",
   "publishInterval" : "2000-01-23T04:56:07.000+00:00",
-  "calcInterval" : "2000-01-23T04:56:07.000+00:00",
-  "lastChangePcnt" : 7.058770351582356,
   "publishTime" : "2000-01-23T04:56:07.000+00:00",
-  "askPrice" : 4.652396432933246,
-  "maintMargin" : 2.027123023002322,
-  "takerFee" : 1.4894159098541704,
-  "multiplier" : 5.63737665663332876420099637471139430999755859375,
-  "fairBasis" : 3.2588565619047607,
-  "volume24h" : 6.96511769763884558415156789124011993408203125,
-  "indicativeTaxRate" : 6.628464275087742,
-  "settlementFee" : 6.84685269835264,
-  "totalTurnover" : 2.884162126668780246063761296682059764862060546875,
-  "turnover24h" : 6.87805222012787620400331434211693704128265380859375,
+  "maintMargin" : 1.0246457001441578,
+  "takerFee" : 4.965218492984954,
+  "fairBasis" : 4.258773108174356,
+  "volume24h" : 6.87805222012787620400331434211693704128265380859375,
   "underlying" : "underlying",
-  "quoteToSettleMultiplier" : 9.301444243932575517419536481611430644989013671875,
-  "fairPrice" : 4.078845849666752,
-  "bidPrice" : 6.519180951018382,
+  "quoteToSettleMultiplier" : 7.3862819483858839220147274318151175975799560546875,
   "fundingQuoteSymbol" : "fundingQuoteSymbol",
   "quoteCurrency" : "quoteCurrency",
-  "volume" : 3.557195227068097320710649000830017030239105224609375,
-  "impactMidPrice" : 7.740351818741173,
-  "indicativeSettlePrice" : 4.258773108174356,
-  "sellLeg" : "sellLeg",
-  "settledPrice" : 1.041444916118296,
+  "indicativeSettlePrice" : 9.132027271330688,
+  "settledPrice" : 9.702963800023566,
   "relistInterval" : "2000-01-23T04:56:07.000+00:00",
-  "maxOrderQty" : 0.80082819046101150206595775671303272247314453125,
-  "prevClosePrice" : 5.025004791520295,
-  "maxPrice" : 6.027456183070403,
-  "underlyingToPositionMultiplier" : 2.3021358869347654518833223846741020679473876953125,
-  "hasLiquidity" : true,
-  "openInterest" : 3.05761002410493443193217899533919990062713623046875,
-  "riskStep" : 7.3862819483858839220147274318151175975799560546875,
+  "prevClosePrice" : 8.762042012749001,
+  "maxPrice" : 2.3021358869347655,
+  "underlyingToPositionMultiplier" : 2.027123023002321833274663731572218239307403564453125,
   "settle" : "2000-01-23T04:56:07.000+00:00",
-  "isQuanto" : true,
   "buyLeg" : "buyLeg",
-  "rootSymbol" : "rootSymbol",
-  "tickSize" : 5.962133916683182,
-  "markMethod" : "markMethod",
-  "markPrice" : 0.2025324113236393,
-  "underlyingSymbol" : "underlyingSymbol",
-  "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "tickSize" : 9.301444243932576,
+  "markPrice" : 4.678947989005849,
   "settlCurrency" : "settlCurrency",
-  "makerFee" : 1.0246457001441578,
-  "lowPrice" : 3.0937452626664474,
-  "underlyingToSettleMultiplier" : 7.061401241503109105224211816675961017608642578125,
-  "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
-  "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
   "listing" : "2000-01-23T04:56:07.000+00:00",
-  "indicativeFundingRate" : 4.965218492984954,
-  "bankruptLimitDownPrice" : 6.683562403749608,
-  "turnover" : 6.77832496304801335185175048536621034145355224609375,
+  "indicativeFundingRate" : 6.683562403749608,
   "positionCurrency" : "positionCurrency",
   "timestamp" : "2000-01-23T04:56:07.000+00:00",
-  "impactAskPrice" : 3.0205796992916243,
-  "referenceSymbol" : "referenceSymbol",
-  "limitDownPrice" : 9.965781217890562,
+  "limitDownPrice" : 9.018348186070783,
   "lastTickDirection" : "lastTickDirection",
-  "openValue" : 7.04836565559697003635619694250635802745819091796875,
-  "isInverse" : true,
-  "lotSize" : 1.46581298050294517310021547018550336360931396484375,
   "rebalanceTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "fairBasisRate" : 5.533258397034986,
-  "lastPriceProtected" : 0.8851374739011653,
-  "midPrice" : 0.10263654006109402,
-  "insuranceFee" : 7.457744773683766,
-  "impactBidPrice" : 8.969578798196912,
-  "prevTotalVolume" : 9.0183481860707832566959041287191212177276611328125,
-  "initMargin" : 3.616076749251911,
-  "limitUpPrice" : 9.369310271410669,
-  "bankruptLimitUpPrice" : 8.762042012749001,
-  "front" : "2000-01-23T04:56:07.000+00:00",
+  "fairBasisRate" : 6.628464275087742,
+  "lastPriceProtected" : 4.652396432933246,
+  "midPrice" : 3.0205796992916243,
+  "insuranceFee" : 9.965781217890562,
+  "optionStrikePrice" : 1.4658129805029452,
+  "limitUpPrice" : 6.438423552598547,
+  "bankruptLimitUpPrice" : 6.965117697638846,
   "rebalanceInterval" : "2000-01-23T04:56:07.000+00:00",
-  "fundingRate" : 1.1730742509559433,
-  "lastPrice" : 7.143538047012306
+  "fundingRate" : 9.369310271410669,
+  "lastPrice" : 0.10263654006109402,
+  "totalVolume" : 2.884162126668780246063761296682059764862060546875,
+  "symbol" : "symbol",
+  "capped" : true,
+  "vwap" : 0.8851374739011653,
+  "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "typ" : "typ",
+  "inverseLeg" : "inverseLeg",
+  "reference" : "reference",
+  "prevTotalTurnover" : 5.94489560761401580890606055618263781070709228515625,
+  "limit" : 7.457744773683766,
+  "calcInterval" : "2000-01-23T04:56:07.000+00:00",
+  "lastChangePcnt" : 8.969578798196912,
+  "askPrice" : 3.0576100241049344,
+  "multiplier" : 3.61607674925191080461672754609026014804840087890625,
+  "indicativeTaxRate" : 7.260521264802104,
+  "settlementFee" : 5.025004791520295,
+  "totalTurnover" : 6.70401929795003592715829654480330646038055419921875,
+  "turnover24h" : 3.093745262666447448651751983561553061008453369140625,
+  "fairPrice" : 1.041444916118296,
+  "bidPrice" : 7.740351818741173,
+  "volume" : 6.77832496304801335185175048536621034145355224609375,
+  "impactMidPrice" : 5.533258397034986,
+  "sellLeg" : "sellLeg",
+  "optionStrikePcnt" : 0.8008281904610115,
+  "maxOrderQty" : 5.63737665663332876420099637471139430999755859375,
+  "hasLiquidity" : true,
+  "openInterest" : 4.078845849666752343409825698472559452056884765625,
+  "riskStep" : 6.8468526983526398765889098285697400569915771484375,
+  "optionStrikeRound" : 6.027456183070403,
+  "isQuanto" : true,
+  "rootSymbol" : "rootSymbol",
+  "markMethod" : "markMethod",
+  "underlyingSymbol" : "underlyingSymbol",
+  "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "makerFee" : 1.1730742509559433,
+  "lowPrice" : 6.519180951018382,
+  "underlyingToSettleMultiplier" : 4.1456080298839363962315474054776132106781005859375,
+  "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
+  "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
+  "bankruptLimitDownPrice" : 3.5571952270680973,
+  "turnover" : 3.35319334701124294184637619764544069766998291015625,
+  "impactAskPrice" : 3.2588565619047607,
+  "referenceSymbol" : "referenceSymbol",
+  "openValue" : 0.202532411323639305322785730822943150997161865234375,
+  "isInverse" : true,
+  "lotSize" : 7.061401241503109105224211816675961017608642578125,
+  "optionMultiplier" : 5.962133916683182,
+  "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "impactBidPrice" : 7.04836565559697,
+  "prevTotalVolume" : 1.2846590061165319429647979632136411964893341064453125,
+  "initMargin" : 1.2315135367772556,
+  "front" : "2000-01-23T04:56:07.000+00:00"
 } ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -1907,7 +1918,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -1928,204 +1939,214 @@ changes. It can be quite noisy. More focused information is available at <code>/
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>[ {
-  "totalVolume" : 6.438423552598546706349225132726132869720458984375,
-  "symbol" : "symbol",
-  "capped" : true,
-  "vwap" : 6.704019297950036,
-  "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "typ" : "typ",
-  "inverseLeg" : "inverseLeg",
-  "reference" : "reference",
+  "optionUnderlyingPrice" : 0.8774076871421566,
   "deleverage" : true,
-  "prevTotalTurnover" : 1.2846590061165319429647979632136411964893341064453125,
-  "riskLimit" : 4.1456080298839363962315474054776132106781005859375,
+  "riskLimit" : 1.489415909854170383397331534069962799549102783203125,
   "fundingBaseSymbol" : "fundingBaseSymbol",
-  "prevPrice24h" : 5.944895607614016,
-  "limit" : 1.2315135367772556,
-  "highPrice" : 3.353193347011243,
+  "prevPrice24h" : 7.143538047012306,
+  "highPrice" : 7.058770351582356,
   "fairMethod" : "fairMethod",
   "taxed" : true,
   "state" : "state",
   "expiry" : "2000-01-23T04:56:07.000+00:00",
   "fundingPremiumSymbol" : "fundingPremiumSymbol",
   "publishInterval" : "2000-01-23T04:56:07.000+00:00",
-  "calcInterval" : "2000-01-23T04:56:07.000+00:00",
-  "lastChangePcnt" : 7.058770351582356,
   "publishTime" : "2000-01-23T04:56:07.000+00:00",
-  "askPrice" : 4.652396432933246,
-  "maintMargin" : 2.027123023002322,
-  "takerFee" : 1.4894159098541704,
-  "multiplier" : 5.63737665663332876420099637471139430999755859375,
-  "fairBasis" : 3.2588565619047607,
-  "volume24h" : 6.96511769763884558415156789124011993408203125,
-  "indicativeTaxRate" : 6.628464275087742,
-  "settlementFee" : 6.84685269835264,
-  "totalTurnover" : 2.884162126668780246063761296682059764862060546875,
-  "turnover24h" : 6.87805222012787620400331434211693704128265380859375,
+  "maintMargin" : 1.0246457001441578,
+  "takerFee" : 4.965218492984954,
+  "fairBasis" : 4.258773108174356,
+  "volume24h" : 6.87805222012787620400331434211693704128265380859375,
   "underlying" : "underlying",
-  "quoteToSettleMultiplier" : 9.301444243932575517419536481611430644989013671875,
-  "fairPrice" : 4.078845849666752,
-  "bidPrice" : 6.519180951018382,
+  "quoteToSettleMultiplier" : 7.3862819483858839220147274318151175975799560546875,
   "fundingQuoteSymbol" : "fundingQuoteSymbol",
   "quoteCurrency" : "quoteCurrency",
-  "volume" : 3.557195227068097320710649000830017030239105224609375,
-  "impactMidPrice" : 7.740351818741173,
-  "indicativeSettlePrice" : 4.258773108174356,
-  "sellLeg" : "sellLeg",
-  "settledPrice" : 1.041444916118296,
+  "indicativeSettlePrice" : 9.132027271330688,
+  "settledPrice" : 9.702963800023566,
   "relistInterval" : "2000-01-23T04:56:07.000+00:00",
-  "maxOrderQty" : 0.80082819046101150206595775671303272247314453125,
-  "prevClosePrice" : 5.025004791520295,
-  "maxPrice" : 6.027456183070403,
-  "underlyingToPositionMultiplier" : 2.3021358869347654518833223846741020679473876953125,
-  "hasLiquidity" : true,
-  "openInterest" : 3.05761002410493443193217899533919990062713623046875,
-  "riskStep" : 7.3862819483858839220147274318151175975799560546875,
+  "prevClosePrice" : 8.762042012749001,
+  "maxPrice" : 2.3021358869347655,
+  "underlyingToPositionMultiplier" : 2.027123023002321833274663731572218239307403564453125,
   "settle" : "2000-01-23T04:56:07.000+00:00",
-  "isQuanto" : true,
   "buyLeg" : "buyLeg",
-  "rootSymbol" : "rootSymbol",
-  "tickSize" : 5.962133916683182,
-  "markMethod" : "markMethod",
-  "markPrice" : 0.2025324113236393,
-  "underlyingSymbol" : "underlyingSymbol",
-  "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "tickSize" : 9.301444243932576,
+  "markPrice" : 4.678947989005849,
   "settlCurrency" : "settlCurrency",
-  "makerFee" : 1.0246457001441578,
-  "lowPrice" : 3.0937452626664474,
-  "underlyingToSettleMultiplier" : 7.061401241503109105224211816675961017608642578125,
-  "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
-  "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
   "listing" : "2000-01-23T04:56:07.000+00:00",
-  "indicativeFundingRate" : 4.965218492984954,
-  "bankruptLimitDownPrice" : 6.683562403749608,
-  "turnover" : 6.77832496304801335185175048536621034145355224609375,
+  "indicativeFundingRate" : 6.683562403749608,
   "positionCurrency" : "positionCurrency",
   "timestamp" : "2000-01-23T04:56:07.000+00:00",
-  "impactAskPrice" : 3.0205796992916243,
-  "referenceSymbol" : "referenceSymbol",
-  "limitDownPrice" : 9.965781217890562,
+  "limitDownPrice" : 9.018348186070783,
   "lastTickDirection" : "lastTickDirection",
-  "openValue" : 7.04836565559697003635619694250635802745819091796875,
-  "isInverse" : true,
-  "lotSize" : 1.46581298050294517310021547018550336360931396484375,
   "rebalanceTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "fairBasisRate" : 5.533258397034986,
-  "lastPriceProtected" : 0.8851374739011653,
-  "midPrice" : 0.10263654006109402,
-  "insuranceFee" : 7.457744773683766,
-  "impactBidPrice" : 8.969578798196912,
-  "prevTotalVolume" : 9.0183481860707832566959041287191212177276611328125,
-  "initMargin" : 3.616076749251911,
-  "limitUpPrice" : 9.369310271410669,
-  "bankruptLimitUpPrice" : 8.762042012749001,
-  "front" : "2000-01-23T04:56:07.000+00:00",
+  "fairBasisRate" : 6.628464275087742,
+  "lastPriceProtected" : 4.652396432933246,
+  "midPrice" : 3.0205796992916243,
+  "insuranceFee" : 9.965781217890562,
+  "optionStrikePrice" : 1.4658129805029452,
+  "limitUpPrice" : 6.438423552598547,
+  "bankruptLimitUpPrice" : 6.965117697638846,
   "rebalanceInterval" : "2000-01-23T04:56:07.000+00:00",
-  "fundingRate" : 1.1730742509559433,
-  "lastPrice" : 7.143538047012306
+  "fundingRate" : 9.369310271410669,
+  "lastPrice" : 0.10263654006109402,
+  "totalVolume" : 2.884162126668780246063761296682059764862060546875,
+  "symbol" : "symbol",
+  "capped" : true,
+  "vwap" : 0.8851374739011653,
+  "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "typ" : "typ",
+  "inverseLeg" : "inverseLeg",
+  "reference" : "reference",
+  "prevTotalTurnover" : 5.94489560761401580890606055618263781070709228515625,
+  "limit" : 7.457744773683766,
+  "calcInterval" : "2000-01-23T04:56:07.000+00:00",
+  "lastChangePcnt" : 8.969578798196912,
+  "askPrice" : 3.0576100241049344,
+  "multiplier" : 3.61607674925191080461672754609026014804840087890625,
+  "indicativeTaxRate" : 7.260521264802104,
+  "settlementFee" : 5.025004791520295,
+  "totalTurnover" : 6.70401929795003592715829654480330646038055419921875,
+  "turnover24h" : 3.093745262666447448651751983561553061008453369140625,
+  "fairPrice" : 1.041444916118296,
+  "bidPrice" : 7.740351818741173,
+  "volume" : 6.77832496304801335185175048536621034145355224609375,
+  "impactMidPrice" : 5.533258397034986,
+  "sellLeg" : "sellLeg",
+  "optionStrikePcnt" : 0.8008281904610115,
+  "maxOrderQty" : 5.63737665663332876420099637471139430999755859375,
+  "hasLiquidity" : true,
+  "openInterest" : 4.078845849666752343409825698472559452056884765625,
+  "riskStep" : 6.8468526983526398765889098285697400569915771484375,
+  "optionStrikeRound" : 6.027456183070403,
+  "isQuanto" : true,
+  "rootSymbol" : "rootSymbol",
+  "markMethod" : "markMethod",
+  "underlyingSymbol" : "underlyingSymbol",
+  "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "makerFee" : 1.1730742509559433,
+  "lowPrice" : 6.519180951018382,
+  "underlyingToSettleMultiplier" : 4.1456080298839363962315474054776132106781005859375,
+  "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
+  "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
+  "bankruptLimitDownPrice" : 3.5571952270680973,
+  "turnover" : 3.35319334701124294184637619764544069766998291015625,
+  "impactAskPrice" : 3.2588565619047607,
+  "referenceSymbol" : "referenceSymbol",
+  "openValue" : 0.202532411323639305322785730822943150997161865234375,
+  "isInverse" : true,
+  "lotSize" : 7.061401241503109105224211816675961017608642578125,
+  "optionMultiplier" : 5.962133916683182,
+  "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "impactBidPrice" : 7.04836565559697,
+  "prevTotalVolume" : 1.2846590061165319429647979632136411964893341064453125,
+  "initMargin" : 1.2315135367772556,
+  "front" : "2000-01-23T04:56:07.000+00:00"
 }, {
-  "totalVolume" : 6.438423552598546706349225132726132869720458984375,
-  "symbol" : "symbol",
-  "capped" : true,
-  "vwap" : 6.704019297950036,
-  "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "typ" : "typ",
-  "inverseLeg" : "inverseLeg",
-  "reference" : "reference",
+  "optionUnderlyingPrice" : 0.8774076871421566,
   "deleverage" : true,
-  "prevTotalTurnover" : 1.2846590061165319429647979632136411964893341064453125,
-  "riskLimit" : 4.1456080298839363962315474054776132106781005859375,
+  "riskLimit" : 1.489415909854170383397331534069962799549102783203125,
   "fundingBaseSymbol" : "fundingBaseSymbol",
-  "prevPrice24h" : 5.944895607614016,
-  "limit" : 1.2315135367772556,
-  "highPrice" : 3.353193347011243,
+  "prevPrice24h" : 7.143538047012306,
+  "highPrice" : 7.058770351582356,
   "fairMethod" : "fairMethod",
   "taxed" : true,
   "state" : "state",
   "expiry" : "2000-01-23T04:56:07.000+00:00",
   "fundingPremiumSymbol" : "fundingPremiumSymbol",
   "publishInterval" : "2000-01-23T04:56:07.000+00:00",
-  "calcInterval" : "2000-01-23T04:56:07.000+00:00",
-  "lastChangePcnt" : 7.058770351582356,
   "publishTime" : "2000-01-23T04:56:07.000+00:00",
-  "askPrice" : 4.652396432933246,
-  "maintMargin" : 2.027123023002322,
-  "takerFee" : 1.4894159098541704,
-  "multiplier" : 5.63737665663332876420099637471139430999755859375,
-  "fairBasis" : 3.2588565619047607,
-  "volume24h" : 6.96511769763884558415156789124011993408203125,
-  "indicativeTaxRate" : 6.628464275087742,
-  "settlementFee" : 6.84685269835264,
-  "totalTurnover" : 2.884162126668780246063761296682059764862060546875,
-  "turnover24h" : 6.87805222012787620400331434211693704128265380859375,
+  "maintMargin" : 1.0246457001441578,
+  "takerFee" : 4.965218492984954,
+  "fairBasis" : 4.258773108174356,
+  "volume24h" : 6.87805222012787620400331434211693704128265380859375,
   "underlying" : "underlying",
-  "quoteToSettleMultiplier" : 9.301444243932575517419536481611430644989013671875,
-  "fairPrice" : 4.078845849666752,
-  "bidPrice" : 6.519180951018382,
+  "quoteToSettleMultiplier" : 7.3862819483858839220147274318151175975799560546875,
   "fundingQuoteSymbol" : "fundingQuoteSymbol",
   "quoteCurrency" : "quoteCurrency",
-  "volume" : 3.557195227068097320710649000830017030239105224609375,
-  "impactMidPrice" : 7.740351818741173,
-  "indicativeSettlePrice" : 4.258773108174356,
-  "sellLeg" : "sellLeg",
-  "settledPrice" : 1.041444916118296,
+  "indicativeSettlePrice" : 9.132027271330688,
+  "settledPrice" : 9.702963800023566,
   "relistInterval" : "2000-01-23T04:56:07.000+00:00",
-  "maxOrderQty" : 0.80082819046101150206595775671303272247314453125,
-  "prevClosePrice" : 5.025004791520295,
-  "maxPrice" : 6.027456183070403,
-  "underlyingToPositionMultiplier" : 2.3021358869347654518833223846741020679473876953125,
-  "hasLiquidity" : true,
-  "openInterest" : 3.05761002410493443193217899533919990062713623046875,
-  "riskStep" : 7.3862819483858839220147274318151175975799560546875,
+  "prevClosePrice" : 8.762042012749001,
+  "maxPrice" : 2.3021358869347655,
+  "underlyingToPositionMultiplier" : 2.027123023002321833274663731572218239307403564453125,
   "settle" : "2000-01-23T04:56:07.000+00:00",
-  "isQuanto" : true,
   "buyLeg" : "buyLeg",
-  "rootSymbol" : "rootSymbol",
-  "tickSize" : 5.962133916683182,
-  "markMethod" : "markMethod",
-  "markPrice" : 0.2025324113236393,
-  "underlyingSymbol" : "underlyingSymbol",
-  "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "tickSize" : 9.301444243932576,
+  "markPrice" : 4.678947989005849,
   "settlCurrency" : "settlCurrency",
-  "makerFee" : 1.0246457001441578,
-  "lowPrice" : 3.0937452626664474,
-  "underlyingToSettleMultiplier" : 7.061401241503109105224211816675961017608642578125,
-  "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
-  "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
   "listing" : "2000-01-23T04:56:07.000+00:00",
-  "indicativeFundingRate" : 4.965218492984954,
-  "bankruptLimitDownPrice" : 6.683562403749608,
-  "turnover" : 6.77832496304801335185175048536621034145355224609375,
+  "indicativeFundingRate" : 6.683562403749608,
   "positionCurrency" : "positionCurrency",
   "timestamp" : "2000-01-23T04:56:07.000+00:00",
-  "impactAskPrice" : 3.0205796992916243,
-  "referenceSymbol" : "referenceSymbol",
-  "limitDownPrice" : 9.965781217890562,
+  "limitDownPrice" : 9.018348186070783,
   "lastTickDirection" : "lastTickDirection",
-  "openValue" : 7.04836565559697003635619694250635802745819091796875,
-  "isInverse" : true,
-  "lotSize" : 1.46581298050294517310021547018550336360931396484375,
   "rebalanceTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "fairBasisRate" : 5.533258397034986,
-  "lastPriceProtected" : 0.8851374739011653,
-  "midPrice" : 0.10263654006109402,
-  "insuranceFee" : 7.457744773683766,
-  "impactBidPrice" : 8.969578798196912,
-  "prevTotalVolume" : 9.0183481860707832566959041287191212177276611328125,
-  "initMargin" : 3.616076749251911,
-  "limitUpPrice" : 9.369310271410669,
-  "bankruptLimitUpPrice" : 8.762042012749001,
-  "front" : "2000-01-23T04:56:07.000+00:00",
+  "fairBasisRate" : 6.628464275087742,
+  "lastPriceProtected" : 4.652396432933246,
+  "midPrice" : 3.0205796992916243,
+  "insuranceFee" : 9.965781217890562,
+  "optionStrikePrice" : 1.4658129805029452,
+  "limitUpPrice" : 6.438423552598547,
+  "bankruptLimitUpPrice" : 6.965117697638846,
   "rebalanceInterval" : "2000-01-23T04:56:07.000+00:00",
-  "fundingRate" : 1.1730742509559433,
-  "lastPrice" : 7.143538047012306
+  "fundingRate" : 9.369310271410669,
+  "lastPrice" : 0.10263654006109402,
+  "totalVolume" : 2.884162126668780246063761296682059764862060546875,
+  "symbol" : "symbol",
+  "capped" : true,
+  "vwap" : 0.8851374739011653,
+  "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "typ" : "typ",
+  "inverseLeg" : "inverseLeg",
+  "reference" : "reference",
+  "prevTotalTurnover" : 5.94489560761401580890606055618263781070709228515625,
+  "limit" : 7.457744773683766,
+  "calcInterval" : "2000-01-23T04:56:07.000+00:00",
+  "lastChangePcnt" : 8.969578798196912,
+  "askPrice" : 3.0576100241049344,
+  "multiplier" : 3.61607674925191080461672754609026014804840087890625,
+  "indicativeTaxRate" : 7.260521264802104,
+  "settlementFee" : 5.025004791520295,
+  "totalTurnover" : 6.70401929795003592715829654480330646038055419921875,
+  "turnover24h" : 3.093745262666447448651751983561553061008453369140625,
+  "fairPrice" : 1.041444916118296,
+  "bidPrice" : 7.740351818741173,
+  "volume" : 6.77832496304801335185175048536621034145355224609375,
+  "impactMidPrice" : 5.533258397034986,
+  "sellLeg" : "sellLeg",
+  "optionStrikePcnt" : 0.8008281904610115,
+  "maxOrderQty" : 5.63737665663332876420099637471139430999755859375,
+  "hasLiquidity" : true,
+  "openInterest" : 4.078845849666752343409825698472559452056884765625,
+  "riskStep" : 6.8468526983526398765889098285697400569915771484375,
+  "optionStrikeRound" : 6.027456183070403,
+  "isQuanto" : true,
+  "rootSymbol" : "rootSymbol",
+  "markMethod" : "markMethod",
+  "underlyingSymbol" : "underlyingSymbol",
+  "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "makerFee" : 1.1730742509559433,
+  "lowPrice" : 6.519180951018382,
+  "underlyingToSettleMultiplier" : 4.1456080298839363962315474054776132106781005859375,
+  "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
+  "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
+  "bankruptLimitDownPrice" : 3.5571952270680973,
+  "turnover" : 3.35319334701124294184637619764544069766998291015625,
+  "impactAskPrice" : 3.2588565619047607,
+  "referenceSymbol" : "referenceSymbol",
+  "openValue" : 0.202532411323639305322785730822943150997161865234375,
+  "isInverse" : true,
+  "lotSize" : 7.061401241503109105224211816675961017608642578125,
+  "optionMultiplier" : 5.962133916683182,
+  "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "impactBidPrice" : 7.04836565559697,
+  "prevTotalVolume" : 1.2846590061165319429647979632136411964893341064453125,
+  "initMargin" : 1.2315135367772556,
+  "front" : "2000-01-23T04:56:07.000+00:00"
 } ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -2158,7 +2179,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -2179,204 +2200,214 @@ changes. It can be quite noisy. More focused information is available at <code>/
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>[ {
-  "totalVolume" : 6.438423552598546706349225132726132869720458984375,
-  "symbol" : "symbol",
-  "capped" : true,
-  "vwap" : 6.704019297950036,
-  "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "typ" : "typ",
-  "inverseLeg" : "inverseLeg",
-  "reference" : "reference",
+  "optionUnderlyingPrice" : 0.8774076871421566,
   "deleverage" : true,
-  "prevTotalTurnover" : 1.2846590061165319429647979632136411964893341064453125,
-  "riskLimit" : 4.1456080298839363962315474054776132106781005859375,
+  "riskLimit" : 1.489415909854170383397331534069962799549102783203125,
   "fundingBaseSymbol" : "fundingBaseSymbol",
-  "prevPrice24h" : 5.944895607614016,
-  "limit" : 1.2315135367772556,
-  "highPrice" : 3.353193347011243,
+  "prevPrice24h" : 7.143538047012306,
+  "highPrice" : 7.058770351582356,
   "fairMethod" : "fairMethod",
   "taxed" : true,
   "state" : "state",
   "expiry" : "2000-01-23T04:56:07.000+00:00",
   "fundingPremiumSymbol" : "fundingPremiumSymbol",
   "publishInterval" : "2000-01-23T04:56:07.000+00:00",
-  "calcInterval" : "2000-01-23T04:56:07.000+00:00",
-  "lastChangePcnt" : 7.058770351582356,
   "publishTime" : "2000-01-23T04:56:07.000+00:00",
-  "askPrice" : 4.652396432933246,
-  "maintMargin" : 2.027123023002322,
-  "takerFee" : 1.4894159098541704,
-  "multiplier" : 5.63737665663332876420099637471139430999755859375,
-  "fairBasis" : 3.2588565619047607,
-  "volume24h" : 6.96511769763884558415156789124011993408203125,
-  "indicativeTaxRate" : 6.628464275087742,
-  "settlementFee" : 6.84685269835264,
-  "totalTurnover" : 2.884162126668780246063761296682059764862060546875,
-  "turnover24h" : 6.87805222012787620400331434211693704128265380859375,
+  "maintMargin" : 1.0246457001441578,
+  "takerFee" : 4.965218492984954,
+  "fairBasis" : 4.258773108174356,
+  "volume24h" : 6.87805222012787620400331434211693704128265380859375,
   "underlying" : "underlying",
-  "quoteToSettleMultiplier" : 9.301444243932575517419536481611430644989013671875,
-  "fairPrice" : 4.078845849666752,
-  "bidPrice" : 6.519180951018382,
+  "quoteToSettleMultiplier" : 7.3862819483858839220147274318151175975799560546875,
   "fundingQuoteSymbol" : "fundingQuoteSymbol",
   "quoteCurrency" : "quoteCurrency",
-  "volume" : 3.557195227068097320710649000830017030239105224609375,
-  "impactMidPrice" : 7.740351818741173,
-  "indicativeSettlePrice" : 4.258773108174356,
-  "sellLeg" : "sellLeg",
-  "settledPrice" : 1.041444916118296,
+  "indicativeSettlePrice" : 9.132027271330688,
+  "settledPrice" : 9.702963800023566,
   "relistInterval" : "2000-01-23T04:56:07.000+00:00",
-  "maxOrderQty" : 0.80082819046101150206595775671303272247314453125,
-  "prevClosePrice" : 5.025004791520295,
-  "maxPrice" : 6.027456183070403,
-  "underlyingToPositionMultiplier" : 2.3021358869347654518833223846741020679473876953125,
-  "hasLiquidity" : true,
-  "openInterest" : 3.05761002410493443193217899533919990062713623046875,
-  "riskStep" : 7.3862819483858839220147274318151175975799560546875,
+  "prevClosePrice" : 8.762042012749001,
+  "maxPrice" : 2.3021358869347655,
+  "underlyingToPositionMultiplier" : 2.027123023002321833274663731572218239307403564453125,
   "settle" : "2000-01-23T04:56:07.000+00:00",
-  "isQuanto" : true,
   "buyLeg" : "buyLeg",
-  "rootSymbol" : "rootSymbol",
-  "tickSize" : 5.962133916683182,
-  "markMethod" : "markMethod",
-  "markPrice" : 0.2025324113236393,
-  "underlyingSymbol" : "underlyingSymbol",
-  "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "tickSize" : 9.301444243932576,
+  "markPrice" : 4.678947989005849,
   "settlCurrency" : "settlCurrency",
-  "makerFee" : 1.0246457001441578,
-  "lowPrice" : 3.0937452626664474,
-  "underlyingToSettleMultiplier" : 7.061401241503109105224211816675961017608642578125,
-  "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
-  "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
   "listing" : "2000-01-23T04:56:07.000+00:00",
-  "indicativeFundingRate" : 4.965218492984954,
-  "bankruptLimitDownPrice" : 6.683562403749608,
-  "turnover" : 6.77832496304801335185175048536621034145355224609375,
+  "indicativeFundingRate" : 6.683562403749608,
   "positionCurrency" : "positionCurrency",
   "timestamp" : "2000-01-23T04:56:07.000+00:00",
-  "impactAskPrice" : 3.0205796992916243,
-  "referenceSymbol" : "referenceSymbol",
-  "limitDownPrice" : 9.965781217890562,
+  "limitDownPrice" : 9.018348186070783,
   "lastTickDirection" : "lastTickDirection",
-  "openValue" : 7.04836565559697003635619694250635802745819091796875,
-  "isInverse" : true,
-  "lotSize" : 1.46581298050294517310021547018550336360931396484375,
   "rebalanceTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "fairBasisRate" : 5.533258397034986,
-  "lastPriceProtected" : 0.8851374739011653,
-  "midPrice" : 0.10263654006109402,
-  "insuranceFee" : 7.457744773683766,
-  "impactBidPrice" : 8.969578798196912,
-  "prevTotalVolume" : 9.0183481860707832566959041287191212177276611328125,
-  "initMargin" : 3.616076749251911,
-  "limitUpPrice" : 9.369310271410669,
-  "bankruptLimitUpPrice" : 8.762042012749001,
-  "front" : "2000-01-23T04:56:07.000+00:00",
+  "fairBasisRate" : 6.628464275087742,
+  "lastPriceProtected" : 4.652396432933246,
+  "midPrice" : 3.0205796992916243,
+  "insuranceFee" : 9.965781217890562,
+  "optionStrikePrice" : 1.4658129805029452,
+  "limitUpPrice" : 6.438423552598547,
+  "bankruptLimitUpPrice" : 6.965117697638846,
   "rebalanceInterval" : "2000-01-23T04:56:07.000+00:00",
-  "fundingRate" : 1.1730742509559433,
-  "lastPrice" : 7.143538047012306
+  "fundingRate" : 9.369310271410669,
+  "lastPrice" : 0.10263654006109402,
+  "totalVolume" : 2.884162126668780246063761296682059764862060546875,
+  "symbol" : "symbol",
+  "capped" : true,
+  "vwap" : 0.8851374739011653,
+  "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "typ" : "typ",
+  "inverseLeg" : "inverseLeg",
+  "reference" : "reference",
+  "prevTotalTurnover" : 5.94489560761401580890606055618263781070709228515625,
+  "limit" : 7.457744773683766,
+  "calcInterval" : "2000-01-23T04:56:07.000+00:00",
+  "lastChangePcnt" : 8.969578798196912,
+  "askPrice" : 3.0576100241049344,
+  "multiplier" : 3.61607674925191080461672754609026014804840087890625,
+  "indicativeTaxRate" : 7.260521264802104,
+  "settlementFee" : 5.025004791520295,
+  "totalTurnover" : 6.70401929795003592715829654480330646038055419921875,
+  "turnover24h" : 3.093745262666447448651751983561553061008453369140625,
+  "fairPrice" : 1.041444916118296,
+  "bidPrice" : 7.740351818741173,
+  "volume" : 6.77832496304801335185175048536621034145355224609375,
+  "impactMidPrice" : 5.533258397034986,
+  "sellLeg" : "sellLeg",
+  "optionStrikePcnt" : 0.8008281904610115,
+  "maxOrderQty" : 5.63737665663332876420099637471139430999755859375,
+  "hasLiquidity" : true,
+  "openInterest" : 4.078845849666752343409825698472559452056884765625,
+  "riskStep" : 6.8468526983526398765889098285697400569915771484375,
+  "optionStrikeRound" : 6.027456183070403,
+  "isQuanto" : true,
+  "rootSymbol" : "rootSymbol",
+  "markMethod" : "markMethod",
+  "underlyingSymbol" : "underlyingSymbol",
+  "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "makerFee" : 1.1730742509559433,
+  "lowPrice" : 6.519180951018382,
+  "underlyingToSettleMultiplier" : 4.1456080298839363962315474054776132106781005859375,
+  "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
+  "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
+  "bankruptLimitDownPrice" : 3.5571952270680973,
+  "turnover" : 3.35319334701124294184637619764544069766998291015625,
+  "impactAskPrice" : 3.2588565619047607,
+  "referenceSymbol" : "referenceSymbol",
+  "openValue" : 0.202532411323639305322785730822943150997161865234375,
+  "isInverse" : true,
+  "lotSize" : 7.061401241503109105224211816675961017608642578125,
+  "optionMultiplier" : 5.962133916683182,
+  "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "impactBidPrice" : 7.04836565559697,
+  "prevTotalVolume" : 1.2846590061165319429647979632136411964893341064453125,
+  "initMargin" : 1.2315135367772556,
+  "front" : "2000-01-23T04:56:07.000+00:00"
 }, {
-  "totalVolume" : 6.438423552598546706349225132726132869720458984375,
-  "symbol" : "symbol",
-  "capped" : true,
-  "vwap" : 6.704019297950036,
-  "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "typ" : "typ",
-  "inverseLeg" : "inverseLeg",
-  "reference" : "reference",
+  "optionUnderlyingPrice" : 0.8774076871421566,
   "deleverage" : true,
-  "prevTotalTurnover" : 1.2846590061165319429647979632136411964893341064453125,
-  "riskLimit" : 4.1456080298839363962315474054776132106781005859375,
+  "riskLimit" : 1.489415909854170383397331534069962799549102783203125,
   "fundingBaseSymbol" : "fundingBaseSymbol",
-  "prevPrice24h" : 5.944895607614016,
-  "limit" : 1.2315135367772556,
-  "highPrice" : 3.353193347011243,
+  "prevPrice24h" : 7.143538047012306,
+  "highPrice" : 7.058770351582356,
   "fairMethod" : "fairMethod",
   "taxed" : true,
   "state" : "state",
   "expiry" : "2000-01-23T04:56:07.000+00:00",
   "fundingPremiumSymbol" : "fundingPremiumSymbol",
   "publishInterval" : "2000-01-23T04:56:07.000+00:00",
-  "calcInterval" : "2000-01-23T04:56:07.000+00:00",
-  "lastChangePcnt" : 7.058770351582356,
   "publishTime" : "2000-01-23T04:56:07.000+00:00",
-  "askPrice" : 4.652396432933246,
-  "maintMargin" : 2.027123023002322,
-  "takerFee" : 1.4894159098541704,
-  "multiplier" : 5.63737665663332876420099637471139430999755859375,
-  "fairBasis" : 3.2588565619047607,
-  "volume24h" : 6.96511769763884558415156789124011993408203125,
-  "indicativeTaxRate" : 6.628464275087742,
-  "settlementFee" : 6.84685269835264,
-  "totalTurnover" : 2.884162126668780246063761296682059764862060546875,
-  "turnover24h" : 6.87805222012787620400331434211693704128265380859375,
+  "maintMargin" : 1.0246457001441578,
+  "takerFee" : 4.965218492984954,
+  "fairBasis" : 4.258773108174356,
+  "volume24h" : 6.87805222012787620400331434211693704128265380859375,
   "underlying" : "underlying",
-  "quoteToSettleMultiplier" : 9.301444243932575517419536481611430644989013671875,
-  "fairPrice" : 4.078845849666752,
-  "bidPrice" : 6.519180951018382,
+  "quoteToSettleMultiplier" : 7.3862819483858839220147274318151175975799560546875,
   "fundingQuoteSymbol" : "fundingQuoteSymbol",
   "quoteCurrency" : "quoteCurrency",
-  "volume" : 3.557195227068097320710649000830017030239105224609375,
-  "impactMidPrice" : 7.740351818741173,
-  "indicativeSettlePrice" : 4.258773108174356,
-  "sellLeg" : "sellLeg",
-  "settledPrice" : 1.041444916118296,
+  "indicativeSettlePrice" : 9.132027271330688,
+  "settledPrice" : 9.702963800023566,
   "relistInterval" : "2000-01-23T04:56:07.000+00:00",
-  "maxOrderQty" : 0.80082819046101150206595775671303272247314453125,
-  "prevClosePrice" : 5.025004791520295,
-  "maxPrice" : 6.027456183070403,
-  "underlyingToPositionMultiplier" : 2.3021358869347654518833223846741020679473876953125,
-  "hasLiquidity" : true,
-  "openInterest" : 3.05761002410493443193217899533919990062713623046875,
-  "riskStep" : 7.3862819483858839220147274318151175975799560546875,
+  "prevClosePrice" : 8.762042012749001,
+  "maxPrice" : 2.3021358869347655,
+  "underlyingToPositionMultiplier" : 2.027123023002321833274663731572218239307403564453125,
   "settle" : "2000-01-23T04:56:07.000+00:00",
-  "isQuanto" : true,
   "buyLeg" : "buyLeg",
-  "rootSymbol" : "rootSymbol",
-  "tickSize" : 5.962133916683182,
-  "markMethod" : "markMethod",
-  "markPrice" : 0.2025324113236393,
-  "underlyingSymbol" : "underlyingSymbol",
-  "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "tickSize" : 9.301444243932576,
+  "markPrice" : 4.678947989005849,
   "settlCurrency" : "settlCurrency",
-  "makerFee" : 1.0246457001441578,
-  "lowPrice" : 3.0937452626664474,
-  "underlyingToSettleMultiplier" : 7.061401241503109105224211816675961017608642578125,
-  "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
-  "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
   "listing" : "2000-01-23T04:56:07.000+00:00",
-  "indicativeFundingRate" : 4.965218492984954,
-  "bankruptLimitDownPrice" : 6.683562403749608,
-  "turnover" : 6.77832496304801335185175048536621034145355224609375,
+  "indicativeFundingRate" : 6.683562403749608,
   "positionCurrency" : "positionCurrency",
   "timestamp" : "2000-01-23T04:56:07.000+00:00",
-  "impactAskPrice" : 3.0205796992916243,
-  "referenceSymbol" : "referenceSymbol",
-  "limitDownPrice" : 9.965781217890562,
+  "limitDownPrice" : 9.018348186070783,
   "lastTickDirection" : "lastTickDirection",
-  "openValue" : 7.04836565559697003635619694250635802745819091796875,
-  "isInverse" : true,
-  "lotSize" : 1.46581298050294517310021547018550336360931396484375,
   "rebalanceTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "fairBasisRate" : 5.533258397034986,
-  "lastPriceProtected" : 0.8851374739011653,
-  "midPrice" : 0.10263654006109402,
-  "insuranceFee" : 7.457744773683766,
-  "impactBidPrice" : 8.969578798196912,
-  "prevTotalVolume" : 9.0183481860707832566959041287191212177276611328125,
-  "initMargin" : 3.616076749251911,
-  "limitUpPrice" : 9.369310271410669,
-  "bankruptLimitUpPrice" : 8.762042012749001,
-  "front" : "2000-01-23T04:56:07.000+00:00",
+  "fairBasisRate" : 6.628464275087742,
+  "lastPriceProtected" : 4.652396432933246,
+  "midPrice" : 3.0205796992916243,
+  "insuranceFee" : 9.965781217890562,
+  "optionStrikePrice" : 1.4658129805029452,
+  "limitUpPrice" : 6.438423552598547,
+  "bankruptLimitUpPrice" : 6.965117697638846,
   "rebalanceInterval" : "2000-01-23T04:56:07.000+00:00",
-  "fundingRate" : 1.1730742509559433,
-  "lastPrice" : 7.143538047012306
+  "fundingRate" : 9.369310271410669,
+  "lastPrice" : 0.10263654006109402,
+  "totalVolume" : 2.884162126668780246063761296682059764862060546875,
+  "symbol" : "symbol",
+  "capped" : true,
+  "vwap" : 0.8851374739011653,
+  "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "typ" : "typ",
+  "inverseLeg" : "inverseLeg",
+  "reference" : "reference",
+  "prevTotalTurnover" : 5.94489560761401580890606055618263781070709228515625,
+  "limit" : 7.457744773683766,
+  "calcInterval" : "2000-01-23T04:56:07.000+00:00",
+  "lastChangePcnt" : 8.969578798196912,
+  "askPrice" : 3.0576100241049344,
+  "multiplier" : 3.61607674925191080461672754609026014804840087890625,
+  "indicativeTaxRate" : 7.260521264802104,
+  "settlementFee" : 5.025004791520295,
+  "totalTurnover" : 6.70401929795003592715829654480330646038055419921875,
+  "turnover24h" : 3.093745262666447448651751983561553061008453369140625,
+  "fairPrice" : 1.041444916118296,
+  "bidPrice" : 7.740351818741173,
+  "volume" : 6.77832496304801335185175048536621034145355224609375,
+  "impactMidPrice" : 5.533258397034986,
+  "sellLeg" : "sellLeg",
+  "optionStrikePcnt" : 0.8008281904610115,
+  "maxOrderQty" : 5.63737665663332876420099637471139430999755859375,
+  "hasLiquidity" : true,
+  "openInterest" : 4.078845849666752343409825698472559452056884765625,
+  "riskStep" : 6.8468526983526398765889098285697400569915771484375,
+  "optionStrikeRound" : 6.027456183070403,
+  "isQuanto" : true,
+  "rootSymbol" : "rootSymbol",
+  "markMethod" : "markMethod",
+  "underlyingSymbol" : "underlyingSymbol",
+  "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "makerFee" : 1.1730742509559433,
+  "lowPrice" : 6.519180951018382,
+  "underlyingToSettleMultiplier" : 4.1456080298839363962315474054776132106781005859375,
+  "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
+  "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
+  "bankruptLimitDownPrice" : 3.5571952270680973,
+  "turnover" : 3.35319334701124294184637619764544069766998291015625,
+  "impactAskPrice" : 3.2588565619047607,
+  "referenceSymbol" : "referenceSymbol",
+  "openValue" : 0.202532411323639305322785730822943150997161865234375,
+  "isInverse" : true,
+  "lotSize" : 7.061401241503109105224211816675961017608642578125,
+  "optionMultiplier" : 5.962133916683182,
+  "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "impactBidPrice" : 7.04836565559697,
+  "prevTotalVolume" : 1.2846590061165319429647979632136411964893341064453125,
+  "initMargin" : 1.2315135367772556,
+  "front" : "2000-01-23T04:56:07.000+00:00"
 } ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -2409,7 +2440,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -2436,7 +2467,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -2473,7 +2504,7 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -2489,7 +2520,7 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The composite index symbol. default: .XBT </div><div class="param">filter (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#timestamp-filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Array of column names to fetch. If omitted, will return all columns.</p>
 <p>Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.</p>
@@ -2537,7 +2568,7 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -2570,7 +2601,7 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -2591,204 +2622,214 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>[ {
-  "totalVolume" : 6.438423552598546706349225132726132869720458984375,
-  "symbol" : "symbol",
-  "capped" : true,
-  "vwap" : 6.704019297950036,
-  "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "typ" : "typ",
-  "inverseLeg" : "inverseLeg",
-  "reference" : "reference",
+  "optionUnderlyingPrice" : 0.8774076871421566,
   "deleverage" : true,
-  "prevTotalTurnover" : 1.2846590061165319429647979632136411964893341064453125,
-  "riskLimit" : 4.1456080298839363962315474054776132106781005859375,
+  "riskLimit" : 1.489415909854170383397331534069962799549102783203125,
   "fundingBaseSymbol" : "fundingBaseSymbol",
-  "prevPrice24h" : 5.944895607614016,
-  "limit" : 1.2315135367772556,
-  "highPrice" : 3.353193347011243,
+  "prevPrice24h" : 7.143538047012306,
+  "highPrice" : 7.058770351582356,
   "fairMethod" : "fairMethod",
   "taxed" : true,
   "state" : "state",
   "expiry" : "2000-01-23T04:56:07.000+00:00",
   "fundingPremiumSymbol" : "fundingPremiumSymbol",
   "publishInterval" : "2000-01-23T04:56:07.000+00:00",
-  "calcInterval" : "2000-01-23T04:56:07.000+00:00",
-  "lastChangePcnt" : 7.058770351582356,
   "publishTime" : "2000-01-23T04:56:07.000+00:00",
-  "askPrice" : 4.652396432933246,
-  "maintMargin" : 2.027123023002322,
-  "takerFee" : 1.4894159098541704,
-  "multiplier" : 5.63737665663332876420099637471139430999755859375,
-  "fairBasis" : 3.2588565619047607,
-  "volume24h" : 6.96511769763884558415156789124011993408203125,
-  "indicativeTaxRate" : 6.628464275087742,
-  "settlementFee" : 6.84685269835264,
-  "totalTurnover" : 2.884162126668780246063761296682059764862060546875,
-  "turnover24h" : 6.87805222012787620400331434211693704128265380859375,
+  "maintMargin" : 1.0246457001441578,
+  "takerFee" : 4.965218492984954,
+  "fairBasis" : 4.258773108174356,
+  "volume24h" : 6.87805222012787620400331434211693704128265380859375,
   "underlying" : "underlying",
-  "quoteToSettleMultiplier" : 9.301444243932575517419536481611430644989013671875,
-  "fairPrice" : 4.078845849666752,
-  "bidPrice" : 6.519180951018382,
+  "quoteToSettleMultiplier" : 7.3862819483858839220147274318151175975799560546875,
   "fundingQuoteSymbol" : "fundingQuoteSymbol",
   "quoteCurrency" : "quoteCurrency",
-  "volume" : 3.557195227068097320710649000830017030239105224609375,
-  "impactMidPrice" : 7.740351818741173,
-  "indicativeSettlePrice" : 4.258773108174356,
-  "sellLeg" : "sellLeg",
-  "settledPrice" : 1.041444916118296,
+  "indicativeSettlePrice" : 9.132027271330688,
+  "settledPrice" : 9.702963800023566,
   "relistInterval" : "2000-01-23T04:56:07.000+00:00",
-  "maxOrderQty" : 0.80082819046101150206595775671303272247314453125,
-  "prevClosePrice" : 5.025004791520295,
-  "maxPrice" : 6.027456183070403,
-  "underlyingToPositionMultiplier" : 2.3021358869347654518833223846741020679473876953125,
-  "hasLiquidity" : true,
-  "openInterest" : 3.05761002410493443193217899533919990062713623046875,
-  "riskStep" : 7.3862819483858839220147274318151175975799560546875,
+  "prevClosePrice" : 8.762042012749001,
+  "maxPrice" : 2.3021358869347655,
+  "underlyingToPositionMultiplier" : 2.027123023002321833274663731572218239307403564453125,
   "settle" : "2000-01-23T04:56:07.000+00:00",
-  "isQuanto" : true,
   "buyLeg" : "buyLeg",
-  "rootSymbol" : "rootSymbol",
-  "tickSize" : 5.962133916683182,
-  "markMethod" : "markMethod",
-  "markPrice" : 0.2025324113236393,
-  "underlyingSymbol" : "underlyingSymbol",
-  "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "tickSize" : 9.301444243932576,
+  "markPrice" : 4.678947989005849,
   "settlCurrency" : "settlCurrency",
-  "makerFee" : 1.0246457001441578,
-  "lowPrice" : 3.0937452626664474,
-  "underlyingToSettleMultiplier" : 7.061401241503109105224211816675961017608642578125,
-  "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
-  "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
   "listing" : "2000-01-23T04:56:07.000+00:00",
-  "indicativeFundingRate" : 4.965218492984954,
-  "bankruptLimitDownPrice" : 6.683562403749608,
-  "turnover" : 6.77832496304801335185175048536621034145355224609375,
+  "indicativeFundingRate" : 6.683562403749608,
   "positionCurrency" : "positionCurrency",
   "timestamp" : "2000-01-23T04:56:07.000+00:00",
-  "impactAskPrice" : 3.0205796992916243,
-  "referenceSymbol" : "referenceSymbol",
-  "limitDownPrice" : 9.965781217890562,
+  "limitDownPrice" : 9.018348186070783,
   "lastTickDirection" : "lastTickDirection",
-  "openValue" : 7.04836565559697003635619694250635802745819091796875,
-  "isInverse" : true,
-  "lotSize" : 1.46581298050294517310021547018550336360931396484375,
   "rebalanceTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "fairBasisRate" : 5.533258397034986,
-  "lastPriceProtected" : 0.8851374739011653,
-  "midPrice" : 0.10263654006109402,
-  "insuranceFee" : 7.457744773683766,
-  "impactBidPrice" : 8.969578798196912,
-  "prevTotalVolume" : 9.0183481860707832566959041287191212177276611328125,
-  "initMargin" : 3.616076749251911,
-  "limitUpPrice" : 9.369310271410669,
-  "bankruptLimitUpPrice" : 8.762042012749001,
-  "front" : "2000-01-23T04:56:07.000+00:00",
+  "fairBasisRate" : 6.628464275087742,
+  "lastPriceProtected" : 4.652396432933246,
+  "midPrice" : 3.0205796992916243,
+  "insuranceFee" : 9.965781217890562,
+  "optionStrikePrice" : 1.4658129805029452,
+  "limitUpPrice" : 6.438423552598547,
+  "bankruptLimitUpPrice" : 6.965117697638846,
   "rebalanceInterval" : "2000-01-23T04:56:07.000+00:00",
-  "fundingRate" : 1.1730742509559433,
-  "lastPrice" : 7.143538047012306
+  "fundingRate" : 9.369310271410669,
+  "lastPrice" : 0.10263654006109402,
+  "totalVolume" : 2.884162126668780246063761296682059764862060546875,
+  "symbol" : "symbol",
+  "capped" : true,
+  "vwap" : 0.8851374739011653,
+  "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "typ" : "typ",
+  "inverseLeg" : "inverseLeg",
+  "reference" : "reference",
+  "prevTotalTurnover" : 5.94489560761401580890606055618263781070709228515625,
+  "limit" : 7.457744773683766,
+  "calcInterval" : "2000-01-23T04:56:07.000+00:00",
+  "lastChangePcnt" : 8.969578798196912,
+  "askPrice" : 3.0576100241049344,
+  "multiplier" : 3.61607674925191080461672754609026014804840087890625,
+  "indicativeTaxRate" : 7.260521264802104,
+  "settlementFee" : 5.025004791520295,
+  "totalTurnover" : 6.70401929795003592715829654480330646038055419921875,
+  "turnover24h" : 3.093745262666447448651751983561553061008453369140625,
+  "fairPrice" : 1.041444916118296,
+  "bidPrice" : 7.740351818741173,
+  "volume" : 6.77832496304801335185175048536621034145355224609375,
+  "impactMidPrice" : 5.533258397034986,
+  "sellLeg" : "sellLeg",
+  "optionStrikePcnt" : 0.8008281904610115,
+  "maxOrderQty" : 5.63737665663332876420099637471139430999755859375,
+  "hasLiquidity" : true,
+  "openInterest" : 4.078845849666752343409825698472559452056884765625,
+  "riskStep" : 6.8468526983526398765889098285697400569915771484375,
+  "optionStrikeRound" : 6.027456183070403,
+  "isQuanto" : true,
+  "rootSymbol" : "rootSymbol",
+  "markMethod" : "markMethod",
+  "underlyingSymbol" : "underlyingSymbol",
+  "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "makerFee" : 1.1730742509559433,
+  "lowPrice" : 6.519180951018382,
+  "underlyingToSettleMultiplier" : 4.1456080298839363962315474054776132106781005859375,
+  "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
+  "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
+  "bankruptLimitDownPrice" : 3.5571952270680973,
+  "turnover" : 3.35319334701124294184637619764544069766998291015625,
+  "impactAskPrice" : 3.2588565619047607,
+  "referenceSymbol" : "referenceSymbol",
+  "openValue" : 0.202532411323639305322785730822943150997161865234375,
+  "isInverse" : true,
+  "lotSize" : 7.061401241503109105224211816675961017608642578125,
+  "optionMultiplier" : 5.962133916683182,
+  "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "impactBidPrice" : 7.04836565559697,
+  "prevTotalVolume" : 1.2846590061165319429647979632136411964893341064453125,
+  "initMargin" : 1.2315135367772556,
+  "front" : "2000-01-23T04:56:07.000+00:00"
 }, {
-  "totalVolume" : 6.438423552598546706349225132726132869720458984375,
-  "symbol" : "symbol",
-  "capped" : true,
-  "vwap" : 6.704019297950036,
-  "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "typ" : "typ",
-  "inverseLeg" : "inverseLeg",
-  "reference" : "reference",
+  "optionUnderlyingPrice" : 0.8774076871421566,
   "deleverage" : true,
-  "prevTotalTurnover" : 1.2846590061165319429647979632136411964893341064453125,
-  "riskLimit" : 4.1456080298839363962315474054776132106781005859375,
+  "riskLimit" : 1.489415909854170383397331534069962799549102783203125,
   "fundingBaseSymbol" : "fundingBaseSymbol",
-  "prevPrice24h" : 5.944895607614016,
-  "limit" : 1.2315135367772556,
-  "highPrice" : 3.353193347011243,
+  "prevPrice24h" : 7.143538047012306,
+  "highPrice" : 7.058770351582356,
   "fairMethod" : "fairMethod",
   "taxed" : true,
   "state" : "state",
   "expiry" : "2000-01-23T04:56:07.000+00:00",
   "fundingPremiumSymbol" : "fundingPremiumSymbol",
   "publishInterval" : "2000-01-23T04:56:07.000+00:00",
-  "calcInterval" : "2000-01-23T04:56:07.000+00:00",
-  "lastChangePcnt" : 7.058770351582356,
   "publishTime" : "2000-01-23T04:56:07.000+00:00",
-  "askPrice" : 4.652396432933246,
-  "maintMargin" : 2.027123023002322,
-  "takerFee" : 1.4894159098541704,
-  "multiplier" : 5.63737665663332876420099637471139430999755859375,
-  "fairBasis" : 3.2588565619047607,
-  "volume24h" : 6.96511769763884558415156789124011993408203125,
-  "indicativeTaxRate" : 6.628464275087742,
-  "settlementFee" : 6.84685269835264,
-  "totalTurnover" : 2.884162126668780246063761296682059764862060546875,
-  "turnover24h" : 6.87805222012787620400331434211693704128265380859375,
+  "maintMargin" : 1.0246457001441578,
+  "takerFee" : 4.965218492984954,
+  "fairBasis" : 4.258773108174356,
+  "volume24h" : 6.87805222012787620400331434211693704128265380859375,
   "underlying" : "underlying",
-  "quoteToSettleMultiplier" : 9.301444243932575517419536481611430644989013671875,
-  "fairPrice" : 4.078845849666752,
-  "bidPrice" : 6.519180951018382,
+  "quoteToSettleMultiplier" : 7.3862819483858839220147274318151175975799560546875,
   "fundingQuoteSymbol" : "fundingQuoteSymbol",
   "quoteCurrency" : "quoteCurrency",
-  "volume" : 3.557195227068097320710649000830017030239105224609375,
-  "impactMidPrice" : 7.740351818741173,
-  "indicativeSettlePrice" : 4.258773108174356,
-  "sellLeg" : "sellLeg",
-  "settledPrice" : 1.041444916118296,
+  "indicativeSettlePrice" : 9.132027271330688,
+  "settledPrice" : 9.702963800023566,
   "relistInterval" : "2000-01-23T04:56:07.000+00:00",
-  "maxOrderQty" : 0.80082819046101150206595775671303272247314453125,
-  "prevClosePrice" : 5.025004791520295,
-  "maxPrice" : 6.027456183070403,
-  "underlyingToPositionMultiplier" : 2.3021358869347654518833223846741020679473876953125,
-  "hasLiquidity" : true,
-  "openInterest" : 3.05761002410493443193217899533919990062713623046875,
-  "riskStep" : 7.3862819483858839220147274318151175975799560546875,
+  "prevClosePrice" : 8.762042012749001,
+  "maxPrice" : 2.3021358869347655,
+  "underlyingToPositionMultiplier" : 2.027123023002321833274663731572218239307403564453125,
   "settle" : "2000-01-23T04:56:07.000+00:00",
-  "isQuanto" : true,
   "buyLeg" : "buyLeg",
-  "rootSymbol" : "rootSymbol",
-  "tickSize" : 5.962133916683182,
-  "markMethod" : "markMethod",
-  "markPrice" : 0.2025324113236393,
-  "underlyingSymbol" : "underlyingSymbol",
-  "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "tickSize" : 9.301444243932576,
+  "markPrice" : 4.678947989005849,
   "settlCurrency" : "settlCurrency",
-  "makerFee" : 1.0246457001441578,
-  "lowPrice" : 3.0937452626664474,
-  "underlyingToSettleMultiplier" : 7.061401241503109105224211816675961017608642578125,
-  "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
-  "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
   "listing" : "2000-01-23T04:56:07.000+00:00",
-  "indicativeFundingRate" : 4.965218492984954,
-  "bankruptLimitDownPrice" : 6.683562403749608,
-  "turnover" : 6.77832496304801335185175048536621034145355224609375,
+  "indicativeFundingRate" : 6.683562403749608,
   "positionCurrency" : "positionCurrency",
   "timestamp" : "2000-01-23T04:56:07.000+00:00",
-  "impactAskPrice" : 3.0205796992916243,
-  "referenceSymbol" : "referenceSymbol",
-  "limitDownPrice" : 9.965781217890562,
+  "limitDownPrice" : 9.018348186070783,
   "lastTickDirection" : "lastTickDirection",
-  "openValue" : 7.04836565559697003635619694250635802745819091796875,
-  "isInverse" : true,
-  "lotSize" : 1.46581298050294517310021547018550336360931396484375,
   "rebalanceTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "fairBasisRate" : 5.533258397034986,
-  "lastPriceProtected" : 0.8851374739011653,
-  "midPrice" : 0.10263654006109402,
-  "insuranceFee" : 7.457744773683766,
-  "impactBidPrice" : 8.969578798196912,
-  "prevTotalVolume" : 9.0183481860707832566959041287191212177276611328125,
-  "initMargin" : 3.616076749251911,
-  "limitUpPrice" : 9.369310271410669,
-  "bankruptLimitUpPrice" : 8.762042012749001,
-  "front" : "2000-01-23T04:56:07.000+00:00",
+  "fairBasisRate" : 6.628464275087742,
+  "lastPriceProtected" : 4.652396432933246,
+  "midPrice" : 3.0205796992916243,
+  "insuranceFee" : 9.965781217890562,
+  "optionStrikePrice" : 1.4658129805029452,
+  "limitUpPrice" : 6.438423552598547,
+  "bankruptLimitUpPrice" : 6.965117697638846,
   "rebalanceInterval" : "2000-01-23T04:56:07.000+00:00",
-  "fundingRate" : 1.1730742509559433,
-  "lastPrice" : 7.143538047012306
+  "fundingRate" : 9.369310271410669,
+  "lastPrice" : 0.10263654006109402,
+  "totalVolume" : 2.884162126668780246063761296682059764862060546875,
+  "symbol" : "symbol",
+  "capped" : true,
+  "vwap" : 0.8851374739011653,
+  "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "typ" : "typ",
+  "inverseLeg" : "inverseLeg",
+  "reference" : "reference",
+  "prevTotalTurnover" : 5.94489560761401580890606055618263781070709228515625,
+  "limit" : 7.457744773683766,
+  "calcInterval" : "2000-01-23T04:56:07.000+00:00",
+  "lastChangePcnt" : 8.969578798196912,
+  "askPrice" : 3.0576100241049344,
+  "multiplier" : 3.61607674925191080461672754609026014804840087890625,
+  "indicativeTaxRate" : 7.260521264802104,
+  "settlementFee" : 5.025004791520295,
+  "totalTurnover" : 6.70401929795003592715829654480330646038055419921875,
+  "turnover24h" : 3.093745262666447448651751983561553061008453369140625,
+  "fairPrice" : 1.041444916118296,
+  "bidPrice" : 7.740351818741173,
+  "volume" : 6.77832496304801335185175048536621034145355224609375,
+  "impactMidPrice" : 5.533258397034986,
+  "sellLeg" : "sellLeg",
+  "optionStrikePcnt" : 0.8008281904610115,
+  "maxOrderQty" : 5.63737665663332876420099637471139430999755859375,
+  "hasLiquidity" : true,
+  "openInterest" : 4.078845849666752343409825698472559452056884765625,
+  "riskStep" : 6.8468526983526398765889098285697400569915771484375,
+  "optionStrikeRound" : 6.027456183070403,
+  "isQuanto" : true,
+  "rootSymbol" : "rootSymbol",
+  "markMethod" : "markMethod",
+  "underlyingSymbol" : "underlyingSymbol",
+  "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "makerFee" : 1.1730742509559433,
+  "lowPrice" : 6.519180951018382,
+  "underlyingToSettleMultiplier" : 4.1456080298839363962315474054776132106781005859375,
+  "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
+  "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
+  "bankruptLimitDownPrice" : 3.5571952270680973,
+  "turnover" : 3.35319334701124294184637619764544069766998291015625,
+  "impactAskPrice" : 3.2588565619047607,
+  "referenceSymbol" : "referenceSymbol",
+  "openValue" : 0.202532411323639305322785730822943150997161865234375,
+  "isInverse" : true,
+  "lotSize" : 7.061401241503109105224211816675961017608642578125,
+  "optionMultiplier" : 5.962133916683182,
+  "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
+  "impactBidPrice" : 7.04836565559697,
+  "prevTotalVolume" : 1.2846590061165319429647979632136411964893341064453125,
+  "initMargin" : 1.2315135367772556,
+  "front" : "2000-01-23T04:56:07.000+00:00"
 } ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -2822,7 +2863,7 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -2838,7 +2879,7 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
 <p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
  </div><div class="param">filter (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#timestamp-filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Array of column names to fetch. If omitted, will return all columns.</p>
 <p>Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.</p>
@@ -2878,7 +2919,7 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -2912,7 +2953,7 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -2939,12 +2980,10 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>[ {
-  "isMe" : true,
   "name" : "name",
   "isRealName" : true,
   "profit" : 0.8008281904610115
 }, {
-  "isMe" : true,
   "name" : "name",
   "isRealName" : true,
   "profit" : 0.8008281904610115
@@ -2952,7 +2991,7 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -2965,6 +3004,74 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
     <h4 class="field-label">200</h4>
     Request was successful
         
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="leaderboard.getName"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /leaderboard/name</code></pre></div>
+    <div class="method-summary">Get your alias on the leaderboard. (<span class="nickname">leaderboard.getName</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/x-www-form-urlencoded</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200_1">inline_response_200_1</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "name" : "name"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>text/xml</code></li>
+      <li><code>application/javascript</code></li>
+      <li><code>text/javascript</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Request was successful
+        <a href="#inline_response_200_1">inline_response_200_1</a>
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
   <h1><a name="Liquidation">Liquidation</a></h1>
@@ -2977,7 +3084,7 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -2993,7 +3100,7 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
 <p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
  </div><div class="param">filter (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#timestamp-filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Array of column names to fetch. If omitted, will return all columns.</p>
 <p>Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.</p>
@@ -3037,7 +3144,7 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -3071,7 +3178,7 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -3117,7 +3224,7 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -3152,6 +3259,9 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
 <p>Use the <code>leavesQty</code> field to specify how much of the order you wish to remain open. This can be useful
 if you want to adjust your position's delta by a certain amount, regardless of how much of the order has
 already filled.</p>
+<blockquote>
+<p>A <code>leavesQty</code> can be used to make a &quot;Filled&quot; order live again, if it is received within 60 seconds of the fill.</p>
+</blockquote>
 <p>Use the <code>simpleOrderQty</code> and <code>simpleLeavesQty</code> fields to specify order size in Bitcoin, rather than contracts.
 These fields will round up to the nearest contract.</p>
 <p>Like order placement, amending can be done in bulk. Simply send a request to <code>PUT /api/v1/order/bulk</code> with
@@ -3160,7 +3270,7 @@ a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, eac
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -3244,7 +3354,7 @@ a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, eac
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -3273,11 +3383,11 @@ a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, eac
     <a class="up" href="#__Methods">Up</a>
     <pre class="put"><code class="huge"><span class="http-method">put</span> /order/bulk</code></pre></div>
     <div class="method-summary">Amend multiple orders for the same symbol. (<span class="nickname">order.amendBulk</span>)</div>
-    <div class="method-notes">Similar to POST /amend, but with multiple orders. <code>application/json</code> only. Ratelimited at 50%.</div>
+    <div class="method-notes">Similar to POST /amend, but with multiple orders. <code>application/json</code> only. Ratelimited at 10%.</div>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -3375,7 +3485,7 @@ a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, eac
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -3408,7 +3518,7 @@ a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, eac
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -3510,7 +3620,7 @@ a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, eac
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -3543,7 +3653,7 @@ a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, eac
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -3565,19 +3675,87 @@ a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, eac
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
+      array[<a href="#Order">Order</a>]
       
-      Object
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>"{}"</code></pre>
+    <pre class="example"><code>[ {
+  "symbol" : "symbol",
+  "triggered" : "triggered",
+  "clOrdLinkID" : "clOrdLinkID",
+  "execInst" : "execInst",
+  "pegOffsetValue" : 7.061401241503109,
+  "pegPriceType" : "pegPriceType",
+  "contingencyType" : "contingencyType",
+  "simpleCumQty" : 2.027123023002322,
+  "settlCurrency" : "settlCurrency",
+  "ordRejReason" : "ordRejReason",
+  "price" : 5.962133916683182,
+  "orderQty" : 1.46581298050294517310021547018550336360931396484375,
+  "currency" : "currency",
+  "text" : "text",
+  "timeInForce" : "timeInForce",
+  "timestamp" : "2000-01-23T04:56:07.000+00:00",
+  "ordStatus" : "ordStatus",
+  "side" : "side",
+  "simpleOrderQty" : 6.027456183070403,
+  "orderID" : "orderID",
+  "leavesQty" : 3.61607674925191080461672754609026014804840087890625,
+  "cumQty" : 4.1456080298839363962315474054776132106781005859375,
+  "displayQty" : 5.63737665663332876420099637471139430999755859375,
+  "simpleLeavesQty" : 9.301444243932576,
+  "clOrdID" : "clOrdID",
+  "avgPx" : 7.386281948385884,
+  "multiLegReportingType" : "multiLegReportingType",
+  "workingIndicator" : true,
+  "transactTime" : "2000-01-23T04:56:07.000+00:00",
+  "exDestination" : "exDestination",
+  "account" : 0.80082819046101150206595775671303272247314453125,
+  "stopPx" : 2.3021358869347655,
+  "ordType" : "ordType"
+}, {
+  "symbol" : "symbol",
+  "triggered" : "triggered",
+  "clOrdLinkID" : "clOrdLinkID",
+  "execInst" : "execInst",
+  "pegOffsetValue" : 7.061401241503109,
+  "pegPriceType" : "pegPriceType",
+  "contingencyType" : "contingencyType",
+  "simpleCumQty" : 2.027123023002322,
+  "settlCurrency" : "settlCurrency",
+  "ordRejReason" : "ordRejReason",
+  "price" : 5.962133916683182,
+  "orderQty" : 1.46581298050294517310021547018550336360931396484375,
+  "currency" : "currency",
+  "text" : "text",
+  "timeInForce" : "timeInForce",
+  "timestamp" : "2000-01-23T04:56:07.000+00:00",
+  "ordStatus" : "ordStatus",
+  "side" : "side",
+  "simpleOrderQty" : 6.027456183070403,
+  "orderID" : "orderID",
+  "leavesQty" : 3.61607674925191080461672754609026014804840087890625,
+  "cumQty" : 4.1456080298839363962315474054776132106781005859375,
+  "displayQty" : 5.63737665663332876420099637471139430999755859375,
+  "simpleLeavesQty" : 9.301444243932576,
+  "clOrdID" : "clOrdID",
+  "avgPx" : 7.386281948385884,
+  "multiLegReportingType" : "multiLegReportingType",
+  "workingIndicator" : true,
+  "transactTime" : "2000-01-23T04:56:07.000+00:00",
+  "exDestination" : "exDestination",
+  "account" : 0.80082819046101150206595775671303272247314453125,
+  "stopPx" : 2.3021358869347655,
+  "ordType" : "ordType"
+} ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -3589,7 +3767,7 @@ a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, eac
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     Request was successful
-        <a href="#Object">Object</a>
+        
     <h4 class="field-label">400</h4>
     Parameter Error
         <a href="#Error">Error</a>
@@ -3610,12 +3788,12 @@ a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, eac
 If called repeatedly, the existing offset will be canceled and a new one will be inserted in its place.</p>
 <p>Example usage: call this route at 15s intervals with an offset of 60000 (60s).
 If this route is not called within 60 seconds, all your orders will be automatically canceled.</p>
-<p>This is also available via <a href="https://www.bitmex.com/app/wsAPI#dead-man-s-switch-auto-cancel-">WebSocket</a>.</p>
+<p>This is also available via <a href="https://www.bitmex.com/app/wsAPI#Dead-Mans-Switch-Auto-Cancel">WebSocket</a>.</p>
 </div>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -3645,7 +3823,7 @@ If this route is not called within 60 seconds, all your orders will be automatic
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -3678,7 +3856,7 @@ If this route is not called within 60 seconds, all your orders will be automatic
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -3744,7 +3922,7 @@ If this route is not called within 60 seconds, all your orders will be automatic
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -3779,7 +3957,7 @@ If this route is not called within 60 seconds, all your orders will be automatic
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -3795,7 +3973,7 @@ If this route is not called within 60 seconds, all your orders will be automatic
 <p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
  </div><div class="param">filter (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#timestamp-filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Array of column names to fetch. If omitted, will return all columns.</p>
 <p>Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.</p>
@@ -3895,7 +4073,7 @@ If this route is not called within 60 seconds, all your orders will be automatic
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -3966,7 +4144,12 @@ be amended down or canceled. If there are multiple <code>'ReduceOnly'</code> ord
 <li><strong>Close</strong>: <code>'Close'</code> implies <code>'ReduceOnly'</code>. A <code>'Close'</code> order will cancel other active limit orders with the same side
 and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a
 <code>'Close'</code> Stop is ensured to have the margin required to execute, and can only execute up to the full size of your
-position. If not specified, a <code>'Close'</code> order has an <code>orderQty</code> equal to your current position's size.</li>
+position. If <code>orderQty</code> is not specified, a <code>'Close'</code> order has an <code>orderQty</code> equal to your current position's size.
+<ul>
+<li>Note that a <code>Close</code> order without an <code>orderQty</code> requires a <code>side</code>, so that BitMEX knows if it should trigger
+above or below the <code>stopPx</code>.</li>
+</ul>
+</li>
 </ul>
 <h4>Linked Orders</h4>
 <p>Linked Orders are an advanced capability. It is very powerful, but its use requires careful coding and testing.
@@ -4005,11 +4188,16 @@ in the market and avoids the cancel/replace cycle.</p>
 <p>If you want to keep track of order IDs yourself, set a unique <code>clOrdID</code> per order.
 This <code>clOrdID</code> will come back as a property on the order and any related executions (including on the WebSocket),
 and can be used to get or cancel the order. Max length is 36 characters.</p>
+<p>You can also change the <code>clOrdID</code> by amending an order, supplying an <code>origClOrdID</code>, and your desired new
+ID as the <code>clOrdID</code> param, like so:</p>
+<pre><code># Amends an order's leavesQty, and updates its clOrdID to &quot;def-456&quot;
+PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&quot;: &quot;def-456&quot;, &quot;leavesQty&quot;: 1000}
+</code></pre>
 </div>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -4026,17 +4214,13 @@ and can be used to get or cancel the order. Max length is 36 characters.</p>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Order side. Valid options: Buy, Sell. Defaults to 'Buy' unless <code>orderQty</code> or <code>simpleOrderQty</code> is negative. </div><div class="param">simpleOrderQty (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Order quantity in units of the underlying instrument (i.e. Bitcoin). format: double</div><div class="param">quantity (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Deprecated: use <code>orderQty</code>. format: int32</div><div class="param">orderQty (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Order quantity in units of the underlying instrument (i.e. Bitcoin). format: double</div><div class="param">orderQty (optional)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Order quantity in units of the instrument (i.e. contracts). format: int32</div><div class="param">price (optional)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional limit price for 'Limit', 'StopLimit', and 'LimitIfTouched' orders. format: double</div><div class="param">displayQty (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional quantity to display in the book. Use 0 for a fully hidden order. format: int32</div><div class="param">stopPrice (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Deprecated: use <code>stopPx</code>. format: double</div><div class="param">stopPx (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional quantity to display in the book. Use 0 for a fully hidden order. format: int32</div><div class="param">stopPx (optional)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional trigger price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. Use a price below the current price for stop-sell orders and buy-if-touched orders. Use <code>execInst</code> of 'MarkPrice' or 'LastPrice' to define the current price used for triggering. format: double</div><div class="param">clOrdID (optional)</div>
 
@@ -4046,9 +4230,7 @@ and can be used to get or cancel the order. Max length is 36 characters.</p>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional trailing offset from the current price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for 'Pegged' orders. format: double</div><div class="param">pegPriceType (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg. </div><div class="param">type (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Deprecated: use <code>ordType</code>. </div><div class="param">ordType (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg. </div><div class="param">ordType (optional)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to 'Limit' when <code>price</code> is specified. Defaults to 'Stop' when <code>stopPx</code> is specified. Defaults to 'StopLimit' when <code>price</code> and <code>stopPx</code> are specified. default: Limit </div><div class="param">timeInForce (optional)</div>
 
@@ -4109,7 +4291,7 @@ and can be used to get or cancel the order. Max length is 36 characters.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -4148,7 +4330,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -4246,7 +4428,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -4271,87 +4453,6 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
   </div> <!-- method -->
   <hr/>
   <h1><a name="OrderBook">OrderBook</a></h1>
-  <div class="method"><a name="orderBook.get"/>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /orderBook</code></pre></div>
-    <div class="method-summary">Get current orderbook [deprecated, use /orderBook/L2]. (<span class="nickname">orderBook.get</span>)</div>
-    <div class="method-notes"></div>
-
-
-    <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/x-www-form-urlencoded</code></li>
-    </ul>
-
-
-
-    <h3 class="field-label">Query parameters</h3>
-    <div class="field-items">
-      <div class="param">symbol (required)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. </div><div class="param">depth (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Orderbook depth. default: 25 format: int32</div>
-    </div>  <!-- field-items -->
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      array[<a href="#OrderBook">OrderBook</a>]
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>[ {
-  "symbol" : "symbol",
-  "askPrice" : 5.962133916683182,
-  "level" : 0.80082819046101150206595775671303272247314453125,
-  "bidSize" : 6.02745618307040320615897144307382404804229736328125,
-  "bidPrice" : 1.4658129805029452,
-  "askSize" : 5.63737665663332876420099637471139430999755859375,
-  "timestamp" : "2000-01-23T04:56:07.000+00:00"
-}, {
-  "symbol" : "symbol",
-  "askPrice" : 5.962133916683182,
-  "level" : 0.80082819046101150206595775671303272247314453125,
-  "bidSize" : 6.02745618307040320615897144307382404804229736328125,
-  "bidPrice" : 1.4658129805029452,
-  "askSize" : 5.63737665663332876420099637471139430999755859375,
-  "timestamp" : "2000-01-23T04:56:07.000+00:00"
-} ]</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/xml</code></li>
-      <li><code>text/xml</code></li>
-      <li><code>application/javascript</code></li>
-      <li><code>text/javascript</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Request was successful
-        
-    <h4 class="field-label">400</h4>
-    Parameter Error
-        <a href="#Error">Error</a>
-    <h4 class="field-label">401</h4>
-    Unauthorized
-        <a href="#Error">Error</a>
-    <h4 class="field-label">404</h4>
-    Not Found
-        <a href="#Error">Error</a>
-  </div> <!-- method -->
-  <hr/>
   <div class="method"><a name="orderBook.getL2"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
@@ -4361,7 +4462,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -4405,7 +4506,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -4439,7 +4540,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -4657,7 +4758,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -4686,11 +4787,11 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /position/isolate</code></pre></div>
     <div class="method-summary">Enable isolated margin or cross margin per-position. (<span class="nickname">position.isolateMargin</span>)</div>
-    <div class="method-notes">Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.</div>
+    <div class="method-notes"></div>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -4814,7 +4915,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -4843,11 +4944,11 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /position/transferMargin</code></pre></div>
     <div class="method-summary">Transfer equity in or out of a position. (<span class="nickname">position.transferIsolatedMargin</span>)</div>
-    <div class="method-notes">When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.</div>
+    <div class="method-notes"></div>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -4971,7 +5072,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -5000,11 +5101,11 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /position/leverage</code></pre></div>
     <div class="method-summary">Choose leverage for a position. (<span class="nickname">position.updateLeverage</span>)</div>
-    <div class="method-notes">Users can choose an isolated leverage. This will automatically enable isolated margin.</div>
+    <div class="method-notes"></div>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -5128,7 +5229,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -5157,11 +5258,11 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /position/riskLimit</code></pre></div>
     <div class="method-summary">Update your risk limit. (<span class="nickname">position.updateRiskLimit</span>)</div>
-    <div class="method-notes">Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.</div>
+    <div class="method-notes"></div>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -5174,7 +5275,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <div class="field-items">
       <div class="param">symbol (required)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Symbol of position to isolate. </div><div class="param">riskLimit (required)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Symbol of position to update risk limit on. </div><div class="param">riskLimit (required)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; New Risk Limit, in Satoshis. format: int64</div>
     </div>  <!-- field-items -->
@@ -5285,7 +5386,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -5319,7 +5420,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -5335,7 +5436,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 <p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
  </div><div class="param">filter (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#timestamp-filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Array of column names to fetch. If omitted, will return all columns.</p>
 <p>Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.</p>
@@ -5381,7 +5482,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -5414,7 +5515,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -5434,7 +5535,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 <p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
  </div><div class="param">filter (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#timestamp-filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Array of column names to fetch. If omitted, will return all columns.</p>
 <p>Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.</p>
@@ -5480,7 +5581,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -5514,7 +5615,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -5544,7 +5645,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -5577,7 +5678,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -5601,7 +5702,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -5635,7 +5736,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -5651,7 +5752,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 <p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
  </div><div class="param">filter (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#timestamp-filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Array of column names to fetch. If omitted, will return all columns.</p>
 <p>Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.</p>
@@ -5682,24 +5783,28 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <pre class="example"><code>[ {
   "settlementType" : "settlementType",
   "symbol" : "symbol",
-  "taxRate" : 5.962133916683182,
+  "taxRate" : 2.3021358869347655,
+  "optionStrikePrice" : 6.027456183070403,
   "settledPrice" : 0.8008281904610115,
-  "bankrupt" : 6.02745618307040320615897144307382404804229736328125,
+  "optionUnderlyingPrice" : 1.4658129805029452,
+  "bankrupt" : 5.962133916683182377482808078639209270477294921875,
   "timestamp" : "2000-01-23T04:56:07.000+00:00",
-  "taxBase" : 1.46581298050294517310021547018550336360931396484375
+  "taxBase" : 5.63737665663332876420099637471139430999755859375
 }, {
   "settlementType" : "settlementType",
   "symbol" : "symbol",
-  "taxRate" : 5.962133916683182,
+  "taxRate" : 2.3021358869347655,
+  "optionStrikePrice" : 6.027456183070403,
   "settledPrice" : 0.8008281904610115,
-  "bankrupt" : 6.02745618307040320615897144307382404804229736328125,
+  "optionUnderlyingPrice" : 1.4658129805029452,
+  "bankrupt" : 5.962133916683182377482808078639209270477294921875,
   "timestamp" : "2000-01-23T04:56:07.000+00:00",
-  "taxBase" : 1.46581298050294517310021547018550336360931396484375
+  "taxBase" : 5.63737665663332876420099637471139430999755859375
 } ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -5733,7 +5838,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -5771,7 +5876,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -5804,7 +5909,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -5840,7 +5945,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -5873,7 +5978,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -5911,7 +6016,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -5947,7 +6052,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -5963,7 +6068,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 <p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
  </div><div class="param">filter (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#timestamp-filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Array of column names to fetch. If omitted, will return all columns.</p>
 <p>Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.</p>
@@ -6017,7 +6122,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -6050,7 +6155,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -6070,7 +6175,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 <p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
  </div><div class="param">filter (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#timestamp-filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Array of column names to fetch. If omitted, will return all columns.</p>
 <p>Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.</p>
@@ -6130,7 +6235,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -6164,7 +6269,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -6207,7 +6312,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -6231,7 +6336,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -6261,7 +6366,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -6285,7 +6390,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -6320,7 +6425,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -6344,7 +6449,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -6376,7 +6481,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -6400,7 +6505,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -6443,7 +6548,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -6467,7 +6572,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -6499,7 +6604,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -6523,7 +6628,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -6571,9 +6676,11 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     "announcementsLastSeen" : "2000-01-23T04:56:07.000+00:00",
     "orderBookType" : "orderBookType",
     "orderClearImmediate" : false,
+    "showLocaleNumbers" : true,
     "chatChannelID" : 1.4658129805029452
   },
   "created" : "2000-01-23T04:56:07.000+00:00",
+  "typ" : "typ",
   "ownerId" : 6.02745618307040320615897144307382404804229736328125,
   "affiliateID" : "affiliateID",
   "lastname" : "lastname",
@@ -6588,7 +6695,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -6612,7 +6719,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -6652,7 +6759,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -6676,7 +6783,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -6710,7 +6817,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -6734,7 +6841,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -6764,7 +6871,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -6788,7 +6895,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -6860,7 +6967,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -6884,7 +6991,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -6940,7 +7047,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -6964,7 +7071,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -7020,7 +7127,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -7044,7 +7151,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -7100,7 +7207,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -7124,7 +7231,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -7140,7 +7247,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -7164,7 +7271,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -7188,7 +7295,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -7212,7 +7319,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -7242,7 +7349,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -7266,7 +7373,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -7296,7 +7403,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -7320,7 +7427,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -7371,7 +7478,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -7395,7 +7502,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -7451,9 +7558,11 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     "announcementsLastSeen" : "2000-01-23T04:56:07.000+00:00",
     "orderBookType" : "orderBookType",
     "orderClearImmediate" : false,
+    "showLocaleNumbers" : true,
     "chatChannelID" : 1.4658129805029452
   },
   "created" : "2000-01-23T04:56:07.000+00:00",
+  "typ" : "typ",
   "ownerId" : 6.02745618307040320615897144307382404804229736328125,
   "affiliateID" : "affiliateID",
   "lastname" : "lastname",
@@ -7468,7 +7577,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -7492,7 +7601,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
     <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
@@ -7560,9 +7669,11 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     "announcementsLastSeen" : "2000-01-23T04:56:07.000+00:00",
     "orderBookType" : "orderBookType",
     "orderClearImmediate" : false,
+    "showLocaleNumbers" : true,
     "chatChannelID" : 1.4658129805029452
   },
   "created" : "2000-01-23T04:56:07.000+00:00",
+  "typ" : "typ",
   "ownerId" : 6.02745618307040320615897144307382404804229736328125,
   "affiliateID" : "affiliateID",
   "lastname" : "lastname",
@@ -7577,7 +7688,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/json</code></li>
       <li><code>application/xml</code></li>
@@ -7618,7 +7729,6 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <li><a href="#Margin"><code>Margin</code> - </a></li>
     <li><a href="#Notification"><code>Notification</code> - </a></li>
     <li><a href="#Order"><code>Order</code> - </a></li>
-    <li><a href="#OrderBook"><code>OrderBook</code> - </a></li>
     <li><a href="#OrderBookL2"><code>OrderBookL2</code> - </a></li>
     <li><a href="#Position"><code>Position</code> - </a></li>
     <li><a href="#Quote"><code>Quote</code> - </a></li>
@@ -7634,6 +7744,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <li><a href="#UserPreferences"><code>UserPreferences</code> - </a></li>
     <li><a href="#Wallet"><code>Wallet</code> - </a></li>
     <li><a href="#inline_response_200"><code>inline_response_200</code> - </a></li>
+    <li><a href="#inline_response_200_1"><code>inline_response_200_1</code> - </a></li>
     <li><a href="#x-any"><code>x-any</code> - </a></li>
   </ol>
 
@@ -7727,7 +7838,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h3><a name="Error"><code>Error</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
     <div class="field-items">
-      <div class="param">error (optional)</div><div class="param-desc"><span class="param-type"><a href="#Error_error">Error_error</a></span>  </div>
+      <div class="param">error </div><div class="param-desc"><span class="param-type"><a href="#Error_error">Error_error</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -7831,6 +7942,10 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 <div class="param">inverseLeg (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">sellLeg (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">buyLeg (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">optionStrikePcnt (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">optionStrikeRound (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">optionStrikePrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">optionMultiplier (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">positionCurrency (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">underlying (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">quoteCurrency (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
@@ -7913,6 +8028,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 <div class="param">markPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">indicativeTaxRate (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">indicativeSettlePrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">optionUnderlyingPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">settledPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
     </div>  <!-- field-items -->
@@ -7940,7 +8056,6 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <div class="field-items">
       <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">isRealName (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-<div class="param">isMe (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">profit (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
     </div>  <!-- field-items -->
   </div>
@@ -8056,19 +8171,6 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 <div class="param">multiLegReportingType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">text (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">transactTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
-<div class="param">timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="OrderBook"><code>OrderBook</code> - </a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>Level 2 Book Data</div>
-    <div class="field-items">
-      <div class="param">symbol </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">level </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">bidSize (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
-<div class="param">bidPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">askPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">askSize (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
 <div class="param">timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
     </div>  <!-- field-items -->
   </div>
@@ -8200,6 +8302,8 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 <div class="param">symbol </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">settlementType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">settledPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">optionStrikePrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">optionUnderlyingPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">bankrupt (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
 <div class="param">taxBase (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
 <div class="param">taxRate (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
@@ -8311,6 +8415,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 <div class="param">affiliateID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">pgpPubKey (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">country (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">typ (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -8346,6 +8451,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 <div class="param">orderBookType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">orderClearImmediate (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">orderControlsPlusMinus (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">showLocaleNumbers (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">sounds (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
 <div class="param">strictIPCheck (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">strictTimeout (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
@@ -8390,6 +8496,13 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     
     <div class="field-items">
       <div class="param">success (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="inline_response_200_1"><code>inline_response_200_1</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
