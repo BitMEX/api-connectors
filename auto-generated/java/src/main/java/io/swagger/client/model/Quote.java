@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
  * Best Bid/Offer Snapshots &amp; Historical Bins
  */
 @ApiModel(description = "Best Bid/Offer Snapshots & Historical Bins")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-05-31T16:00:32.015Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-07-16T16:31:01.031Z")
 public class Quote {
   @SerializedName("timestamp")
   private OffsetDateTime timestamp = null;

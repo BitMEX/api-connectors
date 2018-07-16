@@ -3378,6 +3378,8 @@ export class User {
     'affiliateID'?: string;
     'pgpPubKey'?: string;
     'country'?: string;
+    'geoipCountry'?: string;
+    'geoipRegion'?: string;
     'typ'?: string;
 
     static discriminator: string | undefined = undefined;
@@ -3451,6 +3453,16 @@ export class User {
         {
             "name": "country",
             "baseName": "country",
+            "type": "string"
+        },
+        {
+            "name": "geoipCountry",
+            "baseName": "geoipCountry",
+            "type": "string"
+        },
+        {
+            "name": "geoipRegion",
+            "baseName": "geoipRegion",
             "type": "string"
         },
         {
@@ -5338,7 +5350,7 @@ export class InstrumentApi {
         });
     }
     /**
-     * This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"BVOL:daily\", \"BVOL:weekly\", \"XBU:daily\", \"XBU:monthly\", ...]`. These identifiers are usable in any query's `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.
+     * This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"XBT:perpetual\", \"XBT:monthly\", \"XBT:quarterly\", \"ETH:monthly\", ...]`. These identifiers are usable in any query's `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.
      * @summary Return all active contract series and interval pairs.
      */
     public instrumentGetActiveIntervals () : Promise<{ response: http.ClientResponse; body: InstrumentInterval;  }> {

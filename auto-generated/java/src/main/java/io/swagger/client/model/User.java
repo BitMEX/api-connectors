@@ -31,7 +31,7 @@ import org.threeten.bp.OffsetDateTime;
  * Account Operations
  */
 @ApiModel(description = "Account Operations")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-05-31T16:00:32.015Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-07-16T16:31:01.031Z")
 public class User {
   @SerializedName("id")
   private BigDecimal id = null;
@@ -74,6 +74,12 @@ public class User {
 
   @SerializedName("country")
   private String country = null;
+
+  @SerializedName("geoipCountry")
+  private String geoipCountry = null;
+
+  @SerializedName("geoipRegion")
+  private String geoipRegion = null;
 
   @SerializedName("typ")
   private String typ = null;
@@ -330,6 +336,42 @@ public class User {
     this.country = country;
   }
 
+  public User geoipCountry(String geoipCountry) {
+    this.geoipCountry = geoipCountry;
+    return this;
+  }
+
+   /**
+   * Get geoipCountry
+   * @return geoipCountry
+  **/
+  @ApiModelProperty(value = "")
+  public String getGeoipCountry() {
+    return geoipCountry;
+  }
+
+  public void setGeoipCountry(String geoipCountry) {
+    this.geoipCountry = geoipCountry;
+  }
+
+  public User geoipRegion(String geoipRegion) {
+    this.geoipRegion = geoipRegion;
+    return this;
+  }
+
+   /**
+   * Get geoipRegion
+   * @return geoipRegion
+  **/
+  @ApiModelProperty(value = "")
+  public String getGeoipRegion() {
+    return geoipRegion;
+  }
+
+  public void setGeoipRegion(String geoipRegion) {
+    this.geoipRegion = geoipRegion;
+  }
+
   public User typ(String typ) {
     this.typ = typ;
     return this;
@@ -372,12 +414,14 @@ public class User {
         Objects.equals(this.affiliateID, user.affiliateID) &&
         Objects.equals(this.pgpPubKey, user.pgpPubKey) &&
         Objects.equals(this.country, user.country) &&
+        Objects.equals(this.geoipCountry, user.geoipCountry) &&
+        Objects.equals(this.geoipRegion, user.geoipRegion) &&
         Objects.equals(this.typ, user.typ);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, ownerId, firstname, lastname, username, email, phone, created, lastUpdated, preferences, tfAEnabled, affiliateID, pgpPubKey, country, typ);
+    return Objects.hash(id, ownerId, firstname, lastname, username, email, phone, created, lastUpdated, preferences, tfAEnabled, affiliateID, pgpPubKey, country, geoipCountry, geoipRegion, typ);
   }
 
 
@@ -400,6 +444,8 @@ public class User {
     sb.append("    affiliateID: ").append(toIndentedString(affiliateID)).append("\n");
     sb.append("    pgpPubKey: ").append(toIndentedString(pgpPubKey)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    geoipCountry: ").append(toIndentedString(geoipCountry)).append("\n");
+    sb.append("    geoipRegion: ").append(toIndentedString(geoipRegion)).append("\n");
     sb.append("    typ: ").append(toIndentedString(typ)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -116,6 +116,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /announcement/urgent:
     get:
       tags:
@@ -142,6 +143,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
   /apiKey:
     get:
       tags:
@@ -176,6 +178,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
     post:
       tags:
       - "APIKey"
@@ -243,6 +246,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
     delete:
       tags:
       - "APIKey"
@@ -259,7 +263,10 @@ paths:
         200:
           description: "Request was successful"
           schema:
-            $ref: "#/definitions/inline_response_200"
+            type: "object"
+            properties:
+              success:
+                type: "boolean"
         400:
           description: "Parameter Error"
           schema:
@@ -272,6 +279,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
   /apiKey/disable:
     post:
       tags:
@@ -302,6 +310,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
   /apiKey/enable:
     post:
       tags:
@@ -332,6 +341,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
   /chat:
     get:
       tags:
@@ -393,6 +403,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
     post:
       tags:
       - "Chat"
@@ -430,6 +441,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
   /chat/channels:
     get:
       tags:
@@ -457,6 +469,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /chat/connected:
     get:
       tags:
@@ -484,6 +497,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /execution:
     get:
       tags:
@@ -590,6 +604,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
   /execution/tradeHistory:
     get:
       tags:
@@ -690,6 +705,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
   /funding:
     get:
       tags:
@@ -790,6 +806,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /instrument:
     get:
       tags:
@@ -895,6 +912,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /instrument/active:
     get:
       tags:
@@ -922,6 +940,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /instrument/indices:
     get:
       tags:
@@ -949,6 +968,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /instrument/activeAndIndices:
     get:
       tags:
@@ -977,6 +997,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /instrument/activeIntervals:
     get:
       tags:
@@ -984,10 +1005,10 @@ paths:
       summary: "Return all active contract series and interval pairs."
       description: "This endpoint is useful for determining which pairs are live.\
         \ It returns two arrays of   strings. The first is intervals, such as `[\"\
-        BVOL:daily\", \"BVOL:weekly\", \"XBU:daily\", \"XBU:monthly\", ...]`. These\
-        \ identifiers are usable in any query's `symbol` param. The second array is\
-        \ the current resolution of these intervals. Results are mapped at the same\
-        \ index."
+        XBT:perpetual\", \"XBT:monthly\", \"XBT:quarterly\", \"ETH:monthly\", ...]`.\
+        \ These identifiers are usable in any query's `symbol` param. The second array\
+        \ is the current resolution of these intervals. Results are mapped at the\
+        \ same index."
       operationId: "Instrument.getActiveIntervals"
       parameters: []
       responses:
@@ -1008,6 +1029,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /instrument/compositeIndex:
     get:
       tags:
@@ -1118,6 +1140,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /insurance:
     get:
       tags:
@@ -1218,6 +1241,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /leaderboard:
     get:
       tags:
@@ -1253,6 +1277,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /leaderboard/name:
     get:
       tags:
@@ -1264,7 +1289,10 @@ paths:
         200:
           description: "Request was successful"
           schema:
-            $ref: "#/definitions/inline_response_200_1"
+            type: "object"
+            properties:
+              name:
+                type: "string"
         400:
           description: "Parameter Error"
           schema:
@@ -1277,6 +1305,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
   /liquidation:
     get:
       tags:
@@ -1377,6 +1406,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /notification:
     get:
       tags:
@@ -1404,6 +1434,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
   /order:
     get:
       tags:
@@ -1506,6 +1537,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
     post:
       tags:
       - "Order"
@@ -1759,6 +1791,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
     put:
       tags:
       - "Order"
@@ -1888,6 +1921,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
     delete:
       tags:
       - "Order"
@@ -1937,6 +1971,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
   /order/bulk:
     post:
       tags:
@@ -1980,6 +2015,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
     put:
       tags:
       - "Order"
@@ -2015,6 +2051,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
   /order/closePosition:
     post:
       tags:
@@ -2056,6 +2093,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
   /order/all:
     delete:
       tags:
@@ -2105,6 +2143,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
   /order/cancelAllAfter:
     post:
       tags:
@@ -2130,7 +2169,6 @@ paths:
           description: "Request was successful"
           schema:
             type: "object"
-            properties: {}
         400:
           description: "Parameter Error"
           schema:
@@ -2143,6 +2181,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
   /orderBook/L2:
     get:
       tags:
@@ -2187,6 +2226,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /position:
     get:
       tags:
@@ -2239,6 +2279,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
   /position/isolate:
     post:
       tags:
@@ -2277,6 +2318,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
   /position/riskLimit:
     post:
       tags:
@@ -2314,6 +2356,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
   /position/transferMargin:
     post:
       tags:
@@ -2351,6 +2394,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
   /position/leverage:
     post:
       tags:
@@ -2389,6 +2433,7 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+      deprecated: false
   /quote:
     get:
       tags:
@@ -2489,6 +2534,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /quote/bucketed:
     get:
       tags:
@@ -2606,6 +2652,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /schema:
     get:
       tags:
@@ -2625,7 +2672,6 @@ paths:
           description: "Request was successful"
           schema:
             type: "object"
-            properties: {}
         400:
           description: "Parameter Error"
           schema:
@@ -2639,6 +2685,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /schema/websocketHelp:
     get:
       tags:
@@ -2651,7 +2698,6 @@ paths:
           description: "Request was successful"
           schema:
             type: "object"
-            properties: {}
         400:
           description: "Parameter Error"
           schema:
@@ -2665,6 +2711,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /settlement:
     get:
       tags:
@@ -2765,6 +2812,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /stats:
     get:
       tags:
@@ -2792,6 +2840,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /stats/history:
     get:
       tags:
@@ -2819,6 +2868,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /stats/historyUSD:
     get:
       tags:
@@ -2846,6 +2896,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /trade:
     get:
       tags:
@@ -2950,6 +3001,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /trade/bucketed:
     get:
       tags:
@@ -3067,6 +3119,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security: []
+      deprecated: false
   /user/depositAddress:
     get:
       tags:
@@ -3086,6 +3139,7 @@ paths:
           description: "Request was successful"
           schema:
             type: "string"
+      deprecated: false
   /user/wallet:
     get:
       tags:
@@ -3105,6 +3159,7 @@ paths:
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Wallet"
+      deprecated: false
   /user/walletHistory:
     get:
       tags:
@@ -3127,6 +3182,7 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Transaction"
+      deprecated: false
   /user/walletSummary:
     get:
       tags:
@@ -3149,6 +3205,7 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Transaction"
+      deprecated: false
   /user/minWithdrawalFee:
     get:
       tags:
@@ -3171,8 +3228,8 @@ paths:
           description: "Request was successful"
           schema:
             type: "object"
-            properties: {}
       security: []
+      deprecated: false
   /user/requestWithdrawal:
     post:
       tags:
@@ -3224,6 +3281,7 @@ paths:
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Transaction"
+      deprecated: false
   /user/cancelWithdrawal:
     post:
       tags:
@@ -3242,6 +3300,7 @@ paths:
           schema:
             $ref: "#/definitions/Transaction"
       security: []
+      deprecated: false
   /user/confirmWithdrawal:
     post:
       tags:
@@ -3260,6 +3319,7 @@ paths:
           schema:
             $ref: "#/definitions/Transaction"
       security: []
+      deprecated: false
   /user/requestEnableTFA:
     post:
       tags:
@@ -3281,6 +3341,7 @@ paths:
           description: "Request was successful"
           schema:
             type: "boolean"
+      deprecated: false
   /user/confirmEnableTFA:
     post:
       tags:
@@ -3308,6 +3369,7 @@ paths:
           description: "Request was successful"
           schema:
             type: "boolean"
+      deprecated: false
   /user/disableTFA:
     post:
       tags:
@@ -3333,6 +3395,7 @@ paths:
           description: "Request was successful"
           schema:
             type: "boolean"
+      deprecated: false
   /user/confirmEmail:
     post:
       tags:
@@ -3351,6 +3414,7 @@ paths:
           schema:
             $ref: "#/definitions/AccessToken"
       security: []
+      deprecated: false
   /user/affiliateStatus:
     get:
       tags:
@@ -3363,6 +3427,7 @@ paths:
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Affiliate"
+      deprecated: false
   /user/checkReferralCode:
     get:
       tags:
@@ -3385,6 +3450,7 @@ paths:
             type: "number"
             format: "double"
       security: []
+      deprecated: false
   /user/logout:
     post:
       tags:
@@ -3395,7 +3461,10 @@ paths:
       responses:
         200:
           description: "Request was successful"
+          schema:
+            type: "null"
       security: []
+      deprecated: false
   /user/logoutAll:
     post:
       tags:
@@ -3410,6 +3479,7 @@ paths:
           schema:
             type: "number"
             format: "double"
+      deprecated: false
   /user/preferences:
     post:
       tags:
@@ -3436,6 +3506,7 @@ paths:
           description: "Request was successful"
           schema:
             $ref: "#/definitions/User"
+      deprecated: false
   /user:
     get:
       tags:
@@ -3448,6 +3519,7 @@ paths:
           description: "Request was successful"
           schema:
             $ref: "#/definitions/User"
+      deprecated: false
     put:
       tags:
       - "User"
@@ -3511,6 +3583,7 @@ paths:
           description: "Request was successful"
           schema:
             $ref: "#/definitions/User"
+      deprecated: false
   /user/commission:
     get:
       tags:
@@ -3525,6 +3598,7 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/UserCommission"
+      deprecated: false
   /user/margin:
     get:
       tags:
@@ -3545,6 +3619,7 @@ paths:
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Margin"
+      deprecated: false
 securityDefinitions:
   apiKey:
     type: "apiKey"
@@ -5530,10 +5605,17 @@ definitions:
       country:
         type: "string"
         maxLength: 3
+      geoipCountry:
+        type: "string"
+        maxLength: 2
+      geoipRegion:
+        type: "string"
+        maxLength: 2
       typ:
         type: "string"
     description: "Account Operations"
     example:
+      geoipRegion: "geoipRegion"
       country: "country"
       firstname: "firstname"
       preferences:
@@ -5578,6 +5660,7 @@ definitions:
       ownerId: 6.02745618307040320615897144307382404804229736328125
       affiliateID: "affiliateID"
       lastname: "lastname"
+      geoipCountry: "geoipCountry"
       lastUpdated: "2000-01-23T04:56:07.000+00:00"
       phone: "phone"
       TFAEnabled: "TFAEnabled"

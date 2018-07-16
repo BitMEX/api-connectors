@@ -52,8 +52,10 @@ namespace IO.Swagger.Model
         /// <param name="affiliateID">affiliateID.</param>
         /// <param name="pgpPubKey">pgpPubKey.</param>
         /// <param name="country">country.</param>
+        /// <param name="geoipCountry">geoipCountry.</param>
+        /// <param name="geoipRegion">geoipRegion.</param>
         /// <param name="typ">typ.</param>
-        public User(decimal? id = default(decimal?), decimal? ownerId = default(decimal?), string firstname = default(string), string lastname = default(string), string username = default(string), string email = default(string), string phone = default(string), DateTime? created = default(DateTime?), DateTime? lastUpdated = default(DateTime?), UserPreferences preferences = default(UserPreferences), string tFAEnabled = default(string), string affiliateID = default(string), string pgpPubKey = default(string), string country = default(string), string typ = default(string))
+        public User(decimal? id = default(decimal?), decimal? ownerId = default(decimal?), string firstname = default(string), string lastname = default(string), string username = default(string), string email = default(string), string phone = default(string), DateTime? created = default(DateTime?), DateTime? lastUpdated = default(DateTime?), UserPreferences preferences = default(UserPreferences), string tFAEnabled = default(string), string affiliateID = default(string), string pgpPubKey = default(string), string country = default(string), string geoipCountry = default(string), string geoipRegion = default(string), string typ = default(string))
         {
             // to ensure "username" is required (not null)
             if (username == null)
@@ -85,6 +87,8 @@ namespace IO.Swagger.Model
             this.AffiliateID = affiliateID;
             this.PgpPubKey = pgpPubKey;
             this.Country = country;
+            this.GeoipCountry = geoipCountry;
+            this.GeoipRegion = geoipRegion;
             this.Typ = typ;
         }
         
@@ -173,6 +177,18 @@ namespace IO.Swagger.Model
         public string Country { get; set; }
 
         /// <summary>
+        /// Gets or Sets GeoipCountry
+        /// </summary>
+        [DataMember(Name="geoipCountry", EmitDefaultValue=false)]
+        public string GeoipCountry { get; set; }
+
+        /// <summary>
+        /// Gets or Sets GeoipRegion
+        /// </summary>
+        [DataMember(Name="geoipRegion", EmitDefaultValue=false)]
+        public string GeoipRegion { get; set; }
+
+        /// <summary>
         /// Gets or Sets Typ
         /// </summary>
         [DataMember(Name="typ", EmitDefaultValue=false)]
@@ -200,6 +216,8 @@ namespace IO.Swagger.Model
             sb.Append("  AffiliateID: ").Append(AffiliateID).Append("\n");
             sb.Append("  PgpPubKey: ").Append(PgpPubKey).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
+            sb.Append("  GeoipCountry: ").Append(GeoipCountry).Append("\n");
+            sb.Append("  GeoipRegion: ").Append(GeoipRegion).Append("\n");
             sb.Append("  Typ: ").Append(Typ).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -306,6 +324,16 @@ namespace IO.Swagger.Model
                     this.Country.Equals(input.Country))
                 ) && 
                 (
+                    this.GeoipCountry == input.GeoipCountry ||
+                    (this.GeoipCountry != null &&
+                    this.GeoipCountry.Equals(input.GeoipCountry))
+                ) && 
+                (
+                    this.GeoipRegion == input.GeoipRegion ||
+                    (this.GeoipRegion != null &&
+                    this.GeoipRegion.Equals(input.GeoipRegion))
+                ) && 
+                (
                     this.Typ == input.Typ ||
                     (this.Typ != null &&
                     this.Typ.Equals(input.Typ))
@@ -349,6 +377,10 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.PgpPubKey.GetHashCode();
                 if (this.Country != null)
                     hashCode = hashCode * 59 + this.Country.GetHashCode();
+                if (this.GeoipCountry != null)
+                    hashCode = hashCode * 59 + this.GeoipCountry.GetHashCode();
+                if (this.GeoipRegion != null)
+                    hashCode = hashCode * 59 + this.GeoipRegion.GetHashCode();
                 if (this.Typ != null)
                     hashCode = hashCode * 59 + this.Typ.GetHashCode();
                 return hashCode;
@@ -378,6 +410,18 @@ namespace IO.Swagger.Model
             if(this.Country != null && this.Country.Length > 3)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Country, length must be less than 3.", new [] { "Country" });
+            }
+
+            // GeoipCountry (string) maxLength
+            if(this.GeoipCountry != null && this.GeoipCountry.Length > 2)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for GeoipCountry, length must be less than 2.", new [] { "GeoipCountry" });
+            }
+
+            // GeoipRegion (string) maxLength
+            if(this.GeoipRegion != null && this.GeoipRegion.Length > 2)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for GeoipRegion, length must be less than 2.", new [] { "GeoipRegion" });
             }
 
             yield break;

@@ -46,6 +46,10 @@ User::User()
     m_PgpPubKeyIsSet = false;
     m_Country = utility::conversions::to_string_t("");
     m_CountryIsSet = false;
+    m_GeoipCountry = utility::conversions::to_string_t("");
+    m_GeoipCountryIsSet = false;
+    m_GeoipRegion = utility::conversions::to_string_t("");
+    m_GeoipRegionIsSet = false;
     m_Typ = utility::conversions::to_string_t("");
     m_TypIsSet = false;
 }
@@ -113,6 +117,14 @@ web::json::value User::toJson() const
     {
         val[utility::conversions::to_string_t("country")] = ModelBase::toJson(m_Country);
     }
+    if(m_GeoipCountryIsSet)
+    {
+        val[utility::conversions::to_string_t("geoipCountry")] = ModelBase::toJson(m_GeoipCountry);
+    }
+    if(m_GeoipRegionIsSet)
+    {
+        val[utility::conversions::to_string_t("geoipRegion")] = ModelBase::toJson(m_GeoipRegion);
+    }
     if(m_TypIsSet)
     {
         val[utility::conversions::to_string_t("typ")] = ModelBase::toJson(m_Typ);
@@ -177,6 +189,14 @@ void User::fromJson(web::json::value& val)
     if(val.has_field(utility::conversions::to_string_t("country")))
     {
         setCountry(ModelBase::stringFromJson(val[utility::conversions::to_string_t("country")]));
+    }
+    if(val.has_field(utility::conversions::to_string_t("geoipCountry")))
+    {
+        setGeoipCountry(ModelBase::stringFromJson(val[utility::conversions::to_string_t("geoipCountry")]));
+    }
+    if(val.has_field(utility::conversions::to_string_t("geoipRegion")))
+    {
+        setGeoipRegion(ModelBase::stringFromJson(val[utility::conversions::to_string_t("geoipRegion")]));
     }
     if(val.has_field(utility::conversions::to_string_t("typ")))
     {
@@ -255,6 +275,16 @@ void User::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utili
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("country"), m_Country));
         
     }
+    if(m_GeoipCountryIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("geoipCountry"), m_GeoipCountry));
+        
+    }
+    if(m_GeoipRegionIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("geoipRegion"), m_GeoipRegion));
+        
+    }
     if(m_TypIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("typ"), m_Typ));
@@ -324,6 +354,14 @@ void User::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const uti
     if(multipart->hasContent(utility::conversions::to_string_t("country")))
     {
         setCountry(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("country"))));
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("geoipCountry")))
+    {
+        setGeoipCountry(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("geoipCountry"))));
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("geoipRegion")))
+    {
+        setGeoipRegion(ModelBase::stringFromHttpContent(multipart->getContent(utility::conversions::to_string_t("geoipRegion"))));
     }
     if(multipart->hasContent(utility::conversions::to_string_t("typ")))
     {
@@ -603,6 +641,48 @@ bool User::countryIsSet() const
 void User::unsetCountry()
 {
     m_CountryIsSet = false;
+}
+
+utility::string_t User::getGeoipCountry() const
+{
+    return m_GeoipCountry;
+}
+
+
+void User::setGeoipCountry(utility::string_t value)
+{
+    m_GeoipCountry = value;
+    m_GeoipCountryIsSet = true;
+}
+bool User::geoipCountryIsSet() const
+{
+    return m_GeoipCountryIsSet;
+}
+
+void User::unsetGeoipCountry()
+{
+    m_GeoipCountryIsSet = false;
+}
+
+utility::string_t User::getGeoipRegion() const
+{
+    return m_GeoipRegion;
+}
+
+
+void User::setGeoipRegion(utility::string_t value)
+{
+    m_GeoipRegion = value;
+    m_GeoipRegionIsSet = true;
+}
+bool User::geoipRegionIsSet() const
+{
+    return m_GeoipRegionIsSet;
+}
+
+void User::unsetGeoipRegion()
+{
+    m_GeoipRegionIsSet = false;
 }
 
 utility::string_t User::getTyp() const

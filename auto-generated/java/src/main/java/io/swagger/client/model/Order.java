@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
  * Placement, Cancellation, Amending, and History
  */
 @ApiModel(description = "Placement, Cancellation, Amending, and History")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-05-31T16:00:32.015Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-07-16T16:31:01.031Z")
 public class Order {
   @SerializedName("orderID")
   private String orderID = null;

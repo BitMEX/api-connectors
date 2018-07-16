@@ -72,6 +72,8 @@ class User implements ModelInterface, ArrayAccess
         'affiliate_id' => 'string',
         'pgp_pub_key' => 'string',
         'country' => 'string',
+        'geoip_country' => 'string',
+        'geoip_region' => 'string',
         'typ' => 'string'
     ];
 
@@ -95,6 +97,8 @@ class User implements ModelInterface, ArrayAccess
         'affiliate_id' => null,
         'pgp_pub_key' => null,
         'country' => null,
+        'geoip_country' => null,
+        'geoip_region' => null,
         'typ' => null
     ];
 
@@ -139,6 +143,8 @@ class User implements ModelInterface, ArrayAccess
         'affiliate_id' => 'affiliateID',
         'pgp_pub_key' => 'pgpPubKey',
         'country' => 'country',
+        'geoip_country' => 'geoipCountry',
+        'geoip_region' => 'geoipRegion',
         'typ' => 'typ'
     ];
 
@@ -162,6 +168,8 @@ class User implements ModelInterface, ArrayAccess
         'affiliate_id' => 'setAffiliateId',
         'pgp_pub_key' => 'setPgpPubKey',
         'country' => 'setCountry',
+        'geoip_country' => 'setGeoipCountry',
+        'geoip_region' => 'setGeoipRegion',
         'typ' => 'setTyp'
     ];
 
@@ -185,6 +193,8 @@ class User implements ModelInterface, ArrayAccess
         'affiliate_id' => 'getAffiliateId',
         'pgp_pub_key' => 'getPgpPubKey',
         'country' => 'getCountry',
+        'geoip_country' => 'getGeoipCountry',
+        'geoip_region' => 'getGeoipRegion',
         'typ' => 'getTyp'
     ];
 
@@ -262,6 +272,8 @@ class User implements ModelInterface, ArrayAccess
         $this->container['affiliate_id'] = isset($data['affiliate_id']) ? $data['affiliate_id'] : null;
         $this->container['pgp_pub_key'] = isset($data['pgp_pub_key']) ? $data['pgp_pub_key'] : null;
         $this->container['country'] = isset($data['country']) ? $data['country'] : null;
+        $this->container['geoip_country'] = isset($data['geoip_country']) ? $data['geoip_country'] : null;
+        $this->container['geoip_region'] = isset($data['geoip_region']) ? $data['geoip_region'] : null;
         $this->container['typ'] = isset($data['typ']) ? $data['typ'] : null;
     }
 
@@ -290,6 +302,14 @@ class User implements ModelInterface, ArrayAccess
 
         if (!is_null($this->container['country']) && (mb_strlen($this->container['country']) > 3)) {
             $invalidProperties[] = "invalid value for 'country', the character length must be smaller than or equal to 3.";
+        }
+
+        if (!is_null($this->container['geoip_country']) && (mb_strlen($this->container['geoip_country']) > 2)) {
+            $invalidProperties[] = "invalid value for 'geoip_country', the character length must be smaller than or equal to 2.";
+        }
+
+        if (!is_null($this->container['geoip_region']) && (mb_strlen($this->container['geoip_region']) > 2)) {
+            $invalidProperties[] = "invalid value for 'geoip_region', the character length must be smaller than or equal to 2.";
         }
 
         return $invalidProperties;
@@ -651,6 +671,62 @@ class User implements ModelInterface, ArrayAccess
         }
 
         $this->container['country'] = $country;
+
+        return $this;
+    }
+
+    /**
+     * Gets geoip_country
+     *
+     * @return string
+     */
+    public function getGeoipCountry()
+    {
+        return $this->container['geoip_country'];
+    }
+
+    /**
+     * Sets geoip_country
+     *
+     * @param string $geoip_country geoip_country
+     *
+     * @return $this
+     */
+    public function setGeoipCountry($geoip_country)
+    {
+        if (!is_null($geoip_country) && (mb_strlen($geoip_country) > 2)) {
+            throw new \InvalidArgumentException('invalid length for $geoip_country when calling User., must be smaller than or equal to 2.');
+        }
+
+        $this->container['geoip_country'] = $geoip_country;
+
+        return $this;
+    }
+
+    /**
+     * Gets geoip_region
+     *
+     * @return string
+     */
+    public function getGeoipRegion()
+    {
+        return $this->container['geoip_region'];
+    }
+
+    /**
+     * Sets geoip_region
+     *
+     * @param string $geoip_region geoip_region
+     *
+     * @return $this
+     */
+    public function setGeoipRegion($geoip_region)
+    {
+        if (!is_null($geoip_region) && (mb_strlen($geoip_region) > 2)) {
+            throw new \InvalidArgumentException('invalid length for $geoip_region when calling User., must be smaller than or equal to 2.');
+        }
+
+        $this->container['geoip_region'] = $geoip_region;
 
         return $this;
     }

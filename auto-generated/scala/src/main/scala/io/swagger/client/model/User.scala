@@ -29,6 +29,8 @@ case class User (
   affiliateID: Option[String] = None,
   pgpPubKey: Option[String] = None,
   country: Option[String] = None,
+  geoipCountry: Option[String] = None,
+  geoipRegion: Option[String] = None,
   typ: Option[String] = None
 )
 

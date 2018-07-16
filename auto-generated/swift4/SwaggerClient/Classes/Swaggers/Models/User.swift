@@ -26,9 +26,11 @@ public struct User: Codable {
     public var affiliateID: String?
     public var pgpPubKey: String?
     public var country: String?
+    public var geoipCountry: String?
+    public var geoipRegion: String?
     public var typ: String?
 
-    public init(_id: Double?, ownerId: Double?, firstname: String?, lastname: String?, username: String, email: String, phone: String?, created: Date?, lastUpdated: Date?, preferences: UserPreferences?, tFAEnabled: String?, affiliateID: String?, pgpPubKey: String?, country: String?, typ: String?) {
+    public init(_id: Double?, ownerId: Double?, firstname: String?, lastname: String?, username: String, email: String, phone: String?, created: Date?, lastUpdated: Date?, preferences: UserPreferences?, tFAEnabled: String?, affiliateID: String?, pgpPubKey: String?, country: String?, geoipCountry: String?, geoipRegion: String?, typ: String?) {
         self._id = _id
         self.ownerId = ownerId
         self.firstname = firstname
@@ -43,6 +45,8 @@ public struct User: Codable {
         self.affiliateID = affiliateID
         self.pgpPubKey = pgpPubKey
         self.country = country
+        self.geoipCountry = geoipCountry
+        self.geoipRegion = geoipRegion
         self.typ = typ
     }
 
@@ -61,6 +65,8 @@ public struct User: Codable {
         case affiliateID
         case pgpPubKey
         case country
+        case geoipCountry
+        case geoipRegion
         case typ
     }
 

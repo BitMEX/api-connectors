@@ -54,6 +54,10 @@
 
 @property(nonatomic) NSString* country;
 
+@property(nonatomic) NSString* geoipCountry;
+
+@property(nonatomic) NSString* geoipRegion;
+
 @property(nonatomic) NSString* typ;
 
 @end

@@ -179,6 +179,22 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'Country'
         }
         /// <summary>
+        /// Test the property 'GeoipCountry'
+        /// </summary>
+        [Test]
+        public void GeoipCountryTest()
+        {
+            // TODO unit test for the property 'GeoipCountry'
+        }
+        /// <summary>
+        /// Test the property 'GeoipRegion'
+        /// </summary>
+        [Test]
+        public void GeoipRegionTest()
+        {
+            // TODO unit test for the property 'GeoipRegion'
+        }
+        /// <summary>
         /// Test the property 'Typ'
         /// </summary>
         [Test]
