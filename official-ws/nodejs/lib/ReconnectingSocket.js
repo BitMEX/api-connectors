@@ -118,7 +118,7 @@ WebSocketClient.prototype.reconnect = function(_code) {
   this.log('Retry in ' + this.autoReconnectInterval + ' ms');
   clearTimeout(this.reconnectTimeout);
   this.reconnectTimeout = setTimeout(() => {
-    this.emit('reconnect');
+    this.instance.emit('reconnect');
     // increase wait for next time to avoid spamming the server
     if (this.autoReconnectInterval < this.maxAutoReconnectInterval) {
       this.autoReconnectInterval *= 2;
