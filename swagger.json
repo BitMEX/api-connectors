@@ -6268,7 +6268,7 @@
           "format": "date-time"
         },
         "preferences": {
-          "default": {},
+          "default": null,
           "$ref": "#/definitions/UserPreferences"
         },
         "TFAEnabled": {
