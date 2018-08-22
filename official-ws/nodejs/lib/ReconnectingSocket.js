@@ -80,13 +80,15 @@ WebSocketClient.prototype.open = function(url){
       } else if (response.statusCode === 502) {
           // Bad Gateway
           this.logError(`Server responded with [${response.statusCode}], will retry soon: ${buf}`);
-          this.autoReconnectInterval = 5000; // first retry in 5 seconds
+          if (this.autoReconnectInterval < 5000) // maya be doubled due to several retries
+              this.autoReconnectInterval = 5000; // first retry in 5 seconds
           closeConnection(CLOSE_BAD_GATEWAY);
         
       } else if (response.statusCode === 503) {
         // maintainence / downtime
         this.logError(`Server responded with [${response.statusCode}], will retry soon: ${buf}`);
-        this.autoReconnectInterval = 5000; // first retry in 5 seconds
+        if (this.autoReconnectInterval < 5000) // maya be doubled due to several retries
+            this.autoReconnectInterval = 5000; // first retry in 5 seconds
         closeConnection(CLOSE_DOWNTIME);
         
       } else {
