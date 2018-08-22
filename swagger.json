@@ -1126,7 +1126,7 @@
           "Instrument"
         ],
         "summary": "Return all active contract series and interval pairs.",
-        "description": "This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"BVOL:daily\", \"BVOL:weekly\", \"XBU:daily\", \"XBU:monthly\", ...]`. These identifiers are usable in any query's `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.",
+        "description": "This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"XBT:perpetual\", \"XBT:monthly\", \"XBT:quarterly\", \"ETH:monthly\", ...]`. These identifiers are usable in any query's `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.",
         "operationId": "Instrument.getActiveIntervals",
         "parameters": [],
         "responses": {
@@ -6284,6 +6284,14 @@
         },
         "country": {
           "maxLength": 3,
+          "type": "string"
+        },
+        "geoipCountry": {
+          "maxLength": 2,
+          "type": "string"
+        },
+        "geoipRegion": {
+          "maxLength": 2,
           "type": "string"
         },
         "typ": {

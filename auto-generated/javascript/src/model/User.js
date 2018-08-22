@@ -66,6 +66,8 @@
 
 
 
+
+
   };
 
   /**
@@ -120,6 +122,12 @@
       }
       if (data.hasOwnProperty('country')) {
         obj['country'] = ApiClient.convertToType(data['country'], 'String');
+      }
+      if (data.hasOwnProperty('geoipCountry')) {
+        obj['geoipCountry'] = ApiClient.convertToType(data['geoipCountry'], 'String');
+      }
+      if (data.hasOwnProperty('geoipRegion')) {
+        obj['geoipRegion'] = ApiClient.convertToType(data['geoipRegion'], 'String');
       }
       if (data.hasOwnProperty('typ')) {
         obj['typ'] = ApiClient.convertToType(data['typ'], 'String');
@@ -184,6 +192,14 @@
    * @member {String} country
    */
   exports.prototype['country'] = undefined;
+  /**
+   * @member {String} geoipCountry
+   */
+  exports.prototype['geoipCountry'] = undefined;
+  /**
+   * @member {String} geoipRegion
+   */
+  exports.prototype['geoipRegion'] = undefined;
   /**
    * @member {String} typ
    */

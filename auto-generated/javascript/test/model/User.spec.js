@@ -141,6 +141,18 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property geoipCountry (base name: "geoipCountry")', function() {
+      // uncomment below and update the code to test the property geoipCountry
+      //var instance = new BitMexApi.User();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property geoipRegion (base name: "geoipRegion")', function() {
+      // uncomment below and update the code to test the property geoipRegion
+      //var instance = new BitMexApi.User();
+      //expect(instance).to.be();
+    });
+
     it('should have the property typ (base name: "typ")', function() {
       // uncomment below and update the code to test the property typ
       //var instance = new BitMexApi.User();

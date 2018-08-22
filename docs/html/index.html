@@ -2436,7 +2436,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /instrument/activeIntervals</code></pre></div>
     <div class="method-summary">Return all active contract series and interval pairs. (<span class="nickname">instrument.getActiveIntervals</span>)</div>
-    <div class="method-notes">This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as <code>[&quot;BVOL:daily&quot;, &quot;BVOL:weekly&quot;, &quot;XBU:daily&quot;, &quot;XBU:monthly&quot;, ...]</code>. These identifiers are usable in any query's <code>symbol</code> param. The second array is the current resolution of these intervals. Results are mapped at the same index.</div>
+    <div class="method-notes">This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as <code>[&quot;XBT:perpetual&quot;, &quot;XBT:monthly&quot;, &quot;XBT:quarterly&quot;, &quot;ETH:monthly&quot;, ...]</code>. These identifiers are usable in any query's <code>symbol</code> param. The second array is the current resolution of these intervals. Results are mapped at the same index.</div>
 
 
     <h3 class="field-label">Consumes</h3>
@@ -6649,6 +6649,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
+  "geoipRegion" : "geoipRegion",
   "country" : "country",
   "firstname" : "firstname",
   "preferences" : {
@@ -6684,6 +6685,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
   "ownerId" : 6.02745618307040320615897144307382404804229736328125,
   "affiliateID" : "affiliateID",
   "lastname" : "lastname",
+  "geoipCountry" : "geoipCountry",
   "lastUpdated" : "2000-01-23T04:56:07.000+00:00",
   "phone" : "phone",
   "TFAEnabled" : "TFAEnabled",
@@ -7531,6 +7533,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
+  "geoipRegion" : "geoipRegion",
   "country" : "country",
   "firstname" : "firstname",
   "preferences" : {
@@ -7566,6 +7569,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
   "ownerId" : 6.02745618307040320615897144307382404804229736328125,
   "affiliateID" : "affiliateID",
   "lastname" : "lastname",
+  "geoipCountry" : "geoipCountry",
   "lastUpdated" : "2000-01-23T04:56:07.000+00:00",
   "phone" : "phone",
   "TFAEnabled" : "TFAEnabled",
@@ -7642,6 +7646,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
+  "geoipRegion" : "geoipRegion",
   "country" : "country",
   "firstname" : "firstname",
   "preferences" : {
@@ -7677,6 +7682,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
   "ownerId" : 6.02745618307040320615897144307382404804229736328125,
   "affiliateID" : "affiliateID",
   "lastname" : "lastname",
+  "geoipCountry" : "geoipCountry",
   "lastUpdated" : "2000-01-23T04:56:07.000+00:00",
   "phone" : "phone",
   "TFAEnabled" : "TFAEnabled",
@@ -8415,6 +8421,8 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 <div class="param">affiliateID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">pgpPubKey (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">country (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">geoipCountry (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">geoipRegion (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">typ (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>

@@ -151,6 +151,20 @@ public:
     /// <summary>
     /// 
     /// </summary>
+    utility::string_t getGeoipCountry() const;
+    bool geoipCountryIsSet() const;
+    void unsetGeoipCountry();
+    void setGeoipCountry(utility::string_t value);
+    /// <summary>
+    /// 
+    /// </summary>
+    utility::string_t getGeoipRegion() const;
+    bool geoipRegionIsSet() const;
+    void unsetGeoipRegion();
+    void setGeoipRegion(utility::string_t value);
+    /// <summary>
+    /// 
+    /// </summary>
     utility::string_t getTyp() const;
     bool typIsSet() const;
     void unsetTyp();
@@ -183,6 +197,10 @@ protected:
     bool m_PgpPubKeyIsSet;
     utility::string_t m_Country;
     bool m_CountryIsSet;
+    utility::string_t m_GeoipCountry;
+    bool m_GeoipCountryIsSet;
+    utility::string_t m_GeoipRegion;
+    bool m_GeoipRegionIsSet;
     utility::string_t m_Typ;
     bool m_TypIsSet;
 };

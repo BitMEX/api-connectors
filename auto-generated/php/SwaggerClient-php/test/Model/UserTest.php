@@ -175,6 +175,20 @@ class UserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "geoip_country"
+     */
+    public function testPropertyGeoipCountry()
+    {
+    }
+
+    /**
+     * Test attribute "geoip_region"
+     */
+    public function testPropertyGeoipRegion()
+    {
+    }
+
+    /**
      * Test attribute "typ"
      */
     public function testPropertyTyp()

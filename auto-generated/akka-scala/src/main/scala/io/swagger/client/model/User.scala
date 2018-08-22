@@ -30,6 +30,8 @@ case class User (
   affiliateID: Option[String],
   pgpPubKey: Option[String],
   country: Option[String],
+  geoipCountry: Option[String],
+  geoipRegion: Option[String],
   typ: Option[String]
 ) extends ApiModel
 

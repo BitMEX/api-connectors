@@ -324,6 +324,7 @@ open class UserAPI {
        - type: apiKey api-signature 
        - name: apiSignature
      - examples: [{contentType=application/json, example={
+  "geoipRegion" : "geoipRegion",
   "country" : "country",
   "firstname" : "firstname",
   "preferences" : {
@@ -359,6 +360,7 @@ open class UserAPI {
   "ownerId" : 6.02745618307040320615897144307382404804229736328125,
   "affiliateID" : "affiliateID",
   "lastname" : "lastname",
+  "geoipCountry" : "geoipCountry",
   "lastUpdated" : "2000-01-23T04:56:07.000+00:00",
   "phone" : "phone",
   "TFAEnabled" : "TFAEnabled",
@@ -1100,6 +1102,7 @@ open class UserAPI {
        - type: apiKey api-signature 
        - name: apiSignature
      - examples: [{contentType=application/json, example={
+  "geoipRegion" : "geoipRegion",
   "country" : "country",
   "firstname" : "firstname",
   "preferences" : {
@@ -1135,6 +1138,7 @@ open class UserAPI {
   "ownerId" : 6.02745618307040320615897144307382404804229736328125,
   "affiliateID" : "affiliateID",
   "lastname" : "lastname",
+  "geoipCountry" : "geoipCountry",
   "lastUpdated" : "2000-01-23T04:56:07.000+00:00",
   "phone" : "phone",
   "TFAEnabled" : "TFAEnabled",
@@ -1200,6 +1204,7 @@ open class UserAPI {
        - type: apiKey api-signature 
        - name: apiSignature
      - examples: [{contentType=application/json, example={
+  "geoipRegion" : "geoipRegion",
   "country" : "country",
   "firstname" : "firstname",
   "preferences" : {
@@ -1235,6 +1240,7 @@ open class UserAPI {
   "ownerId" : 6.02745618307040320615897144307382404804229736328125,
   "affiliateID" : "affiliateID",
   "lastname" : "lastname",
+  "geoipCountry" : "geoipCountry",
   "lastUpdated" : "2000-01-23T04:56:07.000+00:00",
   "phone" : "phone",
   "TFAEnabled" : "TFAEnabled",

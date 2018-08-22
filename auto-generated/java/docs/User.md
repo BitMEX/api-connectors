@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **affiliateID** | **String** |  |  [optional]
 **pgpPubKey** | **String** |  |  [optional]
 **country** | **String** |  |  [optional]
+**geoipCountry** | **String** |  |  [optional]
+**geoipRegion** | **String** |  |  [optional]
 **typ** | **String** |  |  [optional]
 
 

@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
  * Summary of Open and Closed Positions
  */
 @ApiModel(description = "Summary of Open and Closed Positions")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-05-31T16:00:32.015Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-07-16T16:31:01.031Z")
 public class Position {
   @SerializedName("account")
   private BigDecimal account = null;

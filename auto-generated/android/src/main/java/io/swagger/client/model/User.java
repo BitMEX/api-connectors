@@ -52,6 +52,10 @@ public class User {
   private String pgpPubKey = null;
   @SerializedName("country")
   private String country = null;
+  @SerializedName("geoipCountry")
+  private String geoipCountry = null;
+  @SerializedName("geoipRegion")
+  private String geoipRegion = null;
   @SerializedName("typ")
   private String typ = null;
 
@@ -198,6 +202,26 @@ public class User {
   /**
    **/
   @ApiModelProperty(value = "")
+  public String getGeoipCountry() {
+    return geoipCountry;
+  }
+  public void setGeoipCountry(String geoipCountry) {
+    this.geoipCountry = geoipCountry;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public String getGeoipRegion() {
+    return geoipRegion;
+  }
+  public void setGeoipRegion(String geoipRegion) {
+    this.geoipRegion = geoipRegion;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public String getTyp() {
     return typ;
   }
@@ -229,6 +253,8 @@ public class User {
         (this.affiliateID == null ? user.affiliateID == null : this.affiliateID.equals(user.affiliateID)) &&
         (this.pgpPubKey == null ? user.pgpPubKey == null : this.pgpPubKey.equals(user.pgpPubKey)) &&
         (this.country == null ? user.country == null : this.country.equals(user.country)) &&
+        (this.geoipCountry == null ? user.geoipCountry == null : this.geoipCountry.equals(user.geoipCountry)) &&
+        (this.geoipRegion == null ? user.geoipRegion == null : this.geoipRegion.equals(user.geoipRegion)) &&
         (this.typ == null ? user.typ == null : this.typ.equals(user.typ));
   }
 
@@ -249,6 +275,8 @@ public class User {
     result = 31 * result + (this.affiliateID == null ? 0: this.affiliateID.hashCode());
     result = 31 * result + (this.pgpPubKey == null ? 0: this.pgpPubKey.hashCode());
     result = 31 * result + (this.country == null ? 0: this.country.hashCode());
+    result = 31 * result + (this.geoipCountry == null ? 0: this.geoipCountry.hashCode());
+    result = 31 * result + (this.geoipRegion == null ? 0: this.geoipRegion.hashCode());
     result = 31 * result + (this.typ == null ? 0: this.typ.hashCode());
     return result;
   }
@@ -272,6 +300,8 @@ public class User {
     sb.append("  affiliateID: ").append(affiliateID).append("\n");
     sb.append("  pgpPubKey: ").append(pgpPubKey).append("\n");
     sb.append("  country: ").append(country).append("\n");
+    sb.append("  geoipCountry: ").append(geoipCountry).append("\n");
+    sb.append("  geoipRegion: ").append(geoipRegion).append("\n");
     sb.append("  typ: ").append(typ).append("\n");
     sb.append("}\n");
     return sb.toString();

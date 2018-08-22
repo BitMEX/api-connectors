@@ -118,7 +118,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/announcement/urgent" : {
@@ -155,7 +156,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/apiKey" : {
@@ -199,7 +201,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       },
       "post" : {
         "tags" : [ "APIKey" ],
@@ -264,7 +267,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       },
       "delete" : {
         "tags" : [ "APIKey" ],
@@ -281,7 +285,12 @@
           "200" : {
             "description" : "Request was successful",
             "schema" : {
-              "$ref" : "#/definitions/inline_response_200"
+              "type" : "object",
+              "properties" : {
+                "success" : {
+                  "type" : "boolean"
+                }
+              }
             }
           },
           "400" : {
@@ -302,7 +311,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/apiKey/disable" : {
@@ -342,7 +352,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/apiKey/enable" : {
@@ -382,7 +393,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/chat" : {
@@ -450,7 +462,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       },
       "post" : {
         "tags" : [ "Chat" ],
@@ -495,7 +508,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/chat/channels" : {
@@ -533,7 +547,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/chat/connected" : {
@@ -569,7 +584,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/execution" : {
@@ -664,7 +680,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/execution/tradeHistory" : {
@@ -758,7 +775,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/funding" : {
@@ -853,7 +871,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/instrument" : {
@@ -949,7 +968,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/instrument/active" : {
@@ -987,7 +1007,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/instrument/indices" : {
@@ -1025,7 +1046,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/instrument/activeAndIndices" : {
@@ -1063,14 +1085,15 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/instrument/activeIntervals" : {
       "get" : {
         "tags" : [ "Instrument" ],
         "summary" : "Return all active contract series and interval pairs.",
-        "description" : "This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"BVOL:daily\", \"BVOL:weekly\", \"XBU:daily\", \"XBU:monthly\", ...]`. These identifiers are usable in any query's `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.",
+        "description" : "This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"XBT:perpetual\", \"XBT:monthly\", \"XBT:quarterly\", \"ETH:monthly\", ...]`. These identifiers are usable in any query's `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.",
         "operationId" : "Instrument.getActiveIntervals",
         "parameters" : [ ],
         "responses" : {
@@ -1099,7 +1122,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/instrument/compositeIndex" : {
@@ -1202,7 +1226,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/insurance" : {
@@ -1297,7 +1322,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/leaderboard" : {
@@ -1342,7 +1368,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/leaderboard/name" : {
@@ -1355,7 +1382,12 @@
           "200" : {
             "description" : "Request was successful",
             "schema" : {
-              "$ref" : "#/definitions/inline_response_200_1"
+              "type" : "object",
+              "properties" : {
+                "name" : {
+                  "type" : "string"
+                }
+              }
             }
           },
           "400" : {
@@ -1376,7 +1408,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/liquidation" : {
@@ -1471,7 +1504,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/notification" : {
@@ -1509,7 +1543,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/order" : {
@@ -1604,7 +1639,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       },
       "post" : {
         "tags" : [ "Order" ],
@@ -1740,7 +1776,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       },
       "put" : {
         "tags" : [ "Order" ],
@@ -1846,7 +1883,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       },
       "delete" : {
         "tags" : [ "Order" ],
@@ -1902,7 +1940,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/order/bulk" : {
@@ -1947,7 +1986,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       },
       "put" : {
         "tags" : [ "Order" ],
@@ -1990,7 +2030,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/order/closePosition" : {
@@ -2038,7 +2079,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/order/all" : {
@@ -2094,7 +2136,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/order/cancelAllAfter" : {
@@ -2115,8 +2158,7 @@
           "200" : {
             "description" : "Request was successful",
             "schema" : {
-              "type" : "object",
-              "properties" : { }
+              "type" : "object"
             }
           },
           "400" : {
@@ -2137,7 +2179,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/orderBook/L2" : {
@@ -2190,7 +2233,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/position" : {
@@ -2249,7 +2293,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/position/isolate" : {
@@ -2296,7 +2341,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/position/riskLimit" : {
@@ -2343,7 +2389,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/position/transferMargin" : {
@@ -2390,7 +2437,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/position/leverage" : {
@@ -2437,7 +2485,8 @@
               "$ref" : "#/definitions/Error"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/quote" : {
@@ -2532,7 +2581,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/quote/bucketed" : {
@@ -2641,7 +2691,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/schema" : {
@@ -2660,8 +2711,7 @@
           "200" : {
             "description" : "Request was successful",
             "schema" : {
-              "type" : "object",
-              "properties" : { }
+              "type" : "object"
             }
           },
           "400" : {
@@ -2683,7 +2733,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/schema/websocketHelp" : {
@@ -2696,8 +2747,7 @@
           "200" : {
             "description" : "Request was successful",
             "schema" : {
-              "type" : "object",
-              "properties" : { }
+              "type" : "object"
             }
           },
           "400" : {
@@ -2719,7 +2769,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/settlement" : {
@@ -2814,7 +2865,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/stats" : {
@@ -2852,7 +2904,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/stats/history" : {
@@ -2890,7 +2943,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/stats/historyUSD" : {
@@ -2928,7 +2982,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/trade" : {
@@ -3024,7 +3079,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/trade/bucketed" : {
@@ -3133,7 +3189,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/user/depositAddress" : {
@@ -3155,7 +3212,8 @@
               "type" : "string"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/user/wallet" : {
@@ -3177,7 +3235,8 @@
               "$ref" : "#/definitions/Wallet"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/user/walletHistory" : {
@@ -3202,7 +3261,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/user/walletSummary" : {
@@ -3227,7 +3287,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/user/minWithdrawalFee" : {
@@ -3247,12 +3308,12 @@
           "200" : {
             "description" : "Request was successful",
             "schema" : {
-              "type" : "object",
-              "properties" : { }
+              "type" : "object"
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/user/requestWithdrawal" : {
@@ -3302,7 +3363,8 @@
               "$ref" : "#/definitions/Transaction"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/user/cancelWithdrawal" : {
@@ -3324,7 +3386,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/user/confirmWithdrawal" : {
@@ -3346,7 +3409,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/user/requestEnableTFA" : {
@@ -3369,7 +3433,8 @@
               "type" : "boolean"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/user/confirmEnableTFA" : {
@@ -3397,7 +3462,8 @@
               "type" : "boolean"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/user/disableTFA" : {
@@ -3425,7 +3491,8 @@
               "type" : "boolean"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/user/confirmEmail" : {
@@ -3447,7 +3514,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/user/affiliateStatus" : {
@@ -3463,7 +3531,8 @@
               "$ref" : "#/definitions/Affiliate"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/user/checkReferralCode" : {
@@ -3487,7 +3556,8 @@
             }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/user/logout" : {
@@ -3498,10 +3568,14 @@
         "parameters" : [ ],
         "responses" : {
           "200" : {
-            "description" : "Request was successful"
+            "description" : "Request was successful",
+            "schema" : {
+              "type" : "null"
+            }
           }
         },
-        "security" : [ ]
+        "security" : [ ],
+        "deprecated" : false
       }
     },
     "/user/logoutAll" : {
@@ -3518,7 +3592,8 @@
               "format" : "double"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/user/preferences" : {
@@ -3547,7 +3622,8 @@
               "$ref" : "#/definitions/User"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/user" : {
@@ -3563,7 +3639,8 @@
               "$ref" : "#/definitions/User"
             }
           }
-        }
+        },
+        "deprecated" : false
       },
       "put" : {
         "tags" : [ "User" ],
@@ -3620,7 +3697,8 @@
               "$ref" : "#/definitions/User"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/user/commission" : {
@@ -3639,7 +3717,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     },
     "/user/margin" : {
@@ -3661,7 +3740,8 @@
               "$ref" : "#/definitions/Margin"
             }
           }
-        }
+        },
+        "deprecated" : false
       }
     }
   },
@@ -6143,12 +6223,21 @@
           "type" : "string",
           "maxLength" : 3
         },
+        "geoipCountry" : {
+          "type" : "string",
+          "maxLength" : 2
+        },
+        "geoipRegion" : {
+          "type" : "string",
+          "maxLength" : 2
+        },
         "typ" : {
           "type" : "string"
         }
       },
       "description" : "Account Operations",
       "example" : {
+        "geoipRegion" : "geoipRegion",
         "country" : "country",
         "firstname" : "firstname",
         "preferences" : {
@@ -6184,6 +6273,7 @@
         "ownerId" : 6.02745618307040320615897144307382404804229736328125,
         "affiliateID" : "affiliateID",
         "lastname" : "lastname",
+        "geoipCountry" : "geoipCountry",
         "lastUpdated" : "2000-01-23T04:56:07.000+00:00",
         "phone" : "phone",
         "TFAEnabled" : "TFAEnabled",

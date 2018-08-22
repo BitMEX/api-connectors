@@ -43,6 +43,10 @@ module SwaggerClient
 
     attr_accessor :country
 
+    attr_accessor :geoip_country
+
+    attr_accessor :geoip_region
+
     attr_accessor :typ
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -62,6 +66,8 @@ module SwaggerClient
         :'affiliate_id' => :'affiliateID',
         :'pgp_pub_key' => :'pgpPubKey',
         :'country' => :'country',
+        :'geoip_country' => :'geoipCountry',
+        :'geoip_region' => :'geoipRegion',
         :'typ' => :'typ'
       }
     end
@@ -83,6 +89,8 @@ module SwaggerClient
         :'affiliate_id' => :'String',
         :'pgp_pub_key' => :'String',
         :'country' => :'String',
+        :'geoip_country' => :'String',
+        :'geoip_region' => :'String',
         :'typ' => :'String'
       }
     end
@@ -151,6 +159,14 @@ module SwaggerClient
         self.country = attributes[:'country']
       end
 
+      if attributes.has_key?(:'geoipCountry')
+        self.geoip_country = attributes[:'geoipCountry']
+      end
+
+      if attributes.has_key?(:'geoipRegion')
+        self.geoip_region = attributes[:'geoipRegion']
+      end
+
       if attributes.has_key?(:'typ')
         self.typ = attributes[:'typ']
       end
@@ -180,6 +196,14 @@ module SwaggerClient
         invalid_properties.push('invalid value for "country", the character length must be smaller than or equal to 3.')
       end
 
+      if !@geoip_country.nil? && @geoip_country.to_s.length > 2
+        invalid_properties.push('invalid value for "geoip_country", the character length must be smaller than or equal to 2.')
+      end
+
+      if !@geoip_region.nil? && @geoip_region.to_s.length > 2
+        invalid_properties.push('invalid value for "geoip_region", the character length must be smaller than or equal to 2.')
+      end
+
       invalid_properties
     end
 
@@ -191,6 +215,8 @@ module SwaggerClient
       return false if !@affiliate_id.nil? && @affiliate_id.to_s.length > 6
       return false if !@pgp_pub_key.nil? && @pgp_pub_key.to_s.length > 16384
       return false if !@country.nil? && @country.to_s.length > 3
+      return false if !@geoip_country.nil? && @geoip_country.to_s.length > 2
+      return false if !@geoip_region.nil? && @geoip_region.to_s.length > 2
       true
     end
 
@@ -224,6 +250,26 @@ module SwaggerClient
       @country = country
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] geoip_country Value to be assigned
+    def geoip_country=(geoip_country)
+      if !geoip_country.nil? && geoip_country.to_s.length > 2
+        fail ArgumentError, 'invalid value for "geoip_country", the character length must be smaller than or equal to 2.'
+      end
+
+      @geoip_country = geoip_country
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] geoip_region Value to be assigned
+    def geoip_region=(geoip_region)
+      if !geoip_region.nil? && geoip_region.to_s.length > 2
+        fail ArgumentError, 'invalid value for "geoip_region", the character length must be smaller than or equal to 2.'
+      end
+
+      @geoip_region = geoip_region
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -243,6 +289,8 @@ module SwaggerClient
           affiliate_id == o.affiliate_id &&
           pgp_pub_key == o.pgp_pub_key &&
           country == o.country &&
+          geoip_country == o.geoip_country &&
+          geoip_region == o.geoip_region &&
           typ == o.typ
     end
 
@@ -255,7 +303,7 @@ module SwaggerClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, owner_id, firstname, lastname, username, email, phone, created, last_updated, preferences, tfa_enabled, affiliate_id, pgp_pub_key, country, typ].hash
+      [id, owner_id, firstname, lastname, username, email, phone, created, last_updated, preferences, tfa_enabled, affiliate_id, pgp_pub_key, country, geoip_country, geoip_region, typ].hash
     end
 
     # Builds the object from hash

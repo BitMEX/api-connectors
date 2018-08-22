@@ -47,6 +47,8 @@ class User(object):
         'affiliate_id': 'str',
         'pgp_pub_key': 'str',
         'country': 'str',
+        'geoip_country': 'str',
+        'geoip_region': 'str',
         'typ': 'str'
     }
 
@@ -65,10 +67,12 @@ class User(object):
         'affiliate_id': 'affiliateID',
         'pgp_pub_key': 'pgpPubKey',
         'country': 'country',
+        'geoip_country': 'geoipCountry',
+        'geoip_region': 'geoipRegion',
         'typ': 'typ'
     }
 
-    def __init__(self, id=None, owner_id=None, firstname=None, lastname=None, username=None, email=None, phone=None, created=None, last_updated=None, preferences=None, tfa_enabled=None, affiliate_id=None, pgp_pub_key=None, country=None, typ=None):  # noqa: E501
+    def __init__(self, id=None, owner_id=None, firstname=None, lastname=None, username=None, email=None, phone=None, created=None, last_updated=None, preferences=None, tfa_enabled=None, affiliate_id=None, pgp_pub_key=None, country=None, geoip_country=None, geoip_region=None, typ=None):  # noqa: E501
         """User - a model defined in Swagger"""  # noqa: E501
 
         self._id = None
@@ -85,6 +89,8 @@ class User(object):
         self._affiliate_id = None
         self._pgp_pub_key = None
         self._country = None
+        self._geoip_country = None
+        self._geoip_region = None
         self._typ = None
         self.discriminator = None
 
@@ -114,6 +120,10 @@ class User(object):
             self.pgp_pub_key = pgp_pub_key
         if country is not None:
             self.country = country
+        if geoip_country is not None:
+            self.geoip_country = geoip_country
+        if geoip_region is not None:
+            self.geoip_region = geoip_region
         if typ is not None:
             self.typ = typ
 
@@ -420,6 +430,52 @@ class User(object):
             raise ValueError("Invalid value for `country`, length must be less than or equal to `3`")  # noqa: E501
 
         self._country = country
+
+    @property
+    def geoip_country(self):
+        """Gets the geoip_country of this User.  # noqa: E501
+
+
+        :return: The geoip_country of this User.  # noqa: E501
+        :rtype: str
+        """
+        return self._geoip_country
+
+    @geoip_country.setter
+    def geoip_country(self, geoip_country):
+        """Sets the geoip_country of this User.
+
+
+        :param geoip_country: The geoip_country of this User.  # noqa: E501
+        :type: str
+        """
+        if geoip_country is not None and len(geoip_country) > 2:
+            raise ValueError("Invalid value for `geoip_country`, length must be less than or equal to `2`")  # noqa: E501
+
+        self._geoip_country = geoip_country
+
+    @property
+    def geoip_region(self):
+        """Gets the geoip_region of this User.  # noqa: E501
+
+
+        :return: The geoip_region of this User.  # noqa: E501
+        :rtype: str
+        """
+        return self._geoip_region
+
+    @geoip_region.setter
+    def geoip_region(self, geoip_region):
+        """Sets the geoip_region of this User.
+
+
+        :param geoip_region: The geoip_region of this User.  # noqa: E501
+        :type: str
+        """
+        if geoip_region is not None and len(geoip_region) > 2:
+            raise ValueError("Invalid value for `geoip_region`, length must be less than or equal to `2`")  # noqa: E501
+
+        self._geoip_region = geoip_region
 
     @property
     def typ(self):

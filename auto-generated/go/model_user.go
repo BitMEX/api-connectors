@@ -30,5 +30,7 @@ type User struct {
 	AffiliateID string `json:"affiliateID,omitempty"`
 	PgpPubKey string `json:"pgpPubKey,omitempty"`
 	Country string `json:"country,omitempty"`
+	GeoipCountry string `json:"geoipCountry,omitempty"`
+	GeoipRegion string `json:"geoipRegion,omitempty"`
 	Typ string `json:"typ,omitempty"`
 }
