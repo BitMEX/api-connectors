@@ -4,3 +4,4 @@ build/
 dist/
 *.pyc
 npm-debug.log
+package-lock.json
