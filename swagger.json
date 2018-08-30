@@ -4223,7 +4223,7 @@
       ],
       "type": "object"
     },
-    "x-any": {
+    "foo": {
       "properties": {},
       "type": "object"
     },
@@ -4255,7 +4255,7 @@
           "default": [],
           "type": "array",
           "items": {
-            "$ref": "#/definitions/x-any"
+            "$ref": "#/definitions/foo"
           }
         },
         "enabled": {
