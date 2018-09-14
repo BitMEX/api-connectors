@@ -83,14 +83,14 @@ function emitSplitData(emitter, data) {
   const filterKey = data.filterKey || 'symbol';
 
   // Generate data by symbol
+  const matchingStreams = emitter._listenerTree[table];
+  const initValue = _.mapValues(matchingStreams, () => []);
   const symbolData = data.data.reduce((accumulator, currentValue) => {
     if (accumulator.hasOwnProperty(currentValue[filterKey])) {
       accumulator[currentValue[filterKey]].push(currentValue);
-    } else {
-      accumulator[currentValue[filterKey]] = [currentValue];
     }
     return accumulator;
-  }, {});
+  }, initValue);
 
   Object.keys(symbolData).forEach((symbol) => {
     const key = `${table}:${action}:${symbol}`;
