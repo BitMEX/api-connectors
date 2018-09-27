@@ -136,10 +136,10 @@ class BitMEXWebsocket:
             self.logger.info("Authenticating with API Key.")
             # To auth to the WS using an API key, we generate a signature of a nonce and
             # the WS API endpoint.
-            nonce = generate_nonce()
+            expires = generate_nonce()
             return [
-                "api-nonce: " + str(nonce),
-                "api-signature: " + generate_signature(self.api_secret, 'GET', '/realtime', nonce, ''),
+                "api-expires: " + str(expires),
+                "api-signature: " + generate_signature(self.api_secret, 'GET', '/realtime', expires, ''),
                 "api-key:" + self.api_key
             ]
         else:
