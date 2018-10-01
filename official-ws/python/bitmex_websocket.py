@@ -186,8 +186,8 @@ class BitMEXWebsocket:
         message = json.loads(message)
         self.logger.debug(json.dumps(message))
 
-        table = message['table'] if 'table' in message else None
-        action = message['action'] if 'action' in message else None
+        table = message.get("table")
+        action = message.get("action")
         try:
             if 'subscribe' in message:
                 self.logger.debug("Subscribed to %s." % message['subscribe'])
@@ -214,13 +214,13 @@ class BitMEXWebsocket:
                     # Limit the max length of the table to avoid excessive memory usage.
                     # Don't trim orders because we'll lose valuable state if we do.
                     if table not in ['order', 'orderBookL2'] and len(self.data[table]) > BitMEXWebsocket.MAX_TABLE_LEN:
-                        self.data[table] = self.data[table][int(BitMEXWebsocket.MAX_TABLE_LEN / 2):]
+                        self.data[table] = self.data[table][BitMEXWebsocket.MAX_TABLE_LEN // 2:]
 
                 elif action == 'update':
                     self.logger.debug('%s: updating %s' % (table, message['data']))
                     # Locate the item in the collection and update it.
                     for updateData in message['data']:
-                        item = findItemByKeys(self.keys[table], self.data[table], updateData)
+                        item = find_by_keys(self.keys[table], self.data[table], updateData)
                         if not item:
                             return  # No item found to update. Could happen before push
                         item.update(updateData)
@@ -231,7 +231,7 @@ class BitMEXWebsocket:
                     self.logger.debug('%s: deleting %s' % (table, message['data']))
                     # Locate the item in the collection and remove it.
                     for deleteData in message['data']:
-                        item = findItemByKeys(self.keys[table], self.data[table], deleteData)
+                        item = find_by_keys(self.keys[table], self.data[table], deleteData)
                         self.data[table].remove(item)
                 else:
                     raise Exception("Unknown action: %s" % action)
@@ -260,11 +260,8 @@ class BitMEXWebsocket:
 # Helpfully, on a data push (or on an HTTP hit to /api/v1/schema), we have a "keys" array. These are the
 # fields we can use to uniquely identify an item. Sometimes there is more than one, so we iterate through all
 # provided keys.
-def findItemByKeys(keys, table, matchData):
+def find_by_keys(keys, table, matchData):
     for item in table:
-        matched = True
-        for key in keys:
-            if item[key] != matchData[key]:
-                matched = False
-        if matched:
+        if all(item[k] == matchData[k] for k in keys):
             return item
+
