@@ -98,12 +98,12 @@ WebSocketClient.prototype.open = function(url){
 WebSocketClient.prototype.log = function() {
   if (!this.logConnection) return;
   const args = [].slice.call(arguments);
-  console.log.apply(console, ['WebSocket [INFO]:'].concat(args));
+  console.log.apply(console, [new Date(), 'WebSocket [INFO]:'].concat(args));
 }
 
 WebSocketClient.prototype.logError = function() {
   const args = [].slice.call(arguments);
-  console.error.apply(console, ['WebSocket [ERROR]:'].concat(args));
+  console.error.apply(console, [new Date(), 'WebSocket [ERROR]:'].concat(args));
 }
 
 WebSocketClient.prototype.send = function(data, option) {
