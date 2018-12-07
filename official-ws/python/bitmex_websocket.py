@@ -194,6 +194,8 @@ class BitMEXWebsocket:
         '''On subscribe, this data will come down. Wait for it.'''
         while not {'instrument', 'trade', 'quote', 'orderBookL2', 'candle'} <= set(self.data):
             sleep(0.1)
+        while not len(self.data['candle']) > 0:
+            sleep(0.1)
 
     def __send_command(self, command, args=None):
         '''Send a raw command.'''
@@ -281,7 +283,8 @@ class BitMEXWebsocket:
             self.data['candle'] = self.data['candle'][int(BitMEXWebsocket.MAX_TABLE_LEN / 2):]
 
     def __start_new_candle(self, trade_time, price):
-        delta_to_next = timedelta(microseconds=(1000000 - trade_time.microsecond))
+        delta_to_next = timedelta(seconds=(59 - trade_time.second),
+                                  microseconds=(1000000 - trade_time.microsecond))
         new_candle_time = trade_time + delta_to_next
         self.candle = { 'timestamp': new_candle_time,
                         'open': price,
@@ -314,6 +317,7 @@ class BitMEXWebsocket:
                         self.data['candle'] = []
                         self.__add_historic_candles()
                     '''Publish candle'''
+                    self.logger.info('New candle: TS: %s' % self.candle['timestamp'])
                     self.data['candle'].append(self.candle)
                     self.__trim_candle_data()
                 else:
