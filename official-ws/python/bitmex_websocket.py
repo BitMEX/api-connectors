@@ -115,7 +115,7 @@ class BitMEXWebsocket:
             if num > len(self.data['candle']):
                 return self.data['candle']
             else:
-                return self.data['candle'][:-num]
+                return self.data['candle'][-num:]
         else:
             '''num not given, return all'''
             return self.data['candle']
@@ -317,7 +317,6 @@ class BitMEXWebsocket:
                         self.data['candle'] = []
                         self.__add_historic_candles()
                     '''Publish candle'''
-                    self.logger.info('New candle: TS: %s' % self.candle['timestamp'])
                     self.data['candle'].append(self.candle)
                     self.__trim_candle_data()
                 else:
