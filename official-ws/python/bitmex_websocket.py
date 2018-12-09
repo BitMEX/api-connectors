@@ -23,7 +23,7 @@ class BitMEXWebsocket:
     # Don't grow a table larger than this amount. Helps cap memory usage.
     MAX_TABLE_LEN = 200
 
-    def __init__(self, endpoint, symbol, rest_client, api_key=None, api_secret=None):
+    def __init__(self, endpoint, symbol, rest_client, api_key=None, api_secret=None, on_candle_callback=None):
         '''Connect to the websocket and initialize data stores.'''
         self.logger = logging.getLogger(__name__)
         self.logger.debug("Initializing WebSocket.")
@@ -38,6 +38,7 @@ class BitMEXWebsocket:
                         'close': 0 }
 
         self.rest_client = rest_client
+        self.on_candle = on_candle_callback
 
         if api_key is not None and api_secret is None:
             raise ValueError('api_secret is required if api_key is provided')
@@ -268,7 +269,9 @@ class BitMEXWebsocket:
                                                         reverse=True,
                                                         partial=False).result()[0]
         for period in reversed(historic):
-            if self.candle['timestamp'] == period['timestamp']:
+            candle_timestr = datetime.strftime(self.candle['timestamp'], '%Y%m%d%H%M%S')
+            period_timestr = datetime.strftime(period['timestamp'], '%Y%m%d%H%M%S')
+            if candle_timestr == period_timestr:
                 break
             else:
                 new_candle = { 'timestamp': period['timestamp'],
@@ -277,6 +280,22 @@ class BitMEXWebsocket:
                                'low': period['low'],
                                'close': period['close'] }
                 self.data['candle'].append(new_candle)
+
+    def __replace_last_candle(self):
+        historic = self.rest_client.Trade.Trade_getBucketed(symbol=self.symbol,
+                                                        count=3,binSize='1m',
+                                                        reverse=True,
+                                                        partial=False).result()[0]
+        for period in historic:
+            candle_timestr = datetime.strftime(self.data['candle'][-1]['timestamp'], '%Y%m%d%H%M%S')
+            period_timestr = datetime.strftime(period['timestamp'], '%Y%m%d%H%M%S')
+            if candle_timestr == period_timestr:
+                new_candle = { 'timestamp': period['timestamp'],
+                               'open': period['open'],
+                               'high': period['high'],
+                               'low': period['low'],
+                               'close': period['close'] }
+                self.data['candle'][-1] = new_candle
 
     def __trim_candle_data(self):
         if len(self.data['candle']) > BitMEXWebsocket.MAX_TABLE_LEN:
@@ -292,12 +311,21 @@ class BitMEXWebsocket:
                         'high': 0,
                         'close': 0 }
 
-    def __bump_prices(self, price):
-        if price > self.candle['high']:
-            self.candle['high'] = price
-        if self.candle['low'] == 0 or price < self.candle['low']:
-            self.candle['low'] = price
-        self.candle['close'] = price
+    def __bump_prices(self, trades):
+        for trade in trades:
+            price = trade['price']
+            if price > self.candle['high']:
+                self.candle['high'] = price
+            if self.candle['low'] == 0 or price < self.candle['low']:
+                self.candle['low'] = price
+            self.candle['close'] = price
+
+    def __publish_candle(self):
+        self.__replace_last_candle()
+        self.data['candle'].append(self.candle)
+        self.__trim_candle_data()
+        if self.on_candle:
+            self.on_candle(self.logger, self.get_candles)
 
     def __add_candle(self, message):
         '''add candle data'''
@@ -317,12 +345,11 @@ class BitMEXWebsocket:
                         self.data['candle'] = []
                         self.__add_historic_candles()
                     '''Publish candle'''
-                    self.data['candle'].append(self.candle)
-                    self.__trim_candle_data()
+                    self.__publish_candle()
                 else:
                     self.bad_minute = False
             self.__start_new_candle(trade_time, last_price)
-        self.__bump_prices(last_price)
+        self.__bump_prices(message['data'])
 
     def __on_error(self, error):
         '''Called on fatal websocket errors. We exit on these.'''
