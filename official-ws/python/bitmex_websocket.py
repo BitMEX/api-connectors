@@ -320,12 +320,12 @@ class BitMEXWebsocket:
                 self.candle['low'] = price
             self.candle['close'] = price
 
-    def __publish_candle(self):
+    def __publish_candle(self, trade_time, price):
         self.__replace_last_candle()
         self.data['candle'].append(self.candle)
         self.__trim_candle_data()
         if self.on_candle:
-            self.on_candle(self.logger, self.get_candles)
+            self.on_candle(self, trade_time, price)
 
     def __add_candle(self, message):
         '''add candle data'''
@@ -345,7 +345,7 @@ class BitMEXWebsocket:
                         self.data['candle'] = []
                         self.__add_historic_candles()
                     '''Publish candle'''
-                    self.__publish_candle()
+                    self.__publish_candle(trade_time, last_price)
                 else:
                     self.bad_minute = False
             self.__start_new_candle(trade_time, last_price)
