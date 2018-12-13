@@ -2,7 +2,7 @@
 
 const _ = require('lodash');
 const express = require('express');
-const BitMEXClient = require('../../nodejs/index');
+const BitMEXClient = require('bitmex-realtime-api');
 const debug = require('debug')('BitMEX:Delta-Server');
 
 module.exports = function createServer(config) {
