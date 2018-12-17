@@ -355,6 +355,7 @@ class BitMEXWebsocket:
         '''Called on fatal websocket errors. We exit on these.'''
         if not self.exited:
             self.logger.error("Error : %s" % error)
+            self.exited = True
             raise websocket.WebSocketException(error)
 
     def __on_open(self):
@@ -364,6 +365,7 @@ class BitMEXWebsocket:
     def __on_close(self):
         '''Called on websocket close.'''
         self.logger.info('Websocket Closed')
+        self.exited = True
 
 
 # Utility method for finding an item in the store.
