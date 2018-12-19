@@ -1,3 +1,4 @@
+from dateutil.tz import tzutc
 import websocket
 import threading
 import traceback
@@ -282,6 +283,12 @@ class BitMEXWebsocket:
                 self.data['candle'].append(new_candle)
 
     def __replace_last_candle(self):
+        # detect gap
+        timen = self.data['candle'][-1]['timestamp']
+        timeo = self.data['candle'][-2]['timestamp']
+        gap_size = int((timen - timeo).seconds / 60)
+        if gap_size > 1:
+            self.logger.warning('%s minute gap in candle data detected' % gap_size)
         historic = self.rest_client.Trade.Trade_getBucketed(symbol=self.symbol,
                                                         count=3,binSize='1m',
                                                         reverse=True,
@@ -304,7 +311,7 @@ class BitMEXWebsocket:
     def __start_new_candle(self, trade_time, price):
         delta_to_next = timedelta(seconds=(59 - trade_time.second),
                                   microseconds=(1000000 - trade_time.microsecond))
-        new_candle_time = trade_time + delta_to_next
+        new_candle_time = trade_time.replace(tzinfo=tzutc()) + delta_to_next
         self.candle = { 'timestamp': new_candle_time,
                         'open': price,
                         'low': 0,
@@ -330,13 +337,16 @@ class BitMEXWebsocket:
     def __add_candle(self, message):
         '''add candle data'''
         trade_time = datetime.strptime(message['data'][-1]['timestamp'], '%Y-%m-%dT%H:%M:%S.%fZ')
+        # bins are labeled for the top of the minute
         current_minute = trade_time.minute + 1
         if current_minute == 60:
+            # don't use 60 as a minute name
             current_minute = 0
         last_price = message['data'][-1]['price']
         try:
             candle_minute = self.candle['timestamp'].minute
         except AttributeError:
+            # First time through the code, no current candle time (building mode)
             candle_minute = -1
         if current_minute != candle_minute:
             if candle_minute > -1:
