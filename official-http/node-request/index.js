@@ -6,7 +6,7 @@ var apiSecret = "API_SECRET";
 
 var verb = 'POST',
   path = '/api/v1/order',
-  expires = new Date().getTime() + (60 * 1000), // 1 min in the future
+  expires = Math.round(new Date().getTime() / 1000) + 60, // 1 min in the future
   data = {symbol:"XBTUSD",orderQty:1,price:590,ordType:"Limit"};
 
 // Pre-compute the postBody so we can be sure that we're using *exactly* the same body in the request

@@ -8,7 +8,7 @@ const apiSecret = 'API_SECRET';
 function makeRequest(verb, endpoint, data = {}) {
   const apiRoot = '/api/v1/';
 
-  const expires = new Date().getTime() + (60 * 1000);  // 1 min in the future
+  const expires = Math.round(new Date().getTime() / 1000) + 60; // 1 min in the future
 
   let query = '', postBody = '';
   if (verb === 'GET')
