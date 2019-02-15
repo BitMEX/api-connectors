@@ -9,7 +9,6 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "cd ../nodejs && npm install",
     "start": "sh run.sh"
   },
   "author": "Samuel Reed <samuel.trace.reed@gmail.com> (http://strml.net/)",
@@ -18,7 +17,8 @@
     "debug": "^2.6.6",
     "ejs": "^2.5.5",
     "express": "^4.12.3",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "bitmex-realtime-api": "file:../nodejs"
   },
   "devDependencies": {
     "opn-cli": "^3.1.0"
