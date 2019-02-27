@@ -8,7 +8,7 @@ This is an example of using the `swagger-client` package to authenticate with Bi
 You don't have to worry about headers or form encoding using this package - just call the methods are if they
 were direct RPC.
 
-[swaggerClient.js](/swaggerClient.js) contains a simple example of how to use this.
+[swaggerClient.js](https://github.com/BitMEX/api-connectors/blob/master/official-http/node-swagger/swaggerClient.js) contains a simple example of how to use this.
 
 Usage
 -----
