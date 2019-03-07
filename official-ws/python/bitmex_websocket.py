@@ -86,6 +86,10 @@ class BitMEXWebsocket:
         '''Get your margin details.'''
         return self.data['margin'][0]
 
+    def positions(self):
+        '''Get your positions.'''
+        return self.data['position']
+
     def market_depth(self):
         '''Get market depth (orderbook). Returns all levels.'''
         return self.data['orderBookL2']
@@ -93,8 +97,8 @@ class BitMEXWebsocket:
     def open_orders(self, clOrdIDPrefix):
         '''Get all your open orders.'''
         orders = self.data['order']
-        # Filter to only open orders (leavesQty > 0) and those that we actually placed
-        return [o for o in orders if str(o['clOrdID']).startswith(clOrdIDPrefix) and o['leavesQty'] > 0]
+        # Filter to only open orders and those that we actually placed
+        return [o for o in orders if str(o['clOrdID']).startswith(clOrdIDPrefix) and order_leaves_quantity(o)]
 
     def recent_trades(self):
         '''Get recent trades.'''
@@ -225,7 +229,7 @@ class BitMEXWebsocket:
                             return  # No item found to update. Could happen before push
                         item.update(updateData)
                         # Remove cancelled / filled orders
-                        if table == 'order' and item['leavesQty'] <= 0:
+                        if table == 'order' and not order_leaves_quantity(item):
                             self.data[table].remove(item)
                 elif action == 'delete':
                     self.logger.debug('%s: deleting %s' % (table, message['data']))
@@ -268,3 +272,9 @@ def findItemByKeys(keys, table, matchData):
                 matched = False
         if matched:
             return item
+
+
+def order_leaves_quantity(o):
+    if o['leavesQty'] is None:
+        return True
+    return o['leavesQty'] > 0
