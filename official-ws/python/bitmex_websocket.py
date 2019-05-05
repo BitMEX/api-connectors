@@ -207,7 +207,7 @@ class BitMEXWebsocket:
                 # 'delete'  - delete row
                 if action == 'partial':
                     self.logger.debug("%s: partial" % table)
-                    self.data[table] += message['data']
+                    self.data[table] = message['data']
                     # Keys are communicated on partials to let you know how to uniquely identify
                     # an item. We use it for updates.
                     self.keys[table] = message['keys']
