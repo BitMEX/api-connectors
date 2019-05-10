@@ -26,6 +26,7 @@ var headers = {
   'api-signature': signature
 };
 
+// This example uses 'testnet api' for production is so important use url with 'www' (https://www.bitmex.com)
 const requestOptions = {
   headers: headers,
   url:'https://testnet.bitmex.com'+path,
