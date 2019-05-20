@@ -39,6 +39,11 @@ class BitMEXWebsocket:
         self.api_secret = api_secret
 
         self.data = {}
+
+        # A dictionary mainly for fast lookup of item to drastically improve
+        # the performance of find_item_by_keys
+        self.data_by_id = {}
+
         self.keys = {}
         self.exited = False
 
@@ -199,6 +204,7 @@ class BitMEXWebsocket:
 
                 if table not in self.data:
                     self.data[table] = []
+                    self.data_by_id[table] = {}
 
                 # There are four possible actions from the WS:
                 # 'partial' - full table image
@@ -211,32 +217,46 @@ class BitMEXWebsocket:
                     # Keys are communicated on partials to let you know how to uniquely identify
                     # an item. We use it for updates.
                     self.keys[table] = message['keys']
+
+                    for item in message['data']:
+                        if 'id' in item:
+                            self.data_by_id[table][item['id']] = item
+
                 elif action == 'insert':
                     self.logger.debug('%s: inserting %s' % (table, message['data']))
                     self.data[table] += message['data']
+
+                    for item in message['data']:
+                        if 'id' in item:
+                            self.data_by_id[table][item['id']] = item
 
                     # Limit the max length of the table to avoid excessive memory usage.
                     # Don't trim orders because we'll lose valuable state if we do.
                     if table not in ['order', 'orderBookL2'] and len(self.data[table]) > BitMEXWebsocket.MAX_TABLE_LEN:
                         self.data[table] = self.data[table][int(BitMEXWebsocket.MAX_TABLE_LEN / 2):]
+                        self.data_by_id[table] = {item['id'] for item in self.data[table] if 'id' in item}
 
                 elif action == 'update':
                     self.logger.debug('%s: updating %s' % (table, message['data']))
                     # Locate the item in the collection and update it.
                     for updateData in message['data']:
-                        item = findItemByKeys(self.keys[table], self.data[table], updateData)
+                        item = find_item_by_keys(self.keys[table], self.data[table], self.data_by_id[table], updateData)
                         if not item:
                             return  # No item found to update. Could happen before push
                         item.update(updateData)
                         # Remove cancelled / filled orders
                         if table == 'order' and not order_leaves_quantity(item):
                             self.data[table].remove(item)
+                            if 'id' in item and item['id'] in self.data_by_id[table]:
+                                del self.data_by_id[table][item['id']]
                 elif action == 'delete':
                     self.logger.debug('%s: deleting %s' % (table, message['data']))
                     # Locate the item in the collection and remove it.
                     for deleteData in message['data']:
-                        item = findItemByKeys(self.keys[table], self.data[table], deleteData)
+                        item = find_item_by_keys(self.keys[table], self.data[table], self.data_by_id[table], deleteData)
                         self.data[table].remove(item)
+                        if 'id' in item and item['id'] in self.data_by_id[table]:
+                            del self.data_by_id[table][item['id']]
                 else:
                     raise Exception("Unknown action: %s" % action)
         except:
@@ -264,7 +284,14 @@ class BitMEXWebsocket:
 # Helpfully, on a data push (or on an HTTP hit to /api/v1/schema), we have a "keys" array. These are the
 # fields we can use to uniquely identify an item. Sometimes there is more than one, so we iterate through all
 # provided keys.
-def findItemByKeys(keys, table, matchData):
+def find_item_by_keys(keys, table, table_by_id, matchData):
+    if table_by_id is not None and 'id' in matchData and matchData['id'] in table_by_id:
+        item = table_by_id[matchData['id']]
+        if all(item[k] == matchData[k] for k in keys):
+            return item
+        return None
+
+    # XXX Code below can probably be replaced by `return None`
     for item in table:
         matched = True
         for key in keys:
