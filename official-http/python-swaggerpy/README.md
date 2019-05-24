@@ -5,11 +5,7 @@ market data, make trades, or create third-party clients.
 Python objects are created dynamically using [Bravado](https://github.com/Yelp/bravado) to auto-generate
 a `BitMEX` adapter object from BitMEX's [Swagger JSON](https://www.bitmex.com/api/explorer/swagger.json).
 
-Unauthenticated clients are rate-limited to 150 requests per 5 minutes. The limit is increased to 300 requests per 5
-minutes for authenticated clients.
-
-For applications requiring higher limits, try [the Websocket API.](https://www.bitmex.com/app/wsAPI) For more
-information on rate limiting, see [the BitMEX documentation.](https://www.bitmex.com/app/restAPI#Rate-Limits)
+For applications requiring higher limits, try [the Websocket API.](https://www.bitmex.com/app/wsAPI) For information on rate limiting, see [the BitMEX documentation.](https://www.bitmex.com/app/restAPI#Rate-Limits)
 
 
 ## Installation
