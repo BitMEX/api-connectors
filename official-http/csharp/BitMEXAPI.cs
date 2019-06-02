@@ -84,7 +84,7 @@ namespace BitMEX
             if (auth)
             {
                 string expires = GetExpires().ToString();
-                string message = method + url + expires + postData;
+                string message = method + "/api/v1" + function + expires + postData;
                 byte[] signatureBytes = hmacsha256(Encoding.UTF8.GetBytes(apiSecret), Encoding.UTF8.GetBytes(message));
                 string signatureString = ByteArrayToString(signatureBytes);
 
