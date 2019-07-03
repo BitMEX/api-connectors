@@ -87,6 +87,7 @@ BitMEXClient.prototype.getData = function(symbol, tableName) {
   else if (symbol && !tableName) {
     out = Object.keys(this._data).reduce((memo, tableKey) => {
       memo[tableKey] = this._data[tableKey][symbol] || [];
+      return memo;
     }, {});
   }
   // All table data
