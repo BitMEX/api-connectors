@@ -78,15 +78,18 @@ BitMEXClient.prototype.getData = function(symbol, tableName) {
   const tableUsesSymbol = noSymbolTables.indexOf(tableName) === -1;
   if (!tableUsesSymbol) symbol = '*';
   let out;
+  let table;
 
   // Both filters specified, easy return
   if (symbol && tableName) {
-    out = this._data[tableName][symbol] || [];
+    table = this._data[tableName] || {};
+    out = table[symbol] || [];
   }
   // Since we're keying by [table][symbol], we have to search deep
   else if (symbol && !tableName) {
     out = Object.keys(this._data).reduce((memo, tableKey) => {
-      memo[tableKey] = this._data[tableKey][symbol] || [];
+      table = this._data[tableKey] || {};
+      memo[tableKey] = table[symbol] || [];
       return memo;
     }, {});
   }
@@ -96,7 +99,7 @@ BitMEXClient.prototype.getData = function(symbol, tableName) {
   } else {
     throw new Error('Pass a symbol, tableName, or both to getData([symbol], [tableName]) - but one must be provided.');
   }
-  return clone(out);
+  return _.clone(out);
 };
 
 /**
@@ -164,7 +167,7 @@ BitMEXClient.prototype._setupListenerTracking = function() {
     const [table, , symbol] = split;
     listenerTree[table][symbol]--;
   });
-}
+};
 
 BitMEXClient.prototype.subscriptionCount = function(table, symbol) {
   return this._listenerTree[table] && this._listenerTree[table][symbol] || 0;
@@ -226,10 +229,6 @@ function addStreamHelper(client, symbol, tableName, callback) {
       if (client.socket.opened) openSubscription();
     }
   });
-}
-
-function clone(data) {
-  return data.map(o => Object.assign({}, o));
 }
 
 if (require.main === module) {
