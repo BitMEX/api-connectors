@@ -171,7 +171,7 @@ BitMEXClient.prototype.subscriptionCount = function(table, symbol) {
 };
 
 BitMEXClient.prototype.sendSubscribeRequest = function(table, symbol) {
-  console.log(JSON.stringify({op: 'subscribe', args: `${table}:${symbol}`}))
+  debug(JSON.stringify({op: 'subscribe', args: `${table}:${symbol}`}))
   this.socket.send(JSON.stringify({op: 'subscribe', args: `${table}:${symbol}`}));
 };
 
