@@ -24,7 +24,7 @@ git clone https://github.com/BitMEX/api-connectors.git
 # Install dependencies
 cd official-ws/nodejs
 npm install
-cd ../official-ws/delta-server
+cd ../delta-server
 npm install
 
 # Setup config
