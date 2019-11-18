@@ -96,7 +96,7 @@ BitMEXClient.prototype.getData = function(symbol, tableName) {
   } else {
     throw new Error('Pass a symbol, tableName, or both to getData([symbol], [tableName]) - but one must be provided.');
   }
-  return clone(out);
+  return _.cloneDeep(out);
 };
 
 /**
@@ -226,10 +226,6 @@ function addStreamHelper(client, symbol, tableName, callback) {
       if (client.socket.opened) openSubscription();
     }
   });
-}
-
-function clone(data) {
-  return data.map(o => Object.assign({}, o));
 }
 
 if (require.main === module) {
