@@ -14,7 +14,7 @@
   "author": "Samuel Reed <samuel.trace.reed@gmail.com> (http://strml.net/)",
   "license": "MIT",
   "dependencies": {
-    "bitmex-realtime-api": "^0.4.2",
+    "bitmex-realtime-api": "^0.4.3",
     "debug": "^4.1.1",
     "ejs": "^2.7.2",
     "express": "^4.17.1",

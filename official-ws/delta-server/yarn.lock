@@ -35,10 +35,10 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha1-x57Zf380y48robyXkLzDZkdLS3k=
 
-bitmex-realtime-api@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/bitmex-realtime-api/-/bitmex-realtime-api-0.4.2.tgz#519730c5a3416b4b2b1af887dd1cd6afe8db53b6"
-  integrity sha512-QlkSUN5p2kyZnSFIwx8B5WAGCSplp031bcMpnXncq+7jD/bNNaYdrBQLjh7Id/qhXa5jvMZHJgucCaHLpLKKlw==
+bitmex-realtime-api@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/bitmex-realtime-api/-/bitmex-realtime-api-0.4.3.tgz#23ece057390498c63b0db5be4a750ded37b3a872"
+  integrity sha512-EZpYleepMUbMF/EQiLxzIFBQ2QQ+BzYYsFxfVcsoYjKJyN9TKpFMtBHJ5IEssfWHBhhOHdSmRhycm1ohW+TXYQ==
   dependencies:
     debug "^4.1.1"
     eventemitter2 "^5.0.1"
