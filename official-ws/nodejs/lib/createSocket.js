@@ -84,10 +84,6 @@ function emitSplitData(emitter, data) {
   // Technically, we can change this (e.g. chat channels)
   const filterKey = data.filterKey || 'symbol';
 
-  // Create empty arrays for each
-  const matchingStreams = emitter._listenerTree[table];
-  const symbolDataInitValue = _.mapValues(matchingStreams, () => []);
-
   // Generate data by symbol
   const symbolData = data.data.reduce((accumulator, currentValue) => {
     if (accumulator.hasOwnProperty(currentValue[filterKey])) {
@@ -96,7 +92,16 @@ function emitSplitData(emitter, data) {
       accumulator[currentValue[filterKey]] = [currentValue];
     }
     return accumulator;
-  }, symbolDataInitValue);
+  }, {});
+
+  // If an empty partial is emitted, it will look like the following:
+  // {"table":"order","action":"partial",..."filter":{"symbol":"XBTZ19"}}
+  // This allows us to know which filtered partial is empty.
+  //
+  // We need to emit it so upstream knows we received this, it was just an empty list.
+  if (data.action === 'partial' && data.filter && data.filter.symbol) {
+    symbolData[data.filter.symbol] = symbolData[data.filter.symbol] || [];
+  }
 
   Object.keys(symbolData).forEach((symbol) => {
     const key = `${table}:${action}:${symbol}`;
