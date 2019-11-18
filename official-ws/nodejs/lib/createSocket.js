@@ -76,11 +76,17 @@ module.exports = function createSocket(options, bmexClient) {
   return wsClient;
 };
 
+
+// Emits data split by symbol.
 function emitSplitData(emitter, data) {
   const {table, action} = data;
 
   // Technically, we can change this (e.g. chat channels)
   const filterKey = data.filterKey || 'symbol';
+
+  // Create empty arrays for each
+  const matchingStreams = emitter._listenerTree[table];
+  const symbolDataInitValue = _.mapValues(matchingStreams, () => []);
 
   // Generate data by symbol
   const symbolData = data.data.reduce((accumulator, currentValue) => {
@@ -90,7 +96,7 @@ function emitSplitData(emitter, data) {
       accumulator[currentValue[filterKey]] = [currentValue];
     }
     return accumulator;
-  }, {});
+  }, symbolDataInitValue);
 
   Object.keys(symbolData).forEach((symbol) => {
     const key = `${table}:${action}:${symbol}`;
