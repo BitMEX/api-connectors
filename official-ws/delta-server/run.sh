@@ -11,5 +11,5 @@ function finish() {
 node index &
 PID=$!
 
-./node_modules/.bin/opn "http://localhost:$(node -e "console.log(require('./config.js').port)")"
+./node_modules/.bin/open-cli "http://localhost:$(node -e "console.log(require('./config.js').port)")"
 wait

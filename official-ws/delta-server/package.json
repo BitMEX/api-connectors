@@ -14,13 +14,13 @@
   "author": "Samuel Reed <samuel.trace.reed@gmail.com> (http://strml.net/)",
   "license": "MIT",
   "dependencies": {
-    "debug": "^2.6.6",
-    "ejs": "^2.5.5",
-    "express": "^4.12.3",
-    "lodash": "^4.17.4",
-    "bitmex-realtime-api": "file:../nodejs"
+    "bitmex-realtime-api": "file:../nodejs",
+    "debug": "^4.1.1",
+    "ejs": "^2.7.2",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "opn-cli": "^3.1.0"
+    "open-cli": "^5.0.0"
   }
 }
