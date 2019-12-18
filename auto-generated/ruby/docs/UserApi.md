@@ -1,30 +1,28 @@
 # SwaggerClient::UserApi
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**user_cancel_withdrawal**](UserApi.md#user_cancel_withdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 [**user_check_referral_code**](UserApi.md#user_check_referral_code) | **GET** /user/checkReferralCode | Check if a referral code is valid.
+[**user_communication_token**](UserApi.md#user_communication_token) | **POST** /user/communicationToken | Register your communication token for mobile clients
 [**user_confirm**](UserApi.md#user_confirm) | **POST** /user/confirmEmail | Confirm your email address with a token.
-[**user_confirm_enable_tfa**](UserApi.md#user_confirm_enable_tfa) | **POST** /user/confirmEnableTFA | Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
 [**user_confirm_withdrawal**](UserApi.md#user_confirm_withdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
-[**user_disable_tfa**](UserApi.md#user_disable_tfa) | **POST** /user/disableTFA | Disable two-factor auth for this account.
 [**user_get**](UserApi.md#user_get) | **GET** /user | Get your user model.
 [**user_get_affiliate_status**](UserApi.md#user_get_affiliate_status) | **GET** /user/affiliateStatus | Get your current affiliate/referral status.
 [**user_get_commission**](UserApi.md#user_get_commission) | **GET** /user/commission | Get your account&#39;s commission status.
 [**user_get_deposit_address**](UserApi.md#user_get_deposit_address) | **GET** /user/depositAddress | Get a deposit address.
+[**user_get_execution_history**](UserApi.md#user_get_execution_history) | **GET** /user/executionHistory | Get the execution history by day.
 [**user_get_margin**](UserApi.md#user_get_margin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
+[**user_get_quote_fill_ratio**](UserApi.md#user_get_quote_fill_ratio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
 [**user_get_wallet**](UserApi.md#user_get_wallet) | **GET** /user/wallet | Get your current wallet information.
 [**user_get_wallet_history**](UserApi.md#user_get_wallet_history) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 [**user_get_wallet_summary**](UserApi.md#user_get_wallet_summary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**user_logout**](UserApi.md#user_logout) | **POST** /user/logout | Log out of BitMEX.
-[**user_logout_all**](UserApi.md#user_logout_all) | **POST** /user/logoutAll | Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
 [**user_min_withdrawal_fee**](UserApi.md#user_min_withdrawal_fee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
-[**user_request_enable_tfa**](UserApi.md#user_request_enable_tfa) | **POST** /user/requestEnableTFA | Get secret key for setting up two-factor auth.
 [**user_request_withdrawal**](UserApi.md#user_request_withdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**user_save_preferences**](UserApi.md#user_save_preferences) | **POST** /user/preferences | Save user preferences.
-[**user_update**](UserApi.md#user_update) | **PUT** /user | Update your password, name, and other attributes.
 
 
 # **user_cancel_withdrawal**
@@ -77,7 +75,7 @@ No authorization required
 
 Check if a referral code is valid.
 
-If the code is valid, responds with the referral code's discount (e.g. `0.1` for 10%). Otherwise, will return a 404.
+If the code is valid, responds with the referral code's discount (e.g. `0.1` for 10%). Otherwise, will return a 404 or 451 if invalid.
 
 ### Example
 ```ruby
@@ -112,6 +110,71 @@ Name | Type | Description  | Notes
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+
+
+# **user_communication_token**
+> Array&lt;CommunicationToken&gt; user_communication_token(token, platform_agent)
+
+Register your communication token for mobile clients
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+# setup authorization
+SwaggerClient.configure do |config|
+  # Configure API key authorization: apiExpires
+  config.api_key['api-expires'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-expires'] = 'Bearer'
+
+  # Configure API key authorization: apiKey
+  config.api_key['api-key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-key'] = 'Bearer'
+
+  # Configure API key authorization: apiSignature
+  config.api_key['api-signature'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-signature'] = 'Bearer'
+end
+
+api_instance = SwaggerClient::UserApi.new
+
+token = 'token_example' # String | 
+
+platform_agent = 'platform_agent_example' # String | 
+
+
+begin
+  #Register your communication token for mobile clients
+  result = api_instance.user_communication_token(token, platform_agent)
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling UserApi->user_communication_token: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token** | **String**|  | 
+ **platform_agent** | **String**|  | 
+
+### Return type
+
+[**Array&lt;CommunicationToken&gt;**](CommunicationToken.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -165,72 +228,6 @@ No authorization required
 
 
 
-# **user_confirm_enable_tfa**
-> BOOLEAN user_confirm_enable_tfa(token, opts)
-
-Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
-
-### Example
-```ruby
-# load the gem
-require 'swagger_client'
-# setup authorization
-SwaggerClient.configure do |config|
-  # Configure API key authorization: apiKey
-  config.api_key['api-key'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-key'] = 'Bearer'
-
-  # Configure API key authorization: apiNonce
-  config.api_key['api-nonce'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-nonce'] = 'Bearer'
-
-  # Configure API key authorization: apiSignature
-  config.api_key['api-signature'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-signature'] = 'Bearer'
-end
-
-api_instance = SwaggerClient::UserApi.new
-
-token = 'token_example' # String | Token from your selected TFA type.
-
-opts = { 
-  type: 'type_example' # String | Two-factor auth type. Supported types: 'GA' (Google Authenticator), 'Yubikey'
-}
-
-begin
-  #Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
-  result = api_instance.user_confirm_enable_tfa(token, opts)
-  p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling UserApi->user_confirm_enable_tfa: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **String**| Token from your selected TFA type. | 
- **type** | **String**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39; | [optional] 
-
-### Return type
-
-**BOOLEAN**
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-
-
 # **user_confirm_withdrawal**
 > Transaction user_confirm_withdrawal(token)
 
@@ -276,72 +273,6 @@ No authorization required
 
 
 
-# **user_disable_tfa**
-> BOOLEAN user_disable_tfa(token, opts)
-
-Disable two-factor auth for this account.
-
-### Example
-```ruby
-# load the gem
-require 'swagger_client'
-# setup authorization
-SwaggerClient.configure do |config|
-  # Configure API key authorization: apiKey
-  config.api_key['api-key'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-key'] = 'Bearer'
-
-  # Configure API key authorization: apiNonce
-  config.api_key['api-nonce'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-nonce'] = 'Bearer'
-
-  # Configure API key authorization: apiSignature
-  config.api_key['api-signature'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-signature'] = 'Bearer'
-end
-
-api_instance = SwaggerClient::UserApi.new
-
-token = 'token_example' # String | Token from your selected TFA type.
-
-opts = { 
-  type: 'type_example' # String | Two-factor auth type. Supported types: 'GA' (Google Authenticator)
-}
-
-begin
-  #Disable two-factor auth for this account.
-  result = api_instance.user_disable_tfa(token, opts)
-  p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling UserApi->user_disable_tfa: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **String**| Token from your selected TFA type. | 
- **type** | **String**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) | [optional] 
-
-### Return type
-
-**BOOLEAN**
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-
-
 # **user_get**
 > User user_get
 
@@ -353,15 +284,15 @@ Get your user model.
 require 'swagger_client'
 # setup authorization
 SwaggerClient.configure do |config|
+  # Configure API key authorization: apiExpires
+  config.api_key['api-expires'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-expires'] = 'Bearer'
+
   # Configure API key authorization: apiKey
   config.api_key['api-key'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['api-key'] = 'Bearer'
-
-  # Configure API key authorization: apiNonce
-  config.api_key['api-nonce'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-nonce'] = 'Bearer'
 
   # Configure API key authorization: apiSignature
   config.api_key['api-signature'] = 'YOUR API KEY'
@@ -389,7 +320,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -409,15 +340,15 @@ Get your current affiliate/referral status.
 require 'swagger_client'
 # setup authorization
 SwaggerClient.configure do |config|
+  # Configure API key authorization: apiExpires
+  config.api_key['api-expires'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-expires'] = 'Bearer'
+
   # Configure API key authorization: apiKey
   config.api_key['api-key'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['api-key'] = 'Bearer'
-
-  # Configure API key authorization: apiNonce
-  config.api_key['api-nonce'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-nonce'] = 'Bearer'
 
   # Configure API key authorization: apiSignature
   config.api_key['api-signature'] = 'YOUR API KEY'
@@ -445,7 +376,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -455,7 +386,7 @@ This endpoint does not need any parameter.
 
 
 # **user_get_commission**
-> Array&lt;UserCommission&gt; user_get_commission
+> UserCommissionsBySymbol user_get_commission
 
 Get your account's commission status.
 
@@ -465,15 +396,15 @@ Get your account's commission status.
 require 'swagger_client'
 # setup authorization
 SwaggerClient.configure do |config|
+  # Configure API key authorization: apiExpires
+  config.api_key['api-expires'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-expires'] = 'Bearer'
+
   # Configure API key authorization: apiKey
   config.api_key['api-key'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['api-key'] = 'Bearer'
-
-  # Configure API key authorization: apiNonce
-  config.api_key['api-nonce'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-nonce'] = 'Bearer'
 
   # Configure API key authorization: apiSignature
   config.api_key['api-signature'] = 'YOUR API KEY'
@@ -497,11 +428,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Array&lt;UserCommission&gt;**](UserCommission.md)
+[**UserCommissionsBySymbol**](UserCommissionsBySymbol.md)
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -521,15 +452,15 @@ Get a deposit address.
 require 'swagger_client'
 # setup authorization
 SwaggerClient.configure do |config|
+  # Configure API key authorization: apiExpires
+  config.api_key['api-expires'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-expires'] = 'Bearer'
+
   # Configure API key authorization: apiKey
   config.api_key['api-key'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['api-key'] = 'Bearer'
-
-  # Configure API key authorization: apiNonce
-  config.api_key['api-nonce'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-nonce'] = 'Bearer'
 
   # Configure API key authorization: apiSignature
   config.api_key['api-signature'] = 'YOUR API KEY'
@@ -564,7 +495,72 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+
+
+# **user_get_execution_history**
+> Object user_get_execution_history(symbol, timestamp)
+
+Get the execution history by day.
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+# setup authorization
+SwaggerClient.configure do |config|
+  # Configure API key authorization: apiExpires
+  config.api_key['api-expires'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-expires'] = 'Bearer'
+
+  # Configure API key authorization: apiKey
+  config.api_key['api-key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-key'] = 'Bearer'
+
+  # Configure API key authorization: apiSignature
+  config.api_key['api-signature'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-signature'] = 'Bearer'
+end
+
+api_instance = SwaggerClient::UserApi.new
+
+symbol = 'XBTUSD' # String | 
+
+timestamp = DateTime.parse('2017-02-13T12:00:00.000Z') # DateTime | 
+
+
+begin
+  #Get the execution history by day.
+  result = api_instance.user_get_execution_history(symbol, timestamp)
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling UserApi->user_get_execution_history: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**|  | [default to XBTUSD]
+ **timestamp** | **DateTime**|  | [default to 2017-02-13T12:00:00.000Z]
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -584,15 +580,15 @@ Get your account's margin status. Send a currency of \"all\" to receive an array
 require 'swagger_client'
 # setup authorization
 SwaggerClient.configure do |config|
+  # Configure API key authorization: apiExpires
+  config.api_key['api-expires'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-expires'] = 'Bearer'
+
   # Configure API key authorization: apiKey
   config.api_key['api-key'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['api-key'] = 'Bearer'
-
-  # Configure API key authorization: apiNonce
-  config.api_key['api-nonce'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-nonce'] = 'Bearer'
 
   # Configure API key authorization: apiSignature
   config.api_key['api-signature'] = 'YOUR API KEY'
@@ -627,7 +623,63 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+
+
+# **user_get_quote_fill_ratio**
+> QuoteFillRatio user_get_quote_fill_ratio
+
+Get 7 days worth of Quote Fill Ratio statistics.
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+# setup authorization
+SwaggerClient.configure do |config|
+  # Configure API key authorization: apiExpires
+  config.api_key['api-expires'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-expires'] = 'Bearer'
+
+  # Configure API key authorization: apiKey
+  config.api_key['api-key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-key'] = 'Bearer'
+
+  # Configure API key authorization: apiSignature
+  config.api_key['api-signature'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-signature'] = 'Bearer'
+end
+
+api_instance = SwaggerClient::UserApi.new
+
+begin
+  #Get 7 days worth of Quote Fill Ratio statistics.
+  result = api_instance.user_get_quote_fill_ratio
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling UserApi->user_get_quote_fill_ratio: #{e}"
+end
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**QuoteFillRatio**](QuoteFillRatio.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -647,15 +699,15 @@ Get your current wallet information.
 require 'swagger_client'
 # setup authorization
 SwaggerClient.configure do |config|
+  # Configure API key authorization: apiExpires
+  config.api_key['api-expires'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-expires'] = 'Bearer'
+
   # Configure API key authorization: apiKey
   config.api_key['api-key'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['api-key'] = 'Bearer'
-
-  # Configure API key authorization: apiNonce
-  config.api_key['api-nonce'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-nonce'] = 'Bearer'
 
   # Configure API key authorization: apiSignature
   config.api_key['api-signature'] = 'YOUR API KEY'
@@ -690,7 +742,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -710,15 +762,15 @@ Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 require 'swagger_client'
 # setup authorization
 SwaggerClient.configure do |config|
+  # Configure API key authorization: apiExpires
+  config.api_key['api-expires'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-expires'] = 'Bearer'
+
   # Configure API key authorization: apiKey
   config.api_key['api-key'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['api-key'] = 'Bearer'
-
-  # Configure API key authorization: apiNonce
-  config.api_key['api-nonce'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-nonce'] = 'Bearer'
 
   # Configure API key authorization: apiSignature
   config.api_key['api-signature'] = 'YOUR API KEY'
@@ -729,7 +781,9 @@ end
 api_instance = SwaggerClient::UserApi.new
 
 opts = { 
-  currency: 'XBt' # String | 
+  currency: 'XBt', # String | 
+  count: 100, # Float | Number of results to fetch.
+  start: 0 # Float | Starting point for results.
 }
 
 begin
@@ -746,6 +800,8 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **String**|  | [optional] [default to XBt]
+ **count** | **Float**| Number of results to fetch. | [optional] [default to 100]
+ **start** | **Float**| Starting point for results. | [optional] [default to 0]
 
 ### Return type
 
@@ -753,7 +809,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -773,15 +829,15 @@ Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 require 'swagger_client'
 # setup authorization
 SwaggerClient.configure do |config|
+  # Configure API key authorization: apiExpires
+  config.api_key['api-expires'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-expires'] = 'Bearer'
+
   # Configure API key authorization: apiKey
   config.api_key['api-key'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['api-key'] = 'Bearer'
-
-  # Configure API key authorization: apiNonce
-  config.api_key['api-nonce'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-nonce'] = 'Bearer'
 
   # Configure API key authorization: apiSignature
   config.api_key['api-signature'] = 'YOUR API KEY'
@@ -816,7 +872,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -855,62 +911,6 @@ nil (empty response body)
 ### Authorization
 
 No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-
-
-# **user_logout_all**
-> Float user_logout_all
-
-Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.
-
-### Example
-```ruby
-# load the gem
-require 'swagger_client'
-# setup authorization
-SwaggerClient.configure do |config|
-  # Configure API key authorization: apiKey
-  config.api_key['api-key'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-key'] = 'Bearer'
-
-  # Configure API key authorization: apiNonce
-  config.api_key['api-nonce'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-nonce'] = 'Bearer'
-
-  # Configure API key authorization: apiSignature
-  config.api_key['api-signature'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-signature'] = 'Bearer'
-end
-
-api_instance = SwaggerClient::UserApi.new
-
-begin
-  #Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.
-  result = api_instance.user_logout_all
-  p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling UserApi->user_logout_all: #{e}"
-end
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-**Float**
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -967,77 +967,12 @@ No authorization required
 
 
 
-# **user_request_enable_tfa**
-> BOOLEAN user_request_enable_tfa(opts)
-
-Get secret key for setting up two-factor auth.
-
-Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
-
-### Example
-```ruby
-# load the gem
-require 'swagger_client'
-# setup authorization
-SwaggerClient.configure do |config|
-  # Configure API key authorization: apiKey
-  config.api_key['api-key'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-key'] = 'Bearer'
-
-  # Configure API key authorization: apiNonce
-  config.api_key['api-nonce'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-nonce'] = 'Bearer'
-
-  # Configure API key authorization: apiSignature
-  config.api_key['api-signature'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-signature'] = 'Bearer'
-end
-
-api_instance = SwaggerClient::UserApi.new
-
-opts = { 
-  type: 'type_example' # String | Two-factor auth type. Supported types: 'GA' (Google Authenticator)
-}
-
-begin
-  #Get secret key for setting up two-factor auth.
-  result = api_instance.user_request_enable_tfa(opts)
-  p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling UserApi->user_request_enable_tfa: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **type** | **String**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) | [optional] 
-
-### Return type
-
-**BOOLEAN**
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-
-
 # **user_request_withdrawal**
 > Transaction user_request_withdrawal(currency, amount, address, opts)
 
 Request a withdrawal to an external wallet.
 
-This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission.
+This will send a confirmation email to the email address on record.
 
 ### Example
 ```ruby
@@ -1045,15 +980,15 @@ This will send a confirmation email to the email address on record, unless reque
 require 'swagger_client'
 # setup authorization
 SwaggerClient.configure do |config|
+  # Configure API key authorization: apiExpires
+  config.api_key['api-expires'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-expires'] = 'Bearer'
+
   # Configure API key authorization: apiKey
   config.api_key['api-key'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['api-key'] = 'Bearer'
-
-  # Configure API key authorization: apiNonce
-  config.api_key['api-nonce'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-nonce'] = 'Bearer'
 
   # Configure API key authorization: apiSignature
   config.api_key['api-signature'] = 'YOUR API KEY'
@@ -1071,7 +1006,8 @@ address = 'address_example' # String | Destination Address.
 
 opts = { 
   otp_token: 'otp_token_example', # String | 2FA token. Required if 2FA is enabled on your account.
-  fee: 1.2 # Float | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
+  fee: 1.2, # Float | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
+  text: 'text_example' # String | Optional annotation, e.g. 'Transfer to home wallet'.
 }
 
 begin
@@ -1092,6 +1028,7 @@ Name | Type | Description  | Notes
  **address** | **String**| Destination Address. | 
  **otp_token** | **String**| 2FA token. Required if 2FA is enabled on your account. | [optional] 
  **fee** | **Float**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional] 
+ **text** | **String**| Optional annotation, e.g. &#39;Transfer to home wallet&#39;. | [optional] 
 
 ### Return type
 
@@ -1099,7 +1036,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -1119,15 +1056,15 @@ Save user preferences.
 require 'swagger_client'
 # setup authorization
 SwaggerClient.configure do |config|
+  # Configure API key authorization: apiExpires
+  config.api_key['api-expires'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-expires'] = 'Bearer'
+
   # Configure API key authorization: apiKey
   config.api_key['api-key'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['api-key'] = 'Bearer'
-
-  # Configure API key authorization: apiNonce
-  config.api_key['api-nonce'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-nonce'] = 'Bearer'
 
   # Configure API key authorization: apiSignature
   config.api_key['api-signature'] = 'YOUR API KEY'
@@ -1165,84 +1102,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-
-
-# **user_update**
-> User user_update(opts)
-
-Update your password, name, and other attributes.
-
-### Example
-```ruby
-# load the gem
-require 'swagger_client'
-# setup authorization
-SwaggerClient.configure do |config|
-  # Configure API key authorization: apiKey
-  config.api_key['api-key'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-key'] = 'Bearer'
-
-  # Configure API key authorization: apiNonce
-  config.api_key['api-nonce'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-nonce'] = 'Bearer'
-
-  # Configure API key authorization: apiSignature
-  config.api_key['api-signature'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-signature'] = 'Bearer'
-end
-
-api_instance = SwaggerClient::UserApi.new
-
-opts = { 
-  firstname: 'firstname_example', # String | 
-  lastname: 'lastname_example', # String | 
-  old_password: 'old_password_example', # String | 
-  new_password: 'new_password_example', # String | 
-  new_password_confirm: 'new_password_confirm_example', # String | 
-  username: 'username_example', # String | Username can only be set once. To reset, email support.
-  country: 'country_example', # String | Country of residence.
-  pgp_pub_key: 'pgp_pub_key_example' # String | PGP Public Key. If specified, automated emails will be sentwith this key.
-}
-
-begin
-  #Update your password, name, and other attributes.
-  result = api_instance.user_update(opts)
-  p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling UserApi->user_update: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **firstname** | **String**|  | [optional] 
- **lastname** | **String**|  | [optional] 
- **old_password** | **String**|  | [optional] 
- **new_password** | **String**|  | [optional] 
- **new_password_confirm** | **String**|  | [optional] 
- **username** | **String**| Username can only be set once. To reset, email support. | [optional] 
- **country** | **String**| Country of residence. | [optional] 
- **pgp_pub_key** | **String**| PGP Public Key. If specified, automated emails will be sentwith this key. | [optional] 
-
-### Return type
-
-[**User**](User.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

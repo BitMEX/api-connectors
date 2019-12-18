@@ -26,8 +26,10 @@ public struct Affiliate: Codable {
     public var pendingPayout: Double?
     public var timestamp: Date?
     public var referrerAccount: Double?
+    public var referralDiscount: Double?
+    public var affiliatePayout: Double?
 
-    public init(account: Double, currency: String, prevPayout: Double?, prevTurnover: Double?, prevComm: Double?, prevTimestamp: Date?, execTurnover: Double?, execComm: Double?, totalReferrals: Double?, totalTurnover: Double?, totalComm: Double?, payoutPcnt: Double?, pendingPayout: Double?, timestamp: Date?, referrerAccount: Double?) {
+    public init(account: Double, currency: String, prevPayout: Double?, prevTurnover: Double?, prevComm: Double?, prevTimestamp: Date?, execTurnover: Double?, execComm: Double?, totalReferrals: Double?, totalTurnover: Double?, totalComm: Double?, payoutPcnt: Double?, pendingPayout: Double?, timestamp: Date?, referrerAccount: Double?, referralDiscount: Double?, affiliatePayout: Double?) {
         self.account = account
         self.currency = currency
         self.prevPayout = prevPayout
@@ -43,6 +45,8 @@ public struct Affiliate: Codable {
         self.pendingPayout = pendingPayout
         self.timestamp = timestamp
         self.referrerAccount = referrerAccount
+        self.referralDiscount = referralDiscount
+        self.affiliatePayout = affiliatePayout
     }
 
 

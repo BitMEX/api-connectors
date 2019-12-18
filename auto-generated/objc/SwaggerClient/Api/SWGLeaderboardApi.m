@@ -2,7 +2,7 @@
 #import "SWGQueryParamCollection.h"
 #import "SWGApiClient.h"
 #import "SWGError.h"
-#import "SWGInlineResponse2001.h"
+#import "SWGInlineResponse200.h"
 #import "SWGLeaderboard.h"
 
 
@@ -111,10 +111,10 @@ NSInteger kSWGLeaderboardApiMissingParamErrorCode = 234513;
 ///
 /// Get your alias on the leaderboard.
 /// 
-///  @returns SWGInlineResponse2001*
+///  @returns SWGInlineResponse200*
 ///
 -(NSURLSessionTask*) leaderboardGetNameWithCompletionHandler: 
-    (void (^)(SWGInlineResponse2001* output, NSError* error)) handler {
+    (void (^)(SWGInlineResponse200* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/leaderboard/name"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
@@ -135,7 +135,7 @@ NSInteger kSWGLeaderboardApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
+    NSArray *authSettings = @[@"apiExpires", @"apiKey", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -152,10 +152,10 @@ NSInteger kSWGLeaderboardApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2001*"
+                              responseType: @"SWGInlineResponse200*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGInlineResponse2001*)data, error);
+                                    handler((SWGInlineResponse200*)data, error);
                                 }
                             }];
 }

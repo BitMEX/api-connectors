@@ -1,6 +1,6 @@
 /*
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -17,10 +17,14 @@ import io.swagger.client.ApiException;
 import io.swagger.client.model.AccessToken;
 import io.swagger.client.model.Affiliate;
 import java.math.BigDecimal;
+import io.swagger.client.model.CommunicationToken;
+import io.swagger.client.model.Error;
 import io.swagger.client.model.Margin;
+import org.threeten.bp.OffsetDateTime;
+import io.swagger.client.model.QuoteFillRatio;
 import io.swagger.client.model.Transaction;
 import io.swagger.client.model.User;
-import io.swagger.client.model.UserCommission;
+import io.swagger.client.model.UserCommissionsBySymbol;
 import io.swagger.client.model.Wallet;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -58,7 +62,7 @@ public class UserApiTest {
     /**
      * Check if a referral code is valid.
      *
-     * If the code is valid, responds with the referral code&#39;s discount (e.g. &#x60;0.1&#x60; for 10%). Otherwise, will return a 404.
+     * If the code is valid, responds with the referral code&#39;s discount (e.g. &#x60;0.1&#x60; for 10%). Otherwise, will return a 404 or 451 if invalid.
      *
      * @throws ApiException
      *          if the Api call fails
@@ -67,6 +71,23 @@ public class UserApiTest {
     public void userCheckReferralCodeTest() throws ApiException {
         String referralCode = null;
         Double response = api.userCheckReferralCode(referralCode);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Register your communication token for mobile clients
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void userCommunicationTokenTest() throws ApiException {
+        String token = null;
+        String platformAgent = null;
+        List<CommunicationToken> response = api.userCommunicationToken(token, platformAgent);
 
         // TODO: test validations
     }
@@ -88,23 +109,6 @@ public class UserApiTest {
     }
     
     /**
-     * Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void userConfirmEnableTFATest() throws ApiException {
-        String token = null;
-        String type = null;
-        Boolean response = api.userConfirmEnableTFA(token, type);
-
-        // TODO: test validations
-    }
-    
-    /**
      * Confirm a withdrawal.
      *
      * 
@@ -116,23 +120,6 @@ public class UserApiTest {
     public void userConfirmWithdrawalTest() throws ApiException {
         String token = null;
         Transaction response = api.userConfirmWithdrawal(token);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Disable two-factor auth for this account.
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void userDisableTFATest() throws ApiException {
-        String token = null;
-        String type = null;
-        Boolean response = api.userDisableTFA(token, type);
 
         // TODO: test validations
     }
@@ -177,7 +164,7 @@ public class UserApiTest {
      */
     @Test
     public void userGetCommissionTest() throws ApiException {
-        List<UserCommission> response = api.userGetCommission();
+        UserCommissionsBySymbol response = api.userGetCommission();
 
         // TODO: test validations
     }
@@ -199,6 +186,23 @@ public class UserApiTest {
     }
     
     /**
+     * Get the execution history by day.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void userGetExecutionHistoryTest() throws ApiException {
+        String symbol = null;
+        OffsetDateTime timestamp = null;
+        Object response = api.userGetExecutionHistory(symbol, timestamp);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
      *
      * 
@@ -210,6 +214,21 @@ public class UserApiTest {
     public void userGetMarginTest() throws ApiException {
         String currency = null;
         Margin response = api.userGetMargin(currency);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get 7 days worth of Quote Fill Ratio statistics.
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void userGetQuoteFillRatioTest() throws ApiException {
+        QuoteFillRatio response = api.userGetQuoteFillRatio();
 
         // TODO: test validations
     }
@@ -241,7 +260,9 @@ public class UserApiTest {
     @Test
     public void userGetWalletHistoryTest() throws ApiException {
         String currency = null;
-        List<Transaction> response = api.userGetWalletHistory(currency);
+        Double count = null;
+        Double start = null;
+        List<Transaction> response = api.userGetWalletHistory(currency, count, start);
 
         // TODO: test validations
     }
@@ -278,21 +299,6 @@ public class UserApiTest {
     }
     
     /**
-     * Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void userLogoutAllTest() throws ApiException {
-        Double response = api.userLogoutAll();
-
-        // TODO: test validations
-    }
-    
-    /**
      * Get the minimum withdrawal fee for a currency.
      *
      * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
@@ -309,25 +315,9 @@ public class UserApiTest {
     }
     
     /**
-     * Get secret key for setting up two-factor auth.
-     *
-     * Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void userRequestEnableTFATest() throws ApiException {
-        String type = null;
-        Boolean response = api.userRequestEnableTFA(type);
-
-        // TODO: test validations
-    }
-    
-    /**
      * Request a withdrawal to an external wallet.
      *
-     * This will send a confirmation email to the email address on record, unless requested via an API Key with the &#x60;withdraw&#x60; permission.
+     * This will send a confirmation email to the email address on record.
      *
      * @throws ApiException
      *          if the Api call fails
@@ -339,7 +329,8 @@ public class UserApiTest {
         String address = null;
         String otpToken = null;
         Double fee = null;
-        Transaction response = api.userRequestWithdrawal(currency, amount, address, otpToken, fee);
+        String text = null;
+        Transaction response = api.userRequestWithdrawal(currency, amount, address, otpToken, fee, text);
 
         // TODO: test validations
     }
@@ -357,29 +348,6 @@ public class UserApiTest {
         String prefs = null;
         Boolean overwrite = null;
         User response = api.userSavePreferences(prefs, overwrite);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Update your password, name, and other attributes.
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void userUpdateTest() throws ApiException {
-        String firstname = null;
-        String lastname = null;
-        String oldPassword = null;
-        String newPassword = null;
-        String newPasswordConfirm = null;
-        String username = null;
-        String country = null;
-        String pgpPubKey = null;
-        User response = api.userUpdate(firstname, lastname, oldPassword, newPassword, newPasswordConfirm, username, country, pgpPubKey);
 
         // TODO: test validations
     }

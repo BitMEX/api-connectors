@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -104,6 +104,8 @@ class Instrument(object):
         'total_turnover': 'float',
         'turnover': 'float',
         'turnover24h': 'float',
+        'home_notional24h': 'float',
+        'foreign_notional24h': 'float',
         'prev_price24h': 'float',
         'vwap': 'float',
         'high_price': 'float',
@@ -208,6 +210,8 @@ class Instrument(object):
         'total_turnover': 'totalTurnover',
         'turnover': 'turnover',
         'turnover24h': 'turnover24h',
+        'home_notional24h': 'homeNotional24h',
+        'foreign_notional24h': 'foreignNotional24h',
         'prev_price24h': 'prevPrice24h',
         'vwap': 'vwap',
         'high_price': 'highPrice',
@@ -238,7 +242,7 @@ class Instrument(object):
         'timestamp': 'timestamp'
     }
 
-    def __init__(self, symbol=None, root_symbol=None, state=None, typ=None, listing=None, front=None, expiry=None, settle=None, relist_interval=None, inverse_leg=None, sell_leg=None, buy_leg=None, option_strike_pcnt=None, option_strike_round=None, option_strike_price=None, option_multiplier=None, position_currency=None, underlying=None, quote_currency=None, underlying_symbol=None, reference=None, reference_symbol=None, calc_interval=None, publish_interval=None, publish_time=None, max_order_qty=None, max_price=None, lot_size=None, tick_size=None, multiplier=None, settl_currency=None, underlying_to_position_multiplier=None, underlying_to_settle_multiplier=None, quote_to_settle_multiplier=None, is_quanto=None, is_inverse=None, init_margin=None, maint_margin=None, risk_limit=None, risk_step=None, limit=None, capped=None, taxed=None, deleverage=None, maker_fee=None, taker_fee=None, settlement_fee=None, insurance_fee=None, funding_base_symbol=None, funding_quote_symbol=None, funding_premium_symbol=None, funding_timestamp=None, funding_interval=None, funding_rate=None, indicative_funding_rate=None, rebalance_timestamp=None, rebalance_interval=None, opening_timestamp=None, closing_timestamp=None, session_interval=None, prev_close_price=None, limit_down_price=None, limit_up_price=None, bankrupt_limit_down_price=None, bankrupt_limit_up_price=None, prev_total_volume=None, total_volume=None, volume=None, volume24h=None, prev_total_turnover=None, total_turnover=None, turnover=None, turnover24h=None, prev_price24h=None, vwap=None, high_price=None, low_price=None, last_price=None, last_price_protected=None, last_tick_direction=None, last_change_pcnt=None, bid_price=None, mid_price=None, ask_price=None, impact_bid_price=None, impact_mid_price=None, impact_ask_price=None, has_liquidity=None, open_interest=None, open_value=None, fair_method=None, fair_basis_rate=None, fair_basis=None, fair_price=None, mark_method=None, mark_price=None, indicative_tax_rate=None, indicative_settle_price=None, option_underlying_price=None, settled_price=None, timestamp=None):  # noqa: E501
+    def __init__(self, symbol=None, root_symbol=None, state=None, typ=None, listing=None, front=None, expiry=None, settle=None, relist_interval=None, inverse_leg=None, sell_leg=None, buy_leg=None, option_strike_pcnt=None, option_strike_round=None, option_strike_price=None, option_multiplier=None, position_currency=None, underlying=None, quote_currency=None, underlying_symbol=None, reference=None, reference_symbol=None, calc_interval=None, publish_interval=None, publish_time=None, max_order_qty=None, max_price=None, lot_size=None, tick_size=None, multiplier=None, settl_currency=None, underlying_to_position_multiplier=None, underlying_to_settle_multiplier=None, quote_to_settle_multiplier=None, is_quanto=None, is_inverse=None, init_margin=None, maint_margin=None, risk_limit=None, risk_step=None, limit=None, capped=None, taxed=None, deleverage=None, maker_fee=None, taker_fee=None, settlement_fee=None, insurance_fee=None, funding_base_symbol=None, funding_quote_symbol=None, funding_premium_symbol=None, funding_timestamp=None, funding_interval=None, funding_rate=None, indicative_funding_rate=None, rebalance_timestamp=None, rebalance_interval=None, opening_timestamp=None, closing_timestamp=None, session_interval=None, prev_close_price=None, limit_down_price=None, limit_up_price=None, bankrupt_limit_down_price=None, bankrupt_limit_up_price=None, prev_total_volume=None, total_volume=None, volume=None, volume24h=None, prev_total_turnover=None, total_turnover=None, turnover=None, turnover24h=None, home_notional24h=None, foreign_notional24h=None, prev_price24h=None, vwap=None, high_price=None, low_price=None, last_price=None, last_price_protected=None, last_tick_direction=None, last_change_pcnt=None, bid_price=None, mid_price=None, ask_price=None, impact_bid_price=None, impact_mid_price=None, impact_ask_price=None, has_liquidity=None, open_interest=None, open_value=None, fair_method=None, fair_basis_rate=None, fair_basis=None, fair_price=None, mark_method=None, mark_price=None, indicative_tax_rate=None, indicative_settle_price=None, option_underlying_price=None, settled_price=None, timestamp=None):  # noqa: E501
         """Instrument - a model defined in Swagger"""  # noqa: E501
 
         self._symbol = None
@@ -314,6 +318,8 @@ class Instrument(object):
         self._total_turnover = None
         self._turnover = None
         self._turnover24h = None
+        self._home_notional24h = None
+        self._foreign_notional24h = None
         self._prev_price24h = None
         self._vwap = None
         self._high_price = None
@@ -489,6 +495,10 @@ class Instrument(object):
             self.turnover = turnover
         if turnover24h is not None:
             self.turnover24h = turnover24h
+        if home_notional24h is not None:
+            self.home_notional24h = home_notional24h
+        if foreign_notional24h is not None:
+            self.foreign_notional24h = foreign_notional24h
         if prev_price24h is not None:
             self.prev_price24h = prev_price24h
         if vwap is not None:
@@ -2082,6 +2092,48 @@ class Instrument(object):
         self._turnover24h = turnover24h
 
     @property
+    def home_notional24h(self):
+        """Gets the home_notional24h of this Instrument.  # noqa: E501
+
+
+        :return: The home_notional24h of this Instrument.  # noqa: E501
+        :rtype: float
+        """
+        return self._home_notional24h
+
+    @home_notional24h.setter
+    def home_notional24h(self, home_notional24h):
+        """Sets the home_notional24h of this Instrument.
+
+
+        :param home_notional24h: The home_notional24h of this Instrument.  # noqa: E501
+        :type: float
+        """
+
+        self._home_notional24h = home_notional24h
+
+    @property
+    def foreign_notional24h(self):
+        """Gets the foreign_notional24h of this Instrument.  # noqa: E501
+
+
+        :return: The foreign_notional24h of this Instrument.  # noqa: E501
+        :rtype: float
+        """
+        return self._foreign_notional24h
+
+    @foreign_notional24h.setter
+    def foreign_notional24h(self, foreign_notional24h):
+        """Sets the foreign_notional24h of this Instrument.
+
+
+        :param foreign_notional24h: The foreign_notional24h of this Instrument.  # noqa: E501
+        :type: float
+        """
+
+        self._foreign_notional24h = foreign_notional24h
+
+    @property
     def prev_price24h(self):
         """Gets the prev_price24h of this Instrument.  # noqa: E501
 
@@ -2690,6 +2742,9 @@ class Instrument(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(Instrument, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

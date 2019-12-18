@@ -8,25 +8,26 @@ HEADERS += \
     $${PWD}/SWGAnnouncement.h \
     $${PWD}/SWGChat.h \
     $${PWD}/SWGChatChannel.h \
+    $${PWD}/SWGCommunicationToken.h \
     $${PWD}/SWGConnectedUsers.h \
     $${PWD}/SWGError.h \
     $${PWD}/SWGError_error.h \
     $${PWD}/SWGExecution.h \
     $${PWD}/SWGFunding.h \
+    $${PWD}/SWGGlobalNotification.h \
     $${PWD}/SWGIndexComposite.h \
     $${PWD}/SWGInline_response_200.h \
-    $${PWD}/SWGInline_response_200_1.h \
     $${PWD}/SWGInstrument.h \
     $${PWD}/SWGInstrumentInterval.h \
     $${PWD}/SWGInsurance.h \
     $${PWD}/SWGLeaderboard.h \
     $${PWD}/SWGLiquidation.h \
     $${PWD}/SWGMargin.h \
-    $${PWD}/SWGNotification.h \
     $${PWD}/SWGOrder.h \
     $${PWD}/SWGOrderBookL2.h \
     $${PWD}/SWGPosition.h \
     $${PWD}/SWGQuote.h \
+    $${PWD}/SWGQuoteFillRatio.h \
     $${PWD}/SWGSettlement.h \
     $${PWD}/SWGStats.h \
     $${PWD}/SWGStatsHistory.h \
@@ -35,7 +36,8 @@ HEADERS += \
     $${PWD}/SWGTradeBin.h \
     $${PWD}/SWGTransaction.h \
     $${PWD}/SWGUser.h \
-    $${PWD}/SWGUserCommission.h \
+    $${PWD}/SWGUserCommissionsBySymbol.h \
+    $${PWD}/SWGUserEvent.h \
     $${PWD}/SWGUserPreferences.h \
     $${PWD}/SWGWallet.h \
     $${PWD}/SWGX-any.h \
@@ -45,11 +47,11 @@ HEADERS += \
     $${PWD}/SWGChatApi.h \
     $${PWD}/SWGExecutionApi.h \
     $${PWD}/SWGFundingApi.h \
+    $${PWD}/SWGGlobalNotificationApi.h \
     $${PWD}/SWGInstrumentApi.h \
     $${PWD}/SWGInsuranceApi.h \
     $${PWD}/SWGLeaderboardApi.h \
     $${PWD}/SWGLiquidationApi.h \
-    $${PWD}/SWGNotificationApi.h \
     $${PWD}/SWGOrderApi.h \
     $${PWD}/SWGOrderBookApi.h \
     $${PWD}/SWGPositionApi.h \
@@ -59,6 +61,7 @@ HEADERS += \
     $${PWD}/SWGStatsApi.h \
     $${PWD}/SWGTradeApi.h \
     $${PWD}/SWGUserApi.h \
+    $${PWD}/SWGUserEventApi.h \
 # Others
     $${PWD}/SWGHelpers.h \
     $${PWD}/SWGHttpRequest.h \
@@ -74,25 +77,26 @@ SOURCES += \
     $${PWD}/SWGAnnouncement.cpp \
     $${PWD}/SWGChat.cpp \
     $${PWD}/SWGChatChannel.cpp \
+    $${PWD}/SWGCommunicationToken.cpp \
     $${PWD}/SWGConnectedUsers.cpp \
     $${PWD}/SWGError.cpp \
     $${PWD}/SWGError_error.cpp \
     $${PWD}/SWGExecution.cpp \
     $${PWD}/SWGFunding.cpp \
+    $${PWD}/SWGGlobalNotification.cpp \
     $${PWD}/SWGIndexComposite.cpp \
     $${PWD}/SWGInline_response_200.cpp \
-    $${PWD}/SWGInline_response_200_1.cpp \
     $${PWD}/SWGInstrument.cpp \
     $${PWD}/SWGInstrumentInterval.cpp \
     $${PWD}/SWGInsurance.cpp \
     $${PWD}/SWGLeaderboard.cpp \
     $${PWD}/SWGLiquidation.cpp \
     $${PWD}/SWGMargin.cpp \
-    $${PWD}/SWGNotification.cpp \
     $${PWD}/SWGOrder.cpp \
     $${PWD}/SWGOrderBookL2.cpp \
     $${PWD}/SWGPosition.cpp \
     $${PWD}/SWGQuote.cpp \
+    $${PWD}/SWGQuoteFillRatio.cpp \
     $${PWD}/SWGSettlement.cpp \
     $${PWD}/SWGStats.cpp \
     $${PWD}/SWGStatsHistory.cpp \
@@ -101,7 +105,8 @@ SOURCES += \
     $${PWD}/SWGTradeBin.cpp \
     $${PWD}/SWGTransaction.cpp \
     $${PWD}/SWGUser.cpp \
-    $${PWD}/SWGUserCommission.cpp \
+    $${PWD}/SWGUserCommissionsBySymbol.cpp \
+    $${PWD}/SWGUserEvent.cpp \
     $${PWD}/SWGUserPreferences.cpp \
     $${PWD}/SWGWallet.cpp \
     $${PWD}/SWGX-any.cpp \
@@ -111,11 +116,11 @@ SOURCES += \
     $${PWD}/SWGChatApi.cpp \
     $${PWD}/SWGExecutionApi.cpp \
     $${PWD}/SWGFundingApi.cpp \
+    $${PWD}/SWGGlobalNotificationApi.cpp \
     $${PWD}/SWGInstrumentApi.cpp \
     $${PWD}/SWGInsuranceApi.cpp \
     $${PWD}/SWGLeaderboardApi.cpp \
     $${PWD}/SWGLiquidationApi.cpp \
-    $${PWD}/SWGNotificationApi.cpp \
     $${PWD}/SWGOrderApi.cpp \
     $${PWD}/SWGOrderBookApi.cpp \
     $${PWD}/SWGPositionApi.cpp \
@@ -125,6 +130,7 @@ SOURCES += \
     $${PWD}/SWGStatsApi.cpp \
     $${PWD}/SWGTradeApi.cpp \
     $${PWD}/SWGUserApi.cpp \
+    $${PWD}/SWGUserEventApi.cpp \
 # Others
     $${PWD}/SWGHelpers.cpp \
     $${PWD}/SWGHttpRequest.cpp

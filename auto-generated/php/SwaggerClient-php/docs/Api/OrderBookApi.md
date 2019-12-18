@@ -1,6 +1,6 @@
 # Swagger\Client\OrderBookApi
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

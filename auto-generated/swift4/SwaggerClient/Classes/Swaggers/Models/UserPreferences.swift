@@ -19,6 +19,7 @@ public struct UserPreferences: Codable {
     public var currency: String?
     public var debug: Bool?
     public var disableEmails: [String]?
+    public var disablePush: [String]?
     public var hideConfirmDialogs: [String]?
     public var hideConnectionModal: Bool?
     public var hideFromLeaderboard: Bool?
@@ -38,7 +39,7 @@ public struct UserPreferences: Codable {
     public var tickerPinned: Bool?
     public var tradeLayout: String?
 
-    public init(alertOnLiquidations: Bool?, animationsEnabled: Bool?, announcementsLastSeen: Date?, chatChannelID: Double?, colorTheme: String?, currency: String?, debug: Bool?, disableEmails: [String]?, hideConfirmDialogs: [String]?, hideConnectionModal: Bool?, hideFromLeaderboard: Bool?, hideNameFromLeaderboard: Bool?, hideNotifications: [String]?, locale: String?, msgsSeen: [String]?, orderBookBinning: Any?, orderBookType: String?, orderClearImmediate: Bool?, orderControlsPlusMinus: Bool?, showLocaleNumbers: Bool?, sounds: [String]?, strictIPCheck: Bool?, strictTimeout: Bool?, tickerGroup: String?, tickerPinned: Bool?, tradeLayout: String?) {
+    public init(alertOnLiquidations: Bool?, animationsEnabled: Bool?, announcementsLastSeen: Date?, chatChannelID: Double?, colorTheme: String?, currency: String?, debug: Bool?, disableEmails: [String]?, disablePush: [String]?, hideConfirmDialogs: [String]?, hideConnectionModal: Bool?, hideFromLeaderboard: Bool?, hideNameFromLeaderboard: Bool?, hideNotifications: [String]?, locale: String?, msgsSeen: [String]?, orderBookBinning: Any?, orderBookType: String?, orderClearImmediate: Bool?, orderControlsPlusMinus: Bool?, showLocaleNumbers: Bool?, sounds: [String]?, strictIPCheck: Bool?, strictTimeout: Bool?, tickerGroup: String?, tickerPinned: Bool?, tradeLayout: String?) {
         self.alertOnLiquidations = alertOnLiquidations
         self.animationsEnabled = animationsEnabled
         self.announcementsLastSeen = announcementsLastSeen
@@ -47,6 +48,7 @@ public struct UserPreferences: Codable {
         self.currency = currency
         self.debug = debug
         self.disableEmails = disableEmails
+        self.disablePush = disablePush
         self.hideConfirmDialogs = hideConfirmDialogs
         self.hideConnectionModal = hideConnectionModal
         self.hideFromLeaderboard = hideFromLeaderboard

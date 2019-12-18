@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -37,11 +37,11 @@ class ChatApi(object):
         """Get chat messages.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.chat_get(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.chat_get(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param float count: Number of results to fetch.
         :param float start: Starting ID for results.
         :param bool reverse: If true, will sort results newest first.
@@ -51,7 +51,7 @@ class ChatApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.chat_get_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.chat_get_with_http_info(**kwargs)  # noqa: E501
@@ -61,11 +61,11 @@ class ChatApi(object):
         """Get chat messages.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.chat_get_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.chat_get_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param float count: Number of results to fetch.
         :param float start: Starting ID for results.
         :param bool reverse: If true, will sort results newest first.
@@ -76,7 +76,7 @@ class ChatApi(object):
         """
 
         all_params = ['count', 'start', 'reverse', 'channel_id']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -132,7 +132,7 @@ class ChatApi(object):
             files=local_var_files,
             response_type='list[Chat]',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -142,17 +142,17 @@ class ChatApi(object):
         """Get available channels.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.chat_get_channels(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.chat_get_channels(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: list[ChatChannel]
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.chat_get_channels_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.chat_get_channels_with_http_info(**kwargs)  # noqa: E501
@@ -162,18 +162,18 @@ class ChatApi(object):
         """Get available channels.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.chat_get_channels_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.chat_get_channels_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: list[ChatChannel]
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -221,7 +221,7 @@ class ChatApi(object):
             files=local_var_files,
             response_type='list[ChatChannel]',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -232,17 +232,17 @@ class ChatApi(object):
 
         Returns an array with browser users in the first position and API users (bots) in the second position.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.chat_get_connected(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.chat_get_connected(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: ConnectedUsers
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.chat_get_connected_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.chat_get_connected_with_http_info(**kwargs)  # noqa: E501
@@ -253,18 +253,18 @@ class ChatApi(object):
 
         Returns an array with browser users in the first position and API users (bots) in the second position.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.chat_get_connected_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.chat_get_connected_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: ConnectedUsers
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -312,7 +312,7 @@ class ChatApi(object):
             files=local_var_files,
             response_type='ConnectedUsers',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -322,11 +322,11 @@ class ChatApi(object):
         """Send a chat message.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.chat_new(message, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.chat_new(message, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str message: (required)
         :param float channel_id: Channel to post to. Default 1 (English).
         :return: Chat
@@ -334,7 +334,7 @@ class ChatApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.chat_new_with_http_info(message, **kwargs)  # noqa: E501
         else:
             (data) = self.chat_new_with_http_info(message, **kwargs)  # noqa: E501
@@ -344,11 +344,11 @@ class ChatApi(object):
         """Send a chat message.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.chat_new_with_http_info(message, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.chat_new_with_http_info(message, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str message: (required)
         :param float channel_id: Channel to post to. Default 1 (English).
         :return: Chat
@@ -357,7 +357,7 @@ class ChatApi(object):
         """
 
         all_params = ['message', 'channel_id']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -401,7 +401,7 @@ class ChatApi(object):
             ['application/json', 'application/x-www-form-urlencoded'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['apiKey', 'apiNonce', 'apiSignature']  # noqa: E501
+        auth_settings = ['apiExpires', 'apiKey', 'apiSignature']  # noqa: E501
 
         return self.api_client.call_api(
             '/chat', 'POST',
@@ -413,7 +413,7 @@ class ChatApi(object):
             files=local_var_files,
             response_type='Chat',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),

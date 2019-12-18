@@ -1,6 +1,6 @@
 /*
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
  * Tradeable Contracts, Indices, and History
  */
 @ApiModel(description = "Tradeable Contracts, Indices, and History")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-07-16T16:31:01.031Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-12-17T20:26:16.019-05:00")
 public class Instrument {
   @SerializedName("symbol")
   private String symbol = null;
@@ -250,6 +250,12 @@ public class Instrument {
 
   @SerializedName("turnover24h")
   private BigDecimal turnover24h = null;
+
+  @SerializedName("homeNotional24h")
+  private Double homeNotional24h = null;
+
+  @SerializedName("foreignNotional24h")
+  private Double foreignNotional24h = null;
 
   @SerializedName("prevPrice24h")
   private Double prevPrice24h = null;
@@ -1649,6 +1655,42 @@ public class Instrument {
     this.turnover24h = turnover24h;
   }
 
+  public Instrument homeNotional24h(Double homeNotional24h) {
+    this.homeNotional24h = homeNotional24h;
+    return this;
+  }
+
+   /**
+   * Get homeNotional24h
+   * @return homeNotional24h
+  **/
+  @ApiModelProperty(value = "")
+  public Double getHomeNotional24h() {
+    return homeNotional24h;
+  }
+
+  public void setHomeNotional24h(Double homeNotional24h) {
+    this.homeNotional24h = homeNotional24h;
+  }
+
+  public Instrument foreignNotional24h(Double foreignNotional24h) {
+    this.foreignNotional24h = foreignNotional24h;
+    return this;
+  }
+
+   /**
+   * Get foreignNotional24h
+   * @return foreignNotional24h
+  **/
+  @ApiModelProperty(value = "")
+  public Double getForeignNotional24h() {
+    return foreignNotional24h;
+  }
+
+  public void setForeignNotional24h(Double foreignNotional24h) {
+    this.foreignNotional24h = foreignNotional24h;
+  }
+
   public Instrument prevPrice24h(Double prevPrice24h) {
     this.prevPrice24h = prevPrice24h;
     return this;
@@ -2236,6 +2278,8 @@ public class Instrument {
         Objects.equals(this.totalTurnover, instrument.totalTurnover) &&
         Objects.equals(this.turnover, instrument.turnover) &&
         Objects.equals(this.turnover24h, instrument.turnover24h) &&
+        Objects.equals(this.homeNotional24h, instrument.homeNotional24h) &&
+        Objects.equals(this.foreignNotional24h, instrument.foreignNotional24h) &&
         Objects.equals(this.prevPrice24h, instrument.prevPrice24h) &&
         Objects.equals(this.vwap, instrument.vwap) &&
         Objects.equals(this.highPrice, instrument.highPrice) &&
@@ -2268,7 +2312,7 @@ public class Instrument {
 
   @Override
   public int hashCode() {
-    return Objects.hash(symbol, rootSymbol, state, typ, listing, front, expiry, settle, relistInterval, inverseLeg, sellLeg, buyLeg, optionStrikePcnt, optionStrikeRound, optionStrikePrice, optionMultiplier, positionCurrency, underlying, quoteCurrency, underlyingSymbol, reference, referenceSymbol, calcInterval, publishInterval, publishTime, maxOrderQty, maxPrice, lotSize, tickSize, multiplier, settlCurrency, underlyingToPositionMultiplier, underlyingToSettleMultiplier, quoteToSettleMultiplier, isQuanto, isInverse, initMargin, maintMargin, riskLimit, riskStep, limit, capped, taxed, deleverage, makerFee, takerFee, settlementFee, insuranceFee, fundingBaseSymbol, fundingQuoteSymbol, fundingPremiumSymbol, fundingTimestamp, fundingInterval, fundingRate, indicativeFundingRate, rebalanceTimestamp, rebalanceInterval, openingTimestamp, closingTimestamp, sessionInterval, prevClosePrice, limitDownPrice, limitUpPrice, bankruptLimitDownPrice, bankruptLimitUpPrice, prevTotalVolume, totalVolume, volume, volume24h, prevTotalTurnover, totalTurnover, turnover, turnover24h, prevPrice24h, vwap, highPrice, lowPrice, lastPrice, lastPriceProtected, lastTickDirection, lastChangePcnt, bidPrice, midPrice, askPrice, impactBidPrice, impactMidPrice, impactAskPrice, hasLiquidity, openInterest, openValue, fairMethod, fairBasisRate, fairBasis, fairPrice, markMethod, markPrice, indicativeTaxRate, indicativeSettlePrice, optionUnderlyingPrice, settledPrice, timestamp);
+    return Objects.hash(symbol, rootSymbol, state, typ, listing, front, expiry, settle, relistInterval, inverseLeg, sellLeg, buyLeg, optionStrikePcnt, optionStrikeRound, optionStrikePrice, optionMultiplier, positionCurrency, underlying, quoteCurrency, underlyingSymbol, reference, referenceSymbol, calcInterval, publishInterval, publishTime, maxOrderQty, maxPrice, lotSize, tickSize, multiplier, settlCurrency, underlyingToPositionMultiplier, underlyingToSettleMultiplier, quoteToSettleMultiplier, isQuanto, isInverse, initMargin, maintMargin, riskLimit, riskStep, limit, capped, taxed, deleverage, makerFee, takerFee, settlementFee, insuranceFee, fundingBaseSymbol, fundingQuoteSymbol, fundingPremiumSymbol, fundingTimestamp, fundingInterval, fundingRate, indicativeFundingRate, rebalanceTimestamp, rebalanceInterval, openingTimestamp, closingTimestamp, sessionInterval, prevClosePrice, limitDownPrice, limitUpPrice, bankruptLimitDownPrice, bankruptLimitUpPrice, prevTotalVolume, totalVolume, volume, volume24h, prevTotalTurnover, totalTurnover, turnover, turnover24h, homeNotional24h, foreignNotional24h, prevPrice24h, vwap, highPrice, lowPrice, lastPrice, lastPriceProtected, lastTickDirection, lastChangePcnt, bidPrice, midPrice, askPrice, impactBidPrice, impactMidPrice, impactAskPrice, hasLiquidity, openInterest, openValue, fairMethod, fairBasisRate, fairBasis, fairPrice, markMethod, markPrice, indicativeTaxRate, indicativeSettlePrice, optionUnderlyingPrice, settledPrice, timestamp);
   }
 
 
@@ -2350,6 +2394,8 @@ public class Instrument {
     sb.append("    totalTurnover: ").append(toIndentedString(totalTurnover)).append("\n");
     sb.append("    turnover: ").append(toIndentedString(turnover)).append("\n");
     sb.append("    turnover24h: ").append(toIndentedString(turnover24h)).append("\n");
+    sb.append("    homeNotional24h: ").append(toIndentedString(homeNotional24h)).append("\n");
+    sb.append("    foreignNotional24h: ").append(toIndentedString(foreignNotional24h)).append("\n");
     sb.append("    prevPrice24h: ").append(toIndentedString(prevPrice24h)).append("\n");
     sb.append("    vwap: ").append(toIndentedString(vwap)).append("\n");
     sb.append("    highPrice: ").append(toIndentedString(highPrice)).append("\n");

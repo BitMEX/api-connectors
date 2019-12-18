@@ -76,6 +76,8 @@ Name | Type | Description | Notes
 **TotalTurnover** | **float32** |  | [optional] [default to null]
 **Turnover** | **float32** |  | [optional] [default to null]
 **Turnover24h** | **float32** |  | [optional] [default to null]
+**HomeNotional24h** | **float64** |  | [optional] [default to null]
+**ForeignNotional24h** | **float64** |  | [optional] [default to null]
 **PrevPrice24h** | **float64** |  | [optional] [default to null]
 **Vwap** | **float64** |  | [optional] [default to null]
 **HighPrice** | **float64** |  | [optional] [default to null]

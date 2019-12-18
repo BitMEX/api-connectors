@@ -76,11 +76,11 @@ open class AnnouncementAPI {
      Get urgent (banner) announcements.
      - GET /announcement/urgent
      - API Key:
+       - type: apiKey api-expires 
+       - name: apiExpires
+     - API Key:
        - type: apiKey api-key 
        - name: apiKey
-     - API Key:
-       - type: apiKey api-nonce 
-       - name: apiNonce
      - API Key:
        - type: apiKey api-signature 
        - name: apiSignature

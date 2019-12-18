@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"account": @"account", @"currency": @"currency", @"prevPayout": @"prevPayout", @"prevTurnover": @"prevTurnover", @"prevComm": @"prevComm", @"prevTimestamp": @"prevTimestamp", @"execTurnover": @"execTurnover", @"execComm": @"execComm", @"totalReferrals": @"totalReferrals", @"totalTurnover": @"totalTurnover", @"totalComm": @"totalComm", @"payoutPcnt": @"payoutPcnt", @"pendingPayout": @"pendingPayout", @"timestamp": @"timestamp", @"referrerAccount": @"referrerAccount" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"account": @"account", @"currency": @"currency", @"prevPayout": @"prevPayout", @"prevTurnover": @"prevTurnover", @"prevComm": @"prevComm", @"prevTimestamp": @"prevTimestamp", @"execTurnover": @"execTurnover", @"execComm": @"execComm", @"totalReferrals": @"totalReferrals", @"totalTurnover": @"totalTurnover", @"totalComm": @"totalComm", @"payoutPcnt": @"payoutPcnt", @"pendingPayout": @"pendingPayout", @"timestamp": @"timestamp", @"referrerAccount": @"referrerAccount", @"referralDiscount": @"referralDiscount", @"affiliatePayout": @"affiliatePayout" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"prevPayout", @"prevTurnover", @"prevComm", @"prevTimestamp", @"execTurnover", @"execComm", @"totalReferrals", @"totalTurnover", @"totalComm", @"payoutPcnt", @"pendingPayout", @"timestamp", @"referrerAccount"];
+  NSArray *optionalProperties = @[@"prevPayout", @"prevTurnover", @"prevComm", @"prevTimestamp", @"execTurnover", @"execComm", @"totalReferrals", @"totalTurnover", @"totalComm", @"payoutPcnt", @"pendingPayout", @"timestamp", @"referrerAccount", @"referralDiscount", @"affiliatePayout"];
   return [optionalProperties containsObject:propertyName];
 }
 

@@ -28,7 +28,7 @@
 - (instancetype) init {
     self = [super init];
     if (self) {
-        _host = @"https://localhost/api/v1";
+        _host = @"https://www.bitmex.com/api/v1";
         _username = @"";
         _password = @"";
         _accessToken= @"";
@@ -104,19 +104,19 @@
 
 - (NSDictionary *) authSettings {
     return @{
+               @"apiExpires":
+                   @{
+                       @"type": @"api_key",
+                       @"in": @"header",
+                       @"key": @"api-expires",
+                       @"value": [self getApiKeyWithPrefix:@"api-expires"]
+                   },
                @"apiKey":
                    @{
                        @"type": @"api_key",
                        @"in": @"header",
                        @"key": @"api-key",
                        @"value": [self getApiKeyWithPrefix:@"api-key"]
-                   },
-               @"apiNonce":
-                   @{
-                       @"type": @"api_key",
-                       @"in": @"header",
-                       @"key": @"api-nonce",
-                       @"value": [self getApiKeyWithPrefix:@"api-nonce"]
                    },
                @"apiSignature":
                    @{

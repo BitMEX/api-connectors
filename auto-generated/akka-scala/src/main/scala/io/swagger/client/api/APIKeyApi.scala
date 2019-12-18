@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -13,7 +13,6 @@ package io.swagger.client.api
 
 import io.swagger.client.model.APIKey
 import io.swagger.client.model.Error
-import io.swagger.client.model.InlineResponse200
 import io.swagger.client.core._
 import io.swagger.client.core.CollectionFormats._
 import io.swagger.client.core.ApiKeyLocations._
@@ -24,139 +23,29 @@ object APIKeyApi {
    * 
    * 
    * Expected answers:
-   *   code 200 : APIKey (Request was successful)
-   *   code 400 : Error (Parameter Error)
-   *   code 401 : Error (Unauthorized)
-   *   code 404 : Error (Not Found)
-   * 
-   * Available security schemes:
-   *   apiKey (apiKey)
-   *   apiNonce (apiKey)
-   *   apiSignature (apiKey)
-   * 
-   * @param apiKeyID API Key ID (public component).
-   */
-  def aPIKey.disable(apiKeyID: String)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[APIKey] =
-    ApiRequest[APIKey](ApiMethods.POST, "https://localhost/api/v1", "/apiKey/disable", "application/json")
-      .withApiKey(apiKey, "api-key", HEADER)
-      .withApiKey(apiKey, "api-nonce", HEADER)
-      .withApiKey(apiKey, "api-signature", HEADER)
-      .withFormParam("apiKeyID", apiKeyID)
-      .withSuccessResponse[APIKey](200)
-      .withErrorResponse[Error](400)
-      .withErrorResponse[Error](401)
-      .withErrorResponse[Error](404)
-        /**
-   * 
-   * 
-   * Expected answers:
-   *   code 200 : APIKey (Request was successful)
-   *   code 400 : Error (Parameter Error)
-   *   code 401 : Error (Unauthorized)
-   *   code 404 : Error (Not Found)
-   * 
-   * Available security schemes:
-   *   apiKey (apiKey)
-   *   apiNonce (apiKey)
-   *   apiSignature (apiKey)
-   * 
-   * @param apiKeyID API Key ID (public component).
-   */
-  def aPIKey.enable(apiKeyID: String)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[APIKey] =
-    ApiRequest[APIKey](ApiMethods.POST, "https://localhost/api/v1", "/apiKey/enable", "application/json")
-      .withApiKey(apiKey, "api-key", HEADER)
-      .withApiKey(apiKey, "api-nonce", HEADER)
-      .withApiKey(apiKey, "api-signature", HEADER)
-      .withFormParam("apiKeyID", apiKeyID)
-      .withSuccessResponse[APIKey](200)
-      .withErrorResponse[Error](400)
-      .withErrorResponse[Error](401)
-      .withErrorResponse[Error](404)
-        /**
-   * 
-   * 
-   * Expected answers:
    *   code 200 : Seq[APIKey] (Request was successful)
    *   code 400 : Error (Parameter Error)
    *   code 401 : Error (Unauthorized)
+   *   code 403 : Error (Access Denied)
    *   code 404 : Error (Not Found)
    * 
    * Available security schemes:
+   *   apiExpires (apiKey)
    *   apiKey (apiKey)
-   *   apiNonce (apiKey)
    *   apiSignature (apiKey)
    * 
    * @param reverse If true, will sort results newest first.
    */
   def aPIKey.get(reverse: Option[Boolean])(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[APIKey]] =
-    ApiRequest[Seq[APIKey]](ApiMethods.GET, "https://localhost/api/v1", "/apiKey", "application/json")
+    ApiRequest[Seq[APIKey]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/apiKey", "application/json")
+      .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
-      .withApiKey(apiKey, "api-nonce", HEADER)
       .withApiKey(apiKey, "api-signature", HEADER)
       .withQueryParam("reverse", reverse)
       .withSuccessResponse[Seq[APIKey]](200)
       .withErrorResponse[Error](400)
       .withErrorResponse[Error](401)
-      .withErrorResponse[Error](404)
-        /**
-   * API Keys can only be created via the frontend.
-   * 
-   * Expected answers:
-   *   code 200 : APIKey (Request was successful)
-   *   code 400 : Error (Parameter Error)
-   *   code 401 : Error (Unauthorized)
-   *   code 404 : Error (Not Found)
-   * 
-   * Available security schemes:
-   *   apiKey (apiKey)
-   *   apiNonce (apiKey)
-   *   apiSignature (apiKey)
-   * 
-   * @param name Key name. This name is for reference only.
-   * @param cidr CIDR block to restrict this key to. To restrict to a single address, append \&quot;/32\&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. &lt;a href&#x3D;\&quot;http://software77.net/cidr-101.html\&quot;&gt;More on CIDR blocks&lt;/a&gt;
-   * @param permissions Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [\&quot;order\&quot;, \&quot;orderCancel\&quot;, \&quot;withdraw\&quot;].
-   * @param enabled Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable.
-   * @param token OTP Token (YubiKey, Google Authenticator)
-   */
-  def aPIKey.new(name: Option[String] = None, cidr: Option[String] = None, permissions: Option[String] = None, enabled: Option[Boolean], token: Option[String] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[APIKey] =
-    ApiRequest[APIKey](ApiMethods.POST, "https://localhost/api/v1", "/apiKey", "application/json")
-      .withApiKey(apiKey, "api-key", HEADER)
-      .withApiKey(apiKey, "api-nonce", HEADER)
-      .withApiKey(apiKey, "api-signature", HEADER)
-      .withFormParam("name", name)
-      .withFormParam("cidr", cidr)
-      .withFormParam("permissions", permissions)
-      .withFormParam("enabled", enabled)
-      .withFormParam("token", token)
-      .withSuccessResponse[APIKey](200)
-      .withErrorResponse[Error](400)
-      .withErrorResponse[Error](401)
-      .withErrorResponse[Error](404)
-        /**
-   * 
-   * 
-   * Expected answers:
-   *   code 200 : InlineResponse200 (Request was successful)
-   *   code 400 : Error (Parameter Error)
-   *   code 401 : Error (Unauthorized)
-   *   code 404 : Error (Not Found)
-   * 
-   * Available security schemes:
-   *   apiKey (apiKey)
-   *   apiNonce (apiKey)
-   *   apiSignature (apiKey)
-   * 
-   * @param apiKeyID API Key ID (public component).
-   */
-  def aPIKey.remove(apiKeyID: String)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[InlineResponse200] =
-    ApiRequest[InlineResponse200](ApiMethods.DELETE, "https://localhost/api/v1", "/apiKey", "application/json")
-      .withApiKey(apiKey, "api-key", HEADER)
-      .withApiKey(apiKey, "api-nonce", HEADER)
-      .withApiKey(apiKey, "api-signature", HEADER)
-      .withFormParam("apiKeyID", apiKeyID)
-      .withSuccessResponse[InlineResponse200](200)
-      .withErrorResponse[Error](400)
-      .withErrorResponse[Error](401)
+      .withErrorResponse[Error](403)
       .withErrorResponse[Error](404)
       
 

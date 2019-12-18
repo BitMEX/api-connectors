@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **currency** | **string** |  | [optional] 
 **debug** | **bool** |  | [optional] 
 **disable_emails** | **string[]** |  | [optional] 
+**disable_push** | **string[]** |  | [optional] 
 **hide_confirm_dialogs** | **string[]** |  | [optional] 
 **hide_connection_modal** | **bool** |  | [optional] 
 **hide_from_leaderboard** | **bool** |  | [optional] [default to false]

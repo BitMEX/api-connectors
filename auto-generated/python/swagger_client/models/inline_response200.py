@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -31,42 +31,42 @@ class InlineResponse200(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'success': 'bool'
+        'name': 'str'
     }
 
     attribute_map = {
-        'success': 'success'
+        'name': 'name'
     }
 
-    def __init__(self, success=None):  # noqa: E501
+    def __init__(self, name=None):  # noqa: E501
         """InlineResponse200 - a model defined in Swagger"""  # noqa: E501
 
-        self._success = None
+        self._name = None
         self.discriminator = None
 
-        if success is not None:
-            self.success = success
+        if name is not None:
+            self.name = name
 
     @property
-    def success(self):
-        """Gets the success of this InlineResponse200.  # noqa: E501
+    def name(self):
+        """Gets the name of this InlineResponse200.  # noqa: E501
 
 
-        :return: The success of this InlineResponse200.  # noqa: E501
-        :rtype: bool
+        :return: The name of this InlineResponse200.  # noqa: E501
+        :rtype: str
         """
-        return self._success
+        return self._name
 
-    @success.setter
-    def success(self, success):
-        """Sets the success of this InlineResponse200.
+    @name.setter
+    def name(self, name):
+        """Sets the name of this InlineResponse200.
 
 
-        :param success: The success of this InlineResponse200.  # noqa: E501
-        :type: bool
+        :param name: The name of this InlineResponse200.  # noqa: E501
+        :type: str
         """
 
-        self._success = success
+        self._name = name
 
     def to_dict(self):
         """Returns the model properties as a dict"""
@@ -89,6 +89,9 @@ class InlineResponse200(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(InlineResponse200, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

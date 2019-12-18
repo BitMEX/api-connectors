@@ -19,6 +19,8 @@ Name | Type | Description | Notes
 **pendingPayout** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **timestamp** | [**Date**](Date.md) |  |  [optional]
 **referrerAccount** | **Double** |  |  [optional]
+**referralDiscount** | **Double** |  |  [optional]
+**affiliatePayout** | **Double** |  |  [optional]
 
 
 

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -26,10 +26,14 @@ import com.android.volley.VolleyError;
 import io.swagger.client.model.AccessToken;
 import io.swagger.client.model.Affiliate;
 import java.math.BigDecimal;
+import io.swagger.client.model.CommunicationToken;
+import java.util.Date;
+import io.swagger.client.model.Error;
 import io.swagger.client.model.Margin;
+import io.swagger.client.model.QuoteFillRatio;
 import io.swagger.client.model.Transaction;
 import io.swagger.client.model.User;
-import io.swagger.client.model.UserCommission;
+import io.swagger.client.model.UserCommissionsBySymbol;
 import io.swagger.client.model.Wallet;
 
 import org.apache.http.HttpEntity;
@@ -43,7 +47,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
 public class UserApi {
-  String basePath = "https://localhost/api/v1";
+  String basePath = "https://www.bitmex.com/api/v1";
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
 
   public void addHeader(String key, String value) {
@@ -202,7 +206,7 @@ public class UserApi {
   }
   /**
   * Check if a referral code is valid.
-  * If the code is valid, responds with the referral code&#39;s discount (e.g. &#x60;0.1&#x60; for 10%). Otherwise, will return a 404.
+  * If the code is valid, responds with the referral code&#39;s discount (e.g. &#x60;0.1&#x60; for 10%). Otherwise, will return a 404 or 451 if invalid.
    * @param referralCode 
    * @return Double
   */
@@ -262,7 +266,7 @@ public class UserApi {
 
       /**
    * Check if a referral code is valid.
-   * If the code is valid, responds with the referral code&#39;s discount (e.g. &#x60;0.1&#x60; for 10%). Otherwise, will return a 404.
+   * If the code is valid, responds with the referral code&#39;s discount (e.g. &#x60;0.1&#x60; for 10%). Otherwise, will return a 404 or 451 if invalid.
    * @param referralCode 
   */
   public void userCheckReferralCode (String referralCode, final Response.Listener<Double> responseListener, final Response.ErrorListener errorListener) {
@@ -307,6 +311,164 @@ public class UserApi {
           public void onResponse(String localVarResponse) {
             try {
               responseListener.onResponse((Double) ApiInvoker.deserialize(localVarResponse,  "", Double.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Register your communication token for mobile clients
+  * 
+   * @param token 
+   * @param platformAgent 
+   * @return List<CommunicationToken>
+  */
+  public List<CommunicationToken> userCommunicationToken (String token, String platformAgent) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'token' is set
+    if (token == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'token' when calling userCommunicationToken",
+        new ApiException(400, "Missing the required parameter 'token' when calling userCommunicationToken"));
+    }
+    // verify the required parameter 'platformAgent' is set
+    if (platformAgent == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'platformAgent' when calling userCommunicationToken",
+        new ApiException(400, "Missing the required parameter 'platformAgent' when calling userCommunicationToken"));
+    }
+
+    // create path and map variables
+    String path = "/user/communicationToken";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (token != null) {
+        localVarBuilder.addTextBody("token", ApiInvoker.parameterToString(token), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (platformAgent != null) {
+        localVarBuilder.addTextBody("platformAgent", ApiInvoker.parameterToString(platformAgent), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("token", ApiInvoker.parameterToString(token));
+      formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (List<CommunicationToken>) ApiInvoker.deserialize(localVarResponse, "array", CommunicationToken.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Register your communication token for mobile clients
+   * 
+   * @param token    * @param platformAgent 
+  */
+  public void userCommunicationToken (String token, String platformAgent, final Response.Listener<List<CommunicationToken>> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'token' is set
+    if (token == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'token' when calling userCommunicationToken",
+        new ApiException(400, "Missing the required parameter 'token' when calling userCommunicationToken"));
+    }
+    // verify the required parameter 'platformAgent' is set
+    if (platformAgent == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'platformAgent' when calling userCommunicationToken",
+        new ApiException(400, "Missing the required parameter 'platformAgent' when calling userCommunicationToken"));
+    }
+
+    // create path and map variables
+    String path = "/user/communicationToken".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+      if (token != null) {
+        localVarBuilder.addTextBody("token", ApiInvoker.parameterToString(token), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (platformAgent != null) {
+        localVarBuilder.addTextBody("platformAgent", ApiInvoker.parameterToString(platformAgent), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("token", ApiInvoker.parameterToString(token));
+formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((List<CommunicationToken>) ApiInvoker.deserialize(localVarResponse,  "array", CommunicationToken.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -460,154 +622,6 @@ public class UserApi {
     }
   }
   /**
-  * Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
-  * 
-   * @param token Token from your selected TFA type.
-   * @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39;
-   * @return Boolean
-  */
-  public Boolean userConfirmEnableTFA (String token, String type) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
-    Object postBody = null;
-    // verify the required parameter 'token' is set
-    if (token == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'token' when calling userConfirmEnableTFA",
-        new ApiException(400, "Missing the required parameter 'token' when calling userConfirmEnableTFA"));
-    }
-
-    // create path and map variables
-    String path = "/user/confirmEnableTFA";
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> headerParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> formParams = new HashMap<String, String>();
-    String[] contentTypes = {
-      "application/json",
-      "application/x-www-form-urlencoded"
-    };
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      if (type != null) {
-        localVarBuilder.addTextBody("type", ApiInvoker.parameterToString(type), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      if (token != null) {
-        localVarBuilder.addTextBody("token", ApiInvoker.parameterToString(token), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-    } else {
-      // normal form params
-      formParams.put("type", ApiInvoker.parameterToString(type));
-      formParams.put("token", ApiInvoker.parameterToString(token));
-    }
-
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
-
-    try {
-      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
-      if (localVarResponse != null) {
-         return (Boolean) ApiInvoker.deserialize(localVarResponse, "", Boolean.class);
-      } else {
-         return null;
-      }
-    } catch (ApiException ex) {
-       throw ex;
-    } catch (InterruptedException ex) {
-       throw ex;
-    } catch (ExecutionException ex) {
-      if (ex.getCause() instanceof VolleyError) {
-        VolleyError volleyError = (VolleyError)ex.getCause();
-        if (volleyError.networkResponse != null) {
-          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-        }
-      }
-      throw ex;
-    } catch (TimeoutException ex) {
-      throw ex;
-    }
-  }
-
-      /**
-   * Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
-   * 
-   * @param token Token from your selected TFA type.   * @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39;
-  */
-  public void userConfirmEnableTFA (String token, String type, final Response.Listener<Boolean> responseListener, final Response.ErrorListener errorListener) {
-    Object postBody = null;
-
-    // verify the required parameter 'token' is set
-    if (token == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'token' when calling userConfirmEnableTFA",
-        new ApiException(400, "Missing the required parameter 'token' when calling userConfirmEnableTFA"));
-    }
-
-    // create path and map variables
-    String path = "/user/confirmEnableTFA".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> headerParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> formParams = new HashMap<String, String>();
-
-
-
-    String[] contentTypes = {
-      "application/json","application/x-www-form-urlencoded"
-    };
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      
-      if (type != null) {
-        localVarBuilder.addTextBody("type", ApiInvoker.parameterToString(type), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (token != null) {
-        localVarBuilder.addTextBody("token", ApiInvoker.parameterToString(token), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-    } else {
-      // normal form params
-      formParams.put("type", ApiInvoker.parameterToString(type));
-formParams.put("token", ApiInvoker.parameterToString(token));
-    }
-
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
-
-    try {
-      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
-        new Response.Listener<String>() {
-          @Override
-          public void onResponse(String localVarResponse) {
-            try {
-              responseListener.onResponse((Boolean) ApiInvoker.deserialize(localVarResponse,  "", Boolean.class));
-            } catch (ApiException exception) {
-               errorListener.onErrorResponse(new VolleyError(exception));
-            }
-          }
-      }, new Response.ErrorListener() {
-          @Override
-          public void onErrorResponse(VolleyError error) {
-            errorListener.onErrorResponse(error);
-          }
-      });
-    } catch (ApiException ex) {
-      errorListener.onErrorResponse(new VolleyError(ex));
-    }
-  }
-  /**
   * Confirm a withdrawal.
   * 
    * @param token 
@@ -746,154 +760,6 @@ formParams.put("token", ApiInvoker.parameterToString(token));
     }
   }
   /**
-  * Disable two-factor auth for this account.
-  * 
-   * @param token Token from your selected TFA type.
-   * @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
-   * @return Boolean
-  */
-  public Boolean userDisableTFA (String token, String type) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
-    Object postBody = null;
-    // verify the required parameter 'token' is set
-    if (token == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'token' when calling userDisableTFA",
-        new ApiException(400, "Missing the required parameter 'token' when calling userDisableTFA"));
-    }
-
-    // create path and map variables
-    String path = "/user/disableTFA";
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> headerParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> formParams = new HashMap<String, String>();
-    String[] contentTypes = {
-      "application/json",
-      "application/x-www-form-urlencoded"
-    };
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      if (type != null) {
-        localVarBuilder.addTextBody("type", ApiInvoker.parameterToString(type), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      if (token != null) {
-        localVarBuilder.addTextBody("token", ApiInvoker.parameterToString(token), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-    } else {
-      // normal form params
-      formParams.put("type", ApiInvoker.parameterToString(type));
-      formParams.put("token", ApiInvoker.parameterToString(token));
-    }
-
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
-
-    try {
-      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
-      if (localVarResponse != null) {
-         return (Boolean) ApiInvoker.deserialize(localVarResponse, "", Boolean.class);
-      } else {
-         return null;
-      }
-    } catch (ApiException ex) {
-       throw ex;
-    } catch (InterruptedException ex) {
-       throw ex;
-    } catch (ExecutionException ex) {
-      if (ex.getCause() instanceof VolleyError) {
-        VolleyError volleyError = (VolleyError)ex.getCause();
-        if (volleyError.networkResponse != null) {
-          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-        }
-      }
-      throw ex;
-    } catch (TimeoutException ex) {
-      throw ex;
-    }
-  }
-
-      /**
-   * Disable two-factor auth for this account.
-   * 
-   * @param token Token from your selected TFA type.   * @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
-  */
-  public void userDisableTFA (String token, String type, final Response.Listener<Boolean> responseListener, final Response.ErrorListener errorListener) {
-    Object postBody = null;
-
-    // verify the required parameter 'token' is set
-    if (token == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'token' when calling userDisableTFA",
-        new ApiException(400, "Missing the required parameter 'token' when calling userDisableTFA"));
-    }
-
-    // create path and map variables
-    String path = "/user/disableTFA".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> headerParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> formParams = new HashMap<String, String>();
-
-
-
-    String[] contentTypes = {
-      "application/json","application/x-www-form-urlencoded"
-    };
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      
-      if (type != null) {
-        localVarBuilder.addTextBody("type", ApiInvoker.parameterToString(type), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (token != null) {
-        localVarBuilder.addTextBody("token", ApiInvoker.parameterToString(token), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-    } else {
-      // normal form params
-      formParams.put("type", ApiInvoker.parameterToString(type));
-formParams.put("token", ApiInvoker.parameterToString(token));
-    }
-
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
-
-    try {
-      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
-        new Response.Listener<String>() {
-          @Override
-          public void onResponse(String localVarResponse) {
-            try {
-              responseListener.onResponse((Boolean) ApiInvoker.deserialize(localVarResponse,  "", Boolean.class));
-            } catch (ApiException exception) {
-               errorListener.onErrorResponse(new VolleyError(exception));
-            }
-          }
-      }, new Response.ErrorListener() {
-          @Override
-          public void onErrorResponse(VolleyError error) {
-            errorListener.onErrorResponse(error);
-          }
-      });
-    } catch (ApiException ex) {
-      errorListener.onErrorResponse(new VolleyError(ex));
-    }
-  }
-  /**
   * Get your user model.
   * 
    * @return User
@@ -925,7 +791,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // normal form params
     }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -988,7 +854,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // normal form params
           }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1043,7 +909,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // normal form params
     }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -1106,7 +972,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // normal form params
           }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1132,9 +998,9 @@ formParams.put("token", ApiInvoker.parameterToString(token));
   /**
   * Get your account&#39;s commission status.
   * 
-   * @return List<UserCommission>
+   * @return UserCommissionsBySymbol
   */
-  public List<UserCommission> userGetCommission () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public UserCommissionsBySymbol userGetCommission () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -1161,12 +1027,12 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // normal form params
     }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (List<UserCommission>) ApiInvoker.deserialize(localVarResponse, "array", UserCommission.class);
+         return (UserCommissionsBySymbol) ApiInvoker.deserialize(localVarResponse, "", UserCommissionsBySymbol.class);
       } else {
          return null;
       }
@@ -1192,7 +1058,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
    * 
 
   */
-  public void userGetCommission (final Response.Listener<List<UserCommission>> responseListener, final Response.ErrorListener errorListener) {
+  public void userGetCommission (final Response.Listener<UserCommissionsBySymbol> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
 
@@ -1224,7 +1090,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // normal form params
           }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1232,7 +1098,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((List<UserCommission>) ApiInvoker.deserialize(localVarResponse,  "array", UserCommission.class));
+              responseListener.onResponse((UserCommissionsBySymbol) ApiInvoker.deserialize(localVarResponse,  "", UserCommissionsBySymbol.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -1281,7 +1147,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // normal form params
     }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -1345,7 +1211,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // normal form params
           }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1354,6 +1220,150 @@ formParams.put("token", ApiInvoker.parameterToString(token));
           public void onResponse(String localVarResponse) {
             try {
               responseListener.onResponse((String) ApiInvoker.deserialize(localVarResponse,  "", String.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Get the execution history by day.
+  * 
+   * @param symbol 
+   * @param timestamp 
+   * @return Object
+  */
+  public Object userGetExecutionHistory (String symbol, Date timestamp) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'symbol' is set
+    if (symbol == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'symbol' when calling userGetExecutionHistory",
+        new ApiException(400, "Missing the required parameter 'symbol' when calling userGetExecutionHistory"));
+    }
+    // verify the required parameter 'timestamp' is set
+    if (timestamp == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'timestamp' when calling userGetExecutionHistory",
+        new ApiException(400, "Missing the required parameter 'timestamp' when calling userGetExecutionHistory"));
+    }
+
+    // create path and map variables
+    String path = "/user/executionHistory";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "timestamp", timestamp));
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (Object) ApiInvoker.deserialize(localVarResponse, "", Object.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Get the execution history by day.
+   * 
+   * @param symbol    * @param timestamp 
+  */
+  public void userGetExecutionHistory (String symbol, Date timestamp, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'symbol' is set
+    if (symbol == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'symbol' when calling userGetExecutionHistory",
+        new ApiException(400, "Missing the required parameter 'symbol' when calling userGetExecutionHistory"));
+    }
+    // verify the required parameter 'timestamp' is set
+    if (timestamp == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'timestamp' when calling userGetExecutionHistory",
+        new ApiException(400, "Missing the required parameter 'timestamp' when calling userGetExecutionHistory"));
+    }
+
+    // create path and map variables
+    String path = "/user/executionHistory".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "symbol", symbol));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "timestamp", timestamp));
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((Object) ApiInvoker.deserialize(localVarResponse,  "", Object.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -1402,7 +1412,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // normal form params
     }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -1466,7 +1476,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // normal form params
           }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1475,6 +1485,124 @@ formParams.put("token", ApiInvoker.parameterToString(token));
           public void onResponse(String localVarResponse) {
             try {
               responseListener.onResponse((Margin) ApiInvoker.deserialize(localVarResponse,  "", Margin.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Get 7 days worth of Quote Fill Ratio statistics.
+  * 
+   * @return QuoteFillRatio
+  */
+  public QuoteFillRatio userGetQuoteFillRatio () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+
+    // create path and map variables
+    String path = "/user/quoteFillRatio";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (QuoteFillRatio) ApiInvoker.deserialize(localVarResponse, "", QuoteFillRatio.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Get 7 days worth of Quote Fill Ratio statistics.
+   * 
+
+  */
+  public void userGetQuoteFillRatio (final Response.Listener<QuoteFillRatio> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+
+    // create path and map variables
+    String path = "/user/quoteFillRatio".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((QuoteFillRatio) ApiInvoker.deserialize(localVarResponse,  "", QuoteFillRatio.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -1523,7 +1651,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // normal form params
     }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -1587,7 +1715,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // normal form params
           }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1614,9 +1742,11 @@ formParams.put("token", ApiInvoker.parameterToString(token));
   * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
   * 
    * @param currency 
+   * @param count Number of results to fetch.
+   * @param start Starting point for results.
    * @return List<Transaction>
   */
-  public List<Transaction> userGetWalletHistory (String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public List<Transaction> userGetWalletHistory (String currency, Double count, Double start) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -1629,6 +1759,8 @@ formParams.put("token", ApiInvoker.parameterToString(token));
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
     queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "count", count));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "start", start));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -1644,7 +1776,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // normal form params
     }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -1673,9 +1805,9 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       /**
    * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
    * 
-   * @param currency 
+   * @param currency    * @param count Number of results to fetch.   * @param start Starting point for results.
   */
-  public void userGetWalletHistory (String currency, final Response.Listener<List<Transaction>> responseListener, final Response.ErrorListener errorListener) {
+  public void userGetWalletHistory (String currency, Double count, Double start, final Response.Listener<List<Transaction>> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
 
@@ -1690,6 +1822,8 @@ formParams.put("token", ApiInvoker.parameterToString(token));
     Map<String, String> formParams = new HashMap<String, String>();
 
     queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "count", count));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "start", start));
 
 
     String[] contentTypes = {
@@ -1708,7 +1842,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // normal form params
           }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1765,7 +1899,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // normal form params
     }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -1829,7 +1963,7 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       // normal form params
           }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -1967,124 +2101,6 @@ formParams.put("token", ApiInvoker.parameterToString(token));
     }
   }
   /**
-  * Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
-  * 
-   * @return Double
-  */
-  public Double userLogoutAll () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
-    Object postBody = null;
-
-    // create path and map variables
-    String path = "/user/logoutAll";
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> headerParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> formParams = new HashMap<String, String>();
-    String[] contentTypes = {
-      "application/json",
-      "application/x-www-form-urlencoded"
-    };
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-    } else {
-      // normal form params
-    }
-
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
-
-    try {
-      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
-      if (localVarResponse != null) {
-         return (Double) ApiInvoker.deserialize(localVarResponse, "", Double.class);
-      } else {
-         return null;
-      }
-    } catch (ApiException ex) {
-       throw ex;
-    } catch (InterruptedException ex) {
-       throw ex;
-    } catch (ExecutionException ex) {
-      if (ex.getCause() instanceof VolleyError) {
-        VolleyError volleyError = (VolleyError)ex.getCause();
-        if (volleyError.networkResponse != null) {
-          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-        }
-      }
-      throw ex;
-    } catch (TimeoutException ex) {
-      throw ex;
-    }
-  }
-
-      /**
-   * Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
-   * 
-
-  */
-  public void userLogoutAll (final Response.Listener<Double> responseListener, final Response.ErrorListener errorListener) {
-    Object postBody = null;
-
-
-    // create path and map variables
-    String path = "/user/logoutAll".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> headerParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> formParams = new HashMap<String, String>();
-
-
-
-    String[] contentTypes = {
-      "application/json","application/x-www-form-urlencoded"
-    };
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      
-
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-    } else {
-      // normal form params
-          }
-
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
-
-    try {
-      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
-        new Response.Listener<String>() {
-          @Override
-          public void onResponse(String localVarResponse) {
-            try {
-              responseListener.onResponse((Double) ApiInvoker.deserialize(localVarResponse,  "", Double.class));
-            } catch (ApiException exception) {
-               errorListener.onErrorResponse(new VolleyError(exception));
-            }
-          }
-      }, new Response.ErrorListener() {
-          @Override
-          public void onErrorResponse(VolleyError error) {
-            errorListener.onErrorResponse(error);
-          }
-      });
-    } catch (ApiException ex) {
-      errorListener.onErrorResponse(new VolleyError(ex));
-    }
-  }
-  /**
   * Get the minimum withdrawal fee for a currency.
   * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
    * @param currency 
@@ -2206,144 +2222,17 @@ formParams.put("token", ApiInvoker.parameterToString(token));
     }
   }
   /**
-  * Get secret key for setting up two-factor auth.
-  * Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
-   * @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
-   * @return Boolean
-  */
-  public Boolean userRequestEnableTFA (String type) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
-    Object postBody = null;
-
-    // create path and map variables
-    String path = "/user/requestEnableTFA";
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> headerParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> formParams = new HashMap<String, String>();
-    String[] contentTypes = {
-      "application/json",
-      "application/x-www-form-urlencoded"
-    };
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      if (type != null) {
-        localVarBuilder.addTextBody("type", ApiInvoker.parameterToString(type), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-    } else {
-      // normal form params
-      formParams.put("type", ApiInvoker.parameterToString(type));
-    }
-
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
-
-    try {
-      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
-      if (localVarResponse != null) {
-         return (Boolean) ApiInvoker.deserialize(localVarResponse, "", Boolean.class);
-      } else {
-         return null;
-      }
-    } catch (ApiException ex) {
-       throw ex;
-    } catch (InterruptedException ex) {
-       throw ex;
-    } catch (ExecutionException ex) {
-      if (ex.getCause() instanceof VolleyError) {
-        VolleyError volleyError = (VolleyError)ex.getCause();
-        if (volleyError.networkResponse != null) {
-          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-        }
-      }
-      throw ex;
-    } catch (TimeoutException ex) {
-      throw ex;
-    }
-  }
-
-      /**
-   * Get secret key for setting up two-factor auth.
-   * Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
-   * @param type Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)
-  */
-  public void userRequestEnableTFA (String type, final Response.Listener<Boolean> responseListener, final Response.ErrorListener errorListener) {
-    Object postBody = null;
-
-
-    // create path and map variables
-    String path = "/user/requestEnableTFA".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> headerParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> formParams = new HashMap<String, String>();
-
-
-
-    String[] contentTypes = {
-      "application/json","application/x-www-form-urlencoded"
-    };
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      
-      if (type != null) {
-        localVarBuilder.addTextBody("type", ApiInvoker.parameterToString(type), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-    } else {
-      // normal form params
-      formParams.put("type", ApiInvoker.parameterToString(type));
-    }
-
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
-
-    try {
-      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
-        new Response.Listener<String>() {
-          @Override
-          public void onResponse(String localVarResponse) {
-            try {
-              responseListener.onResponse((Boolean) ApiInvoker.deserialize(localVarResponse,  "", Boolean.class));
-            } catch (ApiException exception) {
-               errorListener.onErrorResponse(new VolleyError(exception));
-            }
-          }
-      }, new Response.ErrorListener() {
-          @Override
-          public void onErrorResponse(VolleyError error) {
-            errorListener.onErrorResponse(error);
-          }
-      });
-    } catch (ApiException ex) {
-      errorListener.onErrorResponse(new VolleyError(ex));
-    }
-  }
-  /**
   * Request a withdrawal to an external wallet.
-  * This will send a confirmation email to the email address on record, unless requested via an API Key with the &#x60;withdraw&#x60; permission.
+  * This will send a confirmation email to the email address on record.
    * @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;
    * @param amount Amount of withdrawal currency.
    * @param address Destination Address.
    * @param otpToken 2FA token. Required if 2FA is enabled on your account.
    * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
+   * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
    * @return Transaction
   */
-  public Transaction userRequestWithdrawal (String currency, BigDecimal amount, String address, String otpToken, Double fee) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Transaction userRequestWithdrawal (String currency, BigDecimal amount, String address, String otpToken, Double fee, String text) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'currency' is set
     if (currency == null) {
@@ -2394,6 +2283,9 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       if (fee != null) {
         localVarBuilder.addTextBody("fee", ApiInvoker.parameterToString(fee), ApiInvoker.TEXT_PLAIN_UTF8);
       }
+      if (text != null) {
+        localVarBuilder.addTextBody("text", ApiInvoker.parameterToString(text), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
     } else {
@@ -2403,9 +2295,10 @@ formParams.put("token", ApiInvoker.parameterToString(token));
       formParams.put("amount", ApiInvoker.parameterToString(amount));
       formParams.put("address", ApiInvoker.parameterToString(address));
       formParams.put("fee", ApiInvoker.parameterToString(fee));
+      formParams.put("text", ApiInvoker.parameterToString(text));
     }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -2433,10 +2326,10 @@ formParams.put("token", ApiInvoker.parameterToString(token));
 
       /**
    * Request a withdrawal to an external wallet.
-   * This will send a confirmation email to the email address on record, unless requested via an API Key with the &#x60;withdraw&#x60; permission.
-   * @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;   * @param amount Amount of withdrawal currency.   * @param address Destination Address.   * @param otpToken 2FA token. Required if 2FA is enabled on your account.   * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
+   * This will send a confirmation email to the email address on record.
+   * @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;   * @param amount Amount of withdrawal currency.   * @param address Destination Address.   * @param otpToken 2FA token. Required if 2FA is enabled on your account.   * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.   * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
   */
-  public void userRequestWithdrawal (String currency, BigDecimal amount, String address, String otpToken, Double fee, final Response.Listener<Transaction> responseListener, final Response.ErrorListener errorListener) {
+  public void userRequestWithdrawal (String currency, BigDecimal amount, String address, String otpToken, Double fee, String text, final Response.Listener<Transaction> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'currency' is set
@@ -2496,6 +2389,10 @@ formParams.put("token", ApiInvoker.parameterToString(token));
         localVarBuilder.addTextBody("fee", ApiInvoker.parameterToString(fee), ApiInvoker.TEXT_PLAIN_UTF8);
       }
       
+      if (text != null) {
+        localVarBuilder.addTextBody("text", ApiInvoker.parameterToString(text), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
 
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
@@ -2506,9 +2403,10 @@ formParams.put("currency", ApiInvoker.parameterToString(currency));
 formParams.put("amount", ApiInvoker.parameterToString(amount));
 formParams.put("address", ApiInvoker.parameterToString(address));
 formParams.put("fee", ApiInvoker.parameterToString(fee));
+formParams.put("text", ApiInvoker.parameterToString(text));
     }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -2578,7 +2476,7 @@ formParams.put("fee", ApiInvoker.parameterToString(fee));
       formParams.put("overwrite", ApiInvoker.parameterToString(overwrite));
     }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
@@ -2656,208 +2554,10 @@ formParams.put("fee", ApiInvoker.parameterToString(fee));
 formParams.put("overwrite", ApiInvoker.parameterToString(overwrite));
     }
 
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
-        new Response.Listener<String>() {
-          @Override
-          public void onResponse(String localVarResponse) {
-            try {
-              responseListener.onResponse((User) ApiInvoker.deserialize(localVarResponse,  "", User.class));
-            } catch (ApiException exception) {
-               errorListener.onErrorResponse(new VolleyError(exception));
-            }
-          }
-      }, new Response.ErrorListener() {
-          @Override
-          public void onErrorResponse(VolleyError error) {
-            errorListener.onErrorResponse(error);
-          }
-      });
-    } catch (ApiException ex) {
-      errorListener.onErrorResponse(new VolleyError(ex));
-    }
-  }
-  /**
-  * Update your password, name, and other attributes.
-  * 
-   * @param firstname 
-   * @param lastname 
-   * @param oldPassword 
-   * @param newPassword 
-   * @param newPasswordConfirm 
-   * @param username Username can only be set once. To reset, email support.
-   * @param country Country of residence.
-   * @param pgpPubKey PGP Public Key. If specified, automated emails will be sentwith this key.
-   * @return User
-  */
-  public User userUpdate (String firstname, String lastname, String oldPassword, String newPassword, String newPasswordConfirm, String username, String country, String pgpPubKey) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
-    Object postBody = null;
-
-    // create path and map variables
-    String path = "/user";
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> headerParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> formParams = new HashMap<String, String>();
-    String[] contentTypes = {
-      "application/json",
-      "application/x-www-form-urlencoded"
-    };
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      if (firstname != null) {
-        localVarBuilder.addTextBody("firstname", ApiInvoker.parameterToString(firstname), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      if (lastname != null) {
-        localVarBuilder.addTextBody("lastname", ApiInvoker.parameterToString(lastname), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      if (oldPassword != null) {
-        localVarBuilder.addTextBody("oldPassword", ApiInvoker.parameterToString(oldPassword), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      if (newPassword != null) {
-        localVarBuilder.addTextBody("newPassword", ApiInvoker.parameterToString(newPassword), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      if (newPasswordConfirm != null) {
-        localVarBuilder.addTextBody("newPasswordConfirm", ApiInvoker.parameterToString(newPasswordConfirm), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      if (username != null) {
-        localVarBuilder.addTextBody("username", ApiInvoker.parameterToString(username), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      if (country != null) {
-        localVarBuilder.addTextBody("country", ApiInvoker.parameterToString(country), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      if (pgpPubKey != null) {
-        localVarBuilder.addTextBody("pgpPubKey", ApiInvoker.parameterToString(pgpPubKey), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-    } else {
-      // normal form params
-      formParams.put("firstname", ApiInvoker.parameterToString(firstname));
-      formParams.put("lastname", ApiInvoker.parameterToString(lastname));
-      formParams.put("oldPassword", ApiInvoker.parameterToString(oldPassword));
-      formParams.put("newPassword", ApiInvoker.parameterToString(newPassword));
-      formParams.put("newPasswordConfirm", ApiInvoker.parameterToString(newPasswordConfirm));
-      formParams.put("username", ApiInvoker.parameterToString(username));
-      formParams.put("country", ApiInvoker.parameterToString(country));
-      formParams.put("pgpPubKey", ApiInvoker.parameterToString(pgpPubKey));
-    }
-
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
-
-    try {
-      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType, authNames);
-      if (localVarResponse != null) {
-         return (User) ApiInvoker.deserialize(localVarResponse, "", User.class);
-      } else {
-         return null;
-      }
-    } catch (ApiException ex) {
-       throw ex;
-    } catch (InterruptedException ex) {
-       throw ex;
-    } catch (ExecutionException ex) {
-      if (ex.getCause() instanceof VolleyError) {
-        VolleyError volleyError = (VolleyError)ex.getCause();
-        if (volleyError.networkResponse != null) {
-          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-        }
-      }
-      throw ex;
-    } catch (TimeoutException ex) {
-      throw ex;
-    }
-  }
-
-      /**
-   * Update your password, name, and other attributes.
-   * 
-   * @param firstname    * @param lastname    * @param oldPassword    * @param newPassword    * @param newPasswordConfirm    * @param username Username can only be set once. To reset, email support.   * @param country Country of residence.   * @param pgpPubKey PGP Public Key. If specified, automated emails will be sentwith this key.
-  */
-  public void userUpdate (String firstname, String lastname, String oldPassword, String newPassword, String newPasswordConfirm, String username, String country, String pgpPubKey, final Response.Listener<User> responseListener, final Response.ErrorListener errorListener) {
-    Object postBody = null;
-
-
-    // create path and map variables
-    String path = "/user".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> queryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> headerParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> formParams = new HashMap<String, String>();
-
-
-
-    String[] contentTypes = {
-      "application/json","application/x-www-form-urlencoded"
-    };
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if (contentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      
-      if (firstname != null) {
-        localVarBuilder.addTextBody("firstname", ApiInvoker.parameterToString(firstname), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (lastname != null) {
-        localVarBuilder.addTextBody("lastname", ApiInvoker.parameterToString(lastname), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (oldPassword != null) {
-        localVarBuilder.addTextBody("oldPassword", ApiInvoker.parameterToString(oldPassword), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (newPassword != null) {
-        localVarBuilder.addTextBody("newPassword", ApiInvoker.parameterToString(newPassword), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (newPasswordConfirm != null) {
-        localVarBuilder.addTextBody("newPasswordConfirm", ApiInvoker.parameterToString(newPasswordConfirm), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (username != null) {
-        localVarBuilder.addTextBody("username", ApiInvoker.parameterToString(username), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (country != null) {
-        localVarBuilder.addTextBody("country", ApiInvoker.parameterToString(country), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-      if (pgpPubKey != null) {
-        localVarBuilder.addTextBody("pgpPubKey", ApiInvoker.parameterToString(pgpPubKey), ApiInvoker.TEXT_PLAIN_UTF8);
-      }
-      
-
-      HttpEntity httpEntity = localVarBuilder.build();
-      postBody = httpEntity;
-    } else {
-      // normal form params
-      formParams.put("firstname", ApiInvoker.parameterToString(firstname));
-formParams.put("lastname", ApiInvoker.parameterToString(lastname));
-formParams.put("oldPassword", ApiInvoker.parameterToString(oldPassword));
-formParams.put("newPassword", ApiInvoker.parameterToString(newPassword));
-formParams.put("newPasswordConfirm", ApiInvoker.parameterToString(newPasswordConfirm));
-formParams.put("username", ApiInvoker.parameterToString(username));
-formParams.put("country", ApiInvoker.parameterToString(country));
-formParams.put("pgpPubKey", ApiInvoker.parameterToString(pgpPubKey));
-    }
-
-    String[] authNames = new String[] { "apiKey", "apiNonce", "apiSignature" };
-
-    try {
-      apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType, authNames,
         new Response.Listener<String>() {
           @Override
           public void onResponse(String localVarResponse) {

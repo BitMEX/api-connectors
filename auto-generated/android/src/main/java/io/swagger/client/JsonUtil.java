@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -81,6 +81,10 @@ public class JsonUtil {
       return new TypeToken<List<ChatChannel>>(){}.getType();
     }
     
+    if ("CommunicationToken".equalsIgnoreCase(className)) {
+      return new TypeToken<List<CommunicationToken>>(){}.getType();
+    }
+    
     if ("ConnectedUsers".equalsIgnoreCase(className)) {
       return new TypeToken<List<ConnectedUsers>>(){}.getType();
     }
@@ -101,16 +105,16 @@ public class JsonUtil {
       return new TypeToken<List<Funding>>(){}.getType();
     }
     
+    if ("GlobalNotification".equalsIgnoreCase(className)) {
+      return new TypeToken<List<GlobalNotification>>(){}.getType();
+    }
+    
     if ("IndexComposite".equalsIgnoreCase(className)) {
       return new TypeToken<List<IndexComposite>>(){}.getType();
     }
     
     if ("InlineResponse200".equalsIgnoreCase(className)) {
       return new TypeToken<List<InlineResponse200>>(){}.getType();
-    }
-    
-    if ("InlineResponse2001".equalsIgnoreCase(className)) {
-      return new TypeToken<List<InlineResponse2001>>(){}.getType();
     }
     
     if ("Instrument".equalsIgnoreCase(className)) {
@@ -137,10 +141,6 @@ public class JsonUtil {
       return new TypeToken<List<Margin>>(){}.getType();
     }
     
-    if ("Notification".equalsIgnoreCase(className)) {
-      return new TypeToken<List<Notification>>(){}.getType();
-    }
-    
     if ("Order".equalsIgnoreCase(className)) {
       return new TypeToken<List<Order>>(){}.getType();
     }
@@ -155,6 +155,10 @@ public class JsonUtil {
     
     if ("Quote".equalsIgnoreCase(className)) {
       return new TypeToken<List<Quote>>(){}.getType();
+    }
+    
+    if ("QuoteFillRatio".equalsIgnoreCase(className)) {
+      return new TypeToken<List<QuoteFillRatio>>(){}.getType();
     }
     
     if ("Settlement".equalsIgnoreCase(className)) {
@@ -189,8 +193,12 @@ public class JsonUtil {
       return new TypeToken<List<User>>(){}.getType();
     }
     
-    if ("UserCommission".equalsIgnoreCase(className)) {
-      return new TypeToken<List<UserCommission>>(){}.getType();
+    if ("UserCommissionsBySymbol".equalsIgnoreCase(className)) {
+      return new TypeToken<List<UserCommissionsBySymbol>>(){}.getType();
+    }
+    
+    if ("UserEvent".equalsIgnoreCase(className)) {
+      return new TypeToken<List<UserEvent>>(){}.getType();
     }
     
     if ("UserPreferences".equalsIgnoreCase(className)) {
@@ -235,6 +243,10 @@ public class JsonUtil {
       return new TypeToken<ChatChannel>(){}.getType();
     }
     
+    if ("CommunicationToken".equalsIgnoreCase(className)) {
+      return new TypeToken<CommunicationToken>(){}.getType();
+    }
+    
     if ("ConnectedUsers".equalsIgnoreCase(className)) {
       return new TypeToken<ConnectedUsers>(){}.getType();
     }
@@ -255,16 +267,16 @@ public class JsonUtil {
       return new TypeToken<Funding>(){}.getType();
     }
     
+    if ("GlobalNotification".equalsIgnoreCase(className)) {
+      return new TypeToken<GlobalNotification>(){}.getType();
+    }
+    
     if ("IndexComposite".equalsIgnoreCase(className)) {
       return new TypeToken<IndexComposite>(){}.getType();
     }
     
     if ("InlineResponse200".equalsIgnoreCase(className)) {
       return new TypeToken<InlineResponse200>(){}.getType();
-    }
-    
-    if ("InlineResponse2001".equalsIgnoreCase(className)) {
-      return new TypeToken<InlineResponse2001>(){}.getType();
     }
     
     if ("Instrument".equalsIgnoreCase(className)) {
@@ -291,10 +303,6 @@ public class JsonUtil {
       return new TypeToken<Margin>(){}.getType();
     }
     
-    if ("Notification".equalsIgnoreCase(className)) {
-      return new TypeToken<Notification>(){}.getType();
-    }
-    
     if ("Order".equalsIgnoreCase(className)) {
       return new TypeToken<Order>(){}.getType();
     }
@@ -309,6 +317,10 @@ public class JsonUtil {
     
     if ("Quote".equalsIgnoreCase(className)) {
       return new TypeToken<Quote>(){}.getType();
+    }
+    
+    if ("QuoteFillRatio".equalsIgnoreCase(className)) {
+      return new TypeToken<QuoteFillRatio>(){}.getType();
     }
     
     if ("Settlement".equalsIgnoreCase(className)) {
@@ -343,8 +355,12 @@ public class JsonUtil {
       return new TypeToken<User>(){}.getType();
     }
     
-    if ("UserCommission".equalsIgnoreCase(className)) {
-      return new TypeToken<UserCommission>(){}.getType();
+    if ("UserCommissionsBySymbol".equalsIgnoreCase(className)) {
+      return new TypeToken<UserCommissionsBySymbol>(){}.getType();
+    }
+    
+    if ("UserEvent".equalsIgnoreCase(className)) {
+      return new TypeToken<UserEvent>(){}.getType();
     }
     
     if ("UserPreferences".equalsIgnoreCase(className)) {

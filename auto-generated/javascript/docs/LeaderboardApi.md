@@ -1,6 +1,6 @@
 # BitMexApi.LeaderboardApi
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -38,7 +38,7 @@ apiInstance.leaderboardGet(opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **method** | **String**| Ranking type. Options: \&quot;notional\&quot;, \&quot;ROE\&quot; | [optional] [default to notional]
+ **method** | **String**| Ranking type. Options: \"notional\", \"ROE\" | [optional] [default to notional]
 
 ### Return type
 
@@ -55,7 +55,7 @@ No authorization required
 
 <a name="leaderboardGetName"></a>
 # **leaderboardGetName**
-> InlineResponse2001 leaderboardGetName()
+> InlineResponse200 leaderboardGetName()
 
 Get your alias on the leaderboard.
 
@@ -64,17 +64,17 @@ Get your alias on the leaderboard.
 var BitMexApi = require('bit_mex_api');
 var defaultClient = BitMexApi.ApiClient.instance;
 
+// Configure API key authorization: apiExpires
+var apiExpires = defaultClient.authentications['apiExpires'];
+apiExpires.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiExpires.apiKeyPrefix = 'Token';
+
 // Configure API key authorization: apiKey
 var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
-
-// Configure API key authorization: apiNonce
-var apiNonce = defaultClient.authentications['apiNonce'];
-apiNonce.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
 var apiSignature = defaultClient.authentications['apiSignature'];
@@ -99,11 +99,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

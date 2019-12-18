@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Currency** | **string** |  | [optional] 
 **Debug** | **bool?** |  | [optional] 
 **DisableEmails** | **List&lt;string&gt;** |  | [optional] 
+**DisablePush** | **List&lt;string&gt;** |  | [optional] 
 **HideConfirmDialogs** | **List&lt;string&gt;** |  | [optional] 
 **HideConnectionModal** | **bool?** |  | [optional] 
 **HideFromLeaderboard** | **bool?** |  | [optional] [default to false]

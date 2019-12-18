@@ -1,30 +1,28 @@
 # UserApi
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**userCancelWithdrawal**](UserApi.md#userCancelWithdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 [**userCheckReferralCode**](UserApi.md#userCheckReferralCode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
+[**userCommunicationToken**](UserApi.md#userCommunicationToken) | **POST** /user/communicationToken | Register your communication token for mobile clients
 [**userConfirm**](UserApi.md#userConfirm) | **POST** /user/confirmEmail | Confirm your email address with a token.
-[**userConfirmEnableTFA**](UserApi.md#userConfirmEnableTFA) | **POST** /user/confirmEnableTFA | Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
 [**userConfirmWithdrawal**](UserApi.md#userConfirmWithdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
-[**userDisableTFA**](UserApi.md#userDisableTFA) | **POST** /user/disableTFA | Disable two-factor auth for this account.
 [**userGet**](UserApi.md#userGet) | **GET** /user | Get your user model.
 [**userGetAffiliateStatus**](UserApi.md#userGetAffiliateStatus) | **GET** /user/affiliateStatus | Get your current affiliate/referral status.
 [**userGetCommission**](UserApi.md#userGetCommission) | **GET** /user/commission | Get your account&#39;s commission status.
 [**userGetDepositAddress**](UserApi.md#userGetDepositAddress) | **GET** /user/depositAddress | Get a deposit address.
+[**userGetExecutionHistory**](UserApi.md#userGetExecutionHistory) | **GET** /user/executionHistory | Get the execution history by day.
 [**userGetMargin**](UserApi.md#userGetMargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
+[**userGetQuoteFillRatio**](UserApi.md#userGetQuoteFillRatio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
 [**userGetWallet**](UserApi.md#userGetWallet) | **GET** /user/wallet | Get your current wallet information.
 [**userGetWalletHistory**](UserApi.md#userGetWalletHistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 [**userGetWalletSummary**](UserApi.md#userGetWalletSummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**userLogout**](UserApi.md#userLogout) | **POST** /user/logout | Log out of BitMEX.
-[**userLogoutAll**](UserApi.md#userLogoutAll) | **POST** /user/logoutAll | Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
 [**userMinWithdrawalFee**](UserApi.md#userMinWithdrawalFee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
-[**userRequestEnableTFA**](UserApi.md#userRequestEnableTFA) | **POST** /user/requestEnableTFA | Get secret key for setting up two-factor auth.
 [**userRequestWithdrawal**](UserApi.md#userRequestWithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**userSavePreferences**](UserApi.md#userSavePreferences) | **POST** /user/preferences | Save user preferences.
-[**userUpdate**](UserApi.md#userUpdate) | **PUT** /user | Update your password, name, and other attributes.
 
 
 <a name="userCancelWithdrawal"></a>
@@ -74,7 +72,7 @@ No authorization required
 
 Check if a referral code is valid.
 
-If the code is valid, responds with the referral code&#39;s discount (e.g. &#x60;0.1&#x60; for 10%). Otherwise, will return a 404.
+If the code is valid, responds with the referral code&#39;s discount (e.g. &#x60;0.1&#x60; for 10%). Otherwise, will return a 404 or 451 if invalid.
 
 ### Example
 ```java
@@ -105,6 +103,49 @@ Name | Type | Description  | Notes
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+<a name="userCommunicationToken"></a>
+# **userCommunicationToken**
+> List&lt;CommunicationToken&gt; userCommunicationToken(token, platformAgent)
+
+Register your communication token for mobile clients
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.api.UserApi;
+
+UserApi apiInstance = new UserApi();
+String token = "token_example"; // String | 
+String platformAgent = "platformAgent_example"; // String | 
+try {
+    List<CommunicationToken> result = apiInstance.userCommunicationToken(token, platformAgent);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling UserApi#userCommunicationToken");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token** | **String**|  |
+ **platformAgent** | **String**|  |
+
+### Return type
+
+[**List&lt;CommunicationToken&gt;**](CommunicationToken.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -152,49 +193,6 @@ No authorization required
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
-<a name="userConfirmEnableTFA"></a>
-# **userConfirmEnableTFA**
-> Boolean userConfirmEnableTFA(token, type)
-
-Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
-
-### Example
-```java
-// Import classes:
-//import io.swagger.client.api.UserApi;
-
-UserApi apiInstance = new UserApi();
-String token = "token_example"; // String | Token from your selected TFA type.
-String type = "type_example"; // String | Two-factor auth type. Supported types: 'GA' (Google Authenticator), 'Yubikey'
-try {
-    Boolean result = apiInstance.userConfirmEnableTFA(token, type);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling UserApi#userConfirmEnableTFA");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **String**| Token from your selected TFA type. |
- **type** | **String**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39; | [optional]
-
-### Return type
-
-**Boolean**
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
 <a name="userConfirmWithdrawal"></a>
 # **userConfirmWithdrawal**
 > Transaction userConfirmWithdrawal(token)
@@ -236,49 +234,6 @@ No authorization required
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
-<a name="userDisableTFA"></a>
-# **userDisableTFA**
-> Boolean userDisableTFA(token, type)
-
-Disable two-factor auth for this account.
-
-### Example
-```java
-// Import classes:
-//import io.swagger.client.api.UserApi;
-
-UserApi apiInstance = new UserApi();
-String token = "token_example"; // String | Token from your selected TFA type.
-String type = "type_example"; // String | Two-factor auth type. Supported types: 'GA' (Google Authenticator)
-try {
-    Boolean result = apiInstance.userDisableTFA(token, type);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling UserApi#userDisableTFA");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **String**| Token from your selected TFA type. |
- **type** | **String**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) | [optional]
-
-### Return type
-
-**Boolean**
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
 <a name="userGet"></a>
 # **userGet**
 > User userGet()
@@ -309,7 +264,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -346,7 +301,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -355,7 +310,7 @@ This endpoint does not need any parameter.
 
 <a name="userGetCommission"></a>
 # **userGetCommission**
-> List&lt;UserCommission&gt; userGetCommission()
+> UserCommissionsBySymbol userGetCommission()
 
 Get your account&#39;s commission status.
 
@@ -366,7 +321,7 @@ Get your account&#39;s commission status.
 
 UserApi apiInstance = new UserApi();
 try {
-    List<UserCommission> result = apiInstance.userGetCommission();
+    UserCommissionsBySymbol result = apiInstance.userGetCommission();
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userGetCommission");
@@ -379,11 +334,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List&lt;UserCommission&gt;**](UserCommission.md)
+[**UserCommissionsBySymbol**](UserCommissionsBySymbol.md)
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -424,7 +379,50 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+<a name="userGetExecutionHistory"></a>
+# **userGetExecutionHistory**
+> Object userGetExecutionHistory(symbol, timestamp)
+
+Get the execution history by day.
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.api.UserApi;
+
+UserApi apiInstance = new UserApi();
+String symbol = "XBTUSD"; // String | 
+Date timestamp = new Date(); // Date | 
+try {
+    Object result = apiInstance.userGetExecutionHistory(symbol, timestamp);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling UserApi#userGetExecutionHistory");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**|  | [default to XBTUSD]
+ **timestamp** | **Date**|  | [default to 2017-02-13T12:00:00.000Z]
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -465,7 +463,44 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+<a name="userGetQuoteFillRatio"></a>
+# **userGetQuoteFillRatio**
+> QuoteFillRatio userGetQuoteFillRatio()
+
+Get 7 days worth of Quote Fill Ratio statistics.
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.api.UserApi;
+
+UserApi apiInstance = new UserApi();
+try {
+    QuoteFillRatio result = apiInstance.userGetQuoteFillRatio();
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling UserApi#userGetQuoteFillRatio");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**QuoteFillRatio**](QuoteFillRatio.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -506,7 +541,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -515,7 +550,7 @@ Name | Type | Description  | Notes
 
 <a name="userGetWalletHistory"></a>
 # **userGetWalletHistory**
-> List&lt;Transaction&gt; userGetWalletHistory(currency)
+> List&lt;Transaction&gt; userGetWalletHistory(currency, count, start)
 
 Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 
@@ -526,8 +561,10 @@ Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 
 UserApi apiInstance = new UserApi();
 String currency = "XBt"; // String | 
+Double count = 3.4D; // Double | Number of results to fetch.
+Double start = 3.4D; // Double | Starting point for results.
 try {
-    List<Transaction> result = apiInstance.userGetWalletHistory(currency);
+    List<Transaction> result = apiInstance.userGetWalletHistory(currency, count, start);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userGetWalletHistory");
@@ -540,6 +577,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **String**|  | [optional] [default to XBt]
+ **count** | **Double**| Number of results to fetch. | [optional] [default to 100]
+ **start** | **Double**| Starting point for results. | [optional] [default to 0]
 
 ### Return type
 
@@ -547,7 +586,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -588,7 +627,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -625,43 +664,6 @@ null (empty response body)
 ### Authorization
 
 No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-<a name="userLogoutAll"></a>
-# **userLogoutAll**
-> Double userLogoutAll()
-
-Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
-
-### Example
-```java
-// Import classes:
-//import io.swagger.client.api.UserApi;
-
-UserApi apiInstance = new UserApi();
-try {
-    Double result = apiInstance.userLogoutAll();
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling UserApi#userLogoutAll");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-**Double**
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -711,56 +713,13 @@ No authorization required
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
-<a name="userRequestEnableTFA"></a>
-# **userRequestEnableTFA**
-> Boolean userRequestEnableTFA(type)
-
-Get secret key for setting up two-factor auth.
-
-Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
-
-### Example
-```java
-// Import classes:
-//import io.swagger.client.api.UserApi;
-
-UserApi apiInstance = new UserApi();
-String type = "type_example"; // String | Two-factor auth type. Supported types: 'GA' (Google Authenticator)
-try {
-    Boolean result = apiInstance.userRequestEnableTFA(type);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling UserApi#userRequestEnableTFA");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **type** | **String**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) | [optional]
-
-### Return type
-
-**Boolean**
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
 <a name="userRequestWithdrawal"></a>
 # **userRequestWithdrawal**
-> Transaction userRequestWithdrawal(currency, amount, address, otpToken, fee)
+> Transaction userRequestWithdrawal(currency, amount, address, otpToken, fee, text)
 
 Request a withdrawal to an external wallet.
 
-This will send a confirmation email to the email address on record, unless requested via an API Key with the &#x60;withdraw&#x60; permission.
+This will send a confirmation email to the email address on record.
 
 ### Example
 ```java
@@ -773,8 +732,9 @@ BigDecimal amount = new BigDecimal(); // BigDecimal | Amount of withdrawal curre
 String address = "address_example"; // String | Destination Address.
 String otpToken = "otpToken_example"; // String | 2FA token. Required if 2FA is enabled on your account.
 Double fee = 3.4D; // Double | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
+String text = "text_example"; // String | Optional annotation, e.g. 'Transfer to home wallet'.
 try {
-    Transaction result = apiInstance.userRequestWithdrawal(currency, amount, address, otpToken, fee);
+    Transaction result = apiInstance.userRequestWithdrawal(currency, amount, address, otpToken, fee, text);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userRequestWithdrawal");
@@ -791,6 +751,7 @@ Name | Type | Description  | Notes
  **address** | **String**| Destination Address. |
  **otpToken** | **String**| 2FA token. Required if 2FA is enabled on your account. | [optional]
  **fee** | **Double**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional]
+ **text** | **String**| Optional annotation, e.g. &#39;Transfer to home wallet&#39;. | [optional]
 
 ### Return type
 
@@ -798,7 +759,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -841,62 +802,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-<a name="userUpdate"></a>
-# **userUpdate**
-> User userUpdate(firstname, lastname, oldPassword, newPassword, newPasswordConfirm, username, country, pgpPubKey)
-
-Update your password, name, and other attributes.
-
-### Example
-```java
-// Import classes:
-//import io.swagger.client.api.UserApi;
-
-UserApi apiInstance = new UserApi();
-String firstname = "firstname_example"; // String | 
-String lastname = "lastname_example"; // String | 
-String oldPassword = "oldPassword_example"; // String | 
-String newPassword = "newPassword_example"; // String | 
-String newPasswordConfirm = "newPasswordConfirm_example"; // String | 
-String username = "username_example"; // String | Username can only be set once. To reset, email support.
-String country = "country_example"; // String | Country of residence.
-String pgpPubKey = "pgpPubKey_example"; // String | PGP Public Key. If specified, automated emails will be sentwith this key.
-try {
-    User result = apiInstance.userUpdate(firstname, lastname, oldPassword, newPassword, newPasswordConfirm, username, country, pgpPubKey);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling UserApi#userUpdate");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **firstname** | **String**|  | [optional]
- **lastname** | **String**|  | [optional]
- **oldPassword** | **String**|  | [optional]
- **newPassword** | **String**|  | [optional]
- **newPasswordConfirm** | **String**|  | [optional]
- **username** | **String**| Username can only be set once. To reset, email support. | [optional]
- **country** | **String**| Country of residence. | [optional]
- **pgpPubKey** | **String**| PGP Public Key. If specified, automated emails will be sentwith this key. | [optional]
-
-### Return type
-
-[**User**](User.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

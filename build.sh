@@ -17,7 +17,9 @@ curl --compressed $RESOURCES | \
   # Remove `--`, which is an invalid comment in XML and the generator happily puts into XML comments
   sed s/--//g | \
   # Pretty-print
-  jq '.' > \
+  jq '.' |
+  # Add host item (TODO fix spec)
+  jq '.host = "www.bitmex.com"' > \
   $DIR/swagger.json
 
 echo "Creating output folders..."

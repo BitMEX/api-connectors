@@ -59,7 +59,7 @@
 
 (defn instrument-get-active-intervals-with-http-info
   "Return all active contract series and interval pairs.
-  This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"XBT:perpetual\", \"XBT:monthly\", \"XBT:quarterly\", \"ETH:monthly\", ...]`. These identifiers are usable in any query's `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index."
+  This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"XBT:perpetual\", \"XBT:quarterly\", \"XBT:biquarterly\", \"ETH:quarterly\", ...]`. These identifiers are usable in any query's `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index."
   []
   (call-api "/instrument/activeIntervals" :get
             {:path-params   {}
@@ -72,7 +72,7 @@
 
 (defn instrument-get-active-intervals
   "Return all active contract series and interval pairs.
-  This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"XBT:perpetual\", \"XBT:monthly\", \"XBT:quarterly\", \"ETH:monthly\", ...]`. These identifiers are usable in any query's `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index."
+  This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"XBT:perpetual\", \"XBT:quarterly\", \"XBT:biquarterly\", \"ETH:quarterly\", ...]`. These identifiers are usable in any query's `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index."
   []
   (:data (instrument-get-active-intervals-with-http-info)))
 
@@ -85,11 +85,11 @@ get the ticks and weights of the constituent exchanges that build the \".XBT\" i
 
 A tick with reference `\"BMI\"` and weight `null` is the composite index tick."
   ([] (instrument-get-composite-index-with-http-info nil))
-  ([{:keys [account symbol filter columns count start reverse start-time end-time ]}]
+  ([{:keys [symbol filter columns count start reverse start-time end-time ]}]
    (call-api "/instrument/compositeIndex" :get
              {:path-params   {}
               :header-params {}
-              :query-params  {"account" account "symbol" symbol "filter" filter "columns" columns "count" count "start" start "reverse" reverse "startTime" start-time "endTime" end-time }
+              :query-params  {"symbol" symbol "filter" filter "columns" columns "count" count "start" start "reverse" reverse "startTime" start-time "endTime" end-time }
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -169,6 +169,10 @@ public class Instrument {
   private BigDecimal turnover = null;
   @SerializedName("turnover24h")
   private BigDecimal turnover24h = null;
+  @SerializedName("homeNotional24h")
+  private Double homeNotional24h = null;
+  @SerializedName("foreignNotional24h")
+  private Double foreignNotional24h = null;
   @SerializedName("prevPrice24h")
   private Double prevPrice24h = null;
   @SerializedName("vwap")
@@ -959,6 +963,26 @@ public class Instrument {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Double getHomeNotional24h() {
+    return homeNotional24h;
+  }
+  public void setHomeNotional24h(Double homeNotional24h) {
+    this.homeNotional24h = homeNotional24h;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getForeignNotional24h() {
+    return foreignNotional24h;
+  }
+  public void setForeignNotional24h(Double foreignNotional24h) {
+    this.foreignNotional24h = foreignNotional24h;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public Double getPrevPrice24h() {
     return prevPrice24h;
   }
@@ -1319,6 +1343,8 @@ public class Instrument {
         (this.totalTurnover == null ? instrument.totalTurnover == null : this.totalTurnover.equals(instrument.totalTurnover)) &&
         (this.turnover == null ? instrument.turnover == null : this.turnover.equals(instrument.turnover)) &&
         (this.turnover24h == null ? instrument.turnover24h == null : this.turnover24h.equals(instrument.turnover24h)) &&
+        (this.homeNotional24h == null ? instrument.homeNotional24h == null : this.homeNotional24h.equals(instrument.homeNotional24h)) &&
+        (this.foreignNotional24h == null ? instrument.foreignNotional24h == null : this.foreignNotional24h.equals(instrument.foreignNotional24h)) &&
         (this.prevPrice24h == null ? instrument.prevPrice24h == null : this.prevPrice24h.equals(instrument.prevPrice24h)) &&
         (this.vwap == null ? instrument.vwap == null : this.vwap.equals(instrument.vwap)) &&
         (this.highPrice == null ? instrument.highPrice == null : this.highPrice.equals(instrument.highPrice)) &&
@@ -1425,6 +1451,8 @@ public class Instrument {
     result = 31 * result + (this.totalTurnover == null ? 0: this.totalTurnover.hashCode());
     result = 31 * result + (this.turnover == null ? 0: this.turnover.hashCode());
     result = 31 * result + (this.turnover24h == null ? 0: this.turnover24h.hashCode());
+    result = 31 * result + (this.homeNotional24h == null ? 0: this.homeNotional24h.hashCode());
+    result = 31 * result + (this.foreignNotional24h == null ? 0: this.foreignNotional24h.hashCode());
     result = 31 * result + (this.prevPrice24h == null ? 0: this.prevPrice24h.hashCode());
     result = 31 * result + (this.vwap == null ? 0: this.vwap.hashCode());
     result = 31 * result + (this.highPrice == null ? 0: this.highPrice.hashCode());
@@ -1534,6 +1562,8 @@ public class Instrument {
     sb.append("  totalTurnover: ").append(totalTurnover).append("\n");
     sb.append("  turnover: ").append(turnover).append("\n");
     sb.append("  turnover24h: ").append(turnover24h).append("\n");
+    sb.append("  homeNotional24h: ").append(homeNotional24h).append("\n");
+    sb.append("  foreignNotional24h: ").append(foreignNotional24h).append("\n");
     sb.append("  prevPrice24h: ").append(prevPrice24h).append("\n");
     sb.append("  vwap: ").append(vwap).append("\n");
     sb.append("  highPrice: ").append(highPrice).append("\n");

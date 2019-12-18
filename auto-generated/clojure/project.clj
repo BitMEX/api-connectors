@@ -3,7 +3,7 @@
 
 [View Changelog](/app/apiChangelog)
 
-
+-
 
 #### Getting Started
 
@@ -18,7 +18,7 @@ Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=t
 Additional documentation regarding filters, timestamps, and authentication
 is available in [the main API documentation](/app/restAPI).
 
-*All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want
+_All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want
 to have the quickest possible data without being subject to ratelimits.
 
 ##### Return Types
@@ -27,19 +27,19 @@ By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or
 
 ##### Trade Data Queries
 
-*This is only a small subset of what is available, to get you started.*
+_This is only a small subset of what is available, to get you started._
 
 Fill in the parameters and click the `Try it out!` button to try any of these queries.
 
-* [Pricing Data](#!/Quote/Quote_get)
+- [Pricing Data](#!/Quote/Quote_get)
 
-* [Trade Data](#!/Trade/Trade_get)
+- [Trade Data](#!/Trade/Trade_get)
 
-* [OrderBook Data](#!/OrderBook/OrderBook_getL2)
+- [OrderBook Data](#!/OrderBook/OrderBook_getL2)
 
-* [Settlement Data](#!/Settlement/Settlement_get)
+- [Settlement Data](#!/Settlement/Settlement_get)
 
-* [Exchange Statistics](#!/Stats/Stats_history)
+- [Exchange Statistics](#!/Stats/Stats_history)
 
 Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.
 
@@ -47,7 +47,7 @@ Every function of the BitMEX.com platform is exposed here and documented. Many m
 
 [⇩ Download Swagger JSON](swagger.json)
 
-
+-
 
 ## All API Endpoints
 

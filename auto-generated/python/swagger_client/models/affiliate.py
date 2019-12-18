@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -45,7 +45,9 @@ class Affiliate(object):
         'payout_pcnt': 'float',
         'pending_payout': 'float',
         'timestamp': 'datetime',
-        'referrer_account': 'float'
+        'referrer_account': 'float',
+        'referral_discount': 'float',
+        'affiliate_payout': 'float'
     }
 
     attribute_map = {
@@ -63,10 +65,12 @@ class Affiliate(object):
         'payout_pcnt': 'payoutPcnt',
         'pending_payout': 'pendingPayout',
         'timestamp': 'timestamp',
-        'referrer_account': 'referrerAccount'
+        'referrer_account': 'referrerAccount',
+        'referral_discount': 'referralDiscount',
+        'affiliate_payout': 'affiliatePayout'
     }
 
-    def __init__(self, account=None, currency=None, prev_payout=None, prev_turnover=None, prev_comm=None, prev_timestamp=None, exec_turnover=None, exec_comm=None, total_referrals=None, total_turnover=None, total_comm=None, payout_pcnt=None, pending_payout=None, timestamp=None, referrer_account=None):  # noqa: E501
+    def __init__(self, account=None, currency=None, prev_payout=None, prev_turnover=None, prev_comm=None, prev_timestamp=None, exec_turnover=None, exec_comm=None, total_referrals=None, total_turnover=None, total_comm=None, payout_pcnt=None, pending_payout=None, timestamp=None, referrer_account=None, referral_discount=None, affiliate_payout=None):  # noqa: E501
         """Affiliate - a model defined in Swagger"""  # noqa: E501
 
         self._account = None
@@ -84,6 +88,8 @@ class Affiliate(object):
         self._pending_payout = None
         self._timestamp = None
         self._referrer_account = None
+        self._referral_discount = None
+        self._affiliate_payout = None
         self.discriminator = None
 
         self.account = account
@@ -114,6 +120,10 @@ class Affiliate(object):
             self.timestamp = timestamp
         if referrer_account is not None:
             self.referrer_account = referrer_account
+        if referral_discount is not None:
+            self.referral_discount = referral_discount
+        if affiliate_payout is not None:
+            self.affiliate_payout = affiliate_payout
 
     @property
     def account(self):
@@ -434,6 +444,48 @@ class Affiliate(object):
 
         self._referrer_account = referrer_account
 
+    @property
+    def referral_discount(self):
+        """Gets the referral_discount of this Affiliate.  # noqa: E501
+
+
+        :return: The referral_discount of this Affiliate.  # noqa: E501
+        :rtype: float
+        """
+        return self._referral_discount
+
+    @referral_discount.setter
+    def referral_discount(self, referral_discount):
+        """Sets the referral_discount of this Affiliate.
+
+
+        :param referral_discount: The referral_discount of this Affiliate.  # noqa: E501
+        :type: float
+        """
+
+        self._referral_discount = referral_discount
+
+    @property
+    def affiliate_payout(self):
+        """Gets the affiliate_payout of this Affiliate.  # noqa: E501
+
+
+        :return: The affiliate_payout of this Affiliate.  # noqa: E501
+        :rtype: float
+        """
+        return self._affiliate_payout
+
+    @affiliate_payout.setter
+    def affiliate_payout(self, affiliate_payout):
+        """Sets the affiliate_payout of this Affiliate.
+
+
+        :param affiliate_payout: The affiliate_payout of this Affiliate.  # noqa: E501
+        :type: float
+        """
+
+        self._affiliate_payout = affiliate_payout
+
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -455,6 +507,9 @@ class Affiliate(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(Affiliate, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

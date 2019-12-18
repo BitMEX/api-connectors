@@ -2,30 +2,31 @@
 swagger: "2.0"
 info:
   description: "## REST API for the BitMEX Trading Platform\n\n[View Changelog](/app/apiChangelog)\n\
-    \n\n\n#### Getting Started\n\nBase URI: [https://www.bitmex.com/api/v1](/api/v1)\n\
+    \n-\n\n#### Getting Started\n\nBase URI: [https://www.bitmex.com/api/v1](/api/v1)\n\
     \n##### Fetching Data\n\nAll REST endpoints are documented below. You can try\
     \ out any query right from this interface.\n\nMost table queries accept `count`,\
     \ `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.\n\
     \nAdditional documentation regarding filters, timestamps, and authentication\n\
-    is available in [the main API documentation](/app/restAPI).\n\n*All* table data\
+    is available in [the main API documentation](/app/restAPI).\n\n_All_ table data\
     \ is available via the [Websocket](/app/wsAPI). We highly recommend using the\
     \ socket if you want\nto have the quickest possible data without being subject\
     \ to ratelimits.\n\n##### Return Types\n\nBy default, all data is returned as\
     \ JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.\n\
-    \n##### Trade Data Queries\n\n*This is only a small subset of what is available,\
-    \ to get you started.*\n\nFill in the parameters and click the `Try it out!` button\
-    \ to try any of these queries.\n\n* [Pricing Data](#!/Quote/Quote_get)\n\n* [Trade\
-    \ Data](#!/Trade/Trade_get)\n\n* [OrderBook Data](#!/OrderBook/OrderBook_getL2)\n\
-    \n* [Settlement Data](#!/Settlement/Settlement_get)\n\n* [Exchange Statistics](#!/Stats/Stats_history)\n\
+    \n##### Trade Data Queries\n\n_This is only a small subset of what is available,\
+    \ to get you started._\n\nFill in the parameters and click the `Try it out!` button\
+    \ to try any of these queries.\n\n- [Pricing Data](#!/Quote/Quote_get)\n\n- [Trade\
+    \ Data](#!/Trade/Trade_get)\n\n- [OrderBook Data](#!/OrderBook/OrderBook_getL2)\n\
+    \n- [Settlement Data](#!/Settlement/Settlement_get)\n\n- [Exchange Statistics](#!/Stats/Stats_history)\n\
     \nEvery function of the BitMEX.com platform is exposed here and documented. Many\
     \ more functions are available.\n\n##### Swagger Specification\n\n[⇩ Download\
-    \ Swagger JSON](swagger.json)\n\n\n\n## All API Endpoints\n\nClick to expand a\
-    \ section.\n"
+    \ Swagger JSON](swagger.json)\n\n-\n\n## All API Endpoints\n\nClick to expand\
+    \ a section.\n"
   version: "1.2.0"
   title: "BitMEX API"
   termsOfService: "https://www.bitmex.com/app/terms"
   contact:
     email: "support@bitmex.com"
+host: "www.bitmex.com"
 basePath: "/api/v1"
 tags:
 - name: "Announcement"
@@ -46,7 +47,7 @@ tags:
   description: "Information on Top Users"
 - name: "Liquidation"
   description: "Active Liquidations"
-- name: "Notification"
+- name: "GlobalNotification"
   description: "Account Notifications"
 - name: "Order"
   description: "Placement, Cancellation, Amending, and History"
@@ -66,6 +67,8 @@ tags:
   description: "Individual & Bucketed Trades"
 - name: "User"
   description: "Account Operations"
+- name: "UserEvent"
+  description: "User Events for auditing"
 consumes:
 - "application/json"
 - "application/x-www-form-urlencoded"
@@ -78,7 +81,7 @@ produces:
 security:
 - apiKey: []
   apiSignature: []
-  apiNonce: []
+  apiExpires: []
 paths:
   /announcement:
     get:
@@ -97,21 +100,25 @@ paths:
         x-exportParamName: "Columns"
         x-optionalDataType: "String"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Announcement"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -125,21 +132,25 @@ paths:
       operationId: "Announcement.getUrgent"
       parameters: []
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Announcement"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -160,184 +171,25 @@ paths:
         x-exportParamName: "Reverse"
         x-optionalDataType: "Bool"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/APIKey"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
-          description: "Not Found"
+        "403":
+          description: "Access Denied"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
-    post:
-      tags:
-      - "APIKey"
-      summary: "Create a new API Key."
-      description: "API Keys can only be created via the frontend."
-      operationId: "APIKey.new"
-      parameters:
-      - name: "name"
-        in: "formData"
-        description: "Key name. This name is for reference only."
-        required: false
-        type: "string"
-        x-exportParamName: "Name"
-        x-optionalDataType: "String"
-      - name: "cidr"
-        in: "formData"
-        description: "CIDR block to restrict this key to. To restrict to a single\
-          \ address, append \"/32\", e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0\
-          \ to allow all IPs. Only one block may be set. <a href=\"http://software77.net/cidr-101.html\"\
-          >More on CIDR blocks</a>"
-        required: false
-        type: "string"
-        x-exportParamName: "Cidr"
-        x-optionalDataType: "String"
-      - name: "permissions"
-        in: "formData"
-        description: "Key Permissions. All keys can read margin and position data.\
-          \ Additional permissions must be added. Available: [\"order\", \"orderCancel\"\
-          , \"withdraw\"]."
-        required: false
-        type: "string"
-        format: "JSON"
-        x-exportParamName: "Permissions"
-        x-optionalDataType: "String"
-      - name: "enabled"
-        in: "formData"
-        description: "Set to true to enable this key on creation. Otherwise, it must\
-          \ be explicitly enabled via /apiKey/enable."
-        required: false
-        type: "boolean"
-        default: false
-        x-exportParamName: "Enabled"
-        x-optionalDataType: "Bool"
-      - name: "token"
-        in: "formData"
-        description: "OTP Token (YubiKey, Google Authenticator)"
-        required: false
-        type: "string"
-        x-exportParamName: "Token"
-        x-optionalDataType: "String"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            $ref: "#/definitions/APIKey"
-        400:
-          description: "Parameter Error"
-          schema:
-            $ref: "#/definitions/Error"
-        401:
-          description: "Unauthorized"
-          schema:
-            $ref: "#/definitions/Error"
-        404:
-          description: "Not Found"
-          schema:
-            $ref: "#/definitions/Error"
-      deprecated: false
-    delete:
-      tags:
-      - "APIKey"
-      summary: "Remove an API Key."
-      operationId: "APIKey.remove"
-      parameters:
-      - name: "apiKeyID"
-        in: "formData"
-        description: "API Key ID (public component)."
-        required: true
-        type: "string"
-        x-exportParamName: "ApiKeyID"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            type: "object"
-            properties:
-              success:
-                type: "boolean"
-        400:
-          description: "Parameter Error"
-          schema:
-            $ref: "#/definitions/Error"
-        401:
-          description: "Unauthorized"
-          schema:
-            $ref: "#/definitions/Error"
-        404:
-          description: "Not Found"
-          schema:
-            $ref: "#/definitions/Error"
-      deprecated: false
-  /apiKey/disable:
-    post:
-      tags:
-      - "APIKey"
-      summary: "Disable an API Key."
-      operationId: "APIKey.disable"
-      parameters:
-      - name: "apiKeyID"
-        in: "formData"
-        description: "API Key ID (public component)."
-        required: true
-        type: "string"
-        x-exportParamName: "ApiKeyID"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            $ref: "#/definitions/APIKey"
-        400:
-          description: "Parameter Error"
-          schema:
-            $ref: "#/definitions/Error"
-        401:
-          description: "Unauthorized"
-          schema:
-            $ref: "#/definitions/Error"
-        404:
-          description: "Not Found"
-          schema:
-            $ref: "#/definitions/Error"
-      deprecated: false
-  /apiKey/enable:
-    post:
-      tags:
-      - "APIKey"
-      summary: "Enable an API Key."
-      operationId: "APIKey.enable"
-      parameters:
-      - name: "apiKeyID"
-        in: "formData"
-        description: "API Key ID (public component)."
-        required: true
-        type: "string"
-        x-exportParamName: "ApiKeyID"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            $ref: "#/definitions/APIKey"
-        400:
-          description: "Parameter Error"
-          schema:
-            $ref: "#/definitions/Error"
-        401:
-          description: "Unauthorized"
-          schema:
-            $ref: "#/definitions/Error"
-        404:
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -384,21 +236,25 @@ paths:
         x-exportParamName: "ChannelID"
         x-optionalDataType: "Float64"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Chat"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -425,19 +281,23 @@ paths:
         x-exportParamName: "ChannelID"
         x-optionalDataType: "Float64"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Chat"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -450,21 +310,25 @@ paths:
       operationId: "Chat.getChannels"
       parameters: []
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/ChatChannel"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -480,19 +344,23 @@ paths:
       operationId: "Chat.getConnected"
       parameters: []
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             $ref: "#/definitions/ConnectedUsers"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -514,10 +382,10 @@ paths:
       parameters:
       - name: "symbol"
         in: "query"
-        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+        description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
-          \ a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`,\
-          \ `quarterly`, and `biquarterly`."
+          \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -586,21 +454,25 @@ paths:
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Execution"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -615,10 +487,10 @@ paths:
       parameters:
       - name: "symbol"
         in: "query"
-        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+        description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
-          \ a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`,\
-          \ `quarterly`, and `biquarterly`."
+          \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -687,21 +559,25 @@ paths:
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Execution"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -715,10 +591,10 @@ paths:
       parameters:
       - name: "symbol"
         in: "query"
-        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+        description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
-          \ a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`,\
-          \ `quarterly`, and `biquarterly`."
+          \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -787,21 +663,25 @@ paths:
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Funding"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -821,10 +701,10 @@ paths:
       parameters:
       - name: "symbol"
         in: "query"
-        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+        description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
-          \ a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`,\
-          \ `quarterly`, and `biquarterly`."
+          \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -893,21 +773,25 @@ paths:
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Instrument"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -921,21 +805,25 @@ paths:
       operationId: "Instrument.getActive"
       parameters: []
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Instrument"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -949,21 +837,25 @@ paths:
       operationId: "Instrument.getIndices"
       parameters: []
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Instrument"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -978,21 +870,25 @@ paths:
       operationId: "Instrument.getActiveAndIndices"
       parameters: []
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Instrument"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -1005,26 +901,30 @@ paths:
       summary: "Return all active contract series and interval pairs."
       description: "This endpoint is useful for determining which pairs are live.\
         \ It returns two arrays of   strings. The first is intervals, such as `[\"\
-        XBT:perpetual\", \"XBT:monthly\", \"XBT:quarterly\", \"ETH:monthly\", ...]`.\
-        \ These identifiers are usable in any query's `symbol` param. The second array\
-        \ is the current resolution of these intervals. Results are mapped at the\
-        \ same index."
+        XBT:perpetual\", \"XBT:quarterly\", \"XBT:biquarterly\", \"ETH:quarterly\"\
+        , ...]`. These identifiers are usable in any query's `symbol` param. The second\
+        \ array is the current resolution of these intervals. Results are mapped at\
+        \ the same index."
       operationId: "Instrument.getActiveIntervals"
       parameters: []
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             $ref: "#/definitions/InstrumentInterval"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -1042,13 +942,6 @@ paths:
         ` and weight `null` is the composite index tick.\n"
       operationId: "Instrument.getCompositeIndex"
       parameters:
-      - name: "account"
-        in: "query"
-        required: false
-        type: "number"
-        format: "double"
-        x-exportParamName: "Account"
-        x-optionalDataType: "Float64"
       - name: "symbol"
         in: "query"
         description: "The composite index symbol."
@@ -1121,21 +1014,25 @@ paths:
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/IndexComposite"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -1150,10 +1047,10 @@ paths:
       parameters:
       - name: "symbol"
         in: "query"
-        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+        description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
-          \ a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`,\
-          \ `quarterly`, and `biquarterly`."
+          \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -1222,21 +1119,25 @@ paths:
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Insurance"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -1258,21 +1159,25 @@ paths:
         x-exportParamName: "Method"
         x-optionalDataType: "String"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Leaderboard"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -1286,22 +1191,23 @@ paths:
       operationId: "Leaderboard.getName"
       parameters: []
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
-            type: "object"
-            properties:
-              name:
-                type: "string"
-        400:
+            $ref: "#/definitions/inline_response_200"
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -1315,10 +1221,10 @@ paths:
       parameters:
       - name: "symbol"
         in: "query"
-        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+        description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
-          \ a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`,\
-          \ `quarterly`, and `biquarterly`."
+          \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -1387,50 +1293,58 @@ paths:
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Liquidation"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
       security: []
       deprecated: false
-  /notification:
+  /globalNotification:
     get:
       tags:
-      - "Notification"
-      summary: "Get your current notifications."
+      - "GlobalNotification"
+      summary: "Get your current GlobalNotifications."
       description: "This is an upcoming feature and currently does not return data."
-      operationId: "Notification.get"
+      operationId: "GlobalNotification.get"
       parameters: []
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/Notification"
-        400:
+              $ref: "#/definitions/GlobalNotification"
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -1447,10 +1361,10 @@ paths:
       parameters:
       - name: "symbol"
         in: "query"
-        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+        description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
-          \ a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`,\
-          \ `quarterly`, and `biquarterly`."
+          \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -1519,21 +1433,25 @@ paths:
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Order"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -1545,67 +1463,42 @@ paths:
       description: "## Placing Orders\n\nThis endpoint is used for placing orders.\
         \ See individual fields below for more details on their use.\n\n#### Order\
         \ Types\n\nAll orders require a `symbol`. All other fields are optional except\
-        \ when otherwise specified.\n\nThese are the valid `ordType`s:\n\n* **Limit**:\
-        \ The default order type. Specify an `orderQty` and `price`.\n* **Market**:\
+        \ when otherwise specified.\n\nThese are the valid `ordType`s:\n\n- **Limit**:\
+        \ The default order type. Specify an `orderQty` and `price`.\n- **Market**:\
         \ A traditional Market order. A Market order will execute until filled or\
-        \ your bankruptcy price is reached, at\n  which point it will cancel.\n* **MarketWithLeftOverAsLimit**:\
-        \ A market order that, after eating through the order book as far as\n  permitted\
-        \ by available margin, will become a limit order. The difference between this\
-        \ type and `Market` only\n  affects the behavior in thin books. Upon reaching\
-        \ the deepest possible price, if there is quantity left over,\n  a `Market`\
-        \ order will cancel the remaining quantity. `MarketWithLeftOverAsLimit` will\
-        \ keep the remaining\n  quantity in the books as a `Limit`.\n* **Stop**: A\
-        \ Stop Market order. Specify an `orderQty` and `stopPx`. When the `stopPx`\
-        \ is reached, the order will be entered\n  into the book.\n  * On sell orders,\
+        \ your bankruptcy price is reached, at\n  which point it will cancel.\n- **Stop**:\
+        \ A Stop Market order. Specify an `orderQty` and `stopPx`. When the `stopPx`\
+        \ is reached, the order will be entered\n  into the book.\n  - On sell orders,\
         \ the order will trigger if the triggering price is lower than the `stopPx`.\
-        \ On buys, higher.\n  * Note: Stop orders do not consume margin until triggered.\
+        \ On buys, higher.\n  - Note: Stop orders do not consume margin until triggered.\
         \ Be sure that the required margin is available in your\n    account so that\
-        \ it may trigger fully.\n  * `Close` Stops don't require an `orderQty`. See\
-        \ Execution Instructions below.\n* **StopLimit**: Like a Stop Market, but\
+        \ it may trigger fully.\n  - `Close` Stops don't require an `orderQty`. See\
+        \ Execution Instructions below.\n- **StopLimit**: Like a Stop Market, but\
         \ enters a Limit order instead of a Market order. Specify an `orderQty`, `stopPx`,\n\
-        \  and `price`.\n* **MarketIfTouched**: Similar to a Stop, but triggers are\
-        \ done in the opposite direction. Useful for Take Profit orders.\n* **LimitIfTouched**:\
+        \  and `price`.\n- **MarketIfTouched**: Similar to a Stop, but triggers are\
+        \ done in the opposite direction. Useful for Take Profit orders.\n- **LimitIfTouched**:\
         \ As above; use for Take Profit Limit orders.\n\n#### Execution Instructions\n\
         \nThe following `execInst`s are supported. If using multiple, separate with\
-        \ a comma (e.g. `LastPrice,Close`).\n\n* **ParticipateDoNotInitiate**: Also\
+        \ a comma (e.g. `LastPrice,Close`).\n\n- **ParticipateDoNotInitiate**: Also\
         \ known as a Post-Only order. If this order would have executed on placement,\n\
-        \  it will cancel instead.\n* **AllOrNone**: Valid only for hidden orders\
-        \ (`displayQty: 0`). Use to only execute if the entire order would fill.\n\
-        * **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders\
-        \ to determine the triggering price.\n  Use only one. By default, `'MarkPrice'`\
-        \ is used. Also used for Pegged orders to define the value of `'LastPeg'`.\n\
-        * **ReduceOnly**: A `'ReduceOnly'` order can only reduce your position, not\
-        \ increase it. If you have a `'ReduceOnly'`\n  limit order that rests in the\
-        \ order book while the position is reduced by other orders, then its order\
-        \ quantity will\n  be amended down or canceled. If there are multiple `'ReduceOnly'`\
-        \ orders the least agresssive will be amended first.\n* **Close**: `'Close'`\
-        \ implies `'ReduceOnly'`. A `'Close'` order will cancel other active limit\
-        \ orders with the same side\n  and symbol if the open quantity exceeds the\
-        \ current position. This is useful for stops: by canceling these orders, a\n\
-        \  `'Close'` Stop is ensured to have the margin required to execute, and can\
-        \ only execute up to the full size of your\n  position. If `orderQty` is not\
-        \ specified, a `'Close'` order has an `orderQty` equal to your current position's\
-        \ size.\n  * Note that a `Close` order without an `orderQty` requires a `side`,\
-        \ so that BitMEX knows if it should trigger\n  above or below the `stopPx`.\n\
-        \n#### Linked Orders\n\nLinked Orders are an advanced capability. It is very\
-        \ powerful, but its use requires careful coding and testing.\nPlease follow\
-        \ this document carefully and use the [Testnet Exchange](https://testnet.bitmex.com)\
-        \ while developing.\n\nBitMEX offers four advanced Linked Order types:\n\n\
-        * **OCO**: *One Cancels the Other*. A very flexible version of the standard\
-        \ Stop / Take Profit technique.\n  Multiple orders may be linked together\
-        \ using a single `clOrdLinkID`. Send a `contingencyType` of\n  `OneCancelsTheOther`\
-        \ on the orders. The first order that fully or partially executes (or activates\n\
-        \  for `Stop` orders) will cancel all other orders with the same `clOrdLinkID`.\n\
-        * **OTO**: *One Triggers the Other*. Send a `contingencyType` of `'OneTriggersTheOther'`\
-        \ on the primary order and\n  then subsequent orders with the same `clOrdLinkID`\
-        \ will be not be triggered until the primary order fully executes.\n* **OUOA**:\
-        \ *One Updates the Other Absolute*. Send a `contingencyType` of `'OneUpdatesTheOtherAbsolute'`\
-        \ on the orders. Then\n  as one order has a execution, other orders with the\
-        \ same `clOrdLinkID` will have their order quantity amended\n  down by the\
-        \ execution quantity.\n* **OUOP**: *One Updates the Other Proportional*. Send\
-        \ a `contingencyType` of `'OneUpdatesTheOtherProportional'` on the orders.\
-        \ Then\n  as one order has a execution, other orders with the same `clOrdLinkID`\
-        \ will have their order quantity reduced proportionally\n  by the fill percentage.\n\
+        \  it will cancel instead.\n- **MarkPrice, LastPrice, IndexPrice**: Used by\
+        \ stop and if-touched orders to determine the triggering price.\n  Use only\
+        \ one. By default, `'MarkPrice'` is used. Also used for Pegged orders to define\
+        \ the value of `'LastPeg'`.\n- **ReduceOnly**: A `'ReduceOnly'` order can\
+        \ only reduce your position, not increase it. If you have a `'ReduceOnly'`\n\
+        \  limit order that rests in the order book while the position is reduced\
+        \ by other orders, then its order quantity will\n  be amended down or canceled.\
+        \ If there are multiple `'ReduceOnly'` orders the least aggressive will be\
+        \ amended first.\n- **Close**: `'Close'` implies `'ReduceOnly'`. A `'Close'`\
+        \ order will cancel other active limit orders with the same side\n  and symbol\
+        \ if the open quantity exceeds the current position. This is useful for stops:\
+        \ by canceling these orders, a\n  `'Close'` Stop is ensured to have the margin\
+        \ required to execute, and can only execute up to the full size of your\n\
+        \  position. If `orderQty` is not specified, a `'Close'` order has an `orderQty`\
+        \ equal to your current position's size.\n  - Note that a `Close` order without\
+        \ an `orderQty` requires a `side`, so that BitMEX knows if it should trigger\n\
+        \    above or below the `stopPx`.\n\n#### Linked Orders\n\n[Linked Orders\
+        \ are deprecated as of 2018/11/10](https://blog.bitmex.com/api_announcement/deprecation-of-contingent-orders/)\n\
         \n#### Trailing Stops\n\nYou may use `pegPriceType` of `'TrailingStopPeg'`\
         \ to create Trailing Stops. The pegged `stopPx` will move as the market\n\
         moves away from the peg, and freeze as the market moves toward it.\n\nTo use,\
@@ -1613,10 +1506,8 @@ paths:
         \ is set to the triggering price\nspecified in the `execInst` (default `'MarkPrice'`).\
         \ Use a negative offset for stop-sell and buy-if-touched orders.\n\nRequires\
         \ `ordType`: `'Stop', 'StopLimit', 'MarketIfTouched', 'LimitIfTouched'`.\n\
-        \n#### Simple Quantities\n\nSend a `simpleOrderQty` instead of an `orderQty`\
-        \ to create an order denominated in the underlying currency.\nThis is useful\
-        \ for opening up a position with 1 XBT of exposure without having to calculate\
-        \ how many contracts it is.\n\n#### Rate Limits\n\nSee the [Bulk Order Documentation](#!/Order/Order_newBulk)\
+        \n#### Simple Quantities\n\n[Simple Quantities are deprecated as of 2018/10/26](https://blog.bitmex.com/api_announcement/deprecation-of-simpleorderqty-functionality/)\n\
+        \n#### Rate Limits\n\nSee the [Bulk Order Documentation](#!/Order/Order_newBulk)\
         \ if you need to place multiple orders at the same time.\nBulk orders require\
         \ fewer risk checks in the trading engine and thus are ratelimited at **1/10**\
         \ the normal rate.\n\nYou can also improve your reactivity to market movements\
@@ -1643,14 +1534,14 @@ paths:
       - name: "side"
         in: "formData"
         description: "Order side. Valid options: Buy, Sell. Defaults to 'Buy' unless\
-          \ `orderQty` or `simpleOrderQty` is negative."
+          \ `orderQty` is negative."
         required: false
         type: "string"
         x-exportParamName: "Side"
         x-optionalDataType: "String"
       - name: "simpleOrderQty"
         in: "formData"
-        description: "Order quantity in units of the underlying instrument (i.e. Bitcoin)."
+        description: "Deprecated: simple orders are not supported after 2018/10/26"
         required: false
         type: "number"
         format: "double"
@@ -1703,7 +1594,7 @@ paths:
         x-optionalDataType: "String"
       - name: "clOrdLinkID"
         in: "formData"
-        description: "Optional Client Order Link ID for contingent orders."
+        description: "Deprecated: linked orders are not supported after 2018/11/10."
         required: false
         type: "string"
         x-exportParamName: "ClOrdLinkID"
@@ -1730,9 +1621,9 @@ paths:
       - name: "ordType"
         in: "formData"
         description: "Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched,\
-          \ LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to 'Limit'\
-          \ when `price` is specified. Defaults to 'Stop' when `stopPx` is specified.\
-          \ Defaults to 'StopLimit' when `price` and `stopPx` are specified."
+          \ LimitIfTouched, Pegged. Defaults to 'Limit' when `price` is specified.\
+          \ Defaults to 'Stop' when `stopPx` is specified. Defaults to 'StopLimit'\
+          \ when `price` and `stopPx` are specified."
         required: false
         type: "string"
         default: "Limit"
@@ -1741,8 +1632,8 @@ paths:
       - name: "timeInForce"
         in: "formData"
         description: "Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel,\
-          \ FillOrKill. Defaults to 'GoodTillCancel' for 'Limit', 'StopLimit', 'LimitIfTouched',\
-          \ and 'MarketWithLeftOverAsLimit' orders."
+          \ FillOrKill. Defaults to 'GoodTillCancel' for 'Limit', 'StopLimit', and\
+          \ 'LimitIfTouched' orders."
         required: false
         type: "string"
         x-exportParamName: "TimeInForce"
@@ -1760,9 +1651,7 @@ paths:
         x-optionalDataType: "String"
       - name: "contingencyType"
         in: "formData"
-        description: "Optional contingency type for use with `clOrdLinkID`. Valid\
-          \ options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute,\
-          \ OneUpdatesTheOtherProportional."
+        description: "Deprecated: linked orders are not supported after 2018/11/10."
         required: false
         type: "string"
         x-exportParamName: "ContingencyType"
@@ -1775,19 +1664,23 @@ paths:
         x-exportParamName: "Text"
         x-optionalDataType: "String"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Order"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -1803,12 +1696,10 @@ paths:
         \ to adjust your position's delta by a certain amount, regardless of how much\
         \ of the order has\nalready filled.\n\n> A `leavesQty` can be used to make\
         \ a \"Filled\" order live again, if it is received within 60 seconds of the\
-        \ fill.\n\nUse the `simpleOrderQty` and `simpleLeavesQty` fields to specify\
-        \ order size in Bitcoin, rather than contracts.\nThese fields will round up\
-        \ to the nearest contract.\n\nLike order placement, amending can be done in\
-        \ bulk. Simply send a request to `PUT /api/v1/order/bulk` with\na JSON body\
-        \ of the shape: `{\"orders\": [{...}, {...}]}`, each object containing the\
-        \ fields used in this endpoint.\n"
+        \ fill.\n\nLike order placement, amending can be done in bulk. Simply send\
+        \ a request to `PUT /api/v1/order/bulk` with\na JSON body of the shape: `{\"\
+        orders\": [{...}, {...}]}`, each object containing the fields used in this\
+        \ endpoint.\n"
       operationId: "Order.amend"
       parameters:
       - name: "orderID"
@@ -1834,8 +1725,7 @@ paths:
         x-optionalDataType: "String"
       - name: "simpleOrderQty"
         in: "formData"
-        description: "Optional order quantity in units of the underlying instrument\
-          \ (i.e. Bitcoin)."
+        description: "Deprecated: simple orders are not supported after 2018/10/26"
         required: false
         type: "number"
         format: "double"
@@ -1851,8 +1741,7 @@ paths:
         x-optionalDataType: "Float32"
       - name: "simpleLeavesQty"
         in: "formData"
-        description: "Optional leaves quantity in units of the underlying instrument\
-          \ (i.e. Bitcoin). Useful for amending partially filled orders."
+        description: "Deprecated: simple orders are not supported after 2018/10/26"
         required: false
         type: "number"
         format: "double"
@@ -1905,19 +1794,23 @@ paths:
         x-exportParamName: "Text"
         x-optionalDataType: "String"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Order"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -1953,21 +1846,25 @@ paths:
         x-exportParamName: "Text"
         x-optionalDataType: "String"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Order"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -1978,14 +1875,14 @@ paths:
       - "Order"
       summary: "Create multiple new orders for the same symbol."
       description: "This endpoint is used for placing bulk orders. Valid order types\
-        \ are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit,\
-        \ and Pegged.\n\nEach individual order object in the array should have the\
-        \ same properties as an individual POST /order call.\n\nThis endpoint is much\
-        \ faster for getting many orders into the book at once. Because it reduces\
-        \ load on BitMEX\nsystems, this endpoint is ratelimited at `ceil(0.1 * orders)`.\
-        \ Submitting 10 orders via a bulk order call\nwill only count as 1 request,\
-        \ 15 as 2, 32 as 4, and so on.\n\nFor now, only `application/json` is supported\
-        \ on this endpoint.\n"
+        \ are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and\
+        \ Pegged.\n\nEach individual order object in the array should have the same\
+        \ properties as an individual POST /order call.\n\nThis endpoint is much faster\
+        \ for getting many orders into the book at once. Because it reduces load on\
+        \ BitMEX\nsystems, this endpoint is ratelimited at `ceil(0.1 * orders)`. Submitting\
+        \ 10 orders via a bulk order call\nwill only count as 1 request, 15 as 2,\
+        \ 32 as 4, and so on.\n\nFor now, only `application/json` is supported on\
+        \ this endpoint.\n"
       operationId: "Order.newBulk"
       parameters:
       - name: "orders"
@@ -1997,21 +1894,25 @@ paths:
         x-exportParamName: "Orders"
         x-optionalDataType: "String"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Order"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -2033,21 +1934,25 @@ paths:
         x-exportParamName: "Orders"
         x-optionalDataType: "String"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Order"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -2077,19 +1982,23 @@ paths:
         x-exportParamName: "Price"
         x-optionalDataType: "Float64"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Order"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -2125,21 +2034,25 @@ paths:
         x-exportParamName: "Text"
         x-optionalDataType: "String"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Order"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -2165,19 +2078,23 @@ paths:
         format: "double"
         x-exportParamName: "Timeout"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "object"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -2207,21 +2124,25 @@ paths:
         x-exportParamName: "Depth"
         x-optionalDataType: "Float32"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/OrderBookL2"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -2232,8 +2153,43 @@ paths:
       tags:
       - "Position"
       summary: "Get your positions."
-      description: "See <a href=\"http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html\"\
-        >the FIX Spec</a> for explanations of these fields."
+      description: "This endpoint is used for retrieving position information. The\
+        \ fields largely follow the [FIX spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html)\
+        \ definitions. Some selected fields are explained in more detail below.\n\n\
+        The fields _account_, _symbol_, _currency_ are unique to each position and\
+        \ form its key.\n\n- **account**: Your unique account ID.\n- **symbol**: The\
+        \ contract for this position.\n- **currency**: The margin currency for this\
+        \ position.\n- **underlying**: Meta data of the _symbol_.\n- **quoteCurrency**:\
+        \ Meta data of the _symbol_, All prices are in the _quoteCurrency_\n- **commission**:\
+        \ The maximum of the maker, taker, and settlement fee.\n- **initMarginReq**:\
+        \ The initial margin requirement. This will be at least the symbol's default\
+        \ initial maintenance margin, but can be higher if you choose lower leverage.\n\
+        - **maintMarginReq**: The maintenance margin requirement. This will be at\
+        \ least the symbol's default maintenance maintenance margin, but can be higher\
+        \ if you choose a higher risk limit.\n- **riskLimit**: This is a function\
+        \ of your _maintMarginReq_.\n- **leverage**: 1 / initMarginReq.\n- **crossMargin**:\
+        \ True/false depending on whether you set cross margin on this position.\n\
+        - **deleveragePercentile**: Indicates where your position is in the ADL queue.\n\
+        - **rebalancedPnl**: The value of realised PNL that has transferred to your\
+        \ wallet for this position.\n- **prevRealisedPnl**: The value of realised\
+        \ PNL that has transferred to your wallet for this position since the position\
+        \ was closed.\n- **currentQty**: The current position amount in contracts.\n\
+        - **currentCost**: The current cost of the position in the settlement currency\
+        \ of the symbol (_currency_).\n- **currentComm**: The current commission of\
+        \ the position in the settlement currency of the symbol (_currency_).\n- **realisedCost**:\
+        \ The realised cost of this position calculated with regard to average cost\
+        \ accounting.\n- **unrealisedCost**: _currentCost_ - _realisedCost_.\n- **grossOpenCost**:\
+        \ The absolute value of your open orders for this symbol.\n- **grossOpenPremium**:\
+        \ The amount your bidding above the mark price in the settlement currency\
+        \ of the symbol (_currency_).\n- **markPrice**: The mark price of the symbol\
+        \ in _quoteCurrency_.\n- **markValue**: The _currentQty_ at the mark price\
+        \ in the settlement currency of the symbol (_currency_).\n- **homeNotional**:\
+        \ Value of position in units of _underlying_.\n- **foreignNotional**: Value\
+        \ of position in units of _quoteCurrency_.\n- **realisedPnl**: The negative\
+        \ of _realisedCost_.\n- **unrealisedGrossPnl**: _markValue_ - _unrealisedCost_.\n\
+        - **unrealisedPnl**: _unrealisedGrossPnl_.\n- **liquidationPrice**: Once markPrice\
+        \ reaches this price, this position will be liquidated.\n- **bankruptPrice**:\
+        \ Once markPrice reaches this price, this position will have no equity.\n"
       operationId: "Position.get"
       parameters:
       - name: "filter"
@@ -2261,21 +2217,25 @@ paths:
         x-exportParamName: "Count"
         x-optionalDataType: "Float32"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Position"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -2302,19 +2262,23 @@ paths:
         x-exportParamName: "Enabled"
         x-optionalDataType: "Bool"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Position"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -2340,19 +2304,23 @@ paths:
         format: "int64"
         x-exportParamName: "RiskLimit"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Position"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -2378,19 +2346,23 @@ paths:
         format: "int64"
         x-exportParamName: "Amount"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Position"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -2417,19 +2389,23 @@ paths:
         format: "double"
         x-exportParamName: "Leverage"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Position"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -2443,10 +2419,10 @@ paths:
       parameters:
       - name: "symbol"
         in: "query"
-        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+        description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
-          \ a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`,\
-          \ `quarterly`, and `biquarterly`."
+          \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -2515,21 +2491,25 @@ paths:
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Quote"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -2540,6 +2520,10 @@ paths:
       tags:
       - "Quote"
       summary: "Get previous quotes in time buckets."
+      description: "Timestamps returned by our bucketed endpoints are the **end**\
+        \ of the period, indicating when the bucket was written to disk. Some other\
+        \ common systems use the timestamp as the beginning of the period. Please\
+        \ be aware of this when using this endpoint."
       operationId: "Quote.getBucketed"
       parameters:
       - name: "binSize"
@@ -2561,10 +2545,10 @@ paths:
         x-optionalDataType: "Bool"
       - name: "symbol"
         in: "query"
-        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+        description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
-          \ a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`,\
-          \ `quarterly`, and `biquarterly`."
+          \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -2633,21 +2617,25 @@ paths:
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Quote"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -2668,19 +2656,23 @@ paths:
         x-exportParamName: "Model"
         x-optionalDataType: "String"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "object"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -2694,19 +2686,23 @@ paths:
       operationId: "Schema.websocketHelp"
       parameters: []
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "object"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -2721,10 +2717,10 @@ paths:
       parameters:
       - name: "symbol"
         in: "query"
-        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+        description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
-          \ a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`,\
-          \ `quarterly`, and `biquarterly`."
+          \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -2793,21 +2789,25 @@ paths:
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Settlement"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -2821,21 +2821,25 @@ paths:
       operationId: "Stats.get"
       parameters: []
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Stats"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -2849,21 +2853,25 @@ paths:
       operationId: "Stats.history"
       parameters: []
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/StatsHistory"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -2877,21 +2885,25 @@ paths:
       operationId: "Stats.historyUSD"
       parameters: []
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/StatsUSD"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -2910,10 +2922,10 @@ paths:
       parameters:
       - name: "symbol"
         in: "query"
-        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+        description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
-          \ a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`,\
-          \ `quarterly`, and `biquarterly`."
+          \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -2982,21 +2994,25 @@ paths:
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Trade"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -3007,6 +3023,11 @@ paths:
       tags:
       - "Trade"
       summary: "Get previous trades in time buckets."
+      description: "Timestamps returned by our bucketed endpoints are the **end**\
+        \ of the period, indicating when the bucket was written to disk. Some other\
+        \ common systems use the timestamp as the beginning of the period. Please\
+        \ be aware of this when using this endpoint.\n\nAlso note the `open` price\
+        \ is equal to the `close` price of the previous timeframe bucket."
       operationId: "Trade.getBucketed"
       parameters:
       - name: "binSize"
@@ -3028,10 +3049,10 @@ paths:
         x-optionalDataType: "Bool"
       - name: "symbol"
         in: "query"
-        description: "Instrument symbol. Send a bare series (e.g. XBU) to get data\
+        description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
-          \ a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`,\
-          \ `quarterly`, and `biquarterly`."
+          \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -3100,21 +3121,25 @@ paths:
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/TradeBin"
-        400:
+        "400":
           description: "Parameter Error"
           schema:
             $ref: "#/definitions/Error"
-        401:
+        "401":
           description: "Unauthorized"
           schema:
             $ref: "#/definitions/Error"
-        404:
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
@@ -3135,10 +3160,26 @@ paths:
         x-exportParamName: "Currency"
         x-optionalDataType: "String"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "string"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
   /user/wallet:
     get:
@@ -3155,10 +3196,26 @@ paths:
         x-exportParamName: "Currency"
         x-optionalDataType: "String"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Wallet"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
   /user/walletHistory:
     get:
@@ -3175,13 +3232,47 @@ paths:
         default: "XBt"
         x-exportParamName: "Currency"
         x-optionalDataType: "String"
+      - name: "count"
+        in: "query"
+        description: "Number of results to fetch."
+        required: false
+        type: "number"
+        default: 100.0
+        format: "double"
+        x-exportParamName: "Count"
+        x-optionalDataType: "Float64"
+      - name: "start"
+        in: "query"
+        description: "Starting point for results."
+        required: false
+        type: "number"
+        default: 0.0
+        format: "double"
+        x-exportParamName: "Start"
+        x-optionalDataType: "Float64"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Transaction"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
   /user/walletSummary:
     get:
@@ -3199,12 +3290,70 @@ paths:
         x-exportParamName: "Currency"
         x-optionalDataType: "String"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Transaction"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
+  /user/executionHistory:
+    get:
+      tags:
+      - "User"
+      summary: "Get the execution history by day."
+      operationId: "User.getExecutionHistory"
+      parameters:
+      - name: "symbol"
+        in: "query"
+        required: true
+        type: "string"
+        default: "XBTUSD"
+        x-exportParamName: "Symbol"
+      - name: "timestamp"
+        in: "query"
+        required: true
+        type: "string"
+        default: "2017-02-13T12:00:00.000Z"
+        format: "date-time"
+        x-exportParamName: "Timestamp"
+      responses:
+        "200":
+          description: "Request was successful"
+          schema:
+            type: "object"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
   /user/minWithdrawalFee:
     get:
@@ -3224,10 +3373,26 @@ paths:
         x-exportParamName: "Currency"
         x-optionalDataType: "String"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "object"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
       security: []
       deprecated: false
   /user/requestWithdrawal:
@@ -3235,8 +3400,7 @@ paths:
       tags:
       - "User"
       summary: "Request a withdrawal to an external wallet."
-      description: "This will send a confirmation email to the email address on record,\
-        \ unless requested via an API Key with the `withdraw` permission."
+      description: "This will send a confirmation email to the email address on record."
       operationId: "User.requestWithdrawal"
       parameters:
       - name: "otpToken"
@@ -3276,11 +3440,34 @@ paths:
         format: "double"
         x-exportParamName: "Fee"
         x-optionalDataType: "Float64"
+      - name: "text"
+        in: "formData"
+        description: "Optional annotation, e.g. 'Transfer to home wallet'."
+        required: false
+        type: "string"
+        x-exportParamName: "Text"
+        x-optionalDataType: "String"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Transaction"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
   /user/cancelWithdrawal:
     post:
@@ -3295,10 +3482,26 @@ paths:
         type: "string"
         x-exportParamName: "Token"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Transaction"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
       security: []
       deprecated: false
   /user/confirmWithdrawal:
@@ -3314,87 +3517,27 @@ paths:
         type: "string"
         x-exportParamName: "Token"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Transaction"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
       security: []
-      deprecated: false
-  /user/requestEnableTFA:
-    post:
-      tags:
-      - "User"
-      summary: "Get secret key for setting up two-factor auth."
-      description: "Use /confirmEnableTFA directly for Yubikeys. This fails if TFA\
-        \ is already enabled."
-      operationId: "User.requestEnableTFA"
-      parameters:
-      - name: "type"
-        in: "formData"
-        description: "Two-factor auth type. Supported types: 'GA' (Google Authenticator)"
-        required: false
-        type: "string"
-        x-exportParamName: "Type_"
-        x-optionalDataType: "String"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            type: "boolean"
-      deprecated: false
-  /user/confirmEnableTFA:
-    post:
-      tags:
-      - "User"
-      summary: "Confirm two-factor auth for this account. If using a Yubikey, simply\
-        \ send a token to this endpoint."
-      operationId: "User.confirmEnableTFA"
-      parameters:
-      - name: "type"
-        in: "formData"
-        description: "Two-factor auth type. Supported types: 'GA' (Google Authenticator),\
-          \ 'Yubikey'"
-        required: false
-        type: "string"
-        x-exportParamName: "Type_"
-        x-optionalDataType: "String"
-      - name: "token"
-        in: "formData"
-        description: "Token from your selected TFA type."
-        required: true
-        type: "string"
-        x-exportParamName: "Token"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            type: "boolean"
-      deprecated: false
-  /user/disableTFA:
-    post:
-      tags:
-      - "User"
-      summary: "Disable two-factor auth for this account."
-      operationId: "User.disableTFA"
-      parameters:
-      - name: "type"
-        in: "formData"
-        description: "Two-factor auth type. Supported types: 'GA' (Google Authenticator)"
-        required: false
-        type: "string"
-        x-exportParamName: "Type_"
-        x-optionalDataType: "String"
-      - name: "token"
-        in: "formData"
-        description: "Token from your selected TFA type."
-        required: true
-        type: "string"
-        x-exportParamName: "Token"
-      responses:
-        200:
-          description: "Request was successful"
-          schema:
-            type: "boolean"
       deprecated: false
   /user/confirmEmail:
     post:
@@ -3409,10 +3552,26 @@ paths:
         type: "string"
         x-exportParamName: "Token"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             $ref: "#/definitions/AccessToken"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
       security: []
       deprecated: false
   /user/affiliateStatus:
@@ -3423,10 +3582,26 @@ paths:
       operationId: "User.getAffiliateStatus"
       parameters: []
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Affiliate"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
   /user/checkReferralCode:
     get:
@@ -3434,7 +3609,7 @@ paths:
       - "User"
       summary: "Check if a referral code is valid."
       description: "If the code is valid, responds with the referral code's discount\
-        \ (e.g. `0.1` for 10%). Otherwise, will return a 404."
+        \ (e.g. `0.1` for 10%). Otherwise, will return a 404 or 451 if invalid."
       operationId: "User.checkReferralCode"
       parameters:
       - name: "referralCode"
@@ -3444,12 +3619,57 @@ paths:
         x-exportParamName: "ReferralCode"
         x-optionalDataType: "String"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "number"
             format: "double"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
       security: []
+      deprecated: false
+  /user/quoteFillRatio:
+    get:
+      tags:
+      - "User"
+      summary: "Get 7 days worth of Quote Fill Ratio statistics."
+      operationId: "User.getQuoteFillRatio"
+      parameters: []
+      responses:
+        "200":
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/QuoteFillRatio"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
   /user/logout:
     post:
@@ -3459,26 +3679,27 @@ paths:
       operationId: "User.logout"
       parameters: []
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             type: "null"
-      security: []
-      deprecated: false
-  /user/logoutAll:
-    post:
-      tags:
-      - "User"
-      summary: "Log all systems out of BitMEX. This will revoke all of your account's\
-        \ access tokens, logging you out on all devices."
-      operationId: "User.logoutAll"
-      parameters: []
-      responses:
-        200:
-          description: "Request was successful"
+        "400":
+          description: "Parameter Error"
           schema:
-            type: "number"
-            format: "double"
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      security: []
       deprecated: false
   /user/preferences:
     post:
@@ -3502,10 +3723,26 @@ paths:
         x-exportParamName: "Overwrite"
         x-optionalDataType: "Bool"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             $ref: "#/definitions/User"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
   /user:
     get:
@@ -3515,74 +3752,26 @@ paths:
       operationId: "User.get"
       parameters: []
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             $ref: "#/definitions/User"
-      deprecated: false
-    put:
-      tags:
-      - "User"
-      summary: "Update your password, name, and other attributes."
-      operationId: "User.update"
-      parameters:
-      - name: "firstname"
-        in: "formData"
-        required: false
-        type: "string"
-        x-exportParamName: "Firstname"
-        x-optionalDataType: "String"
-      - name: "lastname"
-        in: "formData"
-        required: false
-        type: "string"
-        x-exportParamName: "Lastname"
-        x-optionalDataType: "String"
-      - name: "oldPassword"
-        in: "formData"
-        required: false
-        type: "string"
-        x-exportParamName: "OldPassword"
-        x-optionalDataType: "String"
-      - name: "newPassword"
-        in: "formData"
-        required: false
-        type: "string"
-        x-exportParamName: "NewPassword"
-        x-optionalDataType: "String"
-      - name: "newPasswordConfirm"
-        in: "formData"
-        required: false
-        type: "string"
-        x-exportParamName: "NewPasswordConfirm"
-        x-optionalDataType: "String"
-      - name: "username"
-        in: "formData"
-        description: "Username can only be set once. To reset, email support."
-        required: false
-        type: "string"
-        x-exportParamName: "Username"
-        x-optionalDataType: "String"
-      - name: "country"
-        in: "formData"
-        description: "Country of residence."
-        required: false
-        type: "string"
-        x-exportParamName: "Country"
-        x-optionalDataType: "String"
-      - name: "pgpPubKey"
-        in: "formData"
-        description: "PGP Public Key. If specified, automated emails will be sentwith\
-          \ this key."
-        required: false
-        type: "string"
-        x-exportParamName: "PgpPubKey"
-        x-optionalDataType: "String"
-      responses:
-        200:
-          description: "Request was successful"
+        "400":
+          description: "Parameter Error"
           schema:
-            $ref: "#/definitions/User"
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
   /user/commission:
     get:
@@ -3592,12 +3781,26 @@ paths:
       operationId: "User.getCommission"
       parameters: []
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/UserCommission"
+            $ref: "#/definitions/UserCommissionsBySymbol"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
   /user/margin:
     get:
@@ -3615,10 +3818,115 @@ paths:
         x-exportParamName: "Currency"
         x-optionalDataType: "String"
       responses:
-        200:
+        "200":
           description: "Request was successful"
           schema:
             $ref: "#/definitions/Margin"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
+  /user/communicationToken:
+    post:
+      tags:
+      - "User"
+      summary: "Register your communication token for mobile clients"
+      operationId: "User.communicationToken"
+      parameters:
+      - name: "token"
+        in: "formData"
+        required: true
+        type: "string"
+        x-exportParamName: "Token"
+      - name: "platformAgent"
+        in: "formData"
+        required: true
+        type: "string"
+        x-exportParamName: "PlatformAgent"
+      responses:
+        "200":
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/CommunicationToken"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
+  /userEvent:
+    get:
+      tags:
+      - "UserEvent"
+      summary: "Get your user events"
+      operationId: "UserEvent.get"
+      parameters:
+      - name: "count"
+        in: "query"
+        description: "Number of results to fetch."
+        required: false
+        type: "number"
+        default: 150.0
+        format: "double"
+        x-exportParamName: "Count"
+        x-optionalDataType: "Float64"
+      - name: "startId"
+        in: "query"
+        description: "Cursor for pagination."
+        required: false
+        type: "number"
+        format: "double"
+        x-exportParamName: "StartId"
+        x-optionalDataType: "Float64"
+      responses:
+        "200":
+          description: "Request was successful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/UserEvent"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
 securityDefinitions:
   apiKey:
@@ -3629,9 +3937,9 @@ securityDefinitions:
     type: "apiKey"
     name: "api-signature"
     in: "header"
-  apiNonce:
+  apiExpires:
     type: "apiKey"
-    name: "api-nonce"
+    name: "api-expires"
     in: "header"
 definitions:
   Announcement:
@@ -3665,8 +3973,6 @@ definitions:
     properties:
       error:
         $ref: "#/definitions/Error_error"
-  x-any:
-    type: "object"
   APIKey:
     type: "object"
     required:
@@ -4179,6 +4485,12 @@ definitions:
       turnover24h:
         type: "number"
         format: "int64"
+      homeNotional24h:
+        type: "number"
+        format: "double"
+      foreignNotional24h:
+        type: "number"
+        format: "double"
       prevPrice24h:
         type: "number"
         format: "double"
@@ -4261,12 +4573,12 @@ definitions:
         format: "date-time"
     description: "Tradeable Contracts, Indices, and History"
     example:
-      optionUnderlyingPrice: 0.8774076871421566
+      optionUnderlyingPrice: 0.5199002018724985
       deleverage: true
       riskLimit: 1.489415909854170383397331534069962799549102783203125
       fundingBaseSymbol: "fundingBaseSymbol"
-      prevPrice24h: 7.143538047012306
-      highPrice: 7.058770351582356
+      prevPrice24h: 7.058770351582356
+      highPrice: 0.10263654006109402
       fairMethod: "fairMethod"
       taxed: true
       state: "state"
@@ -4276,14 +4588,14 @@ definitions:
       publishTime: "2000-01-23T04:56:07.000+00:00"
       maintMargin: 1.0246457001441578
       takerFee: 4.965218492984954
-      fairBasis: 4.258773108174356
+      fairBasis: 4.678947989005849
       volume24h: 6.87805222012787620400331434211693704128265380859375
       underlying: "underlying"
       quoteToSettleMultiplier: 7.3862819483858839220147274318151175975799560546875
       fundingQuoteSymbol: "fundingQuoteSymbol"
       quoteCurrency: "quoteCurrency"
-      indicativeSettlePrice: 9.132027271330688
-      settledPrice: 9.702963800023566
+      indicativeSettlePrice: 9.702963800023566
+      settledPrice: 7.933506881737151
       relistInterval: "2000-01-23T04:56:07.000+00:00"
       prevClosePrice: 8.762042012749001
       maxPrice: 2.3021358869347655
@@ -4291,7 +4603,7 @@ definitions:
       settle: "2000-01-23T04:56:07.000+00:00"
       buyLeg: "buyLeg"
       tickSize: 9.301444243932576
-      markPrice: 4.678947989005849
+      markPrice: 9.132027271330688
       settlCurrency: "settlCurrency"
       listing: "2000-01-23T04:56:07.000+00:00"
       indicativeFundingRate: 6.683562403749608
@@ -4300,20 +4612,20 @@ definitions:
       limitDownPrice: 9.018348186070783
       lastTickDirection: "lastTickDirection"
       rebalanceTimestamp: "2000-01-23T04:56:07.000+00:00"
-      fairBasisRate: 6.628464275087742
-      lastPriceProtected: 4.652396432933246
-      midPrice: 3.0205796992916243
+      fairBasisRate: 1.041444916118296
+      lastPriceProtected: 7.740351818741173
+      midPrice: 7.04836565559697
       insuranceFee: 9.965781217890562
       optionStrikePrice: 1.4658129805029452
       limitUpPrice: 6.438423552598547
       bankruptLimitUpPrice: 6.965117697638846
       rebalanceInterval: "2000-01-23T04:56:07.000+00:00"
       fundingRate: 9.369310271410669
-      lastPrice: 0.10263654006109402
+      lastPrice: 8.969578798196912
       totalVolume: 2.884162126668780246063761296682059764862060546875
       symbol: "symbol"
       capped: true
-      vwap: 0.8851374739011653
+      vwap: 6.519180951018382
       closingTimestamp: "2000-01-23T04:56:07.000+00:00"
       typ: "typ"
       inverseLeg: "inverseLeg"
@@ -4321,22 +4633,22 @@ definitions:
       prevTotalTurnover: 5.94489560761401580890606055618263781070709228515625
       limit: 7.457744773683766
       calcInterval: "2000-01-23T04:56:07.000+00:00"
-      lastChangePcnt: 8.969578798196912
-      askPrice: 3.0576100241049344
+      lastChangePcnt: 3.0205796992916243
+      askPrice: 5.533258397034986
       multiplier: 3.61607674925191080461672754609026014804840087890625
-      indicativeTaxRate: 7.260521264802104
+      indicativeTaxRate: 0.8774076871421566
       settlementFee: 5.025004791520295
       totalTurnover: 6.70401929795003592715829654480330646038055419921875
       turnover24h: 3.093745262666447448651751983561553061008453369140625
-      fairPrice: 1.041444916118296
-      bidPrice: 7.740351818741173
+      fairPrice: 7.260521264802104
+      bidPrice: 3.0576100241049344
       volume: 6.77832496304801335185175048536621034145355224609375
-      impactMidPrice: 5.533258397034986
+      impactMidPrice: 4.078845849666752
       sellLeg: "sellLeg"
       optionStrikePcnt: 0.8008281904610115
       maxOrderQty: 5.63737665663332876420099637471139430999755859375
       hasLiquidity: true
-      openInterest: 4.078845849666752343409825698472559452056884765625
+      openInterest: 6.6284642750877420525057459599338471889495849609375
       riskStep: 6.8468526983526398765889098285697400569915771484375
       optionStrikeRound: 6.027456183070403
       isQuanto: true
@@ -4345,20 +4657,22 @@ definitions:
       underlyingSymbol: "underlyingSymbol"
       fundingTimestamp: "2000-01-23T04:56:07.000+00:00"
       makerFee: 1.1730742509559433
-      lowPrice: 6.519180951018382
+      lowPrice: 4.652396432933246
       underlyingToSettleMultiplier: 4.1456080298839363962315474054776132106781005859375
       sessionInterval: "2000-01-23T04:56:07.000+00:00"
       fundingInterval: "2000-01-23T04:56:07.000+00:00"
       bankruptLimitDownPrice: 3.5571952270680973
       turnover: 3.35319334701124294184637619764544069766998291015625
-      impactAskPrice: 3.2588565619047607
+      impactAskPrice: 0.2025324113236393
       referenceSymbol: "referenceSymbol"
-      openValue: 0.202532411323639305322785730822943150997161865234375
+      homeNotional24h: 7.143538047012306
+      openValue: 4.258773108174356281097061582840979099273681640625
       isInverse: true
       lotSize: 7.061401241503109105224211816675961017608642578125
       optionMultiplier: 5.962133916683182
       openingTimestamp: "2000-01-23T04:56:07.000+00:00"
-      impactBidPrice: 7.04836565559697
+      foreignNotional24h: 0.8851374739011653
+      impactBidPrice: 3.2588565619047607
       prevTotalVolume: 1.2846590061165319429647979632136411964893341064453125
       initMargin: 1.2315135367772556
       front: "2000-01-23T04:56:07.000+00:00"
@@ -4475,7 +4789,7 @@ definitions:
       orderID: "orderID"
       price: 0.8008281904610115
       leavesQty: 6.02745618307040320615897144307382404804229736328125
-  Notification:
+  GlobalNotification:
     type: "object"
     required:
     - "body"
@@ -4672,6 +4986,8 @@ definitions:
       size: 6.02745618307040320615897144307382404804229736328125
       price: 1.4658129805029452
       id: 0.80082819046101150206595775671303272247314453125
+  x-any:
+    type: "object"
   Position:
     type: "object"
     required:
@@ -5548,7 +5864,14 @@ definitions:
       referrerAccount:
         type: "number"
         format: "double"
+      referralDiscount:
+        type: "number"
+        format: "double"
+      affiliatePayout:
+        type: "number"
+        format: "double"
     example:
+      referralDiscount: 1.2315135367772556
       execTurnover: 5.63737665663332876420099637471139430999755859375
       totalTurnover: 9.301444243932575517419536481611430644989013671875
       referrerAccount: 7.386281948385884
@@ -5564,6 +5887,42 @@ definitions:
       totalComm: 3.61607674925191080461672754609026014804840087890625
       payoutPcnt: 2.027123023002322
       timestamp: "2000-01-23T04:56:07.000+00:00"
+      affiliatePayout: 1.0246457001441578
+  QuoteFillRatio:
+    type: "object"
+    required:
+    - "date"
+    properties:
+      date:
+        type: "string"
+        format: "date-time"
+      account:
+        type: "number"
+        format: "double"
+      quoteCount:
+        type: "number"
+        format: "double"
+      dealtCount:
+        type: "number"
+        format: "double"
+      quotesMavg7:
+        type: "number"
+        format: "double"
+      dealtMavg7:
+        type: "number"
+        format: "double"
+      quoteFillRatioMavg7:
+        type: "number"
+        format: "double"
+    description: "Daily Quote Fill Ratio Statistic"
+    example:
+      date: "2000-01-23T04:56:07.000+00:00"
+      quoteCount: 6.027456183070403
+      quoteFillRatioMavg7: 2.3021358869347655
+      dealtMavg7: 5.637376656633329
+      account: 0.8008281904610115
+      dealtCount: 1.4658129805029452
+      quotesMavg7: 5.962133916683182
   User:
     type: "object"
     required:
@@ -5624,6 +5983,9 @@ definitions:
         - "hideNotifications"
         tickerGroup: "tickerGroup"
         animationsEnabled: true
+        disablePush:
+        - "disablePush"
+        - "disablePush"
         alertOnLiquidations: true
         locale: "en-US"
         hideConfirmDialogs:
@@ -5668,26 +6030,8 @@ definitions:
       email: "email"
       pgpPubKey: "pgpPubKey"
       username: "username"
-  UserCommission:
+  UserCommissionsBySymbol:
     type: "object"
-    properties:
-      makerFee:
-        type: "number"
-        format: "double"
-      takerFee:
-        type: "number"
-        format: "double"
-      settlementFee:
-        type: "number"
-        format: "double"
-      maxFee:
-        type: "number"
-        format: "double"
-    example:
-      takerFee: 6.027456183070403
-      makerFee: 0.8008281904610115
-      settlementFee: 1.4658129805029452
-      maxFee: 5.962133916683182
   Margin:
     type: "object"
     required:
@@ -5860,6 +6204,110 @@ definitions:
       taxableMargin: 1.489415909854170383397331534069962799549102783203125
       account: 0.80082819046101150206595775671303272247314453125
       availableMargin: 5.94489560761401580890606055618263781070709228515625
+  CommunicationToken:
+    type: "object"
+    required:
+    - "channel"
+    - "deviceToken"
+    - "id"
+    - "userId"
+    properties:
+      id:
+        type: "string"
+      userId:
+        type: "number"
+        format: "int32"
+      deviceToken:
+        type: "string"
+      channel:
+        type: "string"
+    description: "User communication SNS token"
+    example:
+      channel: "channel"
+      id: "id"
+      userId: 0.80082819046101150206595775671303272247314453125
+      deviceToken: "deviceToken"
+  UserEvent:
+    type: "object"
+    required:
+    - "created"
+    - "createdById"
+    - "status"
+    - "type"
+    - "userId"
+    properties:
+      id:
+        type: "number"
+        format: "double"
+      type:
+        type: "string"
+        enum:
+        - "apiKeyCreated"
+        - "deleverageExecution"
+        - "depositConfirmed"
+        - "depositPending"
+        - "banZeroVolumeApiUser"
+        - "liquidationOrderPlaced"
+        - "login"
+        - "pgpMaskedEmail"
+        - "pgpTestEmail"
+        - "passwordChanged"
+        - "positionStateLiquidated"
+        - "positionStateWarning"
+        - "resetPasswordConfirmed"
+        - "resetPasswordRequest"
+        - "transferCanceled"
+        - "transferCompleted"
+        - "transferReceived"
+        - "transferRequested"
+        - "twoFactorDisabled"
+        - "twoFactorEnabled"
+        - "withdrawalCanceled"
+        - "withdrawalCompleted"
+        - "withdrawalConfirmed"
+        - "withdrawalRequested"
+        - "verify"
+      status:
+        type: "string"
+        enum:
+        - "success"
+        - "failure"
+      userId:
+        type: "number"
+        format: "double"
+      createdById:
+        type: "number"
+        format: "double"
+      ip:
+        type: "string"
+      geoipCountry:
+        type: "string"
+        maxLength: 2
+      geoipRegion:
+        type: "string"
+        maxLength: 3
+      geoipSubRegion:
+        type: "string"
+        maxLength: 3
+      eventMeta:
+        type: "object"
+        properties: {}
+      created:
+        type: "string"
+        format: "date-time"
+    description: "User Events for auditing"
+    example:
+      geoipRegion: "geoipRegion"
+      geoipSubRegion: "geoipSubRegion"
+      eventMeta: "{}"
+      created: "2000-01-23T04:56:07.000+00:00"
+      ip: "ip"
+      id: 0.8008281904610115
+      type: "apiKeyCreated"
+      userId: 6.027456183070403
+      createdById: 1.4658129805029452
+      status: "success"
+      geoipCountry: "geoipCountry"
   UserPreferences:
     type: "object"
     properties:
@@ -5880,6 +6328,10 @@ definitions:
       debug:
         type: "boolean"
       disableEmails:
+        type: "array"
+        items:
+          type: "string"
+      disablePush:
         type: "array"
         items:
           type: "string"
@@ -5941,6 +6393,9 @@ definitions:
       - "hideNotifications"
       tickerGroup: "tickerGroup"
       animationsEnabled: true
+      disablePush:
+      - "disablePush"
+      - "disablePush"
       alertOnLiquidations: true
       locale: "en-US"
       hideConfirmDialogs:
@@ -5973,18 +6428,14 @@ definitions:
       showLocaleNumbers: true
       chatChannelID: 1.4658129805029452
   inline_response_200:
-    properties:
-      success:
-        type: "boolean"
-    example:
-      success: true
-  inline_response_200_1:
+    type: "object"
     properties:
       name:
         type: "string"
     example:
       name: "name"
   Error_error:
+    type: "object"
     properties:
       message:
         type: "string"

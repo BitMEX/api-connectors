@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **currency** | **String** |  | [optional] 
 **debug** | **BOOLEAN** |  | [optional] 
 **disable_emails** | **Array&lt;String&gt;** |  | [optional] 
+**disable_push** | **Array&lt;String&gt;** |  | [optional] 
 **hide_confirm_dialogs** | **Array&lt;String&gt;** |  | [optional] 
 **hide_connection_modal** | **BOOLEAN** |  | [optional] 
 **hide_from_leaderboard** | **BOOLEAN** |  | [optional] [default to false]

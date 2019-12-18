@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -50,6 +50,10 @@ public class Affiliate {
   private Date timestamp = null;
   @SerializedName("referrerAccount")
   private Double referrerAccount = null;
+  @SerializedName("referralDiscount")
+  private Double referralDiscount = null;
+  @SerializedName("affiliatePayout")
+  private Double affiliatePayout = null;
 
   /**
    **/
@@ -201,6 +205,26 @@ public class Affiliate {
     this.referrerAccount = referrerAccount;
   }
 
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getReferralDiscount() {
+    return referralDiscount;
+  }
+  public void setReferralDiscount(Double referralDiscount) {
+    this.referralDiscount = referralDiscount;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getAffiliatePayout() {
+    return affiliatePayout;
+  }
+  public void setAffiliatePayout(Double affiliatePayout) {
+    this.affiliatePayout = affiliatePayout;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -225,7 +249,9 @@ public class Affiliate {
         (this.payoutPcnt == null ? affiliate.payoutPcnt == null : this.payoutPcnt.equals(affiliate.payoutPcnt)) &&
         (this.pendingPayout == null ? affiliate.pendingPayout == null : this.pendingPayout.equals(affiliate.pendingPayout)) &&
         (this.timestamp == null ? affiliate.timestamp == null : this.timestamp.equals(affiliate.timestamp)) &&
-        (this.referrerAccount == null ? affiliate.referrerAccount == null : this.referrerAccount.equals(affiliate.referrerAccount));
+        (this.referrerAccount == null ? affiliate.referrerAccount == null : this.referrerAccount.equals(affiliate.referrerAccount)) &&
+        (this.referralDiscount == null ? affiliate.referralDiscount == null : this.referralDiscount.equals(affiliate.referralDiscount)) &&
+        (this.affiliatePayout == null ? affiliate.affiliatePayout == null : this.affiliatePayout.equals(affiliate.affiliatePayout));
   }
 
   @Override
@@ -246,6 +272,8 @@ public class Affiliate {
     result = 31 * result + (this.pendingPayout == null ? 0: this.pendingPayout.hashCode());
     result = 31 * result + (this.timestamp == null ? 0: this.timestamp.hashCode());
     result = 31 * result + (this.referrerAccount == null ? 0: this.referrerAccount.hashCode());
+    result = 31 * result + (this.referralDiscount == null ? 0: this.referralDiscount.hashCode());
+    result = 31 * result + (this.affiliatePayout == null ? 0: this.affiliatePayout.hashCode());
     return result;
   }
 
@@ -269,6 +297,8 @@ public class Affiliate {
     sb.append("  pendingPayout: ").append(pendingPayout).append("\n");
     sb.append("  timestamp: ").append(timestamp).append("\n");
     sb.append("  referrerAccount: ").append(referrerAccount).append("\n");
+    sb.append("  referralDiscount: ").append(referralDiscount).append("\n");
+    sb.append("  affiliatePayout: ").append(affiliatePayout).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

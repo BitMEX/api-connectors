@@ -1,6 +1,6 @@
 # IO.Swagger.Api.LeaderboardApi
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -69,7 +69,7 @@ No authorization required
 
 <a name="leaderboardgetname"></a>
 # **LeaderboardGetName**
-> InlineResponse2001 LeaderboardGetName ()
+> InlineResponse200 LeaderboardGetName ()
 
 Get your alias on the leaderboard.
 
@@ -87,14 +87,14 @@ namespace Example
     {
         public void main()
         {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
             // Configure API key authorization: apiKey
             Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
-            // Configure API key authorization: apiNonce
-            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
             // Configure API key authorization: apiSignature
             Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -105,7 +105,7 @@ namespace Example
             try
             {
                 // Get your alias on the leaderboard.
-                InlineResponse2001 result = apiInstance.LeaderboardGetName();
+                InlineResponse200 result = apiInstance.LeaderboardGetName();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -122,11 +122,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

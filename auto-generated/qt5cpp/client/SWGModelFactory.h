@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -21,25 +21,26 @@
 #include "SWGAnnouncement.h"
 #include "SWGChat.h"
 #include "SWGChatChannel.h"
+#include "SWGCommunicationToken.h"
 #include "SWGConnectedUsers.h"
 #include "SWGError.h"
 #include "SWGError_error.h"
 #include "SWGExecution.h"
 #include "SWGFunding.h"
+#include "SWGGlobalNotification.h"
 #include "SWGIndexComposite.h"
 #include "SWGInline_response_200.h"
-#include "SWGInline_response_200_1.h"
 #include "SWGInstrument.h"
 #include "SWGInstrumentInterval.h"
 #include "SWGInsurance.h"
 #include "SWGLeaderboard.h"
 #include "SWGLiquidation.h"
 #include "SWGMargin.h"
-#include "SWGNotification.h"
 #include "SWGOrder.h"
 #include "SWGOrderBookL2.h"
 #include "SWGPosition.h"
 #include "SWGQuote.h"
+#include "SWGQuoteFillRatio.h"
 #include "SWGSettlement.h"
 #include "SWGStats.h"
 #include "SWGStatsHistory.h"
@@ -48,7 +49,8 @@
 #include "SWGTradeBin.h"
 #include "SWGTransaction.h"
 #include "SWGUser.h"
-#include "SWGUserCommission.h"
+#include "SWGUserCommissionsBySymbol.h"
+#include "SWGUserEvent.h"
 #include "SWGUserPreferences.h"
 #include "SWGWallet.h"
 #include "SWGX-any.h"
@@ -74,6 +76,9 @@ namespace Swagger {
     if(QString("SWGChatChannel").compare(type) == 0) {
       return new SWGChatChannel();
     }
+    if(QString("SWGCommunicationToken").compare(type) == 0) {
+      return new SWGCommunicationToken();
+    }
     if(QString("SWGConnectedUsers").compare(type) == 0) {
       return new SWGConnectedUsers();
     }
@@ -89,14 +94,14 @@ namespace Swagger {
     if(QString("SWGFunding").compare(type) == 0) {
       return new SWGFunding();
     }
+    if(QString("SWGGlobalNotification").compare(type) == 0) {
+      return new SWGGlobalNotification();
+    }
     if(QString("SWGIndexComposite").compare(type) == 0) {
       return new SWGIndexComposite();
     }
     if(QString("SWGInline_response_200").compare(type) == 0) {
       return new SWGInline_response_200();
-    }
-    if(QString("SWGInline_response_200_1").compare(type) == 0) {
-      return new SWGInline_response_200_1();
     }
     if(QString("SWGInstrument").compare(type) == 0) {
       return new SWGInstrument();
@@ -116,9 +121,6 @@ namespace Swagger {
     if(QString("SWGMargin").compare(type) == 0) {
       return new SWGMargin();
     }
-    if(QString("SWGNotification").compare(type) == 0) {
-      return new SWGNotification();
-    }
     if(QString("SWGOrder").compare(type) == 0) {
       return new SWGOrder();
     }
@@ -130,6 +132,9 @@ namespace Swagger {
     }
     if(QString("SWGQuote").compare(type) == 0) {
       return new SWGQuote();
+    }
+    if(QString("SWGQuoteFillRatio").compare(type) == 0) {
+      return new SWGQuoteFillRatio();
     }
     if(QString("SWGSettlement").compare(type) == 0) {
       return new SWGSettlement();
@@ -155,8 +160,11 @@ namespace Swagger {
     if(QString("SWGUser").compare(type) == 0) {
       return new SWGUser();
     }
-    if(QString("SWGUserCommission").compare(type) == 0) {
-      return new SWGUserCommission();
+    if(QString("SWGUserCommissionsBySymbol").compare(type) == 0) {
+      return new SWGUserCommissionsBySymbol();
+    }
+    if(QString("SWGUserEvent").compare(type) == 0) {
+      return new SWGUserEvent();
     }
     if(QString("SWGUserPreferences").compare(type) == 0) {
       return new SWGUserPreferences();

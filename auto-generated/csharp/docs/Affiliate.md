@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **PendingPayout** | **decimal?** |  | [optional] 
 **Timestamp** | **DateTime?** |  | [optional] 
 **ReferrerAccount** | **double?** |  | [optional] 
+**ReferralDiscount** | **double?** |  | [optional] 
+**AffiliatePayout** | **double?** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

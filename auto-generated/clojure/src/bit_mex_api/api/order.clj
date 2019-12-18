@@ -14,9 +14,6 @@ already filled.
 
 > A `leavesQty` can be used to make a \"Filled\" order live again, if it is received within 60 seconds of the fill.
 
-Use the `simpleOrderQty` and `simpleLeavesQty` fields to specify order size in Bitcoin, rather than contracts.
-These fields will round up to the nearest contract.
-
 Like order placement, amending can be done in bulk. Simply send a request to `PUT /api/v1/order/bulk` with
 a JSON body of the shape: `{\"orders\": [{...}, {...}]}`, each object containing the fields used in this endpoint."
   ([] (order-amend-with-http-info nil))
@@ -28,7 +25,7 @@ a JSON body of the shape: `{\"orders\": [{...}, {...}]}`, each object containing
               :form-params   {"orderID" order-id "origClOrdID" orig-cl-ord-id "clOrdID" cl-ord-id "simpleOrderQty" simple-order-qty "orderQty" order-qty "simpleLeavesQty" simple-leaves-qty "leavesQty" leaves-qty "price" price "stopPx" stop-px "pegOffsetValue" peg-offset-value "text" text }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
+              :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
 
 (defn order-amend
   "Amend the quantity or price of an open order.
@@ -41,9 +38,6 @@ if you want to adjust your position's delta by a certain amount, regardless of h
 already filled.
 
 > A `leavesQty` can be used to make a \"Filled\" order live again, if it is received within 60 seconds of the fill.
-
-Use the `simpleOrderQty` and `simpleLeavesQty` fields to specify order size in Bitcoin, rather than contracts.
-These fields will round up to the nearest contract.
 
 Like order placement, amending can be done in bulk. Simply send a request to `PUT /api/v1/order/bulk` with
 a JSON body of the shape: `{\"orders\": [{...}, {...}]}`, each object containing the fields used in this endpoint."
@@ -63,7 +57,7 @@ a JSON body of the shape: `{\"orders\": [{...}, {...}]}`, each object containing
               :form-params   {"orders" orders }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
+              :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
 
 (defn order-amend-bulk
   "Amend multiple orders for the same symbol.
@@ -84,7 +78,7 @@ a JSON body of the shape: `{\"orders\": [{...}, {...}]}`, each object containing
               :form-params   {"orderID" order-id "clOrdID" cl-ord-id "text" text }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
+              :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
 
 (defn order-cancel
   "Cancel order(s). Send multiple order IDs to cancel in bulk.
@@ -104,7 +98,7 @@ a JSON body of the shape: `{\"orders\": [{...}, {...}]}`, each object containing
               :form-params   {"symbol" symbol "filter" filter "text" text }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
+              :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
 
 (defn order-cancel-all
   "Cancels all of your orders."
@@ -130,7 +124,7 @@ This is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#Dead-Man
              :form-params   {"timeout" timeout }
              :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-             :auth-names    ["apiKey" "apiNonce" "apiSignature"]}))
+             :auth-names    ["apiExpires" "apiKey" "apiSignature"]}))
 
 (defn order-cancel-all-after
   "Automatically cancel all your orders after a specified timeout.
@@ -157,7 +151,7 @@ This is also available via [WebSocket](https://www.bitmex.com/app/wsAPI#Dead-Man
               :form-params   {"symbol" symbol "price" price }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
+              :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
 
 (defn order-close-position
   "Close a position. [Deprecated, use POST /order with execInst: 'Close']
@@ -180,7 +174,7 @@ See <a href=\"http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_D_68.html\">th
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
+              :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
 
 (defn order-get-orders
   "Get your orders.
@@ -203,63 +197,41 @@ All orders require a `symbol`. All other fields are optional except when otherwi
 
 These are the valid `ordType`s:
 
-* **Limit**: The default order type. Specify an `orderQty` and `price`.
-* **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at
+- **Limit**: The default order type. Specify an `orderQty` and `price`.
+- **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at
   which point it will cancel.
-* **MarketWithLeftOverAsLimit**: A market order that, after eating through the order book as far as
-  permitted by available margin, will become a limit order. The difference between this type and `Market` only
-  affects the behavior in thin books. Upon reaching the deepest possible price, if there is quantity left over,
-  a `Market` order will cancel the remaining quantity. `MarketWithLeftOverAsLimit` will keep the remaining
-  quantity in the books as a `Limit`.
-* **Stop**: A Stop Market order. Specify an `orderQty` and `stopPx`. When the `stopPx` is reached, the order will be entered
+- **Stop**: A Stop Market order. Specify an `orderQty` and `stopPx`. When the `stopPx` is reached, the order will be entered
   into the book.
-  * On sell orders, the order will trigger if the triggering price is lower than the `stopPx`. On buys, higher.
-  * Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your
+  - On sell orders, the order will trigger if the triggering price is lower than the `stopPx`. On buys, higher.
+  - Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your
     account so that it may trigger fully.
-  * `Close` Stops don't require an `orderQty`. See Execution Instructions below.
-* **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an `orderQty`, `stopPx`,
+  - `Close` Stops don't require an `orderQty`. See Execution Instructions below.
+- **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an `orderQty`, `stopPx`,
   and `price`.
-* **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders.
-* **LimitIfTouched**: As above; use for Take Profit Limit orders.
+- **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders.
+- **LimitIfTouched**: As above; use for Take Profit Limit orders.
 
 #### Execution Instructions
 
 The following `execInst`s are supported. If using multiple, separate with a comma (e.g. `LastPrice,Close`).
 
-* **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement,
+- **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement,
   it will cancel instead.
-* **AllOrNone**: Valid only for hidden orders (`displayQty: 0`). Use to only execute if the entire order would fill.
-* **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.
+- **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.
   Use only one. By default, `'MarkPrice'` is used. Also used for Pegged orders to define the value of `'LastPeg'`.
-* **ReduceOnly**: A `'ReduceOnly'` order can only reduce your position, not increase it. If you have a `'ReduceOnly'`
+- **ReduceOnly**: A `'ReduceOnly'` order can only reduce your position, not increase it. If you have a `'ReduceOnly'`
   limit order that rests in the order book while the position is reduced by other orders, then its order quantity will
-  be amended down or canceled. If there are multiple `'ReduceOnly'` orders the least agresssive will be amended first.
-* **Close**: `'Close'` implies `'ReduceOnly'`. A `'Close'` order will cancel other active limit orders with the same side
+  be amended down or canceled. If there are multiple `'ReduceOnly'` orders the least aggressive will be amended first.
+- **Close**: `'Close'` implies `'ReduceOnly'`. A `'Close'` order will cancel other active limit orders with the same side
   and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a
   `'Close'` Stop is ensured to have the margin required to execute, and can only execute up to the full size of your
   position. If `orderQty` is not specified, a `'Close'` order has an `orderQty` equal to your current position's size.
-  * Note that a `Close` order without an `orderQty` requires a `side`, so that BitMEX knows if it should trigger
-  above or below the `stopPx`.
+  - Note that a `Close` order without an `orderQty` requires a `side`, so that BitMEX knows if it should trigger
+    above or below the `stopPx`.
 
 #### Linked Orders
 
-Linked Orders are an advanced capability. It is very powerful, but its use requires careful coding and testing.
-Please follow this document carefully and use the [Testnet Exchange](https://testnet.bitmex.com) while developing.
-
-BitMEX offers four advanced Linked Order types:
-
-* **OCO**: *One Cancels the Other*. A very flexible version of the standard Stop / Take Profit technique.
-  Multiple orders may be linked together using a single `clOrdLinkID`. Send a `contingencyType` of
-  `OneCancelsTheOther` on the orders. The first order that fully or partially executes (or activates
-  for `Stop` orders) will cancel all other orders with the same `clOrdLinkID`.
-* **OTO**: *One Triggers the Other*. Send a `contingencyType` of `'OneTriggersTheOther'` on the primary order and
-  then subsequent orders with the same `clOrdLinkID` will be not be triggered until the primary order fully executes.
-* **OUOA**: *One Updates the Other Absolute*. Send a `contingencyType` of `'OneUpdatesTheOtherAbsolute'` on the orders. Then
-  as one order has a execution, other orders with the same `clOrdLinkID` will have their order quantity amended
-  down by the execution quantity.
-* **OUOP**: *One Updates the Other Proportional*. Send a `contingencyType` of `'OneUpdatesTheOtherProportional'` on the orders. Then
-  as one order has a execution, other orders with the same `clOrdLinkID` will have their order quantity reduced proportionally
-  by the fill percentage.
+[Linked Orders are deprecated as of 2018/11/10](https://blog.bitmex.com/api_announcement/deprecation-of-contingent-orders/)
 
 #### Trailing Stops
 
@@ -273,8 +245,7 @@ Requires `ordType`: `'Stop', 'StopLimit', 'MarketIfTouched', 'LimitIfTouched'`.
 
 #### Simple Quantities
 
-Send a `simpleOrderQty` instead of an `orderQty` to create an order denominated in the underlying currency.
-This is useful for opening up a position with 1 XBT of exposure without having to calculate how many contracts it is.
+[Simple Quantities are deprecated as of 2018/10/26](https://blog.bitmex.com/api_announcement/deprecation-of-simpleorderqty-functionality/)
 
 #### Rate Limits
 
@@ -308,7 +279,7 @@ PUT /api/v1/order {\"origClOrdID\": \"abc-123\", \"clOrdID\": \"def-456\", \"lea
               :form-params   {"symbol" symbol "side" side "simpleOrderQty" simple-order-qty "orderQty" order-qty "price" price "displayQty" display-qty "stopPx" stop-px "clOrdID" cl-ord-id "clOrdLinkID" cl-ord-link-id "pegOffsetValue" peg-offset-value "pegPriceType" peg-price-type "ordType" ord-type "timeInForce" time-in-force "execInst" exec-inst "contingencyType" contingency-type "text" text }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
+              :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
 
 (defn order-new
   "Create a new order.
@@ -322,63 +293,41 @@ All orders require a `symbol`. All other fields are optional except when otherwi
 
 These are the valid `ordType`s:
 
-* **Limit**: The default order type. Specify an `orderQty` and `price`.
-* **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at
+- **Limit**: The default order type. Specify an `orderQty` and `price`.
+- **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at
   which point it will cancel.
-* **MarketWithLeftOverAsLimit**: A market order that, after eating through the order book as far as
-  permitted by available margin, will become a limit order. The difference between this type and `Market` only
-  affects the behavior in thin books. Upon reaching the deepest possible price, if there is quantity left over,
-  a `Market` order will cancel the remaining quantity. `MarketWithLeftOverAsLimit` will keep the remaining
-  quantity in the books as a `Limit`.
-* **Stop**: A Stop Market order. Specify an `orderQty` and `stopPx`. When the `stopPx` is reached, the order will be entered
+- **Stop**: A Stop Market order. Specify an `orderQty` and `stopPx`. When the `stopPx` is reached, the order will be entered
   into the book.
-  * On sell orders, the order will trigger if the triggering price is lower than the `stopPx`. On buys, higher.
-  * Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your
+  - On sell orders, the order will trigger if the triggering price is lower than the `stopPx`. On buys, higher.
+  - Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your
     account so that it may trigger fully.
-  * `Close` Stops don't require an `orderQty`. See Execution Instructions below.
-* **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an `orderQty`, `stopPx`,
+  - `Close` Stops don't require an `orderQty`. See Execution Instructions below.
+- **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an `orderQty`, `stopPx`,
   and `price`.
-* **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders.
-* **LimitIfTouched**: As above; use for Take Profit Limit orders.
+- **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders.
+- **LimitIfTouched**: As above; use for Take Profit Limit orders.
 
 #### Execution Instructions
 
 The following `execInst`s are supported. If using multiple, separate with a comma (e.g. `LastPrice,Close`).
 
-* **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement,
+- **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement,
   it will cancel instead.
-* **AllOrNone**: Valid only for hidden orders (`displayQty: 0`). Use to only execute if the entire order would fill.
-* **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.
+- **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.
   Use only one. By default, `'MarkPrice'` is used. Also used for Pegged orders to define the value of `'LastPeg'`.
-* **ReduceOnly**: A `'ReduceOnly'` order can only reduce your position, not increase it. If you have a `'ReduceOnly'`
+- **ReduceOnly**: A `'ReduceOnly'` order can only reduce your position, not increase it. If you have a `'ReduceOnly'`
   limit order that rests in the order book while the position is reduced by other orders, then its order quantity will
-  be amended down or canceled. If there are multiple `'ReduceOnly'` orders the least agresssive will be amended first.
-* **Close**: `'Close'` implies `'ReduceOnly'`. A `'Close'` order will cancel other active limit orders with the same side
+  be amended down or canceled. If there are multiple `'ReduceOnly'` orders the least aggressive will be amended first.
+- **Close**: `'Close'` implies `'ReduceOnly'`. A `'Close'` order will cancel other active limit orders with the same side
   and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a
   `'Close'` Stop is ensured to have the margin required to execute, and can only execute up to the full size of your
   position. If `orderQty` is not specified, a `'Close'` order has an `orderQty` equal to your current position's size.
-  * Note that a `Close` order without an `orderQty` requires a `side`, so that BitMEX knows if it should trigger
-  above or below the `stopPx`.
+  - Note that a `Close` order without an `orderQty` requires a `side`, so that BitMEX knows if it should trigger
+    above or below the `stopPx`.
 
 #### Linked Orders
 
-Linked Orders are an advanced capability. It is very powerful, but its use requires careful coding and testing.
-Please follow this document carefully and use the [Testnet Exchange](https://testnet.bitmex.com) while developing.
-
-BitMEX offers four advanced Linked Order types:
-
-* **OCO**: *One Cancels the Other*. A very flexible version of the standard Stop / Take Profit technique.
-  Multiple orders may be linked together using a single `clOrdLinkID`. Send a `contingencyType` of
-  `OneCancelsTheOther` on the orders. The first order that fully or partially executes (or activates
-  for `Stop` orders) will cancel all other orders with the same `clOrdLinkID`.
-* **OTO**: *One Triggers the Other*. Send a `contingencyType` of `'OneTriggersTheOther'` on the primary order and
-  then subsequent orders with the same `clOrdLinkID` will be not be triggered until the primary order fully executes.
-* **OUOA**: *One Updates the Other Absolute*. Send a `contingencyType` of `'OneUpdatesTheOtherAbsolute'` on the orders. Then
-  as one order has a execution, other orders with the same `clOrdLinkID` will have their order quantity amended
-  down by the execution quantity.
-* **OUOP**: *One Updates the Other Proportional*. Send a `contingencyType` of `'OneUpdatesTheOtherProportional'` on the orders. Then
-  as one order has a execution, other orders with the same `clOrdLinkID` will have their order quantity reduced proportionally
-  by the fill percentage.
+[Linked Orders are deprecated as of 2018/11/10](https://blog.bitmex.com/api_announcement/deprecation-of-contingent-orders/)
 
 #### Trailing Stops
 
@@ -392,8 +341,7 @@ Requires `ordType`: `'Stop', 'StopLimit', 'MarketIfTouched', 'LimitIfTouched'`.
 
 #### Simple Quantities
 
-Send a `simpleOrderQty` instead of an `orderQty` to create an order denominated in the underlying currency.
-This is useful for opening up a position with 1 XBT of exposure without having to calculate how many contracts it is.
+[Simple Quantities are deprecated as of 2018/10/26](https://blog.bitmex.com/api_announcement/deprecation-of-simpleorderqty-functionality/)
 
 #### Rate Limits
 
@@ -423,7 +371,7 @@ PUT /api/v1/order {\"origClOrdID\": \"abc-123\", \"clOrdID\": \"def-456\", \"lea
 
 (defn order-new-bulk-with-http-info
   "Create multiple new orders for the same symbol.
-  This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, and Pegged.
+  This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.
 
 Each individual order object in the array should have the same properties as an individual POST /order call.
 
@@ -441,11 +389,11 @@ For now, only `application/json` is supported on this endpoint."
               :form-params   {"orders" orders }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
+              :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
 
 (defn order-new-bulk
   "Create multiple new orders for the same symbol.
-  This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, and Pegged.
+  This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.
 
 Each individual order object in the array should have the same properties as an individual POST /order call.
 

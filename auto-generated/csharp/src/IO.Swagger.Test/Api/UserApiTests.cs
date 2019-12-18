@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -89,6 +89,19 @@ namespace IO.Swagger.Test
         }
         
         /// <summary>
+        /// Test UserCommunicationToken
+        /// </summary>
+        [Test]
+        public void UserCommunicationTokenTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string token = null;
+            //string platformAgent = null;
+            //var response = instance.UserCommunicationToken(token, platformAgent);
+            //Assert.IsInstanceOf<List<CommunicationToken>> (response, "response is List<CommunicationToken>");
+        }
+        
+        /// <summary>
         /// Test UserConfirm
         /// </summary>
         [Test]
@@ -101,19 +114,6 @@ namespace IO.Swagger.Test
         }
         
         /// <summary>
-        /// Test UserConfirmEnableTFA
-        /// </summary>
-        [Test]
-        public void UserConfirmEnableTFATest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string token = null;
-            //string type = null;
-            //var response = instance.UserConfirmEnableTFA(token, type);
-            //Assert.IsInstanceOf<bool?> (response, "response is bool?");
-        }
-        
-        /// <summary>
         /// Test UserConfirmWithdrawal
         /// </summary>
         [Test]
@@ -123,19 +123,6 @@ namespace IO.Swagger.Test
             //string token = null;
             //var response = instance.UserConfirmWithdrawal(token);
             //Assert.IsInstanceOf<Transaction> (response, "response is Transaction");
-        }
-        
-        /// <summary>
-        /// Test UserDisableTFA
-        /// </summary>
-        [Test]
-        public void UserDisableTFATest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string token = null;
-            //string type = null;
-            //var response = instance.UserDisableTFA(token, type);
-            //Assert.IsInstanceOf<bool?> (response, "response is bool?");
         }
         
         /// <summary>
@@ -168,7 +155,7 @@ namespace IO.Swagger.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //var response = instance.UserGetCommission();
-            //Assert.IsInstanceOf<List<UserCommission>> (response, "response is List<UserCommission>");
+            //Assert.IsInstanceOf<UserCommissionsBySymbol> (response, "response is UserCommissionsBySymbol");
         }
         
         /// <summary>
@@ -184,6 +171,19 @@ namespace IO.Swagger.Test
         }
         
         /// <summary>
+        /// Test UserGetExecutionHistory
+        /// </summary>
+        [Test]
+        public void UserGetExecutionHistoryTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string symbol = null;
+            //DateTime? timestamp = null;
+            //var response = instance.UserGetExecutionHistory(symbol, timestamp);
+            //Assert.IsInstanceOf<Object> (response, "response is Object");
+        }
+        
+        /// <summary>
         /// Test UserGetMargin
         /// </summary>
         [Test]
@@ -193,6 +193,17 @@ namespace IO.Swagger.Test
             //string currency = null;
             //var response = instance.UserGetMargin(currency);
             //Assert.IsInstanceOf<Margin> (response, "response is Margin");
+        }
+        
+        /// <summary>
+        /// Test UserGetQuoteFillRatio
+        /// </summary>
+        [Test]
+        public void UserGetQuoteFillRatioTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //var response = instance.UserGetQuoteFillRatio();
+            //Assert.IsInstanceOf<QuoteFillRatio> (response, "response is QuoteFillRatio");
         }
         
         /// <summary>
@@ -215,7 +226,9 @@ namespace IO.Swagger.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string currency = null;
-            //var response = instance.UserGetWalletHistory(currency);
+            //double? count = null;
+            //double? start = null;
+            //var response = instance.UserGetWalletHistory(currency, count, start);
             //Assert.IsInstanceOf<List<Transaction>> (response, "response is List<Transaction>");
         }
         
@@ -243,17 +256,6 @@ namespace IO.Swagger.Test
         }
         
         /// <summary>
-        /// Test UserLogoutAll
-        /// </summary>
-        [Test]
-        public void UserLogoutAllTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //var response = instance.UserLogoutAll();
-            //Assert.IsInstanceOf<double?> (response, "response is double?");
-        }
-        
-        /// <summary>
         /// Test UserMinWithdrawalFee
         /// </summary>
         [Test]
@@ -263,18 +265,6 @@ namespace IO.Swagger.Test
             //string currency = null;
             //var response = instance.UserMinWithdrawalFee(currency);
             //Assert.IsInstanceOf<Object> (response, "response is Object");
-        }
-        
-        /// <summary>
-        /// Test UserRequestEnableTFA
-        /// </summary>
-        [Test]
-        public void UserRequestEnableTFATest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string type = null;
-            //var response = instance.UserRequestEnableTFA(type);
-            //Assert.IsInstanceOf<bool?> (response, "response is bool?");
         }
         
         /// <summary>
@@ -289,7 +279,8 @@ namespace IO.Swagger.Test
             //string address = null;
             //string otpToken = null;
             //double? fee = null;
-            //var response = instance.UserRequestWithdrawal(currency, amount, address, otpToken, fee);
+            //string text = null;
+            //var response = instance.UserRequestWithdrawal(currency, amount, address, otpToken, fee, text);
             //Assert.IsInstanceOf<Transaction> (response, "response is Transaction");
         }
         
@@ -303,25 +294,6 @@ namespace IO.Swagger.Test
             //string prefs = null;
             //bool? overwrite = null;
             //var response = instance.UserSavePreferences(prefs, overwrite);
-            //Assert.IsInstanceOf<User> (response, "response is User");
-        }
-        
-        /// <summary>
-        /// Test UserUpdate
-        /// </summary>
-        [Test]
-        public void UserUpdateTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string firstname = null;
-            //string lastname = null;
-            //string oldPassword = null;
-            //string newPassword = null;
-            //string newPasswordConfirm = null;
-            //string username = null;
-            //string country = null;
-            //string pgpPubKey = null;
-            //var response = instance.UserUpdate(firstname, lastname, oldPassword, newPassword, newPasswordConfirm, username, country, pgpPubKey);
             //Assert.IsInstanceOf<User> (response, "response is User");
         }
         

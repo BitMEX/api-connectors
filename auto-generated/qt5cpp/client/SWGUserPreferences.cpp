@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -53,6 +53,8 @@ SWGUserPreferences::init() {
     m_debug_isSet = false;
     disable_emails = new QList<QString*>();
     m_disable_emails_isSet = false;
+    disable_push = new QList<QString*>();
+    m_disable_push_isSet = false;
     hide_confirm_dialogs = new QList<QString*>();
     m_hide_confirm_dialogs_isSet = false;
     hide_connection_modal = false;
@@ -112,6 +114,13 @@ SWGUserPreferences::cleanup() {
             delete o;
         }
         delete disable_emails;
+    }
+    if(disable_push != nullptr) { 
+        auto arr = disable_push;
+        for(auto o: *arr) { 
+            delete o;
+        }
+        delete disable_push;
     }
     if(hide_confirm_dialogs != nullptr) { 
         auto arr = hide_confirm_dialogs;
@@ -195,6 +204,8 @@ SWGUserPreferences::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&disable_emails, pJson["disableEmails"], "QList", "QString");
     
+    ::Swagger::setValue(&disable_push, pJson["disablePush"], "QList", "QString");
+    
     ::Swagger::setValue(&hide_confirm_dialogs, pJson["hideConfirmDialogs"], "QList", "QString");
     ::Swagger::setValue(&hide_connection_modal, pJson["hideConnectionModal"], "bool", "");
     
@@ -267,6 +278,9 @@ SWGUserPreferences::asJsonObject() {
     }
     if(disable_emails->size() > 0){
         toJsonArray((QList<void*>*)disable_emails, obj, "disableEmails", "QString");
+    }
+    if(disable_push->size() > 0){
+        toJsonArray((QList<void*>*)disable_push, obj, "disablePush", "QString");
     }
     if(hide_confirm_dialogs->size() > 0){
         toJsonArray((QList<void*>*)hide_confirm_dialogs, obj, "hideConfirmDialogs", "QString");
@@ -404,6 +418,16 @@ void
 SWGUserPreferences::setDisableEmails(QList<QString*>* disable_emails) {
     this->disable_emails = disable_emails;
     this->m_disable_emails_isSet = true;
+}
+
+QList<QString*>*
+SWGUserPreferences::getDisablePush() {
+    return disable_push;
+}
+void
+SWGUserPreferences::setDisablePush(QList<QString*>* disable_push) {
+    this->disable_push = disable_push;
+    this->m_disable_push_isSet = true;
 }
 
 QList<QString*>*
@@ -599,6 +623,7 @@ SWGUserPreferences::isSet(){
         if(currency != nullptr && *currency != QString("")){ isObjectUpdated = true; break;}
         if(m_debug_isSet){ isObjectUpdated = true; break;}
         if(disable_emails->size() > 0){ isObjectUpdated = true; break;}
+        if(disable_push->size() > 0){ isObjectUpdated = true; break;}
         if(hide_confirm_dialogs->size() > 0){ isObjectUpdated = true; break;}
         if(m_hide_connection_modal_isSet){ isObjectUpdated = true; break;}
         if(m_hide_from_leaderboard_isSet){ isObjectUpdated = true; break;}

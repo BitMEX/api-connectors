@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **currency** | **String** |  |  [optional]
 **debug** | **Boolean** |  |  [optional]
 **disableEmails** | **List&lt;String&gt;** |  |  [optional]
+**disablePush** | **List&lt;String&gt;** |  |  [optional]
 **hideConfirmDialogs** | **List&lt;String&gt;** |  |  [optional]
 **hideConnectionModal** | **Boolean** |  |  [optional]
 **hideFromLeaderboard** | **Boolean** |  |  [optional]

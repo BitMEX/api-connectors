@@ -182,6 +182,9 @@ font-style: italic;
   <h1>BitMEX API</h1>
     <div class="app-desc"><h2>REST API for the BitMEX Trading Platform</h2>
 <p><a href="/app/apiChangelog">View Changelog</a></p>
+<ul>
+<li></li>
+</ul>
 <h4>Getting Started</h4>
 <p>Base URI: <a href="/api/v1">https://www.bitmex.com/api/v1</a></p>
 <h5>Fetching Data</h5>
@@ -216,6 +219,9 @@ to have the quickest possible data without being subject to ratelimits.</p>
 <p>Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.</p>
 <h5>Swagger Specification</h5>
 <p><a href="swagger.json">⇩ Download Swagger JSON</a></p>
+<ul>
+<li></li>
+</ul>
 <h2>All API Endpoints</h2>
 <p>Click to expand a section.</p>
 </div>
@@ -227,8 +233,8 @@ to have the quickest possible data without being subject to ratelimits.</p>
     <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
   <h2>Access</h2>
     <ol>
+      <li>APIKey KeyParamName:api-expires KeyInQuery:false KeyInHeader:true</li>
       <li>APIKey KeyParamName:api-key KeyInQuery:false KeyInHeader:true</li>
-      <li>APIKey KeyParamName:api-nonce KeyInQuery:false KeyInHeader:true</li>
       <li>APIKey KeyParamName:api-signature KeyInQuery:false KeyInHeader:true</li>
     </ol>
 
@@ -239,11 +245,7 @@ to have the quickest possible data without being subject to ratelimits.</p>
   <div class="method-summary"></div>
   <h4><a href="#APIKey">APIKey</a></h4>
   <ul>
-  <li><a href="#aPIKey.disable"><code><span class="http-method">post</span> /apiKey/disable</code></a></li>
-  <li><a href="#aPIKey.enable"><code><span class="http-method">post</span> /apiKey/enable</code></a></li>
   <li><a href="#aPIKey.get"><code><span class="http-method">get</span> /apiKey</code></a></li>
-  <li><a href="#aPIKey.new"><code><span class="http-method">post</span> /apiKey</code></a></li>
-  <li><a href="#aPIKey.remove"><code><span class="http-method">delete</span> /apiKey</code></a></li>
   </ul>
   <h4><a href="#Announcement">Announcement</a></h4>
   <ul>
@@ -266,6 +268,10 @@ to have the quickest possible data without being subject to ratelimits.</p>
   <ul>
   <li><a href="#funding.get"><code><span class="http-method">get</span> /funding</code></a></li>
   </ul>
+  <h4><a href="#GlobalNotification">GlobalNotification</a></h4>
+  <ul>
+  <li><a href="#globalNotification.get"><code><span class="http-method">get</span> /globalNotification</code></a></li>
+  </ul>
   <h4><a href="#Instrument">Instrument</a></h4>
   <ul>
   <li><a href="#instrument.get"><code><span class="http-method">get</span> /instrument</code></a></li>
@@ -287,10 +293,6 @@ to have the quickest possible data without being subject to ratelimits.</p>
   <h4><a href="#Liquidation">Liquidation</a></h4>
   <ul>
   <li><a href="#liquidation.get"><code><span class="http-method">get</span> /liquidation</code></a></li>
-  </ul>
-  <h4><a href="#Notification">Notification</a></h4>
-  <ul>
-  <li><a href="#notification.get"><code><span class="http-method">get</span> /notification</code></a></li>
   </ul>
   <h4><a href="#Order">Order</a></h4>
   <ul>
@@ -345,174 +347,30 @@ to have the quickest possible data without being subject to ratelimits.</p>
   <ul>
   <li><a href="#user.cancelWithdrawal"><code><span class="http-method">post</span> /user/cancelWithdrawal</code></a></li>
   <li><a href="#user.checkReferralCode"><code><span class="http-method">get</span> /user/checkReferralCode</code></a></li>
+  <li><a href="#user.communicationToken"><code><span class="http-method">post</span> /user/communicationToken</code></a></li>
   <li><a href="#user.confirm"><code><span class="http-method">post</span> /user/confirmEmail</code></a></li>
-  <li><a href="#user.confirmEnableTFA"><code><span class="http-method">post</span> /user/confirmEnableTFA</code></a></li>
   <li><a href="#user.confirmWithdrawal"><code><span class="http-method">post</span> /user/confirmWithdrawal</code></a></li>
-  <li><a href="#user.disableTFA"><code><span class="http-method">post</span> /user/disableTFA</code></a></li>
   <li><a href="#user.get"><code><span class="http-method">get</span> /user</code></a></li>
   <li><a href="#user.getAffiliateStatus"><code><span class="http-method">get</span> /user/affiliateStatus</code></a></li>
   <li><a href="#user.getCommission"><code><span class="http-method">get</span> /user/commission</code></a></li>
   <li><a href="#user.getDepositAddress"><code><span class="http-method">get</span> /user/depositAddress</code></a></li>
+  <li><a href="#user.getExecutionHistory"><code><span class="http-method">get</span> /user/executionHistory</code></a></li>
   <li><a href="#user.getMargin"><code><span class="http-method">get</span> /user/margin</code></a></li>
+  <li><a href="#user.getQuoteFillRatio"><code><span class="http-method">get</span> /user/quoteFillRatio</code></a></li>
   <li><a href="#user.getWallet"><code><span class="http-method">get</span> /user/wallet</code></a></li>
   <li><a href="#user.getWalletHistory"><code><span class="http-method">get</span> /user/walletHistory</code></a></li>
   <li><a href="#user.getWalletSummary"><code><span class="http-method">get</span> /user/walletSummary</code></a></li>
   <li><a href="#user.logout"><code><span class="http-method">post</span> /user/logout</code></a></li>
-  <li><a href="#user.logoutAll"><code><span class="http-method">post</span> /user/logoutAll</code></a></li>
   <li><a href="#user.minWithdrawalFee"><code><span class="http-method">get</span> /user/minWithdrawalFee</code></a></li>
-  <li><a href="#user.requestEnableTFA"><code><span class="http-method">post</span> /user/requestEnableTFA</code></a></li>
   <li><a href="#user.requestWithdrawal"><code><span class="http-method">post</span> /user/requestWithdrawal</code></a></li>
   <li><a href="#user.savePreferences"><code><span class="http-method">post</span> /user/preferences</code></a></li>
-  <li><a href="#user.update"><code><span class="http-method">put</span> /user</code></a></li>
+  </ul>
+  <h4><a href="#UserEvent">UserEvent</a></h4>
+  <ul>
+  <li><a href="#userEvent.get"><code><span class="http-method">get</span> /userEvent</code></a></li>
   </ul>
 
   <h1><a name="APIKey">APIKey</a></h1>
-  <div class="method"><a name="aPIKey.disable"/>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /apiKey/disable</code></pre></div>
-    <div class="method-summary">Disable an API Key. (<span class="nickname">aPIKey.disable</span>)</div>
-    <div class="method-notes"></div>
-
-
-    <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/x-www-form-urlencoded</code></li>
-    </ul>
-
-
-
-
-    <h3 class="field-label">Form parameters</h3>
-    <div class="field-items">
-      <div class="param">apiKeyID (required)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; API Key ID (public component). </div>
-    </div>  <!-- field-items -->
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#APIKey">APIKey</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "permissions" : [ { }, { } ],
-  "created" : "2000-01-23T04:56:07.000+00:00",
-  "name" : "name",
-  "cidr" : "cidr",
-  "id" : "id",
-  "secret" : "secret",
-  "nonce" : 0.80082819046101150206595775671303272247314453125,
-  "userId" : 6.02745618307040320615897144307382404804229736328125,
-  "enabled" : false
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/xml</code></li>
-      <li><code>text/xml</code></li>
-      <li><code>application/javascript</code></li>
-      <li><code>text/javascript</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Request was successful
-        <a href="#APIKey">APIKey</a>
-    <h4 class="field-label">400</h4>
-    Parameter Error
-        <a href="#Error">Error</a>
-    <h4 class="field-label">401</h4>
-    Unauthorized
-        <a href="#Error">Error</a>
-    <h4 class="field-label">404</h4>
-    Not Found
-        <a href="#Error">Error</a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="aPIKey.enable"/>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /apiKey/enable</code></pre></div>
-    <div class="method-summary">Enable an API Key. (<span class="nickname">aPIKey.enable</span>)</div>
-    <div class="method-notes"></div>
-
-
-    <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/x-www-form-urlencoded</code></li>
-    </ul>
-
-
-
-
-    <h3 class="field-label">Form parameters</h3>
-    <div class="field-items">
-      <div class="param">apiKeyID (required)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; API Key ID (public component). </div>
-    </div>  <!-- field-items -->
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#APIKey">APIKey</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "permissions" : [ { }, { } ],
-  "created" : "2000-01-23T04:56:07.000+00:00",
-  "name" : "name",
-  "cidr" : "cidr",
-  "id" : "id",
-  "secret" : "secret",
-  "nonce" : 0.80082819046101150206595775671303272247314453125,
-  "userId" : 6.02745618307040320615897144307382404804229736328125,
-  "enabled" : false
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/xml</code></li>
-      <li><code>text/xml</code></li>
-      <li><code>application/javascript</code></li>
-      <li><code>text/javascript</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Request was successful
-        <a href="#APIKey">APIKey</a>
-    <h4 class="field-label">400</h4>
-    Parameter Error
-        <a href="#Error">Error</a>
-    <h4 class="field-label">401</h4>
-    Unauthorized
-        <a href="#Error">Error</a>
-    <h4 class="field-label">404</h4>
-    Not Found
-        <a href="#Error">Error</a>
-  </div> <!-- method -->
-  <hr/>
   <div class="method"><a name="aPIKey.get"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
@@ -591,151 +449,8 @@ to have the quickest possible data without being subject to ratelimits.</p>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
-    <h4 class="field-label">404</h4>
-    Not Found
-        <a href="#Error">Error</a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="aPIKey.new"/>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /apiKey</code></pre></div>
-    <div class="method-summary">Create a new API Key. (<span class="nickname">aPIKey.new</span>)</div>
-    <div class="method-notes">API Keys can only be created via the frontend.</div>
-
-
-    <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/x-www-form-urlencoded</code></li>
-    </ul>
-
-
-
-
-    <h3 class="field-label">Form parameters</h3>
-    <div class="field-items">
-      <div class="param">name (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Key name. This name is for reference only. </div><div class="param">cidr (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; CIDR block to restrict this key to. To restrict to a single address, append &quot;/32&quot;, e.g. 207.39.29.22/32. Leave blank or set to 0.0.0.0/0 to allow all IPs. Only one block may be set. <a href="http://software77.net/cidr-101.html">More on CIDR blocks</a> </div><div class="param">permissions (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Key Permissions. All keys can read margin and position data. Additional permissions must be added. Available: [&quot;order&quot;, &quot;orderCancel&quot;, &quot;withdraw&quot;]. format: JSON</div><div class="param">enabled (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Set to true to enable this key on creation. Otherwise, it must be explicitly enabled via /apiKey/enable. default: false </div><div class="param">token (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; OTP Token (YubiKey, Google Authenticator) </div>
-    </div>  <!-- field-items -->
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#APIKey">APIKey</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "permissions" : [ { }, { } ],
-  "created" : "2000-01-23T04:56:07.000+00:00",
-  "name" : "name",
-  "cidr" : "cidr",
-  "id" : "id",
-  "secret" : "secret",
-  "nonce" : 0.80082819046101150206595775671303272247314453125,
-  "userId" : 6.02745618307040320615897144307382404804229736328125,
-  "enabled" : false
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/xml</code></li>
-      <li><code>text/xml</code></li>
-      <li><code>application/javascript</code></li>
-      <li><code>text/javascript</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Request was successful
-        <a href="#APIKey">APIKey</a>
-    <h4 class="field-label">400</h4>
-    Parameter Error
-        <a href="#Error">Error</a>
-    <h4 class="field-label">401</h4>
-    Unauthorized
-        <a href="#Error">Error</a>
-    <h4 class="field-label">404</h4>
-    Not Found
-        <a href="#Error">Error</a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="aPIKey.remove"/>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /apiKey</code></pre></div>
-    <div class="method-summary">Remove an API Key. (<span class="nickname">aPIKey.remove</span>)</div>
-    <div class="method-notes"></div>
-
-
-    <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/x-www-form-urlencoded</code></li>
-    </ul>
-
-
-
-
-    <h3 class="field-label">Form parameters</h3>
-    <div class="field-items">
-      <div class="param">apiKeyID (required)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; API Key ID (public component). </div>
-    </div>  <!-- field-items -->
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#inline_response_200">inline_response_200</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "success" : true
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/xml</code></li>
-      <li><code>text/xml</code></li>
-      <li><code>application/javascript</code></li>
-      <li><code>text/javascript</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Request was successful
-        <a href="#inline_response_200">inline_response_200</a>
-    <h4 class="field-label">400</h4>
-    Parameter Error
-        <a href="#Error">Error</a>
-    <h4 class="field-label">401</h4>
-    Unauthorized
+    <h4 class="field-label">403</h4>
+    Access Denied
         <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
@@ -813,6 +528,9 @@ to have the quickest possible data without being subject to ratelimits.</p>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -881,6 +599,9 @@ to have the quickest possible data without being subject to ratelimits.</p>
         <a href="#Error">Error</a>
     <h4 class="field-label">401</h4>
     Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
         <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
@@ -968,6 +689,9 @@ to have the quickest possible data without being subject to ratelimits.</p>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -1031,6 +755,9 @@ to have the quickest possible data without being subject to ratelimits.</p>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -1090,6 +817,9 @@ to have the quickest possible data without being subject to ratelimits.</p>
         <a href="#Error">Error</a>
     <h4 class="field-label">401</h4>
     Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
         <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
@@ -1164,6 +894,9 @@ to have the quickest possible data without being subject to ratelimits.</p>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -1196,8 +929,8 @@ changes. It can be quite noisy. More focused information is available at <code>/
     <div class="field-items">
       <div class="param">symbol (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.</p>
-<p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.</p>
+<p>You can also send a timeframe, e.g. <code>XBT:quarterly</code>. Timeframes are <code>nearest</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, <code>biquarterly</code>, and <code>perpetual</code>.</p>
  </div><div class="param">filter (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
@@ -1346,6 +1079,9 @@ changes. It can be quite noisy. More focused information is available at <code>/
         <a href="#Error">Error</a>
     <h4 class="field-label">401</h4>
     Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
         <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
@@ -1373,8 +1109,8 @@ changes. It can be quite noisy. More focused information is available at <code>/
     <div class="field-items">
       <div class="param">symbol (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.</p>
-<p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.</p>
+<p>You can also send a timeframe, e.g. <code>XBT:quarterly</code>. Timeframes are <code>nearest</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, <code>biquarterly</code>, and <code>perpetual</code>.</p>
  </div><div class="param">filter (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
@@ -1523,6 +1259,9 @@ changes. It can be quite noisy. More focused information is available at <code>/
         <a href="#Error">Error</a>
     <h4 class="field-label">401</h4>
     Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
         <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
@@ -1551,8 +1290,8 @@ changes. It can be quite noisy. More focused information is available at <code>/
     <div class="field-items">
       <div class="param">symbol (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.</p>
-<p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.</p>
+<p>You can also send a timeframe, e.g. <code>XBT:quarterly</code>. Timeframes are <code>nearest</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, <code>biquarterly</code>, and <code>perpetual</code>.</p>
  </div><div class="param">filter (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
@@ -1618,6 +1357,92 @@ changes. It can be quite noisy. More focused information is available at <code>/
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="GlobalNotification">GlobalNotification</a></h1>
+  <div class="method"><a name="globalNotification.get"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /globalNotification</code></pre></div>
+    <div class="method-summary">Get your current GlobalNotifications. (<span class="nickname">globalNotification.get</span>)</div>
+    <div class="method-notes">This is an upcoming feature and currently does not return data.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/x-www-form-urlencoded</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#GlobalNotification">GlobalNotification</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "date" : "2000-01-23T04:56:07.000+00:00",
+  "waitForVisibility" : true,
+  "closable" : true,
+  "sound" : "sound",
+  "id" : 0.80082819046101150206595775671303272247314453125,
+  "persist" : true,
+  "title" : "title",
+  "body" : "body",
+  "type" : "success",
+  "ttl" : 6.02745618307040320615897144307382404804229736328125
+}, {
+  "date" : "2000-01-23T04:56:07.000+00:00",
+  "waitForVisibility" : true,
+  "closable" : true,
+  "sound" : "sound",
+  "id" : 0.80082819046101150206595775671303272247314453125,
+  "persist" : true,
+  "title" : "title",
+  "body" : "body",
+  "type" : "success",
+  "ttl" : 6.02745618307040320615897144307382404804229736328125
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>text/xml</code></li>
+      <li><code>application/javascript</code></li>
+      <li><code>text/javascript</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Request was successful
+        
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -1645,8 +1470,8 @@ changes. It can be quite noisy. More focused information is available at <code>/
     <div class="field-items">
       <div class="param">symbol (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.</p>
-<p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.</p>
+<p>You can also send a timeframe, e.g. <code>XBT:quarterly</code>. Timeframes are <code>nearest</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, <code>biquarterly</code>, and <code>perpetual</code>.</p>
  </div><div class="param">filter (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
@@ -1678,12 +1503,12 @@ changes. It can be quite noisy. More focused information is available at <code>/
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>[ {
-  "optionUnderlyingPrice" : 0.8774076871421566,
+  "optionUnderlyingPrice" : 0.5199002018724985,
   "deleverage" : true,
   "riskLimit" : 1.489415909854170383397331534069962799549102783203125,
   "fundingBaseSymbol" : "fundingBaseSymbol",
-  "prevPrice24h" : 7.143538047012306,
-  "highPrice" : 7.058770351582356,
+  "prevPrice24h" : 7.058770351582356,
+  "highPrice" : 0.10263654006109402,
   "fairMethod" : "fairMethod",
   "taxed" : true,
   "state" : "state",
@@ -1693,14 +1518,14 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "publishTime" : "2000-01-23T04:56:07.000+00:00",
   "maintMargin" : 1.0246457001441578,
   "takerFee" : 4.965218492984954,
-  "fairBasis" : 4.258773108174356,
+  "fairBasis" : 4.678947989005849,
   "volume24h" : 6.87805222012787620400331434211693704128265380859375,
   "underlying" : "underlying",
   "quoteToSettleMultiplier" : 7.3862819483858839220147274318151175975799560546875,
   "fundingQuoteSymbol" : "fundingQuoteSymbol",
   "quoteCurrency" : "quoteCurrency",
-  "indicativeSettlePrice" : 9.132027271330688,
-  "settledPrice" : 9.702963800023566,
+  "indicativeSettlePrice" : 9.702963800023566,
+  "settledPrice" : 7.933506881737151,
   "relistInterval" : "2000-01-23T04:56:07.000+00:00",
   "prevClosePrice" : 8.762042012749001,
   "maxPrice" : 2.3021358869347655,
@@ -1708,7 +1533,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "settle" : "2000-01-23T04:56:07.000+00:00",
   "buyLeg" : "buyLeg",
   "tickSize" : 9.301444243932576,
-  "markPrice" : 4.678947989005849,
+  "markPrice" : 9.132027271330688,
   "settlCurrency" : "settlCurrency",
   "listing" : "2000-01-23T04:56:07.000+00:00",
   "indicativeFundingRate" : 6.683562403749608,
@@ -1717,20 +1542,20 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "limitDownPrice" : 9.018348186070783,
   "lastTickDirection" : "lastTickDirection",
   "rebalanceTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "fairBasisRate" : 6.628464275087742,
-  "lastPriceProtected" : 4.652396432933246,
-  "midPrice" : 3.0205796992916243,
+  "fairBasisRate" : 1.041444916118296,
+  "lastPriceProtected" : 7.740351818741173,
+  "midPrice" : 7.04836565559697,
   "insuranceFee" : 9.965781217890562,
   "optionStrikePrice" : 1.4658129805029452,
   "limitUpPrice" : 6.438423552598547,
   "bankruptLimitUpPrice" : 6.965117697638846,
   "rebalanceInterval" : "2000-01-23T04:56:07.000+00:00",
   "fundingRate" : 9.369310271410669,
-  "lastPrice" : 0.10263654006109402,
+  "lastPrice" : 8.969578798196912,
   "totalVolume" : 2.884162126668780246063761296682059764862060546875,
   "symbol" : "symbol",
   "capped" : true,
-  "vwap" : 0.8851374739011653,
+  "vwap" : 6.519180951018382,
   "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
   "typ" : "typ",
   "inverseLeg" : "inverseLeg",
@@ -1738,22 +1563,22 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "prevTotalTurnover" : 5.94489560761401580890606055618263781070709228515625,
   "limit" : 7.457744773683766,
   "calcInterval" : "2000-01-23T04:56:07.000+00:00",
-  "lastChangePcnt" : 8.969578798196912,
-  "askPrice" : 3.0576100241049344,
+  "lastChangePcnt" : 3.0205796992916243,
+  "askPrice" : 5.533258397034986,
   "multiplier" : 3.61607674925191080461672754609026014804840087890625,
-  "indicativeTaxRate" : 7.260521264802104,
+  "indicativeTaxRate" : 0.8774076871421566,
   "settlementFee" : 5.025004791520295,
   "totalTurnover" : 6.70401929795003592715829654480330646038055419921875,
   "turnover24h" : 3.093745262666447448651751983561553061008453369140625,
-  "fairPrice" : 1.041444916118296,
-  "bidPrice" : 7.740351818741173,
+  "fairPrice" : 7.260521264802104,
+  "bidPrice" : 3.0576100241049344,
   "volume" : 6.77832496304801335185175048536621034145355224609375,
-  "impactMidPrice" : 5.533258397034986,
+  "impactMidPrice" : 4.078845849666752,
   "sellLeg" : "sellLeg",
   "optionStrikePcnt" : 0.8008281904610115,
   "maxOrderQty" : 5.63737665663332876420099637471139430999755859375,
   "hasLiquidity" : true,
-  "openInterest" : 4.078845849666752343409825698472559452056884765625,
+  "openInterest" : 6.6284642750877420525057459599338471889495849609375,
   "riskStep" : 6.8468526983526398765889098285697400569915771484375,
   "optionStrikeRound" : 6.027456183070403,
   "isQuanto" : true,
@@ -1762,30 +1587,32 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "underlyingSymbol" : "underlyingSymbol",
   "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
   "makerFee" : 1.1730742509559433,
-  "lowPrice" : 6.519180951018382,
+  "lowPrice" : 4.652396432933246,
   "underlyingToSettleMultiplier" : 4.1456080298839363962315474054776132106781005859375,
   "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
   "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
   "bankruptLimitDownPrice" : 3.5571952270680973,
   "turnover" : 3.35319334701124294184637619764544069766998291015625,
-  "impactAskPrice" : 3.2588565619047607,
+  "impactAskPrice" : 0.2025324113236393,
   "referenceSymbol" : "referenceSymbol",
-  "openValue" : 0.202532411323639305322785730822943150997161865234375,
+  "homeNotional24h" : 7.143538047012306,
+  "openValue" : 4.258773108174356281097061582840979099273681640625,
   "isInverse" : true,
   "lotSize" : 7.061401241503109105224211816675961017608642578125,
   "optionMultiplier" : 5.962133916683182,
   "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "impactBidPrice" : 7.04836565559697,
+  "foreignNotional24h" : 0.8851374739011653,
+  "impactBidPrice" : 3.2588565619047607,
   "prevTotalVolume" : 1.2846590061165319429647979632136411964893341064453125,
   "initMargin" : 1.2315135367772556,
   "front" : "2000-01-23T04:56:07.000+00:00"
 }, {
-  "optionUnderlyingPrice" : 0.8774076871421566,
+  "optionUnderlyingPrice" : 0.5199002018724985,
   "deleverage" : true,
   "riskLimit" : 1.489415909854170383397331534069962799549102783203125,
   "fundingBaseSymbol" : "fundingBaseSymbol",
-  "prevPrice24h" : 7.143538047012306,
-  "highPrice" : 7.058770351582356,
+  "prevPrice24h" : 7.058770351582356,
+  "highPrice" : 0.10263654006109402,
   "fairMethod" : "fairMethod",
   "taxed" : true,
   "state" : "state",
@@ -1795,14 +1622,14 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "publishTime" : "2000-01-23T04:56:07.000+00:00",
   "maintMargin" : 1.0246457001441578,
   "takerFee" : 4.965218492984954,
-  "fairBasis" : 4.258773108174356,
+  "fairBasis" : 4.678947989005849,
   "volume24h" : 6.87805222012787620400331434211693704128265380859375,
   "underlying" : "underlying",
   "quoteToSettleMultiplier" : 7.3862819483858839220147274318151175975799560546875,
   "fundingQuoteSymbol" : "fundingQuoteSymbol",
   "quoteCurrency" : "quoteCurrency",
-  "indicativeSettlePrice" : 9.132027271330688,
-  "settledPrice" : 9.702963800023566,
+  "indicativeSettlePrice" : 9.702963800023566,
+  "settledPrice" : 7.933506881737151,
   "relistInterval" : "2000-01-23T04:56:07.000+00:00",
   "prevClosePrice" : 8.762042012749001,
   "maxPrice" : 2.3021358869347655,
@@ -1810,7 +1637,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "settle" : "2000-01-23T04:56:07.000+00:00",
   "buyLeg" : "buyLeg",
   "tickSize" : 9.301444243932576,
-  "markPrice" : 4.678947989005849,
+  "markPrice" : 9.132027271330688,
   "settlCurrency" : "settlCurrency",
   "listing" : "2000-01-23T04:56:07.000+00:00",
   "indicativeFundingRate" : 6.683562403749608,
@@ -1819,20 +1646,20 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "limitDownPrice" : 9.018348186070783,
   "lastTickDirection" : "lastTickDirection",
   "rebalanceTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "fairBasisRate" : 6.628464275087742,
-  "lastPriceProtected" : 4.652396432933246,
-  "midPrice" : 3.0205796992916243,
+  "fairBasisRate" : 1.041444916118296,
+  "lastPriceProtected" : 7.740351818741173,
+  "midPrice" : 7.04836565559697,
   "insuranceFee" : 9.965781217890562,
   "optionStrikePrice" : 1.4658129805029452,
   "limitUpPrice" : 6.438423552598547,
   "bankruptLimitUpPrice" : 6.965117697638846,
   "rebalanceInterval" : "2000-01-23T04:56:07.000+00:00",
   "fundingRate" : 9.369310271410669,
-  "lastPrice" : 0.10263654006109402,
+  "lastPrice" : 8.969578798196912,
   "totalVolume" : 2.884162126668780246063761296682059764862060546875,
   "symbol" : "symbol",
   "capped" : true,
-  "vwap" : 0.8851374739011653,
+  "vwap" : 6.519180951018382,
   "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
   "typ" : "typ",
   "inverseLeg" : "inverseLeg",
@@ -1840,22 +1667,22 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "prevTotalTurnover" : 5.94489560761401580890606055618263781070709228515625,
   "limit" : 7.457744773683766,
   "calcInterval" : "2000-01-23T04:56:07.000+00:00",
-  "lastChangePcnt" : 8.969578798196912,
-  "askPrice" : 3.0576100241049344,
+  "lastChangePcnt" : 3.0205796992916243,
+  "askPrice" : 5.533258397034986,
   "multiplier" : 3.61607674925191080461672754609026014804840087890625,
-  "indicativeTaxRate" : 7.260521264802104,
+  "indicativeTaxRate" : 0.8774076871421566,
   "settlementFee" : 5.025004791520295,
   "totalTurnover" : 6.70401929795003592715829654480330646038055419921875,
   "turnover24h" : 3.093745262666447448651751983561553061008453369140625,
-  "fairPrice" : 1.041444916118296,
-  "bidPrice" : 7.740351818741173,
+  "fairPrice" : 7.260521264802104,
+  "bidPrice" : 3.0576100241049344,
   "volume" : 6.77832496304801335185175048536621034145355224609375,
-  "impactMidPrice" : 5.533258397034986,
+  "impactMidPrice" : 4.078845849666752,
   "sellLeg" : "sellLeg",
   "optionStrikePcnt" : 0.8008281904610115,
   "maxOrderQty" : 5.63737665663332876420099637471139430999755859375,
   "hasLiquidity" : true,
-  "openInterest" : 4.078845849666752343409825698472559452056884765625,
+  "openInterest" : 6.6284642750877420525057459599338471889495849609375,
   "riskStep" : 6.8468526983526398765889098285697400569915771484375,
   "optionStrikeRound" : 6.027456183070403,
   "isQuanto" : true,
@@ -1864,20 +1691,22 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "underlyingSymbol" : "underlyingSymbol",
   "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
   "makerFee" : 1.1730742509559433,
-  "lowPrice" : 6.519180951018382,
+  "lowPrice" : 4.652396432933246,
   "underlyingToSettleMultiplier" : 4.1456080298839363962315474054776132106781005859375,
   "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
   "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
   "bankruptLimitDownPrice" : 3.5571952270680973,
   "turnover" : 3.35319334701124294184637619764544069766998291015625,
-  "impactAskPrice" : 3.2588565619047607,
+  "impactAskPrice" : 0.2025324113236393,
   "referenceSymbol" : "referenceSymbol",
-  "openValue" : 0.202532411323639305322785730822943150997161865234375,
+  "homeNotional24h" : 7.143538047012306,
+  "openValue" : 4.258773108174356281097061582840979099273681640625,
   "isInverse" : true,
   "lotSize" : 7.061401241503109105224211816675961017608642578125,
   "optionMultiplier" : 5.962133916683182,
   "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "impactBidPrice" : 7.04836565559697,
+  "foreignNotional24h" : 0.8851374739011653,
+  "impactBidPrice" : 3.2588565619047607,
   "prevTotalVolume" : 1.2846590061165319429647979632136411964893341064453125,
   "initMargin" : 1.2315135367772556,
   "front" : "2000-01-23T04:56:07.000+00:00"
@@ -1903,6 +1732,9 @@ changes. It can be quite noisy. More focused information is available at <code>/
         <a href="#Error">Error</a>
     <h4 class="field-label">401</h4>
     Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
         <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
@@ -1939,12 +1771,12 @@ changes. It can be quite noisy. More focused information is available at <code>/
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>[ {
-  "optionUnderlyingPrice" : 0.8774076871421566,
+  "optionUnderlyingPrice" : 0.5199002018724985,
   "deleverage" : true,
   "riskLimit" : 1.489415909854170383397331534069962799549102783203125,
   "fundingBaseSymbol" : "fundingBaseSymbol",
-  "prevPrice24h" : 7.143538047012306,
-  "highPrice" : 7.058770351582356,
+  "prevPrice24h" : 7.058770351582356,
+  "highPrice" : 0.10263654006109402,
   "fairMethod" : "fairMethod",
   "taxed" : true,
   "state" : "state",
@@ -1954,14 +1786,14 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "publishTime" : "2000-01-23T04:56:07.000+00:00",
   "maintMargin" : 1.0246457001441578,
   "takerFee" : 4.965218492984954,
-  "fairBasis" : 4.258773108174356,
+  "fairBasis" : 4.678947989005849,
   "volume24h" : 6.87805222012787620400331434211693704128265380859375,
   "underlying" : "underlying",
   "quoteToSettleMultiplier" : 7.3862819483858839220147274318151175975799560546875,
   "fundingQuoteSymbol" : "fundingQuoteSymbol",
   "quoteCurrency" : "quoteCurrency",
-  "indicativeSettlePrice" : 9.132027271330688,
-  "settledPrice" : 9.702963800023566,
+  "indicativeSettlePrice" : 9.702963800023566,
+  "settledPrice" : 7.933506881737151,
   "relistInterval" : "2000-01-23T04:56:07.000+00:00",
   "prevClosePrice" : 8.762042012749001,
   "maxPrice" : 2.3021358869347655,
@@ -1969,7 +1801,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "settle" : "2000-01-23T04:56:07.000+00:00",
   "buyLeg" : "buyLeg",
   "tickSize" : 9.301444243932576,
-  "markPrice" : 4.678947989005849,
+  "markPrice" : 9.132027271330688,
   "settlCurrency" : "settlCurrency",
   "listing" : "2000-01-23T04:56:07.000+00:00",
   "indicativeFundingRate" : 6.683562403749608,
@@ -1978,20 +1810,20 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "limitDownPrice" : 9.018348186070783,
   "lastTickDirection" : "lastTickDirection",
   "rebalanceTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "fairBasisRate" : 6.628464275087742,
-  "lastPriceProtected" : 4.652396432933246,
-  "midPrice" : 3.0205796992916243,
+  "fairBasisRate" : 1.041444916118296,
+  "lastPriceProtected" : 7.740351818741173,
+  "midPrice" : 7.04836565559697,
   "insuranceFee" : 9.965781217890562,
   "optionStrikePrice" : 1.4658129805029452,
   "limitUpPrice" : 6.438423552598547,
   "bankruptLimitUpPrice" : 6.965117697638846,
   "rebalanceInterval" : "2000-01-23T04:56:07.000+00:00",
   "fundingRate" : 9.369310271410669,
-  "lastPrice" : 0.10263654006109402,
+  "lastPrice" : 8.969578798196912,
   "totalVolume" : 2.884162126668780246063761296682059764862060546875,
   "symbol" : "symbol",
   "capped" : true,
-  "vwap" : 0.8851374739011653,
+  "vwap" : 6.519180951018382,
   "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
   "typ" : "typ",
   "inverseLeg" : "inverseLeg",
@@ -1999,22 +1831,22 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "prevTotalTurnover" : 5.94489560761401580890606055618263781070709228515625,
   "limit" : 7.457744773683766,
   "calcInterval" : "2000-01-23T04:56:07.000+00:00",
-  "lastChangePcnt" : 8.969578798196912,
-  "askPrice" : 3.0576100241049344,
+  "lastChangePcnt" : 3.0205796992916243,
+  "askPrice" : 5.533258397034986,
   "multiplier" : 3.61607674925191080461672754609026014804840087890625,
-  "indicativeTaxRate" : 7.260521264802104,
+  "indicativeTaxRate" : 0.8774076871421566,
   "settlementFee" : 5.025004791520295,
   "totalTurnover" : 6.70401929795003592715829654480330646038055419921875,
   "turnover24h" : 3.093745262666447448651751983561553061008453369140625,
-  "fairPrice" : 1.041444916118296,
-  "bidPrice" : 7.740351818741173,
+  "fairPrice" : 7.260521264802104,
+  "bidPrice" : 3.0576100241049344,
   "volume" : 6.77832496304801335185175048536621034145355224609375,
-  "impactMidPrice" : 5.533258397034986,
+  "impactMidPrice" : 4.078845849666752,
   "sellLeg" : "sellLeg",
   "optionStrikePcnt" : 0.8008281904610115,
   "maxOrderQty" : 5.63737665663332876420099637471139430999755859375,
   "hasLiquidity" : true,
-  "openInterest" : 4.078845849666752343409825698472559452056884765625,
+  "openInterest" : 6.6284642750877420525057459599338471889495849609375,
   "riskStep" : 6.8468526983526398765889098285697400569915771484375,
   "optionStrikeRound" : 6.027456183070403,
   "isQuanto" : true,
@@ -2023,30 +1855,32 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "underlyingSymbol" : "underlyingSymbol",
   "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
   "makerFee" : 1.1730742509559433,
-  "lowPrice" : 6.519180951018382,
+  "lowPrice" : 4.652396432933246,
   "underlyingToSettleMultiplier" : 4.1456080298839363962315474054776132106781005859375,
   "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
   "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
   "bankruptLimitDownPrice" : 3.5571952270680973,
   "turnover" : 3.35319334701124294184637619764544069766998291015625,
-  "impactAskPrice" : 3.2588565619047607,
+  "impactAskPrice" : 0.2025324113236393,
   "referenceSymbol" : "referenceSymbol",
-  "openValue" : 0.202532411323639305322785730822943150997161865234375,
+  "homeNotional24h" : 7.143538047012306,
+  "openValue" : 4.258773108174356281097061582840979099273681640625,
   "isInverse" : true,
   "lotSize" : 7.061401241503109105224211816675961017608642578125,
   "optionMultiplier" : 5.962133916683182,
   "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "impactBidPrice" : 7.04836565559697,
+  "foreignNotional24h" : 0.8851374739011653,
+  "impactBidPrice" : 3.2588565619047607,
   "prevTotalVolume" : 1.2846590061165319429647979632136411964893341064453125,
   "initMargin" : 1.2315135367772556,
   "front" : "2000-01-23T04:56:07.000+00:00"
 }, {
-  "optionUnderlyingPrice" : 0.8774076871421566,
+  "optionUnderlyingPrice" : 0.5199002018724985,
   "deleverage" : true,
   "riskLimit" : 1.489415909854170383397331534069962799549102783203125,
   "fundingBaseSymbol" : "fundingBaseSymbol",
-  "prevPrice24h" : 7.143538047012306,
-  "highPrice" : 7.058770351582356,
+  "prevPrice24h" : 7.058770351582356,
+  "highPrice" : 0.10263654006109402,
   "fairMethod" : "fairMethod",
   "taxed" : true,
   "state" : "state",
@@ -2056,14 +1890,14 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "publishTime" : "2000-01-23T04:56:07.000+00:00",
   "maintMargin" : 1.0246457001441578,
   "takerFee" : 4.965218492984954,
-  "fairBasis" : 4.258773108174356,
+  "fairBasis" : 4.678947989005849,
   "volume24h" : 6.87805222012787620400331434211693704128265380859375,
   "underlying" : "underlying",
   "quoteToSettleMultiplier" : 7.3862819483858839220147274318151175975799560546875,
   "fundingQuoteSymbol" : "fundingQuoteSymbol",
   "quoteCurrency" : "quoteCurrency",
-  "indicativeSettlePrice" : 9.132027271330688,
-  "settledPrice" : 9.702963800023566,
+  "indicativeSettlePrice" : 9.702963800023566,
+  "settledPrice" : 7.933506881737151,
   "relistInterval" : "2000-01-23T04:56:07.000+00:00",
   "prevClosePrice" : 8.762042012749001,
   "maxPrice" : 2.3021358869347655,
@@ -2071,7 +1905,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "settle" : "2000-01-23T04:56:07.000+00:00",
   "buyLeg" : "buyLeg",
   "tickSize" : 9.301444243932576,
-  "markPrice" : 4.678947989005849,
+  "markPrice" : 9.132027271330688,
   "settlCurrency" : "settlCurrency",
   "listing" : "2000-01-23T04:56:07.000+00:00",
   "indicativeFundingRate" : 6.683562403749608,
@@ -2080,20 +1914,20 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "limitDownPrice" : 9.018348186070783,
   "lastTickDirection" : "lastTickDirection",
   "rebalanceTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "fairBasisRate" : 6.628464275087742,
-  "lastPriceProtected" : 4.652396432933246,
-  "midPrice" : 3.0205796992916243,
+  "fairBasisRate" : 1.041444916118296,
+  "lastPriceProtected" : 7.740351818741173,
+  "midPrice" : 7.04836565559697,
   "insuranceFee" : 9.965781217890562,
   "optionStrikePrice" : 1.4658129805029452,
   "limitUpPrice" : 6.438423552598547,
   "bankruptLimitUpPrice" : 6.965117697638846,
   "rebalanceInterval" : "2000-01-23T04:56:07.000+00:00",
   "fundingRate" : 9.369310271410669,
-  "lastPrice" : 0.10263654006109402,
+  "lastPrice" : 8.969578798196912,
   "totalVolume" : 2.884162126668780246063761296682059764862060546875,
   "symbol" : "symbol",
   "capped" : true,
-  "vwap" : 0.8851374739011653,
+  "vwap" : 6.519180951018382,
   "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
   "typ" : "typ",
   "inverseLeg" : "inverseLeg",
@@ -2101,22 +1935,22 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "prevTotalTurnover" : 5.94489560761401580890606055618263781070709228515625,
   "limit" : 7.457744773683766,
   "calcInterval" : "2000-01-23T04:56:07.000+00:00",
-  "lastChangePcnt" : 8.969578798196912,
-  "askPrice" : 3.0576100241049344,
+  "lastChangePcnt" : 3.0205796992916243,
+  "askPrice" : 5.533258397034986,
   "multiplier" : 3.61607674925191080461672754609026014804840087890625,
-  "indicativeTaxRate" : 7.260521264802104,
+  "indicativeTaxRate" : 0.8774076871421566,
   "settlementFee" : 5.025004791520295,
   "totalTurnover" : 6.70401929795003592715829654480330646038055419921875,
   "turnover24h" : 3.093745262666447448651751983561553061008453369140625,
-  "fairPrice" : 1.041444916118296,
-  "bidPrice" : 7.740351818741173,
+  "fairPrice" : 7.260521264802104,
+  "bidPrice" : 3.0576100241049344,
   "volume" : 6.77832496304801335185175048536621034145355224609375,
-  "impactMidPrice" : 5.533258397034986,
+  "impactMidPrice" : 4.078845849666752,
   "sellLeg" : "sellLeg",
   "optionStrikePcnt" : 0.8008281904610115,
   "maxOrderQty" : 5.63737665663332876420099637471139430999755859375,
   "hasLiquidity" : true,
-  "openInterest" : 4.078845849666752343409825698472559452056884765625,
+  "openInterest" : 6.6284642750877420525057459599338471889495849609375,
   "riskStep" : 6.8468526983526398765889098285697400569915771484375,
   "optionStrikeRound" : 6.027456183070403,
   "isQuanto" : true,
@@ -2125,20 +1959,22 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "underlyingSymbol" : "underlyingSymbol",
   "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
   "makerFee" : 1.1730742509559433,
-  "lowPrice" : 6.519180951018382,
+  "lowPrice" : 4.652396432933246,
   "underlyingToSettleMultiplier" : 4.1456080298839363962315474054776132106781005859375,
   "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
   "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
   "bankruptLimitDownPrice" : 3.5571952270680973,
   "turnover" : 3.35319334701124294184637619764544069766998291015625,
-  "impactAskPrice" : 3.2588565619047607,
+  "impactAskPrice" : 0.2025324113236393,
   "referenceSymbol" : "referenceSymbol",
-  "openValue" : 0.202532411323639305322785730822943150997161865234375,
+  "homeNotional24h" : 7.143538047012306,
+  "openValue" : 4.258773108174356281097061582840979099273681640625,
   "isInverse" : true,
   "lotSize" : 7.061401241503109105224211816675961017608642578125,
   "optionMultiplier" : 5.962133916683182,
   "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "impactBidPrice" : 7.04836565559697,
+  "foreignNotional24h" : 0.8851374739011653,
+  "impactBidPrice" : 3.2588565619047607,
   "prevTotalVolume" : 1.2846590061165319429647979632136411964893341064453125,
   "initMargin" : 1.2315135367772556,
   "front" : "2000-01-23T04:56:07.000+00:00"
@@ -2164,6 +2000,9 @@ changes. It can be quite noisy. More focused information is available at <code>/
         <a href="#Error">Error</a>
     <h4 class="field-label">401</h4>
     Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
         <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
@@ -2200,12 +2039,12 @@ changes. It can be quite noisy. More focused information is available at <code>/
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>[ {
-  "optionUnderlyingPrice" : 0.8774076871421566,
+  "optionUnderlyingPrice" : 0.5199002018724985,
   "deleverage" : true,
   "riskLimit" : 1.489415909854170383397331534069962799549102783203125,
   "fundingBaseSymbol" : "fundingBaseSymbol",
-  "prevPrice24h" : 7.143538047012306,
-  "highPrice" : 7.058770351582356,
+  "prevPrice24h" : 7.058770351582356,
+  "highPrice" : 0.10263654006109402,
   "fairMethod" : "fairMethod",
   "taxed" : true,
   "state" : "state",
@@ -2215,14 +2054,14 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "publishTime" : "2000-01-23T04:56:07.000+00:00",
   "maintMargin" : 1.0246457001441578,
   "takerFee" : 4.965218492984954,
-  "fairBasis" : 4.258773108174356,
+  "fairBasis" : 4.678947989005849,
   "volume24h" : 6.87805222012787620400331434211693704128265380859375,
   "underlying" : "underlying",
   "quoteToSettleMultiplier" : 7.3862819483858839220147274318151175975799560546875,
   "fundingQuoteSymbol" : "fundingQuoteSymbol",
   "quoteCurrency" : "quoteCurrency",
-  "indicativeSettlePrice" : 9.132027271330688,
-  "settledPrice" : 9.702963800023566,
+  "indicativeSettlePrice" : 9.702963800023566,
+  "settledPrice" : 7.933506881737151,
   "relistInterval" : "2000-01-23T04:56:07.000+00:00",
   "prevClosePrice" : 8.762042012749001,
   "maxPrice" : 2.3021358869347655,
@@ -2230,7 +2069,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "settle" : "2000-01-23T04:56:07.000+00:00",
   "buyLeg" : "buyLeg",
   "tickSize" : 9.301444243932576,
-  "markPrice" : 4.678947989005849,
+  "markPrice" : 9.132027271330688,
   "settlCurrency" : "settlCurrency",
   "listing" : "2000-01-23T04:56:07.000+00:00",
   "indicativeFundingRate" : 6.683562403749608,
@@ -2239,20 +2078,20 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "limitDownPrice" : 9.018348186070783,
   "lastTickDirection" : "lastTickDirection",
   "rebalanceTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "fairBasisRate" : 6.628464275087742,
-  "lastPriceProtected" : 4.652396432933246,
-  "midPrice" : 3.0205796992916243,
+  "fairBasisRate" : 1.041444916118296,
+  "lastPriceProtected" : 7.740351818741173,
+  "midPrice" : 7.04836565559697,
   "insuranceFee" : 9.965781217890562,
   "optionStrikePrice" : 1.4658129805029452,
   "limitUpPrice" : 6.438423552598547,
   "bankruptLimitUpPrice" : 6.965117697638846,
   "rebalanceInterval" : "2000-01-23T04:56:07.000+00:00",
   "fundingRate" : 9.369310271410669,
-  "lastPrice" : 0.10263654006109402,
+  "lastPrice" : 8.969578798196912,
   "totalVolume" : 2.884162126668780246063761296682059764862060546875,
   "symbol" : "symbol",
   "capped" : true,
-  "vwap" : 0.8851374739011653,
+  "vwap" : 6.519180951018382,
   "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
   "typ" : "typ",
   "inverseLeg" : "inverseLeg",
@@ -2260,22 +2099,22 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "prevTotalTurnover" : 5.94489560761401580890606055618263781070709228515625,
   "limit" : 7.457744773683766,
   "calcInterval" : "2000-01-23T04:56:07.000+00:00",
-  "lastChangePcnt" : 8.969578798196912,
-  "askPrice" : 3.0576100241049344,
+  "lastChangePcnt" : 3.0205796992916243,
+  "askPrice" : 5.533258397034986,
   "multiplier" : 3.61607674925191080461672754609026014804840087890625,
-  "indicativeTaxRate" : 7.260521264802104,
+  "indicativeTaxRate" : 0.8774076871421566,
   "settlementFee" : 5.025004791520295,
   "totalTurnover" : 6.70401929795003592715829654480330646038055419921875,
   "turnover24h" : 3.093745262666447448651751983561553061008453369140625,
-  "fairPrice" : 1.041444916118296,
-  "bidPrice" : 7.740351818741173,
+  "fairPrice" : 7.260521264802104,
+  "bidPrice" : 3.0576100241049344,
   "volume" : 6.77832496304801335185175048536621034145355224609375,
-  "impactMidPrice" : 5.533258397034986,
+  "impactMidPrice" : 4.078845849666752,
   "sellLeg" : "sellLeg",
   "optionStrikePcnt" : 0.8008281904610115,
   "maxOrderQty" : 5.63737665663332876420099637471139430999755859375,
   "hasLiquidity" : true,
-  "openInterest" : 4.078845849666752343409825698472559452056884765625,
+  "openInterest" : 6.6284642750877420525057459599338471889495849609375,
   "riskStep" : 6.8468526983526398765889098285697400569915771484375,
   "optionStrikeRound" : 6.027456183070403,
   "isQuanto" : true,
@@ -2284,30 +2123,32 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "underlyingSymbol" : "underlyingSymbol",
   "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
   "makerFee" : 1.1730742509559433,
-  "lowPrice" : 6.519180951018382,
+  "lowPrice" : 4.652396432933246,
   "underlyingToSettleMultiplier" : 4.1456080298839363962315474054776132106781005859375,
   "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
   "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
   "bankruptLimitDownPrice" : 3.5571952270680973,
   "turnover" : 3.35319334701124294184637619764544069766998291015625,
-  "impactAskPrice" : 3.2588565619047607,
+  "impactAskPrice" : 0.2025324113236393,
   "referenceSymbol" : "referenceSymbol",
-  "openValue" : 0.202532411323639305322785730822943150997161865234375,
+  "homeNotional24h" : 7.143538047012306,
+  "openValue" : 4.258773108174356281097061582840979099273681640625,
   "isInverse" : true,
   "lotSize" : 7.061401241503109105224211816675961017608642578125,
   "optionMultiplier" : 5.962133916683182,
   "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "impactBidPrice" : 7.04836565559697,
+  "foreignNotional24h" : 0.8851374739011653,
+  "impactBidPrice" : 3.2588565619047607,
   "prevTotalVolume" : 1.2846590061165319429647979632136411964893341064453125,
   "initMargin" : 1.2315135367772556,
   "front" : "2000-01-23T04:56:07.000+00:00"
 }, {
-  "optionUnderlyingPrice" : 0.8774076871421566,
+  "optionUnderlyingPrice" : 0.5199002018724985,
   "deleverage" : true,
   "riskLimit" : 1.489415909854170383397331534069962799549102783203125,
   "fundingBaseSymbol" : "fundingBaseSymbol",
-  "prevPrice24h" : 7.143538047012306,
-  "highPrice" : 7.058770351582356,
+  "prevPrice24h" : 7.058770351582356,
+  "highPrice" : 0.10263654006109402,
   "fairMethod" : "fairMethod",
   "taxed" : true,
   "state" : "state",
@@ -2317,14 +2158,14 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "publishTime" : "2000-01-23T04:56:07.000+00:00",
   "maintMargin" : 1.0246457001441578,
   "takerFee" : 4.965218492984954,
-  "fairBasis" : 4.258773108174356,
+  "fairBasis" : 4.678947989005849,
   "volume24h" : 6.87805222012787620400331434211693704128265380859375,
   "underlying" : "underlying",
   "quoteToSettleMultiplier" : 7.3862819483858839220147274318151175975799560546875,
   "fundingQuoteSymbol" : "fundingQuoteSymbol",
   "quoteCurrency" : "quoteCurrency",
-  "indicativeSettlePrice" : 9.132027271330688,
-  "settledPrice" : 9.702963800023566,
+  "indicativeSettlePrice" : 9.702963800023566,
+  "settledPrice" : 7.933506881737151,
   "relistInterval" : "2000-01-23T04:56:07.000+00:00",
   "prevClosePrice" : 8.762042012749001,
   "maxPrice" : 2.3021358869347655,
@@ -2332,7 +2173,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "settle" : "2000-01-23T04:56:07.000+00:00",
   "buyLeg" : "buyLeg",
   "tickSize" : 9.301444243932576,
-  "markPrice" : 4.678947989005849,
+  "markPrice" : 9.132027271330688,
   "settlCurrency" : "settlCurrency",
   "listing" : "2000-01-23T04:56:07.000+00:00",
   "indicativeFundingRate" : 6.683562403749608,
@@ -2341,20 +2182,20 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "limitDownPrice" : 9.018348186070783,
   "lastTickDirection" : "lastTickDirection",
   "rebalanceTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "fairBasisRate" : 6.628464275087742,
-  "lastPriceProtected" : 4.652396432933246,
-  "midPrice" : 3.0205796992916243,
+  "fairBasisRate" : 1.041444916118296,
+  "lastPriceProtected" : 7.740351818741173,
+  "midPrice" : 7.04836565559697,
   "insuranceFee" : 9.965781217890562,
   "optionStrikePrice" : 1.4658129805029452,
   "limitUpPrice" : 6.438423552598547,
   "bankruptLimitUpPrice" : 6.965117697638846,
   "rebalanceInterval" : "2000-01-23T04:56:07.000+00:00",
   "fundingRate" : 9.369310271410669,
-  "lastPrice" : 0.10263654006109402,
+  "lastPrice" : 8.969578798196912,
   "totalVolume" : 2.884162126668780246063761296682059764862060546875,
   "symbol" : "symbol",
   "capped" : true,
-  "vwap" : 0.8851374739011653,
+  "vwap" : 6.519180951018382,
   "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
   "typ" : "typ",
   "inverseLeg" : "inverseLeg",
@@ -2362,22 +2203,22 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "prevTotalTurnover" : 5.94489560761401580890606055618263781070709228515625,
   "limit" : 7.457744773683766,
   "calcInterval" : "2000-01-23T04:56:07.000+00:00",
-  "lastChangePcnt" : 8.969578798196912,
-  "askPrice" : 3.0576100241049344,
+  "lastChangePcnt" : 3.0205796992916243,
+  "askPrice" : 5.533258397034986,
   "multiplier" : 3.61607674925191080461672754609026014804840087890625,
-  "indicativeTaxRate" : 7.260521264802104,
+  "indicativeTaxRate" : 0.8774076871421566,
   "settlementFee" : 5.025004791520295,
   "totalTurnover" : 6.70401929795003592715829654480330646038055419921875,
   "turnover24h" : 3.093745262666447448651751983561553061008453369140625,
-  "fairPrice" : 1.041444916118296,
-  "bidPrice" : 7.740351818741173,
+  "fairPrice" : 7.260521264802104,
+  "bidPrice" : 3.0576100241049344,
   "volume" : 6.77832496304801335185175048536621034145355224609375,
-  "impactMidPrice" : 5.533258397034986,
+  "impactMidPrice" : 4.078845849666752,
   "sellLeg" : "sellLeg",
   "optionStrikePcnt" : 0.8008281904610115,
   "maxOrderQty" : 5.63737665663332876420099637471139430999755859375,
   "hasLiquidity" : true,
-  "openInterest" : 4.078845849666752343409825698472559452056884765625,
+  "openInterest" : 6.6284642750877420525057459599338471889495849609375,
   "riskStep" : 6.8468526983526398765889098285697400569915771484375,
   "optionStrikeRound" : 6.027456183070403,
   "isQuanto" : true,
@@ -2386,20 +2227,22 @@ changes. It can be quite noisy. More focused information is available at <code>/
   "underlyingSymbol" : "underlyingSymbol",
   "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
   "makerFee" : 1.1730742509559433,
-  "lowPrice" : 6.519180951018382,
+  "lowPrice" : 4.652396432933246,
   "underlyingToSettleMultiplier" : 4.1456080298839363962315474054776132106781005859375,
   "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
   "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
   "bankruptLimitDownPrice" : 3.5571952270680973,
   "turnover" : 3.35319334701124294184637619764544069766998291015625,
-  "impactAskPrice" : 3.2588565619047607,
+  "impactAskPrice" : 0.2025324113236393,
   "referenceSymbol" : "referenceSymbol",
-  "openValue" : 0.202532411323639305322785730822943150997161865234375,
+  "homeNotional24h" : 7.143538047012306,
+  "openValue" : 4.258773108174356281097061582840979099273681640625,
   "isInverse" : true,
   "lotSize" : 7.061401241503109105224211816675961017608642578125,
   "optionMultiplier" : 5.962133916683182,
   "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "impactBidPrice" : 7.04836565559697,
+  "foreignNotional24h" : 0.8851374739011653,
+  "impactBidPrice" : 3.2588565619047607,
   "prevTotalVolume" : 1.2846590061165319429647979632136411964893341064453125,
   "initMargin" : 1.2315135367772556,
   "front" : "2000-01-23T04:56:07.000+00:00"
@@ -2426,6 +2269,9 @@ changes. It can be quite noisy. More focused information is available at <code>/
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -2436,7 +2282,7 @@ changes. It can be quite noisy. More focused information is available at <code>/
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /instrument/activeIntervals</code></pre></div>
     <div class="method-summary">Return all active contract series and interval pairs. (<span class="nickname">instrument.getActiveIntervals</span>)</div>
-    <div class="method-notes">This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as <code>[&quot;XBT:perpetual&quot;, &quot;XBT:monthly&quot;, &quot;XBT:quarterly&quot;, &quot;ETH:monthly&quot;, ...]</code>. These identifiers are usable in any query's <code>symbol</code> param. The second array is the current resolution of these intervals. Results are mapped at the same index.</div>
+    <div class="method-notes">This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as <code>[&quot;XBT:perpetual&quot;, &quot;XBT:quarterly&quot;, &quot;XBT:biquarterly&quot;, &quot;ETH:quarterly&quot;, ...]</code>. These identifiers are usable in any query's <code>symbol</code> param. The second array is the current resolution of these intervals. Results are mapped at the same index.</div>
 
 
     <h3 class="field-label">Consumes</h3>
@@ -2486,6 +2332,9 @@ changes. It can be quite noisy. More focused information is available at <code>/
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -2514,9 +2363,7 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
 
     <h3 class="field-label">Query parameters</h3>
     <div class="field-items">
-      <div class="param">account (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: double</div><div class="param">symbol (optional)</div>
+      <div class="param">symbol (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The composite index symbol. default: .XBT </div><div class="param">filter (optional)</div>
 
@@ -2587,6 +2434,9 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -2622,12 +2472,12 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>[ {
-  "optionUnderlyingPrice" : 0.8774076871421566,
+  "optionUnderlyingPrice" : 0.5199002018724985,
   "deleverage" : true,
   "riskLimit" : 1.489415909854170383397331534069962799549102783203125,
   "fundingBaseSymbol" : "fundingBaseSymbol",
-  "prevPrice24h" : 7.143538047012306,
-  "highPrice" : 7.058770351582356,
+  "prevPrice24h" : 7.058770351582356,
+  "highPrice" : 0.10263654006109402,
   "fairMethod" : "fairMethod",
   "taxed" : true,
   "state" : "state",
@@ -2637,14 +2487,14 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
   "publishTime" : "2000-01-23T04:56:07.000+00:00",
   "maintMargin" : 1.0246457001441578,
   "takerFee" : 4.965218492984954,
-  "fairBasis" : 4.258773108174356,
+  "fairBasis" : 4.678947989005849,
   "volume24h" : 6.87805222012787620400331434211693704128265380859375,
   "underlying" : "underlying",
   "quoteToSettleMultiplier" : 7.3862819483858839220147274318151175975799560546875,
   "fundingQuoteSymbol" : "fundingQuoteSymbol",
   "quoteCurrency" : "quoteCurrency",
-  "indicativeSettlePrice" : 9.132027271330688,
-  "settledPrice" : 9.702963800023566,
+  "indicativeSettlePrice" : 9.702963800023566,
+  "settledPrice" : 7.933506881737151,
   "relistInterval" : "2000-01-23T04:56:07.000+00:00",
   "prevClosePrice" : 8.762042012749001,
   "maxPrice" : 2.3021358869347655,
@@ -2652,7 +2502,7 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
   "settle" : "2000-01-23T04:56:07.000+00:00",
   "buyLeg" : "buyLeg",
   "tickSize" : 9.301444243932576,
-  "markPrice" : 4.678947989005849,
+  "markPrice" : 9.132027271330688,
   "settlCurrency" : "settlCurrency",
   "listing" : "2000-01-23T04:56:07.000+00:00",
   "indicativeFundingRate" : 6.683562403749608,
@@ -2661,20 +2511,20 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
   "limitDownPrice" : 9.018348186070783,
   "lastTickDirection" : "lastTickDirection",
   "rebalanceTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "fairBasisRate" : 6.628464275087742,
-  "lastPriceProtected" : 4.652396432933246,
-  "midPrice" : 3.0205796992916243,
+  "fairBasisRate" : 1.041444916118296,
+  "lastPriceProtected" : 7.740351818741173,
+  "midPrice" : 7.04836565559697,
   "insuranceFee" : 9.965781217890562,
   "optionStrikePrice" : 1.4658129805029452,
   "limitUpPrice" : 6.438423552598547,
   "bankruptLimitUpPrice" : 6.965117697638846,
   "rebalanceInterval" : "2000-01-23T04:56:07.000+00:00",
   "fundingRate" : 9.369310271410669,
-  "lastPrice" : 0.10263654006109402,
+  "lastPrice" : 8.969578798196912,
   "totalVolume" : 2.884162126668780246063761296682059764862060546875,
   "symbol" : "symbol",
   "capped" : true,
-  "vwap" : 0.8851374739011653,
+  "vwap" : 6.519180951018382,
   "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
   "typ" : "typ",
   "inverseLeg" : "inverseLeg",
@@ -2682,22 +2532,22 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
   "prevTotalTurnover" : 5.94489560761401580890606055618263781070709228515625,
   "limit" : 7.457744773683766,
   "calcInterval" : "2000-01-23T04:56:07.000+00:00",
-  "lastChangePcnt" : 8.969578798196912,
-  "askPrice" : 3.0576100241049344,
+  "lastChangePcnt" : 3.0205796992916243,
+  "askPrice" : 5.533258397034986,
   "multiplier" : 3.61607674925191080461672754609026014804840087890625,
-  "indicativeTaxRate" : 7.260521264802104,
+  "indicativeTaxRate" : 0.8774076871421566,
   "settlementFee" : 5.025004791520295,
   "totalTurnover" : 6.70401929795003592715829654480330646038055419921875,
   "turnover24h" : 3.093745262666447448651751983561553061008453369140625,
-  "fairPrice" : 1.041444916118296,
-  "bidPrice" : 7.740351818741173,
+  "fairPrice" : 7.260521264802104,
+  "bidPrice" : 3.0576100241049344,
   "volume" : 6.77832496304801335185175048536621034145355224609375,
-  "impactMidPrice" : 5.533258397034986,
+  "impactMidPrice" : 4.078845849666752,
   "sellLeg" : "sellLeg",
   "optionStrikePcnt" : 0.8008281904610115,
   "maxOrderQty" : 5.63737665663332876420099637471139430999755859375,
   "hasLiquidity" : true,
-  "openInterest" : 4.078845849666752343409825698472559452056884765625,
+  "openInterest" : 6.6284642750877420525057459599338471889495849609375,
   "riskStep" : 6.8468526983526398765889098285697400569915771484375,
   "optionStrikeRound" : 6.027456183070403,
   "isQuanto" : true,
@@ -2706,30 +2556,32 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
   "underlyingSymbol" : "underlyingSymbol",
   "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
   "makerFee" : 1.1730742509559433,
-  "lowPrice" : 6.519180951018382,
+  "lowPrice" : 4.652396432933246,
   "underlyingToSettleMultiplier" : 4.1456080298839363962315474054776132106781005859375,
   "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
   "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
   "bankruptLimitDownPrice" : 3.5571952270680973,
   "turnover" : 3.35319334701124294184637619764544069766998291015625,
-  "impactAskPrice" : 3.2588565619047607,
+  "impactAskPrice" : 0.2025324113236393,
   "referenceSymbol" : "referenceSymbol",
-  "openValue" : 0.202532411323639305322785730822943150997161865234375,
+  "homeNotional24h" : 7.143538047012306,
+  "openValue" : 4.258773108174356281097061582840979099273681640625,
   "isInverse" : true,
   "lotSize" : 7.061401241503109105224211816675961017608642578125,
   "optionMultiplier" : 5.962133916683182,
   "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "impactBidPrice" : 7.04836565559697,
+  "foreignNotional24h" : 0.8851374739011653,
+  "impactBidPrice" : 3.2588565619047607,
   "prevTotalVolume" : 1.2846590061165319429647979632136411964893341064453125,
   "initMargin" : 1.2315135367772556,
   "front" : "2000-01-23T04:56:07.000+00:00"
 }, {
-  "optionUnderlyingPrice" : 0.8774076871421566,
+  "optionUnderlyingPrice" : 0.5199002018724985,
   "deleverage" : true,
   "riskLimit" : 1.489415909854170383397331534069962799549102783203125,
   "fundingBaseSymbol" : "fundingBaseSymbol",
-  "prevPrice24h" : 7.143538047012306,
-  "highPrice" : 7.058770351582356,
+  "prevPrice24h" : 7.058770351582356,
+  "highPrice" : 0.10263654006109402,
   "fairMethod" : "fairMethod",
   "taxed" : true,
   "state" : "state",
@@ -2739,14 +2591,14 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
   "publishTime" : "2000-01-23T04:56:07.000+00:00",
   "maintMargin" : 1.0246457001441578,
   "takerFee" : 4.965218492984954,
-  "fairBasis" : 4.258773108174356,
+  "fairBasis" : 4.678947989005849,
   "volume24h" : 6.87805222012787620400331434211693704128265380859375,
   "underlying" : "underlying",
   "quoteToSettleMultiplier" : 7.3862819483858839220147274318151175975799560546875,
   "fundingQuoteSymbol" : "fundingQuoteSymbol",
   "quoteCurrency" : "quoteCurrency",
-  "indicativeSettlePrice" : 9.132027271330688,
-  "settledPrice" : 9.702963800023566,
+  "indicativeSettlePrice" : 9.702963800023566,
+  "settledPrice" : 7.933506881737151,
   "relistInterval" : "2000-01-23T04:56:07.000+00:00",
   "prevClosePrice" : 8.762042012749001,
   "maxPrice" : 2.3021358869347655,
@@ -2754,7 +2606,7 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
   "settle" : "2000-01-23T04:56:07.000+00:00",
   "buyLeg" : "buyLeg",
   "tickSize" : 9.301444243932576,
-  "markPrice" : 4.678947989005849,
+  "markPrice" : 9.132027271330688,
   "settlCurrency" : "settlCurrency",
   "listing" : "2000-01-23T04:56:07.000+00:00",
   "indicativeFundingRate" : 6.683562403749608,
@@ -2763,20 +2615,20 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
   "limitDownPrice" : 9.018348186070783,
   "lastTickDirection" : "lastTickDirection",
   "rebalanceTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "fairBasisRate" : 6.628464275087742,
-  "lastPriceProtected" : 4.652396432933246,
-  "midPrice" : 3.0205796992916243,
+  "fairBasisRate" : 1.041444916118296,
+  "lastPriceProtected" : 7.740351818741173,
+  "midPrice" : 7.04836565559697,
   "insuranceFee" : 9.965781217890562,
   "optionStrikePrice" : 1.4658129805029452,
   "limitUpPrice" : 6.438423552598547,
   "bankruptLimitUpPrice" : 6.965117697638846,
   "rebalanceInterval" : "2000-01-23T04:56:07.000+00:00",
   "fundingRate" : 9.369310271410669,
-  "lastPrice" : 0.10263654006109402,
+  "lastPrice" : 8.969578798196912,
   "totalVolume" : 2.884162126668780246063761296682059764862060546875,
   "symbol" : "symbol",
   "capped" : true,
-  "vwap" : 0.8851374739011653,
+  "vwap" : 6.519180951018382,
   "closingTimestamp" : "2000-01-23T04:56:07.000+00:00",
   "typ" : "typ",
   "inverseLeg" : "inverseLeg",
@@ -2784,22 +2636,22 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
   "prevTotalTurnover" : 5.94489560761401580890606055618263781070709228515625,
   "limit" : 7.457744773683766,
   "calcInterval" : "2000-01-23T04:56:07.000+00:00",
-  "lastChangePcnt" : 8.969578798196912,
-  "askPrice" : 3.0576100241049344,
+  "lastChangePcnt" : 3.0205796992916243,
+  "askPrice" : 5.533258397034986,
   "multiplier" : 3.61607674925191080461672754609026014804840087890625,
-  "indicativeTaxRate" : 7.260521264802104,
+  "indicativeTaxRate" : 0.8774076871421566,
   "settlementFee" : 5.025004791520295,
   "totalTurnover" : 6.70401929795003592715829654480330646038055419921875,
   "turnover24h" : 3.093745262666447448651751983561553061008453369140625,
-  "fairPrice" : 1.041444916118296,
-  "bidPrice" : 7.740351818741173,
+  "fairPrice" : 7.260521264802104,
+  "bidPrice" : 3.0576100241049344,
   "volume" : 6.77832496304801335185175048536621034145355224609375,
-  "impactMidPrice" : 5.533258397034986,
+  "impactMidPrice" : 4.078845849666752,
   "sellLeg" : "sellLeg",
   "optionStrikePcnt" : 0.8008281904610115,
   "maxOrderQty" : 5.63737665663332876420099637471139430999755859375,
   "hasLiquidity" : true,
-  "openInterest" : 4.078845849666752343409825698472559452056884765625,
+  "openInterest" : 6.6284642750877420525057459599338471889495849609375,
   "riskStep" : 6.8468526983526398765889098285697400569915771484375,
   "optionStrikeRound" : 6.027456183070403,
   "isQuanto" : true,
@@ -2808,20 +2660,22 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
   "underlyingSymbol" : "underlyingSymbol",
   "fundingTimestamp" : "2000-01-23T04:56:07.000+00:00",
   "makerFee" : 1.1730742509559433,
-  "lowPrice" : 6.519180951018382,
+  "lowPrice" : 4.652396432933246,
   "underlyingToSettleMultiplier" : 4.1456080298839363962315474054776132106781005859375,
   "sessionInterval" : "2000-01-23T04:56:07.000+00:00",
   "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
   "bankruptLimitDownPrice" : 3.5571952270680973,
   "turnover" : 3.35319334701124294184637619764544069766998291015625,
-  "impactAskPrice" : 3.2588565619047607,
+  "impactAskPrice" : 0.2025324113236393,
   "referenceSymbol" : "referenceSymbol",
-  "openValue" : 0.202532411323639305322785730822943150997161865234375,
+  "homeNotional24h" : 7.143538047012306,
+  "openValue" : 4.258773108174356281097061582840979099273681640625,
   "isInverse" : true,
   "lotSize" : 7.061401241503109105224211816675961017608642578125,
   "optionMultiplier" : 5.962133916683182,
   "openingTimestamp" : "2000-01-23T04:56:07.000+00:00",
-  "impactBidPrice" : 7.04836565559697,
+  "foreignNotional24h" : 0.8851374739011653,
+  "impactBidPrice" : 3.2588565619047607,
   "prevTotalVolume" : 1.2846590061165319429647979632136411964893341064453125,
   "initMargin" : 1.2315135367772556,
   "front" : "2000-01-23T04:56:07.000+00:00"
@@ -2847,6 +2701,9 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
         <a href="#Error">Error</a>
     <h4 class="field-label">401</h4>
     Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
         <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
@@ -2875,8 +2732,8 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
     <div class="field-items">
       <div class="param">symbol (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.</p>
-<p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.</p>
+<p>You can also send a timeframe, e.g. <code>XBT:quarterly</code>. Timeframes are <code>nearest</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, <code>biquarterly</code>, and <code>perpetual</code>.</p>
  </div><div class="param">filter (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
@@ -2937,6 +2794,9 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
         <a href="#Error">Error</a>
     <h4 class="field-label">401</h4>
     Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
         <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
@@ -3010,6 +2870,9 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -3036,7 +2899,7 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#inline_response_200_1">inline_response_200_1</a>
+      <a href="#inline_response_200">inline_response_200</a>
       
     </div>
 
@@ -3062,12 +2925,15 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     Request was successful
-        <a href="#inline_response_200_1">inline_response_200_1</a>
+        <a href="#inline_response_200">inline_response_200</a>
     <h4 class="field-label">400</h4>
     Parameter Error
         <a href="#Error">Error</a>
     <h4 class="field-label">401</h4>
     Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
         <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
@@ -3096,8 +2962,8 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
     <div class="field-items">
       <div class="param">symbol (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.</p>
-<p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.</p>
+<p>You can also send a timeframe, e.g. <code>XBT:quarterly</code>. Timeframes are <code>nearest</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, <code>biquarterly</code>, and <code>perpetual</code>.</p>
  </div><div class="param">filter (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
@@ -3163,85 +3029,8 @@ get the ticks and weights of the constituent exchanges that build the &quot;.XBT
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
-    <h4 class="field-label">404</h4>
-    Not Found
-        <a href="#Error">Error</a>
-  </div> <!-- method -->
-  <hr/>
-  <h1><a name="Notification">Notification</a></h1>
-  <div class="method"><a name="notification.get"/>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /notification</code></pre></div>
-    <div class="method-summary">Get your current notifications. (<span class="nickname">notification.get</span>)</div>
-    <div class="method-notes">This is an upcoming feature and currently does not return data.</div>
-
-
-    <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/x-www-form-urlencoded</code></li>
-    </ul>
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      array[<a href="#Notification">Notification</a>]
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>[ {
-  "date" : "2000-01-23T04:56:07.000+00:00",
-  "waitForVisibility" : true,
-  "closable" : true,
-  "sound" : "sound",
-  "id" : 0.80082819046101150206595775671303272247314453125,
-  "persist" : true,
-  "title" : "title",
-  "body" : "body",
-  "type" : "success",
-  "ttl" : 6.02745618307040320615897144307382404804229736328125
-}, {
-  "date" : "2000-01-23T04:56:07.000+00:00",
-  "waitForVisibility" : true,
-  "closable" : true,
-  "sound" : "sound",
-  "id" : 0.80082819046101150206595775671303272247314453125,
-  "persist" : true,
-  "title" : "title",
-  "body" : "body",
-  "type" : "success",
-  "ttl" : 6.02745618307040320615897144307382404804229736328125
-} ]</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/xml</code></li>
-      <li><code>text/xml</code></li>
-      <li><code>application/javascript</code></li>
-      <li><code>text/javascript</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Request was successful
-        
-    <h4 class="field-label">400</h4>
-    Parameter Error
-        <a href="#Error">Error</a>
-    <h4 class="field-label">401</h4>
-    Unauthorized
+    <h4 class="field-label">403</h4>
+    Access Denied
         <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
@@ -3262,8 +3051,6 @@ already filled.</p>
 <blockquote>
 <p>A <code>leavesQty</code> can be used to make a &quot;Filled&quot; order live again, if it is received within 60 seconds of the fill.</p>
 </blockquote>
-<p>Use the <code>simpleOrderQty</code> and <code>simpleLeavesQty</code> fields to specify order size in Bitcoin, rather than contracts.
-These fields will round up to the nearest contract.</p>
 <p>Like order placement, amending can be done in bulk. Simply send a request to <code>PUT /api/v1/order/bulk</code> with
 a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, each object containing the fields used in this endpoint.</p>
 </div>
@@ -3289,11 +3076,11 @@ a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, eac
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional new Client Order ID, requires <code>origClOrdID</code>. </div><div class="param">simpleOrderQty (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional order quantity in units of the underlying instrument (i.e. Bitcoin). format: double</div><div class="param">orderQty (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Deprecated: simple orders are not supported after 2018/10/26 format: double</div><div class="param">orderQty (optional)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional order quantity in units of the instrument (i.e. contracts). format: int32</div><div class="param">simpleLeavesQty (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional leaves quantity in units of the underlying instrument (i.e. Bitcoin). Useful for amending partially filled orders. format: double</div><div class="param">leavesQty (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Deprecated: simple orders are not supported after 2018/10/26 format: double</div><div class="param">leavesQty (optional)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional leaves quantity in units of the instrument (i.e. contracts). Useful for amending partially filled orders. format: int32</div><div class="param">price (optional)</div>
 
@@ -3372,6 +3159,9 @@ a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, eac
         <a href="#Error">Error</a>
     <h4 class="field-label">401</h4>
     Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
         <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
@@ -3503,6 +3293,9 @@ a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, eac
         <a href="#Error">Error</a>
     <h4 class="field-label">401</h4>
     Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
         <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
@@ -3639,6 +3432,9 @@ a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, eac
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -3774,6 +3570,9 @@ a JSON body of the shape: <code>{&quot;orders&quot;: [{...}, {...}]}</code>, eac
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -3841,6 +3640,9 @@ If this route is not called within 60 seconds, all your orders will be automatic
         <a href="#Error">Error</a>
     <h4 class="field-label">401</h4>
     Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
         <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
@@ -3941,6 +3743,9 @@ If this route is not called within 60 seconds, all your orders will be automatic
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -3969,8 +3774,8 @@ If this route is not called within 60 seconds, all your orders will be automatic
     <div class="field-items">
       <div class="param">symbol (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.</p>
-<p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.</p>
+<p>You can also send a timeframe, e.g. <code>XBT:quarterly</code>. Timeframes are <code>nearest</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, <code>biquarterly</code>, and <code>perpetual</code>.</p>
  </div><div class="param">filter (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
@@ -4092,6 +3897,9 @@ If this route is not called within 60 seconds, all your orders will be automatic
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -4111,11 +3919,6 @@ If this route is not called within 60 seconds, all your orders will be automatic
 <li><strong>Limit</strong>: The default order type. Specify an <code>orderQty</code> and <code>price</code>.</li>
 <li><strong>Market</strong>: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at
 which point it will cancel.</li>
-<li><strong>MarketWithLeftOverAsLimit</strong>: A market order that, after eating through the order book as far as
-permitted by available margin, will become a limit order. The difference between this type and <code>Market</code> only
-affects the behavior in thin books. Upon reaching the deepest possible price, if there is quantity left over,
-a <code>Market</code> order will cancel the remaining quantity. <code>MarketWithLeftOverAsLimit</code> will keep the remaining
-quantity in the books as a <code>Limit</code>.</li>
 <li><strong>Stop</strong>: A Stop Market order. Specify an <code>orderQty</code> and <code>stopPx</code>. When the <code>stopPx</code> is reached, the order will be entered
 into the book.
 <ul>
@@ -4135,12 +3938,11 @@ and <code>price</code>.</li>
 <ul>
 <li><strong>ParticipateDoNotInitiate</strong>: Also known as a Post-Only order. If this order would have executed on placement,
 it will cancel instead.</li>
-<li><strong>AllOrNone</strong>: Valid only for hidden orders (<code>displayQty: 0</code>). Use to only execute if the entire order would fill.</li>
 <li><strong>MarkPrice, LastPrice, IndexPrice</strong>: Used by stop and if-touched orders to determine the triggering price.
 Use only one. By default, <code>'MarkPrice'</code> is used. Also used for Pegged orders to define the value of <code>'LastPeg'</code>.</li>
 <li><strong>ReduceOnly</strong>: A <code>'ReduceOnly'</code> order can only reduce your position, not increase it. If you have a <code>'ReduceOnly'</code>
 limit order that rests in the order book while the position is reduced by other orders, then its order quantity will
-be amended down or canceled. If there are multiple <code>'ReduceOnly'</code> orders the least agresssive will be amended first.</li>
+be amended down or canceled. If there are multiple <code>'ReduceOnly'</code> orders the least aggressive will be amended first.</li>
 <li><strong>Close</strong>: <code>'Close'</code> implies <code>'ReduceOnly'</code>. A <code>'Close'</code> order will cancel other active limit orders with the same side
 and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a
 <code>'Close'</code> Stop is ensured to have the margin required to execute, and can only execute up to the full size of your
@@ -4152,23 +3954,7 @@ above or below the <code>stopPx</code>.</li>
 </li>
 </ul>
 <h4>Linked Orders</h4>
-<p>Linked Orders are an advanced capability. It is very powerful, but its use requires careful coding and testing.
-Please follow this document carefully and use the <a href="https://testnet.bitmex.com">Testnet Exchange</a> while developing.</p>
-<p>BitMEX offers four advanced Linked Order types:</p>
-<ul>
-<li><strong>OCO</strong>: <em>One Cancels the Other</em>. A very flexible version of the standard Stop / Take Profit technique.
-Multiple orders may be linked together using a single <code>clOrdLinkID</code>. Send a <code>contingencyType</code> of
-<code>OneCancelsTheOther</code> on the orders. The first order that fully or partially executes (or activates
-for <code>Stop</code> orders) will cancel all other orders with the same <code>clOrdLinkID</code>.</li>
-<li><strong>OTO</strong>: <em>One Triggers the Other</em>. Send a <code>contingencyType</code> of <code>'OneTriggersTheOther'</code> on the primary order and
-then subsequent orders with the same <code>clOrdLinkID</code> will be not be triggered until the primary order fully executes.</li>
-<li><strong>OUOA</strong>: <em>One Updates the Other Absolute</em>. Send a <code>contingencyType</code> of <code>'OneUpdatesTheOtherAbsolute'</code> on the orders. Then
-as one order has a execution, other orders with the same <code>clOrdLinkID</code> will have their order quantity amended
-down by the execution quantity.</li>
-<li><strong>OUOP</strong>: <em>One Updates the Other Proportional</em>. Send a <code>contingencyType</code> of <code>'OneUpdatesTheOtherProportional'</code> on the orders. Then
-as one order has a execution, other orders with the same <code>clOrdLinkID</code> will have their order quantity reduced proportionally
-by the fill percentage.</li>
-</ul>
+<p><a href="https://blog.bitmex.com/api_announcement/deprecation-of-contingent-orders/">Linked Orders are deprecated as of 2018/11/10</a></p>
 <h4>Trailing Stops</h4>
 <p>You may use <code>pegPriceType</code> of <code>'TrailingStopPeg'</code> to create Trailing Stops. The pegged <code>stopPx</code> will move as the market
 moves away from the peg, and freeze as the market moves toward it.</p>
@@ -4176,8 +3962,7 @@ moves away from the peg, and freeze as the market moves toward it.</p>
 specified in the <code>execInst</code> (default <code>'MarkPrice'</code>). Use a negative offset for stop-sell and buy-if-touched orders.</p>
 <p>Requires <code>ordType</code>: <code>'Stop', 'StopLimit', 'MarketIfTouched', 'LimitIfTouched'</code>.</p>
 <h4>Simple Quantities</h4>
-<p>Send a <code>simpleOrderQty</code> instead of an <code>orderQty</code> to create an order denominated in the underlying currency.
-This is useful for opening up a position with 1 XBT of exposure without having to calculate how many contracts it is.</p>
+<p><a href="https://blog.bitmex.com/api_announcement/deprecation-of-simpleorderqty-functionality/">Simple Quantities are deprecated as of 2018/10/26</a></p>
 <h4>Rate Limits</h4>
 <p>See the <a href="#!/Order/Order_newBulk">Bulk Order Documentation</a> if you need to place multiple orders at the same time.
 Bulk orders require fewer risk checks in the trading engine and thus are ratelimited at <strong>1/10</strong> the normal rate.</p>
@@ -4212,9 +3997,9 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Instrument symbol. e.g. 'XBTUSD'. </div><div class="param">side (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Order side. Valid options: Buy, Sell. Defaults to 'Buy' unless <code>orderQty</code> or <code>simpleOrderQty</code> is negative. </div><div class="param">simpleOrderQty (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Order side. Valid options: Buy, Sell. Defaults to 'Buy' unless <code>orderQty</code> is negative. </div><div class="param">simpleOrderQty (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Order quantity in units of the underlying instrument (i.e. Bitcoin). format: double</div><div class="param">orderQty (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Deprecated: simple orders are not supported after 2018/10/26 format: double</div><div class="param">orderQty (optional)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Order quantity in units of the instrument (i.e. contracts). format: int32</div><div class="param">price (optional)</div>
 
@@ -4226,19 +4011,19 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional Client Order ID. This clOrdID will come back on the order and any related executions. </div><div class="param">clOrdLinkID (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional Client Order Link ID for contingent orders. </div><div class="param">pegOffsetValue (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Deprecated: linked orders are not supported after 2018/11/10. </div><div class="param">pegOffsetValue (optional)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional trailing offset from the current price for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for 'Pegged' orders. format: double</div><div class="param">pegPriceType (optional)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg. </div><div class="param">ordType (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, Pegged. Defaults to 'Limit' when <code>price</code> is specified. Defaults to 'Stop' when <code>stopPx</code> is specified. Defaults to 'StopLimit' when <code>price</code> and <code>stopPx</code> are specified. default: Limit </div><div class="param">timeInForce (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, Pegged. Defaults to 'Limit' when <code>price</code> is specified. Defaults to 'Stop' when <code>stopPx</code> is specified. Defaults to 'StopLimit' when <code>price</code> and <code>stopPx</code> are specified. default: Limit </div><div class="param">timeInForce (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to 'GoodTillCancel' for 'Limit', 'StopLimit', 'LimitIfTouched', and 'MarketWithLeftOverAsLimit' orders. </div><div class="param">execInst (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to 'GoodTillCancel' for 'Limit', 'StopLimit', and 'LimitIfTouched' orders. </div><div class="param">execInst (optional)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. 'AllOrNone' instruction requires <code>displayQty</code> to be 0. 'MarkPrice', 'IndexPrice' or 'LastPrice' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. </div><div class="param">contingencyType (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional contingency type for use with <code>clOrdLinkID</code>. Valid options: OneCancelsTheOther, OneTriggersTheOther, OneUpdatesTheOtherAbsolute, OneUpdatesTheOtherProportional. </div><div class="param">text (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Deprecated: linked orders are not supported after 2018/11/10. </div><div class="param">text (optional)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional order annotation. e.g. 'Take profit'. </div>
     </div>  <!-- field-items -->
@@ -4310,6 +4095,9 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -4320,7 +4108,7 @@ PUT /api/v1/order {&quot;origClOrdID&quot;: &quot;abc-123&quot;, &quot;clOrdID&q
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /order/bulk</code></pre></div>
     <div class="method-summary">Create multiple new orders for the same symbol. (<span class="nickname">order.newBulk</span>)</div>
-    <div class="method-notes"><p>This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, MarketWithLeftOverAsLimit, and Pegged.</p>
+    <div class="method-notes"><p>This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.</p>
 <p>Each individual order object in the array should have the same properties as an individual POST /order call.</p>
 <p>This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX
 systems, this endpoint is ratelimited at <code>ceil(0.1 * orders)</code>. Submitting 10 orders via a bulk order call
@@ -4447,6 +4235,9 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -4525,6 +4316,9 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -4536,7 +4330,41 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /position</code></pre></div>
     <div class="method-summary">Get your positions. (<span class="nickname">position.get</span>)</div>
-    <div class="method-notes">See <a href="http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html">the FIX Spec</a> for explanations of these fields.</div>
+    <div class="method-notes"><p>This endpoint is used for retrieving position information. The fields largely follow the <a href="http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AP_6580.html">FIX spec</a> definitions. Some selected fields are explained in more detail below.</p>
+<p>The fields <em>account</em>, <em>symbol</em>, <em>currency</em> are unique to each position and form its key.</p>
+<ul>
+<li><strong>account</strong>: Your unique account ID.</li>
+<li><strong>symbol</strong>: The contract for this position.</li>
+<li><strong>currency</strong>: The margin currency for this position.</li>
+<li><strong>underlying</strong>: Meta data of the <em>symbol</em>.</li>
+<li><strong>quoteCurrency</strong>: Meta data of the <em>symbol</em>, All prices are in the <em>quoteCurrency</em></li>
+<li><strong>commission</strong>: The maximum of the maker, taker, and settlement fee.</li>
+<li><strong>initMarginReq</strong>: The initial margin requirement. This will be at least the symbol's default initial maintenance margin, but can be higher if you choose lower leverage.</li>
+<li><strong>maintMarginReq</strong>: The maintenance margin requirement. This will be at least the symbol's default maintenance maintenance margin, but can be higher if you choose a higher risk limit.</li>
+<li><strong>riskLimit</strong>: This is a function of your <em>maintMarginReq</em>.</li>
+<li><strong>leverage</strong>: 1 / initMarginReq.</li>
+<li><strong>crossMargin</strong>: True/false depending on whether you set cross margin on this position.</li>
+<li><strong>deleveragePercentile</strong>: Indicates where your position is in the ADL queue.</li>
+<li><strong>rebalancedPnl</strong>: The value of realised PNL that has transferred to your wallet for this position.</li>
+<li><strong>prevRealisedPnl</strong>: The value of realised PNL that has transferred to your wallet for this position since the position was closed.</li>
+<li><strong>currentQty</strong>: The current position amount in contracts.</li>
+<li><strong>currentCost</strong>: The current cost of the position in the settlement currency of the symbol (<em>currency</em>).</li>
+<li><strong>currentComm</strong>: The current commission of the position in the settlement currency of the symbol (<em>currency</em>).</li>
+<li><strong>realisedCost</strong>: The realised cost of this position calculated with regard to average cost accounting.</li>
+<li><strong>unrealisedCost</strong>: <em>currentCost</em> - <em>realisedCost</em>.</li>
+<li><strong>grossOpenCost</strong>: The absolute value of your open orders for this symbol.</li>
+<li><strong>grossOpenPremium</strong>: The amount your bidding above the mark price in the settlement currency of the symbol (<em>currency</em>).</li>
+<li><strong>markPrice</strong>: The mark price of the symbol in <em>quoteCurrency</em>.</li>
+<li><strong>markValue</strong>: The <em>currentQty</em> at the mark price in the settlement currency of the symbol (<em>currency</em>).</li>
+<li><strong>homeNotional</strong>: Value of position in units of <em>underlying</em>.</li>
+<li><strong>foreignNotional</strong>: Value of position in units of <em>quoteCurrency</em>.</li>
+<li><strong>realisedPnl</strong>: The negative of <em>realisedCost</em>.</li>
+<li><strong>unrealisedGrossPnl</strong>: <em>markValue</em> - <em>unrealisedCost</em>.</li>
+<li><strong>unrealisedPnl</strong>: <em>unrealisedGrossPnl</em>.</li>
+<li><strong>liquidationPrice</strong>: Once markPrice reaches this price, this position will be liquidated.</li>
+<li><strong>bankruptPrice</strong>: Once markPrice reaches this price, this position will have no equity.</li>
+</ul>
+</div>
 
 
     <h3 class="field-label">Consumes</h3>
@@ -4777,6 +4605,9 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -4933,6 +4764,9 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
         <a href="#Error">Error</a>
     <h4 class="field-label">401</h4>
     Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
         <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
@@ -5091,6 +4925,9 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -5247,6 +5084,9 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
         <a href="#Error">Error</a>
     <h4 class="field-label">401</h4>
     Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
         <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
@@ -5405,6 +5245,9 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -5432,8 +5275,8 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <div class="field-items">
       <div class="param">symbol (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.</p>
-<p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.</p>
+<p>You can also send a timeframe, e.g. <code>XBT:quarterly</code>. Timeframes are <code>nearest</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, <code>biquarterly</code>, and <code>perpetual</code>.</p>
  </div><div class="param">filter (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
@@ -5501,6 +5344,9 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -5511,7 +5357,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /quote/bucketed</code></pre></div>
     <div class="method-summary">Get previous quotes in time buckets. (<span class="nickname">quote.getBucketed</span>)</div>
-    <div class="method-notes"></div>
+    <div class="method-notes">Timestamps returned by our bucketed endpoints are the <strong>end</strong> of the period, indicating when the bucket was written to disk. Some other common systems use the timestamp as the beginning of the period. Please be aware of this when using this endpoint.</div>
 
 
     <h3 class="field-label">Consumes</h3>
@@ -5531,8 +5377,8 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; If true, will send in-progress (incomplete) bins for the current time period. default: false </div><div class="param">symbol (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.</p>
-<p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.</p>
+<p>You can also send a timeframe, e.g. <code>XBT:quarterly</code>. Timeframes are <code>nearest</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, <code>biquarterly</code>, and <code>perpetual</code>.</p>
  </div><div class="param">filter (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
@@ -5599,6 +5445,9 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
         <a href="#Error">Error</a>
     <h4 class="field-label">401</h4>
     Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
         <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
@@ -5664,6 +5513,9 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -5721,6 +5573,9 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -5748,8 +5603,8 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <div class="field-items">
       <div class="param">symbol (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.</p>
-<p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.</p>
+<p>You can also send a timeframe, e.g. <code>XBT:quarterly</code>. Timeframes are <code>nearest</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, <code>biquarterly</code>, and <code>perpetual</code>.</p>
  </div><div class="param">filter (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
@@ -5823,6 +5678,9 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -5895,6 +5753,9 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -5963,6 +5824,9 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
         <a href="#Error">Error</a>
     <h4 class="field-label">401</h4>
     Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
         <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
@@ -6035,6 +5899,9 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -6064,8 +5931,8 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <div class="field-items">
       <div class="param">symbol (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.</p>
-<p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.</p>
+<p>You can also send a timeframe, e.g. <code>XBT:quarterly</code>. Timeframes are <code>nearest</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, <code>biquarterly</code>, and <code>perpetual</code>.</p>
  </div><div class="param">filter (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
@@ -6141,6 +6008,9 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -6151,7 +6021,9 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /trade/bucketed</code></pre></div>
     <div class="method-summary">Get previous trades in time buckets. (<span class="nickname">trade.getBucketed</span>)</div>
-    <div class="method-notes"></div>
+    <div class="method-notes"><p>Timestamps returned by our bucketed endpoints are the <strong>end</strong> of the period, indicating when the bucket was written to disk. Some other common systems use the timestamp as the beginning of the period. Please be aware of this when using this endpoint.</p>
+<p>Also note the <code>open</code> price is equal to the <code>close</code> price of the previous timeframe bucket.</p>
+</div>
 
 
     <h3 class="field-label">Consumes</h3>
@@ -6171,8 +6043,8 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; If true, will send in-progress (incomplete) bins for the current time period. default: false </div><div class="param">symbol (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.</p>
-<p>You can also send a timeframe, e.g. <code>XBU:monthly</code>. Timeframes are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, and <code>biquarterly</code>.</p>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; <p>Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.</p>
+<p>You can also send a timeframe, e.g. <code>XBT:quarterly</code>. Timeframes are <code>nearest</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>quarterly</code>, <code>biquarterly</code>, and <code>perpetual</code>.</p>
  </div><div class="param">filter (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Generic table filter. Send JSON key/value pairs, such as <code>{&quot;key&quot;: &quot;value&quot;}</code>. You can key on individual fields, and do more advanced querying on timestamps. See the <a href="https://www.bitmex.com/app/restAPI#Timestamp-Filters">Timestamp Docs</a> for more details. format: JSON</div><div class="param">columns (optional)</div>
@@ -6254,6 +6126,9 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
     <h4 class="field-label">404</h4>
     Not Found
         <a href="#Error">Error</a>
@@ -6325,6 +6200,18 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">200</h4>
     Request was successful
         <a href="#Transaction">Transaction</a>
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="user.checkReferralCode"/>
@@ -6332,7 +6219,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /user/checkReferralCode</code></pre></div>
     <div class="method-summary">Check if a referral code is valid. (<span class="nickname">user.checkReferralCode</span>)</div>
-    <div class="method-notes">If the code is valid, responds with the referral code's discount (e.g. <code>0.1</code> for 10%). Otherwise, will return a 404.</div>
+    <div class="method-notes">If the code is valid, responds with the referral code's discount (e.g. <code>0.1</code> for 10%). Otherwise, will return a 404 or 451 if invalid.</div>
 
 
     <h3 class="field-label">Consumes</h3>
@@ -6379,6 +6266,96 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">200</h4>
     Request was successful
         <a href="#Double">Double</a>
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="user.communicationToken"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /user/communicationToken</code></pre></div>
+    <div class="method-summary">Register your communication token for mobile clients (<span class="nickname">user.communicationToken</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/x-www-form-urlencoded</code></li>
+    </ul>
+
+
+
+
+    <h3 class="field-label">Form parameters</h3>
+    <div class="field-items">
+      <div class="param">token (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div><div class="param">platformAgent (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#CommunicationToken">CommunicationToken</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "channel" : "channel",
+  "id" : "id",
+  "userId" : 0.80082819046101150206595775671303272247314453125,
+  "deviceToken" : "deviceToken"
+}, {
+  "channel" : "channel",
+  "id" : "id",
+  "userId" : 0.80082819046101150206595775671303272247314453125,
+  "deviceToken" : "deviceToken"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>text/xml</code></li>
+      <li><code>application/javascript</code></li>
+      <li><code>text/javascript</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Request was successful
+        
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="user.confirm"/>
@@ -6438,62 +6415,18 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">200</h4>
     Request was successful
         <a href="#AccessToken">AccessToken</a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="user.confirmEnableTFA"/>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /user/confirmEnableTFA</code></pre></div>
-    <div class="method-summary">Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint. (<span class="nickname">user.confirmEnableTFA</span>)</div>
-    <div class="method-notes"></div>
-
-
-    <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/x-www-form-urlencoded</code></li>
-    </ul>
-
-
-
-
-    <h3 class="field-label">Form parameters</h3>
-    <div class="field-items">
-      <div class="param">type (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Two-factor auth type. Supported types: 'GA' (Google Authenticator), 'Yubikey' </div><div class="param">token (required)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Token from your selected TFA type. </div>
-    </div>  <!-- field-items -->
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      
-      Boolean
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>true</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/xml</code></li>
-      <li><code>text/xml</code></li>
-      <li><code>application/javascript</code></li>
-      <li><code>text/javascript</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Request was successful
-        <a href="#Boolean">Boolean</a>
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="user.confirmWithdrawal"/>
@@ -6561,62 +6494,18 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">200</h4>
     Request was successful
         <a href="#Transaction">Transaction</a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="user.disableTFA"/>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /user/disableTFA</code></pre></div>
-    <div class="method-summary">Disable two-factor auth for this account. (<span class="nickname">user.disableTFA</span>)</div>
-    <div class="method-notes"></div>
-
-
-    <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/x-www-form-urlencoded</code></li>
-    </ul>
-
-
-
-
-    <h3 class="field-label">Form parameters</h3>
-    <div class="field-items">
-      <div class="param">type (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Two-factor auth type. Supported types: 'GA' (Google Authenticator) </div><div class="param">token (required)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Token from your selected TFA type. </div>
-    </div>  <!-- field-items -->
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      
-      Boolean
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>true</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/xml</code></li>
-      <li><code>text/xml</code></li>
-      <li><code>application/javascript</code></li>
-      <li><code>text/javascript</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Request was successful
-        <a href="#Boolean">Boolean</a>
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="user.get"/>
@@ -6656,6 +6545,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     "hideNotifications" : [ "hideNotifications", "hideNotifications" ],
     "tickerGroup" : "tickerGroup",
     "animationsEnabled" : true,
+    "disablePush" : [ "disablePush", "disablePush" ],
     "alertOnLiquidations" : true,
     "locale" : "en-US",
     "hideConfirmDialogs" : [ "hideConfirmDialogs", "hideConfirmDialogs" ],
@@ -6710,6 +6600,18 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">200</h4>
     Request was successful
         <a href="#User">User</a>
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="user.getAffiliateStatus"/>
@@ -6742,6 +6644,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
+  "referralDiscount" : 1.2315135367772556,
   "execTurnover" : 5.63737665663332876420099637471139430999755859375,
   "totalTurnover" : 9.301444243932575517419536481611430644989013671875,
   "referrerAccount" : 7.386281948385884,
@@ -6756,7 +6659,8 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
   "prevTurnover" : 1.46581298050294517310021547018550336360931396484375,
   "totalComm" : 3.61607674925191080461672754609026014804840087890625,
   "payoutPcnt" : 2.027123023002322,
-  "timestamp" : "2000-01-23T04:56:07.000+00:00"
+  "timestamp" : "2000-01-23T04:56:07.000+00:00",
+  "affiliatePayout" : 1.0246457001441578
 }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -6774,6 +6678,18 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">200</h4>
     Request was successful
         <a href="#Affiliate">Affiliate</a>
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="user.getCommission"/>
@@ -6797,7 +6713,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      array[<a href="#UserCommission">UserCommission</a>]
+      <a href="#UserCommissionsBySymbol">UserCommissionsBySymbol</a>
       
     </div>
 
@@ -6805,17 +6721,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>[ {
-  "takerFee" : 6.027456183070403,
-  "makerFee" : 0.8008281904610115,
-  "settlementFee" : 1.4658129805029452,
-  "maxFee" : 5.962133916683182
-}, {
-  "takerFee" : 6.027456183070403,
-  "makerFee" : 0.8008281904610115,
-  "settlementFee" : 1.4658129805029452,
-  "maxFee" : 5.962133916683182
-} ]</code></pre>
+    <pre class="example"><code>{ }</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -6831,7 +6737,19 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     Request was successful
-        
+        <a href="#UserCommissionsBySymbol">UserCommissionsBySymbol</a>
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="user.getDepositAddress"/>
@@ -6886,6 +6804,86 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">200</h4>
     Request was successful
         <a href="#String">String</a>
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="user.getExecutionHistory"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /user/executionHistory</code></pre></div>
+    <div class="method-summary">Get the execution history by day. (<span class="nickname">user.getExecutionHistory</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/x-www-form-urlencoded</code></li>
+    </ul>
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">symbol (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  default: XBTUSD </div><div class="param">timestamp (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  default: 2017-02-13T12:00:00.000Z format: date-time</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      Object
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{}"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>text/xml</code></li>
+      <li><code>application/javascript</code></li>
+      <li><code>text/javascript</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Request was successful
+        <a href="#Object">Object</a>
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="user.getMargin"/>
@@ -6982,6 +6980,86 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">200</h4>
     Request was successful
         <a href="#Margin">Margin</a>
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="user.getQuoteFillRatio"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /user/quoteFillRatio</code></pre></div>
+    <div class="method-summary">Get 7 days worth of Quote Fill Ratio statistics. (<span class="nickname">user.getQuoteFillRatio</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/x-www-form-urlencoded</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#QuoteFillRatio">QuoteFillRatio</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "date" : "2000-01-23T04:56:07.000+00:00",
+  "quoteCount" : 6.027456183070403,
+  "quoteFillRatioMavg7" : 2.3021358869347655,
+  "dealtMavg7" : 5.637376656633329,
+  "account" : 0.8008281904610115,
+  "dealtCount" : 1.4658129805029452,
+  "quotesMavg7" : 5.962133916683182
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+      <li><code>text/xml</code></li>
+      <li><code>application/javascript</code></li>
+      <li><code>text/javascript</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Request was successful
+        <a href="#QuoteFillRatio">QuoteFillRatio</a>
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="user.getWallet"/>
@@ -7062,6 +7140,18 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">200</h4>
     Request was successful
         <a href="#Wallet">Wallet</a>
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="user.getWalletHistory"/>
@@ -7085,7 +7175,11 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <div class="field-items">
       <div class="param">currency (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  default: XBt </div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  default: XBt </div><div class="param">count (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Number of results to fetch. default: 100 format: double</div><div class="param">start (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Starting point for results. default: 0 format: double</div>
     </div>  <!-- field-items -->
 
 
@@ -7142,6 +7236,18 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">200</h4>
     Request was successful
         
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="user.getWalletSummary"/>
@@ -7222,6 +7328,18 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">200</h4>
     Request was successful
         
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="user.logout"/>
@@ -7262,54 +7380,18 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">200</h4>
     Request was successful
         <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="user.logoutAll"/>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /user/logoutAll</code></pre></div>
-    <div class="method-summary">Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices. (<span class="nickname">user.logoutAll</span>)</div>
-    <div class="method-notes"></div>
-
-
-    <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/x-www-form-urlencoded</code></li>
-    </ul>
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      
-      Double
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>0.8008281904610115</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/xml</code></li>
-      <li><code>text/xml</code></li>
-      <li><code>application/javascript</code></li>
-      <li><code>text/javascript</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Request was successful
-        <a href="#Double">Double</a>
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="user.minWithdrawalFee"/>
@@ -7364,60 +7446,18 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">200</h4>
     Request was successful
         <a href="#Object">Object</a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="user.requestEnableTFA"/>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /user/requestEnableTFA</code></pre></div>
-    <div class="method-summary">Get secret key for setting up two-factor auth. (<span class="nickname">user.requestEnableTFA</span>)</div>
-    <div class="method-notes">Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.</div>
-
-
-    <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/x-www-form-urlencoded</code></li>
-    </ul>
-
-
-
-
-    <h3 class="field-label">Form parameters</h3>
-    <div class="field-items">
-      <div class="param">type (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Two-factor auth type. Supported types: 'GA' (Google Authenticator) </div>
-    </div>  <!-- field-items -->
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      
-      Boolean
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>true</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/xml</code></li>
-      <li><code>text/xml</code></li>
-      <li><code>application/javascript</code></li>
-      <li><code>text/javascript</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Request was successful
-        <a href="#Boolean">Boolean</a>
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="user.requestWithdrawal"/>
@@ -7425,7 +7465,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /user/requestWithdrawal</code></pre></div>
     <div class="method-summary">Request a withdrawal to an external wallet. (<span class="nickname">user.requestWithdrawal</span>)</div>
-    <div class="method-notes">This will send a confirmation email to the email address on record, unless requested via an API Key with the <code>withdraw</code> permission.</div>
+    <div class="method-notes">This will send a confirmation email to the email address on record.</div>
 
 
     <h3 class="field-label">Consumes</h3>
@@ -7450,7 +7490,9 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Destination Address. </div><div class="param">fee (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. format: double</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. format: double</div><div class="param">text (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional annotation, e.g. 'Transfer to home wallet'. </div>
     </div>  <!-- field-items -->
 
     <h3 class="field-label">Return type</h3>
@@ -7493,6 +7535,18 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">200</h4>
     Request was successful
         <a href="#Transaction">Transaction</a>
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="user.savePreferences"/>
@@ -7540,6 +7594,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     "hideNotifications" : [ "hideNotifications", "hideNotifications" ],
     "tickerGroup" : "tickerGroup",
     "animationsEnabled" : true,
+    "disablePush" : [ "disablePush", "disablePush" ],
     "alertOnLiquidations" : true,
     "locale" : "en-US",
     "hideConfirmDialogs" : [ "hideConfirmDialogs", "hideConfirmDialogs" ],
@@ -7594,13 +7649,26 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h4 class="field-label">200</h4>
     Request was successful
         <a href="#User">User</a>
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="user.update"/>
+  <h1><a name="UserEvent">UserEvent</a></h1>
+  <div class="method"><a name="userEvent.get"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="put"><code class="huge"><span class="http-method">put</span> /user</code></pre></div>
-    <div class="method-summary">Update your password, name, and other attributes. (<span class="nickname">user.update</span>)</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /userEvent</code></pre></div>
+    <div class="method-summary">Get your user events (<span class="nickname">userEvent.get</span>)</div>
     <div class="method-notes"></div>
 
 
@@ -7613,31 +7681,19 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
 
 
-
-    <h3 class="field-label">Form parameters</h3>
+    <h3 class="field-label">Query parameters</h3>
     <div class="field-items">
-      <div class="param">firstname (optional)</div>
+      <div class="param">count (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div><div class="param">lastname (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Number of results to fetch. default: 150 format: double</div><div class="param">startId (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div><div class="param">oldPassword (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div><div class="param">newPassword (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div><div class="param">newPasswordConfirm (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div><div class="param">username (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Username can only be set once. To reset, email support. </div><div class="param">country (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Country of residence. </div><div class="param">pgpPubKey (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; PGP Public Key. If specified, automated emails will be sentwith this key. </div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Cursor for pagination. format: double</div>
     </div>  <!-- field-items -->
+
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#User">User</a>
+      array[<a href="#UserEvent">UserEvent</a>]
       
     </div>
 
@@ -7645,52 +7701,31 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
+    <pre class="example"><code>[ {
   "geoipRegion" : "geoipRegion",
-  "country" : "country",
-  "firstname" : "firstname",
-  "preferences" : {
-    "hideNotifications" : [ "hideNotifications", "hideNotifications" ],
-    "tickerGroup" : "tickerGroup",
-    "animationsEnabled" : true,
-    "alertOnLiquidations" : true,
-    "locale" : "en-US",
-    "hideConfirmDialogs" : [ "hideConfirmDialogs", "hideConfirmDialogs" ],
-    "disableEmails" : [ "disableEmails", "disableEmails" ],
-    "sounds" : [ "sounds", "sounds" ],
-    "colorTheme" : "colorTheme",
-    "currency" : "currency",
-    "hideNameFromLeaderboard" : true,
-    "tradeLayout" : "tradeLayout",
-    "strictTimeout" : true,
-    "orderBookBinning" : "{}",
-    "debug" : true,
-    "strictIPCheck" : false,
-    "msgsSeen" : [ "msgsSeen", "msgsSeen" ],
-    "orderControlsPlusMinus" : true,
-    "hideConnectionModal" : true,
-    "tickerPinned" : true,
-    "hideFromLeaderboard" : false,
-    "announcementsLastSeen" : "2000-01-23T04:56:07.000+00:00",
-    "orderBookType" : "orderBookType",
-    "orderClearImmediate" : false,
-    "showLocaleNumbers" : true,
-    "chatChannelID" : 1.4658129805029452
-  },
+  "geoipSubRegion" : "geoipSubRegion",
+  "eventMeta" : "{}",
   "created" : "2000-01-23T04:56:07.000+00:00",
-  "typ" : "typ",
-  "ownerId" : 6.02745618307040320615897144307382404804229736328125,
-  "affiliateID" : "affiliateID",
-  "lastname" : "lastname",
-  "geoipCountry" : "geoipCountry",
-  "lastUpdated" : "2000-01-23T04:56:07.000+00:00",
-  "phone" : "phone",
-  "TFAEnabled" : "TFAEnabled",
-  "id" : 0.80082819046101150206595775671303272247314453125,
-  "email" : "email",
-  "pgpPubKey" : "pgpPubKey",
-  "username" : "username"
-}</code></pre>
+  "ip" : "ip",
+  "id" : 0.8008281904610115,
+  "type" : "apiKeyCreated",
+  "userId" : 6.027456183070403,
+  "createdById" : 1.4658129805029452,
+  "status" : "success",
+  "geoipCountry" : "geoipCountry"
+}, {
+  "geoipRegion" : "geoipRegion",
+  "geoipSubRegion" : "geoipSubRegion",
+  "eventMeta" : "{}",
+  "created" : "2000-01-23T04:56:07.000+00:00",
+  "ip" : "ip",
+  "id" : 0.8008281904610115,
+  "type" : "apiKeyCreated",
+  "userId" : 6.027456183070403,
+  "createdById" : 1.4658129805029452,
+  "status" : "success",
+  "geoipCountry" : "geoipCountry"
+} ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -7706,7 +7741,19 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     Request was successful
-        <a href="#User">User</a>
+        
+    <h4 class="field-label">400</h4>
+    Parameter Error
+        <a href="#Error">Error</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#Error">Error</a>
+    <h4 class="field-label">403</h4>
+    Access Denied
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
 
@@ -7721,11 +7768,13 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <li><a href="#Announcement"><code>Announcement</code> - </a></li>
     <li><a href="#Chat"><code>Chat</code> - </a></li>
     <li><a href="#ChatChannel"><code>ChatChannel</code> - </a></li>
+    <li><a href="#CommunicationToken"><code>CommunicationToken</code> - </a></li>
     <li><a href="#ConnectedUsers"><code>ConnectedUsers</code> - </a></li>
     <li><a href="#Error"><code>Error</code> - </a></li>
     <li><a href="#Error_error"><code>Error_error</code> - </a></li>
     <li><a href="#Execution"><code>Execution</code> - </a></li>
     <li><a href="#Funding"><code>Funding</code> - </a></li>
+    <li><a href="#GlobalNotification"><code>GlobalNotification</code> - </a></li>
     <li><a href="#IndexComposite"><code>IndexComposite</code> - </a></li>
     <li><a href="#Instrument"><code>Instrument</code> - </a></li>
     <li><a href="#InstrumentInterval"><code>InstrumentInterval</code> - </a></li>
@@ -7733,11 +7782,11 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <li><a href="#Leaderboard"><code>Leaderboard</code> - </a></li>
     <li><a href="#Liquidation"><code>Liquidation</code> - </a></li>
     <li><a href="#Margin"><code>Margin</code> - </a></li>
-    <li><a href="#Notification"><code>Notification</code> - </a></li>
     <li><a href="#Order"><code>Order</code> - </a></li>
     <li><a href="#OrderBookL2"><code>OrderBookL2</code> - </a></li>
     <li><a href="#Position"><code>Position</code> - </a></li>
     <li><a href="#Quote"><code>Quote</code> - </a></li>
+    <li><a href="#QuoteFillRatio"><code>QuoteFillRatio</code> - </a></li>
     <li><a href="#Settlement"><code>Settlement</code> - </a></li>
     <li><a href="#Stats"><code>Stats</code> - </a></li>
     <li><a href="#StatsHistory"><code>StatsHistory</code> - </a></li>
@@ -7746,11 +7795,11 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <li><a href="#TradeBin"><code>TradeBin</code> - </a></li>
     <li><a href="#Transaction"><code>Transaction</code> - </a></li>
     <li><a href="#User"><code>User</code> - </a></li>
-    <li><a href="#UserCommission"><code>UserCommission</code> - </a></li>
+    <li><a href="#UserCommissionsBySymbol"><code>UserCommissionsBySymbol</code> - </a></li>
+    <li><a href="#UserEvent"><code>UserEvent</code> - </a></li>
     <li><a href="#UserPreferences"><code>UserPreferences</code> - </a></li>
     <li><a href="#Wallet"><code>Wallet</code> - </a></li>
     <li><a href="#inline_response_200"><code>inline_response_200</code> - </a></li>
-    <li><a href="#inline_response_200_1"><code>inline_response_200_1</code> - </a></li>
     <li><a href="#x-any"><code>x-any</code> - </a></li>
   </ol>
 
@@ -7798,6 +7847,8 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 <div class="param">pendingPayout (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
 <div class="param">timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">referrerAccount (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">referralDiscount (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">affiliatePayout (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -7830,6 +7881,16 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     <div class="field-items">
       <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
 <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CommunicationToken"><code>CommunicationToken</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>User communication SNS token</div>
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">userId </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
+<div class="param">deviceToken </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">channel </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -7917,6 +7978,24 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 <div class="param">fundingInterval (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">fundingRate (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">fundingRateDaily (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="GlobalNotification"><code>GlobalNotification</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Account Notifications</div>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
+<div class="param">date </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+<div class="param">title </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">body </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">ttl </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
+<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">success</div><div class="param-enum">error</div><div class="param-enum">info</div>
+<div class="param">closable (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">persist (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">waitForVisibility (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">sound (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -8009,6 +8088,8 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 <div class="param">totalTurnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
 <div class="param">turnover (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
 <div class="param">turnover24h (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
+<div class="param">homeNotional24h (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">foreignNotional24h (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">prevPrice24h (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">vwap (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
 <div class="param">highPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
@@ -8121,24 +8202,6 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 <div class="param">timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">grossLastValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int64</div>
 <div class="param">commission (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="Notification"><code>Notification</code> - </a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>Account Notifications</div>
-    <div class="field-items">
-      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
-<div class="param">date </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
-<div class="param">title </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">body </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">ttl </div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  format: int32</div>
-<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-        <div class="param-enum-header">Enum:</div>
-        <div class="param-enum">success</div><div class="param-enum">error</div><div class="param-enum">info</div>
-<div class="param">closable (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-<div class="param">persist (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-<div class="param">waitForVisibility (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-<div class="param">sound (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -8301,6 +8364,19 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
+    <h3><a name="QuoteFillRatio"><code>QuoteFillRatio</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Daily Quote Fill Ratio Statistic</div>
+    <div class="field-items">
+      <div class="param">date </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+<div class="param">account (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">quoteCount (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">dealtCount (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">quotesMavg7 (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">dealtMavg7 (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">quoteFillRatioMavg7 (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
     <h3><a name="Settlement"><code>Settlement</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Historical Settlement Data</div>
     <div class="field-items">
@@ -8427,13 +8503,30 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="UserCommission"><code>UserCommission</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="UserCommissionsBySymbol"><code>UserCommissionsBySymbol</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
     <div class="field-items">
-      <div class="param">makerFee (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">takerFee (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">settlementFee (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">maxFee (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="UserEvent"><code>UserEvent</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>User Events for auditing</div>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">apiKeyCreated</div><div class="param-enum">deleverageExecution</div><div class="param-enum">depositConfirmed</div><div class="param-enum">depositPending</div><div class="param-enum">banZeroVolumeApiUser</div><div class="param-enum">liquidationOrderPlaced</div><div class="param-enum">login</div><div class="param-enum">pgpMaskedEmail</div><div class="param-enum">pgpTestEmail</div><div class="param-enum">passwordChanged</div><div class="param-enum">positionStateLiquidated</div><div class="param-enum">positionStateWarning</div><div class="param-enum">resetPasswordConfirmed</div><div class="param-enum">resetPasswordRequest</div><div class="param-enum">transferCanceled</div><div class="param-enum">transferCompleted</div><div class="param-enum">transferReceived</div><div class="param-enum">transferRequested</div><div class="param-enum">twoFactorDisabled</div><div class="param-enum">twoFactorEnabled</div><div class="param-enum">withdrawalCanceled</div><div class="param-enum">withdrawalCompleted</div><div class="param-enum">withdrawalConfirmed</div><div class="param-enum">withdrawalRequested</div><div class="param-enum">verify</div>
+<div class="param">status </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">success</div><div class="param-enum">failure</div>
+<div class="param">userId </div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">createdById </div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">ip (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">geoipCountry (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">geoipRegion (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">geoipSubRegion (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">eventMeta (optional)</div><div class="param-desc"><span class="param-type"><a href="#object">Object</a></span>  </div>
+<div class="param">created </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -8448,6 +8541,7 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
 <div class="param">currency (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">debug (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">disableEmails (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">disablePush (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
 <div class="param">hideConfirmDialogs (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
 <div class="param">hideConnectionModal (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
 <div class="param">hideFromLeaderboard (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
@@ -8501,13 +8595,6 @@ will only count as 1 request, 15 as 2, 32 as 4, and so on.</p>
   </div>
   <div class="model">
     <h3><a name="inline_response_200"><code>inline_response_200</code> - </a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">success (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="inline_response_200_1"><code>inline_response_200_1</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     
     <div class="field-items">
       <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>

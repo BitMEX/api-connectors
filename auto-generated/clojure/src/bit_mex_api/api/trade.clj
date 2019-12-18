@@ -28,7 +28,10 @@ See [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AE_6569.h
    (:data (trade-get-with-http-info optional-params))))
 
 (defn trade-get-bucketed-with-http-info
-  "Get previous trades in time buckets."
+  "Get previous trades in time buckets.
+  Timestamps returned by our bucketed endpoints are the **end** of the period, indicating when the bucket was written to disk. Some other common systems use the timestamp as the beginning of the period. Please be aware of this when using this endpoint.
+
+Also note the `open` price is equal to the `close` price of the previous timeframe bucket."
   ([] (trade-get-bucketed-with-http-info nil))
   ([{:keys [bin-size partial symbol filter columns count start reverse start-time end-time ]}]
    (call-api "/trade/bucketed" :get
@@ -41,7 +44,10 @@ See [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AE_6569.h
               :auth-names    []})))
 
 (defn trade-get-bucketed
-  "Get previous trades in time buckets."
+  "Get previous trades in time buckets.
+  Timestamps returned by our bucketed endpoints are the **end** of the period, indicating when the bucket was written to disk. Some other common systems use the timestamp as the beginning of the period. Please be aware of this when using this endpoint.
+
+Also note the `open` price is equal to the `close` price of the previous timeframe bucket."
   ([] (trade-get-bucketed nil))
   ([optional-params]
    (:data (trade-get-bucketed-with-http-info optional-params))))

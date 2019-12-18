@@ -61,7 +61,7 @@ open class LeaderboardAPI {
      
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func leaderboardGetName(completion: @escaping ((_ data: InlineResponse2001?,_ error: Error?) -> Void)) {
+    open class func leaderboardGetName(completion: @escaping ((_ data: InlineResponse200?,_ error: Error?) -> Void)) {
         leaderboardGetNameWithRequestBuilder().execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -72,11 +72,11 @@ open class LeaderboardAPI {
      Get your alias on the leaderboard.
      - GET /leaderboard/name
      - API Key:
+       - type: apiKey api-expires 
+       - name: apiExpires
+     - API Key:
        - type: apiKey api-key 
        - name: apiKey
-     - API Key:
-       - type: apiKey api-nonce 
-       - name: apiNonce
      - API Key:
        - type: apiKey api-signature 
        - name: apiSignature
@@ -84,16 +84,16 @@ open class LeaderboardAPI {
   "name" : "name"
 }}]
 
-     - returns: RequestBuilder<InlineResponse2001> 
+     - returns: RequestBuilder<InlineResponse200> 
      */
-    open class func leaderboardGetNameWithRequestBuilder() -> RequestBuilder<InlineResponse2001> {
+    open class func leaderboardGetNameWithRequestBuilder() -> RequestBuilder<InlineResponse200> {
         let path = "/leaderboard/name"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<InlineResponse2001>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<InlineResponse200>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }

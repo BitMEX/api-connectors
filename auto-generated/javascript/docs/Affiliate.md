@@ -18,5 +18,7 @@ Name | Type | Description | Notes
 **pendingPayout** | **Number** |  | [optional] 
 **timestamp** | **Date** |  | [optional] 
 **referrerAccount** | **Number** |  | [optional] 
+**referralDiscount** | **Number** |  | [optional] 
+**affiliatePayout** | **Number** |  | [optional] 
 
 

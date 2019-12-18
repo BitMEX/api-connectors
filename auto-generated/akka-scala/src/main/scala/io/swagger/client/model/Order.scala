@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -17,38 +17,38 @@ import java.util.UUID
 
 case class Order (
   orderID: String,
-  clOrdID: Option[String],
-  clOrdLinkID: Option[String],
-  account: Option[Double],
-  symbol: Option[String],
-  side: Option[String],
-  simpleOrderQty: Option[Double],
-  orderQty: Option[Double],
-  price: Option[Double],
-  displayQty: Option[Double],
-  stopPx: Option[Double],
-  pegOffsetValue: Option[Double],
-  pegPriceType: Option[String],
-  currency: Option[String],
-  settlCurrency: Option[String],
-  ordType: Option[String],
-  timeInForce: Option[String],
-  execInst: Option[String],
-  contingencyType: Option[String],
-  exDestination: Option[String],
-  ordStatus: Option[String],
-  triggered: Option[String],
-  workingIndicator: Option[Boolean],
-  ordRejReason: Option[String],
-  simpleLeavesQty: Option[Double],
-  leavesQty: Option[Double],
-  simpleCumQty: Option[Double],
-  cumQty: Option[Double],
-  avgPx: Option[Double],
-  multiLegReportingType: Option[String],
-  text: Option[String],
-  transactTime: Option[DateTime],
-  timestamp: Option[DateTime]
+  clOrdID: Option[String] = None,
+  clOrdLinkID: Option[String] = None,
+  account: Option[Double] = None,
+  symbol: Option[String] = None,
+  side: Option[String] = None,
+  simpleOrderQty: Option[Double] = None,
+  orderQty: Option[Double] = None,
+  price: Option[Double] = None,
+  displayQty: Option[Double] = None,
+  stopPx: Option[Double] = None,
+  pegOffsetValue: Option[Double] = None,
+  pegPriceType: Option[String] = None,
+  currency: Option[String] = None,
+  settlCurrency: Option[String] = None,
+  ordType: Option[String] = None,
+  timeInForce: Option[String] = None,
+  execInst: Option[String] = None,
+  contingencyType: Option[String] = None,
+  exDestination: Option[String] = None,
+  ordStatus: Option[String] = None,
+  triggered: Option[String] = None,
+  workingIndicator: Option[Boolean] = None,
+  ordRejReason: Option[String] = None,
+  simpleLeavesQty: Option[Double] = None,
+  leavesQty: Option[Double] = None,
+  simpleCumQty: Option[Double] = None,
+  cumQty: Option[Double] = None,
+  avgPx: Option[Double] = None,
+  multiLegReportingType: Option[String] = None,
+  text: Option[String] = None,
+  transactTime: Option[DateTime] = None,
+  timestamp: Option[DateTime] = None
 ) extends ApiModel
 
 

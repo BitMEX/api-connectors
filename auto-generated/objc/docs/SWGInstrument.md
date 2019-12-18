@@ -76,6 +76,8 @@ Name | Type | Description | Notes
 **totalTurnover** | **NSNumber*** |  | [optional] 
 **turnover** | **NSNumber*** |  | [optional] 
 **turnover24h** | **NSNumber*** |  | [optional] 
+**homeNotional24h** | **NSNumber*** |  | [optional] 
+**foreignNotional24h** | **NSNumber*** |  | [optional] 
 **prevPrice24h** | **NSNumber*** |  | [optional] 
 **vwap** | **NSNumber*** |  | [optional] 
 **highPrice** | **NSNumber*** |  | [optional] 

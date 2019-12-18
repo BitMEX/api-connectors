@@ -1,6 +1,6 @@
 # BitMexApi.AnnouncementApi
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -64,17 +64,17 @@ Get urgent (banner) announcements.
 var BitMexApi = require('bit_mex_api');
 var defaultClient = BitMexApi.ApiClient.instance;
 
+// Configure API key authorization: apiExpires
+var apiExpires = defaultClient.authentications['apiExpires'];
+apiExpires.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiExpires.apiKeyPrefix = 'Token';
+
 // Configure API key authorization: apiKey
 var apiKey = defaultClient.authentications['apiKey'];
 apiKey.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKey.apiKeyPrefix = 'Token';
-
-// Configure API key authorization: apiNonce
-var apiNonce = defaultClient.authentications['apiNonce'];
-apiNonce.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiNonce.apiKeyPrefix = 'Token';
 
 // Configure API key authorization: apiSignature
 var apiSignature = defaultClient.authentications['apiSignature'];
@@ -103,7 +103,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

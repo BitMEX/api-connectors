@@ -69,7 +69,7 @@
               :form-params   {"message" message "channelID" channel-id }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-              :auth-names    ["apiKey" "apiNonce" "apiSignature"]})))
+              :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
 
 (defn chat-new
   "Send a chat message."

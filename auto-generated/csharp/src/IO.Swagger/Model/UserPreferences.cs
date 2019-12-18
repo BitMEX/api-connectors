@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -41,6 +41,7 @@ namespace IO.Swagger.Model
         /// <param name="currency">currency.</param>
         /// <param name="debug">debug.</param>
         /// <param name="disableEmails">disableEmails.</param>
+        /// <param name="disablePush">disablePush.</param>
         /// <param name="hideConfirmDialogs">hideConfirmDialogs.</param>
         /// <param name="hideConnectionModal">hideConnectionModal.</param>
         /// <param name="hideFromLeaderboard">hideFromLeaderboard (default to false).</param>
@@ -59,7 +60,7 @@ namespace IO.Swagger.Model
         /// <param name="tickerGroup">tickerGroup.</param>
         /// <param name="tickerPinned">tickerPinned.</param>
         /// <param name="tradeLayout">tradeLayout.</param>
-        public UserPreferences(bool? alertOnLiquidations = default(bool?), bool? animationsEnabled = default(bool?), DateTime? announcementsLastSeen = default(DateTime?), double? chatChannelID = default(double?), string colorTheme = default(string), string currency = default(string), bool? debug = default(bool?), List<string> disableEmails = default(List<string>), List<string> hideConfirmDialogs = default(List<string>), bool? hideConnectionModal = default(bool?), bool? hideFromLeaderboard = false, bool? hideNameFromLeaderboard = true, List<string> hideNotifications = default(List<string>), string locale = "en-US", List<string> msgsSeen = default(List<string>), Object orderBookBinning = default(Object), string orderBookType = default(string), bool? orderClearImmediate = false, bool? orderControlsPlusMinus = default(bool?), bool? showLocaleNumbers = true, List<string> sounds = default(List<string>), bool? strictIPCheck = false, bool? strictTimeout = true, string tickerGroup = default(string), bool? tickerPinned = default(bool?), string tradeLayout = default(string))
+        public UserPreferences(bool? alertOnLiquidations = default(bool?), bool? animationsEnabled = default(bool?), DateTime? announcementsLastSeen = default(DateTime?), double? chatChannelID = default(double?), string colorTheme = default(string), string currency = default(string), bool? debug = default(bool?), List<string> disableEmails = default(List<string>), List<string> disablePush = default(List<string>), List<string> hideConfirmDialogs = default(List<string>), bool? hideConnectionModal = default(bool?), bool? hideFromLeaderboard = false, bool? hideNameFromLeaderboard = true, List<string> hideNotifications = default(List<string>), string locale = "en-US", List<string> msgsSeen = default(List<string>), Object orderBookBinning = default(Object), string orderBookType = default(string), bool? orderClearImmediate = false, bool? orderControlsPlusMinus = default(bool?), bool? showLocaleNumbers = true, List<string> sounds = default(List<string>), bool? strictIPCheck = false, bool? strictTimeout = true, string tickerGroup = default(string), bool? tickerPinned = default(bool?), string tradeLayout = default(string))
         {
             this.AlertOnLiquidations = alertOnLiquidations;
             this.AnimationsEnabled = animationsEnabled;
@@ -69,6 +70,7 @@ namespace IO.Swagger.Model
             this.Currency = currency;
             this.Debug = debug;
             this.DisableEmails = disableEmails;
+            this.DisablePush = disablePush;
             this.HideConfirmDialogs = hideConfirmDialogs;
             this.HideConnectionModal = hideConnectionModal;
             // use default value if no "hideFromLeaderboard" provided
@@ -194,6 +196,12 @@ namespace IO.Swagger.Model
         public List<string> DisableEmails { get; set; }
 
         /// <summary>
+        /// Gets or Sets DisablePush
+        /// </summary>
+        [DataMember(Name="disablePush", EmitDefaultValue=false)]
+        public List<string> DisablePush { get; set; }
+
+        /// <summary>
         /// Gets or Sets HideConfirmDialogs
         /// </summary>
         [DataMember(Name="hideConfirmDialogs", EmitDefaultValue=false)]
@@ -317,6 +325,7 @@ namespace IO.Swagger.Model
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  Debug: ").Append(Debug).Append("\n");
             sb.Append("  DisableEmails: ").Append(DisableEmails).Append("\n");
+            sb.Append("  DisablePush: ").Append(DisablePush).Append("\n");
             sb.Append("  HideConfirmDialogs: ").Append(HideConfirmDialogs).Append("\n");
             sb.Append("  HideConnectionModal: ").Append(HideConnectionModal).Append("\n");
             sb.Append("  HideFromLeaderboard: ").Append(HideFromLeaderboard).Append("\n");
@@ -408,6 +417,11 @@ namespace IO.Swagger.Model
                     this.DisableEmails == input.DisableEmails ||
                     this.DisableEmails != null &&
                     this.DisableEmails.SequenceEqual(input.DisableEmails)
+                ) && 
+                (
+                    this.DisablePush == input.DisablePush ||
+                    this.DisablePush != null &&
+                    this.DisablePush.SequenceEqual(input.DisablePush)
                 ) && 
                 (
                     this.HideConfirmDialogs == input.HideConfirmDialogs ||
@@ -526,6 +540,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.Debug.GetHashCode();
                 if (this.DisableEmails != null)
                     hashCode = hashCode * 59 + this.DisableEmails.GetHashCode();
+                if (this.DisablePush != null)
+                    hashCode = hashCode * 59 + this.DisablePush.GetHashCode();
                 if (this.HideConfirmDialogs != null)
                     hashCode = hashCode * 59 + this.HideConfirmDialogs.GetHashCode();
                 if (this.HideConnectionModal != null)

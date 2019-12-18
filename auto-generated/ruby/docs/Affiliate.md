@@ -18,5 +18,7 @@ Name | Type | Description | Notes
 **pending_payout** | **Float** |  | [optional] 
 **timestamp** | **DateTime** |  | [optional] 
 **referrer_account** | **Float** |  | [optional] 
+**referral_discount** | **Float** |  | [optional] 
+**affiliate_payout** | **Float** |  | [optional] 
 
 

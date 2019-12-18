@@ -1,6 +1,6 @@
 # SwaggerClient::ChatApi
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -153,15 +153,15 @@ Send a chat message.
 require 'swagger_client'
 # setup authorization
 SwaggerClient.configure do |config|
+  # Configure API key authorization: apiExpires
+  config.api_key['api-expires'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-expires'] = 'Bearer'
+
   # Configure API key authorization: apiKey
   config.api_key['api-key'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['api-key'] = 'Bearer'
-
-  # Configure API key authorization: apiNonce
-  config.api_key['api-nonce'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-nonce'] = 'Bearer'
 
   # Configure API key authorization: apiSignature
   config.api_key['api-signature'] = 'YOUR API KEY'
@@ -199,7 +199,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

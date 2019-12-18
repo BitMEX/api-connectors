@@ -76,6 +76,8 @@ Name | Type | Description | Notes
 **total_turnover** | **Float** |  | [optional] 
 **turnover** | **Float** |  | [optional] 
 **turnover24h** | **Float** |  | [optional] 
+**home_notional24h** | **Float** |  | [optional] 
+**foreign_notional24h** | **Float** |  | [optional] 
 **prev_price24h** | **Float** |  | [optional] 
 **vwap** | **Float** |  | [optional] 
 **high_price** | **Float** |  | [optional] 

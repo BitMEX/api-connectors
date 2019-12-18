@@ -163,11 +163,11 @@ open class ChatAPI {
      Send a chat message.
      - POST /chat
      - API Key:
+       - type: apiKey api-expires 
+       - name: apiExpires
+     - API Key:
        - type: apiKey api-key 
        - name: apiKey
-     - API Key:
-       - type: apiKey api-nonce 
-       - name: apiNonce
      - API Key:
        - type: apiKey api-signature 
        - name: apiSignature

@@ -1,30 +1,28 @@
 # SWGUserApi
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**userCancelWithdrawal**](SWGUserApi.md#usercancelwithdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 [**userCheckReferralCode**](SWGUserApi.md#usercheckreferralcode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
+[**userCommunicationToken**](SWGUserApi.md#usercommunicationtoken) | **POST** /user/communicationToken | Register your communication token for mobile clients
 [**userConfirm**](SWGUserApi.md#userconfirm) | **POST** /user/confirmEmail | Confirm your email address with a token.
-[**userConfirmEnableTFA**](SWGUserApi.md#userconfirmenabletfa) | **POST** /user/confirmEnableTFA | Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
 [**userConfirmWithdrawal**](SWGUserApi.md#userconfirmwithdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
-[**userDisableTFA**](SWGUserApi.md#userdisabletfa) | **POST** /user/disableTFA | Disable two-factor auth for this account.
 [**userGet**](SWGUserApi.md#userget) | **GET** /user | Get your user model.
 [**userGetAffiliateStatus**](SWGUserApi.md#usergetaffiliatestatus) | **GET** /user/affiliateStatus | Get your current affiliate/referral status.
 [**userGetCommission**](SWGUserApi.md#usergetcommission) | **GET** /user/commission | Get your account&#39;s commission status.
 [**userGetDepositAddress**](SWGUserApi.md#usergetdepositaddress) | **GET** /user/depositAddress | Get a deposit address.
+[**userGetExecutionHistory**](SWGUserApi.md#usergetexecutionhistory) | **GET** /user/executionHistory | Get the execution history by day.
 [**userGetMargin**](SWGUserApi.md#usergetmargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
+[**userGetQuoteFillRatio**](SWGUserApi.md#usergetquotefillratio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
 [**userGetWallet**](SWGUserApi.md#usergetwallet) | **GET** /user/wallet | Get your current wallet information.
 [**userGetWalletHistory**](SWGUserApi.md#usergetwallethistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 [**userGetWalletSummary**](SWGUserApi.md#usergetwalletsummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**userLogout**](SWGUserApi.md#userlogout) | **POST** /user/logout | Log out of BitMEX.
-[**userLogoutAll**](SWGUserApi.md#userlogoutall) | **POST** /user/logoutAll | Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
 [**userMinWithdrawalFee**](SWGUserApi.md#userminwithdrawalfee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
-[**userRequestEnableTFA**](SWGUserApi.md#userrequestenabletfa) | **POST** /user/requestEnableTFA | Get secret key for setting up two-factor auth.
 [**userRequestWithdrawal**](SWGUserApi.md#userrequestwithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**userSavePreferences**](SWGUserApi.md#usersavepreferences) | **POST** /user/preferences | Save user preferences.
-[**userUpdate**](SWGUserApi.md#userupdate) | **PUT** /user | Update your password, name, and other attributes.
 
 
 # **userCancelWithdrawal**
@@ -83,7 +81,7 @@ No authorization required
 
 Check if a referral code is valid.
 
-If the code is valid, responds with the referral code's discount (e.g. `0.1` for 10%). Otherwise, will return a 404.
+If the code is valid, responds with the referral code's discount (e.g. `0.1` for 10%). Otherwise, will return a 404 or 451 if invalid.
 
 ### Example 
 ```objc
@@ -117,6 +115,75 @@ Name | Type | Description  | Notes
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **userCommunicationToken**
+```objc
+-(NSURLSessionTask*) userCommunicationTokenWithToken: (NSString*) token
+    platformAgent: (NSString*) platformAgent
+        completionHandler: (void (^)(NSArray<SWGCommunicationToken>* output, NSError* error)) handler;
+```
+
+Register your communication token for mobile clients
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+NSString* token = @"token_example"; // 
+NSString* platformAgent = @"platformAgent_example"; // 
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Register your communication token for mobile clients
+[apiInstance userCommunicationTokenWithToken:token
+              platformAgent:platformAgent
+          completionHandler: ^(NSArray<SWGCommunicationToken>* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userCommunicationToken: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token** | **NSString***|  | 
+ **platformAgent** | **NSString***|  | 
+
+### Return type
+
+[**NSArray<SWGCommunicationToken>***](SWGCommunicationToken.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -173,75 +240,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **userConfirmEnableTFA**
-```objc
--(NSURLSessionTask*) userConfirmEnableTFAWithToken: (NSString*) token
-    type: (NSString*) type
-        completionHandler: (void (^)(NSNumber* output, NSError* error)) handler;
-```
-
-Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
-
-### Example 
-```objc
-SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
-
-// Configure API key authorization: (authentication scheme: apiKey)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
-
-// Configure API key authorization: (authentication scheme: apiNonce)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
-
-// Configure API key authorization: (authentication scheme: apiSignature)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
-
-
-NSString* token = @"token_example"; // Token from your selected TFA type.
-NSString* type = @"type_example"; // Two-factor auth type. Supported types: 'GA' (Google Authenticator), 'Yubikey' (optional)
-
-SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
-
-// Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
-[apiInstance userConfirmEnableTFAWithToken:token
-              type:type
-          completionHandler: ^(NSNumber* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling SWGUserApi->userConfirmEnableTFA: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **NSString***| Token from your selected TFA type. | 
- **type** | **NSString***| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39; | [optional] 
-
-### Return type
-
-**NSNumber***
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **userConfirmWithdrawal**
 ```objc
 -(NSURLSessionTask*) userConfirmWithdrawalWithToken: (NSString*) token
@@ -290,75 +288,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **userDisableTFA**
-```objc
--(NSURLSessionTask*) userDisableTFAWithToken: (NSString*) token
-    type: (NSString*) type
-        completionHandler: (void (^)(NSNumber* output, NSError* error)) handler;
-```
-
-Disable two-factor auth for this account.
-
-### Example 
-```objc
-SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
-
-// Configure API key authorization: (authentication scheme: apiKey)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
-
-// Configure API key authorization: (authentication scheme: apiNonce)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
-
-// Configure API key authorization: (authentication scheme: apiSignature)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
-
-
-NSString* token = @"token_example"; // Token from your selected TFA type.
-NSString* type = @"type_example"; // Two-factor auth type. Supported types: 'GA' (Google Authenticator) (optional)
-
-SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
-
-// Disable two-factor auth for this account.
-[apiInstance userDisableTFAWithToken:token
-              type:type
-          completionHandler: ^(NSNumber* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling SWGUserApi->userDisableTFA: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **NSString***| Token from your selected TFA type. | 
- **type** | **NSString***| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) | [optional] 
-
-### Return type
-
-**NSNumber***
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **userGet**
 ```objc
 -(NSURLSessionTask*) userGetWithCompletionHandler: 
@@ -371,15 +300,15 @@ Get your user model.
 ```objc
 SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
 // Configure API key authorization: (authentication scheme: apiKey)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
-
-// Configure API key authorization: (authentication scheme: apiNonce)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
 
 // Configure API key authorization: (authentication scheme: apiSignature)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
@@ -411,7 +340,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -432,15 +361,15 @@ Get your current affiliate/referral status.
 ```objc
 SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
 // Configure API key authorization: (authentication scheme: apiKey)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
-
-// Configure API key authorization: (authentication scheme: apiNonce)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
 
 // Configure API key authorization: (authentication scheme: apiSignature)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
@@ -472,7 +401,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -484,7 +413,7 @@ This endpoint does not need any parameter.
 # **userGetCommission**
 ```objc
 -(NSURLSessionTask*) userGetCommissionWithCompletionHandler: 
-        (void (^)(NSArray<SWGUserCommission>* output, NSError* error)) handler;
+        (void (^)(SWGUserCommissionsBySymbol* output, NSError* error)) handler;
 ```
 
 Get your account's commission status.
@@ -493,15 +422,15 @@ Get your account's commission status.
 ```objc
 SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
 // Configure API key authorization: (authentication scheme: apiKey)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
-
-// Configure API key authorization: (authentication scheme: apiNonce)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
 
 // Configure API key authorization: (authentication scheme: apiSignature)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
@@ -514,7 +443,7 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 // Get your account's commission status.
 [apiInstance userGetCommissionWithCompletionHandler: 
-          ^(NSArray<SWGUserCommission>* output, NSError* error) {
+          ^(SWGUserCommissionsBySymbol* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -529,11 +458,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**NSArray<SWGUserCommission>***](SWGUserCommission.md)
+[**SWGUserCommissionsBySymbol***](SWGUserCommissionsBySymbol.md)
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -554,15 +483,15 @@ Get a deposit address.
 ```objc
 SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
 // Configure API key authorization: (authentication scheme: apiKey)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
-
-// Configure API key authorization: (authentication scheme: apiNonce)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
 
 // Configure API key authorization: (authentication scheme: apiSignature)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
@@ -598,7 +527,76 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **userGetExecutionHistory**
+```objc
+-(NSURLSessionTask*) userGetExecutionHistoryWithSymbol: (NSString*) symbol
+    timestamp: (NSDate*) timestamp
+        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+```
+
+Get the execution history by day.
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+NSString* symbol = @"XBTUSD"; //  (default to XBTUSD)
+NSDate* timestamp = @"2017-02-13T12:00:00.000Z"; //  (default to 2017-02-13T12:00:00.000Z)
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Get the execution history by day.
+[apiInstance userGetExecutionHistoryWithSymbol:symbol
+              timestamp:timestamp
+          completionHandler: ^(NSObject* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userGetExecutionHistory: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **NSString***|  | [default to XBTUSD]
+ **timestamp** | **NSDate***|  | [default to 2017-02-13T12:00:00.000Z]
+
+### Return type
+
+**NSObject***
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -619,15 +617,15 @@ Get your account's margin status. Send a currency of \"all\" to receive an array
 ```objc
 SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
 // Configure API key authorization: (authentication scheme: apiKey)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
-
-// Configure API key authorization: (authentication scheme: apiNonce)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
 
 // Configure API key authorization: (authentication scheme: apiSignature)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
@@ -663,7 +661,68 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **userGetQuoteFillRatio**
+```objc
+-(NSURLSessionTask*) userGetQuoteFillRatioWithCompletionHandler: 
+        (void (^)(SWGQuoteFillRatio* output, NSError* error)) handler;
+```
+
+Get 7 days worth of Quote Fill Ratio statistics.
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Get 7 days worth of Quote Fill Ratio statistics.
+[apiInstance userGetQuoteFillRatioWithCompletionHandler: 
+          ^(SWGQuoteFillRatio* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userGetQuoteFillRatio: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**SWGQuoteFillRatio***](SWGQuoteFillRatio.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -684,15 +743,15 @@ Get your current wallet information.
 ```objc
 SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
 // Configure API key authorization: (authentication scheme: apiKey)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
-
-// Configure API key authorization: (authentication scheme: apiNonce)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
 
 // Configure API key authorization: (authentication scheme: apiSignature)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
@@ -728,7 +787,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -740,6 +799,8 @@ Name | Type | Description  | Notes
 # **userGetWalletHistory**
 ```objc
 -(NSURLSessionTask*) userGetWalletHistoryWithCurrency: (NSString*) currency
+    count: (NSNumber*) count
+    start: (NSNumber*) start
         completionHandler: (void (^)(NSArray<SWGTransaction>* output, NSError* error)) handler;
 ```
 
@@ -749,15 +810,15 @@ Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 ```objc
 SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
 // Configure API key authorization: (authentication scheme: apiKey)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
-
-// Configure API key authorization: (authentication scheme: apiNonce)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
 
 // Configure API key authorization: (authentication scheme: apiSignature)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
@@ -766,11 +827,15 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
 
 NSString* currency = @"XBt"; //  (optional) (default to XBt)
+NSNumber* count = @100; // Number of results to fetch. (optional) (default to 100)
+NSNumber* start = @0; // Starting point for results. (optional) (default to 0)
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 // Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 [apiInstance userGetWalletHistoryWithCurrency:currency
+              count:count
+              start:start
           completionHandler: ^(NSArray<SWGTransaction>* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -786,6 +851,8 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **NSString***|  | [optional] [default to XBt]
+ **count** | **NSNumber***| Number of results to fetch. | [optional] [default to 100]
+ **start** | **NSNumber***| Starting point for results. | [optional] [default to 0]
 
 ### Return type
 
@@ -793,7 +860,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -814,15 +881,15 @@ Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 ```objc
 SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
 // Configure API key authorization: (authentication scheme: apiKey)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
-
-// Configure API key authorization: (authentication scheme: apiNonce)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
 
 // Configure API key authorization: (authentication scheme: apiSignature)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
@@ -858,7 +925,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -900,67 +967,6 @@ void (empty response body)
 ### Authorization
 
 No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **userLogoutAll**
-```objc
--(NSURLSessionTask*) userLogoutAllWithCompletionHandler: 
-        (void (^)(NSNumber* output, NSError* error)) handler;
-```
-
-Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.
-
-### Example 
-```objc
-SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
-
-// Configure API key authorization: (authentication scheme: apiKey)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
-
-// Configure API key authorization: (authentication scheme: apiNonce)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
-
-// Configure API key authorization: (authentication scheme: apiSignature)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
-
-
-
-SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
-
-// Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.
-[apiInstance userLogoutAllWithCompletionHandler: 
-          ^(NSNumber* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling SWGUserApi->userLogoutAll: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-**NSNumber***
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -1019,73 +1025,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **userRequestEnableTFA**
-```objc
--(NSURLSessionTask*) userRequestEnableTFAWithType: (NSString*) type
-        completionHandler: (void (^)(NSNumber* output, NSError* error)) handler;
-```
-
-Get secret key for setting up two-factor auth.
-
-Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
-
-### Example 
-```objc
-SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
-
-// Configure API key authorization: (authentication scheme: apiKey)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
-
-// Configure API key authorization: (authentication scheme: apiNonce)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
-
-// Configure API key authorization: (authentication scheme: apiSignature)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
-
-
-NSString* type = @"type_example"; // Two-factor auth type. Supported types: 'GA' (Google Authenticator) (optional)
-
-SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
-
-// Get secret key for setting up two-factor auth.
-[apiInstance userRequestEnableTFAWithType:type
-          completionHandler: ^(NSNumber* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling SWGUserApi->userRequestEnableTFA: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **type** | **NSString***| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) | [optional] 
-
-### Return type
-
-**NSNumber***
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **userRequestWithdrawal**
 ```objc
 -(NSURLSessionTask*) userRequestWithdrawalWithCurrency: (NSString*) currency
@@ -1093,26 +1032,27 @@ Name | Type | Description  | Notes
     address: (NSString*) address
     otpToken: (NSString*) otpToken
     fee: (NSNumber*) fee
+    text: (NSString*) text
         completionHandler: (void (^)(SWGTransaction* output, NSError* error)) handler;
 ```
 
 Request a withdrawal to an external wallet.
 
-This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission.
+This will send a confirmation email to the email address on record.
 
 ### Example 
 ```objc
 SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
 // Configure API key authorization: (authentication scheme: apiKey)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
-
-// Configure API key authorization: (authentication scheme: apiNonce)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
 
 // Configure API key authorization: (authentication scheme: apiSignature)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
@@ -1125,6 +1065,7 @@ NSNumber* amount = @8.14; // Amount of withdrawal currency.
 NSString* address = @"address_example"; // Destination Address.
 NSString* otpToken = @"otpToken_example"; // 2FA token. Required if 2FA is enabled on your account. (optional)
 NSNumber* fee = @1.2; // Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
+NSString* text = @"text_example"; // Optional annotation, e.g. 'Transfer to home wallet'. (optional)
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
@@ -1134,6 +1075,7 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
               address:address
               otpToken:otpToken
               fee:fee
+              text:text
           completionHandler: ^(SWGTransaction* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -1153,6 +1095,7 @@ Name | Type | Description  | Notes
  **address** | **NSString***| Destination Address. | 
  **otpToken** | **NSString***| 2FA token. Required if 2FA is enabled on your account. | [optional] 
  **fee** | **NSNumber***| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional] 
+ **text** | **NSString***| Optional annotation, e.g. &#39;Transfer to home wallet&#39;. | [optional] 
 
 ### Return type
 
@@ -1160,7 +1103,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -1182,15 +1125,15 @@ Save user preferences.
 ```objc
 SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
 // Configure API key authorization: (authentication scheme: apiKey)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
-
-// Configure API key authorization: (authentication scheme: apiNonce)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
 
 // Configure API key authorization: (authentication scheme: apiSignature)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
@@ -1229,100 +1172,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **userUpdate**
-```objc
--(NSURLSessionTask*) userUpdateWithFirstname: (NSString*) firstname
-    lastname: (NSString*) lastname
-    oldPassword: (NSString*) oldPassword
-    varNewPassword: (NSString*) varNewPassword
-    varNewPasswordConfirm: (NSString*) varNewPasswordConfirm
-    username: (NSString*) username
-    country: (NSString*) country
-    pgpPubKey: (NSString*) pgpPubKey
-        completionHandler: (void (^)(SWGUser* output, NSError* error)) handler;
-```
-
-Update your password, name, and other attributes.
-
-### Example 
-```objc
-SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
-
-// Configure API key authorization: (authentication scheme: apiKey)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
-
-// Configure API key authorization: (authentication scheme: apiNonce)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
-
-// Configure API key authorization: (authentication scheme: apiSignature)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
-
-
-NSString* firstname = @"firstname_example"; //  (optional)
-NSString* lastname = @"lastname_example"; //  (optional)
-NSString* oldPassword = @"oldPassword_example"; //  (optional)
-NSString* varNewPassword = @"varNewPassword_example"; //  (optional)
-NSString* varNewPasswordConfirm = @"varNewPasswordConfirm_example"; //  (optional)
-NSString* username = @"username_example"; // Username can only be set once. To reset, email support. (optional)
-NSString* country = @"country_example"; // Country of residence. (optional)
-NSString* pgpPubKey = @"pgpPubKey_example"; // PGP Public Key. If specified, automated emails will be sentwith this key. (optional)
-
-SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
-
-// Update your password, name, and other attributes.
-[apiInstance userUpdateWithFirstname:firstname
-              lastname:lastname
-              oldPassword:oldPassword
-              varNewPassword:varNewPassword
-              varNewPasswordConfirm:varNewPasswordConfirm
-              username:username
-              country:country
-              pgpPubKey:pgpPubKey
-          completionHandler: ^(SWGUser* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling SWGUserApi->userUpdate: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **firstname** | **NSString***|  | [optional] 
- **lastname** | **NSString***|  | [optional] 
- **oldPassword** | **NSString***|  | [optional] 
- **varNewPassword** | **NSString***|  | [optional] 
- **varNewPasswordConfirm** | **NSString***|  | [optional] 
- **username** | **NSString***| Username can only be set once. To reset, email support. | [optional] 
- **country** | **NSString***| Country of residence. | [optional] 
- **pgpPubKey** | **NSString***| PGP Public Key. If specified, automated emails will be sentwith this key. | [optional] 
-
-### Return type
-
-[**SWGUser***](SWGUser.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

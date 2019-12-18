@@ -76,6 +76,8 @@ Name | Type | Description | Notes
 **totalTurnover** | **Number** |  | [optional] 
 **turnover** | **Number** |  | [optional] 
 **turnover24h** | **Number** |  | [optional] 
+**homeNotional24h** | **Number** |  | [optional] 
+**foreignNotional24h** | **Number** |  | [optional] 
 **prevPrice24h** | **Number** |  | [optional] 
 **vwap** | **Number** |  | [optional] 
 **highPrice** | **Number** |  | [optional] 

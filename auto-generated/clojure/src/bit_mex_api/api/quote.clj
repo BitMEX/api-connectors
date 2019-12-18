@@ -22,7 +22,8 @@
    (:data (quote-get-with-http-info optional-params))))
 
 (defn quote-get-bucketed-with-http-info
-  "Get previous quotes in time buckets."
+  "Get previous quotes in time buckets.
+  Timestamps returned by our bucketed endpoints are the **end** of the period, indicating when the bucket was written to disk. Some other common systems use the timestamp as the beginning of the period. Please be aware of this when using this endpoint."
   ([] (quote-get-bucketed-with-http-info nil))
   ([{:keys [bin-size partial symbol filter columns count start reverse start-time end-time ]}]
    (call-api "/quote/bucketed" :get
@@ -35,7 +36,8 @@
               :auth-names    []})))
 
 (defn quote-get-bucketed
-  "Get previous quotes in time buckets."
+  "Get previous quotes in time buckets.
+  Timestamps returned by our bucketed endpoints are the **end** of the period, indicating when the bucket was written to disk. Some other common systems use the timestamp as the beginning of the period. Please be aware of this when using this endpoint."
   ([] (quote-get-bucketed nil))
   ([optional-params]
    (:data (quote-get-bucketed-with-http-info optional-params))))

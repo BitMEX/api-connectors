@@ -77,6 +77,8 @@ Name | Type | Description | Notes
 **totalTurnover** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **turnover** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **turnover24h** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**homeNotional24h** | **Double** |  |  [optional]
+**foreignNotional24h** | **Double** |  |  [optional]
 **prevPrice24h** | **Double** |  |  [optional]
 **vwap** | **Double** |  |  [optional]
 **highPrice** | **Double** |  |  [optional]

@@ -1,30 +1,28 @@
 # IO.Swagger.Api.UserApi
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**UserCancelWithdrawal**](UserApi.md#usercancelwithdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 [**UserCheckReferralCode**](UserApi.md#usercheckreferralcode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
+[**UserCommunicationToken**](UserApi.md#usercommunicationtoken) | **POST** /user/communicationToken | Register your communication token for mobile clients
 [**UserConfirm**](UserApi.md#userconfirm) | **POST** /user/confirmEmail | Confirm your email address with a token.
-[**UserConfirmEnableTFA**](UserApi.md#userconfirmenabletfa) | **POST** /user/confirmEnableTFA | Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
 [**UserConfirmWithdrawal**](UserApi.md#userconfirmwithdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
-[**UserDisableTFA**](UserApi.md#userdisabletfa) | **POST** /user/disableTFA | Disable two-factor auth for this account.
 [**UserGet**](UserApi.md#userget) | **GET** /user | Get your user model.
 [**UserGetAffiliateStatus**](UserApi.md#usergetaffiliatestatus) | **GET** /user/affiliateStatus | Get your current affiliate/referral status.
 [**UserGetCommission**](UserApi.md#usergetcommission) | **GET** /user/commission | Get your account&#39;s commission status.
 [**UserGetDepositAddress**](UserApi.md#usergetdepositaddress) | **GET** /user/depositAddress | Get a deposit address.
+[**UserGetExecutionHistory**](UserApi.md#usergetexecutionhistory) | **GET** /user/executionHistory | Get the execution history by day.
 [**UserGetMargin**](UserApi.md#usergetmargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
+[**UserGetQuoteFillRatio**](UserApi.md#usergetquotefillratio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
 [**UserGetWallet**](UserApi.md#usergetwallet) | **GET** /user/wallet | Get your current wallet information.
 [**UserGetWalletHistory**](UserApi.md#usergetwallethistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 [**UserGetWalletSummary**](UserApi.md#usergetwalletsummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**UserLogout**](UserApi.md#userlogout) | **POST** /user/logout | Log out of BitMEX.
-[**UserLogoutAll**](UserApi.md#userlogoutall) | **POST** /user/logoutAll | Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
 [**UserMinWithdrawalFee**](UserApi.md#userminwithdrawalfee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
-[**UserRequestEnableTFA**](UserApi.md#userrequestenabletfa) | **POST** /user/requestEnableTFA | Get secret key for setting up two-factor auth.
 [**UserRequestWithdrawal**](UserApi.md#userrequestwithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**UserSavePreferences**](UserApi.md#usersavepreferences) | **POST** /user/preferences | Save user preferences.
-[**UserUpdate**](UserApi.md#userupdate) | **PUT** /user | Update your password, name, and other attributes.
 
 
 <a name="usercancelwithdrawal"></a>
@@ -92,7 +90,7 @@ No authorization required
 
 Check if a referral code is valid.
 
-If the code is valid, responds with the referral code's discount (e.g. `0.1` for 10%). Otherwise, will return a 404.
+If the code is valid, responds with the referral code's discount (e.g. `0.1` for 10%). Otherwise, will return a 404 or 451 if invalid.
 
 ### Example
 ```csharp
@@ -139,6 +137,80 @@ Name | Type | Description  | Notes
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="usercommunicationtoken"></a>
+# **UserCommunicationToken**
+> List<CommunicationToken> UserCommunicationToken (string token, string platformAgent)
+
+Register your communication token for mobile clients
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserCommunicationTokenExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new UserApi();
+            var token = token_example;  // string | 
+            var platformAgent = platformAgent_example;  // string | 
+
+            try
+            {
+                // Register your communication token for mobile clients
+                List&lt;CommunicationToken&gt; result = apiInstance.UserCommunicationToken(token, platformAgent);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserCommunicationToken: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token** | **string**|  | 
+ **platformAgent** | **string**|  | 
+
+### Return type
+
+[**List<CommunicationToken>**](CommunicationToken.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -206,80 +278,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="userconfirmenabletfa"></a>
-# **UserConfirmEnableTFA**
-> bool? UserConfirmEnableTFA (string token, string type = null)
-
-Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
-
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class UserConfirmEnableTFAExample
-    {
-        public void main()
-        {
-            // Configure API key authorization: apiKey
-            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
-            // Configure API key authorization: apiNonce
-            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
-            // Configure API key authorization: apiSignature
-            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
-
-            var apiInstance = new UserApi();
-            var token = token_example;  // string | Token from your selected TFA type.
-            var type = type_example;  // string | Two-factor auth type. Supported types: 'GA' (Google Authenticator), 'Yubikey' (optional) 
-
-            try
-            {
-                // Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
-                bool? result = apiInstance.UserConfirmEnableTFA(token, type);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling UserApi.UserConfirmEnableTFA: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **string**| Token from your selected TFA type. | 
- **type** | **string**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39; | [optional] 
-
-### Return type
-
-**bool?**
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 <a name="userconfirmwithdrawal"></a>
 # **UserConfirmWithdrawal**
 > Transaction UserConfirmWithdrawal (string token)
@@ -339,80 +337,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="userdisabletfa"></a>
-# **UserDisableTFA**
-> bool? UserDisableTFA (string token, string type = null)
-
-Disable two-factor auth for this account.
-
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class UserDisableTFAExample
-    {
-        public void main()
-        {
-            // Configure API key authorization: apiKey
-            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
-            // Configure API key authorization: apiNonce
-            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
-            // Configure API key authorization: apiSignature
-            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
-
-            var apiInstance = new UserApi();
-            var token = token_example;  // string | Token from your selected TFA type.
-            var type = type_example;  // string | Two-factor auth type. Supported types: 'GA' (Google Authenticator) (optional) 
-
-            try
-            {
-                // Disable two-factor auth for this account.
-                bool? result = apiInstance.UserDisableTFA(token, type);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling UserApi.UserDisableTFA: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **token** | **string**| Token from your selected TFA type. | 
- **type** | **string**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) | [optional] 
-
-### Return type
-
-**bool?**
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 <a name="userget"></a>
 # **UserGet**
 > User UserGet ()
@@ -433,14 +357,14 @@ namespace Example
     {
         public void main()
         {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
             // Configure API key authorization: apiKey
             Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
-            // Configure API key authorization: apiNonce
-            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
             // Configure API key authorization: apiSignature
             Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -472,7 +396,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -501,14 +425,14 @@ namespace Example
     {
         public void main()
         {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
             // Configure API key authorization: apiKey
             Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
-            // Configure API key authorization: apiNonce
-            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
             // Configure API key authorization: apiSignature
             Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -540,7 +464,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -551,7 +475,7 @@ This endpoint does not need any parameter.
 
 <a name="usergetcommission"></a>
 # **UserGetCommission**
-> List<UserCommission> UserGetCommission ()
+> UserCommissionsBySymbol UserGetCommission ()
 
 Get your account's commission status.
 
@@ -569,14 +493,14 @@ namespace Example
     {
         public void main()
         {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
             // Configure API key authorization: apiKey
             Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
-            // Configure API key authorization: apiNonce
-            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
             // Configure API key authorization: apiSignature
             Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -587,7 +511,7 @@ namespace Example
             try
             {
                 // Get your account's commission status.
-                List&lt;UserCommission&gt; result = apiInstance.UserGetCommission();
+                UserCommissionsBySymbol result = apiInstance.UserGetCommission();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -604,11 +528,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List<UserCommission>**](UserCommission.md)
+[**UserCommissionsBySymbol**](UserCommissionsBySymbol.md)
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -637,14 +561,14 @@ namespace Example
     {
         public void main()
         {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
             // Configure API key authorization: apiKey
             Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
-            // Configure API key authorization: apiNonce
-            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
             // Configure API key authorization: apiSignature
             Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -680,7 +604,81 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="usergetexecutionhistory"></a>
+# **UserGetExecutionHistory**
+> Object UserGetExecutionHistory (string symbol, DateTime? timestamp)
+
+Get the execution history by day.
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserGetExecutionHistoryExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new UserApi();
+            var symbol = symbol_example;  // string |  (default to XBTUSD)
+            var timestamp = 2013-10-20T19:20:30+01:00;  // DateTime? |  (default to 2017-02-13T12:00:00.000Z)
+
+            try
+            {
+                // Get the execution history by day.
+                Object result = apiInstance.UserGetExecutionHistory(symbol, timestamp);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserGetExecutionHistory: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string**|  | [default to XBTUSD]
+ **timestamp** | **DateTime?**|  | [default to 2017-02-13T12:00:00.000Z]
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -709,14 +707,14 @@ namespace Example
     {
         public void main()
         {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
             // Configure API key authorization: apiKey
             Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
-            // Configure API key authorization: apiNonce
-            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
             // Configure API key authorization: apiSignature
             Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -752,7 +750,75 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="usergetquotefillratio"></a>
+# **UserGetQuoteFillRatio**
+> QuoteFillRatio UserGetQuoteFillRatio ()
+
+Get 7 days worth of Quote Fill Ratio statistics.
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserGetQuoteFillRatioExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new UserApi();
+
+            try
+            {
+                // Get 7 days worth of Quote Fill Ratio statistics.
+                QuoteFillRatio result = apiInstance.UserGetQuoteFillRatio();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserGetQuoteFillRatio: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**QuoteFillRatio**](QuoteFillRatio.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -781,14 +847,14 @@ namespace Example
     {
         public void main()
         {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
             // Configure API key authorization: apiKey
             Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
-            // Configure API key authorization: apiNonce
-            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
             // Configure API key authorization: apiSignature
             Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -824,7 +890,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -835,7 +901,7 @@ Name | Type | Description  | Notes
 
 <a name="usergetwallethistory"></a>
 # **UserGetWalletHistory**
-> List<Transaction> UserGetWalletHistory (string currency = null)
+> List<Transaction> UserGetWalletHistory (string currency = null, double? count = null, double? start = null)
 
 Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 
@@ -853,14 +919,14 @@ namespace Example
     {
         public void main()
         {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
             // Configure API key authorization: apiKey
             Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
-            // Configure API key authorization: apiNonce
-            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
             // Configure API key authorization: apiSignature
             Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -868,11 +934,13 @@ namespace Example
 
             var apiInstance = new UserApi();
             var currency = currency_example;  // string |  (optional)  (default to XBt)
+            var count = 1.2;  // double? | Number of results to fetch. (optional)  (default to 100)
+            var start = 1.2;  // double? | Starting point for results. (optional)  (default to 0)
 
             try
             {
                 // Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
-                List&lt;Transaction&gt; result = apiInstance.UserGetWalletHistory(currency);
+                List&lt;Transaction&gt; result = apiInstance.UserGetWalletHistory(currency, count, start);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -889,6 +957,8 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **string**|  | [optional] [default to XBt]
+ **count** | **double?**| Number of results to fetch. | [optional] [default to 100]
+ **start** | **double?**| Starting point for results. | [optional] [default to 0]
 
 ### Return type
 
@@ -896,7 +966,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -925,14 +995,14 @@ namespace Example
     {
         public void main()
         {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
             // Configure API key authorization: apiKey
             Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
-            // Configure API key authorization: apiNonce
-            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
             // Configure API key authorization: apiSignature
             Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -968,7 +1038,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -1023,74 +1093,6 @@ void (empty response body)
 ### Authorization
 
 No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="userlogoutall"></a>
-# **UserLogoutAll**
-> double? UserLogoutAll ()
-
-Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.
-
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class UserLogoutAllExample
-    {
-        public void main()
-        {
-            // Configure API key authorization: apiKey
-            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
-            // Configure API key authorization: apiNonce
-            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
-            // Configure API key authorization: apiSignature
-            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
-
-            var apiInstance = new UserApi();
-
-            try
-            {
-                // Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.
-                double? result = apiInstance.UserLogoutAll();
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling UserApi.UserLogoutAll: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-**double?**
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -1160,87 +1162,13 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="userrequestenabletfa"></a>
-# **UserRequestEnableTFA**
-> bool? UserRequestEnableTFA (string type = null)
-
-Get secret key for setting up two-factor auth.
-
-Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
-
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class UserRequestEnableTFAExample
-    {
-        public void main()
-        {
-            // Configure API key authorization: apiKey
-            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
-            // Configure API key authorization: apiNonce
-            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
-            // Configure API key authorization: apiSignature
-            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
-
-            var apiInstance = new UserApi();
-            var type = type_example;  // string | Two-factor auth type. Supported types: 'GA' (Google Authenticator) (optional) 
-
-            try
-            {
-                // Get secret key for setting up two-factor auth.
-                bool? result = apiInstance.UserRequestEnableTFA(type);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling UserApi.UserRequestEnableTFA: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **type** | **string**| Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) | [optional] 
-
-### Return type
-
-**bool?**
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 <a name="userrequestwithdrawal"></a>
 # **UserRequestWithdrawal**
-> Transaction UserRequestWithdrawal (string currency, decimal? amount, string address, string otpToken = null, double? fee = null)
+> Transaction UserRequestWithdrawal (string currency, decimal? amount, string address, string otpToken = null, double? fee = null, string text = null)
 
 Request a withdrawal to an external wallet.
 
-This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission.
+This will send a confirmation email to the email address on record.
 
 ### Example
 ```csharp
@@ -1256,14 +1184,14 @@ namespace Example
     {
         public void main()
         {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
             // Configure API key authorization: apiKey
             Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
-            // Configure API key authorization: apiNonce
-            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
             // Configure API key authorization: apiSignature
             Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -1275,11 +1203,12 @@ namespace Example
             var address = address_example;  // string | Destination Address.
             var otpToken = otpToken_example;  // string | 2FA token. Required if 2FA is enabled on your account. (optional) 
             var fee = 1.2;  // double? | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional) 
+            var text = text_example;  // string | Optional annotation, e.g. 'Transfer to home wallet'. (optional) 
 
             try
             {
                 // Request a withdrawal to an external wallet.
-                Transaction result = apiInstance.UserRequestWithdrawal(currency, amount, address, otpToken, fee);
+                Transaction result = apiInstance.UserRequestWithdrawal(currency, amount, address, otpToken, fee, text);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1300,6 +1229,7 @@ Name | Type | Description  | Notes
  **address** | **string**| Destination Address. | 
  **otpToken** | **string**| 2FA token. Required if 2FA is enabled on your account. | [optional] 
  **fee** | **double?**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional] 
+ **text** | **string**| Optional annotation, e.g. &#39;Transfer to home wallet&#39;. | [optional] 
 
 ### Return type
 
@@ -1307,7 +1237,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 
@@ -1336,14 +1266,14 @@ namespace Example
     {
         public void main()
         {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
             // Configure API key authorization: apiKey
             Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
-            // Configure API key authorization: apiNonce
-            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
             // Configure API key authorization: apiSignature
             Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -1381,93 +1311,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="userupdate"></a>
-# **UserUpdate**
-> User UserUpdate (string firstname = null, string lastname = null, string oldPassword = null, string newPassword = null, string newPasswordConfirm = null, string username = null, string country = null, string pgpPubKey = null)
-
-Update your password, name, and other attributes.
-
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class UserUpdateExample
-    {
-        public void main()
-        {
-            // Configure API key authorization: apiKey
-            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
-            // Configure API key authorization: apiNonce
-            Configuration.Default.AddApiKey("api-nonce", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-nonce", "Bearer");
-            // Configure API key authorization: apiSignature
-            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
-
-            var apiInstance = new UserApi();
-            var firstname = firstname_example;  // string |  (optional) 
-            var lastname = lastname_example;  // string |  (optional) 
-            var oldPassword = oldPassword_example;  // string |  (optional) 
-            var newPassword = newPassword_example;  // string |  (optional) 
-            var newPasswordConfirm = newPasswordConfirm_example;  // string |  (optional) 
-            var username = username_example;  // string | Username can only be set once. To reset, email support. (optional) 
-            var country = country_example;  // string | Country of residence. (optional) 
-            var pgpPubKey = pgpPubKey_example;  // string | PGP Public Key. If specified, automated emails will be sentwith this key. (optional) 
-
-            try
-            {
-                // Update your password, name, and other attributes.
-                User result = apiInstance.UserUpdate(firstname, lastname, oldPassword, newPassword, newPasswordConfirm, username, country, pgpPubKey);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling UserApi.UserUpdate: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **firstname** | **string**|  | [optional] 
- **lastname** | **string**|  | [optional] 
- **oldPassword** | **string**|  | [optional] 
- **newPassword** | **string**|  | [optional] 
- **newPasswordConfirm** | **string**|  | [optional] 
- **username** | **string**| Username can only be set once. To reset, email support. | [optional] 
- **country** | **string**| Country of residence. | [optional] 
- **pgpPubKey** | **string**| PGP Public Key. If specified, automated emails will be sentwith this key. | [optional] 
-
-### Return type
-
-[**User**](User.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

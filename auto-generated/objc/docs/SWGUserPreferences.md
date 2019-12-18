@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **currency** | **NSString*** |  | [optional] 
 **debug** | **NSNumber*** |  | [optional] 
 **disableEmails** | **NSArray&lt;NSString*&gt;*** |  | [optional] 
+**disablePush** | **NSArray&lt;NSString*&gt;*** |  | [optional] 
 **hideConfirmDialogs** | **NSArray&lt;NSString*&gt;*** |  | [optional] 
 **hideConnectionModal** | **NSNumber*** |  | [optional] 
 **hideFromLeaderboard** | **NSNumber*** |  | [optional] [default to @(NO)]

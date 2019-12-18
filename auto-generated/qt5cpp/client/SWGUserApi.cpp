@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -148,6 +148,77 @@ SWGUserApi::user_checkReferralCodeCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
+SWGUserApi::user_communicationToken(QString* token, QString* platform_agent) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/user/communicationToken");
+
+
+
+    SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();
+    SWGHttpRequestInput input(fullPath, "POST");
+
+    if (token != nullptr) {
+        input.add_var("token", *token);
+    }
+    if (platform_agent != nullptr) {
+        input.add_var("platformAgent", *platform_agent);
+    }
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &SWGHttpRequestWorker::on_execution_finished,
+            this,
+            &SWGUserApi::user_communicationTokenCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGUserApi::user_communicationTokenCallback(SWGHttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+    QList<SWGCommunicationToken*>* output = new QList<SWGCommunicationToken*>();
+    QString json(worker->response);
+    QByteArray array (json.toStdString().c_str());
+    QJsonDocument doc = QJsonDocument::fromJson(array);
+    QJsonArray jsonArray = doc.array();
+    auto wrapper = new SWGQObjectWrapper<QList<SWGCommunicationToken*>*> (output);
+    wrapper->deleteLater();
+    foreach(QJsonValue obj, jsonArray) {
+        SWGCommunicationToken* o = new SWGCommunicationToken();
+        QJsonObject jv = obj.toObject();
+        QJsonObject * ptr = (QJsonObject*)&jv;
+        o->fromJsonObject(*ptr);
+        auto objwrapper = new SWGQObjectWrapper<SWGCommunicationToken*> (o);
+        objwrapper->deleteLater();
+        output->append(o);
+    }
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit user_communicationTokenSignal(output);
+    } else {
+        emit user_communicationTokenSignalE(output, error_type, error_str);
+        emit user_communicationTokenSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void
 SWGUserApi::user_confirm(QString* token) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/user/confirmEmail");
@@ -204,66 +275,6 @@ SWGUserApi::user_confirmCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGUserApi::user_confirmEnableTFA(QString* token, QString* type) {
-    QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/user/confirmEnableTFA");
-
-
-
-    SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();
-    SWGHttpRequestInput input(fullPath, "POST");
-
-    if (type != nullptr) {
-        input.add_var("type", *type);
-    }
-    if (token != nullptr) {
-        input.add_var("token", *token);
-    }
-
-
-
-
-    foreach(QString key, this->defaultHeaders.keys()) {
-        input.headers.insert(key, this->defaultHeaders.value(key));
-    }
-
-    connect(worker,
-            &SWGHttpRequestWorker::on_execution_finished,
-            this,
-            &SWGUserApi::user_confirmEnableTFACallback);
-
-    worker->execute(&input);
-}
-
-void
-SWGUserApi::user_confirmEnableTFACallback(SWGHttpRequestWorker * worker) {
-    QString msg;
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        msg = QString("Success! %1 bytes").arg(worker->response.length());
-    }
-    else {
-        msg = "Error: " + worker->error_str;
-    }
-
-    bool output;  // TODO add primitive output support
-    
-    
-    
-    
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit user_confirmEnableTFASignal(output);
-    } else {
-        emit user_confirmEnableTFASignalE(output, error_type, error_str);
-        emit user_confirmEnableTFASignalEFull(worker, error_type, error_str);
-    }
-}
-
-void
 SWGUserApi::user_confirmWithdrawal(QString* token) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/user/confirmWithdrawal");
@@ -316,66 +327,6 @@ SWGUserApi::user_confirmWithdrawalCallback(SWGHttpRequestWorker * worker) {
     } else {
         emit user_confirmWithdrawalSignalE(output, error_type, error_str);
         emit user_confirmWithdrawalSignalEFull(worker, error_type, error_str);
-    }
-}
-
-void
-SWGUserApi::user_disableTFA(QString* token, QString* type) {
-    QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/user/disableTFA");
-
-
-
-    SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();
-    SWGHttpRequestInput input(fullPath, "POST");
-
-    if (type != nullptr) {
-        input.add_var("type", *type);
-    }
-    if (token != nullptr) {
-        input.add_var("token", *token);
-    }
-
-
-
-
-    foreach(QString key, this->defaultHeaders.keys()) {
-        input.headers.insert(key, this->defaultHeaders.value(key));
-    }
-
-    connect(worker,
-            &SWGHttpRequestWorker::on_execution_finished,
-            this,
-            &SWGUserApi::user_disableTFACallback);
-
-    worker->execute(&input);
-}
-
-void
-SWGUserApi::user_disableTFACallback(SWGHttpRequestWorker * worker) {
-    QString msg;
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        msg = QString("Success! %1 bytes").arg(worker->response.length());
-    }
-    else {
-        msg = "Error: " + worker->error_str;
-    }
-
-    bool output;  // TODO add primitive output support
-    
-    
-    
-    
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit user_disableTFASignal(output);
-    } else {
-        emit user_disableTFASignalE(output, error_type, error_str);
-        emit user_disableTFASignalEFull(worker, error_type, error_str);
     }
 }
 
@@ -524,22 +475,10 @@ SWGUserApi::user_getCommissionCallback(SWGHttpRequestWorker * worker) {
         msg = "Error: " + worker->error_str;
     }
 
-    QList<SWGUserCommission*>* output = new QList<SWGUserCommission*>();
     QString json(worker->response);
-    QByteArray array (json.toStdString().c_str());
-    QJsonDocument doc = QJsonDocument::fromJson(array);
-    QJsonArray jsonArray = doc.array();
-    auto wrapper = new SWGQObjectWrapper<QList<SWGUserCommission*>*> (output);
+    SWGUserCommissionsBySymbol* output = static_cast<SWGUserCommissionsBySymbol*>(create(json, QString("SWGUserCommissionsBySymbol")));
+    auto wrapper = new SWGQObjectWrapper<SWGUserCommissionsBySymbol*> (output);
     wrapper->deleteLater();
-    foreach(QJsonValue obj, jsonArray) {
-        SWGUserCommission* o = new SWGUserCommission();
-        QJsonObject jv = obj.toObject();
-        QJsonObject * ptr = (QJsonObject*)&jv;
-        o->fromJsonObject(*ptr);
-        auto objwrapper = new SWGQObjectWrapper<SWGUserCommission*> (o);
-        objwrapper->deleteLater();
-        output->append(o);
-    }
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
@@ -612,6 +551,75 @@ SWGUserApi::user_getDepositAddressCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
+SWGUserApi::user_getExecutionHistory(QString* symbol, QDateTime* timestamp) {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/user/executionHistory");
+
+
+    if (fullPath.indexOf("?") > 0)
+      fullPath.append("&");
+    else
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("symbol"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(symbol)));
+
+    if (fullPath.indexOf("?") > 0)
+      fullPath.append("&");
+    else
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("timestamp"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(timestamp)));
+
+
+    SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();
+    SWGHttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &SWGHttpRequestWorker::on_execution_finished,
+            this,
+            &SWGUserApi::user_getExecutionHistoryCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGUserApi::user_getExecutionHistoryCallback(SWGHttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+    QString json(worker->response);
+    SWGObject* output = static_cast<SWGObject*>(create(json, QString("SWGObject")));
+    auto wrapper = new SWGQObjectWrapper<SWGObject*> (output);
+    wrapper->deleteLater();
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit user_getExecutionHistorySignal(output);
+    } else {
+        emit user_getExecutionHistorySignalE(output, error_type, error_str);
+        emit user_getExecutionHistorySignalEFull(worker, error_type, error_str);
+    }
+}
+
+void
 SWGUserApi::user_getMargin(QString* currency) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/user/margin");
@@ -669,6 +677,59 @@ SWGUserApi::user_getMarginCallback(SWGHttpRequestWorker * worker) {
     } else {
         emit user_getMarginSignalE(output, error_type, error_str);
         emit user_getMarginSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void
+SWGUserApi::user_getQuoteFillRatio() {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/user/quoteFillRatio");
+
+
+
+    SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();
+    SWGHttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &SWGHttpRequestWorker::on_execution_finished,
+            this,
+            &SWGUserApi::user_getQuoteFillRatioCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGUserApi::user_getQuoteFillRatioCallback(SWGHttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+    QString json(worker->response);
+    SWGQuoteFillRatio* output = static_cast<SWGQuoteFillRatio*>(create(json, QString("SWGQuoteFillRatio")));
+    auto wrapper = new SWGQObjectWrapper<SWGQuoteFillRatio*> (output);
+    wrapper->deleteLater();
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit user_getQuoteFillRatioSignal(output);
+    } else {
+        emit user_getQuoteFillRatioSignalE(output, error_type, error_str);
+        emit user_getQuoteFillRatioSignalEFull(worker, error_type, error_str);
     }
 }
 
@@ -734,7 +795,7 @@ SWGUserApi::user_getWalletCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGUserApi::user_getWalletHistory(QString* currency) {
+SWGUserApi::user_getWalletHistory(QString* currency, double count, double start) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/user/walletHistory");
 
@@ -746,6 +807,22 @@ SWGUserApi::user_getWalletHistory(QString* currency) {
     fullPath.append(QUrl::toPercentEncoding("currency"))
         .append("=")
         .append(QUrl::toPercentEncoding(stringValue(currency)));
+
+    if (fullPath.indexOf("?") > 0)
+      fullPath.append("&");
+    else
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("count"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(count)));
+
+    if (fullPath.indexOf("?") > 0)
+      fullPath.append("&");
+    else
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("start"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(start)));
 
 
     SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();
@@ -929,60 +1006,6 @@ SWGUserApi::user_logoutCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGUserApi::user_logoutAll() {
-    QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/user/logoutAll");
-
-
-
-    SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();
-    SWGHttpRequestInput input(fullPath, "POST");
-
-
-
-
-
-    foreach(QString key, this->defaultHeaders.keys()) {
-        input.headers.insert(key, this->defaultHeaders.value(key));
-    }
-
-    connect(worker,
-            &SWGHttpRequestWorker::on_execution_finished,
-            this,
-            &SWGUserApi::user_logoutAllCallback);
-
-    worker->execute(&input);
-}
-
-void
-SWGUserApi::user_logoutAllCallback(SWGHttpRequestWorker * worker) {
-    QString msg;
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        msg = QString("Success! %1 bytes").arg(worker->response.length());
-    }
-    else {
-        msg = "Error: " + worker->error_str;
-    }
-
-    double output;  // TODO add primitive output support
-    
-    
-    
-    
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit user_logoutAllSignal(output);
-    } else {
-        emit user_logoutAllSignalE(output, error_type, error_str);
-        emit user_logoutAllSignalEFull(worker, error_type, error_str);
-    }
-}
-
-void
 SWGUserApi::user_minWithdrawalFee(QString* currency) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/user/minWithdrawalFee");
@@ -1044,64 +1067,7 @@ SWGUserApi::user_minWithdrawalFeeCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGUserApi::user_requestEnableTFA(QString* type) {
-    QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/user/requestEnableTFA");
-
-
-
-    SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();
-    SWGHttpRequestInput input(fullPath, "POST");
-
-    if (type != nullptr) {
-        input.add_var("type", *type);
-    }
-
-
-
-
-    foreach(QString key, this->defaultHeaders.keys()) {
-        input.headers.insert(key, this->defaultHeaders.value(key));
-    }
-
-    connect(worker,
-            &SWGHttpRequestWorker::on_execution_finished,
-            this,
-            &SWGUserApi::user_requestEnableTFACallback);
-
-    worker->execute(&input);
-}
-
-void
-SWGUserApi::user_requestEnableTFACallback(SWGHttpRequestWorker * worker) {
-    QString msg;
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        msg = QString("Success! %1 bytes").arg(worker->response.length());
-    }
-    else {
-        msg = "Error: " + worker->error_str;
-    }
-
-    bool output;  // TODO add primitive output support
-    
-    
-    
-    
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit user_requestEnableTFASignal(output);
-    } else {
-        emit user_requestEnableTFASignalE(output, error_type, error_str);
-        emit user_requestEnableTFASignalEFull(worker, error_type, error_str);
-    }
-}
-
-void
-SWGUserApi::user_requestWithdrawal(QString* currency, SWGNumber* amount, QString* address, QString* otp_token, double fee) {
+SWGUserApi::user_requestWithdrawal(QString* currency, SWGNumber* amount, QString* address, QString* otp_token, double fee, QString* text) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/user/requestWithdrawal");
 
@@ -1124,6 +1090,9 @@ SWGUserApi::user_requestWithdrawal(QString* currency, SWGNumber* amount, QString
     }
     if (fee != nullptr) {
         input.add_var("fee", *fee);
+    }
+    if (text != nullptr) {
+        input.add_var("text", *text);
     }
 
 
@@ -1224,83 +1193,6 @@ SWGUserApi::user_savePreferencesCallback(SWGHttpRequestWorker * worker) {
     } else {
         emit user_savePreferencesSignalE(output, error_type, error_str);
         emit user_savePreferencesSignalEFull(worker, error_type, error_str);
-    }
-}
-
-void
-SWGUserApi::user_update(QString* firstname, QString* lastname, QString* old_password, QString* new_password, QString* new_password_confirm, QString* username, QString* country, QString* pgp_pub_key) {
-    QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/user");
-
-
-
-    SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();
-    SWGHttpRequestInput input(fullPath, "PUT");
-
-    if (firstname != nullptr) {
-        input.add_var("firstname", *firstname);
-    }
-    if (lastname != nullptr) {
-        input.add_var("lastname", *lastname);
-    }
-    if (old_password != nullptr) {
-        input.add_var("oldPassword", *old_password);
-    }
-    if (new_password != nullptr) {
-        input.add_var("newPassword", *new_password);
-    }
-    if (new_password_confirm != nullptr) {
-        input.add_var("newPasswordConfirm", *new_password_confirm);
-    }
-    if (username != nullptr) {
-        input.add_var("username", *username);
-    }
-    if (country != nullptr) {
-        input.add_var("country", *country);
-    }
-    if (pgp_pub_key != nullptr) {
-        input.add_var("pgpPubKey", *pgp_pub_key);
-    }
-
-
-
-
-    foreach(QString key, this->defaultHeaders.keys()) {
-        input.headers.insert(key, this->defaultHeaders.value(key));
-    }
-
-    connect(worker,
-            &SWGHttpRequestWorker::on_execution_finished,
-            this,
-            &SWGUserApi::user_updateCallback);
-
-    worker->execute(&input);
-}
-
-void
-SWGUserApi::user_updateCallback(SWGHttpRequestWorker * worker) {
-    QString msg;
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        msg = QString("Success! %1 bytes").arg(worker->response.length());
-    }
-    else {
-        msg = "Error: " + worker->error_str;
-    }
-
-    QString json(worker->response);
-    SWGUser* output = static_cast<SWGUser*>(create(json, QString("SWGUser")));
-    auto wrapper = new SWGQObjectWrapper<SWGUser*> (output);
-    wrapper->deleteLater();
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit user_updateSignal(output);
-    } else {
-        emit user_updateSignalE(output, error_type, error_str);
-        emit user_updateSignalEFull(worker, error_type, error_str);
     }
 }
 

@@ -1,6 +1,6 @@
 # SWGLeaderboardApi
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -59,7 +59,7 @@ No authorization required
 # **leaderboardGetName**
 ```objc
 -(NSURLSessionTask*) leaderboardGetNameWithCompletionHandler: 
-        (void (^)(SWGInlineResponse2001* output, NSError* error)) handler;
+        (void (^)(SWGInlineResponse200* output, NSError* error)) handler;
 ```
 
 Get your alias on the leaderboard.
@@ -68,15 +68,15 @@ Get your alias on the leaderboard.
 ```objc
 SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
 // Configure API key authorization: (authentication scheme: apiKey)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
-
-// Configure API key authorization: (authentication scheme: apiNonce)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-nonce"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-nonce"];
 
 // Configure API key authorization: (authentication scheme: apiSignature)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
@@ -89,7 +89,7 @@ SWGLeaderboardApi*apiInstance = [[SWGLeaderboardApi alloc] init];
 
 // Get your alias on the leaderboard.
 [apiInstance leaderboardGetNameWithCompletionHandler: 
-          ^(SWGInlineResponse2001* output, NSError* error) {
+          ^(SWGInlineResponse200* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -104,11 +104,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SWGInlineResponse2001***](SWGInlineResponse2001.md)
+[**SWGInlineResponse200***](SWGInlineResponse200.md)
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

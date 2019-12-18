@@ -1,6 +1,6 @@
 # swagger_client.LeaderboardApi
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -55,7 +55,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leaderboard_get_name**
-> InlineResponse2001 leaderboard_get_name()
+> InlineResponse200 leaderboard_get_name()
 
 Get your alias on the leaderboard.
 
@@ -67,16 +67,16 @@ import swagger_client
 from swagger_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiExpires
+configuration = swagger_client.Configuration()
+configuration.api_key['api-expires'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-expires'] = 'Bearer'
 # Configure API key authorization: apiKey
 configuration = swagger_client.Configuration()
 configuration.api_key['api-key'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api-key'] = 'Bearer'
-# Configure API key authorization: apiNonce
-configuration = swagger_client.Configuration()
-configuration.api_key['api-nonce'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api-nonce'] = 'Bearer'
 # Configure API key authorization: apiSignature
 configuration = swagger_client.Configuration()
 configuration.api_key['api-signature'] = 'YOUR_API_KEY'
@@ -99,11 +99,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

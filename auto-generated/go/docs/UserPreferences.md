@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Currency** | **string** |  | [optional] [default to null]
 **Debug** | **bool** |  | [optional] [default to null]
 **DisableEmails** | **[]string** |  | [optional] [default to null]
+**DisablePush** | **[]string** |  | [optional] [default to null]
 **HideConfirmDialogs** | **[]string** |  | [optional] [default to null]
 **HideConnectionModal** | **bool** |  | [optional] [default to null]
 **HideFromLeaderboard** | **bool** |  | [optional] [default to null]

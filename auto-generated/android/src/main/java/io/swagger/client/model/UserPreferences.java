@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -36,6 +36,8 @@ public class UserPreferences {
   private Boolean debug = null;
   @SerializedName("disableEmails")
   private List<String> disableEmails = null;
+  @SerializedName("disablePush")
+  private List<String> disablePush = null;
   @SerializedName("hideConfirmDialogs")
   private List<String> hideConfirmDialogs = null;
   @SerializedName("hideConnectionModal")
@@ -151,6 +153,16 @@ public class UserPreferences {
   }
   public void setDisableEmails(List<String> disableEmails) {
     this.disableEmails = disableEmails;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public List<String> getDisablePush() {
+    return disablePush;
+  }
+  public void setDisablePush(List<String> disablePush) {
+    this.disablePush = disablePush;
   }
 
   /**
@@ -351,6 +363,7 @@ public class UserPreferences {
         (this.currency == null ? userPreferences.currency == null : this.currency.equals(userPreferences.currency)) &&
         (this.debug == null ? userPreferences.debug == null : this.debug.equals(userPreferences.debug)) &&
         (this.disableEmails == null ? userPreferences.disableEmails == null : this.disableEmails.equals(userPreferences.disableEmails)) &&
+        (this.disablePush == null ? userPreferences.disablePush == null : this.disablePush.equals(userPreferences.disablePush)) &&
         (this.hideConfirmDialogs == null ? userPreferences.hideConfirmDialogs == null : this.hideConfirmDialogs.equals(userPreferences.hideConfirmDialogs)) &&
         (this.hideConnectionModal == null ? userPreferences.hideConnectionModal == null : this.hideConnectionModal.equals(userPreferences.hideConnectionModal)) &&
         (this.hideFromLeaderboard == null ? userPreferences.hideFromLeaderboard == null : this.hideFromLeaderboard.equals(userPreferences.hideFromLeaderboard)) &&
@@ -382,6 +395,7 @@ public class UserPreferences {
     result = 31 * result + (this.currency == null ? 0: this.currency.hashCode());
     result = 31 * result + (this.debug == null ? 0: this.debug.hashCode());
     result = 31 * result + (this.disableEmails == null ? 0: this.disableEmails.hashCode());
+    result = 31 * result + (this.disablePush == null ? 0: this.disablePush.hashCode());
     result = 31 * result + (this.hideConfirmDialogs == null ? 0: this.hideConfirmDialogs.hashCode());
     result = 31 * result + (this.hideConnectionModal == null ? 0: this.hideConnectionModal.hashCode());
     result = 31 * result + (this.hideFromLeaderboard == null ? 0: this.hideFromLeaderboard.hashCode());
@@ -416,6 +430,7 @@ public class UserPreferences {
     sb.append("  currency: ").append(currency).append("\n");
     sb.append("  debug: ").append(debug).append("\n");
     sb.append("  disableEmails: ").append(disableEmails).append("\n");
+    sb.append("  disablePush: ").append(disablePush).append("\n");
     sb.append("  hideConfirmDialogs: ").append(hideConfirmDialogs).append("\n");
     sb.append("  hideConnectionModal: ").append(hideConnectionModal).append("\n");
     sb.append("  hideFromLeaderboard: ").append(hideFromLeaderboard).append("\n");

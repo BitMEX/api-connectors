@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -111,6 +111,8 @@ namespace IO.Swagger.Model
         /// <param name="totalTurnover">totalTurnover.</param>
         /// <param name="turnover">turnover.</param>
         /// <param name="turnover24h">turnover24h.</param>
+        /// <param name="homeNotional24h">homeNotional24h.</param>
+        /// <param name="foreignNotional24h">foreignNotional24h.</param>
         /// <param name="prevPrice24h">prevPrice24h.</param>
         /// <param name="vwap">vwap.</param>
         /// <param name="highPrice">highPrice.</param>
@@ -139,7 +141,7 @@ namespace IO.Swagger.Model
         /// <param name="optionUnderlyingPrice">optionUnderlyingPrice.</param>
         /// <param name="settledPrice">settledPrice.</param>
         /// <param name="timestamp">timestamp.</param>
-        public Instrument(string symbol = default(string), string rootSymbol = default(string), string state = default(string), string typ = default(string), DateTime? listing = default(DateTime?), DateTime? front = default(DateTime?), DateTime? expiry = default(DateTime?), DateTime? settle = default(DateTime?), DateTime? relistInterval = default(DateTime?), string inverseLeg = default(string), string sellLeg = default(string), string buyLeg = default(string), double? optionStrikePcnt = default(double?), double? optionStrikeRound = default(double?), double? optionStrikePrice = default(double?), double? optionMultiplier = default(double?), string positionCurrency = default(string), string underlying = default(string), string quoteCurrency = default(string), string underlyingSymbol = default(string), string reference = default(string), string referenceSymbol = default(string), DateTime? calcInterval = default(DateTime?), DateTime? publishInterval = default(DateTime?), DateTime? publishTime = default(DateTime?), decimal? maxOrderQty = default(decimal?), double? maxPrice = default(double?), decimal? lotSize = default(decimal?), double? tickSize = default(double?), decimal? multiplier = default(decimal?), string settlCurrency = default(string), decimal? underlyingToPositionMultiplier = default(decimal?), decimal? underlyingToSettleMultiplier = default(decimal?), decimal? quoteToSettleMultiplier = default(decimal?), bool? isQuanto = default(bool?), bool? isInverse = default(bool?), double? initMargin = default(double?), double? maintMargin = default(double?), decimal? riskLimit = default(decimal?), decimal? riskStep = default(decimal?), double? limit = default(double?), bool? capped = default(bool?), bool? taxed = default(bool?), bool? deleverage = default(bool?), double? makerFee = default(double?), double? takerFee = default(double?), double? settlementFee = default(double?), double? insuranceFee = default(double?), string fundingBaseSymbol = default(string), string fundingQuoteSymbol = default(string), string fundingPremiumSymbol = default(string), DateTime? fundingTimestamp = default(DateTime?), DateTime? fundingInterval = default(DateTime?), double? fundingRate = default(double?), double? indicativeFundingRate = default(double?), DateTime? rebalanceTimestamp = default(DateTime?), DateTime? rebalanceInterval = default(DateTime?), DateTime? openingTimestamp = default(DateTime?), DateTime? closingTimestamp = default(DateTime?), DateTime? sessionInterval = default(DateTime?), double? prevClosePrice = default(double?), double? limitDownPrice = default(double?), double? limitUpPrice = default(double?), double? bankruptLimitDownPrice = default(double?), double? bankruptLimitUpPrice = default(double?), decimal? prevTotalVolume = default(decimal?), decimal? totalVolume = default(decimal?), decimal? volume = default(decimal?), decimal? volume24h = default(decimal?), decimal? prevTotalTurnover = default(decimal?), decimal? totalTurnover = default(decimal?), decimal? turnover = default(decimal?), decimal? turnover24h = default(decimal?), double? prevPrice24h = default(double?), double? vwap = default(double?), double? highPrice = default(double?), double? lowPrice = default(double?), double? lastPrice = default(double?), double? lastPriceProtected = default(double?), string lastTickDirection = default(string), double? lastChangePcnt = default(double?), double? bidPrice = default(double?), double? midPrice = default(double?), double? askPrice = default(double?), double? impactBidPrice = default(double?), double? impactMidPrice = default(double?), double? impactAskPrice = default(double?), bool? hasLiquidity = default(bool?), decimal? openInterest = default(decimal?), decimal? openValue = default(decimal?), string fairMethod = default(string), double? fairBasisRate = default(double?), double? fairBasis = default(double?), double? fairPrice = default(double?), string markMethod = default(string), double? markPrice = default(double?), double? indicativeTaxRate = default(double?), double? indicativeSettlePrice = default(double?), double? optionUnderlyingPrice = default(double?), double? settledPrice = default(double?), DateTime? timestamp = default(DateTime?))
+        public Instrument(string symbol = default(string), string rootSymbol = default(string), string state = default(string), string typ = default(string), DateTime? listing = default(DateTime?), DateTime? front = default(DateTime?), DateTime? expiry = default(DateTime?), DateTime? settle = default(DateTime?), DateTime? relistInterval = default(DateTime?), string inverseLeg = default(string), string sellLeg = default(string), string buyLeg = default(string), double? optionStrikePcnt = default(double?), double? optionStrikeRound = default(double?), double? optionStrikePrice = default(double?), double? optionMultiplier = default(double?), string positionCurrency = default(string), string underlying = default(string), string quoteCurrency = default(string), string underlyingSymbol = default(string), string reference = default(string), string referenceSymbol = default(string), DateTime? calcInterval = default(DateTime?), DateTime? publishInterval = default(DateTime?), DateTime? publishTime = default(DateTime?), decimal? maxOrderQty = default(decimal?), double? maxPrice = default(double?), decimal? lotSize = default(decimal?), double? tickSize = default(double?), decimal? multiplier = default(decimal?), string settlCurrency = default(string), decimal? underlyingToPositionMultiplier = default(decimal?), decimal? underlyingToSettleMultiplier = default(decimal?), decimal? quoteToSettleMultiplier = default(decimal?), bool? isQuanto = default(bool?), bool? isInverse = default(bool?), double? initMargin = default(double?), double? maintMargin = default(double?), decimal? riskLimit = default(decimal?), decimal? riskStep = default(decimal?), double? limit = default(double?), bool? capped = default(bool?), bool? taxed = default(bool?), bool? deleverage = default(bool?), double? makerFee = default(double?), double? takerFee = default(double?), double? settlementFee = default(double?), double? insuranceFee = default(double?), string fundingBaseSymbol = default(string), string fundingQuoteSymbol = default(string), string fundingPremiumSymbol = default(string), DateTime? fundingTimestamp = default(DateTime?), DateTime? fundingInterval = default(DateTime?), double? fundingRate = default(double?), double? indicativeFundingRate = default(double?), DateTime? rebalanceTimestamp = default(DateTime?), DateTime? rebalanceInterval = default(DateTime?), DateTime? openingTimestamp = default(DateTime?), DateTime? closingTimestamp = default(DateTime?), DateTime? sessionInterval = default(DateTime?), double? prevClosePrice = default(double?), double? limitDownPrice = default(double?), double? limitUpPrice = default(double?), double? bankruptLimitDownPrice = default(double?), double? bankruptLimitUpPrice = default(double?), decimal? prevTotalVolume = default(decimal?), decimal? totalVolume = default(decimal?), decimal? volume = default(decimal?), decimal? volume24h = default(decimal?), decimal? prevTotalTurnover = default(decimal?), decimal? totalTurnover = default(decimal?), decimal? turnover = default(decimal?), decimal? turnover24h = default(decimal?), double? homeNotional24h = default(double?), double? foreignNotional24h = default(double?), double? prevPrice24h = default(double?), double? vwap = default(double?), double? highPrice = default(double?), double? lowPrice = default(double?), double? lastPrice = default(double?), double? lastPriceProtected = default(double?), string lastTickDirection = default(string), double? lastChangePcnt = default(double?), double? bidPrice = default(double?), double? midPrice = default(double?), double? askPrice = default(double?), double? impactBidPrice = default(double?), double? impactMidPrice = default(double?), double? impactAskPrice = default(double?), bool? hasLiquidity = default(bool?), decimal? openInterest = default(decimal?), decimal? openValue = default(decimal?), string fairMethod = default(string), double? fairBasisRate = default(double?), double? fairBasis = default(double?), double? fairPrice = default(double?), string markMethod = default(string), double? markPrice = default(double?), double? indicativeTaxRate = default(double?), double? indicativeSettlePrice = default(double?), double? optionUnderlyingPrice = default(double?), double? settledPrice = default(double?), DateTime? timestamp = default(DateTime?))
         {
             // to ensure "symbol" is required (not null)
             if (symbol == null)
@@ -222,6 +224,8 @@ namespace IO.Swagger.Model
             this.TotalTurnover = totalTurnover;
             this.Turnover = turnover;
             this.Turnover24h = turnover24h;
+            this.HomeNotional24h = homeNotional24h;
+            this.ForeignNotional24h = foreignNotional24h;
             this.PrevPrice24h = prevPrice24h;
             this.Vwap = vwap;
             this.HighPrice = highPrice;
@@ -691,6 +695,18 @@ namespace IO.Swagger.Model
         public decimal? Turnover24h { get; set; }
 
         /// <summary>
+        /// Gets or Sets HomeNotional24h
+        /// </summary>
+        [DataMember(Name="homeNotional24h", EmitDefaultValue=false)]
+        public double? HomeNotional24h { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ForeignNotional24h
+        /// </summary>
+        [DataMember(Name="foreignNotional24h", EmitDefaultValue=false)]
+        public double? ForeignNotional24h { get; set; }
+
+        /// <summary>
         /// Gets or Sets PrevPrice24h
         /// </summary>
         [DataMember(Name="prevPrice24h", EmitDefaultValue=false)]
@@ -939,6 +955,8 @@ namespace IO.Swagger.Model
             sb.Append("  TotalTurnover: ").Append(TotalTurnover).Append("\n");
             sb.Append("  Turnover: ").Append(Turnover).Append("\n");
             sb.Append("  Turnover24h: ").Append(Turnover24h).Append("\n");
+            sb.Append("  HomeNotional24h: ").Append(HomeNotional24h).Append("\n");
+            sb.Append("  ForeignNotional24h: ").Append(ForeignNotional24h).Append("\n");
             sb.Append("  PrevPrice24h: ").Append(PrevPrice24h).Append("\n");
             sb.Append("  Vwap: ").Append(Vwap).Append("\n");
             sb.Append("  HighPrice: ").Append(HighPrice).Append("\n");
@@ -1367,6 +1385,16 @@ namespace IO.Swagger.Model
                     this.Turnover24h.Equals(input.Turnover24h))
                 ) && 
                 (
+                    this.HomeNotional24h == input.HomeNotional24h ||
+                    (this.HomeNotional24h != null &&
+                    this.HomeNotional24h.Equals(input.HomeNotional24h))
+                ) && 
+                (
+                    this.ForeignNotional24h == input.ForeignNotional24h ||
+                    (this.ForeignNotional24h != null &&
+                    this.ForeignNotional24h.Equals(input.ForeignNotional24h))
+                ) && 
+                (
                     this.PrevPrice24h == input.PrevPrice24h ||
                     (this.PrevPrice24h != null &&
                     this.PrevPrice24h.Equals(input.PrevPrice24h))
@@ -1663,6 +1691,10 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.Turnover.GetHashCode();
                 if (this.Turnover24h != null)
                     hashCode = hashCode * 59 + this.Turnover24h.GetHashCode();
+                if (this.HomeNotional24h != null)
+                    hashCode = hashCode * 59 + this.HomeNotional24h.GetHashCode();
+                if (this.ForeignNotional24h != null)
+                    hashCode = hashCode * 59 + this.ForeignNotional24h.GetHashCode();
                 if (this.PrevPrice24h != null)
                     hashCode = hashCode * 59 + this.PrevPrice24h.GetHashCode();
                 if (this.Vwap != null)

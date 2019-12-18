@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **pendingPayout** | **NSNumber*** |  | [optional] 
 **timestamp** | **NSDate*** |  | [optional] 
 **referrerAccount** | **NSNumber*** |  | [optional] 
+**referralDiscount** | **NSNumber*** |  | [optional] 
+**affiliatePayout** | **NSNumber*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

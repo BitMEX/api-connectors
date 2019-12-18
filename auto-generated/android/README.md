@@ -64,12 +64,12 @@ public class APIKeyApiExample {
 
     public static void main(String[] args) {
         APIKeyApi apiInstance = new APIKeyApi();
-        String apiKeyID = "apiKeyID_example"; // String | API Key ID (public component).
+        Boolean reverse = false; // Boolean | If true, will sort results newest first.
         try {
-            APIKey result = apiInstance.aPIKeyDisable(apiKeyID);
+            List<APIKey> result = apiInstance.aPIKeyGet(reverse);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling APIKeyApi#aPIKeyDisable");
+            System.err.println("Exception when calling APIKeyApi#aPIKeyGet");
             e.printStackTrace();
         }
     }
@@ -79,15 +79,11 @@ public class APIKeyApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*APIKeyApi* | [**aPIKeyDisable**](docs/APIKeyApi.md#aPIKeyDisable) | **POST** /apiKey/disable | Disable an API Key.
-*APIKeyApi* | [**aPIKeyEnable**](docs/APIKeyApi.md#aPIKeyEnable) | **POST** /apiKey/enable | Enable an API Key.
 *APIKeyApi* | [**aPIKeyGet**](docs/APIKeyApi.md#aPIKeyGet) | **GET** /apiKey | Get your API Keys.
-*APIKeyApi* | [**aPIKeyNew**](docs/APIKeyApi.md#aPIKeyNew) | **POST** /apiKey | Create a new API Key.
-*APIKeyApi* | [**aPIKeyRemove**](docs/APIKeyApi.md#aPIKeyRemove) | **DELETE** /apiKey | Remove an API Key.
 *AnnouncementApi* | [**announcementGet**](docs/AnnouncementApi.md#announcementGet) | **GET** /announcement | Get site announcements.
 *AnnouncementApi* | [**announcementGetUrgent**](docs/AnnouncementApi.md#announcementGetUrgent) | **GET** /announcement/urgent | Get urgent (banner) announcements.
 *ChatApi* | [**chatGet**](docs/ChatApi.md#chatGet) | **GET** /chat | Get chat messages.
@@ -97,6 +93,7 @@ Class | Method | HTTP request | Description
 *ExecutionApi* | [**executionGet**](docs/ExecutionApi.md#executionGet) | **GET** /execution | Get all raw executions for your account.
 *ExecutionApi* | [**executionGetTradeHistory**](docs/ExecutionApi.md#executionGetTradeHistory) | **GET** /execution/tradeHistory | Get all balance-affecting executions. This includes each trade, insurance charge, and settlement.
 *FundingApi* | [**fundingGet**](docs/FundingApi.md#fundingGet) | **GET** /funding | Get funding history.
+*GlobalNotificationApi* | [**globalNotificationGet**](docs/GlobalNotificationApi.md#globalNotificationGet) | **GET** /globalNotification | Get your current GlobalNotifications.
 *InstrumentApi* | [**instrumentGet**](docs/InstrumentApi.md#instrumentGet) | **GET** /instrument | Get instruments.
 *InstrumentApi* | [**instrumentGetActive**](docs/InstrumentApi.md#instrumentGetActive) | **GET** /instrument/active | Get all active instruments and instruments that have expired in &lt;24hrs.
 *InstrumentApi* | [**instrumentGetActiveAndIndices**](docs/InstrumentApi.md#instrumentGetActiveAndIndices) | **GET** /instrument/activeAndIndices | Helper method. Gets all active instruments and all indices. This is a join of the result of /indices and /active.
@@ -107,7 +104,6 @@ Class | Method | HTTP request | Description
 *LeaderboardApi* | [**leaderboardGet**](docs/LeaderboardApi.md#leaderboardGet) | **GET** /leaderboard | Get current leaderboard.
 *LeaderboardApi* | [**leaderboardGetName**](docs/LeaderboardApi.md#leaderboardGetName) | **GET** /leaderboard/name | Get your alias on the leaderboard.
 *LiquidationApi* | [**liquidationGet**](docs/LiquidationApi.md#liquidationGet) | **GET** /liquidation | Get liquidation orders.
-*NotificationApi* | [**notificationGet**](docs/NotificationApi.md#notificationGet) | **GET** /notification | Get your current notifications.
 *OrderApi* | [**orderAmend**](docs/OrderApi.md#orderAmend) | **PUT** /order | Amend the quantity or price of an open order.
 *OrderApi* | [**orderAmendBulk**](docs/OrderApi.md#orderAmendBulk) | **PUT** /order/bulk | Amend multiple orders for the same symbol.
 *OrderApi* | [**orderCancel**](docs/OrderApi.md#orderCancel) | **DELETE** /order | Cancel order(s). Send multiple order IDs to cancel in bulk.
@@ -135,25 +131,24 @@ Class | Method | HTTP request | Description
 *TradeApi* | [**tradeGetBucketed**](docs/TradeApi.md#tradeGetBucketed) | **GET** /trade/bucketed | Get previous trades in time buckets.
 *UserApi* | [**userCancelWithdrawal**](docs/UserApi.md#userCancelWithdrawal) | **POST** /user/cancelWithdrawal | Cancel a withdrawal.
 *UserApi* | [**userCheckReferralCode**](docs/UserApi.md#userCheckReferralCode) | **GET** /user/checkReferralCode | Check if a referral code is valid.
+*UserApi* | [**userCommunicationToken**](docs/UserApi.md#userCommunicationToken) | **POST** /user/communicationToken | Register your communication token for mobile clients
 *UserApi* | [**userConfirm**](docs/UserApi.md#userConfirm) | **POST** /user/confirmEmail | Confirm your email address with a token.
-*UserApi* | [**userConfirmEnableTFA**](docs/UserApi.md#userConfirmEnableTFA) | **POST** /user/confirmEnableTFA | Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
 *UserApi* | [**userConfirmWithdrawal**](docs/UserApi.md#userConfirmWithdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
-*UserApi* | [**userDisableTFA**](docs/UserApi.md#userDisableTFA) | **POST** /user/disableTFA | Disable two-factor auth for this account.
 *UserApi* | [**userGet**](docs/UserApi.md#userGet) | **GET** /user | Get your user model.
 *UserApi* | [**userGetAffiliateStatus**](docs/UserApi.md#userGetAffiliateStatus) | **GET** /user/affiliateStatus | Get your current affiliate/referral status.
 *UserApi* | [**userGetCommission**](docs/UserApi.md#userGetCommission) | **GET** /user/commission | Get your account&#39;s commission status.
 *UserApi* | [**userGetDepositAddress**](docs/UserApi.md#userGetDepositAddress) | **GET** /user/depositAddress | Get a deposit address.
+*UserApi* | [**userGetExecutionHistory**](docs/UserApi.md#userGetExecutionHistory) | **GET** /user/executionHistory | Get the execution history by day.
 *UserApi* | [**userGetMargin**](docs/UserApi.md#userGetMargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
+*UserApi* | [**userGetQuoteFillRatio**](docs/UserApi.md#userGetQuoteFillRatio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
 *UserApi* | [**userGetWallet**](docs/UserApi.md#userGetWallet) | **GET** /user/wallet | Get your current wallet information.
 *UserApi* | [**userGetWalletHistory**](docs/UserApi.md#userGetWalletHistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 *UserApi* | [**userGetWalletSummary**](docs/UserApi.md#userGetWalletSummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 *UserApi* | [**userLogout**](docs/UserApi.md#userLogout) | **POST** /user/logout | Log out of BitMEX.
-*UserApi* | [**userLogoutAll**](docs/UserApi.md#userLogoutAll) | **POST** /user/logoutAll | Log all systems out of BitMEX. This will revoke all of your account&#39;s access tokens, logging you out on all devices.
 *UserApi* | [**userMinWithdrawalFee**](docs/UserApi.md#userMinWithdrawalFee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
-*UserApi* | [**userRequestEnableTFA**](docs/UserApi.md#userRequestEnableTFA) | **POST** /user/requestEnableTFA | Get secret key for setting up two-factor auth.
 *UserApi* | [**userRequestWithdrawal**](docs/UserApi.md#userRequestWithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 *UserApi* | [**userSavePreferences**](docs/UserApi.md#userSavePreferences) | **POST** /user/preferences | Save user preferences.
-*UserApi* | [**userUpdate**](docs/UserApi.md#userUpdate) | **PUT** /user | Update your password, name, and other attributes.
+*UserEventApi* | [**userEventGet**](docs/UserEventApi.md#userEventGet) | **GET** /userEvent | Get your user events
 
 
 ## Documentation for Models
@@ -164,25 +159,26 @@ Class | Method | HTTP request | Description
  - [Announcement](docs/Announcement.md)
  - [Chat](docs/Chat.md)
  - [ChatChannel](docs/ChatChannel.md)
+ - [CommunicationToken](docs/CommunicationToken.md)
  - [ConnectedUsers](docs/ConnectedUsers.md)
  - [Error](docs/Error.md)
  - [ErrorError](docs/ErrorError.md)
  - [Execution](docs/Execution.md)
  - [Funding](docs/Funding.md)
+ - [GlobalNotification](docs/GlobalNotification.md)
  - [IndexComposite](docs/IndexComposite.md)
  - [InlineResponse200](docs/InlineResponse200.md)
- - [InlineResponse2001](docs/InlineResponse2001.md)
  - [Instrument](docs/Instrument.md)
  - [InstrumentInterval](docs/InstrumentInterval.md)
  - [Insurance](docs/Insurance.md)
  - [Leaderboard](docs/Leaderboard.md)
  - [Liquidation](docs/Liquidation.md)
  - [Margin](docs/Margin.md)
- - [Notification](docs/Notification.md)
  - [Order](docs/Order.md)
  - [OrderBookL2](docs/OrderBookL2.md)
  - [Position](docs/Position.md)
  - [Quote](docs/Quote.md)
+ - [QuoteFillRatio](docs/QuoteFillRatio.md)
  - [Settlement](docs/Settlement.md)
  - [Stats](docs/Stats.md)
  - [StatsHistory](docs/StatsHistory.md)
@@ -191,7 +187,8 @@ Class | Method | HTTP request | Description
  - [TradeBin](docs/TradeBin.md)
  - [Transaction](docs/Transaction.md)
  - [User](docs/User.md)
- - [UserCommission](docs/UserCommission.md)
+ - [UserCommissionsBySymbol](docs/UserCommissionsBySymbol.md)
+ - [UserEvent](docs/UserEvent.md)
  - [UserPreferences](docs/UserPreferences.md)
  - [Wallet](docs/Wallet.md)
  - [XAny](docs/XAny.md)
@@ -200,16 +197,16 @@ Class | Method | HTTP request | Description
 ## Documentation for Authorization
 
 Authentication schemes defined for the API:
+### apiExpires
+
+- **Type**: API key
+- **API key parameter name**: api-expires
+- **Location**: HTTP header
+
 ### apiKey
 
 - **Type**: API key
 - **API key parameter name**: api-key
-- **Location**: HTTP header
-
-### apiNonce
-
-- **Type**: API key
-- **API key parameter name**: api-nonce
 - **Location**: HTTP header
 
 ### apiSignature

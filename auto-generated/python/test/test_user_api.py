@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -43,6 +43,13 @@ class TestUserApi(unittest.TestCase):
         """
         pass
 
+    def test_user_communication_token(self):
+        """Test case for user_communication_token
+
+        Register your communication token for mobile clients  # noqa: E501
+        """
+        pass
+
     def test_user_confirm(self):
         """Test case for user_confirm
 
@@ -50,24 +57,10 @@ class TestUserApi(unittest.TestCase):
         """
         pass
 
-    def test_user_confirm_enable_tfa(self):
-        """Test case for user_confirm_enable_tfa
-
-        Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.  # noqa: E501
-        """
-        pass
-
     def test_user_confirm_withdrawal(self):
         """Test case for user_confirm_withdrawal
 
         Confirm a withdrawal.  # noqa: E501
-        """
-        pass
-
-    def test_user_disable_tfa(self):
-        """Test case for user_disable_tfa
-
-        Disable two-factor auth for this account.  # noqa: E501
         """
         pass
 
@@ -99,10 +92,24 @@ class TestUserApi(unittest.TestCase):
         """
         pass
 
+    def test_user_get_execution_history(self):
+        """Test case for user_get_execution_history
+
+        Get the execution history by day.  # noqa: E501
+        """
+        pass
+
     def test_user_get_margin(self):
         """Test case for user_get_margin
 
         Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.  # noqa: E501
+        """
+        pass
+
+    def test_user_get_quote_fill_ratio(self):
+        """Test case for user_get_quote_fill_ratio
+
+        Get 7 days worth of Quote Fill Ratio statistics.  # noqa: E501
         """
         pass
 
@@ -134,24 +141,10 @@ class TestUserApi(unittest.TestCase):
         """
         pass
 
-    def test_user_logout_all(self):
-        """Test case for user_logout_all
-
-        Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.  # noqa: E501
-        """
-        pass
-
     def test_user_min_withdrawal_fee(self):
         """Test case for user_min_withdrawal_fee
 
         Get the minimum withdrawal fee for a currency.  # noqa: E501
-        """
-        pass
-
-    def test_user_request_enable_tfa(self):
-        """Test case for user_request_enable_tfa
-
-        Get secret key for setting up two-factor auth.  # noqa: E501
         """
         pass
 
@@ -166,13 +159,6 @@ class TestUserApi(unittest.TestCase):
         """Test case for user_save_preferences
 
         Save user preferences.  # noqa: E501
-        """
-        pass
-
-    def test_user_update(self):
-        """Test case for user_update
-
-        Update your password, name, and other attributes.  # noqa: E501
         """
         pass
 

@@ -1,11 +1,11 @@
 # BitMexApi.SchemaApi
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**schemaGet**](SchemaApi.md#schemaGet) | **GET** /schema | Get model schemata for data objects returned by this API.
-[**schemaWebsocketHelp**](SchemaApi.md#schemaWebsocketHelp) | **GET** /schema/websocketHelp | Returns help text &amp; subject list for websocket usage.
+[**schemaWebsocketHelp**](SchemaApi.md#schemaWebsocketHelp) | **GET** /schema/websocketHelp | Returns help text & subject list for websocket usage.
 
 
 <a name="schemaGet"></a>
@@ -57,7 +57,7 @@ No authorization required
 # **schemaWebsocketHelp**
 > Object schemaWebsocketHelp()
 
-Returns help text &amp; subject list for websocket usage.
+Returns help text & subject list for websocket usage.
 
 ### Example
 ```javascript

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -15,7 +15,7 @@ package io.swagger.client.api
 import java.text.SimpleDateFormat
 
 import io.swagger.client.model.Error
-import io.swagger.client.model.InlineResponse2001
+import io.swagger.client.model.InlineResponse200
 import io.swagger.client.model.Leaderboard
 import io.swagger.client.{ApiInvoker, ApiException}
 
@@ -47,7 +47,7 @@ import scala.util.{Failure, Success, Try}
 import org.json4s._
 
 class LeaderboardApi(
-  val defBasePath: String = "https://localhost/api/v1",
+  val defBasePath: String = "https://www.bitmex.com/api/v1",
   defApiInvoker: ApiInvoker = ApiInvoker
 ) {
   private lazy val dateTimeFormatter = {
@@ -111,9 +111,9 @@ class LeaderboardApi(
    * Get your alias on the leaderboard.
    * 
    *
-   * @return InlineResponse2001
+   * @return InlineResponse200
    */
-  def leaderboardGetName(): Option[InlineResponse2001] = {
+  def leaderboardGetName(): Option[InlineResponse200] = {
     val await = Try(Await.result(leaderboardGetNameAsync(), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -125,9 +125,9 @@ class LeaderboardApi(
    * Get your alias on the leaderboard. asynchronously
    * 
    *
-   * @return Future(InlineResponse2001)
+   * @return Future(InlineResponse200)
    */
-  def leaderboardGetNameAsync(): Future[InlineResponse2001] = {
+  def leaderboardGetNameAsync(): Future[InlineResponse200] = {
       helper.leaderboardGetName()
   }
 
@@ -155,7 +155,7 @@ class LeaderboardApiAsyncHelper(client: TransportClient, config: SwaggerConfig) 
     }
   }
 
-  def leaderboardGetName()(implicit reader: ClientResponseReader[InlineResponse2001]): Future[InlineResponse2001] = {
+  def leaderboardGetName()(implicit reader: ClientResponseReader[InlineResponse200]): Future[InlineResponse200] = {
     // create path and map variables
     val path = (addFmt("/leaderboard/name"))
 

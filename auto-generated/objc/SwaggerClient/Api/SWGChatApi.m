@@ -274,7 +274,7 @@ NSInteger kSWGChatApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
 
     // Authentication setting
-    NSArray *authSettings = @[@"apiKey", @"apiNonce", @"apiSignature"];
+    NSArray *authSettings = @[@"apiExpires", @"apiKey", @"apiSignature"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];

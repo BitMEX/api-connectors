@@ -8,18 +8,18 @@
            (java.text SimpleDateFormat)))
 
 (def auth-definitions
-  {"apiKey" {:type :api-key :in :header :param-name "api-key"}
-   "apiNonce" {:type :api-key :in :header :param-name "api-nonce"}
+  {"apiExpires" {:type :api-key :in :header :param-name "api-expires"}
+   "apiKey" {:type :api-key :in :header :param-name "api-key"}
    "apiSignature" {:type :api-key :in :header :param-name "api-signature"}})
 
 (def default-api-context
   "Default API context."
-  {:base-url        "https://localhost/api/v1"
+  {:base-url        "https://www.bitmex.com/api/v1"
    :date-format     "yyyy-MM-dd"
    :datetime-format "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
    :debug           false
-   :auths           {"apiKey" nil
-                     "apiNonce" nil
+   :auths           {"apiExpires" nil
+                     "apiKey" nil
                      "apiSignature" nil}})
 
 (def ^:dynamic *api-context*

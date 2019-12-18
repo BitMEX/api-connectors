@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -18,29 +18,29 @@ import java.util.UUID
 case class Wallet (
   account: Double,
   currency: String,
-  prevDeposited: Option[Double],
-  prevWithdrawn: Option[Double],
-  prevTransferIn: Option[Double],
-  prevTransferOut: Option[Double],
-  prevAmount: Option[Double],
-  prevTimestamp: Option[DateTime],
-  deltaDeposited: Option[Double],
-  deltaWithdrawn: Option[Double],
-  deltaTransferIn: Option[Double],
-  deltaTransferOut: Option[Double],
-  deltaAmount: Option[Double],
-  deposited: Option[Double],
-  withdrawn: Option[Double],
-  transferIn: Option[Double],
-  transferOut: Option[Double],
-  amount: Option[Double],
-  pendingCredit: Option[Double],
-  pendingDebit: Option[Double],
-  confirmedDebit: Option[Double],
-  timestamp: Option[DateTime],
-  addr: Option[String],
-  script: Option[String],
-  withdrawalLock: Option[Seq[String]]
+  prevDeposited: Option[Double] = None,
+  prevWithdrawn: Option[Double] = None,
+  prevTransferIn: Option[Double] = None,
+  prevTransferOut: Option[Double] = None,
+  prevAmount: Option[Double] = None,
+  prevTimestamp: Option[DateTime] = None,
+  deltaDeposited: Option[Double] = None,
+  deltaWithdrawn: Option[Double] = None,
+  deltaTransferIn: Option[Double] = None,
+  deltaTransferOut: Option[Double] = None,
+  deltaAmount: Option[Double] = None,
+  deposited: Option[Double] = None,
+  withdrawn: Option[Double] = None,
+  transferIn: Option[Double] = None,
+  transferOut: Option[Double] = None,
+  amount: Option[Double] = None,
+  pendingCredit: Option[Double] = None,
+  pendingDebit: Option[Double] = None,
+  confirmedDebit: Option[Double] = None,
+  timestamp: Option[DateTime] = None,
+  addr: Option[String] = None,
+  script: Option[String] = None,
+  withdrawalLock: Option[Seq[String]] = None
 ) extends ApiModel
 
 

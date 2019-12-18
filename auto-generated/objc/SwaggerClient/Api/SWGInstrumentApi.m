@@ -55,7 +55,7 @@ NSInteger kSWGInstrumentApiMissingParamErrorCode = 234513;
 ///
 /// Get instruments.
 /// This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\"state\": \"Open\"}`.
-///  @param symbol Instrument symbol. Send a bare series (e.g. XBU) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBU:monthly`. Timeframes are `daily`, `weekly`, `monthly`, `quarterly`, and `biquarterly`. (optional)
+///  @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`. (optional)
 ///
 ///  @param filter Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. (optional)
 ///
@@ -257,7 +257,7 @@ NSInteger kSWGInstrumentApiMissingParamErrorCode = 234513;
 
 ///
 /// Return all active contract series and interval pairs.
-/// This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"XBT:perpetual\", \"XBT:monthly\", \"XBT:quarterly\", \"ETH:monthly\", ...]`. These identifiers are usable in any query's `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.
+/// This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as `[\"XBT:perpetual\", \"XBT:quarterly\", \"XBT:biquarterly\", \"ETH:quarterly\", ...]`. These identifiers are usable in any query's `symbol` param. The second array is the current resolution of these intervals. Results are mapped at the same index.
 ///  @returns SWGInstrumentInterval*
 ///
 -(NSURLSessionTask*) instrumentGetActiveIntervalsWithCompletionHandler: 
@@ -310,8 +310,6 @@ NSInteger kSWGInstrumentApiMissingParamErrorCode = 234513;
 ///
 /// Show constituent parts of an index.
 /// Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.XBT` to get the ticks and weights of the constituent exchanges that build the \".XBT\" index.  A tick with reference `\"BMI\"` and weight `null` is the composite index tick. 
-///  @param account  (optional)
-///
 ///  @param symbol The composite index symbol. (optional, default to .XBT)
 ///
 ///  @param filter Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. (optional)
@@ -330,8 +328,7 @@ NSInteger kSWGInstrumentApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSArray<SWGIndexComposite>*
 ///
--(NSURLSessionTask*) instrumentGetCompositeIndexWithAccount: (NSNumber*) account
-    symbol: (NSString*) symbol
+-(NSURLSessionTask*) instrumentGetCompositeIndexWithSymbol: (NSString*) symbol
     filter: (NSString*) filter
     columns: (NSString*) columns
     count: (NSNumber*) count
@@ -345,9 +342,6 @@ NSInteger kSWGInstrumentApiMissingParamErrorCode = 234513;
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (account != nil) {
-        queryParams[@"account"] = account;
-    }
     if (symbol != nil) {
         queryParams[@"symbol"] = symbol;
     }

@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -39,6 +39,7 @@ class UserPreferences(object):
         'currency': 'str',
         'debug': 'bool',
         'disable_emails': 'list[str]',
+        'disable_push': 'list[str]',
         'hide_confirm_dialogs': 'list[str]',
         'hide_connection_modal': 'bool',
         'hide_from_leaderboard': 'bool',
@@ -68,6 +69,7 @@ class UserPreferences(object):
         'currency': 'currency',
         'debug': 'debug',
         'disable_emails': 'disableEmails',
+        'disable_push': 'disablePush',
         'hide_confirm_dialogs': 'hideConfirmDialogs',
         'hide_connection_modal': 'hideConnectionModal',
         'hide_from_leaderboard': 'hideFromLeaderboard',
@@ -88,7 +90,7 @@ class UserPreferences(object):
         'trade_layout': 'tradeLayout'
     }
 
-    def __init__(self, alert_on_liquidations=None, animations_enabled=None, announcements_last_seen=None, chat_channel_id=None, color_theme=None, currency=None, debug=None, disable_emails=None, hide_confirm_dialogs=None, hide_connection_modal=None, hide_from_leaderboard=False, hide_name_from_leaderboard=True, hide_notifications=None, locale='en-US', msgs_seen=None, order_book_binning=None, order_book_type=None, order_clear_immediate=False, order_controls_plus_minus=None, show_locale_numbers=True, sounds=None, strict_ip_check=False, strict_timeout=True, ticker_group=None, ticker_pinned=None, trade_layout=None):  # noqa: E501
+    def __init__(self, alert_on_liquidations=None, animations_enabled=None, announcements_last_seen=None, chat_channel_id=None, color_theme=None, currency=None, debug=None, disable_emails=None, disable_push=None, hide_confirm_dialogs=None, hide_connection_modal=None, hide_from_leaderboard=False, hide_name_from_leaderboard=True, hide_notifications=None, locale='en-US', msgs_seen=None, order_book_binning=None, order_book_type=None, order_clear_immediate=False, order_controls_plus_minus=None, show_locale_numbers=True, sounds=None, strict_ip_check=False, strict_timeout=True, ticker_group=None, ticker_pinned=None, trade_layout=None):  # noqa: E501
         """UserPreferences - a model defined in Swagger"""  # noqa: E501
 
         self._alert_on_liquidations = None
@@ -99,6 +101,7 @@ class UserPreferences(object):
         self._currency = None
         self._debug = None
         self._disable_emails = None
+        self._disable_push = None
         self._hide_confirm_dialogs = None
         self._hide_connection_modal = None
         self._hide_from_leaderboard = None
@@ -135,6 +138,8 @@ class UserPreferences(object):
             self.debug = debug
         if disable_emails is not None:
             self.disable_emails = disable_emails
+        if disable_push is not None:
+            self.disable_push = disable_push
         if hide_confirm_dialogs is not None:
             self.hide_confirm_dialogs = hide_confirm_dialogs
         if hide_connection_modal is not None:
@@ -339,6 +344,27 @@ class UserPreferences(object):
         """
 
         self._disable_emails = disable_emails
+
+    @property
+    def disable_push(self):
+        """Gets the disable_push of this UserPreferences.  # noqa: E501
+
+
+        :return: The disable_push of this UserPreferences.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._disable_push
+
+    @disable_push.setter
+    def disable_push(self, disable_push):
+        """Sets the disable_push of this UserPreferences.
+
+
+        :param disable_push: The disable_push of this UserPreferences.  # noqa: E501
+        :type: list[str]
+        """
+
+        self._disable_push = disable_push
 
     @property
     def hide_confirm_dialogs(self):
@@ -739,6 +765,9 @@ class UserPreferences(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(UserPreferences, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

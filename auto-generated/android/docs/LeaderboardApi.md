@@ -1,6 +1,6 @@
 # LeaderboardApi
 
-All URIs are relative to *https://localhost/api/v1*
+All URIs are relative to *https://www.bitmex.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -51,7 +51,7 @@ No authorization required
 
 <a name="leaderboardGetName"></a>
 # **leaderboardGetName**
-> InlineResponse2001 leaderboardGetName()
+> InlineResponse200 leaderboardGetName()
 
 Get your alias on the leaderboard.
 
@@ -62,7 +62,7 @@ Get your alias on the leaderboard.
 
 LeaderboardApi apiInstance = new LeaderboardApi();
 try {
-    InlineResponse2001 result = apiInstance.leaderboardGetName();
+    InlineResponse200 result = apiInstance.leaderboardGetName();
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling LeaderboardApi#leaderboardGetName");
@@ -75,11 +75,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
-[apiKey](../README.md#apiKey), [apiNonce](../README.md#apiNonce), [apiSignature](../README.md#apiSignature)
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
 
 ### HTTP request headers
 

@@ -79,7 +79,7 @@ open class UserAPI {
     /**
      Check if a referral code is valid.
      - GET /user/checkReferralCode
-     - If the code is valid, responds with the referral code's discount (e.g. `0.1` for 10%). Otherwise, will return a 404.
+     - If the code is valid, responds with the referral code's discount (e.g. `0.1` for 10%). Otherwise, will return a 404 or 451 if invalid.
      - examples: [{contentType=application/json, example=0.8008281904610115}]
      
      - parameter referralCode: (query)  (optional)
@@ -99,6 +99,67 @@ open class UserAPI {
         let requestBuilder: RequestBuilder<Double>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
+     Register your communication token for mobile clients
+     
+     - parameter token: (form)  
+     - parameter platformAgent: (form)  
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func userCommunicationToken(token: String, platformAgent: String, completion: @escaping ((_ data: [CommunicationToken]?,_ error: Error?) -> Void)) {
+        userCommunicationTokenWithRequestBuilder(token: token, platformAgent: platformAgent).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Register your communication token for mobile clients
+     - POST /user/communicationToken
+     - API Key:
+       - type: apiKey api-expires 
+       - name: apiExpires
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
+     - examples: [{contentType=application/json, example=[ {
+  "channel" : "channel",
+  "id" : "id",
+  "userId" : 0.80082819046101150206595775671303272247314453125,
+  "deviceToken" : "deviceToken"
+}, {
+  "channel" : "channel",
+  "id" : "id",
+  "userId" : 0.80082819046101150206595775671303272247314453125,
+  "deviceToken" : "deviceToken"
+} ]}]
+     
+     - parameter token: (form)  
+     - parameter platformAgent: (form)  
+
+     - returns: RequestBuilder<[CommunicationToken]> 
+     */
+    open class func userCommunicationTokenWithRequestBuilder(token: String, platformAgent: String) -> RequestBuilder<[CommunicationToken]> {
+        let path = "/user/communicationToken"
+        let URLString = SwaggerClientAPI.basePath + path
+        let formParams: [String:Any?] = [
+            "token": token,
+            "platformAgent": platformAgent
+        ]
+
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        
+        let url = URLComponents(string: URLString)
+
+        let requestBuilder: RequestBuilder<[CommunicationToken]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
     /**
@@ -141,57 +202,6 @@ open class UserAPI {
         let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<AccessToken>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
-    }
-
-    /**
-     Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
-     
-     - parameter token: (form) Token from your selected TFA type. 
-     - parameter type: (form) Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39; (optional)
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func userConfirmEnableTFA(token: String, type: String? = nil, completion: @escaping ((_ data: Bool?,_ error: Error?) -> Void)) {
-        userConfirmEnableTFAWithRequestBuilder(token: token, type: type).execute { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Confirm two-factor auth for this account. If using a Yubikey, simply send a token to this endpoint.
-     - POST /user/confirmEnableTFA
-     - API Key:
-       - type: apiKey api-key 
-       - name: apiKey
-     - API Key:
-       - type: apiKey api-nonce 
-       - name: apiNonce
-     - API Key:
-       - type: apiKey api-signature 
-       - name: apiSignature
-     - examples: [{contentType=application/json, example=true}]
-     
-     - parameter token: (form) Token from your selected TFA type. 
-     - parameter type: (form) Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39; (optional)
-
-     - returns: RequestBuilder<Bool> 
-     */
-    open class func userConfirmEnableTFAWithRequestBuilder(token: String, type: String? = nil) -> RequestBuilder<Bool> {
-        let path = "/user/confirmEnableTFA"
-        let URLString = SwaggerClientAPI.basePath + path
-        let formParams: [String:Any?] = [
-            "type": type,
-            "token": token
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
-        
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<Bool>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -249,57 +259,6 @@ open class UserAPI {
     }
 
     /**
-     Disable two-factor auth for this account.
-     
-     - parameter token: (form) Token from your selected TFA type. 
-     - parameter type: (form) Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func userDisableTFA(token: String, type: String? = nil, completion: @escaping ((_ data: Bool?,_ error: Error?) -> Void)) {
-        userDisableTFAWithRequestBuilder(token: token, type: type).execute { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Disable two-factor auth for this account.
-     - POST /user/disableTFA
-     - API Key:
-       - type: apiKey api-key 
-       - name: apiKey
-     - API Key:
-       - type: apiKey api-nonce 
-       - name: apiNonce
-     - API Key:
-       - type: apiKey api-signature 
-       - name: apiSignature
-     - examples: [{contentType=application/json, example=true}]
-     
-     - parameter token: (form) Token from your selected TFA type. 
-     - parameter type: (form) Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)
-
-     - returns: RequestBuilder<Bool> 
-     */
-    open class func userDisableTFAWithRequestBuilder(token: String, type: String? = nil) -> RequestBuilder<Bool> {
-        let path = "/user/disableTFA"
-        let URLString = SwaggerClientAPI.basePath + path
-        let formParams: [String:Any?] = [
-            "type": type,
-            "token": token
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
-        
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<Bool>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
-    }
-
-    /**
      Get your user model.
      
      - parameter completion: completion handler to receive the data and the error objects
@@ -315,11 +274,11 @@ open class UserAPI {
      Get your user model.
      - GET /user
      - API Key:
+       - type: apiKey api-expires 
+       - name: apiExpires
+     - API Key:
        - type: apiKey api-key 
        - name: apiKey
-     - API Key:
-       - type: apiKey api-nonce 
-       - name: apiNonce
      - API Key:
        - type: apiKey api-signature 
        - name: apiSignature
@@ -331,6 +290,7 @@ open class UserAPI {
     "hideNotifications" : [ "hideNotifications", "hideNotifications" ],
     "tickerGroup" : "tickerGroup",
     "animationsEnabled" : true,
+    "disablePush" : [ "disablePush", "disablePush" ],
     "alertOnLiquidations" : true,
     "locale" : "en-US",
     "hideConfirmDialogs" : [ "hideConfirmDialogs", "hideConfirmDialogs" ],
@@ -400,15 +360,16 @@ open class UserAPI {
      Get your current affiliate/referral status.
      - GET /user/affiliateStatus
      - API Key:
+       - type: apiKey api-expires 
+       - name: apiExpires
+     - API Key:
        - type: apiKey api-key 
        - name: apiKey
-     - API Key:
-       - type: apiKey api-nonce 
-       - name: apiNonce
      - API Key:
        - type: apiKey api-signature 
        - name: apiSignature
      - examples: [{contentType=application/json, example={
+  "referralDiscount" : 1.2315135367772556,
   "execTurnover" : 5.63737665663332876420099637471139430999755859375,
   "totalTurnover" : 9.301444243932575517419536481611430644989013671875,
   "referrerAccount" : 7.386281948385884,
@@ -423,7 +384,8 @@ open class UserAPI {
   "prevTurnover" : 1.46581298050294517310021547018550336360931396484375,
   "totalComm" : 3.61607674925191080461672754609026014804840087890625,
   "payoutPcnt" : 2.027123023002322,
-  "timestamp" : "2000-01-23T04:56:07.000+00:00"
+  "timestamp" : "2000-01-23T04:56:07.000+00:00",
+  "affiliatePayout" : 1.0246457001441578
 }}]
 
      - returns: RequestBuilder<Affiliate> 
@@ -445,7 +407,7 @@ open class UserAPI {
      
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func userGetCommission(completion: @escaping ((_ data: [UserCommission]?,_ error: Error?) -> Void)) {
+    open class func userGetCommission(completion: @escaping ((_ data: UserCommissionsBySymbol?,_ error: Error?) -> Void)) {
         userGetCommissionWithRequestBuilder().execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -456,36 +418,26 @@ open class UserAPI {
      Get your account's commission status.
      - GET /user/commission
      - API Key:
+       - type: apiKey api-expires 
+       - name: apiExpires
+     - API Key:
        - type: apiKey api-key 
        - name: apiKey
      - API Key:
-       - type: apiKey api-nonce 
-       - name: apiNonce
-     - API Key:
        - type: apiKey api-signature 
        - name: apiSignature
-     - examples: [{contentType=application/json, example=[ {
-  "takerFee" : 6.027456183070403,
-  "makerFee" : 0.8008281904610115,
-  "settlementFee" : 1.4658129805029452,
-  "maxFee" : 5.962133916683182
-}, {
-  "takerFee" : 6.027456183070403,
-  "makerFee" : 0.8008281904610115,
-  "settlementFee" : 1.4658129805029452,
-  "maxFee" : 5.962133916683182
-} ]}]
+     - examples: [{contentType=application/json, example={ }}]
 
-     - returns: RequestBuilder<[UserCommission]> 
+     - returns: RequestBuilder<UserCommissionsBySymbol> 
      */
-    open class func userGetCommissionWithRequestBuilder() -> RequestBuilder<[UserCommission]> {
+    open class func userGetCommissionWithRequestBuilder() -> RequestBuilder<UserCommissionsBySymbol> {
         let path = "/user/commission"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<[UserCommission]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<UserCommissionsBySymbol>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -507,11 +459,11 @@ open class UserAPI {
      Get a deposit address.
      - GET /user/depositAddress
      - API Key:
+       - type: apiKey api-expires 
+       - name: apiExpires
+     - API Key:
        - type: apiKey api-key 
        - name: apiKey
-     - API Key:
-       - type: apiKey api-nonce 
-       - name: apiNonce
      - API Key:
        - type: apiKey api-signature 
        - name: apiSignature
@@ -537,6 +489,55 @@ open class UserAPI {
     }
 
     /**
+     Get the execution history by day.
+     
+     - parameter symbol: (query)  
+     - parameter timestamp: (query)  
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func userGetExecutionHistory(symbol: String, timestamp: Date, completion: @escaping ((_ data: Any?,_ error: Error?) -> Void)) {
+        userGetExecutionHistoryWithRequestBuilder(symbol: symbol, timestamp: timestamp).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Get the execution history by day.
+     - GET /user/executionHistory
+     - API Key:
+       - type: apiKey api-expires 
+       - name: apiExpires
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
+     - examples: [{contentType=application/json, example="{}"}]
+     
+     - parameter symbol: (query)  
+     - parameter timestamp: (query)  
+
+     - returns: RequestBuilder<Any> 
+     */
+    open class func userGetExecutionHistoryWithRequestBuilder(symbol: String, timestamp: Date) -> RequestBuilder<Any> {
+        let path = "/user/executionHistory"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "symbol": symbol, 
+            "timestamp": timestamp.encodeToJSON()
+        ])
+
+        let requestBuilder: RequestBuilder<Any>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
      Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.
      
      - parameter currency: (query)  (optional, default to XBt)
@@ -553,11 +554,11 @@ open class UserAPI {
      Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.
      - GET /user/margin
      - API Key:
+       - type: apiKey api-expires 
+       - name: apiExpires
+     - API Key:
        - type: apiKey api-key 
        - name: apiKey
-     - API Key:
-       - type: apiKey api-nonce 
-       - name: apiNonce
      - API Key:
        - type: apiKey api-signature 
        - name: apiSignature
@@ -625,6 +626,54 @@ open class UserAPI {
     }
 
     /**
+     Get 7 days worth of Quote Fill Ratio statistics.
+     
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func userGetQuoteFillRatio(completion: @escaping ((_ data: QuoteFillRatio?,_ error: Error?) -> Void)) {
+        userGetQuoteFillRatioWithRequestBuilder().execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Get 7 days worth of Quote Fill Ratio statistics.
+     - GET /user/quoteFillRatio
+     - API Key:
+       - type: apiKey api-expires 
+       - name: apiExpires
+     - API Key:
+       - type: apiKey api-key 
+       - name: apiKey
+     - API Key:
+       - type: apiKey api-signature 
+       - name: apiSignature
+     - examples: [{contentType=application/json, example={
+  "date" : "2000-01-23T04:56:07.000+00:00",
+  "quoteCount" : 6.027456183070403,
+  "quoteFillRatioMavg7" : 2.3021358869347655,
+  "dealtMavg7" : 5.637376656633329,
+  "account" : 0.8008281904610115,
+  "dealtCount" : 1.4658129805029452,
+  "quotesMavg7" : 5.962133916683182
+}}]
+
+     - returns: RequestBuilder<QuoteFillRatio> 
+     */
+    open class func userGetQuoteFillRatioWithRequestBuilder() -> RequestBuilder<QuoteFillRatio> {
+        let path = "/user/quoteFillRatio"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        let url = URLComponents(string: URLString)
+
+        let requestBuilder: RequestBuilder<QuoteFillRatio>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
      Get your current wallet information.
      
      - parameter currency: (query)  (optional, default to XBt)
@@ -641,11 +690,11 @@ open class UserAPI {
      Get your current wallet information.
      - GET /user/wallet
      - API Key:
+       - type: apiKey api-expires 
+       - name: apiExpires
+     - API Key:
        - type: apiKey api-key 
        - name: apiKey
-     - API Key:
-       - type: apiKey api-nonce 
-       - name: apiNonce
      - API Key:
        - type: apiKey api-signature 
        - name: apiSignature
@@ -700,10 +749,12 @@ open class UserAPI {
      Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
      
      - parameter currency: (query)  (optional, default to XBt)
+     - parameter count: (query) Number of results to fetch. (optional, default to 100)
+     - parameter start: (query) Starting point for results. (optional, default to 0)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func userGetWalletHistory(currency: String? = nil, completion: @escaping ((_ data: [Transaction]?,_ error: Error?) -> Void)) {
-        userGetWalletHistoryWithRequestBuilder(currency: currency).execute { (response, error) -> Void in
+    open class func userGetWalletHistory(currency: String? = nil, count: Double? = nil, start: Double? = nil, completion: @escaping ((_ data: [Transaction]?,_ error: Error?) -> Void)) {
+        userGetWalletHistoryWithRequestBuilder(currency: currency, count: count, start: start).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -713,11 +764,11 @@ open class UserAPI {
      Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
      - GET /user/walletHistory
      - API Key:
+       - type: apiKey api-expires 
+       - name: apiExpires
+     - API Key:
        - type: apiKey api-key 
        - name: apiKey
-     - API Key:
-       - type: apiKey api-nonce 
-       - name: apiNonce
      - API Key:
        - type: apiKey api-signature 
        - name: apiSignature
@@ -750,17 +801,21 @@ open class UserAPI {
 } ]}]
      
      - parameter currency: (query)  (optional, default to XBt)
+     - parameter count: (query) Number of results to fetch. (optional, default to 100)
+     - parameter start: (query) Starting point for results. (optional, default to 0)
 
      - returns: RequestBuilder<[Transaction]> 
      */
-    open class func userGetWalletHistoryWithRequestBuilder(currency: String? = nil) -> RequestBuilder<[Transaction]> {
+    open class func userGetWalletHistoryWithRequestBuilder(currency: String? = nil, count: Double? = nil, start: Double? = nil) -> RequestBuilder<[Transaction]> {
         let path = "/user/walletHistory"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "currency": currency
+            "currency": currency, 
+            "count": count, 
+            "start": start
         ])
 
         let requestBuilder: RequestBuilder<[Transaction]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
@@ -785,11 +840,11 @@ open class UserAPI {
      Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
      - GET /user/walletSummary
      - API Key:
+       - type: apiKey api-expires 
+       - name: apiExpires
+     - API Key:
        - type: apiKey api-key 
        - name: apiKey
-     - API Key:
-       - type: apiKey api-nonce 
-       - name: apiNonce
      - API Key:
        - type: apiKey api-signature 
        - name: apiSignature
@@ -875,46 +930,6 @@ open class UserAPI {
     }
 
     /**
-     Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.
-     
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func userLogoutAll(completion: @escaping ((_ data: Double?,_ error: Error?) -> Void)) {
-        userLogoutAllWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Log all systems out of BitMEX. This will revoke all of your account's access tokens, logging you out on all devices.
-     - POST /user/logoutAll
-     - API Key:
-       - type: apiKey api-key 
-       - name: apiKey
-     - API Key:
-       - type: apiKey api-nonce 
-       - name: apiNonce
-     - API Key:
-       - type: apiKey api-signature 
-       - name: apiSignature
-     - examples: [{contentType=application/json, example=0.8008281904610115}]
-
-     - returns: RequestBuilder<Double> 
-     */
-    open class func userLogoutAllWithRequestBuilder() -> RequestBuilder<Double> {
-        let path = "/user/logoutAll"
-        let URLString = SwaggerClientAPI.basePath + path
-        let parameters: [String:Any]? = nil
-        
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<Double>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
-    }
-
-    /**
      Get the minimum withdrawal fee for a currency.
      
      - parameter currency: (query)  (optional, default to XBt)
@@ -953,55 +968,6 @@ open class UserAPI {
     }
 
     /**
-     Get secret key for setting up two-factor auth.
-     
-     - parameter type: (form) Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func userRequestEnableTFA(type: String? = nil, completion: @escaping ((_ data: Bool?,_ error: Error?) -> Void)) {
-        userRequestEnableTFAWithRequestBuilder(type: type).execute { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Get secret key for setting up two-factor auth.
-     - POST /user/requestEnableTFA
-     - Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.
-     - API Key:
-       - type: apiKey api-key 
-       - name: apiKey
-     - API Key:
-       - type: apiKey api-nonce 
-       - name: apiNonce
-     - API Key:
-       - type: apiKey api-signature 
-       - name: apiSignature
-     - examples: [{contentType=application/json, example=true}]
-     
-     - parameter type: (form) Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator) (optional)
-
-     - returns: RequestBuilder<Bool> 
-     */
-    open class func userRequestEnableTFAWithRequestBuilder(type: String? = nil) -> RequestBuilder<Bool> {
-        let path = "/user/requestEnableTFA"
-        let URLString = SwaggerClientAPI.basePath + path
-        let formParams: [String:Any?] = [
-            "type": type
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
-        
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<Bool>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
-    }
-
-    /**
      Request a withdrawal to an external wallet.
      
      - parameter currency: (form) Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60; 
@@ -1009,10 +975,11 @@ open class UserAPI {
      - parameter address: (form) Destination Address. 
      - parameter otpToken: (form) 2FA token. Required if 2FA is enabled on your account. (optional)
      - parameter fee: (form) Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
+     - parameter text: (form) Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func userRequestWithdrawal(currency: String, amount: Double, address: String, otpToken: String? = nil, fee: Double? = nil, completion: @escaping ((_ data: Transaction?,_ error: Error?) -> Void)) {
-        userRequestWithdrawalWithRequestBuilder(currency: currency, amount: amount, address: address, otpToken: otpToken, fee: fee).execute { (response, error) -> Void in
+    open class func userRequestWithdrawal(currency: String, amount: Double, address: String, otpToken: String? = nil, fee: Double? = nil, text: String? = nil, completion: @escaping ((_ data: Transaction?,_ error: Error?) -> Void)) {
+        userRequestWithdrawalWithRequestBuilder(currency: currency, amount: amount, address: address, otpToken: otpToken, fee: fee, text: text).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -1021,13 +988,13 @@ open class UserAPI {
     /**
      Request a withdrawal to an external wallet.
      - POST /user/requestWithdrawal
-     - This will send a confirmation email to the email address on record, unless requested via an API Key with the `withdraw` permission.
+     - This will send a confirmation email to the email address on record.
+     - API Key:
+       - type: apiKey api-expires 
+       - name: apiExpires
      - API Key:
        - type: apiKey api-key 
        - name: apiKey
-     - API Key:
-       - type: apiKey api-nonce 
-       - name: apiNonce
      - API Key:
        - type: apiKey api-signature 
        - name: apiSignature
@@ -1051,10 +1018,11 @@ open class UserAPI {
      - parameter address: (form) Destination Address. 
      - parameter otpToken: (form) 2FA token. Required if 2FA is enabled on your account. (optional)
      - parameter fee: (form) Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
+     - parameter text: (form) Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)
 
      - returns: RequestBuilder<Transaction> 
      */
-    open class func userRequestWithdrawalWithRequestBuilder(currency: String, amount: Double, address: String, otpToken: String? = nil, fee: Double? = nil) -> RequestBuilder<Transaction> {
+    open class func userRequestWithdrawalWithRequestBuilder(currency: String, amount: Double, address: String, otpToken: String? = nil, fee: Double? = nil, text: String? = nil) -> RequestBuilder<Transaction> {
         let path = "/user/requestWithdrawal"
         let URLString = SwaggerClientAPI.basePath + path
         let formParams: [String:Any?] = [
@@ -1062,7 +1030,8 @@ open class UserAPI {
             "currency": currency,
             "amount": amount,
             "address": address,
-            "fee": fee
+            "fee": fee,
+            "text": text
         ]
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
@@ -1093,11 +1062,11 @@ open class UserAPI {
      Save user preferences.
      - POST /user/preferences
      - API Key:
+       - type: apiKey api-expires 
+       - name: apiExpires
+     - API Key:
        - type: apiKey api-key 
        - name: apiKey
-     - API Key:
-       - type: apiKey api-nonce 
-       - name: apiNonce
      - API Key:
        - type: apiKey api-signature 
        - name: apiSignature
@@ -1109,6 +1078,7 @@ open class UserAPI {
     "hideNotifications" : [ "hideNotifications", "hideNotifications" ],
     "tickerGroup" : "tickerGroup",
     "animationsEnabled" : true,
+    "disablePush" : [ "disablePush", "disablePush" ],
     "alertOnLiquidations" : true,
     "locale" : "en-US",
     "hideConfirmDialogs" : [ "hideConfirmDialogs", "hideConfirmDialogs" ],
@@ -1169,120 +1139,6 @@ open class UserAPI {
         let requestBuilder: RequestBuilder<User>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
-    }
-
-    /**
-     Update your password, name, and other attributes.
-     
-     - parameter firstname: (form)  (optional)
-     - parameter lastname: (form)  (optional)
-     - parameter oldPassword: (form)  (optional)
-     - parameter newPassword: (form)  (optional)
-     - parameter newPasswordConfirm: (form)  (optional)
-     - parameter username: (form) Username can only be set once. To reset, email support. (optional)
-     - parameter country: (form) Country of residence. (optional)
-     - parameter pgpPubKey: (form) PGP Public Key. If specified, automated emails will be sentwith this key. (optional)
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func userUpdate(firstname: String? = nil, lastname: String? = nil, oldPassword: String? = nil, newPassword: String? = nil, newPasswordConfirm: String? = nil, username: String? = nil, country: String? = nil, pgpPubKey: String? = nil, completion: @escaping ((_ data: User?,_ error: Error?) -> Void)) {
-        userUpdateWithRequestBuilder(firstname: firstname, lastname: lastname, oldPassword: oldPassword, newPassword: newPassword, newPasswordConfirm: newPasswordConfirm, username: username, country: country, pgpPubKey: pgpPubKey).execute { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Update your password, name, and other attributes.
-     - PUT /user
-     - API Key:
-       - type: apiKey api-key 
-       - name: apiKey
-     - API Key:
-       - type: apiKey api-nonce 
-       - name: apiNonce
-     - API Key:
-       - type: apiKey api-signature 
-       - name: apiSignature
-     - examples: [{contentType=application/json, example={
-  "geoipRegion" : "geoipRegion",
-  "country" : "country",
-  "firstname" : "firstname",
-  "preferences" : {
-    "hideNotifications" : [ "hideNotifications", "hideNotifications" ],
-    "tickerGroup" : "tickerGroup",
-    "animationsEnabled" : true,
-    "alertOnLiquidations" : true,
-    "locale" : "en-US",
-    "hideConfirmDialogs" : [ "hideConfirmDialogs", "hideConfirmDialogs" ],
-    "disableEmails" : [ "disableEmails", "disableEmails" ],
-    "sounds" : [ "sounds", "sounds" ],
-    "colorTheme" : "colorTheme",
-    "currency" : "currency",
-    "hideNameFromLeaderboard" : true,
-    "tradeLayout" : "tradeLayout",
-    "strictTimeout" : true,
-    "orderBookBinning" : "{}",
-    "debug" : true,
-    "strictIPCheck" : false,
-    "msgsSeen" : [ "msgsSeen", "msgsSeen" ],
-    "orderControlsPlusMinus" : true,
-    "hideConnectionModal" : true,
-    "tickerPinned" : true,
-    "hideFromLeaderboard" : false,
-    "announcementsLastSeen" : "2000-01-23T04:56:07.000+00:00",
-    "orderBookType" : "orderBookType",
-    "orderClearImmediate" : false,
-    "showLocaleNumbers" : true,
-    "chatChannelID" : 1.4658129805029452
-  },
-  "created" : "2000-01-23T04:56:07.000+00:00",
-  "typ" : "typ",
-  "ownerId" : 6.02745618307040320615897144307382404804229736328125,
-  "affiliateID" : "affiliateID",
-  "lastname" : "lastname",
-  "geoipCountry" : "geoipCountry",
-  "lastUpdated" : "2000-01-23T04:56:07.000+00:00",
-  "phone" : "phone",
-  "TFAEnabled" : "TFAEnabled",
-  "id" : 0.80082819046101150206595775671303272247314453125,
-  "email" : "email",
-  "pgpPubKey" : "pgpPubKey",
-  "username" : "username"
-}}]
-     
-     - parameter firstname: (form)  (optional)
-     - parameter lastname: (form)  (optional)
-     - parameter oldPassword: (form)  (optional)
-     - parameter newPassword: (form)  (optional)
-     - parameter newPasswordConfirm: (form)  (optional)
-     - parameter username: (form) Username can only be set once. To reset, email support. (optional)
-     - parameter country: (form) Country of residence. (optional)
-     - parameter pgpPubKey: (form) PGP Public Key. If specified, automated emails will be sentwith this key. (optional)
-
-     - returns: RequestBuilder<User> 
-     */
-    open class func userUpdateWithRequestBuilder(firstname: String? = nil, lastname: String? = nil, oldPassword: String? = nil, newPassword: String? = nil, newPasswordConfirm: String? = nil, username: String? = nil, country: String? = nil, pgpPubKey: String? = nil) -> RequestBuilder<User> {
-        let path = "/user"
-        let URLString = SwaggerClientAPI.basePath + path
-        let formParams: [String:Any?] = [
-            "firstname": firstname,
-            "lastname": lastname,
-            "oldPassword": oldPassword,
-            "newPassword": newPassword,
-            "newPasswordConfirm": newPasswordConfirm,
-            "username": username,
-            "country": country,
-            "pgpPubKey": pgpPubKey
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
-        
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<User>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
 }

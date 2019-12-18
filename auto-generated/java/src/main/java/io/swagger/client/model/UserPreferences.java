@@ -1,6 +1,6 @@
 /*
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * UserPreferences
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-07-16T16:31:01.031Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-12-17T20:26:16.019-05:00")
 public class UserPreferences {
   @SerializedName("alertOnLiquidations")
   private Boolean alertOnLiquidations = null;
@@ -55,6 +55,9 @@ public class UserPreferences {
 
   @SerializedName("disableEmails")
   private List<String> disableEmails = null;
+
+  @SerializedName("disablePush")
+  private List<String> disablePush = null;
 
   @SerializedName("hideConfirmDialogs")
   private List<String> hideConfirmDialogs = null;
@@ -260,6 +263,32 @@ public class UserPreferences {
 
   public void setDisableEmails(List<String> disableEmails) {
     this.disableEmails = disableEmails;
+  }
+
+  public UserPreferences disablePush(List<String> disablePush) {
+    this.disablePush = disablePush;
+    return this;
+  }
+
+  public UserPreferences addDisablePushItem(String disablePushItem) {
+    if (this.disablePush == null) {
+      this.disablePush = new ArrayList<String>();
+    }
+    this.disablePush.add(disablePushItem);
+    return this;
+  }
+
+   /**
+   * Get disablePush
+   * @return disablePush
+  **/
+  @ApiModelProperty(value = "")
+  public List<String> getDisablePush() {
+    return disablePush;
+  }
+
+  public void setDisablePush(List<String> disablePush) {
+    this.disablePush = disablePush;
   }
 
   public UserPreferences hideConfirmDialogs(List<String> hideConfirmDialogs) {
@@ -636,6 +665,7 @@ public class UserPreferences {
         Objects.equals(this.currency, userPreferences.currency) &&
         Objects.equals(this.debug, userPreferences.debug) &&
         Objects.equals(this.disableEmails, userPreferences.disableEmails) &&
+        Objects.equals(this.disablePush, userPreferences.disablePush) &&
         Objects.equals(this.hideConfirmDialogs, userPreferences.hideConfirmDialogs) &&
         Objects.equals(this.hideConnectionModal, userPreferences.hideConnectionModal) &&
         Objects.equals(this.hideFromLeaderboard, userPreferences.hideFromLeaderboard) &&
@@ -658,7 +688,7 @@ public class UserPreferences {
 
   @Override
   public int hashCode() {
-    return Objects.hash(alertOnLiquidations, animationsEnabled, announcementsLastSeen, chatChannelID, colorTheme, currency, debug, disableEmails, hideConfirmDialogs, hideConnectionModal, hideFromLeaderboard, hideNameFromLeaderboard, hideNotifications, locale, msgsSeen, orderBookBinning, orderBookType, orderClearImmediate, orderControlsPlusMinus, showLocaleNumbers, sounds, strictIPCheck, strictTimeout, tickerGroup, tickerPinned, tradeLayout);
+    return Objects.hash(alertOnLiquidations, animationsEnabled, announcementsLastSeen, chatChannelID, colorTheme, currency, debug, disableEmails, disablePush, hideConfirmDialogs, hideConnectionModal, hideFromLeaderboard, hideNameFromLeaderboard, hideNotifications, locale, msgsSeen, orderBookBinning, orderBookType, orderClearImmediate, orderControlsPlusMinus, showLocaleNumbers, sounds, strictIPCheck, strictTimeout, tickerGroup, tickerPinned, tradeLayout);
   }
 
 
@@ -675,6 +705,7 @@ public class UserPreferences {
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    debug: ").append(toIndentedString(debug)).append("\n");
     sb.append("    disableEmails: ").append(toIndentedString(disableEmails)).append("\n");
+    sb.append("    disablePush: ").append(toIndentedString(disablePush)).append("\n");
     sb.append("    hideConfirmDialogs: ").append(toIndentedString(hideConfirmDialogs)).append("\n");
     sb.append("    hideConnectionModal: ").append(toIndentedString(hideConnectionModal)).append("\n");
     sb.append("    hideFromLeaderboard: ").append(toIndentedString(hideFromLeaderboard)).append("\n");

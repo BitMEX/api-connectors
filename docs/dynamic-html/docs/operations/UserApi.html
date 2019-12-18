@@ -7,7 +7,7 @@
   <p></p>
   
   <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user/cancelWithdrawal</code>
+  <code>https://www.bitmex.com/api/v1/user/cancelWithdrawal</code>
   <h3 class="section">HTTP Method</h3>
   <code>POST</code>
   <h3 class="section">Response Type</h3>
@@ -29,9 +29,9 @@
   <h2><a name="user.checkReferralCode"></a>user.checkReferralCode</h2>
   <hr>
   <p></p>
-  <p>If the code is valid, responds with the referral code&#39;s discount (e.g. &#x60;0.1&#x60; for 10%). Otherwise, will return a 404.</p>
+  <p>If the code is valid, responds with the referral code&#39;s discount (e.g. &#x60;0.1&#x60; for 10%). Otherwise, will return a 404 or 451 if invalid.</p>
   <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user/checkReferralCode</code>
+  <code>https://www.bitmex.com/api/v1/user/checkReferralCode</code>
   <h3 class="section">HTTP Method</h3>
   <code>GET</code>
   <h3 class="section">Response Type</h3>
@@ -50,12 +50,47 @@
       <p class="param-description"></p>
 	  </li>
   </ul>
+  <h2><a name="user.communicationToken"></a>user.communicationToken</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://www.bitmex.com/api/v1/user/communicationToken</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="CommunicationToken"><a href="">List</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">token</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">platformAgent</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+  </ul>
   <h2><a name="user.confirm"></a>user.confirm</h2>
   <hr>
   <p></p>
   
   <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user/confirmEmail</code>
+  <code>https://www.bitmex.com/api/v1/user/confirmEmail</code>
   <h3 class="section">HTTP Method</h3>
   <code>POST</code>
   <h3 class="section">Response Type</h3>
@@ -74,47 +109,12 @@
       <p class="param-description"></p>
 	  </li>
   </ul>
-  <h2><a name="user.confirmEnableTFA"></a>user.confirmEnableTFA</h2>
-  <hr>
-  <p></p>
-  
-  <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user/confirmEnableTFA</code>
-  <h3 class="section">HTTP Method</h3>
-  <code>POST</code>
-  <h3 class="section">Response Type</h3>
-  <div class="model" data-model="boolean"><a href="">Boolean</a></div>
-  <h3 class="section">Parameters</h3>
-  <ul>
-	  <li class="parameter">
-      <span class="param-in">Form: </span>
-      
-      
-      
-      
-      <span class="param-name">token</span>
-      <span class="param-type">String</span>
-      
-      <p class="param-description">Token from your selected TFA type.</p>
-	  </li>
-	  <li class="parameter">
-      <span class="param-in">Form: </span>
-      
-      
-      
-      
-      <span class="param-name">type</span>
-      <span class="param-type">String</span>
-      
-      <p class="param-description">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator), &#39;Yubikey&#39;</p>
-	  </li>
-  </ul>
   <h2><a name="user.confirmWithdrawal"></a>user.confirmWithdrawal</h2>
   <hr>
   <p></p>
   
   <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user/confirmWithdrawal</code>
+  <code>https://www.bitmex.com/api/v1/user/confirmWithdrawal</code>
   <h3 class="section">HTTP Method</h3>
   <code>POST</code>
   <h3 class="section">Response Type</h3>
@@ -133,47 +133,12 @@
       <p class="param-description"></p>
 	  </li>
   </ul>
-  <h2><a name="user.disableTFA"></a>user.disableTFA</h2>
-  <hr>
-  <p></p>
-  
-  <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user/disableTFA</code>
-  <h3 class="section">HTTP Method</h3>
-  <code>POST</code>
-  <h3 class="section">Response Type</h3>
-  <div class="model" data-model="boolean"><a href="">Boolean</a></div>
-  <h3 class="section">Parameters</h3>
-  <ul>
-	  <li class="parameter">
-      <span class="param-in">Form: </span>
-      
-      
-      
-      
-      <span class="param-name">token</span>
-      <span class="param-type">String</span>
-      
-      <p class="param-description">Token from your selected TFA type.</p>
-	  </li>
-	  <li class="parameter">
-      <span class="param-in">Form: </span>
-      
-      
-      
-      
-      <span class="param-name">type</span>
-      <span class="param-type">String</span>
-      
-      <p class="param-description">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)</p>
-	  </li>
-  </ul>
   <h2><a name="user.get"></a>user.get</h2>
   <hr>
   <p></p>
   
   <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user</code>
+  <code>https://www.bitmex.com/api/v1/user</code>
   <h3 class="section">HTTP Method</h3>
   <code>GET</code>
   <h3 class="section">Response Type</h3>
@@ -186,7 +151,7 @@
   <p></p>
   
   <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user/affiliateStatus</code>
+  <code>https://www.bitmex.com/api/v1/user/affiliateStatus</code>
   <h3 class="section">HTTP Method</h3>
   <code>GET</code>
   <h3 class="section">Response Type</h3>
@@ -199,11 +164,11 @@
   <p></p>
   
   <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user/commission</code>
+  <code>https://www.bitmex.com/api/v1/user/commission</code>
   <h3 class="section">HTTP Method</h3>
   <code>GET</code>
   <h3 class="section">Response Type</h3>
-  <div class="model" data-model="UserCommission"><a href="">List</a></div>
+  <div class="model" data-model="UserCommissionsBySymbol"><a href="">UserCommissionsBySymbol</a></div>
   <h3 class="section">Parameters</h3>
   <ul>
   </ul>
@@ -212,7 +177,7 @@
   <p></p>
   
   <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user/depositAddress</code>
+  <code>https://www.bitmex.com/api/v1/user/depositAddress</code>
   <h3 class="section">HTTP Method</h3>
   <code>GET</code>
   <h3 class="section">Response Type</h3>
@@ -231,12 +196,47 @@
       <p class="param-description"></p>
 	  </li>
   </ul>
+  <h2><a name="user.getExecutionHistory"></a>user.getExecutionHistory</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://www.bitmex.com/api/v1/user/executionHistory</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="object"><a href="">Object</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">symbol</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description"></p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">timestamp</span>
+      <span class="param-type">Date</span>
+      
+      <p class="param-description"></p>
+	  </li>
+  </ul>
   <h2><a name="user.getMargin"></a>user.getMargin</h2>
   <hr>
   <p></p>
   
   <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user/margin</code>
+  <code>https://www.bitmex.com/api/v1/user/margin</code>
   <h3 class="section">HTTP Method</h3>
   <code>GET</code>
   <h3 class="section">Response Type</h3>
@@ -255,12 +255,25 @@
       <p class="param-description"></p>
 	  </li>
   </ul>
+  <h2><a name="user.getQuoteFillRatio"></a>user.getQuoteFillRatio</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://www.bitmex.com/api/v1/user/quoteFillRatio</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="QuoteFillRatio"><a href="">QuoteFillRatio</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  </ul>
   <h2><a name="user.getWallet"></a>user.getWallet</h2>
   <hr>
   <p></p>
   
   <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user/wallet</code>
+  <code>https://www.bitmex.com/api/v1/user/wallet</code>
   <h3 class="section">HTTP Method</h3>
   <code>GET</code>
   <h3 class="section">Response Type</h3>
@@ -284,7 +297,7 @@
   <p></p>
   
   <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user/walletHistory</code>
+  <code>https://www.bitmex.com/api/v1/user/walletHistory</code>
   <h3 class="section">HTTP Method</h3>
   <code>GET</code>
   <h3 class="section">Response Type</h3>
@@ -302,13 +315,35 @@
       
       <p class="param-description"></p>
 	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">count</span>
+      <span class="param-type">Double</span>
+      
+      <p class="param-description">Number of results to fetch.</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">start</span>
+      <span class="param-type">Double</span>
+      
+      <p class="param-description">Starting point for results.</p>
+	  </li>
   </ul>
   <h2><a name="user.getWalletSummary"></a>user.getWalletSummary</h2>
   <hr>
   <p></p>
   
   <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user/walletSummary</code>
+  <code>https://www.bitmex.com/api/v1/user/walletSummary</code>
   <h3 class="section">HTTP Method</h3>
   <code>GET</code>
   <h3 class="section">Response Type</h3>
@@ -332,24 +367,11 @@
   <p></p>
   
   <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user/logout</code>
+  <code>https://www.bitmex.com/api/v1/user/logout</code>
   <h3 class="section">HTTP Method</h3>
   <code>POST</code>
   <h3 class="section">Response Type</h3>
   <div class="model" data-model=""><a href=""></a></div>
-  <h3 class="section">Parameters</h3>
-  <ul>
-  </ul>
-  <h2><a name="user.logoutAll"></a>user.logoutAll</h2>
-  <hr>
-  <p></p>
-  
-  <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user/logoutAll</code>
-  <h3 class="section">HTTP Method</h3>
-  <code>POST</code>
-  <h3 class="section">Response Type</h3>
-  <div class="model" data-model="double"><a href="">Double</a></div>
   <h3 class="section">Parameters</h3>
   <ul>
   </ul>
@@ -358,7 +380,7 @@
   <p></p>
   <p>This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.</p>
   <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user/minWithdrawalFee</code>
+  <code>https://www.bitmex.com/api/v1/user/minWithdrawalFee</code>
   <h3 class="section">HTTP Method</h3>
   <code>GET</code>
   <h3 class="section">Response Type</h3>
@@ -377,36 +399,12 @@
       <p class="param-description"></p>
 	  </li>
   </ul>
-  <h2><a name="user.requestEnableTFA"></a>user.requestEnableTFA</h2>
-  <hr>
-  <p></p>
-  <p>Use /confirmEnableTFA directly for Yubikeys. This fails if TFA is already enabled.</p>
-  <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user/requestEnableTFA</code>
-  <h3 class="section">HTTP Method</h3>
-  <code>POST</code>
-  <h3 class="section">Response Type</h3>
-  <div class="model" data-model="boolean"><a href="">Boolean</a></div>
-  <h3 class="section">Parameters</h3>
-  <ul>
-	  <li class="parameter">
-      <span class="param-in">Form: </span>
-      
-      
-      
-      
-      <span class="param-name">type</span>
-      <span class="param-type">String</span>
-      
-      <p class="param-description">Two-factor auth type. Supported types: &#39;GA&#39; (Google Authenticator)</p>
-	  </li>
-  </ul>
   <h2><a name="user.requestWithdrawal"></a>user.requestWithdrawal</h2>
   <hr>
   <p></p>
-  <p>This will send a confirmation email to the email address on record, unless requested via an API Key with the &#x60;withdraw&#x60; permission.</p>
+  <p>This will send a confirmation email to the email address on record.</p>
   <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user/requestWithdrawal</code>
+  <code>https://www.bitmex.com/api/v1/user/requestWithdrawal</code>
   <h3 class="section">HTTP Method</h3>
   <code>POST</code>
   <h3 class="section">Response Type</h3>
@@ -468,13 +466,24 @@
       
       <p class="param-description">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.</p>
 	  </li>
+	  <li class="parameter">
+      <span class="param-in">Form: </span>
+      
+      
+      
+      
+      <span class="param-name">text</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">Optional annotation, e.g. &#39;Transfer to home wallet&#39;.</p>
+	  </li>
   </ul>
   <h2><a name="user.savePreferences"></a>user.savePreferences</h2>
   <hr>
   <p></p>
   
   <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user/preferences</code>
+  <code>https://www.bitmex.com/api/v1/user/preferences</code>
   <h3 class="section">HTTP Method</h3>
   <code>POST</code>
   <h3 class="section">Response Type</h3>
@@ -502,107 +511,6 @@
       <span class="param-type">Boolean</span>
       
       <p class="param-description">If true, will overwrite all existing preferences.</p>
-	  </li>
-  </ul>
-  <h2><a name="user.update"></a>user.update</h2>
-  <hr>
-  <p></p>
-  
-  <h3 class="section">URL</h3>
-  <code>https://localhost/api/v1/user</code>
-  <h3 class="section">HTTP Method</h3>
-  <code>PUT</code>
-  <h3 class="section">Response Type</h3>
-  <div class="model" data-model="User"><a href="">User</a></div>
-  <h3 class="section">Parameters</h3>
-  <ul>
-	  <li class="parameter">
-      <span class="param-in">Form: </span>
-      
-      
-      
-      
-      <span class="param-name">firstname</span>
-      <span class="param-type">String</span>
-      
-      <p class="param-description"></p>
-	  </li>
-	  <li class="parameter">
-      <span class="param-in">Form: </span>
-      
-      
-      
-      
-      <span class="param-name">lastname</span>
-      <span class="param-type">String</span>
-      
-      <p class="param-description"></p>
-	  </li>
-	  <li class="parameter">
-      <span class="param-in">Form: </span>
-      
-      
-      
-      
-      <span class="param-name">oldPassword</span>
-      <span class="param-type">String</span>
-      
-      <p class="param-description"></p>
-	  </li>
-	  <li class="parameter">
-      <span class="param-in">Form: </span>
-      
-      
-      
-      
-      <span class="param-name">newPassword</span>
-      <span class="param-type">String</span>
-      
-      <p class="param-description"></p>
-	  </li>
-	  <li class="parameter">
-      <span class="param-in">Form: </span>
-      
-      
-      
-      
-      <span class="param-name">newPasswordConfirm</span>
-      <span class="param-type">String</span>
-      
-      <p class="param-description"></p>
-	  </li>
-	  <li class="parameter">
-      <span class="param-in">Form: </span>
-      
-      
-      
-      
-      <span class="param-name">username</span>
-      <span class="param-type">String</span>
-      
-      <p class="param-description">Username can only be set once. To reset, email support.</p>
-	  </li>
-	  <li class="parameter">
-      <span class="param-in">Form: </span>
-      
-      
-      
-      
-      <span class="param-name">country</span>
-      <span class="param-type">String</span>
-      
-      <p class="param-description">Country of residence.</p>
-	  </li>
-	  <li class="parameter">
-      <span class="param-in">Form: </span>
-      
-      
-      
-      
-      <span class="param-name">pgpPubKey</span>
-      <span class="param-type">String</span>
-      
-      <p class="param-description">PGP Public Key. If specified, automated emails will be sentwith this key.</p>
 	  </li>
   </ul>
 </div>

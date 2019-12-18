@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)    #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  *All* table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  *This is only a small subset of what is available, to get you started.*  Fill in the parameters and click the `Try it out!` button to try any of these queries.  * [Pricing Data](#!/Quote/Quote_get)  * [Trade Data](#!/Trade/Trade_get)  * [OrderBook Data](#!/OrderBook/OrderBook_getL2)  * [Settlement Data](#!/Settlement/Settlement_get)  * [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)    ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -183,6 +183,10 @@ SWGInstrument::init() {
     m_turnover_isSet = false;
     turnover24h = 0.0;
     m_turnover24h_isSet = false;
+    home_notional24h = 0.0;
+    m_home_notional24h_isSet = false;
+    foreign_notional24h = 0.0;
+    m_foreign_notional24h_isSet = false;
     prev_price24h = 0.0;
     m_prev_price24h_isSet = false;
     vwap = 0.0;
@@ -418,6 +422,8 @@ SWGInstrument::cleanup() {
 
 
 
+
+
     if(last_tick_direction != nullptr) { 
         delete last_tick_direction;
     }
@@ -610,6 +616,10 @@ SWGInstrument::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&turnover, pJson["turnover"], "SWGNumber", "SWGNumber");
     
     ::Swagger::setValue(&turnover24h, pJson["turnover24h"], "SWGNumber", "SWGNumber");
+    
+    ::Swagger::setValue(&home_notional24h, pJson["homeNotional24h"], "double", "");
+    
+    ::Swagger::setValue(&foreign_notional24h, pJson["foreignNotional24h"], "double", "");
     
     ::Swagger::setValue(&prev_price24h, pJson["prevPrice24h"], "double", "");
     
@@ -899,6 +909,12 @@ SWGInstrument::asJsonObject() {
     }
     if((turnover24h != nullptr) && (turnover24h->isSet())){
         toJsonValue(QString("turnover24h"), turnover24h, obj, QString("SWGNumber"));
+    }
+    if(m_home_notional24h_isSet){
+        obj.insert("homeNotional24h", QJsonValue(home_notional24h));
+    }
+    if(m_foreign_notional24h_isSet){
+        obj.insert("foreignNotional24h", QJsonValue(foreign_notional24h));
     }
     if(m_prev_price24h_isSet){
         obj.insert("prevPrice24h", QJsonValue(prev_price24h));
@@ -1719,6 +1735,26 @@ SWGInstrument::setTurnover24h(SWGNumber* turnover24h) {
 }
 
 double
+SWGInstrument::getHomeNotional24h() {
+    return home_notional24h;
+}
+void
+SWGInstrument::setHomeNotional24h(double home_notional24h) {
+    this->home_notional24h = home_notional24h;
+    this->m_home_notional24h_isSet = true;
+}
+
+double
+SWGInstrument::getForeignNotional24h() {
+    return foreign_notional24h;
+}
+void
+SWGInstrument::setForeignNotional24h(double foreign_notional24h) {
+    this->foreign_notional24h = foreign_notional24h;
+    this->m_foreign_notional24h_isSet = true;
+}
+
+double
 SWGInstrument::getPrevPrice24h() {
     return prev_price24h;
 }
@@ -2076,6 +2112,8 @@ SWGInstrument::isSet(){
         if(total_turnover != nullptr && total_turnover->isSet()){ isObjectUpdated = true; break;}
         if(turnover != nullptr && turnover->isSet()){ isObjectUpdated = true; break;}
         if(turnover24h != nullptr && turnover24h->isSet()){ isObjectUpdated = true; break;}
+        if(m_home_notional24h_isSet){ isObjectUpdated = true; break;}
+        if(m_foreign_notional24h_isSet){ isObjectUpdated = true; break;}
         if(m_prev_price24h_isSet){ isObjectUpdated = true; break;}
         if(m_vwap_isSet){ isObjectUpdated = true; break;}
         if(m_high_price_isSet){ isObjectUpdated = true; break;}
