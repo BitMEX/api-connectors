@@ -25,19 +25,20 @@ WebSocketClient.prototype.open = function(url){
   });
   this.instance.on('close', (code) => {
     let reconnecting = false;
-
     switch (code){
       case CLOSE_NORMAL:
+        reconnecting = false;
+        this.instance.close(code);
+        this.instance.emit('close', code);
         debug(`WebSocket closed normally.`);
         break;
       case CLOSE_UNEXPECTED:
-        this.logError("WebSocket closed unexpectedly.");
         break;
       default:    // Abnormal closure
-        this.logError(`WebSocket closed with code ${code}`);
         reconnecting = true;
         break;
     }
+
     this.onclose(code);
     if (reconnecting) {
       this.reconnect(code);
