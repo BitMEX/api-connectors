@@ -23,6 +23,7 @@ WebSocketClient.prototype.open = function(url){
   this.instance.on('message', (data, flags) => {
     this.onmessage(data,flags);
   });
+
   this.instance.on('close', (code) => {
     let reconnecting = false;
     switch (code){
@@ -33,8 +34,10 @@ WebSocketClient.prototype.open = function(url){
         debug(`WebSocket closed normally.`);
         break;
       case CLOSE_UNEXPECTED:
+        this.logError("WebSocket closed unexpectedly.");
         break;
       default:    // Abnormal closure
+        this.logError(`WebSocket closed with code ${code}`);
         reconnecting = true;
         break;
     }
