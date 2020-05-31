@@ -4,7 +4,7 @@ import traceback
 from time import sleep
 import json
 import logging
-import urllib
+import urllib.parse
 import math
 from util.subscriptions import NO_SYMBOL_SUBS, DEFAULT_SUBS
 from util.api_key import generate_nonce, generate_signature
