@@ -119,7 +119,7 @@ BitMEXClient.prototype.getSymbol = function(symbol) {
  *
  * To catch errors, attach an 'error' listener to the client itself.
  *
- * If no tableName is passed, will subscribe to all public tables.
+ * If a tableName of '*' is passed, it will subscribe to all public tables.
  *
  * @param {String}   symbol    Symbol to subscribe to.
  * @param {String}   [tableName] Table to subscribe to. See README.
