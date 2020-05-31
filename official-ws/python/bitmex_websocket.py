@@ -6,8 +6,8 @@ import json
 import logging
 import urllib
 import math
+from util.subscriptions import NO_SYMBOL_SUBS, DEFAULT_SUBS
 from util.api_key import generate_nonce, generate_signature
-
 
 # Naive implementation of connecting to BitMEX websocket for streaming realtime data.
 # The Marketmaker still interacts with this as if it were a REST Endpoint, but now it can get
@@ -22,7 +22,7 @@ class BitMEXWebsocket:
     # Don't grow a table larger than this amount. Helps cap memory usage.
     MAX_TABLE_LEN = 200
 
-    def __init__(self, endpoint, symbol, api_key=None, api_secret=None):
+    def __init__(self, endpoint, symbol, api_key=None, api_secret=None, subscriptions=DEFAULT_SUBS):
         '''Connect to the websocket and initialize data stores.'''
         self.logger = logging.getLogger(__name__)
         self.logger.debug("Initializing WebSocket.")
@@ -44,7 +44,7 @@ class BitMEXWebsocket:
 
         # We can subscribe right in the connection querystring, so let's build that.
         # Subscribe to all pertinent endpoints
-        wsURL = self.__get_url()
+        wsURL = self.__get_url(subscriptions)
         self.logger.info("Connecting to %s" % wsURL)
         self.__connect(wsURL, symbol)
         self.logger.info('Connected to WS.')
@@ -150,22 +150,21 @@ class BitMEXWebsocket:
             self.logger.info("Not authenticating.")
             return []
 
-    def __get_url(self):
+    def __get_url(self, subscriptions):
         '''
         Generate a connection URL. We can define subscriptions right in the querystring.
         Most subscription topics are scoped by the symbol we're listening to.
         '''
 
-        # You can sub to orderBookL2 for all levels, or orderBook10 for top 10 levels & save bandwidth
-        symbolSubs = ["execution", "instrument", "order", "orderBookL2", "position", "quote", "trade"]
-        genericSubs = ["margin"]
-
-        subscriptions = [sub + ':' + self.symbol for sub in symbolSubs]
-        subscriptions += genericSubs
+        # Some subscriptions need to have the symbol appended.
+        subscriptions_full = map(lambda sub: (
+            sub if sub in NO_SYMBOL_SUBS
+            else (sub + ':' + self.symbol)
+        ), subscriptions)
 
         urlParts = list(urllib.parse.urlparse(self.endpoint))
         urlParts[0] = urlParts[0].replace('http', 'ws')
-        urlParts[2] = "/realtime?subscribe={}".format(','.join(subscriptions))
+        urlParts[2] = "/realtime?subscribe={}".format(','.join(subscriptions_full))
         return urllib.parse.urlunparse(urlParts)
 
     def __wait_for_account(self):
