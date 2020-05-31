@@ -1,6 +1,7 @@
 'use strict';
 const _ = require('lodash');
 const debug = require('debug')('BitMEX:realtime-api:socket');
+const debugEmit = require('debug')('BitMEX:realtime-api:socket:emit');
 const signMessage = require('./signMessage');
 const WebSocketClient = require('./ReconnectingSocket');
 
@@ -105,7 +106,7 @@ function emitSplitData(emitter, data) {
 
   Object.keys(symbolData).forEach((symbol) => {
     const key = `${table}:${action}:${symbol}`;
-    debug('emitting %s with data %j', key, symbolData[symbol]);
+    debugEmit('emitting %s with data %j', key, symbolData[symbol]);
     emitter.emit(key, _.extend({}, data, {data: symbolData[symbol]}));
   });
 }
@@ -114,7 +115,7 @@ function emitFullData(emitter, data) {
   const {table, action} = data;
 
   const key = `${table}:${action}:*`;
-  debug('emitting %s with data %j', key, data.data);
+  debugEmit('emitting %s with data %j', key, data.data);
   emitter.emit(key, data);
 }
 

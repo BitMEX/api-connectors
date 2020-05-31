@@ -75,9 +75,10 @@ WebSocketClient.prototype.open = function(url){
         this.logError(`Authentication invalid. Please check your credentials. Message: ${buf}`);
         closeConnection(CLOSE_UNEXPECTED);
       } else if (response.statusCode === 502 || response.statusCode === 503) {
-        // maintainence / downtime
+        // server maintainance / downtime
         this.logError(`Server responded with [${response.statusCode}], will retry soon: ${buf}`);
-        this.autoReconnectInterval = 5000; // first retry in 5 seconds
+        // first retry in at least 5 seconds
+        this.autoReconnectInterval = Math.min(5000, this.autoReconnectInterval);
         closeConnection(CLOSE_DOWNTIME);
       } else {
         this.logError(`Unexpected response from server [${response.statusCode}]: ${buf}`);
