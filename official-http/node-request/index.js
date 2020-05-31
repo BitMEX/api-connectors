@@ -1,21 +1,28 @@
-var request = require('request');
-var crypto = require('crypto');
+const request = require('request');
+const crypto = require('crypto');
 
-var apiKey = "API_KEY";
-var apiSecret = "API_SECRET";
+const apiKey = "API_KEY";
+const apiSecret = "API_SECRET";
 
-var verb = 'POST',
-  path = '/api/v1/order',
-  expires = Math.round(new Date().getTime() / 1000) + 60, // 1 min in the future
-  data = {symbol:"XBTUSD",orderQty:1,price:590,ordType:"Limit"};
+const verb = 'POST';
+const path = '/api/v1/order';
+const expires = Math.round(new Date().getTime() / 1000) + 60; // 1 min in the future
+const data = {
+  symbol: "XBTUSD",
+  orderQty: 1,
+  price: 590,
+  ordType: "Limit"
+};
 
 // Pre-compute the postBody so we can be sure that we're using *exactly* the same body in the request
 // and in the signature. If you don't do this, you might get differently-sorted keys and blow the signature.
-var postBody = JSON.stringify(data);
+const postBody = JSON.stringify(data);
 
-var signature = crypto.createHmac('sha256', apiSecret).update(verb + path + expires + postBody).digest('hex');
+const signature = crypto.createHmac('sha256', apiSecret)
+  .update(verb + path + expires + postBody)
+  .digest('hex');
 
-var headers = {
+const headers = {
   'content-type' : 'application/json',
   'Accept': 'application/json',
   'X-Requested-With': 'XMLHttpRequest',
@@ -28,7 +35,8 @@ var headers = {
 
 const requestOptions = {
   headers: headers,
-  url:'https://testnet.bitmex.com'+path,
+  // Notice we are using testnet here. Switch to www to query the production site.
+  url: 'https://testnet.bitmex.com' + path,
   method: verb,
   body: postBody
 };
