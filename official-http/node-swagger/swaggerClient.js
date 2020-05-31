@@ -1,74 +1,78 @@
-'use strict';
-var SwaggerClient = require("swagger-client");
-var _ = require('lodash');
-var BitMEXAPIKeyAuthorization = require('./lib/BitMEXAPIKeyAuthorization');
+const SwaggerClient = require("swagger-client");
+const _ = require('lodash');
+const BitMEXAPIKeyAuthorization = require('./lib/BitMEXAPIKeyAuthorization');
+
+// Comment out if you're not requesting any user data.
+const authorization = new BitMEXAPIKeyAuthorization('api-key', 'api-secret')
 
 new SwaggerClient({
   // Switch this to `www.bitmex.com` when you're ready to try it out for real.
   // Don't forget the `www`!
   url: 'https://testnet.bitmex.com/api/explorer/swagger.json',
-  usePromise: true
+  requestInterceptor(req) {
+    // Despite swagger seeing that JSON is the expected type, it will still build formdata bodies
+    // Long saga, may be fixed in https://github.com/swagger-api/swagger-js/pull/1500
+    req.headers['Content-Type'] = "application/x-www-form-urlencoded";
+    // Unfortunately, swagger-client removed custom authorizations in version 3.
+    // We implement our authorization as an interceptor instead.
+    if (typeof authorization !== 'undefined') {
+      authorization.apply(req);
+    }
+  }
 })
-.then(function(client) {
-  // Comment out if you're not requesting any user data.
-  client.clientAuthorizations.add("apiKey", new BitMEXAPIKeyAuthorization('api-key', 'api-secret'));
-
+.then(async function(client) {
   // Print client capabilities
   inspect(client.apis);
 
-  // Get a trade
-  client.Trade.Trade_get({symbol: 'XBTUSD', count: 40})
-  .then(function(response) {
-    var trades = JSON.parse(response.data.toString());
+  try {
+    //
+    // Get a trade
+    //
+    const tradeResponse = await client.apis.Trade.Trade_get({symbol: 'XBTUSD', count: 40})
+    const trades = JSON.parse(tradeResponse.data);
     // Print the max price traded in the last `count` trades.
     console.log('\nMax Trade:\n----\n', JSON.stringify(_.max(trades, 'price'), undefined, 2));
-  })
-  .catch(function(e) {
-    // Error handling...
-    console.log('Error:', e.statusText);
-  })
 
-  client.User.User_getMargin()
-  .then(function(response) {
-    var margin = JSON.parse(response.data.toString());
-    var marginBalance = (margin.marginBalance / 1e8).toFixed(4);
+    //
+    // Get your margin (authenticated request)
+    //
+    const marginResponse = await client.apis.User.User_getMargin()
+    const margin = JSON.parse(marginResponse.data);
+    const marginBalance = (margin.marginBalance / 1e8).toFixed(4);
     console.log('\nMargin Balance:', marginBalance, 'XBT');
-  })
-  .catch(function(e) {
+
+    //
+    // Placing an order - commented for your safety
+    //
+    // const orderResponse = await client.apis.Order.Order_new({symbol: 'XBTUSD', price: 1000, orderQty: 1})
+    // console.log(orderResponse.data);
+
+    //
+    // Placing a bulk order - commented for your safety
+    //
+    // const bulkOrderResponse = await client.apis.Order.Order_newBulk({
+    //   // Required to stringify on bulk routes, otherwise swagger will send [object Object]
+    //   "orders": JSON.stringify([
+    //     {"symbol":"XBTUSD","price":2433.5,"orderQty":147,"side":"Buy"},
+    //     {"symbol":"XBTUSD","price":2431.0,"orderQty":190,"side":"Buy"}
+    //   ])
+    // });
+    // console.log(bulkOrderResponse.data);
+
+  } catch (e) {
     // Error handling...
-    console.log('Error:', e.statusText);
-  })
-
-  // Example: Placing an order - commented for your safety
-  // .then(function() {
-  //   return client.Order.Order_new({symbol: 'XBTUSD', price: 1000, orderQty: 1})
-  // })
-  // .then(function (response) {
-  //   console.log(response.data.toString());
-  // });
-
-  // Example: sending a bulk order
-  // Note: due to a bug in the Swagger client, you must stringify the Array, otherwise
-  // we will be sent `["[object Object]","[object Object]"]`
-  // client.Order.Order_newBulk({
-  //   "orders": JSON.stringify([
-  //     {"symbol":"XBTUSD","price":2433.5,"orderQty":147,"side":"Sell"},
-  //     {"symbol":"XBTUSD","price":2431.1,"orderQty":190,"side":"Sell"}
-  //   ])
-  // })
-  // .then(function (response) {
-  //   console.log(response.data.toString());
-  // });
+    console.error('Error:', e);
+  }
 })
 .catch(function(e) {
   console.error("Unable to connect:", e);
 })
 
-function inspect(client) {
+function inspect(apis) {
   console.log("Inspecting BitMEX API...");
-  Object.keys(client).forEach(function(model) {
-    if (!client[model].operations) return;
-    console.log("Available methods for %s: %s", model, Object.keys(client[model].operations).join(', '));
+  Object.keys(apis).forEach(function(model) {
+    console.log("Available methods for %s: %s", model, Object.keys(apis[model]).join(', '));
   });
   console.log("------------------------\n");
 }
+

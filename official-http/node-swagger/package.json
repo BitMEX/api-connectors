@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Connectors and examples for the BitMEX API.",
   "main": "swaggerClient.js",
+  "engine": {
+    "node": ">= 8.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,6 +14,6 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.5",
-    "swagger-client": "^2.1.8"
+    "swagger-client": "^3.10.5"
   }
 }

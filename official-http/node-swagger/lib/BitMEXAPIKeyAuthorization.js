@@ -12,16 +12,17 @@ var BitMEXAPIKeyAuthorization = function (apiKey, apiSecret) {
 };
 
 var nonceCounter = 0;
-BitMEXAPIKeyAuthorization.prototype.apply = function (obj) {
+BitMEXAPIKeyAuthorization.prototype.apply = function (req) {
+  if (req.loadSpec) return true;
   var nonce = Date.now() * 1000 + (nonceCounter++ % 1000); // prevents colliding nonces. Otherwise, use expires
-  var parsedURL = url.parse(obj.url);
+  var parsedURL = url.parse(req.url);
   var thisPath = parsedURL.pathname + (parsedURL.search || '');
-  var signature = this.sign(obj.method.toUpperCase(), thisPath, nonce, obj.body);
-  obj.headers['api-key'] = this.apiKey;
+  var signature = this.sign(req.method.toUpperCase(), thisPath, nonce, req.body);
+  req.headers['api-key'] = this.apiKey;
   // Alternatively, omit this and set 'api-expires' to a unix time in the future.
-  // obj.headers['api-expires'] = (Date.now() / 1000) + 5; // expires in 5s
-  obj.headers['api-nonce'] = nonce;
-  obj.headers['api-signature'] = signature;
+  // req.headers['api-expires'] = (Date.now() / 1000) + 5; // expires in 5s
+  req.headers['api-nonce'] = nonce;
+  req.headers['api-signature'] = signature;
   return true;
 };
 
