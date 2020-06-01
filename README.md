@@ -39,7 +39,8 @@ Clients:
 * [Android](/auto-generated/android)
 * [Clojure](/auto-generated/clojure)
 * [C#](/auto-generated/csharp)
-* [Dart](/auto-generated/dart)
+* [C++-Qt5](/auto-generator/qt5cpp)
+* [C++-REST](/auto-generator/cpprest)
 * [Go](/auto-generated/go)
 * [Java](/auto-generated/java)
 * [JavaScript](/auto-generated/javascript)
@@ -50,7 +51,7 @@ Clients:
 * [Scala](/auto-generated/scala)
 * [Scala-Akka](/auto-generated/akka-scala)
 * [Swift](/auto-generated/swift4)
-* [TypeScript](/auto-generated/typescript-fetch)
+* [TypeScript](/auto-generated/typescript-node)
 
 Swagger Output:
 
