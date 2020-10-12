@@ -101,14 +101,14 @@ setTimeout(() => {
 The streams below echo the models described in the [API Explorer](https://www.bitmex.com/api/explorer).
 
 ```
-"chat",         // Trollbox
-"instrument",   // Instrument updates including turnover and bid/ask
-"liquidation",  // Liquidations
-"orderBookL2",  // Full orderBook using deltas
-"orderBook10",  // Last 10 bids and asks (price and size)
-"quote",        // Top level of the book
-"trade"         // Trades
-...             // See https://www.bitmex.com/app/wsAPI#Subscriptions for more streams
+"chat",            // Trollbox
+"instrument",      // Instrument updates including turnover and bid/ask
+"liquidation",     // Liquidations
+"orderBookL2_25",  // Top 25 levels of level 2 order book
+"orderBook10",     // Last 10 bids and asks (price and size)
+"quote",           // Top level of the book
+"trade"            // Trades
+...                // See https://www.bitmex.com/app/wsAPI#Subscriptions for more streams
 ```
 
 #### Available Private Streams
