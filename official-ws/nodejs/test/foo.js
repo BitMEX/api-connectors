@@ -1,5 +1,5 @@
-'use strict';
-var BitMEXClient = require('../index');
+const BitMEXClient = require('../index');
+
 
 var client = new BitMEXClient({testnet: true});
 

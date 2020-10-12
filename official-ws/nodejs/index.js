@@ -1,4 +1,3 @@
-'use strict';
 const _ = require('lodash');
 const EventEmitter = require('eventemitter2').EventEmitter2;
 const util = require('util');
@@ -143,11 +142,13 @@ BitMEXClient.prototype.addStream = function(symbol, tableName, callback) {
       '. Available tables are ' + client.streams.all + '.');
   }
 
+  // TODO return async iterable instead
   addStreamHelper(client, symbol, tableName, callback);
 };
 
+// Keep track of listeners in a tree. This helps us know what is still
+// subscribed to, so we can open & close connections as required.
 BitMEXClient.prototype._setupListenerTracking = function() {
-  // Keep track of listeners.
   const listenerTree = this._listenerTree = {};
   this.on('newListener', (eventName) => {
     const split = eventName.split(':');
@@ -171,8 +172,9 @@ BitMEXClient.prototype.subscriptionCount = function(table, symbol) {
 };
 
 BitMEXClient.prototype.sendSubscribeRequest = function(table, symbol) {
-  debug(JSON.stringify({op: 'subscribe', args: `${table}:${symbol}`}))
-  this.socket.send(JSON.stringify({op: 'subscribe', args: `${table}:${symbol}`}));
+  const subscribePayload = {op: 'subscribe', args: `${table}:${symbol}`};
+  debug('sending: %j', subscribePayload)
+  this.socket.send(JSON.stringify(subscribePayload));
 };
 
 function addStreamHelper(client, symbol, tableName, callback) {

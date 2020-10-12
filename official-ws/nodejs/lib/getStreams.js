@@ -1,4 +1,3 @@
-'use strict';
 const superagent = require('superagent');
 const url = require('url');
 const debug = require('debug')('BitMEX:realtime-api:getStreams');

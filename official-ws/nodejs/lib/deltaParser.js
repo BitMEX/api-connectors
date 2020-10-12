@@ -60,6 +60,7 @@ module.exports = {
 
   _partial(tableName, symbol, client, data) {
     if (!client._data[tableName]) client._data[tableName] = {};
+    debug('partial: %s %s, data: %j', tableName, symbol, data);
     const dataArr = data.data || [];
     // Intitialize data.
     // FIXME: we need to echo back `filter` with each partial, otherwise we can't tell the difference
@@ -78,8 +79,12 @@ module.exports = {
   }
 };
 
+// Returns `true` if a partial has already been received, and therefore the data saubscription is live.
+// We check if either a symbol partial has been received, or a '*' partial (all symbols)
 function isInitialized(tableName, symbol, client) {
-  return client._data[tableName] && client._data[tableName][symbol];
+  const out = Boolean(client._data[tableName] && (client._data[tableName][symbol] || client._data[tableName]['*']));
+  debug('isInitialized(%s, %s, client)?: %s', tableName, symbol, out);
+  return out;
 }
 
 /**
@@ -93,7 +98,7 @@ function insertIntoStore(context, key, newData) {
   const store = context[key] || [];
 
   // Create a new working object.
-  const storeData = [].concat(store).concat(newData);
+  const storeData = [...store, ...newData];
 
   return replaceStore(context, key, storeData);
 }
@@ -109,7 +114,7 @@ function updateStore(context, key, newData, keys) {
   const store = context[key] || [];
 
   // Create a new working object.
-  const storeData = [].concat(store);
+  const storeData = [...store];
 
   // Loop through data, updating items in `storeData` when necessary.
   for (let i = 0; i < newData.length; i++) {
@@ -132,7 +137,7 @@ function updateStore(context, key, newData, keys) {
     // data set. An insert should have come first, but we can't treat this as an
     // insert because we'd end up with an item that has missing properties.
     else {
-      throw new Error("Update for missing item came through on " + key + ". Data: " + JSON.stringify(newDatum));
+      throw new Error(`Update for missing item came through on ${key}. Data: ${JSON.stringify(newDatum)}`);
     }
   }
 
@@ -150,7 +155,7 @@ function removeFromStore(context, key, newData, keys) {
   const store = context[key] || [];
 
   // Create a new working object.
-  let storeData = [].concat(store);
+  let storeData = [...store];
 
   // Loop through incoming data and remove items that match.
   for (let i = 0; i < newData.length; i++) {
@@ -158,7 +163,9 @@ function removeFromStore(context, key, newData, keys) {
     // Find the item to remove and remove it.
     const criteria = _.pick(newData[i], keys);
     const itemToRemove = _.find(storeData, criteria);
-    storeData = _.without(storeData, itemToRemove);
+    if (itemToRemove) {
+      storeData = _.without(storeData, itemToRemove);
+    }
   }
 
   return replaceStore(context, key, storeData);
@@ -173,7 +180,7 @@ function removeFromStore(context, key, newData, keys) {
  */
 function replaceStore(context, key, newData) {
   // Store could be an array or singular object/model.
-  if (!Array.isArray(context[key])) {
+  if (context[key] && !Array.isArray(context[key])) {
     // Not an array - simply replace with the first item in our new array.
     // This is for single object stores, like margin.
     context[key] = newData[0];
@@ -190,5 +197,5 @@ function replaceStore(context, key, newData) {
  * @return {Object|Model}         A new item with new data.
  */
 function updateItem(item, newData) {
-  return _.extend({}, item, newData);
+  return {...item, ...newData};
 }

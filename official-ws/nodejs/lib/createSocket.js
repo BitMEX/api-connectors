@@ -1,4 +1,3 @@
-'use strict';
 const _ = require('lodash');
 const debug = require('debug')('BitMEX:realtime-api:socket');
 const debugEmit = require('debug')('BitMEX:realtime-api:socket:emit');
@@ -6,13 +5,16 @@ const signMessage = require('./signMessage');
 const WebSocketClient = require('./ReconnectingSocket');
 
 module.exports = function createSocket(options, bmexClient) {
-  'use strict';
-
   const endpoint = makeEndpoint(options);
   debug('connecting to %s', endpoint);
 
   // Create client and bind listeners.
   const wsClient = new WebSocketClient();
+
+  function onReconnect() {
+    wsClient.url = makeEndpoint(options);
+    debug('Reconnecting to BitMEX at ', wsClient.url);
+  }
 
   wsClient.onopen = function() {
     wsClient.opened = true;
@@ -20,10 +22,7 @@ module.exports = function createSocket(options, bmexClient) {
     bmexClient.emit('open');
 
     // Have to regenerate endpoint on reconnection so we have a new nonce.
-    wsClient.addListener('reconnect', function() {
-      wsClient.url = makeEndpoint(options);
-      debug('Reconnecting to BitMEX at ', wsClient.url);
-    });
+    wsClient.addListener('reconnect', onReconnect);
   };
 
   wsClient.onclose = function() {
@@ -35,6 +34,7 @@ module.exports = function createSocket(options, bmexClient) {
   wsClient.onmessage = function(data) {
     try {
       data = JSON.parse(data);
+      debug('Received %j', data);
     } catch(e) {
       bmexClient.emit('error', 'Unable to parse incoming data:', data);
       return;
@@ -44,10 +44,17 @@ module.exports = function createSocket(options, bmexClient) {
     if (!data.data) return; // connection or subscription notice
 
     const tableNoSymbol = _.includes(bmexClient.constructor.noSymbolTables, data.table);
+
     if (tableNoSymbol) {
       // For no-symbol tables, emit a '*' event.
       emitFullData(bmexClient, data);
     } else {
+      // Emit all data on partials for full tables. Thie ensures all downstream listeners
+      // know the table is fully initialized. Split symbol data will emit too.
+      if (data.action === 'partial' && !(data.filter && data.filter.symbol)) {
+        emitFullData(bmexClient, data);
+      }
+
       // Fires events as <table>:<action>:<symbol>, such as
       // instrument:update:XBTUSD.
       // Consumers may be listening on:
@@ -70,6 +77,9 @@ module.exports = function createSocket(options, bmexClient) {
     // If no end listeners are attached, throw.
     if (!listeners.length) throw new Error('WebSocket closed. Please check errors above.');
     else bmexClient.emit('end', code);
+
+    // Cleanup
+    wsClient.removeListener('reconnect', onReconnect);
   };
 
   wsClient.open(endpoint);
@@ -87,7 +97,7 @@ function emitSplitData(emitter, data) {
 
   // Generate data by symbol
   const symbolData = data.data.reduce((accumulator, currentValue) => {
-    if (accumulator.hasOwnProperty(currentValue[filterKey])) {
+    if (currentValue[filterKey] in accumulator) {
       accumulator[currentValue[filterKey]].push(currentValue);
     } else {
       accumulator[currentValue[filterKey]] = [currentValue];
