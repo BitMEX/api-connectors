@@ -60,6 +60,7 @@ module.exports = {
 
   _partial(tableName, symbol, client, data) {
     if (!client._data[tableName]) client._data[tableName] = {};
+    debug('partial: %s %s, data: %j', tableName, symbol, data);
     const dataArr = data.data || [];
     // Intitialize data.
     // FIXME: we need to echo back `filter` with each partial, otherwise we can't tell the difference
@@ -78,8 +79,12 @@ module.exports = {
   }
 };
 
+// Returns `true` if a partial has already been received, and therefore the data saubscription is live.
+// We check if either a symbol partial has been received, or a '*' partial (all symbols)
 function isInitialized(tableName, symbol, client) {
-  return client._data[tableName] && client._data[tableName][symbol];
+  const out = Boolean(client._data[tableName] && (client._data[tableName][symbol] || client._data[tableName]['*']));
+  debug('isInitialized(%s, %s, client)?: %s', tableName, symbol, out);
+  return out;
 }
 
 /**
@@ -158,7 +163,9 @@ function removeFromStore(context, key, newData, keys) {
     // Find the item to remove and remove it.
     const criteria = _.pick(newData[i], keys);
     const itemToRemove = _.find(storeData, criteria);
-    storeData = _.without(storeData, itemToRemove);
+    if (itemToRemove) {
+      storeData = _.without(storeData, itemToRemove);
+    }
   }
 
   return replaceStore(context, key, storeData);

@@ -14,16 +14,18 @@ module.exports = function createSocket(options, bmexClient) {
   // Create client and bind listeners.
   const wsClient = new WebSocketClient();
 
+  function onReconnect() {
+    wsClient.url = makeEndpoint(options);
+    debug('Reconnecting to BitMEX at ', wsClient.url);
+  }
+
   wsClient.onopen = function() {
     wsClient.opened = true;
     debug('Connection to BitMEX at', wsClient.url, 'opened.');
     bmexClient.emit('open');
 
     // Have to regenerate endpoint on reconnection so we have a new nonce.
-    wsClient.addListener('reconnect', function() {
-      wsClient.url = makeEndpoint(options);
-      debug('Reconnecting to BitMEX at ', wsClient.url);
-    });
+    wsClient.addListener('reconnect', onReconnect);
   };
 
   wsClient.onclose = function() {
@@ -35,6 +37,7 @@ module.exports = function createSocket(options, bmexClient) {
   wsClient.onmessage = function(data) {
     try {
       data = JSON.parse(data);
+      debug('Received %j', data);
     } catch(e) {
       bmexClient.emit('error', 'Unable to parse incoming data:', data);
       return;
@@ -70,6 +73,9 @@ module.exports = function createSocket(options, bmexClient) {
     // If no end listeners are attached, throw.
     if (!listeners.length) throw new Error('WebSocket closed. Please check errors above.');
     else bmexClient.emit('end', code);
+
+    // Cleanup
+    wsClient.removeListener('reconnect', onReconnect);
   };
 
   wsClient.open(endpoint);
@@ -87,7 +93,7 @@ function emitSplitData(emitter, data) {
 
   // Generate data by symbol
   const symbolData = data.data.reduce((accumulator, currentValue) => {
-    if (accumulator.hasOwnProperty(currentValue[filterKey])) {
+    if (currentValue[filterKey] in accumulator) {
       accumulator[currentValue[filterKey]].push(currentValue);
     } else {
       accumulator[currentValue[filterKey]] = [currentValue];

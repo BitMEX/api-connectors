@@ -143,6 +143,7 @@ BitMEXClient.prototype.addStream = function(symbol, tableName, callback) {
       '. Available tables are ' + client.streams.all + '.');
   }
 
+  // TODO return async iterable instead
   addStreamHelper(client, symbol, tableName, callback);
 };
 
@@ -171,8 +172,9 @@ BitMEXClient.prototype.subscriptionCount = function(table, symbol) {
 };
 
 BitMEXClient.prototype.sendSubscribeRequest = function(table, symbol) {
-  debug(JSON.stringify({op: 'subscribe', args: `${table}:${symbol}`}))
-  this.socket.send(JSON.stringify({op: 'subscribe', args: `${table}:${symbol}`}));
+  const subscribePayload = {op: 'subscribe', args: `${table}:${symbol}`};
+  debug('sending: %j', subscribePayload)
+  this.socket.send(JSON.stringify(subscribePayload));
 };
 
 function addStreamHelper(client, symbol, tableName, callback) {
