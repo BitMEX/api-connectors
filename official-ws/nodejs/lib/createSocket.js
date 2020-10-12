@@ -47,10 +47,17 @@ module.exports = function createSocket(options, bmexClient) {
     if (!data.data) return; // connection or subscription notice
 
     const tableNoSymbol = _.includes(bmexClient.constructor.noSymbolTables, data.table);
+
     if (tableNoSymbol) {
       // For no-symbol tables, emit a '*' event.
       emitFullData(bmexClient, data);
     } else {
+      // Emit all data on partials for full tables. Thie ensures all downstream listeners
+      // know the table is fully initialized. Split symbol data will emit too.
+      if (data.action === 'partial' && !(data.filter && data.filter.symbol)) {
+        emitFullData(bmexClient, data);
+      }
+
       // Fires events as <table>:<action>:<symbol>, such as
       // instrument:update:XBTUSD.
       // Consumers may be listening on:

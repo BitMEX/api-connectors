@@ -180,7 +180,7 @@ function removeFromStore(context, key, newData, keys) {
  */
 function replaceStore(context, key, newData) {
   // Store could be an array or singular object/model.
-  if (!Array.isArray(context[key])) {
+  if (context[key] && !Array.isArray(context[key])) {
     // Not an array - simply replace with the first item in our new array.
     // This is for single object stores, like margin.
     context[key] = newData[0];

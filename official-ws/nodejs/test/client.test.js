@@ -60,20 +60,54 @@ test('Basic trade insert', async () => {
   const trades = data.basicTradeInsert[data.basicTradeInsert.length - 1].data;
 
   // Expect the first call to include all data
-  expect(onTrade.firstCall.firstArg).toEqual(trades);
+  expect(onTrade.firstCall.args[0]).toEqual(trades);
 
   // Expect 129 calls (129 instruments) plus the initial '*' call
   expect(onTrade.callCount).toEqual(trades.length + 1);
 });
 
-test.only('Symboled trade insert', async () => {
+test('Symboled trade insert', async () => {
   const onTrade = sinon.spy();
   client.addStream('XBTUSD', 'trade', onTrade);
   playback(client, data.symboledTradeInsert);
   const trades = data.symboledTradeInsert[data.symboledTradeInsert.length - 1].data;
-  console.log(onTrade.getCalls())
 
   // Expect only the first call, which is only XBTUSD data
-  expect(onTrade.firstCall.firstArg).toEqual(trades);
+  expect(onTrade.firstCall.args[0]).toEqual(trades);
   expect(onTrade.callCount).toEqual(1);
+});
+
+test('Recovering after empty partial', async () => {
+  const onOrder = sinon.spy();
+  client.addStream('XBTUSD', 'order', onOrder);
+  playback(client, data.orderSymboledEmptyPartial);
+
+  // First emit: empty partial
+  expect(onOrder.firstCall.args[0]).toEqual([]);
+  expect(onOrder.firstCall.args[1]).toEqual('XBTUSD');
+  // Then the order comes through
+  expect(onOrder.secondCall.args[0]).toHaveLength(1);
+  expect(onOrder.secondCall.args[1]).toEqual('XBTUSD');
+  expect(onOrder.secondCall.args[0][0]).toMatchObject({symbol: 'XBTUSD'});
+
+  expect(onOrder.callCount).toEqual(2);
+});
+
+test('Recovering after empty partial (* subscription)', async () => {
+  const onOrder = sinon.spy();
+  client.addStream('*', 'order', onOrder);
+  playback(client, data.orderEmptyPartial);
+
+  // First emit: empty partial
+  expect(onOrder.firstCall.args).toEqual([[], '*', 'order']);
+  // Then the order comes through in an array
+  expect(onOrder.secondCall.args[0]).toHaveLength(1);
+  expect(onOrder.secondCall.args[0][0]).toMatchObject({symbol: 'XBTUSD'});
+  expect(onOrder.secondCall.args[1]).toEqual('XBTUSD');
+
+  expect(onOrder.thirdCall.args[0]).toHaveLength(1);
+  expect(onOrder.thirdCall.args[0][0]).toMatchObject({symbol: 'XBTZ20'});
+  expect(onOrder.thirdCall.args[1]).toEqual('XBTZ20');
+
+  expect(onOrder.callCount).toEqual(3);
 });
