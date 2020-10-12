@@ -1,4 +1,3 @@
-'use strict';
 const _ = require('lodash');
 const crypto = require('crypto');
 const querystring = require('querystring');

@@ -1,4 +1,3 @@
-'use strict';
 const _ = require('lodash');
 const EventEmitter = require('eventemitter2').EventEmitter2;
 const util = require('util');
@@ -147,8 +146,9 @@ BitMEXClient.prototype.addStream = function(symbol, tableName, callback) {
   addStreamHelper(client, symbol, tableName, callback);
 };
 
+// Keep track of listeners in a tree. This helps us know what is still
+// subscribed to, so we can open & close connections as required.
 BitMEXClient.prototype._setupListenerTracking = function() {
-  // Keep track of listeners.
   const listenerTree = this._listenerTree = {};
   this.on('newListener', (eventName) => {
     const split = eventName.split(':');

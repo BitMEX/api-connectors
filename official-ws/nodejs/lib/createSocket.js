@@ -1,4 +1,3 @@
-'use strict';
 const _ = require('lodash');
 const debug = require('debug')('BitMEX:realtime-api:socket');
 const debugEmit = require('debug')('BitMEX:realtime-api:socket:emit');
@@ -6,8 +5,6 @@ const signMessage = require('./signMessage');
 const WebSocketClient = require('./ReconnectingSocket');
 
 module.exports = function createSocket(options, bmexClient) {
-  'use strict';
-
   const endpoint = makeEndpoint(options);
   debug('connecting to %s', endpoint);
 

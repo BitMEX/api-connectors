@@ -98,7 +98,7 @@ function insertIntoStore(context, key, newData) {
   const store = context[key] || [];
 
   // Create a new working object.
-  const storeData = [].concat(store).concat(newData);
+  const storeData = [...store, ...newData];
 
   return replaceStore(context, key, storeData);
 }
@@ -114,7 +114,7 @@ function updateStore(context, key, newData, keys) {
   const store = context[key] || [];
 
   // Create a new working object.
-  const storeData = [].concat(store);
+  const storeData = [...store];
 
   // Loop through data, updating items in `storeData` when necessary.
   for (let i = 0; i < newData.length; i++) {
@@ -137,7 +137,7 @@ function updateStore(context, key, newData, keys) {
     // data set. An insert should have come first, but we can't treat this as an
     // insert because we'd end up with an item that has missing properties.
     else {
-      throw new Error("Update for missing item came through on " + key + ". Data: " + JSON.stringify(newDatum));
+      throw new Error(`Update for missing item came through on ${key}. Data: ${JSON.stringify(newDatum)}`);
     }
   }
 
@@ -155,7 +155,7 @@ function removeFromStore(context, key, newData, keys) {
   const store = context[key] || [];
 
   // Create a new working object.
-  let storeData = [].concat(store);
+  let storeData = [...store];
 
   // Loop through incoming data and remove items that match.
   for (let i = 0; i < newData.length; i++) {
@@ -197,5 +197,5 @@ function replaceStore(context, key, newData) {
  * @return {Object|Model}         A new item with new data.
  */
 function updateItem(item, newData) {
-  return _.extend({}, item, newData);
+  return {...item, ...newData};
 }
