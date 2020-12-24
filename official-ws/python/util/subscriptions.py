@@ -10,7 +10,8 @@ NO_SYMBOL_SUBS = [
     "publicNotifications",
     "privateNotifications",
     "transact",
-    "wallet"
+    "wallet",
+    "liquidation"
 ]
 # By default, we subscribe to these tables. They can be overridden
 # on websocket init via the "subscriptions" parameter.
