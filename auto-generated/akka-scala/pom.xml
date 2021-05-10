@@ -22,7 +22,7 @@
     <akka.version>2.5.8</akka.version>
     <joda.time.version>2.9.9</joda.time.version>
 
-    <junit.version>4.12</junit.version>
+    <junit.version>4.13.1</junit.version>
     <scala.test.version>3.0.4</scala.test.version>
 
     <scala.maven.plugin.version>3.3.1</scala.maven.plugin.version>
