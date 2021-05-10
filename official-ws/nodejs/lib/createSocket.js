@@ -33,6 +33,9 @@ module.exports = function createSocket(options, bmexClient) {
 
   wsClient.onmessage = function(data) {
     try {
+      if (data === "pong") {
+        return;
+      }
       data = JSON.parse(data);
       debug('Received %j', data);
     } catch(e) {
