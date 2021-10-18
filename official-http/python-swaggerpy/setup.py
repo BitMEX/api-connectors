@@ -9,6 +9,6 @@ setup(name='bitmex',
       author='Samuel Reed',
       author_email='sam@bitmex.com',
       url='https://github.com/bitmex/api-Connectors',
-      install_requires=['bravado'],
+      install_requires=['bravado>=9.3.0,<10'],
       packages=[''],
       )

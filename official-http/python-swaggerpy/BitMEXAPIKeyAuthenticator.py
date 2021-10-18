@@ -38,18 +38,19 @@ class APIKeyAuthenticator(Authenticator):
         return r
 
     # Generates an API signature.
-    # A signature is HMAC_SHA256(secret, verb + path + nonce + data), hex encoded.
-    # Verb must be uppercased, url is relative, nonce must be an increasing 64-bit integer
+    # A signature is HMAC_SHA256(secret, verb + path + expires + data), hex encoded.
+    # Verb must be uppercased, url is relative, expires must be an increasing 64-bit integer
     # and the data, if present, must be JSON without whitespace between keys.
     #
     # For example, in psuedocode (and in real code below):
     #
     # verb=POST
     # url=/api/v1/order
-    # nonce=1416993995705
-    # data={"symbol":"XBTZ14","quantity":1,"price":395.01}
-    # signature = HEX(HMAC_SHA256(secret, 'POST/api/v1/order1416993995705{"symbol":"XBTZ14","quantity":1,"price":395.01}'))
-    def generate_signature(self, secret, verb, url, nonce, data):
+    # expires=1518064237
+    # data={"symbol":"XBTUSD","quantity":1,"price":52000.50}
+    # message='POST/api/v1/order1518064237{"symbol":"XBTUSD","quantity":1,"price":52000.50}'
+    # signature = HEX(HMAC_SHA256(secret, message))
+    def generate_signature(self, secret, verb, url, expires, data):
         """Generate a request signature compatible with BitMEX."""
         # Parse the url so we can remove the base and extract just the path.
         parsedURL = urllib.parse.urlparse(url)
@@ -57,9 +58,11 @@ class APIKeyAuthenticator(Authenticator):
         if parsedURL.query:
             path = path + '?' + parsedURL.query
 
-        message = bytes(verb + path + str(nonce) + data, 'utf-8')
+        message = bytes(verb + path + str(expires) + data, 'utf-8')
         # print("Computing HMAC: %s" % message)
 
         signature = hmac.new(bytes(secret, 'utf-8'), message, digestmod=hashlib.sha256).hexdigest()
+        # print("Signature: %s" % signature)
+
         return signature
 
