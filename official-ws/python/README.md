@@ -36,7 +36,7 @@ client - no need to poll the server.
 `main.py` has a full example of how to connect to BitMEX:
 
     $ python main.py
-    2018-02-01 11:51:53,355 - bitmex_websocket - INFO - Connecting to wss://testnet.bitmex.com/realtime?subscribe=execution:XBTUSD,instrument:    ...
+    2018-02-01 11:51:53,355 - bitmex_websocket - INFO - Connecting to wss://ws.testnet.bitmex.com/realtime?subscribe=execution:XBTUSD,instrument:    ...
     2018-02-01 11:51:53,356 - bitmex_websocket - INFO - Not authenticating.
     2018-02-01 11:51:54,357 - bitmex_websocket - INFO - Connected to WS.
     2018-02-01 11:51:54,360 - bitmex_websocket - INFO - Got all market data. Starting.
