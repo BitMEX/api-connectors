@@ -133,3 +133,13 @@ DEBUG=* node example.js
 # Display all high-level debug messages
 DEBUG=BitMEX:* node example.js
 ```
+
+### Heartbeat
+https://www.bitmex.com/app/wsAPI#Heartbeats
+
+you can implement a more thorough solution, but hope this helps along
+```
+setInterval(() => {
+  client.socket.send("ping")
+}, 30 * 1000); // sends ping every 30 s
+```
