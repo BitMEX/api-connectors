@@ -163,8 +163,7 @@ class BitMEXWebsocket:
         ), subscriptions)
 
         urlParts = list(urllib.parse.urlparse(self.endpoint))
-        urlParts[0] = urlParts[0].replace('http', 'ws')
-        urlParts[2] = "/realtime?subscribe={}".format(','.join(subscriptions_full))
+        urlParts[2] += "?subscribe={}".format(','.join(subscriptions_full))
         return urllib.parse.urlunparse(urlParts)
 
     def __wait_for_account(self):
