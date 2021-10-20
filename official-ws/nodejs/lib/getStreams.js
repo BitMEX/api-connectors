@@ -1,16 +1,9 @@
 const superagent = require('superagent');
-const url = require('url');
 const debug = require('debug')('BitMEX:realtime-api:getStreams');
 
-module.exports = function(wsEndpoint, callback) {
-  const parsed = url.parse(wsEndpoint);
-  const httpEndpoint = url.format({
-    protocol: parsed.protocol === 'wss:' ? 'https:' : 'http',
-    host: parsed.host
-  });
-
+module.exports = function(httpEndpoint, callback) {
   superagent
-  .get(httpEndpoint + '/api/v1/schema/websocketHelp')
+  .get(httpEndpoint + '/schema/websocketHelp')
   .end(function(err, res) {
     if (err) return callback(err);
     const streams = res.body.subscriptionSubjects;
