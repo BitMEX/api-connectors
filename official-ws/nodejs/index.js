@@ -9,9 +9,13 @@ const getStreams = require('./lib/getStreams');
 const DEFAULT_MAX_TABLE_LEN = 10000;
 
 const endpoints = {
-  production: 'wss://www.bitmex.com/realtime',
-  testnet: 'wss://testnet.bitmex.com/realtime'
+  production: 'wss://ws.bitmex.com/realtime',
+  testnet: 'wss://ws.testnet.bitmex.com/realtime'
 };
+const httpEndpoints = {
+  production: 'https://www.bitmex.com/api/v1',
+  testnet: 'https://testnet.bitmex.com/api/v1'
+}
 const noSymbolTables = BitMEXClient.noSymbolTables = [
   'account',
   'affiliate',
@@ -45,6 +49,9 @@ function BitMEXClient(options) {
   if (!options.endpoint) {
     options.endpoint = options.testnet ? endpoints.testnet : endpoints.production;
   }
+  if (!options.httpEndpoint) {
+    options.httpEndpoint = options.testnet ? httpEndpoints.testnet : httpEndpoints.production;
+  }
   if (process.env.BITMEX_ENDPOINT) options.endpoint = process.env.BITMEX_ENDPOINT;
   debug(options)
 
@@ -57,7 +64,7 @@ function BitMEXClient(options) {
   }
 
   // Get valid streams so we can validate our subscriptions.
-  getStreams(options.endpoint, function(err, streams) {
+  getStreams(options.httpEndpoint, function(err, streams) {
     if (err) throw err;
     emitter.initialized = true;
     emitter.streams = streams;
