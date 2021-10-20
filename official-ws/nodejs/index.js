@@ -9,8 +9,8 @@ const getStreams = require('./lib/getStreams');
 const DEFAULT_MAX_TABLE_LEN = 10000;
 
 const endpoints = {
-  production: 'wss://www.bitmex.com/realtime',
-  testnet: 'wss://testnet.bitmex.com/realtime'
+  production: 'wss://ws.bitmex.com/realtime',
+  testnet: 'wss://ws.testnet.bitmex.com/realtime'
 };
 const noSymbolTables = BitMEXClient.noSymbolTables = [
   'account',
