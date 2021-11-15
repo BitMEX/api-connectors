@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -112,74 +112,6 @@ SWGOrderApi::order_amendCallback(SWGHttpRequestWorker * worker) {
     } else {
         emit order_amendSignalE(output, error_type, error_str);
         emit order_amendSignalEFull(worker, error_type, error_str);
-    }
-}
-
-void
-SWGOrderApi::order_amendBulk(QString* orders) {
-    QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/order/bulk");
-
-
-
-    SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();
-    SWGHttpRequestInput input(fullPath, "PUT");
-
-    if (orders != nullptr) {
-        input.add_var("orders", *orders);
-    }
-
-
-
-
-    foreach(QString key, this->defaultHeaders.keys()) {
-        input.headers.insert(key, this->defaultHeaders.value(key));
-    }
-
-    connect(worker,
-            &SWGHttpRequestWorker::on_execution_finished,
-            this,
-            &SWGOrderApi::order_amendBulkCallback);
-
-    worker->execute(&input);
-}
-
-void
-SWGOrderApi::order_amendBulkCallback(SWGHttpRequestWorker * worker) {
-    QString msg;
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        msg = QString("Success! %1 bytes").arg(worker->response.length());
-    }
-    else {
-        msg = "Error: " + worker->error_str;
-    }
-
-    QList<SWGOrder*>* output = new QList<SWGOrder*>();
-    QString json(worker->response);
-    QByteArray array (json.toStdString().c_str());
-    QJsonDocument doc = QJsonDocument::fromJson(array);
-    QJsonArray jsonArray = doc.array();
-    auto wrapper = new SWGQObjectWrapper<QList<SWGOrder*>*> (output);
-    wrapper->deleteLater();
-    foreach(QJsonValue obj, jsonArray) {
-        SWGOrder* o = new SWGOrder();
-        QJsonObject jv = obj.toObject();
-        QJsonObject * ptr = (QJsonObject*)&jv;
-        o->fromJsonObject(*ptr);
-        auto objwrapper = new SWGQObjectWrapper<SWGOrder*> (o);
-        objwrapper->deleteLater();
-        output->append(o);
-    }
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit order_amendBulkSignal(output);
-    } else {
-        emit order_amendBulkSignalE(output, error_type, error_str);
-        emit order_amendBulkSignalEFull(worker, error_type, error_str);
     }
 }
 
@@ -673,74 +605,6 @@ SWGOrderApi::order_newCallback(SWGHttpRequestWorker * worker) {
     } else {
         emit order_newSignalE(output, error_type, error_str);
         emit order_newSignalEFull(worker, error_type, error_str);
-    }
-}
-
-void
-SWGOrderApi::order_newBulk(QString* orders) {
-    QString fullPath;
-    fullPath.append(this->host).append(this->basePath).append("/order/bulk");
-
-
-
-    SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();
-    SWGHttpRequestInput input(fullPath, "POST");
-
-    if (orders != nullptr) {
-        input.add_var("orders", *orders);
-    }
-
-
-
-
-    foreach(QString key, this->defaultHeaders.keys()) {
-        input.headers.insert(key, this->defaultHeaders.value(key));
-    }
-
-    connect(worker,
-            &SWGHttpRequestWorker::on_execution_finished,
-            this,
-            &SWGOrderApi::order_newBulkCallback);
-
-    worker->execute(&input);
-}
-
-void
-SWGOrderApi::order_newBulkCallback(SWGHttpRequestWorker * worker) {
-    QString msg;
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        msg = QString("Success! %1 bytes").arg(worker->response.length());
-    }
-    else {
-        msg = "Error: " + worker->error_str;
-    }
-
-    QList<SWGOrder*>* output = new QList<SWGOrder*>();
-    QString json(worker->response);
-    QByteArray array (json.toStdString().c_str());
-    QJsonDocument doc = QJsonDocument::fromJson(array);
-    QJsonArray jsonArray = doc.array();
-    auto wrapper = new SWGQObjectWrapper<QList<SWGOrder*>*> (output);
-    wrapper->deleteLater();
-    foreach(QJsonValue obj, jsonArray) {
-        SWGOrder* o = new SWGOrder();
-        QJsonObject jv = obj.toObject();
-        QJsonObject * ptr = (QJsonObject*)&jv;
-        o->fromJsonObject(*ptr);
-        auto objwrapper = new SWGQObjectWrapper<SWGOrder*> (o);
-        objwrapper->deleteLater();
-        output->append(o);
-    }
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit order_newBulkSignal(output);
-    } else {
-        emit order_newBulkSignalE(output, error_type, error_str);
-        emit order_newBulkSignalEFull(worker, error_type, error_str);
     }
 }
 

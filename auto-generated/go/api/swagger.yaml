@@ -1,8 +1,11 @@
 ---
 swagger: "2.0"
 info:
-  description: "## REST API for the BitMEX Trading Platform\n\n[View Changelog](/app/apiChangelog)\n\
-    \n-\n\n#### Getting Started\n\nBase URI: [https://www.bitmex.com/api/v1](/api/v1)\n\
+  description: "## REST API for the BitMEX Trading Platform\n\n_If you are building\
+    \ automated tools, please subscribe to the_\n_[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/)\
+    \ for changes. The feed will be updated_\n_regularly and is the most reliable\
+    \ way to get downtime and update announcements._\n\n[View Changelog](/app/apiChangelog)\n\
+    \n---\n\n#### Getting Started\n\nBase URI: [https://www.bitmex.com/api/v1](/api/v1)\n\
     \n##### Fetching Data\n\nAll REST endpoints are documented below. You can try\
     \ out any query right from this interface.\n\nMost table queries accept `count`,\
     \ `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.\n\
@@ -19,7 +22,7 @@ info:
     \n- [Settlement Data](#!/Settlement/Settlement_get)\n\n- [Exchange Statistics](#!/Stats/Stats_history)\n\
     \nEvery function of the BitMEX.com platform is exposed here and documented. Many\
     \ more functions are available.\n\n##### Swagger Specification\n\n[⇩ Download\
-    \ Swagger JSON](swagger.json)\n\n-\n\n## All API Endpoints\n\nClick to expand\
+    \ Swagger JSON](swagger.json)\n\n---\n\n## All API Endpoints\n\nClick to expand\
     \ a section.\n"
   version: "1.2.0"
   title: "BitMEX API"
@@ -68,7 +71,7 @@ tags:
 - name: "User"
   description: "Account Operations"
 - name: "UserEvent"
-  description: "User Events for auditing"
+  description: "User Events for Auditing"
 consumes:
 - "application/json"
 - "application/x-www-form-urlencoded"
@@ -99,6 +102,8 @@ paths:
         format: "JSON"
         x-exportParamName: "Columns"
         x-optionalDataType: "String"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -122,8 +127,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /announcement/urgent:
     get:
       tags:
@@ -131,6 +134,7 @@ paths:
       summary: "Get urgent (banner) announcements."
       operationId: "Announcement.getUrgent"
       parameters: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -154,7 +158,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /apiKey:
     get:
       tags:
@@ -170,6 +173,7 @@ paths:
         default: false
         x-exportParamName: "Reverse"
         x-optionalDataType: "Bool"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -193,7 +197,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /chat:
     get:
       tags:
@@ -235,6 +238,8 @@ paths:
         format: "double"
         x-exportParamName: "ChannelID"
         x-optionalDataType: "Float64"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -258,8 +263,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
     post:
       tags:
       - "Chat"
@@ -280,6 +283,7 @@ paths:
         format: "double"
         x-exportParamName: "ChannelID"
         x-optionalDataType: "Float64"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -301,7 +305,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /chat/channels:
     get:
       tags:
@@ -309,6 +312,8 @@ paths:
       summary: "Get available channels."
       operationId: "Chat.getChannels"
       parameters: []
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -332,8 +337,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /chat/connected:
     get:
       tags:
@@ -343,6 +346,8 @@ paths:
         \ API users (bots) in the second position."
       operationId: "Chat.getConnected"
       parameters: []
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -364,8 +369,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /execution:
     get:
       tags:
@@ -385,7 +388,8 @@ paths:
         description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
           \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
-          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\n\
+          Symbols are case-insensitive."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -413,7 +417,7 @@ paths:
         x-optionalDataType: "String"
       - name: "count"
         in: "query"
-        description: "Number of results to fetch."
+        description: "Number of results to fetch. Must be a positive integer."
         required: false
         type: "number"
         default: 100.0
@@ -453,6 +457,7 @@ paths:
         format: "date-time"
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -476,13 +481,11 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /execution/tradeHistory:
     get:
       tags:
       - "Execution"
-      summary: "Get all balance-affecting executions. This includes each trade, insurance\
-        \ charge, and settlement."
+      summary: "Get all balance-affecting executions."
       operationId: "Execution.getTradeHistory"
       parameters:
       - name: "symbol"
@@ -490,7 +493,8 @@ paths:
         description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
           \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
-          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\n\
+          Symbols are case-insensitive."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -518,7 +522,7 @@ paths:
         x-optionalDataType: "String"
       - name: "count"
         in: "query"
-        description: "Number of results to fetch."
+        description: "Number of results to fetch. Must be a positive integer."
         required: false
         type: "number"
         default: 100.0
@@ -558,6 +562,7 @@ paths:
         format: "date-time"
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -581,7 +586,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /funding:
     get:
       tags:
@@ -594,7 +598,8 @@ paths:
         description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
           \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
-          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\n\
+          Symbols are case-insensitive."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -622,7 +627,7 @@ paths:
         x-optionalDataType: "String"
       - name: "count"
         in: "query"
-        description: "Number of results to fetch."
+        description: "Number of results to fetch. Must be a positive integer."
         required: false
         type: "number"
         default: 100.0
@@ -662,6 +667,8 @@ paths:
         format: "date-time"
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -685,8 +692,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /instrument:
     get:
       tags:
@@ -704,7 +709,8 @@ paths:
         description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
           \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
-          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\n\
+          Symbols are case-insensitive."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -732,7 +738,7 @@ paths:
         x-optionalDataType: "String"
       - name: "count"
         in: "query"
-        description: "Number of results to fetch."
+        description: "Number of results to fetch. Must be a positive integer."
         required: false
         type: "number"
         default: 100.0
@@ -772,6 +778,8 @@ paths:
         format: "date-time"
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -795,8 +803,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /instrument/active:
     get:
       tags:
@@ -804,6 +810,8 @@ paths:
       summary: "Get all active instruments and instruments that have expired in <24hrs."
       operationId: "Instrument.getActive"
       parameters: []
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -827,8 +835,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /instrument/indices:
     get:
       tags:
@@ -836,6 +842,8 @@ paths:
       summary: "Get all price indices."
       operationId: "Instrument.getIndices"
       parameters: []
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -859,8 +867,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /instrument/activeAndIndices:
     get:
       tags:
@@ -869,6 +875,8 @@ paths:
         \ a join of the result of /indices and /active."
       operationId: "Instrument.getActiveAndIndices"
       parameters: []
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -892,8 +900,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /instrument/activeIntervals:
     get:
       tags:
@@ -907,6 +913,8 @@ paths:
         \ the same index."
       operationId: "Instrument.getActiveIntervals"
       parameters: []
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -928,8 +936,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /instrument/compositeIndex:
     get:
       tags:
@@ -937,8 +943,8 @@ paths:
       summary: "Show constituent parts of an index."
       description: "Composite indices are built from multiple external price sources.\n\
         \nUse this endpoint to get the underlying prices of an index. For example,\
-        \ send a `symbol` of `.XBT` to\nget the ticks and weights of the constituent\
-        \ exchanges that build the \".XBT\" index.\n\nA tick with reference `\"BMI\"\
+        \ send a `symbol` of `.BXBT` to\nget the ticks and weights of the constituent\
+        \ exchanges that build the \".BXBT\" index.\n\nA tick with reference `\"BMI\"\
         ` and weight `null` is the composite index tick.\n"
       operationId: "Instrument.getCompositeIndex"
       parameters:
@@ -947,15 +953,13 @@ paths:
         description: "The composite index symbol."
         required: false
         type: "string"
-        default: ".XBT"
+        default: ".BXBT"
         x-exportParamName: "Symbol"
         x-optionalDataType: "String"
       - name: "filter"
         in: "query"
         description: "Generic table filter. Send JSON key/value pairs, such as `{\"\
-          key\": \"value\"}`. You can key on individual fields, and do more advanced\
-          \ querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters)\
-          \ for more details."
+          key\": \"value\"}`."
         required: false
         type: "string"
         format: "JSON"
@@ -973,7 +977,7 @@ paths:
         x-optionalDataType: "String"
       - name: "count"
         in: "query"
-        description: "Number of results to fetch."
+        description: "Number of results to fetch. Must be a positive integer."
         required: false
         type: "number"
         default: 100.0
@@ -1013,6 +1017,8 @@ paths:
         format: "date-time"
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -1036,8 +1042,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /insurance:
     get:
       tags:
@@ -1050,7 +1054,8 @@ paths:
         description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
           \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
-          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\n\
+          Symbols are case-insensitive."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -1078,7 +1083,7 @@ paths:
         x-optionalDataType: "String"
       - name: "count"
         in: "query"
-        description: "Number of results to fetch."
+        description: "Number of results to fetch. Must be a positive integer."
         required: false
         type: "number"
         default: 100.0
@@ -1118,6 +1123,8 @@ paths:
         format: "date-time"
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -1141,8 +1148,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /leaderboard:
     get:
       tags:
@@ -1158,6 +1163,8 @@ paths:
         default: "notional"
         x-exportParamName: "Method"
         x-optionalDataType: "String"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -1181,8 +1188,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /leaderboard/name:
     get:
       tags:
@@ -1190,6 +1195,7 @@ paths:
       summary: "Get your alias on the leaderboard."
       operationId: "Leaderboard.getName"
       parameters: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -1211,7 +1217,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /liquidation:
     get:
       tags:
@@ -1224,7 +1229,8 @@ paths:
         description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
           \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
-          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\n\
+          Symbols are case-insensitive."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -1252,7 +1258,7 @@ paths:
         x-optionalDataType: "String"
       - name: "count"
         in: "query"
-        description: "Number of results to fetch."
+        description: "Number of results to fetch. Must be a positive integer."
         required: false
         type: "number"
         default: 100.0
@@ -1292,6 +1298,8 @@ paths:
         format: "date-time"
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -1315,8 +1323,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /globalNotification:
     get:
       tags:
@@ -1325,6 +1331,7 @@ paths:
       description: "This is an upcoming feature and currently does not return data."
       operationId: "GlobalNotification.get"
       parameters: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -1348,7 +1355,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /order:
     get:
       tags:
@@ -1364,7 +1370,8 @@ paths:
         description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
           \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
-          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\n\
+          Symbols are case-insensitive."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -1392,7 +1399,7 @@ paths:
         x-optionalDataType: "String"
       - name: "count"
         in: "query"
-        description: "Number of results to fetch."
+        description: "Number of results to fetch. Must be a positive integer."
         required: false
         type: "number"
         default: 100.0
@@ -1432,6 +1439,7 @@ paths:
         format: "date-time"
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -1455,7 +1463,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
     post:
       tags:
       - "Order"
@@ -1477,28 +1484,62 @@ paths:
         \ enters a Limit order instead of a Market order. Specify an `orderQty`, `stopPx`,\n\
         \  and `price`.\n- **MarketIfTouched**: Similar to a Stop, but triggers are\
         \ done in the opposite direction. Useful for Take Profit orders.\n- **LimitIfTouched**:\
-        \ As above; use for Take Profit Limit orders.\n\n#### Execution Instructions\n\
-        \nThe following `execInst`s are supported. If using multiple, separate with\
-        \ a comma (e.g. `LastPrice,Close`).\n\n- **ParticipateDoNotInitiate**: Also\
-        \ known as a Post-Only order. If this order would have executed on placement,\n\
-        \  it will cancel instead.\n- **MarkPrice, LastPrice, IndexPrice**: Used by\
-        \ stop and if-touched orders to determine the triggering price.\n  Use only\
-        \ one. By default, `'MarkPrice'` is used. Also used for Pegged orders to define\
-        \ the value of `'LastPeg'`.\n- **ReduceOnly**: A `'ReduceOnly'` order can\
-        \ only reduce your position, not increase it. If you have a `'ReduceOnly'`\n\
+        \ As above; use for Take Profit Limit orders.\n- **Pegged**: Pegged orders\
+        \ allow users to submit a limit price relative to the current market price.\
+        \ Specify a\n  `pegPriceType`, and `pegOffsetValue`.\n  - Pegged orders **must**\
+        \ have an `execInst` of `Fixed`. This means the limit price is set at the\
+        \ time the order\n    is accepted and does not change as the reference price\
+        \ changes.\n  - `PrimaryPeg`: Price is set relative to near touch price.\n\
+        \  - `MarketPeg`: Price is set relative to far touch price.\n  - A `pegPriceType`\
+        \ submitted with no `ordType` is treated as a `Pegged` order.\n\n#### Execution\
+        \ Instructions\n\nThe following `execInst`s are supported. If using multiple,\
+        \ separate with a comma (e.g. `LastPrice,Close`).\n\n- **ParticipateDoNotInitiate**:\
+        \ Also known as a Post-Only order. If this order would have executed on placement,\
+        \ it will cancel instead.\n  This is intended to protect you from the far\
+        \ touch moving towards you while the order is in transit.\n  It is not intended\
+        \ for speculating on the far touch moving away after submission - we consider\
+        \ such behaviour abusive and monitor for it.\n- **MarkPrice, LastPrice, IndexPrice**:\
+        \ Used by stop and if-touched orders to determine the triggering price.\n\
+        \  Use only one. By default, `MarkPrice` is used. Also used for Pegged orders\
+        \ to define the value of `LastPeg`.\n- **ReduceOnly**: A `ReduceOnly` order\
+        \ can only reduce your position, not increase it. If you have a `ReduceOnly`\n\
         \  limit order that rests in the order book while the position is reduced\
         \ by other orders, then its order quantity will\n  be amended down or canceled.\
-        \ If there are multiple `'ReduceOnly'` orders the least aggressive will be\
-        \ amended first.\n- **Close**: `'Close'` implies `'ReduceOnly'`. A `'Close'`\
-        \ order will cancel other active limit orders with the same side\n  and symbol\
-        \ if the open quantity exceeds the current position. This is useful for stops:\
-        \ by canceling these orders, a\n  `'Close'` Stop is ensured to have the margin\
+        \ If there are multiple `ReduceOnly` orders the least aggressive will be amended\
+        \ first.\n- **Close**: `Close` implies `ReduceOnly`. A `Close` order will\
+        \ cancel other active limit orders with the same side\n  and symbol if the\
+        \ open quantity exceeds the current position. This is useful for stops: by\
+        \ canceling these orders, a\n  `Close` Stop is ensured to have the margin\
         \ required to execute, and can only execute up to the full size of your\n\
-        \  position. If `orderQty` is not specified, a `'Close'` order has an `orderQty`\
+        \  position. If `orderQty` is not specified, a `Close` order has an `orderQty`\
         \ equal to your current position's size.\n  - Note that a `Close` order without\
         \ an `orderQty` requires a `side`, so that BitMEX knows if it should trigger\n\
-        \    above or below the `stopPx`.\n\n#### Linked Orders\n\n[Linked Orders\
-        \ are deprecated as of 2018/11/10](https://blog.bitmex.com/api_announcement/deprecation-of-contingent-orders/)\n\
+        \    above or below the `stopPx`.\n- **LastWithinMark**: Used by stop orders\
+        \ with `LastPrice` to allow stop triggers only when:\n  - For Sell Stop Market\
+        \ / Stop Limit Order\n    - Last Price &lt= Stop Price\n    - Last Price &gt=\
+        \ Mark Price × (1 - 5%)\n  - For Buy Stop Market / Stop Limit Order:\n   \
+        \ - Last Price &gt= Stop Price\n    - Last Price &lt= Mark Price × (1 + 5%)\n\
+        - **Fixed**: Pegged orders **must** have an `execInst` of `Fixed`. This means\
+        \ the limit price is set at the time\n  the order is accepted and does not\
+        \ change as the reference price changes.\n\n#### Pegged Orders\n\nPegged orders\
+        \ allow users to submit a limit price relative to the current market price.\n\
+        The limit price is set once when the order is submitted and does not change\
+        \ with the reference price.\nThis order type is not intended for speculating\
+        \ on the far touch moving away after submission - we consider such behaviour\
+        \ abusive and monitor for it.\n\nPegged orders have an `ordType` of `Pegged`,\
+        \ and an `execInst` of `Fixed`.\n\nA `pegPriceType` and `pegOffsetValue` must\
+        \ also be submitted:\n\n- `PrimaryPeg` - price is set relative to the **near\
+        \ touch** price\n- `MarketPeg` - price is set relative to the **far touch**\
+        \ price\n\n#### Trailing Stop Pegged Orders\n\nUse `pegPriceType` of `TrailingStopPeg`\
+        \ to create Trailing Stops.\n\nThe price is set at submission and updates\
+        \ once per second if the underlying price (last/mark/index) has moved by\n\
+        more than 0.1%. `stopPx` then moves as the market moves away from the peg,\
+        \ and freezes as the market moves toward it.\n\nUse `pegOffsetValue` to set\
+        \ the `stopPx` of your order. The peg is set to the triggering price specified\
+        \ in the\n`execInst` (default `MarkPrice`). Use a negative offset for stop-sell\
+        \ and buy-if-touched orders.\n\nRequires `ordType`: `Stop`, `StopLimit`, `MarketIfTouched`,\
+        \ `LimitIfTouched`.\n\n#### Linked Orders\n\n[Linked Orders are deprecated\
+        \ as of 2018/11/10](https://blog.bitmex.com/api_announcement/deprecation-of-contingent-orders/)\n\
         \n#### Trailing Stops\n\nYou may use `pegPriceType` of `'TrailingStopPeg'`\
         \ to create Trailing Stops. The pegged `stopPx` will move as the market\n\
         moves away from the peg, and freeze as the market moves toward it.\n\nTo use,\
@@ -1612,8 +1653,8 @@ paths:
         x-optionalDataType: "Float64"
       - name: "pegPriceType"
         in: "formData"
-        description: "Optional peg price type. Valid options: LastPeg, MidPricePeg,\
-          \ MarketPeg, PrimaryPeg, TrailingStopPeg."
+        description: "Optional peg price type. Valid options: MarketPeg, PrimaryPeg,\
+          \ TrailingStopPeg."
         required: false
         type: "string"
         x-exportParamName: "PegPriceType"
@@ -1641,10 +1682,11 @@ paths:
       - name: "execInst"
         in: "formData"
         description: "Optional execution instructions. Valid options: ParticipateDoNotInitiate,\
-          \ AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed.\
-          \ 'AllOrNone' instruction requires `displayQty` to be 0. 'MarkPrice', 'IndexPrice'\
-          \ or 'LastPrice' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched',\
-          \ and 'LimitIfTouched' orders."
+          \ AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed,\
+          \ LastWithinMark. 'AllOrNone' instruction requires `displayQty` to be 0.\
+          \ 'MarkPrice', 'IndexPrice' or 'LastPrice' instruction valid for 'Stop',\
+          \ 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. 'LastWithinMark'\
+          \ instruction valid for 'Stop' and 'StopLimit' with instruction 'LastPrice'."
         required: false
         type: "string"
         x-exportParamName: "ExecInst"
@@ -1663,6 +1705,7 @@ paths:
         type: "string"
         x-exportParamName: "Text"
         x-optionalDataType: "String"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -1684,7 +1727,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
     put:
       tags:
       - "Order"
@@ -1793,6 +1835,7 @@ paths:
         type: "string"
         x-exportParamName: "Text"
         x-optionalDataType: "String"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -1814,7 +1857,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
     delete:
       tags:
       - "Order"
@@ -1845,6 +1887,7 @@ paths:
         type: "string"
         x-exportParamName: "Text"
         x-optionalDataType: "String"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -1868,95 +1911,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
-  /order/bulk:
-    post:
-      tags:
-      - "Order"
-      summary: "Create multiple new orders for the same symbol."
-      description: "This endpoint is used for placing bulk orders. Valid order types\
-        \ are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and\
-        \ Pegged.\n\nEach individual order object in the array should have the same\
-        \ properties as an individual POST /order call.\n\nThis endpoint is much faster\
-        \ for getting many orders into the book at once. Because it reduces load on\
-        \ BitMEX\nsystems, this endpoint is ratelimited at `ceil(0.1 * orders)`. Submitting\
-        \ 10 orders via a bulk order call\nwill only count as 1 request, 15 as 2,\
-        \ 32 as 4, and so on.\n\nFor now, only `application/json` is supported on\
-        \ this endpoint.\n"
-      operationId: "Order.newBulk"
-      parameters:
-      - name: "orders"
-        in: "formData"
-        description: "An array of orders."
-        required: false
-        type: "string"
-        format: "JSON"
-        x-exportParamName: "Orders"
-        x-optionalDataType: "String"
-      responses:
-        "200":
-          description: "Request was successful"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Order"
-        "400":
-          description: "Parameter Error"
-          schema:
-            $ref: "#/definitions/Error"
-        "401":
-          description: "Unauthorized"
-          schema:
-            $ref: "#/definitions/Error"
-        "403":
-          description: "Access Denied"
-          schema:
-            $ref: "#/definitions/Error"
-        "404":
-          description: "Not Found"
-          schema:
-            $ref: "#/definitions/Error"
-      deprecated: false
-    put:
-      tags:
-      - "Order"
-      summary: "Amend multiple orders for the same symbol."
-      description: "Similar to POST /amend, but with multiple orders. `application/json`\
-        \ only. Ratelimited at 10%."
-      operationId: "Order.amendBulk"
-      parameters:
-      - name: "orders"
-        in: "formData"
-        description: "An array of orders."
-        required: false
-        type: "string"
-        format: "JSON"
-        x-exportParamName: "Orders"
-        x-optionalDataType: "String"
-      responses:
-        "200":
-          description: "Request was successful"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Order"
-        "400":
-          description: "Parameter Error"
-          schema:
-            $ref: "#/definitions/Error"
-        "401":
-          description: "Unauthorized"
-          schema:
-            $ref: "#/definitions/Error"
-        "403":
-          description: "Access Denied"
-          schema:
-            $ref: "#/definitions/Error"
-        "404":
-          description: "Not Found"
-          schema:
-            $ref: "#/definitions/Error"
-      deprecated: false
   /order/closePosition:
     post:
       tags:
@@ -1981,6 +1935,7 @@ paths:
         format: "double"
         x-exportParamName: "Price"
         x-optionalDataType: "Float64"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -2002,7 +1957,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /order/all:
     delete:
       tags:
@@ -2033,6 +1987,7 @@ paths:
         type: "string"
         x-exportParamName: "Text"
         x-optionalDataType: "String"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -2056,7 +2011,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /order/cancelAllAfter:
     post:
       tags:
@@ -2077,6 +2031,7 @@ paths:
         type: "number"
         format: "double"
         x-exportParamName: "Timeout"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -2098,7 +2053,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /orderBook/L2:
     get:
       tags:
@@ -2123,6 +2077,8 @@ paths:
         format: "int32"
         x-exportParamName: "Depth"
         x-optionalDataType: "Float32"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -2146,8 +2102,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /position:
     get:
       tags:
@@ -2216,6 +2170,7 @@ paths:
         format: "int32"
         x-exportParamName: "Count"
         x-optionalDataType: "Float32"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -2239,12 +2194,13 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /position/isolate:
     post:
       tags:
       - "Position"
       summary: "Enable isolated margin or cross margin per-position."
+      description: "Users can switch isolate margin per-position. This function allows\
+        \ switching margin isolation (aka fixed margin) on and off."
       operationId: "Position.isolateMargin"
       parameters:
       - name: "symbol"
@@ -2261,6 +2217,7 @@ paths:
         default: true
         x-exportParamName: "Enabled"
         x-optionalDataType: "Bool"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -2282,12 +2239,14 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /position/riskLimit:
     post:
       tags:
       - "Position"
       summary: "Update your risk limit."
+      description: "Risk Limits limit the size of positions you can trade at various\
+        \ margin levels. Larger positions require more margin. Please see the Risk\
+        \ Limit documentation for more details."
       operationId: "Position.updateRiskLimit"
       parameters:
       - name: "symbol"
@@ -2303,6 +2262,7 @@ paths:
         type: "number"
         format: "int64"
         x-exportParamName: "RiskLimit"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -2324,12 +2284,14 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /position/transferMargin:
     post:
       tags:
       - "Position"
       summary: "Transfer equity in or out of a position."
+      description: "When margin is isolated on a position, use this function to add\
+        \ or remove margin from the position. Note that you cannot remove margin below\
+        \ the initial margin threshold."
       operationId: "Position.transferIsolatedMargin"
       parameters:
       - name: "symbol"
@@ -2345,6 +2307,7 @@ paths:
         type: "number"
         format: "int64"
         x-exportParamName: "Amount"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -2366,12 +2329,13 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /position/leverage:
     post:
       tags:
       - "Position"
       summary: "Choose leverage for a position."
+      description: "Users can choose an isolated leverage. This will automatically\
+        \ enable isolated margin."
       operationId: "Position.updateLeverage"
       parameters:
       - name: "symbol"
@@ -2388,6 +2352,7 @@ paths:
         type: "number"
         format: "double"
         x-exportParamName: "Leverage"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -2409,7 +2374,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /quote:
     get:
       tags:
@@ -2422,7 +2386,8 @@ paths:
         description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
           \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
-          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\n\
+          Symbols are case-insensitive."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -2450,7 +2415,7 @@ paths:
         x-optionalDataType: "String"
       - name: "count"
         in: "query"
-        description: "Number of results to fetch."
+        description: "Number of results to fetch. Must be a positive integer."
         required: false
         type: "number"
         default: 100.0
@@ -2490,6 +2455,8 @@ paths:
         format: "date-time"
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -2513,8 +2480,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /quote/bucketed:
     get:
       tags:
@@ -2548,7 +2513,8 @@ paths:
         description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
           \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
-          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\n\
+          Symbols are case-insensitive."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -2576,7 +2542,7 @@ paths:
         x-optionalDataType: "String"
       - name: "count"
         in: "query"
-        description: "Number of results to fetch."
+        description: "Number of results to fetch. Must be a positive integer."
         required: false
         type: "number"
         default: 100.0
@@ -2616,6 +2582,8 @@ paths:
         format: "date-time"
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -2639,8 +2607,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /schema:
     get:
       tags:
@@ -2655,6 +2621,8 @@ paths:
         type: "string"
         x-exportParamName: "Model"
         x-optionalDataType: "String"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -2676,8 +2644,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /schema/websocketHelp:
     get:
       tags:
@@ -2685,6 +2651,8 @@ paths:
       summary: "Returns help text & subject list for websocket usage."
       operationId: "Schema.websocketHelp"
       parameters: []
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -2706,8 +2674,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /settlement:
     get:
       tags:
@@ -2720,7 +2686,8 @@ paths:
         description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
           \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
-          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\n\
+          Symbols are case-insensitive."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -2748,7 +2715,7 @@ paths:
         x-optionalDataType: "String"
       - name: "count"
         in: "query"
-        description: "Number of results to fetch."
+        description: "Number of results to fetch. Must be a positive integer."
         required: false
         type: "number"
         default: 100.0
@@ -2788,6 +2755,8 @@ paths:
         format: "date-time"
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -2811,8 +2780,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /stats:
     get:
       tags:
@@ -2820,6 +2787,8 @@ paths:
       summary: "Get exchange-wide and per-series turnover and volume statistics."
       operationId: "Stats.get"
       parameters: []
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -2843,8 +2812,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /stats/history:
     get:
       tags:
@@ -2852,6 +2819,8 @@ paths:
       summary: "Get historical exchange-wide and per-series turnover and volume statistics."
       operationId: "Stats.history"
       parameters: []
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -2875,8 +2844,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /stats/historyUSD:
     get:
       tags:
@@ -2884,6 +2851,8 @@ paths:
       summary: "Get a summary of exchange statistics in USD."
       operationId: "Stats.historyUSD"
       parameters: []
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -2907,8 +2876,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /trade:
     get:
       tags:
@@ -2925,7 +2892,8 @@ paths:
         description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
           \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
-          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\n\
+          Symbols are case-insensitive."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -2953,7 +2921,7 @@ paths:
         x-optionalDataType: "String"
       - name: "count"
         in: "query"
-        description: "Number of results to fetch."
+        description: "Number of results to fetch. Must be a positive integer."
         required: false
         type: "number"
         default: 100.0
@@ -2993,6 +2961,8 @@ paths:
         format: "date-time"
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3016,8 +2986,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /trade/bucketed:
     get:
       tags:
@@ -3052,7 +3020,8 @@ paths:
         description: "Instrument symbol. Send a bare series (e.g. XBT) to get data\
           \ for the nearest expiring contract in that series.\n\nYou can also send\
           \ a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`,\
-          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`."
+          \ `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\n\
+          Symbols are case-insensitive."
         required: false
         type: "string"
         x-exportParamName: "Symbol"
@@ -3080,7 +3049,7 @@ paths:
         x-optionalDataType: "String"
       - name: "count"
         in: "query"
-        description: "Number of results to fetch."
+        description: "Number of results to fetch. Must be a positive integer."
         required: false
         type: "number"
         default: 100.0
@@ -3120,6 +3089,8 @@ paths:
         format: "date-time"
         x-exportParamName: "EndTime"
         x-optionalDataType: "Time"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3143,8 +3114,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /user/depositAddress:
     get:
       tags:
@@ -3154,11 +3123,13 @@ paths:
       parameters:
       - name: "currency"
         in: "query"
+        description: "Options: `XBt`, `USDt`"
         required: false
         type: "string"
         default: "XBt"
         x-exportParamName: "Currency"
         x-optionalDataType: "String"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3180,7 +3151,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /user/wallet:
     get:
       tags:
@@ -3190,11 +3160,13 @@ paths:
       parameters:
       - name: "currency"
         in: "query"
+        description: "Options: `XBt`, `USDt`, `all`"
         required: false
         type: "string"
         default: "XBt"
         x-exportParamName: "Currency"
         x-optionalDataType: "String"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3216,7 +3188,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /user/walletHistory:
     get:
       tags:
@@ -3227,6 +3198,7 @@ paths:
       parameters:
       - name: "currency"
         in: "query"
+        description: "Options: `XBt`, `USDt`, `all`"
         required: false
         type: "string"
         default: "XBt"
@@ -3250,6 +3222,7 @@ paths:
         format: "double"
         x-exportParamName: "Start"
         x-optionalDataType: "Float64"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3273,7 +3246,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /user/walletSummary:
     get:
       tags:
@@ -3284,11 +3256,13 @@ paths:
       parameters:
       - name: "currency"
         in: "query"
+        description: "Options: `XBt`, `USDt`, `all`"
         required: false
         type: "string"
         default: "XBt"
         x-exportParamName: "Currency"
         x-optionalDataType: "String"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3312,7 +3286,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /user/executionHistory:
     get:
       tags:
@@ -3333,6 +3306,7 @@ paths:
         default: "2017-02-13T12:00:00.000Z"
         format: "date-time"
         x-exportParamName: "Timestamp"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3354,24 +3328,34 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /user/minWithdrawalFee:
     get:
       tags:
       - "User"
-      summary: "Get the minimum withdrawal fee for a currency."
+      summary: "Get the minimum, maximum, and recommended withdrawal fees for a currency."
       description: "This is changed based on network conditions to ensure timely withdrawals.\
         \ During network congestion, this may be high. The fee is returned in the\
-        \ same currency."
+        \ same currency.\n\nThe \"fee\" field is the recommended fee for fast confirmation\
+        \ on the blockchain."
       operationId: "User.minWithdrawalFee"
       parameters:
       - name: "currency"
         in: "query"
+        description: "Options: `XBt`, `USDt`"
         required: false
         type: "string"
         default: "XBt"
         x-exportParamName: "Currency"
         x-optionalDataType: "String"
+      - name: "amount"
+        in: "query"
+        required: false
+        type: "number"
+        format: "double"
+        x-exportParamName: "Amount"
+        x-optionalDataType: "Float64"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3393,8 +3377,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /user/requestWithdrawal:
     post:
       tags:
@@ -3405,14 +3387,14 @@ paths:
       parameters:
       - name: "otpToken"
         in: "formData"
-        description: "2FA token. Required if 2FA is enabled on your account."
+        description: "2FA token. Required for all external withdrawals."
         required: false
         type: "string"
         x-exportParamName: "OtpToken"
         x-optionalDataType: "String"
       - name: "currency"
         in: "formData"
-        description: "Currency you're withdrawing. Options: `XBt`"
+        description: "Currency you're withdrawing. Options: `XBt`, `USDt`"
         required: true
         type: "string"
         default: "XBt"
@@ -3426,10 +3408,30 @@ paths:
         x-exportParamName: "Amount"
       - name: "address"
         in: "formData"
-        description: "Destination Address."
-        required: true
+        description: "Destination Address. One of `address`, `addressId`, `targetUserId`\
+          \ has to be specified."
+        required: false
         type: "string"
         x-exportParamName: "Address"
+        x-optionalDataType: "String"
+      - name: "addressId"
+        in: "formData"
+        description: "ID of the Destination Address. One of `address`, `targetUserId`,\
+          \ `targetUserId` has to be specified."
+        required: false
+        type: "number"
+        format: "double"
+        x-exportParamName: "AddressId"
+        x-optionalDataType: "Float64"
+      - name: "targetUserId"
+        in: "formData"
+        description: "ID of the Target User. One of `address`, `addressId`, `targetUserId`\
+          \ has to be specified."
+        required: false
+        type: "number"
+        format: "double"
+        x-exportParamName: "TargetUserId"
+        x-optionalDataType: "Float64"
       - name: "fee"
         in: "formData"
         description: "Network fee for Bitcoin withdrawals. If not specified, a default\
@@ -3447,6 +3449,7 @@ paths:
         type: "string"
         x-exportParamName: "Text"
         x-optionalDataType: "String"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3468,7 +3471,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /user/cancelWithdrawal:
     post:
       tags:
@@ -3481,6 +3483,8 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Token"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3502,8 +3506,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /user/confirmWithdrawal:
     post:
       tags:
@@ -3516,6 +3518,8 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Token"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3537,8 +3541,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /user/confirmEmail:
     post:
       tags:
@@ -3551,6 +3553,8 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Token"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3572,15 +3576,22 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /user/affiliateStatus:
     get:
       tags:
       - "User"
       summary: "Get your current affiliate/referral status."
       operationId: "User.getAffiliateStatus"
-      parameters: []
+      parameters:
+      - name: "currency"
+        in: "query"
+        description: "Options: `XBt`, `USDt`, `all`"
+        required: false
+        type: "string"
+        default: "XBt"
+        x-exportParamName: "Currency"
+        x-optionalDataType: "String"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3602,7 +3613,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /user/checkReferralCode:
     get:
       tags:
@@ -3618,6 +3628,8 @@ paths:
         type: "string"
         x-exportParamName: "ReferralCode"
         x-optionalDataType: "String"
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3640,8 +3652,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /user/quoteFillRatio:
     get:
       tags:
@@ -3649,6 +3659,7 @@ paths:
       summary: "Get 7 days worth of Quote Fill Ratio statistics."
       operationId: "User.getQuoteFillRatio"
       parameters: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3670,7 +3681,64 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
+  /user/quoteValueRatio:
+    get:
+      tags:
+      - "User"
+      summary: "Get Quote Value Ratio statistics over the last 3 days"
+      operationId: "User.getQuoteValueRatio"
+      parameters: []
       deprecated: false
+      responses:
+        "200":
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/QuoteValueRatio"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+  /user/tradingVolume:
+    get:
+      tags:
+      - "User"
+      summary: "Get your 30 days USD average trading volume"
+      operationId: "User.getTradingVolume"
+      parameters: []
+      deprecated: false
+      responses:
+        "200":
+          description: "Request was successful"
+          schema:
+            $ref: "#/definitions/TradingVolume"
+        "400":
+          description: "Parameter Error"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "403":
+          description: "Access Denied"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
   /user/logout:
     post:
       tags:
@@ -3678,6 +3746,8 @@ paths:
       summary: "Log out of BitMEX."
       operationId: "User.logout"
       parameters: []
+      security: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3699,8 +3769,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      security: []
-      deprecated: false
   /user/preferences:
     post:
       tags:
@@ -3722,6 +3790,7 @@ paths:
         default: false
         x-exportParamName: "Overwrite"
         x-optionalDataType: "Bool"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3743,7 +3812,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /user:
     get:
       tags:
@@ -3751,6 +3819,7 @@ paths:
       summary: "Get your user model."
       operationId: "User.get"
       parameters: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3772,7 +3841,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /user/commission:
     get:
       tags:
@@ -3780,6 +3848,7 @@ paths:
       summary: "Get your account's commission status."
       operationId: "User.getCommission"
       parameters: []
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3801,7 +3870,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /user/margin:
     get:
       tags:
@@ -3812,11 +3880,13 @@ paths:
       parameters:
       - name: "currency"
         in: "query"
+        description: "Options: `XBt`, `USDt`, `all`"
         required: false
         type: "string"
         default: "XBt"
         x-exportParamName: "Currency"
         x-optionalDataType: "String"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3838,7 +3908,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /user/communicationToken:
     post:
       tags:
@@ -3856,6 +3925,7 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "PlatformAgent"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3879,7 +3949,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
   /userEvent:
     get:
       tags:
@@ -3904,6 +3973,7 @@ paths:
         format: "double"
         x-exportParamName: "StartId"
         x-optionalDataType: "Float64"
+      deprecated: false
       responses:
         "200":
           description: "Request was successful"
@@ -3927,7 +3997,6 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
 securityDefinitions:
   apiKey:
     type: "apiKey"
@@ -4086,7 +4155,8 @@ definitions:
   Execution:
     type: "object"
     required:
-    - "execID"
+    - "symbol"
+    - "timestamp"
     properties:
       execID:
         type: "string"
@@ -4306,6 +4376,9 @@ definitions:
         type: "string"
         format: "date-time"
       settle:
+        type: "string"
+        format: "date-time"
+      listedSettle:
         type: "string"
         format: "date-time"
       relistInterval:
@@ -4565,6 +4638,9 @@ definitions:
       optionUnderlyingPrice:
         type: "number"
         format: "double"
+      settledPriceAdjustmentRate:
+        type: "number"
+        format: "double"
       settledPrice:
         type: "number"
         format: "double"
@@ -4595,7 +4671,7 @@ definitions:
       fundingQuoteSymbol: "fundingQuoteSymbol"
       quoteCurrency: "quoteCurrency"
       indicativeSettlePrice: 9.702963800023566
-      settledPrice: 7.933506881737151
+      settledPrice: 5.507386964179881
       relistInterval: "2000-01-23T04:56:07.000+00:00"
       prevClosePrice: 8.762042012749001
       maxPrice: 2.3021358869347655
@@ -4611,6 +4687,7 @@ definitions:
       timestamp: "2000-01-23T04:56:07.000+00:00"
       limitDownPrice: 9.018348186070783
       lastTickDirection: "lastTickDirection"
+      settledPriceAdjustmentRate: 7.933506881737151
       rebalanceTimestamp: "2000-01-23T04:56:07.000+00:00"
       fairBasisRate: 1.041444916118296
       lastPriceProtected: 7.740351818741173
@@ -4624,6 +4701,7 @@ definitions:
       lastPrice: 8.969578798196912
       totalVolume: 2.884162126668780246063761296682059764862060546875
       symbol: "symbol"
+      listedSettle: "2000-01-23T04:56:07.000+00:00"
       capped: true
       vwap: 6.519180951018382
       closingTimestamp: "2000-01-23T04:56:07.000+00:00"
@@ -4697,6 +4775,8 @@ definitions:
       symbols:
       - "symbols"
       - "symbols"
+  x-any:
+    type: "object"
   IndexComposite:
     type: "object"
     required:
@@ -4709,9 +4789,20 @@ definitions:
         type: "string"
       indexSymbol:
         type: "string"
+      indexMultiplier:
+        type: "number"
+        format: "double"
       reference:
         type: "string"
       lastPrice:
+        type: "number"
+        format: "double"
+      sourcePrice:
+        type: "number"
+        format: "double"
+      conversionIndex:
+        type: "string"
+      conversionIndexPrice:
         type: "number"
         format: "double"
       weight:
@@ -4722,12 +4813,16 @@ definitions:
         format: "date-time"
     example:
       reference: "reference"
+      conversionIndex: "conversionIndex"
       symbol: "symbol"
       indexSymbol: "indexSymbol"
       logged: "2000-01-23T04:56:07.000+00:00"
-      weight: 6.027456183070403
+      conversionIndexPrice: 5.962133916683182
+      weight: 5.637376656633329
+      indexMultiplier: 0.8008281904610115
+      sourcePrice: 1.4658129805029452
       timestamp: "2000-01-23T04:56:07.000+00:00"
-      lastPrice: 0.8008281904610115
+      lastPrice: 6.027456183070403
   Insurance:
     type: "object"
     required:
@@ -4766,29 +4861,13 @@ definitions:
       profit: 0.8008281904610115
   Liquidation:
     type: "object"
-    required:
-    - "orderID"
     properties:
-      orderID:
-        type: "string"
-        format: "guid"
-      symbol:
-        type: "string"
-      side:
-        type: "string"
-      price:
+      id:
         type: "number"
         format: "double"
-      leavesQty:
-        type: "number"
-        format: "int64"
     description: "Active Liquidations"
     example:
-      symbol: "symbol"
-      side: "side"
-      orderID: "orderID"
-      price: 0.8008281904610115
-      leavesQty: 6.02745618307040320615897144307382404804229736328125
+      id: 0.8008281904610115
   GlobalNotification:
     type: "object"
     required:
@@ -4962,37 +5041,16 @@ definitions:
       ordType: "ordType"
   OrderBookL2:
     type: "object"
-    required:
-    - "id"
-    - "side"
-    - "symbol"
     properties:
-      symbol:
-        type: "string"
       id:
-        type: "number"
-        format: "int64"
-      side:
-        type: "string"
-      size:
-        type: "number"
-        format: "int64"
-      price:
         type: "number"
         format: "double"
     example:
-      symbol: "symbol"
-      side: "side"
-      size: 6.02745618307040320615897144307382404804229736328125
-      price: 1.4658129805029452
-      id: 0.80082819046101150206595775671303272247314453125
-  x-any:
-    type: "object"
+      id: 0.8008281904610115
   Position:
     type: "object"
     required:
     - "account"
-    - "currency"
     - "symbol"
     properties:
       account:
@@ -5411,46 +5469,13 @@ definitions:
       timestamp: "2000-01-23T04:56:07.000+00:00"
   Settlement:
     type: "object"
-    required:
-    - "symbol"
-    - "timestamp"
     properties:
-      timestamp:
-        type: "string"
-        format: "date-time"
-      symbol:
-        type: "string"
-      settlementType:
-        type: "string"
-      settledPrice:
-        type: "number"
-        format: "double"
-      optionStrikePrice:
-        type: "number"
-        format: "double"
-      optionUnderlyingPrice:
-        type: "number"
-        format: "double"
-      bankrupt:
-        type: "number"
-        format: "int64"
-      taxBase:
-        type: "number"
-        format: "int64"
-      taxRate:
+      id:
         type: "number"
         format: "double"
     description: "Historical Settlement Data"
     example:
-      settlementType: "settlementType"
-      symbol: "symbol"
-      taxRate: 2.3021358869347655
-      optionStrikePrice: 6.027456183070403
-      settledPrice: 0.8008281904610115
-      optionUnderlyingPrice: 1.4658129805029452
-      bankrupt: 5.962133916683182377482808078639209270477294921875
-      timestamp: "2000-01-23T04:56:07.000+00:00"
-      taxBase: 5.63737665663332876420099637471139430999755859375
+      id: 0.8008281904610115
   Stats:
     type: "object"
     required:
@@ -5707,42 +5732,29 @@ definitions:
       timestamp:
         type: "string"
         format: "date-time"
-      addr:
-        type: "string"
-      script:
-        type: "string"
-      withdrawalLock:
-        type: "array"
-        items:
-          type: "string"
     example:
-      deposited: 7.3862819483858839220147274318151175975799560546875
-      withdrawn: 1.231513536777255612975068288506008684635162353515625
-      deltaDeposited: 7.061401241503109105224211816675961017608642578125
-      prevWithdrawn: 1.46581298050294517310021547018550336360931396484375
-      deltaWithdrawn: 9.301444243932575517419536481611430644989013671875
-      currency: "currency"
-      prevAmount: 2.3021358869347654518833223846741020679473876953125
-      withdrawalLock:
-      - "withdrawalLock"
-      - "withdrawalLock"
-      addr: "addr"
-      prevTimestamp: "2000-01-23T04:56:07.000+00:00"
-      timestamp: "2000-01-23T04:56:07.000+00:00"
       transferOut: 1.489415909854170383397331534069962799549102783203125
       deltaAmount: 4.1456080298839363962315474054776132106781005859375
       amount: 6.8468526983526398765889098285697400569915771484375
       pendingDebit: 1.173074250955943309548956676735542714595794677734375
       confirmedDebit: 4.9652184929849543237878606305457651615142822265625
+      deposited: 7.3862819483858839220147274318151175975799560546875
+      withdrawn: 1.231513536777255612975068288506008684635162353515625
+      deltaDeposited: 7.061401241503109105224211816675961017608642578125
       pendingCredit: 7.4577447736837658709418974467553198337554931640625
-      script: "script"
+      prevWithdrawn: 1.46581298050294517310021547018550336360931396484375
       prevTransferOut: 5.63737665663332876420099637471139430999755859375
       deltaTransferOut: 2.027123023002321833274663731572218239307403564453125
+      deltaWithdrawn: 9.301444243932575517419536481611430644989013671875
       deltaTransferIn: 3.61607674925191080461672754609026014804840087890625
+      currency: "currency"
       transferIn: 1.024645700144157789424070870154537260532379150390625
       prevDeposited: 6.02745618307040320615897144307382404804229736328125
+      prevAmount: 2.3021358869347654518833223846741020679473876953125
       prevTransferIn: 5.962133916683182377482808078639209270477294921875
+      prevTimestamp: "2000-01-23T04:56:07.000+00:00"
       account: 0.80082819046101150206595775671303272247314453125
+      timestamp: "2000-01-23T04:56:07.000+00:00"
   Transaction:
     type: "object"
     required:
@@ -5816,51 +5828,7 @@ definitions:
       userId: 6.027456183070403
   Affiliate:
     type: "object"
-    required:
-    - "account"
-    - "currency"
     properties:
-      account:
-        type: "number"
-        format: "int64"
-      currency:
-        type: "string"
-      prevPayout:
-        type: "number"
-        format: "int64"
-      prevTurnover:
-        type: "number"
-        format: "int64"
-      prevComm:
-        type: "number"
-        format: "int64"
-      prevTimestamp:
-        type: "string"
-        format: "date-time"
-      execTurnover:
-        type: "number"
-        format: "int64"
-      execComm:
-        type: "number"
-        format: "int64"
-      totalReferrals:
-        type: "number"
-        format: "int64"
-      totalTurnover:
-        type: "number"
-        format: "int64"
-      totalComm:
-        type: "number"
-        format: "int64"
-      payoutPcnt:
-        type: "number"
-        format: "double"
-      pendingPayout:
-        type: "number"
-        format: "int64"
-      timestamp:
-        type: "string"
-        format: "date-time"
       referrerAccount:
         type: "number"
         format: "double"
@@ -5870,24 +5838,14 @@ definitions:
       affiliatePayout:
         type: "number"
         format: "double"
+      id:
+        type: "number"
+        format: "double"
     example:
-      referralDiscount: 1.2315135367772556
-      execTurnover: 5.63737665663332876420099637471139430999755859375
-      totalTurnover: 9.301444243932575517419536481611430644989013671875
-      referrerAccount: 7.386281948385884
-      execComm: 2.3021358869347654518833223846741020679473876953125
-      totalReferrals: 7.061401241503109105224211816675961017608642578125
-      currency: "currency"
-      pendingPayout: 4.1456080298839363962315474054776132106781005859375
-      prevPayout: 6.02745618307040320615897144307382404804229736328125
-      prevComm: 5.962133916683182377482808078639209270477294921875
-      prevTimestamp: "2000-01-23T04:56:07.000+00:00"
-      account: 0.80082819046101150206595775671303272247314453125
-      prevTurnover: 1.46581298050294517310021547018550336360931396484375
-      totalComm: 3.61607674925191080461672754609026014804840087890625
-      payoutPcnt: 2.027123023002322
-      timestamp: "2000-01-23T04:56:07.000+00:00"
-      affiliatePayout: 1.0246457001441578
+      referrerAccount: 0.8008281904610115
+      referralDiscount: 6.027456183070403
+      id: 5.962133916683182
+      affiliatePayout: 1.4658129805029452
   QuoteFillRatio:
     type: "object"
     required:
@@ -5923,10 +5881,52 @@ definitions:
       account: 0.8008281904610115
       dealtCount: 1.4658129805029452
       quotesMavg7: 5.962133916683182
+  QuoteValueRatio:
+    type: "object"
+    properties:
+      timestamp:
+        type: "string"
+        format: "date-time"
+      account:
+        type: "number"
+        format: "double"
+      symbol:
+        type: "string"
+      quoteCount:
+        type: "number"
+        format: "double"
+      volumeXBT:
+        type: "number"
+        format: "double"
+      QVR:
+        type: "number"
+        format: "double"
+      id:
+        type: "number"
+        format: "double"
+    description: "Hourly Quote Value Ratio Statistic"
+    example:
+      symbol: "symbol"
+      volumeXBT: 1.4658129805029452
+      quoteCount: 6.027456183070403
+      id: 5.637376656633329
+      QVR: 5.962133916683182
+      account: 0.8008281904610115
+      timestamp: "2000-01-23T04:56:07.000+00:00"
+  TradingVolume:
+    type: "object"
+    required:
+    - "advUsd"
+    properties:
+      advUsd:
+        type: "number"
+        format: "double"
+    description: "30 days USD average trading volume"
+    example:
+      advUsd: 0.8008281904610115
   User:
     type: "object"
     required:
-    - "email"
     - "username"
     properties:
       id:
@@ -5961,6 +5961,9 @@ definitions:
       pgpPubKey:
         type: "string"
         maxLength: 16384
+      pgpPubKeyCreated:
+        type: "string"
+        format: "date-time"
       country:
         type: "string"
         maxLength: 3
@@ -5997,6 +6000,7 @@ definitions:
         sounds:
         - "sounds"
         - "sounds"
+        hidePhoneConfirm: false
         colorTheme: "colorTheme"
         currency: "currency"
         hideNameFromLeaderboard: true
@@ -6017,6 +6021,7 @@ definitions:
         orderClearImmediate: false
         showLocaleNumbers: true
         chatChannelID: 1.4658129805029452
+      pgpPubKeyCreated: "2000-01-23T04:56:07.000+00:00"
       created: "2000-01-23T04:56:07.000+00:00"
       typ: "typ"
       ownerId: 6.02745618307040320615897144307382404804229736328125
@@ -6152,9 +6157,6 @@ definitions:
       withdrawableMargin:
         type: "number"
         format: "int64"
-      timestamp:
-        type: "string"
-        format: "date-time"
       grossLastValue:
         type: "number"
         format: "int64"
@@ -6162,6 +6164,17 @@ definitions:
         type: "number"
         format: "double"
         default: 0.0
+      makerFeeDiscount:
+        type: "number"
+        format: "double"
+        default: 0.0
+      takerFeeDiscount:
+        type: "number"
+        format: "double"
+        default: 0.0
+      timestamp:
+        type: "string"
+        format: "date-time"
     example:
       grossMarkValue: 1.231513536777255612975068288506008684635162353515625
       marginUsedPcnt: 2.8841621266687802
@@ -6191,6 +6204,7 @@ definitions:
       confirmedDebit: 2.3021358869347654518833223846741020679473876953125
       grossComm: 3.61607674925191080461672754609026014804840087890625
       grossOpenPremium: 4.1456080298839363962315474054776132106781005859375
+      makerFeeDiscount: 7.143538047012306
       excessMarginPcnt: 6.878052220127876
       withdrawableMargin: 6.70401929795003592715829654480330646038055419921875
       pendingCredit: 5.962133916683182377482808078639209270477294921875
@@ -6202,6 +6216,7 @@ definitions:
       initMargin: 6.8468526983526398765889098285697400569915771484375
       syntheticMargin: 9.0183481860707832566959041287191212177276611328125
       taxableMargin: 1.489415909854170383397331534069962799549102783203125
+      takerFeeDiscount: 0.8851374739011653
       account: 0.80082819046101150206595775671303272247314453125
       availableMargin: 5.94489560761401580890606055618263781070709228515625
   CommunicationToken:
@@ -6266,6 +6281,8 @@ definitions:
         - "withdrawalCompleted"
         - "withdrawalConfirmed"
         - "withdrawalRequested"
+        - "addressSkipConfirmRequested"
+        - "addressSkipConfirmVerified"
         - "verify"
       status:
         type: "string"
@@ -6295,7 +6312,7 @@ definitions:
       created:
         type: "string"
         format: "date-time"
-    description: "User Events for auditing"
+    description: "User Events for Auditing"
     example:
       geoipRegion: "geoipRegion"
       geoipSubRegion: "geoipSubRegion"
@@ -6351,6 +6368,9 @@ definitions:
         type: "array"
         items:
           type: "string"
+      hidePhoneConfirm:
+        type: "boolean"
+        default: false
       locale:
         type: "string"
         default: "en-US"
@@ -6407,6 +6427,7 @@ definitions:
       sounds:
       - "sounds"
       - "sounds"
+      hidePhoneConfirm: false
       colorTheme: "colorTheme"
       currency: "currency"
       hideNameFromLeaderboard: true

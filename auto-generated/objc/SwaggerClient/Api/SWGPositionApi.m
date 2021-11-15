@@ -121,7 +121,7 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
 
 ///
 /// Enable isolated margin or cross margin per-position.
-/// 
+/// Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
 ///  @param symbol Position symbol to isolate. 
 ///
 ///  @param enabled True for isolated margin, false for cross margin. (optional, default to true)
@@ -195,7 +195,7 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
 
 ///
 /// Transfer equity in or out of a position.
-/// 
+/// When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
 ///  @param symbol Symbol of position to isolate. 
 ///
 ///  @param amount Amount to transfer, in Satoshis. May be negative. 
@@ -280,7 +280,7 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
 
 ///
 /// Choose leverage for a position.
-/// 
+/// Users can choose an isolated leverage. This will automatically enable isolated margin.
 ///  @param symbol Symbol of position to adjust. 
 ///
 ///  @param leverage Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin. 
@@ -365,7 +365,7 @@ NSInteger kSWGPositionApiMissingParamErrorCode = 234513;
 
 ///
 /// Update your risk limit.
-/// 
+/// Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
 ///  @param symbol Symbol of position to update risk limit on. 
 ///
 ///  @param riskLimit New Risk Limit, in Satoshis. 

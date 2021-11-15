@@ -28,12 +28,14 @@ HEADERS += \
     $${PWD}/SWGPosition.h \
     $${PWD}/SWGQuote.h \
     $${PWD}/SWGQuoteFillRatio.h \
+    $${PWD}/SWGQuoteValueRatio.h \
     $${PWD}/SWGSettlement.h \
     $${PWD}/SWGStats.h \
     $${PWD}/SWGStatsHistory.h \
     $${PWD}/SWGStatsUSD.h \
     $${PWD}/SWGTrade.h \
     $${PWD}/SWGTradeBin.h \
+    $${PWD}/SWGTradingVolume.h \
     $${PWD}/SWGTransaction.h \
     $${PWD}/SWGUser.h \
     $${PWD}/SWGUserCommissionsBySymbol.h \
@@ -97,12 +99,14 @@ SOURCES += \
     $${PWD}/SWGPosition.cpp \
     $${PWD}/SWGQuote.cpp \
     $${PWD}/SWGQuoteFillRatio.cpp \
+    $${PWD}/SWGQuoteValueRatio.cpp \
     $${PWD}/SWGSettlement.cpp \
     $${PWD}/SWGStats.cpp \
     $${PWD}/SWGStatsHistory.cpp \
     $${PWD}/SWGStatsUSD.cpp \
     $${PWD}/SWGTrade.cpp \
     $${PWD}/SWGTradeBin.cpp \
+    $${PWD}/SWGTradingVolume.cpp \
     $${PWD}/SWGTransaction.cpp \
     $${PWD}/SWGUser.cpp \
     $${PWD}/SWGUserCommissionsBySymbol.cpp \

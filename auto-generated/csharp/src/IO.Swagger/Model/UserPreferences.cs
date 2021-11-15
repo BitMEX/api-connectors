@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  - --  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  - --  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -47,6 +47,7 @@ namespace IO.Swagger.Model
         /// <param name="hideFromLeaderboard">hideFromLeaderboard (default to false).</param>
         /// <param name="hideNameFromLeaderboard">hideNameFromLeaderboard (default to true).</param>
         /// <param name="hideNotifications">hideNotifications.</param>
+        /// <param name="hidePhoneConfirm">hidePhoneConfirm (default to false).</param>
         /// <param name="locale">locale (default to &quot;en-US&quot;).</param>
         /// <param name="msgsSeen">msgsSeen.</param>
         /// <param name="orderBookBinning">orderBookBinning.</param>
@@ -60,7 +61,7 @@ namespace IO.Swagger.Model
         /// <param name="tickerGroup">tickerGroup.</param>
         /// <param name="tickerPinned">tickerPinned.</param>
         /// <param name="tradeLayout">tradeLayout.</param>
-        public UserPreferences(bool? alertOnLiquidations = default(bool?), bool? animationsEnabled = default(bool?), DateTime? announcementsLastSeen = default(DateTime?), double? chatChannelID = default(double?), string colorTheme = default(string), string currency = default(string), bool? debug = default(bool?), List<string> disableEmails = default(List<string>), List<string> disablePush = default(List<string>), List<string> hideConfirmDialogs = default(List<string>), bool? hideConnectionModal = default(bool?), bool? hideFromLeaderboard = false, bool? hideNameFromLeaderboard = true, List<string> hideNotifications = default(List<string>), string locale = "en-US", List<string> msgsSeen = default(List<string>), Object orderBookBinning = default(Object), string orderBookType = default(string), bool? orderClearImmediate = false, bool? orderControlsPlusMinus = default(bool?), bool? showLocaleNumbers = true, List<string> sounds = default(List<string>), bool? strictIPCheck = false, bool? strictTimeout = true, string tickerGroup = default(string), bool? tickerPinned = default(bool?), string tradeLayout = default(string))
+        public UserPreferences(bool? alertOnLiquidations = default(bool?), bool? animationsEnabled = default(bool?), DateTime? announcementsLastSeen = default(DateTime?), double? chatChannelID = default(double?), string colorTheme = default(string), string currency = default(string), bool? debug = default(bool?), List<string> disableEmails = default(List<string>), List<string> disablePush = default(List<string>), List<string> hideConfirmDialogs = default(List<string>), bool? hideConnectionModal = default(bool?), bool? hideFromLeaderboard = false, bool? hideNameFromLeaderboard = true, List<string> hideNotifications = default(List<string>), bool? hidePhoneConfirm = false, string locale = "en-US", List<string> msgsSeen = default(List<string>), Object orderBookBinning = default(Object), string orderBookType = default(string), bool? orderClearImmediate = false, bool? orderControlsPlusMinus = default(bool?), bool? showLocaleNumbers = true, List<string> sounds = default(List<string>), bool? strictIPCheck = false, bool? strictTimeout = true, string tickerGroup = default(string), bool? tickerPinned = default(bool?), string tradeLayout = default(string))
         {
             this.AlertOnLiquidations = alertOnLiquidations;
             this.AnimationsEnabled = animationsEnabled;
@@ -92,6 +93,15 @@ namespace IO.Swagger.Model
                 this.HideNameFromLeaderboard = hideNameFromLeaderboard;
             }
             this.HideNotifications = hideNotifications;
+            // use default value if no "hidePhoneConfirm" provided
+            if (hidePhoneConfirm == null)
+            {
+                this.HidePhoneConfirm = false;
+            }
+            else
+            {
+                this.HidePhoneConfirm = hidePhoneConfirm;
+            }
             // use default value if no "locale" provided
             if (locale == null)
             {
@@ -232,6 +242,12 @@ namespace IO.Swagger.Model
         public List<string> HideNotifications { get; set; }
 
         /// <summary>
+        /// Gets or Sets HidePhoneConfirm
+        /// </summary>
+        [DataMember(Name="hidePhoneConfirm", EmitDefaultValue=false)]
+        public bool? HidePhoneConfirm { get; set; }
+
+        /// <summary>
         /// Gets or Sets Locale
         /// </summary>
         [DataMember(Name="locale", EmitDefaultValue=false)]
@@ -331,6 +347,7 @@ namespace IO.Swagger.Model
             sb.Append("  HideFromLeaderboard: ").Append(HideFromLeaderboard).Append("\n");
             sb.Append("  HideNameFromLeaderboard: ").Append(HideNameFromLeaderboard).Append("\n");
             sb.Append("  HideNotifications: ").Append(HideNotifications).Append("\n");
+            sb.Append("  HidePhoneConfirm: ").Append(HidePhoneConfirm).Append("\n");
             sb.Append("  Locale: ").Append(Locale).Append("\n");
             sb.Append("  MsgsSeen: ").Append(MsgsSeen).Append("\n");
             sb.Append("  OrderBookBinning: ").Append(OrderBookBinning).Append("\n");
@@ -449,6 +466,11 @@ namespace IO.Swagger.Model
                     this.HideNotifications.SequenceEqual(input.HideNotifications)
                 ) && 
                 (
+                    this.HidePhoneConfirm == input.HidePhoneConfirm ||
+                    (this.HidePhoneConfirm != null &&
+                    this.HidePhoneConfirm.Equals(input.HidePhoneConfirm))
+                ) && 
+                (
                     this.Locale == input.Locale ||
                     (this.Locale != null &&
                     this.Locale.Equals(input.Locale))
@@ -552,6 +574,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.HideNameFromLeaderboard.GetHashCode();
                 if (this.HideNotifications != null)
                     hashCode = hashCode * 59 + this.HideNotifications.GetHashCode();
+                if (this.HidePhoneConfirm != null)
+                    hashCode = hashCode * 59 + this.HidePhoneConfirm.GetHashCode();
                 if (this.Locale != null)
                     hashCode = hashCode * 59 + this.Locale.GetHashCode();
                 if (this.MsgsSeen != null)

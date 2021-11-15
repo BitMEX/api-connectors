@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -25,6 +25,8 @@
 #include "SWGNumber.h"
 #include "SWGObject.h"
 #include "SWGQuoteFillRatio.h"
+#include "SWGQuoteValueRatio.h"
+#include "SWGTradingVolume.h"
 #include "SWGTransaction.h"
 #include "SWGUser.h"
 #include "SWGUserCommissionsBySymbol.h"
@@ -52,18 +54,20 @@ public:
     void user_confirm(QString* token);
     void user_confirmWithdrawal(QString* token);
     void user_get();
-    void user_getAffiliateStatus();
+    void user_getAffiliateStatus(QString* currency);
     void user_getCommission();
     void user_getDepositAddress(QString* currency);
     void user_getExecutionHistory(QString* symbol, QDateTime* timestamp);
     void user_getMargin(QString* currency);
     void user_getQuoteFillRatio();
+    void user_getQuoteValueRatio();
+    void user_getTradingVolume();
     void user_getWallet(QString* currency);
     void user_getWalletHistory(QString* currency, double count, double start);
     void user_getWalletSummary(QString* currency);
     void user_logout();
-    void user_minWithdrawalFee(QString* currency);
-    void user_requestWithdrawal(QString* currency, SWGNumber* amount, QString* address, QString* otp_token, double fee, QString* text);
+    void user_minWithdrawalFee(QString* currency, double amount);
+    void user_requestWithdrawal(QString* currency, SWGNumber* amount, QString* otp_token, QString* address, double address_id, double target_user_id, double fee, QString* text);
     void user_savePreferences(QString* prefs, bool overwrite);
     
 private:
@@ -79,6 +83,8 @@ private:
     void user_getExecutionHistoryCallback (SWGHttpRequestWorker * worker);
     void user_getMarginCallback (SWGHttpRequestWorker * worker);
     void user_getQuoteFillRatioCallback (SWGHttpRequestWorker * worker);
+    void user_getQuoteValueRatioCallback (SWGHttpRequestWorker * worker);
+    void user_getTradingVolumeCallback (SWGHttpRequestWorker * worker);
     void user_getWalletCallback (SWGHttpRequestWorker * worker);
     void user_getWalletHistoryCallback (SWGHttpRequestWorker * worker);
     void user_getWalletSummaryCallback (SWGHttpRequestWorker * worker);
@@ -100,6 +106,8 @@ signals:
     void user_getExecutionHistorySignal(SWGObject* summary);
     void user_getMarginSignal(SWGMargin* summary);
     void user_getQuoteFillRatioSignal(SWGQuoteFillRatio* summary);
+    void user_getQuoteValueRatioSignal(SWGQuoteValueRatio* summary);
+    void user_getTradingVolumeSignal(SWGTradingVolume* summary);
     void user_getWalletSignal(SWGWallet* summary);
     void user_getWalletHistorySignal(QList<SWGTransaction*>* summary);
     void user_getWalletSummarySignal(QList<SWGTransaction*>* summary);
@@ -120,6 +128,8 @@ signals:
     void user_getExecutionHistorySignalE(SWGObject* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getMarginSignalE(SWGMargin* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getQuoteFillRatioSignalE(SWGQuoteFillRatio* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getQuoteValueRatioSignalE(SWGQuoteValueRatio* summary, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getTradingVolumeSignalE(SWGTradingVolume* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getWalletSignalE(SWGWallet* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getWalletHistorySignalE(QList<SWGTransaction*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getWalletSummarySignalE(QList<SWGTransaction*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
@@ -140,6 +150,8 @@ signals:
     void user_getExecutionHistorySignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getMarginSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getQuoteFillRatioSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getQuoteValueRatioSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
+    void user_getTradingVolumeSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getWalletSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getWalletHistorySignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void user_getWalletSummarySignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);

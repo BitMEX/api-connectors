@@ -5,7 +5,7 @@ All URIs are relative to *https://www.bitmex.com/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**executionGet**](SWGExecutionApi.md#executionget) | **GET** /execution | Get all raw executions for your account.
-[**executionGetTradeHistory**](SWGExecutionApi.md#executiongettradehistory) | **GET** /execution/tradeHistory | Get all balance-affecting executions. This includes each trade, insurance charge, and settlement.
+[**executionGetTradeHistory**](SWGExecutionApi.md#executiongettradehistory) | **GET** /execution/tradeHistory | Get all balance-affecting executions.
 
 
 # **executionGet**
@@ -45,10 +45,10 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
 
 
-NSString* symbol = @"symbol_example"; // Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`. (optional)
+NSString* symbol = @"symbol_example"; // Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.  Symbols are case-insensitive. (optional)
 NSString* filter = @"filter_example"; // Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. (optional)
 NSString* columns = @"columns_example"; // Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
-NSNumber* count = @100; // Number of results to fetch. (optional) (default to 100)
+NSNumber* count = @100; // Number of results to fetch. Must be a positive integer. (optional) (default to 100)
 NSNumber* start = @0; // Starting point for results. (optional) (default to 0)
 NSNumber* reverse = @false; // If true, will sort results newest first. (optional) (default to false)
 NSDate* startTime = @"2013-10-20T19:20:30+01:00"; // Starting date filter for results. (optional)
@@ -79,10 +79,10 @@ SWGExecutionApi*apiInstance = [[SWGExecutionApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **NSString***| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;. | [optional] 
+ **symbol** | **NSString***| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive. | [optional] 
  **filter** | **NSString***| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | [optional] 
  **columns** | **NSString***| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | [optional] 
- **count** | **NSNumber***| Number of results to fetch. | [optional] [default to 100]
+ **count** | **NSNumber***| Number of results to fetch. Must be a positive integer. | [optional] [default to 100]
  **start** | **NSNumber***| Starting point for results. | [optional] [default to 0]
  **reverse** | **NSNumber***| If true, will sort results newest first. | [optional] [default to false]
  **startTime** | **NSDate***| Starting date filter for results. | [optional] 
@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
         completionHandler: (void (^)(NSArray<SWGExecution>* output, NSError* error)) handler;
 ```
 
-Get all balance-affecting executions. This includes each trade, insurance charge, and settlement.
+Get all balance-affecting executions.
 
 ### Example 
 ```objc
@@ -138,10 +138,10 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
 
 
-NSString* symbol = @"symbol_example"; // Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`. (optional)
+NSString* symbol = @"symbol_example"; // Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.  Symbols are case-insensitive. (optional)
 NSString* filter = @"filter_example"; // Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. (optional)
 NSString* columns = @"columns_example"; // Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
-NSNumber* count = @100; // Number of results to fetch. (optional) (default to 100)
+NSNumber* count = @100; // Number of results to fetch. Must be a positive integer. (optional) (default to 100)
 NSNumber* start = @0; // Starting point for results. (optional) (default to 0)
 NSNumber* reverse = @false; // If true, will sort results newest first. (optional) (default to false)
 NSDate* startTime = @"2013-10-20T19:20:30+01:00"; // Starting date filter for results. (optional)
@@ -149,7 +149,7 @@ NSDate* endTime = @"2013-10-20T19:20:30+01:00"; // Ending date filter for result
 
 SWGExecutionApi*apiInstance = [[SWGExecutionApi alloc] init];
 
-// Get all balance-affecting executions. This includes each trade, insurance charge, and settlement.
+// Get all balance-affecting executions.
 [apiInstance executionGetTradeHistoryWithSymbol:symbol
               filter:filter
               columns:columns
@@ -172,10 +172,10 @@ SWGExecutionApi*apiInstance = [[SWGExecutionApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **NSString***| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;. | [optional] 
+ **symbol** | **NSString***| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive. | [optional] 
  **filter** | **NSString***| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | [optional] 
  **columns** | **NSString***| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | [optional] 
- **count** | **NSNumber***| Number of results to fetch. | [optional] [default to 100]
+ **count** | **NSNumber***| Number of results to fetch. Must be a positive integer. | [optional] [default to 100]
  **start** | **NSNumber***| Starting point for results. | [optional] [default to 0]
  **reverse** | **NSNumber***| If true, will sort results newest first. | [optional] [default to false]
  **startTime** | **NSDate***| Starting date filter for results. | [optional] 

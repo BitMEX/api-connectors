@@ -3,12 +3,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExecID** | **string** |  | 
+**ExecID** | **string** |  | [optional] 
 **OrderID** | **string** |  | [optional] 
 **ClOrdID** | **string** |  | [optional] 
 **ClOrdLinkID** | **string** |  | [optional] 
 **Account** | **decimal?** |  | [optional] 
-**Symbol** | **string** |  | [optional] 
+**Symbol** | **string** |  | 
 **Side** | **string** |  | [optional] 
 **LastQty** | **decimal?** |  | [optional] 
 **LastPx** | **double?** |  | [optional] 
@@ -49,7 +49,7 @@ Name | Type | Description | Notes
 **HomeNotional** | **double?** |  | [optional] 
 **ForeignNotional** | **double?** |  | [optional] 
 **TransactTime** | **DateTime?** |  | [optional] 
-**Timestamp** | **DateTime?** |  | [optional] 
+**Timestamp** | **DateTime?** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

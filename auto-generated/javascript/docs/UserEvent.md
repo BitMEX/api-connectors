@@ -68,6 +68,10 @@ Name | Type | Description | Notes
 
 * `withdrawalRequested` (value: `"withdrawalRequested"`)
 
+* `addressSkipConfirmRequested` (value: `"addressSkipConfirmRequested"`)
+
+* `addressSkipConfirmVerified` (value: `"addressSkipConfirmVerified"`)
+
 * `verify` (value: `"verify"`)
 
 

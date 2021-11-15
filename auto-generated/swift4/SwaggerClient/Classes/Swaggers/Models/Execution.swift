@@ -12,12 +12,12 @@ import Foundation
 
 public struct Execution: Codable {
 
-    public var execID: String
+    public var execID: String?
     public var orderID: String?
     public var clOrdID: String?
     public var clOrdLinkID: String?
     public var account: Double?
-    public var symbol: String?
+    public var symbol: String
     public var side: String?
     public var lastQty: Double?
     public var lastPx: Double?
@@ -58,9 +58,9 @@ public struct Execution: Codable {
     public var homeNotional: Double?
     public var foreignNotional: Double?
     public var transactTime: Date?
-    public var timestamp: Date?
+    public var timestamp: Date
 
-    public init(execID: String, orderID: String?, clOrdID: String?, clOrdLinkID: String?, account: Double?, symbol: String?, side: String?, lastQty: Double?, lastPx: Double?, underlyingLastPx: Double?, lastMkt: String?, lastLiquidityInd: String?, simpleOrderQty: Double?, orderQty: Double?, price: Double?, displayQty: Double?, stopPx: Double?, pegOffsetValue: Double?, pegPriceType: String?, currency: String?, settlCurrency: String?, execType: String?, ordType: String?, timeInForce: String?, execInst: String?, contingencyType: String?, exDestination: String?, ordStatus: String?, triggered: String?, workingIndicator: Bool?, ordRejReason: String?, simpleLeavesQty: Double?, leavesQty: Double?, simpleCumQty: Double?, cumQty: Double?, avgPx: Double?, commission: Double?, tradePublishIndicator: String?, multiLegReportingType: String?, text: String?, trdMatchID: String?, execCost: Double?, execComm: Double?, homeNotional: Double?, foreignNotional: Double?, transactTime: Date?, timestamp: Date?) {
+    public init(execID: String?, orderID: String?, clOrdID: String?, clOrdLinkID: String?, account: Double?, symbol: String, side: String?, lastQty: Double?, lastPx: Double?, underlyingLastPx: Double?, lastMkt: String?, lastLiquidityInd: String?, simpleOrderQty: Double?, orderQty: Double?, price: Double?, displayQty: Double?, stopPx: Double?, pegOffsetValue: Double?, pegPriceType: String?, currency: String?, settlCurrency: String?, execType: String?, ordType: String?, timeInForce: String?, execInst: String?, contingencyType: String?, exDestination: String?, ordStatus: String?, triggered: String?, workingIndicator: Bool?, ordRejReason: String?, simpleLeavesQty: Double?, leavesQty: Double?, simpleCumQty: Double?, cumQty: Double?, avgPx: Double?, commission: Double?, tradePublishIndicator: String?, multiLegReportingType: String?, text: String?, trdMatchID: String?, execCost: Double?, execComm: Double?, homeNotional: Double?, foreignNotional: Double?, transactTime: Date?, timestamp: Date) {
         self.execID = execID
         self.orderID = orderID
         self.clOrdID = clOrdID

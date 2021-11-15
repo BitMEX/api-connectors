@@ -36,7 +36,7 @@ See [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_8_8.html)
    (:data (execution-get-with-http-info optional-params))))
 
 (defn execution-get-trade-history-with-http-info
-  "Get all balance-affecting executions. This includes each trade, insurance charge, and settlement."
+  "Get all balance-affecting executions."
   ([] (execution-get-trade-history-with-http-info nil))
   ([{:keys [symbol filter columns count start reverse start-time end-time ]}]
    (call-api "/execution/tradeHistory" :get
@@ -49,7 +49,7 @@ See [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_8_8.html)
               :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
 
 (defn execution-get-trade-history
-  "Get all balance-affecting executions. This includes each trade, insurance charge, and settlement."
+  "Get all balance-affecting executions."
   ([] (execution-get-trade-history nil))
   ([optional-params]
    (:data (execution-get-trade-history-with-http-info optional-params))))

@@ -25,8 +25,5 @@ Name | Type | Description | Notes
 **pending_debit** | **Float** |  | [optional] 
 **confirmed_debit** | **Float** |  | [optional] 
 **timestamp** | **DateTime** |  | [optional] 
-**addr** | **String** |  | [optional] 
-**script** | **String** |  | [optional] 
-**withdrawal_lock** | **Array&lt;String&gt;** |  | [optional] 
 
 

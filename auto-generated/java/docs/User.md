@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **firstname** | **String** |  |  [optional]
 **lastname** | **String** |  |  [optional]
 **username** | **String** |  | 
-**email** | **String** |  | 
+**email** | **String** |  |  [optional]
 **phone** | **String** |  |  [optional]
 **created** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **lastUpdated** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **tfAEnabled** | **String** |  |  [optional]
 **affiliateID** | **String** |  |  [optional]
 **pgpPubKey** | **String** |  |  [optional]
+**pgpPubKeyCreated** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **country** | **String** |  |  [optional]
 **geoipCountry** | **String** |  |  [optional]
 **geoipRegion** | **String** |  |  [optional]

@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  - --  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  - --  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -41,11 +41,15 @@ namespace IO.Swagger.Model
         /// <param name="timestamp">timestamp (required).</param>
         /// <param name="symbol">symbol.</param>
         /// <param name="indexSymbol">indexSymbol.</param>
+        /// <param name="indexMultiplier">indexMultiplier.</param>
         /// <param name="reference">reference.</param>
         /// <param name="lastPrice">lastPrice.</param>
+        /// <param name="sourcePrice">sourcePrice.</param>
+        /// <param name="conversionIndex">conversionIndex.</param>
+        /// <param name="conversionIndexPrice">conversionIndexPrice.</param>
         /// <param name="weight">weight.</param>
         /// <param name="logged">logged.</param>
-        public IndexComposite(DateTime? timestamp = default(DateTime?), string symbol = default(string), string indexSymbol = default(string), string reference = default(string), double? lastPrice = default(double?), double? weight = default(double?), DateTime? logged = default(DateTime?))
+        public IndexComposite(DateTime? timestamp = default(DateTime?), string symbol = default(string), string indexSymbol = default(string), double? indexMultiplier = default(double?), string reference = default(string), double? lastPrice = default(double?), double? sourcePrice = default(double?), string conversionIndex = default(string), double? conversionIndexPrice = default(double?), double? weight = default(double?), DateTime? logged = default(DateTime?))
         {
             // to ensure "timestamp" is required (not null)
             if (timestamp == null)
@@ -58,8 +62,12 @@ namespace IO.Swagger.Model
             }
             this.Symbol = symbol;
             this.IndexSymbol = indexSymbol;
+            this.IndexMultiplier = indexMultiplier;
             this.Reference = reference;
             this.LastPrice = lastPrice;
+            this.SourcePrice = sourcePrice;
+            this.ConversionIndex = conversionIndex;
+            this.ConversionIndexPrice = conversionIndexPrice;
             this.Weight = weight;
             this.Logged = logged;
         }
@@ -83,6 +91,12 @@ namespace IO.Swagger.Model
         public string IndexSymbol { get; set; }
 
         /// <summary>
+        /// Gets or Sets IndexMultiplier
+        /// </summary>
+        [DataMember(Name="indexMultiplier", EmitDefaultValue=false)]
+        public double? IndexMultiplier { get; set; }
+
+        /// <summary>
         /// Gets or Sets Reference
         /// </summary>
         [DataMember(Name="reference", EmitDefaultValue=false)]
@@ -93,6 +107,24 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="lastPrice", EmitDefaultValue=false)]
         public double? LastPrice { get; set; }
+
+        /// <summary>
+        /// Gets or Sets SourcePrice
+        /// </summary>
+        [DataMember(Name="sourcePrice", EmitDefaultValue=false)]
+        public double? SourcePrice { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ConversionIndex
+        /// </summary>
+        [DataMember(Name="conversionIndex", EmitDefaultValue=false)]
+        public string ConversionIndex { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ConversionIndexPrice
+        /// </summary>
+        [DataMember(Name="conversionIndexPrice", EmitDefaultValue=false)]
+        public double? ConversionIndexPrice { get; set; }
 
         /// <summary>
         /// Gets or Sets Weight
@@ -117,8 +149,12 @@ namespace IO.Swagger.Model
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("  Symbol: ").Append(Symbol).Append("\n");
             sb.Append("  IndexSymbol: ").Append(IndexSymbol).Append("\n");
+            sb.Append("  IndexMultiplier: ").Append(IndexMultiplier).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  LastPrice: ").Append(LastPrice).Append("\n");
+            sb.Append("  SourcePrice: ").Append(SourcePrice).Append("\n");
+            sb.Append("  ConversionIndex: ").Append(ConversionIndex).Append("\n");
+            sb.Append("  ConversionIndexPrice: ").Append(ConversionIndexPrice).Append("\n");
             sb.Append("  Weight: ").Append(Weight).Append("\n");
             sb.Append("  Logged: ").Append(Logged).Append("\n");
             sb.Append("}\n");
@@ -171,6 +207,11 @@ namespace IO.Swagger.Model
                     this.IndexSymbol.Equals(input.IndexSymbol))
                 ) && 
                 (
+                    this.IndexMultiplier == input.IndexMultiplier ||
+                    (this.IndexMultiplier != null &&
+                    this.IndexMultiplier.Equals(input.IndexMultiplier))
+                ) && 
+                (
                     this.Reference == input.Reference ||
                     (this.Reference != null &&
                     this.Reference.Equals(input.Reference))
@@ -179,6 +220,21 @@ namespace IO.Swagger.Model
                     this.LastPrice == input.LastPrice ||
                     (this.LastPrice != null &&
                     this.LastPrice.Equals(input.LastPrice))
+                ) && 
+                (
+                    this.SourcePrice == input.SourcePrice ||
+                    (this.SourcePrice != null &&
+                    this.SourcePrice.Equals(input.SourcePrice))
+                ) && 
+                (
+                    this.ConversionIndex == input.ConversionIndex ||
+                    (this.ConversionIndex != null &&
+                    this.ConversionIndex.Equals(input.ConversionIndex))
+                ) && 
+                (
+                    this.ConversionIndexPrice == input.ConversionIndexPrice ||
+                    (this.ConversionIndexPrice != null &&
+                    this.ConversionIndexPrice.Equals(input.ConversionIndexPrice))
                 ) && 
                 (
                     this.Weight == input.Weight ||
@@ -207,10 +263,18 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.Symbol.GetHashCode();
                 if (this.IndexSymbol != null)
                     hashCode = hashCode * 59 + this.IndexSymbol.GetHashCode();
+                if (this.IndexMultiplier != null)
+                    hashCode = hashCode * 59 + this.IndexMultiplier.GetHashCode();
                 if (this.Reference != null)
                     hashCode = hashCode * 59 + this.Reference.GetHashCode();
                 if (this.LastPrice != null)
                     hashCode = hashCode * 59 + this.LastPrice.GetHashCode();
+                if (this.SourcePrice != null)
+                    hashCode = hashCode * 59 + this.SourcePrice.GetHashCode();
+                if (this.ConversionIndex != null)
+                    hashCode = hashCode * 59 + this.ConversionIndex.GetHashCode();
+                if (this.ConversionIndexPrice != null)
+                    hashCode = hashCode * 59 + this.ConversionIndexPrice.GetHashCode();
                 if (this.Weight != null)
                     hashCode = hashCode * 59 + this.Weight.GetHashCode();
                 if (this.Logged != null)

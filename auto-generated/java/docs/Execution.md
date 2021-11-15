@@ -4,12 +4,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**execID** | **String** |  | 
+**execID** | **String** |  |  [optional]
 **orderID** | **String** |  |  [optional]
 **clOrdID** | **String** |  |  [optional]
 **clOrdLinkID** | **String** |  |  [optional]
 **account** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**symbol** | **String** |  |  [optional]
+**symbol** | **String** |  | 
 **side** | **String** |  |  [optional]
 **lastQty** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **lastPx** | **Double** |  |  [optional]
@@ -50,7 +50,7 @@ Name | Type | Description | Notes
 **homeNotional** | **Double** |  |  [optional]
 **foreignNotional** | **Double** |  |  [optional]
 **transactTime** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
-**timestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
+**timestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
 
 
 

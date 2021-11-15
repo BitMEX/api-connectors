@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -37,84 +37,19 @@ SWGAffiliate::~SWGAffiliate() {
 
 void
 SWGAffiliate::init() {
-    account = 0.0;
-    m_account_isSet = false;
-    currency = new QString("");
-    m_currency_isSet = false;
-    prev_payout = 0.0;
-    m_prev_payout_isSet = false;
-    prev_turnover = 0.0;
-    m_prev_turnover_isSet = false;
-    prev_comm = 0.0;
-    m_prev_comm_isSet = false;
-    prev_timestamp = NULL;
-    m_prev_timestamp_isSet = false;
-    exec_turnover = 0.0;
-    m_exec_turnover_isSet = false;
-    exec_comm = 0.0;
-    m_exec_comm_isSet = false;
-    total_referrals = 0.0;
-    m_total_referrals_isSet = false;
-    total_turnover = 0.0;
-    m_total_turnover_isSet = false;
-    total_comm = 0.0;
-    m_total_comm_isSet = false;
-    payout_pcnt = 0.0;
-    m_payout_pcnt_isSet = false;
-    pending_payout = 0.0;
-    m_pending_payout_isSet = false;
-    timestamp = NULL;
-    m_timestamp_isSet = false;
     referrer_account = 0.0;
     m_referrer_account_isSet = false;
     referral_discount = 0.0;
     m_referral_discount_isSet = false;
     affiliate_payout = 0.0;
     m_affiliate_payout_isSet = false;
+    id = 0.0;
+    m_id_isSet = false;
 }
 
 void
 SWGAffiliate::cleanup() {
-    if(account != nullptr) { 
-        delete account;
-    }
-    if(currency != nullptr) { 
-        delete currency;
-    }
-    if(prev_payout != nullptr) { 
-        delete prev_payout;
-    }
-    if(prev_turnover != nullptr) { 
-        delete prev_turnover;
-    }
-    if(prev_comm != nullptr) { 
-        delete prev_comm;
-    }
-    if(prev_timestamp != nullptr) { 
-        delete prev_timestamp;
-    }
-    if(exec_turnover != nullptr) { 
-        delete exec_turnover;
-    }
-    if(exec_comm != nullptr) { 
-        delete exec_comm;
-    }
-    if(total_referrals != nullptr) { 
-        delete total_referrals;
-    }
-    if(total_turnover != nullptr) { 
-        delete total_turnover;
-    }
-    if(total_comm != nullptr) { 
-        delete total_comm;
-    }
 
-    if(pending_payout != nullptr) { 
-        delete pending_payout;
-    }
-    if(timestamp != nullptr) { 
-        delete timestamp;
-    }
 
 
 
@@ -131,39 +66,13 @@ SWGAffiliate::fromJson(QString json) {
 
 void
 SWGAffiliate::fromJsonObject(QJsonObject pJson) {
-    ::Swagger::setValue(&account, pJson["account"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&currency, pJson["currency"], "QString", "QString");
-    
-    ::Swagger::setValue(&prev_payout, pJson["prevPayout"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&prev_turnover, pJson["prevTurnover"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&prev_comm, pJson["prevComm"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&prev_timestamp, pJson["prevTimestamp"], "QDateTime", "QDateTime");
-    
-    ::Swagger::setValue(&exec_turnover, pJson["execTurnover"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&exec_comm, pJson["execComm"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&total_referrals, pJson["totalReferrals"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&total_turnover, pJson["totalTurnover"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&total_comm, pJson["totalComm"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&payout_pcnt, pJson["payoutPcnt"], "double", "");
-    
-    ::Swagger::setValue(&pending_payout, pJson["pendingPayout"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&timestamp, pJson["timestamp"], "QDateTime", "QDateTime");
-    
     ::Swagger::setValue(&referrer_account, pJson["referrerAccount"], "double", "");
     
     ::Swagger::setValue(&referral_discount, pJson["referralDiscount"], "double", "");
     
     ::Swagger::setValue(&affiliate_payout, pJson["affiliatePayout"], "double", "");
+    
+    ::Swagger::setValue(&id, pJson["id"], "double", "");
     
 }
 
@@ -179,48 +88,6 @@ SWGAffiliate::asJson ()
 QJsonObject
 SWGAffiliate::asJsonObject() {
     QJsonObject obj;
-    if((account != nullptr) && (account->isSet())){
-        toJsonValue(QString("account"), account, obj, QString("SWGNumber"));
-    }
-    if(currency != nullptr && *currency != QString("")){
-        toJsonValue(QString("currency"), currency, obj, QString("QString"));
-    }
-    if((prev_payout != nullptr) && (prev_payout->isSet())){
-        toJsonValue(QString("prevPayout"), prev_payout, obj, QString("SWGNumber"));
-    }
-    if((prev_turnover != nullptr) && (prev_turnover->isSet())){
-        toJsonValue(QString("prevTurnover"), prev_turnover, obj, QString("SWGNumber"));
-    }
-    if((prev_comm != nullptr) && (prev_comm->isSet())){
-        toJsonValue(QString("prevComm"), prev_comm, obj, QString("SWGNumber"));
-    }
-    if(prev_timestamp != nullptr) { 
-        toJsonValue(QString("prevTimestamp"), prev_timestamp, obj, QString("QDateTime"));
-    }
-    if((exec_turnover != nullptr) && (exec_turnover->isSet())){
-        toJsonValue(QString("execTurnover"), exec_turnover, obj, QString("SWGNumber"));
-    }
-    if((exec_comm != nullptr) && (exec_comm->isSet())){
-        toJsonValue(QString("execComm"), exec_comm, obj, QString("SWGNumber"));
-    }
-    if((total_referrals != nullptr) && (total_referrals->isSet())){
-        toJsonValue(QString("totalReferrals"), total_referrals, obj, QString("SWGNumber"));
-    }
-    if((total_turnover != nullptr) && (total_turnover->isSet())){
-        toJsonValue(QString("totalTurnover"), total_turnover, obj, QString("SWGNumber"));
-    }
-    if((total_comm != nullptr) && (total_comm->isSet())){
-        toJsonValue(QString("totalComm"), total_comm, obj, QString("SWGNumber"));
-    }
-    if(m_payout_pcnt_isSet){
-        obj.insert("payoutPcnt", QJsonValue(payout_pcnt));
-    }
-    if((pending_payout != nullptr) && (pending_payout->isSet())){
-        toJsonValue(QString("pendingPayout"), pending_payout, obj, QString("SWGNumber"));
-    }
-    if(timestamp != nullptr) { 
-        toJsonValue(QString("timestamp"), timestamp, obj, QString("QDateTime"));
-    }
     if(m_referrer_account_isSet){
         obj.insert("referrerAccount", QJsonValue(referrer_account));
     }
@@ -230,148 +97,11 @@ SWGAffiliate::asJsonObject() {
     if(m_affiliate_payout_isSet){
         obj.insert("affiliatePayout", QJsonValue(affiliate_payout));
     }
+    if(m_id_isSet){
+        obj.insert("id", QJsonValue(id));
+    }
 
     return obj;
-}
-
-SWGNumber*
-SWGAffiliate::getAccount() {
-    return account;
-}
-void
-SWGAffiliate::setAccount(SWGNumber* account) {
-    this->account = account;
-    this->m_account_isSet = true;
-}
-
-QString*
-SWGAffiliate::getCurrency() {
-    return currency;
-}
-void
-SWGAffiliate::setCurrency(QString* currency) {
-    this->currency = currency;
-    this->m_currency_isSet = true;
-}
-
-SWGNumber*
-SWGAffiliate::getPrevPayout() {
-    return prev_payout;
-}
-void
-SWGAffiliate::setPrevPayout(SWGNumber* prev_payout) {
-    this->prev_payout = prev_payout;
-    this->m_prev_payout_isSet = true;
-}
-
-SWGNumber*
-SWGAffiliate::getPrevTurnover() {
-    return prev_turnover;
-}
-void
-SWGAffiliate::setPrevTurnover(SWGNumber* prev_turnover) {
-    this->prev_turnover = prev_turnover;
-    this->m_prev_turnover_isSet = true;
-}
-
-SWGNumber*
-SWGAffiliate::getPrevComm() {
-    return prev_comm;
-}
-void
-SWGAffiliate::setPrevComm(SWGNumber* prev_comm) {
-    this->prev_comm = prev_comm;
-    this->m_prev_comm_isSet = true;
-}
-
-QDateTime*
-SWGAffiliate::getPrevTimestamp() {
-    return prev_timestamp;
-}
-void
-SWGAffiliate::setPrevTimestamp(QDateTime* prev_timestamp) {
-    this->prev_timestamp = prev_timestamp;
-    this->m_prev_timestamp_isSet = true;
-}
-
-SWGNumber*
-SWGAffiliate::getExecTurnover() {
-    return exec_turnover;
-}
-void
-SWGAffiliate::setExecTurnover(SWGNumber* exec_turnover) {
-    this->exec_turnover = exec_turnover;
-    this->m_exec_turnover_isSet = true;
-}
-
-SWGNumber*
-SWGAffiliate::getExecComm() {
-    return exec_comm;
-}
-void
-SWGAffiliate::setExecComm(SWGNumber* exec_comm) {
-    this->exec_comm = exec_comm;
-    this->m_exec_comm_isSet = true;
-}
-
-SWGNumber*
-SWGAffiliate::getTotalReferrals() {
-    return total_referrals;
-}
-void
-SWGAffiliate::setTotalReferrals(SWGNumber* total_referrals) {
-    this->total_referrals = total_referrals;
-    this->m_total_referrals_isSet = true;
-}
-
-SWGNumber*
-SWGAffiliate::getTotalTurnover() {
-    return total_turnover;
-}
-void
-SWGAffiliate::setTotalTurnover(SWGNumber* total_turnover) {
-    this->total_turnover = total_turnover;
-    this->m_total_turnover_isSet = true;
-}
-
-SWGNumber*
-SWGAffiliate::getTotalComm() {
-    return total_comm;
-}
-void
-SWGAffiliate::setTotalComm(SWGNumber* total_comm) {
-    this->total_comm = total_comm;
-    this->m_total_comm_isSet = true;
-}
-
-double
-SWGAffiliate::getPayoutPcnt() {
-    return payout_pcnt;
-}
-void
-SWGAffiliate::setPayoutPcnt(double payout_pcnt) {
-    this->payout_pcnt = payout_pcnt;
-    this->m_payout_pcnt_isSet = true;
-}
-
-SWGNumber*
-SWGAffiliate::getPendingPayout() {
-    return pending_payout;
-}
-void
-SWGAffiliate::setPendingPayout(SWGNumber* pending_payout) {
-    this->pending_payout = pending_payout;
-    this->m_pending_payout_isSet = true;
-}
-
-QDateTime*
-SWGAffiliate::getTimestamp() {
-    return timestamp;
-}
-void
-SWGAffiliate::setTimestamp(QDateTime* timestamp) {
-    this->timestamp = timestamp;
-    this->m_timestamp_isSet = true;
 }
 
 double
@@ -404,28 +134,25 @@ SWGAffiliate::setAffiliatePayout(double affiliate_payout) {
     this->m_affiliate_payout_isSet = true;
 }
 
+double
+SWGAffiliate::getId() {
+    return id;
+}
+void
+SWGAffiliate::setId(double id) {
+    this->id = id;
+    this->m_id_isSet = true;
+}
+
 
 bool
 SWGAffiliate::isSet(){
     bool isObjectUpdated = false;
     do{
-        if(account != nullptr && account->isSet()){ isObjectUpdated = true; break;}
-        if(currency != nullptr && *currency != QString("")){ isObjectUpdated = true; break;}
-        if(prev_payout != nullptr && prev_payout->isSet()){ isObjectUpdated = true; break;}
-        if(prev_turnover != nullptr && prev_turnover->isSet()){ isObjectUpdated = true; break;}
-        if(prev_comm != nullptr && prev_comm->isSet()){ isObjectUpdated = true; break;}
-        
-        if(exec_turnover != nullptr && exec_turnover->isSet()){ isObjectUpdated = true; break;}
-        if(exec_comm != nullptr && exec_comm->isSet()){ isObjectUpdated = true; break;}
-        if(total_referrals != nullptr && total_referrals->isSet()){ isObjectUpdated = true; break;}
-        if(total_turnover != nullptr && total_turnover->isSet()){ isObjectUpdated = true; break;}
-        if(total_comm != nullptr && total_comm->isSet()){ isObjectUpdated = true; break;}
-        if(m_payout_pcnt_isSet){ isObjectUpdated = true; break;}
-        if(pending_payout != nullptr && pending_payout->isSet()){ isObjectUpdated = true; break;}
-        
         if(m_referrer_account_isSet){ isObjectUpdated = true; break;}
         if(m_referral_discount_isSet){ isObjectUpdated = true; break;}
         if(m_affiliate_payout_isSet){ isObjectUpdated = true; break;}
+        if(m_id_isSet){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;
 }

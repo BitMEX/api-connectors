@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Front** | **DateTime?** |  | [optional] 
 **Expiry** | **DateTime?** |  | [optional] 
 **Settle** | **DateTime?** |  | [optional] 
+**ListedSettle** | **DateTime?** |  | [optional] 
 **RelistInterval** | **DateTime?** |  | [optional] 
 **InverseLeg** | **string** |  | [optional] 
 **SellLeg** | **string** |  | [optional] 
@@ -104,6 +105,7 @@ Name | Type | Description | Notes
 **IndicativeTaxRate** | **double?** |  | [optional] 
 **IndicativeSettlePrice** | **double?** |  | [optional] 
 **OptionUnderlyingPrice** | **double?** |  | [optional] 
+**SettledPriceAdjustmentRate** | **double?** |  | [optional] 
 **SettledPrice** | **double?** |  | [optional] 
 **Timestamp** | **DateTime?** |  | [optional] 
 

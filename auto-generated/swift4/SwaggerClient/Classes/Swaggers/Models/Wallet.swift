@@ -33,11 +33,8 @@ public struct Wallet: Codable {
     public var pendingDebit: Double?
     public var confirmedDebit: Double?
     public var timestamp: Date?
-    public var addr: String?
-    public var script: String?
-    public var withdrawalLock: [String]?
 
-    public init(account: Double, currency: String, prevDeposited: Double?, prevWithdrawn: Double?, prevTransferIn: Double?, prevTransferOut: Double?, prevAmount: Double?, prevTimestamp: Date?, deltaDeposited: Double?, deltaWithdrawn: Double?, deltaTransferIn: Double?, deltaTransferOut: Double?, deltaAmount: Double?, deposited: Double?, withdrawn: Double?, transferIn: Double?, transferOut: Double?, amount: Double?, pendingCredit: Double?, pendingDebit: Double?, confirmedDebit: Double?, timestamp: Date?, addr: String?, script: String?, withdrawalLock: [String]?) {
+    public init(account: Double, currency: String, prevDeposited: Double?, prevWithdrawn: Double?, prevTransferIn: Double?, prevTransferOut: Double?, prevAmount: Double?, prevTimestamp: Date?, deltaDeposited: Double?, deltaWithdrawn: Double?, deltaTransferIn: Double?, deltaTransferOut: Double?, deltaAmount: Double?, deposited: Double?, withdrawn: Double?, transferIn: Double?, transferOut: Double?, amount: Double?, pendingCredit: Double?, pendingDebit: Double?, confirmedDebit: Double?, timestamp: Date?) {
         self.account = account
         self.currency = currency
         self.prevDeposited = prevDeposited
@@ -60,9 +57,6 @@ public struct Wallet: Codable {
         self.pendingDebit = pendingDebit
         self.confirmedDebit = confirmedDebit
         self.timestamp = timestamp
-        self.addr = addr
-        self.script = script
-        self.withdrawalLock = withdrawalLock
     }
 
 

@@ -45,6 +45,8 @@ WITHDRAWALCANCELED | &quot;withdrawalCanceled&quot;
 WITHDRAWALCOMPLETED | &quot;withdrawalCompleted&quot;
 WITHDRAWALCONFIRMED | &quot;withdrawalConfirmed&quot;
 WITHDRAWALREQUESTED | &quot;withdrawalRequested&quot;
+ADDRESSSKIPCONFIRMREQUESTED | &quot;addressSkipConfirmRequested&quot;
+ADDRESSSKIPCONFIRMVERIFIED | &quot;addressSkipConfirmVerified&quot;
 VERIFY | &quot;verify&quot;
 
 

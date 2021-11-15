@@ -3,12 +3,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**execID** | **NSString*** |  | 
+**execID** | **NSString*** |  | [optional] 
 **orderID** | **NSString*** |  | [optional] 
 **clOrdID** | **NSString*** |  | [optional] 
 **clOrdLinkID** | **NSString*** |  | [optional] 
 **account** | **NSNumber*** |  | [optional] 
-**symbol** | **NSString*** |  | [optional] 
+**symbol** | **NSString*** |  | 
 **side** | **NSString*** |  | [optional] 
 **lastQty** | **NSNumber*** |  | [optional] 
 **lastPx** | **NSNumber*** |  | [optional] 
@@ -49,7 +49,7 @@ Name | Type | Description | Notes
 **homeNotional** | **NSNumber*** |  | [optional] 
 **foreignNotional** | **NSNumber*** |  | [optional] 
 **transactTime** | **NSDate*** |  | [optional] 
-**timestamp** | **NSDate*** |  | [optional] 
+**timestamp** | **NSDate*** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -15,6 +15,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from swagger_client.configuration import Configuration
 
 
 class Settlement(object):
@@ -31,252 +33,45 @@ class Settlement(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'timestamp': 'datetime',
-        'symbol': 'str',
-        'settlement_type': 'str',
-        'settled_price': 'float',
-        'option_strike_price': 'float',
-        'option_underlying_price': 'float',
-        'bankrupt': 'float',
-        'tax_base': 'float',
-        'tax_rate': 'float'
+        'id': 'float'
     }
 
     attribute_map = {
-        'timestamp': 'timestamp',
-        'symbol': 'symbol',
-        'settlement_type': 'settlementType',
-        'settled_price': 'settledPrice',
-        'option_strike_price': 'optionStrikePrice',
-        'option_underlying_price': 'optionUnderlyingPrice',
-        'bankrupt': 'bankrupt',
-        'tax_base': 'taxBase',
-        'tax_rate': 'taxRate'
+        'id': 'id'
     }
 
-    def __init__(self, timestamp=None, symbol=None, settlement_type=None, settled_price=None, option_strike_price=None, option_underlying_price=None, bankrupt=None, tax_base=None, tax_rate=None):  # noqa: E501
+    def __init__(self, id=None, _configuration=None):  # noqa: E501
         """Settlement - a model defined in Swagger"""  # noqa: E501
+        if _configuration is None:
+            _configuration = Configuration()
+        self._configuration = _configuration
 
-        self._timestamp = None
-        self._symbol = None
-        self._settlement_type = None
-        self._settled_price = None
-        self._option_strike_price = None
-        self._option_underlying_price = None
-        self._bankrupt = None
-        self._tax_base = None
-        self._tax_rate = None
+        self._id = None
         self.discriminator = None
 
-        self.timestamp = timestamp
-        self.symbol = symbol
-        if settlement_type is not None:
-            self.settlement_type = settlement_type
-        if settled_price is not None:
-            self.settled_price = settled_price
-        if option_strike_price is not None:
-            self.option_strike_price = option_strike_price
-        if option_underlying_price is not None:
-            self.option_underlying_price = option_underlying_price
-        if bankrupt is not None:
-            self.bankrupt = bankrupt
-        if tax_base is not None:
-            self.tax_base = tax_base
-        if tax_rate is not None:
-            self.tax_rate = tax_rate
+        if id is not None:
+            self.id = id
 
     @property
-    def timestamp(self):
-        """Gets the timestamp of this Settlement.  # noqa: E501
+    def id(self):
+        """Gets the id of this Settlement.  # noqa: E501
 
 
-        :return: The timestamp of this Settlement.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._timestamp
-
-    @timestamp.setter
-    def timestamp(self, timestamp):
-        """Sets the timestamp of this Settlement.
-
-
-        :param timestamp: The timestamp of this Settlement.  # noqa: E501
-        :type: datetime
-        """
-        if timestamp is None:
-            raise ValueError("Invalid value for `timestamp`, must not be `None`")  # noqa: E501
-
-        self._timestamp = timestamp
-
-    @property
-    def symbol(self):
-        """Gets the symbol of this Settlement.  # noqa: E501
-
-
-        :return: The symbol of this Settlement.  # noqa: E501
-        :rtype: str
-        """
-        return self._symbol
-
-    @symbol.setter
-    def symbol(self, symbol):
-        """Sets the symbol of this Settlement.
-
-
-        :param symbol: The symbol of this Settlement.  # noqa: E501
-        :type: str
-        """
-        if symbol is None:
-            raise ValueError("Invalid value for `symbol`, must not be `None`")  # noqa: E501
-
-        self._symbol = symbol
-
-    @property
-    def settlement_type(self):
-        """Gets the settlement_type of this Settlement.  # noqa: E501
-
-
-        :return: The settlement_type of this Settlement.  # noqa: E501
-        :rtype: str
-        """
-        return self._settlement_type
-
-    @settlement_type.setter
-    def settlement_type(self, settlement_type):
-        """Sets the settlement_type of this Settlement.
-
-
-        :param settlement_type: The settlement_type of this Settlement.  # noqa: E501
-        :type: str
-        """
-
-        self._settlement_type = settlement_type
-
-    @property
-    def settled_price(self):
-        """Gets the settled_price of this Settlement.  # noqa: E501
-
-
-        :return: The settled_price of this Settlement.  # noqa: E501
+        :return: The id of this Settlement.  # noqa: E501
         :rtype: float
         """
-        return self._settled_price
+        return self._id
 
-    @settled_price.setter
-    def settled_price(self, settled_price):
-        """Sets the settled_price of this Settlement.
+    @id.setter
+    def id(self, id):
+        """Sets the id of this Settlement.
 
 
-        :param settled_price: The settled_price of this Settlement.  # noqa: E501
+        :param id: The id of this Settlement.  # noqa: E501
         :type: float
         """
 
-        self._settled_price = settled_price
-
-    @property
-    def option_strike_price(self):
-        """Gets the option_strike_price of this Settlement.  # noqa: E501
-
-
-        :return: The option_strike_price of this Settlement.  # noqa: E501
-        :rtype: float
-        """
-        return self._option_strike_price
-
-    @option_strike_price.setter
-    def option_strike_price(self, option_strike_price):
-        """Sets the option_strike_price of this Settlement.
-
-
-        :param option_strike_price: The option_strike_price of this Settlement.  # noqa: E501
-        :type: float
-        """
-
-        self._option_strike_price = option_strike_price
-
-    @property
-    def option_underlying_price(self):
-        """Gets the option_underlying_price of this Settlement.  # noqa: E501
-
-
-        :return: The option_underlying_price of this Settlement.  # noqa: E501
-        :rtype: float
-        """
-        return self._option_underlying_price
-
-    @option_underlying_price.setter
-    def option_underlying_price(self, option_underlying_price):
-        """Sets the option_underlying_price of this Settlement.
-
-
-        :param option_underlying_price: The option_underlying_price of this Settlement.  # noqa: E501
-        :type: float
-        """
-
-        self._option_underlying_price = option_underlying_price
-
-    @property
-    def bankrupt(self):
-        """Gets the bankrupt of this Settlement.  # noqa: E501
-
-
-        :return: The bankrupt of this Settlement.  # noqa: E501
-        :rtype: float
-        """
-        return self._bankrupt
-
-    @bankrupt.setter
-    def bankrupt(self, bankrupt):
-        """Sets the bankrupt of this Settlement.
-
-
-        :param bankrupt: The bankrupt of this Settlement.  # noqa: E501
-        :type: float
-        """
-
-        self._bankrupt = bankrupt
-
-    @property
-    def tax_base(self):
-        """Gets the tax_base of this Settlement.  # noqa: E501
-
-
-        :return: The tax_base of this Settlement.  # noqa: E501
-        :rtype: float
-        """
-        return self._tax_base
-
-    @tax_base.setter
-    def tax_base(self, tax_base):
-        """Sets the tax_base of this Settlement.
-
-
-        :param tax_base: The tax_base of this Settlement.  # noqa: E501
-        :type: float
-        """
-
-        self._tax_base = tax_base
-
-    @property
-    def tax_rate(self):
-        """Gets the tax_rate of this Settlement.  # noqa: E501
-
-
-        :return: The tax_rate of this Settlement.  # noqa: E501
-        :rtype: float
-        """
-        return self._tax_rate
-
-    @tax_rate.setter
-    def tax_rate(self, tax_rate):
-        """Sets the tax_rate of this Settlement.
-
-
-        :param tax_rate: The tax_rate of this Settlement.  # noqa: E501
-        :type: float
-        """
-
-        self._tax_rate = tax_rate
+        self._id = id
 
     def to_dict(self):
         """Returns the model properties as a dict"""
@@ -318,8 +113,11 @@ class Settlement(object):
         if not isinstance(other, Settlement):
             return False
 
-        return self.__dict__ == other.__dict__
+        return self.to_dict() == other.to_dict()
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        return not self == other
+        if not isinstance(other, Settlement):
+            return True
+
+        return self.to_dict() != other.to_dict()

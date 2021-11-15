@@ -25,6 +25,7 @@ public struct UserPreferences: Codable {
     public var hideFromLeaderboard: Bool?
     public var hideNameFromLeaderboard: Bool?
     public var hideNotifications: [String]?
+    public var hidePhoneConfirm: Bool?
     public var locale: String?
     public var msgsSeen: [String]?
     public var orderBookBinning: Any?
@@ -39,7 +40,7 @@ public struct UserPreferences: Codable {
     public var tickerPinned: Bool?
     public var tradeLayout: String?
 
-    public init(alertOnLiquidations: Bool?, animationsEnabled: Bool?, announcementsLastSeen: Date?, chatChannelID: Double?, colorTheme: String?, currency: String?, debug: Bool?, disableEmails: [String]?, disablePush: [String]?, hideConfirmDialogs: [String]?, hideConnectionModal: Bool?, hideFromLeaderboard: Bool?, hideNameFromLeaderboard: Bool?, hideNotifications: [String]?, locale: String?, msgsSeen: [String]?, orderBookBinning: Any?, orderBookType: String?, orderClearImmediate: Bool?, orderControlsPlusMinus: Bool?, showLocaleNumbers: Bool?, sounds: [String]?, strictIPCheck: Bool?, strictTimeout: Bool?, tickerGroup: String?, tickerPinned: Bool?, tradeLayout: String?) {
+    public init(alertOnLiquidations: Bool?, animationsEnabled: Bool?, announcementsLastSeen: Date?, chatChannelID: Double?, colorTheme: String?, currency: String?, debug: Bool?, disableEmails: [String]?, disablePush: [String]?, hideConfirmDialogs: [String]?, hideConnectionModal: Bool?, hideFromLeaderboard: Bool?, hideNameFromLeaderboard: Bool?, hideNotifications: [String]?, hidePhoneConfirm: Bool?, locale: String?, msgsSeen: [String]?, orderBookBinning: Any?, orderBookType: String?, orderClearImmediate: Bool?, orderControlsPlusMinus: Bool?, showLocaleNumbers: Bool?, sounds: [String]?, strictIPCheck: Bool?, strictTimeout: Bool?, tickerGroup: String?, tickerPinned: Bool?, tradeLayout: String?) {
         self.alertOnLiquidations = alertOnLiquidations
         self.animationsEnabled = animationsEnabled
         self.announcementsLastSeen = announcementsLastSeen
@@ -54,6 +55,7 @@ public struct UserPreferences: Codable {
         self.hideFromLeaderboard = hideFromLeaderboard
         self.hideNameFromLeaderboard = hideNameFromLeaderboard
         self.hideNotifications = hideNotifications
+        self.hidePhoneConfirm = hidePhoneConfirm
         self.locale = locale
         self.msgsSeen = msgsSeen
         self.orderBookBinning = orderBookBinning

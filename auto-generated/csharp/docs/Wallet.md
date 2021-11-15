@@ -25,9 +25,6 @@ Name | Type | Description | Notes
 **PendingDebit** | **decimal?** |  | [optional] 
 **ConfirmedDebit** | **decimal?** |  | [optional] 
 **Timestamp** | **DateTime?** |  | [optional] 
-**Addr** | **string** |  | [optional] 
-**Script** | **string** |  | [optional] 
-**WithdrawalLock** | **List&lt;string&gt;** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

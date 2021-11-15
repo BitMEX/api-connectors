@@ -1,6 +1,6 @@
 /*
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -23,47 +23,16 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 /**
  * OrderBookL2
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-12-17T20:26:16.019-05:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-11-15T14:00:25.412+08:00")
 public class OrderBookL2 {
-  @SerializedName("symbol")
-  private String symbol = null;
-
   @SerializedName("id")
-  private BigDecimal id = null;
+  private Double id = null;
 
-  @SerializedName("side")
-  private String side = null;
-
-  @SerializedName("size")
-  private BigDecimal size = null;
-
-  @SerializedName("price")
-  private Double price = null;
-
-  public OrderBookL2 symbol(String symbol) {
-    this.symbol = symbol;
-    return this;
-  }
-
-   /**
-   * Get symbol
-   * @return symbol
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getSymbol() {
-    return symbol;
-  }
-
-  public void setSymbol(String symbol) {
-    this.symbol = symbol;
-  }
-
-  public OrderBookL2 id(BigDecimal id) {
+  public OrderBookL2 id(Double id) {
     this.id = id;
     return this;
   }
@@ -72,67 +41,13 @@ public class OrderBookL2 {
    * Get id
    * @return id
   **/
-  @ApiModelProperty(required = true, value = "")
-  public BigDecimal getId() {
+  @ApiModelProperty(value = "")
+  public Double getId() {
     return id;
   }
 
-  public void setId(BigDecimal id) {
+  public void setId(Double id) {
     this.id = id;
-  }
-
-  public OrderBookL2 side(String side) {
-    this.side = side;
-    return this;
-  }
-
-   /**
-   * Get side
-   * @return side
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getSide() {
-    return side;
-  }
-
-  public void setSide(String side) {
-    this.side = side;
-  }
-
-  public OrderBookL2 size(BigDecimal size) {
-    this.size = size;
-    return this;
-  }
-
-   /**
-   * Get size
-   * @return size
-  **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getSize() {
-    return size;
-  }
-
-  public void setSize(BigDecimal size) {
-    this.size = size;
-  }
-
-  public OrderBookL2 price(Double price) {
-    this.price = price;
-    return this;
-  }
-
-   /**
-   * Get price
-   * @return price
-  **/
-  @ApiModelProperty(value = "")
-  public Double getPrice() {
-    return price;
-  }
-
-  public void setPrice(Double price) {
-    this.price = price;
   }
 
 
@@ -145,16 +60,12 @@ public class OrderBookL2 {
       return false;
     }
     OrderBookL2 orderBookL2 = (OrderBookL2) o;
-    return Objects.equals(this.symbol, orderBookL2.symbol) &&
-        Objects.equals(this.id, orderBookL2.id) &&
-        Objects.equals(this.side, orderBookL2.side) &&
-        Objects.equals(this.size, orderBookL2.size) &&
-        Objects.equals(this.price, orderBookL2.price);
+    return Objects.equals(this.id, orderBookL2.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(symbol, id, side, size, price);
+    return Objects.hash(id);
   }
 
 
@@ -163,11 +74,7 @@ public class OrderBookL2 {
     StringBuilder sb = new StringBuilder();
     sb.append("class OrderBookL2 {\n");
     
-    sb.append("    symbol: ").append(toIndentedString(symbol)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    side: ").append(toIndentedString(side)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
-    sb.append("    price: ").append(toIndentedString(price)).append("\n");
     sb.append("}");
     return sb.toString();
   }

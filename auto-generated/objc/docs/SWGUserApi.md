@@ -16,11 +16,13 @@ Method | HTTP request | Description
 [**userGetExecutionHistory**](SWGUserApi.md#usergetexecutionhistory) | **GET** /user/executionHistory | Get the execution history by day.
 [**userGetMargin**](SWGUserApi.md#usergetmargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 [**userGetQuoteFillRatio**](SWGUserApi.md#usergetquotefillratio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
+[**userGetQuoteValueRatio**](SWGUserApi.md#usergetquotevalueratio) | **GET** /user/quoteValueRatio | Get Quote Value Ratio statistics over the last 3 days
+[**userGetTradingVolume**](SWGUserApi.md#usergettradingvolume) | **GET** /user/tradingVolume | Get your 30 days USD average trading volume
 [**userGetWallet**](SWGUserApi.md#usergetwallet) | **GET** /user/wallet | Get your current wallet information.
 [**userGetWalletHistory**](SWGUserApi.md#usergetwallethistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 [**userGetWalletSummary**](SWGUserApi.md#usergetwalletsummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**userLogout**](SWGUserApi.md#userlogout) | **POST** /user/logout | Log out of BitMEX.
-[**userMinWithdrawalFee**](SWGUserApi.md#userminwithdrawalfee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
+[**userMinWithdrawalFee**](SWGUserApi.md#userminwithdrawalfee) | **GET** /user/minWithdrawalFee | Get the minimum, maximum, and recommended withdrawal fees for a currency.
 [**userRequestWithdrawal**](SWGUserApi.md#userrequestwithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**userSavePreferences**](SWGUserApi.md#usersavepreferences) | **POST** /user/preferences | Save user preferences.
 
@@ -351,8 +353,8 @@ This endpoint does not need any parameter.
 
 # **userGetAffiliateStatus**
 ```objc
--(NSURLSessionTask*) userGetAffiliateStatusWithCompletionHandler: 
-        (void (^)(SWGAffiliate* output, NSError* error)) handler;
+-(NSURLSessionTask*) userGetAffiliateStatusWithCurrency: (NSString*) currency
+        completionHandler: (void (^)(SWGAffiliate* output, NSError* error)) handler;
 ```
 
 Get your current affiliate/referral status.
@@ -377,12 +379,13 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
 
 
+NSString* currency = @"XBt"; // Options: `XBt`, `USDt`, `all` (optional) (default to XBt)
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 // Get your current affiliate/referral status.
-[apiInstance userGetAffiliateStatusWithCompletionHandler: 
-          ^(SWGAffiliate* output, NSError* error) {
+[apiInstance userGetAffiliateStatusWithCurrency:currency
+          completionHandler: ^(SWGAffiliate* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -393,7 +396,10 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **NSString***| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -499,7 +505,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
 
 
-NSString* currency = @"XBt"; //  (optional) (default to XBt)
+NSString* currency = @"XBt"; // Options: `XBt`, `USDt` (optional) (default to XBt)
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
@@ -519,7 +525,7 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **NSString***|  | [optional] [default to XBt]
+ **currency** | **NSString***| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -633,7 +639,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
 
 
-NSString* currency = @"XBt"; //  (optional) (default to XBt)
+NSString* currency = @"XBt"; // Options: `XBt`, `USDt`, `all` (optional) (default to XBt)
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
@@ -653,7 +659,7 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **NSString***|  | [optional] [default to XBt]
+ **currency** | **NSString***| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -731,6 +737,128 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **userGetQuoteValueRatio**
+```objc
+-(NSURLSessionTask*) userGetQuoteValueRatioWithCompletionHandler: 
+        (void (^)(SWGQuoteValueRatio* output, NSError* error)) handler;
+```
+
+Get Quote Value Ratio statistics over the last 3 days
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Get Quote Value Ratio statistics over the last 3 days
+[apiInstance userGetQuoteValueRatioWithCompletionHandler: 
+          ^(SWGQuoteValueRatio* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userGetQuoteValueRatio: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**SWGQuoteValueRatio***](SWGQuoteValueRatio.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **userGetTradingVolume**
+```objc
+-(NSURLSessionTask*) userGetTradingVolumeWithCompletionHandler: 
+        (void (^)(SWGTradingVolume* output, NSError* error)) handler;
+```
+
+Get your 30 days USD average trading volume
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: apiExpires)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
+
+// Configure API key authorization: (authentication scheme: apiKey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
+
+// Configure API key authorization: (authentication scheme: apiSignature)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
+
+
+
+SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
+
+// Get your 30 days USD average trading volume
+[apiInstance userGetTradingVolumeWithCompletionHandler: 
+          ^(SWGTradingVolume* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGUserApi->userGetTradingVolume: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**SWGTradingVolume***](SWGTradingVolume.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **userGetWallet**
 ```objc
 -(NSURLSessionTask*) userGetWalletWithCurrency: (NSString*) currency
@@ -759,7 +887,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
 
 
-NSString* currency = @"XBt"; //  (optional) (default to XBt)
+NSString* currency = @"XBt"; // Options: `XBt`, `USDt`, `all` (optional) (default to XBt)
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
@@ -779,7 +907,7 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **NSString***|  | [optional] [default to XBt]
+ **currency** | **NSString***| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -826,7 +954,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
 
 
-NSString* currency = @"XBt"; //  (optional) (default to XBt)
+NSString* currency = @"XBt"; // Options: `XBt`, `USDt`, `all` (optional) (default to XBt)
 NSNumber* count = @100; // Number of results to fetch. (optional) (default to 100)
 NSNumber* start = @0; // Starting point for results. (optional) (default to 0)
 
@@ -850,7 +978,7 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **NSString***|  | [optional] [default to XBt]
+ **currency** | **NSString***| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
  **count** | **NSNumber***| Number of results to fetch. | [optional] [default to 100]
  **start** | **NSNumber***| Starting point for results. | [optional] [default to 0]
 
@@ -897,7 +1025,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
 
 
-NSString* currency = @"XBt"; //  (optional) (default to XBt)
+NSString* currency = @"XBt"; // Options: `XBt`, `USDt`, `all` (optional) (default to XBt)
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
@@ -917,7 +1045,7 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **NSString***|  | [optional] [default to XBt]
+ **currency** | **NSString***| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -978,22 +1106,25 @@ No authorization required
 # **userMinWithdrawalFee**
 ```objc
 -(NSURLSessionTask*) userMinWithdrawalFeeWithCurrency: (NSString*) currency
+    amount: (NSNumber*) amount
         completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 ```
 
-Get the minimum withdrawal fee for a currency.
+Get the minimum, maximum, and recommended withdrawal fees for a currency.
 
-This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \"fee\" field is the recommended fee for fast confirmation on the blockchain.
 
 ### Example 
 ```objc
 
-NSString* currency = @"XBt"; //  (optional) (default to XBt)
+NSString* currency = @"XBt"; // Options: `XBt`, `USDt` (optional) (default to XBt)
+NSNumber* amount = @1.2; //  (optional)
 
 SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
-// Get the minimum withdrawal fee for a currency.
+// Get the minimum, maximum, and recommended withdrawal fees for a currency.
 [apiInstance userMinWithdrawalFeeWithCurrency:currency
+              amount:amount
           completionHandler: ^(NSObject* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -1008,7 +1139,8 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **NSString***|  | [optional] [default to XBt]
+ **currency** | **NSString***| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; | [optional] [default to XBt]
+ **amount** | **NSNumber***|  | [optional] 
 
 ### Return type
 
@@ -1029,8 +1161,10 @@ No authorization required
 ```objc
 -(NSURLSessionTask*) userRequestWithdrawalWithCurrency: (NSString*) currency
     amount: (NSNumber*) amount
-    address: (NSString*) address
     otpToken: (NSString*) otpToken
+    address: (NSString*) address
+    addressId: (NSNumber*) addressId
+    targetUserId: (NSNumber*) targetUserId
     fee: (NSNumber*) fee
     text: (NSString*) text
         completionHandler: (void (^)(SWGTransaction* output, NSError* error)) handler;
@@ -1060,10 +1194,12 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
 
 
-NSString* currency = @"XBt"; // Currency you're withdrawing. Options: `XBt` (default to XBt)
+NSString* currency = @"XBt"; // Currency you're withdrawing. Options: `XBt`, `USDt` (default to XBt)
 NSNumber* amount = @8.14; // Amount of withdrawal currency.
-NSString* address = @"address_example"; // Destination Address.
-NSString* otpToken = @"otpToken_example"; // 2FA token. Required if 2FA is enabled on your account. (optional)
+NSString* otpToken = @"otpToken_example"; // 2FA token. Required for all external withdrawals. (optional)
+NSString* address = @"address_example"; // Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. (optional)
+NSNumber* addressId = @1.2; // ID of the Destination Address. One of `address`, `targetUserId`, `targetUserId` has to be specified. (optional)
+NSNumber* targetUserId = @1.2; // ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified. (optional)
 NSNumber* fee = @1.2; // Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
 NSString* text = @"text_example"; // Optional annotation, e.g. 'Transfer to home wallet'. (optional)
 
@@ -1072,8 +1208,10 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 // Request a withdrawal to an external wallet.
 [apiInstance userRequestWithdrawalWithCurrency:currency
               amount:amount
-              address:address
               otpToken:otpToken
+              address:address
+              addressId:addressId
+              targetUserId:targetUserId
               fee:fee
               text:text
           completionHandler: ^(SWGTransaction* output, NSError* error) {
@@ -1090,10 +1228,12 @@ SWGUserApi*apiInstance = [[SWGUserApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **NSString***| Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60; | [default to XBt]
+ **currency** | **NSString***| Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; | [default to XBt]
  **amount** | **NSNumber***| Amount of withdrawal currency. | 
- **address** | **NSString***| Destination Address. | 
- **otpToken** | **NSString***| 2FA token. Required if 2FA is enabled on your account. | [optional] 
+ **otpToken** | **NSString***| 2FA token. Required for all external withdrawals. | [optional] 
+ **address** | **NSString***| Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
+ **addressId** | **NSNumber***| ID of the Destination Address. One of &#x60;address&#x60;, &#x60;targetUserId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
+ **targetUserId** | **NSNumber***| ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
  **fee** | **NSNumber***| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional] 
  **text** | **NSString***| Optional annotation, e.g. &#39;Transfer to home wallet&#39;. | [optional] 
 

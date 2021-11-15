@@ -1,6 +1,6 @@
 /*
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -23,117 +23,32 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 /**
  * Active Liquidations
  */
 @ApiModel(description = "Active Liquidations")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-12-17T20:26:16.019-05:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-11-15T14:00:25.412+08:00")
 public class Liquidation {
-  @SerializedName("orderID")
-  private String orderID = null;
+  @SerializedName("id")
+  private Double id = null;
 
-  @SerializedName("symbol")
-  private String symbol = null;
-
-  @SerializedName("side")
-  private String side = null;
-
-  @SerializedName("price")
-  private Double price = null;
-
-  @SerializedName("leavesQty")
-  private BigDecimal leavesQty = null;
-
-  public Liquidation orderID(String orderID) {
-    this.orderID = orderID;
+  public Liquidation id(Double id) {
+    this.id = id;
     return this;
   }
 
    /**
-   * Get orderID
-   * @return orderID
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getOrderID() {
-    return orderID;
-  }
-
-  public void setOrderID(String orderID) {
-    this.orderID = orderID;
-  }
-
-  public Liquidation symbol(String symbol) {
-    this.symbol = symbol;
-    return this;
-  }
-
-   /**
-   * Get symbol
-   * @return symbol
+   * Get id
+   * @return id
   **/
   @ApiModelProperty(value = "")
-  public String getSymbol() {
-    return symbol;
+  public Double getId() {
+    return id;
   }
 
-  public void setSymbol(String symbol) {
-    this.symbol = symbol;
-  }
-
-  public Liquidation side(String side) {
-    this.side = side;
-    return this;
-  }
-
-   /**
-   * Get side
-   * @return side
-  **/
-  @ApiModelProperty(value = "")
-  public String getSide() {
-    return side;
-  }
-
-  public void setSide(String side) {
-    this.side = side;
-  }
-
-  public Liquidation price(Double price) {
-    this.price = price;
-    return this;
-  }
-
-   /**
-   * Get price
-   * @return price
-  **/
-  @ApiModelProperty(value = "")
-  public Double getPrice() {
-    return price;
-  }
-
-  public void setPrice(Double price) {
-    this.price = price;
-  }
-
-  public Liquidation leavesQty(BigDecimal leavesQty) {
-    this.leavesQty = leavesQty;
-    return this;
-  }
-
-   /**
-   * Get leavesQty
-   * @return leavesQty
-  **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getLeavesQty() {
-    return leavesQty;
-  }
-
-  public void setLeavesQty(BigDecimal leavesQty) {
-    this.leavesQty = leavesQty;
+  public void setId(Double id) {
+    this.id = id;
   }
 
 
@@ -146,16 +61,12 @@ public class Liquidation {
       return false;
     }
     Liquidation liquidation = (Liquidation) o;
-    return Objects.equals(this.orderID, liquidation.orderID) &&
-        Objects.equals(this.symbol, liquidation.symbol) &&
-        Objects.equals(this.side, liquidation.side) &&
-        Objects.equals(this.price, liquidation.price) &&
-        Objects.equals(this.leavesQty, liquidation.leavesQty);
+    return Objects.equals(this.id, liquidation.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(orderID, symbol, side, price, leavesQty);
+    return Objects.hash(id);
   }
 
 
@@ -164,11 +75,7 @@ public class Liquidation {
     StringBuilder sb = new StringBuilder();
     sb.append("class Liquidation {\n");
     
-    sb.append("    orderID: ").append(toIndentedString(orderID)).append("\n");
-    sb.append("    symbol: ").append(toIndentedString(symbol)).append("\n");
-    sb.append("    side: ").append(toIndentedString(side)).append("\n");
-    sb.append("    price: ").append(toIndentedString(price)).append("\n");
-    sb.append("    leavesQty: ").append(toIndentedString(leavesQty)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

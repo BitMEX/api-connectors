@@ -41,9 +41,11 @@ Name | Type | Description | Notes
 **ExcessMarginPcnt** | **float64** |  | [optional] [default to 0.0]
 **AvailableMargin** | **float32** |  | [optional] [default to null]
 **WithdrawableMargin** | **float32** |  | [optional] [default to null]
-**Timestamp** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
 **GrossLastValue** | **float32** |  | [optional] [default to null]
 **Commission** | **float64** |  | [optional] [default to 0.0]
+**MakerFeeDiscount** | **float64** |  | [optional] [default to 0.0]
+**TakerFeeDiscount** | **float64** |  | [optional] [default to 0.0]
+**Timestamp** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

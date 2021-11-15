@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **front** | **DateTime** |  | [optional] 
 **expiry** | **DateTime** |  | [optional] 
 **settle** | **DateTime** |  | [optional] 
+**listed_settle** | **DateTime** |  | [optional] 
 **relist_interval** | **DateTime** |  | [optional] 
 **inverse_leg** | **String** |  | [optional] 
 **sell_leg** | **String** |  | [optional] 
@@ -104,6 +105,7 @@ Name | Type | Description | Notes
 **indicative_tax_rate** | **Float** |  | [optional] 
 **indicative_settle_price** | **Float** |  | [optional] 
 **option_underlying_price** | **Float** |  | [optional] 
+**settled_price_adjustment_rate** | **Float** |  | [optional] 
 **settled_price** | **Float** |  | [optional] 
 **timestamp** | **DateTime** |  | [optional] 
 

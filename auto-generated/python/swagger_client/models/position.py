@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -15,6 +15,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from swagger_client.configuration import Configuration
 
 
 class Position(object):
@@ -218,8 +220,11 @@ class Position(object):
         'last_value': 'lastValue'
     }
 
-    def __init__(self, account=None, symbol=None, currency=None, underlying=None, quote_currency=None, commission=0.0, init_margin_req=0.0, maint_margin_req=0.0, risk_limit=None, leverage=0.0, cross_margin=None, deleverage_percentile=0.0, rebalanced_pnl=None, prev_realised_pnl=None, prev_unrealised_pnl=None, prev_close_price=0.0, opening_timestamp=None, opening_qty=None, opening_cost=None, opening_comm=None, open_order_buy_qty=None, open_order_buy_cost=None, open_order_buy_premium=None, open_order_sell_qty=None, open_order_sell_cost=None, open_order_sell_premium=None, exec_buy_qty=None, exec_buy_cost=None, exec_sell_qty=None, exec_sell_cost=None, exec_qty=None, exec_cost=None, exec_comm=None, current_timestamp=None, current_qty=None, current_cost=None, current_comm=None, realised_cost=None, unrealised_cost=None, gross_open_cost=None, gross_open_premium=None, gross_exec_cost=None, is_open=None, mark_price=0.0, mark_value=None, risk_value=None, home_notional=0.0, foreign_notional=0.0, pos_state=None, pos_cost=None, pos_cost2=None, pos_cross=None, pos_init=None, pos_comm=None, pos_loss=None, pos_margin=None, pos_maint=None, pos_allowance=None, taxable_margin=None, init_margin=None, maint_margin=None, session_margin=None, target_excess_margin=None, var_margin=None, realised_gross_pnl=None, realised_tax=None, realised_pnl=None, unrealised_gross_pnl=None, long_bankrupt=None, short_bankrupt=None, tax_base=None, indicative_tax_rate=0.0, indicative_tax=None, unrealised_tax=None, unrealised_pnl=None, unrealised_pnl_pcnt=0.0, unrealised_roe_pcnt=0.0, simple_qty=0.0, simple_cost=0.0, simple_value=0.0, simple_pnl=0.0, simple_pnl_pcnt=0.0, avg_cost_price=0.0, avg_entry_price=0.0, break_even_price=0.0, margin_call_price=0.0, liquidation_price=0.0, bankrupt_price=0.0, timestamp=None, last_price=0.0, last_value=None):  # noqa: E501
+    def __init__(self, account=None, symbol=None, currency=None, underlying=None, quote_currency=None, commission=0.0, init_margin_req=0.0, maint_margin_req=0.0, risk_limit=None, leverage=0.0, cross_margin=None, deleverage_percentile=0.0, rebalanced_pnl=None, prev_realised_pnl=None, prev_unrealised_pnl=None, prev_close_price=0.0, opening_timestamp=None, opening_qty=None, opening_cost=None, opening_comm=None, open_order_buy_qty=None, open_order_buy_cost=None, open_order_buy_premium=None, open_order_sell_qty=None, open_order_sell_cost=None, open_order_sell_premium=None, exec_buy_qty=None, exec_buy_cost=None, exec_sell_qty=None, exec_sell_cost=None, exec_qty=None, exec_cost=None, exec_comm=None, current_timestamp=None, current_qty=None, current_cost=None, current_comm=None, realised_cost=None, unrealised_cost=None, gross_open_cost=None, gross_open_premium=None, gross_exec_cost=None, is_open=None, mark_price=0.0, mark_value=None, risk_value=None, home_notional=0.0, foreign_notional=0.0, pos_state=None, pos_cost=None, pos_cost2=None, pos_cross=None, pos_init=None, pos_comm=None, pos_loss=None, pos_margin=None, pos_maint=None, pos_allowance=None, taxable_margin=None, init_margin=None, maint_margin=None, session_margin=None, target_excess_margin=None, var_margin=None, realised_gross_pnl=None, realised_tax=None, realised_pnl=None, unrealised_gross_pnl=None, long_bankrupt=None, short_bankrupt=None, tax_base=None, indicative_tax_rate=0.0, indicative_tax=None, unrealised_tax=None, unrealised_pnl=None, unrealised_pnl_pcnt=0.0, unrealised_roe_pcnt=0.0, simple_qty=0.0, simple_cost=0.0, simple_value=0.0, simple_pnl=0.0, simple_pnl_pcnt=0.0, avg_cost_price=0.0, avg_entry_price=0.0, break_even_price=0.0, margin_call_price=0.0, liquidation_price=0.0, bankrupt_price=0.0, timestamp=None, last_price=0.0, last_value=None, _configuration=None):  # noqa: E501
         """Position - a model defined in Swagger"""  # noqa: E501
+        if _configuration is None:
+            _configuration = Configuration()
+        self._configuration = _configuration
 
         self._account = None
         self._symbol = None
@@ -316,7 +321,8 @@ class Position(object):
 
         self.account = account
         self.symbol = symbol
-        self.currency = currency
+        if currency is not None:
+            self.currency = currency
         if underlying is not None:
             self.underlying = underlying
         if quote_currency is not None:
@@ -512,7 +518,7 @@ class Position(object):
         :param account: The account of this Position.  # noqa: E501
         :type: float
         """
-        if account is None:
+        if self._configuration.client_side_validation and account is None:
             raise ValueError("Invalid value for `account`, must not be `None`")  # noqa: E501
 
         self._account = account
@@ -535,7 +541,7 @@ class Position(object):
         :param symbol: The symbol of this Position.  # noqa: E501
         :type: str
         """
-        if symbol is None:
+        if self._configuration.client_side_validation and symbol is None:
             raise ValueError("Invalid value for `symbol`, must not be `None`")  # noqa: E501
 
         self._symbol = symbol
@@ -558,8 +564,6 @@ class Position(object):
         :param currency: The currency of this Position.  # noqa: E501
         :type: str
         """
-        if currency is None:
-            raise ValueError("Invalid value for `currency`, must not be `None`")  # noqa: E501
 
         self._currency = currency
 
@@ -2451,8 +2455,11 @@ class Position(object):
         if not isinstance(other, Position):
             return False
 
-        return self.__dict__ == other.__dict__
+        return self.to_dict() == other.to_dict()
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        return not self == other
+        if not isinstance(other, Position):
+            return True
+
+        return self.to_dict() != other.to_dict()

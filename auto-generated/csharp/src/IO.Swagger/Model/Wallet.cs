@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  - --  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  - --  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -60,10 +60,7 @@ namespace IO.Swagger.Model
         /// <param name="pendingDebit">pendingDebit.</param>
         /// <param name="confirmedDebit">confirmedDebit.</param>
         /// <param name="timestamp">timestamp.</param>
-        /// <param name="addr">addr.</param>
-        /// <param name="script">script.</param>
-        /// <param name="withdrawalLock">withdrawalLock.</param>
-        public Wallet(decimal? account = default(decimal?), string currency = default(string), decimal? prevDeposited = default(decimal?), decimal? prevWithdrawn = default(decimal?), decimal? prevTransferIn = default(decimal?), decimal? prevTransferOut = default(decimal?), decimal? prevAmount = default(decimal?), DateTime? prevTimestamp = default(DateTime?), decimal? deltaDeposited = default(decimal?), decimal? deltaWithdrawn = default(decimal?), decimal? deltaTransferIn = default(decimal?), decimal? deltaTransferOut = default(decimal?), decimal? deltaAmount = default(decimal?), decimal? deposited = default(decimal?), decimal? withdrawn = default(decimal?), decimal? transferIn = default(decimal?), decimal? transferOut = default(decimal?), decimal? amount = default(decimal?), decimal? pendingCredit = default(decimal?), decimal? pendingDebit = default(decimal?), decimal? confirmedDebit = default(decimal?), DateTime? timestamp = default(DateTime?), string addr = default(string), string script = default(string), List<string> withdrawalLock = default(List<string>))
+        public Wallet(decimal? account = default(decimal?), string currency = default(string), decimal? prevDeposited = default(decimal?), decimal? prevWithdrawn = default(decimal?), decimal? prevTransferIn = default(decimal?), decimal? prevTransferOut = default(decimal?), decimal? prevAmount = default(decimal?), DateTime? prevTimestamp = default(DateTime?), decimal? deltaDeposited = default(decimal?), decimal? deltaWithdrawn = default(decimal?), decimal? deltaTransferIn = default(decimal?), decimal? deltaTransferOut = default(decimal?), decimal? deltaAmount = default(decimal?), decimal? deposited = default(decimal?), decimal? withdrawn = default(decimal?), decimal? transferIn = default(decimal?), decimal? transferOut = default(decimal?), decimal? amount = default(decimal?), decimal? pendingCredit = default(decimal?), decimal? pendingDebit = default(decimal?), decimal? confirmedDebit = default(decimal?), DateTime? timestamp = default(DateTime?))
         {
             // to ensure "account" is required (not null)
             if (account == null)
@@ -103,9 +100,6 @@ namespace IO.Swagger.Model
             this.PendingDebit = pendingDebit;
             this.ConfirmedDebit = confirmedDebit;
             this.Timestamp = timestamp;
-            this.Addr = addr;
-            this.Script = script;
-            this.WithdrawalLock = withdrawalLock;
         }
         
         /// <summary>
@@ -241,24 +235,6 @@ namespace IO.Swagger.Model
         public DateTime? Timestamp { get; set; }
 
         /// <summary>
-        /// Gets or Sets Addr
-        /// </summary>
-        [DataMember(Name="addr", EmitDefaultValue=false)]
-        public string Addr { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Script
-        /// </summary>
-        [DataMember(Name="script", EmitDefaultValue=false)]
-        public string Script { get; set; }
-
-        /// <summary>
-        /// Gets or Sets WithdrawalLock
-        /// </summary>
-        [DataMember(Name="withdrawalLock", EmitDefaultValue=false)]
-        public List<string> WithdrawalLock { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -288,9 +264,6 @@ namespace IO.Swagger.Model
             sb.Append("  PendingDebit: ").Append(PendingDebit).Append("\n");
             sb.Append("  ConfirmedDebit: ").Append(ConfirmedDebit).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
-            sb.Append("  Addr: ").Append(Addr).Append("\n");
-            sb.Append("  Script: ").Append(Script).Append("\n");
-            sb.Append("  WithdrawalLock: ").Append(WithdrawalLock).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -434,21 +407,6 @@ namespace IO.Swagger.Model
                     this.Timestamp == input.Timestamp ||
                     (this.Timestamp != null &&
                     this.Timestamp.Equals(input.Timestamp))
-                ) && 
-                (
-                    this.Addr == input.Addr ||
-                    (this.Addr != null &&
-                    this.Addr.Equals(input.Addr))
-                ) && 
-                (
-                    this.Script == input.Script ||
-                    (this.Script != null &&
-                    this.Script.Equals(input.Script))
-                ) && 
-                (
-                    this.WithdrawalLock == input.WithdrawalLock ||
-                    this.WithdrawalLock != null &&
-                    this.WithdrawalLock.SequenceEqual(input.WithdrawalLock)
                 );
         }
 
@@ -505,12 +463,6 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.ConfirmedDebit.GetHashCode();
                 if (this.Timestamp != null)
                     hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
-                if (this.Addr != null)
-                    hashCode = hashCode * 59 + this.Addr.GetHashCode();
-                if (this.Script != null)
-                    hashCode = hashCode * 59 + this.Script.GetHashCode();
-                if (this.WithdrawalLock != null)
-                    hashCode = hashCode * 59 + this.WithdrawalLock.GetHashCode();
                 return hashCode;
             }
         }

@@ -11,42 +11,23 @@ import Foundation
 
 public struct Affiliate: Codable {
 
-    public var account: Double
-    public var currency: String
-    public var prevPayout: Double?
-    public var prevTurnover: Double?
-    public var prevComm: Double?
-    public var prevTimestamp: Date?
-    public var execTurnover: Double?
-    public var execComm: Double?
-    public var totalReferrals: Double?
-    public var totalTurnover: Double?
-    public var totalComm: Double?
-    public var payoutPcnt: Double?
-    public var pendingPayout: Double?
-    public var timestamp: Date?
     public var referrerAccount: Double?
     public var referralDiscount: Double?
     public var affiliatePayout: Double?
+    public var _id: Double?
 
-    public init(account: Double, currency: String, prevPayout: Double?, prevTurnover: Double?, prevComm: Double?, prevTimestamp: Date?, execTurnover: Double?, execComm: Double?, totalReferrals: Double?, totalTurnover: Double?, totalComm: Double?, payoutPcnt: Double?, pendingPayout: Double?, timestamp: Date?, referrerAccount: Double?, referralDiscount: Double?, affiliatePayout: Double?) {
-        self.account = account
-        self.currency = currency
-        self.prevPayout = prevPayout
-        self.prevTurnover = prevTurnover
-        self.prevComm = prevComm
-        self.prevTimestamp = prevTimestamp
-        self.execTurnover = execTurnover
-        self.execComm = execComm
-        self.totalReferrals = totalReferrals
-        self.totalTurnover = totalTurnover
-        self.totalComm = totalComm
-        self.payoutPcnt = payoutPcnt
-        self.pendingPayout = pendingPayout
-        self.timestamp = timestamp
+    public init(referrerAccount: Double?, referralDiscount: Double?, affiliatePayout: Double?, _id: Double?) {
         self.referrerAccount = referrerAccount
         self.referralDiscount = referralDiscount
         self.affiliatePayout = affiliatePayout
+        self._id = _id
+    }
+
+    public enum CodingKeys: String, CodingKey { 
+        case referrerAccount
+        case referralDiscount
+        case affiliatePayout
+        case _id = "id"
     }
 
 

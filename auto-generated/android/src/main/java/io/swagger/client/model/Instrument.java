@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -39,6 +39,8 @@ public class Instrument {
   private Date expiry = null;
   @SerializedName("settle")
   private Date settle = null;
+  @SerializedName("listedSettle")
+  private Date listedSettle = null;
   @SerializedName("relistInterval")
   private Date relistInterval = null;
   @SerializedName("inverseLeg")
@@ -225,6 +227,8 @@ public class Instrument {
   private Double indicativeSettlePrice = null;
   @SerializedName("optionUnderlyingPrice")
   private Double optionUnderlyingPrice = null;
+  @SerializedName("settledPriceAdjustmentRate")
+  private Double settledPriceAdjustmentRate = null;
   @SerializedName("settledPrice")
   private Double settledPrice = null;
   @SerializedName("timestamp")
@@ -308,6 +312,16 @@ public class Instrument {
   }
   public void setSettle(Date settle) {
     this.settle = settle;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Date getListedSettle() {
+    return listedSettle;
+  }
+  public void setListedSettle(Date listedSettle) {
+    this.listedSettle = listedSettle;
   }
 
   /**
@@ -1243,6 +1257,16 @@ public class Instrument {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Double getSettledPriceAdjustmentRate() {
+    return settledPriceAdjustmentRate;
+  }
+  public void setSettledPriceAdjustmentRate(Double settledPriceAdjustmentRate) {
+    this.settledPriceAdjustmentRate = settledPriceAdjustmentRate;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public Double getSettledPrice() {
     return settledPrice;
   }
@@ -1278,6 +1302,7 @@ public class Instrument {
         (this.front == null ? instrument.front == null : this.front.equals(instrument.front)) &&
         (this.expiry == null ? instrument.expiry == null : this.expiry.equals(instrument.expiry)) &&
         (this.settle == null ? instrument.settle == null : this.settle.equals(instrument.settle)) &&
+        (this.listedSettle == null ? instrument.listedSettle == null : this.listedSettle.equals(instrument.listedSettle)) &&
         (this.relistInterval == null ? instrument.relistInterval == null : this.relistInterval.equals(instrument.relistInterval)) &&
         (this.inverseLeg == null ? instrument.inverseLeg == null : this.inverseLeg.equals(instrument.inverseLeg)) &&
         (this.sellLeg == null ? instrument.sellLeg == null : this.sellLeg.equals(instrument.sellLeg)) &&
@@ -1371,6 +1396,7 @@ public class Instrument {
         (this.indicativeTaxRate == null ? instrument.indicativeTaxRate == null : this.indicativeTaxRate.equals(instrument.indicativeTaxRate)) &&
         (this.indicativeSettlePrice == null ? instrument.indicativeSettlePrice == null : this.indicativeSettlePrice.equals(instrument.indicativeSettlePrice)) &&
         (this.optionUnderlyingPrice == null ? instrument.optionUnderlyingPrice == null : this.optionUnderlyingPrice.equals(instrument.optionUnderlyingPrice)) &&
+        (this.settledPriceAdjustmentRate == null ? instrument.settledPriceAdjustmentRate == null : this.settledPriceAdjustmentRate.equals(instrument.settledPriceAdjustmentRate)) &&
         (this.settledPrice == null ? instrument.settledPrice == null : this.settledPrice.equals(instrument.settledPrice)) &&
         (this.timestamp == null ? instrument.timestamp == null : this.timestamp.equals(instrument.timestamp));
   }
@@ -1386,6 +1412,7 @@ public class Instrument {
     result = 31 * result + (this.front == null ? 0: this.front.hashCode());
     result = 31 * result + (this.expiry == null ? 0: this.expiry.hashCode());
     result = 31 * result + (this.settle == null ? 0: this.settle.hashCode());
+    result = 31 * result + (this.listedSettle == null ? 0: this.listedSettle.hashCode());
     result = 31 * result + (this.relistInterval == null ? 0: this.relistInterval.hashCode());
     result = 31 * result + (this.inverseLeg == null ? 0: this.inverseLeg.hashCode());
     result = 31 * result + (this.sellLeg == null ? 0: this.sellLeg.hashCode());
@@ -1479,6 +1506,7 @@ public class Instrument {
     result = 31 * result + (this.indicativeTaxRate == null ? 0: this.indicativeTaxRate.hashCode());
     result = 31 * result + (this.indicativeSettlePrice == null ? 0: this.indicativeSettlePrice.hashCode());
     result = 31 * result + (this.optionUnderlyingPrice == null ? 0: this.optionUnderlyingPrice.hashCode());
+    result = 31 * result + (this.settledPriceAdjustmentRate == null ? 0: this.settledPriceAdjustmentRate.hashCode());
     result = 31 * result + (this.settledPrice == null ? 0: this.settledPrice.hashCode());
     result = 31 * result + (this.timestamp == null ? 0: this.timestamp.hashCode());
     return result;
@@ -1497,6 +1525,7 @@ public class Instrument {
     sb.append("  front: ").append(front).append("\n");
     sb.append("  expiry: ").append(expiry).append("\n");
     sb.append("  settle: ").append(settle).append("\n");
+    sb.append("  listedSettle: ").append(listedSettle).append("\n");
     sb.append("  relistInterval: ").append(relistInterval).append("\n");
     sb.append("  inverseLeg: ").append(inverseLeg).append("\n");
     sb.append("  sellLeg: ").append(sellLeg).append("\n");
@@ -1590,6 +1619,7 @@ public class Instrument {
     sb.append("  indicativeTaxRate: ").append(indicativeTaxRate).append("\n");
     sb.append("  indicativeSettlePrice: ").append(indicativeSettlePrice).append("\n");
     sb.append("  optionUnderlyingPrice: ").append(optionUnderlyingPrice).append("\n");
+    sb.append("  settledPriceAdjustmentRate: ").append(settledPriceAdjustmentRate).append("\n");
     sb.append("  settledPrice: ").append(settledPrice).append("\n");
     sb.append("  timestamp: ").append(timestamp).append("\n");
     sb.append("}\n");

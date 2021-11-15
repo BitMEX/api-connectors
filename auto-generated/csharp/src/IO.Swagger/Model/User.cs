@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  - --  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  - --  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -43,7 +43,7 @@ namespace IO.Swagger.Model
         /// <param name="firstname">firstname.</param>
         /// <param name="lastname">lastname.</param>
         /// <param name="username">username (required).</param>
-        /// <param name="email">email (required).</param>
+        /// <param name="email">email.</param>
         /// <param name="phone">phone.</param>
         /// <param name="created">created.</param>
         /// <param name="lastUpdated">lastUpdated.</param>
@@ -51,11 +51,12 @@ namespace IO.Swagger.Model
         /// <param name="tFAEnabled">tFAEnabled.</param>
         /// <param name="affiliateID">affiliateID.</param>
         /// <param name="pgpPubKey">pgpPubKey.</param>
+        /// <param name="pgpPubKeyCreated">pgpPubKeyCreated.</param>
         /// <param name="country">country.</param>
         /// <param name="geoipCountry">geoipCountry.</param>
         /// <param name="geoipRegion">geoipRegion.</param>
         /// <param name="typ">typ.</param>
-        public User(decimal? id = default(decimal?), decimal? ownerId = default(decimal?), string firstname = default(string), string lastname = default(string), string username = default(string), string email = default(string), string phone = default(string), DateTime? created = default(DateTime?), DateTime? lastUpdated = default(DateTime?), UserPreferences preferences = default(UserPreferences), string tFAEnabled = default(string), string affiliateID = default(string), string pgpPubKey = default(string), string country = default(string), string geoipCountry = default(string), string geoipRegion = default(string), string typ = default(string))
+        public User(decimal? id = default(decimal?), decimal? ownerId = default(decimal?), string firstname = default(string), string lastname = default(string), string username = default(string), string email = default(string), string phone = default(string), DateTime? created = default(DateTime?), DateTime? lastUpdated = default(DateTime?), UserPreferences preferences = default(UserPreferences), string tFAEnabled = default(string), string affiliateID = default(string), string pgpPubKey = default(string), DateTime? pgpPubKeyCreated = default(DateTime?), string country = default(string), string geoipCountry = default(string), string geoipRegion = default(string), string typ = default(string))
         {
             // to ensure "username" is required (not null)
             if (username == null)
@@ -66,19 +67,11 @@ namespace IO.Swagger.Model
             {
                 this.Username = username;
             }
-            // to ensure "email" is required (not null)
-            if (email == null)
-            {
-                throw new InvalidDataException("email is a required property for User and cannot be null");
-            }
-            else
-            {
-                this.Email = email;
-            }
             this.Id = id;
             this.OwnerId = ownerId;
             this.Firstname = firstname;
             this.Lastname = lastname;
+            this.Email = email;
             this.Phone = phone;
             this.Created = created;
             this.LastUpdated = lastUpdated;
@@ -86,6 +79,7 @@ namespace IO.Swagger.Model
             this.TFAEnabled = tFAEnabled;
             this.AffiliateID = affiliateID;
             this.PgpPubKey = pgpPubKey;
+            this.PgpPubKeyCreated = pgpPubKeyCreated;
             this.Country = country;
             this.GeoipCountry = geoipCountry;
             this.GeoipRegion = geoipRegion;
@@ -171,6 +165,12 @@ namespace IO.Swagger.Model
         public string PgpPubKey { get; set; }
 
         /// <summary>
+        /// Gets or Sets PgpPubKeyCreated
+        /// </summary>
+        [DataMember(Name="pgpPubKeyCreated", EmitDefaultValue=false)]
+        public DateTime? PgpPubKeyCreated { get; set; }
+
+        /// <summary>
         /// Gets or Sets Country
         /// </summary>
         [DataMember(Name="country", EmitDefaultValue=false)]
@@ -215,6 +215,7 @@ namespace IO.Swagger.Model
             sb.Append("  TFAEnabled: ").Append(TFAEnabled).Append("\n");
             sb.Append("  AffiliateID: ").Append(AffiliateID).Append("\n");
             sb.Append("  PgpPubKey: ").Append(PgpPubKey).Append("\n");
+            sb.Append("  PgpPubKeyCreated: ").Append(PgpPubKeyCreated).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  GeoipCountry: ").Append(GeoipCountry).Append("\n");
             sb.Append("  GeoipRegion: ").Append(GeoipRegion).Append("\n");
@@ -319,6 +320,11 @@ namespace IO.Swagger.Model
                     this.PgpPubKey.Equals(input.PgpPubKey))
                 ) && 
                 (
+                    this.PgpPubKeyCreated == input.PgpPubKeyCreated ||
+                    (this.PgpPubKeyCreated != null &&
+                    this.PgpPubKeyCreated.Equals(input.PgpPubKeyCreated))
+                ) && 
+                (
                     this.Country == input.Country ||
                     (this.Country != null &&
                     this.Country.Equals(input.Country))
@@ -375,6 +381,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.AffiliateID.GetHashCode();
                 if (this.PgpPubKey != null)
                     hashCode = hashCode * 59 + this.PgpPubKey.GetHashCode();
+                if (this.PgpPubKeyCreated != null)
+                    hashCode = hashCode * 59 + this.PgpPubKeyCreated.GetHashCode();
                 if (this.Country != null)
                     hashCode = hashCode * 59 + this.Country.GetHashCode();
                 if (this.GeoipCountry != null)

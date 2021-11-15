@@ -3,12 +3,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**exec_id** | **string** |  | 
+**exec_id** | **string** |  | [optional] 
 **order_id** | **string** |  | [optional] 
 **cl_ord_id** | **string** |  | [optional] 
 **cl_ord_link_id** | **string** |  | [optional] 
 **account** | **float** |  | [optional] 
-**symbol** | **string** |  | [optional] 
+**symbol** | **string** |  | 
 **side** | **string** |  | [optional] 
 **last_qty** | **float** |  | [optional] 
 **last_px** | **double** |  | [optional] 
@@ -49,7 +49,7 @@ Name | Type | Description | Notes
 **home_notional** | **double** |  | [optional] 
 **foreign_notional** | **double** |  | [optional] 
 **transact_time** | [**\DateTime**](\DateTime.md) |  | [optional] 
-**timestamp** | [**\DateTime**](\DateTime.md) |  | [optional] 
+**timestamp** | [**\DateTime**](\DateTime.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

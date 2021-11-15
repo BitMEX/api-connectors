@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -25,10 +25,18 @@ public class IndexComposite {
   private String symbol = null;
   @SerializedName("indexSymbol")
   private String indexSymbol = null;
+  @SerializedName("indexMultiplier")
+  private Double indexMultiplier = null;
   @SerializedName("reference")
   private String reference = null;
   @SerializedName("lastPrice")
   private Double lastPrice = null;
+  @SerializedName("sourcePrice")
+  private Double sourcePrice = null;
+  @SerializedName("conversionIndex")
+  private String conversionIndex = null;
+  @SerializedName("conversionIndexPrice")
+  private Double conversionIndexPrice = null;
   @SerializedName("weight")
   private Double weight = null;
   @SerializedName("logged")
@@ -67,6 +75,16 @@ public class IndexComposite {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Double getIndexMultiplier() {
+    return indexMultiplier;
+  }
+  public void setIndexMultiplier(Double indexMultiplier) {
+    this.indexMultiplier = indexMultiplier;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public String getReference() {
     return reference;
   }
@@ -82,6 +100,36 @@ public class IndexComposite {
   }
   public void setLastPrice(Double lastPrice) {
     this.lastPrice = lastPrice;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getSourcePrice() {
+    return sourcePrice;
+  }
+  public void setSourcePrice(Double sourcePrice) {
+    this.sourcePrice = sourcePrice;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public String getConversionIndex() {
+    return conversionIndex;
+  }
+  public void setConversionIndex(String conversionIndex) {
+    this.conversionIndex = conversionIndex;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getConversionIndexPrice() {
+    return conversionIndexPrice;
+  }
+  public void setConversionIndexPrice(Double conversionIndexPrice) {
+    this.conversionIndexPrice = conversionIndexPrice;
   }
 
   /**
@@ -117,8 +165,12 @@ public class IndexComposite {
     return (this.timestamp == null ? indexComposite.timestamp == null : this.timestamp.equals(indexComposite.timestamp)) &&
         (this.symbol == null ? indexComposite.symbol == null : this.symbol.equals(indexComposite.symbol)) &&
         (this.indexSymbol == null ? indexComposite.indexSymbol == null : this.indexSymbol.equals(indexComposite.indexSymbol)) &&
+        (this.indexMultiplier == null ? indexComposite.indexMultiplier == null : this.indexMultiplier.equals(indexComposite.indexMultiplier)) &&
         (this.reference == null ? indexComposite.reference == null : this.reference.equals(indexComposite.reference)) &&
         (this.lastPrice == null ? indexComposite.lastPrice == null : this.lastPrice.equals(indexComposite.lastPrice)) &&
+        (this.sourcePrice == null ? indexComposite.sourcePrice == null : this.sourcePrice.equals(indexComposite.sourcePrice)) &&
+        (this.conversionIndex == null ? indexComposite.conversionIndex == null : this.conversionIndex.equals(indexComposite.conversionIndex)) &&
+        (this.conversionIndexPrice == null ? indexComposite.conversionIndexPrice == null : this.conversionIndexPrice.equals(indexComposite.conversionIndexPrice)) &&
         (this.weight == null ? indexComposite.weight == null : this.weight.equals(indexComposite.weight)) &&
         (this.logged == null ? indexComposite.logged == null : this.logged.equals(indexComposite.logged));
   }
@@ -129,8 +181,12 @@ public class IndexComposite {
     result = 31 * result + (this.timestamp == null ? 0: this.timestamp.hashCode());
     result = 31 * result + (this.symbol == null ? 0: this.symbol.hashCode());
     result = 31 * result + (this.indexSymbol == null ? 0: this.indexSymbol.hashCode());
+    result = 31 * result + (this.indexMultiplier == null ? 0: this.indexMultiplier.hashCode());
     result = 31 * result + (this.reference == null ? 0: this.reference.hashCode());
     result = 31 * result + (this.lastPrice == null ? 0: this.lastPrice.hashCode());
+    result = 31 * result + (this.sourcePrice == null ? 0: this.sourcePrice.hashCode());
+    result = 31 * result + (this.conversionIndex == null ? 0: this.conversionIndex.hashCode());
+    result = 31 * result + (this.conversionIndexPrice == null ? 0: this.conversionIndexPrice.hashCode());
     result = 31 * result + (this.weight == null ? 0: this.weight.hashCode());
     result = 31 * result + (this.logged == null ? 0: this.logged.hashCode());
     return result;
@@ -144,8 +200,12 @@ public class IndexComposite {
     sb.append("  timestamp: ").append(timestamp).append("\n");
     sb.append("  symbol: ").append(symbol).append("\n");
     sb.append("  indexSymbol: ").append(indexSymbol).append("\n");
+    sb.append("  indexMultiplier: ").append(indexMultiplier).append("\n");
     sb.append("  reference: ").append(reference).append("\n");
     sb.append("  lastPrice: ").append(lastPrice).append("\n");
+    sb.append("  sourcePrice: ").append(sourcePrice).append("\n");
+    sb.append("  conversionIndex: ").append(conversionIndex).append("\n");
+    sb.append("  conversionIndexPrice: ").append(conversionIndexPrice).append("\n");
     sb.append("  weight: ").append(weight).append("\n");
     sb.append("  logged: ").append(logged).append("\n");
     sb.append("}\n");

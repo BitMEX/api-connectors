@@ -16,11 +16,13 @@ Method | HTTP request | Description
 [**userGetExecutionHistory**](UserApi.md#userGetExecutionHistory) | **GET** /user/executionHistory | Get the execution history by day.
 [**userGetMargin**](UserApi.md#userGetMargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 [**userGetQuoteFillRatio**](UserApi.md#userGetQuoteFillRatio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
+[**userGetQuoteValueRatio**](UserApi.md#userGetQuoteValueRatio) | **GET** /user/quoteValueRatio | Get Quote Value Ratio statistics over the last 3 days
+[**userGetTradingVolume**](UserApi.md#userGetTradingVolume) | **GET** /user/tradingVolume | Get your 30 days USD average trading volume
 [**userGetWallet**](UserApi.md#userGetWallet) | **GET** /user/wallet | Get your current wallet information.
 [**userGetWalletHistory**](UserApi.md#userGetWalletHistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 [**userGetWalletSummary**](UserApi.md#userGetWalletSummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**userLogout**](UserApi.md#userLogout) | **POST** /user/logout | Log out of BitMEX.
-[**userMinWithdrawalFee**](UserApi.md#userMinWithdrawalFee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
+[**userMinWithdrawalFee**](UserApi.md#userMinWithdrawalFee) | **GET** /user/minWithdrawalFee | Get the minimum, maximum, and recommended withdrawal fees for a currency.
 [**userRequestWithdrawal**](UserApi.md#userRequestWithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**userSavePreferences**](UserApi.md#userSavePreferences) | **POST** /user/preferences | Save user preferences.
 
@@ -336,7 +338,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **userGetAffiliateStatus**
-> \Swagger\Client\Model\Affiliate userGetAffiliateStatus()
+> \Swagger\Client\Model\Affiliate userGetAffiliateStatus($currency)
 
 Get your current affiliate/referral status.
 
@@ -364,9 +366,10 @@ $apiInstance = new Swagger\Client\Api\UserApi(
     new GuzzleHttp\Client(),
     $config
 );
+$currency = "XBt"; // string | Options: `XBt`, `USDt`, `all`
 
 try {
-    $result = $apiInstance->userGetAffiliateStatus();
+    $result = $apiInstance->userGetAffiliateStatus($currency);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userGetAffiliateStatus: ', $e->getMessage(), PHP_EOL;
@@ -375,7 +378,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **string**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -478,7 +484,7 @@ $apiInstance = new Swagger\Client\Api\UserApi(
     new GuzzleHttp\Client(),
     $config
 );
-$currency = "XBt"; // string | 
+$currency = "XBt"; // string | Options: `XBt`, `USDt`
 
 try {
     $result = $apiInstance->userGetDepositAddress($currency);
@@ -493,7 +499,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **currency** | **string**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -602,7 +608,7 @@ $apiInstance = new Swagger\Client\Api\UserApi(
     new GuzzleHttp\Client(),
     $config
 );
-$currency = "XBt"; // string | 
+$currency = "XBt"; // string | Options: `XBt`, `USDt`, `all`
 
 try {
     $result = $apiInstance->userGetMargin($currency);
@@ -617,7 +623,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **currency** | **string**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -691,6 +697,120 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+# **userGetQuoteValueRatio**
+> \Swagger\Client\Model\QuoteValueRatio userGetQuoteValueRatio()
+
+Get Quote Value Ratio statistics over the last 3 days
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: apiExpires
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-expires', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-expires', 'Bearer');
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $result = $apiInstance->userGetQuoteValueRatio();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling UserApi->userGetQuoteValueRatio: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Swagger\Client\Model\QuoteValueRatio**](../Model/QuoteValueRatio.md)
+
+### Authorization
+
+[apiExpires](../../README.md#apiExpires), [apiKey](../../README.md#apiKey), [apiSignature](../../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **userGetTradingVolume**
+> \Swagger\Client\Model\TradingVolume userGetTradingVolume()
+
+Get your 30 days USD average trading volume
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: apiExpires
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-expires', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-expires', 'Bearer');
+// Configure API key authorization: apiKey
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
+// Configure API key authorization: apiSignature
+$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api-signature', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-signature', 'Bearer');
+
+$apiInstance = new Swagger\Client\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $result = $apiInstance->userGetTradingVolume();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling UserApi->userGetTradingVolume: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Swagger\Client\Model\TradingVolume**](../Model/TradingVolume.md)
+
+### Authorization
+
+[apiExpires](../../README.md#apiExpires), [apiKey](../../README.md#apiKey), [apiSignature](../../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 # **userGetWallet**
 > \Swagger\Client\Model\Wallet userGetWallet($currency)
 
@@ -720,7 +840,7 @@ $apiInstance = new Swagger\Client\Api\UserApi(
     new GuzzleHttp\Client(),
     $config
 );
-$currency = "XBt"; // string | 
+$currency = "XBt"; // string | Options: `XBt`, `USDt`, `all`
 
 try {
     $result = $apiInstance->userGetWallet($currency);
@@ -735,7 +855,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **currency** | **string**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -781,7 +901,7 @@ $apiInstance = new Swagger\Client\Api\UserApi(
     new GuzzleHttp\Client(),
     $config
 );
-$currency = "XBt"; // string | 
+$currency = "XBt"; // string | Options: `XBt`, `USDt`, `all`
 $count = 100; // double | Number of results to fetch.
 $start = 0; // double | Starting point for results.
 
@@ -798,7 +918,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **currency** | **string**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
  **count** | **double**| Number of results to fetch. | [optional] [default to 100]
  **start** | **double**| Starting point for results. | [optional] [default to 0]
 
@@ -846,7 +966,7 @@ $apiInstance = new Swagger\Client\Api\UserApi(
     new GuzzleHttp\Client(),
     $config
 );
-$currency = "XBt"; // string | 
+$currency = "XBt"; // string | Options: `XBt`, `USDt`, `all`
 
 try {
     $result = $apiInstance->userGetWalletSummary($currency);
@@ -861,7 +981,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **currency** | **string**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -921,11 +1041,11 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **userMinWithdrawalFee**
-> object userMinWithdrawalFee($currency)
+> object userMinWithdrawalFee($currency, $amount)
 
-Get the minimum withdrawal fee for a currency.
+Get the minimum, maximum, and recommended withdrawal fees for a currency.
 
-This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \"fee\" field is the recommended fee for fast confirmation on the blockchain.
 
 ### Example
 ```php
@@ -937,10 +1057,11 @@ $apiInstance = new Swagger\Client\Api\UserApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$currency = "XBt"; // string | 
+$currency = "XBt"; // string | Options: `XBt`, `USDt`
+$amount = 1.2; // double | 
 
 try {
-    $result = $apiInstance->userMinWithdrawalFee($currency);
+    $result = $apiInstance->userMinWithdrawalFee($currency, $amount);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userMinWithdrawalFee: ', $e->getMessage(), PHP_EOL;
@@ -952,7 +1073,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **currency** | **string**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; | [optional] [default to XBt]
+ **amount** | **double**|  | [optional]
 
 ### Return type
 
@@ -970,7 +1092,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **userRequestWithdrawal**
-> \Swagger\Client\Model\Transaction userRequestWithdrawal($currency, $amount, $address, $otp_token, $fee, $text)
+> \Swagger\Client\Model\Transaction userRequestWithdrawal($currency, $amount, $otp_token, $address, $address_id, $target_user_id, $fee, $text)
 
 Request a withdrawal to an external wallet.
 
@@ -1000,15 +1122,17 @@ $apiInstance = new Swagger\Client\Api\UserApi(
     new GuzzleHttp\Client(),
     $config
 );
-$currency = "XBt"; // string | Currency you're withdrawing. Options: `XBt`
+$currency = "XBt"; // string | Currency you're withdrawing. Options: `XBt`, `USDt`
 $amount = 8.14; // float | Amount of withdrawal currency.
-$address = "address_example"; // string | Destination Address.
-$otp_token = "otp_token_example"; // string | 2FA token. Required if 2FA is enabled on your account.
+$otp_token = "otp_token_example"; // string | 2FA token. Required for all external withdrawals.
+$address = "address_example"; // string | Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
+$address_id = 1.2; // double | ID of the Destination Address. One of `address`, `targetUserId`, `targetUserId` has to be specified.
+$target_user_id = 1.2; // double | ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified.
 $fee = 1.2; // double | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
 $text = "text_example"; // string | Optional annotation, e.g. 'Transfer to home wallet'.
 
 try {
-    $result = $apiInstance->userRequestWithdrawal($currency, $amount, $address, $otp_token, $fee, $text);
+    $result = $apiInstance->userRequestWithdrawal($currency, $amount, $otp_token, $address, $address_id, $target_user_id, $fee, $text);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->userRequestWithdrawal: ', $e->getMessage(), PHP_EOL;
@@ -1020,10 +1144,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**| Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60; | [default to XBt]
+ **currency** | **string**| Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; | [default to XBt]
  **amount** | **float**| Amount of withdrawal currency. |
- **address** | **string**| Destination Address. |
- **otp_token** | **string**| 2FA token. Required if 2FA is enabled on your account. | [optional]
+ **otp_token** | **string**| 2FA token. Required for all external withdrawals. | [optional]
+ **address** | **string**| Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional]
+ **address_id** | **double**| ID of the Destination Address. One of &#x60;address&#x60;, &#x60;targetUserId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional]
+ **target_user_id** | **double**| ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional]
  **fee** | **double**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional]
  **text** | **string**| Optional annotation, e.g. &#39;Transfer to home wallet&#39;. | [optional]
 

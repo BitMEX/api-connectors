@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -13,7 +13,6 @@
 package io.swagger.client.model;
 
 import java.math.BigDecimal;
-import java.util.*;
 import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -65,12 +64,6 @@ public class Wallet {
   private BigDecimal confirmedDebit = null;
   @SerializedName("timestamp")
   private Date timestamp = null;
-  @SerializedName("addr")
-  private String addr = null;
-  @SerializedName("script")
-  private String script = null;
-  @SerializedName("withdrawalLock")
-  private List<String> withdrawalLock = null;
 
   /**
    **/
@@ -292,36 +285,6 @@ public class Wallet {
     this.timestamp = timestamp;
   }
 
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public String getAddr() {
-    return addr;
-  }
-  public void setAddr(String addr) {
-    this.addr = addr;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public String getScript() {
-    return script;
-  }
-  public void setScript(String script) {
-    this.script = script;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public List<String> getWithdrawalLock() {
-    return withdrawalLock;
-  }
-  public void setWithdrawalLock(List<String> withdrawalLock) {
-    this.withdrawalLock = withdrawalLock;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -353,10 +316,7 @@ public class Wallet {
         (this.pendingCredit == null ? wallet.pendingCredit == null : this.pendingCredit.equals(wallet.pendingCredit)) &&
         (this.pendingDebit == null ? wallet.pendingDebit == null : this.pendingDebit.equals(wallet.pendingDebit)) &&
         (this.confirmedDebit == null ? wallet.confirmedDebit == null : this.confirmedDebit.equals(wallet.confirmedDebit)) &&
-        (this.timestamp == null ? wallet.timestamp == null : this.timestamp.equals(wallet.timestamp)) &&
-        (this.addr == null ? wallet.addr == null : this.addr.equals(wallet.addr)) &&
-        (this.script == null ? wallet.script == null : this.script.equals(wallet.script)) &&
-        (this.withdrawalLock == null ? wallet.withdrawalLock == null : this.withdrawalLock.equals(wallet.withdrawalLock));
+        (this.timestamp == null ? wallet.timestamp == null : this.timestamp.equals(wallet.timestamp));
   }
 
   @Override
@@ -384,9 +344,6 @@ public class Wallet {
     result = 31 * result + (this.pendingDebit == null ? 0: this.pendingDebit.hashCode());
     result = 31 * result + (this.confirmedDebit == null ? 0: this.confirmedDebit.hashCode());
     result = 31 * result + (this.timestamp == null ? 0: this.timestamp.hashCode());
-    result = 31 * result + (this.addr == null ? 0: this.addr.hashCode());
-    result = 31 * result + (this.script == null ? 0: this.script.hashCode());
-    result = 31 * result + (this.withdrawalLock == null ? 0: this.withdrawalLock.hashCode());
     return result;
   }
 
@@ -417,9 +374,6 @@ public class Wallet {
     sb.append("  pendingDebit: ").append(pendingDebit).append("\n");
     sb.append("  confirmedDebit: ").append(confirmedDebit).append("\n");
     sb.append("  timestamp: ").append(timestamp).append("\n");
-    sb.append("  addr: ").append(addr).append("\n");
-    sb.append("  script: ").append(script).append("\n");
-    sb.append("  withdrawalLock: ").append(withdrawalLock).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

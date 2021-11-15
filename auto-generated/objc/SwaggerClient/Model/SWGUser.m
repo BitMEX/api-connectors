@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"ownerId": @"ownerId", @"firstname": @"firstname", @"lastname": @"lastname", @"username": @"username", @"email": @"email", @"phone": @"phone", @"created": @"created", @"lastUpdated": @"lastUpdated", @"preferences": @"preferences", @"tFAEnabled": @"TFAEnabled", @"affiliateID": @"affiliateID", @"pgpPubKey": @"pgpPubKey", @"country": @"country", @"geoipCountry": @"geoipCountry", @"geoipRegion": @"geoipRegion", @"typ": @"typ" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"ownerId": @"ownerId", @"firstname": @"firstname", @"lastname": @"lastname", @"username": @"username", @"email": @"email", @"phone": @"phone", @"created": @"created", @"lastUpdated": @"lastUpdated", @"preferences": @"preferences", @"tFAEnabled": @"TFAEnabled", @"affiliateID": @"affiliateID", @"pgpPubKey": @"pgpPubKey", @"pgpPubKeyCreated": @"pgpPubKeyCreated", @"country": @"country", @"geoipCountry": @"geoipCountry", @"geoipRegion": @"geoipRegion", @"typ": @"typ" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"_id", @"ownerId", @"firstname", @"lastname", @"phone", @"created", @"lastUpdated", @"preferences", @"tFAEnabled", @"affiliateID", @"pgpPubKey", @"country", @"geoipCountry", @"geoipRegion", @"typ"];
+  NSArray *optionalProperties = @[@"_id", @"ownerId", @"firstname", @"lastname", @"email", @"phone", @"created", @"lastUpdated", @"preferences", @"tFAEnabled", @"affiliateID", @"pgpPubKey", @"pgpPubKeyCreated", @"country", @"geoipCountry", @"geoipRegion", @"typ"];
   return [optionalProperties containsObject:propertyName];
 }
 

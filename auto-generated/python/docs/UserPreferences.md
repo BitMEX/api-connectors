@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **hide_from_leaderboard** | **bool** |  | [optional] [default to False]
 **hide_name_from_leaderboard** | **bool** |  | [optional] [default to True]
 **hide_notifications** | **list[str]** |  | [optional] 
+**hide_phone_confirm** | **bool** |  | [optional] [default to False]
 **locale** | **str** |  | [optional] [default to 'en-US']
 **msgs_seen** | **list[str]** |  | [optional] 
 **order_book_binning** | **object** |  | [optional] 

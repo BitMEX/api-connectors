@@ -41,9 +41,11 @@ Name | Type | Description | Notes
 **ExcessMarginPcnt** | **double?** |  | [optional] [default to 0.0]
 **AvailableMargin** | **decimal?** |  | [optional] 
 **WithdrawableMargin** | **decimal?** |  | [optional] 
-**Timestamp** | **DateTime?** |  | [optional] 
 **GrossLastValue** | **decimal?** |  | [optional] 
 **Commission** | **double?** |  | [optional] [default to 0.0]
+**MakerFeeDiscount** | **double?** |  | [optional] [default to 0.0]
+**TakerFeeDiscount** | **double?** |  | [optional] [default to 0.0]
+**Timestamp** | **DateTime?** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

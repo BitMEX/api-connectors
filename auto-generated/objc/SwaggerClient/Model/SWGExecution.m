@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"orderID", @"clOrdID", @"clOrdLinkID", @"account", @"symbol", @"side", @"lastQty", @"lastPx", @"underlyingLastPx", @"lastMkt", @"lastLiquidityInd", @"simpleOrderQty", @"orderQty", @"price", @"displayQty", @"stopPx", @"pegOffsetValue", @"pegPriceType", @"currency", @"settlCurrency", @"execType", @"ordType", @"timeInForce", @"execInst", @"contingencyType", @"exDestination", @"ordStatus", @"triggered", @"workingIndicator", @"ordRejReason", @"simpleLeavesQty", @"leavesQty", @"simpleCumQty", @"cumQty", @"avgPx", @"commission", @"tradePublishIndicator", @"multiLegReportingType", @"text", @"trdMatchID", @"execCost", @"execComm", @"homeNotional", @"foreignNotional", @"transactTime", @"timestamp"];
+  NSArray *optionalProperties = @[@"execID", @"orderID", @"clOrdID", @"clOrdLinkID", @"account", @"side", @"lastQty", @"lastPx", @"underlyingLastPx", @"lastMkt", @"lastLiquidityInd", @"simpleOrderQty", @"orderQty", @"price", @"displayQty", @"stopPx", @"pegOffsetValue", @"pegPriceType", @"currency", @"settlCurrency", @"execType", @"ordType", @"timeInForce", @"execInst", @"contingencyType", @"exDestination", @"ordStatus", @"triggered", @"workingIndicator", @"ordRejReason", @"simpleLeavesQty", @"leavesQty", @"simpleCumQty", @"cumQty", @"avgPx", @"commission", @"tradePublishIndicator", @"multiLegReportingType", @"text", @"trdMatchID", @"execCost", @"execComm", @"homeNotional", @"foreignNotional", @"transactTime", ];
   return [optionalProperties containsObject:propertyName];
 }
 

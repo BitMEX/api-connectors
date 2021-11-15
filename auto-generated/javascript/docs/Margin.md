@@ -41,8 +41,10 @@ Name | Type | Description | Notes
 **excessMarginPcnt** | **Number** |  | [optional] [default to 0.0]
 **availableMargin** | **Number** |  | [optional] 
 **withdrawableMargin** | **Number** |  | [optional] 
-**timestamp** | **Date** |  | [optional] 
 **grossLastValue** | **Number** |  | [optional] 
 **commission** | **Number** |  | [optional] [default to 0.0]
+**makerFeeDiscount** | **Number** |  | [optional] [default to 0.0]
+**takerFeeDiscount** | **Number** |  | [optional] [default to 0.0]
+**timestamp** | **Date** |  | [optional] 
 
 

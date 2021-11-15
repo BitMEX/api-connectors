@@ -11,6 +11,8 @@
     self.marginUsedPcnt = @0.0;
     self.excessMarginPcnt = @0.0;
     self.commission = @0.0;
+    self.makerFeeDiscount = @0.0;
+    self.takerFeeDiscount = @0.0;
     
   }
   return self;
@@ -22,7 +24,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"account": @"account", @"currency": @"currency", @"riskLimit": @"riskLimit", @"prevState": @"prevState", @"state": @"state", @"action": @"action", @"amount": @"amount", @"pendingCredit": @"pendingCredit", @"pendingDebit": @"pendingDebit", @"confirmedDebit": @"confirmedDebit", @"prevRealisedPnl": @"prevRealisedPnl", @"prevUnrealisedPnl": @"prevUnrealisedPnl", @"grossComm": @"grossComm", @"grossOpenCost": @"grossOpenCost", @"grossOpenPremium": @"grossOpenPremium", @"grossExecCost": @"grossExecCost", @"grossMarkValue": @"grossMarkValue", @"riskValue": @"riskValue", @"taxableMargin": @"taxableMargin", @"initMargin": @"initMargin", @"maintMargin": @"maintMargin", @"sessionMargin": @"sessionMargin", @"targetExcessMargin": @"targetExcessMargin", @"varMargin": @"varMargin", @"realisedPnl": @"realisedPnl", @"unrealisedPnl": @"unrealisedPnl", @"indicativeTax": @"indicativeTax", @"unrealisedProfit": @"unrealisedProfit", @"syntheticMargin": @"syntheticMargin", @"walletBalance": @"walletBalance", @"marginBalance": @"marginBalance", @"marginBalancePcnt": @"marginBalancePcnt", @"marginLeverage": @"marginLeverage", @"marginUsedPcnt": @"marginUsedPcnt", @"excessMargin": @"excessMargin", @"excessMarginPcnt": @"excessMarginPcnt", @"availableMargin": @"availableMargin", @"withdrawableMargin": @"withdrawableMargin", @"timestamp": @"timestamp", @"grossLastValue": @"grossLastValue", @"commission": @"commission" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"account": @"account", @"currency": @"currency", @"riskLimit": @"riskLimit", @"prevState": @"prevState", @"state": @"state", @"action": @"action", @"amount": @"amount", @"pendingCredit": @"pendingCredit", @"pendingDebit": @"pendingDebit", @"confirmedDebit": @"confirmedDebit", @"prevRealisedPnl": @"prevRealisedPnl", @"prevUnrealisedPnl": @"prevUnrealisedPnl", @"grossComm": @"grossComm", @"grossOpenCost": @"grossOpenCost", @"grossOpenPremium": @"grossOpenPremium", @"grossExecCost": @"grossExecCost", @"grossMarkValue": @"grossMarkValue", @"riskValue": @"riskValue", @"taxableMargin": @"taxableMargin", @"initMargin": @"initMargin", @"maintMargin": @"maintMargin", @"sessionMargin": @"sessionMargin", @"targetExcessMargin": @"targetExcessMargin", @"varMargin": @"varMargin", @"realisedPnl": @"realisedPnl", @"unrealisedPnl": @"unrealisedPnl", @"indicativeTax": @"indicativeTax", @"unrealisedProfit": @"unrealisedProfit", @"syntheticMargin": @"syntheticMargin", @"walletBalance": @"walletBalance", @"marginBalance": @"marginBalance", @"marginBalancePcnt": @"marginBalancePcnt", @"marginLeverage": @"marginLeverage", @"marginUsedPcnt": @"marginUsedPcnt", @"excessMargin": @"excessMargin", @"excessMarginPcnt": @"excessMarginPcnt", @"availableMargin": @"availableMargin", @"withdrawableMargin": @"withdrawableMargin", @"grossLastValue": @"grossLastValue", @"commission": @"commission", @"makerFeeDiscount": @"makerFeeDiscount", @"takerFeeDiscount": @"takerFeeDiscount", @"timestamp": @"timestamp" }];
 }
 
 /**
@@ -32,7 +34,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"riskLimit", @"prevState", @"state", @"action", @"amount", @"pendingCredit", @"pendingDebit", @"confirmedDebit", @"prevRealisedPnl", @"prevUnrealisedPnl", @"grossComm", @"grossOpenCost", @"grossOpenPremium", @"grossExecCost", @"grossMarkValue", @"riskValue", @"taxableMargin", @"initMargin", @"maintMargin", @"sessionMargin", @"targetExcessMargin", @"varMargin", @"realisedPnl", @"unrealisedPnl", @"indicativeTax", @"unrealisedProfit", @"syntheticMargin", @"walletBalance", @"marginBalance", @"marginBalancePcnt", @"marginLeverage", @"marginUsedPcnt", @"excessMargin", @"excessMarginPcnt", @"availableMargin", @"withdrawableMargin", @"timestamp", @"grossLastValue", @"commission"];
+  NSArray *optionalProperties = @[@"riskLimit", @"prevState", @"state", @"action", @"amount", @"pendingCredit", @"pendingDebit", @"confirmedDebit", @"prevRealisedPnl", @"prevUnrealisedPnl", @"grossComm", @"grossOpenCost", @"grossOpenPremium", @"grossExecCost", @"grossMarkValue", @"riskValue", @"taxableMargin", @"initMargin", @"maintMargin", @"sessionMargin", @"targetExcessMargin", @"varMargin", @"realisedPnl", @"unrealisedPnl", @"indicativeTax", @"unrealisedProfit", @"syntheticMargin", @"walletBalance", @"marginBalance", @"marginBalancePcnt", @"marginLeverage", @"marginUsedPcnt", @"excessMargin", @"excessMarginPcnt", @"availableMargin", @"withdrawableMargin", @"grossLastValue", @"commission", @"makerFeeDiscount", @"takerFeeDiscount", @"timestamp"];
   return [optionalProperties containsObject:propertyName];
 }
 

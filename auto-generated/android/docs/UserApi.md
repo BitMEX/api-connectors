@@ -16,11 +16,13 @@ Method | HTTP request | Description
 [**userGetExecutionHistory**](UserApi.md#userGetExecutionHistory) | **GET** /user/executionHistory | Get the execution history by day.
 [**userGetMargin**](UserApi.md#userGetMargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 [**userGetQuoteFillRatio**](UserApi.md#userGetQuoteFillRatio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
+[**userGetQuoteValueRatio**](UserApi.md#userGetQuoteValueRatio) | **GET** /user/quoteValueRatio | Get Quote Value Ratio statistics over the last 3 days
+[**userGetTradingVolume**](UserApi.md#userGetTradingVolume) | **GET** /user/tradingVolume | Get your 30 days USD average trading volume
 [**userGetWallet**](UserApi.md#userGetWallet) | **GET** /user/wallet | Get your current wallet information.
 [**userGetWalletHistory**](UserApi.md#userGetWalletHistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 [**userGetWalletSummary**](UserApi.md#userGetWalletSummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**userLogout**](UserApi.md#userLogout) | **POST** /user/logout | Log out of BitMEX.
-[**userMinWithdrawalFee**](UserApi.md#userMinWithdrawalFee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
+[**userMinWithdrawalFee**](UserApi.md#userMinWithdrawalFee) | **GET** /user/minWithdrawalFee | Get the minimum, maximum, and recommended withdrawal fees for a currency.
 [**userRequestWithdrawal**](UserApi.md#userRequestWithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**userSavePreferences**](UserApi.md#userSavePreferences) | **POST** /user/preferences | Save user preferences.
 
@@ -273,7 +275,7 @@ This endpoint does not need any parameter.
 
 <a name="userGetAffiliateStatus"></a>
 # **userGetAffiliateStatus**
-> Affiliate userGetAffiliateStatus()
+> Affiliate userGetAffiliateStatus(currency)
 
 Get your current affiliate/referral status.
 
@@ -283,8 +285,9 @@ Get your current affiliate/referral status.
 //import io.swagger.client.api.UserApi;
 
 UserApi apiInstance = new UserApi();
+String currency = "XBt"; // String | Options: `XBt`, `USDt`, `all`
 try {
-    Affiliate result = apiInstance.userGetAffiliateStatus();
+    Affiliate result = apiInstance.userGetAffiliateStatus(currency);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userGetAffiliateStatus");
@@ -293,7 +296,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -357,7 +363,7 @@ Get a deposit address.
 //import io.swagger.client.api.UserApi;
 
 UserApi apiInstance = new UserApi();
-String currency = "XBt"; // String | 
+String currency = "XBt"; // String | Options: `XBt`, `USDt`
 try {
     String result = apiInstance.userGetDepositAddress(currency);
     System.out.println(result);
@@ -371,7 +377,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**|  | [optional] [default to XBt]
+ **currency** | **String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -441,7 +447,7 @@ Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to re
 //import io.swagger.client.api.UserApi;
 
 UserApi apiInstance = new UserApi();
-String currency = "XBt"; // String | 
+String currency = "XBt"; // String | Options: `XBt`, `USDt`, `all`
 try {
     Margin result = apiInstance.userGetMargin(currency);
     System.out.println(result);
@@ -455,7 +461,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**|  | [optional] [default to XBt]
+ **currency** | **String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -507,6 +513,80 @@ This endpoint does not need any parameter.
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
+<a name="userGetQuoteValueRatio"></a>
+# **userGetQuoteValueRatio**
+> QuoteValueRatio userGetQuoteValueRatio()
+
+Get Quote Value Ratio statistics over the last 3 days
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.api.UserApi;
+
+UserApi apiInstance = new UserApi();
+try {
+    QuoteValueRatio result = apiInstance.userGetQuoteValueRatio();
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling UserApi#userGetQuoteValueRatio");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**QuoteValueRatio**](QuoteValueRatio.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+<a name="userGetTradingVolume"></a>
+# **userGetTradingVolume**
+> TradingVolume userGetTradingVolume()
+
+Get your 30 days USD average trading volume
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.api.UserApi;
+
+UserApi apiInstance = new UserApi();
+try {
+    TradingVolume result = apiInstance.userGetTradingVolume();
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling UserApi#userGetTradingVolume");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**TradingVolume**](TradingVolume.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
 <a name="userGetWallet"></a>
 # **userGetWallet**
 > Wallet userGetWallet(currency)
@@ -519,7 +599,7 @@ Get your current wallet information.
 //import io.swagger.client.api.UserApi;
 
 UserApi apiInstance = new UserApi();
-String currency = "XBt"; // String | 
+String currency = "XBt"; // String | Options: `XBt`, `USDt`, `all`
 try {
     Wallet result = apiInstance.userGetWallet(currency);
     System.out.println(result);
@@ -533,7 +613,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**|  | [optional] [default to XBt]
+ **currency** | **String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -560,7 +640,7 @@ Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 //import io.swagger.client.api.UserApi;
 
 UserApi apiInstance = new UserApi();
-String currency = "XBt"; // String | 
+String currency = "XBt"; // String | Options: `XBt`, `USDt`, `all`
 Double count = 3.4D; // Double | Number of results to fetch.
 Double start = 3.4D; // Double | Starting point for results.
 try {
@@ -576,7 +656,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**|  | [optional] [default to XBt]
+ **currency** | **String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
  **count** | **Double**| Number of results to fetch. | [optional] [default to 100]
  **start** | **Double**| Starting point for results. | [optional] [default to 0]
 
@@ -605,7 +685,7 @@ Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 //import io.swagger.client.api.UserApi;
 
 UserApi apiInstance = new UserApi();
-String currency = "XBt"; // String | 
+String currency = "XBt"; // String | Options: `XBt`, `USDt`, `all`
 try {
     List<Transaction> result = apiInstance.userGetWalletSummary(currency);
     System.out.println(result);
@@ -619,7 +699,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**|  | [optional] [default to XBt]
+ **currency** | **String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -672,11 +752,11 @@ No authorization required
 
 <a name="userMinWithdrawalFee"></a>
 # **userMinWithdrawalFee**
-> Object userMinWithdrawalFee(currency)
+> Object userMinWithdrawalFee(currency, amount)
 
-Get the minimum withdrawal fee for a currency.
+Get the minimum, maximum, and recommended withdrawal fees for a currency.
 
-This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \&quot;fee\&quot; field is the recommended fee for fast confirmation on the blockchain.
 
 ### Example
 ```java
@@ -684,9 +764,10 @@ This is changed based on network conditions to ensure timely withdrawals. During
 //import io.swagger.client.api.UserApi;
 
 UserApi apiInstance = new UserApi();
-String currency = "XBt"; // String | 
+String currency = "XBt"; // String | Options: `XBt`, `USDt`
+Double amount = 3.4D; // Double | 
 try {
-    Object result = apiInstance.userMinWithdrawalFee(currency);
+    Object result = apiInstance.userMinWithdrawalFee(currency, amount);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userMinWithdrawalFee");
@@ -698,7 +779,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**|  | [optional] [default to XBt]
+ **currency** | **String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; | [optional] [default to XBt]
+ **amount** | **Double**|  | [optional]
 
 ### Return type
 
@@ -715,7 +797,7 @@ No authorization required
 
 <a name="userRequestWithdrawal"></a>
 # **userRequestWithdrawal**
-> Transaction userRequestWithdrawal(currency, amount, address, otpToken, fee, text)
+> Transaction userRequestWithdrawal(currency, amount, otpToken, address, addressId, targetUserId, fee, text)
 
 Request a withdrawal to an external wallet.
 
@@ -727,14 +809,16 @@ This will send a confirmation email to the email address on record.
 //import io.swagger.client.api.UserApi;
 
 UserApi apiInstance = new UserApi();
-String currency = "XBt"; // String | Currency you're withdrawing. Options: `XBt`
+String currency = "XBt"; // String | Currency you're withdrawing. Options: `XBt`, `USDt`
 BigDecimal amount = new BigDecimal(); // BigDecimal | Amount of withdrawal currency.
-String address = "address_example"; // String | Destination Address.
-String otpToken = "otpToken_example"; // String | 2FA token. Required if 2FA is enabled on your account.
+String otpToken = "otpToken_example"; // String | 2FA token. Required for all external withdrawals.
+String address = "address_example"; // String | Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
+Double addressId = 3.4D; // Double | ID of the Destination Address. One of `address`, `targetUserId`, `targetUserId` has to be specified.
+Double targetUserId = 3.4D; // Double | ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified.
 Double fee = 3.4D; // Double | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
 String text = "text_example"; // String | Optional annotation, e.g. 'Transfer to home wallet'.
 try {
-    Transaction result = apiInstance.userRequestWithdrawal(currency, amount, address, otpToken, fee, text);
+    Transaction result = apiInstance.userRequestWithdrawal(currency, amount, otpToken, address, addressId, targetUserId, fee, text);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userRequestWithdrawal");
@@ -746,10 +830,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**| Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60; | [default to XBt]
+ **currency** | **String**| Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; | [default to XBt]
  **amount** | **BigDecimal**| Amount of withdrawal currency. |
- **address** | **String**| Destination Address. |
- **otpToken** | **String**| 2FA token. Required if 2FA is enabled on your account. | [optional]
+ **otpToken** | **String**| 2FA token. Required for all external withdrawals. | [optional]
+ **address** | **String**| Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional]
+ **addressId** | **Double**| ID of the Destination Address. One of &#x60;address&#x60;, &#x60;targetUserId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional]
+ **targetUserId** | **Double**| ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional]
  **fee** | **Double**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional]
  **text** | **String**| Optional annotation, e.g. &#39;Transfer to home wallet&#39;. | [optional]
 

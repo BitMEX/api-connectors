@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -15,6 +15,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from swagger_client.configuration import Configuration
 
 
 class UserPreferences(object):
@@ -45,6 +47,7 @@ class UserPreferences(object):
         'hide_from_leaderboard': 'bool',
         'hide_name_from_leaderboard': 'bool',
         'hide_notifications': 'list[str]',
+        'hide_phone_confirm': 'bool',
         'locale': 'str',
         'msgs_seen': 'list[str]',
         'order_book_binning': 'object',
@@ -75,6 +78,7 @@ class UserPreferences(object):
         'hide_from_leaderboard': 'hideFromLeaderboard',
         'hide_name_from_leaderboard': 'hideNameFromLeaderboard',
         'hide_notifications': 'hideNotifications',
+        'hide_phone_confirm': 'hidePhoneConfirm',
         'locale': 'locale',
         'msgs_seen': 'msgsSeen',
         'order_book_binning': 'orderBookBinning',
@@ -90,8 +94,11 @@ class UserPreferences(object):
         'trade_layout': 'tradeLayout'
     }
 
-    def __init__(self, alert_on_liquidations=None, animations_enabled=None, announcements_last_seen=None, chat_channel_id=None, color_theme=None, currency=None, debug=None, disable_emails=None, disable_push=None, hide_confirm_dialogs=None, hide_connection_modal=None, hide_from_leaderboard=False, hide_name_from_leaderboard=True, hide_notifications=None, locale='en-US', msgs_seen=None, order_book_binning=None, order_book_type=None, order_clear_immediate=False, order_controls_plus_minus=None, show_locale_numbers=True, sounds=None, strict_ip_check=False, strict_timeout=True, ticker_group=None, ticker_pinned=None, trade_layout=None):  # noqa: E501
+    def __init__(self, alert_on_liquidations=None, animations_enabled=None, announcements_last_seen=None, chat_channel_id=None, color_theme=None, currency=None, debug=None, disable_emails=None, disable_push=None, hide_confirm_dialogs=None, hide_connection_modal=None, hide_from_leaderboard=False, hide_name_from_leaderboard=True, hide_notifications=None, hide_phone_confirm=False, locale='en-US', msgs_seen=None, order_book_binning=None, order_book_type=None, order_clear_immediate=False, order_controls_plus_minus=None, show_locale_numbers=True, sounds=None, strict_ip_check=False, strict_timeout=True, ticker_group=None, ticker_pinned=None, trade_layout=None, _configuration=None):  # noqa: E501
         """UserPreferences - a model defined in Swagger"""  # noqa: E501
+        if _configuration is None:
+            _configuration = Configuration()
+        self._configuration = _configuration
 
         self._alert_on_liquidations = None
         self._animations_enabled = None
@@ -107,6 +114,7 @@ class UserPreferences(object):
         self._hide_from_leaderboard = None
         self._hide_name_from_leaderboard = None
         self._hide_notifications = None
+        self._hide_phone_confirm = None
         self._locale = None
         self._msgs_seen = None
         self._order_book_binning = None
@@ -150,6 +158,8 @@ class UserPreferences(object):
             self.hide_name_from_leaderboard = hide_name_from_leaderboard
         if hide_notifications is not None:
             self.hide_notifications = hide_notifications
+        if hide_phone_confirm is not None:
+            self.hide_phone_confirm = hide_phone_confirm
         if locale is not None:
             self.locale = locale
         if msgs_seen is not None:
@@ -472,6 +482,27 @@ class UserPreferences(object):
         self._hide_notifications = hide_notifications
 
     @property
+    def hide_phone_confirm(self):
+        """Gets the hide_phone_confirm of this UserPreferences.  # noqa: E501
+
+
+        :return: The hide_phone_confirm of this UserPreferences.  # noqa: E501
+        :rtype: bool
+        """
+        return self._hide_phone_confirm
+
+    @hide_phone_confirm.setter
+    def hide_phone_confirm(self, hide_phone_confirm):
+        """Sets the hide_phone_confirm of this UserPreferences.
+
+
+        :param hide_phone_confirm: The hide_phone_confirm of this UserPreferences.  # noqa: E501
+        :type: bool
+        """
+
+        self._hide_phone_confirm = hide_phone_confirm
+
+    @property
     def locale(self):
         """Gets the locale of this UserPreferences.  # noqa: E501
 
@@ -784,8 +815,11 @@ class UserPreferences(object):
         if not isinstance(other, UserPreferences):
             return False
 
-        return self.__dict__ == other.__dict__
+        return self.to_dict() == other.to_dict()
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        return not self == other
+        if not isinstance(other, UserPreferences):
+            return True
+
+        return self.to_dict() != other.to_dict()

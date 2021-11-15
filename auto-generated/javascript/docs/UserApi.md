@@ -16,11 +16,13 @@ Method | HTTP request | Description
 [**userGetExecutionHistory**](UserApi.md#userGetExecutionHistory) | **GET** /user/executionHistory | Get the execution history by day.
 [**userGetMargin**](UserApi.md#userGetMargin) | **GET** /user/margin | Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.
 [**userGetQuoteFillRatio**](UserApi.md#userGetQuoteFillRatio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
+[**userGetQuoteValueRatio**](UserApi.md#userGetQuoteValueRatio) | **GET** /user/quoteValueRatio | Get Quote Value Ratio statistics over the last 3 days
+[**userGetTradingVolume**](UserApi.md#userGetTradingVolume) | **GET** /user/tradingVolume | Get your 30 days USD average trading volume
 [**userGetWallet**](UserApi.md#userGetWallet) | **GET** /user/wallet | Get your current wallet information.
 [**userGetWalletHistory**](UserApi.md#userGetWalletHistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 [**userGetWalletSummary**](UserApi.md#userGetWalletSummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**userLogout**](UserApi.md#userLogout) | **POST** /user/logout | Log out of BitMEX.
-[**userMinWithdrawalFee**](UserApi.md#userMinWithdrawalFee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
+[**userMinWithdrawalFee**](UserApi.md#userMinWithdrawalFee) | **GET** /user/minWithdrawalFee | Get the minimum, maximum, and recommended withdrawal fees for a currency.
 [**userRequestWithdrawal**](UserApi.md#userRequestWithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**userSavePreferences**](UserApi.md#userSavePreferences) | **POST** /user/preferences | Save user preferences.
 
@@ -329,7 +331,7 @@ This endpoint does not need any parameter.
 
 <a name="userGetAffiliateStatus"></a>
 # **userGetAffiliateStatus**
-> Affiliate userGetAffiliateStatus()
+> Affiliate userGetAffiliateStatus(opts)
 
 Get your current affiliate/referral status.
 
@@ -358,6 +360,10 @@ apiSignature.apiKey = 'YOUR API KEY';
 
 var apiInstance = new BitMexApi.UserApi();
 
+var opts = { 
+  'currency': "XBt" // String | Options: `XBt`, `USDt`, `all`
+};
+
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -365,11 +371,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.userGetAffiliateStatus(callback);
+apiInstance.userGetAffiliateStatus(opts, callback);
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **String**| Options: `XBt`, `USDt`, `all` | [optional] [default to XBt]
 
 ### Return type
 
@@ -473,7 +482,7 @@ apiSignature.apiKey = 'YOUR API KEY';
 var apiInstance = new BitMexApi.UserApi();
 
 var opts = { 
-  'currency': "XBt" // String | 
+  'currency': "XBt" // String | Options: `XBt`, `USDt`
 };
 
 var callback = function(error, data, response) {
@@ -490,7 +499,7 @@ apiInstance.userGetDepositAddress(opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**|  | [optional] [default to XBt]
+ **currency** | **String**| Options: `XBt`, `USDt` | [optional] [default to XBt]
 
 ### Return type
 
@@ -603,7 +612,7 @@ apiSignature.apiKey = 'YOUR API KEY';
 var apiInstance = new BitMexApi.UserApi();
 
 var opts = { 
-  'currency': "XBt" // String | 
+  'currency': "XBt" // String | Options: `XBt`, `USDt`, `all`
 };
 
 var callback = function(error, data, response) {
@@ -620,7 +629,7 @@ apiInstance.userGetMargin(opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**|  | [optional] [default to XBt]
+ **currency** | **String**| Options: `XBt`, `USDt`, `all` | [optional] [default to XBt]
 
 ### Return type
 
@@ -692,6 +701,120 @@ This endpoint does not need any parameter.
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
 
+<a name="userGetQuoteValueRatio"></a>
+# **userGetQuoteValueRatio**
+> QuoteValueRatio userGetQuoteValueRatio()
+
+Get Quote Value Ratio statistics over the last 3 days
+
+### Example
+```javascript
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
+
+// Configure API key authorization: apiExpires
+var apiExpires = defaultClient.authentications['apiExpires'];
+apiExpires.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiExpires.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiKey
+var apiKey = defaultClient.authentications['apiKey'];
+apiKey.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiSignature
+var apiSignature = defaultClient.authentications['apiSignature'];
+apiSignature.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.apiKeyPrefix = 'Token';
+
+var apiInstance = new BitMexApi.UserApi();
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.userGetQuoteValueRatio(callback);
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**QuoteValueRatio**](QuoteValueRatio.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+<a name="userGetTradingVolume"></a>
+# **userGetTradingVolume**
+> TradingVolume userGetTradingVolume()
+
+Get your 30 days USD average trading volume
+
+### Example
+```javascript
+var BitMexApi = require('bit_mex_api');
+var defaultClient = BitMexApi.ApiClient.instance;
+
+// Configure API key authorization: apiExpires
+var apiExpires = defaultClient.authentications['apiExpires'];
+apiExpires.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiExpires.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiKey
+var apiKey = defaultClient.authentications['apiKey'];
+apiKey.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKey.apiKeyPrefix = 'Token';
+
+// Configure API key authorization: apiSignature
+var apiSignature = defaultClient.authentications['apiSignature'];
+apiSignature.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiSignature.apiKeyPrefix = 'Token';
+
+var apiInstance = new BitMexApi.UserApi();
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.userGetTradingVolume(callback);
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**TradingVolume**](TradingVolume.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
 <a name="userGetWallet"></a>
 # **userGetWallet**
 > Wallet userGetWallet(opts)
@@ -724,7 +847,7 @@ apiSignature.apiKey = 'YOUR API KEY';
 var apiInstance = new BitMexApi.UserApi();
 
 var opts = { 
-  'currency': "XBt" // String | 
+  'currency': "XBt" // String | Options: `XBt`, `USDt`, `all`
 };
 
 var callback = function(error, data, response) {
@@ -741,7 +864,7 @@ apiInstance.userGetWallet(opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**|  | [optional] [default to XBt]
+ **currency** | **String**| Options: `XBt`, `USDt`, `all` | [optional] [default to XBt]
 
 ### Return type
 
@@ -788,7 +911,7 @@ apiSignature.apiKey = 'YOUR API KEY';
 var apiInstance = new BitMexApi.UserApi();
 
 var opts = { 
-  'currency': "XBt", // String | 
+  'currency': "XBt", // String | Options: `XBt`, `USDt`, `all`
   'count': 100, // Number | Number of results to fetch.
   'start': 0 // Number | Starting point for results.
 };
@@ -807,7 +930,7 @@ apiInstance.userGetWalletHistory(opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**|  | [optional] [default to XBt]
+ **currency** | **String**| Options: `XBt`, `USDt`, `all` | [optional] [default to XBt]
  **count** | **Number**| Number of results to fetch. | [optional] [default to 100]
  **start** | **Number**| Starting point for results. | [optional] [default to 0]
 
@@ -856,7 +979,7 @@ apiSignature.apiKey = 'YOUR API KEY';
 var apiInstance = new BitMexApi.UserApi();
 
 var opts = { 
-  'currency': "XBt" // String | 
+  'currency': "XBt" // String | Options: `XBt`, `USDt`, `all`
 };
 
 var callback = function(error, data, response) {
@@ -873,7 +996,7 @@ apiInstance.userGetWalletSummary(opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**|  | [optional] [default to XBt]
+ **currency** | **String**| Options: `XBt`, `USDt`, `all` | [optional] [default to XBt]
 
 ### Return type
 
@@ -930,9 +1053,9 @@ No authorization required
 # **userMinWithdrawalFee**
 > Object userMinWithdrawalFee(opts)
 
-Get the minimum withdrawal fee for a currency.
+Get the minimum, maximum, and recommended withdrawal fees for a currency.
 
-This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \"fee\" field is the recommended fee for fast confirmation on the blockchain.
 
 ### Example
 ```javascript
@@ -941,7 +1064,8 @@ var BitMexApi = require('bit_mex_api');
 var apiInstance = new BitMexApi.UserApi();
 
 var opts = { 
-  'currency': "XBt" // String | 
+  'currency': "XBt", // String | Options: `XBt`, `USDt`
+  'amount': 1.2 // Number | 
 };
 
 var callback = function(error, data, response) {
@@ -958,7 +1082,8 @@ apiInstance.userMinWithdrawalFee(opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**|  | [optional] [default to XBt]
+ **currency** | **String**| Options: `XBt`, `USDt` | [optional] [default to XBt]
+ **amount** | **Number**|  | [optional] 
 
 ### Return type
 
@@ -975,7 +1100,7 @@ No authorization required
 
 <a name="userRequestWithdrawal"></a>
 # **userRequestWithdrawal**
-> Transaction userRequestWithdrawal(currency, amount, address, opts)
+> Transaction userRequestWithdrawal(currency, amount, opts)
 
 Request a withdrawal to an external wallet.
 
@@ -1006,14 +1131,15 @@ apiSignature.apiKey = 'YOUR API KEY';
 
 var apiInstance = new BitMexApi.UserApi();
 
-var currency = "XBt"; // String | Currency you're withdrawing. Options: `XBt`
+var currency = "XBt"; // String | Currency you're withdrawing. Options: `XBt`, `USDt`
 
 var amount = 8.14; // Number | Amount of withdrawal currency.
 
-var address = "address_example"; // String | Destination Address.
-
 var opts = { 
-  'otpToken': "otpToken_example", // String | 2FA token. Required if 2FA is enabled on your account.
+  'otpToken': "otpToken_example", // String | 2FA token. Required for all external withdrawals.
+  'address': "address_example", // String | Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
+  'addressId': 1.2, // Number | ID of the Destination Address. One of `address`, `targetUserId`, `targetUserId` has to be specified.
+  'targetUserId': 1.2, // Number | ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified.
   'fee': 1.2, // Number | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
   'text': "text_example" // String | Optional annotation, e.g. 'Transfer to home wallet'.
 };
@@ -1025,17 +1151,19 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.userRequestWithdrawal(currency, amount, address, opts, callback);
+apiInstance.userRequestWithdrawal(currency, amount, opts, callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**| Currency you're withdrawing. Options: `XBt` | [default to XBt]
+ **currency** | **String**| Currency you're withdrawing. Options: `XBt`, `USDt` | [default to XBt]
  **amount** | **Number**| Amount of withdrawal currency. | 
- **address** | **String**| Destination Address. | 
- **otpToken** | **String**| 2FA token. Required if 2FA is enabled on your account. | [optional] 
+ **otpToken** | **String**| 2FA token. Required for all external withdrawals. | [optional] 
+ **address** | **String**| Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. | [optional] 
+ **addressId** | **Number**| ID of the Destination Address. One of `address`, `targetUserId`, `targetUserId` has to be specified. | [optional] 
+ **targetUserId** | **Number**| ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified. | [optional] 
  **fee** | **Number**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional] 
  **text** | **String**| Optional annotation, e.g. 'Transfer to home wallet'. | [optional] 
 

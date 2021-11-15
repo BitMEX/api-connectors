@@ -16,11 +16,13 @@ Method | HTTP request | Description
 [**user_get_execution_history**](UserApi.md#user_get_execution_history) | **GET** /user/executionHistory | Get the execution history by day.
 [**user_get_margin**](UserApi.md#user_get_margin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 [**user_get_quote_fill_ratio**](UserApi.md#user_get_quote_fill_ratio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
+[**user_get_quote_value_ratio**](UserApi.md#user_get_quote_value_ratio) | **GET** /user/quoteValueRatio | Get Quote Value Ratio statistics over the last 3 days
+[**user_get_trading_volume**](UserApi.md#user_get_trading_volume) | **GET** /user/tradingVolume | Get your 30 days USD average trading volume
 [**user_get_wallet**](UserApi.md#user_get_wallet) | **GET** /user/wallet | Get your current wallet information.
 [**user_get_wallet_history**](UserApi.md#user_get_wallet_history) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 [**user_get_wallet_summary**](UserApi.md#user_get_wallet_summary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**user_logout**](UserApi.md#user_logout) | **POST** /user/logout | Log out of BitMEX.
-[**user_min_withdrawal_fee**](UserApi.md#user_min_withdrawal_fee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
+[**user_min_withdrawal_fee**](UserApi.md#user_min_withdrawal_fee) | **GET** /user/minWithdrawalFee | Get the minimum, maximum, and recommended withdrawal fees for a currency.
 [**user_request_withdrawal**](UserApi.md#user_request_withdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**user_save_preferences**](UserApi.md#user_save_preferences) | **POST** /user/preferences | Save user preferences.
 
@@ -330,7 +332,7 @@ This endpoint does not need any parameter.
 
 
 # **user_get_affiliate_status**
-> Affiliate user_get_affiliate_status
+> Affiliate user_get_affiliate_status(opts)
 
 Get your current affiliate/referral status.
 
@@ -358,9 +360,13 @@ end
 
 api_instance = SwaggerClient::UserApi.new
 
+opts = { 
+  currency: 'XBt' # String | Options: `XBt`, `USDt`, `all`
+}
+
 begin
   #Get your current affiliate/referral status.
-  result = api_instance.user_get_affiliate_status
+  result = api_instance.user_get_affiliate_status(opts)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling UserApi->user_get_affiliate_status: #{e}"
@@ -368,7 +374,10 @@ end
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -471,7 +480,7 @@ end
 api_instance = SwaggerClient::UserApi.new
 
 opts = { 
-  currency: 'XBt' # String | 
+  currency: 'XBt' # String | Options: `XBt`, `USDt`
 }
 
 begin
@@ -487,7 +496,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**|  | [optional] [default to XBt]
+ **currency** | **String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -599,7 +608,7 @@ end
 api_instance = SwaggerClient::UserApi.new
 
 opts = { 
-  currency: 'XBt' # String | 
+  currency: 'XBt' # String | Options: `XBt`, `USDt`, `all`
 }
 
 begin
@@ -615,7 +624,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**|  | [optional] [default to XBt]
+ **currency** | **String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -688,6 +697,118 @@ This endpoint does not need any parameter.
 
 
 
+# **user_get_quote_value_ratio**
+> QuoteValueRatio user_get_quote_value_ratio
+
+Get Quote Value Ratio statistics over the last 3 days
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+# setup authorization
+SwaggerClient.configure do |config|
+  # Configure API key authorization: apiExpires
+  config.api_key['api-expires'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-expires'] = 'Bearer'
+
+  # Configure API key authorization: apiKey
+  config.api_key['api-key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-key'] = 'Bearer'
+
+  # Configure API key authorization: apiSignature
+  config.api_key['api-signature'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-signature'] = 'Bearer'
+end
+
+api_instance = SwaggerClient::UserApi.new
+
+begin
+  #Get Quote Value Ratio statistics over the last 3 days
+  result = api_instance.user_get_quote_value_ratio
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling UserApi->user_get_quote_value_ratio: #{e}"
+end
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**QuoteValueRatio**](QuoteValueRatio.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+
+
+# **user_get_trading_volume**
+> TradingVolume user_get_trading_volume
+
+Get your 30 days USD average trading volume
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+# setup authorization
+SwaggerClient.configure do |config|
+  # Configure API key authorization: apiExpires
+  config.api_key['api-expires'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-expires'] = 'Bearer'
+
+  # Configure API key authorization: apiKey
+  config.api_key['api-key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-key'] = 'Bearer'
+
+  # Configure API key authorization: apiSignature
+  config.api_key['api-signature'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['api-signature'] = 'Bearer'
+end
+
+api_instance = SwaggerClient::UserApi.new
+
+begin
+  #Get your 30 days USD average trading volume
+  result = api_instance.user_get_trading_volume
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling UserApi->user_get_trading_volume: #{e}"
+end
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**TradingVolume**](TradingVolume.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+
+
 # **user_get_wallet**
 > Wallet user_get_wallet(opts)
 
@@ -718,7 +839,7 @@ end
 api_instance = SwaggerClient::UserApi.new
 
 opts = { 
-  currency: 'XBt' # String | 
+  currency: 'XBt' # String | Options: `XBt`, `USDt`, `all`
 }
 
 begin
@@ -734,7 +855,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**|  | [optional] [default to XBt]
+ **currency** | **String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -781,7 +902,7 @@ end
 api_instance = SwaggerClient::UserApi.new
 
 opts = { 
-  currency: 'XBt', # String | 
+  currency: 'XBt', # String | Options: `XBt`, `USDt`, `all`
   count: 100, # Float | Number of results to fetch.
   start: 0 # Float | Starting point for results.
 }
@@ -799,7 +920,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**|  | [optional] [default to XBt]
+ **currency** | **String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
  **count** | **Float**| Number of results to fetch. | [optional] [default to 100]
  **start** | **Float**| Starting point for results. | [optional] [default to 0]
 
@@ -848,7 +969,7 @@ end
 api_instance = SwaggerClient::UserApi.new
 
 opts = { 
-  currency: 'XBt' # String | 
+  currency: 'XBt' # String | Options: `XBt`, `USDt`, `all`
 }
 
 begin
@@ -864,7 +985,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**|  | [optional] [default to XBt]
+ **currency** | **String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -922,9 +1043,9 @@ No authorization required
 # **user_min_withdrawal_fee**
 > Object user_min_withdrawal_fee(opts)
 
-Get the minimum withdrawal fee for a currency.
+Get the minimum, maximum, and recommended withdrawal fees for a currency.
 
-This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \"fee\" field is the recommended fee for fast confirmation on the blockchain.
 
 ### Example
 ```ruby
@@ -934,11 +1055,12 @@ require 'swagger_client'
 api_instance = SwaggerClient::UserApi.new
 
 opts = { 
-  currency: 'XBt' # String | 
+  currency: 'XBt', # String | Options: `XBt`, `USDt`
+  amount: 1.2 # Float | 
 }
 
 begin
-  #Get the minimum withdrawal fee for a currency.
+  #Get the minimum, maximum, and recommended withdrawal fees for a currency.
   result = api_instance.user_min_withdrawal_fee(opts)
   p result
 rescue SwaggerClient::ApiError => e
@@ -950,7 +1072,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**|  | [optional] [default to XBt]
+ **currency** | **String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; | [optional] [default to XBt]
+ **amount** | **Float**|  | [optional] 
 
 ### Return type
 
@@ -968,7 +1091,7 @@ No authorization required
 
 
 # **user_request_withdrawal**
-> Transaction user_request_withdrawal(currency, amount, address, opts)
+> Transaction user_request_withdrawal(currency, amount, opts)
 
 Request a withdrawal to an external wallet.
 
@@ -998,21 +1121,22 @@ end
 
 api_instance = SwaggerClient::UserApi.new
 
-currency = 'XBt' # String | Currency you're withdrawing. Options: `XBt`
+currency = 'XBt' # String | Currency you're withdrawing. Options: `XBt`, `USDt`
 
 amount = 8.14 # Float | Amount of withdrawal currency.
 
-address = 'address_example' # String | Destination Address.
-
 opts = { 
-  otp_token: 'otp_token_example', # String | 2FA token. Required if 2FA is enabled on your account.
+  otp_token: 'otp_token_example', # String | 2FA token. Required for all external withdrawals.
+  address: 'address_example', # String | Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.
+  address_id: 1.2, # Float | ID of the Destination Address. One of `address`, `targetUserId`, `targetUserId` has to be specified.
+  target_user_id: 1.2, # Float | ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified.
   fee: 1.2, # Float | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
   text: 'text_example' # String | Optional annotation, e.g. 'Transfer to home wallet'.
 }
 
 begin
   #Request a withdrawal to an external wallet.
-  result = api_instance.user_request_withdrawal(currency, amount, address, opts)
+  result = api_instance.user_request_withdrawal(currency, amount, opts)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling UserApi->user_request_withdrawal: #{e}"
@@ -1023,10 +1147,12 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **String**| Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60; | [default to XBt]
+ **currency** | **String**| Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; | [default to XBt]
  **amount** | **Float**| Amount of withdrawal currency. | 
- **address** | **String**| Destination Address. | 
- **otp_token** | **String**| 2FA token. Required if 2FA is enabled on your account. | [optional] 
+ **otp_token** | **String**| 2FA token. Required for all external withdrawals. | [optional] 
+ **address** | **String**| Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
+ **address_id** | **Float**| ID of the Destination Address. One of &#x60;address&#x60;, &#x60;targetUserId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
+ **target_user_id** | **Float**| ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
  **fee** | **Float**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional] 
  **text** | **String**| Optional annotation, e.g. &#39;Transfer to home wallet&#39;. | [optional] 
 

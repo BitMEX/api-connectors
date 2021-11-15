@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **firstname** | **String** |  |  [optional]
 **lastname** | **String** |  |  [optional]
 **username** | **String** |  | 
-**email** | **String** |  | 
+**email** | **String** |  |  [optional]
 **phone** | **String** |  |  [optional]
 **created** | [**Date**](Date.md) |  |  [optional]
 **lastUpdated** | [**Date**](Date.md) |  |  [optional]
@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **tFAEnabled** | **String** |  |  [optional]
 **affiliateID** | **String** |  |  [optional]
 **pgpPubKey** | **String** |  |  [optional]
+**pgpPubKeyCreated** | [**Date**](Date.md) |  |  [optional]
 **country** | **String** |  |  [optional]
 **geoipCountry** | **String** |  |  [optional]
 **geoipRegion** | **String** |  |  [optional]

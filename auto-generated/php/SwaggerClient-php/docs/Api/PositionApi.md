@@ -83,6 +83,8 @@ Name | Type | Description  | Notes
 
 Enable isolated margin or cross margin per-position.
 
+Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+
 ### Example
 ```php
 <?php
@@ -145,6 +147,8 @@ Name | Type | Description  | Notes
 > \Swagger\Client\Model\Position positionTransferIsolatedMargin($symbol, $amount)
 
 Transfer equity in or out of a position.
+
+When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
 
 ### Example
 ```php
@@ -209,6 +213,8 @@ Name | Type | Description  | Notes
 
 Choose leverage for a position.
 
+Users can choose an isolated leverage. This will automatically enable isolated margin.
+
 ### Example
 ```php
 <?php
@@ -271,6 +277,8 @@ Name | Type | Description  | Notes
 > \Swagger\Client\Model\Position positionUpdateRiskLimit($symbol, $risk_limit)
 
 Update your risk limit.
+
+Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
 
 ### Example
 ```php

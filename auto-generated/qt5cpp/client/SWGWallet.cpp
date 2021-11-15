@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -81,12 +81,6 @@ SWGWallet::init() {
     m_confirmed_debit_isSet = false;
     timestamp = NULL;
     m_timestamp_isSet = false;
-    addr = new QString("");
-    m_addr_isSet = false;
-    script = new QString("");
-    m_script_isSet = false;
-    withdrawal_lock = new QList<QString*>();
-    m_withdrawal_lock_isSet = false;
 }
 
 void
@@ -157,19 +151,6 @@ SWGWallet::cleanup() {
     if(timestamp != nullptr) { 
         delete timestamp;
     }
-    if(addr != nullptr) { 
-        delete addr;
-    }
-    if(script != nullptr) { 
-        delete script;
-    }
-    if(withdrawal_lock != nullptr) { 
-        auto arr = withdrawal_lock;
-        for(auto o: *arr) { 
-            delete o;
-        }
-        delete withdrawal_lock;
-    }
 }
 
 SWGWallet*
@@ -227,12 +208,6 @@ SWGWallet::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&timestamp, pJson["timestamp"], "QDateTime", "QDateTime");
     
-    ::Swagger::setValue(&addr, pJson["addr"], "QString", "QString");
-    
-    ::Swagger::setValue(&script, pJson["script"], "QString", "QString");
-    
-    
-    ::Swagger::setValue(&withdrawal_lock, pJson["withdrawalLock"], "QList", "QString");
 }
 
 QString
@@ -312,15 +287,6 @@ SWGWallet::asJsonObject() {
     }
     if(timestamp != nullptr) { 
         toJsonValue(QString("timestamp"), timestamp, obj, QString("QDateTime"));
-    }
-    if(addr != nullptr && *addr != QString("")){
-        toJsonValue(QString("addr"), addr, obj, QString("QString"));
-    }
-    if(script != nullptr && *script != QString("")){
-        toJsonValue(QString("script"), script, obj, QString("QString"));
-    }
-    if(withdrawal_lock->size() > 0){
-        toJsonArray((QList<void*>*)withdrawal_lock, obj, "withdrawalLock", "QString");
     }
 
     return obj;
@@ -546,36 +512,6 @@ SWGWallet::setTimestamp(QDateTime* timestamp) {
     this->m_timestamp_isSet = true;
 }
 
-QString*
-SWGWallet::getAddr() {
-    return addr;
-}
-void
-SWGWallet::setAddr(QString* addr) {
-    this->addr = addr;
-    this->m_addr_isSet = true;
-}
-
-QString*
-SWGWallet::getScript() {
-    return script;
-}
-void
-SWGWallet::setScript(QString* script) {
-    this->script = script;
-    this->m_script_isSet = true;
-}
-
-QList<QString*>*
-SWGWallet::getWithdrawalLock() {
-    return withdrawal_lock;
-}
-void
-SWGWallet::setWithdrawalLock(QList<QString*>* withdrawal_lock) {
-    this->withdrawal_lock = withdrawal_lock;
-    this->m_withdrawal_lock_isSet = true;
-}
-
 
 bool
 SWGWallet::isSet(){
@@ -603,9 +539,6 @@ SWGWallet::isSet(){
         if(pending_debit != nullptr && pending_debit->isSet()){ isObjectUpdated = true; break;}
         if(confirmed_debit != nullptr && confirmed_debit->isSet()){ isObjectUpdated = true; break;}
         
-        if(addr != nullptr && *addr != QString("")){ isObjectUpdated = true; break;}
-        if(script != nullptr && *script != QString("")){ isObjectUpdated = true; break;}
-        if(withdrawal_lock->size() > 0){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;
 }

@@ -49,11 +49,13 @@ public struct Margin: Codable {
     public var excessMarginPcnt: Double?
     public var availableMargin: Double?
     public var withdrawableMargin: Double?
-    public var timestamp: Date?
     public var grossLastValue: Double?
     public var commission: Double?
+    public var makerFeeDiscount: Double?
+    public var takerFeeDiscount: Double?
+    public var timestamp: Date?
 
-    public init(account: Double, currency: String, riskLimit: Double?, prevState: String?, state: String?, action: String?, amount: Double?, pendingCredit: Double?, pendingDebit: Double?, confirmedDebit: Double?, prevRealisedPnl: Double?, prevUnrealisedPnl: Double?, grossComm: Double?, grossOpenCost: Double?, grossOpenPremium: Double?, grossExecCost: Double?, grossMarkValue: Double?, riskValue: Double?, taxableMargin: Double?, initMargin: Double?, maintMargin: Double?, sessionMargin: Double?, targetExcessMargin: Double?, varMargin: Double?, realisedPnl: Double?, unrealisedPnl: Double?, indicativeTax: Double?, unrealisedProfit: Double?, syntheticMargin: Double?, walletBalance: Double?, marginBalance: Double?, marginBalancePcnt: Double?, marginLeverage: Double?, marginUsedPcnt: Double?, excessMargin: Double?, excessMarginPcnt: Double?, availableMargin: Double?, withdrawableMargin: Double?, timestamp: Date?, grossLastValue: Double?, commission: Double?) {
+    public init(account: Double, currency: String, riskLimit: Double?, prevState: String?, state: String?, action: String?, amount: Double?, pendingCredit: Double?, pendingDebit: Double?, confirmedDebit: Double?, prevRealisedPnl: Double?, prevUnrealisedPnl: Double?, grossComm: Double?, grossOpenCost: Double?, grossOpenPremium: Double?, grossExecCost: Double?, grossMarkValue: Double?, riskValue: Double?, taxableMargin: Double?, initMargin: Double?, maintMargin: Double?, sessionMargin: Double?, targetExcessMargin: Double?, varMargin: Double?, realisedPnl: Double?, unrealisedPnl: Double?, indicativeTax: Double?, unrealisedProfit: Double?, syntheticMargin: Double?, walletBalance: Double?, marginBalance: Double?, marginBalancePcnt: Double?, marginLeverage: Double?, marginUsedPcnt: Double?, excessMargin: Double?, excessMarginPcnt: Double?, availableMargin: Double?, withdrawableMargin: Double?, grossLastValue: Double?, commission: Double?, makerFeeDiscount: Double?, takerFeeDiscount: Double?, timestamp: Date?) {
         self.account = account
         self.currency = currency
         self.riskLimit = riskLimit
@@ -92,9 +94,11 @@ public struct Margin: Codable {
         self.excessMarginPcnt = excessMarginPcnt
         self.availableMargin = availableMargin
         self.withdrawableMargin = withdrawableMargin
-        self.timestamp = timestamp
         self.grossLastValue = grossLastValue
         self.commission = commission
+        self.makerFeeDiscount = makerFeeDiscount
+        self.takerFeeDiscount = takerFeeDiscount
+        self.timestamp = timestamp
     }
 
 

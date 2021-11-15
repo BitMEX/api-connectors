@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  - --  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  - --  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -76,10 +76,12 @@ namespace IO.Swagger.Model
         /// <param name="excessMarginPcnt">excessMarginPcnt (default to 0.0).</param>
         /// <param name="availableMargin">availableMargin.</param>
         /// <param name="withdrawableMargin">withdrawableMargin.</param>
-        /// <param name="timestamp">timestamp.</param>
         /// <param name="grossLastValue">grossLastValue.</param>
         /// <param name="commission">commission (default to 0.0).</param>
-        public Margin(decimal? account = default(decimal?), string currency = default(string), decimal? riskLimit = default(decimal?), string prevState = default(string), string state = default(string), string action = default(string), decimal? amount = default(decimal?), decimal? pendingCredit = default(decimal?), decimal? pendingDebit = default(decimal?), decimal? confirmedDebit = default(decimal?), decimal? prevRealisedPnl = default(decimal?), decimal? prevUnrealisedPnl = default(decimal?), decimal? grossComm = default(decimal?), decimal? grossOpenCost = default(decimal?), decimal? grossOpenPremium = default(decimal?), decimal? grossExecCost = default(decimal?), decimal? grossMarkValue = default(decimal?), decimal? riskValue = default(decimal?), decimal? taxableMargin = default(decimal?), decimal? initMargin = default(decimal?), decimal? maintMargin = default(decimal?), decimal? sessionMargin = default(decimal?), decimal? targetExcessMargin = default(decimal?), decimal? varMargin = default(decimal?), decimal? realisedPnl = default(decimal?), decimal? unrealisedPnl = default(decimal?), decimal? indicativeTax = default(decimal?), decimal? unrealisedProfit = default(decimal?), decimal? syntheticMargin = default(decimal?), decimal? walletBalance = default(decimal?), decimal? marginBalance = default(decimal?), double? marginBalancePcnt = 0.0, double? marginLeverage = 0.0, double? marginUsedPcnt = 0.0, decimal? excessMargin = default(decimal?), double? excessMarginPcnt = 0.0, decimal? availableMargin = default(decimal?), decimal? withdrawableMargin = default(decimal?), DateTime? timestamp = default(DateTime?), decimal? grossLastValue = default(decimal?), double? commission = 0.0)
+        /// <param name="makerFeeDiscount">makerFeeDiscount (default to 0.0).</param>
+        /// <param name="takerFeeDiscount">takerFeeDiscount (default to 0.0).</param>
+        /// <param name="timestamp">timestamp.</param>
+        public Margin(decimal? account = default(decimal?), string currency = default(string), decimal? riskLimit = default(decimal?), string prevState = default(string), string state = default(string), string action = default(string), decimal? amount = default(decimal?), decimal? pendingCredit = default(decimal?), decimal? pendingDebit = default(decimal?), decimal? confirmedDebit = default(decimal?), decimal? prevRealisedPnl = default(decimal?), decimal? prevUnrealisedPnl = default(decimal?), decimal? grossComm = default(decimal?), decimal? grossOpenCost = default(decimal?), decimal? grossOpenPremium = default(decimal?), decimal? grossExecCost = default(decimal?), decimal? grossMarkValue = default(decimal?), decimal? riskValue = default(decimal?), decimal? taxableMargin = default(decimal?), decimal? initMargin = default(decimal?), decimal? maintMargin = default(decimal?), decimal? sessionMargin = default(decimal?), decimal? targetExcessMargin = default(decimal?), decimal? varMargin = default(decimal?), decimal? realisedPnl = default(decimal?), decimal? unrealisedPnl = default(decimal?), decimal? indicativeTax = default(decimal?), decimal? unrealisedProfit = default(decimal?), decimal? syntheticMargin = default(decimal?), decimal? walletBalance = default(decimal?), decimal? marginBalance = default(decimal?), double? marginBalancePcnt = 0.0, double? marginLeverage = 0.0, double? marginUsedPcnt = 0.0, decimal? excessMargin = default(decimal?), double? excessMarginPcnt = 0.0, decimal? availableMargin = default(decimal?), decimal? withdrawableMargin = default(decimal?), decimal? grossLastValue = default(decimal?), double? commission = 0.0, double? makerFeeDiscount = 0.0, double? takerFeeDiscount = 0.0, DateTime? timestamp = default(DateTime?))
         {
             // to ensure "account" is required (not null)
             if (account == null)
@@ -167,7 +169,6 @@ namespace IO.Swagger.Model
             }
             this.AvailableMargin = availableMargin;
             this.WithdrawableMargin = withdrawableMargin;
-            this.Timestamp = timestamp;
             this.GrossLastValue = grossLastValue;
             // use default value if no "commission" provided
             if (commission == null)
@@ -178,6 +179,25 @@ namespace IO.Swagger.Model
             {
                 this.Commission = commission;
             }
+            // use default value if no "makerFeeDiscount" provided
+            if (makerFeeDiscount == null)
+            {
+                this.MakerFeeDiscount = 0.0;
+            }
+            else
+            {
+                this.MakerFeeDiscount = makerFeeDiscount;
+            }
+            // use default value if no "takerFeeDiscount" provided
+            if (takerFeeDiscount == null)
+            {
+                this.TakerFeeDiscount = 0.0;
+            }
+            else
+            {
+                this.TakerFeeDiscount = takerFeeDiscount;
+            }
+            this.Timestamp = timestamp;
         }
         
         /// <summary>
@@ -409,12 +429,6 @@ namespace IO.Swagger.Model
         public decimal? WithdrawableMargin { get; set; }
 
         /// <summary>
-        /// Gets or Sets Timestamp
-        /// </summary>
-        [DataMember(Name="timestamp", EmitDefaultValue=false)]
-        public DateTime? Timestamp { get; set; }
-
-        /// <summary>
         /// Gets or Sets GrossLastValue
         /// </summary>
         [DataMember(Name="grossLastValue", EmitDefaultValue=false)]
@@ -425,6 +439,24 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="commission", EmitDefaultValue=false)]
         public double? Commission { get; set; }
+
+        /// <summary>
+        /// Gets or Sets MakerFeeDiscount
+        /// </summary>
+        [DataMember(Name="makerFeeDiscount", EmitDefaultValue=false)]
+        public double? MakerFeeDiscount { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TakerFeeDiscount
+        /// </summary>
+        [DataMember(Name="takerFeeDiscount", EmitDefaultValue=false)]
+        public double? TakerFeeDiscount { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Timestamp
+        /// </summary>
+        [DataMember(Name="timestamp", EmitDefaultValue=false)]
+        public DateTime? Timestamp { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -472,9 +504,11 @@ namespace IO.Swagger.Model
             sb.Append("  ExcessMarginPcnt: ").Append(ExcessMarginPcnt).Append("\n");
             sb.Append("  AvailableMargin: ").Append(AvailableMargin).Append("\n");
             sb.Append("  WithdrawableMargin: ").Append(WithdrawableMargin).Append("\n");
-            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("  GrossLastValue: ").Append(GrossLastValue).Append("\n");
             sb.Append("  Commission: ").Append(Commission).Append("\n");
+            sb.Append("  MakerFeeDiscount: ").Append(MakerFeeDiscount).Append("\n");
+            sb.Append("  TakerFeeDiscount: ").Append(TakerFeeDiscount).Append("\n");
+            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -700,11 +734,6 @@ namespace IO.Swagger.Model
                     this.WithdrawableMargin.Equals(input.WithdrawableMargin))
                 ) && 
                 (
-                    this.Timestamp == input.Timestamp ||
-                    (this.Timestamp != null &&
-                    this.Timestamp.Equals(input.Timestamp))
-                ) && 
-                (
                     this.GrossLastValue == input.GrossLastValue ||
                     (this.GrossLastValue != null &&
                     this.GrossLastValue.Equals(input.GrossLastValue))
@@ -713,6 +742,21 @@ namespace IO.Swagger.Model
                     this.Commission == input.Commission ||
                     (this.Commission != null &&
                     this.Commission.Equals(input.Commission))
+                ) && 
+                (
+                    this.MakerFeeDiscount == input.MakerFeeDiscount ||
+                    (this.MakerFeeDiscount != null &&
+                    this.MakerFeeDiscount.Equals(input.MakerFeeDiscount))
+                ) && 
+                (
+                    this.TakerFeeDiscount == input.TakerFeeDiscount ||
+                    (this.TakerFeeDiscount != null &&
+                    this.TakerFeeDiscount.Equals(input.TakerFeeDiscount))
+                ) && 
+                (
+                    this.Timestamp == input.Timestamp ||
+                    (this.Timestamp != null &&
+                    this.Timestamp.Equals(input.Timestamp))
                 );
         }
 
@@ -801,12 +845,16 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.AvailableMargin.GetHashCode();
                 if (this.WithdrawableMargin != null)
                     hashCode = hashCode * 59 + this.WithdrawableMargin.GetHashCode();
-                if (this.Timestamp != null)
-                    hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
                 if (this.GrossLastValue != null)
                     hashCode = hashCode * 59 + this.GrossLastValue.GetHashCode();
                 if (this.Commission != null)
                     hashCode = hashCode * 59 + this.Commission.GetHashCode();
+                if (this.MakerFeeDiscount != null)
+                    hashCode = hashCode * 59 + this.MakerFeeDiscount.GetHashCode();
+                if (this.TakerFeeDiscount != null)
+                    hashCode = hashCode * 59 + this.TakerFeeDiscount.GetHashCode();
+                if (this.Timestamp != null)
+                    hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
                 return hashCode;
             }
         }

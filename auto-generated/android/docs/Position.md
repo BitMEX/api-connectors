@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account** | [**BigDecimal**](BigDecimal.md) |  | 
 **symbol** | **String** |  | 
-**currency** | **String** |  | 
+**currency** | **String** |  |  [optional]
 **underlying** | **String** |  |  [optional]
 **quoteCurrency** | **String** |  |  [optional]
 **commission** | **Double** |  |  [optional]

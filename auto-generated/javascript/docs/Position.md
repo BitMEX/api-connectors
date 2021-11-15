@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account** | **Number** |  | 
 **symbol** | **String** |  | 
-**currency** | **String** |  | 
+**currency** | **String** |  | [optional] 
 **underlying** | **String** |  | [optional] 
 **quoteCurrency** | **String** |  | [optional] 
 **commission** | **Number** |  | [optional] [default to 0.0]

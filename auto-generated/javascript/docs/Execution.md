@@ -3,12 +3,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**execID** | **String** |  | 
+**execID** | **String** |  | [optional] 
 **orderID** | **String** |  | [optional] 
 **clOrdID** | **String** |  | [optional] 
 **clOrdLinkID** | **String** |  | [optional] 
 **account** | **Number** |  | [optional] 
-**symbol** | **String** |  | [optional] 
+**symbol** | **String** |  | 
 **side** | **String** |  | [optional] 
 **lastQty** | **Number** |  | [optional] 
 **lastPx** | **Number** |  | [optional] 
@@ -49,6 +49,6 @@ Name | Type | Description | Notes
 **homeNotional** | **Number** |  | [optional] 
 **foreignNotional** | **Number** |  | [optional] 
 **transactTime** | **Date** |  | [optional] 
-**timestamp** | **Date** |  | [optional] 
+**timestamp** | **Date** |  | 
 
 

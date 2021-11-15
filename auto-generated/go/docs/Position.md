@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Account** | **float32** |  | [default to null]
 **Symbol** | **string** |  | [default to null]
-**Currency** | **string** |  | [default to null]
+**Currency** | **string** |  | [optional] [default to null]
 **Underlying** | **string** |  | [optional] [default to null]
 **QuoteCurrency** | **string** |  | [optional] [default to null]
 **Commission** | **float64** |  | [optional] [default to 0.0]

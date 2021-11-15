@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -12,8 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
@@ -23,113 +21,17 @@ import com.google.gson.annotations.SerializedName;
 @ApiModel(description = "Historical Settlement Data")
 public class Settlement {
   
-  @SerializedName("timestamp")
-  private Date timestamp = null;
-  @SerializedName("symbol")
-  private String symbol = null;
-  @SerializedName("settlementType")
-  private String settlementType = null;
-  @SerializedName("settledPrice")
-  private Double settledPrice = null;
-  @SerializedName("optionStrikePrice")
-  private Double optionStrikePrice = null;
-  @SerializedName("optionUnderlyingPrice")
-  private Double optionUnderlyingPrice = null;
-  @SerializedName("bankrupt")
-  private BigDecimal bankrupt = null;
-  @SerializedName("taxBase")
-  private BigDecimal taxBase = null;
-  @SerializedName("taxRate")
-  private Double taxRate = null;
-
-  /**
-   **/
-  @ApiModelProperty(required = true, value = "")
-  public Date getTimestamp() {
-    return timestamp;
-  }
-  public void setTimestamp(Date timestamp) {
-    this.timestamp = timestamp;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(required = true, value = "")
-  public String getSymbol() {
-    return symbol;
-  }
-  public void setSymbol(String symbol) {
-    this.symbol = symbol;
-  }
+  @SerializedName("id")
+  private Double id = null;
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public String getSettlementType() {
-    return settlementType;
+  public Double getId() {
+    return id;
   }
-  public void setSettlementType(String settlementType) {
-    this.settlementType = settlementType;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getSettledPrice() {
-    return settledPrice;
-  }
-  public void setSettledPrice(Double settledPrice) {
-    this.settledPrice = settledPrice;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getOptionStrikePrice() {
-    return optionStrikePrice;
-  }
-  public void setOptionStrikePrice(Double optionStrikePrice) {
-    this.optionStrikePrice = optionStrikePrice;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getOptionUnderlyingPrice() {
-    return optionUnderlyingPrice;
-  }
-  public void setOptionUnderlyingPrice(Double optionUnderlyingPrice) {
-    this.optionUnderlyingPrice = optionUnderlyingPrice;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getBankrupt() {
-    return bankrupt;
-  }
-  public void setBankrupt(BigDecimal bankrupt) {
-    this.bankrupt = bankrupt;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getTaxBase() {
-    return taxBase;
-  }
-  public void setTaxBase(BigDecimal taxBase) {
-    this.taxBase = taxBase;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getTaxRate() {
-    return taxRate;
-  }
-  public void setTaxRate(Double taxRate) {
-    this.taxRate = taxRate;
+  public void setId(Double id) {
+    this.id = id;
   }
 
 
@@ -142,29 +44,13 @@ public class Settlement {
       return false;
     }
     Settlement settlement = (Settlement) o;
-    return (this.timestamp == null ? settlement.timestamp == null : this.timestamp.equals(settlement.timestamp)) &&
-        (this.symbol == null ? settlement.symbol == null : this.symbol.equals(settlement.symbol)) &&
-        (this.settlementType == null ? settlement.settlementType == null : this.settlementType.equals(settlement.settlementType)) &&
-        (this.settledPrice == null ? settlement.settledPrice == null : this.settledPrice.equals(settlement.settledPrice)) &&
-        (this.optionStrikePrice == null ? settlement.optionStrikePrice == null : this.optionStrikePrice.equals(settlement.optionStrikePrice)) &&
-        (this.optionUnderlyingPrice == null ? settlement.optionUnderlyingPrice == null : this.optionUnderlyingPrice.equals(settlement.optionUnderlyingPrice)) &&
-        (this.bankrupt == null ? settlement.bankrupt == null : this.bankrupt.equals(settlement.bankrupt)) &&
-        (this.taxBase == null ? settlement.taxBase == null : this.taxBase.equals(settlement.taxBase)) &&
-        (this.taxRate == null ? settlement.taxRate == null : this.taxRate.equals(settlement.taxRate));
+    return (this.id == null ? settlement.id == null : this.id.equals(settlement.id));
   }
 
   @Override
   public int hashCode() {
     int result = 17;
-    result = 31 * result + (this.timestamp == null ? 0: this.timestamp.hashCode());
-    result = 31 * result + (this.symbol == null ? 0: this.symbol.hashCode());
-    result = 31 * result + (this.settlementType == null ? 0: this.settlementType.hashCode());
-    result = 31 * result + (this.settledPrice == null ? 0: this.settledPrice.hashCode());
-    result = 31 * result + (this.optionStrikePrice == null ? 0: this.optionStrikePrice.hashCode());
-    result = 31 * result + (this.optionUnderlyingPrice == null ? 0: this.optionUnderlyingPrice.hashCode());
-    result = 31 * result + (this.bankrupt == null ? 0: this.bankrupt.hashCode());
-    result = 31 * result + (this.taxBase == null ? 0: this.taxBase.hashCode());
-    result = 31 * result + (this.taxRate == null ? 0: this.taxRate.hashCode());
+    result = 31 * result + (this.id == null ? 0: this.id.hashCode());
     return result;
   }
 
@@ -173,15 +59,7 @@ public class Settlement {
     StringBuilder sb = new StringBuilder();
     sb.append("class Settlement {\n");
     
-    sb.append("  timestamp: ").append(timestamp).append("\n");
-    sb.append("  symbol: ").append(symbol).append("\n");
-    sb.append("  settlementType: ").append(settlementType).append("\n");
-    sb.append("  settledPrice: ").append(settledPrice).append("\n");
-    sb.append("  optionStrikePrice: ").append(optionStrikePrice).append("\n");
-    sb.append("  optionUnderlyingPrice: ").append(optionUnderlyingPrice).append("\n");
-    sb.append("  bankrupt: ").append(bankrupt).append("\n");
-    sb.append("  taxBase: ").append(taxBase).append("\n");
-    sb.append("  taxRate: ").append(taxRate).append("\n");
+    sb.append("  id: ").append(id).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

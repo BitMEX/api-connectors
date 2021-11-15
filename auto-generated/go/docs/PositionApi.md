@@ -22,10 +22,10 @@ This endpoint is used for retrieving position information. The fields largely fo
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***PositionGetOpts** | optional parameters | nil if no parameters
+ **optional** | ***PositionApiPositionGetOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a PositionGetOpts struct
+Optional parameters are passed through a pointer to a PositionApiPositionGetOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -52,16 +52,18 @@ Name | Type | Description  | Notes
 > Position PositionIsolateMargin(ctx, symbol, optional)
 Enable isolated margin or cross margin per-position.
 
+Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
+
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **symbol** | **string**| Position symbol to isolate. | 
- **optional** | ***PositionIsolateMarginOpts** | optional parameters | nil if no parameters
+ **optional** | ***PositionApiPositionIsolateMarginOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a PositionIsolateMarginOpts struct
+Optional parameters are passed through a pointer to a PositionApiPositionIsolateMarginOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -86,6 +88,8 @@ Name | Type | Description  | Notes
 # **PositionTransferIsolatedMargin**
 > Position PositionTransferIsolatedMargin(ctx, symbol, amount)
 Transfer equity in or out of a position.
+
+When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
 
 ### Required Parameters
 
@@ -114,6 +118,8 @@ Name | Type | Description  | Notes
 > Position PositionUpdateLeverage(ctx, symbol, leverage)
 Choose leverage for a position.
 
+Users can choose an isolated leverage. This will automatically enable isolated margin.
+
 ### Required Parameters
 
 Name | Type | Description  | Notes
@@ -140,6 +146,8 @@ Name | Type | Description  | Notes
 # **PositionUpdateRiskLimit**
 > Position PositionUpdateRiskLimit(ctx, symbol, riskLimit)
 Update your risk limit.
+
+Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
 
 ### Required Parameters
 

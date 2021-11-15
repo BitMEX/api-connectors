@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -39,56 +39,46 @@ public:
     QMap<QString, QString> defaultHeaders;
 
     void order_amend(QString* order_id, QString* orig_cl_ord_id, QString* cl_ord_id, double simple_order_qty, SWGNumber* order_qty, double simple_leaves_qty, SWGNumber* leaves_qty, double price, double stop_px, double peg_offset_value, QString* text);
-    void order_amendBulk(QString* orders);
     void order_cancel(QString* order_id, QString* cl_ord_id, QString* text);
     void order_cancelAll(QString* symbol, QString* filter, QString* text);
     void order_cancelAllAfter(double timeout);
     void order_closePosition(QString* symbol, double price);
     void order_getOrders(QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time);
     void order_new(QString* symbol, QString* side, double simple_order_qty, SWGNumber* order_qty, double price, SWGNumber* display_qty, double stop_px, QString* cl_ord_id, QString* cl_ord_link_id, double peg_offset_value, QString* peg_price_type, QString* ord_type, QString* time_in_force, QString* exec_inst, QString* contingency_type, QString* text);
-    void order_newBulk(QString* orders);
     
 private:
     void order_amendCallback (SWGHttpRequestWorker * worker);
-    void order_amendBulkCallback (SWGHttpRequestWorker * worker);
     void order_cancelCallback (SWGHttpRequestWorker * worker);
     void order_cancelAllCallback (SWGHttpRequestWorker * worker);
     void order_cancelAllAfterCallback (SWGHttpRequestWorker * worker);
     void order_closePositionCallback (SWGHttpRequestWorker * worker);
     void order_getOrdersCallback (SWGHttpRequestWorker * worker);
     void order_newCallback (SWGHttpRequestWorker * worker);
-    void order_newBulkCallback (SWGHttpRequestWorker * worker);
     
 signals:
     void order_amendSignal(SWGOrder* summary);
-    void order_amendBulkSignal(QList<SWGOrder*>* summary);
     void order_cancelSignal(QList<SWGOrder*>* summary);
     void order_cancelAllSignal(QList<SWGOrder*>* summary);
     void order_cancelAllAfterSignal(SWGObject* summary);
     void order_closePositionSignal(SWGOrder* summary);
     void order_getOrdersSignal(QList<SWGOrder*>* summary);
     void order_newSignal(SWGOrder* summary);
-    void order_newBulkSignal(QList<SWGOrder*>* summary);
     
     void order_amendSignalE(SWGOrder* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void order_amendBulkSignalE(QList<SWGOrder*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_cancelSignalE(QList<SWGOrder*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_cancelAllSignalE(QList<SWGOrder*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_cancelAllAfterSignalE(SWGObject* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_closePositionSignalE(SWGOrder* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_getOrdersSignalE(QList<SWGOrder*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_newSignalE(SWGOrder* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void order_newBulkSignalE(QList<SWGOrder*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     
     void order_amendSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
-    void order_amendBulkSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_cancelSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_cancelAllSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_cancelAllAfterSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_closePositionSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_getOrdersSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_newSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
-    void order_newBulkSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     
 };
 

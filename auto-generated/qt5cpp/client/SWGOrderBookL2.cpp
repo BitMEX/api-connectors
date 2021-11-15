@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -37,32 +37,12 @@ SWGOrderBookL2::~SWGOrderBookL2() {
 
 void
 SWGOrderBookL2::init() {
-    symbol = new QString("");
-    m_symbol_isSet = false;
     id = 0.0;
     m_id_isSet = false;
-    side = new QString("");
-    m_side_isSet = false;
-    size = 0.0;
-    m_size_isSet = false;
-    price = 0.0;
-    m_price_isSet = false;
 }
 
 void
 SWGOrderBookL2::cleanup() {
-    if(symbol != nullptr) { 
-        delete symbol;
-    }
-    if(id != nullptr) { 
-        delete id;
-    }
-    if(side != nullptr) { 
-        delete side;
-    }
-    if(size != nullptr) { 
-        delete size;
-    }
 
 }
 
@@ -77,15 +57,7 @@ SWGOrderBookL2::fromJson(QString json) {
 
 void
 SWGOrderBookL2::fromJsonObject(QJsonObject pJson) {
-    ::Swagger::setValue(&symbol, pJson["symbol"], "QString", "QString");
-    
-    ::Swagger::setValue(&id, pJson["id"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&side, pJson["side"], "QString", "QString");
-    
-    ::Swagger::setValue(&size, pJson["size"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&price, pJson["price"], "double", "");
+    ::Swagger::setValue(&id, pJson["id"], "double", "");
     
 }
 
@@ -101,73 +73,21 @@ SWGOrderBookL2::asJson ()
 QJsonObject
 SWGOrderBookL2::asJsonObject() {
     QJsonObject obj;
-    if(symbol != nullptr && *symbol != QString("")){
-        toJsonValue(QString("symbol"), symbol, obj, QString("QString"));
-    }
-    if((id != nullptr) && (id->isSet())){
-        toJsonValue(QString("id"), id, obj, QString("SWGNumber"));
-    }
-    if(side != nullptr && *side != QString("")){
-        toJsonValue(QString("side"), side, obj, QString("QString"));
-    }
-    if((size != nullptr) && (size->isSet())){
-        toJsonValue(QString("size"), size, obj, QString("SWGNumber"));
-    }
-    if(m_price_isSet){
-        obj.insert("price", QJsonValue(price));
+    if(m_id_isSet){
+        obj.insert("id", QJsonValue(id));
     }
 
     return obj;
 }
 
-QString*
-SWGOrderBookL2::getSymbol() {
-    return symbol;
-}
-void
-SWGOrderBookL2::setSymbol(QString* symbol) {
-    this->symbol = symbol;
-    this->m_symbol_isSet = true;
-}
-
-SWGNumber*
+double
 SWGOrderBookL2::getId() {
     return id;
 }
 void
-SWGOrderBookL2::setId(SWGNumber* id) {
+SWGOrderBookL2::setId(double id) {
     this->id = id;
     this->m_id_isSet = true;
-}
-
-QString*
-SWGOrderBookL2::getSide() {
-    return side;
-}
-void
-SWGOrderBookL2::setSide(QString* side) {
-    this->side = side;
-    this->m_side_isSet = true;
-}
-
-SWGNumber*
-SWGOrderBookL2::getSize() {
-    return size;
-}
-void
-SWGOrderBookL2::setSize(SWGNumber* size) {
-    this->size = size;
-    this->m_size_isSet = true;
-}
-
-double
-SWGOrderBookL2::getPrice() {
-    return price;
-}
-void
-SWGOrderBookL2::setPrice(double price) {
-    this->price = price;
-    this->m_price_isSet = true;
 }
 
 
@@ -175,11 +95,7 @@ bool
 SWGOrderBookL2::isSet(){
     bool isObjectUpdated = false;
     do{
-        if(symbol != nullptr && *symbol != QString("")){ isObjectUpdated = true; break;}
-        if(id != nullptr && id->isSet()){ isObjectUpdated = true; break;}
-        if(side != nullptr && *side != QString("")){ isObjectUpdated = true; break;}
-        if(size != nullptr && size->isSet()){ isObjectUpdated = true; break;}
-        if(m_price_isSet){ isObjectUpdated = true; break;}
+        if(m_id_isSet){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;
 }

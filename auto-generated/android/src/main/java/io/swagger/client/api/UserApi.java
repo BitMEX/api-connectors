@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -31,6 +31,8 @@ import java.util.Date;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.Margin;
 import io.swagger.client.model.QuoteFillRatio;
+import io.swagger.client.model.QuoteValueRatio;
+import io.swagger.client.model.TradingVolume;
 import io.swagger.client.model.Transaction;
 import io.swagger.client.model.User;
 import io.swagger.client.model.UserCommissionsBySymbol;
@@ -880,9 +882,10 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
   /**
   * Get your current affiliate/referral status.
   * 
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;
    * @return Affiliate
   */
-  public Affiliate userGetAffiliateStatus () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Affiliate userGetAffiliateStatus (String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -894,6 +897,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
     Map<String, String> headerParams = new HashMap<String, String>();
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -938,9 +942,9 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       /**
    * Get your current affiliate/referral status.
    * 
-
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;
   */
-  public void userGetAffiliateStatus (final Response.Listener<Affiliate> responseListener, final Response.ErrorListener errorListener) {
+  public void userGetAffiliateStatus (String currency, final Response.Listener<Affiliate> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
 
@@ -954,6 +958,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
 
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
 
 
     String[] contentTypes = {
@@ -1116,7 +1121,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
   /**
   * Get a deposit address.
   * 
-   * @param currency 
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;
    * @return String
   */
   public String userGetDepositAddress (String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
@@ -1176,7 +1181,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       /**
    * Get a deposit address.
    * 
-   * @param currency 
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;
   */
   public void userGetDepositAddress (String currency, final Response.Listener<String> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
@@ -1381,7 +1386,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
   /**
   * Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
   * 
-   * @param currency 
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;
    * @return Margin
   */
   public Margin userGetMargin (String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
@@ -1441,7 +1446,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       /**
    * Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
    * 
-   * @param currency 
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;
   */
   public void userGetMargin (String currency, final Response.Listener<Margin> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
@@ -1618,9 +1623,245 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
     }
   }
   /**
+  * Get Quote Value Ratio statistics over the last 3 days
+  * 
+   * @return QuoteValueRatio
+  */
+  public QuoteValueRatio userGetQuoteValueRatio () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+
+    // create path and map variables
+    String path = "/user/quoteValueRatio";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (QuoteValueRatio) ApiInvoker.deserialize(localVarResponse, "", QuoteValueRatio.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Get Quote Value Ratio statistics over the last 3 days
+   * 
+
+  */
+  public void userGetQuoteValueRatio (final Response.Listener<QuoteValueRatio> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+
+    // create path and map variables
+    String path = "/user/quoteValueRatio".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((QuoteValueRatio) ApiInvoker.deserialize(localVarResponse,  "", QuoteValueRatio.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Get your 30 days USD average trading volume
+  * 
+   * @return TradingVolume
+  */
+  public TradingVolume userGetTradingVolume () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+
+    // create path and map variables
+    String path = "/user/tradingVolume";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+      "application/json",
+      "application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (TradingVolume) ApiInvoker.deserialize(localVarResponse, "", TradingVolume.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Get your 30 days USD average trading volume
+   * 
+
+  */
+  public void userGetTradingVolume (final Response.Listener<TradingVolume> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+
+    // create path and map variables
+    String path = "/user/tradingVolume".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "application/json","application/x-www-form-urlencoded"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "apiExpires", "apiKey", "apiSignature" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((TradingVolume) ApiInvoker.deserialize(localVarResponse,  "", TradingVolume.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
   * Get your current wallet information.
   * 
-   * @param currency 
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;
    * @return Wallet
   */
   public Wallet userGetWallet (String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
@@ -1680,7 +1921,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       /**
    * Get your current wallet information.
    * 
-   * @param currency 
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;
   */
   public void userGetWallet (String currency, final Response.Listener<Wallet> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
@@ -1741,7 +1982,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
   /**
   * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
   * 
-   * @param currency 
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;
    * @param count Number of results to fetch.
    * @param start Starting point for results.
    * @return List<Transaction>
@@ -1805,7 +2046,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       /**
    * Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
    * 
-   * @param currency    * @param count Number of results to fetch.   * @param start Starting point for results.
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;   * @param count Number of results to fetch.   * @param start Starting point for results.
   */
   public void userGetWalletHistory (String currency, Double count, Double start, final Response.Listener<List<Transaction>> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
@@ -1868,7 +2109,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
   /**
   * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
   * 
-   * @param currency 
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;
    * @return List<Transaction>
   */
   public List<Transaction> userGetWalletSummary (String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
@@ -1928,7 +2169,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       /**
    * Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
    * 
-   * @param currency 
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;
   */
   public void userGetWalletSummary (String currency, final Response.Listener<List<Transaction>> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
@@ -2101,12 +2342,13 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
     }
   }
   /**
-  * Get the minimum withdrawal fee for a currency.
-  * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-   * @param currency 
+  * Get the minimum, maximum, and recommended withdrawal fees for a currency.
+  * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \&quot;fee\&quot; field is the recommended fee for fast confirmation on the blockchain.
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;
+   * @param amount 
    * @return Object
   */
-  public Object userMinWithdrawalFee (String currency) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Object userMinWithdrawalFee (String currency, Double amount) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -2119,6 +2361,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
     queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "amount", amount));
     String[] contentTypes = {
       "application/json",
       "application/x-www-form-urlencoded"
@@ -2161,11 +2404,11 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
   }
 
       /**
-   * Get the minimum withdrawal fee for a currency.
-   * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-   * @param currency 
+   * Get the minimum, maximum, and recommended withdrawal fees for a currency.
+   * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \&quot;fee\&quot; field is the recommended fee for fast confirmation on the blockchain.
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;   * @param amount 
   */
-  public void userMinWithdrawalFee (String currency, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
+  public void userMinWithdrawalFee (String currency, Double amount, final Response.Listener<Object> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
 
@@ -2180,6 +2423,7 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
     Map<String, String> formParams = new HashMap<String, String>();
 
     queryParams.addAll(ApiInvoker.parameterToPairs("", "currency", currency));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "amount", amount));
 
 
     String[] contentTypes = {
@@ -2224,15 +2468,17 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
   /**
   * Request a withdrawal to an external wallet.
   * This will send a confirmation email to the email address on record.
-   * @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;
+   * @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;
    * @param amount Amount of withdrawal currency.
-   * @param address Destination Address.
-   * @param otpToken 2FA token. Required if 2FA is enabled on your account.
+   * @param otpToken 2FA token. Required for all external withdrawals.
+   * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
+   * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;targetUserId&#x60;, &#x60;targetUserId&#x60; has to be specified.
+   * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
    * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
    * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
    * @return Transaction
   */
-  public Transaction userRequestWithdrawal (String currency, BigDecimal amount, String address, String otpToken, Double fee, String text) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public Transaction userRequestWithdrawal (String currency, BigDecimal amount, String otpToken, String address, Double addressId, Double targetUserId, Double fee, String text) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'currency' is set
     if (currency == null) {
@@ -2243,11 +2489,6 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
     if (amount == null) {
       VolleyError error = new VolleyError("Missing the required parameter 'amount' when calling userRequestWithdrawal",
         new ApiException(400, "Missing the required parameter 'amount' when calling userRequestWithdrawal"));
-    }
-    // verify the required parameter 'address' is set
-    if (address == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'address' when calling userRequestWithdrawal",
-        new ApiException(400, "Missing the required parameter 'address' when calling userRequestWithdrawal"));
     }
 
     // create path and map variables
@@ -2280,6 +2521,12 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       if (address != null) {
         localVarBuilder.addTextBody("address", ApiInvoker.parameterToString(address), ApiInvoker.TEXT_PLAIN_UTF8);
       }
+      if (addressId != null) {
+        localVarBuilder.addTextBody("addressId", ApiInvoker.parameterToString(addressId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (targetUserId != null) {
+        localVarBuilder.addTextBody("targetUserId", ApiInvoker.parameterToString(targetUserId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
       if (fee != null) {
         localVarBuilder.addTextBody("fee", ApiInvoker.parameterToString(fee), ApiInvoker.TEXT_PLAIN_UTF8);
       }
@@ -2294,6 +2541,8 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       formParams.put("currency", ApiInvoker.parameterToString(currency));
       formParams.put("amount", ApiInvoker.parameterToString(amount));
       formParams.put("address", ApiInvoker.parameterToString(address));
+      formParams.put("addressId", ApiInvoker.parameterToString(addressId));
+      formParams.put("targetUserId", ApiInvoker.parameterToString(targetUserId));
       formParams.put("fee", ApiInvoker.parameterToString(fee));
       formParams.put("text", ApiInvoker.parameterToString(text));
     }
@@ -2327,9 +2576,9 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
       /**
    * Request a withdrawal to an external wallet.
    * This will send a confirmation email to the email address on record.
-   * @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;   * @param amount Amount of withdrawal currency.   * @param address Destination Address.   * @param otpToken 2FA token. Required if 2FA is enabled on your account.   * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.   * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
+   * @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;   * @param amount Amount of withdrawal currency.   * @param otpToken 2FA token. Required for all external withdrawals.   * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.   * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;targetUserId&#x60;, &#x60;targetUserId&#x60; has to be specified.   * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.   * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.   * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
   */
-  public void userRequestWithdrawal (String currency, BigDecimal amount, String address, String otpToken, Double fee, String text, final Response.Listener<Transaction> responseListener, final Response.ErrorListener errorListener) {
+  public void userRequestWithdrawal (String currency, BigDecimal amount, String otpToken, String address, Double addressId, Double targetUserId, Double fee, String text, final Response.Listener<Transaction> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
     // verify the required parameter 'currency' is set
@@ -2341,11 +2590,6 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
     if (amount == null) {
       VolleyError error = new VolleyError("Missing the required parameter 'amount' when calling userRequestWithdrawal",
         new ApiException(400, "Missing the required parameter 'amount' when calling userRequestWithdrawal"));
-    }
-    // verify the required parameter 'address' is set
-    if (address == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'address' when calling userRequestWithdrawal",
-        new ApiException(400, "Missing the required parameter 'address' when calling userRequestWithdrawal"));
     }
 
     // create path and map variables
@@ -2385,6 +2629,14 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
         localVarBuilder.addTextBody("address", ApiInvoker.parameterToString(address), ApiInvoker.TEXT_PLAIN_UTF8);
       }
       
+      if (addressId != null) {
+        localVarBuilder.addTextBody("addressId", ApiInvoker.parameterToString(addressId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (targetUserId != null) {
+        localVarBuilder.addTextBody("targetUserId", ApiInvoker.parameterToString(targetUserId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
       if (fee != null) {
         localVarBuilder.addTextBody("fee", ApiInvoker.parameterToString(fee), ApiInvoker.TEXT_PLAIN_UTF8);
       }
@@ -2402,6 +2654,8 @@ formParams.put("platformAgent", ApiInvoker.parameterToString(platformAgent));
 formParams.put("currency", ApiInvoker.parameterToString(currency));
 formParams.put("amount", ApiInvoker.parameterToString(amount));
 formParams.put("address", ApiInvoker.parameterToString(address));
+formParams.put("addressId", ApiInvoker.parameterToString(addressId));
+formParams.put("targetUserId", ApiInvoker.parameterToString(targetUserId));
 formParams.put("fee", ApiInvoker.parameterToString(fee));
 formParams.put("text", ApiInvoker.parameterToString(text));
     }

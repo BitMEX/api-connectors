@@ -16,11 +16,13 @@ Method | HTTP request | Description
 [**UserGetExecutionHistory**](UserApi.md#usergetexecutionhistory) | **GET** /user/executionHistory | Get the execution history by day.
 [**UserGetMargin**](UserApi.md#usergetmargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 [**UserGetQuoteFillRatio**](UserApi.md#usergetquotefillratio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
+[**UserGetQuoteValueRatio**](UserApi.md#usergetquotevalueratio) | **GET** /user/quoteValueRatio | Get Quote Value Ratio statistics over the last 3 days
+[**UserGetTradingVolume**](UserApi.md#usergettradingvolume) | **GET** /user/tradingVolume | Get your 30 days USD average trading volume
 [**UserGetWallet**](UserApi.md#usergetwallet) | **GET** /user/wallet | Get your current wallet information.
 [**UserGetWalletHistory**](UserApi.md#usergetwallethistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 [**UserGetWalletSummary**](UserApi.md#usergetwalletsummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**UserLogout**](UserApi.md#userlogout) | **POST** /user/logout | Log out of BitMEX.
-[**UserMinWithdrawalFee**](UserApi.md#userminwithdrawalfee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
+[**UserMinWithdrawalFee**](UserApi.md#userminwithdrawalfee) | **GET** /user/minWithdrawalFee | Get the minimum, maximum, and recommended withdrawal fees for a currency.
 [**UserRequestWithdrawal**](UserApi.md#userrequestwithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**UserSavePreferences**](UserApi.md#usersavepreferences) | **POST** /user/preferences | Save user preferences.
 
@@ -407,7 +409,7 @@ This endpoint does not need any parameter.
 
 <a name="usergetaffiliatestatus"></a>
 # **UserGetAffiliateStatus**
-> Affiliate UserGetAffiliateStatus ()
+> Affiliate UserGetAffiliateStatus (string currency = null)
 
 Get your current affiliate/referral status.
 
@@ -439,11 +441,12 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
 
             var apiInstance = new UserApi();
+            var currency = currency_example;  // string | Options: `XBt`, `USDt`, `all` (optional)  (default to XBt)
 
             try
             {
                 // Get your current affiliate/referral status.
-                Affiliate result = apiInstance.UserGetAffiliateStatus();
+                Affiliate result = apiInstance.UserGetAffiliateStatus(currency);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -456,7 +459,10 @@ namespace Example
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **string**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -575,7 +581,7 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
 
             var apiInstance = new UserApi();
-            var currency = currency_example;  // string |  (optional)  (default to XBt)
+            var currency = currency_example;  // string | Options: `XBt`, `USDt` (optional)  (default to XBt)
 
             try
             {
@@ -596,7 +602,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **currency** | **string**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -721,7 +727,7 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
 
             var apiInstance = new UserApi();
-            var currency = currency_example;  // string |  (optional)  (default to XBt)
+            var currency = currency_example;  // string | Options: `XBt`, `USDt`, `all` (optional)  (default to XBt)
 
             try
             {
@@ -742,7 +748,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **currency** | **string**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -827,6 +833,142 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="usergetquotevalueratio"></a>
+# **UserGetQuoteValueRatio**
+> QuoteValueRatio UserGetQuoteValueRatio ()
+
+Get Quote Value Ratio statistics over the last 3 days
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserGetQuoteValueRatioExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new UserApi();
+
+            try
+            {
+                // Get Quote Value Ratio statistics over the last 3 days
+                QuoteValueRatio result = apiInstance.UserGetQuoteValueRatio();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserGetQuoteValueRatio: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**QuoteValueRatio**](QuoteValueRatio.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="usergettradingvolume"></a>
+# **UserGetTradingVolume**
+> TradingVolume UserGetTradingVolume ()
+
+Get your 30 days USD average trading volume
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserGetTradingVolumeExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new UserApi();
+
+            try
+            {
+                // Get your 30 days USD average trading volume
+                TradingVolume result = apiInstance.UserGetTradingVolume();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserGetTradingVolume: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**TradingVolume**](TradingVolume.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="usergetwallet"></a>
 # **UserGetWallet**
 > Wallet UserGetWallet (string currency = null)
@@ -861,7 +1003,7 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
 
             var apiInstance = new UserApi();
-            var currency = currency_example;  // string |  (optional)  (default to XBt)
+            var currency = currency_example;  // string | Options: `XBt`, `USDt`, `all` (optional)  (default to XBt)
 
             try
             {
@@ -882,7 +1024,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **currency** | **string**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -933,7 +1075,7 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
 
             var apiInstance = new UserApi();
-            var currency = currency_example;  // string |  (optional)  (default to XBt)
+            var currency = currency_example;  // string | Options: `XBt`, `USDt`, `all` (optional)  (default to XBt)
             var count = 1.2;  // double? | Number of results to fetch. (optional)  (default to 100)
             var start = 1.2;  // double? | Starting point for results. (optional)  (default to 0)
 
@@ -956,7 +1098,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **currency** | **string**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
  **count** | **double?**| Number of results to fetch. | [optional] [default to 100]
  **start** | **double?**| Starting point for results. | [optional] [default to 0]
 
@@ -1009,7 +1151,7 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
 
             var apiInstance = new UserApi();
-            var currency = currency_example;  // string |  (optional)  (default to XBt)
+            var currency = currency_example;  // string | Options: `XBt`, `USDt`, `all` (optional)  (default to XBt)
 
             try
             {
@@ -1030,7 +1172,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **currency** | **string**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [optional] [default to XBt]
 
 ### Return type
 
@@ -1103,11 +1245,11 @@ No authorization required
 
 <a name="userminwithdrawalfee"></a>
 # **UserMinWithdrawalFee**
-> Object UserMinWithdrawalFee (string currency = null)
+> Object UserMinWithdrawalFee (string currency = null, double? amount = null)
 
-Get the minimum withdrawal fee for a currency.
+Get the minimum, maximum, and recommended withdrawal fees for a currency.
 
-This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \"fee\" field is the recommended fee for fast confirmation on the blockchain.
 
 ### Example
 ```csharp
@@ -1124,12 +1266,13 @@ namespace Example
         public void main()
         {
             var apiInstance = new UserApi();
-            var currency = currency_example;  // string |  (optional)  (default to XBt)
+            var currency = currency_example;  // string | Options: `XBt`, `USDt` (optional)  (default to XBt)
+            var amount = 1.2;  // double? |  (optional) 
 
             try
             {
-                // Get the minimum withdrawal fee for a currency.
-                Object result = apiInstance.UserMinWithdrawalFee(currency);
+                // Get the minimum, maximum, and recommended withdrawal fees for a currency.
+                Object result = apiInstance.UserMinWithdrawalFee(currency, amount);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1145,7 +1288,8 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **currency** | **string**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; | [optional] [default to XBt]
+ **amount** | **double?**|  | [optional] 
 
 ### Return type
 
@@ -1164,7 +1308,7 @@ No authorization required
 
 <a name="userrequestwithdrawal"></a>
 # **UserRequestWithdrawal**
-> Transaction UserRequestWithdrawal (string currency, decimal? amount, string address, string otpToken = null, double? fee = null, string text = null)
+> Transaction UserRequestWithdrawal (string currency, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
 
 Request a withdrawal to an external wallet.
 
@@ -1198,17 +1342,19 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
 
             var apiInstance = new UserApi();
-            var currency = currency_example;  // string | Currency you're withdrawing. Options: `XBt` (default to XBt)
+            var currency = currency_example;  // string | Currency you're withdrawing. Options: `XBt`, `USDt` (default to XBt)
             var amount = 8.14;  // decimal? | Amount of withdrawal currency.
-            var address = address_example;  // string | Destination Address.
-            var otpToken = otpToken_example;  // string | 2FA token. Required if 2FA is enabled on your account. (optional) 
+            var otpToken = otpToken_example;  // string | 2FA token. Required for all external withdrawals. (optional) 
+            var address = address_example;  // string | Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. (optional) 
+            var addressId = 1.2;  // double? | ID of the Destination Address. One of `address`, `targetUserId`, `targetUserId` has to be specified. (optional) 
+            var targetUserId = 1.2;  // double? | ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified. (optional) 
             var fee = 1.2;  // double? | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional) 
             var text = text_example;  // string | Optional annotation, e.g. 'Transfer to home wallet'. (optional) 
 
             try
             {
                 // Request a withdrawal to an external wallet.
-                Transaction result = apiInstance.UserRequestWithdrawal(currency, amount, address, otpToken, fee, text);
+                Transaction result = apiInstance.UserRequestWithdrawal(currency, amount, otpToken, address, addressId, targetUserId, fee, text);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1224,10 +1370,12 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**| Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60; | [default to XBt]
+ **currency** | **string**| Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; | [default to XBt]
  **amount** | **decimal?**| Amount of withdrawal currency. | 
- **address** | **string**| Destination Address. | 
- **otpToken** | **string**| 2FA token. Required if 2FA is enabled on your account. | [optional] 
+ **otpToken** | **string**| 2FA token. Required for all external withdrawals. | [optional] 
+ **address** | **string**| Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
+ **addressId** | **double?**| ID of the Destination Address. One of &#x60;address&#x60;, &#x60;targetUserId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
+ **targetUserId** | **double?**| ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
  **fee** | **double?**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional] 
  **text** | **string**| Optional annotation, e.g. &#39;Transfer to home wallet&#39;. | [optional] 
 

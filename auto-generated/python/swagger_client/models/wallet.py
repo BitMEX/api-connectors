@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -15,6 +15,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from swagger_client.configuration import Configuration
 
 
 class Wallet(object):
@@ -52,10 +54,7 @@ class Wallet(object):
         'pending_credit': 'float',
         'pending_debit': 'float',
         'confirmed_debit': 'float',
-        'timestamp': 'datetime',
-        'addr': 'str',
-        'script': 'str',
-        'withdrawal_lock': 'list[str]'
+        'timestamp': 'datetime'
     }
 
     attribute_map = {
@@ -80,14 +79,14 @@ class Wallet(object):
         'pending_credit': 'pendingCredit',
         'pending_debit': 'pendingDebit',
         'confirmed_debit': 'confirmedDebit',
-        'timestamp': 'timestamp',
-        'addr': 'addr',
-        'script': 'script',
-        'withdrawal_lock': 'withdrawalLock'
+        'timestamp': 'timestamp'
     }
 
-    def __init__(self, account=None, currency=None, prev_deposited=None, prev_withdrawn=None, prev_transfer_in=None, prev_transfer_out=None, prev_amount=None, prev_timestamp=None, delta_deposited=None, delta_withdrawn=None, delta_transfer_in=None, delta_transfer_out=None, delta_amount=None, deposited=None, withdrawn=None, transfer_in=None, transfer_out=None, amount=None, pending_credit=None, pending_debit=None, confirmed_debit=None, timestamp=None, addr=None, script=None, withdrawal_lock=None):  # noqa: E501
+    def __init__(self, account=None, currency=None, prev_deposited=None, prev_withdrawn=None, prev_transfer_in=None, prev_transfer_out=None, prev_amount=None, prev_timestamp=None, delta_deposited=None, delta_withdrawn=None, delta_transfer_in=None, delta_transfer_out=None, delta_amount=None, deposited=None, withdrawn=None, transfer_in=None, transfer_out=None, amount=None, pending_credit=None, pending_debit=None, confirmed_debit=None, timestamp=None, _configuration=None):  # noqa: E501
         """Wallet - a model defined in Swagger"""  # noqa: E501
+        if _configuration is None:
+            _configuration = Configuration()
+        self._configuration = _configuration
 
         self._account = None
         self._currency = None
@@ -111,9 +110,6 @@ class Wallet(object):
         self._pending_debit = None
         self._confirmed_debit = None
         self._timestamp = None
-        self._addr = None
-        self._script = None
-        self._withdrawal_lock = None
         self.discriminator = None
 
         self.account = account
@@ -158,12 +154,6 @@ class Wallet(object):
             self.confirmed_debit = confirmed_debit
         if timestamp is not None:
             self.timestamp = timestamp
-        if addr is not None:
-            self.addr = addr
-        if script is not None:
-            self.script = script
-        if withdrawal_lock is not None:
-            self.withdrawal_lock = withdrawal_lock
 
     @property
     def account(self):
@@ -183,7 +173,7 @@ class Wallet(object):
         :param account: The account of this Wallet.  # noqa: E501
         :type: float
         """
-        if account is None:
+        if self._configuration.client_side_validation and account is None:
             raise ValueError("Invalid value for `account`, must not be `None`")  # noqa: E501
 
         self._account = account
@@ -206,7 +196,7 @@ class Wallet(object):
         :param currency: The currency of this Wallet.  # noqa: E501
         :type: str
         """
-        if currency is None:
+        if self._configuration.client_side_validation and currency is None:
             raise ValueError("Invalid value for `currency`, must not be `None`")  # noqa: E501
 
         self._currency = currency
@@ -631,69 +621,6 @@ class Wallet(object):
 
         self._timestamp = timestamp
 
-    @property
-    def addr(self):
-        """Gets the addr of this Wallet.  # noqa: E501
-
-
-        :return: The addr of this Wallet.  # noqa: E501
-        :rtype: str
-        """
-        return self._addr
-
-    @addr.setter
-    def addr(self, addr):
-        """Sets the addr of this Wallet.
-
-
-        :param addr: The addr of this Wallet.  # noqa: E501
-        :type: str
-        """
-
-        self._addr = addr
-
-    @property
-    def script(self):
-        """Gets the script of this Wallet.  # noqa: E501
-
-
-        :return: The script of this Wallet.  # noqa: E501
-        :rtype: str
-        """
-        return self._script
-
-    @script.setter
-    def script(self, script):
-        """Sets the script of this Wallet.
-
-
-        :param script: The script of this Wallet.  # noqa: E501
-        :type: str
-        """
-
-        self._script = script
-
-    @property
-    def withdrawal_lock(self):
-        """Gets the withdrawal_lock of this Wallet.  # noqa: E501
-
-
-        :return: The withdrawal_lock of this Wallet.  # noqa: E501
-        :rtype: list[str]
-        """
-        return self._withdrawal_lock
-
-    @withdrawal_lock.setter
-    def withdrawal_lock(self, withdrawal_lock):
-        """Sets the withdrawal_lock of this Wallet.
-
-
-        :param withdrawal_lock: The withdrawal_lock of this Wallet.  # noqa: E501
-        :type: list[str]
-        """
-
-        self._withdrawal_lock = withdrawal_lock
-
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -734,8 +661,11 @@ class Wallet(object):
         if not isinstance(other, Wallet):
             return False
 
-        return self.__dict__ == other.__dict__
+        return self.to_dict() == other.to_dict()
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        return not self == other
+        if not isinstance(other, Wallet):
+            return True
+
+        return self.to_dict() != other.to_dict()

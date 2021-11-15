@@ -36,29 +36,7 @@ open class GlobalNotificationAPI {
      - API Key:
        - type: apiKey api-signature 
        - name: apiSignature
-     - examples: [{contentType=application/json, example=[ {
-  "date" : "2000-01-23T04:56:07.000+00:00",
-  "waitForVisibility" : true,
-  "closable" : true,
-  "sound" : "sound",
-  "id" : 0.80082819046101150206595775671303272247314453125,
-  "persist" : true,
-  "title" : "title",
-  "body" : "body",
-  "type" : "success",
-  "ttl" : 6.02745618307040320615897144307382404804229736328125
-}, {
-  "date" : "2000-01-23T04:56:07.000+00:00",
-  "waitForVisibility" : true,
-  "closable" : true,
-  "sound" : "sound",
-  "id" : 0.80082819046101150206595775671303272247314453125,
-  "persist" : true,
-  "title" : "title",
-  "body" : "body",
-  "type" : "success",
-  "ttl" : 6.02745618307040320615897144307382404804229736328125
-} ]}]
+     - examples: [{contentType=application/json, example={}}]
 
      - returns: RequestBuilder<[GlobalNotification]> 
      */

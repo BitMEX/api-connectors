@@ -41,8 +41,10 @@ Name | Type | Description | Notes
 **excess_margin_pcnt** | **Float** |  | [optional] [default to 0.0]
 **available_margin** | **Float** |  | [optional] 
 **withdrawable_margin** | **Float** |  | [optional] 
-**timestamp** | **DateTime** |  | [optional] 
 **gross_last_value** | **Float** |  | [optional] 
 **commission** | **Float** |  | [optional] [default to 0.0]
+**maker_fee_discount** | **Float** |  | [optional] [default to 0.0]
+**taker_fee_discount** | **Float** |  | [optional] [default to 0.0]
+**timestamp** | **DateTime** |  | [optional] 
 
 

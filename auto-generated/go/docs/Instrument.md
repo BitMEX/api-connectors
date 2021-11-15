@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Front** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
 **Expiry** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
 **Settle** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
+**ListedSettle** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
 **RelistInterval** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
 **InverseLeg** | **string** |  | [optional] [default to null]
 **SellLeg** | **string** |  | [optional] [default to null]
@@ -104,6 +105,7 @@ Name | Type | Description | Notes
 **IndicativeTaxRate** | **float64** |  | [optional] [default to null]
 **IndicativeSettlePrice** | **float64** |  | [optional] [default to null]
 **OptionUnderlyingPrice** | **float64** |  | [optional] [default to null]
+**SettledPriceAdjustmentRate** | **float64** |  | [optional] [default to null]
 **SettledPrice** | **float64** |  | [optional] [default to null]
 **Timestamp** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
 

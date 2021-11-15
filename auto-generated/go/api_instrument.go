@@ -1,7 +1,8 @@
+
 /*
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * API version: 1.2.0
  * Contact: support@bitmex.com
@@ -26,15 +27,15 @@ var (
 
 type InstrumentApiService service
 
-/* 
+/*
 InstrumentApiService Get instruments.
 This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use &#x60;/instrument/active&#x60; to return active instruments, or use a filter like &#x60;{\&quot;state\&quot;: \&quot;Open\&quot;}&#x60;.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *InstrumentGetOpts - Optional Parameters:
-     * @param "Symbol" (optional.String) -  Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+ * @param optional nil or *InstrumentApiInstrumentGetOpts - Optional Parameters:
+     * @param "Symbol" (optional.String) -  Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param "Filter" (optional.String) -  Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param "Columns" (optional.String) -  Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param "Count" (optional.Float32) -  Number of results to fetch.
+     * @param "Count" (optional.Float32) -  Number of results to fetch. Must be a positive integer.
      * @param "Start" (optional.Float32) -  Starting point for results.
      * @param "Reverse" (optional.Bool) -  If true, will sort results newest first.
      * @param "StartTime" (optional.Time) -  Starting date filter for results.
@@ -43,7 +44,7 @@ This returns all instruments and indices, including those that have settled or a
 @return []Instrument
 */
 
-type InstrumentGetOpts struct { 
+type InstrumentApiInstrumentGetOpts struct { 
 	Symbol optional.String
 	Filter optional.String
 	Columns optional.String
@@ -54,7 +55,7 @@ type InstrumentGetOpts struct {
 	EndTime optional.Time
 }
 
-func (a *InstrumentApiService) InstrumentGet(ctx context.Context, localVarOptionals *InstrumentGetOpts) ([]Instrument, *http.Response, error) {
+func (a *InstrumentApiService) InstrumentGet(ctx context.Context, localVarOptionals *InstrumentApiInstrumentGetOpts) ([]Instrument, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -130,9 +131,7 @@ func (a *InstrumentApiService) InstrumentGet(ctx context.Context, localVarOption
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -202,7 +201,7 @@ func (a *InstrumentApiService) InstrumentGet(ctx context.Context, localVarOption
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 InstrumentApiService Get all active instruments and instruments that have expired in &lt;24hrs.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
@@ -260,9 +259,7 @@ func (a *InstrumentApiService) InstrumentGetActive(ctx context.Context) ([]Instr
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -332,7 +329,7 @@ func (a *InstrumentApiService) InstrumentGetActive(ctx context.Context) ([]Instr
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 InstrumentApiService Helper method. Gets all active instruments and all indices. This is a join of the result of /indices and /active.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
@@ -390,9 +387,7 @@ func (a *InstrumentApiService) InstrumentGetActiveAndIndices(ctx context.Context
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -462,7 +457,7 @@ func (a *InstrumentApiService) InstrumentGetActiveAndIndices(ctx context.Context
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 InstrumentApiService Return all active contract series and interval pairs.
 This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as &#x60;[\&quot;XBT:perpetual\&quot;, \&quot;XBT:quarterly\&quot;, \&quot;XBT:biquarterly\&quot;, \&quot;ETH:quarterly\&quot;, ...]&#x60;. These identifiers are usable in any query&#39;s &#x60;symbol&#x60; param. The second array is the current resolution of these intervals. Results are mapped at the same index.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -521,9 +516,7 @@ func (a *InstrumentApiService) InstrumentGetActiveIntervals(ctx context.Context)
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -593,15 +586,15 @@ func (a *InstrumentApiService) InstrumentGetActiveIntervals(ctx context.Context)
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 InstrumentApiService Show constituent parts of an index.
-Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a &#x60;symbol&#x60; of &#x60;.XBT&#x60; to get the ticks and weights of the constituent exchanges that build the \&quot;.XBT\&quot; index.  A tick with reference &#x60;\&quot;BMI\&quot;&#x60; and weight &#x60;null&#x60; is the composite index tick. 
+Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a &#x60;symbol&#x60; of &#x60;.BXBT&#x60; to get the ticks and weights of the constituent exchanges that build the \&quot;.BXBT\&quot; index.  A tick with reference &#x60;\&quot;BMI\&quot;&#x60; and weight &#x60;null&#x60; is the composite index tick. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *InstrumentGetCompositeIndexOpts - Optional Parameters:
+ * @param optional nil or *InstrumentApiInstrumentGetCompositeIndexOpts - Optional Parameters:
      * @param "Symbol" (optional.String) -  The composite index symbol.
-     * @param "Filter" (optional.String) -  Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
+     * @param "Filter" (optional.String) -  Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;.
      * @param "Columns" (optional.String) -  Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param "Count" (optional.Float32) -  Number of results to fetch.
+     * @param "Count" (optional.Float32) -  Number of results to fetch. Must be a positive integer.
      * @param "Start" (optional.Float32) -  Starting point for results.
      * @param "Reverse" (optional.Bool) -  If true, will sort results newest first.
      * @param "StartTime" (optional.Time) -  Starting date filter for results.
@@ -610,7 +603,7 @@ Composite indices are built from multiple external price sources.  Use this endp
 @return []IndexComposite
 */
 
-type InstrumentGetCompositeIndexOpts struct { 
+type InstrumentApiInstrumentGetCompositeIndexOpts struct { 
 	Symbol optional.String
 	Filter optional.String
 	Columns optional.String
@@ -621,7 +614,7 @@ type InstrumentGetCompositeIndexOpts struct {
 	EndTime optional.Time
 }
 
-func (a *InstrumentApiService) InstrumentGetCompositeIndex(ctx context.Context, localVarOptionals *InstrumentGetCompositeIndexOpts) ([]IndexComposite, *http.Response, error) {
+func (a *InstrumentApiService) InstrumentGetCompositeIndex(ctx context.Context, localVarOptionals *InstrumentApiInstrumentGetCompositeIndexOpts) ([]IndexComposite, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -697,9 +690,7 @@ func (a *InstrumentApiService) InstrumentGetCompositeIndex(ctx context.Context, 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -769,7 +760,7 @@ func (a *InstrumentApiService) InstrumentGetCompositeIndex(ctx context.Context, 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 InstrumentApiService Get all price indices.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
@@ -827,9 +818,7 @@ func (a *InstrumentApiService) InstrumentGetIndices(ctx context.Context) ([]Inst
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
 		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
@@ -898,3 +887,4 @@ func (a *InstrumentApiService) InstrumentGetIndices(ctx context.Context) ([]Inst
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+

@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  - --  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  - --  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -157,8 +157,9 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Affiliate</returns>
-        Affiliate UserGetAffiliateStatus ();
+        Affiliate UserGetAffiliateStatus (string currency = null);
 
         /// <summary>
         /// Get your current affiliate/referral status.
@@ -167,8 +168,9 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>ApiResponse of Affiliate</returns>
-        ApiResponse<Affiliate> UserGetAffiliateStatusWithHttpInfo ();
+        ApiResponse<Affiliate> UserGetAffiliateStatusWithHttpInfo (string currency = null);
         /// <summary>
         /// Get your account&#39;s commission status.
         /// </summary>
@@ -195,7 +197,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; (optional, default to XBt)</param>
         /// <returns>string</returns>
         string UserGetDepositAddress (string currency = null);
 
@@ -206,7 +208,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; (optional, default to XBt)</param>
         /// <returns>ApiResponse of string</returns>
         ApiResponse<string> UserGetDepositAddressWithHttpInfo (string currency = null);
         /// <summary>
@@ -239,7 +241,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Margin</returns>
         Margin UserGetMargin (string currency = null);
 
@@ -250,7 +252,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>ApiResponse of Margin</returns>
         ApiResponse<Margin> UserGetMarginWithHttpInfo (string currency = null);
         /// <summary>
@@ -273,13 +275,51 @@ namespace IO.Swagger.Api
         /// <returns>ApiResponse of QuoteFillRatio</returns>
         ApiResponse<QuoteFillRatio> UserGetQuoteFillRatioWithHttpInfo ();
         /// <summary>
+        /// Get Quote Value Ratio statistics over the last 3 days
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>QuoteValueRatio</returns>
+        QuoteValueRatio UserGetQuoteValueRatio ();
+
+        /// <summary>
+        /// Get Quote Value Ratio statistics over the last 3 days
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of QuoteValueRatio</returns>
+        ApiResponse<QuoteValueRatio> UserGetQuoteValueRatioWithHttpInfo ();
+        /// <summary>
+        /// Get your 30 days USD average trading volume
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>TradingVolume</returns>
+        TradingVolume UserGetTradingVolume ();
+
+        /// <summary>
+        /// Get your 30 days USD average trading volume
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of TradingVolume</returns>
+        ApiResponse<TradingVolume> UserGetTradingVolumeWithHttpInfo ();
+        /// <summary>
         /// Get your current wallet information.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Wallet</returns>
         Wallet UserGetWallet (string currency = null);
 
@@ -290,7 +330,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>ApiResponse of Wallet</returns>
         ApiResponse<Wallet> UserGetWalletWithHttpInfo (string currency = null);
         /// <summary>
@@ -300,7 +340,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
         /// <returns>List&lt;Transaction&gt;</returns>
@@ -313,7 +353,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
         /// <returns>ApiResponse of List&lt;Transaction&gt;</returns>
@@ -325,7 +365,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>List&lt;Transaction&gt;</returns>
         List<Transaction> UserGetWalletSummary (string currency = null);
 
@@ -336,7 +376,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>ApiResponse of List&lt;Transaction&gt;</returns>
         ApiResponse<List<Transaction>> UserGetWalletSummaryWithHttpInfo (string currency = null);
         /// <summary>
@@ -359,26 +399,28 @@ namespace IO.Swagger.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> UserLogoutWithHttpInfo ();
         /// <summary>
-        /// Get the minimum withdrawal fee for a currency.
+        /// Get the minimum, maximum, and recommended withdrawal fees for a currency.
         /// </summary>
         /// <remarks>
-        /// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+        /// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \&quot;fee\&quot; field is the recommended fee for fast confirmation on the blockchain.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; (optional, default to XBt)</param>
+        /// <param name="amount"> (optional)</param>
         /// <returns>Object</returns>
-        Object UserMinWithdrawalFee (string currency = null);
+        Object UserMinWithdrawalFee (string currency = null, double? amount = null);
 
         /// <summary>
-        /// Get the minimum withdrawal fee for a currency.
+        /// Get the minimum, maximum, and recommended withdrawal fees for a currency.
         /// </summary>
         /// <remarks>
-        /// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+        /// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \&quot;fee\&quot; field is the recommended fee for fast confirmation on the blockchain.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; (optional, default to XBt)</param>
+        /// <param name="amount"> (optional)</param>
         /// <returns>ApiResponse of Object</returns>
-        ApiResponse<Object> UserMinWithdrawalFeeWithHttpInfo (string currency = null);
+        ApiResponse<Object> UserMinWithdrawalFeeWithHttpInfo (string currency = null, double? amount = null);
         /// <summary>
         /// Request a withdrawal to an external wallet.
         /// </summary>
@@ -386,14 +428,16 @@ namespace IO.Swagger.Api
         /// This will send a confirmation email to the email address on record.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;</param>
+        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;</param>
         /// <param name="amount">Amount of withdrawal currency.</param>
-        /// <param name="address">Destination Address.</param>
-        /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account. (optional)</param>
+        /// <param name="otpToken">2FA token. Required for all external withdrawals. (optional)</param>
+        /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;targetUserId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Transaction</returns>
-        Transaction UserRequestWithdrawal (string currency, decimal? amount, string address, string otpToken = null, double? fee = null, string text = null);
+        Transaction UserRequestWithdrawal (string currency, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
 
         /// <summary>
         /// Request a withdrawal to an external wallet.
@@ -402,14 +446,16 @@ namespace IO.Swagger.Api
         /// This will send a confirmation email to the email address on record.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;</param>
+        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;</param>
         /// <param name="amount">Amount of withdrawal currency.</param>
-        /// <param name="address">Destination Address.</param>
-        /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account. (optional)</param>
+        /// <param name="otpToken">2FA token. Required for all external withdrawals. (optional)</param>
+        /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;targetUserId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>ApiResponse of Transaction</returns>
-        ApiResponse<Transaction> UserRequestWithdrawalWithHttpInfo (string currency, decimal? amount, string address, string otpToken = null, double? fee = null, string text = null);
+        ApiResponse<Transaction> UserRequestWithdrawalWithHttpInfo (string currency, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
         /// <summary>
         /// Save user preferences.
         /// </summary>
@@ -568,8 +614,9 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Task of Affiliate</returns>
-        System.Threading.Tasks.Task<Affiliate> UserGetAffiliateStatusAsync ();
+        System.Threading.Tasks.Task<Affiliate> UserGetAffiliateStatusAsync (string currency = null);
 
         /// <summary>
         /// Get your current affiliate/referral status.
@@ -578,8 +625,9 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Task of ApiResponse (Affiliate)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Affiliate>> UserGetAffiliateStatusAsyncWithHttpInfo ();
+        System.Threading.Tasks.Task<ApiResponse<Affiliate>> UserGetAffiliateStatusAsyncWithHttpInfo (string currency = null);
         /// <summary>
         /// Get your account&#39;s commission status.
         /// </summary>
@@ -606,7 +654,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; (optional, default to XBt)</param>
         /// <returns>Task of string</returns>
         System.Threading.Tasks.Task<string> UserGetDepositAddressAsync (string currency = null);
 
@@ -617,7 +665,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; (optional, default to XBt)</param>
         /// <returns>Task of ApiResponse (string)</returns>
         System.Threading.Tasks.Task<ApiResponse<string>> UserGetDepositAddressAsyncWithHttpInfo (string currency = null);
         /// <summary>
@@ -650,7 +698,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Task of Margin</returns>
         System.Threading.Tasks.Task<Margin> UserGetMarginAsync (string currency = null);
 
@@ -661,7 +709,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Task of ApiResponse (Margin)</returns>
         System.Threading.Tasks.Task<ApiResponse<Margin>> UserGetMarginAsyncWithHttpInfo (string currency = null);
         /// <summary>
@@ -684,13 +732,51 @@ namespace IO.Swagger.Api
         /// <returns>Task of ApiResponse (QuoteFillRatio)</returns>
         System.Threading.Tasks.Task<ApiResponse<QuoteFillRatio>> UserGetQuoteFillRatioAsyncWithHttpInfo ();
         /// <summary>
+        /// Get Quote Value Ratio statistics over the last 3 days
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of QuoteValueRatio</returns>
+        System.Threading.Tasks.Task<QuoteValueRatio> UserGetQuoteValueRatioAsync ();
+
+        /// <summary>
+        /// Get Quote Value Ratio statistics over the last 3 days
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (QuoteValueRatio)</returns>
+        System.Threading.Tasks.Task<ApiResponse<QuoteValueRatio>> UserGetQuoteValueRatioAsyncWithHttpInfo ();
+        /// <summary>
+        /// Get your 30 days USD average trading volume
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of TradingVolume</returns>
+        System.Threading.Tasks.Task<TradingVolume> UserGetTradingVolumeAsync ();
+
+        /// <summary>
+        /// Get your 30 days USD average trading volume
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (TradingVolume)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TradingVolume>> UserGetTradingVolumeAsyncWithHttpInfo ();
+        /// <summary>
         /// Get your current wallet information.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Task of Wallet</returns>
         System.Threading.Tasks.Task<Wallet> UserGetWalletAsync (string currency = null);
 
@@ -701,7 +787,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Task of ApiResponse (Wallet)</returns>
         System.Threading.Tasks.Task<ApiResponse<Wallet>> UserGetWalletAsyncWithHttpInfo (string currency = null);
         /// <summary>
@@ -711,7 +797,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
         /// <returns>Task of List&lt;Transaction&gt;</returns>
@@ -724,7 +810,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
         /// <returns>Task of ApiResponse (List&lt;Transaction&gt;)</returns>
@@ -736,7 +822,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Task of List&lt;Transaction&gt;</returns>
         System.Threading.Tasks.Task<List<Transaction>> UserGetWalletSummaryAsync (string currency = null);
 
@@ -747,7 +833,7 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Task of ApiResponse (List&lt;Transaction&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<List<Transaction>>> UserGetWalletSummaryAsyncWithHttpInfo (string currency = null);
         /// <summary>
@@ -770,26 +856,28 @@ namespace IO.Swagger.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> UserLogoutAsyncWithHttpInfo ();
         /// <summary>
-        /// Get the minimum withdrawal fee for a currency.
+        /// Get the minimum, maximum, and recommended withdrawal fees for a currency.
         /// </summary>
         /// <remarks>
-        /// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+        /// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \&quot;fee\&quot; field is the recommended fee for fast confirmation on the blockchain.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; (optional, default to XBt)</param>
+        /// <param name="amount"> (optional)</param>
         /// <returns>Task of Object</returns>
-        System.Threading.Tasks.Task<Object> UserMinWithdrawalFeeAsync (string currency = null);
+        System.Threading.Tasks.Task<Object> UserMinWithdrawalFeeAsync (string currency = null, double? amount = null);
 
         /// <summary>
-        /// Get the minimum withdrawal fee for a currency.
+        /// Get the minimum, maximum, and recommended withdrawal fees for a currency.
         /// </summary>
         /// <remarks>
-        /// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+        /// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \&quot;fee\&quot; field is the recommended fee for fast confirmation on the blockchain.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; (optional, default to XBt)</param>
+        /// <param name="amount"> (optional)</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> UserMinWithdrawalFeeAsyncWithHttpInfo (string currency = null);
+        System.Threading.Tasks.Task<ApiResponse<Object>> UserMinWithdrawalFeeAsyncWithHttpInfo (string currency = null, double? amount = null);
         /// <summary>
         /// Request a withdrawal to an external wallet.
         /// </summary>
@@ -797,14 +885,16 @@ namespace IO.Swagger.Api
         /// This will send a confirmation email to the email address on record.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;</param>
+        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;</param>
         /// <param name="amount">Amount of withdrawal currency.</param>
-        /// <param name="address">Destination Address.</param>
-        /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account. (optional)</param>
+        /// <param name="otpToken">2FA token. Required for all external withdrawals. (optional)</param>
+        /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;targetUserId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Task of Transaction</returns>
-        System.Threading.Tasks.Task<Transaction> UserRequestWithdrawalAsync (string currency, decimal? amount, string address, string otpToken = null, double? fee = null, string text = null);
+        System.Threading.Tasks.Task<Transaction> UserRequestWithdrawalAsync (string currency, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
 
         /// <summary>
         /// Request a withdrawal to an external wallet.
@@ -813,14 +903,16 @@ namespace IO.Swagger.Api
         /// This will send a confirmation email to the email address on record.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;</param>
+        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;</param>
         /// <param name="amount">Amount of withdrawal currency.</param>
-        /// <param name="address">Destination Address.</param>
-        /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account. (optional)</param>
+        /// <param name="otpToken">2FA token. Required for all external withdrawals. (optional)</param>
+        /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;targetUserId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Task of ApiResponse (Transaction)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Transaction>> UserRequestWithdrawalAsyncWithHttpInfo (string currency, decimal? amount, string address, string otpToken = null, double? fee = null, string text = null);
+        System.Threading.Tasks.Task<ApiResponse<Transaction>> UserRequestWithdrawalAsyncWithHttpInfo (string currency, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null);
         /// <summary>
         /// Save user preferences.
         /// </summary>
@@ -1872,10 +1964,11 @@ namespace IO.Swagger.Api
         /// Get your current affiliate/referral status. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Affiliate</returns>
-        public Affiliate UserGetAffiliateStatus ()
+        public Affiliate UserGetAffiliateStatus (string currency = null)
         {
-             ApiResponse<Affiliate> localVarResponse = UserGetAffiliateStatusWithHttpInfo();
+             ApiResponse<Affiliate> localVarResponse = UserGetAffiliateStatusWithHttpInfo(currency);
              return localVarResponse.Data;
         }
 
@@ -1883,8 +1976,9 @@ namespace IO.Swagger.Api
         /// Get your current affiliate/referral status. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>ApiResponse of Affiliate</returns>
-        public ApiResponse< Affiliate > UserGetAffiliateStatusWithHttpInfo ()
+        public ApiResponse< Affiliate > UserGetAffiliateStatusWithHttpInfo (string currency = null)
         {
 
             var localVarPath = "/user/affiliateStatus";
@@ -1914,6 +2008,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
@@ -1953,10 +2048,11 @@ namespace IO.Swagger.Api
         /// Get your current affiliate/referral status. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Task of Affiliate</returns>
-        public async System.Threading.Tasks.Task<Affiliate> UserGetAffiliateStatusAsync ()
+        public async System.Threading.Tasks.Task<Affiliate> UserGetAffiliateStatusAsync (string currency = null)
         {
-             ApiResponse<Affiliate> localVarResponse = await UserGetAffiliateStatusAsyncWithHttpInfo();
+             ApiResponse<Affiliate> localVarResponse = await UserGetAffiliateStatusAsyncWithHttpInfo(currency);
              return localVarResponse.Data;
 
         }
@@ -1965,8 +2061,9 @@ namespace IO.Swagger.Api
         /// Get your current affiliate/referral status. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Task of ApiResponse (Affiliate)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Affiliate>> UserGetAffiliateStatusAsyncWithHttpInfo ()
+        public async System.Threading.Tasks.Task<ApiResponse<Affiliate>> UserGetAffiliateStatusAsyncWithHttpInfo (string currency = null)
         {
 
             var localVarPath = "/user/affiliateStatus";
@@ -1996,6 +2093,7 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
 
             // authentication (apiExpires) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
@@ -2198,7 +2296,7 @@ namespace IO.Swagger.Api
         /// Get a deposit address. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; (optional, default to XBt)</param>
         /// <returns>string</returns>
         public string UserGetDepositAddress (string currency = null)
         {
@@ -2210,7 +2308,7 @@ namespace IO.Swagger.Api
         /// Get a deposit address. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; (optional, default to XBt)</param>
         /// <returns>ApiResponse of string</returns>
         public ApiResponse< string > UserGetDepositAddressWithHttpInfo (string currency = null)
         {
@@ -2282,7 +2380,7 @@ namespace IO.Swagger.Api
         /// Get a deposit address. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; (optional, default to XBt)</param>
         /// <returns>Task of string</returns>
         public async System.Threading.Tasks.Task<string> UserGetDepositAddressAsync (string currency = null)
         {
@@ -2295,7 +2393,7 @@ namespace IO.Swagger.Api
         /// Get a deposit address. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; (optional, default to XBt)</param>
         /// <returns>Task of ApiResponse (string)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<string>> UserGetDepositAddressAsyncWithHttpInfo (string currency = null)
         {
@@ -2554,7 +2652,7 @@ namespace IO.Swagger.Api
         /// Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Margin</returns>
         public Margin UserGetMargin (string currency = null)
         {
@@ -2566,7 +2664,7 @@ namespace IO.Swagger.Api
         /// Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>ApiResponse of Margin</returns>
         public ApiResponse< Margin > UserGetMarginWithHttpInfo (string currency = null)
         {
@@ -2638,7 +2736,7 @@ namespace IO.Swagger.Api
         /// Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Task of Margin</returns>
         public async System.Threading.Tasks.Task<Margin> UserGetMarginAsync (string currency = null)
         {
@@ -2651,7 +2749,7 @@ namespace IO.Swagger.Api
         /// Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Task of ApiResponse (Margin)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<Margin>> UserGetMarginAsyncWithHttpInfo (string currency = null)
         {
@@ -2883,10 +2981,336 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
+        /// Get Quote Value Ratio statistics over the last 3 days 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>QuoteValueRatio</returns>
+        public QuoteValueRatio UserGetQuoteValueRatio ()
+        {
+             ApiResponse<QuoteValueRatio> localVarResponse = UserGetQuoteValueRatioWithHttpInfo();
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Quote Value Ratio statistics over the last 3 days 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of QuoteValueRatio</returns>
+        public ApiResponse< QuoteValueRatio > UserGetQuoteValueRatioWithHttpInfo ()
+        {
+
+            var localVarPath = "/user/quoteValueRatio";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetQuoteValueRatio", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<QuoteValueRatio>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (QuoteValueRatio) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(QuoteValueRatio)));
+        }
+
+        /// <summary>
+        /// Get Quote Value Ratio statistics over the last 3 days 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of QuoteValueRatio</returns>
+        public async System.Threading.Tasks.Task<QuoteValueRatio> UserGetQuoteValueRatioAsync ()
+        {
+             ApiResponse<QuoteValueRatio> localVarResponse = await UserGetQuoteValueRatioAsyncWithHttpInfo();
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get Quote Value Ratio statistics over the last 3 days 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (QuoteValueRatio)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<QuoteValueRatio>> UserGetQuoteValueRatioAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/user/quoteValueRatio";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetQuoteValueRatio", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<QuoteValueRatio>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (QuoteValueRatio) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(QuoteValueRatio)));
+        }
+
+        /// <summary>
+        /// Get your 30 days USD average trading volume 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>TradingVolume</returns>
+        public TradingVolume UserGetTradingVolume ()
+        {
+             ApiResponse<TradingVolume> localVarResponse = UserGetTradingVolumeWithHttpInfo();
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get your 30 days USD average trading volume 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of TradingVolume</returns>
+        public ApiResponse< TradingVolume > UserGetTradingVolumeWithHttpInfo ()
+        {
+
+            var localVarPath = "/user/tradingVolume";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetTradingVolume", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TradingVolume>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TradingVolume) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(TradingVolume)));
+        }
+
+        /// <summary>
+        /// Get your 30 days USD average trading volume 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of TradingVolume</returns>
+        public async System.Threading.Tasks.Task<TradingVolume> UserGetTradingVolumeAsync ()
+        {
+             ApiResponse<TradingVolume> localVarResponse = await UserGetTradingVolumeAsyncWithHttpInfo();
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get your 30 days USD average trading volume 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (TradingVolume)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<TradingVolume>> UserGetTradingVolumeAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/user/tradingVolume";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (apiExpires) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-expires")))
+            {
+                localVarHeaderParams["api-expires"] = this.Configuration.GetApiKeyWithPrefix("api-expires");
+            }
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = this.Configuration.GetApiKeyWithPrefix("api-key");
+            }
+            // authentication (apiSignature) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api-signature")))
+            {
+                localVarHeaderParams["api-signature"] = this.Configuration.GetApiKeyWithPrefix("api-signature");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UserGetTradingVolume", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TradingVolume>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TradingVolume) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(TradingVolume)));
+        }
+
+        /// <summary>
         /// Get your current wallet information. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Wallet</returns>
         public Wallet UserGetWallet (string currency = null)
         {
@@ -2898,7 +3322,7 @@ namespace IO.Swagger.Api
         /// Get your current wallet information. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>ApiResponse of Wallet</returns>
         public ApiResponse< Wallet > UserGetWalletWithHttpInfo (string currency = null)
         {
@@ -2970,7 +3394,7 @@ namespace IO.Swagger.Api
         /// Get your current wallet information. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Task of Wallet</returns>
         public async System.Threading.Tasks.Task<Wallet> UserGetWalletAsync (string currency = null)
         {
@@ -2983,7 +3407,7 @@ namespace IO.Swagger.Api
         /// Get your current wallet information. 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Task of ApiResponse (Wallet)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<Wallet>> UserGetWalletAsyncWithHttpInfo (string currency = null)
         {
@@ -3055,7 +3479,7 @@ namespace IO.Swagger.Api
         /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
         /// <returns>List&lt;Transaction&gt;</returns>
@@ -3069,7 +3493,7 @@ namespace IO.Swagger.Api
         /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
         /// <returns>ApiResponse of List&lt;Transaction&gt;</returns>
@@ -3145,7 +3569,7 @@ namespace IO.Swagger.Api
         /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
         /// <returns>Task of List&lt;Transaction&gt;</returns>
@@ -3160,7 +3584,7 @@ namespace IO.Swagger.Api
         /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting point for results. (optional, default to 0)</param>
         /// <returns>Task of ApiResponse (List&lt;Transaction&gt;)</returns>
@@ -3236,7 +3660,7 @@ namespace IO.Swagger.Api
         /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>List&lt;Transaction&gt;</returns>
         public List<Transaction> UserGetWalletSummary (string currency = null)
         {
@@ -3248,7 +3672,7 @@ namespace IO.Swagger.Api
         /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>ApiResponse of List&lt;Transaction&gt;</returns>
         public ApiResponse< List<Transaction> > UserGetWalletSummaryWithHttpInfo (string currency = null)
         {
@@ -3320,7 +3744,7 @@ namespace IO.Swagger.Api
         /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Task of List&lt;Transaction&gt;</returns>
         public async System.Threading.Tasks.Task<List<Transaction>> UserGetWalletSummaryAsync (string currency = null)
         {
@@ -3333,7 +3757,7 @@ namespace IO.Swagger.Api
         /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL). 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional, default to XBt)</param>
         /// <returns>Task of ApiResponse (List&lt;Transaction&gt;)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<List<Transaction>>> UserGetWalletSummaryAsyncWithHttpInfo (string currency = null)
         {
@@ -3533,24 +3957,26 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Get the minimum withdrawal fee for a currency. This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+        /// Get the minimum, maximum, and recommended withdrawal fees for a currency. This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \&quot;fee\&quot; field is the recommended fee for fast confirmation on the blockchain.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; (optional, default to XBt)</param>
+        /// <param name="amount"> (optional)</param>
         /// <returns>Object</returns>
-        public Object UserMinWithdrawalFee (string currency = null)
+        public Object UserMinWithdrawalFee (string currency = null, double? amount = null)
         {
-             ApiResponse<Object> localVarResponse = UserMinWithdrawalFeeWithHttpInfo(currency);
+             ApiResponse<Object> localVarResponse = UserMinWithdrawalFeeWithHttpInfo(currency, amount);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get the minimum withdrawal fee for a currency. This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+        /// Get the minimum, maximum, and recommended withdrawal fees for a currency. This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \&quot;fee\&quot; field is the recommended fee for fast confirmation on the blockchain.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; (optional, default to XBt)</param>
+        /// <param name="amount"> (optional)</param>
         /// <returns>ApiResponse of Object</returns>
-        public ApiResponse< Object > UserMinWithdrawalFeeWithHttpInfo (string currency = null)
+        public ApiResponse< Object > UserMinWithdrawalFeeWithHttpInfo (string currency = null, double? amount = null)
         {
 
             var localVarPath = "/user/minWithdrawalFee";
@@ -3581,6 +4007,7 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
+            if (amount != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "amount", amount)); // query parameter
 
 
             // make the HTTP request
@@ -3602,25 +4029,27 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Get the minimum withdrawal fee for a currency. This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+        /// Get the minimum, maximum, and recommended withdrawal fees for a currency. This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \&quot;fee\&quot; field is the recommended fee for fast confirmation on the blockchain.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; (optional, default to XBt)</param>
+        /// <param name="amount"> (optional)</param>
         /// <returns>Task of Object</returns>
-        public async System.Threading.Tasks.Task<Object> UserMinWithdrawalFeeAsync (string currency = null)
+        public async System.Threading.Tasks.Task<Object> UserMinWithdrawalFeeAsync (string currency = null, double? amount = null)
         {
-             ApiResponse<Object> localVarResponse = await UserMinWithdrawalFeeAsyncWithHttpInfo(currency);
+             ApiResponse<Object> localVarResponse = await UserMinWithdrawalFeeAsyncWithHttpInfo(currency, amount);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Get the minimum withdrawal fee for a currency. This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+        /// Get the minimum, maximum, and recommended withdrawal fees for a currency. This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \&quot;fee\&quot; field is the recommended fee for fast confirmation on the blockchain.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency"> (optional, default to XBt)</param>
+        /// <param name="currency">Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; (optional, default to XBt)</param>
+        /// <param name="amount"> (optional)</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> UserMinWithdrawalFeeAsyncWithHttpInfo (string currency = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> UserMinWithdrawalFeeAsyncWithHttpInfo (string currency = null, double? amount = null)
         {
 
             var localVarPath = "/user/minWithdrawalFee";
@@ -3651,6 +4080,7 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (currency != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "currency", currency)); // query parameter
+            if (amount != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "amount", amount)); // query parameter
 
 
             // make the HTTP request
@@ -3675,16 +4105,18 @@ namespace IO.Swagger.Api
         /// Request a withdrawal to an external wallet. This will send a confirmation email to the email address on record.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;</param>
+        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;</param>
         /// <param name="amount">Amount of withdrawal currency.</param>
-        /// <param name="address">Destination Address.</param>
-        /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account. (optional)</param>
+        /// <param name="otpToken">2FA token. Required for all external withdrawals. (optional)</param>
+        /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;targetUserId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Transaction</returns>
-        public Transaction UserRequestWithdrawal (string currency, decimal? amount, string address, string otpToken = null, double? fee = null, string text = null)
+        public Transaction UserRequestWithdrawal (string currency, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
         {
-             ApiResponse<Transaction> localVarResponse = UserRequestWithdrawalWithHttpInfo(currency, amount, address, otpToken, fee, text);
+             ApiResponse<Transaction> localVarResponse = UserRequestWithdrawalWithHttpInfo(currency, amount, otpToken, address, addressId, targetUserId, fee, text);
              return localVarResponse.Data;
         }
 
@@ -3692,14 +4124,16 @@ namespace IO.Swagger.Api
         /// Request a withdrawal to an external wallet. This will send a confirmation email to the email address on record.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;</param>
+        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;</param>
         /// <param name="amount">Amount of withdrawal currency.</param>
-        /// <param name="address">Destination Address.</param>
-        /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account. (optional)</param>
+        /// <param name="otpToken">2FA token. Required for all external withdrawals. (optional)</param>
+        /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;targetUserId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>ApiResponse of Transaction</returns>
-        public ApiResponse< Transaction > UserRequestWithdrawalWithHttpInfo (string currency, decimal? amount, string address, string otpToken = null, double? fee = null, string text = null)
+        public ApiResponse< Transaction > UserRequestWithdrawalWithHttpInfo (string currency, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
         {
             // verify the required parameter 'currency' is set
             if (currency == null)
@@ -3707,9 +4141,6 @@ namespace IO.Swagger.Api
             // verify the required parameter 'amount' is set
             if (amount == null)
                 throw new ApiException(400, "Missing required parameter 'amount' when calling UserApi->UserRequestWithdrawal");
-            // verify the required parameter 'address' is set
-            if (address == null)
-                throw new ApiException(400, "Missing required parameter 'address' when calling UserApi->UserRequestWithdrawal");
 
             var localVarPath = "/user/requestWithdrawal";
             var localVarPathParams = new Dictionary<String, String>();
@@ -3742,6 +4173,8 @@ namespace IO.Swagger.Api
             if (currency != null) localVarFormParams.Add("currency", this.Configuration.ApiClient.ParameterToString(currency)); // form parameter
             if (amount != null) localVarFormParams.Add("amount", this.Configuration.ApiClient.ParameterToString(amount)); // form parameter
             if (address != null) localVarFormParams.Add("address", this.Configuration.ApiClient.ParameterToString(address)); // form parameter
+            if (addressId != null) localVarFormParams.Add("addressId", this.Configuration.ApiClient.ParameterToString(addressId)); // form parameter
+            if (targetUserId != null) localVarFormParams.Add("targetUserId", this.Configuration.ApiClient.ParameterToString(targetUserId)); // form parameter
             if (fee != null) localVarFormParams.Add("fee", this.Configuration.ApiClient.ParameterToString(fee)); // form parameter
             if (text != null) localVarFormParams.Add("text", this.Configuration.ApiClient.ParameterToString(text)); // form parameter
 
@@ -3783,16 +4216,18 @@ namespace IO.Swagger.Api
         /// Request a withdrawal to an external wallet. This will send a confirmation email to the email address on record.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;</param>
+        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;</param>
         /// <param name="amount">Amount of withdrawal currency.</param>
-        /// <param name="address">Destination Address.</param>
-        /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account. (optional)</param>
+        /// <param name="otpToken">2FA token. Required for all external withdrawals. (optional)</param>
+        /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;targetUserId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Task of Transaction</returns>
-        public async System.Threading.Tasks.Task<Transaction> UserRequestWithdrawalAsync (string currency, decimal? amount, string address, string otpToken = null, double? fee = null, string text = null)
+        public async System.Threading.Tasks.Task<Transaction> UserRequestWithdrawalAsync (string currency, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
         {
-             ApiResponse<Transaction> localVarResponse = await UserRequestWithdrawalAsyncWithHttpInfo(currency, amount, address, otpToken, fee, text);
+             ApiResponse<Transaction> localVarResponse = await UserRequestWithdrawalAsyncWithHttpInfo(currency, amount, otpToken, address, addressId, targetUserId, fee, text);
              return localVarResponse.Data;
 
         }
@@ -3801,14 +4236,16 @@ namespace IO.Swagger.Api
         /// Request a withdrawal to an external wallet. This will send a confirmation email to the email address on record.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;</param>
+        /// <param name="currency">Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;</param>
         /// <param name="amount">Amount of withdrawal currency.</param>
-        /// <param name="address">Destination Address.</param>
-        /// <param name="otpToken">2FA token. Required if 2FA is enabled on your account. (optional)</param>
+        /// <param name="otpToken">2FA token. Required for all external withdrawals. (optional)</param>
+        /// <param name="address">Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="addressId">ID of the Destination Address. One of &#x60;address&#x60;, &#x60;targetUserId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
+        /// <param name="targetUserId">ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)</param>
         /// <param name="fee">Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)</param>
         /// <param name="text">Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)</param>
         /// <returns>Task of ApiResponse (Transaction)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Transaction>> UserRequestWithdrawalAsyncWithHttpInfo (string currency, decimal? amount, string address, string otpToken = null, double? fee = null, string text = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Transaction>> UserRequestWithdrawalAsyncWithHttpInfo (string currency, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
         {
             // verify the required parameter 'currency' is set
             if (currency == null)
@@ -3816,9 +4253,6 @@ namespace IO.Swagger.Api
             // verify the required parameter 'amount' is set
             if (amount == null)
                 throw new ApiException(400, "Missing required parameter 'amount' when calling UserApi->UserRequestWithdrawal");
-            // verify the required parameter 'address' is set
-            if (address == null)
-                throw new ApiException(400, "Missing required parameter 'address' when calling UserApi->UserRequestWithdrawal");
 
             var localVarPath = "/user/requestWithdrawal";
             var localVarPathParams = new Dictionary<String, String>();
@@ -3851,6 +4285,8 @@ namespace IO.Swagger.Api
             if (currency != null) localVarFormParams.Add("currency", this.Configuration.ApiClient.ParameterToString(currency)); // form parameter
             if (amount != null) localVarFormParams.Add("amount", this.Configuration.ApiClient.ParameterToString(amount)); // form parameter
             if (address != null) localVarFormParams.Add("address", this.Configuration.ApiClient.ParameterToString(address)); // form parameter
+            if (addressId != null) localVarFormParams.Add("addressId", this.Configuration.ApiClient.ParameterToString(addressId)); // form parameter
+            if (targetUserId != null) localVarFormParams.Add("targetUserId", this.Configuration.ApiClient.ParameterToString(targetUserId)); // form parameter
             if (fee != null) localVarFormParams.Add("fee", this.Configuration.ApiClient.ParameterToString(fee)); // form parameter
             if (text != null) localVarFormParams.Add("text", this.Configuration.ApiClient.ParameterToString(text)); // form parameter
 

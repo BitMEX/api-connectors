@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **hideFromLeaderboard** | **Boolean** |  |  [optional]
 **hideNameFromLeaderboard** | **Boolean** |  |  [optional]
 **hideNotifications** | **List&lt;String&gt;** |  |  [optional]
+**hidePhoneConfirm** | **Boolean** |  |  [optional]
 **locale** | **String** |  |  [optional]
 **msgsSeen** | **List&lt;String&gt;** |  |  [optional]
 **orderBookBinning** | **Object** |  |  [optional]

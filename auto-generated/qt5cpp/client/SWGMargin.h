@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -157,14 +157,20 @@ public:
     SWGNumber* getWithdrawableMargin();
     void setWithdrawableMargin(SWGNumber* withdrawable_margin);
 
-    QDateTime* getTimestamp();
-    void setTimestamp(QDateTime* timestamp);
-
     SWGNumber* getGrossLastValue();
     void setGrossLastValue(SWGNumber* gross_last_value);
 
     double getCommission();
     void setCommission(double commission);
+
+    double getMakerFeeDiscount();
+    void setMakerFeeDiscount(double maker_fee_discount);
+
+    double getTakerFeeDiscount();
+    void setTakerFeeDiscount(double taker_fee_discount);
+
+    QDateTime* getTimestamp();
+    void setTimestamp(QDateTime* timestamp);
 
 
     virtual bool isSet() override;
@@ -284,14 +290,20 @@ private:
     SWGNumber* withdrawable_margin;
     bool m_withdrawable_margin_isSet;
 
-    QDateTime* timestamp;
-    bool m_timestamp_isSet;
-
     SWGNumber* gross_last_value;
     bool m_gross_last_value_isSet;
 
     double commission;
     bool m_commission_isSet;
+
+    double maker_fee_discount;
+    bool m_maker_fee_discount_isSet;
+
+    double taker_fee_discount;
+    bool m_taker_fee_discount_isSet;
+
+    QDateTime* timestamp;
+    bool m_timestamp_isSet;
 
 };
 

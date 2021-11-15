@@ -25,8 +25,5 @@ Name | Type | Description | Notes
 **pendingDebit** | **Number** |  | [optional] 
 **confirmedDebit** | **Number** |  | [optional] 
 **timestamp** | **Date** |  | [optional] 
-**addr** | **String** |  | [optional] 
-**script** | **String** |  | [optional] 
-**withdrawalLock** | **[String]** |  | [optional] 
 
 

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -18,6 +18,8 @@ import org.joda.time.DateTime
 import io.swagger.client.model.Error
 import io.swagger.client.model.Margin
 import io.swagger.client.model.QuoteFillRatio
+import io.swagger.client.model.QuoteValueRatio
+import io.swagger.client.model.TradingVolume
 import io.swagger.client.model.Transaction
 import io.swagger.client.model.User
 import io.swagger.client.model.UserCommissionsBySymbol
@@ -177,12 +179,15 @@ object UserApi {
    *   apiExpires (apiKey)
    *   apiKey (apiKey)
    *   apiSignature (apiKey)
+   * 
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;
    */
-  def user.getAffiliateStatus()(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Affiliate] =
+  def user.getAffiliateStatus(currency: Option[String])(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Affiliate] =
     ApiRequest[Affiliate](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/affiliateStatus", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
       .withApiKey(apiKey, "api-signature", HEADER)
+      .withQueryParam("currency", currency)
       .withSuccessResponse[Affiliate](200)
       .withErrorResponse[Error](400)
       .withErrorResponse[Error](401)
@@ -228,7 +233,7 @@ object UserApi {
    *   apiKey (apiKey)
    *   apiSignature (apiKey)
    * 
-   * @param currency 
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;
    */
   def user.getDepositAddress(currency: Option[String])(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[String] =
     ApiRequest[String](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/depositAddress", "application/json")
@@ -286,7 +291,7 @@ object UserApi {
    *   apiKey (apiKey)
    *   apiSignature (apiKey)
    * 
-   * @param currency 
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;
    */
   def user.getMargin(currency: Option[String])(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Margin] =
     ApiRequest[Margin](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/margin", "application/json")
@@ -328,6 +333,56 @@ object UserApi {
    * 
    * 
    * Expected answers:
+   *   code 200 : QuoteValueRatio (Request was successful)
+   *   code 400 : Error (Parameter Error)
+   *   code 401 : Error (Unauthorized)
+   *   code 403 : Error (Access Denied)
+   *   code 404 : Error (Not Found)
+   * 
+   * Available security schemes:
+   *   apiExpires (apiKey)
+   *   apiKey (apiKey)
+   *   apiSignature (apiKey)
+   */
+  def user.getQuoteValueRatio()(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[QuoteValueRatio] =
+    ApiRequest[QuoteValueRatio](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/quoteValueRatio", "application/json")
+      .withApiKey(apiKey, "api-expires", HEADER)
+      .withApiKey(apiKey, "api-key", HEADER)
+      .withApiKey(apiKey, "api-signature", HEADER)
+      .withSuccessResponse[QuoteValueRatio](200)
+      .withErrorResponse[Error](400)
+      .withErrorResponse[Error](401)
+      .withErrorResponse[Error](403)
+      .withErrorResponse[Error](404)
+        /**
+   * 
+   * 
+   * Expected answers:
+   *   code 200 : TradingVolume (Request was successful)
+   *   code 400 : Error (Parameter Error)
+   *   code 401 : Error (Unauthorized)
+   *   code 403 : Error (Access Denied)
+   *   code 404 : Error (Not Found)
+   * 
+   * Available security schemes:
+   *   apiExpires (apiKey)
+   *   apiKey (apiKey)
+   *   apiSignature (apiKey)
+   */
+  def user.getTradingVolume()(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[TradingVolume] =
+    ApiRequest[TradingVolume](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/tradingVolume", "application/json")
+      .withApiKey(apiKey, "api-expires", HEADER)
+      .withApiKey(apiKey, "api-key", HEADER)
+      .withApiKey(apiKey, "api-signature", HEADER)
+      .withSuccessResponse[TradingVolume](200)
+      .withErrorResponse[Error](400)
+      .withErrorResponse[Error](401)
+      .withErrorResponse[Error](403)
+      .withErrorResponse[Error](404)
+        /**
+   * 
+   * 
+   * Expected answers:
    *   code 200 : Wallet (Request was successful)
    *   code 400 : Error (Parameter Error)
    *   code 401 : Error (Unauthorized)
@@ -339,7 +394,7 @@ object UserApi {
    *   apiKey (apiKey)
    *   apiSignature (apiKey)
    * 
-   * @param currency 
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;
    */
   def user.getWallet(currency: Option[String])(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Wallet] =
     ApiRequest[Wallet](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/wallet", "application/json")
@@ -367,7 +422,7 @@ object UserApi {
    *   apiKey (apiKey)
    *   apiSignature (apiKey)
    * 
-   * @param currency 
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;
    * @param count Number of results to fetch.
    * @param start Starting point for results.
    */
@@ -399,7 +454,7 @@ object UserApi {
    *   apiKey (apiKey)
    *   apiSignature (apiKey)
    * 
-   * @param currency 
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;
    */
   def user.getWalletSummary(currency: Option[String])(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[Transaction]] =
     ApiRequest[Seq[Transaction]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/walletSummary", "application/json")
@@ -430,7 +485,7 @@ object UserApi {
       .withErrorResponse[Error](403)
       .withErrorResponse[Error](404)
         /**
-   * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+   * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \&quot;fee\&quot; field is the recommended fee for fast confirmation on the blockchain.
    * 
    * Expected answers:
    *   code 200 : Any (Request was successful)
@@ -439,11 +494,13 @@ object UserApi {
    *   code 403 : Error (Access Denied)
    *   code 404 : Error (Not Found)
    * 
-   * @param currency 
+   * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;
+   * @param amount 
    */
-  def user.minWithdrawalFee(currency: Option[String]): ApiRequest[Any] =
+  def user.minWithdrawalFee(currency: Option[String], amount: Option[Double] = None): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/minWithdrawalFee", "application/json")
       .withQueryParam("currency", currency)
+      .withQueryParam("amount", amount)
       .withSuccessResponse[Any](200)
       .withErrorResponse[Error](400)
       .withErrorResponse[Error](401)
@@ -464,14 +521,16 @@ object UserApi {
    *   apiKey (apiKey)
    *   apiSignature (apiKey)
    * 
-   * @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;
+   * @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;
    * @param amount Amount of withdrawal currency.
-   * @param address Destination Address.
-   * @param otpToken 2FA token. Required if 2FA is enabled on your account.
+   * @param otpToken 2FA token. Required for all external withdrawals.
+   * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
+   * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;targetUserId&#x60;, &#x60;targetUserId&#x60; has to be specified.
+   * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
    * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
    * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
    */
-  def user.requestWithdrawal(currency: String, amount: Double, address: String, otpToken: Option[String] = None, fee: Option[Double] = None, text: Option[String] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Transaction] =
+  def user.requestWithdrawal(currency: String, amount: Double, otpToken: Option[String] = None, address: Option[String] = None, addressId: Option[Double] = None, targetUserId: Option[Double] = None, fee: Option[Double] = None, text: Option[String] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Transaction] =
     ApiRequest[Transaction](ApiMethods.POST, "https://www.bitmex.com/api/v1", "/user/requestWithdrawal", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
@@ -480,6 +539,8 @@ object UserApi {
       .withFormParam("currency", currency)
       .withFormParam("amount", amount)
       .withFormParam("address", address)
+      .withFormParam("addressId", addressId)
+      .withFormParam("targetUserId", targetUserId)
       .withFormParam("fee", fee)
       .withFormParam("text", text)
       .withSuccessResponse[Transaction](200)

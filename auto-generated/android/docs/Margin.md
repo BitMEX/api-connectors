@@ -42,9 +42,11 @@ Name | Type | Description | Notes
 **excessMarginPcnt** | **Double** |  |  [optional]
 **availableMargin** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **withdrawableMargin** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**timestamp** | [**Date**](Date.md) |  |  [optional]
 **grossLastValue** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **commission** | **Double** |  |  [optional]
+**makerFeeDiscount** | **Double** |  |  [optional]
+**takerFeeDiscount** | **Double** |  |  [optional]
+**timestamp** | [**Date**](Date.md) |  |  [optional]
 
 
 

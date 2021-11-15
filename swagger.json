@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "BitMEX API",
-    "description": "## REST API for the BitMEX Trading Platform\n\n[View Changelog](/app/apiChangelog)\n\n-\n\n#### Getting Started\n\nBase URI: [https://www.bitmex.com/api/v1](/api/v1)\n\n##### Fetching Data\n\nAll REST endpoints are documented below. You can try out any query right from this interface.\n\nMost table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.\n\nAdditional documentation regarding filters, timestamps, and authentication\nis available in [the main API documentation](/app/restAPI).\n\n_All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want\nto have the quickest possible data without being subject to ratelimits.\n\n##### Return Types\n\nBy default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.\n\n##### Trade Data Queries\n\n_This is only a small subset of what is available, to get you started._\n\nFill in the parameters and click the `Try it out!` button to try any of these queries.\n\n- [Pricing Data](#!/Quote/Quote_get)\n\n- [Trade Data](#!/Trade/Trade_get)\n\n- [OrderBook Data](#!/OrderBook/OrderBook_getL2)\n\n- [Settlement Data](#!/Settlement/Settlement_get)\n\n- [Exchange Statistics](#!/Stats/Stats_history)\n\nEvery function of the BitMEX.com platform is exposed here and documented. Many more functions are available.\n\n##### Swagger Specification\n\n[⇩ Download Swagger JSON](swagger.json)\n\n-\n\n## All API Endpoints\n\nClick to expand a section.\n",
+    "description": "## REST API for the BitMEX Trading Platform\n\n_If you are building automated tools, please subscribe to the_\n_[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_\n_regularly and is the most reliable way to get downtime and update announcements._\n\n[View Changelog](/app/apiChangelog)\n\n---\n\n#### Getting Started\n\nBase URI: [https://www.bitmex.com/api/v1](/api/v1)\n\n##### Fetching Data\n\nAll REST endpoints are documented below. You can try out any query right from this interface.\n\nMost table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.\n\nAdditional documentation regarding filters, timestamps, and authentication\nis available in [the main API documentation](/app/restAPI).\n\n_All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want\nto have the quickest possible data without being subject to ratelimits.\n\n##### Return Types\n\nBy default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.\n\n##### Trade Data Queries\n\n_This is only a small subset of what is available, to get you started._\n\nFill in the parameters and click the `Try it out!` button to try any of these queries.\n\n- [Pricing Data](#!/Quote/Quote_get)\n\n- [Trade Data](#!/Trade/Trade_get)\n\n- [OrderBook Data](#!/OrderBook/OrderBook_getL2)\n\n- [Settlement Data](#!/Settlement/Settlement_get)\n\n- [Exchange Statistics](#!/Stats/Stats_history)\n\nEvery function of the BitMEX.com platform is exposed here and documented. Many more functions are available.\n\n##### Swagger Specification\n\n[⇩ Download Swagger JSON](swagger.json)\n\n---\n\n## All API Endpoints\n\nClick to expand a section.\n",
     "termsOfService": "https://www.bitmex.com/app/terms",
     "contact": {
       "email": "support@bitmex.com"
@@ -411,7 +411,7 @@
           {
             "name": "symbol",
             "in": "query",
-            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.",
+            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\nSymbols are case-insensitive.",
             "required": false,
             "type": "string"
           },
@@ -434,7 +434,7 @@
           {
             "name": "count",
             "in": "query",
-            "description": "Number of results to fetch.",
+            "description": "Number of results to fetch. Must be a positive integer.",
             "required": false,
             "format": "int32",
             "default": 100,
@@ -517,13 +517,13 @@
         "tags": [
           "Execution"
         ],
-        "summary": "Get all balance-affecting executions. This includes each trade, insurance charge, and settlement.",
+        "summary": "Get all balance-affecting executions.",
         "operationId": "Execution.getTradeHistory",
         "parameters": [
           {
             "name": "symbol",
             "in": "query",
-            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.",
+            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\nSymbols are case-insensitive.",
             "required": false,
             "type": "string"
           },
@@ -546,7 +546,7 @@
           {
             "name": "count",
             "in": "query",
-            "description": "Number of results to fetch.",
+            "description": "Number of results to fetch. Must be a positive integer.",
             "required": false,
             "format": "int32",
             "default": 100,
@@ -635,7 +635,7 @@
           {
             "name": "symbol",
             "in": "query",
-            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.",
+            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\nSymbols are case-insensitive.",
             "required": false,
             "type": "string"
           },
@@ -658,7 +658,7 @@
           {
             "name": "count",
             "in": "query",
-            "description": "Number of results to fetch.",
+            "description": "Number of results to fetch. Must be a positive integer.",
             "required": false,
             "format": "int32",
             "default": 100,
@@ -749,7 +749,7 @@
           {
             "name": "symbol",
             "in": "query",
-            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.",
+            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\nSymbols are case-insensitive.",
             "required": false,
             "type": "string"
           },
@@ -772,7 +772,7 @@
           {
             "name": "count",
             "in": "query",
-            "description": "Number of results to fetch.",
+            "description": "Number of results to fetch. Must be a positive integer.",
             "required": false,
             "format": "int32",
             "default": 100,
@@ -1043,7 +1043,7 @@
           "Instrument"
         ],
         "summary": "Show constituent parts of an index.",
-        "description": "Composite indices are built from multiple external price sources.\n\nUse this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.XBT` to\nget the ticks and weights of the constituent exchanges that build the \".XBT\" index.\n\nA tick with reference `\"BMI\"` and weight `null` is the composite index tick.\n",
+        "description": "Composite indices are built from multiple external price sources.\n\nUse this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.BXBT` to\nget the ticks and weights of the constituent exchanges that build the \".BXBT\" index.\n\nA tick with reference `\"BMI\"` and weight `null` is the composite index tick.\n",
         "operationId": "Instrument.getCompositeIndex",
         "parameters": [
           {
@@ -1051,13 +1051,13 @@
             "in": "query",
             "description": "The composite index symbol.",
             "required": false,
-            "default": ".XBT",
+            "default": ".BXBT",
             "type": "string"
           },
           {
             "name": "filter",
             "in": "query",
-            "description": "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.",
+            "description": "Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`.",
             "required": false,
             "type": "string",
             "format": "JSON"
@@ -1073,7 +1073,7 @@
           {
             "name": "count",
             "in": "query",
-            "description": "Number of results to fetch.",
+            "description": "Number of results to fetch. Must be a positive integer.",
             "required": false,
             "format": "int32",
             "default": 100,
@@ -1163,7 +1163,7 @@
           {
             "name": "symbol",
             "in": "query",
-            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.",
+            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\nSymbols are case-insensitive.",
             "required": false,
             "type": "string"
           },
@@ -1186,7 +1186,7 @@
           {
             "name": "count",
             "in": "query",
-            "description": "Number of results to fetch.",
+            "description": "Number of results to fetch. Must be a positive integer.",
             "required": false,
             "format": "int32",
             "default": 100,
@@ -1380,7 +1380,7 @@
           {
             "name": "symbol",
             "in": "query",
-            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.",
+            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\nSymbols are case-insensitive.",
             "required": false,
             "type": "string"
           },
@@ -1403,7 +1403,7 @@
           {
             "name": "count",
             "in": "query",
-            "description": "Number of results to fetch.",
+            "description": "Number of results to fetch. Must be a positive integer.",
             "required": false,
             "format": "int32",
             "default": 100,
@@ -1541,7 +1541,7 @@
           {
             "name": "symbol",
             "in": "query",
-            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.",
+            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\nSymbols are case-insensitive.",
             "required": false,
             "type": "string"
           },
@@ -1564,7 +1564,7 @@
           {
             "name": "count",
             "in": "query",
-            "description": "Number of results to fetch.",
+            "description": "Number of results to fetch. Must be a positive integer.",
             "required": false,
             "format": "int32",
             "default": 100,
@@ -1646,7 +1646,7 @@
           "Order"
         ],
         "summary": "Create a new order.",
-        "description": "## Placing Orders\n\nThis endpoint is used for placing orders. See individual fields below for more details on their use.\n\n#### Order Types\n\nAll orders require a `symbol`. All other fields are optional except when otherwise specified.\n\nThese are the valid `ordType`s:\n\n- **Limit**: The default order type. Specify an `orderQty` and `price`.\n- **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at\n  which point it will cancel.\n- **Stop**: A Stop Market order. Specify an `orderQty` and `stopPx`. When the `stopPx` is reached, the order will be entered\n  into the book.\n  - On sell orders, the order will trigger if the triggering price is lower than the `stopPx`. On buys, higher.\n  - Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your\n    account so that it may trigger fully.\n  - `Close` Stops don't require an `orderQty`. See Execution Instructions below.\n- **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an `orderQty`, `stopPx`,\n  and `price`.\n- **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders.\n- **LimitIfTouched**: As above; use for Take Profit Limit orders.\n\n#### Execution Instructions\n\nThe following `execInst`s are supported. If using multiple, separate with a comma (e.g. `LastPrice,Close`).\n\n- **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement,\n  it will cancel instead.\n- **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.\n  Use only one. By default, `'MarkPrice'` is used. Also used for Pegged orders to define the value of `'LastPeg'`.\n- **ReduceOnly**: A `'ReduceOnly'` order can only reduce your position, not increase it. If you have a `'ReduceOnly'`\n  limit order that rests in the order book while the position is reduced by other orders, then its order quantity will\n  be amended down or canceled. If there are multiple `'ReduceOnly'` orders the least aggressive will be amended first.\n- **Close**: `'Close'` implies `'ReduceOnly'`. A `'Close'` order will cancel other active limit orders with the same side\n  and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a\n  `'Close'` Stop is ensured to have the margin required to execute, and can only execute up to the full size of your\n  position. If `orderQty` is not specified, a `'Close'` order has an `orderQty` equal to your current position's size.\n  - Note that a `Close` order without an `orderQty` requires a `side`, so that BitMEX knows if it should trigger\n    above or below the `stopPx`.\n\n#### Linked Orders\n\n[Linked Orders are deprecated as of 2018/11/10](https://blog.bitmex.com/api_announcement/deprecation-of-contingent-orders/)\n\n#### Trailing Stops\n\nYou may use `pegPriceType` of `'TrailingStopPeg'` to create Trailing Stops. The pegged `stopPx` will move as the market\nmoves away from the peg, and freeze as the market moves toward it.\n\nTo use, combine with `pegOffsetValue` to set the `stopPx` of your order. The peg is set to the triggering price\nspecified in the `execInst` (default `'MarkPrice'`). Use a negative offset for stop-sell and buy-if-touched orders.\n\nRequires `ordType`: `'Stop', 'StopLimit', 'MarketIfTouched', 'LimitIfTouched'`.\n\n#### Simple Quantities\n\n[Simple Quantities are deprecated as of 2018/10/26](https://blog.bitmex.com/api_announcement/deprecation-of-simpleorderqty-functionality/)\n\n#### Rate Limits\n\nSee the [Bulk Order Documentation](#!/Order/Order_newBulk) if you need to place multiple orders at the same time.\nBulk orders require fewer risk checks in the trading engine and thus are ratelimited at **1/10** the normal rate.\n\nYou can also improve your reactivity to market movements while staying under your ratelimit by using the\n[Amend](#!/Order/Order_amend) and [Amend Bulk](#!/Order/Order_amendBulk) endpoints. This allows you to stay\nin the market and avoids the cancel/replace cycle.\n\n#### Tracking Your Orders\n\nIf you want to keep track of order IDs yourself, set a unique `clOrdID` per order.\nThis `clOrdID` will come back as a property on the order and any related executions (including on the WebSocket),\nand can be used to get or cancel the order. Max length is 36 characters.\n\nYou can also change the `clOrdID` by amending an order, supplying an `origClOrdID`, and your desired new\nID as the `clOrdID` param, like so:\n\n```\n# Amends an order's leavesQty, and updates its clOrdID to \"def-456\"\nPUT /api/v1/order {\"origClOrdID\": \"abc-123\", \"clOrdID\": \"def-456\", \"leavesQty\": 1000}\n```\n",
+        "description": "## Placing Orders\n\nThis endpoint is used for placing orders. See individual fields below for more details on their use.\n\n#### Order Types\n\nAll orders require a `symbol`. All other fields are optional except when otherwise specified.\n\nThese are the valid `ordType`s:\n\n- **Limit**: The default order type. Specify an `orderQty` and `price`.\n- **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at\n  which point it will cancel.\n- **Stop**: A Stop Market order. Specify an `orderQty` and `stopPx`. When the `stopPx` is reached, the order will be entered\n  into the book.\n  - On sell orders, the order will trigger if the triggering price is lower than the `stopPx`. On buys, higher.\n  - Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your\n    account so that it may trigger fully.\n  - `Close` Stops don't require an `orderQty`. See Execution Instructions below.\n- **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an `orderQty`, `stopPx`,\n  and `price`.\n- **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders.\n- **LimitIfTouched**: As above; use for Take Profit Limit orders.\n- **Pegged**: Pegged orders allow users to submit a limit price relative to the current market price. Specify a\n  `pegPriceType`, and `pegOffsetValue`.\n  - Pegged orders **must** have an `execInst` of `Fixed`. This means the limit price is set at the time the order\n    is accepted and does not change as the reference price changes.\n  - `PrimaryPeg`: Price is set relative to near touch price.\n  - `MarketPeg`: Price is set relative to far touch price.\n  - A `pegPriceType` submitted with no `ordType` is treated as a `Pegged` order.\n\n#### Execution Instructions\n\nThe following `execInst`s are supported. If using multiple, separate with a comma (e.g. `LastPrice,Close`).\n\n- **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement, it will cancel instead.\n  This is intended to protect you from the far touch moving towards you while the order is in transit.\n  It is not intended for speculating on the far touch moving away after submission - we consider such behaviour abusive and monitor for it.\n- **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.\n  Use only one. By default, `MarkPrice` is used. Also used for Pegged orders to define the value of `LastPeg`.\n- **ReduceOnly**: A `ReduceOnly` order can only reduce your position, not increase it. If you have a `ReduceOnly`\n  limit order that rests in the order book while the position is reduced by other orders, then its order quantity will\n  be amended down or canceled. If there are multiple `ReduceOnly` orders the least aggressive will be amended first.\n- **Close**: `Close` implies `ReduceOnly`. A `Close` order will cancel other active limit orders with the same side\n  and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a\n  `Close` Stop is ensured to have the margin required to execute, and can only execute up to the full size of your\n  position. If `orderQty` is not specified, a `Close` order has an `orderQty` equal to your current position's size.\n  - Note that a `Close` order without an `orderQty` requires a `side`, so that BitMEX knows if it should trigger\n    above or below the `stopPx`.\n- **LastWithinMark**: Used by stop orders with `LastPrice` to allow stop triggers only when:\n  - For Sell Stop Market / Stop Limit Order\n    - Last Price &lt= Stop Price\n    - Last Price &gt= Mark Price × (1 - 5%)\n  - For Buy Stop Market / Stop Limit Order:\n    - Last Price &gt= Stop Price\n    - Last Price &lt= Mark Price × (1 + 5%)\n- **Fixed**: Pegged orders **must** have an `execInst` of `Fixed`. This means the limit price is set at the time\n  the order is accepted and does not change as the reference price changes.\n\n#### Pegged Orders\n\nPegged orders allow users to submit a limit price relative to the current market price.\nThe limit price is set once when the order is submitted and does not change with the reference price.\nThis order type is not intended for speculating on the far touch moving away after submission - we consider such behaviour abusive and monitor for it.\n\nPegged orders have an `ordType` of `Pegged`, and an `execInst` of `Fixed`.\n\nA `pegPriceType` and `pegOffsetValue` must also be submitted:\n\n- `PrimaryPeg` - price is set relative to the **near touch** price\n- `MarketPeg` - price is set relative to the **far touch** price\n\n#### Trailing Stop Pegged Orders\n\nUse `pegPriceType` of `TrailingStopPeg` to create Trailing Stops.\n\nThe price is set at submission and updates once per second if the underlying price (last/mark/index) has moved by\nmore than 0.1%. `stopPx` then moves as the market moves away from the peg, and freezes as the market moves toward it.\n\nUse `pegOffsetValue` to set the `stopPx` of your order. The peg is set to the triggering price specified in the\n`execInst` (default `MarkPrice`). Use a negative offset for stop-sell and buy-if-touched orders.\n\nRequires `ordType`: `Stop`, `StopLimit`, `MarketIfTouched`, `LimitIfTouched`.\n\n#### Linked Orders\n\n[Linked Orders are deprecated as of 2018/11/10](https://blog.bitmex.com/api_announcement/deprecation-of-contingent-orders/)\n\n#### Trailing Stops\n\nYou may use `pegPriceType` of `'TrailingStopPeg'` to create Trailing Stops. The pegged `stopPx` will move as the market\nmoves away from the peg, and freeze as the market moves toward it.\n\nTo use, combine with `pegOffsetValue` to set the `stopPx` of your order. The peg is set to the triggering price\nspecified in the `execInst` (default `'MarkPrice'`). Use a negative offset for stop-sell and buy-if-touched orders.\n\nRequires `ordType`: `'Stop', 'StopLimit', 'MarketIfTouched', 'LimitIfTouched'`.\n\n#### Simple Quantities\n\n[Simple Quantities are deprecated as of 2018/10/26](https://blog.bitmex.com/api_announcement/deprecation-of-simpleorderqty-functionality/)\n\n#### Rate Limits\n\nSee the [Bulk Order Documentation](#!/Order/Order_newBulk) if you need to place multiple orders at the same time.\nBulk orders require fewer risk checks in the trading engine and thus are ratelimited at **1/10** the normal rate.\n\nYou can also improve your reactivity to market movements while staying under your ratelimit by using the\n[Amend](#!/Order/Order_amend) and [Amend Bulk](#!/Order/Order_amendBulk) endpoints. This allows you to stay\nin the market and avoids the cancel/replace cycle.\n\n#### Tracking Your Orders\n\nIf you want to keep track of order IDs yourself, set a unique `clOrdID` per order.\nThis `clOrdID` will come back as a property on the order and any related executions (including on the WebSocket),\nand can be used to get or cancel the order. Max length is 36 characters.\n\nYou can also change the `clOrdID` by amending an order, supplying an `origClOrdID`, and your desired new\nID as the `clOrdID` param, like so:\n\n```\n# Amends an order's leavesQty, and updates its clOrdID to \"def-456\"\nPUT /api/v1/order {\"origClOrdID\": \"abc-123\", \"clOrdID\": \"def-456\", \"leavesQty\": 1000}\n```\n",
         "operationId": "Order.new",
         "parameters": [
           {
@@ -1728,7 +1728,7 @@
           {
             "name": "pegPriceType",
             "in": "formData",
-            "description": "Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg.",
+            "description": "Optional peg price type. Valid options: MarketPeg, PrimaryPeg, TrailingStopPeg.",
             "required": false,
             "type": "string"
           },
@@ -1750,7 +1750,7 @@
           {
             "name": "execInst",
             "in": "formData",
-            "description": "Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. 'AllOrNone' instruction requires `displayQty` to be 0. 'MarkPrice', 'IndexPrice' or 'LastPrice' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders.",
+            "description": "Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed, LastWithinMark. 'AllOrNone' instruction requires `displayQty` to be 0. 'MarkPrice', 'IndexPrice' or 'LastPrice' instruction valid for 'Stop', 'StopLimit', 'MarketIfTouched', and 'LimitIfTouched' orders. 'LastWithinMark' instruction valid for 'Stop' and 'StopLimit' with instruction 'LastPrice'.",
             "required": false,
             "type": "string"
           },
@@ -1960,116 +1960,6 @@
             "description": "Optional cancellation annotation. e.g. 'Spread Exceeded'.",
             "required": false,
             "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Order"
-              }
-            }
-          },
-          "400": {
-            "description": "Parameter Error",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "Access Denied",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        },
-        "deprecated": false
-      }
-    },
-    "/order/bulk": {
-      "post": {
-        "tags": [
-          "Order"
-        ],
-        "summary": "Create multiple new orders for the same symbol.",
-        "description": "This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.\n\nEach individual order object in the array should have the same properties as an individual POST /order call.\n\nThis endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX\nsystems, this endpoint is ratelimited at `ceil(0.1 * orders)`. Submitting 10 orders via a bulk order call\nwill only count as 1 request, 15 as 2, 32 as 4, and so on.\n\nFor now, only `application/json` is supported on this endpoint.\n",
-        "operationId": "Order.newBulk",
-        "parameters": [
-          {
-            "name": "orders",
-            "in": "formData",
-            "description": "An array of orders.",
-            "required": false,
-            "type": "string",
-            "format": "JSON"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Order"
-              }
-            }
-          },
-          "400": {
-            "description": "Parameter Error",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "403": {
-            "description": "Access Denied",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        },
-        "deprecated": false
-      },
-      "put": {
-        "tags": [
-          "Order"
-        ],
-        "summary": "Amend multiple orders for the same symbol.",
-        "description": "Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 10%.",
-        "operationId": "Order.amendBulk",
-        "parameters": [
-          {
-            "name": "orders",
-            "in": "formData",
-            "description": "An array of orders.",
-            "required": false,
-            "type": "string",
-            "format": "JSON"
           }
         ],
         "responses": {
@@ -2436,6 +2326,7 @@
           "Position"
         ],
         "summary": "Enable isolated margin or cross margin per-position.",
+        "description": "Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.",
         "operationId": "Position.isolateMargin",
         "parameters": [
           {
@@ -2496,6 +2387,7 @@
           "Position"
         ],
         "summary": "Update your risk limit.",
+        "description": "Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.",
         "operationId": "Position.updateRiskLimit",
         "parameters": [
           {
@@ -2556,6 +2448,7 @@
           "Position"
         ],
         "summary": "Transfer equity in or out of a position.",
+        "description": "When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.",
         "operationId": "Position.transferIsolatedMargin",
         "parameters": [
           {
@@ -2616,6 +2509,7 @@
           "Position"
         ],
         "summary": "Choose leverage for a position.",
+        "description": "Users can choose an isolated leverage. This will automatically enable isolated margin.",
         "operationId": "Position.updateLeverage",
         "parameters": [
           {
@@ -2681,7 +2575,7 @@
           {
             "name": "symbol",
             "in": "query",
-            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.",
+            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\nSymbols are case-insensitive.",
             "required": false,
             "type": "string"
           },
@@ -2704,7 +2598,7 @@
           {
             "name": "count",
             "in": "query",
-            "description": "Number of results to fetch.",
+            "description": "Number of results to fetch. Must be a positive integer.",
             "required": false,
             "format": "int32",
             "default": 100,
@@ -2811,7 +2705,7 @@
           {
             "name": "symbol",
             "in": "query",
-            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.",
+            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\nSymbols are case-insensitive.",
             "required": false,
             "type": "string"
           },
@@ -2834,7 +2728,7 @@
           {
             "name": "count",
             "in": "query",
-            "description": "Number of results to fetch.",
+            "description": "Number of results to fetch. Must be a positive integer.",
             "required": false,
             "format": "int32",
             "default": 100,
@@ -3020,7 +2914,7 @@
           {
             "name": "symbol",
             "in": "query",
-            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.",
+            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\nSymbols are case-insensitive.",
             "required": false,
             "type": "string"
           },
@@ -3043,7 +2937,7 @@
           {
             "name": "count",
             "in": "query",
-            "description": "Number of results to fetch.",
+            "description": "Number of results to fetch. Must be a positive integer.",
             "required": false,
             "format": "int32",
             "default": 100,
@@ -3275,7 +3169,7 @@
           {
             "name": "symbol",
             "in": "query",
-            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.",
+            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\nSymbols are case-insensitive.",
             "required": false,
             "type": "string"
           },
@@ -3298,7 +3192,7 @@
           {
             "name": "count",
             "in": "query",
-            "description": "Number of results to fetch.",
+            "description": "Number of results to fetch. Must be a positive integer.",
             "required": false,
             "format": "int32",
             "default": 100,
@@ -3405,7 +3299,7 @@
           {
             "name": "symbol",
             "in": "query",
-            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.",
+            "description": "Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.\n\nYou can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.\n\nSymbols are case-insensitive.",
             "required": false,
             "type": "string"
           },
@@ -3428,7 +3322,7 @@
           {
             "name": "count",
             "in": "query",
-            "description": "Number of results to fetch.",
+            "description": "Number of results to fetch. Must be a positive integer.",
             "required": false,
             "format": "int32",
             "default": 100,
@@ -3518,6 +3412,7 @@
           {
             "name": "currency",
             "in": "query",
+            "description": "Options: `XBt`, `USDt`",
             "required": false,
             "default": "XBt",
             "type": "string"
@@ -3569,6 +3464,7 @@
           {
             "name": "currency",
             "in": "query",
+            "description": "Options: `XBt`, `USDt`, `all`",
             "required": false,
             "default": "XBt",
             "type": "string"
@@ -3620,6 +3516,7 @@
           {
             "name": "currency",
             "in": "query",
+            "description": "Options: `XBt`, `USDt`, `all`",
             "required": false,
             "default": "XBt",
             "type": "string"
@@ -3692,6 +3589,7 @@
           {
             "name": "currency",
             "in": "query",
+            "description": "Options: `XBt`, `USDt`, `all`",
             "required": false,
             "default": "XBt",
             "type": "string"
@@ -3799,16 +3697,24 @@
         "tags": [
           "User"
         ],
-        "summary": "Get the minimum withdrawal fee for a currency.",
-        "description": "This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.",
+        "summary": "Get the minimum, maximum, and recommended withdrawal fees for a currency.",
+        "description": "This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.\n\nThe \"fee\" field is the recommended fee for fast confirmation on the blockchain.",
         "operationId": "User.minWithdrawalFee",
         "parameters": [
           {
             "name": "currency",
             "in": "query",
+            "description": "Options: `XBt`, `USDt`",
             "required": false,
             "default": "XBt",
             "type": "string"
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
           }
         ],
         "responses": {
@@ -3859,14 +3765,14 @@
           {
             "name": "otpToken",
             "in": "formData",
-            "description": "2FA token. Required if 2FA is enabled on your account.",
+            "description": "2FA token. Required for all external withdrawals.",
             "required": false,
             "type": "string"
           },
           {
             "name": "currency",
             "in": "formData",
-            "description": "Currency you're withdrawing. Options: `XBt`",
+            "description": "Currency you're withdrawing. Options: `XBt`, `USDt`",
             "required": true,
             "default": "XBt",
             "type": "string"
@@ -3882,9 +3788,25 @@
           {
             "name": "address",
             "in": "formData",
-            "description": "Destination Address.",
-            "required": true,
+            "description": "Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified.",
+            "required": false,
             "type": "string"
+          },
+          {
+            "name": "addressId",
+            "in": "formData",
+            "description": "ID of the Destination Address. One of `address`, `targetUserId`, `targetUserId` has to be specified.",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "targetUserId",
+            "in": "formData",
+            "description": "ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified.",
+            "required": false,
+            "type": "number",
+            "format": "double"
           },
           {
             "name": "fee",
@@ -4097,7 +4019,16 @@
         ],
         "summary": "Get your current affiliate/referral status.",
         "operationId": "User.getAffiliateStatus",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "Options: `XBt`, `USDt`, `all`",
+            "required": false,
+            "default": "XBt",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Request was successful",
@@ -4199,6 +4130,92 @@
             "description": "Request was successful",
             "schema": {
               "$ref": "#/definitions/QuoteFillRatio"
+            }
+          },
+          "400": {
+            "description": "Parameter Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Access Denied",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/user/quoteValueRatio": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get Quote Value Ratio statistics over the last 3 days",
+        "operationId": "User.getQuoteValueRatio",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Request was successful",
+            "schema": {
+              "$ref": "#/definitions/QuoteValueRatio"
+            }
+          },
+          "400": {
+            "description": "Parameter Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Access Denied",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/user/tradingVolume": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get your 30 days USD average trading volume",
+        "operationId": "User.getTradingVolume",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Request was successful",
+            "schema": {
+              "$ref": "#/definitions/TradingVolume"
             }
           },
           "400": {
@@ -4429,6 +4446,7 @@
           {
             "name": "currency",
             "in": "query",
+            "description": "Options: `XBt`, `USDt`, `all`",
             "required": false,
             "default": "XBt",
             "type": "string"
@@ -4672,7 +4690,7 @@
     },
     {
       "name": "UserEvent",
-      "description": "User Events for auditing"
+      "description": "User Events for Auditing"
     }
   ],
   "consumes": [
@@ -5021,7 +5039,8 @@
         }
       },
       "required": [
-        "execID"
+        "symbol",
+        "timestamp"
       ],
       "type": "object"
     },
@@ -5082,6 +5101,10 @@
           "type": "string"
         },
         "settle": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "listedSettle": {
           "format": "date-time",
           "type": "string"
         },
@@ -5435,6 +5458,10 @@
           "format": "double",
           "type": "number"
         },
+        "settledPriceAdjustmentRate": {
+          "format": "double",
+          "type": "number"
+        },
         "settledPrice": {
           "format": "double",
           "type": "number"
@@ -5470,6 +5497,10 @@
       ],
       "type": "object"
     },
+    "x-any": {
+      "properties": {},
+      "type": "object"
+    },
     "IndexComposite": {
       "properties": {
         "timestamp": {
@@ -5482,10 +5513,25 @@
         "indexSymbol": {
           "type": "string"
         },
+        "indexMultiplier": {
+          "type": "number",
+          "format": "double"
+        },
         "reference": {
           "type": "string"
         },
         "lastPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "sourcePrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "conversionIndex": {
+          "type": "string"
+        },
+        "conversionIndexPrice": {
           "type": "number",
           "format": "double"
         },
@@ -5546,28 +5592,11 @@
     "Liquidation": {
       "description": "Active Liquidations",
       "properties": {
-        "orderID": {
-          "format": "guid",
-          "type": "string"
-        },
-        "symbol": {
-          "type": "string"
-        },
-        "side": {
-          "type": "string"
-        },
-        "price": {
-          "format": "double",
-          "type": "number"
-        },
-        "leavesQty": {
-          "format": "int64",
-          "type": "number"
+        "id": {
+          "type": "number",
+          "format": "double"
         }
       },
-      "required": [
-        "orderID"
-      ],
       "type": "object"
     },
     "GlobalNotification": {
@@ -5748,34 +5777,11 @@
     },
     "OrderBookL2": {
       "properties": {
-        "symbol": {
-          "type": "string"
-        },
         "id": {
-          "format": "int64",
-          "type": "number"
-        },
-        "side": {
-          "type": "string"
-        },
-        "size": {
-          "format": "int64",
-          "type": "number"
-        },
-        "price": {
-          "format": "double",
-          "type": "number"
+          "type": "number",
+          "format": "double"
         }
       },
-      "required": [
-        "symbol",
-        "id",
-        "side"
-      ],
-      "type": "object"
-    },
-    "x-any": {
-      "properties": {},
       "type": "object"
     },
     "Position": {
@@ -6222,8 +6228,7 @@
       },
       "required": [
         "account",
-        "symbol",
-        "currency"
+        "symbol"
       ],
       "type": "object"
     },
@@ -6263,45 +6268,11 @@
     "Settlement": {
       "description": "Historical Settlement Data",
       "properties": {
-        "timestamp": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "symbol": {
-          "type": "string"
-        },
-        "settlementType": {
-          "type": "string"
-        },
-        "settledPrice": {
-          "format": "double",
-          "type": "number"
-        },
-        "optionStrikePrice": {
-          "format": "double",
-          "type": "number"
-        },
-        "optionUnderlyingPrice": {
-          "format": "double",
-          "type": "number"
-        },
-        "bankrupt": {
-          "format": "int64",
-          "type": "number"
-        },
-        "taxBase": {
-          "format": "int64",
-          "type": "number"
-        },
-        "taxRate": {
-          "format": "double",
-          "type": "number"
+        "id": {
+          "type": "number",
+          "format": "double"
         }
       },
-      "required": [
-        "timestamp",
-        "symbol"
-      ],
       "type": "object"
     },
     "Stats": {
@@ -6587,18 +6558,6 @@
         "timestamp": {
           "format": "date-time",
           "type": "string"
-        },
-        "addr": {
-          "type": "string"
-        },
-        "script": {
-          "type": "string"
-        },
-        "withdrawalLock": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
         }
       },
       "required": [
@@ -6684,61 +6643,6 @@
     },
     "Affiliate": {
       "properties": {
-        "account": {
-          "format": "int64",
-          "type": "number"
-        },
-        "currency": {
-          "type": "string"
-        },
-        "prevPayout": {
-          "format": "int64",
-          "type": "number"
-        },
-        "prevTurnover": {
-          "format": "int64",
-          "type": "number"
-        },
-        "prevComm": {
-          "format": "int64",
-          "type": "number"
-        },
-        "prevTimestamp": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "execTurnover": {
-          "format": "int64",
-          "type": "number"
-        },
-        "execComm": {
-          "format": "int64",
-          "type": "number"
-        },
-        "totalReferrals": {
-          "format": "int64",
-          "type": "number"
-        },
-        "totalTurnover": {
-          "format": "int64",
-          "type": "number"
-        },
-        "totalComm": {
-          "format": "int64",
-          "type": "number"
-        },
-        "payoutPcnt": {
-          "format": "double",
-          "type": "number"
-        },
-        "pendingPayout": {
-          "format": "int64",
-          "type": "number"
-        },
-        "timestamp": {
-          "format": "date-time",
-          "type": "string"
-        },
         "referrerAccount": {
           "type": "number",
           "format": "double"
@@ -6750,12 +6654,12 @@
         "affiliatePayout": {
           "type": "number",
           "format": "double"
+        },
+        "id": {
+          "type": "number",
+          "format": "double"
         }
       },
-      "required": [
-        "account",
-        "currency"
-      ],
       "type": "object"
     },
     "QuoteFillRatio": {
@@ -6792,6 +6696,52 @@
       },
       "required": [
         "date"
+      ],
+      "type": "object"
+    },
+    "QuoteValueRatio": {
+      "description": "Hourly Quote Value Ratio Statistic",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "account": {
+          "type": "number",
+          "format": "double"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "quoteCount": {
+          "type": "number",
+          "format": "double"
+        },
+        "volumeXBT": {
+          "type": "number",
+          "format": "double"
+        },
+        "QVR": {
+          "type": "number",
+          "format": "double"
+        },
+        "id": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "type": "object"
+    },
+    "TradingVolume": {
+      "description": "30 days USD average trading volume",
+      "properties": {
+        "advUsd": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "required": [
+        "advUsd"
       ],
       "type": "object"
     },
@@ -6844,6 +6794,10 @@
           "maxLength": 16384,
           "type": "string"
         },
+        "pgpPubKeyCreated": {
+          "type": "string",
+          "format": "date-time"
+        },
         "country": {
           "maxLength": 3,
           "type": "string"
@@ -6861,8 +6815,7 @@
         }
       },
       "required": [
-        "username",
-        "email"
+        "username"
       ],
       "type": "object"
     },
@@ -7054,10 +7007,6 @@
           "default": 0,
           "type": "number"
         },
-        "timestamp": {
-          "format": "date-time",
-          "type": "string"
-        },
         "grossLastValue": {
           "format": "int64",
           "default": 0,
@@ -7067,6 +7016,20 @@
           "format": "double",
           "default": 0,
           "type": "number"
+        },
+        "makerFeeDiscount": {
+          "format": "double",
+          "default": 0,
+          "type": "number"
+        },
+        "takerFeeDiscount": {
+          "format": "double",
+          "default": 0,
+          "type": "number"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "type": "string"
         }
       },
       "required": [
@@ -7101,7 +7064,7 @@
       "type": "object"
     },
     "UserEvent": {
-      "description": "User Events for auditing",
+      "description": "User Events for Auditing",
       "properties": {
         "id": {
           "type": "number",
@@ -7133,6 +7096,8 @@
             "withdrawalCompleted",
             "withdrawalConfirmed",
             "withdrawalRequested",
+            "addressSkipConfirmRequested",
+            "addressSkipConfirmVerified",
             "verify"
           ],
           "type": "string"
@@ -7243,6 +7208,10 @@
           "items": {
             "type": "string"
           }
+        },
+        "hidePhoneConfirm": {
+          "default": false,
+          "type": "boolean"
         },
         "locale": {
           "default": "en-US",

@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  - --  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  - --  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -33,149 +33,18 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Affiliate" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Affiliate() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Affiliate" /> class.
-        /// </summary>
-        /// <param name="account">account (required).</param>
-        /// <param name="currency">currency (required).</param>
-        /// <param name="prevPayout">prevPayout.</param>
-        /// <param name="prevTurnover">prevTurnover.</param>
-        /// <param name="prevComm">prevComm.</param>
-        /// <param name="prevTimestamp">prevTimestamp.</param>
-        /// <param name="execTurnover">execTurnover.</param>
-        /// <param name="execComm">execComm.</param>
-        /// <param name="totalReferrals">totalReferrals.</param>
-        /// <param name="totalTurnover">totalTurnover.</param>
-        /// <param name="totalComm">totalComm.</param>
-        /// <param name="payoutPcnt">payoutPcnt.</param>
-        /// <param name="pendingPayout">pendingPayout.</param>
-        /// <param name="timestamp">timestamp.</param>
         /// <param name="referrerAccount">referrerAccount.</param>
         /// <param name="referralDiscount">referralDiscount.</param>
         /// <param name="affiliatePayout">affiliatePayout.</param>
-        public Affiliate(decimal? account = default(decimal?), string currency = default(string), decimal? prevPayout = default(decimal?), decimal? prevTurnover = default(decimal?), decimal? prevComm = default(decimal?), DateTime? prevTimestamp = default(DateTime?), decimal? execTurnover = default(decimal?), decimal? execComm = default(decimal?), decimal? totalReferrals = default(decimal?), decimal? totalTurnover = default(decimal?), decimal? totalComm = default(decimal?), double? payoutPcnt = default(double?), decimal? pendingPayout = default(decimal?), DateTime? timestamp = default(DateTime?), double? referrerAccount = default(double?), double? referralDiscount = default(double?), double? affiliatePayout = default(double?))
+        /// <param name="id">id.</param>
+        public Affiliate(double? referrerAccount = default(double?), double? referralDiscount = default(double?), double? affiliatePayout = default(double?), double? id = default(double?))
         {
-            // to ensure "account" is required (not null)
-            if (account == null)
-            {
-                throw new InvalidDataException("account is a required property for Affiliate and cannot be null");
-            }
-            else
-            {
-                this.Account = account;
-            }
-            // to ensure "currency" is required (not null)
-            if (currency == null)
-            {
-                throw new InvalidDataException("currency is a required property for Affiliate and cannot be null");
-            }
-            else
-            {
-                this.Currency = currency;
-            }
-            this.PrevPayout = prevPayout;
-            this.PrevTurnover = prevTurnover;
-            this.PrevComm = prevComm;
-            this.PrevTimestamp = prevTimestamp;
-            this.ExecTurnover = execTurnover;
-            this.ExecComm = execComm;
-            this.TotalReferrals = totalReferrals;
-            this.TotalTurnover = totalTurnover;
-            this.TotalComm = totalComm;
-            this.PayoutPcnt = payoutPcnt;
-            this.PendingPayout = pendingPayout;
-            this.Timestamp = timestamp;
             this.ReferrerAccount = referrerAccount;
             this.ReferralDiscount = referralDiscount;
             this.AffiliatePayout = affiliatePayout;
+            this.Id = id;
         }
         
-        /// <summary>
-        /// Gets or Sets Account
-        /// </summary>
-        [DataMember(Name="account", EmitDefaultValue=false)]
-        public decimal? Account { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Currency
-        /// </summary>
-        [DataMember(Name="currency", EmitDefaultValue=false)]
-        public string Currency { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PrevPayout
-        /// </summary>
-        [DataMember(Name="prevPayout", EmitDefaultValue=false)]
-        public decimal? PrevPayout { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PrevTurnover
-        /// </summary>
-        [DataMember(Name="prevTurnover", EmitDefaultValue=false)]
-        public decimal? PrevTurnover { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PrevComm
-        /// </summary>
-        [DataMember(Name="prevComm", EmitDefaultValue=false)]
-        public decimal? PrevComm { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PrevTimestamp
-        /// </summary>
-        [DataMember(Name="prevTimestamp", EmitDefaultValue=false)]
-        public DateTime? PrevTimestamp { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ExecTurnover
-        /// </summary>
-        [DataMember(Name="execTurnover", EmitDefaultValue=false)]
-        public decimal? ExecTurnover { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ExecComm
-        /// </summary>
-        [DataMember(Name="execComm", EmitDefaultValue=false)]
-        public decimal? ExecComm { get; set; }
-
-        /// <summary>
-        /// Gets or Sets TotalReferrals
-        /// </summary>
-        [DataMember(Name="totalReferrals", EmitDefaultValue=false)]
-        public decimal? TotalReferrals { get; set; }
-
-        /// <summary>
-        /// Gets or Sets TotalTurnover
-        /// </summary>
-        [DataMember(Name="totalTurnover", EmitDefaultValue=false)]
-        public decimal? TotalTurnover { get; set; }
-
-        /// <summary>
-        /// Gets or Sets TotalComm
-        /// </summary>
-        [DataMember(Name="totalComm", EmitDefaultValue=false)]
-        public decimal? TotalComm { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PayoutPcnt
-        /// </summary>
-        [DataMember(Name="payoutPcnt", EmitDefaultValue=false)]
-        public double? PayoutPcnt { get; set; }
-
-        /// <summary>
-        /// Gets or Sets PendingPayout
-        /// </summary>
-        [DataMember(Name="pendingPayout", EmitDefaultValue=false)]
-        public decimal? PendingPayout { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Timestamp
-        /// </summary>
-        [DataMember(Name="timestamp", EmitDefaultValue=false)]
-        public DateTime? Timestamp { get; set; }
-
         /// <summary>
         /// Gets or Sets ReferrerAccount
         /// </summary>
@@ -195,6 +64,12 @@ namespace IO.Swagger.Model
         public double? AffiliatePayout { get; set; }
 
         /// <summary>
+        /// Gets or Sets Id
+        /// </summary>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public double? Id { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -202,23 +77,10 @@ namespace IO.Swagger.Model
         {
             var sb = new StringBuilder();
             sb.Append("class Affiliate {\n");
-            sb.Append("  Account: ").Append(Account).Append("\n");
-            sb.Append("  Currency: ").Append(Currency).Append("\n");
-            sb.Append("  PrevPayout: ").Append(PrevPayout).Append("\n");
-            sb.Append("  PrevTurnover: ").Append(PrevTurnover).Append("\n");
-            sb.Append("  PrevComm: ").Append(PrevComm).Append("\n");
-            sb.Append("  PrevTimestamp: ").Append(PrevTimestamp).Append("\n");
-            sb.Append("  ExecTurnover: ").Append(ExecTurnover).Append("\n");
-            sb.Append("  ExecComm: ").Append(ExecComm).Append("\n");
-            sb.Append("  TotalReferrals: ").Append(TotalReferrals).Append("\n");
-            sb.Append("  TotalTurnover: ").Append(TotalTurnover).Append("\n");
-            sb.Append("  TotalComm: ").Append(TotalComm).Append("\n");
-            sb.Append("  PayoutPcnt: ").Append(PayoutPcnt).Append("\n");
-            sb.Append("  PendingPayout: ").Append(PendingPayout).Append("\n");
-            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("  ReferrerAccount: ").Append(ReferrerAccount).Append("\n");
             sb.Append("  ReferralDiscount: ").Append(ReferralDiscount).Append("\n");
             sb.Append("  AffiliatePayout: ").Append(AffiliatePayout).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -254,76 +116,6 @@ namespace IO.Swagger.Model
 
             return 
                 (
-                    this.Account == input.Account ||
-                    (this.Account != null &&
-                    this.Account.Equals(input.Account))
-                ) && 
-                (
-                    this.Currency == input.Currency ||
-                    (this.Currency != null &&
-                    this.Currency.Equals(input.Currency))
-                ) && 
-                (
-                    this.PrevPayout == input.PrevPayout ||
-                    (this.PrevPayout != null &&
-                    this.PrevPayout.Equals(input.PrevPayout))
-                ) && 
-                (
-                    this.PrevTurnover == input.PrevTurnover ||
-                    (this.PrevTurnover != null &&
-                    this.PrevTurnover.Equals(input.PrevTurnover))
-                ) && 
-                (
-                    this.PrevComm == input.PrevComm ||
-                    (this.PrevComm != null &&
-                    this.PrevComm.Equals(input.PrevComm))
-                ) && 
-                (
-                    this.PrevTimestamp == input.PrevTimestamp ||
-                    (this.PrevTimestamp != null &&
-                    this.PrevTimestamp.Equals(input.PrevTimestamp))
-                ) && 
-                (
-                    this.ExecTurnover == input.ExecTurnover ||
-                    (this.ExecTurnover != null &&
-                    this.ExecTurnover.Equals(input.ExecTurnover))
-                ) && 
-                (
-                    this.ExecComm == input.ExecComm ||
-                    (this.ExecComm != null &&
-                    this.ExecComm.Equals(input.ExecComm))
-                ) && 
-                (
-                    this.TotalReferrals == input.TotalReferrals ||
-                    (this.TotalReferrals != null &&
-                    this.TotalReferrals.Equals(input.TotalReferrals))
-                ) && 
-                (
-                    this.TotalTurnover == input.TotalTurnover ||
-                    (this.TotalTurnover != null &&
-                    this.TotalTurnover.Equals(input.TotalTurnover))
-                ) && 
-                (
-                    this.TotalComm == input.TotalComm ||
-                    (this.TotalComm != null &&
-                    this.TotalComm.Equals(input.TotalComm))
-                ) && 
-                (
-                    this.PayoutPcnt == input.PayoutPcnt ||
-                    (this.PayoutPcnt != null &&
-                    this.PayoutPcnt.Equals(input.PayoutPcnt))
-                ) && 
-                (
-                    this.PendingPayout == input.PendingPayout ||
-                    (this.PendingPayout != null &&
-                    this.PendingPayout.Equals(input.PendingPayout))
-                ) && 
-                (
-                    this.Timestamp == input.Timestamp ||
-                    (this.Timestamp != null &&
-                    this.Timestamp.Equals(input.Timestamp))
-                ) && 
-                (
                     this.ReferrerAccount == input.ReferrerAccount ||
                     (this.ReferrerAccount != null &&
                     this.ReferrerAccount.Equals(input.ReferrerAccount))
@@ -337,6 +129,11 @@ namespace IO.Swagger.Model
                     this.AffiliatePayout == input.AffiliatePayout ||
                     (this.AffiliatePayout != null &&
                     this.AffiliatePayout.Equals(input.AffiliatePayout))
+                ) && 
+                (
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 );
         }
 
@@ -349,40 +146,14 @@ namespace IO.Swagger.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Account != null)
-                    hashCode = hashCode * 59 + this.Account.GetHashCode();
-                if (this.Currency != null)
-                    hashCode = hashCode * 59 + this.Currency.GetHashCode();
-                if (this.PrevPayout != null)
-                    hashCode = hashCode * 59 + this.PrevPayout.GetHashCode();
-                if (this.PrevTurnover != null)
-                    hashCode = hashCode * 59 + this.PrevTurnover.GetHashCode();
-                if (this.PrevComm != null)
-                    hashCode = hashCode * 59 + this.PrevComm.GetHashCode();
-                if (this.PrevTimestamp != null)
-                    hashCode = hashCode * 59 + this.PrevTimestamp.GetHashCode();
-                if (this.ExecTurnover != null)
-                    hashCode = hashCode * 59 + this.ExecTurnover.GetHashCode();
-                if (this.ExecComm != null)
-                    hashCode = hashCode * 59 + this.ExecComm.GetHashCode();
-                if (this.TotalReferrals != null)
-                    hashCode = hashCode * 59 + this.TotalReferrals.GetHashCode();
-                if (this.TotalTurnover != null)
-                    hashCode = hashCode * 59 + this.TotalTurnover.GetHashCode();
-                if (this.TotalComm != null)
-                    hashCode = hashCode * 59 + this.TotalComm.GetHashCode();
-                if (this.PayoutPcnt != null)
-                    hashCode = hashCode * 59 + this.PayoutPcnt.GetHashCode();
-                if (this.PendingPayout != null)
-                    hashCode = hashCode * 59 + this.PendingPayout.GetHashCode();
-                if (this.Timestamp != null)
-                    hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
                 if (this.ReferrerAccount != null)
                     hashCode = hashCode * 59 + this.ReferrerAccount.GetHashCode();
                 if (this.ReferralDiscount != null)
                     hashCode = hashCode * 59 + this.ReferralDiscount.GetHashCode();
                 if (this.AffiliatePayout != null)
                     hashCode = hashCode * 59 + this.AffiliatePayout.GetHashCode();
+                if (this.Id != null)
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
                 return hashCode;
             }
         }

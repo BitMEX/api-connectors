@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -384,10 +384,18 @@ SWGUserApi::user_getCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGUserApi::user_getAffiliateStatus() {
+SWGUserApi::user_getAffiliateStatus(QString* currency) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/user/affiliateStatus");
 
+
+    if (fullPath.indexOf("?") > 0)
+      fullPath.append("&");
+    else
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("currency"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(currency)));
 
 
     SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();
@@ -734,6 +742,112 @@ SWGUserApi::user_getQuoteFillRatioCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
+SWGUserApi::user_getQuoteValueRatio() {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/user/quoteValueRatio");
+
+
+
+    SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();
+    SWGHttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &SWGHttpRequestWorker::on_execution_finished,
+            this,
+            &SWGUserApi::user_getQuoteValueRatioCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGUserApi::user_getQuoteValueRatioCallback(SWGHttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+    QString json(worker->response);
+    SWGQuoteValueRatio* output = static_cast<SWGQuoteValueRatio*>(create(json, QString("SWGQuoteValueRatio")));
+    auto wrapper = new SWGQObjectWrapper<SWGQuoteValueRatio*> (output);
+    wrapper->deleteLater();
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit user_getQuoteValueRatioSignal(output);
+    } else {
+        emit user_getQuoteValueRatioSignalE(output, error_type, error_str);
+        emit user_getQuoteValueRatioSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void
+SWGUserApi::user_getTradingVolume() {
+    QString fullPath;
+    fullPath.append(this->host).append(this->basePath).append("/user/tradingVolume");
+
+
+
+    SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();
+    SWGHttpRequestInput input(fullPath, "GET");
+
+
+
+
+
+    foreach(QString key, this->defaultHeaders.keys()) {
+        input.headers.insert(key, this->defaultHeaders.value(key));
+    }
+
+    connect(worker,
+            &SWGHttpRequestWorker::on_execution_finished,
+            this,
+            &SWGUserApi::user_getTradingVolumeCallback);
+
+    worker->execute(&input);
+}
+
+void
+SWGUserApi::user_getTradingVolumeCallback(SWGHttpRequestWorker * worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    }
+    else {
+        msg = "Error: " + worker->error_str;
+    }
+
+    QString json(worker->response);
+    SWGTradingVolume* output = static_cast<SWGTradingVolume*>(create(json, QString("SWGTradingVolume")));
+    auto wrapper = new SWGQObjectWrapper<SWGTradingVolume*> (output);
+    wrapper->deleteLater();
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit user_getTradingVolumeSignal(output);
+    } else {
+        emit user_getTradingVolumeSignalE(output, error_type, error_str);
+        emit user_getTradingVolumeSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void
 SWGUserApi::user_getWallet(QString* currency) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/user/wallet");
@@ -1006,7 +1120,7 @@ SWGUserApi::user_logoutCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGUserApi::user_minWithdrawalFee(QString* currency) {
+SWGUserApi::user_minWithdrawalFee(QString* currency, double amount) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/user/minWithdrawalFee");
 
@@ -1018,6 +1132,14 @@ SWGUserApi::user_minWithdrawalFee(QString* currency) {
     fullPath.append(QUrl::toPercentEncoding("currency"))
         .append("=")
         .append(QUrl::toPercentEncoding(stringValue(currency)));
+
+    if (fullPath.indexOf("?") > 0)
+      fullPath.append("&");
+    else
+      fullPath.append("?");
+    fullPath.append(QUrl::toPercentEncoding("amount"))
+        .append("=")
+        .append(QUrl::toPercentEncoding(stringValue(amount)));
 
 
     SWGHttpRequestWorker *worker = new SWGHttpRequestWorker();
@@ -1067,7 +1189,7 @@ SWGUserApi::user_minWithdrawalFeeCallback(SWGHttpRequestWorker * worker) {
 }
 
 void
-SWGUserApi::user_requestWithdrawal(QString* currency, SWGNumber* amount, QString* address, QString* otp_token, double fee, QString* text) {
+SWGUserApi::user_requestWithdrawal(QString* currency, SWGNumber* amount, QString* otp_token, QString* address, double address_id, double target_user_id, double fee, QString* text) {
     QString fullPath;
     fullPath.append(this->host).append(this->basePath).append("/user/requestWithdrawal");
 
@@ -1087,6 +1209,12 @@ SWGUserApi::user_requestWithdrawal(QString* currency, SWGNumber* amount, QString
     }
     if (address != nullptr) {
         input.add_var("address", *address);
+    }
+    if (address_id != nullptr) {
+        input.add_var("addressId", *address_id);
+    }
+    if (target_user_id != nullptr) {
+        input.add_var("targetUserId", *target_user_id);
     }
     if (fee != nullptr) {
         input.add_var("fee", *fee);

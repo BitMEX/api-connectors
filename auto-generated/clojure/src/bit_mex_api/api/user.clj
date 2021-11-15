@@ -114,20 +114,22 @@
 
 (defn user-get-affiliate-status-with-http-info
   "Get your current affiliate/referral status."
-  []
-  (call-api "/user/affiliateStatus" :get
-            {:path-params   {}
-             :header-params {}
-             :query-params  {}
-             :form-params   {}
-             :content-types ["application/json" "application/x-www-form-urlencoded"]
-             :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-             :auth-names    ["apiExpires" "apiKey" "apiSignature"]}))
+  ([] (user-get-affiliate-status-with-http-info nil))
+  ([{:keys [currency ]}]
+   (call-api "/user/affiliateStatus" :get
+             {:path-params   {}
+              :header-params {}
+              :query-params  {"currency" currency }
+              :form-params   {}
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
+              :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
 
 (defn user-get-affiliate-status
   "Get your current affiliate/referral status."
-  []
-  (:data (user-get-affiliate-status-with-http-info)))
+  ([] (user-get-affiliate-status nil))
+  ([optional-params]
+   (:data (user-get-affiliate-status-with-http-info optional-params))))
 
 (defn user-get-commission-with-http-info
   "Get your account's commission status."
@@ -219,6 +221,40 @@
   []
   (:data (user-get-quote-fill-ratio-with-http-info)))
 
+(defn user-get-quote-value-ratio-with-http-info
+  "Get Quote Value Ratio statistics over the last 3 days"
+  []
+  (call-api "/user/quoteValueRatio" :get
+            {:path-params   {}
+             :header-params {}
+             :query-params  {}
+             :form-params   {}
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
+             :auth-names    ["apiExpires" "apiKey" "apiSignature"]}))
+
+(defn user-get-quote-value-ratio
+  "Get Quote Value Ratio statistics over the last 3 days"
+  []
+  (:data (user-get-quote-value-ratio-with-http-info)))
+
+(defn user-get-trading-volume-with-http-info
+  "Get your 30 days USD average trading volume"
+  []
+  (call-api "/user/tradingVolume" :get
+            {:path-params   {}
+             :header-params {}
+             :query-params  {}
+             :form-params   {}
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
+             :auth-names    ["apiExpires" "apiKey" "apiSignature"]}))
+
+(defn user-get-trading-volume
+  "Get your 30 days USD average trading volume"
+  []
+  (:data (user-get-trading-volume-with-http-info)))
+
 (defn user-get-wallet-with-http-info
   "Get your current wallet information."
   ([] (user-get-wallet-with-http-info nil))
@@ -294,22 +330,26 @@
   (:data (user-logout-with-http-info)))
 
 (defn user-min-withdrawal-fee-with-http-info
-  "Get the minimum withdrawal fee for a currency.
-  This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency."
+  "Get the minimum, maximum, and recommended withdrawal fees for a currency.
+  This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+
+The \"fee\" field is the recommended fee for fast confirmation on the blockchain."
   ([] (user-min-withdrawal-fee-with-http-info nil))
-  ([{:keys [currency ]}]
+  ([{:keys [currency amount ]}]
    (call-api "/user/minWithdrawalFee" :get
              {:path-params   {}
               :header-params {}
-              :query-params  {"currency" currency }
+              :query-params  {"currency" currency "amount" amount }
               :form-params   {}
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
               :auth-names    []})))
 
 (defn user-min-withdrawal-fee
-  "Get the minimum withdrawal fee for a currency.
-  This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency."
+  "Get the minimum, maximum, and recommended withdrawal fees for a currency.
+  This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+
+The \"fee\" field is the recommended fee for fast confirmation on the blockchain."
   ([] (user-min-withdrawal-fee nil))
   ([optional-params]
    (:data (user-min-withdrawal-fee-with-http-info optional-params))))
@@ -317,14 +357,14 @@
 (defn user-request-withdrawal-with-http-info
   "Request a withdrawal to an external wallet.
   This will send a confirmation email to the email address on record."
-  ([currency amount address ] (user-request-withdrawal-with-http-info currency amount address nil))
-  ([currency amount address {:keys [otp-token fee text ]}]
-   (check-required-params currency amount address)
+  ([currency amount ] (user-request-withdrawal-with-http-info currency amount nil))
+  ([currency amount {:keys [otp-token address address-id target-user-id fee text ]}]
+   (check-required-params currency amount)
    (call-api "/user/requestWithdrawal" :post
              {:path-params   {}
               :header-params {}
               :query-params  {}
-              :form-params   {"otpToken" otp-token "currency" currency "amount" amount "address" address "fee" fee "text" text }
+              :form-params   {"otpToken" otp-token "currency" currency "amount" amount "address" address "addressId" address-id "targetUserId" target-user-id "fee" fee "text" text }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
               :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
@@ -332,9 +372,9 @@
 (defn user-request-withdrawal
   "Request a withdrawal to an external wallet.
   This will send a confirmation email to the email address on record."
-  ([currency amount address ] (user-request-withdrawal currency amount address nil))
-  ([currency amount address optional-params]
-   (:data (user-request-withdrawal-with-http-info currency amount address optional-params))))
+  ([currency amount ] (user-request-withdrawal currency amount nil))
+  ([currency amount optional-params]
+   (:data (user-request-withdrawal-with-http-info currency amount optional-params))))
 
 (defn user-save-preferences-with-http-info
   "Save user preferences."

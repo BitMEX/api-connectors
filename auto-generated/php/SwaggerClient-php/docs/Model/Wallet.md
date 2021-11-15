@@ -25,9 +25,6 @@ Name | Type | Description | Notes
 **pending_debit** | **float** |  | [optional] 
 **confirmed_debit** | **float** |  | [optional] 
 **timestamp** | [**\DateTime**](\DateTime.md) |  | [optional] 
-**addr** | **string** |  | [optional] 
-**script** | **string** |  | [optional] 
-**withdrawal_lock** | **string[]** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

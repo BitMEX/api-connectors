@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **front** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **expiry** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **settle** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
+**listedSettle** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **relistInterval** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **inverseLeg** | **String** |  |  [optional]
 **sellLeg** | **String** |  |  [optional]
@@ -105,6 +106,7 @@ Name | Type | Description | Notes
 **indicativeTaxRate** | **Double** |  |  [optional]
 **indicativeSettlePrice** | **Double** |  |  [optional]
 **optionUnderlyingPrice** | **Double** |  |  [optional]
+**settledPriceAdjustmentRate** | **Double** |  |  [optional]
 **settledPrice** | **Double** |  |  [optional]
 **timestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 

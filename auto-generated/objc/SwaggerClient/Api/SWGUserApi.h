@@ -5,6 +5,8 @@
 #import "SWGError.h"
 #import "SWGMargin.h"
 #import "SWGQuoteFillRatio.h"
+#import "SWGQuoteValueRatio.h"
+#import "SWGTradingVolume.h"
 #import "SWGTransaction.h"
 #import "SWGUser.h"
 #import "SWGUserCommissionsBySymbol.h"
@@ -13,7 +15,7 @@
 
 /**
 * BitMEX API
-* ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+* ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
 *
 * OpenAPI spec version: 1.2.0
 * Contact: support@bitmex.com
@@ -132,6 +134,7 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 /// Get your current affiliate/referral status.
 /// 
 ///
+/// @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional) (default to XBt)
 /// 
 ///  code:200 message:"Request was successful",
 ///  code:400 message:"Parameter Error",
@@ -140,8 +143,8 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 ///  code:404 message:"Not Found"
 ///
 /// @return SWGAffiliate*
--(NSURLSessionTask*) userGetAffiliateStatusWithCompletionHandler: 
-    (void (^)(SWGAffiliate* output, NSError* error)) handler;
+-(NSURLSessionTask*) userGetAffiliateStatusWithCurrency: (NSString*) currency
+    completionHandler: (void (^)(SWGAffiliate* output, NSError* error)) handler;
 
 
 /// Get your account's commission status.
@@ -162,7 +165,7 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 /// Get a deposit address.
 /// 
 ///
-/// @param currency  (optional) (default to XBt)
+/// @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; (optional) (default to XBt)
 /// 
 ///  code:200 message:"Request was successful",
 ///  code:400 message:"Parameter Error",
@@ -196,7 +199,7 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 /// Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.
 /// 
 ///
-/// @param currency  (optional) (default to XBt)
+/// @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional) (default to XBt)
 /// 
 ///  code:200 message:"Request was successful",
 ///  code:400 message:"Parameter Error",
@@ -224,10 +227,40 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
     (void (^)(SWGQuoteFillRatio* output, NSError* error)) handler;
 
 
+/// Get Quote Value Ratio statistics over the last 3 days
+/// 
+///
+/// 
+///  code:200 message:"Request was successful",
+///  code:400 message:"Parameter Error",
+///  code:401 message:"Unauthorized",
+///  code:403 message:"Access Denied",
+///  code:404 message:"Not Found"
+///
+/// @return SWGQuoteValueRatio*
+-(NSURLSessionTask*) userGetQuoteValueRatioWithCompletionHandler: 
+    (void (^)(SWGQuoteValueRatio* output, NSError* error)) handler;
+
+
+/// Get your 30 days USD average trading volume
+/// 
+///
+/// 
+///  code:200 message:"Request was successful",
+///  code:400 message:"Parameter Error",
+///  code:401 message:"Unauthorized",
+///  code:403 message:"Access Denied",
+///  code:404 message:"Not Found"
+///
+/// @return SWGTradingVolume*
+-(NSURLSessionTask*) userGetTradingVolumeWithCompletionHandler: 
+    (void (^)(SWGTradingVolume* output, NSError* error)) handler;
+
+
 /// Get your current wallet information.
 /// 
 ///
-/// @param currency  (optional) (default to XBt)
+/// @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional) (default to XBt)
 /// 
 ///  code:200 message:"Request was successful",
 ///  code:400 message:"Parameter Error",
@@ -243,7 +276,7 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 /// Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 /// 
 ///
-/// @param currency  (optional) (default to XBt)
+/// @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional) (default to XBt)
 /// @param count Number of results to fetch. (optional) (default to 100)
 /// @param start Starting point for results. (optional) (default to 0)
 /// 
@@ -263,7 +296,7 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 /// Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 /// 
 ///
-/// @param currency  (optional) (default to XBt)
+/// @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; (optional) (default to XBt)
 /// 
 ///  code:200 message:"Request was successful",
 ///  code:400 message:"Parameter Error",
@@ -291,10 +324,11 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
     (void (^)(NSError* error)) handler;
 
 
-/// Get the minimum withdrawal fee for a currency.
-/// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+/// Get the minimum, maximum, and recommended withdrawal fees for a currency.
+/// This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \"fee\" field is the recommended fee for fast confirmation on the blockchain.
 ///
-/// @param currency  (optional) (default to XBt)
+/// @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; (optional) (default to XBt)
+/// @param amount  (optional)
 /// 
 ///  code:200 message:"Request was successful",
 ///  code:400 message:"Parameter Error",
@@ -304,16 +338,19 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 ///
 /// @return NSObject*
 -(NSURLSessionTask*) userMinWithdrawalFeeWithCurrency: (NSString*) currency
+    amount: (NSNumber*) amount
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 
 
 /// Request a withdrawal to an external wallet.
 /// This will send a confirmation email to the email address on record.
 ///
-/// @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60; (default to XBt)
+/// @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; (default to XBt)
 /// @param amount Amount of withdrawal currency.
-/// @param address Destination Address.
-/// @param otpToken 2FA token. Required if 2FA is enabled on your account. (optional)
+/// @param otpToken 2FA token. Required for all external withdrawals. (optional)
+/// @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
+/// @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;targetUserId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
+/// @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. (optional)
 /// @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
 /// @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;. (optional)
 /// 
@@ -326,8 +363,10 @@ extern NSInteger kSWGUserApiMissingParamErrorCode;
 /// @return SWGTransaction*
 -(NSURLSessionTask*) userRequestWithdrawalWithCurrency: (NSString*) currency
     amount: (NSNumber*) amount
-    address: (NSString*) address
     otpToken: (NSString*) otpToken
+    address: (NSString*) address
+    addressId: (NSNumber*) addressId
+    targetUserId: (NSNumber*) targetUserId
     fee: (NSNumber*) fee
     text: (NSString*) text
     completionHandler: (void (^)(SWGTransaction* output, NSError* error)) handler;

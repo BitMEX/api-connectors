@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -15,6 +15,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from swagger_client.configuration import Configuration
 
 
 class User(object):
@@ -44,6 +46,7 @@ class User(object):
         'tfa_enabled': 'str',
         'affiliate_id': 'str',
         'pgp_pub_key': 'str',
+        'pgp_pub_key_created': 'datetime',
         'country': 'str',
         'geoip_country': 'str',
         'geoip_region': 'str',
@@ -64,14 +67,18 @@ class User(object):
         'tfa_enabled': 'TFAEnabled',
         'affiliate_id': 'affiliateID',
         'pgp_pub_key': 'pgpPubKey',
+        'pgp_pub_key_created': 'pgpPubKeyCreated',
         'country': 'country',
         'geoip_country': 'geoipCountry',
         'geoip_region': 'geoipRegion',
         'typ': 'typ'
     }
 
-    def __init__(self, id=None, owner_id=None, firstname=None, lastname=None, username=None, email=None, phone=None, created=None, last_updated=None, preferences=None, tfa_enabled=None, affiliate_id=None, pgp_pub_key=None, country=None, geoip_country=None, geoip_region=None, typ=None):  # noqa: E501
+    def __init__(self, id=None, owner_id=None, firstname=None, lastname=None, username=None, email=None, phone=None, created=None, last_updated=None, preferences=None, tfa_enabled=None, affiliate_id=None, pgp_pub_key=None, pgp_pub_key_created=None, country=None, geoip_country=None, geoip_region=None, typ=None, _configuration=None):  # noqa: E501
         """User - a model defined in Swagger"""  # noqa: E501
+        if _configuration is None:
+            _configuration = Configuration()
+        self._configuration = _configuration
 
         self._id = None
         self._owner_id = None
@@ -86,6 +93,7 @@ class User(object):
         self._tfa_enabled = None
         self._affiliate_id = None
         self._pgp_pub_key = None
+        self._pgp_pub_key_created = None
         self._country = None
         self._geoip_country = None
         self._geoip_region = None
@@ -101,7 +109,8 @@ class User(object):
         if lastname is not None:
             self.lastname = lastname
         self.username = username
-        self.email = email
+        if email is not None:
+            self.email = email
         if phone is not None:
             self.phone = phone
         if created is not None:
@@ -116,6 +125,8 @@ class User(object):
             self.affiliate_id = affiliate_id
         if pgp_pub_key is not None:
             self.pgp_pub_key = pgp_pub_key
+        if pgp_pub_key_created is not None:
+            self.pgp_pub_key_created = pgp_pub_key_created
         if country is not None:
             self.country = country
         if geoip_country is not None:
@@ -227,7 +238,7 @@ class User(object):
         :param username: The username of this User.  # noqa: E501
         :type: str
         """
-        if username is None:
+        if self._configuration.client_side_validation and username is None:
             raise ValueError("Invalid value for `username`, must not be `None`")  # noqa: E501
 
         self._username = username
@@ -250,8 +261,6 @@ class User(object):
         :param email: The email of this User.  # noqa: E501
         :type: str
         """
-        if email is None:
-            raise ValueError("Invalid value for `email`, must not be `None`")  # noqa: E501
 
         self._email = email
 
@@ -378,7 +387,8 @@ class User(object):
         :param affiliate_id: The affiliate_id of this User.  # noqa: E501
         :type: str
         """
-        if affiliate_id is not None and len(affiliate_id) > 6:
+        if (self._configuration.client_side_validation and
+                affiliate_id is not None and len(affiliate_id) > 6):
             raise ValueError("Invalid value for `affiliate_id`, length must be less than or equal to `6`")  # noqa: E501
 
         self._affiliate_id = affiliate_id
@@ -401,10 +411,32 @@ class User(object):
         :param pgp_pub_key: The pgp_pub_key of this User.  # noqa: E501
         :type: str
         """
-        if pgp_pub_key is not None and len(pgp_pub_key) > 16384:
+        if (self._configuration.client_side_validation and
+                pgp_pub_key is not None and len(pgp_pub_key) > 16384):
             raise ValueError("Invalid value for `pgp_pub_key`, length must be less than or equal to `16384`")  # noqa: E501
 
         self._pgp_pub_key = pgp_pub_key
+
+    @property
+    def pgp_pub_key_created(self):
+        """Gets the pgp_pub_key_created of this User.  # noqa: E501
+
+
+        :return: The pgp_pub_key_created of this User.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._pgp_pub_key_created
+
+    @pgp_pub_key_created.setter
+    def pgp_pub_key_created(self, pgp_pub_key_created):
+        """Sets the pgp_pub_key_created of this User.
+
+
+        :param pgp_pub_key_created: The pgp_pub_key_created of this User.  # noqa: E501
+        :type: datetime
+        """
+
+        self._pgp_pub_key_created = pgp_pub_key_created
 
     @property
     def country(self):
@@ -424,7 +456,8 @@ class User(object):
         :param country: The country of this User.  # noqa: E501
         :type: str
         """
-        if country is not None and len(country) > 3:
+        if (self._configuration.client_side_validation and
+                country is not None and len(country) > 3):
             raise ValueError("Invalid value for `country`, length must be less than or equal to `3`")  # noqa: E501
 
         self._country = country
@@ -447,7 +480,8 @@ class User(object):
         :param geoip_country: The geoip_country of this User.  # noqa: E501
         :type: str
         """
-        if geoip_country is not None and len(geoip_country) > 2:
+        if (self._configuration.client_side_validation and
+                geoip_country is not None and len(geoip_country) > 2):
             raise ValueError("Invalid value for `geoip_country`, length must be less than or equal to `2`")  # noqa: E501
 
         self._geoip_country = geoip_country
@@ -470,7 +504,8 @@ class User(object):
         :param geoip_region: The geoip_region of this User.  # noqa: E501
         :type: str
         """
-        if geoip_region is not None and len(geoip_region) > 2:
+        if (self._configuration.client_side_validation and
+                geoip_region is not None and len(geoip_region) > 2):
             raise ValueError("Invalid value for `geoip_region`, length must be less than or equal to `2`")  # noqa: E501
 
         self._geoip_region = geoip_region
@@ -536,8 +571,11 @@ class User(object):
         if not isinstance(other, User):
             return False
 
-        return self.__dict__ == other.__dict__
+        return self.to_dict() == other.to_dict()
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        return not self == other
+        if not isinstance(other, User):
+            return True
+
+        return self.to_dict() != other.to_dict()

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -65,6 +65,8 @@ SWGUserPreferences::init() {
     m_hide_name_from_leaderboard_isSet = false;
     hide_notifications = new QList<QString*>();
     m_hide_notifications_isSet = false;
+    hide_phone_confirm = false;
+    m_hide_phone_confirm_isSet = false;
     locale = new QString("");
     m_locale_isSet = false;
     msgs_seen = new QList<QString*>();
@@ -139,6 +141,7 @@ SWGUserPreferences::cleanup() {
         }
         delete hide_notifications;
     }
+
     if(locale != nullptr) { 
         delete locale;
     }
@@ -215,6 +218,8 @@ SWGUserPreferences::fromJsonObject(QJsonObject pJson) {
     
     
     ::Swagger::setValue(&hide_notifications, pJson["hideNotifications"], "QList", "QString");
+    ::Swagger::setValue(&hide_phone_confirm, pJson["hidePhoneConfirm"], "bool", "");
+    
     ::Swagger::setValue(&locale, pJson["locale"], "QString", "QString");
     
     
@@ -296,6 +301,9 @@ SWGUserPreferences::asJsonObject() {
     }
     if(hide_notifications->size() > 0){
         toJsonArray((QList<void*>*)hide_notifications, obj, "hideNotifications", "QString");
+    }
+    if(m_hide_phone_confirm_isSet){
+        obj.insert("hidePhoneConfirm", QJsonValue(hide_phone_confirm));
     }
     if(locale != nullptr && *locale != QString("")){
         toJsonValue(QString("locale"), locale, obj, QString("QString"));
@@ -480,6 +488,16 @@ SWGUserPreferences::setHideNotifications(QList<QString*>* hide_notifications) {
     this->m_hide_notifications_isSet = true;
 }
 
+bool
+SWGUserPreferences::isHidePhoneConfirm() {
+    return hide_phone_confirm;
+}
+void
+SWGUserPreferences::setHidePhoneConfirm(bool hide_phone_confirm) {
+    this->hide_phone_confirm = hide_phone_confirm;
+    this->m_hide_phone_confirm_isSet = true;
+}
+
 QString*
 SWGUserPreferences::getLocale() {
     return locale;
@@ -629,6 +647,7 @@ SWGUserPreferences::isSet(){
         if(m_hide_from_leaderboard_isSet){ isObjectUpdated = true; break;}
         if(m_hide_name_from_leaderboard_isSet){ isObjectUpdated = true; break;}
         if(hide_notifications->size() > 0){ isObjectUpdated = true; break;}
+        if(m_hide_phone_confirm_isSet){ isObjectUpdated = true; break;}
         if(locale != nullptr && *locale != QString("")){ isObjectUpdated = true; break;}
         if(msgs_seen->size() > 0){ isObjectUpdated = true; break;}
         if(order_book_binning != nullptr && order_book_binning->isSet()){ isObjectUpdated = true; break;}

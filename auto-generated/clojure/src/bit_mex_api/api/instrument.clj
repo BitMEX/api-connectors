@@ -80,8 +80,8 @@
   "Show constituent parts of an index.
   Composite indices are built from multiple external price sources.
 
-Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.XBT` to
-get the ticks and weights of the constituent exchanges that build the \".XBT\" index.
+Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.BXBT` to
+get the ticks and weights of the constituent exchanges that build the \".BXBT\" index.
 
 A tick with reference `\"BMI\"` and weight `null` is the composite index tick."
   ([] (instrument-get-composite-index-with-http-info nil))
@@ -99,8 +99,8 @@ A tick with reference `\"BMI\"` and weight `null` is the composite index tick."
   "Show constituent parts of an index.
   Composite indices are built from multiple external price sources.
 
-Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.XBT` to
-get the ticks and weights of the constituent exchanges that build the \".XBT\" index.
+Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.BXBT` to
+get the ticks and weights of the constituent exchanges that build the \".BXBT\" index.
 
 A tick with reference `\"BMI\"` and weight `null` is the composite index tick."
   ([] (instrument-get-composite-index nil))

@@ -23,17 +23,17 @@ This returns all instruments and indices, including those that have settled or a
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***InstrumentGetOpts** | optional parameters | nil if no parameters
+ **optional** | ***InstrumentApiInstrumentGetOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a InstrumentGetOpts struct
+Optional parameters are passed through a pointer to a InstrumentApiInstrumentGetOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **optional.String**| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;. | 
+ **symbol** | **optional.String**| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive. | 
  **filter** | **optional.String**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | 
  **columns** | **optional.String**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | 
- **count** | **optional.Float32**| Number of results to fetch. | [default to 100]
+ **count** | **optional.Float32**| Number of results to fetch. Must be a positive integer. | [default to 100]
  **start** | **optional.Float32**| Starting point for results. | [default to 0]
  **reverse** | **optional.Bool**| If true, will sort results newest first. | [default to false]
  **startTime** | **optional.Time**| Starting date filter for results. | 
@@ -126,24 +126,24 @@ No authorization required
 > []IndexComposite InstrumentGetCompositeIndex(ctx, optional)
 Show constituent parts of an index.
 
-Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.XBT` to get the ticks and weights of the constituent exchanges that build the \".XBT\" index.  A tick with reference `\"BMI\"` and weight `null` is the composite index tick. 
+Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.BXBT` to get the ticks and weights of the constituent exchanges that build the \".BXBT\" index.  A tick with reference `\"BMI\"` and weight `null` is the composite index tick. 
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***InstrumentGetCompositeIndexOpts** | optional parameters | nil if no parameters
+ **optional** | ***InstrumentApiInstrumentGetCompositeIndexOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a InstrumentGetCompositeIndexOpts struct
+Optional parameters are passed through a pointer to a InstrumentApiInstrumentGetCompositeIndexOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **optional.String**| The composite index symbol. | [default to .XBT]
- **filter** | **optional.String**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | 
+ **symbol** | **optional.String**| The composite index symbol. | [default to .BXBT]
+ **filter** | **optional.String**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. | 
  **columns** | **optional.String**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | 
- **count** | **optional.Float32**| Number of results to fetch. | [default to 100]
+ **count** | **optional.Float32**| Number of results to fetch. Must be a positive integer. | [default to 100]
  **start** | **optional.Float32**| Starting point for results. | [default to 0]
  **reverse** | **optional.Bool**| If true, will sort results newest first. | [default to false]
  **startTime** | **optional.Time**| Starting date filter for results. | 

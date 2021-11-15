@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **firstname** | **NSString*** |  | [optional] 
 **lastname** | **NSString*** |  | [optional] 
 **username** | **NSString*** |  | 
-**email** | **NSString*** |  | 
+**email** | **NSString*** |  | [optional] 
 **phone** | **NSString*** |  | [optional] 
 **created** | **NSDate*** |  | [optional] 
 **lastUpdated** | **NSDate*** |  | [optional] 
@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **tFAEnabled** | **NSString*** |  | [optional] 
 **affiliateID** | **NSString*** |  | [optional] 
 **pgpPubKey** | **NSString*** |  | [optional] 
+**pgpPubKeyCreated** | **NSDate*** |  | [optional] 
 **country** | **NSString*** |  | [optional] 
 **geoipCountry** | **NSString*** |  | [optional] 
 **geoipRegion** | **NSString*** |  | [optional] 

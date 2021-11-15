@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -53,6 +53,8 @@ SWGInstrument::init() {
     m_expiry_isSet = false;
     settle = NULL;
     m_settle_isSet = false;
+    listed_settle = NULL;
+    m_listed_settle_isSet = false;
     relist_interval = NULL;
     m_relist_interval_isSet = false;
     inverse_leg = new QString("");
@@ -239,6 +241,8 @@ SWGInstrument::init() {
     m_indicative_settle_price_isSet = false;
     option_underlying_price = 0.0;
     m_option_underlying_price_isSet = false;
+    settled_price_adjustment_rate = 0.0;
+    m_settled_price_adjustment_rate_isSet = false;
     settled_price = 0.0;
     m_settled_price_isSet = false;
     timestamp = NULL;
@@ -270,6 +274,9 @@ SWGInstrument::cleanup() {
     }
     if(settle != nullptr) { 
         delete settle;
+    }
+    if(listed_settle != nullptr) { 
+        delete listed_settle;
     }
     if(relist_interval != nullptr) { 
         delete relist_interval;
@@ -455,6 +462,7 @@ SWGInstrument::cleanup() {
 
 
 
+
     if(timestamp != nullptr) { 
         delete timestamp;
     }
@@ -486,6 +494,8 @@ SWGInstrument::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&expiry, pJson["expiry"], "QDateTime", "QDateTime");
     
     ::Swagger::setValue(&settle, pJson["settle"], "QDateTime", "QDateTime");
+    
+    ::Swagger::setValue(&listed_settle, pJson["listedSettle"], "QDateTime", "QDateTime");
     
     ::Swagger::setValue(&relist_interval, pJson["relistInterval"], "QDateTime", "QDateTime");
     
@@ -673,6 +683,8 @@ SWGInstrument::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&option_underlying_price, pJson["optionUnderlyingPrice"], "double", "");
     
+    ::Swagger::setValue(&settled_price_adjustment_rate, pJson["settledPriceAdjustmentRate"], "double", "");
+    
     ::Swagger::setValue(&settled_price, pJson["settledPrice"], "double", "");
     
     ::Swagger::setValue(&timestamp, pJson["timestamp"], "QDateTime", "QDateTime");
@@ -714,6 +726,9 @@ SWGInstrument::asJsonObject() {
     }
     if(settle != nullptr) { 
         toJsonValue(QString("settle"), settle, obj, QString("QDateTime"));
+    }
+    if(listed_settle != nullptr) { 
+        toJsonValue(QString("listedSettle"), listed_settle, obj, QString("QDateTime"));
     }
     if(relist_interval != nullptr) { 
         toJsonValue(QString("relistInterval"), relist_interval, obj, QString("QDateTime"));
@@ -994,6 +1009,9 @@ SWGInstrument::asJsonObject() {
     if(m_option_underlying_price_isSet){
         obj.insert("optionUnderlyingPrice", QJsonValue(option_underlying_price));
     }
+    if(m_settled_price_adjustment_rate_isSet){
+        obj.insert("settledPriceAdjustmentRate", QJsonValue(settled_price_adjustment_rate));
+    }
     if(m_settled_price_isSet){
         obj.insert("settledPrice", QJsonValue(settled_price));
     }
@@ -1082,6 +1100,16 @@ void
 SWGInstrument::setSettle(QDateTime* settle) {
     this->settle = settle;
     this->m_settle_isSet = true;
+}
+
+QDateTime*
+SWGInstrument::getListedSettle() {
+    return listed_settle;
+}
+void
+SWGInstrument::setListedSettle(QDateTime* listed_settle) {
+    this->listed_settle = listed_settle;
+    this->m_listed_settle_isSet = true;
 }
 
 QDateTime*
@@ -2015,6 +2043,16 @@ SWGInstrument::setOptionUnderlyingPrice(double option_underlying_price) {
 }
 
 double
+SWGInstrument::getSettledPriceAdjustmentRate() {
+    return settled_price_adjustment_rate;
+}
+void
+SWGInstrument::setSettledPriceAdjustmentRate(double settled_price_adjustment_rate) {
+    this->settled_price_adjustment_rate = settled_price_adjustment_rate;
+    this->m_settled_price_adjustment_rate_isSet = true;
+}
+
+double
 SWGInstrument::getSettledPrice() {
     return settled_price;
 }
@@ -2043,6 +2081,7 @@ SWGInstrument::isSet(){
         if(root_symbol != nullptr && *root_symbol != QString("")){ isObjectUpdated = true; break;}
         if(state != nullptr && *state != QString("")){ isObjectUpdated = true; break;}
         if(typ != nullptr && *typ != QString("")){ isObjectUpdated = true; break;}
+        
         
         
         
@@ -2140,6 +2179,7 @@ SWGInstrument::isSet(){
         if(m_indicative_tax_rate_isSet){ isObjectUpdated = true; break;}
         if(m_indicative_settle_price_isSet){ isObjectUpdated = true; break;}
         if(m_option_underlying_price_isSet){ isObjectUpdated = true; break;}
+        if(m_settled_price_adjustment_rate_isSet){ isObjectUpdated = true; break;}
         if(m_settled_price_isSet){ isObjectUpdated = true; break;}
         
     }while(false);

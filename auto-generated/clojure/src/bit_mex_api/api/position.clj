@@ -90,7 +90,8 @@ The fields _account_, _symbol_, _currency_ are unique to each position and form 
    (:data (position-get-with-http-info optional-params))))
 
 (defn position-isolate-margin-with-http-info
-  "Enable isolated margin or cross margin per-position."
+  "Enable isolated margin or cross margin per-position.
+  Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off."
   ([symbol ] (position-isolate-margin-with-http-info symbol nil))
   ([symbol {:keys [enabled ]}]
    (check-required-params symbol)
@@ -104,13 +105,15 @@ The fields _account_, _symbol_, _currency_ are unique to each position and form 
               :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
 
 (defn position-isolate-margin
-  "Enable isolated margin or cross margin per-position."
+  "Enable isolated margin or cross margin per-position.
+  Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off."
   ([symbol ] (position-isolate-margin symbol nil))
   ([symbol optional-params]
    (:data (position-isolate-margin-with-http-info symbol optional-params))))
 
 (defn position-transfer-isolated-margin-with-http-info
-  "Transfer equity in or out of a position."
+  "Transfer equity in or out of a position.
+  When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold."
   [symbol amount ]
   (check-required-params symbol amount)
   (call-api "/position/transferMargin" :post
@@ -123,12 +126,14 @@ The fields _account_, _symbol_, _currency_ are unique to each position and form 
              :auth-names    ["apiExpires" "apiKey" "apiSignature"]}))
 
 (defn position-transfer-isolated-margin
-  "Transfer equity in or out of a position."
+  "Transfer equity in or out of a position.
+  When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold."
   [symbol amount ]
   (:data (position-transfer-isolated-margin-with-http-info symbol amount)))
 
 (defn position-update-leverage-with-http-info
-  "Choose leverage for a position."
+  "Choose leverage for a position.
+  Users can choose an isolated leverage. This will automatically enable isolated margin."
   [symbol leverage ]
   (check-required-params symbol leverage)
   (call-api "/position/leverage" :post
@@ -141,12 +146,14 @@ The fields _account_, _symbol_, _currency_ are unique to each position and form 
              :auth-names    ["apiExpires" "apiKey" "apiSignature"]}))
 
 (defn position-update-leverage
-  "Choose leverage for a position."
+  "Choose leverage for a position.
+  Users can choose an isolated leverage. This will automatically enable isolated margin."
   [symbol leverage ]
   (:data (position-update-leverage-with-http-info symbol leverage)))
 
 (defn position-update-risk-limit-with-http-info
-  "Update your risk limit."
+  "Update your risk limit.
+  Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details."
   [symbol risk-limit ]
   (check-required-params symbol risk-limit)
   (call-api "/position/riskLimit" :post
@@ -159,7 +166,8 @@ The fields _account_, _symbol_, _currency_ are unique to each position and form 
              :auth-names    ["apiExpires" "apiKey" "apiSignature"]}))
 
 (defn position-update-risk-limit
-  "Update your risk limit."
+  "Update your risk limit.
+  Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details."
   [symbol risk-limit ]
   (:data (position-update-risk-limit-with-http-info symbol risk-limit)))
 

@@ -20,6 +20,7 @@ public struct Instrument: Codable {
     public var front: Date?
     public var expiry: Date?
     public var settle: Date?
+    public var listedSettle: Date?
     public var relistInterval: Date?
     public var inverseLeg: String?
     public var sellLeg: String?
@@ -113,10 +114,11 @@ public struct Instrument: Codable {
     public var indicativeTaxRate: Double?
     public var indicativeSettlePrice: Double?
     public var optionUnderlyingPrice: Double?
+    public var settledPriceAdjustmentRate: Double?
     public var settledPrice: Double?
     public var timestamp: Date?
 
-    public init(symbol: String, rootSymbol: String?, state: String?, typ: String?, listing: Date?, front: Date?, expiry: Date?, settle: Date?, relistInterval: Date?, inverseLeg: String?, sellLeg: String?, buyLeg: String?, optionStrikePcnt: Double?, optionStrikeRound: Double?, optionStrikePrice: Double?, optionMultiplier: Double?, positionCurrency: String?, underlying: String?, quoteCurrency: String?, underlyingSymbol: String?, reference: String?, referenceSymbol: String?, calcInterval: Date?, publishInterval: Date?, publishTime: Date?, maxOrderQty: Double?, maxPrice: Double?, lotSize: Double?, tickSize: Double?, multiplier: Double?, settlCurrency: String?, underlyingToPositionMultiplier: Double?, underlyingToSettleMultiplier: Double?, quoteToSettleMultiplier: Double?, isQuanto: Bool?, isInverse: Bool?, initMargin: Double?, maintMargin: Double?, riskLimit: Double?, riskStep: Double?, limit: Double?, capped: Bool?, taxed: Bool?, deleverage: Bool?, makerFee: Double?, takerFee: Double?, settlementFee: Double?, insuranceFee: Double?, fundingBaseSymbol: String?, fundingQuoteSymbol: String?, fundingPremiumSymbol: String?, fundingTimestamp: Date?, fundingInterval: Date?, fundingRate: Double?, indicativeFundingRate: Double?, rebalanceTimestamp: Date?, rebalanceInterval: Date?, openingTimestamp: Date?, closingTimestamp: Date?, sessionInterval: Date?, prevClosePrice: Double?, limitDownPrice: Double?, limitUpPrice: Double?, bankruptLimitDownPrice: Double?, bankruptLimitUpPrice: Double?, prevTotalVolume: Double?, totalVolume: Double?, volume: Double?, volume24h: Double?, prevTotalTurnover: Double?, totalTurnover: Double?, turnover: Double?, turnover24h: Double?, homeNotional24h: Double?, foreignNotional24h: Double?, prevPrice24h: Double?, vwap: Double?, highPrice: Double?, lowPrice: Double?, lastPrice: Double?, lastPriceProtected: Double?, lastTickDirection: String?, lastChangePcnt: Double?, bidPrice: Double?, midPrice: Double?, askPrice: Double?, impactBidPrice: Double?, impactMidPrice: Double?, impactAskPrice: Double?, hasLiquidity: Bool?, openInterest: Double?, openValue: Double?, fairMethod: String?, fairBasisRate: Double?, fairBasis: Double?, fairPrice: Double?, markMethod: String?, markPrice: Double?, indicativeTaxRate: Double?, indicativeSettlePrice: Double?, optionUnderlyingPrice: Double?, settledPrice: Double?, timestamp: Date?) {
+    public init(symbol: String, rootSymbol: String?, state: String?, typ: String?, listing: Date?, front: Date?, expiry: Date?, settle: Date?, listedSettle: Date?, relistInterval: Date?, inverseLeg: String?, sellLeg: String?, buyLeg: String?, optionStrikePcnt: Double?, optionStrikeRound: Double?, optionStrikePrice: Double?, optionMultiplier: Double?, positionCurrency: String?, underlying: String?, quoteCurrency: String?, underlyingSymbol: String?, reference: String?, referenceSymbol: String?, calcInterval: Date?, publishInterval: Date?, publishTime: Date?, maxOrderQty: Double?, maxPrice: Double?, lotSize: Double?, tickSize: Double?, multiplier: Double?, settlCurrency: String?, underlyingToPositionMultiplier: Double?, underlyingToSettleMultiplier: Double?, quoteToSettleMultiplier: Double?, isQuanto: Bool?, isInverse: Bool?, initMargin: Double?, maintMargin: Double?, riskLimit: Double?, riskStep: Double?, limit: Double?, capped: Bool?, taxed: Bool?, deleverage: Bool?, makerFee: Double?, takerFee: Double?, settlementFee: Double?, insuranceFee: Double?, fundingBaseSymbol: String?, fundingQuoteSymbol: String?, fundingPremiumSymbol: String?, fundingTimestamp: Date?, fundingInterval: Date?, fundingRate: Double?, indicativeFundingRate: Double?, rebalanceTimestamp: Date?, rebalanceInterval: Date?, openingTimestamp: Date?, closingTimestamp: Date?, sessionInterval: Date?, prevClosePrice: Double?, limitDownPrice: Double?, limitUpPrice: Double?, bankruptLimitDownPrice: Double?, bankruptLimitUpPrice: Double?, prevTotalVolume: Double?, totalVolume: Double?, volume: Double?, volume24h: Double?, prevTotalTurnover: Double?, totalTurnover: Double?, turnover: Double?, turnover24h: Double?, homeNotional24h: Double?, foreignNotional24h: Double?, prevPrice24h: Double?, vwap: Double?, highPrice: Double?, lowPrice: Double?, lastPrice: Double?, lastPriceProtected: Double?, lastTickDirection: String?, lastChangePcnt: Double?, bidPrice: Double?, midPrice: Double?, askPrice: Double?, impactBidPrice: Double?, impactMidPrice: Double?, impactAskPrice: Double?, hasLiquidity: Bool?, openInterest: Double?, openValue: Double?, fairMethod: String?, fairBasisRate: Double?, fairBasis: Double?, fairPrice: Double?, markMethod: String?, markPrice: Double?, indicativeTaxRate: Double?, indicativeSettlePrice: Double?, optionUnderlyingPrice: Double?, settledPriceAdjustmentRate: Double?, settledPrice: Double?, timestamp: Date?) {
         self.symbol = symbol
         self.rootSymbol = rootSymbol
         self.state = state
@@ -125,6 +127,7 @@ public struct Instrument: Codable {
         self.front = front
         self.expiry = expiry
         self.settle = settle
+        self.listedSettle = listedSettle
         self.relistInterval = relistInterval
         self.inverseLeg = inverseLeg
         self.sellLeg = sellLeg
@@ -218,6 +221,7 @@ public struct Instrument: Codable {
         self.indicativeTaxRate = indicativeTaxRate
         self.indicativeSettlePrice = indicativeSettlePrice
         self.optionUnderlyingPrice = optionUnderlyingPrice
+        self.settledPriceAdjustmentRate = settledPriceAdjustmentRate
         self.settledPrice = settledPrice
         self.timestamp = timestamp
     }

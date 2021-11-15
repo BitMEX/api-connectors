@@ -16,11 +16,13 @@ Method | HTTP request | Description
 [**UserGetExecutionHistory**](UserApi.md#UserGetExecutionHistory) | **Get** /user/executionHistory | Get the execution history by day.
 [**UserGetMargin**](UserApi.md#UserGetMargin) | **Get** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 [**UserGetQuoteFillRatio**](UserApi.md#UserGetQuoteFillRatio) | **Get** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
+[**UserGetQuoteValueRatio**](UserApi.md#UserGetQuoteValueRatio) | **Get** /user/quoteValueRatio | Get Quote Value Ratio statistics over the last 3 days
+[**UserGetTradingVolume**](UserApi.md#UserGetTradingVolume) | **Get** /user/tradingVolume | Get your 30 days USD average trading volume
 [**UserGetWallet**](UserApi.md#UserGetWallet) | **Get** /user/wallet | Get your current wallet information.
 [**UserGetWalletHistory**](UserApi.md#UserGetWalletHistory) | **Get** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 [**UserGetWalletSummary**](UserApi.md#UserGetWalletSummary) | **Get** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 [**UserLogout**](UserApi.md#UserLogout) | **Post** /user/logout | Log out of BitMEX.
-[**UserMinWithdrawalFee**](UserApi.md#UserMinWithdrawalFee) | **Get** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
+[**UserMinWithdrawalFee**](UserApi.md#UserMinWithdrawalFee) | **Get** /user/minWithdrawalFee | Get the minimum, maximum, and recommended withdrawal fees for a currency.
 [**UserRequestWithdrawal**](UserApi.md#UserRequestWithdrawal) | **Post** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**UserSavePreferences**](UserApi.md#UserSavePreferences) | **Post** /user/preferences | Save user preferences.
 
@@ -62,10 +64,10 @@ If the code is valid, responds with the referral code's discount (e.g. `0.1` for
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***UserCheckReferralCodeOpts** | optional parameters | nil if no parameters
+ **optional** | ***UserApiUserCheckReferralCodeOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a UserCheckReferralCodeOpts struct
+Optional parameters are passed through a pointer to a UserApiUserCheckReferralCodeOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -188,11 +190,22 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserGetAffiliateStatus**
-> Affiliate UserGetAffiliateStatus(ctx, )
+> Affiliate UserGetAffiliateStatus(ctx, optional)
 Get your current affiliate/referral status.
 
 ### Required Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***UserApiUserGetAffiliateStatusOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a UserApiUserGetAffiliateStatusOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **optional.String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [default to XBt]
 
 ### Return type
 
@@ -240,14 +253,14 @@ Get a deposit address.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***UserGetDepositAddressOpts** | optional parameters | nil if no parameters
+ **optional** | ***UserApiUserGetDepositAddressOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a UserGetDepositAddressOpts struct
+Optional parameters are passed through a pointer to a UserApiUserGetDepositAddressOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **optional.String**|  | [default to XBt]
+ **currency** | **optional.String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; | [default to XBt]
 
 ### Return type
 
@@ -278,7 +291,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**interface{}**](interface{}.md)
+**interface{}**
 
 ### Authorization
 
@@ -300,14 +313,14 @@ Get your account's margin status. Send a currency of \"all\" to receive an array
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***UserGetMarginOpts** | optional parameters | nil if no parameters
+ **optional** | ***UserApiUserGetMarginOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a UserGetMarginOpts struct
+Optional parameters are passed through a pointer to a UserApiUserGetMarginOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **optional.String**|  | [default to XBt]
+ **currency** | **optional.String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [default to XBt]
 
 ### Return type
 
@@ -346,6 +359,50 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **UserGetQuoteValueRatio**
+> QuoteValueRatio UserGetQuoteValueRatio(ctx, )
+Get Quote Value Ratio statistics over the last 3 days
+
+### Required Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**QuoteValueRatio**](QuoteValueRatio.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **UserGetTradingVolume**
+> TradingVolume UserGetTradingVolume(ctx, )
+Get your 30 days USD average trading volume
+
+### Required Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**TradingVolume**](TradingVolume.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **UserGetWallet**
 > Wallet UserGetWallet(ctx, optional)
 Get your current wallet information.
@@ -355,14 +412,14 @@ Get your current wallet information.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***UserGetWalletOpts** | optional parameters | nil if no parameters
+ **optional** | ***UserApiUserGetWalletOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a UserGetWalletOpts struct
+Optional parameters are passed through a pointer to a UserApiUserGetWalletOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **optional.String**|  | [default to XBt]
+ **currency** | **optional.String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [default to XBt]
 
 ### Return type
 
@@ -388,14 +445,14 @@ Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***UserGetWalletHistoryOpts** | optional parameters | nil if no parameters
+ **optional** | ***UserApiUserGetWalletHistoryOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a UserGetWalletHistoryOpts struct
+Optional parameters are passed through a pointer to a UserApiUserGetWalletHistoryOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **optional.String**|  | [default to XBt]
+ **currency** | **optional.String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [default to XBt]
  **count** | **optional.Float64**| Number of results to fetch. | [default to 100]
  **start** | **optional.Float64**| Starting point for results. | [default to 0]
 
@@ -423,14 +480,14 @@ Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***UserGetWalletSummaryOpts** | optional parameters | nil if no parameters
+ **optional** | ***UserApiUserGetWalletSummaryOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a UserGetWalletSummaryOpts struct
+Optional parameters are passed through a pointer to a UserApiUserGetWalletSummaryOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **optional.String**|  | [default to XBt]
+ **currency** | **optional.String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60; | [default to XBt]
 
 ### Return type
 
@@ -471,27 +528,28 @@ No authorization required
 
 # **UserMinWithdrawalFee**
 > interface{} UserMinWithdrawalFee(ctx, optional)
-Get the minimum withdrawal fee for a currency.
+Get the minimum, maximum, and recommended withdrawal fees for a currency.
 
-This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
+This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \"fee\" field is the recommended fee for fast confirmation on the blockchain.
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***UserMinWithdrawalFeeOpts** | optional parameters | nil if no parameters
+ **optional** | ***UserApiUserMinWithdrawalFeeOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a UserMinWithdrawalFeeOpts struct
+Optional parameters are passed through a pointer to a UserApiUserMinWithdrawalFeeOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **optional.String**|  | [default to XBt]
+ **currency** | **optional.String**| Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; | [default to XBt]
+ **amount** | **optional.Float64**|  | 
 
 ### Return type
 
-[**interface{}**](interface{}.md)
+**interface{}**
 
 ### Authorization
 
@@ -505,7 +563,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UserRequestWithdrawal**
-> Transaction UserRequestWithdrawal(ctx, currency, amount, address, optional)
+> Transaction UserRequestWithdrawal(ctx, currency, amount, optional)
 Request a withdrawal to an external wallet.
 
 This will send a confirmation email to the email address on record.
@@ -515,20 +573,21 @@ This will send a confirmation email to the email address on record.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **currency** | **string**| Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60; | [default to XBt]
+  **currency** | **string**| Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60; | [default to XBt]
   **amount** | **float32**| Amount of withdrawal currency. | 
-  **address** | **string**| Destination Address. | 
- **optional** | ***UserRequestWithdrawalOpts** | optional parameters | nil if no parameters
+ **optional** | ***UserApiUserRequestWithdrawalOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a UserRequestWithdrawalOpts struct
+Optional parameters are passed through a pointer to a UserApiUserRequestWithdrawalOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
-
- **otpToken** | **optional.String**| 2FA token. Required if 2FA is enabled on your account. | 
+ **otpToken** | **optional.String**| 2FA token. Required for all external withdrawals. | 
+ **address** | **optional.String**| Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | 
+ **addressId** | **optional.Float64**| ID of the Destination Address. One of &#x60;address&#x60;, &#x60;targetUserId&#x60;, &#x60;targetUserId&#x60; has to be specified. | 
+ **targetUserId** | **optional.Float64**| ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | 
  **fee** | **optional.Float64**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | 
  **text** | **optional.String**| Optional annotation, e.g. &#39;Transfer to home wallet&#39;. | 
 
@@ -557,10 +616,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **prefs** | **string**|  | 
- **optional** | ***UserSavePreferencesOpts** | optional parameters | nil if no parameters
+ **optional** | ***UserApiUserSavePreferencesOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a UserSavePreferencesOpts struct
+Optional parameters are passed through a pointer to a UserApiUserSavePreferencesOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

@@ -1,6 +1,6 @@
 /*
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -29,7 +29,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Margin
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-12-17T20:26:16.019-05:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-11-15T14:00:25.412+08:00")
 public class Margin {
   @SerializedName("account")
   private BigDecimal account = null;
@@ -145,14 +145,20 @@ public class Margin {
   @SerializedName("withdrawableMargin")
   private BigDecimal withdrawableMargin = null;
 
-  @SerializedName("timestamp")
-  private OffsetDateTime timestamp = null;
-
   @SerializedName("grossLastValue")
   private BigDecimal grossLastValue = null;
 
   @SerializedName("commission")
   private Double commission = 0.0d;
+
+  @SerializedName("makerFeeDiscount")
+  private Double makerFeeDiscount = 0.0d;
+
+  @SerializedName("takerFeeDiscount")
+  private Double takerFeeDiscount = 0.0d;
+
+  @SerializedName("timestamp")
+  private OffsetDateTime timestamp = null;
 
   public Margin account(BigDecimal account) {
     this.account = account;
@@ -838,24 +844,6 @@ public class Margin {
     this.withdrawableMargin = withdrawableMargin;
   }
 
-  public Margin timestamp(OffsetDateTime timestamp) {
-    this.timestamp = timestamp;
-    return this;
-  }
-
-   /**
-   * Get timestamp
-   * @return timestamp
-  **/
-  @ApiModelProperty(value = "")
-  public OffsetDateTime getTimestamp() {
-    return timestamp;
-  }
-
-  public void setTimestamp(OffsetDateTime timestamp) {
-    this.timestamp = timestamp;
-  }
-
   public Margin grossLastValue(BigDecimal grossLastValue) {
     this.grossLastValue = grossLastValue;
     return this;
@@ -890,6 +878,60 @@ public class Margin {
 
   public void setCommission(Double commission) {
     this.commission = commission;
+  }
+
+  public Margin makerFeeDiscount(Double makerFeeDiscount) {
+    this.makerFeeDiscount = makerFeeDiscount;
+    return this;
+  }
+
+   /**
+   * Get makerFeeDiscount
+   * @return makerFeeDiscount
+  **/
+  @ApiModelProperty(value = "")
+  public Double getMakerFeeDiscount() {
+    return makerFeeDiscount;
+  }
+
+  public void setMakerFeeDiscount(Double makerFeeDiscount) {
+    this.makerFeeDiscount = makerFeeDiscount;
+  }
+
+  public Margin takerFeeDiscount(Double takerFeeDiscount) {
+    this.takerFeeDiscount = takerFeeDiscount;
+    return this;
+  }
+
+   /**
+   * Get takerFeeDiscount
+   * @return takerFeeDiscount
+  **/
+  @ApiModelProperty(value = "")
+  public Double getTakerFeeDiscount() {
+    return takerFeeDiscount;
+  }
+
+  public void setTakerFeeDiscount(Double takerFeeDiscount) {
+    this.takerFeeDiscount = takerFeeDiscount;
+  }
+
+  public Margin timestamp(OffsetDateTime timestamp) {
+    this.timestamp = timestamp;
+    return this;
+  }
+
+   /**
+   * Get timestamp
+   * @return timestamp
+  **/
+  @ApiModelProperty(value = "")
+  public OffsetDateTime getTimestamp() {
+    return timestamp;
+  }
+
+  public void setTimestamp(OffsetDateTime timestamp) {
+    this.timestamp = timestamp;
   }
 
 
@@ -940,14 +982,16 @@ public class Margin {
         Objects.equals(this.excessMarginPcnt, margin.excessMarginPcnt) &&
         Objects.equals(this.availableMargin, margin.availableMargin) &&
         Objects.equals(this.withdrawableMargin, margin.withdrawableMargin) &&
-        Objects.equals(this.timestamp, margin.timestamp) &&
         Objects.equals(this.grossLastValue, margin.grossLastValue) &&
-        Objects.equals(this.commission, margin.commission);
+        Objects.equals(this.commission, margin.commission) &&
+        Objects.equals(this.makerFeeDiscount, margin.makerFeeDiscount) &&
+        Objects.equals(this.takerFeeDiscount, margin.takerFeeDiscount) &&
+        Objects.equals(this.timestamp, margin.timestamp);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(account, currency, riskLimit, prevState, state, action, amount, pendingCredit, pendingDebit, confirmedDebit, prevRealisedPnl, prevUnrealisedPnl, grossComm, grossOpenCost, grossOpenPremium, grossExecCost, grossMarkValue, riskValue, taxableMargin, initMargin, maintMargin, sessionMargin, targetExcessMargin, varMargin, realisedPnl, unrealisedPnl, indicativeTax, unrealisedProfit, syntheticMargin, walletBalance, marginBalance, marginBalancePcnt, marginLeverage, marginUsedPcnt, excessMargin, excessMarginPcnt, availableMargin, withdrawableMargin, timestamp, grossLastValue, commission);
+    return Objects.hash(account, currency, riskLimit, prevState, state, action, amount, pendingCredit, pendingDebit, confirmedDebit, prevRealisedPnl, prevUnrealisedPnl, grossComm, grossOpenCost, grossOpenPremium, grossExecCost, grossMarkValue, riskValue, taxableMargin, initMargin, maintMargin, sessionMargin, targetExcessMargin, varMargin, realisedPnl, unrealisedPnl, indicativeTax, unrealisedProfit, syntheticMargin, walletBalance, marginBalance, marginBalancePcnt, marginLeverage, marginUsedPcnt, excessMargin, excessMarginPcnt, availableMargin, withdrawableMargin, grossLastValue, commission, makerFeeDiscount, takerFeeDiscount, timestamp);
   }
 
 
@@ -994,9 +1038,11 @@ public class Margin {
     sb.append("    excessMarginPcnt: ").append(toIndentedString(excessMarginPcnt)).append("\n");
     sb.append("    availableMargin: ").append(toIndentedString(availableMargin)).append("\n");
     sb.append("    withdrawableMargin: ").append(toIndentedString(withdrawableMargin)).append("\n");
-    sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("    grossLastValue: ").append(toIndentedString(grossLastValue)).append("\n");
     sb.append("    commission: ").append(toIndentedString(commission)).append("\n");
+    sb.append("    makerFeeDiscount: ").append(toIndentedString(makerFeeDiscount)).append("\n");
+    sb.append("    takerFeeDiscount: ").append(toIndentedString(takerFeeDiscount)).append("\n");
+    sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("}");
     return sb.toString();
   }

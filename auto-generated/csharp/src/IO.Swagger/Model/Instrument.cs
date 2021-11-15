@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  - --  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  - --  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -46,6 +46,7 @@ namespace IO.Swagger.Model
         /// <param name="front">front.</param>
         /// <param name="expiry">expiry.</param>
         /// <param name="settle">settle.</param>
+        /// <param name="listedSettle">listedSettle.</param>
         /// <param name="relistInterval">relistInterval.</param>
         /// <param name="inverseLeg">inverseLeg.</param>
         /// <param name="sellLeg">sellLeg.</param>
@@ -139,9 +140,10 @@ namespace IO.Swagger.Model
         /// <param name="indicativeTaxRate">indicativeTaxRate.</param>
         /// <param name="indicativeSettlePrice">indicativeSettlePrice.</param>
         /// <param name="optionUnderlyingPrice">optionUnderlyingPrice.</param>
+        /// <param name="settledPriceAdjustmentRate">settledPriceAdjustmentRate.</param>
         /// <param name="settledPrice">settledPrice.</param>
         /// <param name="timestamp">timestamp.</param>
-        public Instrument(string symbol = default(string), string rootSymbol = default(string), string state = default(string), string typ = default(string), DateTime? listing = default(DateTime?), DateTime? front = default(DateTime?), DateTime? expiry = default(DateTime?), DateTime? settle = default(DateTime?), DateTime? relistInterval = default(DateTime?), string inverseLeg = default(string), string sellLeg = default(string), string buyLeg = default(string), double? optionStrikePcnt = default(double?), double? optionStrikeRound = default(double?), double? optionStrikePrice = default(double?), double? optionMultiplier = default(double?), string positionCurrency = default(string), string underlying = default(string), string quoteCurrency = default(string), string underlyingSymbol = default(string), string reference = default(string), string referenceSymbol = default(string), DateTime? calcInterval = default(DateTime?), DateTime? publishInterval = default(DateTime?), DateTime? publishTime = default(DateTime?), decimal? maxOrderQty = default(decimal?), double? maxPrice = default(double?), decimal? lotSize = default(decimal?), double? tickSize = default(double?), decimal? multiplier = default(decimal?), string settlCurrency = default(string), decimal? underlyingToPositionMultiplier = default(decimal?), decimal? underlyingToSettleMultiplier = default(decimal?), decimal? quoteToSettleMultiplier = default(decimal?), bool? isQuanto = default(bool?), bool? isInverse = default(bool?), double? initMargin = default(double?), double? maintMargin = default(double?), decimal? riskLimit = default(decimal?), decimal? riskStep = default(decimal?), double? limit = default(double?), bool? capped = default(bool?), bool? taxed = default(bool?), bool? deleverage = default(bool?), double? makerFee = default(double?), double? takerFee = default(double?), double? settlementFee = default(double?), double? insuranceFee = default(double?), string fundingBaseSymbol = default(string), string fundingQuoteSymbol = default(string), string fundingPremiumSymbol = default(string), DateTime? fundingTimestamp = default(DateTime?), DateTime? fundingInterval = default(DateTime?), double? fundingRate = default(double?), double? indicativeFundingRate = default(double?), DateTime? rebalanceTimestamp = default(DateTime?), DateTime? rebalanceInterval = default(DateTime?), DateTime? openingTimestamp = default(DateTime?), DateTime? closingTimestamp = default(DateTime?), DateTime? sessionInterval = default(DateTime?), double? prevClosePrice = default(double?), double? limitDownPrice = default(double?), double? limitUpPrice = default(double?), double? bankruptLimitDownPrice = default(double?), double? bankruptLimitUpPrice = default(double?), decimal? prevTotalVolume = default(decimal?), decimal? totalVolume = default(decimal?), decimal? volume = default(decimal?), decimal? volume24h = default(decimal?), decimal? prevTotalTurnover = default(decimal?), decimal? totalTurnover = default(decimal?), decimal? turnover = default(decimal?), decimal? turnover24h = default(decimal?), double? homeNotional24h = default(double?), double? foreignNotional24h = default(double?), double? prevPrice24h = default(double?), double? vwap = default(double?), double? highPrice = default(double?), double? lowPrice = default(double?), double? lastPrice = default(double?), double? lastPriceProtected = default(double?), string lastTickDirection = default(string), double? lastChangePcnt = default(double?), double? bidPrice = default(double?), double? midPrice = default(double?), double? askPrice = default(double?), double? impactBidPrice = default(double?), double? impactMidPrice = default(double?), double? impactAskPrice = default(double?), bool? hasLiquidity = default(bool?), decimal? openInterest = default(decimal?), decimal? openValue = default(decimal?), string fairMethod = default(string), double? fairBasisRate = default(double?), double? fairBasis = default(double?), double? fairPrice = default(double?), string markMethod = default(string), double? markPrice = default(double?), double? indicativeTaxRate = default(double?), double? indicativeSettlePrice = default(double?), double? optionUnderlyingPrice = default(double?), double? settledPrice = default(double?), DateTime? timestamp = default(DateTime?))
+        public Instrument(string symbol = default(string), string rootSymbol = default(string), string state = default(string), string typ = default(string), DateTime? listing = default(DateTime?), DateTime? front = default(DateTime?), DateTime? expiry = default(DateTime?), DateTime? settle = default(DateTime?), DateTime? listedSettle = default(DateTime?), DateTime? relistInterval = default(DateTime?), string inverseLeg = default(string), string sellLeg = default(string), string buyLeg = default(string), double? optionStrikePcnt = default(double?), double? optionStrikeRound = default(double?), double? optionStrikePrice = default(double?), double? optionMultiplier = default(double?), string positionCurrency = default(string), string underlying = default(string), string quoteCurrency = default(string), string underlyingSymbol = default(string), string reference = default(string), string referenceSymbol = default(string), DateTime? calcInterval = default(DateTime?), DateTime? publishInterval = default(DateTime?), DateTime? publishTime = default(DateTime?), decimal? maxOrderQty = default(decimal?), double? maxPrice = default(double?), decimal? lotSize = default(decimal?), double? tickSize = default(double?), decimal? multiplier = default(decimal?), string settlCurrency = default(string), decimal? underlyingToPositionMultiplier = default(decimal?), decimal? underlyingToSettleMultiplier = default(decimal?), decimal? quoteToSettleMultiplier = default(decimal?), bool? isQuanto = default(bool?), bool? isInverse = default(bool?), double? initMargin = default(double?), double? maintMargin = default(double?), decimal? riskLimit = default(decimal?), decimal? riskStep = default(decimal?), double? limit = default(double?), bool? capped = default(bool?), bool? taxed = default(bool?), bool? deleverage = default(bool?), double? makerFee = default(double?), double? takerFee = default(double?), double? settlementFee = default(double?), double? insuranceFee = default(double?), string fundingBaseSymbol = default(string), string fundingQuoteSymbol = default(string), string fundingPremiumSymbol = default(string), DateTime? fundingTimestamp = default(DateTime?), DateTime? fundingInterval = default(DateTime?), double? fundingRate = default(double?), double? indicativeFundingRate = default(double?), DateTime? rebalanceTimestamp = default(DateTime?), DateTime? rebalanceInterval = default(DateTime?), DateTime? openingTimestamp = default(DateTime?), DateTime? closingTimestamp = default(DateTime?), DateTime? sessionInterval = default(DateTime?), double? prevClosePrice = default(double?), double? limitDownPrice = default(double?), double? limitUpPrice = default(double?), double? bankruptLimitDownPrice = default(double?), double? bankruptLimitUpPrice = default(double?), decimal? prevTotalVolume = default(decimal?), decimal? totalVolume = default(decimal?), decimal? volume = default(decimal?), decimal? volume24h = default(decimal?), decimal? prevTotalTurnover = default(decimal?), decimal? totalTurnover = default(decimal?), decimal? turnover = default(decimal?), decimal? turnover24h = default(decimal?), double? homeNotional24h = default(double?), double? foreignNotional24h = default(double?), double? prevPrice24h = default(double?), double? vwap = default(double?), double? highPrice = default(double?), double? lowPrice = default(double?), double? lastPrice = default(double?), double? lastPriceProtected = default(double?), string lastTickDirection = default(string), double? lastChangePcnt = default(double?), double? bidPrice = default(double?), double? midPrice = default(double?), double? askPrice = default(double?), double? impactBidPrice = default(double?), double? impactMidPrice = default(double?), double? impactAskPrice = default(double?), bool? hasLiquidity = default(bool?), decimal? openInterest = default(decimal?), decimal? openValue = default(decimal?), string fairMethod = default(string), double? fairBasisRate = default(double?), double? fairBasis = default(double?), double? fairPrice = default(double?), string markMethod = default(string), double? markPrice = default(double?), double? indicativeTaxRate = default(double?), double? indicativeSettlePrice = default(double?), double? optionUnderlyingPrice = default(double?), double? settledPriceAdjustmentRate = default(double?), double? settledPrice = default(double?), DateTime? timestamp = default(DateTime?))
         {
             // to ensure "symbol" is required (not null)
             if (symbol == null)
@@ -159,6 +161,7 @@ namespace IO.Swagger.Model
             this.Front = front;
             this.Expiry = expiry;
             this.Settle = settle;
+            this.ListedSettle = listedSettle;
             this.RelistInterval = relistInterval;
             this.InverseLeg = inverseLeg;
             this.SellLeg = sellLeg;
@@ -252,6 +255,7 @@ namespace IO.Swagger.Model
             this.IndicativeTaxRate = indicativeTaxRate;
             this.IndicativeSettlePrice = indicativeSettlePrice;
             this.OptionUnderlyingPrice = optionUnderlyingPrice;
+            this.SettledPriceAdjustmentRate = settledPriceAdjustmentRate;
             this.SettledPrice = settledPrice;
             this.Timestamp = timestamp;
         }
@@ -303,6 +307,12 @@ namespace IO.Swagger.Model
         /// </summary>
         [DataMember(Name="settle", EmitDefaultValue=false)]
         public DateTime? Settle { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ListedSettle
+        /// </summary>
+        [DataMember(Name="listedSettle", EmitDefaultValue=false)]
+        public DateTime? ListedSettle { get; set; }
 
         /// <summary>
         /// Gets or Sets RelistInterval
@@ -863,6 +873,12 @@ namespace IO.Swagger.Model
         public double? OptionUnderlyingPrice { get; set; }
 
         /// <summary>
+        /// Gets or Sets SettledPriceAdjustmentRate
+        /// </summary>
+        [DataMember(Name="settledPriceAdjustmentRate", EmitDefaultValue=false)]
+        public double? SettledPriceAdjustmentRate { get; set; }
+
+        /// <summary>
         /// Gets or Sets SettledPrice
         /// </summary>
         [DataMember(Name="settledPrice", EmitDefaultValue=false)]
@@ -890,6 +906,7 @@ namespace IO.Swagger.Model
             sb.Append("  Front: ").Append(Front).Append("\n");
             sb.Append("  Expiry: ").Append(Expiry).Append("\n");
             sb.Append("  Settle: ").Append(Settle).Append("\n");
+            sb.Append("  ListedSettle: ").Append(ListedSettle).Append("\n");
             sb.Append("  RelistInterval: ").Append(RelistInterval).Append("\n");
             sb.Append("  InverseLeg: ").Append(InverseLeg).Append("\n");
             sb.Append("  SellLeg: ").Append(SellLeg).Append("\n");
@@ -983,6 +1000,7 @@ namespace IO.Swagger.Model
             sb.Append("  IndicativeTaxRate: ").Append(IndicativeTaxRate).Append("\n");
             sb.Append("  IndicativeSettlePrice: ").Append(IndicativeSettlePrice).Append("\n");
             sb.Append("  OptionUnderlyingPrice: ").Append(OptionUnderlyingPrice).Append("\n");
+            sb.Append("  SettledPriceAdjustmentRate: ").Append(SettledPriceAdjustmentRate).Append("\n");
             sb.Append("  SettledPrice: ").Append(SettledPrice).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("}\n");
@@ -1058,6 +1076,11 @@ namespace IO.Swagger.Model
                     this.Settle == input.Settle ||
                     (this.Settle != null &&
                     this.Settle.Equals(input.Settle))
+                ) && 
+                (
+                    this.ListedSettle == input.ListedSettle ||
+                    (this.ListedSettle != null &&
+                    this.ListedSettle.Equals(input.ListedSettle))
                 ) && 
                 (
                     this.RelistInterval == input.RelistInterval ||
@@ -1525,6 +1548,11 @@ namespace IO.Swagger.Model
                     this.OptionUnderlyingPrice.Equals(input.OptionUnderlyingPrice))
                 ) && 
                 (
+                    this.SettledPriceAdjustmentRate == input.SettledPriceAdjustmentRate ||
+                    (this.SettledPriceAdjustmentRate != null &&
+                    this.SettledPriceAdjustmentRate.Equals(input.SettledPriceAdjustmentRate))
+                ) && 
+                (
                     this.SettledPrice == input.SettledPrice ||
                     (this.SettledPrice != null &&
                     this.SettledPrice.Equals(input.SettledPrice))
@@ -1561,6 +1589,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.Expiry.GetHashCode();
                 if (this.Settle != null)
                     hashCode = hashCode * 59 + this.Settle.GetHashCode();
+                if (this.ListedSettle != null)
+                    hashCode = hashCode * 59 + this.ListedSettle.GetHashCode();
                 if (this.RelistInterval != null)
                     hashCode = hashCode * 59 + this.RelistInterval.GetHashCode();
                 if (this.InverseLeg != null)
@@ -1747,6 +1777,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.IndicativeSettlePrice.GetHashCode();
                 if (this.OptionUnderlyingPrice != null)
                     hashCode = hashCode * 59 + this.OptionUnderlyingPrice.GetHashCode();
+                if (this.SettledPriceAdjustmentRate != null)
+                    hashCode = hashCode * 59 + this.SettledPriceAdjustmentRate.GetHashCode();
                 if (this.SettledPrice != null)
                     hashCode = hashCode * 59 + this.SettledPrice.GetHashCode();
                 if (this.Timestamp != null)

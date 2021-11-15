@@ -41,9 +41,11 @@ Name | Type | Description | Notes
 **excessMarginPcnt** | **NSNumber*** |  | [optional] [default to @0.0]
 **availableMargin** | **NSNumber*** |  | [optional] 
 **withdrawableMargin** | **NSNumber*** |  | [optional] 
-**timestamp** | **NSDate*** |  | [optional] 
 **grossLastValue** | **NSNumber*** |  | [optional] 
 **commission** | **NSNumber*** |  | [optional] [default to @0.0]
+**makerFeeDiscount** | **NSNumber*** |  | [optional] [default to @0.0]
+**takerFeeDiscount** | **NSNumber*** |  | [optional] [default to @0.0]
+**timestamp** | **NSDate*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -12,18 +12,14 @@ import Foundation
 
 public struct Liquidation: Codable {
 
-    public var orderID: String
-    public var symbol: String?
-    public var side: String?
-    public var price: Double?
-    public var leavesQty: Double?
+    public var _id: Double?
 
-    public init(orderID: String, symbol: String?, side: String?, price: Double?, leavesQty: Double?) {
-        self.orderID = orderID
-        self.symbol = symbol
-        self.side = side
-        self.price = price
-        self.leavesQty = leavesQty
+    public init(_id: Double?) {
+        self._id = _id
+    }
+
+    public enum CodingKeys: String, CodingKey { 
+        case _id = "id"
     }
 
 

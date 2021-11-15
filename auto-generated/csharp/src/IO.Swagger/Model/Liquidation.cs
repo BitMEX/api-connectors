@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  - --  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  - --  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -33,62 +33,17 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Liquidation" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Liquidation() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Liquidation" /> class.
-        /// </summary>
-        /// <param name="orderID">orderID (required).</param>
-        /// <param name="symbol">symbol.</param>
-        /// <param name="side">side.</param>
-        /// <param name="price">price.</param>
-        /// <param name="leavesQty">leavesQty.</param>
-        public Liquidation(string orderID = default(string), string symbol = default(string), string side = default(string), double? price = default(double?), decimal? leavesQty = default(decimal?))
+        /// <param name="id">id.</param>
+        public Liquidation(double? id = default(double?))
         {
-            // to ensure "orderID" is required (not null)
-            if (orderID == null)
-            {
-                throw new InvalidDataException("orderID is a required property for Liquidation and cannot be null");
-            }
-            else
-            {
-                this.OrderID = orderID;
-            }
-            this.Symbol = symbol;
-            this.Side = side;
-            this.Price = price;
-            this.LeavesQty = leavesQty;
+            this.Id = id;
         }
         
         /// <summary>
-        /// Gets or Sets OrderID
+        /// Gets or Sets Id
         /// </summary>
-        [DataMember(Name="orderID", EmitDefaultValue=false)]
-        public string OrderID { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Symbol
-        /// </summary>
-        [DataMember(Name="symbol", EmitDefaultValue=false)]
-        public string Symbol { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Side
-        /// </summary>
-        [DataMember(Name="side", EmitDefaultValue=false)]
-        public string Side { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Price
-        /// </summary>
-        [DataMember(Name="price", EmitDefaultValue=false)]
-        public double? Price { get; set; }
-
-        /// <summary>
-        /// Gets or Sets LeavesQty
-        /// </summary>
-        [DataMember(Name="leavesQty", EmitDefaultValue=false)]
-        public decimal? LeavesQty { get; set; }
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public double? Id { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -98,11 +53,7 @@ namespace IO.Swagger.Model
         {
             var sb = new StringBuilder();
             sb.Append("class Liquidation {\n");
-            sb.Append("  OrderID: ").Append(OrderID).Append("\n");
-            sb.Append("  Symbol: ").Append(Symbol).Append("\n");
-            sb.Append("  Side: ").Append(Side).Append("\n");
-            sb.Append("  Price: ").Append(Price).Append("\n");
-            sb.Append("  LeavesQty: ").Append(LeavesQty).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -138,29 +89,9 @@ namespace IO.Swagger.Model
 
             return 
                 (
-                    this.OrderID == input.OrderID ||
-                    (this.OrderID != null &&
-                    this.OrderID.Equals(input.OrderID))
-                ) && 
-                (
-                    this.Symbol == input.Symbol ||
-                    (this.Symbol != null &&
-                    this.Symbol.Equals(input.Symbol))
-                ) && 
-                (
-                    this.Side == input.Side ||
-                    (this.Side != null &&
-                    this.Side.Equals(input.Side))
-                ) && 
-                (
-                    this.Price == input.Price ||
-                    (this.Price != null &&
-                    this.Price.Equals(input.Price))
-                ) && 
-                (
-                    this.LeavesQty == input.LeavesQty ||
-                    (this.LeavesQty != null &&
-                    this.LeavesQty.Equals(input.LeavesQty))
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 );
         }
 
@@ -173,16 +104,8 @@ namespace IO.Swagger.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.OrderID != null)
-                    hashCode = hashCode * 59 + this.OrderID.GetHashCode();
-                if (this.Symbol != null)
-                    hashCode = hashCode * 59 + this.Symbol.GetHashCode();
-                if (this.Side != null)
-                    hashCode = hashCode * 59 + this.Side.GetHashCode();
-                if (this.Price != null)
-                    hashCode = hashCode * 59 + this.Price.GetHashCode();
-                if (this.LeavesQty != null)
-                    hashCode = hashCode * 59 + this.LeavesQty.GetHashCode();
+                if (this.Id != null)
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
                 return hashCode;
             }
         }

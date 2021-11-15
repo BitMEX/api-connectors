@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -48,6 +48,8 @@ public class UserPreferences {
   private Boolean hideNameFromLeaderboard = null;
   @SerializedName("hideNotifications")
   private List<String> hideNotifications = null;
+  @SerializedName("hidePhoneConfirm")
+  private Boolean hidePhoneConfirm = null;
   @SerializedName("locale")
   private String locale = null;
   @SerializedName("msgsSeen")
@@ -218,6 +220,16 @@ public class UserPreferences {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Boolean getHidePhoneConfirm() {
+    return hidePhoneConfirm;
+  }
+  public void setHidePhoneConfirm(Boolean hidePhoneConfirm) {
+    this.hidePhoneConfirm = hidePhoneConfirm;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public String getLocale() {
     return locale;
   }
@@ -369,6 +381,7 @@ public class UserPreferences {
         (this.hideFromLeaderboard == null ? userPreferences.hideFromLeaderboard == null : this.hideFromLeaderboard.equals(userPreferences.hideFromLeaderboard)) &&
         (this.hideNameFromLeaderboard == null ? userPreferences.hideNameFromLeaderboard == null : this.hideNameFromLeaderboard.equals(userPreferences.hideNameFromLeaderboard)) &&
         (this.hideNotifications == null ? userPreferences.hideNotifications == null : this.hideNotifications.equals(userPreferences.hideNotifications)) &&
+        (this.hidePhoneConfirm == null ? userPreferences.hidePhoneConfirm == null : this.hidePhoneConfirm.equals(userPreferences.hidePhoneConfirm)) &&
         (this.locale == null ? userPreferences.locale == null : this.locale.equals(userPreferences.locale)) &&
         (this.msgsSeen == null ? userPreferences.msgsSeen == null : this.msgsSeen.equals(userPreferences.msgsSeen)) &&
         (this.orderBookBinning == null ? userPreferences.orderBookBinning == null : this.orderBookBinning.equals(userPreferences.orderBookBinning)) &&
@@ -401,6 +414,7 @@ public class UserPreferences {
     result = 31 * result + (this.hideFromLeaderboard == null ? 0: this.hideFromLeaderboard.hashCode());
     result = 31 * result + (this.hideNameFromLeaderboard == null ? 0: this.hideNameFromLeaderboard.hashCode());
     result = 31 * result + (this.hideNotifications == null ? 0: this.hideNotifications.hashCode());
+    result = 31 * result + (this.hidePhoneConfirm == null ? 0: this.hidePhoneConfirm.hashCode());
     result = 31 * result + (this.locale == null ? 0: this.locale.hashCode());
     result = 31 * result + (this.msgsSeen == null ? 0: this.msgsSeen.hashCode());
     result = 31 * result + (this.orderBookBinning == null ? 0: this.orderBookBinning.hashCode());
@@ -436,6 +450,7 @@ public class UserPreferences {
     sb.append("  hideFromLeaderboard: ").append(hideFromLeaderboard).append("\n");
     sb.append("  hideNameFromLeaderboard: ").append(hideNameFromLeaderboard).append("\n");
     sb.append("  hideNotifications: ").append(hideNotifications).append("\n");
+    sb.append("  hidePhoneConfirm: ").append(hidePhoneConfirm).append("\n");
     sb.append("  locale: ").append(locale).append("\n");
     sb.append("  msgsSeen: ").append(msgsSeen).append("\n");
     sb.append("  orderBookBinning: ").append(orderBookBinning).append("\n");

@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -15,6 +15,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from swagger_client.configuration import Configuration
 
 
 class Margin(object):
@@ -69,9 +71,11 @@ class Margin(object):
         'excess_margin_pcnt': 'float',
         'available_margin': 'float',
         'withdrawable_margin': 'float',
-        'timestamp': 'datetime',
         'gross_last_value': 'float',
-        'commission': 'float'
+        'commission': 'float',
+        'maker_fee_discount': 'float',
+        'taker_fee_discount': 'float',
+        'timestamp': 'datetime'
     }
 
     attribute_map = {
@@ -113,13 +117,18 @@ class Margin(object):
         'excess_margin_pcnt': 'excessMarginPcnt',
         'available_margin': 'availableMargin',
         'withdrawable_margin': 'withdrawableMargin',
-        'timestamp': 'timestamp',
         'gross_last_value': 'grossLastValue',
-        'commission': 'commission'
+        'commission': 'commission',
+        'maker_fee_discount': 'makerFeeDiscount',
+        'taker_fee_discount': 'takerFeeDiscount',
+        'timestamp': 'timestamp'
     }
 
-    def __init__(self, account=None, currency=None, risk_limit=None, prev_state=None, state=None, action=None, amount=None, pending_credit=None, pending_debit=None, confirmed_debit=None, prev_realised_pnl=None, prev_unrealised_pnl=None, gross_comm=None, gross_open_cost=None, gross_open_premium=None, gross_exec_cost=None, gross_mark_value=None, risk_value=None, taxable_margin=None, init_margin=None, maint_margin=None, session_margin=None, target_excess_margin=None, var_margin=None, realised_pnl=None, unrealised_pnl=None, indicative_tax=None, unrealised_profit=None, synthetic_margin=None, wallet_balance=None, margin_balance=None, margin_balance_pcnt=0.0, margin_leverage=0.0, margin_used_pcnt=0.0, excess_margin=None, excess_margin_pcnt=0.0, available_margin=None, withdrawable_margin=None, timestamp=None, gross_last_value=None, commission=0.0):  # noqa: E501
+    def __init__(self, account=None, currency=None, risk_limit=None, prev_state=None, state=None, action=None, amount=None, pending_credit=None, pending_debit=None, confirmed_debit=None, prev_realised_pnl=None, prev_unrealised_pnl=None, gross_comm=None, gross_open_cost=None, gross_open_premium=None, gross_exec_cost=None, gross_mark_value=None, risk_value=None, taxable_margin=None, init_margin=None, maint_margin=None, session_margin=None, target_excess_margin=None, var_margin=None, realised_pnl=None, unrealised_pnl=None, indicative_tax=None, unrealised_profit=None, synthetic_margin=None, wallet_balance=None, margin_balance=None, margin_balance_pcnt=0.0, margin_leverage=0.0, margin_used_pcnt=0.0, excess_margin=None, excess_margin_pcnt=0.0, available_margin=None, withdrawable_margin=None, gross_last_value=None, commission=0.0, maker_fee_discount=0.0, taker_fee_discount=0.0, timestamp=None, _configuration=None):  # noqa: E501
         """Margin - a model defined in Swagger"""  # noqa: E501
+        if _configuration is None:
+            _configuration = Configuration()
+        self._configuration = _configuration
 
         self._account = None
         self._currency = None
@@ -159,9 +168,11 @@ class Margin(object):
         self._excess_margin_pcnt = None
         self._available_margin = None
         self._withdrawable_margin = None
-        self._timestamp = None
         self._gross_last_value = None
         self._commission = None
+        self._maker_fee_discount = None
+        self._taker_fee_discount = None
+        self._timestamp = None
         self.discriminator = None
 
         self.account = account
@@ -238,12 +249,16 @@ class Margin(object):
             self.available_margin = available_margin
         if withdrawable_margin is not None:
             self.withdrawable_margin = withdrawable_margin
-        if timestamp is not None:
-            self.timestamp = timestamp
         if gross_last_value is not None:
             self.gross_last_value = gross_last_value
         if commission is not None:
             self.commission = commission
+        if maker_fee_discount is not None:
+            self.maker_fee_discount = maker_fee_discount
+        if taker_fee_discount is not None:
+            self.taker_fee_discount = taker_fee_discount
+        if timestamp is not None:
+            self.timestamp = timestamp
 
     @property
     def account(self):
@@ -263,7 +278,7 @@ class Margin(object):
         :param account: The account of this Margin.  # noqa: E501
         :type: float
         """
-        if account is None:
+        if self._configuration.client_side_validation and account is None:
             raise ValueError("Invalid value for `account`, must not be `None`")  # noqa: E501
 
         self._account = account
@@ -286,7 +301,7 @@ class Margin(object):
         :param currency: The currency of this Margin.  # noqa: E501
         :type: str
         """
-        if currency is None:
+        if self._configuration.client_side_validation and currency is None:
             raise ValueError("Invalid value for `currency`, must not be `None`")  # noqa: E501
 
         self._currency = currency
@@ -1048,27 +1063,6 @@ class Margin(object):
         self._withdrawable_margin = withdrawable_margin
 
     @property
-    def timestamp(self):
-        """Gets the timestamp of this Margin.  # noqa: E501
-
-
-        :return: The timestamp of this Margin.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._timestamp
-
-    @timestamp.setter
-    def timestamp(self, timestamp):
-        """Sets the timestamp of this Margin.
-
-
-        :param timestamp: The timestamp of this Margin.  # noqa: E501
-        :type: datetime
-        """
-
-        self._timestamp = timestamp
-
-    @property
     def gross_last_value(self):
         """Gets the gross_last_value of this Margin.  # noqa: E501
 
@@ -1110,6 +1104,69 @@ class Margin(object):
 
         self._commission = commission
 
+    @property
+    def maker_fee_discount(self):
+        """Gets the maker_fee_discount of this Margin.  # noqa: E501
+
+
+        :return: The maker_fee_discount of this Margin.  # noqa: E501
+        :rtype: float
+        """
+        return self._maker_fee_discount
+
+    @maker_fee_discount.setter
+    def maker_fee_discount(self, maker_fee_discount):
+        """Sets the maker_fee_discount of this Margin.
+
+
+        :param maker_fee_discount: The maker_fee_discount of this Margin.  # noqa: E501
+        :type: float
+        """
+
+        self._maker_fee_discount = maker_fee_discount
+
+    @property
+    def taker_fee_discount(self):
+        """Gets the taker_fee_discount of this Margin.  # noqa: E501
+
+
+        :return: The taker_fee_discount of this Margin.  # noqa: E501
+        :rtype: float
+        """
+        return self._taker_fee_discount
+
+    @taker_fee_discount.setter
+    def taker_fee_discount(self, taker_fee_discount):
+        """Sets the taker_fee_discount of this Margin.
+
+
+        :param taker_fee_discount: The taker_fee_discount of this Margin.  # noqa: E501
+        :type: float
+        """
+
+        self._taker_fee_discount = taker_fee_discount
+
+    @property
+    def timestamp(self):
+        """Gets the timestamp of this Margin.  # noqa: E501
+
+
+        :return: The timestamp of this Margin.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._timestamp
+
+    @timestamp.setter
+    def timestamp(self, timestamp):
+        """Sets the timestamp of this Margin.
+
+
+        :param timestamp: The timestamp of this Margin.  # noqa: E501
+        :type: datetime
+        """
+
+        self._timestamp = timestamp
+
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -1150,8 +1207,11 @@ class Margin(object):
         if not isinstance(other, Margin):
             return False
 
-        return self.__dict__ == other.__dict__
+        return self.to_dict() == other.to_dict()
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        return not self == other
+        if not isinstance(other, Margin):
+            return True
+
+        return self.to_dict() != other.to_dict()

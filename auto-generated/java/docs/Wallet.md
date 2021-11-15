@@ -26,9 +26,6 @@ Name | Type | Description | Notes
 **pendingDebit** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **confirmedDebit** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **timestamp** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
-**addr** | **String** |  |  [optional]
-**script** | **String** |  |  [optional]
-**withdrawalLock** | **List&lt;String&gt;** |  |  [optional]
 
 
 

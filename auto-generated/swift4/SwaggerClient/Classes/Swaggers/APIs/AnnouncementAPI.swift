@@ -27,19 +27,7 @@ open class AnnouncementAPI {
     /**
      Get site announcements.
      - GET /announcement
-     - examples: [{contentType=application/json, example=[ {
-  "date" : "2000-01-23T04:56:07.000+00:00",
-  "link" : "link",
-  "id" : 0.80082819046101150206595775671303272247314453125,
-  "title" : "title",
-  "content" : "content"
-}, {
-  "date" : "2000-01-23T04:56:07.000+00:00",
-  "link" : "link",
-  "id" : 0.80082819046101150206595775671303272247314453125,
-  "title" : "title",
-  "content" : "content"
-} ]}]
+     - examples: [{contentType=application/json, example={}}]
      
      - parameter columns: (query) Array of column names to fetch. If omitted, will return all columns. (optional)
 
@@ -84,19 +72,7 @@ open class AnnouncementAPI {
      - API Key:
        - type: apiKey api-signature 
        - name: apiSignature
-     - examples: [{contentType=application/json, example=[ {
-  "date" : "2000-01-23T04:56:07.000+00:00",
-  "link" : "link",
-  "id" : 0.80082819046101150206595775671303272247314453125,
-  "title" : "title",
-  "content" : "content"
-}, {
-  "date" : "2000-01-23T04:56:07.000+00:00",
-  "link" : "link",
-  "id" : 0.80082819046101150206595775671303272247314453125,
-  "title" : "title",
-  "content" : "content"
-} ]}]
+     - examples: [{contentType=application/json, example={}}]
 
      - returns: RequestBuilder<[Announcement]> 
      */

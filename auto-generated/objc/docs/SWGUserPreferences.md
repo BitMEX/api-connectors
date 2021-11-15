@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **hideFromLeaderboard** | **NSNumber*** |  | [optional] [default to @(NO)]
 **hideNameFromLeaderboard** | **NSNumber*** |  | [optional] [default to @(YES)]
 **hideNotifications** | **NSArray&lt;NSString*&gt;*** |  | [optional] 
+**hidePhoneConfirm** | **NSNumber*** |  | [optional] [default to @(NO)]
 **locale** | **NSString*** |  | [optional] [default to @"en-US"]
 **msgsSeen** | **NSArray&lt;NSString*&gt;*** |  | [optional] 
 **orderBookBinning** | **NSObject*** |  | [optional] 

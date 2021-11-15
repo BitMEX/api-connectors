@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -15,6 +15,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from swagger_client.configuration import Configuration
 
 
 class Instrument(object):
@@ -39,6 +41,7 @@ class Instrument(object):
         'front': 'datetime',
         'expiry': 'datetime',
         'settle': 'datetime',
+        'listed_settle': 'datetime',
         'relist_interval': 'datetime',
         'inverse_leg': 'str',
         'sell_leg': 'str',
@@ -132,6 +135,7 @@ class Instrument(object):
         'indicative_tax_rate': 'float',
         'indicative_settle_price': 'float',
         'option_underlying_price': 'float',
+        'settled_price_adjustment_rate': 'float',
         'settled_price': 'float',
         'timestamp': 'datetime'
     }
@@ -145,6 +149,7 @@ class Instrument(object):
         'front': 'front',
         'expiry': 'expiry',
         'settle': 'settle',
+        'listed_settle': 'listedSettle',
         'relist_interval': 'relistInterval',
         'inverse_leg': 'inverseLeg',
         'sell_leg': 'sellLeg',
@@ -238,12 +243,16 @@ class Instrument(object):
         'indicative_tax_rate': 'indicativeTaxRate',
         'indicative_settle_price': 'indicativeSettlePrice',
         'option_underlying_price': 'optionUnderlyingPrice',
+        'settled_price_adjustment_rate': 'settledPriceAdjustmentRate',
         'settled_price': 'settledPrice',
         'timestamp': 'timestamp'
     }
 
-    def __init__(self, symbol=None, root_symbol=None, state=None, typ=None, listing=None, front=None, expiry=None, settle=None, relist_interval=None, inverse_leg=None, sell_leg=None, buy_leg=None, option_strike_pcnt=None, option_strike_round=None, option_strike_price=None, option_multiplier=None, position_currency=None, underlying=None, quote_currency=None, underlying_symbol=None, reference=None, reference_symbol=None, calc_interval=None, publish_interval=None, publish_time=None, max_order_qty=None, max_price=None, lot_size=None, tick_size=None, multiplier=None, settl_currency=None, underlying_to_position_multiplier=None, underlying_to_settle_multiplier=None, quote_to_settle_multiplier=None, is_quanto=None, is_inverse=None, init_margin=None, maint_margin=None, risk_limit=None, risk_step=None, limit=None, capped=None, taxed=None, deleverage=None, maker_fee=None, taker_fee=None, settlement_fee=None, insurance_fee=None, funding_base_symbol=None, funding_quote_symbol=None, funding_premium_symbol=None, funding_timestamp=None, funding_interval=None, funding_rate=None, indicative_funding_rate=None, rebalance_timestamp=None, rebalance_interval=None, opening_timestamp=None, closing_timestamp=None, session_interval=None, prev_close_price=None, limit_down_price=None, limit_up_price=None, bankrupt_limit_down_price=None, bankrupt_limit_up_price=None, prev_total_volume=None, total_volume=None, volume=None, volume24h=None, prev_total_turnover=None, total_turnover=None, turnover=None, turnover24h=None, home_notional24h=None, foreign_notional24h=None, prev_price24h=None, vwap=None, high_price=None, low_price=None, last_price=None, last_price_protected=None, last_tick_direction=None, last_change_pcnt=None, bid_price=None, mid_price=None, ask_price=None, impact_bid_price=None, impact_mid_price=None, impact_ask_price=None, has_liquidity=None, open_interest=None, open_value=None, fair_method=None, fair_basis_rate=None, fair_basis=None, fair_price=None, mark_method=None, mark_price=None, indicative_tax_rate=None, indicative_settle_price=None, option_underlying_price=None, settled_price=None, timestamp=None):  # noqa: E501
+    def __init__(self, symbol=None, root_symbol=None, state=None, typ=None, listing=None, front=None, expiry=None, settle=None, listed_settle=None, relist_interval=None, inverse_leg=None, sell_leg=None, buy_leg=None, option_strike_pcnt=None, option_strike_round=None, option_strike_price=None, option_multiplier=None, position_currency=None, underlying=None, quote_currency=None, underlying_symbol=None, reference=None, reference_symbol=None, calc_interval=None, publish_interval=None, publish_time=None, max_order_qty=None, max_price=None, lot_size=None, tick_size=None, multiplier=None, settl_currency=None, underlying_to_position_multiplier=None, underlying_to_settle_multiplier=None, quote_to_settle_multiplier=None, is_quanto=None, is_inverse=None, init_margin=None, maint_margin=None, risk_limit=None, risk_step=None, limit=None, capped=None, taxed=None, deleverage=None, maker_fee=None, taker_fee=None, settlement_fee=None, insurance_fee=None, funding_base_symbol=None, funding_quote_symbol=None, funding_premium_symbol=None, funding_timestamp=None, funding_interval=None, funding_rate=None, indicative_funding_rate=None, rebalance_timestamp=None, rebalance_interval=None, opening_timestamp=None, closing_timestamp=None, session_interval=None, prev_close_price=None, limit_down_price=None, limit_up_price=None, bankrupt_limit_down_price=None, bankrupt_limit_up_price=None, prev_total_volume=None, total_volume=None, volume=None, volume24h=None, prev_total_turnover=None, total_turnover=None, turnover=None, turnover24h=None, home_notional24h=None, foreign_notional24h=None, prev_price24h=None, vwap=None, high_price=None, low_price=None, last_price=None, last_price_protected=None, last_tick_direction=None, last_change_pcnt=None, bid_price=None, mid_price=None, ask_price=None, impact_bid_price=None, impact_mid_price=None, impact_ask_price=None, has_liquidity=None, open_interest=None, open_value=None, fair_method=None, fair_basis_rate=None, fair_basis=None, fair_price=None, mark_method=None, mark_price=None, indicative_tax_rate=None, indicative_settle_price=None, option_underlying_price=None, settled_price_adjustment_rate=None, settled_price=None, timestamp=None, _configuration=None):  # noqa: E501
         """Instrument - a model defined in Swagger"""  # noqa: E501
+        if _configuration is None:
+            _configuration = Configuration()
+        self._configuration = _configuration
 
         self._symbol = None
         self._root_symbol = None
@@ -253,6 +262,7 @@ class Instrument(object):
         self._front = None
         self._expiry = None
         self._settle = None
+        self._listed_settle = None
         self._relist_interval = None
         self._inverse_leg = None
         self._sell_leg = None
@@ -346,6 +356,7 @@ class Instrument(object):
         self._indicative_tax_rate = None
         self._indicative_settle_price = None
         self._option_underlying_price = None
+        self._settled_price_adjustment_rate = None
         self._settled_price = None
         self._timestamp = None
         self.discriminator = None
@@ -365,6 +376,8 @@ class Instrument(object):
             self.expiry = expiry
         if settle is not None:
             self.settle = settle
+        if listed_settle is not None:
+            self.listed_settle = listed_settle
         if relist_interval is not None:
             self.relist_interval = relist_interval
         if inverse_leg is not None:
@@ -551,6 +564,8 @@ class Instrument(object):
             self.indicative_settle_price = indicative_settle_price
         if option_underlying_price is not None:
             self.option_underlying_price = option_underlying_price
+        if settled_price_adjustment_rate is not None:
+            self.settled_price_adjustment_rate = settled_price_adjustment_rate
         if settled_price is not None:
             self.settled_price = settled_price
         if timestamp is not None:
@@ -574,7 +589,7 @@ class Instrument(object):
         :param symbol: The symbol of this Instrument.  # noqa: E501
         :type: str
         """
-        if symbol is None:
+        if self._configuration.client_side_validation and symbol is None:
             raise ValueError("Invalid value for `symbol`, must not be `None`")  # noqa: E501
 
         self._symbol = symbol
@@ -725,6 +740,27 @@ class Instrument(object):
         """
 
         self._settle = settle
+
+    @property
+    def listed_settle(self):
+        """Gets the listed_settle of this Instrument.  # noqa: E501
+
+
+        :return: The listed_settle of this Instrument.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._listed_settle
+
+    @listed_settle.setter
+    def listed_settle(self, listed_settle):
+        """Sets the listed_settle of this Instrument.
+
+
+        :param listed_settle: The listed_settle of this Instrument.  # noqa: E501
+        :type: datetime
+        """
+
+        self._listed_settle = listed_settle
 
     @property
     def relist_interval(self):
@@ -2680,6 +2716,27 @@ class Instrument(object):
         self._option_underlying_price = option_underlying_price
 
     @property
+    def settled_price_adjustment_rate(self):
+        """Gets the settled_price_adjustment_rate of this Instrument.  # noqa: E501
+
+
+        :return: The settled_price_adjustment_rate of this Instrument.  # noqa: E501
+        :rtype: float
+        """
+        return self._settled_price_adjustment_rate
+
+    @settled_price_adjustment_rate.setter
+    def settled_price_adjustment_rate(self, settled_price_adjustment_rate):
+        """Sets the settled_price_adjustment_rate of this Instrument.
+
+
+        :param settled_price_adjustment_rate: The settled_price_adjustment_rate of this Instrument.  # noqa: E501
+        :type: float
+        """
+
+        self._settled_price_adjustment_rate = settled_price_adjustment_rate
+
+    @property
     def settled_price(self):
         """Gets the settled_price of this Instrument.  # noqa: E501
 
@@ -2761,8 +2818,11 @@ class Instrument(object):
         if not isinstance(other, Instrument):
             return False
 
-        return self.__dict__ == other.__dict__
+        return self.to_dict() == other.to_dict()
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        return not self == other
+        if not isinstance(other, Instrument):
+            return True
+
+        return self.to_dict() != other.to_dict()

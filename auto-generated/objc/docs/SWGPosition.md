@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account** | **NSNumber*** |  | 
 **symbol** | **NSString*** |  | 
-**currency** | **NSString*** |  | 
+**currency** | **NSString*** |  | [optional] 
 **underlying** | **NSString*** |  | [optional] 
 **quoteCurrency** | **NSString*** |  | [optional] 
 **commission** | **NSNumber*** |  | [optional] [default to @0.0]

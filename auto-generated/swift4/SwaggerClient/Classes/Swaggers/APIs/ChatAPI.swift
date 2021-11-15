@@ -30,23 +30,7 @@ open class ChatAPI {
     /**
      Get chat messages.
      - GET /chat
-     - examples: [{contentType=application/json, example=[ {
-  "date" : "2000-01-23T04:56:07.000+00:00",
-  "html" : "html",
-  "id" : 0.80082819046101150206595775671303272247314453125,
-  "message" : "message",
-  "user" : "user",
-  "channelID" : 6.027456183070403,
-  "fromBot" : false
-}, {
-  "date" : "2000-01-23T04:56:07.000+00:00",
-  "html" : "html",
-  "id" : 0.80082819046101150206595775671303272247314453125,
-  "message" : "message",
-  "user" : "user",
-  "channelID" : 6.027456183070403,
-  "fromBot" : false
-} ]}]
+     - examples: [{contentType=application/json, example={}}]
      
      - parameter count: (query) Number of results to fetch. (optional, default to 100)
      - parameter start: (query) Starting ID for results. (optional, default to 0)
@@ -88,13 +72,7 @@ open class ChatAPI {
     /**
      Get available channels.
      - GET /chat/channels
-     - examples: [{contentType=application/json, example=[ {
-  "name" : "name",
-  "id" : 0.80082819046101150206595775671303272247314453125
-}, {
-  "name" : "name",
-  "id" : 0.80082819046101150206595775671303272247314453125
-} ]}]
+     - examples: [{contentType=application/json, example={}}]
 
      - returns: RequestBuilder<[ChatChannel]> 
      */
@@ -126,10 +104,7 @@ open class ChatAPI {
      Get connected users.
      - GET /chat/connected
      - Returns an array with browser users in the first position and API users (bots) in the second position.
-     - examples: [{contentType=application/json, example={
-  "bots" : 6.02745618307040320615897144307382404804229736328125,
-  "users" : 0.80082819046101150206595775671303272247314453125
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
 
      - returns: RequestBuilder<ConnectedUsers> 
      */
@@ -171,15 +146,7 @@ open class ChatAPI {
      - API Key:
        - type: apiKey api-signature 
        - name: apiSignature
-     - examples: [{contentType=application/json, example={
-  "date" : "2000-01-23T04:56:07.000+00:00",
-  "html" : "html",
-  "id" : 0.80082819046101150206595775671303272247314453125,
-  "message" : "message",
-  "user" : "user",
-  "channelID" : 6.027456183070403,
-  "fromBot" : false
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      
      - parameter message: (form)  
      - parameter channelID: (form) Channel to post to. Default 1 (English). (optional, default to 1)

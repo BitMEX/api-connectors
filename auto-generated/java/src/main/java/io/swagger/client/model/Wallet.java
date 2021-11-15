@@ -1,6 +1,6 @@
 /*
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -24,14 +24,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * Wallet
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-12-17T20:26:16.019-05:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-11-15T14:00:25.412+08:00")
 public class Wallet {
   @SerializedName("account")
   private BigDecimal account = null;
@@ -98,15 +96,6 @@ public class Wallet {
 
   @SerializedName("timestamp")
   private OffsetDateTime timestamp = null;
-
-  @SerializedName("addr")
-  private String addr = null;
-
-  @SerializedName("script")
-  private String script = null;
-
-  @SerializedName("withdrawalLock")
-  private List<String> withdrawalLock = null;
 
   public Wallet account(BigDecimal account) {
     this.account = account;
@@ -504,68 +493,6 @@ public class Wallet {
     this.timestamp = timestamp;
   }
 
-  public Wallet addr(String addr) {
-    this.addr = addr;
-    return this;
-  }
-
-   /**
-   * Get addr
-   * @return addr
-  **/
-  @ApiModelProperty(value = "")
-  public String getAddr() {
-    return addr;
-  }
-
-  public void setAddr(String addr) {
-    this.addr = addr;
-  }
-
-  public Wallet script(String script) {
-    this.script = script;
-    return this;
-  }
-
-   /**
-   * Get script
-   * @return script
-  **/
-  @ApiModelProperty(value = "")
-  public String getScript() {
-    return script;
-  }
-
-  public void setScript(String script) {
-    this.script = script;
-  }
-
-  public Wallet withdrawalLock(List<String> withdrawalLock) {
-    this.withdrawalLock = withdrawalLock;
-    return this;
-  }
-
-  public Wallet addWithdrawalLockItem(String withdrawalLockItem) {
-    if (this.withdrawalLock == null) {
-      this.withdrawalLock = new ArrayList<String>();
-    }
-    this.withdrawalLock.add(withdrawalLockItem);
-    return this;
-  }
-
-   /**
-   * Get withdrawalLock
-   * @return withdrawalLock
-  **/
-  @ApiModelProperty(value = "")
-  public List<String> getWithdrawalLock() {
-    return withdrawalLock;
-  }
-
-  public void setWithdrawalLock(List<String> withdrawalLock) {
-    this.withdrawalLock = withdrawalLock;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -597,15 +524,12 @@ public class Wallet {
         Objects.equals(this.pendingCredit, wallet.pendingCredit) &&
         Objects.equals(this.pendingDebit, wallet.pendingDebit) &&
         Objects.equals(this.confirmedDebit, wallet.confirmedDebit) &&
-        Objects.equals(this.timestamp, wallet.timestamp) &&
-        Objects.equals(this.addr, wallet.addr) &&
-        Objects.equals(this.script, wallet.script) &&
-        Objects.equals(this.withdrawalLock, wallet.withdrawalLock);
+        Objects.equals(this.timestamp, wallet.timestamp);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(account, currency, prevDeposited, prevWithdrawn, prevTransferIn, prevTransferOut, prevAmount, prevTimestamp, deltaDeposited, deltaWithdrawn, deltaTransferIn, deltaTransferOut, deltaAmount, deposited, withdrawn, transferIn, transferOut, amount, pendingCredit, pendingDebit, confirmedDebit, timestamp, addr, script, withdrawalLock);
+    return Objects.hash(account, currency, prevDeposited, prevWithdrawn, prevTransferIn, prevTransferOut, prevAmount, prevTimestamp, deltaDeposited, deltaWithdrawn, deltaTransferIn, deltaTransferOut, deltaAmount, deposited, withdrawn, transferIn, transferOut, amount, pendingCredit, pendingDebit, confirmedDebit, timestamp);
   }
 
 
@@ -636,9 +560,6 @@ public class Wallet {
     sb.append("    pendingDebit: ").append(toIndentedString(pendingDebit)).append("\n");
     sb.append("    confirmedDebit: ").append(toIndentedString(confirmedDebit)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
-    sb.append("    addr: ").append(toIndentedString(addr)).append("\n");
-    sb.append("    script: ").append(toIndentedString(script)).append("\n");
-    sb.append("    withdrawalLock: ").append(toIndentedString(withdrawalLock)).append("\n");
     sb.append("}");
     return sb.toString();
   }

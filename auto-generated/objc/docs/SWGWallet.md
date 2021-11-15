@@ -25,9 +25,6 @@ Name | Type | Description | Notes
 **pendingDebit** | **NSNumber*** |  | [optional] 
 **confirmedDebit** | **NSNumber*** |  | [optional] 
 **timestamp** | **NSDate*** |  | [optional] 
-**addr** | **NSString*** |  | [optional] 
-**script** | **NSString*** |  | [optional] 
-**withdrawalLock** | **NSArray&lt;NSString*&gt;*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

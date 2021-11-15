@@ -3,12 +3,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExecID** | **string** |  | [default to null]
+**ExecID** | **string** |  | [optional] [default to null]
 **OrderID** | **string** |  | [optional] [default to null]
 **ClOrdID** | **string** |  | [optional] [default to null]
 **ClOrdLinkID** | **string** |  | [optional] [default to null]
 **Account** | **float32** |  | [optional] [default to null]
-**Symbol** | **string** |  | [optional] [default to null]
+**Symbol** | **string** |  | [default to null]
 **Side** | **string** |  | [optional] [default to null]
 **LastQty** | **float32** |  | [optional] [default to null]
 **LastPx** | **float64** |  | [optional] [default to null]
@@ -49,7 +49,7 @@ Name | Type | Description | Notes
 **HomeNotional** | **float64** |  | [optional] [default to null]
 **ForeignNotional** | **float64** |  | [optional] [default to null]
 **TransactTime** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
-**Timestamp** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
+**Timestamp** | [**time.Time**](time.Time.md) |  | [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

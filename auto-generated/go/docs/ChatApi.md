@@ -19,10 +19,10 @@ Get chat messages.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***ChatGetOpts** | optional parameters | nil if no parameters
+ **optional** | ***ChatApiChatGetOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a ChatGetOpts struct
+Optional parameters are passed through a pointer to a ChatApiChatGetOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -102,10 +102,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **message** | **string**|  | 
- **optional** | ***ChatNewOpts** | optional parameters | nil if no parameters
+ **optional** | ***ChatApiChatNewOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a ChatNewOpts struct
+Optional parameters are passed through a pointer to a ChatApiChatNewOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

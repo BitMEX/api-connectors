@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  ---  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  ---  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -243,97 +243,14 @@ export class AccessToken {
 }
 
 export class Affiliate {
-    'account': number;
-    'currency': string;
-    'prevPayout'?: number;
-    'prevTurnover'?: number;
-    'prevComm'?: number;
-    'prevTimestamp'?: Date;
-    'execTurnover'?: number;
-    'execComm'?: number;
-    'totalReferrals'?: number;
-    'totalTurnover'?: number;
-    'totalComm'?: number;
-    'payoutPcnt'?: number;
-    'pendingPayout'?: number;
-    'timestamp'?: Date;
     'referrerAccount'?: number;
     'referralDiscount'?: number;
     'affiliatePayout'?: number;
+    'id'?: number;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "account",
-            "baseName": "account",
-            "type": "number"
-        },
-        {
-            "name": "currency",
-            "baseName": "currency",
-            "type": "string"
-        },
-        {
-            "name": "prevPayout",
-            "baseName": "prevPayout",
-            "type": "number"
-        },
-        {
-            "name": "prevTurnover",
-            "baseName": "prevTurnover",
-            "type": "number"
-        },
-        {
-            "name": "prevComm",
-            "baseName": "prevComm",
-            "type": "number"
-        },
-        {
-            "name": "prevTimestamp",
-            "baseName": "prevTimestamp",
-            "type": "Date"
-        },
-        {
-            "name": "execTurnover",
-            "baseName": "execTurnover",
-            "type": "number"
-        },
-        {
-            "name": "execComm",
-            "baseName": "execComm",
-            "type": "number"
-        },
-        {
-            "name": "totalReferrals",
-            "baseName": "totalReferrals",
-            "type": "number"
-        },
-        {
-            "name": "totalTurnover",
-            "baseName": "totalTurnover",
-            "type": "number"
-        },
-        {
-            "name": "totalComm",
-            "baseName": "totalComm",
-            "type": "number"
-        },
-        {
-            "name": "payoutPcnt",
-            "baseName": "payoutPcnt",
-            "type": "number"
-        },
-        {
-            "name": "pendingPayout",
-            "baseName": "pendingPayout",
-            "type": "number"
-        },
-        {
-            "name": "timestamp",
-            "baseName": "timestamp",
-            "type": "Date"
-        },
         {
             "name": "referrerAccount",
             "baseName": "referrerAccount",
@@ -347,6 +264,11 @@ export class Affiliate {
         {
             "name": "affiliatePayout",
             "baseName": "affiliatePayout",
+            "type": "number"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
             "type": "number"
         }    ];
 
@@ -566,12 +488,12 @@ export class ErrorError {
 * Raw Order and Balance Data
 */
 export class Execution {
-    'execID': string;
+    'execID'?: string;
     'orderID'?: string;
     'clOrdID'?: string;
     'clOrdLinkID'?: string;
     'account'?: number;
-    'symbol'?: string;
+    'symbol': string;
     'side'?: string;
     'lastQty'?: number;
     'lastPx'?: number;
@@ -612,7 +534,7 @@ export class Execution {
     'homeNotional'?: number;
     'foreignNotional'?: number;
     'transactTime'?: Date;
-    'timestamp'?: Date;
+    'timestamp': Date;
 
     static discriminator: string | undefined = undefined;
 
@@ -987,8 +909,12 @@ export class IndexComposite {
     'timestamp': Date;
     'symbol'?: string;
     'indexSymbol'?: string;
+    'indexMultiplier'?: number;
     'reference'?: string;
     'lastPrice'?: number;
+    'sourcePrice'?: number;
+    'conversionIndex'?: string;
+    'conversionIndexPrice'?: number;
     'weight'?: number;
     'logged'?: Date;
 
@@ -1011,6 +937,11 @@ export class IndexComposite {
             "type": "string"
         },
         {
+            "name": "indexMultiplier",
+            "baseName": "indexMultiplier",
+            "type": "number"
+        },
+        {
             "name": "reference",
             "baseName": "reference",
             "type": "string"
@@ -1018,6 +949,21 @@ export class IndexComposite {
         {
             "name": "lastPrice",
             "baseName": "lastPrice",
+            "type": "number"
+        },
+        {
+            "name": "sourcePrice",
+            "baseName": "sourcePrice",
+            "type": "number"
+        },
+        {
+            "name": "conversionIndex",
+            "baseName": "conversionIndex",
+            "type": "string"
+        },
+        {
+            "name": "conversionIndexPrice",
+            "baseName": "conversionIndexPrice",
             "type": "number"
         },
         {
@@ -1065,6 +1011,7 @@ export class Instrument {
     'front'?: Date;
     'expiry'?: Date;
     'settle'?: Date;
+    'listedSettle'?: Date;
     'relistInterval'?: Date;
     'inverseLeg'?: string;
     'sellLeg'?: string;
@@ -1158,6 +1105,7 @@ export class Instrument {
     'indicativeTaxRate'?: number;
     'indicativeSettlePrice'?: number;
     'optionUnderlyingPrice'?: number;
+    'settledPriceAdjustmentRate'?: number;
     'settledPrice'?: number;
     'timestamp'?: Date;
 
@@ -1202,6 +1150,11 @@ export class Instrument {
         {
             "name": "settle",
             "baseName": "settle",
+            "type": "Date"
+        },
+        {
+            "name": "listedSettle",
+            "baseName": "listedSettle",
             "type": "Date"
         },
         {
@@ -1670,6 +1623,11 @@ export class Instrument {
             "type": "number"
         },
         {
+            "name": "settledPriceAdjustmentRate",
+            "baseName": "settledPriceAdjustmentRate",
+            "type": "number"
+        },
+        {
             "name": "settledPrice",
             "baseName": "settledPrice",
             "type": "number"
@@ -1776,38 +1734,14 @@ export class Leaderboard {
 * Active Liquidations
 */
 export class Liquidation {
-    'orderID': string;
-    'symbol'?: string;
-    'side'?: string;
-    'price'?: number;
-    'leavesQty'?: number;
+    'id'?: number;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "orderID",
-            "baseName": "orderID",
-            "type": "string"
-        },
-        {
-            "name": "symbol",
-            "baseName": "symbol",
-            "type": "string"
-        },
-        {
-            "name": "side",
-            "baseName": "side",
-            "type": "string"
-        },
-        {
-            "name": "price",
-            "baseName": "price",
-            "type": "number"
-        },
-        {
-            "name": "leavesQty",
-            "baseName": "leavesQty",
+            "name": "id",
+            "baseName": "id",
             "type": "number"
         }    ];
 
@@ -1855,9 +1789,11 @@ export class Margin {
     'excessMarginPcnt'?: number;
     'availableMargin'?: number;
     'withdrawableMargin'?: number;
-    'timestamp'?: Date;
     'grossLastValue'?: number;
     'commission'?: number;
+    'makerFeeDiscount'?: number;
+    'takerFeeDiscount'?: number;
+    'timestamp'?: Date;
 
     static discriminator: string | undefined = undefined;
 
@@ -2053,11 +1989,6 @@ export class Margin {
             "type": "number"
         },
         {
-            "name": "timestamp",
-            "baseName": "timestamp",
-            "type": "Date"
-        },
-        {
             "name": "grossLastValue",
             "baseName": "grossLastValue",
             "type": "number"
@@ -2066,6 +1997,21 @@ export class Margin {
             "name": "commission",
             "baseName": "commission",
             "type": "number"
+        },
+        {
+            "name": "makerFeeDiscount",
+            "baseName": "makerFeeDiscount",
+            "type": "number"
+        },
+        {
+            "name": "takerFeeDiscount",
+            "baseName": "takerFeeDiscount",
+            "type": "number"
+        },
+        {
+            "name": "timestamp",
+            "baseName": "timestamp",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
@@ -2303,38 +2249,14 @@ export class Order {
 }
 
 export class OrderBookL2 {
-    'symbol': string;
-    'id': number;
-    'side': string;
-    'size'?: number;
-    'price'?: number;
+    'id'?: number;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "symbol",
-            "baseName": "symbol",
-            "type": "string"
-        },
-        {
             "name": "id",
             "baseName": "id",
-            "type": "number"
-        },
-        {
-            "name": "side",
-            "baseName": "side",
-            "type": "string"
-        },
-        {
-            "name": "size",
-            "baseName": "size",
-            "type": "number"
-        },
-        {
-            "name": "price",
-            "baseName": "price",
             "type": "number"
         }    ];
 
@@ -2349,7 +2271,7 @@ export class OrderBookL2 {
 export class Position {
     'account': number;
     'symbol': string;
-    'currency': string;
+    'currency'?: string;
     'underlying'?: string;
     'quoteCurrency'?: string;
     'commission'?: number;
@@ -3010,18 +2932,16 @@ export class QuoteFillRatio {
 }
 
 /**
-* Historical Settlement Data
+* Hourly Quote Value Ratio Statistic
 */
-export class Settlement {
-    'timestamp': Date;
-    'symbol': string;
-    'settlementType'?: string;
-    'settledPrice'?: number;
-    'optionStrikePrice'?: number;
-    'optionUnderlyingPrice'?: number;
-    'bankrupt'?: number;
-    'taxBase'?: number;
-    'taxRate'?: number;
+export class QuoteValueRatio {
+    'timestamp'?: Date;
+    'account'?: number;
+    'symbol'?: string;
+    'quoteCount'?: number;
+    'volumeXBT'?: number;
+    'QVR'?: number;
+    'id'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -3032,43 +2952,53 @@ export class Settlement {
             "type": "Date"
         },
         {
+            "name": "account",
+            "baseName": "account",
+            "type": "number"
+        },
+        {
             "name": "symbol",
             "baseName": "symbol",
             "type": "string"
         },
         {
-            "name": "settlementType",
-            "baseName": "settlementType",
-            "type": "string"
-        },
-        {
-            "name": "settledPrice",
-            "baseName": "settledPrice",
+            "name": "quoteCount",
+            "baseName": "quoteCount",
             "type": "number"
         },
         {
-            "name": "optionStrikePrice",
-            "baseName": "optionStrikePrice",
+            "name": "volumeXBT",
+            "baseName": "volumeXBT",
             "type": "number"
         },
         {
-            "name": "optionUnderlyingPrice",
-            "baseName": "optionUnderlyingPrice",
+            "name": "QVR",
+            "baseName": "QVR",
             "type": "number"
         },
         {
-            "name": "bankrupt",
-            "baseName": "bankrupt",
+            "name": "id",
+            "baseName": "id",
             "type": "number"
-        },
+        }    ];
+
+    static getAttributeTypeMap() {
+        return QuoteValueRatio.attributeTypeMap;
+    }
+}
+
+/**
+* Historical Settlement Data
+*/
+export class Settlement {
+    'id'?: number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "taxBase",
-            "baseName": "taxBase",
-            "type": "number"
-        },
-        {
-            "name": "taxRate",
-            "baseName": "taxRate",
+            "name": "id",
+            "baseName": "id",
             "type": "number"
         }    ];
 
@@ -3378,6 +3308,26 @@ export class TradeBin {
     }
 }
 
+/**
+* 30 days USD average trading volume
+*/
+export class TradingVolume {
+    'advUsd': number;
+
+    static discriminator: string | undefined = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "advUsd",
+            "baseName": "advUsd",
+            "type": "number"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return TradingVolume.attributeTypeMap;
+    }
+}
+
 export class Transaction {
     'transactID': string;
     'account'?: number;
@@ -3470,7 +3420,7 @@ export class User {
     'firstname'?: string;
     'lastname'?: string;
     'username': string;
-    'email': string;
+    'email'?: string;
     'phone'?: string;
     'created'?: Date;
     'lastUpdated'?: Date;
@@ -3478,6 +3428,7 @@ export class User {
     'tFAEnabled'?: string;
     'affiliateID'?: string;
     'pgpPubKey'?: string;
+    'pgpPubKeyCreated'?: Date;
     'country'?: string;
     'geoipCountry'?: string;
     'geoipRegion'?: string;
@@ -3552,6 +3503,11 @@ export class User {
             "type": "string"
         },
         {
+            "name": "pgpPubKeyCreated",
+            "baseName": "pgpPubKeyCreated",
+            "type": "Date"
+        },
+        {
             "name": "country",
             "baseName": "country",
             "type": "string"
@@ -3590,7 +3546,7 @@ export class UserCommissionsBySymbol {
 }
 
 /**
-* User Events for auditing
+* User Events for Auditing
 */
 export class UserEvent {
     'id'?: number;
@@ -3695,6 +3651,8 @@ export namespace UserEvent {
         WithdrawalCompleted = <any> 'withdrawalCompleted',
         WithdrawalConfirmed = <any> 'withdrawalConfirmed',
         WithdrawalRequested = <any> 'withdrawalRequested',
+        AddressSkipConfirmRequested = <any> 'addressSkipConfirmRequested',
+        AddressSkipConfirmVerified = <any> 'addressSkipConfirmVerified',
         Verify = <any> 'verify'
     }
     export enum StatusEnum {
@@ -3717,6 +3675,7 @@ export class UserPreferences {
     'hideFromLeaderboard'?: boolean;
     'hideNameFromLeaderboard'?: boolean;
     'hideNotifications'?: Array<string>;
+    'hidePhoneConfirm'?: boolean;
     'locale'?: string;
     'msgsSeen'?: Array<string>;
     'orderBookBinning'?: any;
@@ -3803,6 +3762,11 @@ export class UserPreferences {
             "name": "hideNotifications",
             "baseName": "hideNotifications",
             "type": "Array<string>"
+        },
+        {
+            "name": "hidePhoneConfirm",
+            "baseName": "hidePhoneConfirm",
+            "type": "boolean"
         },
         {
             "name": "locale",
@@ -3898,9 +3862,6 @@ export class Wallet {
     'pendingDebit'?: number;
     'confirmedDebit'?: number;
     'timestamp'?: Date;
-    'addr'?: string;
-    'script'?: string;
-    'withdrawalLock'?: Array<string>;
 
     static discriminator: string | undefined = undefined;
 
@@ -4014,21 +3975,6 @@ export class Wallet {
             "name": "timestamp",
             "baseName": "timestamp",
             "type": "Date"
-        },
-        {
-            "name": "addr",
-            "baseName": "addr",
-            "type": "string"
-        },
-        {
-            "name": "script",
-            "baseName": "script",
-            "type": "string"
-        },
-        {
-            "name": "withdrawalLock",
-            "baseName": "withdrawalLock",
-            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -4082,12 +4028,14 @@ let typeMap: {[index: string]: any} = {
     "Position": Position,
     "Quote": Quote,
     "QuoteFillRatio": QuoteFillRatio,
+    "QuoteValueRatio": QuoteValueRatio,
     "Settlement": Settlement,
     "Stats": Stats,
     "StatsHistory": StatsHistory,
     "StatsUSD": StatsUSD,
     "Trade": Trade,
     "TradeBin": TradeBin,
+    "TradingVolume": TradingVolume,
     "Transaction": Transaction,
     "User": User,
     "UserCommissionsBySymbol": UserCommissionsBySymbol,
@@ -4754,10 +4702,10 @@ export class ExecutionApi {
     /**
      * This returns all raw transactions, which includes order opening and cancelation, and order status changes. It can be quite noisy. More focused information is available at `/execution/tradeHistory`.  You may also use the `filter` param to target your query. Specify an array as a filter value, such as `{\"execType\": [\"Settlement\", \"Trade\"]}` to filter on multiple values.  See [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_8_8.html) for explanations of these fields. 
      * @summary Get all raw executions for your account.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -4847,11 +4795,11 @@ export class ExecutionApi {
     }
     /**
      * 
-     * @summary Get all balance-affecting executions. This includes each trade, insurance charge, and settlement.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @summary Get all balance-affecting executions.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -4993,10 +4941,10 @@ export class FundingApi {
     /**
      * 
      * @summary Get funding history.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -5237,10 +5185,10 @@ export class InstrumentApi {
     /**
      * This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\"state\": \"Open\"}`.
      * @summary Get instruments.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -5467,12 +5415,12 @@ export class InstrumentApi {
         });
     }
     /**
-     * Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.XBT` to get the ticks and weights of the constituent exchanges that build the \".XBT\" index.  A tick with reference `\"BMI\"` and weight `null` is the composite index tick. 
+     * Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.BXBT` to get the ticks and weights of the constituent exchanges that build the \".BXBT\" index.  A tick with reference `\"BMI\"` and weight `null` is the composite index tick. 
      * @summary Show constituent parts of an index.
      * @param symbol The composite index symbol.
-     * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
+     * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -5656,10 +5604,10 @@ export class InsuranceApi {
     /**
      * 
      * @summary Get insurance fund history.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -5953,10 +5901,10 @@ export class LiquidationApi {
     /**
      * 
      * @summary Get liquidation orders.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -6189,65 +6137,6 @@ export class OrderApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "Order");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 10%.
-     * @summary Amend multiple orders for the same symbol.
-     * @param orders An array of orders.
-     * @param {*} [options] Override http request options.
-     */
-    public orderAmendBulk (orders?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Order>;  }> {
-        const localVarPath = this.basePath + '/order/bulk';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        if (orders !== undefined) {
-            localVarFormParams['orders'] = ObjectSerializer.serialize(orders, "string");
-        }
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PUT',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
-
-        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
-
-        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.ClientResponse; body: Array<Order>;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "Array<Order>");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -6531,10 +6420,10 @@ export class OrderApi {
     /**
      * To get open orders only, send {\"open\": true} in the filter param.  See <a href=\"http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_D_68.html\">the FIX Spec</a> for explanations of these fields.
      * @summary Get your orders.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -6623,7 +6512,7 @@ export class OrderApi {
         });
     }
     /**
-     * ## Placing Orders  This endpoint is used for placing orders. See individual fields below for more details on their use.  #### Order Types  All orders require a `symbol`. All other fields are optional except when otherwise specified.  These are the valid `ordType`s:  - **Limit**: The default order type. Specify an `orderQty` and `price`. - **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at   which point it will cancel. - **Stop**: A Stop Market order. Specify an `orderQty` and `stopPx`. When the `stopPx` is reached, the order will be entered   into the book.   - On sell orders, the order will trigger if the triggering price is lower than the `stopPx`. On buys, higher.   - Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your     account so that it may trigger fully.   - `Close` Stops don't require an `orderQty`. See Execution Instructions below. - **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an `orderQty`, `stopPx`,   and `price`. - **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders. - **LimitIfTouched**: As above; use for Take Profit Limit orders.  #### Execution Instructions  The following `execInst`s are supported. If using multiple, separate with a comma (e.g. `LastPrice,Close`).  - **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement,   it will cancel instead. - **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.   Use only one. By default, `'MarkPrice'` is used. Also used for Pegged orders to define the value of `'LastPeg'`. - **ReduceOnly**: A `'ReduceOnly'` order can only reduce your position, not increase it. If you have a `'ReduceOnly'`   limit order that rests in the order book while the position is reduced by other orders, then its order quantity will   be amended down or canceled. If there are multiple `'ReduceOnly'` orders the least aggressive will be amended first. - **Close**: `'Close'` implies `'ReduceOnly'`. A `'Close'` order will cancel other active limit orders with the same side   and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a   `'Close'` Stop is ensured to have the margin required to execute, and can only execute up to the full size of your   position. If `orderQty` is not specified, a `'Close'` order has an `orderQty` equal to your current position's size.   - Note that a `Close` order without an `orderQty` requires a `side`, so that BitMEX knows if it should trigger     above or below the `stopPx`.  #### Linked Orders  [Linked Orders are deprecated as of 2018/11/10](https://blog.bitmex.com/api_announcement/deprecation-of-contingent-orders/)  #### Trailing Stops  You may use `pegPriceType` of `'TrailingStopPeg'` to create Trailing Stops. The pegged `stopPx` will move as the market moves away from the peg, and freeze as the market moves toward it.  To use, combine with `pegOffsetValue` to set the `stopPx` of your order. The peg is set to the triggering price specified in the `execInst` (default `'MarkPrice'`). Use a negative offset for stop-sell and buy-if-touched orders.  Requires `ordType`: `'Stop', 'StopLimit', 'MarketIfTouched', 'LimitIfTouched'`.  #### Simple Quantities  [Simple Quantities are deprecated as of 2018/10/26](https://blog.bitmex.com/api_announcement/deprecation-of-simpleorderqty-functionality/)  #### Rate Limits  See the [Bulk Order Documentation](#!/Order/Order_newBulk) if you need to place multiple orders at the same time. Bulk orders require fewer risk checks in the trading engine and thus are ratelimited at **1/10** the normal rate.  You can also improve your reactivity to market movements while staying under your ratelimit by using the [Amend](#!/Order/Order_amend) and [Amend Bulk](#!/Order/Order_amendBulk) endpoints. This allows you to stay in the market and avoids the cancel/replace cycle.  #### Tracking Your Orders  If you want to keep track of order IDs yourself, set a unique `clOrdID` per order. This `clOrdID` will come back as a property on the order and any related executions (including on the WebSocket), and can be used to get or cancel the order. Max length is 36 characters.  You can also change the `clOrdID` by amending an order, supplying an `origClOrdID`, and your desired new ID as the `clOrdID` param, like so:  ``` # Amends an order's leavesQty, and updates its clOrdID to \"def-456\" PUT /api/v1/order {\"origClOrdID\": \"abc-123\", \"clOrdID\": \"def-456\", \"leavesQty\": 1000} ``` 
+     * ## Placing Orders  This endpoint is used for placing orders. See individual fields below for more details on their use.  #### Order Types  All orders require a `symbol`. All other fields are optional except when otherwise specified.  These are the valid `ordType`s:  - **Limit**: The default order type. Specify an `orderQty` and `price`. - **Market**: A traditional Market order. A Market order will execute until filled or your bankruptcy price is reached, at   which point it will cancel. - **Stop**: A Stop Market order. Specify an `orderQty` and `stopPx`. When the `stopPx` is reached, the order will be entered   into the book.   - On sell orders, the order will trigger if the triggering price is lower than the `stopPx`. On buys, higher.   - Note: Stop orders do not consume margin until triggered. Be sure that the required margin is available in your     account so that it may trigger fully.   - `Close` Stops don't require an `orderQty`. See Execution Instructions below. - **StopLimit**: Like a Stop Market, but enters a Limit order instead of a Market order. Specify an `orderQty`, `stopPx`,   and `price`. - **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders. - **LimitIfTouched**: As above; use for Take Profit Limit orders. - **Pegged**: Pegged orders allow users to submit a limit price relative to the current market price. Specify a   `pegPriceType`, and `pegOffsetValue`.   - Pegged orders **must** have an `execInst` of `Fixed`. This means the limit price is set at the time the order     is accepted and does not change as the reference price changes.   - `PrimaryPeg`: Price is set relative to near touch price.   - `MarketPeg`: Price is set relative to far touch price.   - A `pegPriceType` submitted with no `ordType` is treated as a `Pegged` order.  #### Execution Instructions  The following `execInst`s are supported. If using multiple, separate with a comma (e.g. `LastPrice,Close`).  - **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement, it will cancel instead.   This is intended to protect you from the far touch moving towards you while the order is in transit.   It is not intended for speculating on the far touch moving away after submission - we consider such behaviour abusive and monitor for it. - **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.   Use only one. By default, `MarkPrice` is used. Also used for Pegged orders to define the value of `LastPeg`. - **ReduceOnly**: A `ReduceOnly` order can only reduce your position, not increase it. If you have a `ReduceOnly`   limit order that rests in the order book while the position is reduced by other orders, then its order quantity will   be amended down or canceled. If there are multiple `ReduceOnly` orders the least aggressive will be amended first. - **Close**: `Close` implies `ReduceOnly`. A `Close` order will cancel other active limit orders with the same side   and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a   `Close` Stop is ensured to have the margin required to execute, and can only execute up to the full size of your   position. If `orderQty` is not specified, a `Close` order has an `orderQty` equal to your current position's size.   - Note that a `Close` order without an `orderQty` requires a `side`, so that BitMEX knows if it should trigger     above or below the `stopPx`. - **LastWithinMark**: Used by stop orders with `LastPrice` to allow stop triggers only when:   - For Sell Stop Market / Stop Limit Order     - Last Price &lt= Stop Price     - Last Price &gt= Mark Price × (1 - 5%)   - For Buy Stop Market / Stop Limit Order:     - Last Price &gt= Stop Price     - Last Price &lt= Mark Price × (1 + 5%) - **Fixed**: Pegged orders **must** have an `execInst` of `Fixed`. This means the limit price is set at the time   the order is accepted and does not change as the reference price changes.  #### Pegged Orders  Pegged orders allow users to submit a limit price relative to the current market price. The limit price is set once when the order is submitted and does not change with the reference price. This order type is not intended for speculating on the far touch moving away after submission - we consider such behaviour abusive and monitor for it.  Pegged orders have an `ordType` of `Pegged`, and an `execInst` of `Fixed`.  A `pegPriceType` and `pegOffsetValue` must also be submitted:  - `PrimaryPeg` - price is set relative to the **near touch** price - `MarketPeg` - price is set relative to the **far touch** price  #### Trailing Stop Pegged Orders  Use `pegPriceType` of `TrailingStopPeg` to create Trailing Stops.  The price is set at submission and updates once per second if the underlying price (last/mark/index) has moved by more than 0.1%. `stopPx` then moves as the market moves away from the peg, and freezes as the market moves toward it.  Use `pegOffsetValue` to set the `stopPx` of your order. The peg is set to the triggering price specified in the `execInst` (default `MarkPrice`). Use a negative offset for stop-sell and buy-if-touched orders.  Requires `ordType`: `Stop`, `StopLimit`, `MarketIfTouched`, `LimitIfTouched`.  #### Linked Orders  [Linked Orders are deprecated as of 2018/11/10](https://blog.bitmex.com/api_announcement/deprecation-of-contingent-orders/)  #### Trailing Stops  You may use `pegPriceType` of `'TrailingStopPeg'` to create Trailing Stops. The pegged `stopPx` will move as the market moves away from the peg, and freeze as the market moves toward it.  To use, combine with `pegOffsetValue` to set the `stopPx` of your order. The peg is set to the triggering price specified in the `execInst` (default `'MarkPrice'`). Use a negative offset for stop-sell and buy-if-touched orders.  Requires `ordType`: `'Stop', 'StopLimit', 'MarketIfTouched', 'LimitIfTouched'`.  #### Simple Quantities  [Simple Quantities are deprecated as of 2018/10/26](https://blog.bitmex.com/api_announcement/deprecation-of-simpleorderqty-functionality/)  #### Rate Limits  See the [Bulk Order Documentation](#!/Order/Order_newBulk) if you need to place multiple orders at the same time. Bulk orders require fewer risk checks in the trading engine and thus are ratelimited at **1/10** the normal rate.  You can also improve your reactivity to market movements while staying under your ratelimit by using the [Amend](#!/Order/Order_amend) and [Amend Bulk](#!/Order/Order_amendBulk) endpoints. This allows you to stay in the market and avoids the cancel/replace cycle.  #### Tracking Your Orders  If you want to keep track of order IDs yourself, set a unique `clOrdID` per order. This `clOrdID` will come back as a property on the order and any related executions (including on the WebSocket), and can be used to get or cancel the order. Max length is 36 characters.  You can also change the `clOrdID` by amending an order, supplying an `origClOrdID`, and your desired new ID as the `clOrdID` param, like so:  ``` # Amends an order's leavesQty, and updates its clOrdID to \"def-456\" PUT /api/v1/order {\"origClOrdID\": \"abc-123\", \"clOrdID\": \"def-456\", \"leavesQty\": 1000} ``` 
      * @summary Create a new order.
      * @param symbol Instrument symbol. e.g. &#39;XBTUSD&#39;.
      * @param side Order side. Valid options: Buy, Sell. Defaults to &#39;Buy&#39; unless &#x60;orderQty&#x60; is negative.
@@ -6635,10 +6524,10 @@ export class OrderApi {
      * @param clOrdID Optional Client Order ID. This clOrdID will come back on the order and any related executions.
      * @param clOrdLinkID Deprecated: linked orders are not supported after 2018/11/10.
      * @param pegOffsetValue Optional trailing offset from the current price for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders; use a negative offset for stop-sell orders and buy-if-touched orders. Optional offset from the peg price for &#39;Pegged&#39; orders.
-     * @param pegPriceType Optional peg price type. Valid options: LastPeg, MidPricePeg, MarketPeg, PrimaryPeg, TrailingStopPeg.
+     * @param pegPriceType Optional peg price type. Valid options: MarketPeg, PrimaryPeg, TrailingStopPeg.
      * @param ordType Order type. Valid options: Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, Pegged. Defaults to &#39;Limit&#39; when &#x60;price&#x60; is specified. Defaults to &#39;Stop&#39; when &#x60;stopPx&#x60; is specified. Defaults to &#39;StopLimit&#39; when &#x60;price&#x60; and &#x60;stopPx&#x60; are specified.
      * @param timeInForce Time in force. Valid options: Day, GoodTillCancel, ImmediateOrCancel, FillOrKill. Defaults to &#39;GoodTillCancel&#39; for &#39;Limit&#39;, &#39;StopLimit&#39;, and &#39;LimitIfTouched&#39; orders.
-     * @param execInst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39;, &#39;IndexPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders.
+     * @param execInst Optional execution instructions. Valid options: ParticipateDoNotInitiate, AllOrNone, MarkPrice, IndexPrice, LastPrice, Close, ReduceOnly, Fixed, LastWithinMark. &#39;AllOrNone&#39; instruction requires &#x60;displayQty&#x60; to be 0. &#39;MarkPrice&#39;, &#39;IndexPrice&#39; or &#39;LastPrice&#39; instruction valid for &#39;Stop&#39;, &#39;StopLimit&#39;, &#39;MarketIfTouched&#39;, and &#39;LimitIfTouched&#39; orders. &#39;LastWithinMark&#39; instruction valid for &#39;Stop&#39; and &#39;StopLimit&#39; with instruction &#39;LastPrice&#39;.
      * @param contingencyType Deprecated: linked orders are not supported after 2018/11/10.
      * @param text Optional order annotation. e.g. &#39;Take profit&#39;.
      * @param {*} [options] Override http request options.
@@ -6752,65 +6641,6 @@ export class OrderApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "Order");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at `ceil(0.1 * orders)`. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only `application/json` is supported on this endpoint. 
-     * @summary Create multiple new orders for the same symbol.
-     * @param orders An array of orders.
-     * @param {*} [options] Override http request options.
-     */
-    public orderNewBulk (orders?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Order>;  }> {
-        const localVarPath = this.basePath + '/order/bulk';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        if (orders !== undefined) {
-            localVarFormParams['orders'] = ObjectSerializer.serialize(orders, "string");
-        }
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
-
-        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
-
-        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.ClientResponse; body: Array<Order>;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "Array<Order>");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {
@@ -7055,7 +6885,7 @@ export class PositionApi {
         });
     }
     /**
-     * 
+     * Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off.
      * @summary Enable isolated margin or cross margin per-position.
      * @param symbol Position symbol to isolate.
      * @param enabled True for isolated margin, false for cross margin.
@@ -7124,7 +6954,7 @@ export class PositionApi {
         });
     }
     /**
-     * 
+     * When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold.
      * @summary Transfer equity in or out of a position.
      * @param symbol Symbol of position to isolate.
      * @param amount Amount to transfer, in Satoshis. May be negative.
@@ -7198,7 +7028,7 @@ export class PositionApi {
         });
     }
     /**
-     * 
+     * Users can choose an isolated leverage. This will automatically enable isolated margin.
      * @summary Choose leverage for a position.
      * @param symbol Symbol of position to adjust.
      * @param leverage Leverage value. Send a number between 0.01 and 100 to enable isolated margin with a fixed leverage. Send 0 to enable cross margin.
@@ -7272,7 +7102,7 @@ export class PositionApi {
         });
     }
     /**
-     * 
+     * Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details.
      * @summary Update your risk limit.
      * @param symbol Symbol of position to update risk limit on.
      * @param riskLimit New Risk Limit, in Satoshis.
@@ -7399,10 +7229,10 @@ export class QuoteApi {
     /**
      * 
      * @summary Get Quotes.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -7489,10 +7319,10 @@ export class QuoteApi {
      * @summary Get previous quotes in time buckets.
      * @param binSize Time interval to bucket by. Available options: [1m,5m,1h,1d].
      * @param partial If true, will send in-progress (incomplete) bins for the current time period.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -7788,10 +7618,10 @@ export class SettlementApi {
     /**
      * 
      * @summary Get settlement history.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -8122,10 +7952,10 @@ export class TradeApi {
     /**
      * Please note that indices (symbols starting with `.`) post trades at intervals to the trade feed. These have a `size` of 0 and are used only to indicate a changing price.  See [the FIX Spec](http://www.onixs.biz/fix-dictionary/5.0.SP2/msgType_AE_6569.html) for explanations of these fields.
      * @summary Get Trades.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -8212,10 +8042,10 @@ export class TradeApi {
      * @summary Get previous trades in time buckets.
      * @param binSize Time interval to bucket by. Available options: [1m,5m,1h,1d].
      * @param partial If true, will send in-progress (incomplete) bins for the current time period.
-     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.
+     * @param symbol Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive.
      * @param filter Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details.
      * @param columns Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect.
-     * @param count Number of results to fetch.
+     * @param count Number of results to fetch. Must be a positive integer.
      * @param start Starting point for results.
      * @param reverse If true, will sort results newest first.
      * @param startTime Starting date filter for results.
@@ -8714,13 +8544,18 @@ export class UserApi {
     /**
      * 
      * @summary Get your current affiliate/referral status.
+     * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;
      * @param {*} [options] Override http request options.
      */
-    public userGetAffiliateStatus (options: any = {}) : Promise<{ response: http.ClientResponse; body: Affiliate;  }> {
+    public userGetAffiliateStatus (currency?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Affiliate;  }> {
         const localVarPath = this.basePath + '/user/affiliateStatus';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
+
+        if (currency !== undefined) {
+            localVarQueryParameters['currency'] = ObjectSerializer.serialize(currency, "string");
+        }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
@@ -8822,7 +8657,7 @@ export class UserApi {
     /**
      * 
      * @summary Get a deposit address.
-     * @param currency 
+     * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;
      * @param {*} [options] Override http request options.
      */
     public userGetDepositAddress (currency?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: string;  }> {
@@ -8955,7 +8790,7 @@ export class UserApi {
     /**
      * 
      * @summary Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.
-     * @param currency 
+     * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;
      * @param {*} [options] Override http request options.
      */
     public userGetMargin (currency?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Margin;  }> {
@@ -9067,8 +8902,116 @@ export class UserApi {
     }
     /**
      * 
+     * @summary Get Quote Value Ratio statistics over the last 3 days
+     * @param {*} [options] Override http request options.
+     */
+    public userGetQuoteValueRatio (options: any = {}) : Promise<{ response: http.ClientResponse; body: QuoteValueRatio;  }> {
+        const localVarPath = this.basePath + '/user/quoteValueRatio';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: QuoteValueRatio;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "QuoteValueRatio");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Get your 30 days USD average trading volume
+     * @param {*} [options] Override http request options.
+     */
+    public userGetTradingVolume (options: any = {}) : Promise<{ response: http.ClientResponse; body: TradingVolume;  }> {
+        const localVarPath = this.basePath + '/user/tradingVolume';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
+
+        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
+
+        this.authentications.default.applyToRequest(localVarRequestOptions);
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TradingVolume;  }>((resolve, reject) => {
+            localVarRequest(localVarRequestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    body = ObjectSerializer.deserialize(body, "TradingVolume");
+                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * 
      * @summary Get your current wallet information.
-     * @param currency 
+     * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;
      * @param {*} [options] Override http request options.
      */
     public userGetWallet (currency?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Wallet;  }> {
@@ -9127,7 +9070,7 @@ export class UserApi {
     /**
      * 
      * @summary Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
-     * @param currency 
+     * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;
      * @param count Number of results to fetch.
      * @param start Starting point for results.
      * @param {*} [options] Override http request options.
@@ -9196,7 +9139,7 @@ export class UserApi {
     /**
      * 
      * @summary Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
-     * @param currency 
+     * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;, &#x60;all&#x60;
      * @param {*} [options] Override http request options.
      */
     public userGetWalletSummary (currency?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Transaction>;  }> {
@@ -9300,12 +9243,13 @@ export class UserApi {
         });
     }
     /**
-     * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-     * @summary Get the minimum withdrawal fee for a currency.
-     * @param currency 
+     * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.  The \"fee\" field is the recommended fee for fast confirmation on the blockchain.
+     * @summary Get the minimum, maximum, and recommended withdrawal fees for a currency.
+     * @param currency Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;
+     * @param amount 
      * @param {*} [options] Override http request options.
      */
-    public userMinWithdrawalFee (currency?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
+    public userMinWithdrawalFee (currency?: string, amount?: number, options: any = {}) : Promise<{ response: http.ClientResponse; body: any;  }> {
         const localVarPath = this.basePath + '/user/minWithdrawalFee';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -9313,6 +9257,10 @@ export class UserApi {
 
         if (currency !== undefined) {
             localVarQueryParameters['currency'] = ObjectSerializer.serialize(currency, "string");
+        }
+
+        if (amount !== undefined) {
+            localVarQueryParameters['amount'] = ObjectSerializer.serialize(amount, "number");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -9355,15 +9303,17 @@ export class UserApi {
     /**
      * This will send a confirmation email to the email address on record.
      * @summary Request a withdrawal to an external wallet.
-     * @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;
+     * @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;, &#x60;USDt&#x60;
      * @param amount Amount of withdrawal currency.
-     * @param address Destination Address.
-     * @param otpToken 2FA token. Required if 2FA is enabled on your account.
+     * @param otpToken 2FA token. Required for all external withdrawals.
+     * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
+     * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;targetUserId&#x60;, &#x60;targetUserId&#x60; has to be specified.
+     * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
      * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
      * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
      * @param {*} [options] Override http request options.
      */
-    public userRequestWithdrawal (currency: string, amount: number, address: string, otpToken?: string, fee?: number, text?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Transaction;  }> {
+    public userRequestWithdrawal (currency: string, amount: number, otpToken?: string, address?: string, addressId?: number, targetUserId?: number, fee?: number, text?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Transaction;  }> {
         const localVarPath = this.basePath + '/user/requestWithdrawal';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -9377,11 +9327,6 @@ export class UserApi {
         // verify required parameter 'amount' is not null or undefined
         if (amount === null || amount === undefined) {
             throw new Error('Required parameter amount was null or undefined when calling userRequestWithdrawal.');
-        }
-
-        // verify required parameter 'address' is not null or undefined
-        if (address === null || address === undefined) {
-            throw new Error('Required parameter address was null or undefined when calling userRequestWithdrawal.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -9402,6 +9347,14 @@ export class UserApi {
 
         if (address !== undefined) {
             localVarFormParams['address'] = ObjectSerializer.serialize(address, "string");
+        }
+
+        if (addressId !== undefined) {
+            localVarFormParams['addressId'] = ObjectSerializer.serialize(addressId, "number");
+        }
+
+        if (targetUserId !== undefined) {
+            localVarFormParams['targetUserId'] = ObjectSerializer.serialize(targetUserId, "number");
         }
 
         if (fee !== undefined) {

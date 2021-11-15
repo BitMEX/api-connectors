@@ -12,26 +12,14 @@ import Foundation
 
 public struct Settlement: Codable {
 
-    public var timestamp: Date
-    public var symbol: String
-    public var settlementType: String?
-    public var settledPrice: Double?
-    public var optionStrikePrice: Double?
-    public var optionUnderlyingPrice: Double?
-    public var bankrupt: Double?
-    public var taxBase: Double?
-    public var taxRate: Double?
+    public var _id: Double?
 
-    public init(timestamp: Date, symbol: String, settlementType: String?, settledPrice: Double?, optionStrikePrice: Double?, optionUnderlyingPrice: Double?, bankrupt: Double?, taxBase: Double?, taxRate: Double?) {
-        self.timestamp = timestamp
-        self.symbol = symbol
-        self.settlementType = settlementType
-        self.settledPrice = settledPrice
-        self.optionStrikePrice = optionStrikePrice
-        self.optionUnderlyingPrice = optionUnderlyingPrice
-        self.bankrupt = bankrupt
-        self.taxBase = taxBase
-        self.taxRate = taxRate
+    public init(_id: Double?) {
+        self._id = _id
+    }
+
+    public enum CodingKeys: String, CodingKey { 
+        case _id = "id"
     }
 
 

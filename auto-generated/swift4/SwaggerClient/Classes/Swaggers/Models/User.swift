@@ -17,7 +17,7 @@ public struct User: Codable {
     public var firstname: String?
     public var lastname: String?
     public var username: String
-    public var email: String
+    public var email: String?
     public var phone: String?
     public var created: Date?
     public var lastUpdated: Date?
@@ -25,12 +25,13 @@ public struct User: Codable {
     public var tFAEnabled: String?
     public var affiliateID: String?
     public var pgpPubKey: String?
+    public var pgpPubKeyCreated: Date?
     public var country: String?
     public var geoipCountry: String?
     public var geoipRegion: String?
     public var typ: String?
 
-    public init(_id: Double?, ownerId: Double?, firstname: String?, lastname: String?, username: String, email: String, phone: String?, created: Date?, lastUpdated: Date?, preferences: UserPreferences?, tFAEnabled: String?, affiliateID: String?, pgpPubKey: String?, country: String?, geoipCountry: String?, geoipRegion: String?, typ: String?) {
+    public init(_id: Double?, ownerId: Double?, firstname: String?, lastname: String?, username: String, email: String?, phone: String?, created: Date?, lastUpdated: Date?, preferences: UserPreferences?, tFAEnabled: String?, affiliateID: String?, pgpPubKey: String?, pgpPubKeyCreated: Date?, country: String?, geoipCountry: String?, geoipRegion: String?, typ: String?) {
         self._id = _id
         self.ownerId = ownerId
         self.firstname = firstname
@@ -44,6 +45,7 @@ public struct User: Codable {
         self.tFAEnabled = tFAEnabled
         self.affiliateID = affiliateID
         self.pgpPubKey = pgpPubKey
+        self.pgpPubKeyCreated = pgpPubKeyCreated
         self.country = country
         self.geoipCountry = geoipCountry
         self.geoipRegion = geoipRegion
@@ -64,6 +66,7 @@ public struct User: Codable {
         case tFAEnabled = "TFAEnabled"
         case affiliateID
         case pgpPubKey
+        case pgpPubKeyCreated
         case country
         case geoipCountry
         case geoipRegion

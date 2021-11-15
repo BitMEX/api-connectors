@@ -14,10 +14,10 @@ open class FundingAPI {
     /**
      Get funding history.
      
-     - parameter symbol: (query) Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;. (optional)
+     - parameter symbol: (query) Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive. (optional)
      - parameter filter: (query) Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. (optional)
      - parameter columns: (query) Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
-     - parameter count: (query) Number of results to fetch. (optional, default to 100)
+     - parameter count: (query) Number of results to fetch. Must be a positive integer. (optional, default to 100)
      - parameter start: (query) Starting point for results. (optional, default to 0)
      - parameter reverse: (query) If true, will sort results newest first. (optional, default to false)
      - parameter startTime: (query) Starting date filter for results. (optional)
@@ -34,24 +34,12 @@ open class FundingAPI {
     /**
      Get funding history.
      - GET /funding
-     - examples: [{contentType=application/json, example=[ {
-  "symbol" : "symbol",
-  "fundingRateDaily" : 6.027456183070403,
-  "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
-  "timestamp" : "2000-01-23T04:56:07.000+00:00",
-  "fundingRate" : 0.8008281904610115
-}, {
-  "symbol" : "symbol",
-  "fundingRateDaily" : 6.027456183070403,
-  "fundingInterval" : "2000-01-23T04:56:07.000+00:00",
-  "timestamp" : "2000-01-23T04:56:07.000+00:00",
-  "fundingRate" : 0.8008281904610115
-} ]}]
+     - examples: [{contentType=application/json, example={}}]
      
-     - parameter symbol: (query) Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;. (optional)
+     - parameter symbol: (query) Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive. (optional)
      - parameter filter: (query) Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. (optional)
      - parameter columns: (query) Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
-     - parameter count: (query) Number of results to fetch. (optional, default to 100)
+     - parameter count: (query) Number of results to fetch. Must be a positive integer. (optional, default to 100)
      - parameter start: (query) Starting point for results. (optional, default to 0)
      - parameter reverse: (query) If true, will sort results newest first. (optional, default to false)
      - parameter startTime: (query) Starting date filter for results. (optional)
