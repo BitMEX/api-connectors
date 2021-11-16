@@ -160,14 +160,12 @@ Class | Method | HTTP request | Description
 *BitMexApi.LeaderboardApi* | [**leaderboardGetName**](docs/LeaderboardApi.md#leaderboardGetName) | **GET** /leaderboard/name | Get your alias on the leaderboard.
 *BitMexApi.LiquidationApi* | [**liquidationGet**](docs/LiquidationApi.md#liquidationGet) | **GET** /liquidation | Get liquidation orders.
 *BitMexApi.OrderApi* | [**orderAmend**](docs/OrderApi.md#orderAmend) | **PUT** /order | Amend the quantity or price of an open order.
-*BitMexApi.OrderApi* | [**orderAmendBulk**](docs/OrderApi.md#orderAmendBulk) | **PUT** /order/bulk | Amend multiple orders for the same symbol.
 *BitMexApi.OrderApi* | [**orderCancel**](docs/OrderApi.md#orderCancel) | **DELETE** /order | Cancel order(s). Send multiple order IDs to cancel in bulk.
 *BitMexApi.OrderApi* | [**orderCancelAll**](docs/OrderApi.md#orderCancelAll) | **DELETE** /order/all | Cancels all of your orders.
 *BitMexApi.OrderApi* | [**orderCancelAllAfter**](docs/OrderApi.md#orderCancelAllAfter) | **POST** /order/cancelAllAfter | Automatically cancel all your orders after a specified timeout.
 *BitMexApi.OrderApi* | [**orderClosePosition**](docs/OrderApi.md#orderClosePosition) | **POST** /order/closePosition | Close a position. [Deprecated, use POST /order with execInst: 'Close']
 *BitMexApi.OrderApi* | [**orderGetOrders**](docs/OrderApi.md#orderGetOrders) | **GET** /order | Get your orders.
 *BitMexApi.OrderApi* | [**orderNew**](docs/OrderApi.md#orderNew) | **POST** /order | Create a new order.
-*BitMexApi.OrderApi* | [**orderNewBulk**](docs/OrderApi.md#orderNewBulk) | **POST** /order/bulk | Create multiple new orders for the same symbol.
 *BitMexApi.OrderBookApi* | [**orderBookGetL2**](docs/OrderBookApi.md#orderBookGetL2) | **GET** /orderBook/L2 | Get current orderbook in vertical format.
 *BitMexApi.PositionApi* | [**positionGet**](docs/PositionApi.md#positionGet) | **GET** /position | Get your positions.
 *BitMexApi.PositionApi* | [**positionIsolateMargin**](docs/PositionApi.md#positionIsolateMargin) | **POST** /position/isolate | Enable isolated margin or cross margin per-position.

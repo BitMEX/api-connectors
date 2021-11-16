@@ -5,14 +5,12 @@ All URIs are relative to *https://www.bitmex.com/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**OrderAmend**](OrderApi.md#orderamend) | **PUT** /order | Amend the quantity or price of an open order.
-[**OrderAmendBulk**](OrderApi.md#orderamendbulk) | **PUT** /order/bulk | Amend multiple orders for the same symbol.
 [**OrderCancel**](OrderApi.md#ordercancel) | **DELETE** /order | Cancel order(s). Send multiple order IDs to cancel in bulk.
 [**OrderCancelAll**](OrderApi.md#ordercancelall) | **DELETE** /order/all | Cancels all of your orders.
 [**OrderCancelAllAfter**](OrderApi.md#ordercancelallafter) | **POST** /order/cancelAllAfter | Automatically cancel all your orders after a specified timeout.
 [**OrderClosePosition**](OrderApi.md#ordercloseposition) | **POST** /order/closePosition | Close a position. [Deprecated, use POST /order with execInst: &#39;Close&#39;]
 [**OrderGetOrders**](OrderApi.md#ordergetorders) | **GET** /order | Get your orders.
 [**OrderNew**](OrderApi.md#ordernew) | **POST** /order | Create a new order.
-[**OrderNewBulk**](OrderApi.md#ordernewbulk) | **POST** /order/bulk | Create multiple new orders for the same symbol.
 
 
 <a name="orderamend"></a>
@@ -97,80 +95,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Order**](Order.md)
-
-### Authorization
-
-[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="orderamendbulk"></a>
-# **OrderAmendBulk**
-> List<Order> OrderAmendBulk (string orders = null)
-
-Amend multiple orders for the same symbol.
-
-Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 10%.
-
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class OrderAmendBulkExample
-    {
-        public void main()
-        {
-            // Configure API key authorization: apiExpires
-            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
-            // Configure API key authorization: apiKey
-            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
-            // Configure API key authorization: apiSignature
-            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
-
-            var apiInstance = new OrderApi();
-            var orders = orders_example;  // string | An array of orders. (optional) 
-
-            try
-            {
-                // Amend multiple orders for the same symbol.
-                List&lt;Order&gt; result = apiInstance.OrderAmendBulk(orders);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling OrderApi.OrderAmendBulk: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **orders** | **string**| An array of orders. | [optional] 
-
-### Return type
-
-[**List<Order>**](Order.md)
 
 ### Authorization
 
@@ -667,80 +591,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Order**](Order.md)
-
-### Authorization
-
-[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="ordernewbulk"></a>
-# **OrderNewBulk**
-> List<Order> OrderNewBulk (string orders = null)
-
-Create multiple new orders for the same symbol.
-
-This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at `ceil(0.1 * orders)`. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only `application/json` is supported on this endpoint. 
-
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class OrderNewBulkExample
-    {
-        public void main()
-        {
-            // Configure API key authorization: apiExpires
-            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
-            // Configure API key authorization: apiKey
-            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
-            // Configure API key authorization: apiSignature
-            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
-
-            var apiInstance = new OrderApi();
-            var orders = orders_example;  // string | An array of orders. (optional) 
-
-            try
-            {
-                // Create multiple new orders for the same symbol.
-                List&lt;Order&gt; result = apiInstance.OrderNewBulk(orders);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling OrderApi.OrderNewBulk: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **orders** | **string**| An array of orders. | [optional] 
-
-### Return type
-
-[**List<Order>**](Order.md)
 
 ### Authorization
 

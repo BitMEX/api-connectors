@@ -5,14 +5,12 @@ All URIs are relative to *https://www.bitmex.com/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**orderAmend**](OrderApi.md#orderAmend) | **PUT** /order | Amend the quantity or price of an open order.
-[**orderAmendBulk**](OrderApi.md#orderAmendBulk) | **PUT** /order/bulk | Amend multiple orders for the same symbol.
 [**orderCancel**](OrderApi.md#orderCancel) | **DELETE** /order | Cancel order(s). Send multiple order IDs to cancel in bulk.
 [**orderCancelAll**](OrderApi.md#orderCancelAll) | **DELETE** /order/all | Cancels all of your orders.
 [**orderCancelAllAfter**](OrderApi.md#orderCancelAllAfter) | **POST** /order/cancelAllAfter | Automatically cancel all your orders after a specified timeout.
 [**orderClosePosition**](OrderApi.md#orderClosePosition) | **POST** /order/closePosition | Close a position. [Deprecated, use POST /order with execInst: &#39;Close&#39;]
 [**orderGetOrders**](OrderApi.md#orderGetOrders) | **GET** /order | Get your orders.
 [**orderNew**](OrderApi.md#orderNew) | **POST** /order | Create a new order.
-[**orderNewBulk**](OrderApi.md#orderNewBulk) | **POST** /order/bulk | Create multiple new orders for the same symbol.
 
 
 <a name="orderAmend"></a>
@@ -92,73 +90,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Order**](Order.md)
-
-### Authorization
-
-[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-<a name="orderAmendBulk"></a>
-# **orderAmendBulk**
-> List&lt;Order&gt; orderAmendBulk(orders)
-
-Amend multiple orders for the same symbol.
-
-Similar to POST /amend, but with multiple orders. &#x60;application/json&#x60; only. Ratelimited at 10%.
-
-### Example
-```java
-// Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.OrderApi;
-
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure API key authorization: apiExpires
-ApiKeyAuth apiExpires = (ApiKeyAuth) defaultClient.getAuthentication("apiExpires");
-apiExpires.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiExpires.setApiKeyPrefix("Token");
-
-// Configure API key authorization: apiKey
-ApiKeyAuth apiKey = (ApiKeyAuth) defaultClient.getAuthentication("apiKey");
-apiKey.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKey.setApiKeyPrefix("Token");
-
-// Configure API key authorization: apiSignature
-ApiKeyAuth apiSignature = (ApiKeyAuth) defaultClient.getAuthentication("apiSignature");
-apiSignature.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiSignature.setApiKeyPrefix("Token");
-
-OrderApi apiInstance = new OrderApi();
-String orders = "orders_example"; // String | An array of orders.
-try {
-    List<Order> result = apiInstance.orderAmendBulk(orders);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling OrderApi#orderAmendBulk");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **orders** | **String**| An array of orders. | [optional]
-
-### Return type
-
-[**List&lt;Order&gt;**](Order.md)
 
 ### Authorization
 
@@ -613,73 +544,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Order**](Order.md)
-
-### Authorization
-
-[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-<a name="orderNewBulk"></a>
-# **orderNewBulk**
-> List&lt;Order&gt; orderNewBulk(orders)
-
-Create multiple new orders for the same symbol.
-
-This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at &#x60;ceil(0.1 * orders)&#x60;. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only &#x60;application/json&#x60; is supported on this endpoint. 
-
-### Example
-```java
-// Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.OrderApi;
-
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure API key authorization: apiExpires
-ApiKeyAuth apiExpires = (ApiKeyAuth) defaultClient.getAuthentication("apiExpires");
-apiExpires.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiExpires.setApiKeyPrefix("Token");
-
-// Configure API key authorization: apiKey
-ApiKeyAuth apiKey = (ApiKeyAuth) defaultClient.getAuthentication("apiKey");
-apiKey.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKey.setApiKeyPrefix("Token");
-
-// Configure API key authorization: apiSignature
-ApiKeyAuth apiSignature = (ApiKeyAuth) defaultClient.getAuthentication("apiSignature");
-apiSignature.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiSignature.setApiKeyPrefix("Token");
-
-OrderApi apiInstance = new OrderApi();
-String orders = "orders_example"; // String | An array of orders.
-try {
-    List<Order> result = apiInstance.orderNewBulk(orders);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling OrderApi#orderNewBulk");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **orders** | **String**| An array of orders. | [optional]
-
-### Return type
-
-[**List&lt;Order&gt;**](Order.md)
 
 ### Authorization
 

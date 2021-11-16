@@ -115,14 +115,12 @@ Class | Method | HTTP request | Description
 *LeaderboardApi* | [**leaderboardGetName**](docs/Api/LeaderboardApi.md#leaderboardgetname) | **GET** /leaderboard/name | Get your alias on the leaderboard.
 *LiquidationApi* | [**liquidationGet**](docs/Api/LiquidationApi.md#liquidationget) | **GET** /liquidation | Get liquidation orders.
 *OrderApi* | [**orderAmend**](docs/Api/OrderApi.md#orderamend) | **PUT** /order | Amend the quantity or price of an open order.
-*OrderApi* | [**orderAmendBulk**](docs/Api/OrderApi.md#orderamendbulk) | **PUT** /order/bulk | Amend multiple orders for the same symbol.
 *OrderApi* | [**orderCancel**](docs/Api/OrderApi.md#ordercancel) | **DELETE** /order | Cancel order(s). Send multiple order IDs to cancel in bulk.
 *OrderApi* | [**orderCancelAll**](docs/Api/OrderApi.md#ordercancelall) | **DELETE** /order/all | Cancels all of your orders.
 *OrderApi* | [**orderCancelAllAfter**](docs/Api/OrderApi.md#ordercancelallafter) | **POST** /order/cancelAllAfter | Automatically cancel all your orders after a specified timeout.
 *OrderApi* | [**orderClosePosition**](docs/Api/OrderApi.md#ordercloseposition) | **POST** /order/closePosition | Close a position. [Deprecated, use POST /order with execInst: &#39;Close&#39;]
 *OrderApi* | [**orderGetOrders**](docs/Api/OrderApi.md#ordergetorders) | **GET** /order | Get your orders.
 *OrderApi* | [**orderNew**](docs/Api/OrderApi.md#ordernew) | **POST** /order | Create a new order.
-*OrderApi* | [**orderNewBulk**](docs/Api/OrderApi.md#ordernewbulk) | **POST** /order/bulk | Create multiple new orders for the same symbol.
 *OrderBookApi* | [**orderBookGetL2**](docs/Api/OrderBookApi.md#orderbookgetl2) | **GET** /orderBook/L2 | Get current orderbook in vertical format.
 *PositionApi* | [**positionGet**](docs/Api/PositionApi.md#positionget) | **GET** /position | Get your positions.
 *PositionApi* | [**positionIsolateMargin**](docs/Api/PositionApi.md#positionisolatemargin) | **POST** /position/isolate | Enable isolated margin or cross margin per-position.

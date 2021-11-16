@@ -87,14 +87,12 @@ Class | Method | HTTP request | Description
 *LeaderboardApi* | **leaderboard.getName** | **GET** /leaderboard/name | Get your alias on the leaderboard.
 *LiquidationApi* | **liquidation.get** | **GET** /liquidation | Get liquidation orders.
 *OrderApi* | **order.amend** | **PUT** /order | Amend the quantity or price of an open order.
-*OrderApi* | **order.amendBulk** | **PUT** /order/bulk | Amend multiple orders for the same symbol.
 *OrderApi* | **order.cancel** | **DELETE** /order | Cancel order(s). Send multiple order IDs to cancel in bulk.
 *OrderApi* | **order.cancelAll** | **DELETE** /order/all | Cancels all of your orders.
 *OrderApi* | **order.cancelAllAfter** | **POST** /order/cancelAllAfter | Automatically cancel all your orders after a specified timeout.
 *OrderApi* | **order.closePosition** | **POST** /order/closePosition | Close a position. [Deprecated, use POST /order with execInst: &#39;Close&#39;]
 *OrderApi* | **order.getOrders** | **GET** /order | Get your orders.
 *OrderApi* | **order.new** | **POST** /order | Create a new order.
-*OrderApi* | **order.newBulk** | **POST** /order/bulk | Create multiple new orders for the same symbol.
 *OrderBookApi* | **orderBook.getL2** | **GET** /orderBook/L2 | Get current orderbook in vertical format.
 *PositionApi* | **position.get** | **GET** /position | Get your positions.
 *PositionApi* | **position.isolateMargin** | **POST** /position/isolate | Enable isolated margin or cross margin per-position.

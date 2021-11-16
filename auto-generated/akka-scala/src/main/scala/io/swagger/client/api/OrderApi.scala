@@ -69,34 +69,6 @@ object OrderApi {
       .withErrorResponse[Error](403)
       .withErrorResponse[Error](404)
         /**
-   * Similar to POST /amend, but with multiple orders. &#x60;application/json&#x60; only. Ratelimited at 10%.
-   * 
-   * Expected answers:
-   *   code 200 : Seq[Order] (Request was successful)
-   *   code 400 : Error (Parameter Error)
-   *   code 401 : Error (Unauthorized)
-   *   code 403 : Error (Access Denied)
-   *   code 404 : Error (Not Found)
-   * 
-   * Available security schemes:
-   *   apiExpires (apiKey)
-   *   apiKey (apiKey)
-   *   apiSignature (apiKey)
-   * 
-   * @param orders An array of orders.
-   */
-  def order.amendBulk(orders: Option[String] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[Order]] =
-    ApiRequest[Seq[Order]](ApiMethods.PUT, "https://www.bitmex.com/api/v1", "/order/bulk", "application/json")
-      .withApiKey(apiKey, "api-expires", HEADER)
-      .withApiKey(apiKey, "api-key", HEADER)
-      .withApiKey(apiKey, "api-signature", HEADER)
-      .withFormParam("orders", orders)
-      .withSuccessResponse[Seq[Order]](200)
-      .withErrorResponse[Error](400)
-      .withErrorResponse[Error](401)
-      .withErrorResponse[Error](403)
-      .withErrorResponse[Error](404)
-        /**
    * Either an orderID or a clOrdID must be provided.
    * 
    * Expected answers:
@@ -314,34 +286,6 @@ object OrderApi {
       .withFormParam("contingencyType", contingencyType)
       .withFormParam("text", text)
       .withSuccessResponse[Order](200)
-      .withErrorResponse[Error](400)
-      .withErrorResponse[Error](401)
-      .withErrorResponse[Error](403)
-      .withErrorResponse[Error](404)
-        /**
-   * This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at &#x60;ceil(0.1 * orders)&#x60;. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only &#x60;application/json&#x60; is supported on this endpoint. 
-   * 
-   * Expected answers:
-   *   code 200 : Seq[Order] (Request was successful)
-   *   code 400 : Error (Parameter Error)
-   *   code 401 : Error (Unauthorized)
-   *   code 403 : Error (Access Denied)
-   *   code 404 : Error (Not Found)
-   * 
-   * Available security schemes:
-   *   apiExpires (apiKey)
-   *   apiKey (apiKey)
-   *   apiSignature (apiKey)
-   * 
-   * @param orders An array of orders.
-   */
-  def order.newBulk(orders: Option[String] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[Order]] =
-    ApiRequest[Seq[Order]](ApiMethods.POST, "https://www.bitmex.com/api/v1", "/order/bulk", "application/json")
-      .withApiKey(apiKey, "api-expires", HEADER)
-      .withApiKey(apiKey, "api-key", HEADER)
-      .withApiKey(apiKey, "api-signature", HEADER)
-      .withFormParam("orders", orders)
-      .withSuccessResponse[Seq[Order]](200)
       .withErrorResponse[Error](400)
       .withErrorResponse[Error](401)
       .withErrorResponse[Error](403)

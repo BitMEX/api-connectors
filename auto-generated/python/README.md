@@ -108,14 +108,12 @@ Class | Method | HTTP request | Description
 *LeaderboardApi* | [**leaderboard_get_name**](docs/LeaderboardApi.md#leaderboard_get_name) | **GET** /leaderboard/name | Get your alias on the leaderboard.
 *LiquidationApi* | [**liquidation_get**](docs/LiquidationApi.md#liquidation_get) | **GET** /liquidation | Get liquidation orders.
 *OrderApi* | [**order_amend**](docs/OrderApi.md#order_amend) | **PUT** /order | Amend the quantity or price of an open order.
-*OrderApi* | [**order_amend_bulk**](docs/OrderApi.md#order_amend_bulk) | **PUT** /order/bulk | Amend multiple orders for the same symbol.
 *OrderApi* | [**order_cancel**](docs/OrderApi.md#order_cancel) | **DELETE** /order | Cancel order(s). Send multiple order IDs to cancel in bulk.
 *OrderApi* | [**order_cancel_all**](docs/OrderApi.md#order_cancel_all) | **DELETE** /order/all | Cancels all of your orders.
 *OrderApi* | [**order_cancel_all_after**](docs/OrderApi.md#order_cancel_all_after) | **POST** /order/cancelAllAfter | Automatically cancel all your orders after a specified timeout.
 *OrderApi* | [**order_close_position**](docs/OrderApi.md#order_close_position) | **POST** /order/closePosition | Close a position. [Deprecated, use POST /order with execInst: &#39;Close&#39;]
 *OrderApi* | [**order_get_orders**](docs/OrderApi.md#order_get_orders) | **GET** /order | Get your orders.
 *OrderApi* | [**order_new**](docs/OrderApi.md#order_new) | **POST** /order | Create a new order.
-*OrderApi* | [**order_new_bulk**](docs/OrderApi.md#order_new_bulk) | **POST** /order/bulk | Create multiple new orders for the same symbol.
 *OrderBookApi* | [**order_book_get_l2**](docs/OrderBookApi.md#order_book_get_l2) | **GET** /orderBook/L2 | Get current orderbook in vertical format.
 *PositionApi* | [**position_get**](docs/PositionApi.md#position_get) | **GET** /position | Get your positions.
 *PositionApi* | [**position_isolate_margin**](docs/PositionApi.md#position_isolate_margin) | **POST** /position/isolate | Enable isolated margin or cross margin per-position.

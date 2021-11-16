@@ -5,14 +5,12 @@ All URIs are relative to *https://www.bitmex.com/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**orderAmend**](SWGOrderApi.md#orderamend) | **PUT** /order | Amend the quantity or price of an open order.
-[**orderAmendBulk**](SWGOrderApi.md#orderamendbulk) | **PUT** /order/bulk | Amend multiple orders for the same symbol.
 [**orderCancel**](SWGOrderApi.md#ordercancel) | **DELETE** /order | Cancel order(s). Send multiple order IDs to cancel in bulk.
 [**orderCancelAll**](SWGOrderApi.md#ordercancelall) | **DELETE** /order/all | Cancels all of your orders.
 [**orderCancelAllAfter**](SWGOrderApi.md#ordercancelallafter) | **POST** /order/cancelAllAfter | Automatically cancel all your orders after a specified timeout.
 [**orderClosePosition**](SWGOrderApi.md#ordercloseposition) | **POST** /order/closePosition | Close a position. [Deprecated, use POST /order with execInst: &#39;Close&#39;]
 [**orderGetOrders**](SWGOrderApi.md#ordergetorders) | **GET** /order | Get your orders.
 [**orderNew**](SWGOrderApi.md#ordernew) | **POST** /order | Create a new order.
-[**orderNewBulk**](SWGOrderApi.md#ordernewbulk) | **POST** /order/bulk | Create multiple new orders for the same symbol.
 
 
 # **orderAmend**
@@ -110,73 +108,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SWGOrder***](SWGOrder.md)
-
-### Authorization
-
-[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **orderAmendBulk**
-```objc
--(NSURLSessionTask*) orderAmendBulkWithOrders: (NSString*) orders
-        completionHandler: (void (^)(NSArray<SWGOrder>* output, NSError* error)) handler;
-```
-
-Amend multiple orders for the same symbol.
-
-Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 10%.
-
-### Example 
-```objc
-SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
-
-// Configure API key authorization: (authentication scheme: apiExpires)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
-
-// Configure API key authorization: (authentication scheme: apiKey)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
-
-// Configure API key authorization: (authentication scheme: apiSignature)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
-
-
-NSString* orders = @"orders_example"; // An array of orders. (optional)
-
-SWGOrderApi*apiInstance = [[SWGOrderApi alloc] init];
-
-// Amend multiple orders for the same symbol.
-[apiInstance orderAmendBulkWithOrders:orders
-          completionHandler: ^(NSArray<SWGOrder>* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling SWGOrderApi->orderAmendBulk: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **orders** | **NSString***| An array of orders. | [optional] 
-
-### Return type
-
-[**NSArray<SWGOrder>***](SWGOrder.md)
 
 ### Authorization
 
@@ -685,73 +616,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SWGOrder***](SWGOrder.md)
-
-### Authorization
-
-[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **orderNewBulk**
-```objc
--(NSURLSessionTask*) orderNewBulkWithOrders: (NSString*) orders
-        completionHandler: (void (^)(NSArray<SWGOrder>* output, NSError* error)) handler;
-```
-
-Create multiple new orders for the same symbol.
-
-This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at `ceil(0.1 * orders)`. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only `application/json` is supported on this endpoint. 
-
-### Example 
-```objc
-SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
-
-// Configure API key authorization: (authentication scheme: apiExpires)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-expires"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-expires"];
-
-// Configure API key authorization: (authentication scheme: apiKey)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-key"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-key"];
-
-// Configure API key authorization: (authentication scheme: apiSignature)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"api-signature"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"api-signature"];
-
-
-NSString* orders = @"orders_example"; // An array of orders. (optional)
-
-SWGOrderApi*apiInstance = [[SWGOrderApi alloc] init];
-
-// Create multiple new orders for the same symbol.
-[apiInstance orderNewBulkWithOrders:orders
-          completionHandler: ^(NSArray<SWGOrder>* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling SWGOrderApi->orderNewBulk: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **orders** | **NSString***| An array of orders. | [optional] 
-
-### Return type
-
-[**NSArray<SWGOrder>***](SWGOrder.md)
 
 ### Authorization
 

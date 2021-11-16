@@ -168,63 +168,6 @@ NSInteger kSWGOrderApiMissingParamErrorCode = 234513;
 }
 
 ///
-/// Amend multiple orders for the same symbol.
-/// Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 10%.
-///  @param orders An array of orders. (optional)
-///
-///  @returns NSArray<SWGOrder>*
-///
--(NSURLSessionTask*) orderAmendBulkWithOrders: (NSString*) orders
-    completionHandler: (void (^)(NSArray<SWGOrder>* output, NSError* error)) handler {
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/order/bulk"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"application/xml", @"text/xml", @"application/javascript", @"text/javascript"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"apiExpires", @"apiKey", @"apiSignature"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-    if (orders) {
-        formParams[@"orders"] = orders;
-    }
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"PUT"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"NSArray<SWGOrder>*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((NSArray<SWGOrder>*)data, error);
-                                }
-                            }];
-}
-
-///
 /// Cancel order(s). Send multiple order IDs to cancel in bulk.
 /// Either an orderID or a clOrdID must be provided.
 ///  @param orderID Order ID(s). (optional)
@@ -757,63 +700,6 @@ NSInteger kSWGOrderApiMissingParamErrorCode = 234513;
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
                                     handler((SWGOrder*)data, error);
-                                }
-                            }];
-}
-
-///
-/// Create multiple new orders for the same symbol.
-/// This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at `ceil(0.1 * orders)`. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only `application/json` is supported on this endpoint. 
-///  @param orders An array of orders. (optional)
-///
-///  @returns NSArray<SWGOrder>*
-///
--(NSURLSessionTask*) orderNewBulkWithOrders: (NSString*) orders
-    completionHandler: (void (^)(NSArray<SWGOrder>* output, NSError* error)) handler {
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/order/bulk"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"application/xml", @"text/xml", @"application/javascript", @"text/javascript"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"apiExpires", @"apiKey", @"apiSignature"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-    if (orders) {
-        formParams[@"orders"] = orders;
-    }
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"POST"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"NSArray<SWGOrder>*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((NSArray<SWGOrder>*)data, error);
                                 }
                             }];
 }

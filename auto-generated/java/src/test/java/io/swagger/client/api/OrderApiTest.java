@@ -62,22 +62,6 @@ public class OrderApiTest {
     }
     
     /**
-     * Amend multiple orders for the same symbol.
-     *
-     * Similar to POST /amend, but with multiple orders. &#x60;application/json&#x60; only. Ratelimited at 10%.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void orderAmendBulkTest() throws ApiException {
-        String orders = null;
-        List<Order> response = api.orderAmendBulk(orders);
-
-        // TODO: test validations
-    }
-    
-    /**
      * Cancel order(s). Send multiple order IDs to cancel in bulk.
      *
      * Either an orderID or a clOrdID must be provided.
@@ -196,22 +180,6 @@ public class OrderApiTest {
         String contingencyType = null;
         String text = null;
         Order response = api.orderNew(symbol, side, simpleOrderQty, orderQty, price, displayQty, stopPx, clOrdID, clOrdLinkID, pegOffsetValue, pegPriceType, ordType, timeInForce, execInst, contingencyType, text);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Create multiple new orders for the same symbol.
-     *
-     * This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at &#x60;ceil(0.1 * orders)&#x60;. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only &#x60;application/json&#x60; is supported on this endpoint. 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void orderNewBulkTest() throws ApiException {
-        String orders = null;
-        List<Order> response = api.orderNewBulk(orders);
 
         // TODO: test validations
     }

@@ -36,13 +36,6 @@ class TestOrderApi(unittest.TestCase):
         """
         pass
 
-    def test_order_amend_bulk(self):
-        """Test case for order_amend_bulk
-
-        Amend multiple orders for the same symbol.  # noqa: E501
-        """
-        pass
-
     def test_order_cancel(self):
         """Test case for order_cancel
 
@@ -82,13 +75,6 @@ class TestOrderApi(unittest.TestCase):
         """Test case for order_new
 
         Create a new order.  # noqa: E501
-        """
-        pass
-
-    def test_order_new_bulk(self):
-        """Test case for order_new_bulk
-
-        Create multiple new orders for the same symbol.  # noqa: E501
         """
         pass
 

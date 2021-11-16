@@ -39,56 +39,46 @@ public:
     QMap<QString, QString> defaultHeaders;
 
     void order_amend(QString* order_id, QString* orig_cl_ord_id, QString* cl_ord_id, double simple_order_qty, SWGNumber* order_qty, double simple_leaves_qty, SWGNumber* leaves_qty, double price, double stop_px, double peg_offset_value, QString* text);
-    void order_amendBulk(QString* orders);
     void order_cancel(QString* order_id, QString* cl_ord_id, QString* text);
     void order_cancelAll(QString* symbol, QString* filter, QString* text);
     void order_cancelAllAfter(double timeout);
     void order_closePosition(QString* symbol, double price);
     void order_getOrders(QString* symbol, QString* filter, QString* columns, SWGNumber* count, SWGNumber* start, bool reverse, QDateTime* start_time, QDateTime* end_time);
     void order_new(QString* symbol, QString* side, double simple_order_qty, SWGNumber* order_qty, double price, SWGNumber* display_qty, double stop_px, QString* cl_ord_id, QString* cl_ord_link_id, double peg_offset_value, QString* peg_price_type, QString* ord_type, QString* time_in_force, QString* exec_inst, QString* contingency_type, QString* text);
-    void order_newBulk(QString* orders);
     
 private:
     void order_amendCallback (SWGHttpRequestWorker * worker);
-    void order_amendBulkCallback (SWGHttpRequestWorker * worker);
     void order_cancelCallback (SWGHttpRequestWorker * worker);
     void order_cancelAllCallback (SWGHttpRequestWorker * worker);
     void order_cancelAllAfterCallback (SWGHttpRequestWorker * worker);
     void order_closePositionCallback (SWGHttpRequestWorker * worker);
     void order_getOrdersCallback (SWGHttpRequestWorker * worker);
     void order_newCallback (SWGHttpRequestWorker * worker);
-    void order_newBulkCallback (SWGHttpRequestWorker * worker);
     
 signals:
     void order_amendSignal(SWGOrder* summary);
-    void order_amendBulkSignal(QList<SWGOrder*>* summary);
     void order_cancelSignal(QList<SWGOrder*>* summary);
     void order_cancelAllSignal(QList<SWGOrder*>* summary);
     void order_cancelAllAfterSignal(SWGObject* summary);
     void order_closePositionSignal(SWGOrder* summary);
     void order_getOrdersSignal(QList<SWGOrder*>* summary);
     void order_newSignal(SWGOrder* summary);
-    void order_newBulkSignal(QList<SWGOrder*>* summary);
     
     void order_amendSignalE(SWGOrder* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void order_amendBulkSignalE(QList<SWGOrder*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_cancelSignalE(QList<SWGOrder*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_cancelAllSignalE(QList<SWGOrder*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_cancelAllAfterSignalE(SWGObject* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_closePositionSignalE(SWGOrder* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_getOrdersSignalE(QList<SWGOrder*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_newSignalE(SWGOrder* summary, QNetworkReply::NetworkError error_type, QString& error_str);
-    void order_newBulkSignalE(QList<SWGOrder*>* summary, QNetworkReply::NetworkError error_type, QString& error_str);
     
     void order_amendSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
-    void order_amendBulkSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_cancelSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_cancelAllSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_cancelAllAfterSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_closePositionSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_getOrdersSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     void order_newSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
-    void order_newBulkSignalEFull(SWGHttpRequestWorker* worker, QNetworkReply::NetworkError error_type, QString& error_str);
     
 };
 

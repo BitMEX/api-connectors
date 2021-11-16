@@ -100,57 +100,6 @@ module SwaggerClient
       end
       return data, status_code, headers
     end
-    # Amend multiple orders for the same symbol.
-    # Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 10%.
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :orders An array of orders.
-    # @return [Array<Order>]
-    def order_amend_bulk(opts = {})
-      data, _status_code, _headers = order_amend_bulk_with_http_info(opts)
-      data
-    end
-
-    # Amend multiple orders for the same symbol.
-    # Similar to POST /amend, but with multiple orders. &#x60;application/json&#x60; only. Ratelimited at 10%.
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :orders An array of orders.
-    # @return [Array<(Array<Order>, Fixnum, Hash)>] Array<Order> data, response status code and response headers
-    def order_amend_bulk_with_http_info(opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: OrderApi.order_amend_bulk ...'
-      end
-      # resource path
-      local_var_path = '/order/bulk'
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
-
-      # form parameters
-      form_params = {}
-      form_params['orders'] = opts[:'orders'] if !opts[:'orders'].nil?
-
-      # http body (model)
-      post_body = nil
-      auth_names = ['apiExpires', 'apiKey', 'apiSignature']
-      data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'Array<Order>')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: OrderApi#order_amend_bulk\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
     # Cancel order(s). Send multiple order IDs to cancel in bulk.
     # Either an orderID or a clOrdID must be provided.
     # @param [Hash] opts the optional parameters
@@ -545,57 +494,6 @@ module SwaggerClient
         :return_type => 'Order')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: OrderApi#order_new\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-    # Create multiple new orders for the same symbol.
-    # This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at `ceil(0.1 * orders)`. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only `application/json` is supported on this endpoint. 
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :orders An array of orders.
-    # @return [Array<Order>]
-    def order_new_bulk(opts = {})
-      data, _status_code, _headers = order_new_bulk_with_http_info(opts)
-      data
-    end
-
-    # Create multiple new orders for the same symbol.
-    # This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at &#x60;ceil(0.1 * orders)&#x60;. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only &#x60;application/json&#x60; is supported on this endpoint. 
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :orders An array of orders.
-    # @return [Array<(Array<Order>, Fixnum, Hash)>] Array<Order> data, response status code and response headers
-    def order_new_bulk_with_http_info(opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: OrderApi.order_new_bulk ...'
-      end
-      # resource path
-      local_var_path = '/order/bulk'
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
-
-      # form parameters
-      form_params = {}
-      form_params['orders'] = opts[:'orders'] if !opts[:'orders'].nil?
-
-      # http body (model)
-      post_body = nil
-      auth_names = ['apiExpires', 'apiKey', 'apiSignature']
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'Array<Order>')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: OrderApi#order_new_bulk\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

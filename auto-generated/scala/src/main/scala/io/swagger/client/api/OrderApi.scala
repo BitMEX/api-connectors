@@ -129,32 +129,6 @@ class OrderApi(
   }
 
   /**
-   * Amend multiple orders for the same symbol.
-   * Similar to POST /amend, but with multiple orders. &#x60;application/json&#x60; only. Ratelimited at 10%.
-   *
-   * @param orders An array of orders. (optional)
-   * @return List[Order]
-   */
-  def orderAmendBulk(orders: Option[String] = None): Option[List[Order]] = {
-    val await = Try(Await.result(orderAmendBulkAsync(orders), Duration.Inf))
-    await match {
-      case Success(i) => Some(await.get)
-      case Failure(t) => None
-    }
-  }
-
-  /**
-   * Amend multiple orders for the same symbol. asynchronously
-   * Similar to POST /amend, but with multiple orders. &#x60;application/json&#x60; only. Ratelimited at 10%.
-   *
-   * @param orders An array of orders. (optional)
-   * @return Future(List[Order])
-   */
-  def orderAmendBulkAsync(orders: Option[String] = None): Future[List[Order]] = {
-      helper.orderAmendBulk(orders)
-  }
-
-  /**
    * Cancel order(s). Send multiple order IDs to cancel in bulk.
    * Either an orderID or a clOrdID must be provided.
    *
@@ -364,32 +338,6 @@ class OrderApi(
       helper.orderNew(symbol, side, simpleOrderQty, orderQty, price, displayQty, stopPx, clOrdID, clOrdLinkID, pegOffsetValue, pegPriceType, ordType, timeInForce, execInst, contingencyType, text)
   }
 
-  /**
-   * Create multiple new orders for the same symbol.
-   * This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at &#x60;ceil(0.1 * orders)&#x60;. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only &#x60;application/json&#x60; is supported on this endpoint. 
-   *
-   * @param orders An array of orders. (optional)
-   * @return List[Order]
-   */
-  def orderNewBulk(orders: Option[String] = None): Option[List[Order]] = {
-    val await = Try(Await.result(orderNewBulkAsync(orders), Duration.Inf))
-    await match {
-      case Success(i) => Some(await.get)
-      case Failure(t) => None
-    }
-  }
-
-  /**
-   * Create multiple new orders for the same symbol. asynchronously
-   * This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at &#x60;ceil(0.1 * orders)&#x60;. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only &#x60;application/json&#x60; is supported on this endpoint. 
-   *
-   * @param orders An array of orders. (optional)
-   * @return Future(List[Order])
-   */
-  def orderNewBulkAsync(orders: Option[String] = None): Future[List[Order]] = {
-      helper.orderNewBulk(orders)
-  }
-
 }
 
 class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
@@ -408,22 +356,6 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
     )(implicit reader: ClientResponseReader[Order]): Future[Order] = {
     // create path and map variables
     val path = (addFmt("/order"))
-
-    // query params
-    val queryParams = new mutable.HashMap[String, String]
-    val headerParams = new mutable.HashMap[String, String]
-
-
-    val resFuture = client.submit("PUT", path, queryParams.toMap, headerParams.toMap, "")
-    resFuture flatMap { resp =>
-      process(reader.read(resp))
-    }
-  }
-
-  def orderAmendBulk(orders: Option[String] = None
-    )(implicit reader: ClientResponseReader[List[Order]]): Future[List[Order]] = {
-    // create path and map variables
-    val path = (addFmt("/order/bulk"))
 
     // query params
     val queryParams = new mutable.HashMap[String, String]
@@ -586,22 +518,6 @@ class OrderApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extend
     val headerParams = new mutable.HashMap[String, String]
 
     if (symbol == null) throw new Exception("Missing required parameter 'symbol' when calling OrderApi->orderNew")
-
-
-    val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
-    resFuture flatMap { resp =>
-      process(reader.read(resp))
-    }
-  }
-
-  def orderNewBulk(orders: Option[String] = None
-    )(implicit reader: ClientResponseReader[List[Order]]): Future[List[Order]] = {
-    // create path and map variables
-    val path = (addFmt("/order/bulk"))
-
-    // query params
-    val queryParams = new mutable.HashMap[String, String]
-    val headerParams = new mutable.HashMap[String, String]
 
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
