@@ -72,16 +72,6 @@ public:
         boost::optional<utility::string_t> text
     );
     /// <summary>
-    /// Amend multiple orders for the same symbol.
-    /// </summary>
-    /// <remarks>
-    /// Similar to POST /amend, but with multiple orders. &#x60;application/json&#x60; only. Ratelimited at 10%.
-    /// </remarks>
-    /// <param name="orders">An array of orders. (optional)</param>
-    pplx::task<std::vector<std::shared_ptr<Order>>> order_amendBulk(
-        boost::optional<utility::string_t> orders
-    );
-    /// <summary>
     /// Cancel order(s). Send multiple order IDs to cancel in bulk.
     /// </summary>
     /// <remarks>
@@ -194,16 +184,6 @@ public:
         boost::optional<utility::string_t> execInst,
         boost::optional<utility::string_t> contingencyType,
         boost::optional<utility::string_t> text
-    );
-    /// <summary>
-    /// Create multiple new orders for the same symbol.
-    /// </summary>
-    /// <remarks>
-    /// This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at &#x60;ceil(0.1 * orders)&#x60;. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only &#x60;application/json&#x60; is supported on this endpoint. 
-    /// </remarks>
-    /// <param name="orders">An array of orders. (optional)</param>
-    pplx::task<std::vector<std::shared_ptr<Order>>> order_newBulk(
-        boost::optional<utility::string_t> orders
     );
 
 protected:

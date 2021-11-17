@@ -5,14 +5,12 @@ All URIs are relative to *https://www.bitmex.com/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**order_amend**](OrderApi.md#order_amend) | **PUT** /order | Amend the quantity or price of an open order.
-[**order_amend_bulk**](OrderApi.md#order_amend_bulk) | **PUT** /order/bulk | Amend multiple orders for the same symbol.
 [**order_cancel**](OrderApi.md#order_cancel) | **DELETE** /order | Cancel order(s). Send multiple order IDs to cancel in bulk.
 [**order_cancel_all**](OrderApi.md#order_cancel_all) | **DELETE** /order/all | Cancels all of your orders.
 [**order_cancel_all_after**](OrderApi.md#order_cancel_all_after) | **POST** /order/cancelAllAfter | Automatically cancel all your orders after a specified timeout.
 [**order_close_position**](OrderApi.md#order_close_position) | **POST** /order/closePosition | Close a position. [Deprecated, use POST /order with execInst: &#39;Close&#39;]
 [**order_get_orders**](OrderApi.md#order_get_orders) | **GET** /order | Get your orders.
 [**order_new**](OrderApi.md#order_new) | **POST** /order | Create a new order.
-[**order_new_bulk**](OrderApi.md#order_new_bulk) | **POST** /order/bulk | Create multiple new orders for the same symbol.
 
 
 # **order_amend**
@@ -87,70 +85,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Order**](Order.md)
-
-### Authorization
-
-[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **order_amend_bulk**
-> list[Order] order_amend_bulk(orders=orders)
-
-Amend multiple orders for the same symbol.
-
-Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 10%.
-
-### Example
-```python
-from __future__ import print_function
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# Configure API key authorization: apiExpires
-configuration = swagger_client.Configuration()
-configuration.api_key['api-expires'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api-expires'] = 'Bearer'
-# Configure API key authorization: apiKey
-configuration = swagger_client.Configuration()
-configuration.api_key['api-key'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api-key'] = 'Bearer'
-# Configure API key authorization: apiSignature
-configuration = swagger_client.Configuration()
-configuration.api_key['api-signature'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api-signature'] = 'Bearer'
-
-# create an instance of the API class
-api_instance = swagger_client.OrderApi(swagger_client.ApiClient(configuration))
-orders = 'orders_example' # str | An array of orders. (optional)
-
-try:
-    # Amend multiple orders for the same symbol.
-    api_response = api_instance.order_amend_bulk(orders=orders)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling OrderApi->order_amend_bulk: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **orders** | **str**| An array of orders. | [optional] 
-
-### Return type
-
-[**list[Order]**](Order.md)
 
 ### Authorization
 
@@ -587,70 +521,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Order**](Order.md)
-
-### Authorization
-
-[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **order_new_bulk**
-> list[Order] order_new_bulk(orders=orders)
-
-Create multiple new orders for the same symbol.
-
-This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at `ceil(0.1 * orders)`. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only `application/json` is supported on this endpoint. 
-
-### Example
-```python
-from __future__ import print_function
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# Configure API key authorization: apiExpires
-configuration = swagger_client.Configuration()
-configuration.api_key['api-expires'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api-expires'] = 'Bearer'
-# Configure API key authorization: apiKey
-configuration = swagger_client.Configuration()
-configuration.api_key['api-key'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api-key'] = 'Bearer'
-# Configure API key authorization: apiSignature
-configuration = swagger_client.Configuration()
-configuration.api_key['api-signature'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api-signature'] = 'Bearer'
-
-# create an instance of the API class
-api_instance = swagger_client.OrderApi(swagger_client.ApiClient(configuration))
-orders = 'orders_example' # str | An array of orders. (optional)
-
-try:
-    # Create multiple new orders for the same symbol.
-    api_response = api_instance.order_new_bulk(orders=orders)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling OrderApi->order_new_bulk: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **orders** | **str**| An array of orders. | [optional] 
-
-### Return type
-
-[**list[Order]**](Order.md)
 
 ### Authorization
 

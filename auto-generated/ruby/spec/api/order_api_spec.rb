@@ -54,18 +54,6 @@ describe 'OrderApi' do
     end
   end
 
-  # unit tests for order_amend_bulk
-  # Amend multiple orders for the same symbol.
-  # Similar to POST /amend, but with multiple orders. &#x60;application/json&#x60; only. Ratelimited at 10%.
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :orders An array of orders.
-  # @return [Array<Order>]
-  describe 'order_amend_bulk test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for order_cancel
   # Cancel order(s). Send multiple order IDs to cancel in bulk.
   # Either an orderID or a clOrdID must be provided.
@@ -159,18 +147,6 @@ describe 'OrderApi' do
   # @option opts [String] :text Optional order annotation. e.g. &#39;Take profit&#39;.
   # @return [Order]
   describe 'order_new test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for order_new_bulk
-  # Create multiple new orders for the same symbol.
-  # This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at &#x60;ceil(0.1 * orders)&#x60;. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only &#x60;application/json&#x60; is supported on this endpoint. 
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :orders An array of orders.
-  # @return [Array<Order>]
-  describe 'order_new_bulk test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

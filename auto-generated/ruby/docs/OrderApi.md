@@ -5,14 +5,12 @@ All URIs are relative to *https://www.bitmex.com/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**order_amend**](OrderApi.md#order_amend) | **PUT** /order | Amend the quantity or price of an open order.
-[**order_amend_bulk**](OrderApi.md#order_amend_bulk) | **PUT** /order/bulk | Amend multiple orders for the same symbol.
 [**order_cancel**](OrderApi.md#order_cancel) | **DELETE** /order | Cancel order(s). Send multiple order IDs to cancel in bulk.
 [**order_cancel_all**](OrderApi.md#order_cancel_all) | **DELETE** /order/all | Cancels all of your orders.
 [**order_cancel_all_after**](OrderApi.md#order_cancel_all_after) | **POST** /order/cancelAllAfter | Automatically cancel all your orders after a specified timeout.
 [**order_close_position**](OrderApi.md#order_close_position) | **POST** /order/closePosition | Close a position. [Deprecated, use POST /order with execInst: &#39;Close&#39;]
 [**order_get_orders**](OrderApi.md#order_get_orders) | **GET** /order | Get your orders.
 [**order_new**](OrderApi.md#order_new) | **POST** /order | Create a new order.
-[**order_new_bulk**](OrderApi.md#order_new_bulk) | **POST** /order/bulk | Create multiple new orders for the same symbol.
 
 
 # **order_amend**
@@ -88,71 +86,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Order**](Order.md)
-
-### Authorization
-
-[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-
-
-# **order_amend_bulk**
-> Array&lt;Order&gt; order_amend_bulk(opts)
-
-Amend multiple orders for the same symbol.
-
-Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 10%.
-
-### Example
-```ruby
-# load the gem
-require 'swagger_client'
-# setup authorization
-SwaggerClient.configure do |config|
-  # Configure API key authorization: apiExpires
-  config.api_key['api-expires'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-expires'] = 'Bearer'
-
-  # Configure API key authorization: apiKey
-  config.api_key['api-key'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-key'] = 'Bearer'
-
-  # Configure API key authorization: apiSignature
-  config.api_key['api-signature'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-signature'] = 'Bearer'
-end
-
-api_instance = SwaggerClient::OrderApi.new
-
-opts = { 
-  orders: 'orders_example' # String | An array of orders.
-}
-
-begin
-  #Amend multiple orders for the same symbol.
-  result = api_instance.order_amend_bulk(opts)
-  p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling OrderApi->order_amend_bulk: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **orders** | **String**| An array of orders. | [optional] 
-
-### Return type
-
-[**Array&lt;Order&gt;**](Order.md)
 
 ### Authorization
 
@@ -596,71 +529,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Order**](Order.md)
-
-### Authorization
-
-[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-
-
-# **order_new_bulk**
-> Array&lt;Order&gt; order_new_bulk(opts)
-
-Create multiple new orders for the same symbol.
-
-This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at `ceil(0.1 * orders)`. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only `application/json` is supported on this endpoint. 
-
-### Example
-```ruby
-# load the gem
-require 'swagger_client'
-# setup authorization
-SwaggerClient.configure do |config|
-  # Configure API key authorization: apiExpires
-  config.api_key['api-expires'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-expires'] = 'Bearer'
-
-  # Configure API key authorization: apiKey
-  config.api_key['api-key'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-key'] = 'Bearer'
-
-  # Configure API key authorization: apiSignature
-  config.api_key['api-signature'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['api-signature'] = 'Bearer'
-end
-
-api_instance = SwaggerClient::OrderApi.new
-
-opts = { 
-  orders: 'orders_example' # String | An array of orders.
-}
-
-begin
-  #Create multiple new orders for the same symbol.
-  result = api_instance.order_new_bulk(opts)
-  p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling OrderApi->order_new_bulk: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **orders** | **String**| An array of orders. | [optional] 
-
-### Return type
-
-[**Array&lt;Order&gt;**](Order.md)
 
 ### Authorization
 

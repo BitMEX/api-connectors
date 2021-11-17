@@ -114,51 +114,6 @@
     }
 
     /**
-     * Callback function to receive the result of the orderAmendBulk operation.
-     * @callback module:api/OrderApi~orderAmendBulkCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/Order>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Amend multiple orders for the same symbol.
-     * Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 10%.
-     * @param {Object} opts Optional parameters
-     * @param {String} opts.orders An array of orders.
-     * @param {module:api/OrderApi~orderAmendBulkCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/Order>}
-     */
-    this.orderAmendBulk = function(opts, callback) {
-      opts = opts || {};
-      var postBody = null;
-
-
-      var pathParams = {
-      };
-      var queryParams = {
-      };
-      var collectionQueryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-        'orders': opts['orders']
-      };
-
-      var authNames = ['apiExpires', 'apiKey', 'apiSignature'];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [Order];
-
-      return this.apiClient.callApi(
-        '/order/bulk', 'PUT',
-        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-
-    /**
      * Callback function to receive the result of the orderCancel operation.
      * @callback module:api/OrderApi~orderCancelCallback
      * @param {String} error Error message, if any.
@@ -489,51 +444,6 @@
 
       return this.apiClient.callApi(
         '/order', 'POST',
-        pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the orderNewBulk operation.
-     * @callback module:api/OrderApi~orderNewBulkCallback
-     * @param {String} error Error message, if any.
-     * @param {Array.<module:model/Order>} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Create multiple new orders for the same symbol.
-     * This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at `ceil(0.1 * orders)`. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only `application/json` is supported on this endpoint. 
-     * @param {Object} opts Optional parameters
-     * @param {String} opts.orders An array of orders.
-     * @param {module:api/OrderApi~orderNewBulkCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/Order>}
-     */
-    this.orderNewBulk = function(opts, callback) {
-      opts = opts || {};
-      var postBody = null;
-
-
-      var pathParams = {
-      };
-      var queryParams = {
-      };
-      var collectionQueryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-        'orders': opts['orders']
-      };
-
-      var authNames = ['apiExpires', 'apiKey', 'apiSignature'];
-      var contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
-      var accepts = ['application/json', 'application/xml', 'text/xml', 'application/javascript', 'text/javascript'];
-      var returnType = [Order];
-
-      return this.apiClient.callApi(
-        '/order/bulk', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

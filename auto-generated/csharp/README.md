@@ -131,14 +131,12 @@ Class | Method | HTTP request | Description
 *LeaderboardApi* | [**LeaderboardGetName**](docs/LeaderboardApi.md#leaderboardgetname) | **GET** /leaderboard/name | Get your alias on the leaderboard.
 *LiquidationApi* | [**LiquidationGet**](docs/LiquidationApi.md#liquidationget) | **GET** /liquidation | Get liquidation orders.
 *OrderApi* | [**OrderAmend**](docs/OrderApi.md#orderamend) | **PUT** /order | Amend the quantity or price of an open order.
-*OrderApi* | [**OrderAmendBulk**](docs/OrderApi.md#orderamendbulk) | **PUT** /order/bulk | Amend multiple orders for the same symbol.
 *OrderApi* | [**OrderCancel**](docs/OrderApi.md#ordercancel) | **DELETE** /order | Cancel order(s). Send multiple order IDs to cancel in bulk.
 *OrderApi* | [**OrderCancelAll**](docs/OrderApi.md#ordercancelall) | **DELETE** /order/all | Cancels all of your orders.
 *OrderApi* | [**OrderCancelAllAfter**](docs/OrderApi.md#ordercancelallafter) | **POST** /order/cancelAllAfter | Automatically cancel all your orders after a specified timeout.
 *OrderApi* | [**OrderClosePosition**](docs/OrderApi.md#ordercloseposition) | **POST** /order/closePosition | Close a position. [Deprecated, use POST /order with execInst: 'Close']
 *OrderApi* | [**OrderGetOrders**](docs/OrderApi.md#ordergetorders) | **GET** /order | Get your orders.
 *OrderApi* | [**OrderNew**](docs/OrderApi.md#ordernew) | **POST** /order | Create a new order.
-*OrderApi* | [**OrderNewBulk**](docs/OrderApi.md#ordernewbulk) | **POST** /order/bulk | Create multiple new orders for the same symbol.
 *OrderBookApi* | [**OrderBookGetL2**](docs/OrderBookApi.md#orderbookgetl2) | **GET** /orderBook/L2 | Get current orderbook in vertical format.
 *PositionApi* | [**PositionGet**](docs/PositionApi.md#positionget) | **GET** /position | Get your positions.
 *PositionApi* | [**PositionIsolateMargin**](docs/PositionApi.md#positionisolatemargin) | **POST** /position/isolate | Enable isolated margin or cross margin per-position.

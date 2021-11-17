@@ -87,18 +87,6 @@ namespace IO.Swagger.Test
         }
         
         /// <summary>
-        /// Test OrderAmendBulk
-        /// </summary>
-        [Test]
-        public void OrderAmendBulkTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string orders = null;
-            //var response = instance.OrderAmendBulk(orders);
-            //Assert.IsInstanceOf<List<Order>> (response, "response is List<Order>");
-        }
-        
-        /// <summary>
         /// Test OrderCancel
         /// </summary>
         [Test]
@@ -195,18 +183,6 @@ namespace IO.Swagger.Test
             //string text = null;
             //var response = instance.OrderNew(symbol, side, simpleOrderQty, orderQty, price, displayQty, stopPx, clOrdID, clOrdLinkID, pegOffsetValue, pegPriceType, ordType, timeInForce, execInst, contingencyType, text);
             //Assert.IsInstanceOf<Order> (response, "response is Order");
-        }
-        
-        /// <summary>
-        /// Test OrderNewBulk
-        /// </summary>
-        [Test]
-        public void OrderNewBulkTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string orders = null;
-            //var response = instance.OrderNewBulk(orders);
-            //Assert.IsInstanceOf<List<Order>> (response, "response is List<Order>");
         }
         
     }

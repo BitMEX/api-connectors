@@ -6199,65 +6199,6 @@ export class OrderApi {
         });
     }
     /**
-     * Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 10%.
-     * @summary Amend multiple orders for the same symbol.
-     * @param orders An array of orders.
-     * @param {*} [options] Override http request options.
-     */
-    public orderAmendBulk (orders?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Order>;  }> {
-        const localVarPath = this.basePath + '/order/bulk';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        if (orders !== undefined) {
-            localVarFormParams['orders'] = ObjectSerializer.serialize(orders, "string");
-        }
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PUT',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
-
-        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
-
-        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.ClientResponse; body: Array<Order>;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "Array<Order>");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
      * Either an orderID or a clOrdID must be provided.
      * @summary Cancel order(s). Send multiple order IDs to cancel in bulk.
      * @param orderID Order ID(s).
@@ -6752,65 +6693,6 @@ export class OrderApi {
                     reject(error);
                 } else {
                     body = ObjectSerializer.deserialize(body, "Order");
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({ response: response, body: body });
-                    } else {
-                        reject({ response: response, body: body });
-                    }
-                }
-            });
-        });
-    }
-    /**
-     * This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at `ceil(0.1 * orders)`. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only `application/json` is supported on this endpoint. 
-     * @summary Create multiple new orders for the same symbol.
-     * @param orders An array of orders.
-     * @param {*} [options] Override http request options.
-     */
-    public orderNewBulk (orders?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: Array<Order>;  }> {
-        const localVarPath = this.basePath + '/order/bulk';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        if (orders !== undefined) {
-            localVarFormParams['orders'] = ObjectSerializer.serialize(orders, "string");
-        }
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        this.authentications.apiExpires.applyToRequest(localVarRequestOptions);
-
-        this.authentications.apiKey.applyToRequest(localVarRequestOptions);
-
-        this.authentications.apiSignature.applyToRequest(localVarRequestOptions);
-
-        this.authentications.default.applyToRequest(localVarRequestOptions);
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        return new Promise<{ response: http.ClientResponse; body: Array<Order>;  }>((resolve, reject) => {
-            localVarRequest(localVarRequestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    body = ObjectSerializer.deserialize(body, "Array<Order>");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
                     } else {

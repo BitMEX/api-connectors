@@ -82,16 +82,6 @@ class OrderApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for orderAmendBulk
-     *
-     * Amend multiple orders for the same symbol..
-     *
-     */
-    public function testOrderAmendBulk()
-    {
-    }
-
-    /**
      * Test case for orderCancel
      *
      * Cancel order(s). Send multiple order IDs to cancel in bulk..
@@ -148,16 +138,6 @@ class OrderApiTest extends \PHPUnit_Framework_TestCase
      *
      */
     public function testOrderNew()
-    {
-    }
-
-    /**
-     * Test case for orderNewBulk
-     *
-     * Create multiple new orders for the same symbol..
-     *
-     */
-    public function testOrderNewBulk()
     {
     }
 }

@@ -177,14 +177,12 @@ Class | Method | HTTP request | Description
 *SWGLeaderboardApi* | [**leaderboardGetName**](docs/SWGLeaderboardApi.md#leaderboardgetname) | **GET** /leaderboard/name | Get your alias on the leaderboard.
 *SWGLiquidationApi* | [**liquidationGet**](docs/SWGLiquidationApi.md#liquidationget) | **GET** /liquidation | Get liquidation orders.
 *SWGOrderApi* | [**orderAmend**](docs/SWGOrderApi.md#orderamend) | **PUT** /order | Amend the quantity or price of an open order.
-*SWGOrderApi* | [**orderAmendBulk**](docs/SWGOrderApi.md#orderamendbulk) | **PUT** /order/bulk | Amend multiple orders for the same symbol.
 *SWGOrderApi* | [**orderCancel**](docs/SWGOrderApi.md#ordercancel) | **DELETE** /order | Cancel order(s). Send multiple order IDs to cancel in bulk.
 *SWGOrderApi* | [**orderCancelAll**](docs/SWGOrderApi.md#ordercancelall) | **DELETE** /order/all | Cancels all of your orders.
 *SWGOrderApi* | [**orderCancelAllAfter**](docs/SWGOrderApi.md#ordercancelallafter) | **POST** /order/cancelAllAfter | Automatically cancel all your orders after a specified timeout.
 *SWGOrderApi* | [**orderClosePosition**](docs/SWGOrderApi.md#ordercloseposition) | **POST** /order/closePosition | Close a position. [Deprecated, use POST /order with execInst: &#39;Close&#39;]
 *SWGOrderApi* | [**orderGetOrders**](docs/SWGOrderApi.md#ordergetorders) | **GET** /order | Get your orders.
 *SWGOrderApi* | [**orderNew**](docs/SWGOrderApi.md#ordernew) | **POST** /order | Create a new order.
-*SWGOrderApi* | [**orderNewBulk**](docs/SWGOrderApi.md#ordernewbulk) | **POST** /order/bulk | Create multiple new orders for the same symbol.
 *SWGOrderBookApi* | [**orderBookGetL2**](docs/SWGOrderBookApi.md#orderbookgetl2) | **GET** /orderBook/L2 | Get current orderbook in vertical format.
 *SWGPositionApi* | [**positionGet**](docs/SWGPositionApi.md#positionget) | **GET** /position | Get your positions.
 *SWGPositionApi* | [**positionIsolateMargin**](docs/SWGPositionApi.md#positionisolatemargin) | **POST** /position/isolate | Enable isolated margin or cross margin per-position.

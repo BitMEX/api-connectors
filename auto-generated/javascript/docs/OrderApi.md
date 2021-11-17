@@ -5,14 +5,12 @@ All URIs are relative to *https://www.bitmex.com/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**orderAmend**](OrderApi.md#orderAmend) | **PUT** /order | Amend the quantity or price of an open order.
-[**orderAmendBulk**](OrderApi.md#orderAmendBulk) | **PUT** /order/bulk | Amend multiple orders for the same symbol.
 [**orderCancel**](OrderApi.md#orderCancel) | **DELETE** /order | Cancel order(s). Send multiple order IDs to cancel in bulk.
 [**orderCancelAll**](OrderApi.md#orderCancelAll) | **DELETE** /order/all | Cancels all of your orders.
 [**orderCancelAllAfter**](OrderApi.md#orderCancelAllAfter) | **POST** /order/cancelAllAfter | Automatically cancel all your orders after a specified timeout.
 [**orderClosePosition**](OrderApi.md#orderClosePosition) | **POST** /order/closePosition | Close a position. [Deprecated, use POST /order with execInst: 'Close']
 [**orderGetOrders**](OrderApi.md#orderGetOrders) | **GET** /order | Get your orders.
 [**orderNew**](OrderApi.md#orderNew) | **POST** /order | Create a new order.
-[**orderNewBulk**](OrderApi.md#orderNewBulk) | **POST** /order/bulk | Create multiple new orders for the same symbol.
 
 
 <a name="orderAmend"></a>
@@ -91,72 +89,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Order**](Order.md)
-
-### Authorization
-
-[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-<a name="orderAmendBulk"></a>
-# **orderAmendBulk**
-> [Order] orderAmendBulk(opts)
-
-Amend multiple orders for the same symbol.
-
-Similar to POST /amend, but with multiple orders. `application/json` only. Ratelimited at 10%.
-
-### Example
-```javascript
-var BitMexApi = require('bit_mex_api');
-var defaultClient = BitMexApi.ApiClient.instance;
-
-// Configure API key authorization: apiExpires
-var apiExpires = defaultClient.authentications['apiExpires'];
-apiExpires.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiExpires.apiKeyPrefix = 'Token';
-
-// Configure API key authorization: apiKey
-var apiKey = defaultClient.authentications['apiKey'];
-apiKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKey.apiKeyPrefix = 'Token';
-
-// Configure API key authorization: apiSignature
-var apiSignature = defaultClient.authentications['apiSignature'];
-apiSignature.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiSignature.apiKeyPrefix = 'Token';
-
-var apiInstance = new BitMexApi.OrderApi();
-
-var opts = { 
-  'orders': "orders_example" // String | An array of orders.
-};
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.orderAmendBulk(opts, callback);
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **orders** | **String**| An array of orders. | [optional] 
-
-### Return type
-
-[**[Order]**](Order.md)
 
 ### Authorization
 
@@ -606,72 +538,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Order**](Order.md)
-
-### Authorization
-
-[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-<a name="orderNewBulk"></a>
-# **orderNewBulk**
-> [Order] orderNewBulk(opts)
-
-Create multiple new orders for the same symbol.
-
-This endpoint is used for placing bulk orders. Valid order types are Market, Limit, Stop, StopLimit, MarketIfTouched, LimitIfTouched, and Pegged.  Each individual order object in the array should have the same properties as an individual POST /order call.  This endpoint is much faster for getting many orders into the book at once. Because it reduces load on BitMEX systems, this endpoint is ratelimited at `ceil(0.1 * orders)`. Submitting 10 orders via a bulk order call will only count as 1 request, 15 as 2, 32 as 4, and so on.  For now, only `application/json` is supported on this endpoint. 
-
-### Example
-```javascript
-var BitMexApi = require('bit_mex_api');
-var defaultClient = BitMexApi.ApiClient.instance;
-
-// Configure API key authorization: apiExpires
-var apiExpires = defaultClient.authentications['apiExpires'];
-apiExpires.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiExpires.apiKeyPrefix = 'Token';
-
-// Configure API key authorization: apiKey
-var apiKey = defaultClient.authentications['apiKey'];
-apiKey.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKey.apiKeyPrefix = 'Token';
-
-// Configure API key authorization: apiSignature
-var apiSignature = defaultClient.authentications['apiSignature'];
-apiSignature.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiSignature.apiKeyPrefix = 'Token';
-
-var apiInstance = new BitMexApi.OrderApi();
-
-var opts = { 
-  'orders': "orders_example" // String | An array of orders.
-};
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.orderNewBulk(opts, callback);
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **orders** | **String**| An array of orders. | [optional] 
-
-### Return type
-
-[**[Order]**](Order.md)
 
 ### Authorization
 
