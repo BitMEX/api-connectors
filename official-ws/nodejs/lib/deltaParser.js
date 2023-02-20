@@ -63,11 +63,7 @@ module.exports = {
     debug('partial: %s %s, data: %j', tableName, symbol, data);
     const dataArr = data.data || [];
     // Intitialize data.
-    // FIXME: we need to echo back `filter` with each partial, otherwise we can't tell the difference
-    // between no data for a symbol and a partial for a different symbol.
-    if (!client._data[tableName][symbol] || dataArr.length) {
-      client._data[tableName][symbol] = dataArr;
-    }
+    client._data[tableName][symbol] = dataArr;
     // Initialize keys.
     client._keys[tableName] = data.keys;
     // Return inserted data
