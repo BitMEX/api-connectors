@@ -111,3 +111,23 @@ test('Recovering after empty partial (* subscription)', async () => {
 
   expect(onOrder.callCount).toEqual(3);
 });
+
+test('Empty partial handling', async () => {
+  const onOrderBook = sinon.spy();
+
+  client.addStream('ETHYLDH23', 'orderBookL2_25', onOrderBook);
+  playback(client, data.orderbookSymboledEmptyPartial);
+
+  expect(client._data['orderBookL2_25']['ETHYLDH23']).toHaveLength(0)
+});
+
+test('Partial handling multiple stream', async () => {
+  const onOrderBook = sinon.spy();
+
+  client.addStream('XBTUSD', 'orderBookL2_25', onOrderBook);
+  client.addStream('ETHYLDH23', 'orderBookL2_25', onOrderBook);
+  playback(client, data.orderbookSymboledEmptyPartial);
+
+  expect(client._data['orderBookL2_25']['XBTUSD']).toHaveLength(2)
+  expect(client._data['orderBookL2_25']['ETHYLDH23']).toHaveLength(0)
+});

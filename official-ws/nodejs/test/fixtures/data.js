@@ -33,10 +33,23 @@ const orderSymboledEmptyPartial = [
   {"table":"order","action":"insert","data":[{"orderID":"ff4dde97-542f-45b2-b8f8-b150b544cd6a","clOrdID":"","clOrdLinkID":"","account":22,"symbol":"XBTUSD","side":"Buy","simpleOrderQty":null,"orderQty":1,"price":11390.5,"displayQty":null,"stopPx":null,"pegOffsetValue":null,"pegPriceType":"","currency":"USD","settlCurrency":"XBt","ordType":"Limit","timeInForce":"GoodTillCancel","execInst":"","contingencyType":"","exDestination":"XBME","ordStatus":"New","triggered":"","workingIndicator":true,"ordRejReason":"","simpleLeavesQty":null,"leavesQty":1,"simpleCumQty":null,"cumQty":0,"avgPx":null,"multiLegReportingType":"SingleSecurity","text":"Submission from testnet.bitmex.com","transactTime":"2020-10-12T18:11:54.184Z","timestamp":"2020-10-12T18:11:54.184Z"}]}
 ];
 
+const orderbookSymboledEmptyPartial = [
+  ...preamble,
+  {"success":true,"subscribe":"orderBookL2_25:XBTUSD","request":{"op":"subscribe","args":"orderBookL2_25:XBTUSD"}},
+  {"table":"orderBookL2_25","action":"partial","keys":["symbol","id","side"],"types":{"symbol":"symbol","id":"long","side":"symbol","size":"long","price":"float","timestamp":"timestamp"},"filter":{"symbol":"XBTUSD"},"data":[{"symbol":"XBTUSD","id":8797789500,"side":"Sell","size":375300,"price":22105,"timestamp":"2023-02-15T08:11:07.502Z"},{"symbol":"XBTUSD","id":8797792250,"side":"Buy","size":102500,"price":22077.5,"timestamp":"2023-02-15T08:11:07.502Z"}]},
+  {"success":true,"subscribe":"orderBookL2_25:ETHYLDH23","request":{"op":"subscribe","args":"orderBookL2_25:ETHYLDH23"}},
+  {"table":"orderBookL2_25","action":"partial","keys":["symbol","id","side"],"types":{"symbol":"symbol","id":"long","side":"symbol","size":"long","price":"float","timestamp":"timestamp"},"filter":{"symbol":"ETHYLDH23"},"data":[{"symbol":"ETHYLDH23","id":9797792250,"side":"Buy","size":102500,"price":22077.5,"timestamp":"2023-02-15T08:11:07.502Z"}]},
+  {"table":"orderBookL2_25","action":"update","data":[{"symbol":"XBTUSD","id":8797789500,"side":"Sell","size":77300,"timestamp":"2023-02-15T08:11:07.523Z"}]},
+  {"table":"orderBookL2_25","action":"partial","keys":["symbol","id","side"],"types":{"symbol":"symbol","id":"long","side":"symbol","size":"long","price":"float","timestamp":"timestamp"},"filter":{"symbol":"XBTUSD"},"data":[{"symbol":"XBTUSD","id":8797792251,"side":"Sell","size":102500,"price":22077.5,"timestamp":"2023-02-16T02:11:10.000Z"}, {"symbol":"XBTUSD","id":8797792221,"side":"Buy","size":202500,"price":22078,"timestamp":"2023-02-16T02:11:10.000Z"}]},
+  {"table":"orderBookL2_25","action":"partial","keys":["symbol","id","side"],"types":{"symbol":"symbol","id":"long","side":"symbol","size":"long","price":"float","timestamp":"timestamp"},"filter":{"symbol":"ETHYLDH23"},"data":[]},
+  {"table":"orderBookL2_25","action":"update","data":[{"symbol":"XBTUSD","id":8797792251,"side":"Sell","size":77300,"timestamp":"2023-02-15T08:11:07.523Z"}]},
+];
+
 module.exports = {
   websocketHelp,
   basicTradeInsert,
   symboledTradeInsert,
   orderEmptyPartial,
   orderSymboledEmptyPartial,
+  orderbookSymboledEmptyPartial
 };
