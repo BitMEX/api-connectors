@@ -183,7 +183,7 @@ class BitMEXWebsocket:
             args = []
         self.ws.send(json.dumps({"op": command, "args": args}))
 
-    def __on_message(self, message):
+    def __on_message(self, ws, message):
         '''Handler for parsing WS messages.'''
         message = json.loads(message)
         self.logger.debug(json.dumps(message))
@@ -240,17 +240,17 @@ class BitMEXWebsocket:
         except:
             self.logger.error(traceback.format_exc())
 
-    def __on_error(self, error):
+    def __on_error(self, ws, error):
         '''Called on fatal websocket errors. We exit on these.'''
         if not self.exited:
             self.logger.error("Error : %s" % error)
             raise websocket.WebSocketException(error)
 
-    def __on_open(self):
+    def __on_open(self, ws):
         '''Called when the WS opens.'''
         self.logger.debug("Websocket Opened.")
 
-    def __on_close(self):
+    def __on_close(self, ws, status_code, msg):
         '''Called on websocket close.'''
         self.logger.info('Websocket Closed')
 

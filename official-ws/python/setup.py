@@ -12,7 +12,7 @@ setup(name='bitmex-ws',
       author_email='sam@bitmex.com',
       url='',
       install_requires=[
-          'websocket-client==0.53.0',
+          'websocket-client==1.6.4',
       ],
       packages=['', 'util'],
       )
