@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**ChatGet**](ChatApi.md#chatget) | **GET** /chat | Get chat messages.
 [**ChatGetChannels**](ChatApi.md#chatgetchannels) | **GET** /chat/channels | Get available channels.
 [**ChatGetConnected**](ChatApi.md#chatgetconnected) | **GET** /chat/connected | Get connected users.
+[**ChatGetPinnedMessage**](ChatApi.md#chatgetpinnedmessage) | **GET** /chat/pinned | Get pinned message for a channel.
 [**ChatNew**](ChatApi.md#chatnew) | **POST** /chat | Send a chat message.
 
 
@@ -34,7 +35,7 @@ namespace Example
             var count = 8.14;  // decimal? | Number of results to fetch. (optional)  (default to 100)
             var start = 8.14;  // decimal? | Starting ID for results. (optional)  (default to 0)
             var reverse = true;  // bool? | If true, will sort results newest first. (optional)  (default to true)
-            var channelID = 1.2;  // double? | Channel id. GET /chat/channels for ids. Leave blank for all. (optional) 
+            var channelID = 1.2;  // double? | Channel id. GET /chat/channels for ids. Global English by default (optional)  (default to 1)
 
             try
             {
@@ -58,7 +59,7 @@ Name | Type | Description  | Notes
  **count** | **decimal?**| Number of results to fetch. | [optional] [default to 100]
  **start** | **decimal?**| Starting ID for results. | [optional] [default to 0]
  **reverse** | **bool?**| If true, will sort results newest first. | [optional] [default to true]
- **channelID** | **double?**| Channel id. GET /chat/channels for ids. Leave blank for all. | [optional] 
+ **channelID** | **double?**| Channel id. GET /chat/channels for ids. Global English by default | [optional] [default to 1]
 
 ### Return type
 
@@ -175,6 +176,65 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**ConnectedUsers**](ConnectedUsers.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="chatgetpinnedmessage"></a>
+# **ChatGetPinnedMessage**
+> PinnedMessage ChatGetPinnedMessage (double? channelID)
+
+Get pinned message for a channel.
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class ChatGetPinnedMessageExample
+    {
+        public void main()
+        {
+            var apiInstance = new ChatApi();
+            var channelID = 1.2;  // double? | 
+
+            try
+            {
+                // Get pinned message for a channel.
+                PinnedMessage result = apiInstance.ChatGetPinnedMessage(channelID);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling ChatApi.ChatGetPinnedMessage: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **channelID** | **double?**|  | 
+
+### Return type
+
+[**PinnedMessage**](PinnedMessage.md)
 
 ### Authorization
 

@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**instrument_get_active_intervals**](InstrumentApi.md#instrument_get_active_intervals) | **GET** /instrument/activeIntervals | Return all active contract series and interval pairs.
 [**instrument_get_composite_index**](InstrumentApi.md#instrument_get_composite_index) | **GET** /instrument/compositeIndex | Show constituent parts of an index.
 [**instrument_get_indices**](InstrumentApi.md#instrument_get_indices) | **GET** /instrument/indices | Get all price indices.
+[**instrument_get_usd_volume**](InstrumentApi.md#instrument_get_usd_volume) | **GET** /instrument/usdVolume | Get a summary of exchange statistics in USD.
 
 
 # **instrument_get**
@@ -17,7 +18,7 @@ Method | HTTP request | Description
 
 Get instruments.
 
-This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\"state\": \"Open\"}`.
+This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\"state\": \"Open\"}`.  The instrument type is specified by the `typ` param.  - Perpetual Contracts - `FFWCSX` - Perpetual Contracts (FX underliers) - `FFWCSF` - Spot - `IFXXXP` - Futures - `FFCCSX` - BitMEX Basket Index - `MRBXXX` - BitMEX Crypto Index - `MRCXXX` - BitMEX FX Index - `MRFXXX` - BitMEX Lending/Premium Index - `MRRXXX` - BitMEX Volatility Index - `MRIXXX` 
 
 ### Example
 ```python
@@ -29,10 +30,10 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.InstrumentApi()
-symbol = 'symbol_example' # str | Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`. (optional)
+symbol = 'symbol_example' # str | Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.  Symbols are case-insensitive. (optional)
 filter = 'filter_example' # str | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. (optional)
 columns = 'columns_example' # str | Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
-count = 100 # float | Number of results to fetch. (optional) (default to 100)
+count = 100 # float | Number of results to fetch. Must be a positive integer. (optional) (default to 100)
 start = 0 # float | Starting point for results. (optional) (default to 0)
 reverse = false # bool | If true, will sort results newest first. (optional) (default to false)
 start_time = '2013-10-20T19:20:30+01:00' # datetime | Starting date filter for results. (optional)
@@ -50,10 +51,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **str**| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;. | [optional] 
+ **symbol** | **str**| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive. | [optional] 
  **filter** | **str**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | [optional] 
  **columns** | **str**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | [optional] 
- **count** | **float**| Number of results to fetch. | [optional] [default to 100]
+ **count** | **float**| Number of results to fetch. Must be a positive integer. | [optional] [default to 100]
  **start** | **float**| Starting point for results. | [optional] [default to 0]
  **reverse** | **bool**| If true, will sort results newest first. | [optional] [default to false]
  **start_time** | **datetime**| Starting date filter for results. | [optional] 
@@ -207,7 +208,7 @@ No authorization required
 
 Show constituent parts of an index.
 
-Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.XBT` to get the ticks and weights of the constituent exchanges that build the \".XBT\" index.  A tick with reference `\"BMI\"` and weight `null` is the composite index tick. 
+Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.BXBT` to get the ticks and weights of the constituent exchanges that build the \".BXBT\" index.  A tick with reference `\"BMI\"` and weight `null` is the composite index tick. 
 
 ### Example
 ```python
@@ -219,10 +220,10 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.InstrumentApi()
-symbol = '.XBT' # str | The composite index symbol. (optional) (default to .XBT)
-filter = 'filter_example' # str | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. (optional)
+symbol = '.BXBT' # str | The composite index symbol. (optional) (default to .BXBT)
+filter = 'filter_example' # str | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. (optional)
 columns = 'columns_example' # str | Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional)
-count = 100 # float | Number of results to fetch. (optional) (default to 100)
+count = 100 # float | Number of results to fetch. Must be a positive integer. (optional) (default to 100)
 start = 0 # float | Starting point for results. (optional) (default to 0)
 reverse = false # bool | If true, will sort results newest first. (optional) (default to false)
 start_time = '2013-10-20T19:20:30+01:00' # datetime | Starting date filter for results. (optional)
@@ -240,10 +241,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **str**| The composite index symbol. | [optional] [default to .XBT]
- **filter** | **str**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | [optional] 
+ **symbol** | **str**| The composite index symbol. | [optional] [default to .BXBT]
+ **filter** | **str**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. | [optional] 
  **columns** | **str**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | [optional] 
- **count** | **float**| Number of results to fetch. | [optional] [default to 100]
+ **count** | **float**| Number of results to fetch. Must be a positive integer. | [optional] [default to 100]
  **start** | **float**| Starting point for results. | [optional] [default to 0]
  **reverse** | **bool**| If true, will sort results newest first. | [optional] [default to false]
  **start_time** | **datetime**| Starting date filter for results. | [optional] 
@@ -294,6 +295,54 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**list[Instrument]**](Instrument.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **instrument_get_usd_volume**
+> list[StatsUSDBySymbol] instrument_get_usd_volume(symbol=symbol, columns=columns)
+
+Get a summary of exchange statistics in USD.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.InstrumentApi()
+symbol = 'symbol_example' # str | Filter by symbol. (optional)
+columns = 'columns_example' # str | Array of column names to fetch. (optional)
+
+try:
+    # Get a summary of exchange statistics in USD.
+    api_response = api_instance.instrument_get_usd_volume(symbol=symbol, columns=columns)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling InstrumentApi->instrument_get_usd_volume: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **str**| Filter by symbol. | [optional] 
+ **columns** | **str**| Array of column names to fetch. | [optional] 
+
+### Return type
+
+[**list[StatsUSDBySymbol]**](StatsUSDBySymbol.md)
 
 ### Authorization
 

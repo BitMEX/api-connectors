@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -15,6 +15,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from swagger_client.configuration import Configuration
 
 
 class UserPreferences(object):
@@ -40,24 +42,41 @@ class UserPreferences(object):
         'debug': 'bool',
         'disable_emails': 'list[str]',
         'disable_push': 'list[str]',
+        'display_corp_enroll_upsell': 'bool',
+        'equivalent_currency': 'str',
+        'features': 'list[str]',
+        'favourites': 'list[str]',
+        'favourites_assets': 'list[str]',
+        'favourites_ordered': 'list[str]',
         'hide_confirm_dialogs': 'list[str]',
         'hide_connection_modal': 'bool',
         'hide_from_leaderboard': 'bool',
         'hide_name_from_leaderboard': 'bool',
         'hide_notifications': 'list[str]',
+        'hide_phone_confirm': 'bool',
+        'is_sensitive_info_visible': 'bool',
+        'is_wallet_zero_balance_hidden': 'bool',
         'locale': 'str',
+        'locale_set_time': 'float',
+        'margin_pnl_row': 'str',
+        'margin_pnl_row_kind': 'str',
         'msgs_seen': 'list[str]',
+        'notifications': 'object',
         'order_book_binning': 'object',
         'order_book_type': 'str',
         'order_clear_immediate': 'bool',
         'order_controls_plus_minus': 'bool',
+        'platform_layout': 'str',
+        'selected_fiat_currency': 'str',
+        'show_chart_bottom_toolbar': 'bool',
         'show_locale_numbers': 'bool',
         'sounds': 'list[str]',
         'strict_ip_check': 'bool',
         'strict_timeout': 'bool',
         'ticker_group': 'str',
         'ticker_pinned': 'bool',
-        'trade_layout': 'str'
+        'trade_layout': 'str',
+        'user_color': 'str'
     }
 
     attribute_map = {
@@ -70,28 +89,48 @@ class UserPreferences(object):
         'debug': 'debug',
         'disable_emails': 'disableEmails',
         'disable_push': 'disablePush',
+        'display_corp_enroll_upsell': 'displayCorpEnrollUpsell',
+        'equivalent_currency': 'equivalentCurrency',
+        'features': 'features',
+        'favourites': 'favourites',
+        'favourites_assets': 'favouritesAssets',
+        'favourites_ordered': 'favouritesOrdered',
         'hide_confirm_dialogs': 'hideConfirmDialogs',
         'hide_connection_modal': 'hideConnectionModal',
         'hide_from_leaderboard': 'hideFromLeaderboard',
         'hide_name_from_leaderboard': 'hideNameFromLeaderboard',
         'hide_notifications': 'hideNotifications',
+        'hide_phone_confirm': 'hidePhoneConfirm',
+        'is_sensitive_info_visible': 'isSensitiveInfoVisible',
+        'is_wallet_zero_balance_hidden': 'isWalletZeroBalanceHidden',
         'locale': 'locale',
+        'locale_set_time': 'localeSetTime',
+        'margin_pnl_row': 'marginPnlRow',
+        'margin_pnl_row_kind': 'marginPnlRowKind',
         'msgs_seen': 'msgsSeen',
+        'notifications': 'notifications',
         'order_book_binning': 'orderBookBinning',
         'order_book_type': 'orderBookType',
         'order_clear_immediate': 'orderClearImmediate',
         'order_controls_plus_minus': 'orderControlsPlusMinus',
+        'platform_layout': 'platformLayout',
+        'selected_fiat_currency': 'selectedFiatCurrency',
+        'show_chart_bottom_toolbar': 'showChartBottomToolbar',
         'show_locale_numbers': 'showLocaleNumbers',
         'sounds': 'sounds',
         'strict_ip_check': 'strictIPCheck',
         'strict_timeout': 'strictTimeout',
         'ticker_group': 'tickerGroup',
         'ticker_pinned': 'tickerPinned',
-        'trade_layout': 'tradeLayout'
+        'trade_layout': 'tradeLayout',
+        'user_color': 'userColor'
     }
 
-    def __init__(self, alert_on_liquidations=None, animations_enabled=None, announcements_last_seen=None, chat_channel_id=None, color_theme=None, currency=None, debug=None, disable_emails=None, disable_push=None, hide_confirm_dialogs=None, hide_connection_modal=None, hide_from_leaderboard=False, hide_name_from_leaderboard=True, hide_notifications=None, locale='en-US', msgs_seen=None, order_book_binning=None, order_book_type=None, order_clear_immediate=False, order_controls_plus_minus=None, show_locale_numbers=True, sounds=None, strict_ip_check=False, strict_timeout=True, ticker_group=None, ticker_pinned=None, trade_layout=None):  # noqa: E501
+    def __init__(self, alert_on_liquidations=None, animations_enabled=None, announcements_last_seen=None, chat_channel_id=None, color_theme=None, currency=None, debug=None, disable_emails=None, disable_push=None, display_corp_enroll_upsell=None, equivalent_currency=None, features=None, favourites=None, favourites_assets=None, favourites_ordered=None, hide_confirm_dialogs=None, hide_connection_modal=None, hide_from_leaderboard=False, hide_name_from_leaderboard=True, hide_notifications=None, hide_phone_confirm=False, is_sensitive_info_visible=None, is_wallet_zero_balance_hidden=None, locale='en-US', locale_set_time=None, margin_pnl_row=None, margin_pnl_row_kind=None, msgs_seen=None, notifications=None, order_book_binning=None, order_book_type=None, order_clear_immediate=False, order_controls_plus_minus=None, platform_layout=None, selected_fiat_currency=None, show_chart_bottom_toolbar=None, show_locale_numbers=True, sounds=None, strict_ip_check=False, strict_timeout=True, ticker_group=None, ticker_pinned=None, trade_layout=None, user_color=None, _configuration=None):  # noqa: E501
         """UserPreferences - a model defined in Swagger"""  # noqa: E501
+        if _configuration is None:
+            _configuration = Configuration()
+        self._configuration = _configuration
 
         self._alert_on_liquidations = None
         self._animations_enabled = None
@@ -102,17 +141,33 @@ class UserPreferences(object):
         self._debug = None
         self._disable_emails = None
         self._disable_push = None
+        self._display_corp_enroll_upsell = None
+        self._equivalent_currency = None
+        self._features = None
+        self._favourites = None
+        self._favourites_assets = None
+        self._favourites_ordered = None
         self._hide_confirm_dialogs = None
         self._hide_connection_modal = None
         self._hide_from_leaderboard = None
         self._hide_name_from_leaderboard = None
         self._hide_notifications = None
+        self._hide_phone_confirm = None
+        self._is_sensitive_info_visible = None
+        self._is_wallet_zero_balance_hidden = None
         self._locale = None
+        self._locale_set_time = None
+        self._margin_pnl_row = None
+        self._margin_pnl_row_kind = None
         self._msgs_seen = None
+        self._notifications = None
         self._order_book_binning = None
         self._order_book_type = None
         self._order_clear_immediate = None
         self._order_controls_plus_minus = None
+        self._platform_layout = None
+        self._selected_fiat_currency = None
+        self._show_chart_bottom_toolbar = None
         self._show_locale_numbers = None
         self._sounds = None
         self._strict_ip_check = None
@@ -120,6 +175,7 @@ class UserPreferences(object):
         self._ticker_group = None
         self._ticker_pinned = None
         self._trade_layout = None
+        self._user_color = None
         self.discriminator = None
 
         if alert_on_liquidations is not None:
@@ -140,6 +196,18 @@ class UserPreferences(object):
             self.disable_emails = disable_emails
         if disable_push is not None:
             self.disable_push = disable_push
+        if display_corp_enroll_upsell is not None:
+            self.display_corp_enroll_upsell = display_corp_enroll_upsell
+        if equivalent_currency is not None:
+            self.equivalent_currency = equivalent_currency
+        if features is not None:
+            self.features = features
+        if favourites is not None:
+            self.favourites = favourites
+        if favourites_assets is not None:
+            self.favourites_assets = favourites_assets
+        if favourites_ordered is not None:
+            self.favourites_ordered = favourites_ordered
         if hide_confirm_dialogs is not None:
             self.hide_confirm_dialogs = hide_confirm_dialogs
         if hide_connection_modal is not None:
@@ -150,10 +218,24 @@ class UserPreferences(object):
             self.hide_name_from_leaderboard = hide_name_from_leaderboard
         if hide_notifications is not None:
             self.hide_notifications = hide_notifications
+        if hide_phone_confirm is not None:
+            self.hide_phone_confirm = hide_phone_confirm
+        if is_sensitive_info_visible is not None:
+            self.is_sensitive_info_visible = is_sensitive_info_visible
+        if is_wallet_zero_balance_hidden is not None:
+            self.is_wallet_zero_balance_hidden = is_wallet_zero_balance_hidden
         if locale is not None:
             self.locale = locale
+        if locale_set_time is not None:
+            self.locale_set_time = locale_set_time
+        if margin_pnl_row is not None:
+            self.margin_pnl_row = margin_pnl_row
+        if margin_pnl_row_kind is not None:
+            self.margin_pnl_row_kind = margin_pnl_row_kind
         if msgs_seen is not None:
             self.msgs_seen = msgs_seen
+        if notifications is not None:
+            self.notifications = notifications
         if order_book_binning is not None:
             self.order_book_binning = order_book_binning
         if order_book_type is not None:
@@ -162,6 +244,12 @@ class UserPreferences(object):
             self.order_clear_immediate = order_clear_immediate
         if order_controls_plus_minus is not None:
             self.order_controls_plus_minus = order_controls_plus_minus
+        if platform_layout is not None:
+            self.platform_layout = platform_layout
+        if selected_fiat_currency is not None:
+            self.selected_fiat_currency = selected_fiat_currency
+        if show_chart_bottom_toolbar is not None:
+            self.show_chart_bottom_toolbar = show_chart_bottom_toolbar
         if show_locale_numbers is not None:
             self.show_locale_numbers = show_locale_numbers
         if sounds is not None:
@@ -176,6 +264,8 @@ class UserPreferences(object):
             self.ticker_pinned = ticker_pinned
         if trade_layout is not None:
             self.trade_layout = trade_layout
+        if user_color is not None:
+            self.user_color = user_color
 
     @property
     def alert_on_liquidations(self):
@@ -367,6 +457,132 @@ class UserPreferences(object):
         self._disable_push = disable_push
 
     @property
+    def display_corp_enroll_upsell(self):
+        """Gets the display_corp_enroll_upsell of this UserPreferences.  # noqa: E501
+
+
+        :return: The display_corp_enroll_upsell of this UserPreferences.  # noqa: E501
+        :rtype: bool
+        """
+        return self._display_corp_enroll_upsell
+
+    @display_corp_enroll_upsell.setter
+    def display_corp_enroll_upsell(self, display_corp_enroll_upsell):
+        """Sets the display_corp_enroll_upsell of this UserPreferences.
+
+
+        :param display_corp_enroll_upsell: The display_corp_enroll_upsell of this UserPreferences.  # noqa: E501
+        :type: bool
+        """
+
+        self._display_corp_enroll_upsell = display_corp_enroll_upsell
+
+    @property
+    def equivalent_currency(self):
+        """Gets the equivalent_currency of this UserPreferences.  # noqa: E501
+
+
+        :return: The equivalent_currency of this UserPreferences.  # noqa: E501
+        :rtype: str
+        """
+        return self._equivalent_currency
+
+    @equivalent_currency.setter
+    def equivalent_currency(self, equivalent_currency):
+        """Sets the equivalent_currency of this UserPreferences.
+
+
+        :param equivalent_currency: The equivalent_currency of this UserPreferences.  # noqa: E501
+        :type: str
+        """
+
+        self._equivalent_currency = equivalent_currency
+
+    @property
+    def features(self):
+        """Gets the features of this UserPreferences.  # noqa: E501
+
+
+        :return: The features of this UserPreferences.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._features
+
+    @features.setter
+    def features(self, features):
+        """Sets the features of this UserPreferences.
+
+
+        :param features: The features of this UserPreferences.  # noqa: E501
+        :type: list[str]
+        """
+
+        self._features = features
+
+    @property
+    def favourites(self):
+        """Gets the favourites of this UserPreferences.  # noqa: E501
+
+
+        :return: The favourites of this UserPreferences.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._favourites
+
+    @favourites.setter
+    def favourites(self, favourites):
+        """Sets the favourites of this UserPreferences.
+
+
+        :param favourites: The favourites of this UserPreferences.  # noqa: E501
+        :type: list[str]
+        """
+
+        self._favourites = favourites
+
+    @property
+    def favourites_assets(self):
+        """Gets the favourites_assets of this UserPreferences.  # noqa: E501
+
+
+        :return: The favourites_assets of this UserPreferences.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._favourites_assets
+
+    @favourites_assets.setter
+    def favourites_assets(self, favourites_assets):
+        """Sets the favourites_assets of this UserPreferences.
+
+
+        :param favourites_assets: The favourites_assets of this UserPreferences.  # noqa: E501
+        :type: list[str]
+        """
+
+        self._favourites_assets = favourites_assets
+
+    @property
+    def favourites_ordered(self):
+        """Gets the favourites_ordered of this UserPreferences.  # noqa: E501
+
+
+        :return: The favourites_ordered of this UserPreferences.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._favourites_ordered
+
+    @favourites_ordered.setter
+    def favourites_ordered(self, favourites_ordered):
+        """Sets the favourites_ordered of this UserPreferences.
+
+
+        :param favourites_ordered: The favourites_ordered of this UserPreferences.  # noqa: E501
+        :type: list[str]
+        """
+
+        self._favourites_ordered = favourites_ordered
+
+    @property
     def hide_confirm_dialogs(self):
         """Gets the hide_confirm_dialogs of this UserPreferences.  # noqa: E501
 
@@ -472,6 +688,69 @@ class UserPreferences(object):
         self._hide_notifications = hide_notifications
 
     @property
+    def hide_phone_confirm(self):
+        """Gets the hide_phone_confirm of this UserPreferences.  # noqa: E501
+
+
+        :return: The hide_phone_confirm of this UserPreferences.  # noqa: E501
+        :rtype: bool
+        """
+        return self._hide_phone_confirm
+
+    @hide_phone_confirm.setter
+    def hide_phone_confirm(self, hide_phone_confirm):
+        """Sets the hide_phone_confirm of this UserPreferences.
+
+
+        :param hide_phone_confirm: The hide_phone_confirm of this UserPreferences.  # noqa: E501
+        :type: bool
+        """
+
+        self._hide_phone_confirm = hide_phone_confirm
+
+    @property
+    def is_sensitive_info_visible(self):
+        """Gets the is_sensitive_info_visible of this UserPreferences.  # noqa: E501
+
+
+        :return: The is_sensitive_info_visible of this UserPreferences.  # noqa: E501
+        :rtype: bool
+        """
+        return self._is_sensitive_info_visible
+
+    @is_sensitive_info_visible.setter
+    def is_sensitive_info_visible(self, is_sensitive_info_visible):
+        """Sets the is_sensitive_info_visible of this UserPreferences.
+
+
+        :param is_sensitive_info_visible: The is_sensitive_info_visible of this UserPreferences.  # noqa: E501
+        :type: bool
+        """
+
+        self._is_sensitive_info_visible = is_sensitive_info_visible
+
+    @property
+    def is_wallet_zero_balance_hidden(self):
+        """Gets the is_wallet_zero_balance_hidden of this UserPreferences.  # noqa: E501
+
+
+        :return: The is_wallet_zero_balance_hidden of this UserPreferences.  # noqa: E501
+        :rtype: bool
+        """
+        return self._is_wallet_zero_balance_hidden
+
+    @is_wallet_zero_balance_hidden.setter
+    def is_wallet_zero_balance_hidden(self, is_wallet_zero_balance_hidden):
+        """Sets the is_wallet_zero_balance_hidden of this UserPreferences.
+
+
+        :param is_wallet_zero_balance_hidden: The is_wallet_zero_balance_hidden of this UserPreferences.  # noqa: E501
+        :type: bool
+        """
+
+        self._is_wallet_zero_balance_hidden = is_wallet_zero_balance_hidden
+
+    @property
     def locale(self):
         """Gets the locale of this UserPreferences.  # noqa: E501
 
@@ -493,6 +772,69 @@ class UserPreferences(object):
         self._locale = locale
 
     @property
+    def locale_set_time(self):
+        """Gets the locale_set_time of this UserPreferences.  # noqa: E501
+
+
+        :return: The locale_set_time of this UserPreferences.  # noqa: E501
+        :rtype: float
+        """
+        return self._locale_set_time
+
+    @locale_set_time.setter
+    def locale_set_time(self, locale_set_time):
+        """Sets the locale_set_time of this UserPreferences.
+
+
+        :param locale_set_time: The locale_set_time of this UserPreferences.  # noqa: E501
+        :type: float
+        """
+
+        self._locale_set_time = locale_set_time
+
+    @property
+    def margin_pnl_row(self):
+        """Gets the margin_pnl_row of this UserPreferences.  # noqa: E501
+
+
+        :return: The margin_pnl_row of this UserPreferences.  # noqa: E501
+        :rtype: str
+        """
+        return self._margin_pnl_row
+
+    @margin_pnl_row.setter
+    def margin_pnl_row(self, margin_pnl_row):
+        """Sets the margin_pnl_row of this UserPreferences.
+
+
+        :param margin_pnl_row: The margin_pnl_row of this UserPreferences.  # noqa: E501
+        :type: str
+        """
+
+        self._margin_pnl_row = margin_pnl_row
+
+    @property
+    def margin_pnl_row_kind(self):
+        """Gets the margin_pnl_row_kind of this UserPreferences.  # noqa: E501
+
+
+        :return: The margin_pnl_row_kind of this UserPreferences.  # noqa: E501
+        :rtype: str
+        """
+        return self._margin_pnl_row_kind
+
+    @margin_pnl_row_kind.setter
+    def margin_pnl_row_kind(self, margin_pnl_row_kind):
+        """Sets the margin_pnl_row_kind of this UserPreferences.
+
+
+        :param margin_pnl_row_kind: The margin_pnl_row_kind of this UserPreferences.  # noqa: E501
+        :type: str
+        """
+
+        self._margin_pnl_row_kind = margin_pnl_row_kind
+
+    @property
     def msgs_seen(self):
         """Gets the msgs_seen of this UserPreferences.  # noqa: E501
 
@@ -512,6 +854,27 @@ class UserPreferences(object):
         """
 
         self._msgs_seen = msgs_seen
+
+    @property
+    def notifications(self):
+        """Gets the notifications of this UserPreferences.  # noqa: E501
+
+
+        :return: The notifications of this UserPreferences.  # noqa: E501
+        :rtype: object
+        """
+        return self._notifications
+
+    @notifications.setter
+    def notifications(self, notifications):
+        """Sets the notifications of this UserPreferences.
+
+
+        :param notifications: The notifications of this UserPreferences.  # noqa: E501
+        :type: object
+        """
+
+        self._notifications = notifications
 
     @property
     def order_book_binning(self):
@@ -596,6 +959,69 @@ class UserPreferences(object):
         """
 
         self._order_controls_plus_minus = order_controls_plus_minus
+
+    @property
+    def platform_layout(self):
+        """Gets the platform_layout of this UserPreferences.  # noqa: E501
+
+
+        :return: The platform_layout of this UserPreferences.  # noqa: E501
+        :rtype: str
+        """
+        return self._platform_layout
+
+    @platform_layout.setter
+    def platform_layout(self, platform_layout):
+        """Sets the platform_layout of this UserPreferences.
+
+
+        :param platform_layout: The platform_layout of this UserPreferences.  # noqa: E501
+        :type: str
+        """
+
+        self._platform_layout = platform_layout
+
+    @property
+    def selected_fiat_currency(self):
+        """Gets the selected_fiat_currency of this UserPreferences.  # noqa: E501
+
+
+        :return: The selected_fiat_currency of this UserPreferences.  # noqa: E501
+        :rtype: str
+        """
+        return self._selected_fiat_currency
+
+    @selected_fiat_currency.setter
+    def selected_fiat_currency(self, selected_fiat_currency):
+        """Sets the selected_fiat_currency of this UserPreferences.
+
+
+        :param selected_fiat_currency: The selected_fiat_currency of this UserPreferences.  # noqa: E501
+        :type: str
+        """
+
+        self._selected_fiat_currency = selected_fiat_currency
+
+    @property
+    def show_chart_bottom_toolbar(self):
+        """Gets the show_chart_bottom_toolbar of this UserPreferences.  # noqa: E501
+
+
+        :return: The show_chart_bottom_toolbar of this UserPreferences.  # noqa: E501
+        :rtype: bool
+        """
+        return self._show_chart_bottom_toolbar
+
+    @show_chart_bottom_toolbar.setter
+    def show_chart_bottom_toolbar(self, show_chart_bottom_toolbar):
+        """Sets the show_chart_bottom_toolbar of this UserPreferences.
+
+
+        :param show_chart_bottom_toolbar: The show_chart_bottom_toolbar of this UserPreferences.  # noqa: E501
+        :type: bool
+        """
+
+        self._show_chart_bottom_toolbar = show_chart_bottom_toolbar
 
     @property
     def show_locale_numbers(self):
@@ -744,6 +1170,27 @@ class UserPreferences(object):
 
         self._trade_layout = trade_layout
 
+    @property
+    def user_color(self):
+        """Gets the user_color of this UserPreferences.  # noqa: E501
+
+
+        :return: The user_color of this UserPreferences.  # noqa: E501
+        :rtype: str
+        """
+        return self._user_color
+
+    @user_color.setter
+    def user_color(self, user_color):
+        """Sets the user_color of this UserPreferences.
+
+
+        :param user_color: The user_color of this UserPreferences.  # noqa: E501
+        :type: str
+        """
+
+        self._user_color = user_color
+
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -784,8 +1231,11 @@ class UserPreferences(object):
         if not isinstance(other, UserPreferences):
             return False
 
-        return self.__dict__ == other.__dict__
+        return self.to_dict() == other.to_dict()
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        return not self == other
+        if not isinstance(other, UserPreferences):
+            return True
+
+        return self.to_dict() != other.to_dict()

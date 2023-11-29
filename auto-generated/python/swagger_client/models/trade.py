@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -15,6 +15,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from swagger_client.configuration import Configuration
 
 
 class Trade(object):
@@ -40,7 +42,8 @@ class Trade(object):
         'trd_match_id': 'str',
         'gross_value': 'float',
         'home_notional': 'float',
-        'foreign_notional': 'float'
+        'foreign_notional': 'float',
+        'trd_type': 'str'
     }
 
     attribute_map = {
@@ -53,11 +56,15 @@ class Trade(object):
         'trd_match_id': 'trdMatchID',
         'gross_value': 'grossValue',
         'home_notional': 'homeNotional',
-        'foreign_notional': 'foreignNotional'
+        'foreign_notional': 'foreignNotional',
+        'trd_type': 'trdType'
     }
 
-    def __init__(self, timestamp=None, symbol=None, side=None, size=None, price=None, tick_direction=None, trd_match_id=None, gross_value=None, home_notional=None, foreign_notional=None):  # noqa: E501
+    def __init__(self, timestamp=None, symbol=None, side=None, size=None, price=None, tick_direction=None, trd_match_id=None, gross_value=None, home_notional=None, foreign_notional=None, trd_type=None, _configuration=None):  # noqa: E501
         """Trade - a model defined in Swagger"""  # noqa: E501
+        if _configuration is None:
+            _configuration = Configuration()
+        self._configuration = _configuration
 
         self._timestamp = None
         self._symbol = None
@@ -69,6 +76,7 @@ class Trade(object):
         self._gross_value = None
         self._home_notional = None
         self._foreign_notional = None
+        self._trd_type = None
         self.discriminator = None
 
         self.timestamp = timestamp
@@ -89,6 +97,8 @@ class Trade(object):
             self.home_notional = home_notional
         if foreign_notional is not None:
             self.foreign_notional = foreign_notional
+        if trd_type is not None:
+            self.trd_type = trd_type
 
     @property
     def timestamp(self):
@@ -108,7 +118,7 @@ class Trade(object):
         :param timestamp: The timestamp of this Trade.  # noqa: E501
         :type: datetime
         """
-        if timestamp is None:
+        if self._configuration.client_side_validation and timestamp is None:
             raise ValueError("Invalid value for `timestamp`, must not be `None`")  # noqa: E501
 
         self._timestamp = timestamp
@@ -131,7 +141,7 @@ class Trade(object):
         :param symbol: The symbol of this Trade.  # noqa: E501
         :type: str
         """
-        if symbol is None:
+        if self._configuration.client_side_validation and symbol is None:
             raise ValueError("Invalid value for `symbol`, must not be `None`")  # noqa: E501
 
         self._symbol = symbol
@@ -304,6 +314,27 @@ class Trade(object):
 
         self._foreign_notional = foreign_notional
 
+    @property
+    def trd_type(self):
+        """Gets the trd_type of this Trade.  # noqa: E501
+
+
+        :return: The trd_type of this Trade.  # noqa: E501
+        :rtype: str
+        """
+        return self._trd_type
+
+    @trd_type.setter
+    def trd_type(self, trd_type):
+        """Sets the trd_type of this Trade.
+
+
+        :param trd_type: The trd_type of this Trade.  # noqa: E501
+        :type: str
+        """
+
+        self._trd_type = trd_type
+
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -344,8 +375,11 @@ class Trade(object):
         if not isinstance(other, Trade):
             return False
 
-        return self.__dict__ == other.__dict__
+        return self.to_dict() == other.to_dict()
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        return not self == other
+        if not isinstance(other, Trade):
+            return True
+
+        return self.to_dict() != other.to_dict()

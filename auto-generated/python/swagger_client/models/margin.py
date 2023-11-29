@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -15,6 +15,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from swagger_client.configuration import Configuration
 
 
 class Margin(object):
@@ -34,158 +36,107 @@ class Margin(object):
         'account': 'float',
         'currency': 'str',
         'risk_limit': 'float',
-        'prev_state': 'str',
         'state': 'str',
-        'action': 'str',
         'amount': 'float',
-        'pending_credit': 'float',
-        'pending_debit': 'float',
-        'confirmed_debit': 'float',
         'prev_realised_pnl': 'float',
-        'prev_unrealised_pnl': 'float',
         'gross_comm': 'float',
         'gross_open_cost': 'float',
         'gross_open_premium': 'float',
         'gross_exec_cost': 'float',
         'gross_mark_value': 'float',
         'risk_value': 'float',
-        'taxable_margin': 'float',
         'init_margin': 'float',
         'maint_margin': 'float',
-        'session_margin': 'float',
         'target_excess_margin': 'float',
-        'var_margin': 'float',
         'realised_pnl': 'float',
         'unrealised_pnl': 'float',
-        'indicative_tax': 'float',
-        'unrealised_profit': 'float',
-        'synthetic_margin': 'float',
         'wallet_balance': 'float',
         'margin_balance': 'float',
-        'margin_balance_pcnt': 'float',
         'margin_leverage': 'float',
         'margin_used_pcnt': 'float',
         'excess_margin': 'float',
-        'excess_margin_pcnt': 'float',
         'available_margin': 'float',
         'withdrawable_margin': 'float',
-        'timestamp': 'datetime',
-        'gross_last_value': 'float',
-        'commission': 'float'
+        'maker_fee_discount': 'float',
+        'taker_fee_discount': 'float',
+        'timestamp': 'datetime'
     }
 
     attribute_map = {
         'account': 'account',
         'currency': 'currency',
         'risk_limit': 'riskLimit',
-        'prev_state': 'prevState',
         'state': 'state',
-        'action': 'action',
         'amount': 'amount',
-        'pending_credit': 'pendingCredit',
-        'pending_debit': 'pendingDebit',
-        'confirmed_debit': 'confirmedDebit',
         'prev_realised_pnl': 'prevRealisedPnl',
-        'prev_unrealised_pnl': 'prevUnrealisedPnl',
         'gross_comm': 'grossComm',
         'gross_open_cost': 'grossOpenCost',
         'gross_open_premium': 'grossOpenPremium',
         'gross_exec_cost': 'grossExecCost',
         'gross_mark_value': 'grossMarkValue',
         'risk_value': 'riskValue',
-        'taxable_margin': 'taxableMargin',
         'init_margin': 'initMargin',
         'maint_margin': 'maintMargin',
-        'session_margin': 'sessionMargin',
         'target_excess_margin': 'targetExcessMargin',
-        'var_margin': 'varMargin',
         'realised_pnl': 'realisedPnl',
         'unrealised_pnl': 'unrealisedPnl',
-        'indicative_tax': 'indicativeTax',
-        'unrealised_profit': 'unrealisedProfit',
-        'synthetic_margin': 'syntheticMargin',
         'wallet_balance': 'walletBalance',
         'margin_balance': 'marginBalance',
-        'margin_balance_pcnt': 'marginBalancePcnt',
         'margin_leverage': 'marginLeverage',
         'margin_used_pcnt': 'marginUsedPcnt',
         'excess_margin': 'excessMargin',
-        'excess_margin_pcnt': 'excessMarginPcnt',
         'available_margin': 'availableMargin',
         'withdrawable_margin': 'withdrawableMargin',
-        'timestamp': 'timestamp',
-        'gross_last_value': 'grossLastValue',
-        'commission': 'commission'
+        'maker_fee_discount': 'makerFeeDiscount',
+        'taker_fee_discount': 'takerFeeDiscount',
+        'timestamp': 'timestamp'
     }
 
-    def __init__(self, account=None, currency=None, risk_limit=None, prev_state=None, state=None, action=None, amount=None, pending_credit=None, pending_debit=None, confirmed_debit=None, prev_realised_pnl=None, prev_unrealised_pnl=None, gross_comm=None, gross_open_cost=None, gross_open_premium=None, gross_exec_cost=None, gross_mark_value=None, risk_value=None, taxable_margin=None, init_margin=None, maint_margin=None, session_margin=None, target_excess_margin=None, var_margin=None, realised_pnl=None, unrealised_pnl=None, indicative_tax=None, unrealised_profit=None, synthetic_margin=None, wallet_balance=None, margin_balance=None, margin_balance_pcnt=0.0, margin_leverage=0.0, margin_used_pcnt=0.0, excess_margin=None, excess_margin_pcnt=0.0, available_margin=None, withdrawable_margin=None, timestamp=None, gross_last_value=None, commission=0.0):  # noqa: E501
+    def __init__(self, account=None, currency=None, risk_limit=None, state=None, amount=None, prev_realised_pnl=None, gross_comm=None, gross_open_cost=None, gross_open_premium=None, gross_exec_cost=None, gross_mark_value=None, risk_value=None, init_margin=None, maint_margin=None, target_excess_margin=None, realised_pnl=None, unrealised_pnl=None, wallet_balance=None, margin_balance=None, margin_leverage=0.0, margin_used_pcnt=0.0, excess_margin=None, available_margin=None, withdrawable_margin=None, maker_fee_discount=0.0, taker_fee_discount=0.0, timestamp=None, _configuration=None):  # noqa: E501
         """Margin - a model defined in Swagger"""  # noqa: E501
+        if _configuration is None:
+            _configuration = Configuration()
+        self._configuration = _configuration
 
         self._account = None
         self._currency = None
         self._risk_limit = None
-        self._prev_state = None
         self._state = None
-        self._action = None
         self._amount = None
-        self._pending_credit = None
-        self._pending_debit = None
-        self._confirmed_debit = None
         self._prev_realised_pnl = None
-        self._prev_unrealised_pnl = None
         self._gross_comm = None
         self._gross_open_cost = None
         self._gross_open_premium = None
         self._gross_exec_cost = None
         self._gross_mark_value = None
         self._risk_value = None
-        self._taxable_margin = None
         self._init_margin = None
         self._maint_margin = None
-        self._session_margin = None
         self._target_excess_margin = None
-        self._var_margin = None
         self._realised_pnl = None
         self._unrealised_pnl = None
-        self._indicative_tax = None
-        self._unrealised_profit = None
-        self._synthetic_margin = None
         self._wallet_balance = None
         self._margin_balance = None
-        self._margin_balance_pcnt = None
         self._margin_leverage = None
         self._margin_used_pcnt = None
         self._excess_margin = None
-        self._excess_margin_pcnt = None
         self._available_margin = None
         self._withdrawable_margin = None
+        self._maker_fee_discount = None
+        self._taker_fee_discount = None
         self._timestamp = None
-        self._gross_last_value = None
-        self._commission = None
         self.discriminator = None
 
         self.account = account
         self.currency = currency
         if risk_limit is not None:
             self.risk_limit = risk_limit
-        if prev_state is not None:
-            self.prev_state = prev_state
         if state is not None:
             self.state = state
-        if action is not None:
-            self.action = action
         if amount is not None:
             self.amount = amount
-        if pending_credit is not None:
-            self.pending_credit = pending_credit
-        if pending_debit is not None:
-            self.pending_debit = pending_debit
-        if confirmed_debit is not None:
-            self.confirmed_debit = confirmed_debit
         if prev_realised_pnl is not None:
             self.prev_realised_pnl = prev_realised_pnl
-        if prev_unrealised_pnl is not None:
-            self.prev_unrealised_pnl = prev_unrealised_pnl
         if gross_comm is not None:
             self.gross_comm = gross_comm
         if gross_open_cost is not None:
@@ -198,52 +149,36 @@ class Margin(object):
             self.gross_mark_value = gross_mark_value
         if risk_value is not None:
             self.risk_value = risk_value
-        if taxable_margin is not None:
-            self.taxable_margin = taxable_margin
         if init_margin is not None:
             self.init_margin = init_margin
         if maint_margin is not None:
             self.maint_margin = maint_margin
-        if session_margin is not None:
-            self.session_margin = session_margin
         if target_excess_margin is not None:
             self.target_excess_margin = target_excess_margin
-        if var_margin is not None:
-            self.var_margin = var_margin
         if realised_pnl is not None:
             self.realised_pnl = realised_pnl
         if unrealised_pnl is not None:
             self.unrealised_pnl = unrealised_pnl
-        if indicative_tax is not None:
-            self.indicative_tax = indicative_tax
-        if unrealised_profit is not None:
-            self.unrealised_profit = unrealised_profit
-        if synthetic_margin is not None:
-            self.synthetic_margin = synthetic_margin
         if wallet_balance is not None:
             self.wallet_balance = wallet_balance
         if margin_balance is not None:
             self.margin_balance = margin_balance
-        if margin_balance_pcnt is not None:
-            self.margin_balance_pcnt = margin_balance_pcnt
         if margin_leverage is not None:
             self.margin_leverage = margin_leverage
         if margin_used_pcnt is not None:
             self.margin_used_pcnt = margin_used_pcnt
         if excess_margin is not None:
             self.excess_margin = excess_margin
-        if excess_margin_pcnt is not None:
-            self.excess_margin_pcnt = excess_margin_pcnt
         if available_margin is not None:
             self.available_margin = available_margin
         if withdrawable_margin is not None:
             self.withdrawable_margin = withdrawable_margin
+        if maker_fee_discount is not None:
+            self.maker_fee_discount = maker_fee_discount
+        if taker_fee_discount is not None:
+            self.taker_fee_discount = taker_fee_discount
         if timestamp is not None:
             self.timestamp = timestamp
-        if gross_last_value is not None:
-            self.gross_last_value = gross_last_value
-        if commission is not None:
-            self.commission = commission
 
     @property
     def account(self):
@@ -263,7 +198,7 @@ class Margin(object):
         :param account: The account of this Margin.  # noqa: E501
         :type: float
         """
-        if account is None:
+        if self._configuration.client_side_validation and account is None:
             raise ValueError("Invalid value for `account`, must not be `None`")  # noqa: E501
 
         self._account = account
@@ -286,7 +221,7 @@ class Margin(object):
         :param currency: The currency of this Margin.  # noqa: E501
         :type: str
         """
-        if currency is None:
+        if self._configuration.client_side_validation and currency is None:
             raise ValueError("Invalid value for `currency`, must not be `None`")  # noqa: E501
 
         self._currency = currency
@@ -313,27 +248,6 @@ class Margin(object):
         self._risk_limit = risk_limit
 
     @property
-    def prev_state(self):
-        """Gets the prev_state of this Margin.  # noqa: E501
-
-
-        :return: The prev_state of this Margin.  # noqa: E501
-        :rtype: str
-        """
-        return self._prev_state
-
-    @prev_state.setter
-    def prev_state(self, prev_state):
-        """Sets the prev_state of this Margin.
-
-
-        :param prev_state: The prev_state of this Margin.  # noqa: E501
-        :type: str
-        """
-
-        self._prev_state = prev_state
-
-    @property
     def state(self):
         """Gets the state of this Margin.  # noqa: E501
 
@@ -353,27 +267,6 @@ class Margin(object):
         """
 
         self._state = state
-
-    @property
-    def action(self):
-        """Gets the action of this Margin.  # noqa: E501
-
-
-        :return: The action of this Margin.  # noqa: E501
-        :rtype: str
-        """
-        return self._action
-
-    @action.setter
-    def action(self, action):
-        """Sets the action of this Margin.
-
-
-        :param action: The action of this Margin.  # noqa: E501
-        :type: str
-        """
-
-        self._action = action
 
     @property
     def amount(self):
@@ -397,69 +290,6 @@ class Margin(object):
         self._amount = amount
 
     @property
-    def pending_credit(self):
-        """Gets the pending_credit of this Margin.  # noqa: E501
-
-
-        :return: The pending_credit of this Margin.  # noqa: E501
-        :rtype: float
-        """
-        return self._pending_credit
-
-    @pending_credit.setter
-    def pending_credit(self, pending_credit):
-        """Sets the pending_credit of this Margin.
-
-
-        :param pending_credit: The pending_credit of this Margin.  # noqa: E501
-        :type: float
-        """
-
-        self._pending_credit = pending_credit
-
-    @property
-    def pending_debit(self):
-        """Gets the pending_debit of this Margin.  # noqa: E501
-
-
-        :return: The pending_debit of this Margin.  # noqa: E501
-        :rtype: float
-        """
-        return self._pending_debit
-
-    @pending_debit.setter
-    def pending_debit(self, pending_debit):
-        """Sets the pending_debit of this Margin.
-
-
-        :param pending_debit: The pending_debit of this Margin.  # noqa: E501
-        :type: float
-        """
-
-        self._pending_debit = pending_debit
-
-    @property
-    def confirmed_debit(self):
-        """Gets the confirmed_debit of this Margin.  # noqa: E501
-
-
-        :return: The confirmed_debit of this Margin.  # noqa: E501
-        :rtype: float
-        """
-        return self._confirmed_debit
-
-    @confirmed_debit.setter
-    def confirmed_debit(self, confirmed_debit):
-        """Sets the confirmed_debit of this Margin.
-
-
-        :param confirmed_debit: The confirmed_debit of this Margin.  # noqa: E501
-        :type: float
-        """
-
-        self._confirmed_debit = confirmed_debit
-
-    @property
     def prev_realised_pnl(self):
         """Gets the prev_realised_pnl of this Margin.  # noqa: E501
 
@@ -479,27 +309,6 @@ class Margin(object):
         """
 
         self._prev_realised_pnl = prev_realised_pnl
-
-    @property
-    def prev_unrealised_pnl(self):
-        """Gets the prev_unrealised_pnl of this Margin.  # noqa: E501
-
-
-        :return: The prev_unrealised_pnl of this Margin.  # noqa: E501
-        :rtype: float
-        """
-        return self._prev_unrealised_pnl
-
-    @prev_unrealised_pnl.setter
-    def prev_unrealised_pnl(self, prev_unrealised_pnl):
-        """Sets the prev_unrealised_pnl of this Margin.
-
-
-        :param prev_unrealised_pnl: The prev_unrealised_pnl of this Margin.  # noqa: E501
-        :type: float
-        """
-
-        self._prev_unrealised_pnl = prev_unrealised_pnl
 
     @property
     def gross_comm(self):
@@ -628,27 +437,6 @@ class Margin(object):
         self._risk_value = risk_value
 
     @property
-    def taxable_margin(self):
-        """Gets the taxable_margin of this Margin.  # noqa: E501
-
-
-        :return: The taxable_margin of this Margin.  # noqa: E501
-        :rtype: float
-        """
-        return self._taxable_margin
-
-    @taxable_margin.setter
-    def taxable_margin(self, taxable_margin):
-        """Sets the taxable_margin of this Margin.
-
-
-        :param taxable_margin: The taxable_margin of this Margin.  # noqa: E501
-        :type: float
-        """
-
-        self._taxable_margin = taxable_margin
-
-    @property
     def init_margin(self):
         """Gets the init_margin of this Margin.  # noqa: E501
 
@@ -691,27 +479,6 @@ class Margin(object):
         self._maint_margin = maint_margin
 
     @property
-    def session_margin(self):
-        """Gets the session_margin of this Margin.  # noqa: E501
-
-
-        :return: The session_margin of this Margin.  # noqa: E501
-        :rtype: float
-        """
-        return self._session_margin
-
-    @session_margin.setter
-    def session_margin(self, session_margin):
-        """Sets the session_margin of this Margin.
-
-
-        :param session_margin: The session_margin of this Margin.  # noqa: E501
-        :type: float
-        """
-
-        self._session_margin = session_margin
-
-    @property
     def target_excess_margin(self):
         """Gets the target_excess_margin of this Margin.  # noqa: E501
 
@@ -731,27 +498,6 @@ class Margin(object):
         """
 
         self._target_excess_margin = target_excess_margin
-
-    @property
-    def var_margin(self):
-        """Gets the var_margin of this Margin.  # noqa: E501
-
-
-        :return: The var_margin of this Margin.  # noqa: E501
-        :rtype: float
-        """
-        return self._var_margin
-
-    @var_margin.setter
-    def var_margin(self, var_margin):
-        """Sets the var_margin of this Margin.
-
-
-        :param var_margin: The var_margin of this Margin.  # noqa: E501
-        :type: float
-        """
-
-        self._var_margin = var_margin
 
     @property
     def realised_pnl(self):
@@ -796,69 +542,6 @@ class Margin(object):
         self._unrealised_pnl = unrealised_pnl
 
     @property
-    def indicative_tax(self):
-        """Gets the indicative_tax of this Margin.  # noqa: E501
-
-
-        :return: The indicative_tax of this Margin.  # noqa: E501
-        :rtype: float
-        """
-        return self._indicative_tax
-
-    @indicative_tax.setter
-    def indicative_tax(self, indicative_tax):
-        """Sets the indicative_tax of this Margin.
-
-
-        :param indicative_tax: The indicative_tax of this Margin.  # noqa: E501
-        :type: float
-        """
-
-        self._indicative_tax = indicative_tax
-
-    @property
-    def unrealised_profit(self):
-        """Gets the unrealised_profit of this Margin.  # noqa: E501
-
-
-        :return: The unrealised_profit of this Margin.  # noqa: E501
-        :rtype: float
-        """
-        return self._unrealised_profit
-
-    @unrealised_profit.setter
-    def unrealised_profit(self, unrealised_profit):
-        """Sets the unrealised_profit of this Margin.
-
-
-        :param unrealised_profit: The unrealised_profit of this Margin.  # noqa: E501
-        :type: float
-        """
-
-        self._unrealised_profit = unrealised_profit
-
-    @property
-    def synthetic_margin(self):
-        """Gets the synthetic_margin of this Margin.  # noqa: E501
-
-
-        :return: The synthetic_margin of this Margin.  # noqa: E501
-        :rtype: float
-        """
-        return self._synthetic_margin
-
-    @synthetic_margin.setter
-    def synthetic_margin(self, synthetic_margin):
-        """Sets the synthetic_margin of this Margin.
-
-
-        :param synthetic_margin: The synthetic_margin of this Margin.  # noqa: E501
-        :type: float
-        """
-
-        self._synthetic_margin = synthetic_margin
-
-    @property
     def wallet_balance(self):
         """Gets the wallet_balance of this Margin.  # noqa: E501
 
@@ -899,27 +582,6 @@ class Margin(object):
         """
 
         self._margin_balance = margin_balance
-
-    @property
-    def margin_balance_pcnt(self):
-        """Gets the margin_balance_pcnt of this Margin.  # noqa: E501
-
-
-        :return: The margin_balance_pcnt of this Margin.  # noqa: E501
-        :rtype: float
-        """
-        return self._margin_balance_pcnt
-
-    @margin_balance_pcnt.setter
-    def margin_balance_pcnt(self, margin_balance_pcnt):
-        """Sets the margin_balance_pcnt of this Margin.
-
-
-        :param margin_balance_pcnt: The margin_balance_pcnt of this Margin.  # noqa: E501
-        :type: float
-        """
-
-        self._margin_balance_pcnt = margin_balance_pcnt
 
     @property
     def margin_leverage(self):
@@ -985,27 +647,6 @@ class Margin(object):
         self._excess_margin = excess_margin
 
     @property
-    def excess_margin_pcnt(self):
-        """Gets the excess_margin_pcnt of this Margin.  # noqa: E501
-
-
-        :return: The excess_margin_pcnt of this Margin.  # noqa: E501
-        :rtype: float
-        """
-        return self._excess_margin_pcnt
-
-    @excess_margin_pcnt.setter
-    def excess_margin_pcnt(self, excess_margin_pcnt):
-        """Sets the excess_margin_pcnt of this Margin.
-
-
-        :param excess_margin_pcnt: The excess_margin_pcnt of this Margin.  # noqa: E501
-        :type: float
-        """
-
-        self._excess_margin_pcnt = excess_margin_pcnt
-
-    @property
     def available_margin(self):
         """Gets the available_margin of this Margin.  # noqa: E501
 
@@ -1048,6 +689,48 @@ class Margin(object):
         self._withdrawable_margin = withdrawable_margin
 
     @property
+    def maker_fee_discount(self):
+        """Gets the maker_fee_discount of this Margin.  # noqa: E501
+
+
+        :return: The maker_fee_discount of this Margin.  # noqa: E501
+        :rtype: float
+        """
+        return self._maker_fee_discount
+
+    @maker_fee_discount.setter
+    def maker_fee_discount(self, maker_fee_discount):
+        """Sets the maker_fee_discount of this Margin.
+
+
+        :param maker_fee_discount: The maker_fee_discount of this Margin.  # noqa: E501
+        :type: float
+        """
+
+        self._maker_fee_discount = maker_fee_discount
+
+    @property
+    def taker_fee_discount(self):
+        """Gets the taker_fee_discount of this Margin.  # noqa: E501
+
+
+        :return: The taker_fee_discount of this Margin.  # noqa: E501
+        :rtype: float
+        """
+        return self._taker_fee_discount
+
+    @taker_fee_discount.setter
+    def taker_fee_discount(self, taker_fee_discount):
+        """Sets the taker_fee_discount of this Margin.
+
+
+        :param taker_fee_discount: The taker_fee_discount of this Margin.  # noqa: E501
+        :type: float
+        """
+
+        self._taker_fee_discount = taker_fee_discount
+
+    @property
     def timestamp(self):
         """Gets the timestamp of this Margin.  # noqa: E501
 
@@ -1067,48 +750,6 @@ class Margin(object):
         """
 
         self._timestamp = timestamp
-
-    @property
-    def gross_last_value(self):
-        """Gets the gross_last_value of this Margin.  # noqa: E501
-
-
-        :return: The gross_last_value of this Margin.  # noqa: E501
-        :rtype: float
-        """
-        return self._gross_last_value
-
-    @gross_last_value.setter
-    def gross_last_value(self, gross_last_value):
-        """Sets the gross_last_value of this Margin.
-
-
-        :param gross_last_value: The gross_last_value of this Margin.  # noqa: E501
-        :type: float
-        """
-
-        self._gross_last_value = gross_last_value
-
-    @property
-    def commission(self):
-        """Gets the commission of this Margin.  # noqa: E501
-
-
-        :return: The commission of this Margin.  # noqa: E501
-        :rtype: float
-        """
-        return self._commission
-
-    @commission.setter
-    def commission(self, commission):
-        """Sets the commission of this Margin.
-
-
-        :param commission: The commission of this Margin.  # noqa: E501
-        :type: float
-        """
-
-        self._commission = commission
 
     def to_dict(self):
         """Returns the model properties as a dict"""
@@ -1150,8 +791,11 @@ class Margin(object):
         if not isinstance(other, Margin):
             return False
 
-        return self.__dict__ == other.__dict__
+        return self.to_dict() == other.to_dict()
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        return not self == other
+        if not isinstance(other, Margin):
+            return True
+
+        return self.to_dict() != other.to_dict()

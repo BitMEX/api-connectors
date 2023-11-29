@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -12,7 +12,6 @@
 
 package io.swagger.client.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -30,19 +29,17 @@ public class Order {
   @SerializedName("clOrdLinkID")
   private String clOrdLinkID = null;
   @SerializedName("account")
-  private BigDecimal account = null;
+  private Double account = null;
   @SerializedName("symbol")
   private String symbol = null;
   @SerializedName("side")
   private String side = null;
-  @SerializedName("simpleOrderQty")
-  private Double simpleOrderQty = null;
   @SerializedName("orderQty")
-  private BigDecimal orderQty = null;
+  private Double orderQty = null;
   @SerializedName("price")
   private Double price = null;
   @SerializedName("displayQty")
-  private BigDecimal displayQty = null;
+  private Double displayQty = null;
   @SerializedName("stopPx")
   private Double stopPx = null;
   @SerializedName("pegOffsetValue")
@@ -61,8 +58,6 @@ public class Order {
   private String execInst = null;
   @SerializedName("contingencyType")
   private String contingencyType = null;
-  @SerializedName("exDestination")
-  private String exDestination = null;
   @SerializedName("ordStatus")
   private String ordStatus = null;
   @SerializedName("triggered")
@@ -71,18 +66,12 @@ public class Order {
   private Boolean workingIndicator = null;
   @SerializedName("ordRejReason")
   private String ordRejReason = null;
-  @SerializedName("simpleLeavesQty")
-  private Double simpleLeavesQty = null;
   @SerializedName("leavesQty")
-  private BigDecimal leavesQty = null;
-  @SerializedName("simpleCumQty")
-  private Double simpleCumQty = null;
+  private Double leavesQty = null;
   @SerializedName("cumQty")
-  private BigDecimal cumQty = null;
+  private Double cumQty = null;
   @SerializedName("avgPx")
   private Double avgPx = null;
-  @SerializedName("multiLegReportingType")
-  private String multiLegReportingType = null;
   @SerializedName("text")
   private String text = null;
   @SerializedName("transactTime")
@@ -123,10 +112,10 @@ public class Order {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getAccount() {
+  public Double getAccount() {
     return account;
   }
-  public void setAccount(BigDecimal account) {
+  public void setAccount(Double account) {
     this.account = account;
   }
 
@@ -153,20 +142,10 @@ public class Order {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getSimpleOrderQty() {
-    return simpleOrderQty;
-  }
-  public void setSimpleOrderQty(Double simpleOrderQty) {
-    this.simpleOrderQty = simpleOrderQty;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getOrderQty() {
+  public Double getOrderQty() {
     return orderQty;
   }
-  public void setOrderQty(BigDecimal orderQty) {
+  public void setOrderQty(Double orderQty) {
     this.orderQty = orderQty;
   }
 
@@ -183,10 +162,10 @@ public class Order {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getDisplayQty() {
+  public Double getDisplayQty() {
     return displayQty;
   }
-  public void setDisplayQty(BigDecimal displayQty) {
+  public void setDisplayQty(Double displayQty) {
     this.displayQty = displayQty;
   }
 
@@ -283,16 +262,6 @@ public class Order {
   /**
    **/
   @ApiModelProperty(value = "")
-  public String getExDestination() {
-    return exDestination;
-  }
-  public void setExDestination(String exDestination) {
-    this.exDestination = exDestination;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public String getOrdStatus() {
     return ordStatus;
   }
@@ -333,40 +302,20 @@ public class Order {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getSimpleLeavesQty() {
-    return simpleLeavesQty;
-  }
-  public void setSimpleLeavesQty(Double simpleLeavesQty) {
-    this.simpleLeavesQty = simpleLeavesQty;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getLeavesQty() {
+  public Double getLeavesQty() {
     return leavesQty;
   }
-  public void setLeavesQty(BigDecimal leavesQty) {
+  public void setLeavesQty(Double leavesQty) {
     this.leavesQty = leavesQty;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getSimpleCumQty() {
-    return simpleCumQty;
-  }
-  public void setSimpleCumQty(Double simpleCumQty) {
-    this.simpleCumQty = simpleCumQty;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getCumQty() {
+  public Double getCumQty() {
     return cumQty;
   }
-  public void setCumQty(BigDecimal cumQty) {
+  public void setCumQty(Double cumQty) {
     this.cumQty = cumQty;
   }
 
@@ -378,16 +327,6 @@ public class Order {
   }
   public void setAvgPx(Double avgPx) {
     this.avgPx = avgPx;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public String getMultiLegReportingType() {
-    return multiLegReportingType;
-  }
-  public void setMultiLegReportingType(String multiLegReportingType) {
-    this.multiLegReportingType = multiLegReportingType;
   }
 
   /**
@@ -436,7 +375,6 @@ public class Order {
         (this.account == null ? order.account == null : this.account.equals(order.account)) &&
         (this.symbol == null ? order.symbol == null : this.symbol.equals(order.symbol)) &&
         (this.side == null ? order.side == null : this.side.equals(order.side)) &&
-        (this.simpleOrderQty == null ? order.simpleOrderQty == null : this.simpleOrderQty.equals(order.simpleOrderQty)) &&
         (this.orderQty == null ? order.orderQty == null : this.orderQty.equals(order.orderQty)) &&
         (this.price == null ? order.price == null : this.price.equals(order.price)) &&
         (this.displayQty == null ? order.displayQty == null : this.displayQty.equals(order.displayQty)) &&
@@ -449,17 +387,13 @@ public class Order {
         (this.timeInForce == null ? order.timeInForce == null : this.timeInForce.equals(order.timeInForce)) &&
         (this.execInst == null ? order.execInst == null : this.execInst.equals(order.execInst)) &&
         (this.contingencyType == null ? order.contingencyType == null : this.contingencyType.equals(order.contingencyType)) &&
-        (this.exDestination == null ? order.exDestination == null : this.exDestination.equals(order.exDestination)) &&
         (this.ordStatus == null ? order.ordStatus == null : this.ordStatus.equals(order.ordStatus)) &&
         (this.triggered == null ? order.triggered == null : this.triggered.equals(order.triggered)) &&
         (this.workingIndicator == null ? order.workingIndicator == null : this.workingIndicator.equals(order.workingIndicator)) &&
         (this.ordRejReason == null ? order.ordRejReason == null : this.ordRejReason.equals(order.ordRejReason)) &&
-        (this.simpleLeavesQty == null ? order.simpleLeavesQty == null : this.simpleLeavesQty.equals(order.simpleLeavesQty)) &&
         (this.leavesQty == null ? order.leavesQty == null : this.leavesQty.equals(order.leavesQty)) &&
-        (this.simpleCumQty == null ? order.simpleCumQty == null : this.simpleCumQty.equals(order.simpleCumQty)) &&
         (this.cumQty == null ? order.cumQty == null : this.cumQty.equals(order.cumQty)) &&
         (this.avgPx == null ? order.avgPx == null : this.avgPx.equals(order.avgPx)) &&
-        (this.multiLegReportingType == null ? order.multiLegReportingType == null : this.multiLegReportingType.equals(order.multiLegReportingType)) &&
         (this.text == null ? order.text == null : this.text.equals(order.text)) &&
         (this.transactTime == null ? order.transactTime == null : this.transactTime.equals(order.transactTime)) &&
         (this.timestamp == null ? order.timestamp == null : this.timestamp.equals(order.timestamp));
@@ -474,7 +408,6 @@ public class Order {
     result = 31 * result + (this.account == null ? 0: this.account.hashCode());
     result = 31 * result + (this.symbol == null ? 0: this.symbol.hashCode());
     result = 31 * result + (this.side == null ? 0: this.side.hashCode());
-    result = 31 * result + (this.simpleOrderQty == null ? 0: this.simpleOrderQty.hashCode());
     result = 31 * result + (this.orderQty == null ? 0: this.orderQty.hashCode());
     result = 31 * result + (this.price == null ? 0: this.price.hashCode());
     result = 31 * result + (this.displayQty == null ? 0: this.displayQty.hashCode());
@@ -487,17 +420,13 @@ public class Order {
     result = 31 * result + (this.timeInForce == null ? 0: this.timeInForce.hashCode());
     result = 31 * result + (this.execInst == null ? 0: this.execInst.hashCode());
     result = 31 * result + (this.contingencyType == null ? 0: this.contingencyType.hashCode());
-    result = 31 * result + (this.exDestination == null ? 0: this.exDestination.hashCode());
     result = 31 * result + (this.ordStatus == null ? 0: this.ordStatus.hashCode());
     result = 31 * result + (this.triggered == null ? 0: this.triggered.hashCode());
     result = 31 * result + (this.workingIndicator == null ? 0: this.workingIndicator.hashCode());
     result = 31 * result + (this.ordRejReason == null ? 0: this.ordRejReason.hashCode());
-    result = 31 * result + (this.simpleLeavesQty == null ? 0: this.simpleLeavesQty.hashCode());
     result = 31 * result + (this.leavesQty == null ? 0: this.leavesQty.hashCode());
-    result = 31 * result + (this.simpleCumQty == null ? 0: this.simpleCumQty.hashCode());
     result = 31 * result + (this.cumQty == null ? 0: this.cumQty.hashCode());
     result = 31 * result + (this.avgPx == null ? 0: this.avgPx.hashCode());
-    result = 31 * result + (this.multiLegReportingType == null ? 0: this.multiLegReportingType.hashCode());
     result = 31 * result + (this.text == null ? 0: this.text.hashCode());
     result = 31 * result + (this.transactTime == null ? 0: this.transactTime.hashCode());
     result = 31 * result + (this.timestamp == null ? 0: this.timestamp.hashCode());
@@ -515,7 +444,6 @@ public class Order {
     sb.append("  account: ").append(account).append("\n");
     sb.append("  symbol: ").append(symbol).append("\n");
     sb.append("  side: ").append(side).append("\n");
-    sb.append("  simpleOrderQty: ").append(simpleOrderQty).append("\n");
     sb.append("  orderQty: ").append(orderQty).append("\n");
     sb.append("  price: ").append(price).append("\n");
     sb.append("  displayQty: ").append(displayQty).append("\n");
@@ -528,17 +456,13 @@ public class Order {
     sb.append("  timeInForce: ").append(timeInForce).append("\n");
     sb.append("  execInst: ").append(execInst).append("\n");
     sb.append("  contingencyType: ").append(contingencyType).append("\n");
-    sb.append("  exDestination: ").append(exDestination).append("\n");
     sb.append("  ordStatus: ").append(ordStatus).append("\n");
     sb.append("  triggered: ").append(triggered).append("\n");
     sb.append("  workingIndicator: ").append(workingIndicator).append("\n");
     sb.append("  ordRejReason: ").append(ordRejReason).append("\n");
-    sb.append("  simpleLeavesQty: ").append(simpleLeavesQty).append("\n");
     sb.append("  leavesQty: ").append(leavesQty).append("\n");
-    sb.append("  simpleCumQty: ").append(simpleCumQty).append("\n");
     sb.append("  cumQty: ").append(cumQty).append("\n");
     sb.append("  avgPx: ").append(avgPx).append("\n");
-    sb.append("  multiLegReportingType: ").append(multiLegReportingType).append("\n");
     sb.append("  text: ").append(text).append("\n");
     sb.append("  transactTime: ").append(transactTime).append("\n");
     sb.append("  timestamp: ").append(timestamp).append("\n");

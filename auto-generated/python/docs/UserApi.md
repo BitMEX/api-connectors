@@ -9,20 +9,32 @@ Method | HTTP request | Description
 [**user_communication_token**](UserApi.md#user_communication_token) | **POST** /user/communicationToken | Register your communication token for mobile clients
 [**user_confirm**](UserApi.md#user_confirm) | **POST** /user/confirmEmail | Confirm your email address with a token.
 [**user_confirm_withdrawal**](UserApi.md#user_confirm_withdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
+[**user_create_sub_account**](UserApi.md#user_create_sub_account) | **POST** /user/addSubaccount | Creates a new sub-account.
+[**user_create_unstaking_requests**](UserApi.md#user_create_unstaking_requests) | **POST** /user/unstakingRequests | Create unstaking request
+[**user_delete_unstaking_requests**](UserApi.md#user_delete_unstaking_requests) | **DELETE** /user/unstakingRequests | Cancel unstaking request
 [**user_get**](UserApi.md#user_get) | **GET** /user | Get your user model.
 [**user_get_affiliate_status**](UserApi.md#user_get_affiliate_status) | **GET** /user/affiliateStatus | Get your current affiliate/referral status.
 [**user_get_commission**](UserApi.md#user_get_commission) | **GET** /user/commission | Get your account&#39;s commission status.
+[**user_get_csa**](UserApi.md#user_get_csa) | **GET** /user/csa | Get your account&#39;s CSA status.
 [**user_get_deposit_address**](UserApi.md#user_get_deposit_address) | **GET** /user/depositAddress | Get a deposit address.
 [**user_get_execution_history**](UserApi.md#user_get_execution_history) | **GET** /user/executionHistory | Get the execution history by day.
 [**user_get_margin**](UserApi.md#user_get_margin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 [**user_get_quote_fill_ratio**](UserApi.md#user_get_quote_fill_ratio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
+[**user_get_quote_value_ratio**](UserApi.md#user_get_quote_value_ratio) | **GET** /user/quoteValueRatio | Get Quote Value Ratio statistics over the last 3 days
+[**user_get_staking**](UserApi.md#user_get_staking) | **GET** /user/staking | Get the current user staking amount.
+[**user_get_staking_instruments**](UserApi.md#user_get_staking_instruments) | **GET** /user/staking/instruments | List staking instruments
+[**user_get_staking_tiers**](UserApi.md#user_get_staking_tiers) | **GET** /user/staking/tiers | List staking tiers for a given currency
+[**user_get_trading_volume**](UserApi.md#user_get_trading_volume) | **GET** /user/tradingVolume | Get your 30 days USD average trading volume
+[**user_get_unstaking_requests**](UserApi.md#user_get_unstaking_requests) | **GET** /user/unstakingRequests | Get the current user unstaking requests
 [**user_get_wallet**](UserApi.md#user_get_wallet) | **GET** /user/wallet | Get your current wallet information.
 [**user_get_wallet_history**](UserApi.md#user_get_wallet_history) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 [**user_get_wallet_summary**](UserApi.md#user_get_wallet_summary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+[**user_get_wallet_transfer_accounts**](UserApi.md#user_get_wallet_transfer_accounts) | **GET** /user/getWalletTransferAccounts | Get the list of accounts you can transfer funds between.
 [**user_logout**](UserApi.md#user_logout) | **POST** /user/logout | Log out of BitMEX.
-[**user_min_withdrawal_fee**](UserApi.md#user_min_withdrawal_fee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
 [**user_request_withdrawal**](UserApi.md#user_request_withdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**user_save_preferences**](UserApi.md#user_save_preferences) | **POST** /user/preferences | Save user preferences.
+[**user_update_sub_account**](UserApi.md#user_update_sub_account) | **POST** /user/updateSubaccount | Updates the sub-account name.
+[**user_wallet_transfer**](UserApi.md#user_wallet_transfer) | **POST** /user/walletTransfer | Execute a transfer to a paired account.
 
 
 # **user_cancel_withdrawal**
@@ -72,7 +84,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **user_check_referral_code**
-> float user_check_referral_code(referral_code=referral_code)
+> object user_check_referral_code(referral_code=referral_code)
 
 Check if a referral code is valid.
 
@@ -106,7 +118,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**float**
+**object**
 
 ### Authorization
 
@@ -275,6 +287,194 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **user_create_sub_account**
+> object user_create_sub_account(account_name)
+
+Creates a new sub-account.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiExpires
+configuration = swagger_client.Configuration()
+configuration.api_key['api-expires'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-expires'] = 'Bearer'
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
+account_name = 'account_name_example' # str | 
+
+try:
+    # Creates a new sub-account.
+    api_response = api_instance.user_create_sub_account(account_name)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserApi->user_create_sub_account: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **account_name** | **str**|  | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_create_unstaking_requests**
+> object user_create_unstaking_requests(symbol, amount)
+
+Create unstaking request
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiExpires
+configuration = swagger_client.Configuration()
+configuration.api_key['api-expires'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-expires'] = 'Bearer'
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
+symbol = 'symbol_example' # str | 
+amount = 1.2 # float | 
+
+try:
+    # Create unstaking request
+    api_response = api_instance.user_create_unstaking_requests(symbol, amount)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserApi->user_create_unstaking_requests: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **str**|  | 
+ **amount** | **float**|  | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_delete_unstaking_requests**
+> object user_delete_unstaking_requests(redemption_id)
+
+Cancel unstaking request
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiExpires
+configuration = swagger_client.Configuration()
+configuration.api_key['api-expires'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-expires'] = 'Bearer'
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
+redemption_id = 'redemption_id_example' # str | 
+
+try:
+    # Cancel unstaking request
+    api_response = api_instance.user_delete_unstaking_requests(redemption_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserApi->user_delete_unstaking_requests: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **redemption_id** | **str**|  | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **user_get**
 > User user_get()
 
@@ -334,7 +534,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **user_get_affiliate_status**
-> Affiliate user_get_affiliate_status()
+> Affiliate user_get_affiliate_status(currency=currency)
 
 Get your current affiliate/referral status.
 
@@ -364,17 +564,21 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
+currency = 'XBt' # str | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional) (default to XBt)
 
 try:
     # Get your current affiliate/referral status.
-    api_response = api_instance.user_get_affiliate_status()
+    api_response = api_instance.user_get_affiliate_status(currency=currency)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UserApi->user_get_affiliate_status: %s\n" % e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **str**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
 
 ### Return type
 
@@ -449,8 +653,66 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **user_get_csa**
+> CollateralSupportAgreement user_get_csa()
+
+Get your account's CSA status.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiExpires
+configuration = swagger_client.Configuration()
+configuration.api_key['api-expires'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-expires'] = 'Bearer'
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
+
+try:
+    # Get your account's CSA status.
+    api_response = api_instance.user_get_csa()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserApi->user_get_csa: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**CollateralSupportAgreement**](CollateralSupportAgreement.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **user_get_deposit_address**
-> str user_get_deposit_address(currency=currency)
+> str user_get_deposit_address(currency, network)
 
 Get a deposit address.
 
@@ -480,11 +742,12 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
-currency = 'XBt' # str |  (optional) (default to XBt)
+currency = 'currency_example' # str | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
+network = 'network_example' # str | The `network` parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
 
 try:
     # Get a deposit address.
-    api_response = api_instance.user_get_deposit_address(currency=currency)
+    api_response = api_instance.user_get_deposit_address(currency, network)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UserApi->user_get_deposit_address: %s\n" % e)
@@ -494,7 +757,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **str**|  | [optional] [default to XBt]
+ **currency** | **str**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | 
+ **network** | **str**| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. | 
 
 ### Return type
 
@@ -512,7 +776,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **user_get_execution_history**
-> object user_get_execution_history(symbol, timestamp)
+> list[Execution] user_get_execution_history(symbol, timestamp)
 
 Get the execution history by day.
 
@@ -562,7 +826,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**list[Execution]**](Execution.md)
 
 ### Authorization
 
@@ -606,7 +870,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
-currency = 'XBt' # str |  (optional) (default to XBt)
+currency = 'XBt' # str | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional) (default to XBt)
 
 try:
     # Get your account's margin status. Send a currency of \"all\" to receive an array of all supported currencies.
@@ -620,7 +884,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **str**|  | [optional] [default to XBt]
+ **currency** | **str**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
 
 ### Return type
 
@@ -638,7 +902,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **user_get_quote_fill_ratio**
-> QuoteFillRatio user_get_quote_fill_ratio()
+> QuoteFillRatio user_get_quote_fill_ratio(target_account_id=target_account_id)
 
 Get 7 days worth of Quote Fill Ratio statistics.
 
@@ -668,13 +932,309 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
+target_account_id = 1.2 # float | AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)
 
 try:
     # Get 7 days worth of Quote Fill Ratio statistics.
-    api_response = api_instance.user_get_quote_fill_ratio()
+    api_response = api_instance.user_get_quote_fill_ratio(target_account_id=target_account_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UserApi->user_get_quote_fill_ratio: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **target_account_id** | **float**| AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user | [optional] 
+
+### Return type
+
+[**QuoteFillRatio**](QuoteFillRatio.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_get_quote_value_ratio**
+> QuoteValueRatio user_get_quote_value_ratio(target_account_id=target_account_id)
+
+Get Quote Value Ratio statistics over the last 3 days
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiExpires
+configuration = swagger_client.Configuration()
+configuration.api_key['api-expires'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-expires'] = 'Bearer'
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
+target_account_id = 1.2 # float | AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional)
+
+try:
+    # Get Quote Value Ratio statistics over the last 3 days
+    api_response = api_instance.user_get_quote_value_ratio(target_account_id=target_account_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserApi->user_get_quote_value_ratio: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **target_account_id** | **float**| AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user | [optional] 
+
+### Return type
+
+[**QuoteValueRatio**](QuoteValueRatio.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_get_staking**
+> list[StakingRecord] user_get_staking(currency=currency)
+
+Get the current user staking amount.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiExpires
+configuration = swagger_client.Configuration()
+configuration.api_key['api-expires'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-expires'] = 'Bearer'
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
+currency = 'currency_example' # str |  (optional)
+
+try:
+    # Get the current user staking amount.
+    api_response = api_instance.user_get_staking(currency=currency)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserApi->user_get_staking: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **str**|  | [optional] 
+
+### Return type
+
+[**list[StakingRecord]**](StakingRecord.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_get_staking_instruments**
+> list[XAny] user_get_staking_instruments(symbol=symbol, currency=currency)
+
+List staking instruments
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiExpires
+configuration = swagger_client.Configuration()
+configuration.api_key['api-expires'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-expires'] = 'Bearer'
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
+symbol = 'symbol_example' # str |  (optional)
+currency = 'currency_example' # str |  (optional)
+
+try:
+    # List staking instruments
+    api_response = api_instance.user_get_staking_instruments(symbol=symbol, currency=currency)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserApi->user_get_staking_instruments: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **str**|  | [optional] 
+ **currency** | **str**|  | [optional] 
+
+### Return type
+
+[**list[XAny]**](XAny.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_get_staking_tiers**
+> list[XAny] user_get_staking_tiers(currency)
+
+List staking tiers for a given currency
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.UserApi()
+currency = 'currency_example' # str | 
+
+try:
+    # List staking tiers for a given currency
+    api_response = api_instance.user_get_staking_tiers(currency)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserApi->user_get_staking_tiers: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **str**|  | 
+
+### Return type
+
+[**list[XAny]**](XAny.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_get_trading_volume**
+> list[TradingVolume] user_get_trading_volume()
+
+Get your 30 days USD average trading volume
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiExpires
+configuration = swagger_client.Configuration()
+configuration.api_key['api-expires'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-expires'] = 'Bearer'
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
+
+try:
+    # Get your 30 days USD average trading volume
+    api_response = api_instance.user_get_trading_volume()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserApi->user_get_trading_volume: %s\n" % e)
 ```
 
 ### Parameters
@@ -682,7 +1242,69 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**QuoteFillRatio**](QuoteFillRatio.md)
+[**list[TradingVolume]**](TradingVolume.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_get_unstaking_requests**
+> list[StakingRecord] user_get_unstaking_requests(status)
+
+Get the current user unstaking requests
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiExpires
+configuration = swagger_client.Configuration()
+configuration.api_key['api-expires'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-expires'] = 'Bearer'
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
+status = 'status_example' # str | 
+
+try:
+    # Get the current user unstaking requests
+    api_response = api_instance.user_get_unstaking_requests(status)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserApi->user_get_unstaking_requests: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **status** | **str**|  | 
+
+### Return type
+
+[**list[StakingRecord]**](StakingRecord.md)
 
 ### Authorization
 
@@ -726,7 +1348,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
-currency = 'XBt' # str |  (optional) (default to XBt)
+currency = 'XBt' # str | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional) (default to XBt)
 
 try:
     # Get your current wallet information.
@@ -740,7 +1362,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **str**|  | [optional] [default to XBt]
+ **currency** | **str**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
 
 ### Return type
 
@@ -758,7 +1380,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **user_get_wallet_history**
-> list[Transaction] user_get_wallet_history(currency=currency, count=count, start=start)
+> list[Transaction] user_get_wallet_history(currency=currency, count=count, start=start, target_account_id=target_account_id)
 
 Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 
@@ -788,13 +1410,14 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
-currency = 'XBt' # str |  (optional) (default to XBt)
+currency = 'XBt' # str | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional) (default to XBt)
 count = 100 # float | Number of results to fetch. (optional) (default to 100)
 start = 0 # float | Starting point for results. (optional) (default to 0)
+target_account_id = 1.2 # float | AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional)
 
 try:
     # Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
-    api_response = api_instance.user_get_wallet_history(currency=currency, count=count, start=start)
+    api_response = api_instance.user_get_wallet_history(currency=currency, count=count, start=start, target_account_id=target_account_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UserApi->user_get_wallet_history: %s\n" % e)
@@ -804,9 +1427,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **str**|  | [optional] [default to XBt]
+ **currency** | **str**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
  **count** | **float**| Number of results to fetch. | [optional] [default to 100]
  **start** | **float**| Starting point for results. | [optional] [default to 0]
+ **target_account_id** | **float**| AccountId to view the history of, must be a paired account with the authorised user requesting the history. | [optional] 
 
 ### Return type
 
@@ -854,7 +1478,7 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
-currency = 'XBt' # str |  (optional) (default to XBt)
+currency = 'XBt' # str | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional) (default to XBt)
 
 try:
     # Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
@@ -868,11 +1492,69 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **str**|  | [optional] [default to XBt]
+ **currency** | **str**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
 
 ### Return type
 
 [**list[Transaction]**](Transaction.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_get_wallet_transfer_accounts**
+> list[XAny] user_get_wallet_transfer_accounts()
+
+Get the list of accounts you can transfer funds between.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiExpires
+configuration = swagger_client.Configuration()
+configuration.api_key['api-expires'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-expires'] = 'Bearer'
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
+
+try:
+    # Get the list of accounts you can transfer funds between.
+    api_response = api_instance.user_get_wallet_transfer_accounts()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserApi->user_get_wallet_transfer_accounts: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**list[XAny]**](XAny.md)
 
 ### Authorization
 
@@ -926,56 +1608,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **user_min_withdrawal_fee**
-> object user_min_withdrawal_fee(currency=currency)
-
-Get the minimum withdrawal fee for a currency.
-
-This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-
-### Example
-```python
-from __future__ import print_function
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.UserApi()
-currency = 'XBt' # str |  (optional) (default to XBt)
-
-try:
-    # Get the minimum withdrawal fee for a currency.
-    api_response = api_instance.user_min_withdrawal_fee(currency=currency)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling UserApi->user_min_withdrawal_fee: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **currency** | **str**|  | [optional] [default to XBt]
-
-### Return type
-
-**object**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **user_request_withdrawal**
-> Transaction user_request_withdrawal(currency, amount, address, otp_token=otp_token, fee=fee, text=text)
+> Transaction user_request_withdrawal(currency, network, amount, otp_token=otp_token, address=address, address_id=address_id, target_user_id=target_user_id, fee=fee, text=text)
 
 Request a withdrawal to an external wallet.
 
@@ -1007,16 +1641,19 @@ configuration.api_key['api-signature'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
-currency = 'XBt' # str | Currency you're withdrawing. Options: `XBt` (default to XBt)
+currency = 'XBt' # str | Currency you're withdrawing. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (default to XBt)
+network = 'network_example' # str | The `network` parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
 amount = 8.14 # float | Amount of withdrawal currency.
-address = 'address_example' # str | Destination Address.
-otp_token = 'otp_token_example' # str | 2FA token. Required if 2FA is enabled on your account. (optional)
+otp_token = 'otp_token_example' # str | 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional)
+address = 'address_example' # str | Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. (optional)
+address_id = 1.2 # float | ID of the Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. (optional)
+target_user_id = 1.2 # float | ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified. (optional)
 fee = 1.2 # float | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional)
 text = 'text_example' # str | Optional annotation, e.g. 'Transfer to home wallet'. (optional)
 
 try:
     # Request a withdrawal to an external wallet.
-    api_response = api_instance.user_request_withdrawal(currency, amount, address, otp_token=otp_token, fee=fee, text=text)
+    api_response = api_instance.user_request_withdrawal(currency, network, amount, otp_token=otp_token, address=address, address_id=address_id, target_user_id=target_user_id, fee=fee, text=text)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UserApi->user_request_withdrawal: %s\n" % e)
@@ -1026,10 +1663,13 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **str**| Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60; | [default to XBt]
+ **currency** | **str**| Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | [default to XBt]
+ **network** | **str**| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. | 
  **amount** | **float**| Amount of withdrawal currency. | 
- **address** | **str**| Destination Address. | 
- **otp_token** | **str**| 2FA token. Required if 2FA is enabled on your account. | [optional] 
+ **otp_token** | **str**| 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. | [optional] 
+ **address** | **str**| Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
+ **address_id** | **float**| ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
+ **target_user_id** | **float**| ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
  **fee** | **float**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional] 
  **text** | **str**| Optional annotation, e.g. &#39;Transfer to home wallet&#39;. | [optional] 
 
@@ -1100,6 +1740,140 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**User**](User.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_update_sub_account**
+> object user_update_sub_account(target_account_id, account_name)
+
+Updates the sub-account name.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiExpires
+configuration = swagger_client.Configuration()
+configuration.api_key['api-expires'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-expires'] = 'Bearer'
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
+target_account_id = 1.2 # float | 
+account_name = 'account_name_example' # str | 
+
+try:
+    # Updates the sub-account name.
+    api_response = api_instance.user_update_sub_account(target_account_id, account_name)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserApi->user_update_sub_account: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **target_account_id** | **float**|  | 
+ **account_name** | **str**|  | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_wallet_transfer**
+> Transaction user_wallet_transfer(currency, amount, target_account_id, from_account_id=from_account_id)
+
+Execute a transfer to a paired account.
+
+This will send a confirmation email to the email address on record.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiExpires
+configuration = swagger_client.Configuration()
+configuration.api_key['api-expires'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-expires'] = 'Bearer'
+# Configure API key authorization: apiKey
+configuration = swagger_client.Configuration()
+configuration.api_key['api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-key'] = 'Bearer'
+# Configure API key authorization: apiSignature
+configuration = swagger_client.Configuration()
+configuration.api_key['api-signature'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api-signature'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.UserApi(swagger_client.ApiClient(configuration))
+currency = 'currency_example' # str | Currency you're transfering. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
+amount = 8.14 # float | Amount of transfer.
+target_account_id = 1.2 # float | AccountId to send the transfer to, must be a paired account with the user sending the transfer.
+from_account_id = 1.2 # float | AccountID to send the transfer from. Must be paired account with the authenticated user. (optional)
+
+try:
+    # Execute a transfer to a paired account.
+    api_response = api_instance.user_wallet_transfer(currency, amount, target_account_id, from_account_id=from_account_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserApi->user_wallet_transfer: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **str**| Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | 
+ **amount** | **float**| Amount of transfer. | 
+ **target_account_id** | **float**| AccountId to send the transfer to, must be a paired account with the user sending the transfer. | 
+ **from_account_id** | **float**| AccountID to send the transfer from. Must be paired account with the authenticated user. | [optional] 
+
+### Return type
+
+[**Transaction**](Transaction.md)
 
 ### Authorization
 

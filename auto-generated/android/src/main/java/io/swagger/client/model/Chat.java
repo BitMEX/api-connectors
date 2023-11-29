@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -29,12 +29,12 @@ public class Chat {
   private Date date = null;
   @SerializedName("user")
   private String user = null;
+  @SerializedName("userColor")
+  private String userColor = null;
   @SerializedName("message")
   private String message = null;
   @SerializedName("html")
   private String html = null;
-  @SerializedName("fromBot")
-  private Boolean fromBot = null;
   @SerializedName("channelID")
   private Double channelID = null;
 
@@ -70,6 +70,16 @@ public class Chat {
 
   /**
    **/
+  @ApiModelProperty(value = "")
+  public String getUserColor() {
+    return userColor;
+  }
+  public void setUserColor(String userColor) {
+    this.userColor = userColor;
+  }
+
+  /**
+   **/
   @ApiModelProperty(required = true, value = "")
   public String getMessage() {
     return message;
@@ -86,16 +96,6 @@ public class Chat {
   }
   public void setHtml(String html) {
     this.html = html;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Boolean getFromBot() {
-    return fromBot;
-  }
-  public void setFromBot(Boolean fromBot) {
-    this.fromBot = fromBot;
   }
 
   /**
@@ -121,9 +121,9 @@ public class Chat {
     return (this.id == null ? chat.id == null : this.id.equals(chat.id)) &&
         (this.date == null ? chat.date == null : this.date.equals(chat.date)) &&
         (this.user == null ? chat.user == null : this.user.equals(chat.user)) &&
+        (this.userColor == null ? chat.userColor == null : this.userColor.equals(chat.userColor)) &&
         (this.message == null ? chat.message == null : this.message.equals(chat.message)) &&
         (this.html == null ? chat.html == null : this.html.equals(chat.html)) &&
-        (this.fromBot == null ? chat.fromBot == null : this.fromBot.equals(chat.fromBot)) &&
         (this.channelID == null ? chat.channelID == null : this.channelID.equals(chat.channelID));
   }
 
@@ -133,9 +133,9 @@ public class Chat {
     result = 31 * result + (this.id == null ? 0: this.id.hashCode());
     result = 31 * result + (this.date == null ? 0: this.date.hashCode());
     result = 31 * result + (this.user == null ? 0: this.user.hashCode());
+    result = 31 * result + (this.userColor == null ? 0: this.userColor.hashCode());
     result = 31 * result + (this.message == null ? 0: this.message.hashCode());
     result = 31 * result + (this.html == null ? 0: this.html.hashCode());
-    result = 31 * result + (this.fromBot == null ? 0: this.fromBot.hashCode());
     result = 31 * result + (this.channelID == null ? 0: this.channelID.hashCode());
     return result;
   }
@@ -148,9 +148,9 @@ public class Chat {
     sb.append("  id: ").append(id).append("\n");
     sb.append("  date: ").append(date).append("\n");
     sb.append("  user: ").append(user).append("\n");
+    sb.append("  userColor: ").append(userColor).append("\n");
     sb.append("  message: ").append(message).append("\n");
     sb.append("  html: ").append(html).append("\n");
-    sb.append("  fromBot: ").append(fromBot).append("\n");
     sb.append("  channelID: ").append(channelID).append("\n");
     sb.append("}\n");
     return sb.toString();

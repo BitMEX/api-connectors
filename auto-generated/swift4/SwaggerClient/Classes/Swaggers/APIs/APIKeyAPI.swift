@@ -36,27 +36,7 @@ open class APIKeyAPI {
      - API Key:
        - type: apiKey api-signature 
        - name: apiSignature
-     - examples: [{contentType=application/json, example=[ {
-  "permissions" : [ { }, { } ],
-  "created" : "2000-01-23T04:56:07.000+00:00",
-  "name" : "name",
-  "cidr" : "cidr",
-  "id" : "id",
-  "secret" : "secret",
-  "nonce" : 0.80082819046101150206595775671303272247314453125,
-  "userId" : 6.02745618307040320615897144307382404804229736328125,
-  "enabled" : false
-}, {
-  "permissions" : [ { }, { } ],
-  "created" : "2000-01-23T04:56:07.000+00:00",
-  "name" : "name",
-  "cidr" : "cidr",
-  "id" : "id",
-  "secret" : "secret",
-  "nonce" : 0.80082819046101150206595775671303272247314453125,
-  "userId" : 6.02745618307040320615897144307382404804229736328125,
-  "enabled" : false
-} ]}]
+     - examples: [{contentType=application/json, example={}}]
      
      - parameter reverse: (query) If true, will sort results newest first. (optional, default to false)
 

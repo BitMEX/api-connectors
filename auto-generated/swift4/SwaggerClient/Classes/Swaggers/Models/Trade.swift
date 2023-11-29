@@ -22,8 +22,9 @@ public struct Trade: Codable {
     public var grossValue: Double?
     public var homeNotional: Double?
     public var foreignNotional: Double?
+    public var trdType: String?
 
-    public init(timestamp: Date, symbol: String, side: String?, size: Double?, price: Double?, tickDirection: String?, trdMatchID: String?, grossValue: Double?, homeNotional: Double?, foreignNotional: Double?) {
+    public init(timestamp: Date, symbol: String, side: String?, size: Double?, price: Double?, tickDirection: String?, trdMatchID: String?, grossValue: Double?, homeNotional: Double?, foreignNotional: Double?, trdType: String?) {
         self.timestamp = timestamp
         self.symbol = symbol
         self.side = side
@@ -34,6 +35,7 @@ public struct Trade: Codable {
         self.grossValue = grossValue
         self.homeNotional = homeNotional
         self.foreignNotional = foreignNotional
+        self.trdType = trdType
     }
 
 

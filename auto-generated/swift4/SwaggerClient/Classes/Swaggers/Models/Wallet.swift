@@ -8,22 +8,12 @@
 import Foundation
 
 
+/** Assets and Networks Data */
 
 public struct Wallet: Codable {
 
     public var account: Double
     public var currency: String
-    public var prevDeposited: Double?
-    public var prevWithdrawn: Double?
-    public var prevTransferIn: Double?
-    public var prevTransferOut: Double?
-    public var prevAmount: Double?
-    public var prevTimestamp: Date?
-    public var deltaDeposited: Double?
-    public var deltaWithdrawn: Double?
-    public var deltaTransferIn: Double?
-    public var deltaTransferOut: Double?
-    public var deltaAmount: Double?
     public var deposited: Double?
     public var withdrawn: Double?
     public var transferIn: Double?
@@ -33,24 +23,10 @@ public struct Wallet: Codable {
     public var pendingDebit: Double?
     public var confirmedDebit: Double?
     public var timestamp: Date?
-    public var addr: String?
-    public var script: String?
-    public var withdrawalLock: [String]?
 
-    public init(account: Double, currency: String, prevDeposited: Double?, prevWithdrawn: Double?, prevTransferIn: Double?, prevTransferOut: Double?, prevAmount: Double?, prevTimestamp: Date?, deltaDeposited: Double?, deltaWithdrawn: Double?, deltaTransferIn: Double?, deltaTransferOut: Double?, deltaAmount: Double?, deposited: Double?, withdrawn: Double?, transferIn: Double?, transferOut: Double?, amount: Double?, pendingCredit: Double?, pendingDebit: Double?, confirmedDebit: Double?, timestamp: Date?, addr: String?, script: String?, withdrawalLock: [String]?) {
+    public init(account: Double, currency: String, deposited: Double?, withdrawn: Double?, transferIn: Double?, transferOut: Double?, amount: Double?, pendingCredit: Double?, pendingDebit: Double?, confirmedDebit: Double?, timestamp: Date?) {
         self.account = account
         self.currency = currency
-        self.prevDeposited = prevDeposited
-        self.prevWithdrawn = prevWithdrawn
-        self.prevTransferIn = prevTransferIn
-        self.prevTransferOut = prevTransferOut
-        self.prevAmount = prevAmount
-        self.prevTimestamp = prevTimestamp
-        self.deltaDeposited = deltaDeposited
-        self.deltaWithdrawn = deltaWithdrawn
-        self.deltaTransferIn = deltaTransferIn
-        self.deltaTransferOut = deltaTransferOut
-        self.deltaAmount = deltaAmount
         self.deposited = deposited
         self.withdrawn = withdrawn
         self.transferIn = transferIn
@@ -60,9 +36,6 @@ public struct Wallet: Codable {
         self.pendingDebit = pendingDebit
         self.confirmedDebit = confirmedDebit
         self.timestamp = timestamp
-        self.addr = addr
-        self.script = script
-        self.withdrawalLock = withdrawalLock
     }
 
 

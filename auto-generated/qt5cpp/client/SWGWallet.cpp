@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -41,28 +41,6 @@ SWGWallet::init() {
     m_account_isSet = false;
     currency = new QString("");
     m_currency_isSet = false;
-    prev_deposited = 0.0;
-    m_prev_deposited_isSet = false;
-    prev_withdrawn = 0.0;
-    m_prev_withdrawn_isSet = false;
-    prev_transfer_in = 0.0;
-    m_prev_transfer_in_isSet = false;
-    prev_transfer_out = 0.0;
-    m_prev_transfer_out_isSet = false;
-    prev_amount = 0.0;
-    m_prev_amount_isSet = false;
-    prev_timestamp = NULL;
-    m_prev_timestamp_isSet = false;
-    delta_deposited = 0.0;
-    m_delta_deposited_isSet = false;
-    delta_withdrawn = 0.0;
-    m_delta_withdrawn_isSet = false;
-    delta_transfer_in = 0.0;
-    m_delta_transfer_in_isSet = false;
-    delta_transfer_out = 0.0;
-    m_delta_transfer_out_isSet = false;
-    delta_amount = 0.0;
-    m_delta_amount_isSet = false;
     deposited = 0.0;
     m_deposited_isSet = false;
     withdrawn = 0.0;
@@ -81,12 +59,6 @@ SWGWallet::init() {
     m_confirmed_debit_isSet = false;
     timestamp = NULL;
     m_timestamp_isSet = false;
-    addr = new QString("");
-    m_addr_isSet = false;
-    script = new QString("");
-    m_script_isSet = false;
-    withdrawal_lock = new QList<QString*>();
-    m_withdrawal_lock_isSet = false;
 }
 
 void
@@ -96,39 +68,6 @@ SWGWallet::cleanup() {
     }
     if(currency != nullptr) { 
         delete currency;
-    }
-    if(prev_deposited != nullptr) { 
-        delete prev_deposited;
-    }
-    if(prev_withdrawn != nullptr) { 
-        delete prev_withdrawn;
-    }
-    if(prev_transfer_in != nullptr) { 
-        delete prev_transfer_in;
-    }
-    if(prev_transfer_out != nullptr) { 
-        delete prev_transfer_out;
-    }
-    if(prev_amount != nullptr) { 
-        delete prev_amount;
-    }
-    if(prev_timestamp != nullptr) { 
-        delete prev_timestamp;
-    }
-    if(delta_deposited != nullptr) { 
-        delete delta_deposited;
-    }
-    if(delta_withdrawn != nullptr) { 
-        delete delta_withdrawn;
-    }
-    if(delta_transfer_in != nullptr) { 
-        delete delta_transfer_in;
-    }
-    if(delta_transfer_out != nullptr) { 
-        delete delta_transfer_out;
-    }
-    if(delta_amount != nullptr) { 
-        delete delta_amount;
     }
     if(deposited != nullptr) { 
         delete deposited;
@@ -157,19 +96,6 @@ SWGWallet::cleanup() {
     if(timestamp != nullptr) { 
         delete timestamp;
     }
-    if(addr != nullptr) { 
-        delete addr;
-    }
-    if(script != nullptr) { 
-        delete script;
-    }
-    if(withdrawal_lock != nullptr) { 
-        auto arr = withdrawal_lock;
-        for(auto o: *arr) { 
-            delete o;
-        }
-        delete withdrawal_lock;
-    }
 }
 
 SWGWallet*
@@ -186,28 +112,6 @@ SWGWallet::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&account, pJson["account"], "SWGNumber", "SWGNumber");
     
     ::Swagger::setValue(&currency, pJson["currency"], "QString", "QString");
-    
-    ::Swagger::setValue(&prev_deposited, pJson["prevDeposited"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&prev_withdrawn, pJson["prevWithdrawn"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&prev_transfer_in, pJson["prevTransferIn"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&prev_transfer_out, pJson["prevTransferOut"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&prev_amount, pJson["prevAmount"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&prev_timestamp, pJson["prevTimestamp"], "QDateTime", "QDateTime");
-    
-    ::Swagger::setValue(&delta_deposited, pJson["deltaDeposited"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&delta_withdrawn, pJson["deltaWithdrawn"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&delta_transfer_in, pJson["deltaTransferIn"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&delta_transfer_out, pJson["deltaTransferOut"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&delta_amount, pJson["deltaAmount"], "SWGNumber", "SWGNumber");
     
     ::Swagger::setValue(&deposited, pJson["deposited"], "SWGNumber", "SWGNumber");
     
@@ -227,12 +131,6 @@ SWGWallet::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&timestamp, pJson["timestamp"], "QDateTime", "QDateTime");
     
-    ::Swagger::setValue(&addr, pJson["addr"], "QString", "QString");
-    
-    ::Swagger::setValue(&script, pJson["script"], "QString", "QString");
-    
-    
-    ::Swagger::setValue(&withdrawal_lock, pJson["withdrawalLock"], "QList", "QString");
 }
 
 QString
@@ -252,39 +150,6 @@ SWGWallet::asJsonObject() {
     }
     if(currency != nullptr && *currency != QString("")){
         toJsonValue(QString("currency"), currency, obj, QString("QString"));
-    }
-    if((prev_deposited != nullptr) && (prev_deposited->isSet())){
-        toJsonValue(QString("prevDeposited"), prev_deposited, obj, QString("SWGNumber"));
-    }
-    if((prev_withdrawn != nullptr) && (prev_withdrawn->isSet())){
-        toJsonValue(QString("prevWithdrawn"), prev_withdrawn, obj, QString("SWGNumber"));
-    }
-    if((prev_transfer_in != nullptr) && (prev_transfer_in->isSet())){
-        toJsonValue(QString("prevTransferIn"), prev_transfer_in, obj, QString("SWGNumber"));
-    }
-    if((prev_transfer_out != nullptr) && (prev_transfer_out->isSet())){
-        toJsonValue(QString("prevTransferOut"), prev_transfer_out, obj, QString("SWGNumber"));
-    }
-    if((prev_amount != nullptr) && (prev_amount->isSet())){
-        toJsonValue(QString("prevAmount"), prev_amount, obj, QString("SWGNumber"));
-    }
-    if(prev_timestamp != nullptr) { 
-        toJsonValue(QString("prevTimestamp"), prev_timestamp, obj, QString("QDateTime"));
-    }
-    if((delta_deposited != nullptr) && (delta_deposited->isSet())){
-        toJsonValue(QString("deltaDeposited"), delta_deposited, obj, QString("SWGNumber"));
-    }
-    if((delta_withdrawn != nullptr) && (delta_withdrawn->isSet())){
-        toJsonValue(QString("deltaWithdrawn"), delta_withdrawn, obj, QString("SWGNumber"));
-    }
-    if((delta_transfer_in != nullptr) && (delta_transfer_in->isSet())){
-        toJsonValue(QString("deltaTransferIn"), delta_transfer_in, obj, QString("SWGNumber"));
-    }
-    if((delta_transfer_out != nullptr) && (delta_transfer_out->isSet())){
-        toJsonValue(QString("deltaTransferOut"), delta_transfer_out, obj, QString("SWGNumber"));
-    }
-    if((delta_amount != nullptr) && (delta_amount->isSet())){
-        toJsonValue(QString("deltaAmount"), delta_amount, obj, QString("SWGNumber"));
     }
     if((deposited != nullptr) && (deposited->isSet())){
         toJsonValue(QString("deposited"), deposited, obj, QString("SWGNumber"));
@@ -313,15 +178,6 @@ SWGWallet::asJsonObject() {
     if(timestamp != nullptr) { 
         toJsonValue(QString("timestamp"), timestamp, obj, QString("QDateTime"));
     }
-    if(addr != nullptr && *addr != QString("")){
-        toJsonValue(QString("addr"), addr, obj, QString("QString"));
-    }
-    if(script != nullptr && *script != QString("")){
-        toJsonValue(QString("script"), script, obj, QString("QString"));
-    }
-    if(withdrawal_lock->size() > 0){
-        toJsonArray((QList<void*>*)withdrawal_lock, obj, "withdrawalLock", "QString");
-    }
 
     return obj;
 }
@@ -344,116 +200,6 @@ void
 SWGWallet::setCurrency(QString* currency) {
     this->currency = currency;
     this->m_currency_isSet = true;
-}
-
-SWGNumber*
-SWGWallet::getPrevDeposited() {
-    return prev_deposited;
-}
-void
-SWGWallet::setPrevDeposited(SWGNumber* prev_deposited) {
-    this->prev_deposited = prev_deposited;
-    this->m_prev_deposited_isSet = true;
-}
-
-SWGNumber*
-SWGWallet::getPrevWithdrawn() {
-    return prev_withdrawn;
-}
-void
-SWGWallet::setPrevWithdrawn(SWGNumber* prev_withdrawn) {
-    this->prev_withdrawn = prev_withdrawn;
-    this->m_prev_withdrawn_isSet = true;
-}
-
-SWGNumber*
-SWGWallet::getPrevTransferIn() {
-    return prev_transfer_in;
-}
-void
-SWGWallet::setPrevTransferIn(SWGNumber* prev_transfer_in) {
-    this->prev_transfer_in = prev_transfer_in;
-    this->m_prev_transfer_in_isSet = true;
-}
-
-SWGNumber*
-SWGWallet::getPrevTransferOut() {
-    return prev_transfer_out;
-}
-void
-SWGWallet::setPrevTransferOut(SWGNumber* prev_transfer_out) {
-    this->prev_transfer_out = prev_transfer_out;
-    this->m_prev_transfer_out_isSet = true;
-}
-
-SWGNumber*
-SWGWallet::getPrevAmount() {
-    return prev_amount;
-}
-void
-SWGWallet::setPrevAmount(SWGNumber* prev_amount) {
-    this->prev_amount = prev_amount;
-    this->m_prev_amount_isSet = true;
-}
-
-QDateTime*
-SWGWallet::getPrevTimestamp() {
-    return prev_timestamp;
-}
-void
-SWGWallet::setPrevTimestamp(QDateTime* prev_timestamp) {
-    this->prev_timestamp = prev_timestamp;
-    this->m_prev_timestamp_isSet = true;
-}
-
-SWGNumber*
-SWGWallet::getDeltaDeposited() {
-    return delta_deposited;
-}
-void
-SWGWallet::setDeltaDeposited(SWGNumber* delta_deposited) {
-    this->delta_deposited = delta_deposited;
-    this->m_delta_deposited_isSet = true;
-}
-
-SWGNumber*
-SWGWallet::getDeltaWithdrawn() {
-    return delta_withdrawn;
-}
-void
-SWGWallet::setDeltaWithdrawn(SWGNumber* delta_withdrawn) {
-    this->delta_withdrawn = delta_withdrawn;
-    this->m_delta_withdrawn_isSet = true;
-}
-
-SWGNumber*
-SWGWallet::getDeltaTransferIn() {
-    return delta_transfer_in;
-}
-void
-SWGWallet::setDeltaTransferIn(SWGNumber* delta_transfer_in) {
-    this->delta_transfer_in = delta_transfer_in;
-    this->m_delta_transfer_in_isSet = true;
-}
-
-SWGNumber*
-SWGWallet::getDeltaTransferOut() {
-    return delta_transfer_out;
-}
-void
-SWGWallet::setDeltaTransferOut(SWGNumber* delta_transfer_out) {
-    this->delta_transfer_out = delta_transfer_out;
-    this->m_delta_transfer_out_isSet = true;
-}
-
-SWGNumber*
-SWGWallet::getDeltaAmount() {
-    return delta_amount;
-}
-void
-SWGWallet::setDeltaAmount(SWGNumber* delta_amount) {
-    this->delta_amount = delta_amount;
-    this->m_delta_amount_isSet = true;
 }
 
 SWGNumber*
@@ -546,36 +292,6 @@ SWGWallet::setTimestamp(QDateTime* timestamp) {
     this->m_timestamp_isSet = true;
 }
 
-QString*
-SWGWallet::getAddr() {
-    return addr;
-}
-void
-SWGWallet::setAddr(QString* addr) {
-    this->addr = addr;
-    this->m_addr_isSet = true;
-}
-
-QString*
-SWGWallet::getScript() {
-    return script;
-}
-void
-SWGWallet::setScript(QString* script) {
-    this->script = script;
-    this->m_script_isSet = true;
-}
-
-QList<QString*>*
-SWGWallet::getWithdrawalLock() {
-    return withdrawal_lock;
-}
-void
-SWGWallet::setWithdrawalLock(QList<QString*>* withdrawal_lock) {
-    this->withdrawal_lock = withdrawal_lock;
-    this->m_withdrawal_lock_isSet = true;
-}
-
 
 bool
 SWGWallet::isSet(){
@@ -583,17 +299,6 @@ SWGWallet::isSet(){
     do{
         if(account != nullptr && account->isSet()){ isObjectUpdated = true; break;}
         if(currency != nullptr && *currency != QString("")){ isObjectUpdated = true; break;}
-        if(prev_deposited != nullptr && prev_deposited->isSet()){ isObjectUpdated = true; break;}
-        if(prev_withdrawn != nullptr && prev_withdrawn->isSet()){ isObjectUpdated = true; break;}
-        if(prev_transfer_in != nullptr && prev_transfer_in->isSet()){ isObjectUpdated = true; break;}
-        if(prev_transfer_out != nullptr && prev_transfer_out->isSet()){ isObjectUpdated = true; break;}
-        if(prev_amount != nullptr && prev_amount->isSet()){ isObjectUpdated = true; break;}
-        
-        if(delta_deposited != nullptr && delta_deposited->isSet()){ isObjectUpdated = true; break;}
-        if(delta_withdrawn != nullptr && delta_withdrawn->isSet()){ isObjectUpdated = true; break;}
-        if(delta_transfer_in != nullptr && delta_transfer_in->isSet()){ isObjectUpdated = true; break;}
-        if(delta_transfer_out != nullptr && delta_transfer_out->isSet()){ isObjectUpdated = true; break;}
-        if(delta_amount != nullptr && delta_amount->isSet()){ isObjectUpdated = true; break;}
         if(deposited != nullptr && deposited->isSet()){ isObjectUpdated = true; break;}
         if(withdrawn != nullptr && withdrawn->isSet()){ isObjectUpdated = true; break;}
         if(transfer_in != nullptr && transfer_in->isSet()){ isObjectUpdated = true; break;}
@@ -603,9 +308,6 @@ SWGWallet::isSet(){
         if(pending_debit != nullptr && pending_debit->isSet()){ isObjectUpdated = true; break;}
         if(confirmed_debit != nullptr && confirmed_debit->isSet()){ isObjectUpdated = true; break;}
         
-        if(addr != nullptr && *addr != QString("")){ isObjectUpdated = true; break;}
-        if(script != nullptr && *script != QString("")){ isObjectUpdated = true; break;}
-        if(withdrawal_lock->size() > 0){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;
 }

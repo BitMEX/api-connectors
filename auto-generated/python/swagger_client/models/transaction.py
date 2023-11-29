@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -15,6 +15,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from swagger_client.configuration import Configuration
 
 
 class Transaction(object):
@@ -34,6 +36,7 @@ class Transaction(object):
         'transact_id': 'str',
         'account': 'float',
         'currency': 'str',
+        'network': 'str',
         'transact_type': 'str',
         'amount': 'float',
         'fee': 'float',
@@ -42,13 +45,15 @@ class Transaction(object):
         'tx': 'str',
         'text': 'str',
         'transact_time': 'datetime',
-        'timestamp': 'datetime'
+        'timestamp': 'datetime',
+        'wallet_balance': 'float'
     }
 
     attribute_map = {
         'transact_id': 'transactID',
         'account': 'account',
         'currency': 'currency',
+        'network': 'network',
         'transact_type': 'transactType',
         'amount': 'amount',
         'fee': 'fee',
@@ -57,15 +62,20 @@ class Transaction(object):
         'tx': 'tx',
         'text': 'text',
         'transact_time': 'transactTime',
-        'timestamp': 'timestamp'
+        'timestamp': 'timestamp',
+        'wallet_balance': 'walletBalance'
     }
 
-    def __init__(self, transact_id=None, account=None, currency=None, transact_type=None, amount=None, fee=None, transact_status=None, address=None, tx=None, text=None, transact_time=None, timestamp=None):  # noqa: E501
+    def __init__(self, transact_id=None, account=None, currency=None, network=None, transact_type=None, amount=None, fee=None, transact_status=None, address=None, tx=None, text=None, transact_time=None, timestamp=None, wallet_balance=None, _configuration=None):  # noqa: E501
         """Transaction - a model defined in Swagger"""  # noqa: E501
+        if _configuration is None:
+            _configuration = Configuration()
+        self._configuration = _configuration
 
         self._transact_id = None
         self._account = None
         self._currency = None
+        self._network = None
         self._transact_type = None
         self._amount = None
         self._fee = None
@@ -75,6 +85,7 @@ class Transaction(object):
         self._text = None
         self._transact_time = None
         self._timestamp = None
+        self._wallet_balance = None
         self.discriminator = None
 
         self.transact_id = transact_id
@@ -82,6 +93,8 @@ class Transaction(object):
             self.account = account
         if currency is not None:
             self.currency = currency
+        if network is not None:
+            self.network = network
         if transact_type is not None:
             self.transact_type = transact_type
         if amount is not None:
@@ -100,6 +113,8 @@ class Transaction(object):
             self.transact_time = transact_time
         if timestamp is not None:
             self.timestamp = timestamp
+        if wallet_balance is not None:
+            self.wallet_balance = wallet_balance
 
     @property
     def transact_id(self):
@@ -119,7 +134,7 @@ class Transaction(object):
         :param transact_id: The transact_id of this Transaction.  # noqa: E501
         :type: str
         """
-        if transact_id is None:
+        if self._configuration.client_side_validation and transact_id is None:
             raise ValueError("Invalid value for `transact_id`, must not be `None`")  # noqa: E501
 
         self._transact_id = transact_id
@@ -165,6 +180,27 @@ class Transaction(object):
         """
 
         self._currency = currency
+
+    @property
+    def network(self):
+        """Gets the network of this Transaction.  # noqa: E501
+
+
+        :return: The network of this Transaction.  # noqa: E501
+        :rtype: str
+        """
+        return self._network
+
+    @network.setter
+    def network(self, network):
+        """Sets the network of this Transaction.
+
+
+        :param network: The network of this Transaction.  # noqa: E501
+        :type: str
+        """
+
+        self._network = network
 
     @property
     def transact_type(self):
@@ -355,6 +391,27 @@ class Transaction(object):
 
         self._timestamp = timestamp
 
+    @property
+    def wallet_balance(self):
+        """Gets the wallet_balance of this Transaction.  # noqa: E501
+
+
+        :return: The wallet_balance of this Transaction.  # noqa: E501
+        :rtype: float
+        """
+        return self._wallet_balance
+
+    @wallet_balance.setter
+    def wallet_balance(self, wallet_balance):
+        """Sets the wallet_balance of this Transaction.
+
+
+        :param wallet_balance: The wallet_balance of this Transaction.  # noqa: E501
+        :type: float
+        """
+
+        self._wallet_balance = wallet_balance
+
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -395,8 +452,11 @@ class Transaction(object):
         if not isinstance(other, Transaction):
             return False
 
-        return self.__dict__ == other.__dict__
+        return self.to_dict() == other.to_dict()
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        return not self == other
+        if not isinstance(other, Transaction):
+            return True
+
+        return self.to_dict() != other.to_dict()

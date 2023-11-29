@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **transact_id** | **String** |  | 
 **account** | **Float** |  | [optional] 
 **currency** | **String** |  | [optional] 
+**network** | **String** |  | [optional] 
 **transact_type** | **String** |  | [optional] 
 **amount** | **Float** |  | [optional] 
 **fee** | **Float** |  | [optional] 
@@ -15,5 +16,6 @@ Name | Type | Description | Notes
 **text** | **String** |  | [optional] 
 **transact_time** | **DateTime** |  | [optional] 
 **timestamp** | **DateTime** |  | [optional] 
+**wallet_balance** | **Float** |  | [optional] 
 
 

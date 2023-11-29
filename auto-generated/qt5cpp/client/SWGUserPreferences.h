@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -71,6 +71,24 @@ public:
     QList<QString*>* getDisablePush();
     void setDisablePush(QList<QString*>* disable_push);
 
+    bool isDisplayCorpEnrollUpsell();
+    void setDisplayCorpEnrollUpsell(bool display_corp_enroll_upsell);
+
+    QString* getEquivalentCurrency();
+    void setEquivalentCurrency(QString* equivalent_currency);
+
+    QList<QString*>* getFeatures();
+    void setFeatures(QList<QString*>* features);
+
+    QList<QString*>* getFavourites();
+    void setFavourites(QList<QString*>* favourites);
+
+    QList<QString*>* getFavouritesAssets();
+    void setFavouritesAssets(QList<QString*>* favourites_assets);
+
+    QList<QString*>* getFavouritesOrdered();
+    void setFavouritesOrdered(QList<QString*>* favourites_ordered);
+
     QList<QString*>* getHideConfirmDialogs();
     void setHideConfirmDialogs(QList<QString*>* hide_confirm_dialogs);
 
@@ -86,11 +104,32 @@ public:
     QList<QString*>* getHideNotifications();
     void setHideNotifications(QList<QString*>* hide_notifications);
 
+    bool isHidePhoneConfirm();
+    void setHidePhoneConfirm(bool hide_phone_confirm);
+
+    bool isIsSensitiveInfoVisible();
+    void setIsSensitiveInfoVisible(bool is_sensitive_info_visible);
+
+    bool isIsWalletZeroBalanceHidden();
+    void setIsWalletZeroBalanceHidden(bool is_wallet_zero_balance_hidden);
+
     QString* getLocale();
     void setLocale(QString* locale);
 
+    double getLocaleSetTime();
+    void setLocaleSetTime(double locale_set_time);
+
+    QString* getMarginPnlRow();
+    void setMarginPnlRow(QString* margin_pnl_row);
+
+    QString* getMarginPnlRowKind();
+    void setMarginPnlRowKind(QString* margin_pnl_row_kind);
+
     QList<QString*>* getMsgsSeen();
     void setMsgsSeen(QList<QString*>* msgs_seen);
+
+    SWGObject* getNotifications();
+    void setNotifications(SWGObject* notifications);
 
     SWGObject* getOrderBookBinning();
     void setOrderBookBinning(SWGObject* order_book_binning);
@@ -103,6 +142,15 @@ public:
 
     bool isOrderControlsPlusMinus();
     void setOrderControlsPlusMinus(bool order_controls_plus_minus);
+
+    QString* getPlatformLayout();
+    void setPlatformLayout(QString* platform_layout);
+
+    QString* getSelectedFiatCurrency();
+    void setSelectedFiatCurrency(QString* selected_fiat_currency);
+
+    bool isShowChartBottomToolbar();
+    void setShowChartBottomToolbar(bool show_chart_bottom_toolbar);
 
     bool isShowLocaleNumbers();
     void setShowLocaleNumbers(bool show_locale_numbers);
@@ -124,6 +172,9 @@ public:
 
     QString* getTradeLayout();
     void setTradeLayout(QString* trade_layout);
+
+    QString* getUserColor();
+    void setUserColor(QString* user_color);
 
 
     virtual bool isSet() override;
@@ -156,6 +207,24 @@ private:
     QList<QString*>* disable_push;
     bool m_disable_push_isSet;
 
+    bool display_corp_enroll_upsell;
+    bool m_display_corp_enroll_upsell_isSet;
+
+    QString* equivalent_currency;
+    bool m_equivalent_currency_isSet;
+
+    QList<QString*>* features;
+    bool m_features_isSet;
+
+    QList<QString*>* favourites;
+    bool m_favourites_isSet;
+
+    QList<QString*>* favourites_assets;
+    bool m_favourites_assets_isSet;
+
+    QList<QString*>* favourites_ordered;
+    bool m_favourites_ordered_isSet;
+
     QList<QString*>* hide_confirm_dialogs;
     bool m_hide_confirm_dialogs_isSet;
 
@@ -171,11 +240,32 @@ private:
     QList<QString*>* hide_notifications;
     bool m_hide_notifications_isSet;
 
+    bool hide_phone_confirm;
+    bool m_hide_phone_confirm_isSet;
+
+    bool is_sensitive_info_visible;
+    bool m_is_sensitive_info_visible_isSet;
+
+    bool is_wallet_zero_balance_hidden;
+    bool m_is_wallet_zero_balance_hidden_isSet;
+
     QString* locale;
     bool m_locale_isSet;
 
+    double locale_set_time;
+    bool m_locale_set_time_isSet;
+
+    QString* margin_pnl_row;
+    bool m_margin_pnl_row_isSet;
+
+    QString* margin_pnl_row_kind;
+    bool m_margin_pnl_row_kind_isSet;
+
     QList<QString*>* msgs_seen;
     bool m_msgs_seen_isSet;
+
+    SWGObject* notifications;
+    bool m_notifications_isSet;
 
     SWGObject* order_book_binning;
     bool m_order_book_binning_isSet;
@@ -188,6 +278,15 @@ private:
 
     bool order_controls_plus_minus;
     bool m_order_controls_plus_minus_isSet;
+
+    QString* platform_layout;
+    bool m_platform_layout_isSet;
+
+    QString* selected_fiat_currency;
+    bool m_selected_fiat_currency_isSet;
+
+    bool show_chart_bottom_toolbar;
+    bool m_show_chart_bottom_toolbar_isSet;
 
     bool show_locale_numbers;
     bool m_show_locale_numbers_isSet;
@@ -209,6 +308,9 @@ private:
 
     QString* trade_layout;
     bool m_trade_layout_isSet;
+
+    QString* user_color;
+    bool m_user_color_isSet;
 
 };
 

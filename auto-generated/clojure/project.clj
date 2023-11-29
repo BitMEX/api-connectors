@@ -1,6 +1,10 @@
 (defproject bit-mex-api "1.2.0"
   :description "## REST API for the BitMEX Trading Platform
 
+_If you are building automated tools, please subscribe to the_
+_[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_
+_regularly and is the most reliable way to get downtime and update announcements._
+
 [View Changelog](/app/apiChangelog)
 
 -

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -39,22 +39,8 @@ public class Instrument {
   private Date expiry = null;
   @SerializedName("settle")
   private Date settle = null;
-  @SerializedName("relistInterval")
-  private Date relistInterval = null;
-  @SerializedName("inverseLeg")
-  private String inverseLeg = null;
-  @SerializedName("sellLeg")
-  private String sellLeg = null;
-  @SerializedName("buyLeg")
-  private String buyLeg = null;
-  @SerializedName("optionStrikePcnt")
-  private Double optionStrikePcnt = null;
-  @SerializedName("optionStrikeRound")
-  private Double optionStrikeRound = null;
-  @SerializedName("optionStrikePrice")
-  private Double optionStrikePrice = null;
-  @SerializedName("optionMultiplier")
-  private Double optionMultiplier = null;
+  @SerializedName("listedSettle")
+  private Date listedSettle = null;
   @SerializedName("positionCurrency")
   private String positionCurrency = null;
   @SerializedName("underlying")
@@ -105,8 +91,6 @@ public class Instrument {
   private BigDecimal riskStep = null;
   @SerializedName("limit")
   private Double limit = null;
-  @SerializedName("capped")
-  private Boolean capped = null;
   @SerializedName("taxed")
   private Boolean taxed = null;
   @SerializedName("deleverage")
@@ -117,8 +101,6 @@ public class Instrument {
   private Double takerFee = null;
   @SerializedName("settlementFee")
   private Double settlementFee = null;
-  @SerializedName("insuranceFee")
-  private Double insuranceFee = null;
   @SerializedName("fundingBaseSymbol")
   private String fundingBaseSymbol = null;
   @SerializedName("fundingQuoteSymbol")
@@ -137,24 +119,12 @@ public class Instrument {
   private Date rebalanceTimestamp = null;
   @SerializedName("rebalanceInterval")
   private Date rebalanceInterval = null;
-  @SerializedName("openingTimestamp")
-  private Date openingTimestamp = null;
-  @SerializedName("closingTimestamp")
-  private Date closingTimestamp = null;
-  @SerializedName("sessionInterval")
-  private Date sessionInterval = null;
   @SerializedName("prevClosePrice")
   private Double prevClosePrice = null;
   @SerializedName("limitDownPrice")
   private Double limitDownPrice = null;
   @SerializedName("limitUpPrice")
   private Double limitUpPrice = null;
-  @SerializedName("bankruptLimitDownPrice")
-  private Double bankruptLimitDownPrice = null;
-  @SerializedName("bankruptLimitUpPrice")
-  private Double bankruptLimitUpPrice = null;
-  @SerializedName("prevTotalVolume")
-  private BigDecimal prevTotalVolume = null;
   @SerializedName("totalVolume")
   private BigDecimal totalVolume = null;
   @SerializedName("volume")
@@ -219,14 +189,14 @@ public class Instrument {
   private String markMethod = null;
   @SerializedName("markPrice")
   private Double markPrice = null;
-  @SerializedName("indicativeTaxRate")
-  private Double indicativeTaxRate = null;
   @SerializedName("indicativeSettlePrice")
   private Double indicativeSettlePrice = null;
-  @SerializedName("optionUnderlyingPrice")
-  private Double optionUnderlyingPrice = null;
+  @SerializedName("settledPriceAdjustmentRate")
+  private Double settledPriceAdjustmentRate = null;
   @SerializedName("settledPrice")
   private Double settledPrice = null;
+  @SerializedName("instantPnl")
+  private Boolean instantPnl = null;
   @SerializedName("timestamp")
   private Date timestamp = null;
 
@@ -313,81 +283,11 @@ public class Instrument {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Date getRelistInterval() {
-    return relistInterval;
+  public Date getListedSettle() {
+    return listedSettle;
   }
-  public void setRelistInterval(Date relistInterval) {
-    this.relistInterval = relistInterval;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public String getInverseLeg() {
-    return inverseLeg;
-  }
-  public void setInverseLeg(String inverseLeg) {
-    this.inverseLeg = inverseLeg;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public String getSellLeg() {
-    return sellLeg;
-  }
-  public void setSellLeg(String sellLeg) {
-    this.sellLeg = sellLeg;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public String getBuyLeg() {
-    return buyLeg;
-  }
-  public void setBuyLeg(String buyLeg) {
-    this.buyLeg = buyLeg;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getOptionStrikePcnt() {
-    return optionStrikePcnt;
-  }
-  public void setOptionStrikePcnt(Double optionStrikePcnt) {
-    this.optionStrikePcnt = optionStrikePcnt;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getOptionStrikeRound() {
-    return optionStrikeRound;
-  }
-  public void setOptionStrikeRound(Double optionStrikeRound) {
-    this.optionStrikeRound = optionStrikeRound;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getOptionStrikePrice() {
-    return optionStrikePrice;
-  }
-  public void setOptionStrikePrice(Double optionStrikePrice) {
-    this.optionStrikePrice = optionStrikePrice;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getOptionMultiplier() {
-    return optionMultiplier;
-  }
-  public void setOptionMultiplier(Double optionMultiplier) {
-    this.optionMultiplier = optionMultiplier;
+  public void setListedSettle(Date listedSettle) {
+    this.listedSettle = listedSettle;
   }
 
   /**
@@ -643,16 +543,6 @@ public class Instrument {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Boolean getCapped() {
-    return capped;
-  }
-  public void setCapped(Boolean capped) {
-    this.capped = capped;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public Boolean getTaxed() {
     return taxed;
   }
@@ -698,16 +588,6 @@ public class Instrument {
   }
   public void setSettlementFee(Double settlementFee) {
     this.settlementFee = settlementFee;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getInsuranceFee() {
-    return insuranceFee;
-  }
-  public void setInsuranceFee(Double insuranceFee) {
-    this.insuranceFee = insuranceFee;
   }
 
   /**
@@ -803,36 +683,6 @@ public class Instrument {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Date getOpeningTimestamp() {
-    return openingTimestamp;
-  }
-  public void setOpeningTimestamp(Date openingTimestamp) {
-    this.openingTimestamp = openingTimestamp;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Date getClosingTimestamp() {
-    return closingTimestamp;
-  }
-  public void setClosingTimestamp(Date closingTimestamp) {
-    this.closingTimestamp = closingTimestamp;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Date getSessionInterval() {
-    return sessionInterval;
-  }
-  public void setSessionInterval(Date sessionInterval) {
-    this.sessionInterval = sessionInterval;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public Double getPrevClosePrice() {
     return prevClosePrice;
   }
@@ -858,36 +708,6 @@ public class Instrument {
   }
   public void setLimitUpPrice(Double limitUpPrice) {
     this.limitUpPrice = limitUpPrice;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getBankruptLimitDownPrice() {
-    return bankruptLimitDownPrice;
-  }
-  public void setBankruptLimitDownPrice(Double bankruptLimitDownPrice) {
-    this.bankruptLimitDownPrice = bankruptLimitDownPrice;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getBankruptLimitUpPrice() {
-    return bankruptLimitUpPrice;
-  }
-  public void setBankruptLimitUpPrice(Double bankruptLimitUpPrice) {
-    this.bankruptLimitUpPrice = bankruptLimitUpPrice;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getPrevTotalVolume() {
-    return prevTotalVolume;
-  }
-  public void setPrevTotalVolume(BigDecimal prevTotalVolume) {
-    this.prevTotalVolume = prevTotalVolume;
   }
 
   /**
@@ -1213,16 +1033,6 @@ public class Instrument {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getIndicativeTaxRate() {
-    return indicativeTaxRate;
-  }
-  public void setIndicativeTaxRate(Double indicativeTaxRate) {
-    this.indicativeTaxRate = indicativeTaxRate;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public Double getIndicativeSettlePrice() {
     return indicativeSettlePrice;
   }
@@ -1233,11 +1043,11 @@ public class Instrument {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getOptionUnderlyingPrice() {
-    return optionUnderlyingPrice;
+  public Double getSettledPriceAdjustmentRate() {
+    return settledPriceAdjustmentRate;
   }
-  public void setOptionUnderlyingPrice(Double optionUnderlyingPrice) {
-    this.optionUnderlyingPrice = optionUnderlyingPrice;
+  public void setSettledPriceAdjustmentRate(Double settledPriceAdjustmentRate) {
+    this.settledPriceAdjustmentRate = settledPriceAdjustmentRate;
   }
 
   /**
@@ -1248,6 +1058,16 @@ public class Instrument {
   }
   public void setSettledPrice(Double settledPrice) {
     this.settledPrice = settledPrice;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Boolean getInstantPnl() {
+    return instantPnl;
+  }
+  public void setInstantPnl(Boolean instantPnl) {
+    this.instantPnl = instantPnl;
   }
 
   /**
@@ -1278,14 +1098,7 @@ public class Instrument {
         (this.front == null ? instrument.front == null : this.front.equals(instrument.front)) &&
         (this.expiry == null ? instrument.expiry == null : this.expiry.equals(instrument.expiry)) &&
         (this.settle == null ? instrument.settle == null : this.settle.equals(instrument.settle)) &&
-        (this.relistInterval == null ? instrument.relistInterval == null : this.relistInterval.equals(instrument.relistInterval)) &&
-        (this.inverseLeg == null ? instrument.inverseLeg == null : this.inverseLeg.equals(instrument.inverseLeg)) &&
-        (this.sellLeg == null ? instrument.sellLeg == null : this.sellLeg.equals(instrument.sellLeg)) &&
-        (this.buyLeg == null ? instrument.buyLeg == null : this.buyLeg.equals(instrument.buyLeg)) &&
-        (this.optionStrikePcnt == null ? instrument.optionStrikePcnt == null : this.optionStrikePcnt.equals(instrument.optionStrikePcnt)) &&
-        (this.optionStrikeRound == null ? instrument.optionStrikeRound == null : this.optionStrikeRound.equals(instrument.optionStrikeRound)) &&
-        (this.optionStrikePrice == null ? instrument.optionStrikePrice == null : this.optionStrikePrice.equals(instrument.optionStrikePrice)) &&
-        (this.optionMultiplier == null ? instrument.optionMultiplier == null : this.optionMultiplier.equals(instrument.optionMultiplier)) &&
+        (this.listedSettle == null ? instrument.listedSettle == null : this.listedSettle.equals(instrument.listedSettle)) &&
         (this.positionCurrency == null ? instrument.positionCurrency == null : this.positionCurrency.equals(instrument.positionCurrency)) &&
         (this.underlying == null ? instrument.underlying == null : this.underlying.equals(instrument.underlying)) &&
         (this.quoteCurrency == null ? instrument.quoteCurrency == null : this.quoteCurrency.equals(instrument.quoteCurrency)) &&
@@ -1311,13 +1124,11 @@ public class Instrument {
         (this.riskLimit == null ? instrument.riskLimit == null : this.riskLimit.equals(instrument.riskLimit)) &&
         (this.riskStep == null ? instrument.riskStep == null : this.riskStep.equals(instrument.riskStep)) &&
         (this.limit == null ? instrument.limit == null : this.limit.equals(instrument.limit)) &&
-        (this.capped == null ? instrument.capped == null : this.capped.equals(instrument.capped)) &&
         (this.taxed == null ? instrument.taxed == null : this.taxed.equals(instrument.taxed)) &&
         (this.deleverage == null ? instrument.deleverage == null : this.deleverage.equals(instrument.deleverage)) &&
         (this.makerFee == null ? instrument.makerFee == null : this.makerFee.equals(instrument.makerFee)) &&
         (this.takerFee == null ? instrument.takerFee == null : this.takerFee.equals(instrument.takerFee)) &&
         (this.settlementFee == null ? instrument.settlementFee == null : this.settlementFee.equals(instrument.settlementFee)) &&
-        (this.insuranceFee == null ? instrument.insuranceFee == null : this.insuranceFee.equals(instrument.insuranceFee)) &&
         (this.fundingBaseSymbol == null ? instrument.fundingBaseSymbol == null : this.fundingBaseSymbol.equals(instrument.fundingBaseSymbol)) &&
         (this.fundingQuoteSymbol == null ? instrument.fundingQuoteSymbol == null : this.fundingQuoteSymbol.equals(instrument.fundingQuoteSymbol)) &&
         (this.fundingPremiumSymbol == null ? instrument.fundingPremiumSymbol == null : this.fundingPremiumSymbol.equals(instrument.fundingPremiumSymbol)) &&
@@ -1327,15 +1138,9 @@ public class Instrument {
         (this.indicativeFundingRate == null ? instrument.indicativeFundingRate == null : this.indicativeFundingRate.equals(instrument.indicativeFundingRate)) &&
         (this.rebalanceTimestamp == null ? instrument.rebalanceTimestamp == null : this.rebalanceTimestamp.equals(instrument.rebalanceTimestamp)) &&
         (this.rebalanceInterval == null ? instrument.rebalanceInterval == null : this.rebalanceInterval.equals(instrument.rebalanceInterval)) &&
-        (this.openingTimestamp == null ? instrument.openingTimestamp == null : this.openingTimestamp.equals(instrument.openingTimestamp)) &&
-        (this.closingTimestamp == null ? instrument.closingTimestamp == null : this.closingTimestamp.equals(instrument.closingTimestamp)) &&
-        (this.sessionInterval == null ? instrument.sessionInterval == null : this.sessionInterval.equals(instrument.sessionInterval)) &&
         (this.prevClosePrice == null ? instrument.prevClosePrice == null : this.prevClosePrice.equals(instrument.prevClosePrice)) &&
         (this.limitDownPrice == null ? instrument.limitDownPrice == null : this.limitDownPrice.equals(instrument.limitDownPrice)) &&
         (this.limitUpPrice == null ? instrument.limitUpPrice == null : this.limitUpPrice.equals(instrument.limitUpPrice)) &&
-        (this.bankruptLimitDownPrice == null ? instrument.bankruptLimitDownPrice == null : this.bankruptLimitDownPrice.equals(instrument.bankruptLimitDownPrice)) &&
-        (this.bankruptLimitUpPrice == null ? instrument.bankruptLimitUpPrice == null : this.bankruptLimitUpPrice.equals(instrument.bankruptLimitUpPrice)) &&
-        (this.prevTotalVolume == null ? instrument.prevTotalVolume == null : this.prevTotalVolume.equals(instrument.prevTotalVolume)) &&
         (this.totalVolume == null ? instrument.totalVolume == null : this.totalVolume.equals(instrument.totalVolume)) &&
         (this.volume == null ? instrument.volume == null : this.volume.equals(instrument.volume)) &&
         (this.volume24h == null ? instrument.volume24h == null : this.volume24h.equals(instrument.volume24h)) &&
@@ -1368,10 +1173,10 @@ public class Instrument {
         (this.fairPrice == null ? instrument.fairPrice == null : this.fairPrice.equals(instrument.fairPrice)) &&
         (this.markMethod == null ? instrument.markMethod == null : this.markMethod.equals(instrument.markMethod)) &&
         (this.markPrice == null ? instrument.markPrice == null : this.markPrice.equals(instrument.markPrice)) &&
-        (this.indicativeTaxRate == null ? instrument.indicativeTaxRate == null : this.indicativeTaxRate.equals(instrument.indicativeTaxRate)) &&
         (this.indicativeSettlePrice == null ? instrument.indicativeSettlePrice == null : this.indicativeSettlePrice.equals(instrument.indicativeSettlePrice)) &&
-        (this.optionUnderlyingPrice == null ? instrument.optionUnderlyingPrice == null : this.optionUnderlyingPrice.equals(instrument.optionUnderlyingPrice)) &&
+        (this.settledPriceAdjustmentRate == null ? instrument.settledPriceAdjustmentRate == null : this.settledPriceAdjustmentRate.equals(instrument.settledPriceAdjustmentRate)) &&
         (this.settledPrice == null ? instrument.settledPrice == null : this.settledPrice.equals(instrument.settledPrice)) &&
+        (this.instantPnl == null ? instrument.instantPnl == null : this.instantPnl.equals(instrument.instantPnl)) &&
         (this.timestamp == null ? instrument.timestamp == null : this.timestamp.equals(instrument.timestamp));
   }
 
@@ -1386,14 +1191,7 @@ public class Instrument {
     result = 31 * result + (this.front == null ? 0: this.front.hashCode());
     result = 31 * result + (this.expiry == null ? 0: this.expiry.hashCode());
     result = 31 * result + (this.settle == null ? 0: this.settle.hashCode());
-    result = 31 * result + (this.relistInterval == null ? 0: this.relistInterval.hashCode());
-    result = 31 * result + (this.inverseLeg == null ? 0: this.inverseLeg.hashCode());
-    result = 31 * result + (this.sellLeg == null ? 0: this.sellLeg.hashCode());
-    result = 31 * result + (this.buyLeg == null ? 0: this.buyLeg.hashCode());
-    result = 31 * result + (this.optionStrikePcnt == null ? 0: this.optionStrikePcnt.hashCode());
-    result = 31 * result + (this.optionStrikeRound == null ? 0: this.optionStrikeRound.hashCode());
-    result = 31 * result + (this.optionStrikePrice == null ? 0: this.optionStrikePrice.hashCode());
-    result = 31 * result + (this.optionMultiplier == null ? 0: this.optionMultiplier.hashCode());
+    result = 31 * result + (this.listedSettle == null ? 0: this.listedSettle.hashCode());
     result = 31 * result + (this.positionCurrency == null ? 0: this.positionCurrency.hashCode());
     result = 31 * result + (this.underlying == null ? 0: this.underlying.hashCode());
     result = 31 * result + (this.quoteCurrency == null ? 0: this.quoteCurrency.hashCode());
@@ -1419,13 +1217,11 @@ public class Instrument {
     result = 31 * result + (this.riskLimit == null ? 0: this.riskLimit.hashCode());
     result = 31 * result + (this.riskStep == null ? 0: this.riskStep.hashCode());
     result = 31 * result + (this.limit == null ? 0: this.limit.hashCode());
-    result = 31 * result + (this.capped == null ? 0: this.capped.hashCode());
     result = 31 * result + (this.taxed == null ? 0: this.taxed.hashCode());
     result = 31 * result + (this.deleverage == null ? 0: this.deleverage.hashCode());
     result = 31 * result + (this.makerFee == null ? 0: this.makerFee.hashCode());
     result = 31 * result + (this.takerFee == null ? 0: this.takerFee.hashCode());
     result = 31 * result + (this.settlementFee == null ? 0: this.settlementFee.hashCode());
-    result = 31 * result + (this.insuranceFee == null ? 0: this.insuranceFee.hashCode());
     result = 31 * result + (this.fundingBaseSymbol == null ? 0: this.fundingBaseSymbol.hashCode());
     result = 31 * result + (this.fundingQuoteSymbol == null ? 0: this.fundingQuoteSymbol.hashCode());
     result = 31 * result + (this.fundingPremiumSymbol == null ? 0: this.fundingPremiumSymbol.hashCode());
@@ -1435,15 +1231,9 @@ public class Instrument {
     result = 31 * result + (this.indicativeFundingRate == null ? 0: this.indicativeFundingRate.hashCode());
     result = 31 * result + (this.rebalanceTimestamp == null ? 0: this.rebalanceTimestamp.hashCode());
     result = 31 * result + (this.rebalanceInterval == null ? 0: this.rebalanceInterval.hashCode());
-    result = 31 * result + (this.openingTimestamp == null ? 0: this.openingTimestamp.hashCode());
-    result = 31 * result + (this.closingTimestamp == null ? 0: this.closingTimestamp.hashCode());
-    result = 31 * result + (this.sessionInterval == null ? 0: this.sessionInterval.hashCode());
     result = 31 * result + (this.prevClosePrice == null ? 0: this.prevClosePrice.hashCode());
     result = 31 * result + (this.limitDownPrice == null ? 0: this.limitDownPrice.hashCode());
     result = 31 * result + (this.limitUpPrice == null ? 0: this.limitUpPrice.hashCode());
-    result = 31 * result + (this.bankruptLimitDownPrice == null ? 0: this.bankruptLimitDownPrice.hashCode());
-    result = 31 * result + (this.bankruptLimitUpPrice == null ? 0: this.bankruptLimitUpPrice.hashCode());
-    result = 31 * result + (this.prevTotalVolume == null ? 0: this.prevTotalVolume.hashCode());
     result = 31 * result + (this.totalVolume == null ? 0: this.totalVolume.hashCode());
     result = 31 * result + (this.volume == null ? 0: this.volume.hashCode());
     result = 31 * result + (this.volume24h == null ? 0: this.volume24h.hashCode());
@@ -1476,10 +1266,10 @@ public class Instrument {
     result = 31 * result + (this.fairPrice == null ? 0: this.fairPrice.hashCode());
     result = 31 * result + (this.markMethod == null ? 0: this.markMethod.hashCode());
     result = 31 * result + (this.markPrice == null ? 0: this.markPrice.hashCode());
-    result = 31 * result + (this.indicativeTaxRate == null ? 0: this.indicativeTaxRate.hashCode());
     result = 31 * result + (this.indicativeSettlePrice == null ? 0: this.indicativeSettlePrice.hashCode());
-    result = 31 * result + (this.optionUnderlyingPrice == null ? 0: this.optionUnderlyingPrice.hashCode());
+    result = 31 * result + (this.settledPriceAdjustmentRate == null ? 0: this.settledPriceAdjustmentRate.hashCode());
     result = 31 * result + (this.settledPrice == null ? 0: this.settledPrice.hashCode());
+    result = 31 * result + (this.instantPnl == null ? 0: this.instantPnl.hashCode());
     result = 31 * result + (this.timestamp == null ? 0: this.timestamp.hashCode());
     return result;
   }
@@ -1497,14 +1287,7 @@ public class Instrument {
     sb.append("  front: ").append(front).append("\n");
     sb.append("  expiry: ").append(expiry).append("\n");
     sb.append("  settle: ").append(settle).append("\n");
-    sb.append("  relistInterval: ").append(relistInterval).append("\n");
-    sb.append("  inverseLeg: ").append(inverseLeg).append("\n");
-    sb.append("  sellLeg: ").append(sellLeg).append("\n");
-    sb.append("  buyLeg: ").append(buyLeg).append("\n");
-    sb.append("  optionStrikePcnt: ").append(optionStrikePcnt).append("\n");
-    sb.append("  optionStrikeRound: ").append(optionStrikeRound).append("\n");
-    sb.append("  optionStrikePrice: ").append(optionStrikePrice).append("\n");
-    sb.append("  optionMultiplier: ").append(optionMultiplier).append("\n");
+    sb.append("  listedSettle: ").append(listedSettle).append("\n");
     sb.append("  positionCurrency: ").append(positionCurrency).append("\n");
     sb.append("  underlying: ").append(underlying).append("\n");
     sb.append("  quoteCurrency: ").append(quoteCurrency).append("\n");
@@ -1530,13 +1313,11 @@ public class Instrument {
     sb.append("  riskLimit: ").append(riskLimit).append("\n");
     sb.append("  riskStep: ").append(riskStep).append("\n");
     sb.append("  limit: ").append(limit).append("\n");
-    sb.append("  capped: ").append(capped).append("\n");
     sb.append("  taxed: ").append(taxed).append("\n");
     sb.append("  deleverage: ").append(deleverage).append("\n");
     sb.append("  makerFee: ").append(makerFee).append("\n");
     sb.append("  takerFee: ").append(takerFee).append("\n");
     sb.append("  settlementFee: ").append(settlementFee).append("\n");
-    sb.append("  insuranceFee: ").append(insuranceFee).append("\n");
     sb.append("  fundingBaseSymbol: ").append(fundingBaseSymbol).append("\n");
     sb.append("  fundingQuoteSymbol: ").append(fundingQuoteSymbol).append("\n");
     sb.append("  fundingPremiumSymbol: ").append(fundingPremiumSymbol).append("\n");
@@ -1546,15 +1327,9 @@ public class Instrument {
     sb.append("  indicativeFundingRate: ").append(indicativeFundingRate).append("\n");
     sb.append("  rebalanceTimestamp: ").append(rebalanceTimestamp).append("\n");
     sb.append("  rebalanceInterval: ").append(rebalanceInterval).append("\n");
-    sb.append("  openingTimestamp: ").append(openingTimestamp).append("\n");
-    sb.append("  closingTimestamp: ").append(closingTimestamp).append("\n");
-    sb.append("  sessionInterval: ").append(sessionInterval).append("\n");
     sb.append("  prevClosePrice: ").append(prevClosePrice).append("\n");
     sb.append("  limitDownPrice: ").append(limitDownPrice).append("\n");
     sb.append("  limitUpPrice: ").append(limitUpPrice).append("\n");
-    sb.append("  bankruptLimitDownPrice: ").append(bankruptLimitDownPrice).append("\n");
-    sb.append("  bankruptLimitUpPrice: ").append(bankruptLimitUpPrice).append("\n");
-    sb.append("  prevTotalVolume: ").append(prevTotalVolume).append("\n");
     sb.append("  totalVolume: ").append(totalVolume).append("\n");
     sb.append("  volume: ").append(volume).append("\n");
     sb.append("  volume24h: ").append(volume24h).append("\n");
@@ -1587,10 +1362,10 @@ public class Instrument {
     sb.append("  fairPrice: ").append(fairPrice).append("\n");
     sb.append("  markMethod: ").append(markMethod).append("\n");
     sb.append("  markPrice: ").append(markPrice).append("\n");
-    sb.append("  indicativeTaxRate: ").append(indicativeTaxRate).append("\n");
     sb.append("  indicativeSettlePrice: ").append(indicativeSettlePrice).append("\n");
-    sb.append("  optionUnderlyingPrice: ").append(optionUnderlyingPrice).append("\n");
+    sb.append("  settledPriceAdjustmentRate: ").append(settledPriceAdjustmentRate).append("\n");
     sb.append("  settledPrice: ").append(settledPrice).append("\n");
+    sb.append("  instantPnl: ").append(instantPnl).append("\n");
     sb.append("  timestamp: ").append(timestamp).append("\n");
     sb.append("}\n");
     return sb.toString();

@@ -14,87 +14,59 @@ public struct Margin: Codable {
     public var account: Double
     public var currency: String
     public var riskLimit: Double?
-    public var prevState: String?
     public var state: String?
-    public var action: String?
     public var amount: Double?
-    public var pendingCredit: Double?
-    public var pendingDebit: Double?
-    public var confirmedDebit: Double?
     public var prevRealisedPnl: Double?
-    public var prevUnrealisedPnl: Double?
     public var grossComm: Double?
     public var grossOpenCost: Double?
     public var grossOpenPremium: Double?
     public var grossExecCost: Double?
     public var grossMarkValue: Double?
     public var riskValue: Double?
-    public var taxableMargin: Double?
     public var initMargin: Double?
     public var maintMargin: Double?
-    public var sessionMargin: Double?
     public var targetExcessMargin: Double?
-    public var varMargin: Double?
     public var realisedPnl: Double?
     public var unrealisedPnl: Double?
-    public var indicativeTax: Double?
-    public var unrealisedProfit: Double?
-    public var syntheticMargin: Double?
     public var walletBalance: Double?
     public var marginBalance: Double?
-    public var marginBalancePcnt: Double?
     public var marginLeverage: Double?
     public var marginUsedPcnt: Double?
     public var excessMargin: Double?
-    public var excessMarginPcnt: Double?
     public var availableMargin: Double?
     public var withdrawableMargin: Double?
+    public var makerFeeDiscount: Double?
+    public var takerFeeDiscount: Double?
     public var timestamp: Date?
-    public var grossLastValue: Double?
-    public var commission: Double?
 
-    public init(account: Double, currency: String, riskLimit: Double?, prevState: String?, state: String?, action: String?, amount: Double?, pendingCredit: Double?, pendingDebit: Double?, confirmedDebit: Double?, prevRealisedPnl: Double?, prevUnrealisedPnl: Double?, grossComm: Double?, grossOpenCost: Double?, grossOpenPremium: Double?, grossExecCost: Double?, grossMarkValue: Double?, riskValue: Double?, taxableMargin: Double?, initMargin: Double?, maintMargin: Double?, sessionMargin: Double?, targetExcessMargin: Double?, varMargin: Double?, realisedPnl: Double?, unrealisedPnl: Double?, indicativeTax: Double?, unrealisedProfit: Double?, syntheticMargin: Double?, walletBalance: Double?, marginBalance: Double?, marginBalancePcnt: Double?, marginLeverage: Double?, marginUsedPcnt: Double?, excessMargin: Double?, excessMarginPcnt: Double?, availableMargin: Double?, withdrawableMargin: Double?, timestamp: Date?, grossLastValue: Double?, commission: Double?) {
+    public init(account: Double, currency: String, riskLimit: Double?, state: String?, amount: Double?, prevRealisedPnl: Double?, grossComm: Double?, grossOpenCost: Double?, grossOpenPremium: Double?, grossExecCost: Double?, grossMarkValue: Double?, riskValue: Double?, initMargin: Double?, maintMargin: Double?, targetExcessMargin: Double?, realisedPnl: Double?, unrealisedPnl: Double?, walletBalance: Double?, marginBalance: Double?, marginLeverage: Double?, marginUsedPcnt: Double?, excessMargin: Double?, availableMargin: Double?, withdrawableMargin: Double?, makerFeeDiscount: Double?, takerFeeDiscount: Double?, timestamp: Date?) {
         self.account = account
         self.currency = currency
         self.riskLimit = riskLimit
-        self.prevState = prevState
         self.state = state
-        self.action = action
         self.amount = amount
-        self.pendingCredit = pendingCredit
-        self.pendingDebit = pendingDebit
-        self.confirmedDebit = confirmedDebit
         self.prevRealisedPnl = prevRealisedPnl
-        self.prevUnrealisedPnl = prevUnrealisedPnl
         self.grossComm = grossComm
         self.grossOpenCost = grossOpenCost
         self.grossOpenPremium = grossOpenPremium
         self.grossExecCost = grossExecCost
         self.grossMarkValue = grossMarkValue
         self.riskValue = riskValue
-        self.taxableMargin = taxableMargin
         self.initMargin = initMargin
         self.maintMargin = maintMargin
-        self.sessionMargin = sessionMargin
         self.targetExcessMargin = targetExcessMargin
-        self.varMargin = varMargin
         self.realisedPnl = realisedPnl
         self.unrealisedPnl = unrealisedPnl
-        self.indicativeTax = indicativeTax
-        self.unrealisedProfit = unrealisedProfit
-        self.syntheticMargin = syntheticMargin
         self.walletBalance = walletBalance
         self.marginBalance = marginBalance
-        self.marginBalancePcnt = marginBalancePcnt
         self.marginLeverage = marginLeverage
         self.marginUsedPcnt = marginUsedPcnt
         self.excessMargin = excessMargin
-        self.excessMarginPcnt = excessMarginPcnt
         self.availableMargin = availableMargin
         self.withdrawableMargin = withdrawableMargin
+        self.makerFeeDiscount = makerFeeDiscount
+        self.takerFeeDiscount = takerFeeDiscount
         self.timestamp = timestamp
-        self.grossLastValue = grossLastValue
-        self.commission = commission
     }
 
 

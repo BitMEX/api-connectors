@@ -1,6 +1,6 @@
 /*
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
  * Tradeable Contracts, Indices, and History
  */
 @ApiModel(description = "Tradeable Contracts, Indices, and History")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-12-17T20:26:16.019-05:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-29T15:37:13.208+08:00")
 public class Instrument {
   @SerializedName("symbol")
   private String symbol = null;
@@ -56,29 +56,8 @@ public class Instrument {
   @SerializedName("settle")
   private OffsetDateTime settle = null;
 
-  @SerializedName("relistInterval")
-  private OffsetDateTime relistInterval = null;
-
-  @SerializedName("inverseLeg")
-  private String inverseLeg = null;
-
-  @SerializedName("sellLeg")
-  private String sellLeg = null;
-
-  @SerializedName("buyLeg")
-  private String buyLeg = null;
-
-  @SerializedName("optionStrikePcnt")
-  private Double optionStrikePcnt = null;
-
-  @SerializedName("optionStrikeRound")
-  private Double optionStrikeRound = null;
-
-  @SerializedName("optionStrikePrice")
-  private Double optionStrikePrice = null;
-
-  @SerializedName("optionMultiplier")
-  private Double optionMultiplier = null;
+  @SerializedName("listedSettle")
+  private OffsetDateTime listedSettle = null;
 
   @SerializedName("positionCurrency")
   private String positionCurrency = null;
@@ -155,9 +134,6 @@ public class Instrument {
   @SerializedName("limit")
   private Double limit = null;
 
-  @SerializedName("capped")
-  private Boolean capped = null;
-
   @SerializedName("taxed")
   private Boolean taxed = null;
 
@@ -172,9 +148,6 @@ public class Instrument {
 
   @SerializedName("settlementFee")
   private Double settlementFee = null;
-
-  @SerializedName("insuranceFee")
-  private Double insuranceFee = null;
 
   @SerializedName("fundingBaseSymbol")
   private String fundingBaseSymbol = null;
@@ -203,15 +176,6 @@ public class Instrument {
   @SerializedName("rebalanceInterval")
   private OffsetDateTime rebalanceInterval = null;
 
-  @SerializedName("openingTimestamp")
-  private OffsetDateTime openingTimestamp = null;
-
-  @SerializedName("closingTimestamp")
-  private OffsetDateTime closingTimestamp = null;
-
-  @SerializedName("sessionInterval")
-  private OffsetDateTime sessionInterval = null;
-
   @SerializedName("prevClosePrice")
   private Double prevClosePrice = null;
 
@@ -220,15 +184,6 @@ public class Instrument {
 
   @SerializedName("limitUpPrice")
   private Double limitUpPrice = null;
-
-  @SerializedName("bankruptLimitDownPrice")
-  private Double bankruptLimitDownPrice = null;
-
-  @SerializedName("bankruptLimitUpPrice")
-  private Double bankruptLimitUpPrice = null;
-
-  @SerializedName("prevTotalVolume")
-  private BigDecimal prevTotalVolume = null;
 
   @SerializedName("totalVolume")
   private BigDecimal totalVolume = null;
@@ -326,17 +281,17 @@ public class Instrument {
   @SerializedName("markPrice")
   private Double markPrice = null;
 
-  @SerializedName("indicativeTaxRate")
-  private Double indicativeTaxRate = null;
-
   @SerializedName("indicativeSettlePrice")
   private Double indicativeSettlePrice = null;
 
-  @SerializedName("optionUnderlyingPrice")
-  private Double optionUnderlyingPrice = null;
+  @SerializedName("settledPriceAdjustmentRate")
+  private Double settledPriceAdjustmentRate = null;
 
   @SerializedName("settledPrice")
   private Double settledPrice = null;
+
+  @SerializedName("instantPnl")
+  private Boolean instantPnl = null;
 
   @SerializedName("timestamp")
   private OffsetDateTime timestamp = null;
@@ -485,148 +440,22 @@ public class Instrument {
     this.settle = settle;
   }
 
-  public Instrument relistInterval(OffsetDateTime relistInterval) {
-    this.relistInterval = relistInterval;
+  public Instrument listedSettle(OffsetDateTime listedSettle) {
+    this.listedSettle = listedSettle;
     return this;
   }
 
    /**
-   * Get relistInterval
-   * @return relistInterval
+   * Get listedSettle
+   * @return listedSettle
   **/
   @ApiModelProperty(value = "")
-  public OffsetDateTime getRelistInterval() {
-    return relistInterval;
+  public OffsetDateTime getListedSettle() {
+    return listedSettle;
   }
 
-  public void setRelistInterval(OffsetDateTime relistInterval) {
-    this.relistInterval = relistInterval;
-  }
-
-  public Instrument inverseLeg(String inverseLeg) {
-    this.inverseLeg = inverseLeg;
-    return this;
-  }
-
-   /**
-   * Get inverseLeg
-   * @return inverseLeg
-  **/
-  @ApiModelProperty(value = "")
-  public String getInverseLeg() {
-    return inverseLeg;
-  }
-
-  public void setInverseLeg(String inverseLeg) {
-    this.inverseLeg = inverseLeg;
-  }
-
-  public Instrument sellLeg(String sellLeg) {
-    this.sellLeg = sellLeg;
-    return this;
-  }
-
-   /**
-   * Get sellLeg
-   * @return sellLeg
-  **/
-  @ApiModelProperty(value = "")
-  public String getSellLeg() {
-    return sellLeg;
-  }
-
-  public void setSellLeg(String sellLeg) {
-    this.sellLeg = sellLeg;
-  }
-
-  public Instrument buyLeg(String buyLeg) {
-    this.buyLeg = buyLeg;
-    return this;
-  }
-
-   /**
-   * Get buyLeg
-   * @return buyLeg
-  **/
-  @ApiModelProperty(value = "")
-  public String getBuyLeg() {
-    return buyLeg;
-  }
-
-  public void setBuyLeg(String buyLeg) {
-    this.buyLeg = buyLeg;
-  }
-
-  public Instrument optionStrikePcnt(Double optionStrikePcnt) {
-    this.optionStrikePcnt = optionStrikePcnt;
-    return this;
-  }
-
-   /**
-   * Get optionStrikePcnt
-   * @return optionStrikePcnt
-  **/
-  @ApiModelProperty(value = "")
-  public Double getOptionStrikePcnt() {
-    return optionStrikePcnt;
-  }
-
-  public void setOptionStrikePcnt(Double optionStrikePcnt) {
-    this.optionStrikePcnt = optionStrikePcnt;
-  }
-
-  public Instrument optionStrikeRound(Double optionStrikeRound) {
-    this.optionStrikeRound = optionStrikeRound;
-    return this;
-  }
-
-   /**
-   * Get optionStrikeRound
-   * @return optionStrikeRound
-  **/
-  @ApiModelProperty(value = "")
-  public Double getOptionStrikeRound() {
-    return optionStrikeRound;
-  }
-
-  public void setOptionStrikeRound(Double optionStrikeRound) {
-    this.optionStrikeRound = optionStrikeRound;
-  }
-
-  public Instrument optionStrikePrice(Double optionStrikePrice) {
-    this.optionStrikePrice = optionStrikePrice;
-    return this;
-  }
-
-   /**
-   * Get optionStrikePrice
-   * @return optionStrikePrice
-  **/
-  @ApiModelProperty(value = "")
-  public Double getOptionStrikePrice() {
-    return optionStrikePrice;
-  }
-
-  public void setOptionStrikePrice(Double optionStrikePrice) {
-    this.optionStrikePrice = optionStrikePrice;
-  }
-
-  public Instrument optionMultiplier(Double optionMultiplier) {
-    this.optionMultiplier = optionMultiplier;
-    return this;
-  }
-
-   /**
-   * Get optionMultiplier
-   * @return optionMultiplier
-  **/
-  @ApiModelProperty(value = "")
-  public Double getOptionMultiplier() {
-    return optionMultiplier;
-  }
-
-  public void setOptionMultiplier(Double optionMultiplier) {
-    this.optionMultiplier = optionMultiplier;
+  public void setListedSettle(OffsetDateTime listedSettle) {
+    this.listedSettle = listedSettle;
   }
 
   public Instrument positionCurrency(String positionCurrency) {
@@ -1079,24 +908,6 @@ public class Instrument {
     this.limit = limit;
   }
 
-  public Instrument capped(Boolean capped) {
-    this.capped = capped;
-    return this;
-  }
-
-   /**
-   * Get capped
-   * @return capped
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean isCapped() {
-    return capped;
-  }
-
-  public void setCapped(Boolean capped) {
-    this.capped = capped;
-  }
-
   public Instrument taxed(Boolean taxed) {
     this.taxed = taxed;
     return this;
@@ -1185,24 +996,6 @@ public class Instrument {
 
   public void setSettlementFee(Double settlementFee) {
     this.settlementFee = settlementFee;
-  }
-
-  public Instrument insuranceFee(Double insuranceFee) {
-    this.insuranceFee = insuranceFee;
-    return this;
-  }
-
-   /**
-   * Get insuranceFee
-   * @return insuranceFee
-  **/
-  @ApiModelProperty(value = "")
-  public Double getInsuranceFee() {
-    return insuranceFee;
-  }
-
-  public void setInsuranceFee(Double insuranceFee) {
-    this.insuranceFee = insuranceFee;
   }
 
   public Instrument fundingBaseSymbol(String fundingBaseSymbol) {
@@ -1367,60 +1160,6 @@ public class Instrument {
     this.rebalanceInterval = rebalanceInterval;
   }
 
-  public Instrument openingTimestamp(OffsetDateTime openingTimestamp) {
-    this.openingTimestamp = openingTimestamp;
-    return this;
-  }
-
-   /**
-   * Get openingTimestamp
-   * @return openingTimestamp
-  **/
-  @ApiModelProperty(value = "")
-  public OffsetDateTime getOpeningTimestamp() {
-    return openingTimestamp;
-  }
-
-  public void setOpeningTimestamp(OffsetDateTime openingTimestamp) {
-    this.openingTimestamp = openingTimestamp;
-  }
-
-  public Instrument closingTimestamp(OffsetDateTime closingTimestamp) {
-    this.closingTimestamp = closingTimestamp;
-    return this;
-  }
-
-   /**
-   * Get closingTimestamp
-   * @return closingTimestamp
-  **/
-  @ApiModelProperty(value = "")
-  public OffsetDateTime getClosingTimestamp() {
-    return closingTimestamp;
-  }
-
-  public void setClosingTimestamp(OffsetDateTime closingTimestamp) {
-    this.closingTimestamp = closingTimestamp;
-  }
-
-  public Instrument sessionInterval(OffsetDateTime sessionInterval) {
-    this.sessionInterval = sessionInterval;
-    return this;
-  }
-
-   /**
-   * Get sessionInterval
-   * @return sessionInterval
-  **/
-  @ApiModelProperty(value = "")
-  public OffsetDateTime getSessionInterval() {
-    return sessionInterval;
-  }
-
-  public void setSessionInterval(OffsetDateTime sessionInterval) {
-    this.sessionInterval = sessionInterval;
-  }
-
   public Instrument prevClosePrice(Double prevClosePrice) {
     this.prevClosePrice = prevClosePrice;
     return this;
@@ -1473,60 +1212,6 @@ public class Instrument {
 
   public void setLimitUpPrice(Double limitUpPrice) {
     this.limitUpPrice = limitUpPrice;
-  }
-
-  public Instrument bankruptLimitDownPrice(Double bankruptLimitDownPrice) {
-    this.bankruptLimitDownPrice = bankruptLimitDownPrice;
-    return this;
-  }
-
-   /**
-   * Get bankruptLimitDownPrice
-   * @return bankruptLimitDownPrice
-  **/
-  @ApiModelProperty(value = "")
-  public Double getBankruptLimitDownPrice() {
-    return bankruptLimitDownPrice;
-  }
-
-  public void setBankruptLimitDownPrice(Double bankruptLimitDownPrice) {
-    this.bankruptLimitDownPrice = bankruptLimitDownPrice;
-  }
-
-  public Instrument bankruptLimitUpPrice(Double bankruptLimitUpPrice) {
-    this.bankruptLimitUpPrice = bankruptLimitUpPrice;
-    return this;
-  }
-
-   /**
-   * Get bankruptLimitUpPrice
-   * @return bankruptLimitUpPrice
-  **/
-  @ApiModelProperty(value = "")
-  public Double getBankruptLimitUpPrice() {
-    return bankruptLimitUpPrice;
-  }
-
-  public void setBankruptLimitUpPrice(Double bankruptLimitUpPrice) {
-    this.bankruptLimitUpPrice = bankruptLimitUpPrice;
-  }
-
-  public Instrument prevTotalVolume(BigDecimal prevTotalVolume) {
-    this.prevTotalVolume = prevTotalVolume;
-    return this;
-  }
-
-   /**
-   * Get prevTotalVolume
-   * @return prevTotalVolume
-  **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getPrevTotalVolume() {
-    return prevTotalVolume;
-  }
-
-  public void setPrevTotalVolume(BigDecimal prevTotalVolume) {
-    this.prevTotalVolume = prevTotalVolume;
   }
 
   public Instrument totalVolume(BigDecimal totalVolume) {
@@ -2105,24 +1790,6 @@ public class Instrument {
     this.markPrice = markPrice;
   }
 
-  public Instrument indicativeTaxRate(Double indicativeTaxRate) {
-    this.indicativeTaxRate = indicativeTaxRate;
-    return this;
-  }
-
-   /**
-   * Get indicativeTaxRate
-   * @return indicativeTaxRate
-  **/
-  @ApiModelProperty(value = "")
-  public Double getIndicativeTaxRate() {
-    return indicativeTaxRate;
-  }
-
-  public void setIndicativeTaxRate(Double indicativeTaxRate) {
-    this.indicativeTaxRate = indicativeTaxRate;
-  }
-
   public Instrument indicativeSettlePrice(Double indicativeSettlePrice) {
     this.indicativeSettlePrice = indicativeSettlePrice;
     return this;
@@ -2141,22 +1808,22 @@ public class Instrument {
     this.indicativeSettlePrice = indicativeSettlePrice;
   }
 
-  public Instrument optionUnderlyingPrice(Double optionUnderlyingPrice) {
-    this.optionUnderlyingPrice = optionUnderlyingPrice;
+  public Instrument settledPriceAdjustmentRate(Double settledPriceAdjustmentRate) {
+    this.settledPriceAdjustmentRate = settledPriceAdjustmentRate;
     return this;
   }
 
    /**
-   * Get optionUnderlyingPrice
-   * @return optionUnderlyingPrice
+   * Get settledPriceAdjustmentRate
+   * @return settledPriceAdjustmentRate
   **/
   @ApiModelProperty(value = "")
-  public Double getOptionUnderlyingPrice() {
-    return optionUnderlyingPrice;
+  public Double getSettledPriceAdjustmentRate() {
+    return settledPriceAdjustmentRate;
   }
 
-  public void setOptionUnderlyingPrice(Double optionUnderlyingPrice) {
-    this.optionUnderlyingPrice = optionUnderlyingPrice;
+  public void setSettledPriceAdjustmentRate(Double settledPriceAdjustmentRate) {
+    this.settledPriceAdjustmentRate = settledPriceAdjustmentRate;
   }
 
   public Instrument settledPrice(Double settledPrice) {
@@ -2175,6 +1842,24 @@ public class Instrument {
 
   public void setSettledPrice(Double settledPrice) {
     this.settledPrice = settledPrice;
+  }
+
+  public Instrument instantPnl(Boolean instantPnl) {
+    this.instantPnl = instantPnl;
+    return this;
+  }
+
+   /**
+   * Get instantPnl
+   * @return instantPnl
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isInstantPnl() {
+    return instantPnl;
+  }
+
+  public void setInstantPnl(Boolean instantPnl) {
+    this.instantPnl = instantPnl;
   }
 
   public Instrument timestamp(OffsetDateTime timestamp) {
@@ -2213,14 +1898,7 @@ public class Instrument {
         Objects.equals(this.front, instrument.front) &&
         Objects.equals(this.expiry, instrument.expiry) &&
         Objects.equals(this.settle, instrument.settle) &&
-        Objects.equals(this.relistInterval, instrument.relistInterval) &&
-        Objects.equals(this.inverseLeg, instrument.inverseLeg) &&
-        Objects.equals(this.sellLeg, instrument.sellLeg) &&
-        Objects.equals(this.buyLeg, instrument.buyLeg) &&
-        Objects.equals(this.optionStrikePcnt, instrument.optionStrikePcnt) &&
-        Objects.equals(this.optionStrikeRound, instrument.optionStrikeRound) &&
-        Objects.equals(this.optionStrikePrice, instrument.optionStrikePrice) &&
-        Objects.equals(this.optionMultiplier, instrument.optionMultiplier) &&
+        Objects.equals(this.listedSettle, instrument.listedSettle) &&
         Objects.equals(this.positionCurrency, instrument.positionCurrency) &&
         Objects.equals(this.underlying, instrument.underlying) &&
         Objects.equals(this.quoteCurrency, instrument.quoteCurrency) &&
@@ -2246,13 +1924,11 @@ public class Instrument {
         Objects.equals(this.riskLimit, instrument.riskLimit) &&
         Objects.equals(this.riskStep, instrument.riskStep) &&
         Objects.equals(this.limit, instrument.limit) &&
-        Objects.equals(this.capped, instrument.capped) &&
         Objects.equals(this.taxed, instrument.taxed) &&
         Objects.equals(this.deleverage, instrument.deleverage) &&
         Objects.equals(this.makerFee, instrument.makerFee) &&
         Objects.equals(this.takerFee, instrument.takerFee) &&
         Objects.equals(this.settlementFee, instrument.settlementFee) &&
-        Objects.equals(this.insuranceFee, instrument.insuranceFee) &&
         Objects.equals(this.fundingBaseSymbol, instrument.fundingBaseSymbol) &&
         Objects.equals(this.fundingQuoteSymbol, instrument.fundingQuoteSymbol) &&
         Objects.equals(this.fundingPremiumSymbol, instrument.fundingPremiumSymbol) &&
@@ -2262,15 +1938,9 @@ public class Instrument {
         Objects.equals(this.indicativeFundingRate, instrument.indicativeFundingRate) &&
         Objects.equals(this.rebalanceTimestamp, instrument.rebalanceTimestamp) &&
         Objects.equals(this.rebalanceInterval, instrument.rebalanceInterval) &&
-        Objects.equals(this.openingTimestamp, instrument.openingTimestamp) &&
-        Objects.equals(this.closingTimestamp, instrument.closingTimestamp) &&
-        Objects.equals(this.sessionInterval, instrument.sessionInterval) &&
         Objects.equals(this.prevClosePrice, instrument.prevClosePrice) &&
         Objects.equals(this.limitDownPrice, instrument.limitDownPrice) &&
         Objects.equals(this.limitUpPrice, instrument.limitUpPrice) &&
-        Objects.equals(this.bankruptLimitDownPrice, instrument.bankruptLimitDownPrice) &&
-        Objects.equals(this.bankruptLimitUpPrice, instrument.bankruptLimitUpPrice) &&
-        Objects.equals(this.prevTotalVolume, instrument.prevTotalVolume) &&
         Objects.equals(this.totalVolume, instrument.totalVolume) &&
         Objects.equals(this.volume, instrument.volume) &&
         Objects.equals(this.volume24h, instrument.volume24h) &&
@@ -2303,16 +1973,16 @@ public class Instrument {
         Objects.equals(this.fairPrice, instrument.fairPrice) &&
         Objects.equals(this.markMethod, instrument.markMethod) &&
         Objects.equals(this.markPrice, instrument.markPrice) &&
-        Objects.equals(this.indicativeTaxRate, instrument.indicativeTaxRate) &&
         Objects.equals(this.indicativeSettlePrice, instrument.indicativeSettlePrice) &&
-        Objects.equals(this.optionUnderlyingPrice, instrument.optionUnderlyingPrice) &&
+        Objects.equals(this.settledPriceAdjustmentRate, instrument.settledPriceAdjustmentRate) &&
         Objects.equals(this.settledPrice, instrument.settledPrice) &&
+        Objects.equals(this.instantPnl, instrument.instantPnl) &&
         Objects.equals(this.timestamp, instrument.timestamp);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(symbol, rootSymbol, state, typ, listing, front, expiry, settle, relistInterval, inverseLeg, sellLeg, buyLeg, optionStrikePcnt, optionStrikeRound, optionStrikePrice, optionMultiplier, positionCurrency, underlying, quoteCurrency, underlyingSymbol, reference, referenceSymbol, calcInterval, publishInterval, publishTime, maxOrderQty, maxPrice, lotSize, tickSize, multiplier, settlCurrency, underlyingToPositionMultiplier, underlyingToSettleMultiplier, quoteToSettleMultiplier, isQuanto, isInverse, initMargin, maintMargin, riskLimit, riskStep, limit, capped, taxed, deleverage, makerFee, takerFee, settlementFee, insuranceFee, fundingBaseSymbol, fundingQuoteSymbol, fundingPremiumSymbol, fundingTimestamp, fundingInterval, fundingRate, indicativeFundingRate, rebalanceTimestamp, rebalanceInterval, openingTimestamp, closingTimestamp, sessionInterval, prevClosePrice, limitDownPrice, limitUpPrice, bankruptLimitDownPrice, bankruptLimitUpPrice, prevTotalVolume, totalVolume, volume, volume24h, prevTotalTurnover, totalTurnover, turnover, turnover24h, homeNotional24h, foreignNotional24h, prevPrice24h, vwap, highPrice, lowPrice, lastPrice, lastPriceProtected, lastTickDirection, lastChangePcnt, bidPrice, midPrice, askPrice, impactBidPrice, impactMidPrice, impactAskPrice, hasLiquidity, openInterest, openValue, fairMethod, fairBasisRate, fairBasis, fairPrice, markMethod, markPrice, indicativeTaxRate, indicativeSettlePrice, optionUnderlyingPrice, settledPrice, timestamp);
+    return Objects.hash(symbol, rootSymbol, state, typ, listing, front, expiry, settle, listedSettle, positionCurrency, underlying, quoteCurrency, underlyingSymbol, reference, referenceSymbol, calcInterval, publishInterval, publishTime, maxOrderQty, maxPrice, lotSize, tickSize, multiplier, settlCurrency, underlyingToPositionMultiplier, underlyingToSettleMultiplier, quoteToSettleMultiplier, isQuanto, isInverse, initMargin, maintMargin, riskLimit, riskStep, limit, taxed, deleverage, makerFee, takerFee, settlementFee, fundingBaseSymbol, fundingQuoteSymbol, fundingPremiumSymbol, fundingTimestamp, fundingInterval, fundingRate, indicativeFundingRate, rebalanceTimestamp, rebalanceInterval, prevClosePrice, limitDownPrice, limitUpPrice, totalVolume, volume, volume24h, prevTotalTurnover, totalTurnover, turnover, turnover24h, homeNotional24h, foreignNotional24h, prevPrice24h, vwap, highPrice, lowPrice, lastPrice, lastPriceProtected, lastTickDirection, lastChangePcnt, bidPrice, midPrice, askPrice, impactBidPrice, impactMidPrice, impactAskPrice, hasLiquidity, openInterest, openValue, fairMethod, fairBasisRate, fairBasis, fairPrice, markMethod, markPrice, indicativeSettlePrice, settledPriceAdjustmentRate, settledPrice, instantPnl, timestamp);
   }
 
 
@@ -2329,14 +1999,7 @@ public class Instrument {
     sb.append("    front: ").append(toIndentedString(front)).append("\n");
     sb.append("    expiry: ").append(toIndentedString(expiry)).append("\n");
     sb.append("    settle: ").append(toIndentedString(settle)).append("\n");
-    sb.append("    relistInterval: ").append(toIndentedString(relistInterval)).append("\n");
-    sb.append("    inverseLeg: ").append(toIndentedString(inverseLeg)).append("\n");
-    sb.append("    sellLeg: ").append(toIndentedString(sellLeg)).append("\n");
-    sb.append("    buyLeg: ").append(toIndentedString(buyLeg)).append("\n");
-    sb.append("    optionStrikePcnt: ").append(toIndentedString(optionStrikePcnt)).append("\n");
-    sb.append("    optionStrikeRound: ").append(toIndentedString(optionStrikeRound)).append("\n");
-    sb.append("    optionStrikePrice: ").append(toIndentedString(optionStrikePrice)).append("\n");
-    sb.append("    optionMultiplier: ").append(toIndentedString(optionMultiplier)).append("\n");
+    sb.append("    listedSettle: ").append(toIndentedString(listedSettle)).append("\n");
     sb.append("    positionCurrency: ").append(toIndentedString(positionCurrency)).append("\n");
     sb.append("    underlying: ").append(toIndentedString(underlying)).append("\n");
     sb.append("    quoteCurrency: ").append(toIndentedString(quoteCurrency)).append("\n");
@@ -2362,13 +2025,11 @@ public class Instrument {
     sb.append("    riskLimit: ").append(toIndentedString(riskLimit)).append("\n");
     sb.append("    riskStep: ").append(toIndentedString(riskStep)).append("\n");
     sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
-    sb.append("    capped: ").append(toIndentedString(capped)).append("\n");
     sb.append("    taxed: ").append(toIndentedString(taxed)).append("\n");
     sb.append("    deleverage: ").append(toIndentedString(deleverage)).append("\n");
     sb.append("    makerFee: ").append(toIndentedString(makerFee)).append("\n");
     sb.append("    takerFee: ").append(toIndentedString(takerFee)).append("\n");
     sb.append("    settlementFee: ").append(toIndentedString(settlementFee)).append("\n");
-    sb.append("    insuranceFee: ").append(toIndentedString(insuranceFee)).append("\n");
     sb.append("    fundingBaseSymbol: ").append(toIndentedString(fundingBaseSymbol)).append("\n");
     sb.append("    fundingQuoteSymbol: ").append(toIndentedString(fundingQuoteSymbol)).append("\n");
     sb.append("    fundingPremiumSymbol: ").append(toIndentedString(fundingPremiumSymbol)).append("\n");
@@ -2378,15 +2039,9 @@ public class Instrument {
     sb.append("    indicativeFundingRate: ").append(toIndentedString(indicativeFundingRate)).append("\n");
     sb.append("    rebalanceTimestamp: ").append(toIndentedString(rebalanceTimestamp)).append("\n");
     sb.append("    rebalanceInterval: ").append(toIndentedString(rebalanceInterval)).append("\n");
-    sb.append("    openingTimestamp: ").append(toIndentedString(openingTimestamp)).append("\n");
-    sb.append("    closingTimestamp: ").append(toIndentedString(closingTimestamp)).append("\n");
-    sb.append("    sessionInterval: ").append(toIndentedString(sessionInterval)).append("\n");
     sb.append("    prevClosePrice: ").append(toIndentedString(prevClosePrice)).append("\n");
     sb.append("    limitDownPrice: ").append(toIndentedString(limitDownPrice)).append("\n");
     sb.append("    limitUpPrice: ").append(toIndentedString(limitUpPrice)).append("\n");
-    sb.append("    bankruptLimitDownPrice: ").append(toIndentedString(bankruptLimitDownPrice)).append("\n");
-    sb.append("    bankruptLimitUpPrice: ").append(toIndentedString(bankruptLimitUpPrice)).append("\n");
-    sb.append("    prevTotalVolume: ").append(toIndentedString(prevTotalVolume)).append("\n");
     sb.append("    totalVolume: ").append(toIndentedString(totalVolume)).append("\n");
     sb.append("    volume: ").append(toIndentedString(volume)).append("\n");
     sb.append("    volume24h: ").append(toIndentedString(volume24h)).append("\n");
@@ -2419,10 +2074,10 @@ public class Instrument {
     sb.append("    fairPrice: ").append(toIndentedString(fairPrice)).append("\n");
     sb.append("    markMethod: ").append(toIndentedString(markMethod)).append("\n");
     sb.append("    markPrice: ").append(toIndentedString(markPrice)).append("\n");
-    sb.append("    indicativeTaxRate: ").append(toIndentedString(indicativeTaxRate)).append("\n");
     sb.append("    indicativeSettlePrice: ").append(toIndentedString(indicativeSettlePrice)).append("\n");
-    sb.append("    optionUnderlyingPrice: ").append(toIndentedString(optionUnderlyingPrice)).append("\n");
+    sb.append("    settledPriceAdjustmentRate: ").append(toIndentedString(settledPriceAdjustmentRate)).append("\n");
     sb.append("    settledPrice: ").append(toIndentedString(settledPrice)).append("\n");
+    sb.append("    instantPnl: ").append(toIndentedString(instantPnl)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("}");
     return sb.toString();

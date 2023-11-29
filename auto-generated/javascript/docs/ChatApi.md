@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**chatGet**](ChatApi.md#chatGet) | **GET** /chat | Get chat messages.
 [**chatGetChannels**](ChatApi.md#chatGetChannels) | **GET** /chat/channels | Get available channels.
 [**chatGetConnected**](ChatApi.md#chatGetConnected) | **GET** /chat/connected | Get connected users.
+[**chatGetPinnedMessage**](ChatApi.md#chatGetPinnedMessage) | **GET** /chat/pinned | Get pinned message for a channel.
 [**chatNew**](ChatApi.md#chatNew) | **POST** /chat | Send a chat message.
 
 
@@ -26,7 +27,7 @@ var opts = {
   'count': 100, // Number | Number of results to fetch.
   'start': 0, // Number | Starting ID for results.
   'reverse': true, // Boolean | If true, will sort results newest first.
-  'channelID': 1.2 // Number | Channel id. GET /chat/channels for ids. Leave blank for all.
+  'channelID': 1 // Number | Channel id. GET /chat/channels for ids. Global English by default
 };
 
 var callback = function(error, data, response) {
@@ -46,7 +47,7 @@ Name | Type | Description  | Notes
  **count** | **Number**| Number of results to fetch. | [optional] [default to 100]
  **start** | **Number**| Starting ID for results. | [optional] [default to 0]
  **reverse** | **Boolean**| If true, will sort results newest first. | [optional] [default to true]
- **channelID** | **Number**| Channel id. GET /chat/channels for ids. Leave blank for all. | [optional] 
+ **channelID** | **Number**| Channel id. GET /chat/channels for ids. Global English by default | [optional] [default to 1]
 
 ### Return type
 
@@ -129,6 +130,50 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**ConnectedUsers**](ConnectedUsers.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+<a name="chatGetPinnedMessage"></a>
+# **chatGetPinnedMessage**
+> PinnedMessage chatGetPinnedMessage(channelID)
+
+Get pinned message for a channel.
+
+### Example
+```javascript
+var BitMexApi = require('bit_mex_api');
+
+var apiInstance = new BitMexApi.ChatApi();
+
+var channelID = 1.2; // Number | 
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.chatGetPinnedMessage(channelID, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **channelID** | **Number**|  | 
+
+### Return type
+
+[**PinnedMessage**](PinnedMessage.md)
 
 ### Authorization
 

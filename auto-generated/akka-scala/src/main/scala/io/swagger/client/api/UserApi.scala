@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -13,15 +13,21 @@ package io.swagger.client.api
 
 import io.swagger.client.model.AccessToken
 import io.swagger.client.model.Affiliate
+import io.swagger.client.model.CollateralSupportAgreement
 import io.swagger.client.model.CommunicationToken
 import org.joda.time.DateTime
 import io.swagger.client.model.Error
+import io.swagger.client.model.Execution
 import io.swagger.client.model.Margin
 import io.swagger.client.model.QuoteFillRatio
+import io.swagger.client.model.QuoteValueRatio
+import io.swagger.client.model.StakingRecord
+import io.swagger.client.model.TradingVolume
 import io.swagger.client.model.Transaction
 import io.swagger.client.model.User
 import io.swagger.client.model.UserCommissionsBySymbol
 import io.swagger.client.model.Wallet
+import io.swagger.client.model.XAny
 import io.swagger.client.core._
 import io.swagger.client.core.CollectionFormats._
 import io.swagger.client.core.ApiKeyLocations._
@@ -52,7 +58,7 @@ object UserApi {
    * If the code is valid, responds with the referral code&#39;s discount (e.g. &#x60;0.1&#x60; for 10%). Otherwise, will return a 404 or 451 if invalid.
    * 
    * Expected answers:
-   *   code 200 : Double (Request was successful)
+   *   code 200 : Any (Request was successful)
    *   code 400 : Error (Parameter Error)
    *   code 401 : Error (Unauthorized)
    *   code 403 : Error (Access Denied)
@@ -60,10 +66,10 @@ object UserApi {
    * 
    * @param referralCode 
    */
-  def user.checkReferralCode(referralCode: Option[String] = None): ApiRequest[Double] =
-    ApiRequest[Double](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/checkReferralCode", "application/json")
+  def user.checkReferralCode(referralCode: Option[String] = None): ApiRequest[Any] =
+    ApiRequest[Any](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/checkReferralCode", "application/json")
       .withQueryParam("referralCode", referralCode)
-      .withSuccessResponse[Double](200)
+      .withSuccessResponse[Any](200)
       .withErrorResponse[Error](400)
       .withErrorResponse[Error](401)
       .withErrorResponse[Error](403)
@@ -142,6 +148,92 @@ object UserApi {
    * 
    * 
    * Expected answers:
+   *   code 200 : Any (Request was successful)
+   *   code 400 : Error (Parameter Error)
+   *   code 401 : Error (Unauthorized)
+   *   code 403 : Error (Access Denied)
+   *   code 404 : Error (Not Found)
+   * 
+   * Available security schemes:
+   *   apiExpires (apiKey)
+   *   apiKey (apiKey)
+   *   apiSignature (apiKey)
+   * 
+   * @param accountName 
+   */
+  def user.createSubAccount(accountName: String)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Any] =
+    ApiRequest[Any](ApiMethods.POST, "https://www.bitmex.com/api/v1", "/user/addSubaccount", "application/json")
+      .withApiKey(apiKey, "api-expires", HEADER)
+      .withApiKey(apiKey, "api-key", HEADER)
+      .withApiKey(apiKey, "api-signature", HEADER)
+      .withFormParam("accountName", accountName)
+      .withSuccessResponse[Any](200)
+      .withErrorResponse[Error](400)
+      .withErrorResponse[Error](401)
+      .withErrorResponse[Error](403)
+      .withErrorResponse[Error](404)
+        /**
+   * 
+   * 
+   * Expected answers:
+   *   code 200 : Any (Request was successful)
+   *   code 400 : Error (Parameter Error)
+   *   code 401 : Error (Unauthorized)
+   *   code 403 : Error (Access Denied)
+   *   code 404 : Error (Not Found)
+   * 
+   * Available security schemes:
+   *   apiExpires (apiKey)
+   *   apiKey (apiKey)
+   *   apiSignature (apiKey)
+   * 
+   * @param symbol 
+   * @param amount 
+   */
+  def user.createUnstakingRequests(symbol: String, amount: Double)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Any] =
+    ApiRequest[Any](ApiMethods.POST, "https://www.bitmex.com/api/v1", "/user/unstakingRequests", "application/json")
+      .withApiKey(apiKey, "api-expires", HEADER)
+      .withApiKey(apiKey, "api-key", HEADER)
+      .withApiKey(apiKey, "api-signature", HEADER)
+      .withFormParam("symbol", symbol)
+      .withFormParam("amount", amount)
+      .withSuccessResponse[Any](200)
+      .withErrorResponse[Error](400)
+      .withErrorResponse[Error](401)
+      .withErrorResponse[Error](403)
+      .withErrorResponse[Error](404)
+        /**
+   * 
+   * 
+   * Expected answers:
+   *   code 200 : Any (Request was successful)
+   *   code 400 : Error (Parameter Error)
+   *   code 401 : Error (Unauthorized)
+   *   code 403 : Error (Access Denied)
+   *   code 404 : Error (Not Found)
+   * 
+   * Available security schemes:
+   *   apiExpires (apiKey)
+   *   apiKey (apiKey)
+   *   apiSignature (apiKey)
+   * 
+   * @param redemptionID 
+   */
+  def user.deleteUnstakingRequests(redemptionID: String)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Any] =
+    ApiRequest[Any](ApiMethods.DELETE, "https://www.bitmex.com/api/v1", "/user/unstakingRequests", "application/json")
+      .withApiKey(apiKey, "api-expires", HEADER)
+      .withApiKey(apiKey, "api-key", HEADER)
+      .withApiKey(apiKey, "api-signature", HEADER)
+      .withFormParam("redemptionID", redemptionID)
+      .withSuccessResponse[Any](200)
+      .withErrorResponse[Error](400)
+      .withErrorResponse[Error](401)
+      .withErrorResponse[Error](403)
+      .withErrorResponse[Error](404)
+        /**
+   * 
+   * 
+   * Expected answers:
    *   code 200 : User (Request was successful)
    *   code 400 : Error (Parameter Error)
    *   code 401 : Error (Unauthorized)
@@ -177,13 +269,41 @@ object UserApi {
    *   apiExpires (apiKey)
    *   apiKey (apiKey)
    *   apiSignature (apiKey)
+   * 
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
    */
-  def user.getAffiliateStatus()(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Affiliate] =
+  def user.getAffiliateStatus(currency: Option[String])(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Affiliate] =
     ApiRequest[Affiliate](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/affiliateStatus", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
       .withApiKey(apiKey, "api-signature", HEADER)
+      .withQueryParam("currency", currency)
       .withSuccessResponse[Affiliate](200)
+      .withErrorResponse[Error](400)
+      .withErrorResponse[Error](401)
+      .withErrorResponse[Error](403)
+      .withErrorResponse[Error](404)
+        /**
+   * 
+   * 
+   * Expected answers:
+   *   code 200 : CollateralSupportAgreement (Request was successful)
+   *   code 400 : Error (Parameter Error)
+   *   code 401 : Error (Unauthorized)
+   *   code 403 : Error (Access Denied)
+   *   code 404 : Error (Not Found)
+   * 
+   * Available security schemes:
+   *   apiExpires (apiKey)
+   *   apiKey (apiKey)
+   *   apiSignature (apiKey)
+   */
+  def user.getCSA()(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[CollateralSupportAgreement] =
+    ApiRequest[CollateralSupportAgreement](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/csa", "application/json")
+      .withApiKey(apiKey, "api-expires", HEADER)
+      .withApiKey(apiKey, "api-key", HEADER)
+      .withApiKey(apiKey, "api-signature", HEADER)
+      .withSuccessResponse[CollateralSupportAgreement](200)
       .withErrorResponse[Error](400)
       .withErrorResponse[Error](401)
       .withErrorResponse[Error](403)
@@ -228,14 +348,16 @@ object UserApi {
    *   apiKey (apiKey)
    *   apiSignature (apiKey)
    * 
-   * @param currency 
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;
+   * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.
    */
-  def user.getDepositAddress(currency: Option[String])(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[String] =
+  def user.getDepositAddress(currency: String, network: String)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[String] =
     ApiRequest[String](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/depositAddress", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
       .withApiKey(apiKey, "api-signature", HEADER)
       .withQueryParam("currency", currency)
+      .withQueryParam("network", network)
       .withSuccessResponse[String](200)
       .withErrorResponse[Error](400)
       .withErrorResponse[Error](401)
@@ -245,7 +367,7 @@ object UserApi {
    * 
    * 
    * Expected answers:
-   *   code 200 : Any (Request was successful)
+   *   code 200 : Seq[Execution] (Request was successful)
    *   code 400 : Error (Parameter Error)
    *   code 401 : Error (Unauthorized)
    *   code 403 : Error (Access Denied)
@@ -259,14 +381,14 @@ object UserApi {
    * @param symbol 
    * @param timestamp 
    */
-  def user.getExecutionHistory(symbol: String, timestamp: DateTime)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Any] =
-    ApiRequest[Any](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/executionHistory", "application/json")
+  def user.getExecutionHistory(symbol: String, timestamp: DateTime)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[Execution]] =
+    ApiRequest[Seq[Execution]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/executionHistory", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
       .withApiKey(apiKey, "api-signature", HEADER)
       .withQueryParam("symbol", symbol)
       .withQueryParam("timestamp", timestamp)
-      .withSuccessResponse[Any](200)
+      .withSuccessResponse[Seq[Execution]](200)
       .withErrorResponse[Error](400)
       .withErrorResponse[Error](401)
       .withErrorResponse[Error](403)
@@ -286,7 +408,7 @@ object UserApi {
    *   apiKey (apiKey)
    *   apiSignature (apiKey)
    * 
-   * @param currency 
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
    */
   def user.getMargin(currency: Option[String])(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Margin] =
     ApiRequest[Margin](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/margin", "application/json")
@@ -313,13 +435,175 @@ object UserApi {
    *   apiExpires (apiKey)
    *   apiKey (apiKey)
    *   apiSignature (apiKey)
+   * 
+   * @param targetAccountId AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user
    */
-  def user.getQuoteFillRatio()(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[QuoteFillRatio] =
+  def user.getQuoteFillRatio(targetAccountId: Option[Double] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[QuoteFillRatio] =
     ApiRequest[QuoteFillRatio](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/quoteFillRatio", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
       .withApiKey(apiKey, "api-signature", HEADER)
+      .withQueryParam("targetAccountId", targetAccountId)
       .withSuccessResponse[QuoteFillRatio](200)
+      .withErrorResponse[Error](400)
+      .withErrorResponse[Error](401)
+      .withErrorResponse[Error](403)
+      .withErrorResponse[Error](404)
+        /**
+   * 
+   * 
+   * Expected answers:
+   *   code 200 : QuoteValueRatio (Request was successful)
+   *   code 400 : Error (Parameter Error)
+   *   code 401 : Error (Unauthorized)
+   *   code 403 : Error (Access Denied)
+   *   code 404 : Error (Not Found)
+   * 
+   * Available security schemes:
+   *   apiExpires (apiKey)
+   *   apiKey (apiKey)
+   *   apiSignature (apiKey)
+   * 
+   * @param targetAccountId AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user
+   */
+  def user.getQuoteValueRatio(targetAccountId: Option[Double] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[QuoteValueRatio] =
+    ApiRequest[QuoteValueRatio](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/quoteValueRatio", "application/json")
+      .withApiKey(apiKey, "api-expires", HEADER)
+      .withApiKey(apiKey, "api-key", HEADER)
+      .withApiKey(apiKey, "api-signature", HEADER)
+      .withQueryParam("targetAccountId", targetAccountId)
+      .withSuccessResponse[QuoteValueRatio](200)
+      .withErrorResponse[Error](400)
+      .withErrorResponse[Error](401)
+      .withErrorResponse[Error](403)
+      .withErrorResponse[Error](404)
+        /**
+   * 
+   * 
+   * Expected answers:
+   *   code 200 : Seq[StakingRecord] (Request was successful)
+   *   code 400 : Error (Parameter Error)
+   *   code 401 : Error (Unauthorized)
+   *   code 403 : Error (Access Denied)
+   *   code 404 : Error (Not Found)
+   * 
+   * Available security schemes:
+   *   apiExpires (apiKey)
+   *   apiKey (apiKey)
+   *   apiSignature (apiKey)
+   * 
+   * @param currency 
+   */
+  def user.getStaking(currency: Option[String] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[StakingRecord]] =
+    ApiRequest[Seq[StakingRecord]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/staking", "application/json")
+      .withApiKey(apiKey, "api-expires", HEADER)
+      .withApiKey(apiKey, "api-key", HEADER)
+      .withApiKey(apiKey, "api-signature", HEADER)
+      .withQueryParam("currency", currency)
+      .withSuccessResponse[Seq[StakingRecord]](200)
+      .withErrorResponse[Error](400)
+      .withErrorResponse[Error](401)
+      .withErrorResponse[Error](403)
+      .withErrorResponse[Error](404)
+        /**
+   * 
+   * 
+   * Expected answers:
+   *   code 200 : Seq[XAny] (Request was successful)
+   *   code 400 : Error (Parameter Error)
+   *   code 401 : Error (Unauthorized)
+   *   code 403 : Error (Access Denied)
+   *   code 404 : Error (Not Found)
+   * 
+   * Available security schemes:
+   *   apiExpires (apiKey)
+   *   apiKey (apiKey)
+   *   apiSignature (apiKey)
+   * 
+   * @param symbol 
+   * @param currency 
+   */
+  def user.getStakingInstruments(symbol: Option[String] = None, currency: Option[String] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[XAny]] =
+    ApiRequest[Seq[XAny]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/staking/instruments", "application/json")
+      .withApiKey(apiKey, "api-expires", HEADER)
+      .withApiKey(apiKey, "api-key", HEADER)
+      .withApiKey(apiKey, "api-signature", HEADER)
+      .withQueryParam("symbol", symbol)
+      .withQueryParam("currency", currency)
+      .withSuccessResponse[Seq[XAny]](200)
+      .withErrorResponse[Error](400)
+      .withErrorResponse[Error](401)
+      .withErrorResponse[Error](403)
+      .withErrorResponse[Error](404)
+        /**
+   * 
+   * 
+   * Expected answers:
+   *   code 200 : Seq[XAny] (Request was successful)
+   *   code 400 : Error (Parameter Error)
+   *   code 401 : Error (Unauthorized)
+   *   code 403 : Error (Access Denied)
+   *   code 404 : Error (Not Found)
+   * 
+   * @param currency 
+   */
+  def user.getStakingTiers(currency: String): ApiRequest[Seq[XAny]] =
+    ApiRequest[Seq[XAny]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/staking/tiers", "application/json")
+      .withQueryParam("currency", currency)
+      .withSuccessResponse[Seq[XAny]](200)
+      .withErrorResponse[Error](400)
+      .withErrorResponse[Error](401)
+      .withErrorResponse[Error](403)
+      .withErrorResponse[Error](404)
+        /**
+   * 
+   * 
+   * Expected answers:
+   *   code 200 : Seq[TradingVolume] (Request was successful)
+   *   code 400 : Error (Parameter Error)
+   *   code 401 : Error (Unauthorized)
+   *   code 403 : Error (Access Denied)
+   *   code 404 : Error (Not Found)
+   * 
+   * Available security schemes:
+   *   apiExpires (apiKey)
+   *   apiKey (apiKey)
+   *   apiSignature (apiKey)
+   */
+  def user.getTradingVolume()(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[TradingVolume]] =
+    ApiRequest[Seq[TradingVolume]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/tradingVolume", "application/json")
+      .withApiKey(apiKey, "api-expires", HEADER)
+      .withApiKey(apiKey, "api-key", HEADER)
+      .withApiKey(apiKey, "api-signature", HEADER)
+      .withSuccessResponse[Seq[TradingVolume]](200)
+      .withErrorResponse[Error](400)
+      .withErrorResponse[Error](401)
+      .withErrorResponse[Error](403)
+      .withErrorResponse[Error](404)
+        /**
+   * 
+   * 
+   * Expected answers:
+   *   code 200 : Seq[StakingRecord] (Request was successful)
+   *   code 400 : Error (Parameter Error)
+   *   code 401 : Error (Unauthorized)
+   *   code 403 : Error (Access Denied)
+   *   code 404 : Error (Not Found)
+   * 
+   * Available security schemes:
+   *   apiExpires (apiKey)
+   *   apiKey (apiKey)
+   *   apiSignature (apiKey)
+   * 
+   * @param status 
+   */
+  def user.getUnstakingRequests(status: String)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[StakingRecord]] =
+    ApiRequest[Seq[StakingRecord]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/unstakingRequests", "application/json")
+      .withApiKey(apiKey, "api-expires", HEADER)
+      .withApiKey(apiKey, "api-key", HEADER)
+      .withApiKey(apiKey, "api-signature", HEADER)
+      .withQueryParam("status", status)
+      .withSuccessResponse[Seq[StakingRecord]](200)
       .withErrorResponse[Error](400)
       .withErrorResponse[Error](401)
       .withErrorResponse[Error](403)
@@ -339,7 +623,7 @@ object UserApi {
    *   apiKey (apiKey)
    *   apiSignature (apiKey)
    * 
-   * @param currency 
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
    */
   def user.getWallet(currency: Option[String])(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Wallet] =
     ApiRequest[Wallet](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/wallet", "application/json")
@@ -367,11 +651,12 @@ object UserApi {
    *   apiKey (apiKey)
    *   apiSignature (apiKey)
    * 
-   * @param currency 
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
    * @param count Number of results to fetch.
    * @param start Starting point for results.
+   * @param targetAccountId AccountId to view the history of, must be a paired account with the authorised user requesting the history.
    */
-  def user.getWalletHistory(currency: Option[String], count: Option[Double], start: Option[Double])(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[Transaction]] =
+  def user.getWalletHistory(currency: Option[String], count: Option[Double], start: Option[Double], targetAccountId: Option[Double] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[Transaction]] =
     ApiRequest[Seq[Transaction]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/walletHistory", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
@@ -379,6 +664,7 @@ object UserApi {
       .withQueryParam("currency", currency)
       .withQueryParam("count", count)
       .withQueryParam("start", start)
+      .withQueryParam("targetAccountId", targetAccountId)
       .withSuccessResponse[Seq[Transaction]](200)
       .withErrorResponse[Error](400)
       .withErrorResponse[Error](401)
@@ -399,7 +685,7 @@ object UserApi {
    *   apiKey (apiKey)
    *   apiSignature (apiKey)
    * 
-   * @param currency 
+   * @param currency Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot;
    */
   def user.getWalletSummary(currency: Option[String])(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[Transaction]] =
     ApiRequest[Seq[Transaction]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/walletSummary", "application/json")
@@ -408,6 +694,31 @@ object UserApi {
       .withApiKey(apiKey, "api-signature", HEADER)
       .withQueryParam("currency", currency)
       .withSuccessResponse[Seq[Transaction]](200)
+      .withErrorResponse[Error](400)
+      .withErrorResponse[Error](401)
+      .withErrorResponse[Error](403)
+      .withErrorResponse[Error](404)
+        /**
+   * 
+   * 
+   * Expected answers:
+   *   code 200 : Seq[XAny] (Request was successful)
+   *   code 400 : Error (Parameter Error)
+   *   code 401 : Error (Unauthorized)
+   *   code 403 : Error (Access Denied)
+   *   code 404 : Error (Not Found)
+   * 
+   * Available security schemes:
+   *   apiExpires (apiKey)
+   *   apiKey (apiKey)
+   *   apiSignature (apiKey)
+   */
+  def user.getWalletTransferAccounts()(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Seq[XAny]] =
+    ApiRequest[Seq[XAny]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/getWalletTransferAccounts", "application/json")
+      .withApiKey(apiKey, "api-expires", HEADER)
+      .withApiKey(apiKey, "api-key", HEADER)
+      .withApiKey(apiKey, "api-signature", HEADER)
+      .withSuccessResponse[Seq[XAny]](200)
       .withErrorResponse[Error](400)
       .withErrorResponse[Error](401)
       .withErrorResponse[Error](403)
@@ -430,26 +741,6 @@ object UserApi {
       .withErrorResponse[Error](403)
       .withErrorResponse[Error](404)
         /**
-   * This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-   * 
-   * Expected answers:
-   *   code 200 : Any (Request was successful)
-   *   code 400 : Error (Parameter Error)
-   *   code 401 : Error (Unauthorized)
-   *   code 403 : Error (Access Denied)
-   *   code 404 : Error (Not Found)
-   * 
-   * @param currency 
-   */
-  def user.minWithdrawalFee(currency: Option[String]): ApiRequest[Any] =
-    ApiRequest[Any](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/user/minWithdrawalFee", "application/json")
-      .withQueryParam("currency", currency)
-      .withSuccessResponse[Any](200)
-      .withErrorResponse[Error](400)
-      .withErrorResponse[Error](401)
-      .withErrorResponse[Error](403)
-      .withErrorResponse[Error](404)
-        /**
    * This will send a confirmation email to the email address on record.
    * 
    * Expected answers:
@@ -464,22 +755,28 @@ object UserApi {
    *   apiKey (apiKey)
    *   apiSignature (apiKey)
    * 
-   * @param currency Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60;
+   * @param currency Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;
+   * @param network The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;.
    * @param amount Amount of withdrawal currency.
-   * @param address Destination Address.
-   * @param otpToken 2FA token. Required if 2FA is enabled on your account.
+   * @param otpToken 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook.
+   * @param address Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
+   * @param addressId ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
+   * @param targetUserId ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified.
    * @param fee Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email.
    * @param text Optional annotation, e.g. &#39;Transfer to home wallet&#39;.
    */
-  def user.requestWithdrawal(currency: String, amount: Double, address: String, otpToken: Option[String] = None, fee: Option[Double] = None, text: Option[String] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Transaction] =
+  def user.requestWithdrawal(currency: String, network: String, amount: Double, otpToken: Option[String] = None, address: Option[String] = None, addressId: Option[Double] = None, targetUserId: Option[Double] = None, fee: Option[Double] = None, text: Option[String] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Transaction] =
     ApiRequest[Transaction](ApiMethods.POST, "https://www.bitmex.com/api/v1", "/user/requestWithdrawal", "application/json")
       .withApiKey(apiKey, "api-expires", HEADER)
       .withApiKey(apiKey, "api-key", HEADER)
       .withApiKey(apiKey, "api-signature", HEADER)
       .withFormParam("otpToken", otpToken)
       .withFormParam("currency", currency)
+      .withFormParam("network", network)
       .withFormParam("amount", amount)
       .withFormParam("address", address)
+      .withFormParam("addressId", addressId)
+      .withFormParam("targetUserId", targetUserId)
       .withFormParam("fee", fee)
       .withFormParam("text", text)
       .withSuccessResponse[Transaction](200)
@@ -513,6 +810,70 @@ object UserApi {
       .withFormParam("prefs", prefs)
       .withFormParam("overwrite", overwrite)
       .withSuccessResponse[User](200)
+      .withErrorResponse[Error](400)
+      .withErrorResponse[Error](401)
+      .withErrorResponse[Error](403)
+      .withErrorResponse[Error](404)
+        /**
+   * 
+   * 
+   * Expected answers:
+   *   code 200 : Any (Request was successful)
+   *   code 400 : Error (Parameter Error)
+   *   code 401 : Error (Unauthorized)
+   *   code 403 : Error (Access Denied)
+   *   code 404 : Error (Not Found)
+   * 
+   * Available security schemes:
+   *   apiExpires (apiKey)
+   *   apiKey (apiKey)
+   *   apiSignature (apiKey)
+   * 
+   * @param targetAccountId 
+   * @param accountName 
+   */
+  def user.updateSubAccount(targetAccountId: Double, accountName: String)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Any] =
+    ApiRequest[Any](ApiMethods.POST, "https://www.bitmex.com/api/v1", "/user/updateSubaccount", "application/json")
+      .withApiKey(apiKey, "api-expires", HEADER)
+      .withApiKey(apiKey, "api-key", HEADER)
+      .withApiKey(apiKey, "api-signature", HEADER)
+      .withFormParam("targetAccountId", targetAccountId)
+      .withFormParam("accountName", accountName)
+      .withSuccessResponse[Any](200)
+      .withErrorResponse[Error](400)
+      .withErrorResponse[Error](401)
+      .withErrorResponse[Error](403)
+      .withErrorResponse[Error](404)
+        /**
+   * This will send a confirmation email to the email address on record.
+   * 
+   * Expected answers:
+   *   code 200 : Transaction (Request was successful)
+   *   code 400 : Error (Parameter Error)
+   *   code 401 : Error (Unauthorized)
+   *   code 403 : Error (Access Denied)
+   *   code 404 : Error (Not Found)
+   * 
+   * Available security schemes:
+   *   apiExpires (apiKey)
+   *   apiKey (apiKey)
+   *   apiSignature (apiKey)
+   * 
+   * @param currency Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;
+   * @param amount Amount of transfer.
+   * @param targetAccountId AccountId to send the transfer to, must be a paired account with the user sending the transfer.
+   * @param fromAccountId AccountID to send the transfer from. Must be paired account with the authenticated user.
+   */
+  def user.walletTransfer(currency: String, amount: Double, targetAccountId: Double, fromAccountId: Option[Double] = None)(implicit apiKey: ApiKeyValue, apiKey: ApiKeyValue, apiKey: ApiKeyValue): ApiRequest[Transaction] =
+    ApiRequest[Transaction](ApiMethods.POST, "https://www.bitmex.com/api/v1", "/user/walletTransfer", "application/json")
+      .withApiKey(apiKey, "api-expires", HEADER)
+      .withApiKey(apiKey, "api-key", HEADER)
+      .withApiKey(apiKey, "api-signature", HEADER)
+      .withFormParam("currency", currency)
+      .withFormParam("amount", amount)
+      .withFormParam("fromAccountId", fromAccountId)
+      .withFormParam("targetAccountId", targetAccountId)
+      .withSuccessResponse[Transaction](200)
       .withErrorResponse[Error](400)
       .withErrorResponse[Error](401)
       .withErrorResponse[Error](403)

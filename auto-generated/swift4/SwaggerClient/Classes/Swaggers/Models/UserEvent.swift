@@ -8,7 +8,7 @@
 import Foundation
 
 
-/** User Events for auditing */
+/** User Events for Auditing */
 
 public struct UserEvent: Codable {
 
@@ -20,8 +20,7 @@ public struct UserEvent: Codable {
         case banzerovolumeapiuser = "banZeroVolumeApiUser"
         case liquidationorderplaced = "liquidationOrderPlaced"
         case login = "login"
-        case pgpmaskedemail = "pgpMaskedEmail"
-        case pgptestemail = "pgpTestEmail"
+        case existingaccountregistrationattempt = "existingAccountRegistrationAttempt"
         case passwordchanged = "passwordChanged"
         case positionstateliquidated = "positionStateLiquidated"
         case positionstatewarning = "positionStateWarning"
@@ -37,6 +36,8 @@ public struct UserEvent: Codable {
         case withdrawalcompleted = "withdrawalCompleted"
         case withdrawalconfirmed = "withdrawalConfirmed"
         case withdrawalrequested = "withdrawalRequested"
+        case addressskipconfirmrequested = "addressSkipConfirmRequested"
+        case addressskipconfirmverified = "addressSkipConfirmVerified"
         case verify = "verify"
     }
     public enum Status: String, Codable { 

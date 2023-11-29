@@ -26,21 +26,7 @@ open class StatsAPI {
     /**
      Get exchange-wide and per-series turnover and volume statistics.
      - GET /stats
-     - examples: [{contentType=application/json, example=[ {
-  "openInterest" : 1.46581298050294517310021547018550336360931396484375,
-  "openValue" : 5.962133916683182377482808078639209270477294921875,
-  "volume24h" : 0.80082819046101150206595775671303272247314453125,
-  "currency" : "currency",
-  "turnover24h" : 6.02745618307040320615897144307382404804229736328125,
-  "rootSymbol" : "rootSymbol"
-}, {
-  "openInterest" : 1.46581298050294517310021547018550336360931396484375,
-  "openValue" : 5.962133916683182377482808078639209270477294921875,
-  "volume24h" : 0.80082819046101150206595775671303272247314453125,
-  "currency" : "currency",
-  "turnover24h" : 6.02745618307040320615897144307382404804229736328125,
-  "rootSymbol" : "rootSymbol"
-} ]}]
+     - examples: [{contentType=application/json, example={}}]
 
      - returns: RequestBuilder<[Stats]> 
      */
@@ -71,19 +57,7 @@ open class StatsAPI {
     /**
      Get historical exchange-wide and per-series turnover and volume statistics.
      - GET /stats/history
-     - examples: [{contentType=application/json, example=[ {
-  "date" : "2000-01-23T04:56:07.000+00:00",
-  "volume" : 0.80082819046101150206595775671303272247314453125,
-  "currency" : "currency",
-  "turnover" : 6.02745618307040320615897144307382404804229736328125,
-  "rootSymbol" : "rootSymbol"
-}, {
-  "date" : "2000-01-23T04:56:07.000+00:00",
-  "volume" : 0.80082819046101150206595775671303272247314453125,
-  "currency" : "currency",
-  "turnover" : 6.02745618307040320615897144307382404804229736328125,
-  "rootSymbol" : "rootSymbol"
-} ]}]
+     - examples: [{contentType=application/json, example={}}]
 
      - returns: RequestBuilder<[StatsHistory]> 
      */
@@ -114,21 +88,7 @@ open class StatsAPI {
     /**
      Get a summary of exchange statistics in USD.
      - GET /stats/historyUSD
-     - examples: [{contentType=application/json, example=[ {
-  "turnover30d" : 6.02745618307040320615897144307382404804229736328125,
-  "turnover365d" : 1.46581298050294517310021547018550336360931396484375,
-  "currency" : "currency",
-  "turnover24h" : 0.80082819046101150206595775671303272247314453125,
-  "turnover" : 5.962133916683182377482808078639209270477294921875,
-  "rootSymbol" : "rootSymbol"
-}, {
-  "turnover30d" : 6.02745618307040320615897144307382404804229736328125,
-  "turnover365d" : 1.46581298050294517310021547018550336360931396484375,
-  "currency" : "currency",
-  "turnover24h" : 0.80082819046101150206595775671303272247314453125,
-  "turnover" : 5.962133916683182377482808078639209270477294921875,
-  "rootSymbol" : "rootSymbol"
-} ]}]
+     - examples: [{contentType=application/json, example={}}]
 
      - returns: RequestBuilder<[StatsUSD]> 
      */

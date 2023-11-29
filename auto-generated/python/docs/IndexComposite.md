@@ -6,8 +6,12 @@ Name | Type | Description | Notes
 **timestamp** | **datetime** |  | 
 **symbol** | **str** |  | [optional] 
 **index_symbol** | **str** |  | [optional] 
+**index_multiplier** | **float** |  | [optional] 
 **reference** | **str** |  | [optional] 
 **last_price** | **float** |  | [optional] 
+**source_price** | **float** |  | [optional] 
+**conversion_index** | **str** |  | [optional] 
+**conversion_index_price** | **float** |  | [optional] 
 **weight** | **float** |  | [optional] 
 **logged** | **datetime** |  | [optional] 
 

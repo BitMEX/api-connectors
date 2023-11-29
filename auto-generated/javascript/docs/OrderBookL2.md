@@ -8,5 +8,6 @@ Name | Type | Description | Notes
 **side** | **String** |  | 
 **size** | **Number** |  | [optional] 
 **price** | **Number** |  | [optional] 
+**timestamp** | **Date** |  | [optional] 
 
 

@@ -5,7 +5,7 @@ All URIs are relative to *https://www.bitmex.com/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ExecutionGet**](ExecutionApi.md#executionget) | **GET** /execution | Get all raw executions for your account.
-[**ExecutionGetTradeHistory**](ExecutionApi.md#executiongettradehistory) | **GET** /execution/tradeHistory | Get all balance-affecting executions. This includes each trade, insurance charge, and settlement.
+[**ExecutionGetTradeHistory**](ExecutionApi.md#executiongettradehistory) | **GET** /execution/tradeHistory | Get all balance-affecting executions.
 
 
 <a name="executionget"></a>
@@ -44,10 +44,10 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
 
             var apiInstance = new ExecutionApi();
-            var symbol = symbol_example;  // string | Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`. (optional) 
+            var symbol = symbol_example;  // string | Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.  Symbols are case-insensitive. (optional) 
             var filter = filter_example;  // string | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. (optional) 
             var columns = columns_example;  // string | Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional) 
-            var count = 8.14;  // decimal? | Number of results to fetch. (optional)  (default to 100)
+            var count = 8.14;  // decimal? | Number of results to fetch. Must be a positive integer. (optional)  (default to 100)
             var start = 8.14;  // decimal? | Starting point for results. (optional)  (default to 0)
             var reverse = true;  // bool? | If true, will sort results newest first. (optional)  (default to false)
             var startTime = 2013-10-20T19:20:30+01:00;  // DateTime? | Starting date filter for results. (optional) 
@@ -72,10 +72,10 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string**| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;. | [optional] 
+ **symbol** | **string**| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive. | [optional] 
  **filter** | **string**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | [optional] 
  **columns** | **string**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | [optional] 
- **count** | **decimal?**| Number of results to fetch. | [optional] [default to 100]
+ **count** | **decimal?**| Number of results to fetch. Must be a positive integer. | [optional] [default to 100]
  **start** | **decimal?**| Starting point for results. | [optional] [default to 0]
  **reverse** | **bool?**| If true, will sort results newest first. | [optional] [default to false]
  **startTime** | **DateTime?**| Starting date filter for results. | [optional] 
@@ -98,9 +98,9 @@ Name | Type | Description  | Notes
 
 <a name="executiongettradehistory"></a>
 # **ExecutionGetTradeHistory**
-> List<Execution> ExecutionGetTradeHistory (string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
+> List<Execution> ExecutionGetTradeHistory (double? targetAccountId = null, string targetAccountIds = null, string symbol = null, string filter = null, string columns = null, decimal? count = null, decimal? start = null, bool? reverse = null, DateTime? startTime = null, DateTime? endTime = null)
 
-Get all balance-affecting executions. This includes each trade, insurance charge, and settlement.
+Get all balance-affecting executions.
 
 ### Example
 ```csharp
@@ -130,10 +130,12 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
 
             var apiInstance = new ExecutionApi();
-            var symbol = symbol_example;  // string | Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`. (optional) 
+            var targetAccountId = 1.2;  // double? | AccountId fetching the trade history, must be a paired account with main user. (optional) 
+            var targetAccountIds = targetAccountIds_example;  // string | AccountIds fetching the trade history, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional) 
+            var symbol = symbol_example;  // string | Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. `XBT:quarterly`. Timeframes are `nearest`, `daily`, `weekly`, `monthly`, `quarterly`, `biquarterly`, and `perpetual`.  Symbols are case-insensitive. (optional) 
             var filter = filter_example;  // string | Generic table filter. Send JSON key/value pairs, such as `{\"key\": \"value\"}`. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. (optional) 
             var columns = columns_example;  // string | Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. (optional) 
-            var count = 8.14;  // decimal? | Number of results to fetch. (optional)  (default to 100)
+            var count = 8.14;  // decimal? | Number of results to fetch. Must be a positive integer. (optional)  (default to 100)
             var start = 8.14;  // decimal? | Starting point for results. (optional)  (default to 0)
             var reverse = true;  // bool? | If true, will sort results newest first. (optional)  (default to false)
             var startTime = 2013-10-20T19:20:30+01:00;  // DateTime? | Starting date filter for results. (optional) 
@@ -141,8 +143,8 @@ namespace Example
 
             try
             {
-                // Get all balance-affecting executions. This includes each trade, insurance charge, and settlement.
-                List&lt;Execution&gt; result = apiInstance.ExecutionGetTradeHistory(symbol, filter, columns, count, start, reverse, startTime, endTime);
+                // Get all balance-affecting executions.
+                List&lt;Execution&gt; result = apiInstance.ExecutionGetTradeHistory(targetAccountId, targetAccountIds, symbol, filter, columns, count, start, reverse, startTime, endTime);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -158,10 +160,12 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **symbol** | **string**| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;. | [optional] 
+ **targetAccountId** | **double?**| AccountId fetching the trade history, must be a paired account with main user. | [optional] 
+ **targetAccountIds** | **string**| AccountIds fetching the trade history, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user | [optional] 
+ **symbol** | **string**| Instrument symbol. Send a bare series (e.g. XBT) to get data for the nearest expiring contract in that series.  You can also send a timeframe, e.g. &#x60;XBT:quarterly&#x60;. Timeframes are &#x60;nearest&#x60;, &#x60;daily&#x60;, &#x60;weekly&#x60;, &#x60;monthly&#x60;, &#x60;quarterly&#x60;, &#x60;biquarterly&#x60;, and &#x60;perpetual&#x60;.  Symbols are case-insensitive. | [optional] 
  **filter** | **string**| Generic table filter. Send JSON key/value pairs, such as &#x60;{\&quot;key\&quot;: \&quot;value\&quot;}&#x60;. You can key on individual fields, and do more advanced querying on timestamps. See the [Timestamp Docs](https://www.bitmex.com/app/restAPI#Timestamp-Filters) for more details. | [optional] 
  **columns** | **string**| Array of column names to fetch. If omitted, will return all columns.  Note that this method will always return item keys, even when not specified, so you may receive more columns that you expect. | [optional] 
- **count** | **decimal?**| Number of results to fetch. | [optional] [default to 100]
+ **count** | **decimal?**| Number of results to fetch. Must be a positive integer. | [optional] [default to 100]
  **start** | **decimal?**| Starting point for results. | [optional] [default to 0]
  **reverse** | **bool?**| If true, will sort results newest first. | [optional] [default to false]
  **startTime** | **DateTime?**| Starting date filter for results. | [optional] 

@@ -14,17 +14,25 @@ public struct IndexComposite: Codable {
     public var timestamp: Date
     public var symbol: String?
     public var indexSymbol: String?
+    public var indexMultiplier: Double?
     public var reference: String?
     public var lastPrice: Double?
+    public var sourcePrice: Double?
+    public var conversionIndex: String?
+    public var conversionIndexPrice: Double?
     public var weight: Double?
     public var logged: Date?
 
-    public init(timestamp: Date, symbol: String?, indexSymbol: String?, reference: String?, lastPrice: Double?, weight: Double?, logged: Date?) {
+    public init(timestamp: Date, symbol: String?, indexSymbol: String?, indexMultiplier: Double?, reference: String?, lastPrice: Double?, sourcePrice: Double?, conversionIndex: String?, conversionIndexPrice: Double?, weight: Double?, logged: Date?) {
         self.timestamp = timestamp
         self.symbol = symbol
         self.indexSymbol = indexSymbol
+        self.indexMultiplier = indexMultiplier
         self.reference = reference
         self.lastPrice = lastPrice
+        self.sourcePrice = sourcePrice
+        self.conversionIndex = conversionIndex
+        self.conversionIndexPrice = conversionIndexPrice
         self.weight = weight
         self.logged = logged
     }

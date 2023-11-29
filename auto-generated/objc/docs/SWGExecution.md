@@ -3,19 +3,16 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**execID** | **NSString*** |  | 
-**orderID** | **NSString*** |  | [optional] 
+**execID** | **NSString*** |  | [optional] 
+**orderID** | **NSString*** |  | 
 **clOrdID** | **NSString*** |  | [optional] 
 **clOrdLinkID** | **NSString*** |  | [optional] 
 **account** | **NSNumber*** |  | [optional] 
-**symbol** | **NSString*** |  | [optional] 
+**symbol** | **NSString*** |  | 
 **side** | **NSString*** |  | [optional] 
 **lastQty** | **NSNumber*** |  | [optional] 
 **lastPx** | **NSNumber*** |  | [optional] 
-**underlyingLastPx** | **NSNumber*** |  | [optional] 
-**lastMkt** | **NSString*** |  | [optional] 
 **lastLiquidityInd** | **NSString*** |  | [optional] 
-**simpleOrderQty** | **NSNumber*** |  | [optional] 
 **orderQty** | **NSNumber*** |  | [optional] 
 **price** | **NSNumber*** |  | [optional] 
 **displayQty** | **NSNumber*** |  | [optional] 
@@ -29,19 +26,15 @@ Name | Type | Description | Notes
 **timeInForce** | **NSString*** |  | [optional] 
 **execInst** | **NSString*** |  | [optional] 
 **contingencyType** | **NSString*** |  | [optional] 
-**exDestination** | **NSString*** |  | [optional] 
 **ordStatus** | **NSString*** |  | [optional] 
 **triggered** | **NSString*** |  | [optional] 
 **workingIndicator** | **NSNumber*** |  | [optional] 
 **ordRejReason** | **NSString*** |  | [optional] 
-**simpleLeavesQty** | **NSNumber*** |  | [optional] 
 **leavesQty** | **NSNumber*** |  | [optional] 
-**simpleCumQty** | **NSNumber*** |  | [optional] 
 **cumQty** | **NSNumber*** |  | [optional] 
 **avgPx** | **NSNumber*** |  | [optional] 
 **commission** | **NSNumber*** |  | [optional] 
 **tradePublishIndicator** | **NSString*** |  | [optional] 
-**multiLegReportingType** | **NSString*** |  | [optional] 
 **text** | **NSString*** |  | [optional] 
 **trdMatchID** | **NSString*** |  | [optional] 
 **execCost** | **NSNumber*** |  | [optional] 
@@ -49,7 +42,12 @@ Name | Type | Description | Notes
 **homeNotional** | **NSNumber*** |  | [optional] 
 **foreignNotional** | **NSNumber*** |  | [optional] 
 **transactTime** | **NSDate*** |  | [optional] 
-**timestamp** | **NSDate*** |  | [optional] 
+**timestamp** | **NSDate*** |  | 
+**execGrossPnl** | **NSNumber*** |  | [optional] 
+**currentQty** | **NSNumber*** |  | [optional] 
+**avgEntryPrice** | **NSNumber*** |  | [optional] 
+**realisedPnl** | **NSNumber*** |  | [optional] 
+**unrealisedPnl** | **NSNumber*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -53,16 +53,8 @@ public class Position {
   private BigDecimal prevRealisedPnl = null;
   @SerializedName("prevUnrealisedPnl")
   private BigDecimal prevUnrealisedPnl = null;
-  @SerializedName("prevClosePrice")
-  private Double prevClosePrice = 0.0;
-  @SerializedName("openingTimestamp")
-  private Date openingTimestamp = null;
   @SerializedName("openingQty")
   private BigDecimal openingQty = null;
-  @SerializedName("openingCost")
-  private BigDecimal openingCost = null;
-  @SerializedName("openingComm")
-  private BigDecimal openingComm = null;
   @SerializedName("openOrderBuyQty")
   private BigDecimal openOrderBuyQty = null;
   @SerializedName("openOrderBuyCost")
@@ -75,22 +67,6 @@ public class Position {
   private BigDecimal openOrderSellCost = null;
   @SerializedName("openOrderSellPremium")
   private BigDecimal openOrderSellPremium = null;
-  @SerializedName("execBuyQty")
-  private BigDecimal execBuyQty = null;
-  @SerializedName("execBuyCost")
-  private BigDecimal execBuyCost = null;
-  @SerializedName("execSellQty")
-  private BigDecimal execSellQty = null;
-  @SerializedName("execSellCost")
-  private BigDecimal execSellCost = null;
-  @SerializedName("execQty")
-  private BigDecimal execQty = null;
-  @SerializedName("execCost")
-  private BigDecimal execCost = null;
-  @SerializedName("execComm")
-  private BigDecimal execComm = null;
-  @SerializedName("currentTimestamp")
-  private Date currentTimestamp = null;
   @SerializedName("currentQty")
   private BigDecimal currentQty = null;
   @SerializedName("currentCost")
@@ -101,12 +77,8 @@ public class Position {
   private BigDecimal realisedCost = null;
   @SerializedName("unrealisedCost")
   private BigDecimal unrealisedCost = null;
-  @SerializedName("grossOpenCost")
-  private BigDecimal grossOpenCost = null;
   @SerializedName("grossOpenPremium")
   private BigDecimal grossOpenPremium = null;
-  @SerializedName("grossExecCost")
-  private BigDecimal grossExecCost = null;
   @SerializedName("isOpen")
   private Boolean isOpen = null;
   @SerializedName("markPrice")
@@ -123,12 +95,8 @@ public class Position {
   private String posState = null;
   @SerializedName("posCost")
   private BigDecimal posCost = null;
-  @SerializedName("posCost2")
-  private BigDecimal posCost2 = null;
   @SerializedName("posCross")
   private BigDecimal posCross = null;
-  @SerializedName("posInit")
-  private BigDecimal posInit = null;
   @SerializedName("posComm")
   private BigDecimal posComm = null;
   @SerializedName("posLoss")
@@ -137,56 +105,18 @@ public class Position {
   private BigDecimal posMargin = null;
   @SerializedName("posMaint")
   private BigDecimal posMaint = null;
-  @SerializedName("posAllowance")
-  private BigDecimal posAllowance = null;
-  @SerializedName("taxableMargin")
-  private BigDecimal taxableMargin = null;
   @SerializedName("initMargin")
   private BigDecimal initMargin = null;
   @SerializedName("maintMargin")
   private BigDecimal maintMargin = null;
-  @SerializedName("sessionMargin")
-  private BigDecimal sessionMargin = null;
-  @SerializedName("targetExcessMargin")
-  private BigDecimal targetExcessMargin = null;
-  @SerializedName("varMargin")
-  private BigDecimal varMargin = null;
-  @SerializedName("realisedGrossPnl")
-  private BigDecimal realisedGrossPnl = null;
-  @SerializedName("realisedTax")
-  private BigDecimal realisedTax = null;
   @SerializedName("realisedPnl")
   private BigDecimal realisedPnl = null;
-  @SerializedName("unrealisedGrossPnl")
-  private BigDecimal unrealisedGrossPnl = null;
-  @SerializedName("longBankrupt")
-  private BigDecimal longBankrupt = null;
-  @SerializedName("shortBankrupt")
-  private BigDecimal shortBankrupt = null;
-  @SerializedName("taxBase")
-  private BigDecimal taxBase = null;
-  @SerializedName("indicativeTaxRate")
-  private Double indicativeTaxRate = 0.0;
-  @SerializedName("indicativeTax")
-  private BigDecimal indicativeTax = null;
-  @SerializedName("unrealisedTax")
-  private BigDecimal unrealisedTax = null;
   @SerializedName("unrealisedPnl")
   private BigDecimal unrealisedPnl = null;
   @SerializedName("unrealisedPnlPcnt")
   private Double unrealisedPnlPcnt = 0.0;
   @SerializedName("unrealisedRoePcnt")
   private Double unrealisedRoePcnt = 0.0;
-  @SerializedName("simpleQty")
-  private Double simpleQty = 0.0;
-  @SerializedName("simpleCost")
-  private Double simpleCost = 0.0;
-  @SerializedName("simpleValue")
-  private Double simpleValue = 0.0;
-  @SerializedName("simplePnl")
-  private Double simplePnl = 0.0;
-  @SerializedName("simplePnlPcnt")
-  private Double simplePnlPcnt = 0.0;
   @SerializedName("avgCostPrice")
   private Double avgCostPrice = 0.0;
   @SerializedName("avgEntryPrice")
@@ -201,10 +131,6 @@ public class Position {
   private Double bankruptPrice = 0.0;
   @SerializedName("timestamp")
   private Date timestamp = null;
-  @SerializedName("lastPrice")
-  private Double lastPrice = 0.0;
-  @SerializedName("lastValue")
-  private BigDecimal lastValue = null;
 
   /**
    **/
@@ -228,7 +154,7 @@ public class Position {
 
   /**
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(value = "")
   public String getCurrency() {
     return currency;
   }
@@ -359,51 +285,11 @@ public class Position {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getPrevClosePrice() {
-    return prevClosePrice;
-  }
-  public void setPrevClosePrice(Double prevClosePrice) {
-    this.prevClosePrice = prevClosePrice;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Date getOpeningTimestamp() {
-    return openingTimestamp;
-  }
-  public void setOpeningTimestamp(Date openingTimestamp) {
-    this.openingTimestamp = openingTimestamp;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public BigDecimal getOpeningQty() {
     return openingQty;
   }
   public void setOpeningQty(BigDecimal openingQty) {
     this.openingQty = openingQty;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getOpeningCost() {
-    return openingCost;
-  }
-  public void setOpeningCost(BigDecimal openingCost) {
-    this.openingCost = openingCost;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getOpeningComm() {
-    return openingComm;
-  }
-  public void setOpeningComm(BigDecimal openingComm) {
-    this.openingComm = openingComm;
   }
 
   /**
@@ -469,86 +355,6 @@ public class Position {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getExecBuyQty() {
-    return execBuyQty;
-  }
-  public void setExecBuyQty(BigDecimal execBuyQty) {
-    this.execBuyQty = execBuyQty;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getExecBuyCost() {
-    return execBuyCost;
-  }
-  public void setExecBuyCost(BigDecimal execBuyCost) {
-    this.execBuyCost = execBuyCost;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getExecSellQty() {
-    return execSellQty;
-  }
-  public void setExecSellQty(BigDecimal execSellQty) {
-    this.execSellQty = execSellQty;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getExecSellCost() {
-    return execSellCost;
-  }
-  public void setExecSellCost(BigDecimal execSellCost) {
-    this.execSellCost = execSellCost;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getExecQty() {
-    return execQty;
-  }
-  public void setExecQty(BigDecimal execQty) {
-    this.execQty = execQty;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getExecCost() {
-    return execCost;
-  }
-  public void setExecCost(BigDecimal execCost) {
-    this.execCost = execCost;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getExecComm() {
-    return execComm;
-  }
-  public void setExecComm(BigDecimal execComm) {
-    this.execComm = execComm;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Date getCurrentTimestamp() {
-    return currentTimestamp;
-  }
-  public void setCurrentTimestamp(Date currentTimestamp) {
-    this.currentTimestamp = currentTimestamp;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public BigDecimal getCurrentQty() {
     return currentQty;
   }
@@ -599,31 +405,11 @@ public class Position {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getGrossOpenCost() {
-    return grossOpenCost;
-  }
-  public void setGrossOpenCost(BigDecimal grossOpenCost) {
-    this.grossOpenCost = grossOpenCost;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public BigDecimal getGrossOpenPremium() {
     return grossOpenPremium;
   }
   public void setGrossOpenPremium(BigDecimal grossOpenPremium) {
     this.grossOpenPremium = grossOpenPremium;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getGrossExecCost() {
-    return grossExecCost;
-  }
-  public void setGrossExecCost(BigDecimal grossExecCost) {
-    this.grossExecCost = grossExecCost;
   }
 
   /**
@@ -709,31 +495,11 @@ public class Position {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPosCost2() {
-    return posCost2;
-  }
-  public void setPosCost2(BigDecimal posCost2) {
-    this.posCost2 = posCost2;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public BigDecimal getPosCross() {
     return posCross;
   }
   public void setPosCross(BigDecimal posCross) {
     this.posCross = posCross;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getPosInit() {
-    return posInit;
-  }
-  public void setPosInit(BigDecimal posInit) {
-    this.posInit = posInit;
   }
 
   /**
@@ -779,26 +545,6 @@ public class Position {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPosAllowance() {
-    return posAllowance;
-  }
-  public void setPosAllowance(BigDecimal posAllowance) {
-    this.posAllowance = posAllowance;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getTaxableMargin() {
-    return taxableMargin;
-  }
-  public void setTaxableMargin(BigDecimal taxableMargin) {
-    this.taxableMargin = taxableMargin;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public BigDecimal getInitMargin() {
     return initMargin;
   }
@@ -819,131 +565,11 @@ public class Position {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getSessionMargin() {
-    return sessionMargin;
-  }
-  public void setSessionMargin(BigDecimal sessionMargin) {
-    this.sessionMargin = sessionMargin;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getTargetExcessMargin() {
-    return targetExcessMargin;
-  }
-  public void setTargetExcessMargin(BigDecimal targetExcessMargin) {
-    this.targetExcessMargin = targetExcessMargin;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getVarMargin() {
-    return varMargin;
-  }
-  public void setVarMargin(BigDecimal varMargin) {
-    this.varMargin = varMargin;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getRealisedGrossPnl() {
-    return realisedGrossPnl;
-  }
-  public void setRealisedGrossPnl(BigDecimal realisedGrossPnl) {
-    this.realisedGrossPnl = realisedGrossPnl;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getRealisedTax() {
-    return realisedTax;
-  }
-  public void setRealisedTax(BigDecimal realisedTax) {
-    this.realisedTax = realisedTax;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public BigDecimal getRealisedPnl() {
     return realisedPnl;
   }
   public void setRealisedPnl(BigDecimal realisedPnl) {
     this.realisedPnl = realisedPnl;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getUnrealisedGrossPnl() {
-    return unrealisedGrossPnl;
-  }
-  public void setUnrealisedGrossPnl(BigDecimal unrealisedGrossPnl) {
-    this.unrealisedGrossPnl = unrealisedGrossPnl;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getLongBankrupt() {
-    return longBankrupt;
-  }
-  public void setLongBankrupt(BigDecimal longBankrupt) {
-    this.longBankrupt = longBankrupt;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getShortBankrupt() {
-    return shortBankrupt;
-  }
-  public void setShortBankrupt(BigDecimal shortBankrupt) {
-    this.shortBankrupt = shortBankrupt;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getTaxBase() {
-    return taxBase;
-  }
-  public void setTaxBase(BigDecimal taxBase) {
-    this.taxBase = taxBase;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getIndicativeTaxRate() {
-    return indicativeTaxRate;
-  }
-  public void setIndicativeTaxRate(Double indicativeTaxRate) {
-    this.indicativeTaxRate = indicativeTaxRate;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getIndicativeTax() {
-    return indicativeTax;
-  }
-  public void setIndicativeTax(BigDecimal indicativeTax) {
-    this.indicativeTax = indicativeTax;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getUnrealisedTax() {
-    return unrealisedTax;
-  }
-  public void setUnrealisedTax(BigDecimal unrealisedTax) {
-    this.unrealisedTax = unrealisedTax;
   }
 
   /**
@@ -974,56 +600,6 @@ public class Position {
   }
   public void setUnrealisedRoePcnt(Double unrealisedRoePcnt) {
     this.unrealisedRoePcnt = unrealisedRoePcnt;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getSimpleQty() {
-    return simpleQty;
-  }
-  public void setSimpleQty(Double simpleQty) {
-    this.simpleQty = simpleQty;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getSimpleCost() {
-    return simpleCost;
-  }
-  public void setSimpleCost(Double simpleCost) {
-    this.simpleCost = simpleCost;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getSimpleValue() {
-    return simpleValue;
-  }
-  public void setSimpleValue(Double simpleValue) {
-    this.simpleValue = simpleValue;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getSimplePnl() {
-    return simplePnl;
-  }
-  public void setSimplePnl(Double simplePnl) {
-    this.simplePnl = simplePnl;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getSimplePnlPcnt() {
-    return simplePnlPcnt;
-  }
-  public void setSimplePnlPcnt(Double simplePnlPcnt) {
-    this.simplePnlPcnt = simplePnlPcnt;
   }
 
   /**
@@ -1096,26 +672,6 @@ public class Position {
     this.timestamp = timestamp;
   }
 
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getLastPrice() {
-    return lastPrice;
-  }
-  public void setLastPrice(Double lastPrice) {
-    this.lastPrice = lastPrice;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getLastValue() {
-    return lastValue;
-  }
-  public void setLastValue(BigDecimal lastValue) {
-    this.lastValue = lastValue;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -1141,33 +697,19 @@ public class Position {
         (this.rebalancedPnl == null ? position.rebalancedPnl == null : this.rebalancedPnl.equals(position.rebalancedPnl)) &&
         (this.prevRealisedPnl == null ? position.prevRealisedPnl == null : this.prevRealisedPnl.equals(position.prevRealisedPnl)) &&
         (this.prevUnrealisedPnl == null ? position.prevUnrealisedPnl == null : this.prevUnrealisedPnl.equals(position.prevUnrealisedPnl)) &&
-        (this.prevClosePrice == null ? position.prevClosePrice == null : this.prevClosePrice.equals(position.prevClosePrice)) &&
-        (this.openingTimestamp == null ? position.openingTimestamp == null : this.openingTimestamp.equals(position.openingTimestamp)) &&
         (this.openingQty == null ? position.openingQty == null : this.openingQty.equals(position.openingQty)) &&
-        (this.openingCost == null ? position.openingCost == null : this.openingCost.equals(position.openingCost)) &&
-        (this.openingComm == null ? position.openingComm == null : this.openingComm.equals(position.openingComm)) &&
         (this.openOrderBuyQty == null ? position.openOrderBuyQty == null : this.openOrderBuyQty.equals(position.openOrderBuyQty)) &&
         (this.openOrderBuyCost == null ? position.openOrderBuyCost == null : this.openOrderBuyCost.equals(position.openOrderBuyCost)) &&
         (this.openOrderBuyPremium == null ? position.openOrderBuyPremium == null : this.openOrderBuyPremium.equals(position.openOrderBuyPremium)) &&
         (this.openOrderSellQty == null ? position.openOrderSellQty == null : this.openOrderSellQty.equals(position.openOrderSellQty)) &&
         (this.openOrderSellCost == null ? position.openOrderSellCost == null : this.openOrderSellCost.equals(position.openOrderSellCost)) &&
         (this.openOrderSellPremium == null ? position.openOrderSellPremium == null : this.openOrderSellPremium.equals(position.openOrderSellPremium)) &&
-        (this.execBuyQty == null ? position.execBuyQty == null : this.execBuyQty.equals(position.execBuyQty)) &&
-        (this.execBuyCost == null ? position.execBuyCost == null : this.execBuyCost.equals(position.execBuyCost)) &&
-        (this.execSellQty == null ? position.execSellQty == null : this.execSellQty.equals(position.execSellQty)) &&
-        (this.execSellCost == null ? position.execSellCost == null : this.execSellCost.equals(position.execSellCost)) &&
-        (this.execQty == null ? position.execQty == null : this.execQty.equals(position.execQty)) &&
-        (this.execCost == null ? position.execCost == null : this.execCost.equals(position.execCost)) &&
-        (this.execComm == null ? position.execComm == null : this.execComm.equals(position.execComm)) &&
-        (this.currentTimestamp == null ? position.currentTimestamp == null : this.currentTimestamp.equals(position.currentTimestamp)) &&
         (this.currentQty == null ? position.currentQty == null : this.currentQty.equals(position.currentQty)) &&
         (this.currentCost == null ? position.currentCost == null : this.currentCost.equals(position.currentCost)) &&
         (this.currentComm == null ? position.currentComm == null : this.currentComm.equals(position.currentComm)) &&
         (this.realisedCost == null ? position.realisedCost == null : this.realisedCost.equals(position.realisedCost)) &&
         (this.unrealisedCost == null ? position.unrealisedCost == null : this.unrealisedCost.equals(position.unrealisedCost)) &&
-        (this.grossOpenCost == null ? position.grossOpenCost == null : this.grossOpenCost.equals(position.grossOpenCost)) &&
         (this.grossOpenPremium == null ? position.grossOpenPremium == null : this.grossOpenPremium.equals(position.grossOpenPremium)) &&
-        (this.grossExecCost == null ? position.grossExecCost == null : this.grossExecCost.equals(position.grossExecCost)) &&
         (this.isOpen == null ? position.isOpen == null : this.isOpen.equals(position.isOpen)) &&
         (this.markPrice == null ? position.markPrice == null : this.markPrice.equals(position.markPrice)) &&
         (this.markValue == null ? position.markValue == null : this.markValue.equals(position.markValue)) &&
@@ -1176,47 +718,24 @@ public class Position {
         (this.foreignNotional == null ? position.foreignNotional == null : this.foreignNotional.equals(position.foreignNotional)) &&
         (this.posState == null ? position.posState == null : this.posState.equals(position.posState)) &&
         (this.posCost == null ? position.posCost == null : this.posCost.equals(position.posCost)) &&
-        (this.posCost2 == null ? position.posCost2 == null : this.posCost2.equals(position.posCost2)) &&
         (this.posCross == null ? position.posCross == null : this.posCross.equals(position.posCross)) &&
-        (this.posInit == null ? position.posInit == null : this.posInit.equals(position.posInit)) &&
         (this.posComm == null ? position.posComm == null : this.posComm.equals(position.posComm)) &&
         (this.posLoss == null ? position.posLoss == null : this.posLoss.equals(position.posLoss)) &&
         (this.posMargin == null ? position.posMargin == null : this.posMargin.equals(position.posMargin)) &&
         (this.posMaint == null ? position.posMaint == null : this.posMaint.equals(position.posMaint)) &&
-        (this.posAllowance == null ? position.posAllowance == null : this.posAllowance.equals(position.posAllowance)) &&
-        (this.taxableMargin == null ? position.taxableMargin == null : this.taxableMargin.equals(position.taxableMargin)) &&
         (this.initMargin == null ? position.initMargin == null : this.initMargin.equals(position.initMargin)) &&
         (this.maintMargin == null ? position.maintMargin == null : this.maintMargin.equals(position.maintMargin)) &&
-        (this.sessionMargin == null ? position.sessionMargin == null : this.sessionMargin.equals(position.sessionMargin)) &&
-        (this.targetExcessMargin == null ? position.targetExcessMargin == null : this.targetExcessMargin.equals(position.targetExcessMargin)) &&
-        (this.varMargin == null ? position.varMargin == null : this.varMargin.equals(position.varMargin)) &&
-        (this.realisedGrossPnl == null ? position.realisedGrossPnl == null : this.realisedGrossPnl.equals(position.realisedGrossPnl)) &&
-        (this.realisedTax == null ? position.realisedTax == null : this.realisedTax.equals(position.realisedTax)) &&
         (this.realisedPnl == null ? position.realisedPnl == null : this.realisedPnl.equals(position.realisedPnl)) &&
-        (this.unrealisedGrossPnl == null ? position.unrealisedGrossPnl == null : this.unrealisedGrossPnl.equals(position.unrealisedGrossPnl)) &&
-        (this.longBankrupt == null ? position.longBankrupt == null : this.longBankrupt.equals(position.longBankrupt)) &&
-        (this.shortBankrupt == null ? position.shortBankrupt == null : this.shortBankrupt.equals(position.shortBankrupt)) &&
-        (this.taxBase == null ? position.taxBase == null : this.taxBase.equals(position.taxBase)) &&
-        (this.indicativeTaxRate == null ? position.indicativeTaxRate == null : this.indicativeTaxRate.equals(position.indicativeTaxRate)) &&
-        (this.indicativeTax == null ? position.indicativeTax == null : this.indicativeTax.equals(position.indicativeTax)) &&
-        (this.unrealisedTax == null ? position.unrealisedTax == null : this.unrealisedTax.equals(position.unrealisedTax)) &&
         (this.unrealisedPnl == null ? position.unrealisedPnl == null : this.unrealisedPnl.equals(position.unrealisedPnl)) &&
         (this.unrealisedPnlPcnt == null ? position.unrealisedPnlPcnt == null : this.unrealisedPnlPcnt.equals(position.unrealisedPnlPcnt)) &&
         (this.unrealisedRoePcnt == null ? position.unrealisedRoePcnt == null : this.unrealisedRoePcnt.equals(position.unrealisedRoePcnt)) &&
-        (this.simpleQty == null ? position.simpleQty == null : this.simpleQty.equals(position.simpleQty)) &&
-        (this.simpleCost == null ? position.simpleCost == null : this.simpleCost.equals(position.simpleCost)) &&
-        (this.simpleValue == null ? position.simpleValue == null : this.simpleValue.equals(position.simpleValue)) &&
-        (this.simplePnl == null ? position.simplePnl == null : this.simplePnl.equals(position.simplePnl)) &&
-        (this.simplePnlPcnt == null ? position.simplePnlPcnt == null : this.simplePnlPcnt.equals(position.simplePnlPcnt)) &&
         (this.avgCostPrice == null ? position.avgCostPrice == null : this.avgCostPrice.equals(position.avgCostPrice)) &&
         (this.avgEntryPrice == null ? position.avgEntryPrice == null : this.avgEntryPrice.equals(position.avgEntryPrice)) &&
         (this.breakEvenPrice == null ? position.breakEvenPrice == null : this.breakEvenPrice.equals(position.breakEvenPrice)) &&
         (this.marginCallPrice == null ? position.marginCallPrice == null : this.marginCallPrice.equals(position.marginCallPrice)) &&
         (this.liquidationPrice == null ? position.liquidationPrice == null : this.liquidationPrice.equals(position.liquidationPrice)) &&
         (this.bankruptPrice == null ? position.bankruptPrice == null : this.bankruptPrice.equals(position.bankruptPrice)) &&
-        (this.timestamp == null ? position.timestamp == null : this.timestamp.equals(position.timestamp)) &&
-        (this.lastPrice == null ? position.lastPrice == null : this.lastPrice.equals(position.lastPrice)) &&
-        (this.lastValue == null ? position.lastValue == null : this.lastValue.equals(position.lastValue));
+        (this.timestamp == null ? position.timestamp == null : this.timestamp.equals(position.timestamp));
   }
 
   @Override
@@ -1237,33 +756,19 @@ public class Position {
     result = 31 * result + (this.rebalancedPnl == null ? 0: this.rebalancedPnl.hashCode());
     result = 31 * result + (this.prevRealisedPnl == null ? 0: this.prevRealisedPnl.hashCode());
     result = 31 * result + (this.prevUnrealisedPnl == null ? 0: this.prevUnrealisedPnl.hashCode());
-    result = 31 * result + (this.prevClosePrice == null ? 0: this.prevClosePrice.hashCode());
-    result = 31 * result + (this.openingTimestamp == null ? 0: this.openingTimestamp.hashCode());
     result = 31 * result + (this.openingQty == null ? 0: this.openingQty.hashCode());
-    result = 31 * result + (this.openingCost == null ? 0: this.openingCost.hashCode());
-    result = 31 * result + (this.openingComm == null ? 0: this.openingComm.hashCode());
     result = 31 * result + (this.openOrderBuyQty == null ? 0: this.openOrderBuyQty.hashCode());
     result = 31 * result + (this.openOrderBuyCost == null ? 0: this.openOrderBuyCost.hashCode());
     result = 31 * result + (this.openOrderBuyPremium == null ? 0: this.openOrderBuyPremium.hashCode());
     result = 31 * result + (this.openOrderSellQty == null ? 0: this.openOrderSellQty.hashCode());
     result = 31 * result + (this.openOrderSellCost == null ? 0: this.openOrderSellCost.hashCode());
     result = 31 * result + (this.openOrderSellPremium == null ? 0: this.openOrderSellPremium.hashCode());
-    result = 31 * result + (this.execBuyQty == null ? 0: this.execBuyQty.hashCode());
-    result = 31 * result + (this.execBuyCost == null ? 0: this.execBuyCost.hashCode());
-    result = 31 * result + (this.execSellQty == null ? 0: this.execSellQty.hashCode());
-    result = 31 * result + (this.execSellCost == null ? 0: this.execSellCost.hashCode());
-    result = 31 * result + (this.execQty == null ? 0: this.execQty.hashCode());
-    result = 31 * result + (this.execCost == null ? 0: this.execCost.hashCode());
-    result = 31 * result + (this.execComm == null ? 0: this.execComm.hashCode());
-    result = 31 * result + (this.currentTimestamp == null ? 0: this.currentTimestamp.hashCode());
     result = 31 * result + (this.currentQty == null ? 0: this.currentQty.hashCode());
     result = 31 * result + (this.currentCost == null ? 0: this.currentCost.hashCode());
     result = 31 * result + (this.currentComm == null ? 0: this.currentComm.hashCode());
     result = 31 * result + (this.realisedCost == null ? 0: this.realisedCost.hashCode());
     result = 31 * result + (this.unrealisedCost == null ? 0: this.unrealisedCost.hashCode());
-    result = 31 * result + (this.grossOpenCost == null ? 0: this.grossOpenCost.hashCode());
     result = 31 * result + (this.grossOpenPremium == null ? 0: this.grossOpenPremium.hashCode());
-    result = 31 * result + (this.grossExecCost == null ? 0: this.grossExecCost.hashCode());
     result = 31 * result + (this.isOpen == null ? 0: this.isOpen.hashCode());
     result = 31 * result + (this.markPrice == null ? 0: this.markPrice.hashCode());
     result = 31 * result + (this.markValue == null ? 0: this.markValue.hashCode());
@@ -1272,38 +777,17 @@ public class Position {
     result = 31 * result + (this.foreignNotional == null ? 0: this.foreignNotional.hashCode());
     result = 31 * result + (this.posState == null ? 0: this.posState.hashCode());
     result = 31 * result + (this.posCost == null ? 0: this.posCost.hashCode());
-    result = 31 * result + (this.posCost2 == null ? 0: this.posCost2.hashCode());
     result = 31 * result + (this.posCross == null ? 0: this.posCross.hashCode());
-    result = 31 * result + (this.posInit == null ? 0: this.posInit.hashCode());
     result = 31 * result + (this.posComm == null ? 0: this.posComm.hashCode());
     result = 31 * result + (this.posLoss == null ? 0: this.posLoss.hashCode());
     result = 31 * result + (this.posMargin == null ? 0: this.posMargin.hashCode());
     result = 31 * result + (this.posMaint == null ? 0: this.posMaint.hashCode());
-    result = 31 * result + (this.posAllowance == null ? 0: this.posAllowance.hashCode());
-    result = 31 * result + (this.taxableMargin == null ? 0: this.taxableMargin.hashCode());
     result = 31 * result + (this.initMargin == null ? 0: this.initMargin.hashCode());
     result = 31 * result + (this.maintMargin == null ? 0: this.maintMargin.hashCode());
-    result = 31 * result + (this.sessionMargin == null ? 0: this.sessionMargin.hashCode());
-    result = 31 * result + (this.targetExcessMargin == null ? 0: this.targetExcessMargin.hashCode());
-    result = 31 * result + (this.varMargin == null ? 0: this.varMargin.hashCode());
-    result = 31 * result + (this.realisedGrossPnl == null ? 0: this.realisedGrossPnl.hashCode());
-    result = 31 * result + (this.realisedTax == null ? 0: this.realisedTax.hashCode());
     result = 31 * result + (this.realisedPnl == null ? 0: this.realisedPnl.hashCode());
-    result = 31 * result + (this.unrealisedGrossPnl == null ? 0: this.unrealisedGrossPnl.hashCode());
-    result = 31 * result + (this.longBankrupt == null ? 0: this.longBankrupt.hashCode());
-    result = 31 * result + (this.shortBankrupt == null ? 0: this.shortBankrupt.hashCode());
-    result = 31 * result + (this.taxBase == null ? 0: this.taxBase.hashCode());
-    result = 31 * result + (this.indicativeTaxRate == null ? 0: this.indicativeTaxRate.hashCode());
-    result = 31 * result + (this.indicativeTax == null ? 0: this.indicativeTax.hashCode());
-    result = 31 * result + (this.unrealisedTax == null ? 0: this.unrealisedTax.hashCode());
     result = 31 * result + (this.unrealisedPnl == null ? 0: this.unrealisedPnl.hashCode());
     result = 31 * result + (this.unrealisedPnlPcnt == null ? 0: this.unrealisedPnlPcnt.hashCode());
     result = 31 * result + (this.unrealisedRoePcnt == null ? 0: this.unrealisedRoePcnt.hashCode());
-    result = 31 * result + (this.simpleQty == null ? 0: this.simpleQty.hashCode());
-    result = 31 * result + (this.simpleCost == null ? 0: this.simpleCost.hashCode());
-    result = 31 * result + (this.simpleValue == null ? 0: this.simpleValue.hashCode());
-    result = 31 * result + (this.simplePnl == null ? 0: this.simplePnl.hashCode());
-    result = 31 * result + (this.simplePnlPcnt == null ? 0: this.simplePnlPcnt.hashCode());
     result = 31 * result + (this.avgCostPrice == null ? 0: this.avgCostPrice.hashCode());
     result = 31 * result + (this.avgEntryPrice == null ? 0: this.avgEntryPrice.hashCode());
     result = 31 * result + (this.breakEvenPrice == null ? 0: this.breakEvenPrice.hashCode());
@@ -1311,8 +795,6 @@ public class Position {
     result = 31 * result + (this.liquidationPrice == null ? 0: this.liquidationPrice.hashCode());
     result = 31 * result + (this.bankruptPrice == null ? 0: this.bankruptPrice.hashCode());
     result = 31 * result + (this.timestamp == null ? 0: this.timestamp.hashCode());
-    result = 31 * result + (this.lastPrice == null ? 0: this.lastPrice.hashCode());
-    result = 31 * result + (this.lastValue == null ? 0: this.lastValue.hashCode());
     return result;
   }
 
@@ -1336,33 +818,19 @@ public class Position {
     sb.append("  rebalancedPnl: ").append(rebalancedPnl).append("\n");
     sb.append("  prevRealisedPnl: ").append(prevRealisedPnl).append("\n");
     sb.append("  prevUnrealisedPnl: ").append(prevUnrealisedPnl).append("\n");
-    sb.append("  prevClosePrice: ").append(prevClosePrice).append("\n");
-    sb.append("  openingTimestamp: ").append(openingTimestamp).append("\n");
     sb.append("  openingQty: ").append(openingQty).append("\n");
-    sb.append("  openingCost: ").append(openingCost).append("\n");
-    sb.append("  openingComm: ").append(openingComm).append("\n");
     sb.append("  openOrderBuyQty: ").append(openOrderBuyQty).append("\n");
     sb.append("  openOrderBuyCost: ").append(openOrderBuyCost).append("\n");
     sb.append("  openOrderBuyPremium: ").append(openOrderBuyPremium).append("\n");
     sb.append("  openOrderSellQty: ").append(openOrderSellQty).append("\n");
     sb.append("  openOrderSellCost: ").append(openOrderSellCost).append("\n");
     sb.append("  openOrderSellPremium: ").append(openOrderSellPremium).append("\n");
-    sb.append("  execBuyQty: ").append(execBuyQty).append("\n");
-    sb.append("  execBuyCost: ").append(execBuyCost).append("\n");
-    sb.append("  execSellQty: ").append(execSellQty).append("\n");
-    sb.append("  execSellCost: ").append(execSellCost).append("\n");
-    sb.append("  execQty: ").append(execQty).append("\n");
-    sb.append("  execCost: ").append(execCost).append("\n");
-    sb.append("  execComm: ").append(execComm).append("\n");
-    sb.append("  currentTimestamp: ").append(currentTimestamp).append("\n");
     sb.append("  currentQty: ").append(currentQty).append("\n");
     sb.append("  currentCost: ").append(currentCost).append("\n");
     sb.append("  currentComm: ").append(currentComm).append("\n");
     sb.append("  realisedCost: ").append(realisedCost).append("\n");
     sb.append("  unrealisedCost: ").append(unrealisedCost).append("\n");
-    sb.append("  grossOpenCost: ").append(grossOpenCost).append("\n");
     sb.append("  grossOpenPremium: ").append(grossOpenPremium).append("\n");
-    sb.append("  grossExecCost: ").append(grossExecCost).append("\n");
     sb.append("  isOpen: ").append(isOpen).append("\n");
     sb.append("  markPrice: ").append(markPrice).append("\n");
     sb.append("  markValue: ").append(markValue).append("\n");
@@ -1371,38 +839,17 @@ public class Position {
     sb.append("  foreignNotional: ").append(foreignNotional).append("\n");
     sb.append("  posState: ").append(posState).append("\n");
     sb.append("  posCost: ").append(posCost).append("\n");
-    sb.append("  posCost2: ").append(posCost2).append("\n");
     sb.append("  posCross: ").append(posCross).append("\n");
-    sb.append("  posInit: ").append(posInit).append("\n");
     sb.append("  posComm: ").append(posComm).append("\n");
     sb.append("  posLoss: ").append(posLoss).append("\n");
     sb.append("  posMargin: ").append(posMargin).append("\n");
     sb.append("  posMaint: ").append(posMaint).append("\n");
-    sb.append("  posAllowance: ").append(posAllowance).append("\n");
-    sb.append("  taxableMargin: ").append(taxableMargin).append("\n");
     sb.append("  initMargin: ").append(initMargin).append("\n");
     sb.append("  maintMargin: ").append(maintMargin).append("\n");
-    sb.append("  sessionMargin: ").append(sessionMargin).append("\n");
-    sb.append("  targetExcessMargin: ").append(targetExcessMargin).append("\n");
-    sb.append("  varMargin: ").append(varMargin).append("\n");
-    sb.append("  realisedGrossPnl: ").append(realisedGrossPnl).append("\n");
-    sb.append("  realisedTax: ").append(realisedTax).append("\n");
     sb.append("  realisedPnl: ").append(realisedPnl).append("\n");
-    sb.append("  unrealisedGrossPnl: ").append(unrealisedGrossPnl).append("\n");
-    sb.append("  longBankrupt: ").append(longBankrupt).append("\n");
-    sb.append("  shortBankrupt: ").append(shortBankrupt).append("\n");
-    sb.append("  taxBase: ").append(taxBase).append("\n");
-    sb.append("  indicativeTaxRate: ").append(indicativeTaxRate).append("\n");
-    sb.append("  indicativeTax: ").append(indicativeTax).append("\n");
-    sb.append("  unrealisedTax: ").append(unrealisedTax).append("\n");
     sb.append("  unrealisedPnl: ").append(unrealisedPnl).append("\n");
     sb.append("  unrealisedPnlPcnt: ").append(unrealisedPnlPcnt).append("\n");
     sb.append("  unrealisedRoePcnt: ").append(unrealisedRoePcnt).append("\n");
-    sb.append("  simpleQty: ").append(simpleQty).append("\n");
-    sb.append("  simpleCost: ").append(simpleCost).append("\n");
-    sb.append("  simpleValue: ").append(simpleValue).append("\n");
-    sb.append("  simplePnl: ").append(simplePnl).append("\n");
-    sb.append("  simplePnlPcnt: ").append(simplePnlPcnt).append("\n");
     sb.append("  avgCostPrice: ").append(avgCostPrice).append("\n");
     sb.append("  avgEntryPrice: ").append(avgEntryPrice).append("\n");
     sb.append("  breakEvenPrice: ").append(breakEvenPrice).append("\n");
@@ -1410,8 +857,6 @@ public class Position {
     sb.append("  liquidationPrice: ").append(liquidationPrice).append("\n");
     sb.append("  bankruptPrice: ").append(bankruptPrice).append("\n");
     sb.append("  timestamp: ").append(timestamp).append("\n");
-    sb.append("  lastPrice: ").append(lastPrice).append("\n");
-    sb.append("  lastValue: ").append(lastValue).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -1,7 +1,7 @@
 /*
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * API version: 1.2.0
  * Contact: support@bitmex.com
@@ -24,14 +24,7 @@ type Instrument struct {
 	Front time.Time `json:"front,omitempty"`
 	Expiry time.Time `json:"expiry,omitempty"`
 	Settle time.Time `json:"settle,omitempty"`
-	RelistInterval time.Time `json:"relistInterval,omitempty"`
-	InverseLeg string `json:"inverseLeg,omitempty"`
-	SellLeg string `json:"sellLeg,omitempty"`
-	BuyLeg string `json:"buyLeg,omitempty"`
-	OptionStrikePcnt float64 `json:"optionStrikePcnt,omitempty"`
-	OptionStrikeRound float64 `json:"optionStrikeRound,omitempty"`
-	OptionStrikePrice float64 `json:"optionStrikePrice,omitempty"`
-	OptionMultiplier float64 `json:"optionMultiplier,omitempty"`
+	ListedSettle time.Time `json:"listedSettle,omitempty"`
 	PositionCurrency string `json:"positionCurrency,omitempty"`
 	Underlying string `json:"underlying,omitempty"`
 	QuoteCurrency string `json:"quoteCurrency,omitempty"`
@@ -57,13 +50,11 @@ type Instrument struct {
 	RiskLimit float32 `json:"riskLimit,omitempty"`
 	RiskStep float32 `json:"riskStep,omitempty"`
 	Limit float64 `json:"limit,omitempty"`
-	Capped bool `json:"capped,omitempty"`
 	Taxed bool `json:"taxed,omitempty"`
 	Deleverage bool `json:"deleverage,omitempty"`
 	MakerFee float64 `json:"makerFee,omitempty"`
 	TakerFee float64 `json:"takerFee,omitempty"`
 	SettlementFee float64 `json:"settlementFee,omitempty"`
-	InsuranceFee float64 `json:"insuranceFee,omitempty"`
 	FundingBaseSymbol string `json:"fundingBaseSymbol,omitempty"`
 	FundingQuoteSymbol string `json:"fundingQuoteSymbol,omitempty"`
 	FundingPremiumSymbol string `json:"fundingPremiumSymbol,omitempty"`
@@ -73,15 +64,9 @@ type Instrument struct {
 	IndicativeFundingRate float64 `json:"indicativeFundingRate,omitempty"`
 	RebalanceTimestamp time.Time `json:"rebalanceTimestamp,omitempty"`
 	RebalanceInterval time.Time `json:"rebalanceInterval,omitempty"`
-	OpeningTimestamp time.Time `json:"openingTimestamp,omitempty"`
-	ClosingTimestamp time.Time `json:"closingTimestamp,omitempty"`
-	SessionInterval time.Time `json:"sessionInterval,omitempty"`
 	PrevClosePrice float64 `json:"prevClosePrice,omitempty"`
 	LimitDownPrice float64 `json:"limitDownPrice,omitempty"`
 	LimitUpPrice float64 `json:"limitUpPrice,omitempty"`
-	BankruptLimitDownPrice float64 `json:"bankruptLimitDownPrice,omitempty"`
-	BankruptLimitUpPrice float64 `json:"bankruptLimitUpPrice,omitempty"`
-	PrevTotalVolume float32 `json:"prevTotalVolume,omitempty"`
 	TotalVolume float32 `json:"totalVolume,omitempty"`
 	Volume float32 `json:"volume,omitempty"`
 	Volume24h float32 `json:"volume24h,omitempty"`
@@ -114,9 +99,9 @@ type Instrument struct {
 	FairPrice float64 `json:"fairPrice,omitempty"`
 	MarkMethod string `json:"markMethod,omitempty"`
 	MarkPrice float64 `json:"markPrice,omitempty"`
-	IndicativeTaxRate float64 `json:"indicativeTaxRate,omitempty"`
 	IndicativeSettlePrice float64 `json:"indicativeSettlePrice,omitempty"`
-	OptionUnderlyingPrice float64 `json:"optionUnderlyingPrice,omitempty"`
+	SettledPriceAdjustmentRate float64 `json:"settledPriceAdjustmentRate,omitempty"`
 	SettledPrice float64 `json:"settledPrice,omitempty"`
+	InstantPnl bool `json:"instantPnl,omitempty"`
 	Timestamp time.Time `json:"timestamp,omitempty"`
 }

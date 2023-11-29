@@ -12,10 +12,7 @@ Use the `leavesQty` field to specify how much of the order you wish to remain op
 if you want to adjust your position's delta by a certain amount, regardless of how much of the order has
 already filled.
 
-> A `leavesQty` can be used to make a \"Filled\" order live again, if it is received within 60 seconds of the fill.
-
-Like order placement, amending can be done in bulk. Simply send a request to `PUT /api/v1/order/bulk` with
-a JSON body of the shape: `{\"orders\": [{...}, {...}]}`, each object containing the fields used in this endpoint."
+> A `leavesQty` can be used to make a \"Filled\" order live again, if it is received within 60 seconds of the fill."
   ([] (order-amend-with-http-info nil))
   ([{:keys [order-id orig-cl-ord-id cl-ord-id simple-order-qty order-qty simple-leaves-qty leaves-qty price stop-px peg-offset-value text ]}]
    (call-api "/order" :put
@@ -37,10 +34,7 @@ Use the `leavesQty` field to specify how much of the order you wish to remain op
 if you want to adjust your position's delta by a certain amount, regardless of how much of the order has
 already filled.
 
-> A `leavesQty` can be used to make a \"Filled\" order live again, if it is received within 60 seconds of the fill.
-
-Like order placement, amending can be done in bulk. Simply send a request to `PUT /api/v1/order/bulk` with
-a JSON body of the shape: `{\"orders\": [{...}, {...}]}`, each object containing the fields used in this endpoint."
+> A `leavesQty` can be used to make a \"Filled\" order live again, if it is received within 60 seconds of the fill."
   ([] (order-amend nil))
   ([optional-params]
    (:data (order-amend-with-http-info optional-params))))
@@ -69,12 +63,12 @@ a JSON body of the shape: `{\"orders\": [{...}, {...}]}`, each object containing
 (defn order-cancel-all-with-http-info
   "Cancels all of your orders."
   ([] (order-cancel-all-with-http-info nil))
-  ([{:keys [symbol filter text ]}]
+  ([{:keys [target-account-ids symbol filter text ]}]
    (call-api "/order/all" :delete
              {:path-params   {}
               :header-params {}
               :query-params  {}
-              :form-params   {"symbol" symbol "filter" filter "text" text }
+              :form-params   {"targetAccountIds" target-account-ids "symbol" symbol "filter" filter "text" text }
               :content-types ["application/json" "application/x-www-form-urlencoded"]
               :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
               :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
@@ -189,28 +183,81 @@ These are the valid `ordType`s:
   and `price`.
 - **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders.
 - **LimitIfTouched**: As above; use for Take Profit Limit orders.
+- **Pegged**: Pegged orders allow users to submit a limit price relative to the current market price. Specify a
+  `pegPriceType`, and `pegOffsetValue`.
+  - Pegged orders **must** have an `execInst` of `Fixed`. This means the limit price is set at the time the order
+    is accepted and does not change as the reference price changes.
+  - `PrimaryPeg`: Price is set relative to near touch price.
+  - `MarketPeg`: Price is set relative to far touch price.
+  - A `pegPriceType` submitted with no `ordType` is treated as a `Pegged` order.
 
 #### Execution Instructions
 
 The following `execInst`s are supported. If using multiple, separate with a comma (e.g. `LastPrice,Close`).
 
-- **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement,
-  it will cancel instead.
+- **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement, it will cancel instead.
+  This is intended to protect you from the far touch moving towards you while the order is in transit.
+  It is not intended for speculating on the far touch moving away after submission - we consider such behaviour abusive and monitor for it.
 - **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.
-  Use only one. By default, `'MarkPrice'` is used. Also used for Pegged orders to define the value of `'LastPeg'`.
-- **ReduceOnly**: A `'ReduceOnly'` order can only reduce your position, not increase it. If you have a `'ReduceOnly'`
+  Use only one. By default, `MarkPrice` is used. Also used for Pegged orders to define the value of `LastPeg`. IndexPrice is not applicable to spot trading symbols.
+- **ReduceOnly**: A `ReduceOnly` order can only reduce your position, not increase it. If you have a `ReduceOnly`
   limit order that rests in the order book while the position is reduced by other orders, then its order quantity will
-  be amended down or canceled. If there are multiple `'ReduceOnly'` orders the least aggressive will be amended first.
-- **Close**: `'Close'` implies `'ReduceOnly'`. A `'Close'` order will cancel other active limit orders with the same side
+  be amended down or canceled. If there are multiple `ReduceOnly` orders the least aggressive will be amended first. Not applicable to spot trading symbols.
+- **Close**: `Close` implies `ReduceOnly`. A `Close` order will cancel other active limit orders with the same side
   and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a
-  `'Close'` Stop is ensured to have the margin required to execute, and can only execute up to the full size of your
-  position. If `orderQty` is not specified, a `'Close'` order has an `orderQty` equal to your current position's size.
+  `Close` Stop is ensured to have the margin required to execute, and can only execute up to the full size of your
+  position. If `orderQty` is not specified, a `Close` order has an `orderQty` equal to your current position's size. Not applicable to spot trading symbols.
   - Note that a `Close` order without an `orderQty` requires a `side`, so that BitMEX knows if it should trigger
     above or below the `stopPx`.
+- **LastWithinMark**: Used by stop orders with `LastPrice` to allow stop triggers only when:
+  - For Sell Stop Market / Stop Limit Order
+    - Last Price &lt= Stop Price
+    - Last Price &gt= Mark Price × (1 - 5%)
+  - For Buy Stop Market / Stop Limit Order:
+    - Last Price &gt= Stop Price
+    - Last Price &lt= Mark Price × (1 + 5%)
+  - Not applicable to spot trading symbols.
+- **Fixed**: Pegged orders **must** have an `execInst` of `Fixed`. This means the limit price is set at the time
+  the order is accepted and does not change as the reference price changes.
+
+#### Pegged Orders
+
+Pegged orders allow users to submit a limit price relative to the current market price.
+The limit price is set once when the order is submitted and does not change with the reference price.
+This order type is not intended for speculating on the far touch moving away after submission - we consider such behaviour abusive and monitor for it.
+
+Pegged orders have an `ordType` of `Pegged`, and an `execInst` of `Fixed`.
+
+A `pegPriceType` and `pegOffsetValue` must also be submitted:
+
+- `PrimaryPeg` - price is set relative to the **near touch** price
+- `MarketPeg` - price is set relative to the **far touch** price
+
+#### Trailing Stop Pegged Orders
+
+Use `pegPriceType` of `TrailingStopPeg` to create Trailing Stops.
+
+The price is set at submission and updates once per second if the underlying price (last/mark/index) has moved by
+more than 0.1%. `stopPx` then moves as the market moves away from the peg, and freezes as the market moves toward it.
+
+Use `pegOffsetValue` to set the `stopPx` of your order. The peg is set to the triggering price specified in the
+`execInst` (default `MarkPrice`). Use a negative offset for stop-sell and buy-if-touched orders.
+
+Requires `ordType`: `Stop`, `StopLimit`, `MarketIfTouched`, `LimitIfTouched`.
 
 #### Linked Orders
 
-[Linked Orders are deprecated as of 2018/11/10](https://blog.bitmex.com/api_announcement/deprecation-of-contingent-orders/)
+Linked Orders are an advanced capability. It is very powerful, but its use requires careful coding and testing.
+Please follow this document carefully and use the [Testnet Exchange](https://testnet.bitmex.com) while developing.
+
+BitMEX offers four advanced Linked Order types:
+
+- **OCO**: _One Cancels the Other_. A very flexible version of the standard Stop / Take Profit technique.
+  Multiple orders may be linked together using a single `clOrdLinkID`. Send a `contingencyType` of
+  `OneCancelsTheOther` on the orders. The first order that fully or partially executes (or activates
+  for `Stop` orders) will cancel all other orders with the same `clOrdLinkID`.
+- **OTO**: _One Triggers the Other_. Send a `contingencyType` of `'OneTriggersTheOther'` on the primary order and
+  then subsequent orders with the same `clOrdLinkID` will be not be triggered until the primary order fully executes.
 
 #### Trailing Stops
 
@@ -228,11 +275,8 @@ Requires `ordType`: `'Stop', 'StopLimit', 'MarketIfTouched', 'LimitIfTouched'`.
 
 #### Rate Limits
 
-See the [Bulk Order Documentation](#!/Order/Order_newBulk) if you need to place multiple orders at the same time.
-Bulk orders require fewer risk checks in the trading engine and thus are ratelimited at **1/10** the normal rate.
-
-You can also improve your reactivity to market movements while staying under your ratelimit by using the
-[Amend](#!/Order/Order_amend) and [Amend Bulk](#!/Order/Order_amendBulk) endpoints. This allows you to stay
+You can improve your reactivity to market movements while staying under your rate limit by using the
+[Amend](#!/Order/Order_amend) endpoint (PUT /order). This allows you to stay
 in the market and avoids the cancel/replace cycle.
 
 #### Tracking Your Orders
@@ -285,28 +329,81 @@ These are the valid `ordType`s:
   and `price`.
 - **MarketIfTouched**: Similar to a Stop, but triggers are done in the opposite direction. Useful for Take Profit orders.
 - **LimitIfTouched**: As above; use for Take Profit Limit orders.
+- **Pegged**: Pegged orders allow users to submit a limit price relative to the current market price. Specify a
+  `pegPriceType`, and `pegOffsetValue`.
+  - Pegged orders **must** have an `execInst` of `Fixed`. This means the limit price is set at the time the order
+    is accepted and does not change as the reference price changes.
+  - `PrimaryPeg`: Price is set relative to near touch price.
+  - `MarketPeg`: Price is set relative to far touch price.
+  - A `pegPriceType` submitted with no `ordType` is treated as a `Pegged` order.
 
 #### Execution Instructions
 
 The following `execInst`s are supported. If using multiple, separate with a comma (e.g. `LastPrice,Close`).
 
-- **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement,
-  it will cancel instead.
+- **ParticipateDoNotInitiate**: Also known as a Post-Only order. If this order would have executed on placement, it will cancel instead.
+  This is intended to protect you from the far touch moving towards you while the order is in transit.
+  It is not intended for speculating on the far touch moving away after submission - we consider such behaviour abusive and monitor for it.
 - **MarkPrice, LastPrice, IndexPrice**: Used by stop and if-touched orders to determine the triggering price.
-  Use only one. By default, `'MarkPrice'` is used. Also used for Pegged orders to define the value of `'LastPeg'`.
-- **ReduceOnly**: A `'ReduceOnly'` order can only reduce your position, not increase it. If you have a `'ReduceOnly'`
+  Use only one. By default, `MarkPrice` is used. Also used for Pegged orders to define the value of `LastPeg`. IndexPrice is not applicable to spot trading symbols.
+- **ReduceOnly**: A `ReduceOnly` order can only reduce your position, not increase it. If you have a `ReduceOnly`
   limit order that rests in the order book while the position is reduced by other orders, then its order quantity will
-  be amended down or canceled. If there are multiple `'ReduceOnly'` orders the least aggressive will be amended first.
-- **Close**: `'Close'` implies `'ReduceOnly'`. A `'Close'` order will cancel other active limit orders with the same side
+  be amended down or canceled. If there are multiple `ReduceOnly` orders the least aggressive will be amended first. Not applicable to spot trading symbols.
+- **Close**: `Close` implies `ReduceOnly`. A `Close` order will cancel other active limit orders with the same side
   and symbol if the open quantity exceeds the current position. This is useful for stops: by canceling these orders, a
-  `'Close'` Stop is ensured to have the margin required to execute, and can only execute up to the full size of your
-  position. If `orderQty` is not specified, a `'Close'` order has an `orderQty` equal to your current position's size.
+  `Close` Stop is ensured to have the margin required to execute, and can only execute up to the full size of your
+  position. If `orderQty` is not specified, a `Close` order has an `orderQty` equal to your current position's size. Not applicable to spot trading symbols.
   - Note that a `Close` order without an `orderQty` requires a `side`, so that BitMEX knows if it should trigger
     above or below the `stopPx`.
+- **LastWithinMark**: Used by stop orders with `LastPrice` to allow stop triggers only when:
+  - For Sell Stop Market / Stop Limit Order
+    - Last Price &lt= Stop Price
+    - Last Price &gt= Mark Price × (1 - 5%)
+  - For Buy Stop Market / Stop Limit Order:
+    - Last Price &gt= Stop Price
+    - Last Price &lt= Mark Price × (1 + 5%)
+  - Not applicable to spot trading symbols.
+- **Fixed**: Pegged orders **must** have an `execInst` of `Fixed`. This means the limit price is set at the time
+  the order is accepted and does not change as the reference price changes.
+
+#### Pegged Orders
+
+Pegged orders allow users to submit a limit price relative to the current market price.
+The limit price is set once when the order is submitted and does not change with the reference price.
+This order type is not intended for speculating on the far touch moving away after submission - we consider such behaviour abusive and monitor for it.
+
+Pegged orders have an `ordType` of `Pegged`, and an `execInst` of `Fixed`.
+
+A `pegPriceType` and `pegOffsetValue` must also be submitted:
+
+- `PrimaryPeg` - price is set relative to the **near touch** price
+- `MarketPeg` - price is set relative to the **far touch** price
+
+#### Trailing Stop Pegged Orders
+
+Use `pegPriceType` of `TrailingStopPeg` to create Trailing Stops.
+
+The price is set at submission and updates once per second if the underlying price (last/mark/index) has moved by
+more than 0.1%. `stopPx` then moves as the market moves away from the peg, and freezes as the market moves toward it.
+
+Use `pegOffsetValue` to set the `stopPx` of your order. The peg is set to the triggering price specified in the
+`execInst` (default `MarkPrice`). Use a negative offset for stop-sell and buy-if-touched orders.
+
+Requires `ordType`: `Stop`, `StopLimit`, `MarketIfTouched`, `LimitIfTouched`.
 
 #### Linked Orders
 
-[Linked Orders are deprecated as of 2018/11/10](https://blog.bitmex.com/api_announcement/deprecation-of-contingent-orders/)
+Linked Orders are an advanced capability. It is very powerful, but its use requires careful coding and testing.
+Please follow this document carefully and use the [Testnet Exchange](https://testnet.bitmex.com) while developing.
+
+BitMEX offers four advanced Linked Order types:
+
+- **OCO**: _One Cancels the Other_. A very flexible version of the standard Stop / Take Profit technique.
+  Multiple orders may be linked together using a single `clOrdLinkID`. Send a `contingencyType` of
+  `OneCancelsTheOther` on the orders. The first order that fully or partially executes (or activates
+  for `Stop` orders) will cancel all other orders with the same `clOrdLinkID`.
+- **OTO**: _One Triggers the Other_. Send a `contingencyType` of `'OneTriggersTheOther'` on the primary order and
+  then subsequent orders with the same `clOrdLinkID` will be not be triggered until the primary order fully executes.
 
 #### Trailing Stops
 
@@ -324,11 +421,8 @@ Requires `ordType`: `'Stop', 'StopLimit', 'MarketIfTouched', 'LimitIfTouched'`.
 
 #### Rate Limits
 
-See the [Bulk Order Documentation](#!/Order/Order_newBulk) if you need to place multiple orders at the same time.
-Bulk orders require fewer risk checks in the trading engine and thus are ratelimited at **1/10** the normal rate.
-
-You can also improve your reactivity to market movements while staying under your ratelimit by using the
-[Amend](#!/Order/Order_amend) and [Amend Bulk](#!/Order/Order_amendBulk) endpoints. This allows you to stay
+You can improve your reactivity to market movements while staying under your rate limit by using the
+[Amend](#!/Order/Order_amend) endpoint (PUT /order). This allows you to stay
 in the market and avoids the cancel/replace cycle.
 
 #### Tracking Your Orders

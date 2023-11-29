@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**chatGet**](ChatApi.md#chatGet) | **GET** /chat | Get chat messages.
 [**chatGetChannels**](ChatApi.md#chatGetChannels) | **GET** /chat/channels | Get available channels.
 [**chatGetConnected**](ChatApi.md#chatGetConnected) | **GET** /chat/connected | Get connected users.
+[**chatGetPinnedMessage**](ChatApi.md#chatGetPinnedMessage) | **GET** /chat/pinned | Get pinned message for a channel.
 [**chatNew**](ChatApi.md#chatNew) | **POST** /chat | Send a chat message.
 
 
@@ -25,7 +26,7 @@ ChatApi apiInstance = new ChatApi();
 BigDecimal count = new BigDecimal(); // BigDecimal | Number of results to fetch.
 BigDecimal start = new BigDecimal(); // BigDecimal | Starting ID for results.
 Boolean reverse = true; // Boolean | If true, will sort results newest first.
-Double channelID = 3.4D; // Double | Channel id. GET /chat/channels for ids. Leave blank for all.
+Double channelID = 3.4D; // Double | Channel id. GET /chat/channels for ids. Global English by default
 try {
     List<Chat> result = apiInstance.chatGet(count, start, reverse, channelID);
     System.out.println(result);
@@ -42,7 +43,7 @@ Name | Type | Description  | Notes
  **count** | **BigDecimal**| Number of results to fetch. | [optional] [default to 100]
  **start** | **BigDecimal**| Starting ID for results. | [optional] [default to 0]
  **reverse** | **Boolean**| If true, will sort results newest first. | [optional] [default to true]
- **channelID** | **Double**| Channel id. GET /chat/channels for ids. Leave blank for all. | [optional]
+ **channelID** | **Double**| Channel id. GET /chat/channels for ids. Global English by default | [optional] [default to 1]
 
 ### Return type
 
@@ -123,6 +124,47 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**ConnectedUsers**](ConnectedUsers.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+<a name="chatGetPinnedMessage"></a>
+# **chatGetPinnedMessage**
+> PinnedMessage chatGetPinnedMessage(channelID)
+
+Get pinned message for a channel.
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.api.ChatApi;
+
+ChatApi apiInstance = new ChatApi();
+Double channelID = 3.4D; // Double | 
+try {
+    PinnedMessage result = apiInstance.chatGetPinnedMessage(channelID);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ChatApi#chatGetPinnedMessage");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **channelID** | **Double**|  |
+
+### Return type
+
+[**PinnedMessage**](PinnedMessage.md)
 
 ### Authorization
 

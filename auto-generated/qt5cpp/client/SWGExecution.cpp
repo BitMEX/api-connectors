@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -55,14 +55,8 @@ SWGExecution::init() {
     m_last_qty_isSet = false;
     last_px = 0.0;
     m_last_px_isSet = false;
-    underlying_last_px = 0.0;
-    m_underlying_last_px_isSet = false;
-    last_mkt = new QString("");
-    m_last_mkt_isSet = false;
     last_liquidity_ind = new QString("");
     m_last_liquidity_ind_isSet = false;
-    simple_order_qty = 0.0;
-    m_simple_order_qty_isSet = false;
     order_qty = 0.0;
     m_order_qty_isSet = false;
     price = 0.0;
@@ -89,8 +83,6 @@ SWGExecution::init() {
     m_exec_inst_isSet = false;
     contingency_type = new QString("");
     m_contingency_type_isSet = false;
-    ex_destination = new QString("");
-    m_ex_destination_isSet = false;
     ord_status = new QString("");
     m_ord_status_isSet = false;
     triggered = new QString("");
@@ -99,12 +91,8 @@ SWGExecution::init() {
     m_working_indicator_isSet = false;
     ord_rej_reason = new QString("");
     m_ord_rej_reason_isSet = false;
-    simple_leaves_qty = 0.0;
-    m_simple_leaves_qty_isSet = false;
     leaves_qty = 0.0;
     m_leaves_qty_isSet = false;
-    simple_cum_qty = 0.0;
-    m_simple_cum_qty_isSet = false;
     cum_qty = 0.0;
     m_cum_qty_isSet = false;
     avg_px = 0.0;
@@ -113,8 +101,6 @@ SWGExecution::init() {
     m_commission_isSet = false;
     trade_publish_indicator = new QString("");
     m_trade_publish_indicator_isSet = false;
-    multi_leg_reporting_type = new QString("");
-    m_multi_leg_reporting_type_isSet = false;
     text = new QString("");
     m_text_isSet = false;
     trd_match_id = new QString("");
@@ -131,6 +117,16 @@ SWGExecution::init() {
     m_transact_time_isSet = false;
     timestamp = NULL;
     m_timestamp_isSet = false;
+    exec_gross_pnl = 0.0;
+    m_exec_gross_pnl_isSet = false;
+    current_qty = 0.0;
+    m_current_qty_isSet = false;
+    avg_entry_price = 0.0;
+    m_avg_entry_price_isSet = false;
+    realised_pnl = 0.0;
+    m_realised_pnl_isSet = false;
+    unrealised_pnl = 0.0;
+    m_unrealised_pnl_isSet = false;
 }
 
 void
@@ -147,30 +143,19 @@ SWGExecution::cleanup() {
     if(cl_ord_link_id != nullptr) { 
         delete cl_ord_link_id;
     }
-    if(account != nullptr) { 
-        delete account;
-    }
+
     if(symbol != nullptr) { 
         delete symbol;
     }
     if(side != nullptr) { 
         delete side;
     }
-    if(last_qty != nullptr) { 
-        delete last_qty;
-    }
 
 
-    if(last_mkt != nullptr) { 
-        delete last_mkt;
-    }
     if(last_liquidity_ind != nullptr) { 
         delete last_liquidity_ind;
     }
 
-    if(order_qty != nullptr) { 
-        delete order_qty;
-    }
 
     if(display_qty != nullptr) { 
         delete display_qty;
@@ -201,9 +186,6 @@ SWGExecution::cleanup() {
     if(contingency_type != nullptr) { 
         delete contingency_type;
     }
-    if(ex_destination != nullptr) { 
-        delete ex_destination;
-    }
     if(ord_status != nullptr) { 
         delete ord_status;
     }
@@ -215,10 +197,6 @@ SWGExecution::cleanup() {
         delete ord_rej_reason;
     }
 
-    if(leaves_qty != nullptr) { 
-        delete leaves_qty;
-    }
-
     if(cum_qty != nullptr) { 
         delete cum_qty;
     }
@@ -227,21 +205,14 @@ SWGExecution::cleanup() {
     if(trade_publish_indicator != nullptr) { 
         delete trade_publish_indicator;
     }
-    if(multi_leg_reporting_type != nullptr) { 
-        delete multi_leg_reporting_type;
-    }
     if(text != nullptr) { 
         delete text;
     }
     if(trd_match_id != nullptr) { 
         delete trd_match_id;
     }
-    if(exec_cost != nullptr) { 
-        delete exec_cost;
-    }
-    if(exec_comm != nullptr) { 
-        delete exec_comm;
-    }
+
+
 
 
     if(transact_time != nullptr) { 
@@ -250,6 +221,11 @@ SWGExecution::cleanup() {
     if(timestamp != nullptr) { 
         delete timestamp;
     }
+
+
+
+
+
 }
 
 SWGExecution*
@@ -271,25 +247,19 @@ SWGExecution::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&cl_ord_link_id, pJson["clOrdLinkID"], "QString", "QString");
     
-    ::Swagger::setValue(&account, pJson["account"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&account, pJson["account"], "double", "");
     
     ::Swagger::setValue(&symbol, pJson["symbol"], "QString", "QString");
     
     ::Swagger::setValue(&side, pJson["side"], "QString", "QString");
     
-    ::Swagger::setValue(&last_qty, pJson["lastQty"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&last_qty, pJson["lastQty"], "double", "");
     
     ::Swagger::setValue(&last_px, pJson["lastPx"], "double", "");
     
-    ::Swagger::setValue(&underlying_last_px, pJson["underlyingLastPx"], "double", "");
-    
-    ::Swagger::setValue(&last_mkt, pJson["lastMkt"], "QString", "QString");
-    
     ::Swagger::setValue(&last_liquidity_ind, pJson["lastLiquidityInd"], "QString", "QString");
     
-    ::Swagger::setValue(&simple_order_qty, pJson["simpleOrderQty"], "double", "");
-    
-    ::Swagger::setValue(&order_qty, pJson["orderQty"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&order_qty, pJson["orderQty"], "double", "");
     
     ::Swagger::setValue(&price, pJson["price"], "double", "");
     
@@ -315,8 +285,6 @@ SWGExecution::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&contingency_type, pJson["contingencyType"], "QString", "QString");
     
-    ::Swagger::setValue(&ex_destination, pJson["exDestination"], "QString", "QString");
-    
     ::Swagger::setValue(&ord_status, pJson["ordStatus"], "QString", "QString");
     
     ::Swagger::setValue(&triggered, pJson["triggered"], "QString", "QString");
@@ -325,11 +293,7 @@ SWGExecution::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&ord_rej_reason, pJson["ordRejReason"], "QString", "QString");
     
-    ::Swagger::setValue(&simple_leaves_qty, pJson["simpleLeavesQty"], "double", "");
-    
-    ::Swagger::setValue(&leaves_qty, pJson["leavesQty"], "SWGNumber", "SWGNumber");
-    
-    ::Swagger::setValue(&simple_cum_qty, pJson["simpleCumQty"], "double", "");
+    ::Swagger::setValue(&leaves_qty, pJson["leavesQty"], "double", "");
     
     ::Swagger::setValue(&cum_qty, pJson["cumQty"], "SWGNumber", "SWGNumber");
     
@@ -339,15 +303,13 @@ SWGExecution::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&trade_publish_indicator, pJson["tradePublishIndicator"], "QString", "QString");
     
-    ::Swagger::setValue(&multi_leg_reporting_type, pJson["multiLegReportingType"], "QString", "QString");
-    
     ::Swagger::setValue(&text, pJson["text"], "QString", "QString");
     
     ::Swagger::setValue(&trd_match_id, pJson["trdMatchID"], "QString", "QString");
     
-    ::Swagger::setValue(&exec_cost, pJson["execCost"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&exec_cost, pJson["execCost"], "double", "");
     
-    ::Swagger::setValue(&exec_comm, pJson["execComm"], "SWGNumber", "SWGNumber");
+    ::Swagger::setValue(&exec_comm, pJson["execComm"], "double", "");
     
     ::Swagger::setValue(&home_notional, pJson["homeNotional"], "double", "");
     
@@ -356,6 +318,16 @@ SWGExecution::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&transact_time, pJson["transactTime"], "QDateTime", "QDateTime");
     
     ::Swagger::setValue(&timestamp, pJson["timestamp"], "QDateTime", "QDateTime");
+    
+    ::Swagger::setValue(&exec_gross_pnl, pJson["execGrossPnl"], "double", "");
+    
+    ::Swagger::setValue(&current_qty, pJson["currentQty"], "double", "");
+    
+    ::Swagger::setValue(&avg_entry_price, pJson["avgEntryPrice"], "double", "");
+    
+    ::Swagger::setValue(&realised_pnl, pJson["realisedPnl"], "double", "");
+    
+    ::Swagger::setValue(&unrealised_pnl, pJson["unrealisedPnl"], "double", "");
     
 }
 
@@ -383,8 +355,8 @@ SWGExecution::asJsonObject() {
     if(cl_ord_link_id != nullptr && *cl_ord_link_id != QString("")){
         toJsonValue(QString("clOrdLinkID"), cl_ord_link_id, obj, QString("QString"));
     }
-    if((account != nullptr) && (account->isSet())){
-        toJsonValue(QString("account"), account, obj, QString("SWGNumber"));
+    if(m_account_isSet){
+        obj.insert("account", QJsonValue(account));
     }
     if(symbol != nullptr && *symbol != QString("")){
         toJsonValue(QString("symbol"), symbol, obj, QString("QString"));
@@ -392,26 +364,17 @@ SWGExecution::asJsonObject() {
     if(side != nullptr && *side != QString("")){
         toJsonValue(QString("side"), side, obj, QString("QString"));
     }
-    if((last_qty != nullptr) && (last_qty->isSet())){
-        toJsonValue(QString("lastQty"), last_qty, obj, QString("SWGNumber"));
+    if(m_last_qty_isSet){
+        obj.insert("lastQty", QJsonValue(last_qty));
     }
     if(m_last_px_isSet){
         obj.insert("lastPx", QJsonValue(last_px));
     }
-    if(m_underlying_last_px_isSet){
-        obj.insert("underlyingLastPx", QJsonValue(underlying_last_px));
-    }
-    if(last_mkt != nullptr && *last_mkt != QString("")){
-        toJsonValue(QString("lastMkt"), last_mkt, obj, QString("QString"));
-    }
     if(last_liquidity_ind != nullptr && *last_liquidity_ind != QString("")){
         toJsonValue(QString("lastLiquidityInd"), last_liquidity_ind, obj, QString("QString"));
     }
-    if(m_simple_order_qty_isSet){
-        obj.insert("simpleOrderQty", QJsonValue(simple_order_qty));
-    }
-    if((order_qty != nullptr) && (order_qty->isSet())){
-        toJsonValue(QString("orderQty"), order_qty, obj, QString("SWGNumber"));
+    if(m_order_qty_isSet){
+        obj.insert("orderQty", QJsonValue(order_qty));
     }
     if(m_price_isSet){
         obj.insert("price", QJsonValue(price));
@@ -449,9 +412,6 @@ SWGExecution::asJsonObject() {
     if(contingency_type != nullptr && *contingency_type != QString("")){
         toJsonValue(QString("contingencyType"), contingency_type, obj, QString("QString"));
     }
-    if(ex_destination != nullptr && *ex_destination != QString("")){
-        toJsonValue(QString("exDestination"), ex_destination, obj, QString("QString"));
-    }
     if(ord_status != nullptr && *ord_status != QString("")){
         toJsonValue(QString("ordStatus"), ord_status, obj, QString("QString"));
     }
@@ -464,14 +424,8 @@ SWGExecution::asJsonObject() {
     if(ord_rej_reason != nullptr && *ord_rej_reason != QString("")){
         toJsonValue(QString("ordRejReason"), ord_rej_reason, obj, QString("QString"));
     }
-    if(m_simple_leaves_qty_isSet){
-        obj.insert("simpleLeavesQty", QJsonValue(simple_leaves_qty));
-    }
-    if((leaves_qty != nullptr) && (leaves_qty->isSet())){
-        toJsonValue(QString("leavesQty"), leaves_qty, obj, QString("SWGNumber"));
-    }
-    if(m_simple_cum_qty_isSet){
-        obj.insert("simpleCumQty", QJsonValue(simple_cum_qty));
+    if(m_leaves_qty_isSet){
+        obj.insert("leavesQty", QJsonValue(leaves_qty));
     }
     if((cum_qty != nullptr) && (cum_qty->isSet())){
         toJsonValue(QString("cumQty"), cum_qty, obj, QString("SWGNumber"));
@@ -485,20 +439,17 @@ SWGExecution::asJsonObject() {
     if(trade_publish_indicator != nullptr && *trade_publish_indicator != QString("")){
         toJsonValue(QString("tradePublishIndicator"), trade_publish_indicator, obj, QString("QString"));
     }
-    if(multi_leg_reporting_type != nullptr && *multi_leg_reporting_type != QString("")){
-        toJsonValue(QString("multiLegReportingType"), multi_leg_reporting_type, obj, QString("QString"));
-    }
     if(text != nullptr && *text != QString("")){
         toJsonValue(QString("text"), text, obj, QString("QString"));
     }
     if(trd_match_id != nullptr && *trd_match_id != QString("")){
         toJsonValue(QString("trdMatchID"), trd_match_id, obj, QString("QString"));
     }
-    if((exec_cost != nullptr) && (exec_cost->isSet())){
-        toJsonValue(QString("execCost"), exec_cost, obj, QString("SWGNumber"));
+    if(m_exec_cost_isSet){
+        obj.insert("execCost", QJsonValue(exec_cost));
     }
-    if((exec_comm != nullptr) && (exec_comm->isSet())){
-        toJsonValue(QString("execComm"), exec_comm, obj, QString("SWGNumber"));
+    if(m_exec_comm_isSet){
+        obj.insert("execComm", QJsonValue(exec_comm));
     }
     if(m_home_notional_isSet){
         obj.insert("homeNotional", QJsonValue(home_notional));
@@ -511,6 +462,21 @@ SWGExecution::asJsonObject() {
     }
     if(timestamp != nullptr) { 
         toJsonValue(QString("timestamp"), timestamp, obj, QString("QDateTime"));
+    }
+    if(m_exec_gross_pnl_isSet){
+        obj.insert("execGrossPnl", QJsonValue(exec_gross_pnl));
+    }
+    if(m_current_qty_isSet){
+        obj.insert("currentQty", QJsonValue(current_qty));
+    }
+    if(m_avg_entry_price_isSet){
+        obj.insert("avgEntryPrice", QJsonValue(avg_entry_price));
+    }
+    if(m_realised_pnl_isSet){
+        obj.insert("realisedPnl", QJsonValue(realised_pnl));
+    }
+    if(m_unrealised_pnl_isSet){
+        obj.insert("unrealisedPnl", QJsonValue(unrealised_pnl));
     }
 
     return obj;
@@ -556,12 +522,12 @@ SWGExecution::setClOrdLinkId(QString* cl_ord_link_id) {
     this->m_cl_ord_link_id_isSet = true;
 }
 
-SWGNumber*
+double
 SWGExecution::getAccount() {
     return account;
 }
 void
-SWGExecution::setAccount(SWGNumber* account) {
+SWGExecution::setAccount(double account) {
     this->account = account;
     this->m_account_isSet = true;
 }
@@ -586,12 +552,12 @@ SWGExecution::setSide(QString* side) {
     this->m_side_isSet = true;
 }
 
-SWGNumber*
+double
 SWGExecution::getLastQty() {
     return last_qty;
 }
 void
-SWGExecution::setLastQty(SWGNumber* last_qty) {
+SWGExecution::setLastQty(double last_qty) {
     this->last_qty = last_qty;
     this->m_last_qty_isSet = true;
 }
@@ -606,26 +572,6 @@ SWGExecution::setLastPx(double last_px) {
     this->m_last_px_isSet = true;
 }
 
-double
-SWGExecution::getUnderlyingLastPx() {
-    return underlying_last_px;
-}
-void
-SWGExecution::setUnderlyingLastPx(double underlying_last_px) {
-    this->underlying_last_px = underlying_last_px;
-    this->m_underlying_last_px_isSet = true;
-}
-
-QString*
-SWGExecution::getLastMkt() {
-    return last_mkt;
-}
-void
-SWGExecution::setLastMkt(QString* last_mkt) {
-    this->last_mkt = last_mkt;
-    this->m_last_mkt_isSet = true;
-}
-
 QString*
 SWGExecution::getLastLiquidityInd() {
     return last_liquidity_ind;
@@ -637,21 +583,11 @@ SWGExecution::setLastLiquidityInd(QString* last_liquidity_ind) {
 }
 
 double
-SWGExecution::getSimpleOrderQty() {
-    return simple_order_qty;
-}
-void
-SWGExecution::setSimpleOrderQty(double simple_order_qty) {
-    this->simple_order_qty = simple_order_qty;
-    this->m_simple_order_qty_isSet = true;
-}
-
-SWGNumber*
 SWGExecution::getOrderQty() {
     return order_qty;
 }
 void
-SWGExecution::setOrderQty(SWGNumber* order_qty) {
+SWGExecution::setOrderQty(double order_qty) {
     this->order_qty = order_qty;
     this->m_order_qty_isSet = true;
 }
@@ -777,16 +713,6 @@ SWGExecution::setContingencyType(QString* contingency_type) {
 }
 
 QString*
-SWGExecution::getExDestination() {
-    return ex_destination;
-}
-void
-SWGExecution::setExDestination(QString* ex_destination) {
-    this->ex_destination = ex_destination;
-    this->m_ex_destination_isSet = true;
-}
-
-QString*
 SWGExecution::getOrdStatus() {
     return ord_status;
 }
@@ -827,33 +753,13 @@ SWGExecution::setOrdRejReason(QString* ord_rej_reason) {
 }
 
 double
-SWGExecution::getSimpleLeavesQty() {
-    return simple_leaves_qty;
-}
-void
-SWGExecution::setSimpleLeavesQty(double simple_leaves_qty) {
-    this->simple_leaves_qty = simple_leaves_qty;
-    this->m_simple_leaves_qty_isSet = true;
-}
-
-SWGNumber*
 SWGExecution::getLeavesQty() {
     return leaves_qty;
 }
 void
-SWGExecution::setLeavesQty(SWGNumber* leaves_qty) {
+SWGExecution::setLeavesQty(double leaves_qty) {
     this->leaves_qty = leaves_qty;
     this->m_leaves_qty_isSet = true;
-}
-
-double
-SWGExecution::getSimpleCumQty() {
-    return simple_cum_qty;
-}
-void
-SWGExecution::setSimpleCumQty(double simple_cum_qty) {
-    this->simple_cum_qty = simple_cum_qty;
-    this->m_simple_cum_qty_isSet = true;
 }
 
 SWGNumber*
@@ -897,16 +803,6 @@ SWGExecution::setTradePublishIndicator(QString* trade_publish_indicator) {
 }
 
 QString*
-SWGExecution::getMultiLegReportingType() {
-    return multi_leg_reporting_type;
-}
-void
-SWGExecution::setMultiLegReportingType(QString* multi_leg_reporting_type) {
-    this->multi_leg_reporting_type = multi_leg_reporting_type;
-    this->m_multi_leg_reporting_type_isSet = true;
-}
-
-QString*
 SWGExecution::getText() {
     return text;
 }
@@ -926,22 +822,22 @@ SWGExecution::setTrdMatchId(QString* trd_match_id) {
     this->m_trd_match_id_isSet = true;
 }
 
-SWGNumber*
+double
 SWGExecution::getExecCost() {
     return exec_cost;
 }
 void
-SWGExecution::setExecCost(SWGNumber* exec_cost) {
+SWGExecution::setExecCost(double exec_cost) {
     this->exec_cost = exec_cost;
     this->m_exec_cost_isSet = true;
 }
 
-SWGNumber*
+double
 SWGExecution::getExecComm() {
     return exec_comm;
 }
 void
-SWGExecution::setExecComm(SWGNumber* exec_comm) {
+SWGExecution::setExecComm(double exec_comm) {
     this->exec_comm = exec_comm;
     this->m_exec_comm_isSet = true;
 }
@@ -986,6 +882,56 @@ SWGExecution::setTimestamp(QDateTime* timestamp) {
     this->m_timestamp_isSet = true;
 }
 
+double
+SWGExecution::getExecGrossPnl() {
+    return exec_gross_pnl;
+}
+void
+SWGExecution::setExecGrossPnl(double exec_gross_pnl) {
+    this->exec_gross_pnl = exec_gross_pnl;
+    this->m_exec_gross_pnl_isSet = true;
+}
+
+double
+SWGExecution::getCurrentQty() {
+    return current_qty;
+}
+void
+SWGExecution::setCurrentQty(double current_qty) {
+    this->current_qty = current_qty;
+    this->m_current_qty_isSet = true;
+}
+
+double
+SWGExecution::getAvgEntryPrice() {
+    return avg_entry_price;
+}
+void
+SWGExecution::setAvgEntryPrice(double avg_entry_price) {
+    this->avg_entry_price = avg_entry_price;
+    this->m_avg_entry_price_isSet = true;
+}
+
+double
+SWGExecution::getRealisedPnl() {
+    return realised_pnl;
+}
+void
+SWGExecution::setRealisedPnl(double realised_pnl) {
+    this->realised_pnl = realised_pnl;
+    this->m_realised_pnl_isSet = true;
+}
+
+double
+SWGExecution::getUnrealisedPnl() {
+    return unrealised_pnl;
+}
+void
+SWGExecution::setUnrealisedPnl(double unrealised_pnl) {
+    this->unrealised_pnl = unrealised_pnl;
+    this->m_unrealised_pnl_isSet = true;
+}
+
 
 bool
 SWGExecution::isSet(){
@@ -995,16 +941,13 @@ SWGExecution::isSet(){
         if(order_id != nullptr && *order_id != QString("")){ isObjectUpdated = true; break;}
         if(cl_ord_id != nullptr && *cl_ord_id != QString("")){ isObjectUpdated = true; break;}
         if(cl_ord_link_id != nullptr && *cl_ord_link_id != QString("")){ isObjectUpdated = true; break;}
-        if(account != nullptr && account->isSet()){ isObjectUpdated = true; break;}
+        if(m_account_isSet){ isObjectUpdated = true; break;}
         if(symbol != nullptr && *symbol != QString("")){ isObjectUpdated = true; break;}
         if(side != nullptr && *side != QString("")){ isObjectUpdated = true; break;}
-        if(last_qty != nullptr && last_qty->isSet()){ isObjectUpdated = true; break;}
+        if(m_last_qty_isSet){ isObjectUpdated = true; break;}
         if(m_last_px_isSet){ isObjectUpdated = true; break;}
-        if(m_underlying_last_px_isSet){ isObjectUpdated = true; break;}
-        if(last_mkt != nullptr && *last_mkt != QString("")){ isObjectUpdated = true; break;}
         if(last_liquidity_ind != nullptr && *last_liquidity_ind != QString("")){ isObjectUpdated = true; break;}
-        if(m_simple_order_qty_isSet){ isObjectUpdated = true; break;}
-        if(order_qty != nullptr && order_qty->isSet()){ isObjectUpdated = true; break;}
+        if(m_order_qty_isSet){ isObjectUpdated = true; break;}
         if(m_price_isSet){ isObjectUpdated = true; break;}
         if(display_qty != nullptr && display_qty->isSet()){ isObjectUpdated = true; break;}
         if(m_stop_px_isSet){ isObjectUpdated = true; break;}
@@ -1017,27 +960,28 @@ SWGExecution::isSet(){
         if(time_in_force != nullptr && *time_in_force != QString("")){ isObjectUpdated = true; break;}
         if(exec_inst != nullptr && *exec_inst != QString("")){ isObjectUpdated = true; break;}
         if(contingency_type != nullptr && *contingency_type != QString("")){ isObjectUpdated = true; break;}
-        if(ex_destination != nullptr && *ex_destination != QString("")){ isObjectUpdated = true; break;}
         if(ord_status != nullptr && *ord_status != QString("")){ isObjectUpdated = true; break;}
         if(triggered != nullptr && *triggered != QString("")){ isObjectUpdated = true; break;}
         if(m_working_indicator_isSet){ isObjectUpdated = true; break;}
         if(ord_rej_reason != nullptr && *ord_rej_reason != QString("")){ isObjectUpdated = true; break;}
-        if(m_simple_leaves_qty_isSet){ isObjectUpdated = true; break;}
-        if(leaves_qty != nullptr && leaves_qty->isSet()){ isObjectUpdated = true; break;}
-        if(m_simple_cum_qty_isSet){ isObjectUpdated = true; break;}
+        if(m_leaves_qty_isSet){ isObjectUpdated = true; break;}
         if(cum_qty != nullptr && cum_qty->isSet()){ isObjectUpdated = true; break;}
         if(m_avg_px_isSet){ isObjectUpdated = true; break;}
         if(m_commission_isSet){ isObjectUpdated = true; break;}
         if(trade_publish_indicator != nullptr && *trade_publish_indicator != QString("")){ isObjectUpdated = true; break;}
-        if(multi_leg_reporting_type != nullptr && *multi_leg_reporting_type != QString("")){ isObjectUpdated = true; break;}
         if(text != nullptr && *text != QString("")){ isObjectUpdated = true; break;}
         if(trd_match_id != nullptr && *trd_match_id != QString("")){ isObjectUpdated = true; break;}
-        if(exec_cost != nullptr && exec_cost->isSet()){ isObjectUpdated = true; break;}
-        if(exec_comm != nullptr && exec_comm->isSet()){ isObjectUpdated = true; break;}
+        if(m_exec_cost_isSet){ isObjectUpdated = true; break;}
+        if(m_exec_comm_isSet){ isObjectUpdated = true; break;}
         if(m_home_notional_isSet){ isObjectUpdated = true; break;}
         if(m_foreign_notional_isSet){ isObjectUpdated = true; break;}
         
         
+        if(m_exec_gross_pnl_isSet){ isObjectUpdated = true; break;}
+        if(m_current_qty_isSet){ isObjectUpdated = true; break;}
+        if(m_avg_entry_price_isSet){ isObjectUpdated = true; break;}
+        if(m_realised_pnl_isSet){ isObjectUpdated = true; break;}
+        if(m_unrealised_pnl_isSet){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;
 }

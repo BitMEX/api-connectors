@@ -8,6 +8,8 @@
 
 The fields _account_, _symbol_, _currency_ are unique to each position and form its key.
 
+Spot trading symbols do not return any position data.
+
 - **account**: Your unique account ID.
 - **symbol**: The contract for this position.
 - **currency**: The margin currency for this position.
@@ -27,14 +29,12 @@ The fields _account_, _symbol_, _currency_ are unique to each position and form 
 - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_).
 - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting.
 - **unrealisedCost**: _currentCost_ - _realisedCost_.
-- **grossOpenCost**: The absolute value of your open orders for this symbol.
 - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_).
 - **markPrice**: The mark price of the symbol in _quoteCurrency_.
 - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_).
 - **homeNotional**: Value of position in units of _underlying_.
 - **foreignNotional**: Value of position in units of _quoteCurrency_.
 - **realisedPnl**: The negative of _realisedCost_.
-- **unrealisedGrossPnl**: _markValue_ - _unrealisedCost_.
 - **unrealisedPnl**: _unrealisedGrossPnl_.
 - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated.
 - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity."
@@ -55,6 +55,8 @@ The fields _account_, _symbol_, _currency_ are unique to each position and form 
 
 The fields _account_, _symbol_, _currency_ are unique to each position and form its key.
 
+Spot trading symbols do not return any position data.
+
 - **account**: Your unique account ID.
 - **symbol**: The contract for this position.
 - **currency**: The margin currency for this position.
@@ -74,14 +76,12 @@ The fields _account_, _symbol_, _currency_ are unique to each position and form 
 - **currentComm**: The current commission of the position in the settlement currency of the symbol (_currency_).
 - **realisedCost**: The realised cost of this position calculated with regard to average cost accounting.
 - **unrealisedCost**: _currentCost_ - _realisedCost_.
-- **grossOpenCost**: The absolute value of your open orders for this symbol.
 - **grossOpenPremium**: The amount your bidding above the mark price in the settlement currency of the symbol (_currency_).
 - **markPrice**: The mark price of the symbol in _quoteCurrency_.
 - **markValue**: The _currentQty_ at the mark price in the settlement currency of the symbol (_currency_).
 - **homeNotional**: Value of position in units of _underlying_.
 - **foreignNotional**: Value of position in units of _quoteCurrency_.
 - **realisedPnl**: The negative of _realisedCost_.
-- **unrealisedGrossPnl**: _markValue_ - _unrealisedCost_.
 - **unrealisedPnl**: _unrealisedGrossPnl_.
 - **liquidationPrice**: Once markPrice reaches this price, this position will be liquidated.
 - **bankruptPrice**: Once markPrice reaches this price, this position will have no equity."
@@ -90,7 +90,8 @@ The fields _account_, _symbol_, _currency_ are unique to each position and form 
    (:data (position-get-with-http-info optional-params))))
 
 (defn position-isolate-margin-with-http-info
-  "Enable isolated margin or cross margin per-position."
+  "Enable isolated margin or cross margin per-position.
+  Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off."
   ([symbol ] (position-isolate-margin-with-http-info symbol nil))
   ([symbol {:keys [enabled ]}]
    (check-required-params symbol)
@@ -104,62 +105,75 @@ The fields _account_, _symbol_, _currency_ are unique to each position and form 
               :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
 
 (defn position-isolate-margin
-  "Enable isolated margin or cross margin per-position."
+  "Enable isolated margin or cross margin per-position.
+  Users can switch isolate margin per-position. This function allows switching margin isolation (aka fixed margin) on and off."
   ([symbol ] (position-isolate-margin symbol nil))
   ([symbol optional-params]
    (:data (position-isolate-margin-with-http-info symbol optional-params))))
 
 (defn position-transfer-isolated-margin-with-http-info
-  "Transfer equity in or out of a position."
-  [symbol amount ]
-  (check-required-params symbol amount)
-  (call-api "/position/transferMargin" :post
-            {:path-params   {}
-             :header-params {}
-             :query-params  {}
-             :form-params   {"symbol" symbol "amount" amount }
-             :content-types ["application/json" "application/x-www-form-urlencoded"]
-             :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-             :auth-names    ["apiExpires" "apiKey" "apiSignature"]}))
+  "Transfer equity in or out of a position.
+  When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold."
+  ([symbol amount ] (position-transfer-isolated-margin-with-http-info symbol amount nil))
+  ([symbol amount {:keys [target-account-id ]}]
+   (check-required-params symbol amount)
+   (call-api "/position/transferMargin" :post
+             {:path-params   {}
+              :header-params {}
+              :query-params  {}
+              :form-params   {"symbol" symbol "amount" amount "targetAccountId" target-account-id }
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
+              :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
 
 (defn position-transfer-isolated-margin
-  "Transfer equity in or out of a position."
-  [symbol amount ]
-  (:data (position-transfer-isolated-margin-with-http-info symbol amount)))
+  "Transfer equity in or out of a position.
+  When margin is isolated on a position, use this function to add or remove margin from the position. Note that you cannot remove margin below the initial margin threshold."
+  ([symbol amount ] (position-transfer-isolated-margin symbol amount nil))
+  ([symbol amount optional-params]
+   (:data (position-transfer-isolated-margin-with-http-info symbol amount optional-params))))
 
 (defn position-update-leverage-with-http-info
-  "Choose leverage for a position."
-  [symbol leverage ]
-  (check-required-params symbol leverage)
-  (call-api "/position/leverage" :post
-            {:path-params   {}
-             :header-params {}
-             :query-params  {}
-             :form-params   {"symbol" symbol "leverage" leverage }
-             :content-types ["application/json" "application/x-www-form-urlencoded"]
-             :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-             :auth-names    ["apiExpires" "apiKey" "apiSignature"]}))
+  "Choose leverage for a position.
+  Users can choose an isolated leverage. This will automatically enable isolated margin."
+  ([symbol leverage ] (position-update-leverage-with-http-info symbol leverage nil))
+  ([symbol leverage {:keys [target-account-id ]}]
+   (check-required-params symbol leverage)
+   (call-api "/position/leverage" :post
+             {:path-params   {}
+              :header-params {}
+              :query-params  {}
+              :form-params   {"symbol" symbol "leverage" leverage "targetAccountId" target-account-id }
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
+              :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
 
 (defn position-update-leverage
-  "Choose leverage for a position."
-  [symbol leverage ]
-  (:data (position-update-leverage-with-http-info symbol leverage)))
+  "Choose leverage for a position.
+  Users can choose an isolated leverage. This will automatically enable isolated margin."
+  ([symbol leverage ] (position-update-leverage symbol leverage nil))
+  ([symbol leverage optional-params]
+   (:data (position-update-leverage-with-http-info symbol leverage optional-params))))
 
 (defn position-update-risk-limit-with-http-info
-  "Update your risk limit."
-  [symbol risk-limit ]
-  (check-required-params symbol risk-limit)
-  (call-api "/position/riskLimit" :post
-            {:path-params   {}
-             :header-params {}
-             :query-params  {}
-             :form-params   {"symbol" symbol "riskLimit" risk-limit }
-             :content-types ["application/json" "application/x-www-form-urlencoded"]
-             :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
-             :auth-names    ["apiExpires" "apiKey" "apiSignature"]}))
+  "Update your risk limit.
+  Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details."
+  ([symbol risk-limit ] (position-update-risk-limit-with-http-info symbol risk-limit nil))
+  ([symbol risk-limit {:keys [target-account-id ]}]
+   (check-required-params symbol risk-limit)
+   (call-api "/position/riskLimit" :post
+             {:path-params   {}
+              :header-params {}
+              :query-params  {}
+              :form-params   {"symbol" symbol "riskLimit" risk-limit "targetAccountId" target-account-id }
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
+              :auth-names    ["apiExpires" "apiKey" "apiSignature"]})))
 
 (defn position-update-risk-limit
-  "Update your risk limit."
-  [symbol risk-limit ]
-  (:data (position-update-risk-limit-with-http-info symbol risk-limit)))
+  "Update your risk limit.
+  Risk Limits limit the size of positions you can trade at various margin levels. Larger positions require more margin. Please see the Risk Limit documentation for more details."
+  ([symbol risk-limit ] (position-update-risk-limit symbol risk-limit nil))
+  ([symbol risk-limit optional-params]
+   (:data (position-update-risk-limit-with-http-info symbol risk-limit optional-params))))
 

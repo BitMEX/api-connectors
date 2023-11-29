@@ -15,18 +15,18 @@ public struct Chat: Codable {
     public var _id: Double?
     public var date: Date
     public var user: String
+    public var userColor: String?
     public var message: String
     public var html: String
-    public var fromBot: Bool?
     public var channelID: Double?
 
-    public init(_id: Double?, date: Date, user: String, message: String, html: String, fromBot: Bool?, channelID: Double?) {
+    public init(_id: Double?, date: Date, user: String, userColor: String?, message: String, html: String, channelID: Double?) {
         self._id = _id
         self.date = date
         self.user = user
+        self.userColor = userColor
         self.message = message
         self.html = html
-        self.fromBot = fromBot
         self.channelID = channelID
     }
 
@@ -34,9 +34,9 @@ public struct Chat: Codable {
         case _id = "id"
         case date
         case user
+        case userColor
         case message
         case html
-        case fromBot
         case channelID
     }
 

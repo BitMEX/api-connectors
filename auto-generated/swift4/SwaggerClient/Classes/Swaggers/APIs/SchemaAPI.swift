@@ -27,7 +27,14 @@ open class SchemaAPI {
     /**
      Get model schemata for data objects returned by this API.
      - GET /schema
-     - examples: [{contentType=application/json, example="{}"}]
+     - examples: [{contentType=application/json, example={
+  "blank": false,
+  "bytes": [
+    123,
+    125
+  ],
+  "empty": false
+}}]
      
      - parameter model: (query) Optional model filter. If omitted, will return all models. (optional)
 
@@ -63,7 +70,14 @@ open class SchemaAPI {
     /**
      Returns help text & subject list for websocket usage.
      - GET /schema/websocketHelp
-     - examples: [{contentType=application/json, example="{}"}]
+     - examples: [{contentType=application/json, example={
+  "blank": false,
+  "bytes": [
+    123,
+    125
+  ],
+  "empty": false
+}}]
 
      - returns: RequestBuilder<Any> 
      */

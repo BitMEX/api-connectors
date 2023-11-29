@@ -4,7 +4,21 @@
 
 (defn instrument-get-with-http-info
   "Get instruments.
-  This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\"state\": \"Open\"}`."
+  This returns all instruments and indices, including those that have settled or are unlisted.
+Use this endpoint if you want to query for individual instruments or use a complex filter.
+Use `/instrument/active` to return active instruments, or use a filter like `{\"state\": \"Open\"}`.
+
+The instrument type is specified by the `typ` param.
+
+- Perpetual Contracts - `FFWCSX`
+- Perpetual Contracts (FX underliers) - `FFWCSF`
+- Spot - `IFXXXP`
+- Futures - `FFCCSX`
+- BitMEX Basket Index - `MRBXXX`
+- BitMEX Crypto Index - `MRCXXX`
+- BitMEX FX Index - `MRFXXX`
+- BitMEX Lending/Premium Index - `MRRXXX`
+- BitMEX Volatility Index - `MRIXXX`"
   ([] (instrument-get-with-http-info nil))
   ([{:keys [symbol filter columns count start reverse start-time end-time ]}]
    (call-api "/instrument" :get
@@ -18,7 +32,21 @@
 
 (defn instrument-get
   "Get instruments.
-  This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use `/instrument/active` to return active instruments, or use a filter like `{\"state\": \"Open\"}`."
+  This returns all instruments and indices, including those that have settled or are unlisted.
+Use this endpoint if you want to query for individual instruments or use a complex filter.
+Use `/instrument/active` to return active instruments, or use a filter like `{\"state\": \"Open\"}`.
+
+The instrument type is specified by the `typ` param.
+
+- Perpetual Contracts - `FFWCSX`
+- Perpetual Contracts (FX underliers) - `FFWCSF`
+- Spot - `IFXXXP`
+- Futures - `FFCCSX`
+- BitMEX Basket Index - `MRBXXX`
+- BitMEX Crypto Index - `MRCXXX`
+- BitMEX FX Index - `MRFXXX`
+- BitMEX Lending/Premium Index - `MRRXXX`
+- BitMEX Volatility Index - `MRIXXX`"
   ([] (instrument-get nil))
   ([optional-params]
    (:data (instrument-get-with-http-info optional-params))))
@@ -80,8 +108,8 @@
   "Show constituent parts of an index.
   Composite indices are built from multiple external price sources.
 
-Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.XBT` to
-get the ticks and weights of the constituent exchanges that build the \".XBT\" index.
+Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.BXBT` to
+get the ticks and weights of the constituent exchanges that build the \".BXBT\" index.
 
 A tick with reference `\"BMI\"` and weight `null` is the composite index tick."
   ([] (instrument-get-composite-index-with-http-info nil))
@@ -99,8 +127,8 @@ A tick with reference `\"BMI\"` and weight `null` is the composite index tick."
   "Show constituent parts of an index.
   Composite indices are built from multiple external price sources.
 
-Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.XBT` to
-get the ticks and weights of the constituent exchanges that build the \".XBT\" index.
+Use this endpoint to get the underlying prices of an index. For example, send a `symbol` of `.BXBT` to
+get the ticks and weights of the constituent exchanges that build the \".BXBT\" index.
 
 A tick with reference `\"BMI\"` and weight `null` is the composite index tick."
   ([] (instrument-get-composite-index nil))
@@ -123,4 +151,23 @@ A tick with reference `\"BMI\"` and weight `null` is the composite index tick."
   "Get all price indices."
   []
   (:data (instrument-get-indices-with-http-info)))
+
+(defn instrument-get-usd-volume-with-http-info
+  "Get a summary of exchange statistics in USD."
+  ([] (instrument-get-usd-volume-with-http-info nil))
+  ([{:keys [symbol columns ]}]
+   (call-api "/instrument/usdVolume" :get
+             {:path-params   {}
+              :header-params {}
+              :query-params  {"symbol" symbol "columns" columns }
+              :form-params   {}
+              :content-types ["application/json" "application/x-www-form-urlencoded"]
+              :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
+              :auth-names    []})))
+
+(defn instrument-get-usd-volume
+  "Get a summary of exchange statistics in USD."
+  ([] (instrument-get-usd-volume nil))
+  ([optional-params]
+   (:data (instrument-get-usd-volume-with-http-info optional-params))))
 

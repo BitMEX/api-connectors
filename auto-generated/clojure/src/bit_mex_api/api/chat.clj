@@ -57,6 +57,24 @@
   []
   (:data (chat-get-connected-with-http-info)))
 
+(defn chat-get-pinned-message-with-http-info
+  "Get pinned message for a channel."
+  [channel-id ]
+  (check-required-params channel-id)
+  (call-api "/chat/pinned" :get
+            {:path-params   {}
+             :header-params {}
+             :query-params  {"channelID" channel-id }
+             :form-params   {}
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json" "application/xml" "text/xml" "application/javascript" "text/javascript"]
+             :auth-names    []}))
+
+(defn chat-get-pinned-message
+  "Get pinned message for a channel."
+  [channel-id ]
+  (:data (chat-get-pinned-message-with-http-info channel-id)))
+
 (defn chat-new-with-http-info
   "Send a chat message."
   ([message ] (chat-new-with-http-info message nil))

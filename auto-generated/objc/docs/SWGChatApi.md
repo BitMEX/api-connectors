@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**chatGet**](SWGChatApi.md#chatget) | **GET** /chat | Get chat messages.
 [**chatGetChannels**](SWGChatApi.md#chatgetchannels) | **GET** /chat/channels | Get available channels.
 [**chatGetConnected**](SWGChatApi.md#chatgetconnected) | **GET** /chat/connected | Get connected users.
+[**chatGetPinnedMessage**](SWGChatApi.md#chatgetpinnedmessage) | **GET** /chat/pinned | Get pinned message for a channel.
 [**chatNew**](SWGChatApi.md#chatnew) | **POST** /chat | Send a chat message.
 
 
@@ -27,7 +28,7 @@ Get chat messages.
 NSNumber* count = @100; // Number of results to fetch. (optional) (default to 100)
 NSNumber* start = @0; // Starting ID for results. (optional) (default to 0)
 NSNumber* reverse = @true; // If true, will sort results newest first. (optional) (default to true)
-NSNumber* channelID = @1.2; // Channel id. GET /chat/channels for ids. Leave blank for all. (optional)
+NSNumber* channelID = @1; // Channel id. GET /chat/channels for ids. Global English by default (optional) (default to 1)
 
 SWGChatApi*apiInstance = [[SWGChatApi alloc] init];
 
@@ -53,7 +54,7 @@ Name | Type | Description  | Notes
  **count** | **NSNumber***| Number of results to fetch. | [optional] [default to 100]
  **start** | **NSNumber***| Starting ID for results. | [optional] [default to 0]
  **reverse** | **NSNumber***| If true, will sort results newest first. | [optional] [default to true]
- **channelID** | **NSNumber***| Channel id. GET /chat/channels for ids. Leave blank for all. | [optional] 
+ **channelID** | **NSNumber***| Channel id. GET /chat/channels for ids. Global English by default | [optional] [default to 1]
 
 ### Return type
 
@@ -148,6 +149,54 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**SWGConnectedUsers***](SWGConnectedUsers.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **chatGetPinnedMessage**
+```objc
+-(NSURLSessionTask*) chatGetPinnedMessageWithChannelID: (NSNumber*) channelID
+        completionHandler: (void (^)(SWGPinnedMessage* output, NSError* error)) handler;
+```
+
+Get pinned message for a channel.
+
+### Example 
+```objc
+
+NSNumber* channelID = @1.2; // 
+
+SWGChatApi*apiInstance = [[SWGChatApi alloc] init];
+
+// Get pinned message for a channel.
+[apiInstance chatGetPinnedMessageWithChannelID:channelID
+          completionHandler: ^(SWGPinnedMessage* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGChatApi->chatGetPinnedMessage: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **channelID** | **NSNumber***|  | 
+
+### Return type
+
+[**SWGPinnedMessage***](SWGPinnedMessage.md)
 
 ### Authorization
 

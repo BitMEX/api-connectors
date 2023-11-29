@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **Name** | **string** |  | [default to null]
 **Nonce** | **float32** |  | [default to null]
 **Cidr** | **string** |  | [optional] [default to null]
+**Cidrs** | [**[]XAny**](x-any.md) |  | [optional] [default to null]
+**TargetAccountId** | **float32** |  | [optional] [default to null]
 **Permissions** | [**[]XAny**](x-any.md) |  | [optional] [default to null]
 **Enabled** | **bool** |  | [optional] [default to null]
 **UserId** | **float32** |  | [default to null]

@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,12 +38,23 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AccessToken" /> class.
         /// </summary>
+        /// <param name="updated">updated (required).</param>
+        /// <param name="authorizedAccounts">authorizedAccounts.</param>
         /// <param name="id">id (required).</param>
         /// <param name="ttl">time to live in seconds (2 weeks by default) (default to 1209600.0).</param>
         /// <param name="created">created.</param>
         /// <param name="userId">userId.</param>
-        public AccessToken(string id = default(string), double? ttl = 1209600.0, DateTime? created = default(DateTime?), double? userId = default(double?))
+        public AccessToken(DateTime? updated = default(DateTime?), Object authorizedAccounts = default(Object), string id = default(string), double? ttl = 1209600.0, DateTime? created = default(DateTime?), double? userId = default(double?))
         {
+            // to ensure "updated" is required (not null)
+            if (updated == null)
+            {
+                throw new InvalidDataException("updated is a required property for AccessToken and cannot be null");
+            }
+            else
+            {
+                this.Updated = updated;
+            }
             // to ensure "id" is required (not null)
             if (id == null)
             {
@@ -53,6 +64,7 @@ namespace IO.Swagger.Model
             {
                 this.Id = id;
             }
+            this.AuthorizedAccounts = authorizedAccounts;
             // use default value if no "ttl" provided
             if (ttl == null)
             {
@@ -66,6 +78,18 @@ namespace IO.Swagger.Model
             this.UserId = userId;
         }
         
+        /// <summary>
+        /// Gets or Sets Updated
+        /// </summary>
+        [DataMember(Name="updated", EmitDefaultValue=false)]
+        public DateTime? Updated { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AuthorizedAccounts
+        /// </summary>
+        [DataMember(Name="authorizedAccounts", EmitDefaultValue=false)]
+        public Object AuthorizedAccounts { get; set; }
+
         /// <summary>
         /// Gets or Sets Id
         /// </summary>
@@ -99,6 +123,8 @@ namespace IO.Swagger.Model
         {
             var sb = new StringBuilder();
             sb.Append("class AccessToken {\n");
+            sb.Append("  Updated: ").Append(Updated).Append("\n");
+            sb.Append("  AuthorizedAccounts: ").Append(AuthorizedAccounts).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Ttl: ").Append(Ttl).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
@@ -138,6 +164,16 @@ namespace IO.Swagger.Model
 
             return 
                 (
+                    this.Updated == input.Updated ||
+                    (this.Updated != null &&
+                    this.Updated.Equals(input.Updated))
+                ) && 
+                (
+                    this.AuthorizedAccounts == input.AuthorizedAccounts ||
+                    (this.AuthorizedAccounts != null &&
+                    this.AuthorizedAccounts.Equals(input.AuthorizedAccounts))
+                ) && 
+                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
@@ -168,6 +204,10 @@ namespace IO.Swagger.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Updated != null)
+                    hashCode = hashCode * 59 + this.Updated.GetHashCode();
+                if (this.AuthorizedAccounts != null)
+                    hashCode = hashCode * 59 + this.AuthorizedAccounts.GetHashCode();
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.Ttl != null)

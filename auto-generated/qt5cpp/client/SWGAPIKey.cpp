@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -47,6 +47,10 @@ SWGAPIKey::init() {
     m_nonce_isSet = false;
     cidr = new QString("");
     m_cidr_isSet = false;
+    cidrs = new QList<SWGX-any*>();
+    m_cidrs_isSet = false;
+    target_account_id = 0.0;
+    m_target_account_id_isSet = false;
     permissions = new QList<SWGX-any*>();
     m_permissions_isSet = false;
     enabled = false;
@@ -73,6 +77,16 @@ SWGAPIKey::cleanup() {
     }
     if(cidr != nullptr) { 
         delete cidr;
+    }
+    if(cidrs != nullptr) { 
+        auto arr = cidrs;
+        for(auto o: *arr) { 
+            delete o;
+        }
+        delete cidrs;
+    }
+    if(target_account_id != nullptr) { 
+        delete target_account_id;
     }
     if(permissions != nullptr) { 
         auto arr = permissions;
@@ -112,6 +126,10 @@ SWGAPIKey::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&cidr, pJson["cidr"], "QString", "QString");
     
     
+    ::Swagger::setValue(&cidrs, pJson["cidrs"], "QList", "SWGX-any");
+    ::Swagger::setValue(&target_account_id, pJson["targetAccountId"], "SWGNumber", "SWGNumber");
+    
+    
     ::Swagger::setValue(&permissions, pJson["permissions"], "QList", "SWGX-any");
     ::Swagger::setValue(&enabled, pJson["enabled"], "bool", "");
     
@@ -147,6 +165,12 @@ SWGAPIKey::asJsonObject() {
     }
     if(cidr != nullptr && *cidr != QString("")){
         toJsonValue(QString("cidr"), cidr, obj, QString("QString"));
+    }
+    if(cidrs->size() > 0){
+        toJsonArray((QList<void*>*)cidrs, obj, "cidrs", "SWGX-any");
+    }
+    if((target_account_id != nullptr) && (target_account_id->isSet())){
+        toJsonValue(QString("targetAccountId"), target_account_id, obj, QString("SWGNumber"));
     }
     if(permissions->size() > 0){
         toJsonArray((QList<void*>*)permissions, obj, "permissions", "SWGX-any");
@@ -215,6 +239,26 @@ SWGAPIKey::setCidr(QString* cidr) {
 }
 
 QList<SWGX-any*>*
+SWGAPIKey::getCidrs() {
+    return cidrs;
+}
+void
+SWGAPIKey::setCidrs(QList<SWGX-any*>* cidrs) {
+    this->cidrs = cidrs;
+    this->m_cidrs_isSet = true;
+}
+
+SWGNumber*
+SWGAPIKey::getTargetAccountId() {
+    return target_account_id;
+}
+void
+SWGAPIKey::setTargetAccountId(SWGNumber* target_account_id) {
+    this->target_account_id = target_account_id;
+    this->m_target_account_id_isSet = true;
+}
+
+QList<SWGX-any*>*
 SWGAPIKey::getPermissions() {
     return permissions;
 }
@@ -264,6 +308,8 @@ SWGAPIKey::isSet(){
         if(name != nullptr && *name != QString("")){ isObjectUpdated = true; break;}
         if(nonce != nullptr && nonce->isSet()){ isObjectUpdated = true; break;}
         if(cidr != nullptr && *cidr != QString("")){ isObjectUpdated = true; break;}
+        if(cidrs->size() > 0){ isObjectUpdated = true; break;}
+        if(target_account_id != nullptr && target_account_id->isSet()){ isObjectUpdated = true; break;}
         if(permissions->size() > 0){ isObjectUpdated = true; break;}
         if(m_enabled_isSet){ isObjectUpdated = true; break;}
         if(user_id != nullptr && user_id->isSet()){ isObjectUpdated = true; break;}

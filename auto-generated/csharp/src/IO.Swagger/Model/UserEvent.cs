@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -25,7 +25,7 @@ using SwaggerDateConverter = IO.Swagger.Client.SwaggerDateConverter;
 namespace IO.Swagger.Model
 {
     /// <summary>
-    /// User Events for auditing
+    /// User Events for Auditing
     /// </summary>
     [DataContract]
     public partial class UserEvent :  IEquatable<UserEvent>, IValidatableObject
@@ -80,112 +80,118 @@ namespace IO.Swagger.Model
             Login = 7,
             
             /// <summary>
-            /// Enum PgpMaskedEmail for value: pgpMaskedEmail
+            /// Enum ExistingAccountRegistrationAttempt for value: existingAccountRegistrationAttempt
             /// </summary>
-            [EnumMember(Value = "pgpMaskedEmail")]
-            PgpMaskedEmail = 8,
-            
-            /// <summary>
-            /// Enum PgpTestEmail for value: pgpTestEmail
-            /// </summary>
-            [EnumMember(Value = "pgpTestEmail")]
-            PgpTestEmail = 9,
+            [EnumMember(Value = "existingAccountRegistrationAttempt")]
+            ExistingAccountRegistrationAttempt = 8,
             
             /// <summary>
             /// Enum PasswordChanged for value: passwordChanged
             /// </summary>
             [EnumMember(Value = "passwordChanged")]
-            PasswordChanged = 10,
+            PasswordChanged = 9,
             
             /// <summary>
             /// Enum PositionStateLiquidated for value: positionStateLiquidated
             /// </summary>
             [EnumMember(Value = "positionStateLiquidated")]
-            PositionStateLiquidated = 11,
+            PositionStateLiquidated = 10,
             
             /// <summary>
             /// Enum PositionStateWarning for value: positionStateWarning
             /// </summary>
             [EnumMember(Value = "positionStateWarning")]
-            PositionStateWarning = 12,
+            PositionStateWarning = 11,
             
             /// <summary>
             /// Enum ResetPasswordConfirmed for value: resetPasswordConfirmed
             /// </summary>
             [EnumMember(Value = "resetPasswordConfirmed")]
-            ResetPasswordConfirmed = 13,
+            ResetPasswordConfirmed = 12,
             
             /// <summary>
             /// Enum ResetPasswordRequest for value: resetPasswordRequest
             /// </summary>
             [EnumMember(Value = "resetPasswordRequest")]
-            ResetPasswordRequest = 14,
+            ResetPasswordRequest = 13,
             
             /// <summary>
             /// Enum TransferCanceled for value: transferCanceled
             /// </summary>
             [EnumMember(Value = "transferCanceled")]
-            TransferCanceled = 15,
+            TransferCanceled = 14,
             
             /// <summary>
             /// Enum TransferCompleted for value: transferCompleted
             /// </summary>
             [EnumMember(Value = "transferCompleted")]
-            TransferCompleted = 16,
+            TransferCompleted = 15,
             
             /// <summary>
             /// Enum TransferReceived for value: transferReceived
             /// </summary>
             [EnumMember(Value = "transferReceived")]
-            TransferReceived = 17,
+            TransferReceived = 16,
             
             /// <summary>
             /// Enum TransferRequested for value: transferRequested
             /// </summary>
             [EnumMember(Value = "transferRequested")]
-            TransferRequested = 18,
+            TransferRequested = 17,
             
             /// <summary>
             /// Enum TwoFactorDisabled for value: twoFactorDisabled
             /// </summary>
             [EnumMember(Value = "twoFactorDisabled")]
-            TwoFactorDisabled = 19,
+            TwoFactorDisabled = 18,
             
             /// <summary>
             /// Enum TwoFactorEnabled for value: twoFactorEnabled
             /// </summary>
             [EnumMember(Value = "twoFactorEnabled")]
-            TwoFactorEnabled = 20,
+            TwoFactorEnabled = 19,
             
             /// <summary>
             /// Enum WithdrawalCanceled for value: withdrawalCanceled
             /// </summary>
             [EnumMember(Value = "withdrawalCanceled")]
-            WithdrawalCanceled = 21,
+            WithdrawalCanceled = 20,
             
             /// <summary>
             /// Enum WithdrawalCompleted for value: withdrawalCompleted
             /// </summary>
             [EnumMember(Value = "withdrawalCompleted")]
-            WithdrawalCompleted = 22,
+            WithdrawalCompleted = 21,
             
             /// <summary>
             /// Enum WithdrawalConfirmed for value: withdrawalConfirmed
             /// </summary>
             [EnumMember(Value = "withdrawalConfirmed")]
-            WithdrawalConfirmed = 23,
+            WithdrawalConfirmed = 22,
             
             /// <summary>
             /// Enum WithdrawalRequested for value: withdrawalRequested
             /// </summary>
             [EnumMember(Value = "withdrawalRequested")]
-            WithdrawalRequested = 24,
+            WithdrawalRequested = 23,
+            
+            /// <summary>
+            /// Enum AddressSkipConfirmRequested for value: addressSkipConfirmRequested
+            /// </summary>
+            [EnumMember(Value = "addressSkipConfirmRequested")]
+            AddressSkipConfirmRequested = 24,
+            
+            /// <summary>
+            /// Enum AddressSkipConfirmVerified for value: addressSkipConfirmVerified
+            /// </summary>
+            [EnumMember(Value = "addressSkipConfirmVerified")]
+            AddressSkipConfirmVerified = 25,
             
             /// <summary>
             /// Enum Verify for value: verify
             /// </summary>
             [EnumMember(Value = "verify")]
-            Verify = 25
+            Verify = 26
         }
 
         /// <summary>

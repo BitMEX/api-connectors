@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -15,6 +15,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from swagger_client.configuration import Configuration
 
 
 class IndexComposite(object):
@@ -34,8 +36,12 @@ class IndexComposite(object):
         'timestamp': 'datetime',
         'symbol': 'str',
         'index_symbol': 'str',
+        'index_multiplier': 'float',
         'reference': 'str',
         'last_price': 'float',
+        'source_price': 'float',
+        'conversion_index': 'str',
+        'conversion_index_price': 'float',
         'weight': 'float',
         'logged': 'datetime'
     }
@@ -44,20 +50,31 @@ class IndexComposite(object):
         'timestamp': 'timestamp',
         'symbol': 'symbol',
         'index_symbol': 'indexSymbol',
+        'index_multiplier': 'indexMultiplier',
         'reference': 'reference',
         'last_price': 'lastPrice',
+        'source_price': 'sourcePrice',
+        'conversion_index': 'conversionIndex',
+        'conversion_index_price': 'conversionIndexPrice',
         'weight': 'weight',
         'logged': 'logged'
     }
 
-    def __init__(self, timestamp=None, symbol=None, index_symbol=None, reference=None, last_price=None, weight=None, logged=None):  # noqa: E501
+    def __init__(self, timestamp=None, symbol=None, index_symbol=None, index_multiplier=None, reference=None, last_price=None, source_price=None, conversion_index=None, conversion_index_price=None, weight=None, logged=None, _configuration=None):  # noqa: E501
         """IndexComposite - a model defined in Swagger"""  # noqa: E501
+        if _configuration is None:
+            _configuration = Configuration()
+        self._configuration = _configuration
 
         self._timestamp = None
         self._symbol = None
         self._index_symbol = None
+        self._index_multiplier = None
         self._reference = None
         self._last_price = None
+        self._source_price = None
+        self._conversion_index = None
+        self._conversion_index_price = None
         self._weight = None
         self._logged = None
         self.discriminator = None
@@ -67,10 +84,18 @@ class IndexComposite(object):
             self.symbol = symbol
         if index_symbol is not None:
             self.index_symbol = index_symbol
+        if index_multiplier is not None:
+            self.index_multiplier = index_multiplier
         if reference is not None:
             self.reference = reference
         if last_price is not None:
             self.last_price = last_price
+        if source_price is not None:
+            self.source_price = source_price
+        if conversion_index is not None:
+            self.conversion_index = conversion_index
+        if conversion_index_price is not None:
+            self.conversion_index_price = conversion_index_price
         if weight is not None:
             self.weight = weight
         if logged is not None:
@@ -94,7 +119,7 @@ class IndexComposite(object):
         :param timestamp: The timestamp of this IndexComposite.  # noqa: E501
         :type: datetime
         """
-        if timestamp is None:
+        if self._configuration.client_side_validation and timestamp is None:
             raise ValueError("Invalid value for `timestamp`, must not be `None`")  # noqa: E501
 
         self._timestamp = timestamp
@@ -142,6 +167,27 @@ class IndexComposite(object):
         self._index_symbol = index_symbol
 
     @property
+    def index_multiplier(self):
+        """Gets the index_multiplier of this IndexComposite.  # noqa: E501
+
+
+        :return: The index_multiplier of this IndexComposite.  # noqa: E501
+        :rtype: float
+        """
+        return self._index_multiplier
+
+    @index_multiplier.setter
+    def index_multiplier(self, index_multiplier):
+        """Sets the index_multiplier of this IndexComposite.
+
+
+        :param index_multiplier: The index_multiplier of this IndexComposite.  # noqa: E501
+        :type: float
+        """
+
+        self._index_multiplier = index_multiplier
+
+    @property
     def reference(self):
         """Gets the reference of this IndexComposite.  # noqa: E501
 
@@ -182,6 +228,69 @@ class IndexComposite(object):
         """
 
         self._last_price = last_price
+
+    @property
+    def source_price(self):
+        """Gets the source_price of this IndexComposite.  # noqa: E501
+
+
+        :return: The source_price of this IndexComposite.  # noqa: E501
+        :rtype: float
+        """
+        return self._source_price
+
+    @source_price.setter
+    def source_price(self, source_price):
+        """Sets the source_price of this IndexComposite.
+
+
+        :param source_price: The source_price of this IndexComposite.  # noqa: E501
+        :type: float
+        """
+
+        self._source_price = source_price
+
+    @property
+    def conversion_index(self):
+        """Gets the conversion_index of this IndexComposite.  # noqa: E501
+
+
+        :return: The conversion_index of this IndexComposite.  # noqa: E501
+        :rtype: str
+        """
+        return self._conversion_index
+
+    @conversion_index.setter
+    def conversion_index(self, conversion_index):
+        """Sets the conversion_index of this IndexComposite.
+
+
+        :param conversion_index: The conversion_index of this IndexComposite.  # noqa: E501
+        :type: str
+        """
+
+        self._conversion_index = conversion_index
+
+    @property
+    def conversion_index_price(self):
+        """Gets the conversion_index_price of this IndexComposite.  # noqa: E501
+
+
+        :return: The conversion_index_price of this IndexComposite.  # noqa: E501
+        :rtype: float
+        """
+        return self._conversion_index_price
+
+    @conversion_index_price.setter
+    def conversion_index_price(self, conversion_index_price):
+        """Sets the conversion_index_price of this IndexComposite.
+
+
+        :param conversion_index_price: The conversion_index_price of this IndexComposite.  # noqa: E501
+        :type: float
+        """
+
+        self._conversion_index_price = conversion_index_price
 
     @property
     def weight(self):
@@ -265,8 +374,11 @@ class IndexComposite(object):
         if not isinstance(other, IndexComposite):
             return False
 
-        return self.__dict__ == other.__dict__
+        return self.to_dict() == other.to_dict()
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        return not self == other
+        if not isinstance(other, IndexComposite):
+            return True
+
+        return self.to_dict() != other.to_dict()

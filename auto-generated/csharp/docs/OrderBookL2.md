@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Side** | **string** |  | 
 **Size** | **decimal?** |  | [optional] 
 **Price** | **double?** |  | [optional] 
+**Timestamp** | **DateTime?** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

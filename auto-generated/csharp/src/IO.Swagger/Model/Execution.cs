@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -38,19 +38,16 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Execution" /> class.
         /// </summary>
-        /// <param name="execID">execID (required).</param>
-        /// <param name="orderID">orderID.</param>
+        /// <param name="execID">execID.</param>
+        /// <param name="orderID">orderID (required).</param>
         /// <param name="clOrdID">clOrdID.</param>
         /// <param name="clOrdLinkID">clOrdLinkID.</param>
         /// <param name="account">account.</param>
-        /// <param name="symbol">symbol.</param>
+        /// <param name="symbol">symbol (required).</param>
         /// <param name="side">side.</param>
         /// <param name="lastQty">lastQty.</param>
         /// <param name="lastPx">lastPx.</param>
-        /// <param name="underlyingLastPx">underlyingLastPx.</param>
-        /// <param name="lastMkt">lastMkt.</param>
         /// <param name="lastLiquidityInd">lastLiquidityInd.</param>
-        /// <param name="simpleOrderQty">simpleOrderQty.</param>
         /// <param name="orderQty">orderQty.</param>
         /// <param name="price">price.</param>
         /// <param name="displayQty">displayQty.</param>
@@ -64,19 +61,15 @@ namespace IO.Swagger.Model
         /// <param name="timeInForce">timeInForce.</param>
         /// <param name="execInst">execInst.</param>
         /// <param name="contingencyType">contingencyType.</param>
-        /// <param name="exDestination">exDestination.</param>
         /// <param name="ordStatus">ordStatus.</param>
         /// <param name="triggered">triggered.</param>
         /// <param name="workingIndicator">workingIndicator.</param>
         /// <param name="ordRejReason">ordRejReason.</param>
-        /// <param name="simpleLeavesQty">simpleLeavesQty.</param>
         /// <param name="leavesQty">leavesQty.</param>
-        /// <param name="simpleCumQty">simpleCumQty.</param>
         /// <param name="cumQty">cumQty.</param>
         /// <param name="avgPx">avgPx.</param>
         /// <param name="commission">commission.</param>
         /// <param name="tradePublishIndicator">tradePublishIndicator.</param>
-        /// <param name="multiLegReportingType">multiLegReportingType.</param>
         /// <param name="text">text.</param>
         /// <param name="trdMatchID">trdMatchID.</param>
         /// <param name="execCost">execCost.</param>
@@ -84,30 +77,49 @@ namespace IO.Swagger.Model
         /// <param name="homeNotional">homeNotional.</param>
         /// <param name="foreignNotional">foreignNotional.</param>
         /// <param name="transactTime">transactTime.</param>
-        /// <param name="timestamp">timestamp.</param>
-        public Execution(string execID = default(string), string orderID = default(string), string clOrdID = default(string), string clOrdLinkID = default(string), decimal? account = default(decimal?), string symbol = default(string), string side = default(string), decimal? lastQty = default(decimal?), double? lastPx = default(double?), double? underlyingLastPx = default(double?), string lastMkt = default(string), string lastLiquidityInd = default(string), double? simpleOrderQty = default(double?), decimal? orderQty = default(decimal?), double? price = default(double?), decimal? displayQty = default(decimal?), double? stopPx = default(double?), double? pegOffsetValue = default(double?), string pegPriceType = default(string), string currency = default(string), string settlCurrency = default(string), string execType = default(string), string ordType = default(string), string timeInForce = default(string), string execInst = default(string), string contingencyType = default(string), string exDestination = default(string), string ordStatus = default(string), string triggered = default(string), bool? workingIndicator = default(bool?), string ordRejReason = default(string), double? simpleLeavesQty = default(double?), decimal? leavesQty = default(decimal?), double? simpleCumQty = default(double?), decimal? cumQty = default(decimal?), double? avgPx = default(double?), double? commission = default(double?), string tradePublishIndicator = default(string), string multiLegReportingType = default(string), string text = default(string), string trdMatchID = default(string), decimal? execCost = default(decimal?), decimal? execComm = default(decimal?), double? homeNotional = default(double?), double? foreignNotional = default(double?), DateTime? transactTime = default(DateTime?), DateTime? timestamp = default(DateTime?))
+        /// <param name="timestamp">timestamp (required).</param>
+        /// <param name="execGrossPnl">execGrossPnl.</param>
+        /// <param name="currentQty">currentQty.</param>
+        /// <param name="avgEntryPrice">avgEntryPrice.</param>
+        /// <param name="realisedPnl">realisedPnl.</param>
+        /// <param name="unrealisedPnl">unrealisedPnl.</param>
+        public Execution(string execID = default(string), string orderID = default(string), string clOrdID = default(string), string clOrdLinkID = default(string), double? account = default(double?), string symbol = default(string), string side = default(string), double? lastQty = default(double?), double? lastPx = default(double?), string lastLiquidityInd = default(string), double? orderQty = default(double?), double? price = default(double?), decimal? displayQty = default(decimal?), double? stopPx = default(double?), double? pegOffsetValue = default(double?), string pegPriceType = default(string), string currency = default(string), string settlCurrency = default(string), string execType = default(string), string ordType = default(string), string timeInForce = default(string), string execInst = default(string), string contingencyType = default(string), string ordStatus = default(string), string triggered = default(string), bool? workingIndicator = default(bool?), string ordRejReason = default(string), double? leavesQty = default(double?), decimal? cumQty = default(decimal?), double? avgPx = default(double?), double? commission = default(double?), string tradePublishIndicator = default(string), string text = default(string), string trdMatchID = default(string), double? execCost = default(double?), double? execComm = default(double?), double? homeNotional = default(double?), double? foreignNotional = default(double?), DateTime? transactTime = default(DateTime?), DateTime? timestamp = default(DateTime?), double? execGrossPnl = default(double?), double? currentQty = default(double?), double? avgEntryPrice = default(double?), double? realisedPnl = default(double?), double? unrealisedPnl = default(double?))
         {
-            // to ensure "execID" is required (not null)
-            if (execID == null)
+            // to ensure "orderID" is required (not null)
+            if (orderID == null)
             {
-                throw new InvalidDataException("execID is a required property for Execution and cannot be null");
+                throw new InvalidDataException("orderID is a required property for Execution and cannot be null");
             }
             else
             {
-                this.ExecID = execID;
+                this.OrderID = orderID;
             }
-            this.OrderID = orderID;
+            // to ensure "symbol" is required (not null)
+            if (symbol == null)
+            {
+                throw new InvalidDataException("symbol is a required property for Execution and cannot be null");
+            }
+            else
+            {
+                this.Symbol = symbol;
+            }
+            // to ensure "timestamp" is required (not null)
+            if (timestamp == null)
+            {
+                throw new InvalidDataException("timestamp is a required property for Execution and cannot be null");
+            }
+            else
+            {
+                this.Timestamp = timestamp;
+            }
+            this.ExecID = execID;
             this.ClOrdID = clOrdID;
             this.ClOrdLinkID = clOrdLinkID;
             this.Account = account;
-            this.Symbol = symbol;
             this.Side = side;
             this.LastQty = lastQty;
             this.LastPx = lastPx;
-            this.UnderlyingLastPx = underlyingLastPx;
-            this.LastMkt = lastMkt;
             this.LastLiquidityInd = lastLiquidityInd;
-            this.SimpleOrderQty = simpleOrderQty;
             this.OrderQty = orderQty;
             this.Price = price;
             this.DisplayQty = displayQty;
@@ -121,19 +133,15 @@ namespace IO.Swagger.Model
             this.TimeInForce = timeInForce;
             this.ExecInst = execInst;
             this.ContingencyType = contingencyType;
-            this.ExDestination = exDestination;
             this.OrdStatus = ordStatus;
             this.Triggered = triggered;
             this.WorkingIndicator = workingIndicator;
             this.OrdRejReason = ordRejReason;
-            this.SimpleLeavesQty = simpleLeavesQty;
             this.LeavesQty = leavesQty;
-            this.SimpleCumQty = simpleCumQty;
             this.CumQty = cumQty;
             this.AvgPx = avgPx;
             this.Commission = commission;
             this.TradePublishIndicator = tradePublishIndicator;
-            this.MultiLegReportingType = multiLegReportingType;
             this.Text = text;
             this.TrdMatchID = trdMatchID;
             this.ExecCost = execCost;
@@ -141,7 +149,11 @@ namespace IO.Swagger.Model
             this.HomeNotional = homeNotional;
             this.ForeignNotional = foreignNotional;
             this.TransactTime = transactTime;
-            this.Timestamp = timestamp;
+            this.ExecGrossPnl = execGrossPnl;
+            this.CurrentQty = currentQty;
+            this.AvgEntryPrice = avgEntryPrice;
+            this.RealisedPnl = realisedPnl;
+            this.UnrealisedPnl = unrealisedPnl;
         }
         
         /// <summary>
@@ -172,7 +184,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets Account
         /// </summary>
         [DataMember(Name="account", EmitDefaultValue=false)]
-        public decimal? Account { get; set; }
+        public double? Account { get; set; }
 
         /// <summary>
         /// Gets or Sets Symbol
@@ -190,7 +202,7 @@ namespace IO.Swagger.Model
         /// Gets or Sets LastQty
         /// </summary>
         [DataMember(Name="lastQty", EmitDefaultValue=false)]
-        public decimal? LastQty { get; set; }
+        public double? LastQty { get; set; }
 
         /// <summary>
         /// Gets or Sets LastPx
@@ -199,34 +211,16 @@ namespace IO.Swagger.Model
         public double? LastPx { get; set; }
 
         /// <summary>
-        /// Gets or Sets UnderlyingLastPx
-        /// </summary>
-        [DataMember(Name="underlyingLastPx", EmitDefaultValue=false)]
-        public double? UnderlyingLastPx { get; set; }
-
-        /// <summary>
-        /// Gets or Sets LastMkt
-        /// </summary>
-        [DataMember(Name="lastMkt", EmitDefaultValue=false)]
-        public string LastMkt { get; set; }
-
-        /// <summary>
         /// Gets or Sets LastLiquidityInd
         /// </summary>
         [DataMember(Name="lastLiquidityInd", EmitDefaultValue=false)]
         public string LastLiquidityInd { get; set; }
 
         /// <summary>
-        /// Gets or Sets SimpleOrderQty
-        /// </summary>
-        [DataMember(Name="simpleOrderQty", EmitDefaultValue=false)]
-        public double? SimpleOrderQty { get; set; }
-
-        /// <summary>
         /// Gets or Sets OrderQty
         /// </summary>
         [DataMember(Name="orderQty", EmitDefaultValue=false)]
-        public decimal? OrderQty { get; set; }
+        public double? OrderQty { get; set; }
 
         /// <summary>
         /// Gets or Sets Price
@@ -301,12 +295,6 @@ namespace IO.Swagger.Model
         public string ContingencyType { get; set; }
 
         /// <summary>
-        /// Gets or Sets ExDestination
-        /// </summary>
-        [DataMember(Name="exDestination", EmitDefaultValue=false)]
-        public string ExDestination { get; set; }
-
-        /// <summary>
         /// Gets or Sets OrdStatus
         /// </summary>
         [DataMember(Name="ordStatus", EmitDefaultValue=false)]
@@ -331,22 +319,10 @@ namespace IO.Swagger.Model
         public string OrdRejReason { get; set; }
 
         /// <summary>
-        /// Gets or Sets SimpleLeavesQty
-        /// </summary>
-        [DataMember(Name="simpleLeavesQty", EmitDefaultValue=false)]
-        public double? SimpleLeavesQty { get; set; }
-
-        /// <summary>
         /// Gets or Sets LeavesQty
         /// </summary>
         [DataMember(Name="leavesQty", EmitDefaultValue=false)]
-        public decimal? LeavesQty { get; set; }
-
-        /// <summary>
-        /// Gets or Sets SimpleCumQty
-        /// </summary>
-        [DataMember(Name="simpleCumQty", EmitDefaultValue=false)]
-        public double? SimpleCumQty { get; set; }
+        public double? LeavesQty { get; set; }
 
         /// <summary>
         /// Gets or Sets CumQty
@@ -373,12 +349,6 @@ namespace IO.Swagger.Model
         public string TradePublishIndicator { get; set; }
 
         /// <summary>
-        /// Gets or Sets MultiLegReportingType
-        /// </summary>
-        [DataMember(Name="multiLegReportingType", EmitDefaultValue=false)]
-        public string MultiLegReportingType { get; set; }
-
-        /// <summary>
         /// Gets or Sets Text
         /// </summary>
         [DataMember(Name="text", EmitDefaultValue=false)]
@@ -394,13 +364,13 @@ namespace IO.Swagger.Model
         /// Gets or Sets ExecCost
         /// </summary>
         [DataMember(Name="execCost", EmitDefaultValue=false)]
-        public decimal? ExecCost { get; set; }
+        public double? ExecCost { get; set; }
 
         /// <summary>
         /// Gets or Sets ExecComm
         /// </summary>
         [DataMember(Name="execComm", EmitDefaultValue=false)]
-        public decimal? ExecComm { get; set; }
+        public double? ExecComm { get; set; }
 
         /// <summary>
         /// Gets or Sets HomeNotional
@@ -427,6 +397,36 @@ namespace IO.Swagger.Model
         public DateTime? Timestamp { get; set; }
 
         /// <summary>
+        /// Gets or Sets ExecGrossPnl
+        /// </summary>
+        [DataMember(Name="execGrossPnl", EmitDefaultValue=false)]
+        public double? ExecGrossPnl { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CurrentQty
+        /// </summary>
+        [DataMember(Name="currentQty", EmitDefaultValue=false)]
+        public double? CurrentQty { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AvgEntryPrice
+        /// </summary>
+        [DataMember(Name="avgEntryPrice", EmitDefaultValue=false)]
+        public double? AvgEntryPrice { get; set; }
+
+        /// <summary>
+        /// Gets or Sets RealisedPnl
+        /// </summary>
+        [DataMember(Name="realisedPnl", EmitDefaultValue=false)]
+        public double? RealisedPnl { get; set; }
+
+        /// <summary>
+        /// Gets or Sets UnrealisedPnl
+        /// </summary>
+        [DataMember(Name="unrealisedPnl", EmitDefaultValue=false)]
+        public double? UnrealisedPnl { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -443,10 +443,7 @@ namespace IO.Swagger.Model
             sb.Append("  Side: ").Append(Side).Append("\n");
             sb.Append("  LastQty: ").Append(LastQty).Append("\n");
             sb.Append("  LastPx: ").Append(LastPx).Append("\n");
-            sb.Append("  UnderlyingLastPx: ").Append(UnderlyingLastPx).Append("\n");
-            sb.Append("  LastMkt: ").Append(LastMkt).Append("\n");
             sb.Append("  LastLiquidityInd: ").Append(LastLiquidityInd).Append("\n");
-            sb.Append("  SimpleOrderQty: ").Append(SimpleOrderQty).Append("\n");
             sb.Append("  OrderQty: ").Append(OrderQty).Append("\n");
             sb.Append("  Price: ").Append(Price).Append("\n");
             sb.Append("  DisplayQty: ").Append(DisplayQty).Append("\n");
@@ -460,19 +457,15 @@ namespace IO.Swagger.Model
             sb.Append("  TimeInForce: ").Append(TimeInForce).Append("\n");
             sb.Append("  ExecInst: ").Append(ExecInst).Append("\n");
             sb.Append("  ContingencyType: ").Append(ContingencyType).Append("\n");
-            sb.Append("  ExDestination: ").Append(ExDestination).Append("\n");
             sb.Append("  OrdStatus: ").Append(OrdStatus).Append("\n");
             sb.Append("  Triggered: ").Append(Triggered).Append("\n");
             sb.Append("  WorkingIndicator: ").Append(WorkingIndicator).Append("\n");
             sb.Append("  OrdRejReason: ").Append(OrdRejReason).Append("\n");
-            sb.Append("  SimpleLeavesQty: ").Append(SimpleLeavesQty).Append("\n");
             sb.Append("  LeavesQty: ").Append(LeavesQty).Append("\n");
-            sb.Append("  SimpleCumQty: ").Append(SimpleCumQty).Append("\n");
             sb.Append("  CumQty: ").Append(CumQty).Append("\n");
             sb.Append("  AvgPx: ").Append(AvgPx).Append("\n");
             sb.Append("  Commission: ").Append(Commission).Append("\n");
             sb.Append("  TradePublishIndicator: ").Append(TradePublishIndicator).Append("\n");
-            sb.Append("  MultiLegReportingType: ").Append(MultiLegReportingType).Append("\n");
             sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("  TrdMatchID: ").Append(TrdMatchID).Append("\n");
             sb.Append("  ExecCost: ").Append(ExecCost).Append("\n");
@@ -481,6 +474,11 @@ namespace IO.Swagger.Model
             sb.Append("  ForeignNotional: ").Append(ForeignNotional).Append("\n");
             sb.Append("  TransactTime: ").Append(TransactTime).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
+            sb.Append("  ExecGrossPnl: ").Append(ExecGrossPnl).Append("\n");
+            sb.Append("  CurrentQty: ").Append(CurrentQty).Append("\n");
+            sb.Append("  AvgEntryPrice: ").Append(AvgEntryPrice).Append("\n");
+            sb.Append("  RealisedPnl: ").Append(RealisedPnl).Append("\n");
+            sb.Append("  UnrealisedPnl: ").Append(UnrealisedPnl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -561,24 +559,9 @@ namespace IO.Swagger.Model
                     this.LastPx.Equals(input.LastPx))
                 ) && 
                 (
-                    this.UnderlyingLastPx == input.UnderlyingLastPx ||
-                    (this.UnderlyingLastPx != null &&
-                    this.UnderlyingLastPx.Equals(input.UnderlyingLastPx))
-                ) && 
-                (
-                    this.LastMkt == input.LastMkt ||
-                    (this.LastMkt != null &&
-                    this.LastMkt.Equals(input.LastMkt))
-                ) && 
-                (
                     this.LastLiquidityInd == input.LastLiquidityInd ||
                     (this.LastLiquidityInd != null &&
                     this.LastLiquidityInd.Equals(input.LastLiquidityInd))
-                ) && 
-                (
-                    this.SimpleOrderQty == input.SimpleOrderQty ||
-                    (this.SimpleOrderQty != null &&
-                    this.SimpleOrderQty.Equals(input.SimpleOrderQty))
                 ) && 
                 (
                     this.OrderQty == input.OrderQty ||
@@ -646,11 +629,6 @@ namespace IO.Swagger.Model
                     this.ContingencyType.Equals(input.ContingencyType))
                 ) && 
                 (
-                    this.ExDestination == input.ExDestination ||
-                    (this.ExDestination != null &&
-                    this.ExDestination.Equals(input.ExDestination))
-                ) && 
-                (
                     this.OrdStatus == input.OrdStatus ||
                     (this.OrdStatus != null &&
                     this.OrdStatus.Equals(input.OrdStatus))
@@ -671,19 +649,9 @@ namespace IO.Swagger.Model
                     this.OrdRejReason.Equals(input.OrdRejReason))
                 ) && 
                 (
-                    this.SimpleLeavesQty == input.SimpleLeavesQty ||
-                    (this.SimpleLeavesQty != null &&
-                    this.SimpleLeavesQty.Equals(input.SimpleLeavesQty))
-                ) && 
-                (
                     this.LeavesQty == input.LeavesQty ||
                     (this.LeavesQty != null &&
                     this.LeavesQty.Equals(input.LeavesQty))
-                ) && 
-                (
-                    this.SimpleCumQty == input.SimpleCumQty ||
-                    (this.SimpleCumQty != null &&
-                    this.SimpleCumQty.Equals(input.SimpleCumQty))
                 ) && 
                 (
                     this.CumQty == input.CumQty ||
@@ -704,11 +672,6 @@ namespace IO.Swagger.Model
                     this.TradePublishIndicator == input.TradePublishIndicator ||
                     (this.TradePublishIndicator != null &&
                     this.TradePublishIndicator.Equals(input.TradePublishIndicator))
-                ) && 
-                (
-                    this.MultiLegReportingType == input.MultiLegReportingType ||
-                    (this.MultiLegReportingType != null &&
-                    this.MultiLegReportingType.Equals(input.MultiLegReportingType))
                 ) && 
                 (
                     this.Text == input.Text ||
@@ -749,6 +712,31 @@ namespace IO.Swagger.Model
                     this.Timestamp == input.Timestamp ||
                     (this.Timestamp != null &&
                     this.Timestamp.Equals(input.Timestamp))
+                ) && 
+                (
+                    this.ExecGrossPnl == input.ExecGrossPnl ||
+                    (this.ExecGrossPnl != null &&
+                    this.ExecGrossPnl.Equals(input.ExecGrossPnl))
+                ) && 
+                (
+                    this.CurrentQty == input.CurrentQty ||
+                    (this.CurrentQty != null &&
+                    this.CurrentQty.Equals(input.CurrentQty))
+                ) && 
+                (
+                    this.AvgEntryPrice == input.AvgEntryPrice ||
+                    (this.AvgEntryPrice != null &&
+                    this.AvgEntryPrice.Equals(input.AvgEntryPrice))
+                ) && 
+                (
+                    this.RealisedPnl == input.RealisedPnl ||
+                    (this.RealisedPnl != null &&
+                    this.RealisedPnl.Equals(input.RealisedPnl))
+                ) && 
+                (
+                    this.UnrealisedPnl == input.UnrealisedPnl ||
+                    (this.UnrealisedPnl != null &&
+                    this.UnrealisedPnl.Equals(input.UnrealisedPnl))
                 );
         }
 
@@ -779,14 +767,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.LastQty.GetHashCode();
                 if (this.LastPx != null)
                     hashCode = hashCode * 59 + this.LastPx.GetHashCode();
-                if (this.UnderlyingLastPx != null)
-                    hashCode = hashCode * 59 + this.UnderlyingLastPx.GetHashCode();
-                if (this.LastMkt != null)
-                    hashCode = hashCode * 59 + this.LastMkt.GetHashCode();
                 if (this.LastLiquidityInd != null)
                     hashCode = hashCode * 59 + this.LastLiquidityInd.GetHashCode();
-                if (this.SimpleOrderQty != null)
-                    hashCode = hashCode * 59 + this.SimpleOrderQty.GetHashCode();
                 if (this.OrderQty != null)
                     hashCode = hashCode * 59 + this.OrderQty.GetHashCode();
                 if (this.Price != null)
@@ -813,8 +795,6 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.ExecInst.GetHashCode();
                 if (this.ContingencyType != null)
                     hashCode = hashCode * 59 + this.ContingencyType.GetHashCode();
-                if (this.ExDestination != null)
-                    hashCode = hashCode * 59 + this.ExDestination.GetHashCode();
                 if (this.OrdStatus != null)
                     hashCode = hashCode * 59 + this.OrdStatus.GetHashCode();
                 if (this.Triggered != null)
@@ -823,12 +803,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.WorkingIndicator.GetHashCode();
                 if (this.OrdRejReason != null)
                     hashCode = hashCode * 59 + this.OrdRejReason.GetHashCode();
-                if (this.SimpleLeavesQty != null)
-                    hashCode = hashCode * 59 + this.SimpleLeavesQty.GetHashCode();
                 if (this.LeavesQty != null)
                     hashCode = hashCode * 59 + this.LeavesQty.GetHashCode();
-                if (this.SimpleCumQty != null)
-                    hashCode = hashCode * 59 + this.SimpleCumQty.GetHashCode();
                 if (this.CumQty != null)
                     hashCode = hashCode * 59 + this.CumQty.GetHashCode();
                 if (this.AvgPx != null)
@@ -837,8 +813,6 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.Commission.GetHashCode();
                 if (this.TradePublishIndicator != null)
                     hashCode = hashCode * 59 + this.TradePublishIndicator.GetHashCode();
-                if (this.MultiLegReportingType != null)
-                    hashCode = hashCode * 59 + this.MultiLegReportingType.GetHashCode();
                 if (this.Text != null)
                     hashCode = hashCode * 59 + this.Text.GetHashCode();
                 if (this.TrdMatchID != null)
@@ -855,6 +829,16 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.TransactTime.GetHashCode();
                 if (this.Timestamp != null)
                     hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
+                if (this.ExecGrossPnl != null)
+                    hashCode = hashCode * 59 + this.ExecGrossPnl.GetHashCode();
+                if (this.CurrentQty != null)
+                    hashCode = hashCode * 59 + this.CurrentQty.GetHashCode();
+                if (this.AvgEntryPrice != null)
+                    hashCode = hashCode * 59 + this.AvgEntryPrice.GetHashCode();
+                if (this.RealisedPnl != null)
+                    hashCode = hashCode * 59 + this.RealisedPnl.GetHashCode();
+                if (this.UnrealisedPnl != null)
+                    hashCode = hashCode * 59 + this.UnrealisedPnl.GetHashCode();
                 return hashCode;
             }
         }

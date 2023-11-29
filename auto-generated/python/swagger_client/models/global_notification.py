@@ -3,7 +3,7 @@
 """
     BitMEX API
 
-    ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
+    ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section.   # noqa: E501
 
     OpenAPI spec version: 1.2.0
     Contact: support@bitmex.com
@@ -15,6 +15,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from swagger_client.configuration import Configuration
 
 
 class GlobalNotification(object):
@@ -56,8 +58,11 @@ class GlobalNotification(object):
         'sound': 'sound'
     }
 
-    def __init__(self, id=None, _date=None, title=None, body=None, ttl=None, type=None, closable=True, persist=True, wait_for_visibility=True, sound=None):  # noqa: E501
+    def __init__(self, id=None, _date=None, title=None, body=None, ttl=None, type=None, closable=True, persist=True, wait_for_visibility=True, sound=None, _configuration=None):  # noqa: E501
         """GlobalNotification - a model defined in Swagger"""  # noqa: E501
+        if _configuration is None:
+            _configuration = Configuration()
+        self._configuration = _configuration
 
         self._id = None
         self.__date = None
@@ -127,7 +132,7 @@ class GlobalNotification(object):
         :param _date: The _date of this GlobalNotification.  # noqa: E501
         :type: datetime
         """
-        if _date is None:
+        if self._configuration.client_side_validation and _date is None:
             raise ValueError("Invalid value for `_date`, must not be `None`")  # noqa: E501
 
         self.__date = _date
@@ -150,7 +155,7 @@ class GlobalNotification(object):
         :param title: The title of this GlobalNotification.  # noqa: E501
         :type: str
         """
-        if title is None:
+        if self._configuration.client_side_validation and title is None:
             raise ValueError("Invalid value for `title`, must not be `None`")  # noqa: E501
 
         self._title = title
@@ -173,7 +178,7 @@ class GlobalNotification(object):
         :param body: The body of this GlobalNotification.  # noqa: E501
         :type: str
         """
-        if body is None:
+        if self._configuration.client_side_validation and body is None:
             raise ValueError("Invalid value for `body`, must not be `None`")  # noqa: E501
 
         self._body = body
@@ -196,7 +201,7 @@ class GlobalNotification(object):
         :param ttl: The ttl of this GlobalNotification.  # noqa: E501
         :type: float
         """
-        if ttl is None:
+        if self._configuration.client_side_validation and ttl is None:
             raise ValueError("Invalid value for `ttl`, must not be `None`")  # noqa: E501
 
         self._ttl = ttl
@@ -220,7 +225,8 @@ class GlobalNotification(object):
         :type: str
         """
         allowed_values = ["success", "error", "info"]  # noqa: E501
-        if type not in allowed_values:
+        if (self._configuration.client_side_validation and
+                type not in allowed_values):
             raise ValueError(
                 "Invalid value for `type` ({0}), must be one of {1}"  # noqa: E501
                 .format(type, allowed_values)
@@ -352,8 +358,11 @@ class GlobalNotification(object):
         if not isinstance(other, GlobalNotification):
             return False
 
-        return self.__dict__ == other.__dict__
+        return self.to_dict() == other.to_dict()
 
     def __ne__(self, other):
         """Returns true if both objects are not equal"""
-        return not self == other
+        if not isinstance(other, GlobalNotification):
+            return True
+
+        return self.to_dict() != other.to_dict()

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -15,6 +15,7 @@ import io.swagger.client.model.Chat
 import io.swagger.client.model.ChatChannel
 import io.swagger.client.model.ConnectedUsers
 import io.swagger.client.model.Error
+import io.swagger.client.model.PinnedMessage
 import io.swagger.client.core._
 import io.swagger.client.core.CollectionFormats._
 import io.swagger.client.core.ApiKeyLocations._
@@ -34,9 +35,9 @@ object ChatApi {
    * @param count Number of results to fetch.
    * @param start Starting ID for results.
    * @param reverse If true, will sort results newest first.
-   * @param channelID Channel id. GET /chat/channels for ids. Leave blank for all.
+   * @param channelID Channel id. GET /chat/channels for ids. Global English by default
    */
-  def chat.get(count: Option[Double], start: Option[Double], reverse: Option[Boolean], channelID: Option[Double] = None): ApiRequest[Seq[Chat]] =
+  def chat.get(count: Option[Double], start: Option[Double], reverse: Option[Boolean], channelID: Option[Double]): ApiRequest[Seq[Chat]] =
     ApiRequest[Seq[Chat]](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/chat", "application/json")
       .withQueryParam("count", count)
       .withQueryParam("start", start)
@@ -77,6 +78,26 @@ object ChatApi {
   def chat.getConnected(): ApiRequest[ConnectedUsers] =
     ApiRequest[ConnectedUsers](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/chat/connected", "application/json")
       .withSuccessResponse[ConnectedUsers](200)
+      .withErrorResponse[Error](400)
+      .withErrorResponse[Error](401)
+      .withErrorResponse[Error](403)
+      .withErrorResponse[Error](404)
+        /**
+   * 
+   * 
+   * Expected answers:
+   *   code 200 : PinnedMessage (Request was successful)
+   *   code 400 : Error (Parameter Error)
+   *   code 401 : Error (Unauthorized)
+   *   code 403 : Error (Access Denied)
+   *   code 404 : Error (Not Found)
+   * 
+   * @param channelID 
+   */
+  def chat.getPinnedMessage(channelID: Double): ApiRequest[PinnedMessage] =
+    ApiRequest[PinnedMessage](ApiMethods.GET, "https://www.bitmex.com/api/v1", "/chat/pinned", "application/json")
+      .withQueryParam("channelID", channelID)
+      .withSuccessResponse[PinnedMessage](200)
       .withErrorResponse[Error](400)
       .withErrorResponse[Error](401)
       .withErrorResponse[Error](403)

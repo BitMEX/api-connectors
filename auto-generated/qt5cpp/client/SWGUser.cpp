@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -39,16 +39,20 @@ void
 SWGUser::init() {
     id = 0.0;
     m_id_isSet = false;
-    owner_id = 0.0;
-    m_owner_id_isSet = false;
     firstname = new QString("");
     m_firstname_isSet = false;
     lastname = new QString("");
     m_lastname_isSet = false;
     username = new QString("");
     m_username_isSet = false;
+    account_name = new QString("");
+    m_account_name_isSet = false;
+    is_user = false;
+    m_is_user_isSet = false;
     email = new QString("");
     m_email_isSet = false;
+    date_of_birth = new QString("");
+    m_date_of_birth_isSet = false;
     phone = new QString("");
     m_phone_isSet = false;
     created = NULL;
@@ -61,14 +65,14 @@ SWGUser::init() {
     m_tfa_enabled_isSet = false;
     affiliate_id = new QString("");
     m_affiliate_id_isSet = false;
-    pgp_pub_key = new QString("");
-    m_pgp_pub_key_isSet = false;
     country = new QString("");
     m_country_isSet = false;
     geoip_country = new QString("");
     m_geoip_country_isSet = false;
     geoip_region = new QString("");
     m_geoip_region_isSet = false;
+    first_trade_timestamp = NULL;
+    m_first_trade_timestamp_isSet = false;
     typ = new QString("");
     m_typ_isSet = false;
 }
@@ -77,9 +81,6 @@ void
 SWGUser::cleanup() {
     if(id != nullptr) { 
         delete id;
-    }
-    if(owner_id != nullptr) { 
-        delete owner_id;
     }
     if(firstname != nullptr) { 
         delete firstname;
@@ -90,8 +91,15 @@ SWGUser::cleanup() {
     if(username != nullptr) { 
         delete username;
     }
+    if(account_name != nullptr) { 
+        delete account_name;
+    }
+
     if(email != nullptr) { 
         delete email;
+    }
+    if(date_of_birth != nullptr) { 
+        delete date_of_birth;
     }
     if(phone != nullptr) { 
         delete phone;
@@ -111,9 +119,6 @@ SWGUser::cleanup() {
     if(affiliate_id != nullptr) { 
         delete affiliate_id;
     }
-    if(pgp_pub_key != nullptr) { 
-        delete pgp_pub_key;
-    }
     if(country != nullptr) { 
         delete country;
     }
@@ -122,6 +127,9 @@ SWGUser::cleanup() {
     }
     if(geoip_region != nullptr) { 
         delete geoip_region;
+    }
+    if(first_trade_timestamp != nullptr) { 
+        delete first_trade_timestamp;
     }
     if(typ != nullptr) { 
         delete typ;
@@ -141,15 +149,19 @@ void
 SWGUser::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&id, pJson["id"], "SWGNumber", "SWGNumber");
     
-    ::Swagger::setValue(&owner_id, pJson["ownerId"], "SWGNumber", "SWGNumber");
-    
     ::Swagger::setValue(&firstname, pJson["firstname"], "QString", "QString");
     
     ::Swagger::setValue(&lastname, pJson["lastname"], "QString", "QString");
     
     ::Swagger::setValue(&username, pJson["username"], "QString", "QString");
     
+    ::Swagger::setValue(&account_name, pJson["accountName"], "QString", "QString");
+    
+    ::Swagger::setValue(&is_user, pJson["isUser"], "bool", "");
+    
     ::Swagger::setValue(&email, pJson["email"], "QString", "QString");
+    
+    ::Swagger::setValue(&date_of_birth, pJson["dateOfBirth"], "QString", "QString");
     
     ::Swagger::setValue(&phone, pJson["phone"], "QString", "QString");
     
@@ -163,13 +175,13 @@ SWGUser::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&affiliate_id, pJson["affiliateID"], "QString", "QString");
     
-    ::Swagger::setValue(&pgp_pub_key, pJson["pgpPubKey"], "QString", "QString");
-    
     ::Swagger::setValue(&country, pJson["country"], "QString", "QString");
     
     ::Swagger::setValue(&geoip_country, pJson["geoipCountry"], "QString", "QString");
     
     ::Swagger::setValue(&geoip_region, pJson["geoipRegion"], "QString", "QString");
+    
+    ::Swagger::setValue(&first_trade_timestamp, pJson["firstTradeTimestamp"], "QDateTime", "QDateTime");
     
     ::Swagger::setValue(&typ, pJson["typ"], "QString", "QString");
     
@@ -190,9 +202,6 @@ SWGUser::asJsonObject() {
     if((id != nullptr) && (id->isSet())){
         toJsonValue(QString("id"), id, obj, QString("SWGNumber"));
     }
-    if((owner_id != nullptr) && (owner_id->isSet())){
-        toJsonValue(QString("ownerId"), owner_id, obj, QString("SWGNumber"));
-    }
     if(firstname != nullptr && *firstname != QString("")){
         toJsonValue(QString("firstname"), firstname, obj, QString("QString"));
     }
@@ -202,8 +211,17 @@ SWGUser::asJsonObject() {
     if(username != nullptr && *username != QString("")){
         toJsonValue(QString("username"), username, obj, QString("QString"));
     }
+    if(account_name != nullptr && *account_name != QString("")){
+        toJsonValue(QString("accountName"), account_name, obj, QString("QString"));
+    }
+    if(m_is_user_isSet){
+        obj.insert("isUser", QJsonValue(is_user));
+    }
     if(email != nullptr && *email != QString("")){
         toJsonValue(QString("email"), email, obj, QString("QString"));
+    }
+    if(date_of_birth != nullptr && *date_of_birth != QString("")){
+        toJsonValue(QString("dateOfBirth"), date_of_birth, obj, QString("QString"));
     }
     if(phone != nullptr && *phone != QString("")){
         toJsonValue(QString("phone"), phone, obj, QString("QString"));
@@ -223,9 +241,6 @@ SWGUser::asJsonObject() {
     if(affiliate_id != nullptr && *affiliate_id != QString("")){
         toJsonValue(QString("affiliateID"), affiliate_id, obj, QString("QString"));
     }
-    if(pgp_pub_key != nullptr && *pgp_pub_key != QString("")){
-        toJsonValue(QString("pgpPubKey"), pgp_pub_key, obj, QString("QString"));
-    }
     if(country != nullptr && *country != QString("")){
         toJsonValue(QString("country"), country, obj, QString("QString"));
     }
@@ -234,6 +249,9 @@ SWGUser::asJsonObject() {
     }
     if(geoip_region != nullptr && *geoip_region != QString("")){
         toJsonValue(QString("geoipRegion"), geoip_region, obj, QString("QString"));
+    }
+    if(first_trade_timestamp != nullptr) { 
+        toJsonValue(QString("firstTradeTimestamp"), first_trade_timestamp, obj, QString("QDateTime"));
     }
     if(typ != nullptr && *typ != QString("")){
         toJsonValue(QString("typ"), typ, obj, QString("QString"));
@@ -250,16 +268,6 @@ void
 SWGUser::setId(SWGNumber* id) {
     this->id = id;
     this->m_id_isSet = true;
-}
-
-SWGNumber*
-SWGUser::getOwnerId() {
-    return owner_id;
-}
-void
-SWGUser::setOwnerId(SWGNumber* owner_id) {
-    this->owner_id = owner_id;
-    this->m_owner_id_isSet = true;
 }
 
 QString*
@@ -293,6 +301,26 @@ SWGUser::setUsername(QString* username) {
 }
 
 QString*
+SWGUser::getAccountName() {
+    return account_name;
+}
+void
+SWGUser::setAccountName(QString* account_name) {
+    this->account_name = account_name;
+    this->m_account_name_isSet = true;
+}
+
+bool
+SWGUser::isIsUser() {
+    return is_user;
+}
+void
+SWGUser::setIsUser(bool is_user) {
+    this->is_user = is_user;
+    this->m_is_user_isSet = true;
+}
+
+QString*
 SWGUser::getEmail() {
     return email;
 }
@@ -300,6 +328,16 @@ void
 SWGUser::setEmail(QString* email) {
     this->email = email;
     this->m_email_isSet = true;
+}
+
+QString*
+SWGUser::getDateOfBirth() {
+    return date_of_birth;
+}
+void
+SWGUser::setDateOfBirth(QString* date_of_birth) {
+    this->date_of_birth = date_of_birth;
+    this->m_date_of_birth_isSet = true;
 }
 
 QString*
@@ -363,16 +401,6 @@ SWGUser::setAffiliateId(QString* affiliate_id) {
 }
 
 QString*
-SWGUser::getPgpPubKey() {
-    return pgp_pub_key;
-}
-void
-SWGUser::setPgpPubKey(QString* pgp_pub_key) {
-    this->pgp_pub_key = pgp_pub_key;
-    this->m_pgp_pub_key_isSet = true;
-}
-
-QString*
 SWGUser::getCountry() {
     return country;
 }
@@ -402,6 +430,16 @@ SWGUser::setGeoipRegion(QString* geoip_region) {
     this->m_geoip_region_isSet = true;
 }
 
+QDateTime*
+SWGUser::getFirstTradeTimestamp() {
+    return first_trade_timestamp;
+}
+void
+SWGUser::setFirstTradeTimestamp(QDateTime* first_trade_timestamp) {
+    this->first_trade_timestamp = first_trade_timestamp;
+    this->m_first_trade_timestamp_isSet = true;
+}
+
 QString*
 SWGUser::getTyp() {
     return typ;
@@ -418,21 +456,23 @@ SWGUser::isSet(){
     bool isObjectUpdated = false;
     do{
         if(id != nullptr && id->isSet()){ isObjectUpdated = true; break;}
-        if(owner_id != nullptr && owner_id->isSet()){ isObjectUpdated = true; break;}
         if(firstname != nullptr && *firstname != QString("")){ isObjectUpdated = true; break;}
         if(lastname != nullptr && *lastname != QString("")){ isObjectUpdated = true; break;}
         if(username != nullptr && *username != QString("")){ isObjectUpdated = true; break;}
+        if(account_name != nullptr && *account_name != QString("")){ isObjectUpdated = true; break;}
+        if(m_is_user_isSet){ isObjectUpdated = true; break;}
         if(email != nullptr && *email != QString("")){ isObjectUpdated = true; break;}
+        if(date_of_birth != nullptr && *date_of_birth != QString("")){ isObjectUpdated = true; break;}
         if(phone != nullptr && *phone != QString("")){ isObjectUpdated = true; break;}
         
         
         if(preferences != nullptr && preferences->isSet()){ isObjectUpdated = true; break;}
         if(tfa_enabled != nullptr && *tfa_enabled != QString("")){ isObjectUpdated = true; break;}
         if(affiliate_id != nullptr && *affiliate_id != QString("")){ isObjectUpdated = true; break;}
-        if(pgp_pub_key != nullptr && *pgp_pub_key != QString("")){ isObjectUpdated = true; break;}
         if(country != nullptr && *country != QString("")){ isObjectUpdated = true; break;}
         if(geoip_country != nullptr && *geoip_country != QString("")){ isObjectUpdated = true; break;}
         if(geoip_region != nullptr && *geoip_region != QString("")){ isObjectUpdated = true; break;}
+        
         if(typ != nullptr && *typ != QString("")){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;

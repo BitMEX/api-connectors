@@ -12,19 +12,16 @@ import Foundation
 
 public struct Execution: Codable {
 
-    public var execID: String
-    public var orderID: String?
+    public var execID: String?
+    public var orderID: String
     public var clOrdID: String?
     public var clOrdLinkID: String?
     public var account: Double?
-    public var symbol: String?
+    public var symbol: String
     public var side: String?
     public var lastQty: Double?
     public var lastPx: Double?
-    public var underlyingLastPx: Double?
-    public var lastMkt: String?
     public var lastLiquidityInd: String?
-    public var simpleOrderQty: Double?
     public var orderQty: Double?
     public var price: Double?
     public var displayQty: Double?
@@ -38,19 +35,15 @@ public struct Execution: Codable {
     public var timeInForce: String?
     public var execInst: String?
     public var contingencyType: String?
-    public var exDestination: String?
     public var ordStatus: String?
     public var triggered: String?
     public var workingIndicator: Bool?
     public var ordRejReason: String?
-    public var simpleLeavesQty: Double?
     public var leavesQty: Double?
-    public var simpleCumQty: Double?
     public var cumQty: Double?
     public var avgPx: Double?
     public var commission: Double?
     public var tradePublishIndicator: String?
-    public var multiLegReportingType: String?
     public var text: String?
     public var trdMatchID: String?
     public var execCost: Double?
@@ -58,9 +51,14 @@ public struct Execution: Codable {
     public var homeNotional: Double?
     public var foreignNotional: Double?
     public var transactTime: Date?
-    public var timestamp: Date?
+    public var timestamp: Date
+    public var execGrossPnl: Double?
+    public var currentQty: Double?
+    public var avgEntryPrice: Double?
+    public var realisedPnl: Double?
+    public var unrealisedPnl: Double?
 
-    public init(execID: String, orderID: String?, clOrdID: String?, clOrdLinkID: String?, account: Double?, symbol: String?, side: String?, lastQty: Double?, lastPx: Double?, underlyingLastPx: Double?, lastMkt: String?, lastLiquidityInd: String?, simpleOrderQty: Double?, orderQty: Double?, price: Double?, displayQty: Double?, stopPx: Double?, pegOffsetValue: Double?, pegPriceType: String?, currency: String?, settlCurrency: String?, execType: String?, ordType: String?, timeInForce: String?, execInst: String?, contingencyType: String?, exDestination: String?, ordStatus: String?, triggered: String?, workingIndicator: Bool?, ordRejReason: String?, simpleLeavesQty: Double?, leavesQty: Double?, simpleCumQty: Double?, cumQty: Double?, avgPx: Double?, commission: Double?, tradePublishIndicator: String?, multiLegReportingType: String?, text: String?, trdMatchID: String?, execCost: Double?, execComm: Double?, homeNotional: Double?, foreignNotional: Double?, transactTime: Date?, timestamp: Date?) {
+    public init(execID: String?, orderID: String, clOrdID: String?, clOrdLinkID: String?, account: Double?, symbol: String, side: String?, lastQty: Double?, lastPx: Double?, lastLiquidityInd: String?, orderQty: Double?, price: Double?, displayQty: Double?, stopPx: Double?, pegOffsetValue: Double?, pegPriceType: String?, currency: String?, settlCurrency: String?, execType: String?, ordType: String?, timeInForce: String?, execInst: String?, contingencyType: String?, ordStatus: String?, triggered: String?, workingIndicator: Bool?, ordRejReason: String?, leavesQty: Double?, cumQty: Double?, avgPx: Double?, commission: Double?, tradePublishIndicator: String?, text: String?, trdMatchID: String?, execCost: Double?, execComm: Double?, homeNotional: Double?, foreignNotional: Double?, transactTime: Date?, timestamp: Date, execGrossPnl: Double?, currentQty: Double?, avgEntryPrice: Double?, realisedPnl: Double?, unrealisedPnl: Double?) {
         self.execID = execID
         self.orderID = orderID
         self.clOrdID = clOrdID
@@ -70,10 +68,7 @@ public struct Execution: Codable {
         self.side = side
         self.lastQty = lastQty
         self.lastPx = lastPx
-        self.underlyingLastPx = underlyingLastPx
-        self.lastMkt = lastMkt
         self.lastLiquidityInd = lastLiquidityInd
-        self.simpleOrderQty = simpleOrderQty
         self.orderQty = orderQty
         self.price = price
         self.displayQty = displayQty
@@ -87,19 +82,15 @@ public struct Execution: Codable {
         self.timeInForce = timeInForce
         self.execInst = execInst
         self.contingencyType = contingencyType
-        self.exDestination = exDestination
         self.ordStatus = ordStatus
         self.triggered = triggered
         self.workingIndicator = workingIndicator
         self.ordRejReason = ordRejReason
-        self.simpleLeavesQty = simpleLeavesQty
         self.leavesQty = leavesQty
-        self.simpleCumQty = simpleCumQty
         self.cumQty = cumQty
         self.avgPx = avgPx
         self.commission = commission
         self.tradePublishIndicator = tradePublishIndicator
-        self.multiLegReportingType = multiLegReportingType
         self.text = text
         self.trdMatchID = trdMatchID
         self.execCost = execCost
@@ -108,6 +99,11 @@ public struct Execution: Codable {
         self.foreignNotional = foreignNotional
         self.transactTime = transactTime
         self.timestamp = timestamp
+        self.execGrossPnl = execGrossPnl
+        self.currentQty = currentQty
+        self.avgEntryPrice = avgEntryPrice
+        self.realisedPnl = realisedPnl
+        self.unrealisedPnl = unrealisedPnl
     }
 
 

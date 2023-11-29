@@ -13,5 +13,6 @@ Name | Type | Description | Notes
 **gross_value** | **Float** |  | [optional] 
 **home_notional** | **Float** |  | [optional] 
 **foreign_notional** | **Float** |  | [optional] 
+**trd_type** | **String** |  | [optional] 
 
 

@@ -1,6 +1,6 @@
 /*
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -13,15 +13,16 @@
 
 package io.swagger.client.api;
 
-import io.swagger.client.ApiException;
 import java.math.BigDecimal;
 import io.swagger.client.model.Error;
 import io.swagger.client.model.IndexComposite;
 import io.swagger.client.model.Instrument;
 import io.swagger.client.model.InstrumentInterval;
 import org.threeten.bp.OffsetDateTime;
+import io.swagger.client.model.StatsUSDBySymbol;
 import org.junit.Test;
 import org.junit.Ignore;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,13 +41,13 @@ public class InstrumentApiTest {
     /**
      * Get instruments.
      *
-     * This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use &#x60;/instrument/active&#x60; to return active instruments, or use a filter like &#x60;{\&quot;state\&quot;: \&quot;Open\&quot;}&#x60;.
+     * This returns all instruments and indices, including those that have settled or are unlisted. Use this endpoint if you want to query for individual instruments or use a complex filter. Use &#x60;/instrument/active&#x60; to return active instruments, or use a filter like &#x60;{\&quot;state\&quot;: \&quot;Open\&quot;}&#x60;.  The instrument type is specified by the &#x60;typ&#x60; param.  - Perpetual Contracts - &#x60;FFWCSX&#x60; - Perpetual Contracts (FX underliers) - &#x60;FFWCSF&#x60; - Spot - &#x60;IFXXXP&#x60; - Futures - &#x60;FFCCSX&#x60; - BitMEX Basket Index - &#x60;MRBXXX&#x60; - BitMEX Crypto Index - &#x60;MRCXXX&#x60; - BitMEX FX Index - &#x60;MRFXXX&#x60; - BitMEX Lending/Premium Index - &#x60;MRRXXX&#x60; - BitMEX Volatility Index - &#x60;MRIXXX&#x60; 
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void instrumentGetTest() throws ApiException {
+    public void instrumentGetTest() throws Exception {
         String symbol = null;
         String filter = null;
         String columns = null;
@@ -65,11 +66,11 @@ public class InstrumentApiTest {
      *
      * 
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void instrumentGetActiveTest() throws ApiException {
+    public void instrumentGetActiveTest() throws Exception {
         List<Instrument> response = api.instrumentGetActive();
 
         // TODO: test validations
@@ -80,11 +81,11 @@ public class InstrumentApiTest {
      *
      * 
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void instrumentGetActiveAndIndicesTest() throws ApiException {
+    public void instrumentGetActiveAndIndicesTest() throws Exception {
         List<Instrument> response = api.instrumentGetActiveAndIndices();
 
         // TODO: test validations
@@ -95,11 +96,11 @@ public class InstrumentApiTest {
      *
      * This endpoint is useful for determining which pairs are live. It returns two arrays of   strings. The first is intervals, such as &#x60;[\&quot;XBT:perpetual\&quot;, \&quot;XBT:quarterly\&quot;, \&quot;XBT:biquarterly\&quot;, \&quot;ETH:quarterly\&quot;, ...]&#x60;. These identifiers are usable in any query&#39;s &#x60;symbol&#x60; param. The second array is the current resolution of these intervals. Results are mapped at the same index.
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void instrumentGetActiveIntervalsTest() throws ApiException {
+    public void instrumentGetActiveIntervalsTest() throws Exception {
         InstrumentInterval response = api.instrumentGetActiveIntervals();
 
         // TODO: test validations
@@ -108,13 +109,13 @@ public class InstrumentApiTest {
     /**
      * Show constituent parts of an index.
      *
-     * Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a &#x60;symbol&#x60; of &#x60;.XBT&#x60; to get the ticks and weights of the constituent exchanges that build the \&quot;.XBT\&quot; index.  A tick with reference &#x60;\&quot;BMI\&quot;&#x60; and weight &#x60;null&#x60; is the composite index tick. 
+     * Composite indices are built from multiple external price sources.  Use this endpoint to get the underlying prices of an index. For example, send a &#x60;symbol&#x60; of &#x60;.BXBT&#x60; to get the ticks and weights of the constituent exchanges that build the \&quot;.BXBT\&quot; index.  A tick with reference &#x60;\&quot;BMI\&quot;&#x60; and weight &#x60;null&#x60; is the composite index tick. 
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void instrumentGetCompositeIndexTest() throws ApiException {
+    public void instrumentGetCompositeIndexTest() throws Exception {
         String symbol = null;
         String filter = null;
         String columns = null;
@@ -133,12 +134,29 @@ public class InstrumentApiTest {
      *
      * 
      *
-     * @throws ApiException
+     * @throws Exception
      *          if the Api call fails
      */
     @Test
-    public void instrumentGetIndicesTest() throws ApiException {
+    public void instrumentGetIndicesTest() throws Exception {
         List<Instrument> response = api.instrumentGetIndices();
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get a summary of exchange statistics in USD.
+     *
+     * 
+     *
+     * @throws Exception
+     *          if the Api call fails
+     */
+    @Test
+    public void instrumentGetUsdVolumeTest() throws Exception {
+        String symbol = null;
+        String columns = null;
+        List<StatsUSDBySymbol> response = api.instrumentGetUsdVolume(symbol, columns);
 
         // TODO: test validations
     }

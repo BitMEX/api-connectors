@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **grossValue** | **NSNumber*** |  | [optional] 
 **homeNotional** | **NSNumber*** |  | [optional] 
 **foreignNotional** | **NSNumber*** |  | [optional] 
+**trdType** | **NSString*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

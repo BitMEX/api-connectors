@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -131,68 +131,12 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'Settle'
         }
         /// <summary>
-        /// Test the property 'RelistInterval'
+        /// Test the property 'ListedSettle'
         /// </summary>
         [Test]
-        public void RelistIntervalTest()
+        public void ListedSettleTest()
         {
-            // TODO unit test for the property 'RelistInterval'
-        }
-        /// <summary>
-        /// Test the property 'InverseLeg'
-        /// </summary>
-        [Test]
-        public void InverseLegTest()
-        {
-            // TODO unit test for the property 'InverseLeg'
-        }
-        /// <summary>
-        /// Test the property 'SellLeg'
-        /// </summary>
-        [Test]
-        public void SellLegTest()
-        {
-            // TODO unit test for the property 'SellLeg'
-        }
-        /// <summary>
-        /// Test the property 'BuyLeg'
-        /// </summary>
-        [Test]
-        public void BuyLegTest()
-        {
-            // TODO unit test for the property 'BuyLeg'
-        }
-        /// <summary>
-        /// Test the property 'OptionStrikePcnt'
-        /// </summary>
-        [Test]
-        public void OptionStrikePcntTest()
-        {
-            // TODO unit test for the property 'OptionStrikePcnt'
-        }
-        /// <summary>
-        /// Test the property 'OptionStrikeRound'
-        /// </summary>
-        [Test]
-        public void OptionStrikeRoundTest()
-        {
-            // TODO unit test for the property 'OptionStrikeRound'
-        }
-        /// <summary>
-        /// Test the property 'OptionStrikePrice'
-        /// </summary>
-        [Test]
-        public void OptionStrikePriceTest()
-        {
-            // TODO unit test for the property 'OptionStrikePrice'
-        }
-        /// <summary>
-        /// Test the property 'OptionMultiplier'
-        /// </summary>
-        [Test]
-        public void OptionMultiplierTest()
-        {
-            // TODO unit test for the property 'OptionMultiplier'
+            // TODO unit test for the property 'ListedSettle'
         }
         /// <summary>
         /// Test the property 'PositionCurrency'
@@ -395,14 +339,6 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'Limit'
         }
         /// <summary>
-        /// Test the property 'Capped'
-        /// </summary>
-        [Test]
-        public void CappedTest()
-        {
-            // TODO unit test for the property 'Capped'
-        }
-        /// <summary>
         /// Test the property 'Taxed'
         /// </summary>
         [Test]
@@ -441,14 +377,6 @@ namespace IO.Swagger.Test
         public void SettlementFeeTest()
         {
             // TODO unit test for the property 'SettlementFee'
-        }
-        /// <summary>
-        /// Test the property 'InsuranceFee'
-        /// </summary>
-        [Test]
-        public void InsuranceFeeTest()
-        {
-            // TODO unit test for the property 'InsuranceFee'
         }
         /// <summary>
         /// Test the property 'FundingBaseSymbol'
@@ -523,30 +451,6 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'RebalanceInterval'
         }
         /// <summary>
-        /// Test the property 'OpeningTimestamp'
-        /// </summary>
-        [Test]
-        public void OpeningTimestampTest()
-        {
-            // TODO unit test for the property 'OpeningTimestamp'
-        }
-        /// <summary>
-        /// Test the property 'ClosingTimestamp'
-        /// </summary>
-        [Test]
-        public void ClosingTimestampTest()
-        {
-            // TODO unit test for the property 'ClosingTimestamp'
-        }
-        /// <summary>
-        /// Test the property 'SessionInterval'
-        /// </summary>
-        [Test]
-        public void SessionIntervalTest()
-        {
-            // TODO unit test for the property 'SessionInterval'
-        }
-        /// <summary>
         /// Test the property 'PrevClosePrice'
         /// </summary>
         [Test]
@@ -569,30 +473,6 @@ namespace IO.Swagger.Test
         public void LimitUpPriceTest()
         {
             // TODO unit test for the property 'LimitUpPrice'
-        }
-        /// <summary>
-        /// Test the property 'BankruptLimitDownPrice'
-        /// </summary>
-        [Test]
-        public void BankruptLimitDownPriceTest()
-        {
-            // TODO unit test for the property 'BankruptLimitDownPrice'
-        }
-        /// <summary>
-        /// Test the property 'BankruptLimitUpPrice'
-        /// </summary>
-        [Test]
-        public void BankruptLimitUpPriceTest()
-        {
-            // TODO unit test for the property 'BankruptLimitUpPrice'
-        }
-        /// <summary>
-        /// Test the property 'PrevTotalVolume'
-        /// </summary>
-        [Test]
-        public void PrevTotalVolumeTest()
-        {
-            // TODO unit test for the property 'PrevTotalVolume'
         }
         /// <summary>
         /// Test the property 'TotalVolume'
@@ -851,14 +731,6 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'MarkPrice'
         }
         /// <summary>
-        /// Test the property 'IndicativeTaxRate'
-        /// </summary>
-        [Test]
-        public void IndicativeTaxRateTest()
-        {
-            // TODO unit test for the property 'IndicativeTaxRate'
-        }
-        /// <summary>
         /// Test the property 'IndicativeSettlePrice'
         /// </summary>
         [Test]
@@ -867,12 +739,12 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'IndicativeSettlePrice'
         }
         /// <summary>
-        /// Test the property 'OptionUnderlyingPrice'
+        /// Test the property 'SettledPriceAdjustmentRate'
         /// </summary>
         [Test]
-        public void OptionUnderlyingPriceTest()
+        public void SettledPriceAdjustmentRateTest()
         {
-            // TODO unit test for the property 'OptionUnderlyingPrice'
+            // TODO unit test for the property 'SettledPriceAdjustmentRate'
         }
         /// <summary>
         /// Test the property 'SettledPrice'
@@ -881,6 +753,14 @@ namespace IO.Swagger.Test
         public void SettledPriceTest()
         {
             // TODO unit test for the property 'SettledPrice'
+        }
+        /// <summary>
+        /// Test the property 'InstantPnl'
+        /// </summary>
+        [Test]
+        public void InstantPnlTest()
+        {
+            // TODO unit test for the property 'InstantPnl'
         }
         /// <summary>
         /// Test the property 'Timestamp'

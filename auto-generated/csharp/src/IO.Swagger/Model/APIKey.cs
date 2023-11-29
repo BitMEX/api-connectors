@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -43,11 +43,13 @@ namespace IO.Swagger.Model
         /// <param name="name">name (required).</param>
         /// <param name="nonce">nonce (required).</param>
         /// <param name="cidr">cidr.</param>
+        /// <param name="cidrs">cidrs.</param>
+        /// <param name="targetAccountId">targetAccountId.</param>
         /// <param name="permissions">permissions.</param>
         /// <param name="enabled">enabled (default to false).</param>
         /// <param name="userId">userId (required).</param>
         /// <param name="created">created.</param>
-        public APIKey(string id = default(string), string secret = default(string), string name = default(string), decimal? nonce = default(decimal?), string cidr = default(string), List<XAny> permissions = default(List<XAny>), bool? enabled = false, decimal? userId = default(decimal?), DateTime? created = default(DateTime?))
+        public APIKey(string id = default(string), string secret = default(string), string name = default(string), decimal? nonce = default(decimal?), string cidr = default(string), List<XAny> cidrs = default(List<XAny>), decimal? targetAccountId = default(decimal?), List<XAny> permissions = default(List<XAny>), bool? enabled = false, decimal? userId = default(decimal?), DateTime? created = default(DateTime?))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -95,6 +97,8 @@ namespace IO.Swagger.Model
                 this.UserId = userId;
             }
             this.Cidr = cidr;
+            this.Cidrs = cidrs;
+            this.TargetAccountId = targetAccountId;
             this.Permissions = permissions;
             // use default value if no "enabled" provided
             if (enabled == null)
@@ -139,6 +143,18 @@ namespace IO.Swagger.Model
         public string Cidr { get; set; }
 
         /// <summary>
+        /// Gets or Sets Cidrs
+        /// </summary>
+        [DataMember(Name="cidrs", EmitDefaultValue=false)]
+        public List<XAny> Cidrs { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TargetAccountId
+        /// </summary>
+        [DataMember(Name="targetAccountId", EmitDefaultValue=false)]
+        public decimal? TargetAccountId { get; set; }
+
+        /// <summary>
         /// Gets or Sets Permissions
         /// </summary>
         [DataMember(Name="permissions", EmitDefaultValue=false)]
@@ -175,6 +191,8 @@ namespace IO.Swagger.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Nonce: ").Append(Nonce).Append("\n");
             sb.Append("  Cidr: ").Append(Cidr).Append("\n");
+            sb.Append("  Cidrs: ").Append(Cidrs).Append("\n");
+            sb.Append("  TargetAccountId: ").Append(TargetAccountId).Append("\n");
             sb.Append("  Permissions: ").Append(Permissions).Append("\n");
             sb.Append("  Enabled: ").Append(Enabled).Append("\n");
             sb.Append("  UserId: ").Append(UserId).Append("\n");
@@ -239,6 +257,16 @@ namespace IO.Swagger.Model
                     this.Cidr.Equals(input.Cidr))
                 ) && 
                 (
+                    this.Cidrs == input.Cidrs ||
+                    this.Cidrs != null &&
+                    this.Cidrs.SequenceEqual(input.Cidrs)
+                ) && 
+                (
+                    this.TargetAccountId == input.TargetAccountId ||
+                    (this.TargetAccountId != null &&
+                    this.TargetAccountId.Equals(input.TargetAccountId))
+                ) && 
+                (
                     this.Permissions == input.Permissions ||
                     this.Permissions != null &&
                     this.Permissions.SequenceEqual(input.Permissions)
@@ -279,6 +307,10 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.Nonce.GetHashCode();
                 if (this.Cidr != null)
                     hashCode = hashCode * 59 + this.Cidr.GetHashCode();
+                if (this.Cidrs != null)
+                    hashCode = hashCode * 59 + this.Cidrs.GetHashCode();
+                if (this.TargetAccountId != null)
+                    hashCode = hashCode * 59 + this.TargetAccountId.GetHashCode();
                 if (this.Permissions != null)
                     hashCode = hashCode * 59 + this.Permissions.GetHashCode();
                 if (this.Enabled != null)

@@ -17,7 +17,7 @@ open class ChatAPI {
      - parameter count: (query) Number of results to fetch. (optional, default to 100)
      - parameter start: (query) Starting ID for results. (optional, default to 0)
      - parameter reverse: (query) If true, will sort results newest first. (optional, default to true)
-     - parameter channelID: (query) Channel id. GET /chat/channels for ids. Leave blank for all. (optional)
+     - parameter channelID: (query) Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)
      - parameter completion: completion handler to receive the data and the error objects
      */
     open class func chatGet(count: Double? = nil, start: Double? = nil, reverse: Bool? = nil, channelID: Double? = nil, completion: @escaping ((_ data: [Chat]?,_ error: Error?) -> Void)) {
@@ -30,28 +30,12 @@ open class ChatAPI {
     /**
      Get chat messages.
      - GET /chat
-     - examples: [{contentType=application/json, example=[ {
-  "date" : "2000-01-23T04:56:07.000+00:00",
-  "html" : "html",
-  "id" : 0.80082819046101150206595775671303272247314453125,
-  "message" : "message",
-  "user" : "user",
-  "channelID" : 6.027456183070403,
-  "fromBot" : false
-}, {
-  "date" : "2000-01-23T04:56:07.000+00:00",
-  "html" : "html",
-  "id" : 0.80082819046101150206595775671303272247314453125,
-  "message" : "message",
-  "user" : "user",
-  "channelID" : 6.027456183070403,
-  "fromBot" : false
-} ]}]
+     - examples: [{contentType=application/json, example={}}]
      
      - parameter count: (query) Number of results to fetch. (optional, default to 100)
      - parameter start: (query) Starting ID for results. (optional, default to 0)
      - parameter reverse: (query) If true, will sort results newest first. (optional, default to true)
-     - parameter channelID: (query) Channel id. GET /chat/channels for ids. Leave blank for all. (optional)
+     - parameter channelID: (query) Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)
 
      - returns: RequestBuilder<[Chat]> 
      */
@@ -88,13 +72,7 @@ open class ChatAPI {
     /**
      Get available channels.
      - GET /chat/channels
-     - examples: [{contentType=application/json, example=[ {
-  "name" : "name",
-  "id" : 0.80082819046101150206595775671303272247314453125
-}, {
-  "name" : "name",
-  "id" : 0.80082819046101150206595775671303272247314453125
-} ]}]
+     - examples: [{contentType=application/json, example={}}]
 
      - returns: RequestBuilder<[ChatChannel]> 
      */
@@ -126,10 +104,7 @@ open class ChatAPI {
      Get connected users.
      - GET /chat/connected
      - Returns an array with browser users in the first position and API users (bots) in the second position.
-     - examples: [{contentType=application/json, example={
-  "bots" : 6.02745618307040320615897144307382404804229736328125,
-  "users" : 0.80082819046101150206595775671303272247314453125
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
 
      - returns: RequestBuilder<ConnectedUsers> 
      */
@@ -141,6 +116,43 @@ open class ChatAPI {
         let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<ConnectedUsers>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
+     Get pinned message for a channel.
+     
+     - parameter channelID: (query)  
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func chatGetPinnedMessage(channelID: Double, completion: @escaping ((_ data: PinnedMessage?,_ error: Error?) -> Void)) {
+        chatGetPinnedMessageWithRequestBuilder(channelID: channelID).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Get pinned message for a channel.
+     - GET /chat/pinned
+     - examples: [{contentType=application/json, example={"empty": false}}]
+     
+     - parameter channelID: (query)  
+
+     - returns: RequestBuilder<PinnedMessage> 
+     */
+    open class func chatGetPinnedMessageWithRequestBuilder(channelID: Double) -> RequestBuilder<PinnedMessage> {
+        let path = "/chat/pinned"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "channelID": channelID
+        ])
+
+        let requestBuilder: RequestBuilder<PinnedMessage>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -171,15 +183,7 @@ open class ChatAPI {
      - API Key:
        - type: apiKey api-signature 
        - name: apiSignature
-     - examples: [{contentType=application/json, example={
-  "date" : "2000-01-23T04:56:07.000+00:00",
-  "html" : "html",
-  "id" : 0.80082819046101150206595775671303272247314453125,
-  "message" : "message",
-  "user" : "user",
-  "channelID" : 6.027456183070403,
-  "fromBot" : false
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      
      - parameter message: (form)  
      - parameter channelID: (form) Channel to post to. Default 1 (English). (optional, default to 1)

@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -26,24 +26,12 @@ public class Margin {
   private String currency = null;
   @SerializedName("riskLimit")
   private BigDecimal riskLimit = null;
-  @SerializedName("prevState")
-  private String prevState = null;
   @SerializedName("state")
   private String state = null;
-  @SerializedName("action")
-  private String action = null;
   @SerializedName("amount")
   private BigDecimal amount = null;
-  @SerializedName("pendingCredit")
-  private BigDecimal pendingCredit = null;
-  @SerializedName("pendingDebit")
-  private BigDecimal pendingDebit = null;
-  @SerializedName("confirmedDebit")
-  private BigDecimal confirmedDebit = null;
   @SerializedName("prevRealisedPnl")
   private BigDecimal prevRealisedPnl = null;
-  @SerializedName("prevUnrealisedPnl")
-  private BigDecimal prevUnrealisedPnl = null;
   @SerializedName("grossComm")
   private BigDecimal grossComm = null;
   @SerializedName("grossOpenCost")
@@ -56,52 +44,36 @@ public class Margin {
   private BigDecimal grossMarkValue = null;
   @SerializedName("riskValue")
   private BigDecimal riskValue = null;
-  @SerializedName("taxableMargin")
-  private BigDecimal taxableMargin = null;
   @SerializedName("initMargin")
   private BigDecimal initMargin = null;
   @SerializedName("maintMargin")
   private BigDecimal maintMargin = null;
-  @SerializedName("sessionMargin")
-  private BigDecimal sessionMargin = null;
   @SerializedName("targetExcessMargin")
   private BigDecimal targetExcessMargin = null;
-  @SerializedName("varMargin")
-  private BigDecimal varMargin = null;
   @SerializedName("realisedPnl")
   private BigDecimal realisedPnl = null;
   @SerializedName("unrealisedPnl")
   private BigDecimal unrealisedPnl = null;
-  @SerializedName("indicativeTax")
-  private BigDecimal indicativeTax = null;
-  @SerializedName("unrealisedProfit")
-  private BigDecimal unrealisedProfit = null;
-  @SerializedName("syntheticMargin")
-  private BigDecimal syntheticMargin = null;
   @SerializedName("walletBalance")
   private BigDecimal walletBalance = null;
   @SerializedName("marginBalance")
   private BigDecimal marginBalance = null;
-  @SerializedName("marginBalancePcnt")
-  private Double marginBalancePcnt = 0.0;
   @SerializedName("marginLeverage")
   private Double marginLeverage = 0.0;
   @SerializedName("marginUsedPcnt")
   private Double marginUsedPcnt = 0.0;
   @SerializedName("excessMargin")
   private BigDecimal excessMargin = null;
-  @SerializedName("excessMarginPcnt")
-  private Double excessMarginPcnt = 0.0;
   @SerializedName("availableMargin")
   private BigDecimal availableMargin = null;
   @SerializedName("withdrawableMargin")
   private BigDecimal withdrawableMargin = null;
+  @SerializedName("makerFeeDiscount")
+  private Double makerFeeDiscount = 0.0;
+  @SerializedName("takerFeeDiscount")
+  private Double takerFeeDiscount = 0.0;
   @SerializedName("timestamp")
   private Date timestamp = null;
-  @SerializedName("grossLastValue")
-  private BigDecimal grossLastValue = null;
-  @SerializedName("commission")
-  private Double commission = 0.0;
 
   /**
    **/
@@ -136,31 +108,11 @@ public class Margin {
   /**
    **/
   @ApiModelProperty(value = "")
-  public String getPrevState() {
-    return prevState;
-  }
-  public void setPrevState(String prevState) {
-    this.prevState = prevState;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public String getState() {
     return state;
   }
   public void setState(String state) {
     this.state = state;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public String getAction() {
-    return action;
-  }
-  public void setAction(String action) {
-    this.action = action;
   }
 
   /**
@@ -176,51 +128,11 @@ public class Margin {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getPendingCredit() {
-    return pendingCredit;
-  }
-  public void setPendingCredit(BigDecimal pendingCredit) {
-    this.pendingCredit = pendingCredit;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getPendingDebit() {
-    return pendingDebit;
-  }
-  public void setPendingDebit(BigDecimal pendingDebit) {
-    this.pendingDebit = pendingDebit;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getConfirmedDebit() {
-    return confirmedDebit;
-  }
-  public void setConfirmedDebit(BigDecimal confirmedDebit) {
-    this.confirmedDebit = confirmedDebit;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public BigDecimal getPrevRealisedPnl() {
     return prevRealisedPnl;
   }
   public void setPrevRealisedPnl(BigDecimal prevRealisedPnl) {
     this.prevRealisedPnl = prevRealisedPnl;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getPrevUnrealisedPnl() {
-    return prevUnrealisedPnl;
-  }
-  public void setPrevUnrealisedPnl(BigDecimal prevUnrealisedPnl) {
-    this.prevUnrealisedPnl = prevUnrealisedPnl;
   }
 
   /**
@@ -286,16 +198,6 @@ public class Margin {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getTaxableMargin() {
-    return taxableMargin;
-  }
-  public void setTaxableMargin(BigDecimal taxableMargin) {
-    this.taxableMargin = taxableMargin;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public BigDecimal getInitMargin() {
     return initMargin;
   }
@@ -316,31 +218,11 @@ public class Margin {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getSessionMargin() {
-    return sessionMargin;
-  }
-  public void setSessionMargin(BigDecimal sessionMargin) {
-    this.sessionMargin = sessionMargin;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public BigDecimal getTargetExcessMargin() {
     return targetExcessMargin;
   }
   public void setTargetExcessMargin(BigDecimal targetExcessMargin) {
     this.targetExcessMargin = targetExcessMargin;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getVarMargin() {
-    return varMargin;
-  }
-  public void setVarMargin(BigDecimal varMargin) {
-    this.varMargin = varMargin;
   }
 
   /**
@@ -366,36 +248,6 @@ public class Margin {
   /**
    **/
   @ApiModelProperty(value = "")
-  public BigDecimal getIndicativeTax() {
-    return indicativeTax;
-  }
-  public void setIndicativeTax(BigDecimal indicativeTax) {
-    this.indicativeTax = indicativeTax;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getUnrealisedProfit() {
-    return unrealisedProfit;
-  }
-  public void setUnrealisedProfit(BigDecimal unrealisedProfit) {
-    this.unrealisedProfit = unrealisedProfit;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getSyntheticMargin() {
-    return syntheticMargin;
-  }
-  public void setSyntheticMargin(BigDecimal syntheticMargin) {
-    this.syntheticMargin = syntheticMargin;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public BigDecimal getWalletBalance() {
     return walletBalance;
   }
@@ -411,16 +263,6 @@ public class Margin {
   }
   public void setMarginBalance(BigDecimal marginBalance) {
     this.marginBalance = marginBalance;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getMarginBalancePcnt() {
-    return marginBalancePcnt;
-  }
-  public void setMarginBalancePcnt(Double marginBalancePcnt) {
-    this.marginBalancePcnt = marginBalancePcnt;
   }
 
   /**
@@ -456,16 +298,6 @@ public class Margin {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Double getExcessMarginPcnt() {
-    return excessMarginPcnt;
-  }
-  public void setExcessMarginPcnt(Double excessMarginPcnt) {
-    this.excessMarginPcnt = excessMarginPcnt;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
   public BigDecimal getAvailableMargin() {
     return availableMargin;
   }
@@ -486,31 +318,31 @@ public class Margin {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Double getMakerFeeDiscount() {
+    return makerFeeDiscount;
+  }
+  public void setMakerFeeDiscount(Double makerFeeDiscount) {
+    this.makerFeeDiscount = makerFeeDiscount;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Double getTakerFeeDiscount() {
+    return takerFeeDiscount;
+  }
+  public void setTakerFeeDiscount(Double takerFeeDiscount) {
+    this.takerFeeDiscount = takerFeeDiscount;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public Date getTimestamp() {
     return timestamp;
   }
   public void setTimestamp(Date timestamp) {
     this.timestamp = timestamp;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getGrossLastValue() {
-    return grossLastValue;
-  }
-  public void setGrossLastValue(BigDecimal grossLastValue) {
-    this.grossLastValue = grossLastValue;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Double getCommission() {
-    return commission;
-  }
-  public void setCommission(Double commission) {
-    this.commission = commission;
   }
 
 
@@ -526,44 +358,30 @@ public class Margin {
     return (this.account == null ? margin.account == null : this.account.equals(margin.account)) &&
         (this.currency == null ? margin.currency == null : this.currency.equals(margin.currency)) &&
         (this.riskLimit == null ? margin.riskLimit == null : this.riskLimit.equals(margin.riskLimit)) &&
-        (this.prevState == null ? margin.prevState == null : this.prevState.equals(margin.prevState)) &&
         (this.state == null ? margin.state == null : this.state.equals(margin.state)) &&
-        (this.action == null ? margin.action == null : this.action.equals(margin.action)) &&
         (this.amount == null ? margin.amount == null : this.amount.equals(margin.amount)) &&
-        (this.pendingCredit == null ? margin.pendingCredit == null : this.pendingCredit.equals(margin.pendingCredit)) &&
-        (this.pendingDebit == null ? margin.pendingDebit == null : this.pendingDebit.equals(margin.pendingDebit)) &&
-        (this.confirmedDebit == null ? margin.confirmedDebit == null : this.confirmedDebit.equals(margin.confirmedDebit)) &&
         (this.prevRealisedPnl == null ? margin.prevRealisedPnl == null : this.prevRealisedPnl.equals(margin.prevRealisedPnl)) &&
-        (this.prevUnrealisedPnl == null ? margin.prevUnrealisedPnl == null : this.prevUnrealisedPnl.equals(margin.prevUnrealisedPnl)) &&
         (this.grossComm == null ? margin.grossComm == null : this.grossComm.equals(margin.grossComm)) &&
         (this.grossOpenCost == null ? margin.grossOpenCost == null : this.grossOpenCost.equals(margin.grossOpenCost)) &&
         (this.grossOpenPremium == null ? margin.grossOpenPremium == null : this.grossOpenPremium.equals(margin.grossOpenPremium)) &&
         (this.grossExecCost == null ? margin.grossExecCost == null : this.grossExecCost.equals(margin.grossExecCost)) &&
         (this.grossMarkValue == null ? margin.grossMarkValue == null : this.grossMarkValue.equals(margin.grossMarkValue)) &&
         (this.riskValue == null ? margin.riskValue == null : this.riskValue.equals(margin.riskValue)) &&
-        (this.taxableMargin == null ? margin.taxableMargin == null : this.taxableMargin.equals(margin.taxableMargin)) &&
         (this.initMargin == null ? margin.initMargin == null : this.initMargin.equals(margin.initMargin)) &&
         (this.maintMargin == null ? margin.maintMargin == null : this.maintMargin.equals(margin.maintMargin)) &&
-        (this.sessionMargin == null ? margin.sessionMargin == null : this.sessionMargin.equals(margin.sessionMargin)) &&
         (this.targetExcessMargin == null ? margin.targetExcessMargin == null : this.targetExcessMargin.equals(margin.targetExcessMargin)) &&
-        (this.varMargin == null ? margin.varMargin == null : this.varMargin.equals(margin.varMargin)) &&
         (this.realisedPnl == null ? margin.realisedPnl == null : this.realisedPnl.equals(margin.realisedPnl)) &&
         (this.unrealisedPnl == null ? margin.unrealisedPnl == null : this.unrealisedPnl.equals(margin.unrealisedPnl)) &&
-        (this.indicativeTax == null ? margin.indicativeTax == null : this.indicativeTax.equals(margin.indicativeTax)) &&
-        (this.unrealisedProfit == null ? margin.unrealisedProfit == null : this.unrealisedProfit.equals(margin.unrealisedProfit)) &&
-        (this.syntheticMargin == null ? margin.syntheticMargin == null : this.syntheticMargin.equals(margin.syntheticMargin)) &&
         (this.walletBalance == null ? margin.walletBalance == null : this.walletBalance.equals(margin.walletBalance)) &&
         (this.marginBalance == null ? margin.marginBalance == null : this.marginBalance.equals(margin.marginBalance)) &&
-        (this.marginBalancePcnt == null ? margin.marginBalancePcnt == null : this.marginBalancePcnt.equals(margin.marginBalancePcnt)) &&
         (this.marginLeverage == null ? margin.marginLeverage == null : this.marginLeverage.equals(margin.marginLeverage)) &&
         (this.marginUsedPcnt == null ? margin.marginUsedPcnt == null : this.marginUsedPcnt.equals(margin.marginUsedPcnt)) &&
         (this.excessMargin == null ? margin.excessMargin == null : this.excessMargin.equals(margin.excessMargin)) &&
-        (this.excessMarginPcnt == null ? margin.excessMarginPcnt == null : this.excessMarginPcnt.equals(margin.excessMarginPcnt)) &&
         (this.availableMargin == null ? margin.availableMargin == null : this.availableMargin.equals(margin.availableMargin)) &&
         (this.withdrawableMargin == null ? margin.withdrawableMargin == null : this.withdrawableMargin.equals(margin.withdrawableMargin)) &&
-        (this.timestamp == null ? margin.timestamp == null : this.timestamp.equals(margin.timestamp)) &&
-        (this.grossLastValue == null ? margin.grossLastValue == null : this.grossLastValue.equals(margin.grossLastValue)) &&
-        (this.commission == null ? margin.commission == null : this.commission.equals(margin.commission));
+        (this.makerFeeDiscount == null ? margin.makerFeeDiscount == null : this.makerFeeDiscount.equals(margin.makerFeeDiscount)) &&
+        (this.takerFeeDiscount == null ? margin.takerFeeDiscount == null : this.takerFeeDiscount.equals(margin.takerFeeDiscount)) &&
+        (this.timestamp == null ? margin.timestamp == null : this.timestamp.equals(margin.timestamp));
   }
 
   @Override
@@ -572,44 +390,30 @@ public class Margin {
     result = 31 * result + (this.account == null ? 0: this.account.hashCode());
     result = 31 * result + (this.currency == null ? 0: this.currency.hashCode());
     result = 31 * result + (this.riskLimit == null ? 0: this.riskLimit.hashCode());
-    result = 31 * result + (this.prevState == null ? 0: this.prevState.hashCode());
     result = 31 * result + (this.state == null ? 0: this.state.hashCode());
-    result = 31 * result + (this.action == null ? 0: this.action.hashCode());
     result = 31 * result + (this.amount == null ? 0: this.amount.hashCode());
-    result = 31 * result + (this.pendingCredit == null ? 0: this.pendingCredit.hashCode());
-    result = 31 * result + (this.pendingDebit == null ? 0: this.pendingDebit.hashCode());
-    result = 31 * result + (this.confirmedDebit == null ? 0: this.confirmedDebit.hashCode());
     result = 31 * result + (this.prevRealisedPnl == null ? 0: this.prevRealisedPnl.hashCode());
-    result = 31 * result + (this.prevUnrealisedPnl == null ? 0: this.prevUnrealisedPnl.hashCode());
     result = 31 * result + (this.grossComm == null ? 0: this.grossComm.hashCode());
     result = 31 * result + (this.grossOpenCost == null ? 0: this.grossOpenCost.hashCode());
     result = 31 * result + (this.grossOpenPremium == null ? 0: this.grossOpenPremium.hashCode());
     result = 31 * result + (this.grossExecCost == null ? 0: this.grossExecCost.hashCode());
     result = 31 * result + (this.grossMarkValue == null ? 0: this.grossMarkValue.hashCode());
     result = 31 * result + (this.riskValue == null ? 0: this.riskValue.hashCode());
-    result = 31 * result + (this.taxableMargin == null ? 0: this.taxableMargin.hashCode());
     result = 31 * result + (this.initMargin == null ? 0: this.initMargin.hashCode());
     result = 31 * result + (this.maintMargin == null ? 0: this.maintMargin.hashCode());
-    result = 31 * result + (this.sessionMargin == null ? 0: this.sessionMargin.hashCode());
     result = 31 * result + (this.targetExcessMargin == null ? 0: this.targetExcessMargin.hashCode());
-    result = 31 * result + (this.varMargin == null ? 0: this.varMargin.hashCode());
     result = 31 * result + (this.realisedPnl == null ? 0: this.realisedPnl.hashCode());
     result = 31 * result + (this.unrealisedPnl == null ? 0: this.unrealisedPnl.hashCode());
-    result = 31 * result + (this.indicativeTax == null ? 0: this.indicativeTax.hashCode());
-    result = 31 * result + (this.unrealisedProfit == null ? 0: this.unrealisedProfit.hashCode());
-    result = 31 * result + (this.syntheticMargin == null ? 0: this.syntheticMargin.hashCode());
     result = 31 * result + (this.walletBalance == null ? 0: this.walletBalance.hashCode());
     result = 31 * result + (this.marginBalance == null ? 0: this.marginBalance.hashCode());
-    result = 31 * result + (this.marginBalancePcnt == null ? 0: this.marginBalancePcnt.hashCode());
     result = 31 * result + (this.marginLeverage == null ? 0: this.marginLeverage.hashCode());
     result = 31 * result + (this.marginUsedPcnt == null ? 0: this.marginUsedPcnt.hashCode());
     result = 31 * result + (this.excessMargin == null ? 0: this.excessMargin.hashCode());
-    result = 31 * result + (this.excessMarginPcnt == null ? 0: this.excessMarginPcnt.hashCode());
     result = 31 * result + (this.availableMargin == null ? 0: this.availableMargin.hashCode());
     result = 31 * result + (this.withdrawableMargin == null ? 0: this.withdrawableMargin.hashCode());
+    result = 31 * result + (this.makerFeeDiscount == null ? 0: this.makerFeeDiscount.hashCode());
+    result = 31 * result + (this.takerFeeDiscount == null ? 0: this.takerFeeDiscount.hashCode());
     result = 31 * result + (this.timestamp == null ? 0: this.timestamp.hashCode());
-    result = 31 * result + (this.grossLastValue == null ? 0: this.grossLastValue.hashCode());
-    result = 31 * result + (this.commission == null ? 0: this.commission.hashCode());
     return result;
   }
 
@@ -621,44 +425,30 @@ public class Margin {
     sb.append("  account: ").append(account).append("\n");
     sb.append("  currency: ").append(currency).append("\n");
     sb.append("  riskLimit: ").append(riskLimit).append("\n");
-    sb.append("  prevState: ").append(prevState).append("\n");
     sb.append("  state: ").append(state).append("\n");
-    sb.append("  action: ").append(action).append("\n");
     sb.append("  amount: ").append(amount).append("\n");
-    sb.append("  pendingCredit: ").append(pendingCredit).append("\n");
-    sb.append("  pendingDebit: ").append(pendingDebit).append("\n");
-    sb.append("  confirmedDebit: ").append(confirmedDebit).append("\n");
     sb.append("  prevRealisedPnl: ").append(prevRealisedPnl).append("\n");
-    sb.append("  prevUnrealisedPnl: ").append(prevUnrealisedPnl).append("\n");
     sb.append("  grossComm: ").append(grossComm).append("\n");
     sb.append("  grossOpenCost: ").append(grossOpenCost).append("\n");
     sb.append("  grossOpenPremium: ").append(grossOpenPremium).append("\n");
     sb.append("  grossExecCost: ").append(grossExecCost).append("\n");
     sb.append("  grossMarkValue: ").append(grossMarkValue).append("\n");
     sb.append("  riskValue: ").append(riskValue).append("\n");
-    sb.append("  taxableMargin: ").append(taxableMargin).append("\n");
     sb.append("  initMargin: ").append(initMargin).append("\n");
     sb.append("  maintMargin: ").append(maintMargin).append("\n");
-    sb.append("  sessionMargin: ").append(sessionMargin).append("\n");
     sb.append("  targetExcessMargin: ").append(targetExcessMargin).append("\n");
-    sb.append("  varMargin: ").append(varMargin).append("\n");
     sb.append("  realisedPnl: ").append(realisedPnl).append("\n");
     sb.append("  unrealisedPnl: ").append(unrealisedPnl).append("\n");
-    sb.append("  indicativeTax: ").append(indicativeTax).append("\n");
-    sb.append("  unrealisedProfit: ").append(unrealisedProfit).append("\n");
-    sb.append("  syntheticMargin: ").append(syntheticMargin).append("\n");
     sb.append("  walletBalance: ").append(walletBalance).append("\n");
     sb.append("  marginBalance: ").append(marginBalance).append("\n");
-    sb.append("  marginBalancePcnt: ").append(marginBalancePcnt).append("\n");
     sb.append("  marginLeverage: ").append(marginLeverage).append("\n");
     sb.append("  marginUsedPcnt: ").append(marginUsedPcnt).append("\n");
     sb.append("  excessMargin: ").append(excessMargin).append("\n");
-    sb.append("  excessMarginPcnt: ").append(excessMarginPcnt).append("\n");
     sb.append("  availableMargin: ").append(availableMargin).append("\n");
     sb.append("  withdrawableMargin: ").append(withdrawableMargin).append("\n");
+    sb.append("  makerFeeDiscount: ").append(makerFeeDiscount).append("\n");
+    sb.append("  takerFeeDiscount: ").append(takerFeeDiscount).append("\n");
     sb.append("  timestamp: ").append(timestamp).append("\n");
-    sb.append("  grossLastValue: ").append(grossLastValue).append("\n");
-    sb.append("  commission: ").append(commission).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

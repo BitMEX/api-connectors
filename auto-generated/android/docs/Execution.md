@@ -4,20 +4,17 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**execID** | **String** |  | 
-**orderID** | **String** |  |  [optional]
+**execID** | **String** |  |  [optional]
+**orderID** | **String** |  | 
 **clOrdID** | **String** |  |  [optional]
 **clOrdLinkID** | **String** |  |  [optional]
-**account** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**symbol** | **String** |  |  [optional]
+**account** | **Double** |  |  [optional]
+**symbol** | **String** |  | 
 **side** | **String** |  |  [optional]
-**lastQty** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**lastQty** | **Double** |  |  [optional]
 **lastPx** | **Double** |  |  [optional]
-**underlyingLastPx** | **Double** |  |  [optional]
-**lastMkt** | **String** |  |  [optional]
 **lastLiquidityInd** | **String** |  |  [optional]
-**simpleOrderQty** | **Double** |  |  [optional]
-**orderQty** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**orderQty** | **Double** |  |  [optional]
 **price** | **Double** |  |  [optional]
 **displayQty** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **stopPx** | **Double** |  |  [optional]
@@ -30,27 +27,28 @@ Name | Type | Description | Notes
 **timeInForce** | **String** |  |  [optional]
 **execInst** | **String** |  |  [optional]
 **contingencyType** | **String** |  |  [optional]
-**exDestination** | **String** |  |  [optional]
 **ordStatus** | **String** |  |  [optional]
 **triggered** | **String** |  |  [optional]
 **workingIndicator** | **Boolean** |  |  [optional]
 **ordRejReason** | **String** |  |  [optional]
-**simpleLeavesQty** | **Double** |  |  [optional]
-**leavesQty** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**simpleCumQty** | **Double** |  |  [optional]
+**leavesQty** | **Double** |  |  [optional]
 **cumQty** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **avgPx** | **Double** |  |  [optional]
 **commission** | **Double** |  |  [optional]
 **tradePublishIndicator** | **String** |  |  [optional]
-**multiLegReportingType** | **String** |  |  [optional]
 **text** | **String** |  |  [optional]
 **trdMatchID** | **String** |  |  [optional]
-**execCost** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**execComm** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**execCost** | **Double** |  |  [optional]
+**execComm** | **Double** |  |  [optional]
 **homeNotional** | **Double** |  |  [optional]
 **foreignNotional** | **Double** |  |  [optional]
 **transactTime** | [**Date**](Date.md) |  |  [optional]
-**timestamp** | [**Date**](Date.md) |  |  [optional]
+**timestamp** | [**Date**](Date.md) |  | 
+**execGrossPnl** | **Double** |  |  [optional]
+**currentQty** | **Double** |  |  [optional]
+**avgEntryPrice** | **Double** |  |  [optional]
+**realisedPnl** | **Double** |  |  [optional]
+**unrealisedPnl** | **Double** |  |  [optional]
 
 
 

@@ -28,19 +28,7 @@ open class OrderBookAPI {
     /**
      Get current orderbook in vertical format.
      - GET /orderBook/L2
-     - examples: [{contentType=application/json, example=[ {
-  "symbol" : "symbol",
-  "side" : "side",
-  "size" : 6.02745618307040320615897144307382404804229736328125,
-  "price" : 1.4658129805029452,
-  "id" : 0.80082819046101150206595775671303272247314453125
-}, {
-  "symbol" : "symbol",
-  "side" : "side",
-  "size" : 6.02745618307040320615897144307382404804229736328125,
-  "price" : 1.4658129805029452,
-  "id" : 0.80082819046101150206595775671303272247314453125
-} ]}]
+     - examples: [{contentType=application/json, example={}}]
      
      - parameter symbol: (query) Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series. 
      - parameter depth: (query) Orderbook depth per side. Send 0 for full depth. (optional, default to 25)

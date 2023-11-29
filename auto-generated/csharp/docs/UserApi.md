@@ -9,20 +9,32 @@ Method | HTTP request | Description
 [**UserCommunicationToken**](UserApi.md#usercommunicationtoken) | **POST** /user/communicationToken | Register your communication token for mobile clients
 [**UserConfirm**](UserApi.md#userconfirm) | **POST** /user/confirmEmail | Confirm your email address with a token.
 [**UserConfirmWithdrawal**](UserApi.md#userconfirmwithdrawal) | **POST** /user/confirmWithdrawal | Confirm a withdrawal.
+[**UserCreateSubAccount**](UserApi.md#usercreatesubaccount) | **POST** /user/addSubaccount | Creates a new sub-account.
+[**UserCreateUnstakingRequests**](UserApi.md#usercreateunstakingrequests) | **POST** /user/unstakingRequests | Create unstaking request
+[**UserDeleteUnstakingRequests**](UserApi.md#userdeleteunstakingrequests) | **DELETE** /user/unstakingRequests | Cancel unstaking request
 [**UserGet**](UserApi.md#userget) | **GET** /user | Get your user model.
 [**UserGetAffiliateStatus**](UserApi.md#usergetaffiliatestatus) | **GET** /user/affiliateStatus | Get your current affiliate/referral status.
+[**UserGetCSA**](UserApi.md#usergetcsa) | **GET** /user/csa | Get your account&#39;s CSA status.
 [**UserGetCommission**](UserApi.md#usergetcommission) | **GET** /user/commission | Get your account&#39;s commission status.
 [**UserGetDepositAddress**](UserApi.md#usergetdepositaddress) | **GET** /user/depositAddress | Get a deposit address.
 [**UserGetExecutionHistory**](UserApi.md#usergetexecutionhistory) | **GET** /user/executionHistory | Get the execution history by day.
 [**UserGetMargin**](UserApi.md#usergetmargin) | **GET** /user/margin | Get your account&#39;s margin status. Send a currency of \&quot;all\&quot; to receive an array of all supported currencies.
 [**UserGetQuoteFillRatio**](UserApi.md#usergetquotefillratio) | **GET** /user/quoteFillRatio | Get 7 days worth of Quote Fill Ratio statistics.
+[**UserGetQuoteValueRatio**](UserApi.md#usergetquotevalueratio) | **GET** /user/quoteValueRatio | Get Quote Value Ratio statistics over the last 3 days
+[**UserGetStaking**](UserApi.md#usergetstaking) | **GET** /user/staking | Get the current user staking amount.
+[**UserGetStakingInstruments**](UserApi.md#usergetstakinginstruments) | **GET** /user/staking/instruments | List staking instruments
+[**UserGetStakingTiers**](UserApi.md#usergetstakingtiers) | **GET** /user/staking/tiers | List staking tiers for a given currency
+[**UserGetTradingVolume**](UserApi.md#usergettradingvolume) | **GET** /user/tradingVolume | Get your 30 days USD average trading volume
+[**UserGetUnstakingRequests**](UserApi.md#usergetunstakingrequests) | **GET** /user/unstakingRequests | Get the current user unstaking requests
 [**UserGetWallet**](UserApi.md#usergetwallet) | **GET** /user/wallet | Get your current wallet information.
 [**UserGetWalletHistory**](UserApi.md#usergetwallethistory) | **GET** /user/walletHistory | Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 [**UserGetWalletSummary**](UserApi.md#usergetwalletsummary) | **GET** /user/walletSummary | Get a summary of all of your wallet transactions (deposits, withdrawals, PNL).
+[**UserGetWalletTransferAccounts**](UserApi.md#usergetwallettransferaccounts) | **GET** /user/getWalletTransferAccounts | Get the list of accounts you can transfer funds between.
 [**UserLogout**](UserApi.md#userlogout) | **POST** /user/logout | Log out of BitMEX.
-[**UserMinWithdrawalFee**](UserApi.md#userminwithdrawalfee) | **GET** /user/minWithdrawalFee | Get the minimum withdrawal fee for a currency.
 [**UserRequestWithdrawal**](UserApi.md#userrequestwithdrawal) | **POST** /user/requestWithdrawal | Request a withdrawal to an external wallet.
 [**UserSavePreferences**](UserApi.md#usersavepreferences) | **POST** /user/preferences | Save user preferences.
+[**UserUpdateSubAccount**](UserApi.md#userupdatesubaccount) | **POST** /user/updateSubaccount | Updates the sub-account name.
+[**UserWalletTransfer**](UserApi.md#userwallettransfer) | **POST** /user/walletTransfer | Execute a transfer to a paired account.
 
 
 <a name="usercancelwithdrawal"></a>
@@ -86,7 +98,7 @@ No authorization required
 
 <a name="usercheckreferralcode"></a>
 # **UserCheckReferralCode**
-> double? UserCheckReferralCode (string referralCode = null)
+> Object UserCheckReferralCode (string referralCode = null)
 
 Check if a referral code is valid.
 
@@ -112,7 +124,7 @@ namespace Example
             try
             {
                 // Check if a referral code is valid.
-                double? result = apiInstance.UserCheckReferralCode(referralCode);
+                Object result = apiInstance.UserCheckReferralCode(referralCode);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -132,7 +144,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**double?**
+**Object**
 
 ### Authorization
 
@@ -337,6 +349,224 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="usercreatesubaccount"></a>
+# **UserCreateSubAccount**
+> Object UserCreateSubAccount (string accountName)
+
+Creates a new sub-account.
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserCreateSubAccountExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new UserApi();
+            var accountName = accountName_example;  // string | 
+
+            try
+            {
+                // Creates a new sub-account.
+                Object result = apiInstance.UserCreateSubAccount(accountName);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserCreateSubAccount: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accountName** | **string**|  | 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="usercreateunstakingrequests"></a>
+# **UserCreateUnstakingRequests**
+> Object UserCreateUnstakingRequests (string symbol, double? amount)
+
+Create unstaking request
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserCreateUnstakingRequestsExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new UserApi();
+            var symbol = symbol_example;  // string | 
+            var amount = 1.2;  // double? | 
+
+            try
+            {
+                // Create unstaking request
+                Object result = apiInstance.UserCreateUnstakingRequests(symbol, amount);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserCreateUnstakingRequests: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string**|  | 
+ **amount** | **double?**|  | 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="userdeleteunstakingrequests"></a>
+# **UserDeleteUnstakingRequests**
+> Object UserDeleteUnstakingRequests (string redemptionID)
+
+Cancel unstaking request
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserDeleteUnstakingRequestsExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new UserApi();
+            var redemptionID = redemptionID_example;  // string | 
+
+            try
+            {
+                // Cancel unstaking request
+                Object result = apiInstance.UserDeleteUnstakingRequests(redemptionID);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserDeleteUnstakingRequests: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **redemptionID** | **string**|  | 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="userget"></a>
 # **UserGet**
 > User UserGet ()
@@ -407,7 +637,7 @@ This endpoint does not need any parameter.
 
 <a name="usergetaffiliatestatus"></a>
 # **UserGetAffiliateStatus**
-> Affiliate UserGetAffiliateStatus ()
+> Affiliate UserGetAffiliateStatus (string currency = null)
 
 Get your current affiliate/referral status.
 
@@ -439,11 +669,12 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
 
             var apiInstance = new UserApi();
+            var currency = currency_example;  // string | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional)  (default to XBt)
 
             try
             {
                 // Get your current affiliate/referral status.
-                Affiliate result = apiInstance.UserGetAffiliateStatus();
+                Affiliate result = apiInstance.UserGetAffiliateStatus(currency);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -456,11 +687,82 @@ namespace Example
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **string**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
 
 ### Return type
 
 [**Affiliate**](Affiliate.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="usergetcsa"></a>
+# **UserGetCSA**
+> CollateralSupportAgreement UserGetCSA ()
+
+Get your account's CSA status.
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserGetCSAExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new UserApi();
+
+            try
+            {
+                // Get your account's CSA status.
+                CollateralSupportAgreement result = apiInstance.UserGetCSA();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserGetCSA: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**CollateralSupportAgreement**](CollateralSupportAgreement.md)
 
 ### Authorization
 
@@ -543,7 +845,7 @@ This endpoint does not need any parameter.
 
 <a name="usergetdepositaddress"></a>
 # **UserGetDepositAddress**
-> string UserGetDepositAddress (string currency = null)
+> string UserGetDepositAddress (string currency, string network)
 
 Get a deposit address.
 
@@ -575,12 +877,13 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
 
             var apiInstance = new UserApi();
-            var currency = currency_example;  // string |  (optional)  (default to XBt)
+            var currency = currency_example;  // string | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
+            var network = network_example;  // string | The `network` parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
 
             try
             {
                 // Get a deposit address.
-                string result = apiInstance.UserGetDepositAddress(currency);
+                string result = apiInstance.UserGetDepositAddress(currency, network);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -596,7 +899,8 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **currency** | **string**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | 
+ **network** | **string**| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to deposit from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. | 
 
 ### Return type
 
@@ -615,7 +919,7 @@ Name | Type | Description  | Notes
 
 <a name="usergetexecutionhistory"></a>
 # **UserGetExecutionHistory**
-> Object UserGetExecutionHistory (string symbol, DateTime? timestamp)
+> List<Execution> UserGetExecutionHistory (string symbol, DateTime? timestamp)
 
 Get the execution history by day.
 
@@ -653,7 +957,7 @@ namespace Example
             try
             {
                 // Get the execution history by day.
-                Object result = apiInstance.UserGetExecutionHistory(symbol, timestamp);
+                List&lt;Execution&gt; result = apiInstance.UserGetExecutionHistory(symbol, timestamp);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -674,7 +978,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**List<Execution>**](Execution.md)
 
 ### Authorization
 
@@ -721,7 +1025,7 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
 
             var apiInstance = new UserApi();
-            var currency = currency_example;  // string |  (optional)  (default to XBt)
+            var currency = currency_example;  // string | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional)  (default to XBt)
 
             try
             {
@@ -742,7 +1046,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **currency** | **string**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
 
 ### Return type
 
@@ -761,7 +1065,7 @@ Name | Type | Description  | Notes
 
 <a name="usergetquotefillratio"></a>
 # **UserGetQuoteFillRatio**
-> QuoteFillRatio UserGetQuoteFillRatio ()
+> QuoteFillRatio UserGetQuoteFillRatio (double? targetAccountId = null)
 
 Get 7 days worth of Quote Fill Ratio statistics.
 
@@ -793,11 +1097,12 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
 
             var apiInstance = new UserApi();
+            var targetAccountId = 1.2;  // double? | AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional) 
 
             try
             {
                 // Get 7 days worth of Quote Fill Ratio statistics.
-                QuoteFillRatio result = apiInstance.UserGetQuoteFillRatio();
+                QuoteFillRatio result = apiInstance.UserGetQuoteFillRatio(targetAccountId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -810,11 +1115,431 @@ namespace Example
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **targetAccountId** | **double?**| AccountId to get quote fill ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user | [optional] 
 
 ### Return type
 
 [**QuoteFillRatio**](QuoteFillRatio.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="usergetquotevalueratio"></a>
+# **UserGetQuoteValueRatio**
+> QuoteValueRatio UserGetQuoteValueRatio (double? targetAccountId = null)
+
+Get Quote Value Ratio statistics over the last 3 days
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserGetQuoteValueRatioExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new UserApi();
+            var targetAccountId = 1.2;  // double? | AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user (optional) 
+
+            try
+            {
+                // Get Quote Value Ratio statistics over the last 3 days
+                QuoteValueRatio result = apiInstance.UserGetQuoteValueRatio(targetAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserGetQuoteValueRatio: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **targetAccountId** | **double?**| AccountId to get quote value ratio for, must be a paired account with main user. Can be wildcard * to get all accounts linked to the authenticated user | [optional] 
+
+### Return type
+
+[**QuoteValueRatio**](QuoteValueRatio.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="usergetstaking"></a>
+# **UserGetStaking**
+> List<StakingRecord> UserGetStaking (string currency = null)
+
+Get the current user staking amount.
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserGetStakingExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new UserApi();
+            var currency = currency_example;  // string |  (optional) 
+
+            try
+            {
+                // Get the current user staking amount.
+                List&lt;StakingRecord&gt; result = apiInstance.UserGetStaking(currency);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserGetStaking: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **string**|  | [optional] 
+
+### Return type
+
+[**List<StakingRecord>**](StakingRecord.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="usergetstakinginstruments"></a>
+# **UserGetStakingInstruments**
+> List<XAny> UserGetStakingInstruments (string symbol = null, string currency = null)
+
+List staking instruments
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserGetStakingInstrumentsExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new UserApi();
+            var symbol = symbol_example;  // string |  (optional) 
+            var currency = currency_example;  // string |  (optional) 
+
+            try
+            {
+                // List staking instruments
+                List&lt;XAny&gt; result = apiInstance.UserGetStakingInstruments(symbol, currency);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserGetStakingInstruments: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **string**|  | [optional] 
+ **currency** | **string**|  | [optional] 
+
+### Return type
+
+[**List<XAny>**](XAny.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="usergetstakingtiers"></a>
+# **UserGetStakingTiers**
+> List<XAny> UserGetStakingTiers (string currency)
+
+List staking tiers for a given currency
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserGetStakingTiersExample
+    {
+        public void main()
+        {
+            var apiInstance = new UserApi();
+            var currency = currency_example;  // string | 
+
+            try
+            {
+                // List staking tiers for a given currency
+                List&lt;XAny&gt; result = apiInstance.UserGetStakingTiers(currency);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserGetStakingTiers: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **string**|  | 
+
+### Return type
+
+[**List<XAny>**](XAny.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="usergettradingvolume"></a>
+# **UserGetTradingVolume**
+> List<TradingVolume> UserGetTradingVolume ()
+
+Get your 30 days USD average trading volume
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserGetTradingVolumeExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new UserApi();
+
+            try
+            {
+                // Get your 30 days USD average trading volume
+                List&lt;TradingVolume&gt; result = apiInstance.UserGetTradingVolume();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserGetTradingVolume: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**List<TradingVolume>**](TradingVolume.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="usergetunstakingrequests"></a>
+# **UserGetUnstakingRequests**
+> List<StakingRecord> UserGetUnstakingRequests (string status)
+
+Get the current user unstaking requests
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserGetUnstakingRequestsExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new UserApi();
+            var status = status_example;  // string | 
+
+            try
+            {
+                // Get the current user unstaking requests
+                List&lt;StakingRecord&gt; result = apiInstance.UserGetUnstakingRequests(status);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserGetUnstakingRequests: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **status** | **string**|  | 
+
+### Return type
+
+[**List<StakingRecord>**](StakingRecord.md)
 
 ### Authorization
 
@@ -861,7 +1586,7 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
 
             var apiInstance = new UserApi();
-            var currency = currency_example;  // string |  (optional)  (default to XBt)
+            var currency = currency_example;  // string | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional)  (default to XBt)
 
             try
             {
@@ -882,7 +1607,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **currency** | **string**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
 
 ### Return type
 
@@ -901,7 +1626,7 @@ Name | Type | Description  | Notes
 
 <a name="usergetwallethistory"></a>
 # **UserGetWalletHistory**
-> List<Transaction> UserGetWalletHistory (string currency = null, double? count = null, double? start = null)
+> List<Transaction> UserGetWalletHistory (string currency = null, double? count = null, double? start = null, double? targetAccountId = null)
 
 Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
 
@@ -933,14 +1658,15 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
 
             var apiInstance = new UserApi();
-            var currency = currency_example;  // string |  (optional)  (default to XBt)
+            var currency = currency_example;  // string | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional)  (default to XBt)
             var count = 1.2;  // double? | Number of results to fetch. (optional)  (default to 100)
             var start = 1.2;  // double? | Starting point for results. (optional)  (default to 0)
+            var targetAccountId = 1.2;  // double? | AccountId to view the history of, must be a paired account with the authorised user requesting the history. (optional) 
 
             try
             {
                 // Get a history of all of your wallet transactions (deposits, withdrawals, PNL).
-                List&lt;Transaction&gt; result = apiInstance.UserGetWalletHistory(currency, count, start);
+                List&lt;Transaction&gt; result = apiInstance.UserGetWalletHistory(currency, count, start, targetAccountId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -956,9 +1682,10 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **currency** | **string**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
  **count** | **double?**| Number of results to fetch. | [optional] [default to 100]
  **start** | **double?**| Starting point for results. | [optional] [default to 0]
+ **targetAccountId** | **double?**| AccountId to view the history of, must be a paired account with the authorised user requesting the history. | [optional] 
 
 ### Return type
 
@@ -1009,7 +1736,7 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
 
             var apiInstance = new UserApi();
-            var currency = currency_example;  // string |  (optional)  (default to XBt)
+            var currency = currency_example;  // string | Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>. For all currencies specify \"all\" (optional)  (default to XBt)
 
             try
             {
@@ -1030,11 +1757,79 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
+ **currency** | **string**| Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt;. For all currencies specify \&quot;all\&quot; | [optional] [default to XBt]
 
 ### Return type
 
 [**List<Transaction>**](Transaction.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="usergetwallettransferaccounts"></a>
+# **UserGetWalletTransferAccounts**
+> List<XAny> UserGetWalletTransferAccounts ()
+
+Get the list of accounts you can transfer funds between.
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserGetWalletTransferAccountsExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new UserApi();
+
+            try
+            {
+                // Get the list of accounts you can transfer funds between.
+                List&lt;XAny&gt; result = apiInstance.UserGetWalletTransferAccounts();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserGetWalletTransferAccounts: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**List<XAny>**](XAny.md)
 
 ### Authorization
 
@@ -1101,70 +1896,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="userminwithdrawalfee"></a>
-# **UserMinWithdrawalFee**
-> Object UserMinWithdrawalFee (string currency = null)
-
-Get the minimum withdrawal fee for a currency.
-
-This is changed based on network conditions to ensure timely withdrawals. During network congestion, this may be high. The fee is returned in the same currency.
-
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class UserMinWithdrawalFeeExample
-    {
-        public void main()
-        {
-            var apiInstance = new UserApi();
-            var currency = currency_example;  // string |  (optional)  (default to XBt)
-
-            try
-            {
-                // Get the minimum withdrawal fee for a currency.
-                Object result = apiInstance.UserMinWithdrawalFee(currency);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling UserApi.UserMinWithdrawalFee: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **currency** | **string**|  | [optional] [default to XBt]
-
-### Return type
-
-**Object**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 <a name="userrequestwithdrawal"></a>
 # **UserRequestWithdrawal**
-> Transaction UserRequestWithdrawal (string currency, decimal? amount, string address, string otpToken = null, double? fee = null, string text = null)
+> Transaction UserRequestWithdrawal (string currency, string network, decimal? amount, string otpToken = null, string address = null, double? addressId = null, double? targetUserId = null, double? fee = null, string text = null)
 
 Request a withdrawal to an external wallet.
 
@@ -1198,17 +1932,20 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
 
             var apiInstance = new UserApi();
-            var currency = currency_example;  // string | Currency you're withdrawing. Options: `XBt` (default to XBt)
+            var currency = currency_example;  // string | Currency you're withdrawing. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a> (default to XBt)
+            var network = network_example;  // string | The `network` parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the `network` parameter for each currency can be found from `networks.asset` from `GET /wallet/assets`.
             var amount = 8.14;  // decimal? | Amount of withdrawal currency.
-            var address = address_example;  // string | Destination Address.
-            var otpToken = otpToken_example;  // string | 2FA token. Required if 2FA is enabled on your account. (optional) 
+            var otpToken = otpToken_example;  // string | 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. (optional) 
+            var address = address_example;  // string | Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. (optional) 
+            var addressId = 1.2;  // double? | ID of the Destination Address. One of `address`, `addressId`, `targetUserId` has to be specified. (optional) 
+            var targetUserId = 1.2;  // double? | ID of the Target User. One of `address`, `addressId`, `targetUserId` has to be specified. (optional) 
             var fee = 1.2;  // double? | Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. (optional) 
             var text = text_example;  // string | Optional annotation, e.g. 'Transfer to home wallet'. (optional) 
 
             try
             {
                 // Request a withdrawal to an external wallet.
-                Transaction result = apiInstance.UserRequestWithdrawal(currency, amount, address, otpToken, fee, text);
+                Transaction result = apiInstance.UserRequestWithdrawal(currency, network, amount, otpToken, address, addressId, targetUserId, fee, text);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1224,10 +1961,13 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency** | **string**| Currency you&#39;re withdrawing. Options: &#x60;XBt&#x60; | [default to XBt]
+ **currency** | **string**| Currency you&#39;re withdrawing. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | [default to XBt]
+ **network** | **string**| The &#x60;network&#x60; parameter is used to indicate which blockchain you would like to withdraw from. The acceptable value in the &#x60;network&#x60; parameter for each currency can be found from &#x60;networks.asset&#x60; from &#x60;GET /wallet/assets&#x60;. | 
  **amount** | **decimal?**| Amount of withdrawal currency. | 
- **address** | **string**| Destination Address. | 
- **otpToken** | **string**| 2FA token. Required if 2FA is enabled on your account. | [optional] 
+ **otpToken** | **string**| 2FA token. Required for all external withdrawals unless the address has skip2FA in addressbook. | [optional] 
+ **address** | **string**| Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
+ **addressId** | **double?**| ID of the Destination Address. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
+ **targetUserId** | **double?**| ID of the Target User. One of &#x60;address&#x60;, &#x60;addressId&#x60;, &#x60;targetUserId&#x60; has to be specified. | [optional] 
  **fee** | **double?**| Network fee for Bitcoin withdrawals. If not specified, a default value will be calculated based on Bitcoin network conditions. You will have a chance to confirm this via email. | [optional] 
  **text** | **string**| Optional annotation, e.g. &#39;Transfer to home wallet&#39;. | [optional] 
 
@@ -1308,6 +2048,160 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**User**](User.md)
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="userupdatesubaccount"></a>
+# **UserUpdateSubAccount**
+> Object UserUpdateSubAccount (double? targetAccountId, string accountName)
+
+Updates the sub-account name.
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserUpdateSubAccountExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new UserApi();
+            var targetAccountId = 1.2;  // double? | 
+            var accountName = accountName_example;  // string | 
+
+            try
+            {
+                // Updates the sub-account name.
+                Object result = apiInstance.UserUpdateSubAccount(targetAccountId, accountName);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserUpdateSubAccount: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **targetAccountId** | **double?**|  | 
+ **accountName** | **string**|  | 
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[apiExpires](../README.md#apiExpires), [apiKey](../README.md#apiKey), [apiSignature](../README.md#apiSignature)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="userwallettransfer"></a>
+# **UserWalletTransfer**
+> Transaction UserWalletTransfer (string currency, decimal? amount, double? targetAccountId, double? fromAccountId = null)
+
+Execute a transfer to a paired account.
+
+This will send a confirmation email to the email address on record.
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class UserWalletTransferExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiExpires
+            Configuration.Default.AddApiKey("api-expires", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-expires", "Bearer");
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+            // Configure API key authorization: apiSignature
+            Configuration.Default.AddApiKey("api-signature", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-signature", "Bearer");
+
+            var apiInstance = new UserApi();
+            var currency = currency_example;  // string | Currency you're transfering. Any currency. For all currencies, see <a href=\"#!/Wallet/Wallet_getAssetsConfig\">asset config endpoint</a>
+            var amount = 8.14;  // decimal? | Amount of transfer.
+            var targetAccountId = 1.2;  // double? | AccountId to send the transfer to, must be a paired account with the user sending the transfer.
+            var fromAccountId = 1.2;  // double? | AccountID to send the transfer from. Must be paired account with the authenticated user. (optional) 
+
+            try
+            {
+                // Execute a transfer to a paired account.
+                Transaction result = apiInstance.UserWalletTransfer(currency, amount, targetAccountId, fromAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserApi.UserWalletTransfer: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **string**| Currency you&#39;re transfering. Any currency. For all currencies, see &lt;a href&#x3D;\&quot;#!/Wallet/Wallet_getAssetsConfig\&quot;&gt;asset config endpoint&lt;/a&gt; | 
+ **amount** | **decimal?**| Amount of transfer. | 
+ **targetAccountId** | **double?**| AccountId to send the transfer to, must be a paired account with the user sending the transfer. | 
+ **fromAccountId** | **double?**| AccountID to send the transfer from. Must be paired account with the authenticated user. | [optional] 
+
+### Return type
+
+[**Transaction**](Transaction.md)
 
 ### Authorization
 

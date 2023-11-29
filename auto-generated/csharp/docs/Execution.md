@@ -3,20 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExecID** | **string** |  | 
-**OrderID** | **string** |  | [optional] 
+**ExecID** | **string** |  | [optional] 
+**OrderID** | **string** |  | 
 **ClOrdID** | **string** |  | [optional] 
 **ClOrdLinkID** | **string** |  | [optional] 
-**Account** | **decimal?** |  | [optional] 
-**Symbol** | **string** |  | [optional] 
+**Account** | **double?** |  | [optional] 
+**Symbol** | **string** |  | 
 **Side** | **string** |  | [optional] 
-**LastQty** | **decimal?** |  | [optional] 
+**LastQty** | **double?** |  | [optional] 
 **LastPx** | **double?** |  | [optional] 
-**UnderlyingLastPx** | **double?** |  | [optional] 
-**LastMkt** | **string** |  | [optional] 
 **LastLiquidityInd** | **string** |  | [optional] 
-**SimpleOrderQty** | **double?** |  | [optional] 
-**OrderQty** | **decimal?** |  | [optional] 
+**OrderQty** | **double?** |  | [optional] 
 **Price** | **double?** |  | [optional] 
 **DisplayQty** | **decimal?** |  | [optional] 
 **StopPx** | **double?** |  | [optional] 
@@ -29,27 +26,28 @@ Name | Type | Description | Notes
 **TimeInForce** | **string** |  | [optional] 
 **ExecInst** | **string** |  | [optional] 
 **ContingencyType** | **string** |  | [optional] 
-**ExDestination** | **string** |  | [optional] 
 **OrdStatus** | **string** |  | [optional] 
 **Triggered** | **string** |  | [optional] 
 **WorkingIndicator** | **bool?** |  | [optional] 
 **OrdRejReason** | **string** |  | [optional] 
-**SimpleLeavesQty** | **double?** |  | [optional] 
-**LeavesQty** | **decimal?** |  | [optional] 
-**SimpleCumQty** | **double?** |  | [optional] 
+**LeavesQty** | **double?** |  | [optional] 
 **CumQty** | **decimal?** |  | [optional] 
 **AvgPx** | **double?** |  | [optional] 
 **Commission** | **double?** |  | [optional] 
 **TradePublishIndicator** | **string** |  | [optional] 
-**MultiLegReportingType** | **string** |  | [optional] 
 **Text** | **string** |  | [optional] 
 **TrdMatchID** | **string** |  | [optional] 
-**ExecCost** | **decimal?** |  | [optional] 
-**ExecComm** | **decimal?** |  | [optional] 
+**ExecCost** | **double?** |  | [optional] 
+**ExecComm** | **double?** |  | [optional] 
 **HomeNotional** | **double?** |  | [optional] 
 **ForeignNotional** | **double?** |  | [optional] 
 **TransactTime** | **DateTime?** |  | [optional] 
-**Timestamp** | **DateTime?** |  | [optional] 
+**Timestamp** | **DateTime?** |  | 
+**ExecGrossPnl** | **double?** |  | [optional] 
+**CurrentQty** | **double?** |  | [optional] 
+**AvgEntryPrice** | **double?** |  | [optional] 
+**RealisedPnl** | **double?** |  | [optional] 
+**UnrealisedPnl** | **double?** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

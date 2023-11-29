@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **side** | **String** |  | 
 **size** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **price** | **Double** |  |  [optional]
+**timestamp** | [**Date**](Date.md) |  |  [optional]
 
 
 

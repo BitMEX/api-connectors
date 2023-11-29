@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -75,14 +75,6 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'Id'
         }
         /// <summary>
-        /// Test the property 'OwnerId'
-        /// </summary>
-        [Test]
-        public void OwnerIdTest()
-        {
-            // TODO unit test for the property 'OwnerId'
-        }
-        /// <summary>
         /// Test the property 'Firstname'
         /// </summary>
         [Test]
@@ -107,12 +99,36 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'Username'
         }
         /// <summary>
+        /// Test the property 'AccountName'
+        /// </summary>
+        [Test]
+        public void AccountNameTest()
+        {
+            // TODO unit test for the property 'AccountName'
+        }
+        /// <summary>
+        /// Test the property 'IsUser'
+        /// </summary>
+        [Test]
+        public void IsUserTest()
+        {
+            // TODO unit test for the property 'IsUser'
+        }
+        /// <summary>
         /// Test the property 'Email'
         /// </summary>
         [Test]
         public void EmailTest()
         {
             // TODO unit test for the property 'Email'
+        }
+        /// <summary>
+        /// Test the property 'DateOfBirth'
+        /// </summary>
+        [Test]
+        public void DateOfBirthTest()
+        {
+            // TODO unit test for the property 'DateOfBirth'
         }
         /// <summary>
         /// Test the property 'Phone'
@@ -163,14 +179,6 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'AffiliateID'
         }
         /// <summary>
-        /// Test the property 'PgpPubKey'
-        /// </summary>
-        [Test]
-        public void PgpPubKeyTest()
-        {
-            // TODO unit test for the property 'PgpPubKey'
-        }
-        /// <summary>
         /// Test the property 'Country'
         /// </summary>
         [Test]
@@ -193,6 +201,14 @@ namespace IO.Swagger.Test
         public void GeoipRegionTest()
         {
             // TODO unit test for the property 'GeoipRegion'
+        }
+        /// <summary>
+        /// Test the property 'FirstTradeTimestamp'
+        /// </summary>
+        [Test]
+        public void FirstTradeTimestampTest()
+        {
+            // TODO unit test for the property 'FirstTradeTimestamp'
         }
         /// <summary>
         /// Test the property 'Typ'

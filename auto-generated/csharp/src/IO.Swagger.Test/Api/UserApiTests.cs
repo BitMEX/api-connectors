@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -85,7 +85,7 @@ namespace IO.Swagger.Test
             // TODO uncomment below to test the method and replace null with proper value
             //string referralCode = null;
             //var response = instance.UserCheckReferralCode(referralCode);
-            //Assert.IsInstanceOf<double?> (response, "response is double?");
+            //Assert.IsInstanceOf<Object> (response, "response is Object");
         }
         
         /// <summary>
@@ -126,6 +126,43 @@ namespace IO.Swagger.Test
         }
         
         /// <summary>
+        /// Test UserCreateSubAccount
+        /// </summary>
+        [Test]
+        public void UserCreateSubAccountTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountName = null;
+            //var response = instance.UserCreateSubAccount(accountName);
+            //Assert.IsInstanceOf<Object> (response, "response is Object");
+        }
+        
+        /// <summary>
+        /// Test UserCreateUnstakingRequests
+        /// </summary>
+        [Test]
+        public void UserCreateUnstakingRequestsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string symbol = null;
+            //double? amount = null;
+            //var response = instance.UserCreateUnstakingRequests(symbol, amount);
+            //Assert.IsInstanceOf<Object> (response, "response is Object");
+        }
+        
+        /// <summary>
+        /// Test UserDeleteUnstakingRequests
+        /// </summary>
+        [Test]
+        public void UserDeleteUnstakingRequestsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string redemptionID = null;
+            //var response = instance.UserDeleteUnstakingRequests(redemptionID);
+            //Assert.IsInstanceOf<Object> (response, "response is Object");
+        }
+        
+        /// <summary>
         /// Test UserGet
         /// </summary>
         [Test]
@@ -143,8 +180,20 @@ namespace IO.Swagger.Test
         public void UserGetAffiliateStatusTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //var response = instance.UserGetAffiliateStatus();
+            //string currency = null;
+            //var response = instance.UserGetAffiliateStatus(currency);
             //Assert.IsInstanceOf<Affiliate> (response, "response is Affiliate");
+        }
+        
+        /// <summary>
+        /// Test UserGetCSA
+        /// </summary>
+        [Test]
+        public void UserGetCSATest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //var response = instance.UserGetCSA();
+            //Assert.IsInstanceOf<CollateralSupportAgreement> (response, "response is CollateralSupportAgreement");
         }
         
         /// <summary>
@@ -166,7 +215,8 @@ namespace IO.Swagger.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string currency = null;
-            //var response = instance.UserGetDepositAddress(currency);
+            //string network = null;
+            //var response = instance.UserGetDepositAddress(currency, network);
             //Assert.IsInstanceOf<string> (response, "response is string");
         }
         
@@ -180,7 +230,7 @@ namespace IO.Swagger.Test
             //string symbol = null;
             //DateTime? timestamp = null;
             //var response = instance.UserGetExecutionHistory(symbol, timestamp);
-            //Assert.IsInstanceOf<Object> (response, "response is Object");
+            //Assert.IsInstanceOf<List<Execution>> (response, "response is List<Execution>");
         }
         
         /// <summary>
@@ -202,8 +252,81 @@ namespace IO.Swagger.Test
         public void UserGetQuoteFillRatioTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //var response = instance.UserGetQuoteFillRatio();
+            //double? targetAccountId = null;
+            //var response = instance.UserGetQuoteFillRatio(targetAccountId);
             //Assert.IsInstanceOf<QuoteFillRatio> (response, "response is QuoteFillRatio");
+        }
+        
+        /// <summary>
+        /// Test UserGetQuoteValueRatio
+        /// </summary>
+        [Test]
+        public void UserGetQuoteValueRatioTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //double? targetAccountId = null;
+            //var response = instance.UserGetQuoteValueRatio(targetAccountId);
+            //Assert.IsInstanceOf<QuoteValueRatio> (response, "response is QuoteValueRatio");
+        }
+        
+        /// <summary>
+        /// Test UserGetStaking
+        /// </summary>
+        [Test]
+        public void UserGetStakingTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string currency = null;
+            //var response = instance.UserGetStaking(currency);
+            //Assert.IsInstanceOf<List<StakingRecord>> (response, "response is List<StakingRecord>");
+        }
+        
+        /// <summary>
+        /// Test UserGetStakingInstruments
+        /// </summary>
+        [Test]
+        public void UserGetStakingInstrumentsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string symbol = null;
+            //string currency = null;
+            //var response = instance.UserGetStakingInstruments(symbol, currency);
+            //Assert.IsInstanceOf<List<XAny>> (response, "response is List<XAny>");
+        }
+        
+        /// <summary>
+        /// Test UserGetStakingTiers
+        /// </summary>
+        [Test]
+        public void UserGetStakingTiersTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string currency = null;
+            //var response = instance.UserGetStakingTiers(currency);
+            //Assert.IsInstanceOf<List<XAny>> (response, "response is List<XAny>");
+        }
+        
+        /// <summary>
+        /// Test UserGetTradingVolume
+        /// </summary>
+        [Test]
+        public void UserGetTradingVolumeTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //var response = instance.UserGetTradingVolume();
+            //Assert.IsInstanceOf<List<TradingVolume>> (response, "response is List<TradingVolume>");
+        }
+        
+        /// <summary>
+        /// Test UserGetUnstakingRequests
+        /// </summary>
+        [Test]
+        public void UserGetUnstakingRequestsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string status = null;
+            //var response = instance.UserGetUnstakingRequests(status);
+            //Assert.IsInstanceOf<List<StakingRecord>> (response, "response is List<StakingRecord>");
         }
         
         /// <summary>
@@ -228,7 +351,8 @@ namespace IO.Swagger.Test
             //string currency = null;
             //double? count = null;
             //double? start = null;
-            //var response = instance.UserGetWalletHistory(currency, count, start);
+            //double? targetAccountId = null;
+            //var response = instance.UserGetWalletHistory(currency, count, start, targetAccountId);
             //Assert.IsInstanceOf<List<Transaction>> (response, "response is List<Transaction>");
         }
         
@@ -245,6 +369,17 @@ namespace IO.Swagger.Test
         }
         
         /// <summary>
+        /// Test UserGetWalletTransferAccounts
+        /// </summary>
+        [Test]
+        public void UserGetWalletTransferAccountsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //var response = instance.UserGetWalletTransferAccounts();
+            //Assert.IsInstanceOf<List<XAny>> (response, "response is List<XAny>");
+        }
+        
+        /// <summary>
         /// Test UserLogout
         /// </summary>
         [Test]
@@ -256,18 +391,6 @@ namespace IO.Swagger.Test
         }
         
         /// <summary>
-        /// Test UserMinWithdrawalFee
-        /// </summary>
-        [Test]
-        public void UserMinWithdrawalFeeTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string currency = null;
-            //var response = instance.UserMinWithdrawalFee(currency);
-            //Assert.IsInstanceOf<Object> (response, "response is Object");
-        }
-        
-        /// <summary>
         /// Test UserRequestWithdrawal
         /// </summary>
         [Test]
@@ -275,12 +398,15 @@ namespace IO.Swagger.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string currency = null;
+            //string network = null;
             //decimal? amount = null;
-            //string address = null;
             //string otpToken = null;
+            //string address = null;
+            //double? addressId = null;
+            //double? targetUserId = null;
             //double? fee = null;
             //string text = null;
-            //var response = instance.UserRequestWithdrawal(currency, amount, address, otpToken, fee, text);
+            //var response = instance.UserRequestWithdrawal(currency, network, amount, otpToken, address, addressId, targetUserId, fee, text);
             //Assert.IsInstanceOf<Transaction> (response, "response is Transaction");
         }
         
@@ -295,6 +421,34 @@ namespace IO.Swagger.Test
             //bool? overwrite = null;
             //var response = instance.UserSavePreferences(prefs, overwrite);
             //Assert.IsInstanceOf<User> (response, "response is User");
+        }
+        
+        /// <summary>
+        /// Test UserUpdateSubAccount
+        /// </summary>
+        [Test]
+        public void UserUpdateSubAccountTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //double? targetAccountId = null;
+            //string accountName = null;
+            //var response = instance.UserUpdateSubAccount(targetAccountId, accountName);
+            //Assert.IsInstanceOf<Object> (response, "response is Object");
+        }
+        
+        /// <summary>
+        /// Test UserWalletTransfer
+        /// </summary>
+        [Test]
+        public void UserWalletTransferTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string currency = null;
+            //decimal? amount = null;
+            //double? targetAccountId = null;
+            //double? fromAccountId = null;
+            //var response = instance.UserWalletTransfer(currency, amount, targetAccountId, fromAccountId);
+            //Assert.IsInstanceOf<Transaction> (response, "response is Transaction");
         }
         
     }

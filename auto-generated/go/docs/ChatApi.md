@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**ChatGet**](ChatApi.md#ChatGet) | **Get** /chat | Get chat messages.
 [**ChatGetChannels**](ChatApi.md#ChatGetChannels) | **Get** /chat/channels | Get available channels.
 [**ChatGetConnected**](ChatApi.md#ChatGetConnected) | **Get** /chat/connected | Get connected users.
+[**ChatGetPinnedMessage**](ChatApi.md#ChatGetPinnedMessage) | **Get** /chat/pinned | Get pinned message for a channel.
 [**ChatNew**](ChatApi.md#ChatNew) | **Post** /chat | Send a chat message.
 
 
@@ -19,17 +20,17 @@ Get chat messages.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***ChatGetOpts** | optional parameters | nil if no parameters
+ **optional** | ***ChatApiChatGetOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a ChatGetOpts struct
+Optional parameters are passed through a pointer to a ChatApiChatGetOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **count** | **optional.Float32**| Number of results to fetch. | [default to 100]
  **start** | **optional.Float32**| Starting ID for results. | [default to 0]
  **reverse** | **optional.Bool**| If true, will sort results newest first. | [default to true]
- **channelID** | **optional.Float64**| Channel id. GET /chat/channels for ids. Leave blank for all. | 
+ **channelID** | **optional.Float64**| Channel id. GET /chat/channels for ids. Global English by default | [default to 1]
 
 ### Return type
 
@@ -92,6 +93,32 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ChatGetPinnedMessage**
+> PinnedMessage ChatGetPinnedMessage(ctx, channelID)
+Get pinned message for a channel.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **channelID** | **float64**|  | 
+
+### Return type
+
+[**PinnedMessage**](PinnedMessage.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json, application/xml, text/xml, application/javascript, text/javascript
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ChatNew**
 > Chat ChatNew(ctx, message, optional)
 Send a chat message.
@@ -102,10 +129,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **message** | **string**|  | 
- **optional** | ***ChatNewOpts** | optional parameters | nil if no parameters
+ **optional** | ***ChatApiChatNewOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a ChatNewOpts struct
+Optional parameters are passed through a pointer to a ChatApiChatNewOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

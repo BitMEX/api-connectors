@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -53,22 +53,8 @@ SWGInstrument::init() {
     m_expiry_isSet = false;
     settle = NULL;
     m_settle_isSet = false;
-    relist_interval = NULL;
-    m_relist_interval_isSet = false;
-    inverse_leg = new QString("");
-    m_inverse_leg_isSet = false;
-    sell_leg = new QString("");
-    m_sell_leg_isSet = false;
-    buy_leg = new QString("");
-    m_buy_leg_isSet = false;
-    option_strike_pcnt = 0.0;
-    m_option_strike_pcnt_isSet = false;
-    option_strike_round = 0.0;
-    m_option_strike_round_isSet = false;
-    option_strike_price = 0.0;
-    m_option_strike_price_isSet = false;
-    option_multiplier = 0.0;
-    m_option_multiplier_isSet = false;
+    listed_settle = NULL;
+    m_listed_settle_isSet = false;
     position_currency = new QString("");
     m_position_currency_isSet = false;
     underlying = new QString("");
@@ -119,8 +105,6 @@ SWGInstrument::init() {
     m_risk_step_isSet = false;
     limit = 0.0;
     m_limit_isSet = false;
-    capped = false;
-    m_capped_isSet = false;
     taxed = false;
     m_taxed_isSet = false;
     deleverage = false;
@@ -131,8 +115,6 @@ SWGInstrument::init() {
     m_taker_fee_isSet = false;
     settlement_fee = 0.0;
     m_settlement_fee_isSet = false;
-    insurance_fee = 0.0;
-    m_insurance_fee_isSet = false;
     funding_base_symbol = new QString("");
     m_funding_base_symbol_isSet = false;
     funding_quote_symbol = new QString("");
@@ -151,24 +133,12 @@ SWGInstrument::init() {
     m_rebalance_timestamp_isSet = false;
     rebalance_interval = NULL;
     m_rebalance_interval_isSet = false;
-    opening_timestamp = NULL;
-    m_opening_timestamp_isSet = false;
-    closing_timestamp = NULL;
-    m_closing_timestamp_isSet = false;
-    session_interval = NULL;
-    m_session_interval_isSet = false;
     prev_close_price = 0.0;
     m_prev_close_price_isSet = false;
     limit_down_price = 0.0;
     m_limit_down_price_isSet = false;
     limit_up_price = 0.0;
     m_limit_up_price_isSet = false;
-    bankrupt_limit_down_price = 0.0;
-    m_bankrupt_limit_down_price_isSet = false;
-    bankrupt_limit_up_price = 0.0;
-    m_bankrupt_limit_up_price_isSet = false;
-    prev_total_volume = 0.0;
-    m_prev_total_volume_isSet = false;
     total_volume = 0.0;
     m_total_volume_isSet = false;
     volume = 0.0;
@@ -233,14 +203,14 @@ SWGInstrument::init() {
     m_mark_method_isSet = false;
     mark_price = 0.0;
     m_mark_price_isSet = false;
-    indicative_tax_rate = 0.0;
-    m_indicative_tax_rate_isSet = false;
     indicative_settle_price = 0.0;
     m_indicative_settle_price_isSet = false;
-    option_underlying_price = 0.0;
-    m_option_underlying_price_isSet = false;
+    settled_price_adjustment_rate = 0.0;
+    m_settled_price_adjustment_rate_isSet = false;
     settled_price = 0.0;
     m_settled_price_isSet = false;
+    instant_pnl = false;
+    m_instant_pnl_isSet = false;
     timestamp = NULL;
     m_timestamp_isSet = false;
 }
@@ -271,22 +241,9 @@ SWGInstrument::cleanup() {
     if(settle != nullptr) { 
         delete settle;
     }
-    if(relist_interval != nullptr) { 
-        delete relist_interval;
+    if(listed_settle != nullptr) { 
+        delete listed_settle;
     }
-    if(inverse_leg != nullptr) { 
-        delete inverse_leg;
-    }
-    if(sell_leg != nullptr) { 
-        delete sell_leg;
-    }
-    if(buy_leg != nullptr) { 
-        delete buy_leg;
-    }
-
-
-
-
     if(position_currency != nullptr) { 
         delete position_currency;
     }
@@ -353,8 +310,6 @@ SWGInstrument::cleanup() {
 
 
 
-
-
     if(funding_base_symbol != nullptr) { 
         delete funding_base_symbol;
     }
@@ -378,23 +333,9 @@ SWGInstrument::cleanup() {
     if(rebalance_interval != nullptr) { 
         delete rebalance_interval;
     }
-    if(opening_timestamp != nullptr) { 
-        delete opening_timestamp;
-    }
-    if(closing_timestamp != nullptr) { 
-        delete closing_timestamp;
-    }
-    if(session_interval != nullptr) { 
-        delete session_interval;
-    }
 
 
 
-
-
-    if(prev_total_volume != nullptr) { 
-        delete prev_total_volume;
-    }
     if(total_volume != nullptr) { 
         delete total_volume;
     }
@@ -487,21 +428,7 @@ SWGInstrument::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&settle, pJson["settle"], "QDateTime", "QDateTime");
     
-    ::Swagger::setValue(&relist_interval, pJson["relistInterval"], "QDateTime", "QDateTime");
-    
-    ::Swagger::setValue(&inverse_leg, pJson["inverseLeg"], "QString", "QString");
-    
-    ::Swagger::setValue(&sell_leg, pJson["sellLeg"], "QString", "QString");
-    
-    ::Swagger::setValue(&buy_leg, pJson["buyLeg"], "QString", "QString");
-    
-    ::Swagger::setValue(&option_strike_pcnt, pJson["optionStrikePcnt"], "double", "");
-    
-    ::Swagger::setValue(&option_strike_round, pJson["optionStrikeRound"], "double", "");
-    
-    ::Swagger::setValue(&option_strike_price, pJson["optionStrikePrice"], "double", "");
-    
-    ::Swagger::setValue(&option_multiplier, pJson["optionMultiplier"], "double", "");
+    ::Swagger::setValue(&listed_settle, pJson["listedSettle"], "QDateTime", "QDateTime");
     
     ::Swagger::setValue(&position_currency, pJson["positionCurrency"], "QString", "QString");
     
@@ -553,8 +480,6 @@ SWGInstrument::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&limit, pJson["limit"], "double", "");
     
-    ::Swagger::setValue(&capped, pJson["capped"], "bool", "");
-    
     ::Swagger::setValue(&taxed, pJson["taxed"], "bool", "");
     
     ::Swagger::setValue(&deleverage, pJson["deleverage"], "bool", "");
@@ -564,8 +489,6 @@ SWGInstrument::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&taker_fee, pJson["takerFee"], "double", "");
     
     ::Swagger::setValue(&settlement_fee, pJson["settlementFee"], "double", "");
-    
-    ::Swagger::setValue(&insurance_fee, pJson["insuranceFee"], "double", "");
     
     ::Swagger::setValue(&funding_base_symbol, pJson["fundingBaseSymbol"], "QString", "QString");
     
@@ -585,23 +508,11 @@ SWGInstrument::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&rebalance_interval, pJson["rebalanceInterval"], "QDateTime", "QDateTime");
     
-    ::Swagger::setValue(&opening_timestamp, pJson["openingTimestamp"], "QDateTime", "QDateTime");
-    
-    ::Swagger::setValue(&closing_timestamp, pJson["closingTimestamp"], "QDateTime", "QDateTime");
-    
-    ::Swagger::setValue(&session_interval, pJson["sessionInterval"], "QDateTime", "QDateTime");
-    
     ::Swagger::setValue(&prev_close_price, pJson["prevClosePrice"], "double", "");
     
     ::Swagger::setValue(&limit_down_price, pJson["limitDownPrice"], "double", "");
     
     ::Swagger::setValue(&limit_up_price, pJson["limitUpPrice"], "double", "");
-    
-    ::Swagger::setValue(&bankrupt_limit_down_price, pJson["bankruptLimitDownPrice"], "double", "");
-    
-    ::Swagger::setValue(&bankrupt_limit_up_price, pJson["bankruptLimitUpPrice"], "double", "");
-    
-    ::Swagger::setValue(&prev_total_volume, pJson["prevTotalVolume"], "SWGNumber", "SWGNumber");
     
     ::Swagger::setValue(&total_volume, pJson["totalVolume"], "SWGNumber", "SWGNumber");
     
@@ -667,13 +578,13 @@ SWGInstrument::fromJsonObject(QJsonObject pJson) {
     
     ::Swagger::setValue(&mark_price, pJson["markPrice"], "double", "");
     
-    ::Swagger::setValue(&indicative_tax_rate, pJson["indicativeTaxRate"], "double", "");
-    
     ::Swagger::setValue(&indicative_settle_price, pJson["indicativeSettlePrice"], "double", "");
     
-    ::Swagger::setValue(&option_underlying_price, pJson["optionUnderlyingPrice"], "double", "");
+    ::Swagger::setValue(&settled_price_adjustment_rate, pJson["settledPriceAdjustmentRate"], "double", "");
     
     ::Swagger::setValue(&settled_price, pJson["settledPrice"], "double", "");
+    
+    ::Swagger::setValue(&instant_pnl, pJson["instantPnl"], "bool", "");
     
     ::Swagger::setValue(&timestamp, pJson["timestamp"], "QDateTime", "QDateTime");
     
@@ -715,29 +626,8 @@ SWGInstrument::asJsonObject() {
     if(settle != nullptr) { 
         toJsonValue(QString("settle"), settle, obj, QString("QDateTime"));
     }
-    if(relist_interval != nullptr) { 
-        toJsonValue(QString("relistInterval"), relist_interval, obj, QString("QDateTime"));
-    }
-    if(inverse_leg != nullptr && *inverse_leg != QString("")){
-        toJsonValue(QString("inverseLeg"), inverse_leg, obj, QString("QString"));
-    }
-    if(sell_leg != nullptr && *sell_leg != QString("")){
-        toJsonValue(QString("sellLeg"), sell_leg, obj, QString("QString"));
-    }
-    if(buy_leg != nullptr && *buy_leg != QString("")){
-        toJsonValue(QString("buyLeg"), buy_leg, obj, QString("QString"));
-    }
-    if(m_option_strike_pcnt_isSet){
-        obj.insert("optionStrikePcnt", QJsonValue(option_strike_pcnt));
-    }
-    if(m_option_strike_round_isSet){
-        obj.insert("optionStrikeRound", QJsonValue(option_strike_round));
-    }
-    if(m_option_strike_price_isSet){
-        obj.insert("optionStrikePrice", QJsonValue(option_strike_price));
-    }
-    if(m_option_multiplier_isSet){
-        obj.insert("optionMultiplier", QJsonValue(option_multiplier));
+    if(listed_settle != nullptr) { 
+        toJsonValue(QString("listedSettle"), listed_settle, obj, QString("QDateTime"));
     }
     if(position_currency != nullptr && *position_currency != QString("")){
         toJsonValue(QString("positionCurrency"), position_currency, obj, QString("QString"));
@@ -814,9 +704,6 @@ SWGInstrument::asJsonObject() {
     if(m_limit_isSet){
         obj.insert("limit", QJsonValue(limit));
     }
-    if(m_capped_isSet){
-        obj.insert("capped", QJsonValue(capped));
-    }
     if(m_taxed_isSet){
         obj.insert("taxed", QJsonValue(taxed));
     }
@@ -831,9 +718,6 @@ SWGInstrument::asJsonObject() {
     }
     if(m_settlement_fee_isSet){
         obj.insert("settlementFee", QJsonValue(settlement_fee));
-    }
-    if(m_insurance_fee_isSet){
-        obj.insert("insuranceFee", QJsonValue(insurance_fee));
     }
     if(funding_base_symbol != nullptr && *funding_base_symbol != QString("")){
         toJsonValue(QString("fundingBaseSymbol"), funding_base_symbol, obj, QString("QString"));
@@ -862,15 +746,6 @@ SWGInstrument::asJsonObject() {
     if(rebalance_interval != nullptr) { 
         toJsonValue(QString("rebalanceInterval"), rebalance_interval, obj, QString("QDateTime"));
     }
-    if(opening_timestamp != nullptr) { 
-        toJsonValue(QString("openingTimestamp"), opening_timestamp, obj, QString("QDateTime"));
-    }
-    if(closing_timestamp != nullptr) { 
-        toJsonValue(QString("closingTimestamp"), closing_timestamp, obj, QString("QDateTime"));
-    }
-    if(session_interval != nullptr) { 
-        toJsonValue(QString("sessionInterval"), session_interval, obj, QString("QDateTime"));
-    }
     if(m_prev_close_price_isSet){
         obj.insert("prevClosePrice", QJsonValue(prev_close_price));
     }
@@ -879,15 +754,6 @@ SWGInstrument::asJsonObject() {
     }
     if(m_limit_up_price_isSet){
         obj.insert("limitUpPrice", QJsonValue(limit_up_price));
-    }
-    if(m_bankrupt_limit_down_price_isSet){
-        obj.insert("bankruptLimitDownPrice", QJsonValue(bankrupt_limit_down_price));
-    }
-    if(m_bankrupt_limit_up_price_isSet){
-        obj.insert("bankruptLimitUpPrice", QJsonValue(bankrupt_limit_up_price));
-    }
-    if((prev_total_volume != nullptr) && (prev_total_volume->isSet())){
-        toJsonValue(QString("prevTotalVolume"), prev_total_volume, obj, QString("SWGNumber"));
     }
     if((total_volume != nullptr) && (total_volume->isSet())){
         toJsonValue(QString("totalVolume"), total_volume, obj, QString("SWGNumber"));
@@ -985,17 +851,17 @@ SWGInstrument::asJsonObject() {
     if(m_mark_price_isSet){
         obj.insert("markPrice", QJsonValue(mark_price));
     }
-    if(m_indicative_tax_rate_isSet){
-        obj.insert("indicativeTaxRate", QJsonValue(indicative_tax_rate));
-    }
     if(m_indicative_settle_price_isSet){
         obj.insert("indicativeSettlePrice", QJsonValue(indicative_settle_price));
     }
-    if(m_option_underlying_price_isSet){
-        obj.insert("optionUnderlyingPrice", QJsonValue(option_underlying_price));
+    if(m_settled_price_adjustment_rate_isSet){
+        obj.insert("settledPriceAdjustmentRate", QJsonValue(settled_price_adjustment_rate));
     }
     if(m_settled_price_isSet){
         obj.insert("settledPrice", QJsonValue(settled_price));
+    }
+    if(m_instant_pnl_isSet){
+        obj.insert("instantPnl", QJsonValue(instant_pnl));
     }
     if(timestamp != nullptr) { 
         toJsonValue(QString("timestamp"), timestamp, obj, QString("QDateTime"));
@@ -1085,83 +951,13 @@ SWGInstrument::setSettle(QDateTime* settle) {
 }
 
 QDateTime*
-SWGInstrument::getRelistInterval() {
-    return relist_interval;
+SWGInstrument::getListedSettle() {
+    return listed_settle;
 }
 void
-SWGInstrument::setRelistInterval(QDateTime* relist_interval) {
-    this->relist_interval = relist_interval;
-    this->m_relist_interval_isSet = true;
-}
-
-QString*
-SWGInstrument::getInverseLeg() {
-    return inverse_leg;
-}
-void
-SWGInstrument::setInverseLeg(QString* inverse_leg) {
-    this->inverse_leg = inverse_leg;
-    this->m_inverse_leg_isSet = true;
-}
-
-QString*
-SWGInstrument::getSellLeg() {
-    return sell_leg;
-}
-void
-SWGInstrument::setSellLeg(QString* sell_leg) {
-    this->sell_leg = sell_leg;
-    this->m_sell_leg_isSet = true;
-}
-
-QString*
-SWGInstrument::getBuyLeg() {
-    return buy_leg;
-}
-void
-SWGInstrument::setBuyLeg(QString* buy_leg) {
-    this->buy_leg = buy_leg;
-    this->m_buy_leg_isSet = true;
-}
-
-double
-SWGInstrument::getOptionStrikePcnt() {
-    return option_strike_pcnt;
-}
-void
-SWGInstrument::setOptionStrikePcnt(double option_strike_pcnt) {
-    this->option_strike_pcnt = option_strike_pcnt;
-    this->m_option_strike_pcnt_isSet = true;
-}
-
-double
-SWGInstrument::getOptionStrikeRound() {
-    return option_strike_round;
-}
-void
-SWGInstrument::setOptionStrikeRound(double option_strike_round) {
-    this->option_strike_round = option_strike_round;
-    this->m_option_strike_round_isSet = true;
-}
-
-double
-SWGInstrument::getOptionStrikePrice() {
-    return option_strike_price;
-}
-void
-SWGInstrument::setOptionStrikePrice(double option_strike_price) {
-    this->option_strike_price = option_strike_price;
-    this->m_option_strike_price_isSet = true;
-}
-
-double
-SWGInstrument::getOptionMultiplier() {
-    return option_multiplier;
-}
-void
-SWGInstrument::setOptionMultiplier(double option_multiplier) {
-    this->option_multiplier = option_multiplier;
-    this->m_option_multiplier_isSet = true;
+SWGInstrument::setListedSettle(QDateTime* listed_settle) {
+    this->listed_settle = listed_settle;
+    this->m_listed_settle_isSet = true;
 }
 
 QString*
@@ -1415,16 +1211,6 @@ SWGInstrument::setLimit(double limit) {
 }
 
 bool
-SWGInstrument::isCapped() {
-    return capped;
-}
-void
-SWGInstrument::setCapped(bool capped) {
-    this->capped = capped;
-    this->m_capped_isSet = true;
-}
-
-bool
 SWGInstrument::isTaxed() {
     return taxed;
 }
@@ -1472,16 +1258,6 @@ void
 SWGInstrument::setSettlementFee(double settlement_fee) {
     this->settlement_fee = settlement_fee;
     this->m_settlement_fee_isSet = true;
-}
-
-double
-SWGInstrument::getInsuranceFee() {
-    return insurance_fee;
-}
-void
-SWGInstrument::setInsuranceFee(double insurance_fee) {
-    this->insurance_fee = insurance_fee;
-    this->m_insurance_fee_isSet = true;
 }
 
 QString*
@@ -1574,36 +1350,6 @@ SWGInstrument::setRebalanceInterval(QDateTime* rebalance_interval) {
     this->m_rebalance_interval_isSet = true;
 }
 
-QDateTime*
-SWGInstrument::getOpeningTimestamp() {
-    return opening_timestamp;
-}
-void
-SWGInstrument::setOpeningTimestamp(QDateTime* opening_timestamp) {
-    this->opening_timestamp = opening_timestamp;
-    this->m_opening_timestamp_isSet = true;
-}
-
-QDateTime*
-SWGInstrument::getClosingTimestamp() {
-    return closing_timestamp;
-}
-void
-SWGInstrument::setClosingTimestamp(QDateTime* closing_timestamp) {
-    this->closing_timestamp = closing_timestamp;
-    this->m_closing_timestamp_isSet = true;
-}
-
-QDateTime*
-SWGInstrument::getSessionInterval() {
-    return session_interval;
-}
-void
-SWGInstrument::setSessionInterval(QDateTime* session_interval) {
-    this->session_interval = session_interval;
-    this->m_session_interval_isSet = true;
-}
-
 double
 SWGInstrument::getPrevClosePrice() {
     return prev_close_price;
@@ -1632,36 +1378,6 @@ void
 SWGInstrument::setLimitUpPrice(double limit_up_price) {
     this->limit_up_price = limit_up_price;
     this->m_limit_up_price_isSet = true;
-}
-
-double
-SWGInstrument::getBankruptLimitDownPrice() {
-    return bankrupt_limit_down_price;
-}
-void
-SWGInstrument::setBankruptLimitDownPrice(double bankrupt_limit_down_price) {
-    this->bankrupt_limit_down_price = bankrupt_limit_down_price;
-    this->m_bankrupt_limit_down_price_isSet = true;
-}
-
-double
-SWGInstrument::getBankruptLimitUpPrice() {
-    return bankrupt_limit_up_price;
-}
-void
-SWGInstrument::setBankruptLimitUpPrice(double bankrupt_limit_up_price) {
-    this->bankrupt_limit_up_price = bankrupt_limit_up_price;
-    this->m_bankrupt_limit_up_price_isSet = true;
-}
-
-SWGNumber*
-SWGInstrument::getPrevTotalVolume() {
-    return prev_total_volume;
-}
-void
-SWGInstrument::setPrevTotalVolume(SWGNumber* prev_total_volume) {
-    this->prev_total_volume = prev_total_volume;
-    this->m_prev_total_volume_isSet = true;
 }
 
 SWGNumber*
@@ -1985,16 +1701,6 @@ SWGInstrument::setMarkPrice(double mark_price) {
 }
 
 double
-SWGInstrument::getIndicativeTaxRate() {
-    return indicative_tax_rate;
-}
-void
-SWGInstrument::setIndicativeTaxRate(double indicative_tax_rate) {
-    this->indicative_tax_rate = indicative_tax_rate;
-    this->m_indicative_tax_rate_isSet = true;
-}
-
-double
 SWGInstrument::getIndicativeSettlePrice() {
     return indicative_settle_price;
 }
@@ -2005,13 +1711,13 @@ SWGInstrument::setIndicativeSettlePrice(double indicative_settle_price) {
 }
 
 double
-SWGInstrument::getOptionUnderlyingPrice() {
-    return option_underlying_price;
+SWGInstrument::getSettledPriceAdjustmentRate() {
+    return settled_price_adjustment_rate;
 }
 void
-SWGInstrument::setOptionUnderlyingPrice(double option_underlying_price) {
-    this->option_underlying_price = option_underlying_price;
-    this->m_option_underlying_price_isSet = true;
+SWGInstrument::setSettledPriceAdjustmentRate(double settled_price_adjustment_rate) {
+    this->settled_price_adjustment_rate = settled_price_adjustment_rate;
+    this->m_settled_price_adjustment_rate_isSet = true;
 }
 
 double
@@ -2022,6 +1728,16 @@ void
 SWGInstrument::setSettledPrice(double settled_price) {
     this->settled_price = settled_price;
     this->m_settled_price_isSet = true;
+}
+
+bool
+SWGInstrument::isInstantPnl() {
+    return instant_pnl;
+}
+void
+SWGInstrument::setInstantPnl(bool instant_pnl) {
+    this->instant_pnl = instant_pnl;
+    this->m_instant_pnl_isSet = true;
 }
 
 QDateTime*
@@ -2048,13 +1764,6 @@ SWGInstrument::isSet(){
         
         
         
-        if(inverse_leg != nullptr && *inverse_leg != QString("")){ isObjectUpdated = true; break;}
-        if(sell_leg != nullptr && *sell_leg != QString("")){ isObjectUpdated = true; break;}
-        if(buy_leg != nullptr && *buy_leg != QString("")){ isObjectUpdated = true; break;}
-        if(m_option_strike_pcnt_isSet){ isObjectUpdated = true; break;}
-        if(m_option_strike_round_isSet){ isObjectUpdated = true; break;}
-        if(m_option_strike_price_isSet){ isObjectUpdated = true; break;}
-        if(m_option_multiplier_isSet){ isObjectUpdated = true; break;}
         if(position_currency != nullptr && *position_currency != QString("")){ isObjectUpdated = true; break;}
         if(underlying != nullptr && *underlying != QString("")){ isObjectUpdated = true; break;}
         if(quote_currency != nullptr && *quote_currency != QString("")){ isObjectUpdated = true; break;}
@@ -2080,13 +1789,11 @@ SWGInstrument::isSet(){
         if(risk_limit != nullptr && risk_limit->isSet()){ isObjectUpdated = true; break;}
         if(risk_step != nullptr && risk_step->isSet()){ isObjectUpdated = true; break;}
         if(m_limit_isSet){ isObjectUpdated = true; break;}
-        if(m_capped_isSet){ isObjectUpdated = true; break;}
         if(m_taxed_isSet){ isObjectUpdated = true; break;}
         if(m_deleverage_isSet){ isObjectUpdated = true; break;}
         if(m_maker_fee_isSet){ isObjectUpdated = true; break;}
         if(m_taker_fee_isSet){ isObjectUpdated = true; break;}
         if(m_settlement_fee_isSet){ isObjectUpdated = true; break;}
-        if(m_insurance_fee_isSet){ isObjectUpdated = true; break;}
         if(funding_base_symbol != nullptr && *funding_base_symbol != QString("")){ isObjectUpdated = true; break;}
         if(funding_quote_symbol != nullptr && *funding_quote_symbol != QString("")){ isObjectUpdated = true; break;}
         if(funding_premium_symbol != nullptr && *funding_premium_symbol != QString("")){ isObjectUpdated = true; break;}
@@ -2096,15 +1803,9 @@ SWGInstrument::isSet(){
         if(m_indicative_funding_rate_isSet){ isObjectUpdated = true; break;}
         
         
-        
-        
-        
         if(m_prev_close_price_isSet){ isObjectUpdated = true; break;}
         if(m_limit_down_price_isSet){ isObjectUpdated = true; break;}
         if(m_limit_up_price_isSet){ isObjectUpdated = true; break;}
-        if(m_bankrupt_limit_down_price_isSet){ isObjectUpdated = true; break;}
-        if(m_bankrupt_limit_up_price_isSet){ isObjectUpdated = true; break;}
-        if(prev_total_volume != nullptr && prev_total_volume->isSet()){ isObjectUpdated = true; break;}
         if(total_volume != nullptr && total_volume->isSet()){ isObjectUpdated = true; break;}
         if(volume != nullptr && volume->isSet()){ isObjectUpdated = true; break;}
         if(volume24h != nullptr && volume24h->isSet()){ isObjectUpdated = true; break;}
@@ -2137,10 +1838,10 @@ SWGInstrument::isSet(){
         if(m_fair_price_isSet){ isObjectUpdated = true; break;}
         if(mark_method != nullptr && *mark_method != QString("")){ isObjectUpdated = true; break;}
         if(m_mark_price_isSet){ isObjectUpdated = true; break;}
-        if(m_indicative_tax_rate_isSet){ isObjectUpdated = true; break;}
         if(m_indicative_settle_price_isSet){ isObjectUpdated = true; break;}
-        if(m_option_underlying_price_isSet){ isObjectUpdated = true; break;}
+        if(m_settled_price_adjustment_rate_isSet){ isObjectUpdated = true; break;}
         if(m_settled_price_isSet){ isObjectUpdated = true; break;}
+        if(m_instant_pnl_isSet){ isObjectUpdated = true; break;}
         
     }while(false);
     return isObjectUpdated;

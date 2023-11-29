@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -139,6 +139,54 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'DisablePush'
         }
         /// <summary>
+        /// Test the property 'DisplayCorpEnrollUpsell'
+        /// </summary>
+        [Test]
+        public void DisplayCorpEnrollUpsellTest()
+        {
+            // TODO unit test for the property 'DisplayCorpEnrollUpsell'
+        }
+        /// <summary>
+        /// Test the property 'EquivalentCurrency'
+        /// </summary>
+        [Test]
+        public void EquivalentCurrencyTest()
+        {
+            // TODO unit test for the property 'EquivalentCurrency'
+        }
+        /// <summary>
+        /// Test the property 'Features'
+        /// </summary>
+        [Test]
+        public void FeaturesTest()
+        {
+            // TODO unit test for the property 'Features'
+        }
+        /// <summary>
+        /// Test the property 'Favourites'
+        /// </summary>
+        [Test]
+        public void FavouritesTest()
+        {
+            // TODO unit test for the property 'Favourites'
+        }
+        /// <summary>
+        /// Test the property 'FavouritesAssets'
+        /// </summary>
+        [Test]
+        public void FavouritesAssetsTest()
+        {
+            // TODO unit test for the property 'FavouritesAssets'
+        }
+        /// <summary>
+        /// Test the property 'FavouritesOrdered'
+        /// </summary>
+        [Test]
+        public void FavouritesOrderedTest()
+        {
+            // TODO unit test for the property 'FavouritesOrdered'
+        }
+        /// <summary>
         /// Test the property 'HideConfirmDialogs'
         /// </summary>
         [Test]
@@ -179,6 +227,30 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'HideNotifications'
         }
         /// <summary>
+        /// Test the property 'HidePhoneConfirm'
+        /// </summary>
+        [Test]
+        public void HidePhoneConfirmTest()
+        {
+            // TODO unit test for the property 'HidePhoneConfirm'
+        }
+        /// <summary>
+        /// Test the property 'IsSensitiveInfoVisible'
+        /// </summary>
+        [Test]
+        public void IsSensitiveInfoVisibleTest()
+        {
+            // TODO unit test for the property 'IsSensitiveInfoVisible'
+        }
+        /// <summary>
+        /// Test the property 'IsWalletZeroBalanceHidden'
+        /// </summary>
+        [Test]
+        public void IsWalletZeroBalanceHiddenTest()
+        {
+            // TODO unit test for the property 'IsWalletZeroBalanceHidden'
+        }
+        /// <summary>
         /// Test the property 'Locale'
         /// </summary>
         [Test]
@@ -187,12 +259,44 @@ namespace IO.Swagger.Test
             // TODO unit test for the property 'Locale'
         }
         /// <summary>
+        /// Test the property 'LocaleSetTime'
+        /// </summary>
+        [Test]
+        public void LocaleSetTimeTest()
+        {
+            // TODO unit test for the property 'LocaleSetTime'
+        }
+        /// <summary>
+        /// Test the property 'MarginPnlRow'
+        /// </summary>
+        [Test]
+        public void MarginPnlRowTest()
+        {
+            // TODO unit test for the property 'MarginPnlRow'
+        }
+        /// <summary>
+        /// Test the property 'MarginPnlRowKind'
+        /// </summary>
+        [Test]
+        public void MarginPnlRowKindTest()
+        {
+            // TODO unit test for the property 'MarginPnlRowKind'
+        }
+        /// <summary>
         /// Test the property 'MsgsSeen'
         /// </summary>
         [Test]
         public void MsgsSeenTest()
         {
             // TODO unit test for the property 'MsgsSeen'
+        }
+        /// <summary>
+        /// Test the property 'Notifications'
+        /// </summary>
+        [Test]
+        public void NotificationsTest()
+        {
+            // TODO unit test for the property 'Notifications'
         }
         /// <summary>
         /// Test the property 'OrderBookBinning'
@@ -225,6 +329,30 @@ namespace IO.Swagger.Test
         public void OrderControlsPlusMinusTest()
         {
             // TODO unit test for the property 'OrderControlsPlusMinus'
+        }
+        /// <summary>
+        /// Test the property 'PlatformLayout'
+        /// </summary>
+        [Test]
+        public void PlatformLayoutTest()
+        {
+            // TODO unit test for the property 'PlatformLayout'
+        }
+        /// <summary>
+        /// Test the property 'SelectedFiatCurrency'
+        /// </summary>
+        [Test]
+        public void SelectedFiatCurrencyTest()
+        {
+            // TODO unit test for the property 'SelectedFiatCurrency'
+        }
+        /// <summary>
+        /// Test the property 'ShowChartBottomToolbar'
+        /// </summary>
+        [Test]
+        public void ShowChartBottomToolbarTest()
+        {
+            // TODO unit test for the property 'ShowChartBottomToolbar'
         }
         /// <summary>
         /// Test the property 'ShowLocaleNumbers'
@@ -281,6 +409,14 @@ namespace IO.Swagger.Test
         public void TradeLayoutTest()
         {
             // TODO unit test for the property 'TradeLayout'
+        }
+        /// <summary>
+        /// Test the property 'UserColor'
+        /// </summary>
+        [Test]
+        public void UserColorTest()
+        {
+            // TODO unit test for the property 'UserColor'
         }
 
     }

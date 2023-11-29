@@ -1,6 +1,6 @@
 /**
  * BitMEX API
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -41,6 +41,8 @@ SWGChatChannel::init() {
     m_id_isSet = false;
     name = new QString("");
     m_name_isSet = false;
+    is_private = false;
+    m_is_private_isSet = false;
 }
 
 void
@@ -51,6 +53,7 @@ SWGChatChannel::cleanup() {
     if(name != nullptr) { 
         delete name;
     }
+
 }
 
 SWGChatChannel*
@@ -67,6 +70,8 @@ SWGChatChannel::fromJsonObject(QJsonObject pJson) {
     ::Swagger::setValue(&id, pJson["id"], "SWGNumber", "SWGNumber");
     
     ::Swagger::setValue(&name, pJson["name"], "QString", "QString");
+    
+    ::Swagger::setValue(&is_private, pJson["isPrivate"], "bool", "");
     
 }
 
@@ -87,6 +92,9 @@ SWGChatChannel::asJsonObject() {
     }
     if(name != nullptr && *name != QString("")){
         toJsonValue(QString("name"), name, obj, QString("QString"));
+    }
+    if(m_is_private_isSet){
+        obj.insert("isPrivate", QJsonValue(is_private));
     }
 
     return obj;
@@ -112,6 +120,16 @@ SWGChatChannel::setName(QString* name) {
     this->m_name_isSet = true;
 }
 
+bool
+SWGChatChannel::isIsPrivate() {
+    return is_private;
+}
+void
+SWGChatChannel::setIsPrivate(bool is_private) {
+    this->is_private = is_private;
+    this->m_is_private_isSet = true;
+}
+
 
 bool
 SWGChatChannel::isSet(){
@@ -119,6 +137,7 @@ SWGChatChannel::isSet(){
     do{
         if(id != nullptr && id->isSet()){ isObjectUpdated = true; break;}
         if(name != nullptr && *name != QString("")){ isObjectUpdated = true; break;}
+        if(m_is_private_isSet){ isObjectUpdated = true; break;}
     }while(false);
     return isObjectUpdated;
 }

@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **name** | **string** |  | 
 **nonce** | **float** |  | 
 **cidr** | **string** |  | [optional] 
+**cidrs** | [**\Swagger\Client\Model\XAny[]**](XAny.md) |  | [optional] 
+**target_account_id** | **float** |  | [optional] 
 **permissions** | [**\Swagger\Client\Model\XAny[]**](XAny.md) |  | [optional] 
 **enabled** | **bool** |  | [optional] [default to false]
 **user_id** | **float** |  | 

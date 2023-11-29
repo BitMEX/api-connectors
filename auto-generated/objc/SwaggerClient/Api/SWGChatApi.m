@@ -5,6 +5,7 @@
 #import "SWGChatChannel.h"
 #import "SWGConnectedUsers.h"
 #import "SWGError.h"
+#import "SWGPinnedMessage.h"
 
 
 @interface SWGChatApi ()
@@ -61,7 +62,7 @@ NSInteger kSWGChatApiMissingParamErrorCode = 234513;
 ///
 ///  @param reverse If true, will sort results newest first. (optional, default to true)
 ///
-///  @param channelID Channel id. GET /chat/channels for ids. Leave blank for all. (optional)
+///  @param channelID Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)
 ///
 ///  @returns NSArray<SWGChat>*
 ///
@@ -227,6 +228,74 @@ NSInteger kSWGChatApiMissingParamErrorCode = 234513;
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
                                     handler((SWGConnectedUsers*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Get pinned message for a channel.
+/// 
+///  @param channelID  
+///
+///  @returns SWGPinnedMessage*
+///
+-(NSURLSessionTask*) chatGetPinnedMessageWithChannelID: (NSNumber*) channelID
+    completionHandler: (void (^)(SWGPinnedMessage* output, NSError* error)) handler {
+    // verify the required parameter 'channelID' is set
+    if (channelID == nil) {
+        NSParameterAssert(channelID);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"channelID"] };
+            NSError* error = [NSError errorWithDomain:kSWGChatApiErrorDomain code:kSWGChatApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/chat/pinned"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (channelID != nil) {
+        queryParams[@"channelID"] = channelID;
+    }
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"application/xml", @"text/xml", @"application/javascript", @"text/javascript"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"GET"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"SWGPinnedMessage*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((SWGPinnedMessage*)data, error);
                                 }
                             }];
 }

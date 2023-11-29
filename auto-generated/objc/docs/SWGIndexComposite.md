@@ -6,8 +6,12 @@ Name | Type | Description | Notes
 **timestamp** | **NSDate*** |  | 
 **symbol** | **NSString*** |  | [optional] 
 **indexSymbol** | **NSString*** |  | [optional] 
+**indexMultiplier** | **NSNumber*** |  | [optional] 
 **reference** | **NSString*** |  | [optional] 
 **lastPrice** | **NSNumber*** |  | [optional] 
+**sourcePrice** | **NSNumber*** |  | [optional] 
+**conversionIndex** | **NSString*** |  | [optional] 
+**conversionIndexPrice** | **NSNumber*** |  | [optional] 
 **weight** | **NSNumber*** |  | [optional] 
 **logged** | **NSDate*** |  | [optional] 
 

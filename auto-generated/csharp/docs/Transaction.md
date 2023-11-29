@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **TransactID** | **string** |  | 
 **Account** | **decimal?** |  | [optional] 
 **Currency** | **string** |  | [optional] 
+**Network** | **string** |  | [optional] 
 **TransactType** | **string** |  | [optional] 
 **Amount** | **decimal?** |  | [optional] 
 **Fee** | **decimal?** |  | [optional] 
@@ -15,6 +16,7 @@ Name | Type | Description | Notes
 **Text** | **string** |  | [optional] 
 **TransactTime** | **DateTime?** |  | [optional] 
 **Timestamp** | **DateTime?** |  | [optional] 
+**WalletBalance** | **decimal?** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

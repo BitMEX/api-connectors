@@ -1,7 +1,7 @@
 /* 
  * BitMEX API
  *
- * ## REST API for the BitMEX Trading Platform  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
+ * ## REST API for the BitMEX Trading Platform  _If you are building automated tools, please subscribe to the_ _[BitMEX API RSS Feed](https://blog.bitmex.com/api_announcement/feed/) for changes. The feed will be updated_ _regularly and is the most reliable way to get downtime and update announcements._  [View Changelog](/app/apiChangelog)  -  #### Getting Started  Base URI: [https://www.bitmex.com/api/v1](/api/v1)  ##### Fetching Data  All REST endpoints are documented below. You can try out any query right from this interface.  Most table queries accept `count`, `start`, and `reverse` params. Set `reverse=true` to get rows newest-first.  Additional documentation regarding filters, timestamps, and authentication is available in [the main API documentation](/app/restAPI).  _All_ table data is available via the [Websocket](/app/wsAPI). We highly recommend using the socket if you want to have the quickest possible data without being subject to ratelimits.  ##### Return Types  By default, all data is returned as JSON. Send `?_format=csv` to get CSV data or `?_format=xml` to get XML data.  ##### Trade Data Queries  _This is only a small subset of what is available, to get you started._  Fill in the parameters and click the `Try it out!` button to try any of these queries.  - [Pricing Data](#!/Quote/Quote_get)  - [Trade Data](#!/Trade/Trade_get)  - [OrderBook Data](#!/OrderBook/OrderBook_getL2)  - [Settlement Data](#!/Settlement/Settlement_get)  - [Exchange Statistics](#!/Stats/Stats_history)  Every function of the BitMEX.com platform is exposed here and documented. Many more functions are available.  ##### Swagger Specification  [⇩ Download Swagger JSON](swagger.json)  -  ## All API Endpoints  Click to expand a section. 
  *
  * OpenAPI spec version: 1.2.0
  * Contact: support@bitmex.com
@@ -34,7 +34,7 @@ namespace IO.Swagger.Api
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting ID for results. (optional, default to 0)</param>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
-        /// <param name="channelID">Channel id. GET /chat/channels for ids. Leave blank for all. (optional)</param>
+        /// <param name="channelID">Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)</param>
         /// <returns>List&lt;Chat&gt;</returns>
         List<Chat> ChatGet (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null);
 
@@ -48,7 +48,7 @@ namespace IO.Swagger.Api
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting ID for results. (optional, default to 0)</param>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
-        /// <param name="channelID">Channel id. GET /chat/channels for ids. Leave blank for all. (optional)</param>
+        /// <param name="channelID">Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)</param>
         /// <returns>ApiResponse of List&lt;Chat&gt;</returns>
         ApiResponse<List<Chat>> ChatGetWithHttpInfo (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null);
         /// <summary>
@@ -90,6 +90,27 @@ namespace IO.Swagger.Api
         /// <returns>ApiResponse of ConnectedUsers</returns>
         ApiResponse<ConnectedUsers> ChatGetConnectedWithHttpInfo ();
         /// <summary>
+        /// Get pinned message for a channel.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelID"></param>
+        /// <returns>PinnedMessage</returns>
+        PinnedMessage ChatGetPinnedMessage (double? channelID);
+
+        /// <summary>
+        /// Get pinned message for a channel.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelID"></param>
+        /// <returns>ApiResponse of PinnedMessage</returns>
+        ApiResponse<PinnedMessage> ChatGetPinnedMessageWithHttpInfo (double? channelID);
+        /// <summary>
         /// Send a chat message.
         /// </summary>
         /// <remarks>
@@ -124,7 +145,7 @@ namespace IO.Swagger.Api
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting ID for results. (optional, default to 0)</param>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
-        /// <param name="channelID">Channel id. GET /chat/channels for ids. Leave blank for all. (optional)</param>
+        /// <param name="channelID">Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)</param>
         /// <returns>Task of List&lt;Chat&gt;</returns>
         System.Threading.Tasks.Task<List<Chat>> ChatGetAsync (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null);
 
@@ -138,7 +159,7 @@ namespace IO.Swagger.Api
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting ID for results. (optional, default to 0)</param>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
-        /// <param name="channelID">Channel id. GET /chat/channels for ids. Leave blank for all. (optional)</param>
+        /// <param name="channelID">Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)</param>
         /// <returns>Task of ApiResponse (List&lt;Chat&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<List<Chat>>> ChatGetAsyncWithHttpInfo (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null);
         /// <summary>
@@ -179,6 +200,27 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse (ConnectedUsers)</returns>
         System.Threading.Tasks.Task<ApiResponse<ConnectedUsers>> ChatGetConnectedAsyncWithHttpInfo ();
+        /// <summary>
+        /// Get pinned message for a channel.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelID"></param>
+        /// <returns>Task of PinnedMessage</returns>
+        System.Threading.Tasks.Task<PinnedMessage> ChatGetPinnedMessageAsync (double? channelID);
+
+        /// <summary>
+        /// Get pinned message for a channel.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelID"></param>
+        /// <returns>Task of ApiResponse (PinnedMessage)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PinnedMessage>> ChatGetPinnedMessageAsyncWithHttpInfo (double? channelID);
         /// <summary>
         /// Send a chat message.
         /// </summary>
@@ -309,7 +351,7 @@ namespace IO.Swagger.Api
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting ID for results. (optional, default to 0)</param>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
-        /// <param name="channelID">Channel id. GET /chat/channels for ids. Leave blank for all. (optional)</param>
+        /// <param name="channelID">Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)</param>
         /// <returns>List&lt;Chat&gt;</returns>
         public List<Chat> ChatGet (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null)
         {
@@ -324,7 +366,7 @@ namespace IO.Swagger.Api
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting ID for results. (optional, default to 0)</param>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
-        /// <param name="channelID">Channel id. GET /chat/channels for ids. Leave blank for all. (optional)</param>
+        /// <param name="channelID">Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)</param>
         /// <returns>ApiResponse of List&lt;Chat&gt;</returns>
         public ApiResponse< List<Chat> > ChatGetWithHttpInfo (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null)
         {
@@ -387,7 +429,7 @@ namespace IO.Swagger.Api
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting ID for results. (optional, default to 0)</param>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
-        /// <param name="channelID">Channel id. GET /chat/channels for ids. Leave blank for all. (optional)</param>
+        /// <param name="channelID">Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)</param>
         /// <returns>Task of List&lt;Chat&gt;</returns>
         public async System.Threading.Tasks.Task<List<Chat>> ChatGetAsync (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null)
         {
@@ -403,7 +445,7 @@ namespace IO.Swagger.Api
         /// <param name="count">Number of results to fetch. (optional, default to 100)</param>
         /// <param name="start">Starting ID for results. (optional, default to 0)</param>
         /// <param name="reverse">If true, will sort results newest first. (optional, default to true)</param>
-        /// <param name="channelID">Channel id. GET /chat/channels for ids. Leave blank for all. (optional)</param>
+        /// <param name="channelID">Channel id. GET /chat/channels for ids. Global English by default (optional, default to 1)</param>
         /// <returns>Task of ApiResponse (List&lt;Chat&gt;)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<List<Chat>>> ChatGetAsyncWithHttpInfo (decimal? count = null, decimal? start = null, bool? reverse = null, double? channelID = null)
         {
@@ -723,6 +765,151 @@ namespace IO.Swagger.Api
             return new ApiResponse<ConnectedUsers>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ConnectedUsers) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(ConnectedUsers)));
+        }
+
+        /// <summary>
+        /// Get pinned message for a channel. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelID"></param>
+        /// <returns>PinnedMessage</returns>
+        public PinnedMessage ChatGetPinnedMessage (double? channelID)
+        {
+             ApiResponse<PinnedMessage> localVarResponse = ChatGetPinnedMessageWithHttpInfo(channelID);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get pinned message for a channel. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelID"></param>
+        /// <returns>ApiResponse of PinnedMessage</returns>
+        public ApiResponse< PinnedMessage > ChatGetPinnedMessageWithHttpInfo (double? channelID)
+        {
+            // verify the required parameter 'channelID' is set
+            if (channelID == null)
+                throw new ApiException(400, "Missing required parameter 'channelID' when calling ChatApi->ChatGetPinnedMessage");
+
+            var localVarPath = "/chat/pinned";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (channelID != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "channelID", channelID)); // query parameter
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ChatGetPinnedMessage", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PinnedMessage>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PinnedMessage) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(PinnedMessage)));
+        }
+
+        /// <summary>
+        /// Get pinned message for a channel. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelID"></param>
+        /// <returns>Task of PinnedMessage</returns>
+        public async System.Threading.Tasks.Task<PinnedMessage> ChatGetPinnedMessageAsync (double? channelID)
+        {
+             ApiResponse<PinnedMessage> localVarResponse = await ChatGetPinnedMessageAsyncWithHttpInfo(channelID);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get pinned message for a channel. 
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelID"></param>
+        /// <returns>Task of ApiResponse (PinnedMessage)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PinnedMessage>> ChatGetPinnedMessageAsyncWithHttpInfo (double? channelID)
+        {
+            // verify the required parameter 'channelID' is set
+            if (channelID == null)
+                throw new ApiException(400, "Missing required parameter 'channelID' when calling ChatApi->ChatGetPinnedMessage");
+
+            var localVarPath = "/chat/pinned";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "application/xml",
+                "text/xml",
+                "application/javascript",
+                "text/javascript"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (channelID != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "channelID", channelID)); // query parameter
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ChatGetPinnedMessage", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PinnedMessage>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PinnedMessage) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(PinnedMessage)));
         }
 
         /// <summary>
